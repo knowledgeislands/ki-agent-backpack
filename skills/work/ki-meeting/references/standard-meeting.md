@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-14T19:20:00Z
+revised: 2026-11-14T19:15:06Z
 status: in force
 ---
 

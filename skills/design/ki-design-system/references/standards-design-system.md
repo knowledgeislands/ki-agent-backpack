@@ -146,6 +146,8 @@ A design question that changes what readers see starts from a review of the inte
 5. **Consolidate.** The outcome moves to its homes: new values to the token source, new rules to the design guide, new stable behaviour to a Specification, a new or changed decision to a Decision Record, and every new checkable rule to a check.
 6. **Retire.** The brief, option boards, canvases and screenshots are working material. Once consolidated, they are not kept as documents: the work record that summarised them is pruned with the rest of the roadmap, and Git history keeps what was considered. The annotated board itself stays, because it is a projection rather than working material; its next refresh shows the built design, and the mock-ups leave it.
 
+**Agreed decisions are drawn against the build** (DRAW-BUILD, Kris, 14 November 2026). Once a decision is agreed, its drawing follows the build rather than leading it: the agreed design is built, and any drawing of it after that is drawn against the build and checked with it. Drawings ahead of the build are for open choices only, drawn side by side for the owner. It holds for design work in a meeting or out of one; in the first design meeting, drawings ahead of an agreed build held the build up.
+
 A design question about the shape of a Project or a model that several repositories share follows `ki-work design` instead. A small change that needs no options, such as applying an existing component, goes straight to build and consolidate.
 
 ## Checks

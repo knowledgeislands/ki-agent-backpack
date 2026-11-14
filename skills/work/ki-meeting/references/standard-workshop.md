@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-13T17:19:10Z
+revised: 2026-11-14T19:15:06Z
 status: in force
 ---
 
@@ -64,6 +64,7 @@ The rules, part by part.
 1. **The thing made,** by its makers, in the meeting's output folder, named for the work, such as `designs/`.
 2. **Each part ends final,** or with the choices it leaves to the owner listed, each with its recommendation.
 3. **No decision.** A workshop produces options and finished parts; the owner's decisions on them go to the change document, as for every meeting.
+4. **Agreed design is drawn against the build** (DRAW-BUILD, Kris, 14 November 2026). In a design workshop, once a decision is agreed its drawing follows the build rather than leading it, and drawings ahead of the build are for open choices only, as `ki-design-system` sets in its design work.
 
 [Back to contents](#contents)
 

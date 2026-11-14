@@ -34,6 +34,7 @@ An interface is designed three times, each time at a finer grain, and the coarse
 4. **Mock up in every state.** Loading, empty and failed are part of the first mock-up, not a later round.
 5. **Review before posting.** A second reader checks each file against the brief's rules and this skill's rubric, and the fixes are made before the round is called final.
 6. **Say what has not been checked.** A board nobody has seen rendered is posted as such.
+7. **Once a level is agreed and built, draw against the build.** Drawings ahead of the build are for open choices only, as [design work](standards-design-system.md#design-work-from-brief-to-rule) sets (DRAW-BUILD).
 
 ## Seeing what was drawn
 
