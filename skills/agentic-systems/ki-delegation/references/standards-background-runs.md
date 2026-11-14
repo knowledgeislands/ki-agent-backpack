@@ -110,6 +110,8 @@ When writing the steps and rules:
 
 **Naming.** A run prompt names no session: a run takes no seat and its report closes with `🧵 <work-id>` of the work it reports to. A brief that starts a new agent session instead, never a background run, names the thread line the session is to take and tells it to rename itself to that line as its first act, by its agent host's rename (runtime-specific: `/rename <thread line>` in Claude Code), as Kris took OPENER-NAME a on 14 November 2026 under `ki-coordination`'s [Opening work](../../../work/ki-coordination/references/standards-opening.md#opening-work). A seat working in a package without its keys takes `<role glyph> <work-id>+<role>`, under SEAT-LINE a in the `ki-work-package` [thread line](../../../work/ki-work-package/references/standard-roles.md#46-thread-line).
 
+**Delegating.** A brief that starts a new agent session also tells it to delegate its work to its agent host's own subagents, to stay responsive to its messages and to the owner while that work runs, and to let the subagents do most of the work, checking what they return before posting it, as Kris took OPENER-DELEGATE a on 14 November 2026 under `ki-coordination`'s [Opening work](../../../work/ki-coordination/references/standards-opening.md#opening-work). The runs it starts are briefed under this Prompt shape, followed under [Monitoring](#monitoring) and checked against their verification step before their results are posted. A run prompt keeps "Do not use background subagents.": the run is the subagent.
+
 A long wait belongs in the foreground: the agent checks the condition every two minutes and updates its status meanwhile.
 
 ## Authority tiers

@@ -56,7 +56,7 @@ Each worker subsection contains these non-empty fields:
 - **Return:** the concise result and evidence format;
 - **Checkpoint:** the condition at which the worker stops and returns control.
 
-A worker handed to a new agent session of its own, rather than run as a background agent, also carries a **Session:** field: the thread line the session takes and the instruction to rename itself to it as its first act, under the background-run standard's [Prompt shape](standards-background-runs.md#prompt-shape) (OPENER-NAME).
+A worker handed to a new agent session of its own, rather than run as a background agent, also carries a **Session:** field: the thread line the session takes and the instruction to rename itself to it as its first act, under the background-run standard's [Prompt shape](standards-background-runs.md#prompt-shape) (OPENER-NAME), and the instruction to delegate its work to its agent host's own subagents, stay responsive while they run and check what they return before posting it (OPENER-DELEGATE).
 
 ## Authority and isolation
 
