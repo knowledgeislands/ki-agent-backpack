@@ -308,9 +308,9 @@ describe('RECORD-2 schema', () => {
     [
       'a worker key outside the closed set',
       {
-        fields: ['workers:\n  - role: warden\n    tier: managers\n    seat: one']
+        fields: ['workers:\n  - role: warden\n    tier: managers\n    host: orca']
       },
-      'outside role, tier, since, status and listening'
+      'outside name, role, tier, since and status'
     ],
     [
       'covers below territory level',
@@ -445,7 +445,7 @@ describe('RECORD-2 schema', () => {
     ['a steward seat', { fields: ['workers:\n  - role: steward\n    tier: managers'] }],
     ['a worker focus', { fields: ['workers:\n  - role: warden\n    tier: managers\n    focus:\n      - pilot'] }],
     ['the old tier enablers', { fields: ['workers:\n  - role: warden\n    tier: enablers'] }],
-    ['listening agora-call', { fields: ['workers:\n  - role: warden\n    tier: managers\n    listening: agora-call'] }]
+    ['a worker listening', { fields: ['workers:\n  - role: warden\n    tier: managers\n    listening: off'] }]
   ]
   for (const [name, change] of tolerated)
     test(`${name} warns under the role migration file`, () => {
@@ -453,6 +453,11 @@ describe('RECORD-2 schema', () => {
       expect(statuses(outcomes)).toEqual(['WARN'])
       expect(messages(outcomes)).toContain('standards-roles-migration.md')
     })
+
+  test('a worker binding with a name passes', () => {
+    const binding = 'workers:\n  - name: Wayland\n    role: warden\n    tier: managers\n    status: active'
+    expect(statuses(run(RECORD, 'RECORD-2', context(store({ fields: [binding] }))))).toEqual(['PASS'])
+  })
 
   test('every outcome level is one RECORD-2 declares', () => {
     const declared = RECORD.items.find((item) => item.code === 'RECORD-2')?.mechanical

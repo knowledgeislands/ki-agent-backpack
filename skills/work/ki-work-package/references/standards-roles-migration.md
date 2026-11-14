@@ -11,8 +11,8 @@ This file holds the tolerance for the forms [the role standard](standard-roles.m
 | `role: steward` | warden | RECORD-2 warns |
 | `tier: enablers` | managers | RECORD-2 warns |
 | `tier: doers` | makers | RECORD-2 warns |
-| `name`, `uri` or `designation` in a `workers` entry | Dropped: the name is derived from the role, and a session address stays out of the package | RECORD-2 warns |
+| `uri` or `designation` in a `workers` entry | Dropped: a session address stays out of the package | RECORD-2 warns |
 | `focus` in a `workers` entry | Dropped: a package has no focus areas | RECORD-2 warns |
-| `listening: agora-call` in a `workers` entry | `listening: on` | RECORD-2 warns |
+| `listening` in a `workers` entry | Dropped: listening is presence, which the actor's roster file holds | RECORD-2 warns |
 | ⭐ or 🔧 in a glyph run, as in `🦉⭐ 🔑 personal.reg.inbox-terra` | The role glyph alone; neither is a role, and ⭐ and 🔧 leave the thread line under MARKS-RETIRE | The footer hook warns |
 | `🧵 🔑 <work-id>` | `🧵 <work-id>`, or the role glyph's key form once the seat has a role | The footer hook warns |

@@ -86,9 +86,12 @@ const BODY_AFTER_VALUES = ['Now', 'Held', 'Changes'] as const
 const ROLE_STANDARD = fileURLToPath(new URL('../../../references/standard-roles.md', import.meta.url))
 const ROLE_MIGRATION = 'standards-roles-migration.md'
 const TIERS: readonly string[] = ['leaders', 'managers', 'makers']
-/** The closed keys of a `workers` entry under the role standard, and the keys the role migration file tolerates. */
-const WORKER_FIELDS: ReadonlySet<string> = new Set(['role', 'tier', 'since', 'status', 'listening'])
-const WORKER_RETIRED_FIELDS: ReadonlySet<string> = new Set(['name', 'uri', 'designation', 'focus'])
+/**
+ * The closed keys of a `workers` entry, its binding under the role standard (ROSTER-SPLIT a, 14 November 2026), and
+ * the keys the role migration file tolerates; presence, host, rig, listening and last seen, is the roster's.
+ */
+const WORKER_FIELDS: ReadonlySet<string> = new Set(['name', 'role', 'tier', 'since', 'status'])
+const WORKER_RETIRED_FIELDS: ReadonlySet<string> = new Set(['uri', 'designation', 'focus', 'listening'])
 const WORKER_STATUSES: readonly unknown[] = ['active', 'idle']
 /** Old role and tier words read under the role migration file, each warned on. */
 const ROLE_ALIASES: Readonly<Record<string, string>> = { assistant: 'gatekeeper', keeper: 'warden', steward: 'warden' }
@@ -471,7 +474,7 @@ const workersChecks = (
     }
     const unknown = Object.keys(entry).filter((key) => !WORKER_FIELDS.has(key) && !WORKER_RETIRED_FIELDS.has(key))
     if (unknown.length > 0)
-      fail(`${at} carries field(s) outside role, tier, since, status and listening: ${unknown.join(', ')}`)
+      fail(`${at} carries field(s) outside name, role, tier, since and status: ${unknown.join(', ')}`)
     const retired = Object.keys(entry).filter((key) => WORKER_RETIRED_FIELDS.has(key))
     if (retired.length > 0) warn(`${at} carries ${retired.join(', ')}, which the role standard drops`)
     const roleResult = roleOutcome(record, entry.role, at, catalogue)
@@ -485,9 +488,7 @@ const workersChecks = (
     else if (expected && resolved !== expected) fail(`${at} tier must be ${expected}, the catalogue tier of ${role}`)
     if ('since' in entry && !validTimestamp(entry.since)) fail(`${at} since must be a UTC RFC 3339 timestamp`)
     if ('status' in entry && !WORKER_STATUSES.includes(entry.status)) fail(`${at} status must be active or idle`)
-    if (entry.listening === 'agora-call') warn(`${at} listening agora-call is read as on`)
-    else if ('listening' in entry && !CAPABILITY_STATUSES.includes(entry.listening))
-      fail(`${at} listening must be on or off`)
+    if ('name' in entry && !singleLine(entry.name)) fail(`${at} name must be the actor's name, on one line`)
   })
 }
 

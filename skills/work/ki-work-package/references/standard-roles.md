@@ -140,11 +140,11 @@ A package records its role and its live seats in its entry file, `_index.md`, as
 | --- | --- | --- |
 | `role` | required | One catalogue role |
 | `tier` | required | The catalogue tier of that role: `leaders`, `managers` or `makers` |
+| `name` | optional | The name of the actor holding the seat, as its roster file gives it; absent while the seat is vacant |
 | `since` | optional | UTC time the seat took the package up |
 | `status` | optional | `active` or `idle` |
-| `listening` | optional | `on` or `off` |
 
-An entry carries nothing else. The seat's name is never stored: it is derived from its role's glyph and the work id, with its role for a seat without the keys, as the [thread line](#46-thread-line) sets out. An entry carries no session address, vendor session id or host, under the work-package standard's [prohibited payloads](standard-work-package.md#416-prohibited-payloads-and-claims), as Kris answered WORKERS-URI on 7 November 2026: "Drop it". A reader that needs to find a seat's live session, such as Cairn, reads the uncommitted machine-local thread binding `~/.local/state/ki/threads/<repository>/<slug>.json`, never the package. The `ki-work-package` rubric's RECORD-2 checks every value against this catalogue, reading the table in [4.3](#43-role-catalogue) at audit time, so the checker holds no copy of it.
+An entry is the seat's binding and carries nothing else. Presence, where and how the actor runs, its host, rig, listening and last seen, is the actor's roster file's in the Cairn store, never the entry's, and a reader takes each from its home, as the Cairn summit's guardian took ROSTER-SPLIT a under Kris's word on 14 November 2026. The seat's thread line is never stored: it is derived from its role's glyph and the work id, with its role for a seat without the keys, as the [thread line](#46-thread-line) sets out. An entry carries no session address or vendor session id, under the work-package standard's [prohibited payloads](standard-work-package.md#416-prohibited-payloads-and-claims), as Kris answered WORKERS-URI on 7 November 2026: "Drop it". A reader that needs to find a seat's live session, such as Cairn, reads the uncommitted machine-local thread binding `~/.local/state/ki/threads/<repository>/<slug>.json`, never the package. The `ki-work-package` rubric's RECORD-2 checks every value against this catalogue, reading the table in [4.3](#43-role-catalogue) at audit time, so the checker holds no copy of it.
 
 [Back to contents](#contents)
 

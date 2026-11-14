@@ -162,7 +162,6 @@ workers:
     tier: managers
     since: 2026-10-19T07:14:00Z
     status: active
-    listening: off
 ---
 ```
 
@@ -234,7 +233,7 @@ The state lives in `_index.md`: its state fields, at most five Now lines, Held a
 | `listening_status` | required while `listening_enabled` is `true`, else absent | `on` while the inbox watcher is armed, `off` otherwise |
 | `syncing_enabled` | optional | `true` when the thread is its host's sync thread; absent reads `false`; `true` requires `listening_enabled: true` |
 | `syncing_status` | required while `syncing_enabled` is `true`, else absent | `on` while host sync runs, `off` otherwise |
-| `workers` | optional | the package's live seats, each a mapping of `role` and `tier` and at most `since`, `status` and `listening`, under [the role standard's fields](standard-roles.md#45-role-fields); absent or empty when no seat is live |
+| `workers` | optional | the package's live seats, each its binding: a mapping of `role` and `tier` and at most `name`, `since` and `status`, under [the role standard's fields](standard-roles.md#45-role-fields), presence staying in the actor's roster file; absent or empty when no seat is live, since a node may have no worker |
 
 The holder the work lies with now and its role are derived from `state`, `target`, `worker` and `supervisor`, never stored. Timestamps use UTC RFC 3339 second precision; quote `label` in YAML where it contains `>`. There is no `title` field: a package's id and its place in the tree name it, and a view works out its words from them (TITLE-DROP and TITLE-WORDS, Kris, 13 November 2026). The four capability fields record the thread capabilities under `ki-coordination`'s [Thread capabilities](../../ki-coordination/references/standards-listening.md#thread-capabilities), as Kris set under FOOTER-CAPABILITY-STATUS-2, relayed on 1 November 2026: each thread carries `listening_enabled`, `listening_status`, `syncing_enabled` and `syncing_status`, and if `syncing_enabled` is true, `listening_enabled` must be true, because a syncing thread is always a listening thread. `_enabled` says whether the thread has the capability; `_status` says whether it is on now, and the banner's mode lines read both. These are the fields the Work Process note's Observatory fields read through `ki work status`. `method_read` replaces the body line a coordinator once wrote under its refresh rule; setting it is the confirmation that a `REFRESH` message has been acted on, under `ki-coordination`'s [Refreshing this guidance](../../ki-coordination/references/standards-coordination.md#refreshing-this-guidance).
 
