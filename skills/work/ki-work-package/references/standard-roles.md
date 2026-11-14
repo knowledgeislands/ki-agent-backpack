@@ -54,7 +54,7 @@ The roles seats take within work, and how a package and a session record them.
 | Term | Definition |
 | --- | --- |
 | **Territory** | An island's domain, such as KI, HNR or Personal. **Standard:** `ki-coordination` |
-| **Package** | The work itself, named by its work id, such as `ki.prj.agora`; messages route to packages. **Standard:** [the work-package standard](standard-work-package.md) |
+| **Package** | The work itself, named by its work id, such as `ki.cairn`; messages route to packages. **Standard:** [the work-package standard](standard-work-package.md) |
 | **Seat** | One role taking part in a package; a session holding a package's keys is its seat. **Standard:** this one, [4.4](#44-marks) |
 | **Tier** | A level of authority: leaders, managers or makers. **Standard:** this one, [4.2](#42-tiers) |
 | **Default role** | A tier's general role, which a seat takes unless the work calls for one of the tier's specialisations. **Standard:** this one, [4.2](#42-tiers) |

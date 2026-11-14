@@ -364,7 +364,7 @@ describe('territorial enforcement', () => {
   test('handles and obsolete Cairn rosters cannot widen or suppress enforcement', () => {
     register(
       checkout(
-        `${capitalConfig([CAPITAL, MEMBER])}territory_prefix = "ki"\n\n[skills.ki-agora.kis]\nmembers = ["${MEMBER}"]\n`
+        `${capitalConfig([CAPITAL, MEMBER])}territory_prefix = "ki"\n\n[skills.ki-cairn.kis]\nmembers = ["${MEMBER}"]\n`
       )
     )
     expect(territoryEvidence(repo(MEMBER, `capital = "${CAPITAL}"\n`), '/x').enforcingTerritory).toBeUndefined()
