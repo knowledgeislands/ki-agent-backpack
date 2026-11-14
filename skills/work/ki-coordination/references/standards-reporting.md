@@ -100,7 +100,7 @@ Sources: TREE-WORKING, 04-RULE2 and 04-REPLY in [the decision register](sources.
 
 ### Steer and feedback
 
-Work packages form one tree, and coordination between them runs along it, as Kris took on 11 November 2026 in the Cairn summit's [change 00](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/00-authority-tree.change.md).
+Work packages form one tree, and coordination between them runs along it, as Kris took on 11 November 2026 in the Cairn summit's [change 00](https://github.com/krisb/ki-cairn-store/blob/fa651a2c309ff338acf15b533d84820809fd5c7e/work/cairn/cairn.summit/00-authority-tree.change.md).
 
 - **Steer goes down,** carrying direction and remit. A node gives remit down from its own, never wider.
 - **Feedback comes up.** It reflects only the view from the node and its immediate parent: it informs the decision above and never overrides it.
