@@ -59,9 +59,11 @@ Three layers support the rules:
 - the runtime hook conditionally points to this standard, without detecting that role;
 - the counted turn budget and self-check bound each turn.
 
+Every opener or brief that starts a session, coordinating or not, carries the same discipline in short: delegate to the agent host's own subagents, stay responsive while they run, and check what they return before posting it, under OPENER-DELEGATE in [Opening work](standards-opening.md#opening-work).
+
 The harness `ki-coordinator` output style keeps the full rules and the owner-report contract; a declaring repository selects it with `outputStyle` in tracked `.claude/settings.json`. The coordinator re-bootstraps on request, after compaction and after a model switch.
 
-Sources: RESPONSIVE-PRINCIPLE and SMALL-FIXES in [the decision register](sources.md#decision-register).
+Sources: RESPONSIVE-PRINCIPLE, SMALL-FIXES and OPENER-DELEGATE in [the decision register](sources.md#decision-register).
 
 ### Glossary
 

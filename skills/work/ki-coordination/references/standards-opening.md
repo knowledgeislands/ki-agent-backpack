@@ -96,6 +96,7 @@ The owner opens a session in the actual package-home checkout, the Capital by de
 
 - **Runtime binding:** in the runtime-specific Claude Code binding, the opener launches the session as `claude --name "<thread line>"`: `<role glyph> 🔑 <work-id>` from `_index.md`'s `role`, or `🧵 <work-id>` with no role yet, the same name as the rename line and every report's thread line.
 - **Named in the opener:** every brief or opener that starts a new agent session, a coordinating opener, a meeting participant's or any other skill's, names the [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line) the session is to take, in a coordinating opener its `Session:` line, and tells it to rename itself to that line as its first act, before anything else, by its agent host's rename (runtime-specific: `/rename <thread line>` in Claude Code). A background run starts no session and needs none.
+- **Delegation in the opener:** the same opener or brief tells the session to delegate its work to its agent host's own subagents, to stay responsive to its messages and to the owner while that work runs, and to let the subagents do most of the work, checking what they return before posting it, as Kris took OPENER-DELEGATE a on 14 November 2026. A coordinating opener carries it in its role and `Background agents:` lines, which apply [the responsive coordinator](standards-coordination.md#the-responsive-coordinator) and its [turn budget](standards-coordination.md#coordinator-responsiveness); any other session-starting brief carries it in one line. How a session briefs, follows and checks those runs is `ki-delegation`'s. A background run starts no session and is itself the subagent, so its prompt carries none.
 - **Rename line:** every Bootstrap carries one `Rename thread: /rename <thread line>` line, so a session opened another way can take the name. It is one of two named exceptions to the rule that reports carry no paste line; the other is the [restart suggestion](standards-coordination.md#banner).
 - **Ownership:** the State of play prepares the package first, so every session opens with one opener and nothing else.
 - **Shape:** an opener is a steering-ready brief, not a transcript: it names the work and leaves state to the package. Its role line carries the three rules of [the responsive coordinator](standards-coordination.md#the-responsive-coordinator).
@@ -108,7 +109,7 @@ Session: <thread line>. Your first act is to rename this session to it with your
 Role: coordinator only. The coordinator never does substantive work itself; every unit of work goes to a detached background agent; an owner message never pre-empts work in flight. Dispatch, decide with me, report; stay responsive.
 Label: <Territory> > SoP (<territory>). Work package: +/_WORK/<territory>.sop.main/ in <capital>.
 Project management only: priorities, the Project-work queue (cap three or four), decisions and releases; route real work to Project work.
-Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive.
+Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive to messages and to me while they run; let them do most of the work, and check what each returns before you post it.
 Steering: my messages steer; stop or abort only when I expressly say so, naming the work.
 Next step: follow the Bootstrap in ki-coordination, then give the full re-bootstrap report.
 ```
@@ -121,7 +122,7 @@ Session: <thread line>. Your first act is to rename this session to it with your
 Role: coordinator only. The coordinator never does substantive work itself; every unit of work goes to a detached background agent; an owner message never pre-empts work in flight. Dispatch, decide with me, report; stay responsive.
 Label: <Territory> > <Theme> > <Project> (<territory>.prj.<project>). Work package: +/_WORK/<territory>.prj.<project>/ in <capital>.
 Project: <project>; work only this Project's records.
-Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive.
+Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive to messages and to me while they run; let them do most of the work, and check what each returns before you post it.
 Steering: my messages steer; stop or abort only when I expressly say so, naming the work.
 Next step: follow the Bootstrap in ki-coordination, then give the full re-bootstrap report.
 ```
@@ -134,7 +135,7 @@ Session: <thread line>. Your first act is to rename this session to it with your
 Role: coordinator only. The coordinator never does substantive work itself; every unit of work goes to a detached background agent; an owner message never pre-empts work in flight. Dispatch, decide with me, report; stay responsive.
 Label: <Territory> > SoP (<name>) (<territory>.sop.<name>). Work package: +/_WORK/<territory>.sop.<name>/ in <capital>.
 Secondary State of play under <Territory> > SoP (<territory>): project management only for the work its _index.md covers, within its own cap; the main State of play stays the owner's front door and owns cross-cutting decisions, so route those to it.
-Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive.
+Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive to messages and to me while they run; let them do most of the work, and check what each returns before you post it.
 Steering: my messages steer; stop or abort only when I expressly say so, naming the work.
 Next step: follow the Bootstrap in ki-coordination, then give the full re-bootstrap report.
 ```
@@ -147,7 +148,7 @@ Session: <thread line>. Your first act is to rename this session to it with your
 Role: coordinator only, explicitly selected for this package. Delegate substantive units to detached background agents; stay responsive; owner messages steer and never pre-empt work in flight.
 Label: <actual work label> (<id>). Work package: +/_WORK/<id>/ in <actual package-home repository>.
 Authority: <owner opening instruction or logged decision>. Scope: <approved episode>; end condition: <bounded end condition, or explicitly approved continuity>.
-Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive.
+Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive to messages and to me while they run; let them do most of the work, and check what each returns before you post it.
 Next step: follow Bootstrap in ki-coordination, checking capability or the specific owner-approved exception, then give the full re-bootstrap report.
 ```
 
@@ -155,4 +156,4 @@ For a session already on this contract, the one-line `Re-bootstrap as <id> under
 
 The owner takes each opener from these templates, filled from each work's `_index.md`, for the main State of play, each secondary and each unfinished eligible package, regular and ad hoc work included. Reports and banners carry none, under the [thread line](standards-coordination.md#banner).
 
-Sources: RENAME-NAME, STAGE-C-ROLES, THREAD-RENAME, RENAME-THREAD-FORM, RESPONSIVE-PRINCIPLE and OPENER-NAME in [the decision register](sources.md#decision-register).
+Sources: RENAME-NAME, STAGE-C-ROLES, THREAD-RENAME, RENAME-THREAD-FORM, RESPONSIVE-PRINCIPLE, OPENER-NAME and OPENER-DELEGATE in [the decision register](sources.md#decision-register).
