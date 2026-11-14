@@ -110,7 +110,7 @@ A work package lives in the Cairn store, at `work/<territory>/<work id>/`, one p
 
 A package names the repositories it mainly works in under `repositories:` in its entry file, and it may still change others. Records remain in the repositories that own their plans, priority and acceptance; a record's `project` resolves through the Capital's registry without execution authority. A record without `project` goes first to its regular or ad hoc owner, then to State of play only when unresolved.
 
-Every package below the main State of play names its coordinating State of play as `parent`, including a secondary, a Project, regular work and ad hoc work; a sub-package names its parent package instead. For ad hoc work this is the coordinating State of play, not the regular-work prefix in its id. The main keeps `covers` as the register of the Project, regular umbrella and ad hoc work it coordinates, including work covered through a secondary, before a package exists and after it is pruned. Secondary `covers` lists remain its assigned subset. Check package parents against that register, same-territory membership, unique coverage by secondaries and absence of cycles; never infer coverage from the presence of a package.
+The packages form one tree, rooted at `cairn.summit`, `level: root`: the owner's seat over the territories, not a territory, and the only package with no `parent` (AGORA-ABOVE, Kris, 11 November 2026). Each territory's top is its summit, `<territory>.summit`, its State of play, which names `cairn.summit` as `parent` and sits directly under it, because each territory needs an independence of its own; the summit replaces the main State of play, `<territory>.sop.main`, and every secondary State of play, `<territory>.sop.<name>` (KIND-DROP and MASSIF, Kris, 11 November 2026). Every other package, a Project, regular work or ad hoc work, names as `parent` the node of its own territory whose authority it sits under, its summit or a node beneath it; a sub-package names its parent package instead. Any node can split its authority by adding nodes beneath it, and nodes fold back up when they are no longer needed, so a Project sits where the authority it needs is. The summit keeps `covers` as the register of the Project, regular and ad hoc work of its territory, including work beneath other nodes, before a package exists and after it is pruned. Check package parents against that register, same-territory membership and absence of cycles; never infer coverage from the presence of a package.
 
 [Back to contents](#contents)
 
@@ -141,7 +141,7 @@ A package's entry file is `_index.md`, so it sorts first, as Kris set under INDE
 ```yaml
 ---
 id: ki.prj.observatory
-parent: ki.sop.main
+parent: ki.summit
 level: project
 project: observatory
 theme: model
@@ -171,19 +171,19 @@ The definition's field set is closed; the state fields of [4.5](#45-the-state) s
 | Field | Presence | Value |
 | --- | --- | --- |
 | `id` | required | the work's dotted id, agreeing with its folder |
-| `level` | required | `territory`, `regular` or `project` |
+| `level` | required | `root`, on `cairn.summit` alone, `territory`, `regular` or `project` |
 | `label` | optional | title with an inventory host or category requirement suffix; never a session seat |
 | `project` | required at `project` level, else absent | the Project note's slug, typed id's third segment |
 | `theme` | optional | a theme page's slug, or `null` |
-| `parent` | required below the main, absent on the main | coordinating State of play id, or a sub-package's parent package |
-| `covers` | required on States of play, absent otherwise | main register or secondary non-empty subset |
+| `parent` | required below the root, absent on the root | `cairn.summit` on a territory's summit, else a node of the same territory, or a sub-package's parent package |
+| `covers` | required on a territory's summit, absent otherwise | the territory's register |
 | `description` | required | the routing description, at most 500 characters |
 | `worker`, `supervisor` | required | each a holder |
 | `role` | required | the package's role, one role from [the role catalogue](standard-roles.md#43-role-catalogue); a package without one is warned on under [the role migration file](standards-roles-migration.md) |
 | `created_at` | optional | UTC time the package was created, no later than `since` |
 | `repositories` | required | a list of the repository names the package mainly works in, empty where it works in none |
 
-Territory work is the main State of play, id `<territory>.sop.main` (legacy `<territory>` remains readable), or a secondary State of play, id `<territory>.sop.<name>`, under the `ki-coordination` [secondary States of play](../../ki-coordination/references/standards-territory.md#secondary-states-of-play); `sop` is never a second segment at another level. The level is the one authority for the kind of work: not the title, a native session name, the folder name, the repository declaration, an output style, a hook line or a cached copy.
+Territory work is the territory's summit, id `<territory>.summit`, its State of play; `summit` is never the second and last segment at another level, and `level: root` belongs to `cairn.summit` alone. The level is the one authority for the kind of work: not the title, a native session name, the folder name, the repository declaration, an output style, a hook line or a cached copy.
 
 The `description` is written for routing, in a skill description's voice, as Kris answered DESCRIPTION-SHAPE: third person, what the work does, then "Takes ..." naming the kinds of unit it accepts, then "Not for ..." naming the neighbouring works by id, one to three sentences, tested against a handful of ambiguous routing examples. There is no `active` or `accepts` field: every state except `finished` can receive, and a work winding down says "Not taking new units" in its description.
 

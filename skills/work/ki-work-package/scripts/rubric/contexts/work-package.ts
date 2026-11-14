@@ -22,7 +22,7 @@ import {
   workLayout
 } from './work-folder.ts'
 
-const WORK_LEVELS: readonly unknown[] = ['territory', 'regular', 'project']
+const WORK_LEVELS: readonly unknown[] = ['root', 'territory', 'regular', 'project']
 const WORK_STATES: readonly unknown[] = [
   'with-worker',
   'handoff-to-supervisor',
@@ -36,8 +36,10 @@ const HOLD_REASONS: readonly unknown[] = ['paused', 'more-expected']
 /** Who set a hold, under HOLD-SELF (Kris, 7 November 2026): the owner, or the worker itself for the idle hold. */
 const HOLD_SETTERS: readonly unknown[] = ['owner', 'worker']
 const KEBAB = '[a-z0-9]+(?:-[a-z0-9]+)*'
-/** The reserved second id segment of a secondary State of play, `<territory>.sop.<name>`. */
-const SECONDARY_SEGMENT = 'sop'
+/** The reserved second id segment of a territory's top, its summit, `<territory>.summit` (KIND-DROP, MASSIF). */
+const SUMMIT_SEGMENT = 'summit'
+/** The root of the one work tree, the only package with no parent (AGORA-ABOVE, ROOT-LEVEL). */
+const ROOT_ID = 'cairn.summit'
 const WORK_ID = new RegExp(`^${KEBAB}(?:\\.${KEBAB})*$`)
 const SLUG = new RegExp(`^${KEBAB}$`)
 const HOLDER = new RegExp(`^(?:owner|agent|(?:run|person|repo)/[A-Za-z0-9_.-]+|work/${KEBAB}(?:\\.${KEBAB})*)$`)
@@ -228,40 +230,35 @@ const boundaryOutcomes = (record: ParsedRecord, fields: Readonly<Record<string, 
   return outcomes
 }
 
-/** A top-level package's parent and covers: package parents name coordinating work, the main's register survives absent packages. */
+/**
+ * A top-level package's place in the one tree: the root alone carries no parent, each territory's summit names the
+ * root, and other work names a node of its own territory; the summit's register survives absent packages.
+ */
 const placementFailures = (id: string, fields: Readonly<Record<string, unknown>>): readonly string[] => {
   const segments = id.split('.')
   const territory = segments[0] ?? ''
-  const secondary = segments[1] === SECONDARY_SEGMENT
+  const root = id === ROOT_ID
+  const summit = !root && segments.length === 2 && segments[1] === SUMMIT_SEGMENT
   const failures: string[] = []
-  const main = fields.level === 'territory' && (segments.length === 1 || id.endsWith('.sop.main'))
-  if (fields.level === 'territory' && !main && (segments.length !== 3 || !secondary))
-    failures.push(`territory work id must be <territory> or <territory>.${SECONDARY_SEGMENT}.<name>`)
-  if (fields.level !== 'territory' && secondary)
-    failures.push(`a <territory>.${SECONDARY_SEGMENT}.<name> id is territory work`)
+  if (root ? fields.level !== 'root' : fields.level === 'root')
+    failures.push(`level root belongs to the root, ${ROOT_ID}, and only to it`)
+  if (fields.level === 'territory' && !summit)
+    failures.push(`territory work id must be its summit, <territory>.${SUMMIT_SEGMENT}`)
+  if (summit && fields.level !== 'territory')
+    failures.push(`a <territory>.${SUMMIT_SEGMENT} id is its territory's top, level territory`)
   const parent = fields.parent
-  const parentPattern = new RegExp(`^${KEBAB}(?:\\.${SECONDARY_SEGMENT}\\.${KEBAB})?$`)
-  if (
-    main
-      ? 'parent' in fields
-      : typeof parent !== 'string' || !parentPattern.test(parent) || parent.split('.')[0] !== territory || parent === id
-  )
-    failures.push(
-      main ? 'the main State of play carries no parent' : 'parent must name a different same-territory State of play'
-    )
-  if (secondary && !main && parent !== territory && parent !== `${territory}.sop.main`)
-    failures.push(`parent must name the main State of play, ${territory}`)
+  if (root) {
+    if ('parent' in fields) failures.push(`the root, ${ROOT_ID}, carries no parent`)
+  } else if (summit) {
+    if (parent !== ROOT_ID) failures.push(`a territory's summit names the root, ${ROOT_ID}, as parent`)
+  } else if (typeof parent !== 'string' || !WORK_ID.test(parent) || parent.split('.')[0] !== territory || parent === id)
+    failures.push('parent must name a different node of the same territory')
   if (fields.level !== 'territory') {
-    if ('covers' in fields) failures.push('covers belongs only to States of play')
+    if ('covers' in fields) failures.push("covers belongs only to a territory's summit")
     return failures
   }
   const covers = fields.covers
-  if (!Array.isArray(covers) || (!main && !covers.length))
-    failures.push(
-      main
-        ? 'covers must be the main State of play register, an array'
-        : 'covers must list the work ids the secondary State of play coordinates'
-    )
+  if (!Array.isArray(covers)) failures.push("covers must be the summit's register, an array")
   else {
     if (new Set(covers).size !== covers.length) failures.push('covers must not repeat a work id')
     for (const covered of covers)
@@ -269,8 +266,7 @@ const placementFailures = (id: string, fields: Readonly<Record<string, unknown>>
         typeof covered !== 'string' ||
         !WORK_ID.test(covered) ||
         !covered.startsWith(`${territory}.`) ||
-        covered.split('.')[1] === SECONDARY_SEGMENT ||
-        covered.split('.').length < 2
+        covered === id
       )
         failures.push(
           `covers names ${String(covered)}, which is not Project, regular or ad hoc work of territory ${territory}`
@@ -288,7 +284,7 @@ const subPackageFailures = (
   const failures: string[] = []
   const parentId = folder.parent?.expectedId
   if (fields.parent !== parentId) failures.push(`parent must name the sub-package's parent package, ${parentId}`)
-  if ('covers' in fields) failures.push('covers belongs only to States of play')
+  if ('covers' in fields) failures.push("covers belongs only to a territory's summit")
   if (parentFields && fields.level !== parentFields.level)
     failures.push(`a sub-package's level is its parent's, ${String(parentFields.level)}`)
   return failures
@@ -579,62 +575,45 @@ const packageEvidence = (
   evidence.boundary.push(...boundaryOutcomes(entry, fields))
 }
 
-/** The top-level packages' coordination: parents resolve, covers agree with the main register and with each parent. */
+/** The top-level packages' tree: each parent resolves, no parent chain loops, and each summit's register lists its work. */
 const relationshipEvidence = (packages: readonly Package[], evidence: Evidence): void => {
   const top = packages.filter((item) => !item.folder.parent && item.entry.fields)
   const id = (item: Package): string => item.folder.expectedId
-  const names = (item: Package): readonly string[] => {
-    const [territory, kind, name] = id(item).split('.')
-    if (item.entry.fields?.level === 'territory' && (!kind || (kind === SECONDARY_SEGMENT && name === 'main')))
-      return [`${territory}.sop.main`, territory as string]
-    return [id(item)]
-  }
   const byId = new Map<string, Package>()
   const fail = (item: Package, message: string): void => {
     evidence.schema.push({ status: 'VIOLATION', message, subject: item.entry.path })
   }
-  for (const item of top)
-    for (const name of names(item)) {
-      const existing = byId.get(name)
-      if (existing && existing !== item) fail(item, `ambiguous work home ${name}: ${id(existing)} and ${id(item)}`)
-      else byId.set(name, item)
-    }
-  const includes = (values: unknown, wanted: string): boolean =>
-    Array.isArray(values) &&
-    values.some(
-      (value) =>
-        value === wanted ||
-        (typeof value === 'string' && byId.get(value) !== undefined && byId.get(value) === byId.get(wanted))
-    )
-  const secondaryOwners = new Map<string, string>()
+  for (const item of top) {
+    const existing = byId.get(id(item))
+    if (existing) fail(item, `ambiguous work home ${id(item)}: ${id(existing)} and ${id(item)}`)
+    else byId.set(id(item), item)
+  }
+  const parentOf = (item: Package): Package | undefined => {
+    const parent = item.entry.fields?.parent
+    return typeof parent === 'string' ? byId.get(parent) : undefined
+  }
   for (const item of top) {
     const fields = item.entry.fields
     if (!fields) continue
     const territory = id(item).split('.')[0] ?? ''
-    const main = byId.get(`${territory}.sop.main`) ?? byId.get(territory)
-    const parent = typeof fields.parent === 'string' ? byId.get(fields.parent) : undefined
-    const covers = Array.isArray(fields.covers) ? fields.covers : []
-    if (main && typeof fields.parent === 'string' && !parent)
-      fail(item, 'parent does not resolve to a State of play in the store')
-    if (fields.level === 'territory' && item !== main)
-      for (const covered of covers) {
-        if (typeof covered !== 'string') continue
-        const key = byId.get(covered) ? id(byId.get(covered) as Package) : covered
-        const previous = secondaryOwners.get(key)
-        if (previous && previous !== id(item)) fail(item, `covers duplicates ${covered} in ${previous}`)
-        secondaryOwners.set(key, id(item))
-        if (main && Array.isArray(main.entry.fields?.covers) && !includes(main.entry.fields.covers, covered))
-          fail(item, `covers names ${covered}, absent from the main register`)
-        const child = byId.get(covered)
-        if (child && byId.get(String(child.entry.fields?.parent)) !== item)
-          fail(child, `parent disagrees with ${id(item)} coverage`)
+    const summit = byId.get(`${territory}.${SUMMIT_SEGMENT}`)
+    const parent = parentOf(item)
+    const anchor = fields.level === 'territory' ? byId.get(ROOT_ID) : summit
+    if (anchor && typeof fields.parent === 'string' && !parent)
+      fail(item, 'parent does not resolve to a package in the store')
+    const seen = new Set<Package>([item])
+    for (let next = parent; next; next = parentOf(next)) {
+      if (next === item) {
+        fail(item, 'the parent chain loops back to this package')
+        break
       }
-    if (fields.level !== 'territory') {
-      if (main && Array.isArray(main.entry.fields?.covers) && !includes(main.entry.fields.covers, id(item)))
-        fail(item, 'work is absent from the main covers register')
-      if (parent && Array.isArray(parent.entry.fields?.covers) && !includes(parent.entry.fields.covers, id(item)))
-        fail(item, 'parent covers does not include this work')
+      if (seen.has(next)) break
+      seen.add(next)
     }
+    if (fields.level === 'root' || fields.level === 'territory' || !summit) continue
+    const register = summit.entry.fields?.covers
+    if (Array.isArray(register) && !register.includes(id(item)))
+      fail(item, "work is absent from its summit's covers register")
   }
 }
 

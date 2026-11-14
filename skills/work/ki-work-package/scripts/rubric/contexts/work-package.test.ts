@@ -39,7 +39,7 @@ type Entry = {
 
 const BASE_FIELDS = (id: string): Record<string, string> => ({
   id: `id: ${id}`,
-  parent: 'parent: ki.sop.main',
+  parent: 'parent: ki.summit',
   level: 'level: regular',
   description: 'description: Pilots the package shape. Takes pilot units. Not for other work.',
   worker: 'worker: agent',
@@ -92,16 +92,16 @@ const entry = ({ id, fields = [], drop = [], body, changes = ['10-pilot.change.m
 }
 
 const MAIN = entry({
-  id: 'ki.sop.main',
+  id: 'ki.summit',
   drop: ['parent'],
-  fields: ['covers:\n  - ki.reg.pilot'],
+  fields: ['parent: cairn.summit', 'covers:\n  - ki.reg.pilot'],
   changes: []
 }).replace('level: regular', 'level: territory')
 
-/** A store with the main State of play and one regular package, `ki.reg.pilot`, each passing. */
+/** A store with the territory's summit and one regular package, `ki.reg.pilot`, each passing. */
 const store = (pilot: Partial<Entry> = {}): string => {
   const root = fixture()
-  write(root, 'work/ki/ki.sop.main/_index.md', MAIN)
+  write(root, 'work/ki/ki.summit/_index.md', MAIN)
   write(root, 'work/ki/ki.reg.pilot/_index.md', entry({ id: 'ki.reg.pilot', ...pilot }))
   write(root, 'work/ki/ki.reg.pilot/10-pilot.change.md', '# Pilot\n')
   return root
@@ -315,12 +315,12 @@ describe('RECORD-2 schema', () => {
     [
       'covers below territory level',
       { fields: ['covers:\n  - ki.reg.other'] },
-      'covers belongs only to States of play'
+      "covers belongs only to a territory's summit"
     ],
     [
       'a parent outside the territory',
-      { drop: ['parent'], fields: ['parent: hnr.sop.main'] },
-      'same-territory State of play'
+      { drop: ['parent'], fields: ['parent: hnr.summit'] },
+      'parent must name a different node of the same territory'
     ]
   ]
   for (const [name, change, expected] of failing)
@@ -351,10 +351,77 @@ describe('RECORD-2 schema', () => {
     expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain('Held must say something')
   })
 
-  test('work absent from the main register fails', () => {
+  test("work absent from its summit's register fails", () => {
     const root = store()
-    write(root, 'work/ki/ki.sop.main/_index.md', MAIN.replace('covers:\n  - ki.reg.pilot', 'covers: []'))
-    expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain('absent from the main covers register')
+    write(root, 'work/ki/ki.summit/_index.md', MAIN.replace('covers:\n  - ki.reg.pilot', 'covers: []'))
+    expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain("absent from its summit's covers register")
+  })
+
+  test('the tree is rooted at cairn.summit, each summit under it, and any node may split', () => {
+    const root = store()
+    write(
+      root,
+      'work/cairn/cairn.summit/_index.md',
+      entry({ id: 'cairn.summit', drop: ['parent'], changes: [] })
+        .replace('level: regular', 'level: root')
+        .replace('role: warden', 'role: guardian')
+    )
+    write(
+      root,
+      'work/ki/ki.summit/_index.md',
+      MAIN.replace('  - ki.reg.pilot', '  - ki.reg.pilot\n  - ki.reg.pilot-part')
+    )
+    write(
+      root,
+      'work/ki/ki.reg.pilot-part/_index.md',
+      entry({ id: 'ki.reg.pilot-part', drop: ['parent'], fields: ['parent: ki.reg.pilot'] })
+    )
+    write(root, 'work/ki/ki.reg.pilot-part/10-pilot.change.md', '# Part\n')
+    expect(statuses(run(RECORD, 'RECORD-2', context(root)))).toEqual(['PASS'])
+  })
+
+  const misplaced: readonly [string, string, string, string][] = [
+    [
+      'the old main State of play',
+      'ki.sop.main',
+      MAIN.replace('id: ki.summit', 'id: ki.sop.main').replace('# ki.summit', '# ki.sop.main'),
+      'territory work id must be its summit'
+    ],
+    [
+      'a summit naming another parent',
+      'ki.summit',
+      MAIN.replace('parent: cairn.summit', 'parent: hnr.summit'),
+      "a territory's summit names the root, cairn.summit, as parent"
+    ],
+    [
+      'level root away from the root',
+      'ki.summit',
+      MAIN.replace('level: territory', 'level: root'),
+      'level root belongs to the root, cairn.summit, and only to it'
+    ]
+  ]
+  for (const [name, id, text, expected] of misplaced)
+    test(`${name} fails`, () => {
+      const root = store()
+      rmSync(join(root, 'work/ki/ki.summit'), { recursive: true })
+      write(root, `work/ki/${id}/_index.md`, text)
+      expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain(expected)
+    })
+
+  test('a parent chain that loops fails', () => {
+    const root = store({ drop: ['parent'], fields: ['parent: ki.reg.pilot-part'] })
+    write(
+      root,
+      'work/ki/ki.summit/_index.md',
+      MAIN.replace('  - ki.reg.pilot', '  - ki.reg.pilot\n  - ki.reg.pilot-part')
+    )
+    write(
+      root,
+      'work/ki/ki.reg.pilot-part/_index.md',
+      entry({ id: 'ki.reg.pilot-part', drop: ['parent'], fields: ['parent: ki.reg.pilot'] })
+    )
+    write(root, 'work/ki/ki.reg.pilot-part/10-pilot.change.md', '# Part\n')
+    expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain('the parent chain loops back to this package')
   })
 
   test('a sub-package names its parent package and keeps its level', () => {
@@ -367,7 +434,7 @@ describe('RECORD-2 schema', () => {
     write(root, 'work/ki/ki.reg.pilot/viewer/10-pilot.change.md', '# Viewer\n')
     const text = messages(run(RECORD, 'RECORD-2', context(root)))
     expect(text).toContain("parent must name the sub-package's parent package, ki.reg.pilot")
-    expect(text).toContain('covers belongs only to States of play')
+    expect(text).toContain("covers belongs only to a territory's summit")
     expect(text).toContain("a sub-package's level is its parent's, regular")
   })
 

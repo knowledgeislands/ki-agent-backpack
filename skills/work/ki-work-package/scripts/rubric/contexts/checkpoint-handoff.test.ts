@@ -24,7 +24,7 @@ test('fresh agent can reconstruct a portable hand-off without transcript or runt
       [
         '---',
         'id: ki.prj.remote-agent-proof',
-        'parent: ki.sop.main',
+        'parent: ki.summit',
         'level: project',
         'project: remote-agent-proof',
         'description: Delivers the approved remote-agent proof. Takes proof units. Not for provider choice.',
