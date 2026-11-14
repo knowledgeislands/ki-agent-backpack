@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-14T13:51:34Z
+revised: 2026-11-14T16:34:42Z
 status: in force
 ---
 
@@ -190,7 +190,7 @@ How participants reach each other, three levels, the first that works:
 
 1. **Sittings.** A meeting has no fixed end; it runs in sittings, A, B, C and on. A sitting that reaches its end, or runs out of work, is adjourned: the caller writes its minutes and a resume note saying where the next sitting picks up. The meeting closes after its last sitting.
 2. **Each sitting has a stated end** (SITTING-END, taken overnight for the owner's review). The sitting's opening message states its end, from `date -u`, and the chair may extend it by posting a new one. Fifteen minutes before the end, the chair sends one closing call, asking what each participant will finish by then.
-3. **Each new session is named** (OPENER-NAME, Kris, 14 November 2026). The opener or brief that starts a participant in a new agent session names the session line it is to take and tells it to rename itself to that line as its first act, by its agent host's rename (runtime-specific: `/rename <line>` in Claude Code). A participant working in the package without its keys, as a maker in a meeting does, takes `<role glyph> <work-id>+<role>`, as in `📐 ki.cairn+architect`: the glyph and name of its role in `ki-work-package`'s role catalogue and the id of the package the meeting serves, under that skill's [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line) (SEAT-LINE, Kris, 14 November 2026). The holder of the package keeps its own line, with 🔑.
+3. **Each new session is named and told to delegate** (OPENER-NAME and OPENER-DELEGATE, Kris, 14 November 2026). The opener or brief that starts a participant in a new agent session names the session line it is to take and tells it to rename itself to that line as its first act, by its agent host's rename (runtime-specific: `/rename <line>` in Claude Code). A participant working in the package without its keys, as a maker in a meeting does, takes `<role glyph> <work-id>+<role>`, as in `📐 ki.cairn+architect`: the glyph and name of its role in `ki-work-package`'s role catalogue and the id of the package the meeting serves, under that skill's [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line) (SEAT-LINE, Kris, 14 November 2026). The holder of the package keeps its own line, with 🔑. The same opener tells the participant to delegate its work to its agent host's own subagents, to stay responsive to the meeting's messages and to the owner while that work runs, and to let the subagents do most of the work, checking what they return before posting it, under [4.11](#411-doing-the-work) (OPENER-DELEGATE, Kris, 14 November 2026).
 4. **Roll call.** Each sitting opens with one. Every participant answers with its clock, from `date -u`, its role, and the sitting's goal in its own words, so all work to one time and one aim.
 5. **Each route to Git** (GIT-ROUTE, taken overnight for the owner's review). At roll call each participant also states its route to Git: whether it can commit, pull and push.
 6. **The join check.** In the first sitting, the roll call also proves each route. The caller sends each participant a code word by its own route, the owner gives each a small task in its own session, and each answers by its route, which proves listening and replying before real work starts.
@@ -231,7 +231,7 @@ Taken overnight for the owner's review (MEET-BUSY):
 
 ### 4.11 Doing the work
 
-1. **Long work goes to subagents.** Each session hands long work to its own agent host's subagents and keeps its thread free to answer, and reports results as messages, not commentary.
+1. **Long work goes to subagents.** Each session hands long work to its own agent host's subagents and keeps its thread free to answer, checks what they return before posting it (OPENER-DELEGATE, Kris, 14 November 2026), and reports results as messages, not commentary.
 2. **The caller checks a participant's output** with its own reviewer, such as a render check, and keeps that reviewer across passes, resumed rather than started afresh, so it reuses its scripts and baseline.
 
 [Back to contents](#contents)
