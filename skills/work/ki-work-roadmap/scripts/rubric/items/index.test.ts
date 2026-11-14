@@ -788,6 +788,52 @@ for (const mode of ['repository', 'area'] as const) {
   })
 }
 
+for (const mode of ['repository', 'area'] as const) {
+  const allocation = () => (mode === 'area' ? new Map([['CORE', 1]]) : 1)
+
+  test(`a ${mode} ledger naming its work package passes ROAD-7`, () => {
+    const repository = createFixture()
+    if (mode === 'area') useAreaLedger(repository)
+    const ledger = issueLedger(allocation(), 'ki.sop.tools')
+    expect(
+      ledger.startsWith(`---\n${mode === 'area' ? 'areas: { CORE: 1 }' : 'last_id: 1'}\nwork: ki.sop.tools\n---\n`)
+    ).toBe(true)
+    writeFileSync(join(repository, 'docs', 'roadmap', ISSUE_LEDGER), ledger)
+    expect(hostedOutcomes(repository, 'ROAD-7')).toEqual([
+      { status: 'PASS', message: 'The issue-allocation ledger reserves every issued repository or area number.' }
+    ])
+    expect(conformIssueLedger(repository)).toEqual([])
+  })
+
+  test(`a superseded ${mode} ledger keeps its work package when conformed`, () => {
+    const repository = createFixture()
+    if (mode === 'area') useAreaLedger(repository)
+    const previous = preOrderingLedgers[mode].replace('\n---\n', '\nwork: ki.sop.tools\n---\n')
+    writeFileSync(join(repository, 'docs', 'roadmap', ISSUE_LEDGER), previous)
+    expect(hostedOutcomes(repository, 'ROAD-7')).toEqual([
+      expect.objectContaining({ level: 'WARN', message: 'ledger body uses a superseded canonical form; run conform' })
+    ])
+    expect(conformIssueLedger(repository)).toEqual([
+      { path: `docs/roadmap/${ISSUE_LEDGER}`, content: issueLedger(allocation(), 'ki.sop.tools') }
+    ])
+  })
+
+  for (const work of ['', 'Not An Id', 'ki..tools'])
+    test(`a ${mode} ledger with a malformed work package ${JSON.stringify(work)} fails ROAD-7`, () => {
+      const repository = createFixture()
+      if (mode === 'area') useAreaLedger(repository)
+      const ledger = issueLedger(allocation()).replace('\n---\n', `\nwork: ${work}\n---\n`)
+      writeFileSync(join(repository, 'docs', 'roadmap', ISSUE_LEDGER), ledger)
+      expect(hostedOutcomes(repository, 'ROAD-7')).toContainEqual(
+        expect.objectContaining({
+          status: 'VIOLATION',
+          message: `docs/roadmap/${ISSUE_LEDGER} must use the canonical immutable ledger shape`
+        })
+      )
+      expect(conformIssueLedger(repository)).toEqual([])
+    })
+}
+
 test('dependency links must be reciprocal', () => {
   const repository = createFixture()
   const item = join(repository, 'docs', 'roadmap', 'TEST-001-build-the-foundation.md')

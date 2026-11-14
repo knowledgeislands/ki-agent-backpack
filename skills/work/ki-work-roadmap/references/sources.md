@@ -10,6 +10,7 @@
 
 ## Last review
 
+- 2026-11-14 - ROAD-7 a, which Kris took in the Cairn summit's change 44 with COORD-1: the issue ledger's front matter may carry `work: <package id>`, as WP-STORE added on 9 November 2026 when work packages moved to the Cairn store, and the checker accepts it and conform keeps it. This is an in-house decision review; no external source was refreshed.
 - 2026-11-05 - Reviewed Kris's ROADMAP-ASSIGNEE and ASSIGNEE-LOCK words, relayed by `personal.reg.household-terra`. The `assignee` field with the work model's holder values, its tolerance window and the in-progress lock read from Git history. This is an in-house decision review; no external source was refreshed.
 - 2026-10-25 - Reviewed Kris's 24 and 25 October answers in the `ki.ways-of-working` decisions log and the `model-shape-report.md`, `overview.md` and `unattended-work.md` designs under `wow-harness-model-2`. Resolvable Project references and the optional target date, due-or-milestone kind and outcome; no unattended field. This is an in-house decision review; no external source was refreshed.
 

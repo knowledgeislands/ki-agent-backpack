@@ -42,13 +42,13 @@ export const createRoadmapDraft = (_repository: string, findings: readonly Findi
     const highestRetained = Math.max(0, ...items.map((item) => item.serial))
     addWrite(`docs/roadmap/${ISSUE_LEDGER}`, issueLedger(areas.size ? areas : highestRetained), true)
   }
-  // Rewrites only a ledger whose body exactly matches a superseded canonical form, preserving its allocation.
+  // Rewrites only a ledger whose body exactly matches a superseded canonical form, preserving its allocation and work package.
   const repairIssueLedger = (): void => {
     const path = join(_repository, 'docs', 'roadmap', ISSUE_LEDGER)
     if (!existsSync(path) || !lstatSync(path).isFile()) return
     const ledger = ledgerAllocation(readFileSync(path, 'utf8'))
     if (ledger?.form !== 'superseded') return
-    addWrite(`docs/roadmap/${ISSUE_LEDGER}`, issueLedger(ledger.allocation))
+    addWrite(`docs/roadmap/${ISSUE_LEDGER}`, issueLedger(ledger.allocation, ledger.work))
   }
   return {
     normaliseRoot: () => {
