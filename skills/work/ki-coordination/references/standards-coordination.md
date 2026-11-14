@@ -468,7 +468,7 @@ Sources: TIMES-CLOCK in [the decision register](sources.md#decision-register).
 The native rubric is thin and complements `ki-work-package`'s. It checks only what the repository shows:
 
 - a Capital holds its State of play, and no other repository does;
-- each piece of Project work names a Project that resolves in the Capital's registry, its title ends in the Project's title, and any theme resolves too;
+- each piece of Project work names a Project that resolves in the Capital's registry, and any theme resolves too;
 - the level each `_index.md` declares agrees with its id;
 - the active Project work is within the cap;
 - every full record identifier in a report under `+/_WORK/` is a link to an existing file, under [Linking records](standards-reporting.md#linking-records);
