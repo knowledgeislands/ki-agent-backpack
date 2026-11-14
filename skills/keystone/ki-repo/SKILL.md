@@ -12,9 +12,10 @@ owns: ['.gitignore']
 contributes: ['.ki.toml']
 requires: ['.githooks/pre-commit']
 description: >
-  Audit or conform the universal KI repository contract declared by `.ki.toml`, including setup, GitHub
-  settings, and top-level `+` and `-` working areas. Use for whole-repository review; specialised `ki-repo-*`,
-  `ki-engineering`, and `ki-work-roadmap` skills own their narrower structures.
+  Lead the Repository guild and audit or conform the universal KI repository contract declared by `.ki.toml`, including
+  setup, GitHub settings, and top-level `+` and `-` working areas. Use for whole-repository review or to find the skill
+  for a kind of repository; specialised `ki-repo-*`, `ki-engineering`, and `ki-work-roadmap` skills own their narrower
+  structures.
 argument-hint: 'audit | conform <repo> | educate <repo> | help | refresh | review [scope] | review close <REV-NNN>'
 ---
 

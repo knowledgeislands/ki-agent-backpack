@@ -316,7 +316,7 @@ Lead the Acquire guild and govern source-independent knowledge capture and curat
 
 #### `ki-agentic-systems`
 
-Define the words of agentic systems as a knowledge graph: industry cards from model, agent harness, agent, session, subagent and skill to environment, machine, agent host and client, with Anthropic's, OpenAI's, Google's and Microsoft's own words in vendor subgraphs linked to them. Use to learn what an agentic term means, which sense a vendor name such as Claude or Codex carries, how vendors' words compare, or which card to link instead of redefining a term; `ki-agentic-radar` owns maturity and stance, and `ki-subagents` how to run subagents.
+Lead the Agentic systems guild and define the words of agentic systems as a knowledge graph: industry cards from model, agent harness, agent, session, subagent and skill to environment, machine, agent host and client, with Anthropic's, OpenAI's, Google's and Microsoft's own words in vendor subgraphs linked to them. Use to learn what an agentic term means, which sense a vendor name such as Claude or Codex carries, how vendors' words compare, or which card to link instead of redefining a term; `ki-agentic-radar` owns maturity and stance, and `ki-subagents` how to run subagents.
 
 - **Kind:** Knowledge
 - **Leads:** Agentic Systems
@@ -327,7 +327,7 @@ Define the words of agentic systems as a knowledge graph: industry cards from mo
 
 #### `ki-authoring`
 
-Govern KI document formats, Markdown, TOML, README composition, industry white papers, and durable knowledge placement. Use to format or audit authored documents, shape a README, or decide where learning belongs; use `ki-skills` for SKILL.md quality, `ki-repo` for repository contracts, and `ki-engineering` for code toolchains.
+Lead the Authoring guild and govern KI document formats, Markdown, TOML, README composition, industry white papers, and durable knowledge placement. Use to format or audit authored documents, shape a README, decide where learning belongs, or find the skill for decision records, diagrams, specifications or guides; use `ki-skills` for SKILL.md quality, `ki-repo` for repository contracts, and `ki-engineering` for code toolchains.
 
 - **Kind:** Governance
 - **Leads:** Authoring
@@ -381,7 +381,7 @@ Govern knowledge graphs: Semantic Markdown cards named by readable ids, a `_grap
 
 #### `ki-repo`
 
-Audit or conform the universal KI repository contract declared by `.ki.toml`, including setup, GitHub settings, and top-level `+` and `-` working areas. Use for whole-repository review; specialised `ki-repo-*`, `ki-engineering`, and `ki-work-roadmap` skills own their narrower structures.
+Lead the Repository guild and audit or conform the universal KI repository contract declared by `.ki.toml`, including setup, GitHub settings, and top-level `+` and `-` working areas. Use for whole-repository review or to find the skill for a kind of repository; specialised `ki-repo-*`, `ki-engineering`, and `ki-work-roadmap` skills own their narrower structures.
 
 - **Kind:** Governance
 - **Leads:** Repository
@@ -393,7 +393,7 @@ Audit or conform the universal KI repository contract declared by `.ki.toml`, in
 
 #### `ki-skills`
 
-Create, audit, review, extract, or optimise Agent Skills. Use for SKILL.md scope, descriptions, progressive disclosure, scripts, references, rubrics, or reusable capability analysis; use `ki-subagents` for agent roles and `ki-repo-backpack` for bundle layout.
+Create, audit, review, extract, or optimise Agent Skills. Use for SKILL.md scope, descriptions, progressive disclosure, scripts, references, rubrics, guild membership, or reusable capability analysis; use `ki-subagents` for agent roles, `ki-repo-backpack` for bundle layout, and `ki-keystone` for the guild map and which lead owns a piece of work.
 
 - **Kind:** Governance
 - **Applicability:** Detected

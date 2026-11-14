@@ -9,9 +9,10 @@ ki-shared-dependencies: [ki-skills:rubric]
 owns: ['.editorconfig', '.rumdl.toml']
 contributes: ['.githooks/pre-commit']
 description: >
-  Govern KI document formats, Markdown, TOML, README composition, industry white papers, and durable knowledge placement. Use to format or audit
-  authored documents, shape a README, or decide where learning belongs; use `ki-skills` for SKILL.md quality,
-  `ki-repo` for repository contracts, and `ki-engineering` for code toolchains.
+  Lead the Authoring guild and govern KI document formats, Markdown, TOML, README composition, industry white papers,
+  and durable knowledge placement. Use to format or audit authored documents, shape a README, decide where learning
+  belongs, or find the skill for decision records, diagrams, specifications or guides; use `ki-skills` for SKILL.md
+  quality, `ki-repo` for repository contracts, and `ki-engineering` for code toolchains.
 argument-hint: 'audit <path> | conform <path> | educate <target> | help | refresh'
 ---
 
