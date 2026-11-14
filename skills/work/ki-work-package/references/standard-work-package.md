@@ -106,7 +106,7 @@ This standard is the one specification of the work package, as Kris answered WOR
 
 A work package lives in the Cairn store, at `work/<territory>/<work id>/`, one per piece of work above a work item; where the store sits on each rig is whatever that rig sets. A work item has no package, because its record is its home. `<work id>` is the work's dotted id under `ki-coordination`'s [Work naming](../../ki-coordination/references/standards-opening.md#work-naming), which defines the id, slug and title: lower-case kebab segments joined by `.`, never a host, an underscore or a runtime session identifier. `<territory>` is the id's first segment. The folder name, the `id` field of `_index.md` and its H1 agree exactly.
 
-`work/` holds only territory folders, and each territory folder only packages, each a physical directory with its entry file. Symlinked, timestamped, archived and alternate layouts are invalid; the one nesting is a [sub-package](#47-sub-packages). There is no holding area for work awaiting review, as Kris set under WORK-REVIEW-RETIRE on 8 November 2026: live work is a package, and work that is not live is deleted, Git keeping its history.
+`work/` holds only territory folders and the root's own, `cairn`, and each of them only packages, each a physical directory with its entry file. Symlinked, timestamped, archived and alternate layouts are invalid; the one nesting is a [sub-package](#47-sub-packages). There is no holding area for work awaiting review, as Kris set under WORK-REVIEW-RETIRE on 8 November 2026: live work is a package, and work that is not live is deleted, Git keeping its history.
 
 A package names the repositories it mainly works in under `repositories:` in its entry file, and it may still change others. Records remain in the repositories that own their plans, priority and acceptance; a record's `project` resolves through the Capital's registry without execution authority. A record without `project` goes first to its regular or ad hoc owner, then to State of play only when unresolved.
 
@@ -210,7 +210,7 @@ The body has exactly this heading sequence, with an optional one-line `## Values
 - **Now** and **Held** - the state's body, under [4.5](#45-the-state).
 - **Changes** - a link to every change document and every sub-package, one list item each, saying in a line what it is and where it stands.
 
-Each section says something, if only `None`. Nothing else belongs in the entry file: no history, evidence or discussion. Direction and remit need no section of their own (REMIT-IN-INDEX): a node's way of working is part of its remit, changed by the node where the change reaches only it and its children, and proposed up the tree where it reaches wider, as Kris took on 11 November 2026 in the Cairn summit's [change 00](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/00-authority-tree.change.md).
+Each section says something, if only `None`. Nothing else belongs in the entry file: no history, evidence or discussion. Direction and remit need no section of their own (REMIT-IN-INDEX): a node's way of working is part of its remit, changed by the node where the change reaches only it and its children, and proposed up the tree where it reaches wider, as Kris took on 11 November 2026 in the Cairn summit's [change 00](https://github.com/krisb/ki-cairn-store/blob/fa651a2c309ff338acf15b533d84820809fd5c7e/work/cairn/cairn.summit/00-authority-tree.change.md).
 
 [Back to contents](#contents)
 

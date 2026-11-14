@@ -112,7 +112,7 @@ Every seat takes exactly one role from this table, and this table is the one pla
 | illustrator | makers | 🎨 | Visual design and its artefacts for a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
 | architect | makers | 📐 | Information architecture: the structure, naming and models of a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
 
-Every territory's summit, `<territory>.summit`, is seated by its governor; councillor is kept for any further leader, as Kris took SOP-MAIN-GOVERNOR a) under ROLES-WRITE on 7 November 2026, for the main State of play the summit has replaced. The quartermaster's seat is `ki.tools`, under `ki.summit`, as Kris set under QUARTERMASTER-SOP on 7 November 2026, "the actual quartermaster should be ki.sop.tools, and it should live as a leader", the id becoming `ki.tools` when ids dropped their kind and secondary States of play gave way to nodes beneath the summit (KIND-DROP, 11 November 2026). The guardian's seat is `cairn.summit`, the root of the Cairn store's work tree: Kris took the role as the agoranomos under AGORANOMOS-ROLE on 10 November 2026, and renamed it the guardian, glyph 🪨, under ROOT-ROLE and THREAD-GLYPH a on 11 November 2026. Each role glyph differs from every other and from the banner's state and line glyphs under `ki-coordination`'s [Banner](../../ki-coordination/references/standards-coordination.md#banner).
+Every territory's summit, `<territory>.summit`, is seated by its governor; councillor is kept for any further leader, as Kris took SOP-MAIN-GOVERNOR a) under ROLES-WRITE on 7 November 2026, for the main State of play the summit has replaced. The quartermaster's seat is `ki.tools`, under `ki.summit`, as Kris set under QUARTERMASTER-SOP on 7 November 2026, "the actual quartermaster should be ki.sop.tools, and it should live as a leader", the id becoming `ki.tools` under KIND-DROP on 11 November 2026, when secondary States of play gave way to nodes beneath the summit. The guardian's seat is `cairn.summit`, the root of the Cairn store's work tree: Kris took the role as the agoranomos under AGORANOMOS-ROLE on 10 November 2026, and renamed it the guardian, glyph 🪨, under ROOT-ROLE and THREAD-GLYPH a on 11 November 2026. Each role glyph differs from every other and from the banner's state and line glyphs under `ki-coordination`'s [Banner](../../ki-coordination/references/standards-coordination.md#banner).
 
 [Back to contents](#contents)
 
@@ -140,7 +140,7 @@ A package records its role and its live seats in its entry file, `_index.md`, as
 | --- | --- | --- |
 | `role` | required | One catalogue role |
 | `tier` | required | The catalogue tier of that role: `leaders`, `managers` or `makers` |
-| `name` | optional | The name of the actor holding the seat, as its roster file gives it; absent while the seat is vacant |
+| `name` | optional | The name of the actor holding the seat, as its roster file gives it; absent while no actor holds it (SEAT-VACANT a) |
 | `since` | optional | UTC time the seat took the package up |
 | `status` | optional | `active` or `idle` |
 

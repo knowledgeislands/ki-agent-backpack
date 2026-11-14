@@ -408,6 +408,31 @@ describe('RECORD-2 schema', () => {
       expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain(expected)
     })
 
+  const ROOT = entry({ id: 'cairn.summit', drop: ['parent'], changes: [] })
+    .replace('level: regular', 'level: root')
+    .replace('role: warden', 'role: guardian')
+  const misrooted: readonly [string, string, string][] = [
+    ['a root with a parent', ROOT.replace('level: root', 'level: root\nparent: ki.summit'), 'carries no parent'],
+    [
+      'a root with covers',
+      ROOT.replace('level: root', 'level: root\ncovers: []'),
+      "covers belongs only to a territory's summit"
+    ],
+    ['the root at another level', ROOT.replace('level: root', 'level: territory'), 'level root belongs to the root']
+  ]
+  for (const [name, text, expected] of misrooted)
+    test(`${name} fails`, () => {
+      const root = store()
+      write(root, 'work/cairn/cairn.summit/_index.md', text)
+      expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain(expected)
+    })
+
+  test('a summit without its register fails', () => {
+    const root = store()
+    write(root, 'work/ki/ki.summit/_index.md', MAIN.replace('covers:\n  - ki.reg.pilot', ''))
+    expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain("covers must be the summit's register")
+  })
+
   test('a parent chain that loops fails', () => {
     const root = store({ drop: ['parent'], fields: ['parent: ki.reg.pilot-part'] })
     write(

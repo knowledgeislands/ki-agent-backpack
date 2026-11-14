@@ -318,7 +318,7 @@ const definitionChecks = (
       evidence.identity,
       `a package stands in the territory folder of its id's first segment, not ${folder.territory}`
     )
-  if (!WORK_LEVELS.includes(fields.level)) fail(evidence.schema, 'level must be territory, regular or project')
+  if (!WORK_LEVELS.includes(fields.level)) fail(evidence.schema, 'level must be root, territory, regular or project')
   if ('label' in fields && !singleLine(fields.label))
     fail(evidence.schema, 'label must be a non-empty single-line string')
   if (fields.level === 'project' ? !SLUG.test(String(fields.project ?? '')) : 'project' in fields)
