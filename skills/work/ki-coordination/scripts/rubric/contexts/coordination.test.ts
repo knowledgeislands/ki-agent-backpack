@@ -605,33 +605,26 @@ describe('work files', () => {
     expect(workLevel('ki.sop.sites')).toBe('territory')
   })
 
-  test('a Capital holding titled territory work passes with no warning', () => {
+  test('a Capital holding territory work passes with no warning, whatever its title', () => {
     const root = fixture(capital)
-    work(root, 'ki', { id: 'ki', level: 'territory', title: 'KI > SoP' })
+    work(root, 'ki', { id: 'ki', level: 'territory', title: 'KI state of play' })
     expect(statuses(context(root).master.outcomes)).toEqual(['PASS'])
   })
 
-  test('territory work with another title, or outside a Capital, is a violation', () => {
-    const titled = fixture(capital)
-    work(titled, 'ki', { id: 'ki', level: 'territory', title: 'KI state of play' })
-    expect(statuses(context(titled).master.outcomes)).toEqual(['VIOLATION'])
+  test('territory work outside a Capital is a violation', () => {
     const outside = fixture({ repository: 'ki-agent-backpack', capital: 'ki-principal' })
     work(outside, 'ki', { id: 'ki', level: 'territory', title: 'KI > SoP' })
     expect(statuses(context(outside).master.outcomes)).toEqual(['VIOLATION'])
   })
 
-  test('a secondary State of play titled `<Territory> > SoP (<name>)` passes beside the main', () => {
+  test('a secondary State of play passes beside the main, whatever its title', () => {
     const root = fixture(capital)
     work(root, 'ki', { id: 'ki', level: 'territory', title: 'KI > SoP' })
-    work(root, 'ki.sop.sites', { id: 'ki.sop.sites', level: 'territory', title: 'KI > SoP (sites)', parent: 'ki' })
+    work(root, 'ki.sop.sites', { id: 'ki.sop.sites', level: 'territory', title: 'KI > SoP (web)', parent: 'ki' })
     expect(statuses(context(root).master.outcomes)).toEqual(['PASS'])
   })
 
-  test('a secondary State of play with another title, or outside a Capital, is a violation', () => {
-    const titled = fixture(capital)
-    work(titled, 'ki', { id: 'ki', level: 'territory', title: 'KI > SoP' })
-    work(titled, 'ki.sop.sites', { id: 'ki.sop.sites', level: 'territory', title: 'KI > SoP (web)', parent: 'ki' })
-    expect(statuses(context(titled).master.outcomes)).toEqual(['VIOLATION'])
+  test('a secondary State of play outside a Capital is a violation', () => {
     const outside = fixture({ repository: 'ki-agent-backpack', capital: 'ki-principal' })
     work(outside, 'ki.sop.sites', { id: 'ki.sop.sites', level: 'territory', title: 'KI > SoP (sites)', parent: 'ki' })
     expect(statuses(context(outside).master.outcomes)).toEqual(['VIOLATION'])
@@ -647,7 +640,7 @@ describe('work files', () => {
     expect(statuses(context(root).roles.outcomes)).toEqual(['PASS'])
   })
 
-  test('personal.personal-health uses its Project title Stocktake, falling back to the slug only without a title', () => {
+  test('Project work is not checked against its Project title, which packages no longer carry', () => {
     const root = fixture({ repository: 'personal', capital: 'personal' })
     const fields = {
       id: 'personal.personal-health',
@@ -664,11 +657,6 @@ describe('work files', () => {
     expect(statuses(context(root).labels.outcomes)).toEqual(['PASS'])
 
     work(root, fields.id, { ...fields, title: 'Personal > Health > Personal health' })
-    const outcomes = context(root).labels.outcomes
-    expect(statuses(outcomes)).toEqual(['VIOLATION'])
-    expect(outcomes[0]?.message).toContain(' > Stocktake')
-
-    writeFileSync(note, '# Stocktake\n')
     expect(statuses(context(root).labels.outcomes)).toEqual(['PASS'])
   })
 
@@ -689,12 +677,12 @@ describe('work files', () => {
     expect(context(root).labels.outcomes[0]?.message).toContain('Streams/Themes/model.md')
   })
 
-  test('a mismatched project, title, unregistered Project and unknown theme are each a violation', () => {
+  test('a mismatched project, unregistered Project and unknown theme are each a violation', () => {
     const root = fixture(capital)
     work(root, 'ki.ways-of-working', { ...project(), project: 'other', title: 'KI > Model > Other', theme: 'nowhere' })
     page(root, 'Themes', 'model')
     page(root, 'Projects', 'other')
-    expect(statuses(context(root).labels.outcomes)).toEqual(['VIOLATION', 'VIOLATION', 'VIOLATION', 'VIOLATION'])
+    expect(statuses(context(root).labels.outcomes)).toEqual(['VIOLATION', 'VIOLATION', 'VIOLATION'])
   })
 
   test('a level or id that disagrees with the folder is a violation', () => {

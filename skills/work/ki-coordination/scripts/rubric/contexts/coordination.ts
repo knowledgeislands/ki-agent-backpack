@@ -229,7 +229,6 @@ const registrySlugs = (directory: string): ReadonlySet<string> | undefined => {
 
 const LEGACY_MASTER_LABEL = 'Master: state-of-play'
 const MASTER_LABEL = /^\S.* > SoP$/
-const SECONDARY_LABEL = /^\S.* > SoP \([a-z0-9]+(?:-[a-z0-9]+)*\)$/
 
 const masterLabel = (label: unknown): boolean =>
   typeof label === 'string' && (label === LEGACY_MASTER_LABEL || MASTER_LABEL.test(label))
@@ -290,24 +289,6 @@ const masterOutcomes = (
           subject: work.path
         })
     }
-  if (territory && !MASTER_LABEL.test(String(territory.fields?.title ?? '')))
-    outcomes.push({
-      status: 'VIOLATION',
-      message: 'territory work is titled `<Territory> > SoP`',
-      subject: territory.path
-    })
-  for (const secondary of secondaries) {
-    const name = secondary.id.split('.')[2]
-    if (
-      !SECONDARY_LABEL.test(String(secondary.fields?.title ?? '')) ||
-      !String(secondary.fields?.title).endsWith(`(${name})`)
-    )
-      outcomes.push({
-        status: 'VIOLATION',
-        message: 'a secondary State of play `<territory>.sop.<name>` is titled `<Territory> > SoP (<name>)`',
-        subject: secondary.path
-      })
-  }
   if (master && !masterLabel(master.fields?.label))
     outcomes.push({
       status: 'VIOLATION',
@@ -384,18 +365,10 @@ const labelOutcomes = (
     if (workLevel(work.id) !== 'project' || SUB_PACKAGE_ID.test(work.id)) continue
     const slug = work.id.split('.')[work.id.split('.')[1] === 'prj' ? 2 : 1] ?? ''
     const project = work.fields?.project
-    const title = work.fields?.title
-    const projectTitle = registeredProjectTitle(root, projects, slug)
     if (project !== slug)
       outcomes.push({
         status: 'VIOLATION',
         message: `Project work names its Project in \`project: ${slug}\`, the second segment of its id`,
-        subject: work.path
-      })
-    if (typeof title !== 'string' || !projectLabel(title, slug, projectTitle))
-      outcomes.push({
-        status: 'VIOLATION',
-        message: `the title of Project work ends in its Project's title, \` > ${projectTitle}\``,
         subject: work.path
       })
     if (projects && !projects.has(slug))
@@ -910,7 +883,7 @@ export const createCoordinationSession = ({
     labels: {
       outcomes: one(
         labelOutcomes(root, records ?? [], works ?? [], capital, today),
-        'Every piece of Project work names its Project, its title ends in it and it resolves in the registry.',
+        'Every piece of Project work names its Project and it resolves in the registry.',
         absent
       )
     },
