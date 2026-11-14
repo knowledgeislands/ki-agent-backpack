@@ -1,6 +1,6 @@
 ---
 type: sources@2026-11-09T21:36:32Z
-revised: 2026-11-14T19:12:18Z
+revised: 2026-11-14T19:20:00Z
 refresh: canonical · on-change
 ---
 
@@ -77,6 +77,7 @@ Kris took each decision below as recommended, unless the Status says otherwise. 
 | TRIAL-LESSONS | A sample with invented names agreed at the start; a one-line "hold", one render per board per pass, and new messages read by time; a correction names what it corrects. | 2026-11-14 | [messages](standard-meeting.md#48-messages), [private data](standard-meeting.md#412-git-and-private-data) | In force; taken overnight 2026-11-14 under REMIT-HIGH and confirmed by Kris that day |
 | CHOICES-WHOLE | Choices go to Kris whole: context, options and a recommendation with its confidence, in the message itself; a close restates them and never refers back. | 2026-11-14 | [minutes](standard-meeting.md#414-minutes), [closing](standard-meeting.md#415-closing) | In force; taken overnight 2026-11-14 under REMIT-HIGH and confirmed by Kris that day |
 | TIMES-CLOCK | Every recorded time comes from `date -u` or Git, and any other is marked "about", in the meetings standard and `ki-coordination`. | 2026-11-14 | [messages](standard-meeting.md#48-messages) | In force; taken overnight 2026-11-14 under REMIT-HIGH and confirmed by Kris that day |
+| WAKE-OPENER | Waking does not rely on listening: each sitting's opening names how each participant is woken, today Kris pasting an opener the chair gives him; a sitting starts once every roll call is in, and the chair tells Kris if one is missing at a stated time. From the Cairn summit's change 35, after sitting C sat empty for four hours. | 2026-11-14 | [sittings](standard-meeting.md#47-sittings-and-the-roll-call) | In force |
 | OPENER-NAME | Every brief or opener that starts a new agent session names the session line it is to take and tells it to rename itself to that line as its first act, `/rename <line>` in Claude Code; meeting participants' openers included. Kris, in conversation, relayed by Wayland. | 2026-11-14 | [sittings](standard-meeting.md#47-sittings-and-the-roll-call) | In force |
 | OPENER-DELEGATE | Every opener or brief that starts a session tells it to delegate its work to its agent host's own subagents, stay responsive to its messages and to the owner while that work runs, and let the subagents do most of the work, checking what they return before posting it; meeting participants' openers included. Kris, in conversation. | 2026-11-14 | [sittings](standard-meeting.md#47-sittings-and-the-roll-call), [doing the work](standard-meeting.md#411-doing-the-work) | In force |
 | SEAT-LINE | A seat working in a package without its keys, such as a maker in a meeting, is named `<role glyph> <work-id>+<role>`, as Wayland named `📐 ki.cairn+architect` and `🎨 ki.cairn+illustrator` for sitting D; the form is `ki-work-package`'s thread line. Kris, in conversation. | 2026-11-14 | [sittings](standard-meeting.md#47-sittings-and-the-roll-call) | In force |
@@ -85,6 +86,7 @@ Kris took each decision below as recommended, unless the Status says otherwise. 
 
 ## 4. Last review
 
+- 2026-11-14 - WAKE-OPENER a, which Kris took that day, written into [4.7](standard-meeting.md#47-sittings-and-the-roll-call) and the agenda in [4.5](standard-meeting.md#45-the-entry-file). No external source refreshed.
 - 2026-11-14 - REMIT-HIGH a: Kris confirmed as a whole the ten points taken overnight, so each is in force and the standard no longer marks them for review. No external source refreshed.
 - 2026-11-14 - OPENER-DELEGATE a, which Kris took that day in conversation, written into [4.7](standard-meeting.md#47-sittings-and-the-roll-call) and [4.11](standard-meeting.md#411-doing-the-work): the opener that starts a participant in a new session also tells it to delegate its work to its agent host's own subagents, stay responsive while that work runs and check what they return before posting it. The Cairn store's committed copy of this skill needs refreshing. No external source refreshed.
 - 2026-11-14 - OPENER-NAME a and SEAT-LINE a, which Kris took that day in conversation, written into [4.7](standard-meeting.md#47-sittings-and-the-roll-call): the opener that starts a participant in a new session names its session line and has it rename itself first, a maker without the package's keys taking `<role glyph> <work-id>+<role>`, and the agenda gives each participant's line. The Cairn store's committed copy of this skill needs refreshing. No external source refreshed.

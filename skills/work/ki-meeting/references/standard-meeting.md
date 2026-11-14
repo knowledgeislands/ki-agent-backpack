@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-14T19:12:18Z
+revised: 2026-11-14T19:20:00Z
 status: in force
 ---
 
@@ -167,7 +167,7 @@ The `chair` field (CHAIR-FIELD, Kris, 14 November 2026) names the chair by its r
 
 1. **Summary,** kept current: where the meeting stands, the decisions it has led to, and what comes next.
 2. **Brief:** why the meeting exists, what it should produce, the change document that will hold its decisions, and what participants work from.
-3. **Agenda:** the sittings, each with its items and its end, stated when it opens ([4.7](#47-sittings-and-the-roll-call)), and each participant with its role, its session line ([4.7](#47-sittings-and-the-roll-call)), how it is reached, how it writes, and who listens at what interval and until when.
+3. **Agenda:** the sittings, each with its items and its end, stated when it opens ([4.7](#47-sittings-and-the-roll-call)), and each participant with its role, its session line ([4.7](#47-sittings-and-the-roll-call)), how it is reached, how it is woken, how it writes, and who listens at what interval and until when.
 4. **Boundaries:** what the meeting may and may not do.
 5. **Open asks,** as a checklist the caller ticks as each is answered.
 6. **Minutes,** one part per sitting ([4.14](#414-minutes)).
@@ -190,11 +190,12 @@ How participants reach each other, three levels, the first that works:
 
 1. **Sittings.** A meeting has no fixed end; it runs in sittings, A, B, C and on. A sitting that reaches its end, or runs out of work, is adjourned: the caller writes its minutes and a resume note saying where the next sitting picks up. The meeting closes after its last sitting.
 2. **Each sitting has a stated end** (SITTING-END, Kris, 14 November 2026). The sitting's opening message states its end, from `date -u`, and the chair may extend it by posting a new one. Fifteen minutes before the end, the chair sends one closing call, asking what each participant will finish by then.
-3. **Each new session is named and told to delegate** (OPENER-NAME and OPENER-DELEGATE, Kris, 14 November 2026). The opener or brief that starts a participant in a new agent session names the session line it is to take and tells it to rename itself to that line as its first act, by its agent host's rename (runtime-specific: `/rename <line>` in Claude Code). A participant working in the package without its keys, as a maker in a meeting does, takes `<role glyph> <work-id>+<role>`, as in `📐 ki.cairn+architect`: the glyph and name of its role in `ki-work-package`'s role catalogue and the id of the package the meeting serves, under that skill's [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line) (SEAT-LINE, Kris, 14 November 2026). The holder of the package keeps its own line, with 🔑. The same opener tells the participant to delegate its work to its agent host's own subagents, to stay responsive to the meeting's messages and to the owner while that work runs, and to let the subagents do most of the work, checking what they return before posting it, under [4.11](#411-doing-the-work) (OPENER-DELEGATE, Kris, 14 November 2026).
-4. **Roll call.** Each sitting opens with one. Every participant answers with its clock, from `date -u`, its role, and the sitting's goal in its own words, so all work to one time and one aim.
-5. **Each route to Git** (GIT-ROUTE, Kris, 14 November 2026). At roll call each participant also states its route to Git: whether it can commit, pull and push.
-6. **The join check.** In the first sitting, the roll call also proves each route. The caller sends each participant a code word by its own route, the owner gives each a small task in its own session, and each answers by its route, which proves listening and replying before real work starts.
-7. **First needs.** Each participant's first message says what it needs from the meeting.
+3. **Waking does not rely on listening** (WAKE-OPENER, Kris, 14 November 2026). The sitting's opening names how each participant is woken; today that is the owner pasting an opener the chair gives the owner for each participant. The sitting starts once every roll call is in, and if one is still missing at a time the opening states, the chair tells the owner.
+4. **Each new session is named and told to delegate** (OPENER-NAME and OPENER-DELEGATE, Kris, 14 November 2026). The opener or brief that starts a participant in a new agent session names the session line it is to take and tells it to rename itself to that line as its first act, by its agent host's rename (runtime-specific: `/rename <line>` in Claude Code). A participant working in the package without its keys, as a maker in a meeting does, takes `<role glyph> <work-id>+<role>`, as in `📐 ki.cairn+architect`: the glyph and name of its role in `ki-work-package`'s role catalogue and the id of the package the meeting serves, under that skill's [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line) (SEAT-LINE, Kris, 14 November 2026). The holder of the package keeps its own line, with 🔑. The same opener tells the participant to delegate its work to its agent host's own subagents, to stay responsive to the meeting's messages and to the owner while that work runs, and to let the subagents do most of the work, checking what they return before posting it, under [4.11](#411-doing-the-work) (OPENER-DELEGATE, Kris, 14 November 2026).
+5. **Roll call.** Each sitting opens with one. Every participant answers with its clock, from `date -u`, its role, and the sitting's goal in its own words, so all work to one time and one aim.
+6. **Each route to Git** (GIT-ROUTE, Kris, 14 November 2026). At roll call each participant also states its route to Git: whether it can commit, pull and push.
+7. **The join check.** In the first sitting, the roll call also proves each route. The caller sends each participant a code word by its own route, the owner gives each a small task in its own session, and each answers by its route, which proves listening and replying before real work starts.
+8. **First needs.** Each participant's first message says what it needs from the meeting.
 
 [Back to contents](#contents)
 
