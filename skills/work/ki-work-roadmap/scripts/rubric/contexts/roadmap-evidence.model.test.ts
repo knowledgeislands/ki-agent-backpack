@@ -447,7 +447,7 @@ test('territorial enforcement uses the canonical Capital roster and warns for un
   expect(isEnforcingTerritoryRepository(capital, environment)).toBe(true)
   writeFileSync(
     config,
-    `${policy}territory_members = ["${principal}"]\n\n[skills.ki-cairn.kis]\nmembers = ["https://example.test/island"]\n`
+    `${policy}territory_members = ["${principal}"]\n\n[skills.ki-agora.kis]\nmembers = ["https://example.test/island"]\n`
   )
   expect(isEnforcingTerritoryRepository(island, environment)).toBe(false)
   expect(isEnforcingTerritoryRepository(island, {})).toBe(false)
