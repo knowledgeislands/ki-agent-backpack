@@ -1013,7 +1013,7 @@ describe('local repository evidence', () => {
         .filter((finding) => finding.code === 'COV-1')
         .map(({ level, message }) => `${level} ${message}`)
     ).toEqual([
-      "WARN +/_CHECKPOINTS/ is a thread-model working area, read for the tolerance window — its territory's migration moves it to +/_WORK/<id>/"
+      "WARN +/_CHECKPOINTS/ is a thread-model working area, read for the tolerance window — its territory's migration moves it to the Cairn store's work/<territory>/<id>/"
     ])
   })
 
@@ -1046,7 +1046,7 @@ describe('local repository evidence', () => {
         .filter((finding) => finding.code === 'COV-1')
         .map(({ level, message }) => `${level} ${message}`)
     ).toEqual([
-      "WARN +/_THREADS/ is a thread-model working area, read for the tolerance window — its territory's migration moves it to +/_WORK/<id>/"
+      "WARN +/_THREADS/ is a thread-model working area, read for the tolerance window — its territory's migration moves it to the Cairn store's work/<territory>/<id>/"
     ])
   })
 

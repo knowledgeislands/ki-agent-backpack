@@ -1166,7 +1166,7 @@ async function auditRepo(
       if ([...signals.tree].some((p) => p.startsWith(area)))
         warn(
           'COV-1',
-          `${area} is a thread-model working area, read for the tolerance window — its territory's migration moves it to +/_WORK/<id>/`
+          `${area} is a thread-model working area, read for the tolerance window — its territory's migration moves it to the Cairn store's work/<territory>/<id>/`
         )
 
     // ── primary-structure cardinality ── STRUCT-1/2
