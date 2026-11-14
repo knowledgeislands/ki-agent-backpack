@@ -31,6 +31,7 @@ status: in force
   - [4.15 Removal lifecycle](#415-removal-lifecycle)
   - [4.16 Prohibited payloads and claims](#416-prohibited-payloads-and-claims)
   - [4.17 Audit and conform boundary](#417-audit-and-conform-boundary)
+  - [4.18 A repository stands on its own](#418-a-repository-stands-on-its-own)
 
 ## 1. Introduction
 
@@ -51,6 +52,7 @@ What a work package holds, where it lives, and how it is kept.
 - Where its state, decisions, open points and messages live.
 - Who writes a package, and the tidy that brings each package to the shape.
 - Updating, resuming and removing a package, and what it must never carry.
+- What a repository's `AGENTS.md` says about the package it serves.
 
 [Back to contents](#contents)
 
@@ -397,5 +399,23 @@ It is also not a completion signal, roadmap, decision record, knowledge store, o
 AUDIT, CONFORM, and EDUCATE are currently hosted `ki repo` operations. REMOVE, RESUME, and UPDATE remain explicit agent procedures until a host operation is implemented and independently verified. AUDIT reads every package under `work/` in a repository that declares the capability and validates each package's location, identity, closed front matter, body, closed list, Changes links and boundary, sub-packages included; it warns on Now past five lines, a description past 500 characters, history in the state and each earlier copy of a package left in a retired working area, `+/_WORK/`, `+/_WORK_REVIEW/`, `+/_THREADS/` or `+/_CHECKPOINTS/`; it reports absent scope as not applicable when the capability is undeclared, and rejects symlinks and unsupported layouts.
 
 CONFORM never authors a package file or moves work between states or shapes. It may publish the generated rubric, but it cannot create, update, or remove a package, because those actions need human-selected work and explicit write authority.
+
+[Back to contents](#contents)
+
+### 4.18 A repository stands on its own
+
+A repository must be able to work on its own when it has to, so leaning on one shared store for its work is not a risk it carries, as Kris took REPO-STANDALONE a on 11 November 2026. The package does not replace the repository's `AGENTS.md`, which stays its guide: it holds everything a session needs to work in the repository alone, its conventions, checks, boundaries and how it is run, and in one section which work package it serves and where that lives. The package holds direction, remit and state. Neither restates the other, so they cannot drift apart.
+
+When a session cannot reach its package, it carries on from `AGENTS.md` within the last remit it was given and keeps a note in the repository of what it did and decided that would have gone up. When the store is back it re-coordinates: it reads its package, sends that note up as feedback to the guardian, and takes any fresh steer. Each package's bringing-in from its legacy reconciles its repositories' `AGENTS.md` this way.
+
+Every repository's `AGENTS.md` carries one short orientation section near the top, in this form, as Kris took ORIENT-BLOCK a on 11 November 2026:
+
+```markdown
+## Orientation
+
+This repository is part of Knowledge Islands and is worked under the Cairn work model. It serves the work package `<work id>` in the Cairn store, `~/kis/cairn/ki-cairn-store/work/<territory>/<work id>/`, which holds its direction, remit and state; the `ki-work-package` and `ki-coordination` skills say how sessions work together. Read the package first when you can reach it. When you cannot, work from this file within the last remit you were given, keep a note in the repository of what would have gone up, and re-coordinate with the guardian once the store is back.
+```
+
+It stops there: no package state, remit or open points, which are the package's; no account of how sessions coordinate, which is the skills'; and nothing about other repositories. Everything else in the file is the repository's own rules. An `AGENTS.md` that already goes further is trimmed back to this by its node's session when its package comes in from its legacy.
 
 [Back to contents](#contents)
