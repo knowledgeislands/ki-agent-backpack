@@ -25,6 +25,8 @@ Project work coordinates exactly one Project for the owner. It always delegates:
 
 ### Territory work
 
+Since WP-STORE (Kris, 9 November 2026), work packages live in the Cairn store, territory work in its `work/<territory>/`, so a Capital need not hold its territory work, and the check accepts a Capital that holds none (ROAD-7 a with COORD-1, Kris, 14 November 2026). Where a Capital still holds territory work, the rules below apply to it.
+
 Each territory Capital holds one main State of play, `+/_WORK/<territory>.sop.main/_index.md`, titled `<Territory> > SoP`: the coordination of the territory's coordinations. It may also hold [secondary States of play](#secondary-states-of-play), each coordinating a named part of the territory under the main.
 
 - Each does project management and may coordinate explicitly assigned Project packages. Delivery stays in those packages and their product repositories, never in the State of play's own package.

@@ -13,7 +13,7 @@ const COORD_1: RubricItem<CoordinationRubricContext> = {
   code: 'COORD-1',
   title: 'territory work belongs to the Capital',
   description:
-    'A territory Capital, a repository whose declared `capital` is itself, holds its territory work, `+/_WORK/<territory>.sop.main/_index.md`, retaining legacy `<territory>` input indefinitely, titled `<Territory> > SoP`, and no other repository holds territory or Project packages; deliberately owner-approved regular/ad hoc member work declares Home: in _index.md Scope, and its parent maintains the existing covers/home reference without a second package. Regular umbrella and child packages remain eligible; coverage never opens coordination. For the tolerance window a Capital whose territory work is still the state-of-play checkpoint `+/_CHECKPOINTS/_state-of-play.md` passes with a warning naming its new home.',
+    "Territory work lives in the Cairn store's `work/<territory>/` since WP-STORE, so a territory Capital, a repository whose declared `capital` is itself, need not hold it; where it does, it holds it as `+/_WORK/<territory>.sop.main/_index.md`, retaining legacy `<territory>` input indefinitely, titled `<Territory> > SoP`, and no other repository holds territory or Project packages; deliberately owner-approved regular/ad hoc member work declares Home: in _index.md Scope, and its parent maintains the existing covers/home reference without a second package. Regular umbrella and child packages remain eligible; coverage never opens coordination. For the tolerance window a Capital whose territory work is still the state-of-play checkpoint `+/_CHECKPOINTS/_state-of-play.md` passes with a warning naming its new home.",
   sources: [`${TERRITORY}#territory-work`, `${MIGRATION}#thread-model`],
   mechanical: {
     level: 'FAIL',
@@ -21,7 +21,7 @@ const COORD_1: RubricItem<CoordinationRubricContext> = {
     remediation: {
       class: 'diagnostic',
       guidance:
-        "Create the territory work package in the Capital under the `ki-work-package` work-package standard, or move the state-of-play checkpoint there at the territory's migration, and remove territory work from any repository that is not its own capital."
+        "Keep territory work in the Cairn store's `work/<territory>/`; where a Capital still holds it, keep it under the `ki-work-package` work-package standard, or move the state-of-play checkpoint at the territory's migration, and remove territory work from any repository that is not its own capital."
     },
     audit: { phase: 'INSPECT', run: ({ master }) => master.outcomes }
   }

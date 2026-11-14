@@ -99,10 +99,20 @@ describe('repository identity', () => {
 })
 
 describe('state-of-play checkpoint', () => {
-  test('a Capital without _state-of-play.md is a violation', () => {
+  test('a Capital without territory work passes, since territory work lives in the Cairn store', () => {
     const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
     checkpoint(root, 'knowledge-islands-model.ways-of-working', { label: 'KI Model: ways-of-working' })
-    expect(statuses(context(root).master.outcomes)).toEqual(['VIOLATION'])
+    expect(context(root).master.outcomes).toEqual([
+      {
+        status: 'PASS',
+        message: "The Capital holds no territory work here; it lives in the Cairn store's `work/<territory>/`."
+      }
+    ])
+  })
+
+  test('a Capital with no working areas at all passes', () => {
+    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
+    expect(statuses(context(root).master.outcomes)).toEqual(['PASS'])
   })
 
   test('a Capital with a labelled state-of-play checkpoint passes with the tolerance warning', () => {

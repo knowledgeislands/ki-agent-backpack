@@ -257,14 +257,9 @@ const masterOutcomes = (
       (work) => work.id.includes('.') && !work.id.endsWith('.sop.main') && workLevel(work.id) === 'territory'
     ) ?? []
   const master = records?.find((record) => record.thread === MASTER_THREAD)
-  if (capital && !territory && !master)
-    return [
-      {
-        status: 'VIOLATION',
-        message: 'a Capital holds its territory work `+/_WORK/<territory>/_index.md`; none is present',
-        subject: WORK_DIRECTORY
-      }
-    ]
+  // A Capital need not hold its territory work: work packages live in the Cairn store's `work/<territory>/`
+  // since WP-STORE (Kris, 9 November 2026), and the check accepts that layout (ROAD-7 a with COORD-1, Kris,
+  // 14 November 2026). Territory work a Capital still holds is checked below.
   if (!capital && (territory || secondaries.length || master))
     return [
       {
@@ -903,7 +898,12 @@ export const createCoordinationSession = ({
     master: {
       outcomes: one(
         masterOutcomes(root, records, works, capital),
-        capital ? 'The Capital holds its territory work.' : 'No territory work is present outside a Capital.',
+        capital
+          ? works?.some((work) => workLevel(work.id) === 'territory') ||
+            records?.some((record) => record.thread === MASTER_THREAD)
+            ? 'The Capital holds its territory work.'
+            : "The Capital holds no territory work here; it lives in the Cairn store's `work/<territory>/`."
+          : 'No territory work is present outside a Capital.',
         !capital && absent ? absent : undefined
       )
     },
