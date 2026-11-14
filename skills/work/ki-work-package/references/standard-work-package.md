@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-10T02:25:04Z
+revised: 2026-11-14T19:27:53Z
 status: in force
 ---
 
@@ -282,10 +282,10 @@ Every writer is named, and every other party only reads. This standing contract 
 
 | Writer | Writes | Never |
 | --- | --- | --- |
-| The package's own steward† | `_index.md`, its change documents and sub-packages, and tidy deletions | Another package |
+| The package's keyholder† | `_index.md`, its change documents and sub-packages, and tidy deletions | Another package |
 | A background run, design runs and `ki-work design` included | A change document in the package its brief names | Any other kind, its report included |
 
-† The work's own steward is its keyholder, and includes its explicitly assigned State of play. Other work and State of play write nothing in a package: they send a message.
+† The keyholder is the work's own steward, and includes its explicitly assigned State of play. Other work and State of play write nothing in a package: they send a message.
 
 The `description` in `_index.md` is written by the work's steward, at seeding with State of play; State of play proposes a change to it by a message. Readers, such as `ki work status`, the Observatory and the rubrics, change nothing; a change of shape names them as consumers.
 

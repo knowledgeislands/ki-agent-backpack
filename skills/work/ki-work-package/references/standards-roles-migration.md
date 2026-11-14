@@ -8,6 +8,7 @@ This file holds the tolerance for the forms [the role standard](standard-roles.m
 | `_index.md` without `role` | The package's role not yet declared | RECORD-2 warns |
 | `role: assistant` | gatekeeper | RECORD-2 warns |
 | `role: keeper` | warden | RECORD-2 warns |
+| `role: steward` | warden | RECORD-2 warns |
 | `tier: enablers` | managers | RECORD-2 warns |
 | `tier: doers` | makers | RECORD-2 warns |
 | `name`, `uri` or `designation` in a `workers` entry | Dropped: the name is derived from the role, and a session address stays out of the package | RECORD-2 warns |

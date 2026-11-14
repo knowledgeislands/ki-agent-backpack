@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-14T13:51:34Z
+revised: 2026-11-14T19:27:53Z
 status: in force
 ---
 
@@ -35,7 +35,7 @@ The roles seats take within work, and how a package and a session record them.
 ### 2.1 In scope
 
 - The prime directive every role answers to.
-- The tiers, the role catalogue and the marks.
+- The tiers with their default roles, the role catalogue and the marks.
 - The `role` and `workers` fields.
 - The thread line, and the rules of the role model.
 
@@ -57,6 +57,7 @@ The roles seats take within work, and how a package and a session record them.
 | **Package** | The work itself, named by its work id, such as `ki.prj.agora`; messages route to packages. **Standard:** [the work-package standard](standard-work-package.md) |
 | **Seat** | One role taking part in a package; a session holding a package's keys is its seat. **Standard:** this one, [4.4](#44-marks) |
 | **Tier** | A level of authority: leaders, managers or makers. **Standard:** this one, [4.2](#42-tiers) |
+| **Default role** | A tier's general role, which a seat takes unless the work calls for one of the tier's specialisations. **Standard:** this one, [4.2](#42-tiers) |
 | **Role** | The job within a tier, one of the catalogue's. **Standard:** this one, [4.3](#43-role-catalogue) |
 | **Pack** | A seat's own subagents and background runs; private to the seat. **Standard:** this one, [4.7](#47-rules-of-the-role-model) |
 | **Guild** | A set of skills, such as change management, kept by the guildmaster. **Standard:** this one, [4.3](#43-role-catalogue) |
@@ -82,17 +83,19 @@ Every institution in this model exists to serve its purpose and the people it se
 
 ### 4.2 Tiers
 
-| Tier | Decides | Reports to |
-| --- | --- | --- |
-| leaders | Within their territory; matters that cross territories go to the leaders together | Kris, with queries |
-| managers | Within standing grants; exceptions go up to the territory's leaders | The territory's leaders |
-| makers | Within the hand-off they were given | The seat that handed the work over, never Kris directly |
+| Tier | Decides | Reports to | Default role | Specialised roles |
+| --- | --- | --- | --- | --- |
+| leaders | Within their territory; matters that cross territories go to the leaders together | Kris, with queries | governor | councillor, quartermaster, guardian |
+| managers | Within standing grants; exceptions go up to the territory's leaders | The territory's leaders | warden | housekeeper, gatekeeper, librarian, guildmaster |
+| makers | Within the hand-off they were given | The seat that handed the work over, never Kris directly | journeyman | illustrator, architect |
+
+Each tier has one default role, and every other role in the tier is a specialisation of it: the housekeeper is the warden of a machine, the gatekeeper of what comes in and goes out, the librarian of the library and the guildmaster of the standards and skills, as Kris took ROLE-DEFAULTS a on 11 November 2026.
 
 [Back to contents](#contents)
 
 ### 4.3 Role catalogue
 
-Every seat takes exactly one role from this table, and this table is the one place that says what each role glyph means. Role names are singular, and any seat may be one agent or a lead with a pack. Managers may also make. Chancellor, over several libraries, and a guildmaster for each guild are reserved: neither has a glyph until the work calls for it.
+Every seat takes exactly one role from this table, and this table is the one place that says what each role glyph means. Role names are singular, and any seat may be one agent or a lead with a pack. Managers may also make. Chancellor, over several libraries, and a guildmaster for each guild are reserved: neither has a glyph until the work calls for it. Steward is not a role: it folds into warden, since whether a place's work is standing or a Project is its package's `level`, not the role, as Kris took ROLE-DEFAULTS a on 11 November 2026; the warden takes the word's everyday sense, the keeper of a place.
 
 | Role | Tier | Glyph | Owns | Never does |
 | --- | --- | --- | --- | --- |
@@ -100,8 +103,7 @@ Every seat takes exactly one role from this table, and this table is the one pla
 | councillor | leaders | 🗳️ | A further leader's share of one territory's decisions, by its governor's grant, and its vote in the council and in admissions | Heads the territory, acts outside it, or decides alone what the council holds |
 | quartermaster | leaders | 🧰 | The island's tools and MCP servers, kept working, released and accounted for, from its own secondary State of play | Decides how a tool must behave, which is the guild's, heads the territory, or releases without Kris |
 | guardian | leaders | 🪨 | The state of every work package in the Cairn store, from `cairn.summit`, the root of its work tree | Does a package's own work, which is its seat's, or acts on a change document before Kris's word |
-| warden | managers | ⚒️ | One Project: its package, records, runs and queue, from Ready to delivery awaiting acceptance | Sets priority across Projects, accepts its own delivery, or works outside its Project |
-| steward | managers | 📋 | One regular package's standing work, within its standing grants | Takes up Project delivery or territory dispatch, or acts past its grants instead of taking the exception up |
+| warden | managers | ⚒️ | One place in the work tree, standing work or a Project: its package, records, runs and queue, its standing work within its standing grants, and a Project's delivery from Ready to awaiting acceptance | Sets priority across Projects, takes up territory dispatch, accepts its own delivery, acts past its grants instead of taking the exception up, or works outside its place |
 | housekeeper | managers | 🏠 | One machine's health and its match with the declared setup: applies, drift, doctor findings and the installs Kris decides | Changes another machine, or changes the tooling and standards it applies |
 | gatekeeper | managers | 🦉 | What comes in and goes out: capture, intake, mail and the packs prepared for Kris | Decides what it carries, or sends anything in Kris's name without his word |
 | librarian | managers | 📚 | The library: what knowledge is kept, where, and how it is found | Owns the work the knowledge comes from, or keeps what has a durable home elsewhere |

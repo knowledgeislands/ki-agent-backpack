@@ -1,6 +1,6 @@
 ---
 type: sources@2026-11-09T21:36:32Z
-revised: 2026-11-14T13:51:34Z
+revised: 2026-11-14T19:27:53Z
 refresh: canonical · on-change
 ---
 
@@ -71,11 +71,13 @@ The phase 1 work package format change, agreed by Kris on 9 November 2026, gives
 | AGORA-NAME, ROOT-ROLE, THREAD-GLYPH | Agora is renamed Cairn, and the store the Cairn store; the root's role is the guardian, glyph 🪨, seated at `cairn.summit`, in place of the agoranomos and its amphora. Kris, 11 November, relayed by the Cairn summit's guardian from the summit's [change 05](https://github.com/krisb/ki-cairn-store/blob/8e4746657458d41bc47aeba994cde9412e08a535/work/cairn/cairn.summit/05-cairn.change.md). | 2026-11-11 | [roles](standard-roles.md) and [work package](standard-work-package.md) | In force |
 | SEAT-LINE | A seat working in a package without its keys closes with `<role glyph> <work-id>+<role>`: its catalogue glyph, no 🔑, and its seat address; 🔑 stays the keyholder's alone. Kris, 14 November, in conversation, accepting Wayland's `📐 ki.cairn+architect` and `🎨 ki.cairn+illustrator` for sitting D of `cairn.wayfinder.designs`. | 2026-11-14 | [roles](standard-roles.md#46-thread-line) | In force |
 | OPENER-NAME | Every brief or opener that starts a new agent session names the thread line it is to take and tells the session to rename itself to that line as its first act, `/rename <thread line>` in Claude Code; a background run needs none. Kris, 14 November, in conversation: "when we give out briefs to instruct new agents like this, that we make it clear what its name is". | 2026-11-14 | [roles](standard-roles.md#46-thread-line) | In force |
+| ROLE-DEFAULTS | Each tier has one default role, governor, warden and journeyman, and the others are specialisations of it; steward folds into warden, since whether work is standing or a Project is the package's `level`, not the role. Kris, 11 November, relayed by the Cairn summit's guardian from the summit's [change 20](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/20-skills-review.change.md). | 2026-11-11 | [roles](standard-roles.md#42-tiers) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
 
+- 2026-11-14 - After Kris took ROLE-DEFAULTS a on 11 November, relayed by the Cairn summit's guardian: the [tiers](standard-roles.md#42-tiers) name each tier's default role and its specialisations, steward leaves the catalogue for warden, and the role migration file and RECORD-2 read `role: steward` as warden, warned on. The writers name the package's keyholder in place of its steward. No external source refreshed.
 - 2026-11-14 - After Kris took SEAT-LINE a and OPENER-NAME a in conversation that day: the [thread line](standard-roles.md#46-thread-line) gains its keyless form, `<role glyph> <work-id>+<role>`, for a seat working in a package without its keys, settling the seat address the section had left to the seat rules, and every opener that starts a session names its line and has the session rename itself first. `ki-coordination`, `ki-meeting`, `ki-delegation`, `ki-work` and `ki-keystone` point here. No external source refreshed.
 - 2026-11-10 - Under `agora.sop.main`, after Kris took AGORANOMOS-ROLE in its coordination change that day: the role catalogue gains the agoranomos, a leader with glyph 🏺 that keeps the state of every work package from `agora.sop.main`. With `ki agent` removed in `tools-ki` v0.15.0, the close-out deletes the package with no `ki agent close` step, identity reaches a session through its agent host, and the delegation row names the run packet without a state folder, launcher or close gate. No external source refreshed.
 - 2026-11-09 - Landed the [work package format change](#3-decisions), phase 1, agreed by Kris on 9 November 2026: a package lives in the Agora store at `work/<territory>/<work id>/` and is its `_index.md` and its `NN-<slug>.change.md` change documents, with sub-packages of the same shape; the state folds into `_index.md`; decisions and open points live in their change document; `repositories:` names where it works; messages go through the Agora store; and the tidy brings each package to the shape. `standards-work-package.md` and `standards-roles.md` became `standard-work-package.md` and `standard-roles.md` in the standard format, and the finished entry-file migration file was deleted. No external source refreshed.

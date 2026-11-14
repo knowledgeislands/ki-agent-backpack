@@ -89,7 +89,7 @@ const WORKER_FIELDS: ReadonlySet<string> = new Set(['role', 'tier', 'since', 'st
 const WORKER_RETIRED_FIELDS: ReadonlySet<string> = new Set(['name', 'uri', 'designation', 'focus'])
 const WORKER_STATUSES: readonly unknown[] = ['active', 'idle']
 /** Old role and tier words read under the role migration file, each warned on. */
-const ROLE_ALIASES: Readonly<Record<string, string>> = { assistant: 'gatekeeper', keeper: 'warden' }
+const ROLE_ALIASES: Readonly<Record<string, string>> = { assistant: 'gatekeeper', keeper: 'warden', steward: 'warden' }
 const TIER_ALIASES: Readonly<Record<string, string>> = { enablers: 'managers', doers: 'makers' }
 const REVISION = /^[0-9a-f]{7,40}$/
 /** The two limits the standard keeps, warned and never failed. */

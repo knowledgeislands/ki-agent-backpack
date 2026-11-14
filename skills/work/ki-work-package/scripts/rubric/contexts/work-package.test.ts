@@ -374,6 +374,8 @@ describe('RECORD-2 schema', () => {
   const tolerated: readonly [string, Partial<Entry>][] = [
     ['an absent role', { drop: ['role'] }],
     ['the old role word keeper', { drop: ['role'], fields: ['role: keeper'] }],
+    ['the folded role steward', { drop: ['role'], fields: ['role: steward'] }],
+    ['a steward seat', { fields: ['workers:\n  - role: steward\n    tier: managers'] }],
     ['a worker focus', { fields: ['workers:\n  - role: warden\n    tier: managers\n    focus:\n      - pilot'] }],
     ['the old tier enablers', { fields: ['workers:\n  - role: warden\n    tier: enablers'] }],
     ['listening agora-call', { fields: ['workers:\n  - role: warden\n    tier: managers\n    listening: agora-call'] }]
@@ -447,7 +449,6 @@ test('the role catalogue is read from the role standard', () => {
     'quartermaster',
     'guardian',
     'warden',
-    'steward',
     'housekeeper',
     'gatekeeper',
     'librarian',
