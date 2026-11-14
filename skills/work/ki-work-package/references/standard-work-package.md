@@ -408,7 +408,7 @@ A repository must be able to work on its own when it has to, so leaning on one s
 
 When a session cannot reach its package, it carries on from `AGENTS.md` within the last remit it was given and keeps a note in the repository of what it did and decided that would have gone up. When the store is back it re-coordinates: it reads its package, sends that note up as feedback to the guardian, and takes any fresh steer. Each package's bringing-in from its legacy reconciles its repositories' `AGENTS.md` this way.
 
-Every repository's `AGENTS.md` carries one short orientation section near the top, in this form, as Kris took ORIENT-BLOCK a on 11 November 2026:
+Every repository's `AGENTS.md` carries one short orientation section near the top, in this form, ORIENT-BLOCK a, taken at high confidence on Kris's word on 14 November 2026:
 
 ```markdown
 ## Orientation
