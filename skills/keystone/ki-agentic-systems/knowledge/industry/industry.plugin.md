@@ -5,7 +5,7 @@ type: term
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 23, NAMES and HARNESS-NAME a (13 November 2026)
+origin: Cairn summit change 23 (now 12), NAMES and HARNESS-NAME a (13 November 2026)
 links:
   industry.skill:
     predicate: dcterms:hasPart

@@ -6,7 +6,7 @@ status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
 vendor: Google
-origin: Cairn summit change 22, CARD-SUBAGENT, and change 06, KG-SUBGRAPHS (12 November 2026); change 23, NAMES-REMOTE a (13 November 2026)
+origin: Cairn summit change 22, CARD-SUBAGENT, and change 06, KG-SUBGRAPHS (12 November 2026); change 23 (now 12), NAMES-REMOTE a (13 November 2026)
 links:
   industry.remote-agent:
     predicate: skos:exactMatch

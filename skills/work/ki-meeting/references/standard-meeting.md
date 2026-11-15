@@ -35,7 +35,7 @@ status: in force
 
 A meeting is a room at one node of the work tree, where named participants come together for a while, with a purpose and an express remit, to make, review or look back on something, and then go back to working alone. It is held by hand today, in a folder of plain files that every participant reaches by its own route; a tool may later hold the same shape. The owner, the person whose work it is, owns every meeting, and the meeting holds the conversation, never the decision. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
 
-Ten points taken overnight on 14 November 2026 under the owner's remit for high-confidence work were confirmed by the owner as a whole the same day, as was SHARE-OUTPUTS, from the Cairn summit's change 26; [the sources file](sources.md#3-decisions) lists them.
+Ten points taken overnight on 14 November 2026 under the owner's remit for high-confidence work were confirmed by the owner as a whole the same day, as was SHARE-OUTPUTS, from the Cairn summit's change 15; [the sources file](sources.md#3-decisions) lists them.
 
 [Back to contents](#contents)
 

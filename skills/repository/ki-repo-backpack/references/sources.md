@@ -22,7 +22,7 @@ The tracked sources behind [the compatible harness standard](standards-compatibl
 | [KR] | `ki-repo` skill | The `.ki.toml` contract and what makes a KI-governed repository | 2026-11-15 |
 | [KS] | `ki-skills` skill | The governed-rubric family, session, and host boundary ‡ | 2026-11-15 |
 | [KE] | `ki-engineering` skill | Development toolchain ownership outside compatible-harness installation semantics | 2026-11-15 |
-| [BD] | Cairn summit change 23, BACKPACK-DEPTH (Kris, 14 November 2026) | This skill's name: `ki-repo-harness` became `ki-repo-backpack`; the harness wording in its standards follows when the backpack words are rolled out | 2026-11-15 |
+| [BD] | Cairn summit change 12, BACKPACK-DEPTH (Kris, 14 November 2026) | This skill's name: `ki-repo-harness` became `ki-repo-backpack`; the harness wording in its standards follows when the backpack words are rolled out | 2026-11-15 |
 
 § Source layout and shelf practice are inferred from this repository; installed-payload policy comes from [CH].
 

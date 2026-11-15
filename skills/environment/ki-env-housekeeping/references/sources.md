@@ -29,12 +29,12 @@ None of its own. Each agent host's documentation is a source of its runtime skil
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
-| HOUSEKEEPING-LEAD | The owner's decision, in the Cairn summit's change 25, option a: a new `ki-env-housekeeping` holds the rules its Claude and ChatGPT skills share, as the binding and tokenomics leads do for theirs. | 2026-11-14 | [4.1](standard-housekeeping.md#41-native-memory-policy) to [4.4](standard-housekeeping.md#44-bounded-evidence-and-authority) | In force |
+| HOUSEKEEPING-LEAD | The owner's decision, in the Cairn summit's change 14, option a: a new `ki-env-housekeeping` holds the rules its Claude and ChatGPT skills share, as the binding and tokenomics leads do for theirs. | 2026-11-14 | [4.1](standard-housekeeping.md#41-native-memory-policy) to [4.4](standard-housekeeping.md#44-bounded-evidence-and-authority) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
 
-On 14 November 2026 the skill was written from the Cairn summit's change 25, under GUILDS-REMIT. Its four rules are those both runtime skills already held: an explicit `auto_memory` policy, durable learning routed into reviewed guidance, read-only session sources with capture left to `ki-acquire`, and bounded evidence with separately authorised deletion. The runtime skills keep their own wording for now and compose this skill first.
+On 14 November 2026 the skill was written from the Cairn summit's change 25 (now 14), under GUILDS-REMIT. Its four rules are those both runtime skills already held: an explicit `auto_memory` policy, durable learning routed into reviewed guidance, read-only session sources with capture left to `ki-acquire`, and bounded evidence with separately authorised deletion. The runtime skills keep their own wording for now and compose this skill first.
 
 [Back to contents](#contents)

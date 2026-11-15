@@ -23,7 +23,7 @@ status: in force
 
 ## 1. Introduction
 
-How the skills of a Knowledge Islands backpack are grouped into guilds, each led by one skill, with Keystone as the guild of guilds. It sits beside [the Knowledge Islands skill standard](standard-knowledge-islands.md), whose skill shape declares the guild keys this standard gives meaning to. The decisions behind these rules are in [the sources file](sources.md#3-decisions); they were settled in the Cairn summit's change 25.
+How the skills of a Knowledge Islands backpack are grouped into guilds, each led by one skill, with Keystone as the guild of guilds. It sits beside [the Knowledge Islands skill standard](standard-knowledge-islands.md), whose skill shape declares the guild keys this standard gives meaning to. The decisions behind these rules are in [the sources file](sources.md#3-decisions); they were settled in the Cairn summit's change 14.
 
 [Back to contents](#contents)
 

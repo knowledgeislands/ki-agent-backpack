@@ -5,7 +5,7 @@ type: system-term
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 25, GUILD-TERM, GUILD-LEAD and KEYSTONE-HUB (13 November 2026) and GUILD-ANALOGY (14 November 2026)
+origin: Cairn summit change 25 (now 14), GUILD-TERM, GUILD-LEAD and KEYSTONE-HUB (13 November 2026) and GUILD-ANALOGY (14 November 2026)
 links:
   industry.skill:
     predicate: dcterms:hasPart

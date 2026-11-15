@@ -57,7 +57,7 @@ Pending, in this order and not yet defined here:
 
 1. Channel, drafted as a [proposal](knowledge/industry/industry.channel.md) under CARD-CHANNEL's option A, the industry's words; then integration, under a card for the ways into a session with cross-session messaging.
 2. Tool and instruction file.
-3. The system's own terms (NAMES): rig, actor, work package and role, and backpack, Knowledge Islands' own name for its bundle, mapped onto plugin. Title, seat and worker go. What is still open is decided in the Cairn summit's change 23. Guild, the first of them, is written below.
+3. The system's own terms (NAMES): rig, actor, work package and role, and backpack, Knowledge Islands' own name for its bundle, mapped onto plugin. Title, seat and worker go. What is still open is decided in the Cairn summit's change 12. Guild, the first of them, is written below.
 
 ### Specification cards
 
