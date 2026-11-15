@@ -474,7 +474,7 @@ The native rubric is thin and complements `ki-work-package`'s. It checks only wh
 - every full record identifier in a report under `+/_WORK/` is a link to an existing file, under [Linking records](standards-reporting.md#linking-records);
 - recommended options carry their confidence, and no query marks more than one option recommended;
 - each package holds only its closed list, and reports with open queries;
-- no work is over the owner-queue cap of eight open queries or eight records awaiting acceptance.
+- no work is over the owner-queue cap of eight open queries across its change documents or eight records awaiting acceptance.
 
 It cannot judge whether a coordinator kept its turn budget, whether a report took the owner-report shape under its heading and closed with the banner, whether a spoken answer was read back, whether a Summary covered the window since the mark, whether decisions were struck, pointed or kept, or whether the coordinator refreshed this guidance. The COORD judgement items review those from transcripts, reports and packages the owner selects.
 

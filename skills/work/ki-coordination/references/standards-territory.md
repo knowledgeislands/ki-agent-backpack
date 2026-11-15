@@ -49,7 +49,7 @@ Its duties:
   - When the package's own session opens, it takes only the lines still queued, finds the dispositions in its files and Git, and the State of play stops acting for it.
 - **Cap:** at most three or four Project packages are active at once, however many sessions act on them; On hold and Finished do not count.
   - Exceeding the cap needs the owner's explicit agreement beforehand; the coordinator cannot raise it alone. Until then, queue the next piece.
-  - Keep the active work and the ordered queue in `state.md`'s `## Queue`, each with its title and opener, and open the next queued piece when an active one goes on hold or finishes.
+  - Keep the ordered queue in the summit's change documents, each piece with its title and opener, and show in the summit's `_index.md` what is active, in Now, and what waits, in Held, as Kris set under OLD-SHAPE-HOMES a on 14 November 2026: "The queue is similar, so basically now it all orientates around the change .md files." Open the next queued piece when an active one goes on hold or finishes.
   - Within one piece, about three background agents run at once and the rest wait in the run queue, under [Coordinator responsiveness](standards-coordination.md#coordinator-responsiveness).
 - **Acceptance first:** at bootstrap and resume, its first call on the owner, before any other query, is the territory's records awaiting acceptance, as one bundle per work under [Acceptance bundles](standards-queries.md#acceptance-bundles).
 - **Seeding:** before Project work opens, the State of play creates or reconciles its package and gives the owner its [opener](standards-opening.md#opening-work), so the session opens with one message. The sender or the State of play may create an absent, registered Project's package solely to queue its first line, within the receiving repository's authority: all five files, with a minimal definition, empty queries and decisions, `state: on-hold`, `hold.reason: paused` and `hold.release: when Kris opens this Project work`. A queued line neither opens nor releases the work.
@@ -125,11 +125,11 @@ A territory always has its main State of play and may add secondaries where it h
 - **Acceptance:** each secondary brings its covered work's acceptance bundles first at its own bootstrap and resume; the main brings the rest and shows each secondary's count.
 - **Opening:** the owner opens a secondary with the [secondary opener](standards-opening.md#opening-work), and takes every opener for the territory from [Opening work](standards-opening.md#opening-work).
 
-Sources: SECONDARY-SOP in [the decision register](sources.md#decision-register).
+Sources: SECONDARY-SOP and OLD-SHAPE-HOMES in [the decision register](sources.md#decision-register).
 
 ## Owner queue
 
-Each piece of Project work is capped at eight records awaiting acceptance and at eight open queries.
+Each piece of Project work is capped at eight records awaiting acceptance and at eight open queries across its package's change documents.
 
 - Over either cap, launch no new build or planning run until the owner catches up; acceptance fixes and work that clears the backlog stay allowed.
 - Bring acceptance as one bundle per work under [Acceptance bundles](standards-queries.md#acceptance-bundles); the banner's counts line shows the records waiting, under [Banner](standards-coordination.md#banner).
