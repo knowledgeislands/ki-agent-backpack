@@ -37,25 +37,32 @@ After a Summary that lists open queries, or on the owner's request, the coordina
 
 2. **Second reply.** Woken by the timer, the reply holds only the card, through the runtime's question tool, such as `AskUserQuestion`:
    - **Title:** one line, the counter and the plain question, as in `Query 2 of 5: Release the held work now?`.
-   - **Options:** each a short label, the recommended one first, its label carrying `(recommended, <confidence> confidence)`.
+   - **Options:** each a short label, the real choices first with the recommended one leading, its label carrying `(recommended, <confidence> confidence)`, then the two [discussion options](#the-discussion-options). A card holds at most four options, so it carries at most two real choices; a query with more is asked in the plain fallback's chat form, or split into separately tagged parts.
    - **Descriptions:** one or two sentences per option saying what it means; the recommended option's opens with `Why:`.
    - **Own words:** the card's free-text box takes the owner's own words, so no option offers them.
-   - **Pairs:** two related questions may share one card, each with a short header; otherwise one question per card.
-3. **After the answer.** Log it in the change document it belongs to, then go back to step 1, whose read-back, saying what was chosen and what it changes, opens the next query's first reply.
+   - **Pairs:** two related questions may share one card, each with a short header and its own two discussion options; otherwise one question per card.
+3. **After the answer.** Log a real choice in the change document it belongs to, then go back to step 1, whose read-back, saying what was chosen and what it changes, opens the next query's first reply. A discussion option logs nothing; [the discussion options](#the-discussion-options) say what follows.
 4. **Why.** Orca folds everything in a reply under "Worked for" except its last text, and does not show text written after a card's answer in the same reply. So the context is the first reply's last text, the card stands alone in its own reply, and the read-back, plain chat after the answer, breaks the run of tool calls so the next context renders on its own instead of folding away with them. Orca's card also drops line breaks in its title, as reported to Orca, while chat text renders in full above the card.
-5. **At the end of the set.** When the last query is answered and logged, the next reply reads it back, with what it changes, takes a mark and gives the Summary, for a clean baseline and a fresh view.
+5. **At the end of the set.** Take again the queries deferred to the end, in the order they were deferred, each opening with a short discussion in plain chat before its first reply. When the last query is answered and logged, the next reply reads it back, with what it changes, takes a mark and gives the Summary, for a clean baseline and a fresh view.
 
 **Where things stand** is a few short bullets, enough to decide without scrolling back.
 
-<a id="the-read-back"></a>**The read-back** is a short line or two in plain chat: what the owner chose, then what it changes, naming what gets recorded, what gets built and what is left alone. It reads the same in card mode and in the plain fallback.
+<a id="the-read-back"></a>**The read-back** is a short line or two in plain chat: what the owner chose, then what it changes, naming what gets recorded, what gets built and what is left alone. It reads the same in card mode and in the plain fallback. For a discussion option it says which was chosen and that nothing is recorded yet.
 
-**Plain fallback.** Where the runtime has no question card, or no way for a timer to wake the coordinator, ask in plain chat Markdown alone: one reply with the read-back of the previous answer and what it changes, the context and **The options**, numbered, each with a bold name and what it means, the recommended one first carrying _(recommended, <confidence> confidence)_ and a one-line _Why:_, closing with "Reply with 1, 2 or 3, or your own words.". Then stop and wait. An unattended window asks in plain text, never through a card, because a card blocks the session.
+<a id="the-discussion-options"></a>**The discussion options** close every query's options, on a card and in the plain fallback alike, after the real choices, so the owner can say "not yet, let's talk" without typing into the free-text box:
+
+- **Talk it through now:** the pass pauses on this query, a short discussion of it follows in plain chat, then the query is asked again, its options revised where the talk changed them, and the pass carries on.
+- **Come back at the end:** the query moves to the end of this set and is taken again there, before the closing mark and Summary; it is not parked beyond the set. Chosen again at the end, it leaves the query open for the Summary that closes the set.
+
+A quick first run through the set thus decides what it can. While a query is talked through or waits for the end, work on queries already decided may launch in the background, each decision logged in its change document first, as [the decisions practice](standards-coordination.md#coordinating-practices) allows, so the decided work starts while the rest are discussed.
+
+**Plain fallback.** Where the runtime has no question card, or no way for a timer to wake the coordinator, ask in plain chat Markdown alone: one reply with the read-back of the previous answer and what it changes, the context and **The options**, numbered, each with a bold name and what it means, the recommended one first carrying _(recommended, <confidence> confidence)_ and a one-line _Why:_, then the two discussion options, closing with "Reply with a number, or your own words.". Then stop and wait. An unattended window asks in plain text, never through a card, because a card blocks the session.
 
 - Never put the next query's card in the same reply as an answer's read-back.
-- The total is the number of open queries when the pass starts. When an answer raises a new query, add it to the total and say so.
+- The total is the number of open queries when the pass starts. When an answer raises a new query, add it to the total and say so. A query deferred to the end keeps its number when it is taken again.
 - Nothing is shortened because it is asked interactively, and each query keeps its [tag](standards-reporting.md#needs-tags).
 
-Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET-MARK, CARD-LOOP, CARD-PATTERN and CARD-READBACK in [the decision register](sources.md#decision-register).
+Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET-MARK, CARD-LOOP, CARD-PATTERN, CARD-READBACK and CARD-DISCUSS in [the decision register](sources.md#decision-register).
 
 ## Goal-setting pass
 
