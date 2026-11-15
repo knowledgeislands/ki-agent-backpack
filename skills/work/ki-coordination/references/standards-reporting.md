@@ -70,7 +70,7 @@ A conversational session does bounded work directly, without delegating, opening
 - It becomes a coordinator only when the owner opens or re-bootstraps it with a coordinating [opener](standards-opening.md#opening-work), never on its own.
 - When the work outgrows the bound, because it needs a Project's decisions, more than one run at once, or would keep the owner waiting across sessions, the session says so in one line and proposes the Project's work, or new Project work through the State of play.
 
-Work that must outlive the session takes an ad hoc package, `+/_WORK/<territory>.reg.<slug>/`, under the work-package standard. It pauses by putting the work On hold through an update of the state in its `_index.md`, with no Stop or banner. Its agents head their reports `# <work title> › <run name>` with `**Run report at <local time>**` and no banner.
+Work that must outlive the session takes an ad hoc package, `work/<territory>/<territory>.reg.<slug>/` in the Cairn store, under the work-package standard. It pauses by putting the work On hold through an update of the state in its `_index.md`, with no Stop or banner. Its agents head their reports `# <work title> › <run name>` with `**Run report at <local time>**` and no banner.
 
 Sources: CONVERSATIONAL-RUN and CONVRUN-NARROW in [the decision register](sources.md#decision-register).
 

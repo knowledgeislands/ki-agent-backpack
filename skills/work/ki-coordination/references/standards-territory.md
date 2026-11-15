@@ -15,7 +15,7 @@ This file holds States of play, Project work under them, assigned packages, the 
 
 Project work coordinates exactly one Project for the owner. It always delegates: it runs its work as background agents on its agent host's own subagents under the `ki-delegation` [background-run standard](../../../agentic-systems/ki-delegation/references/standards-background-runs.md), and keeps its own turns short under [Coordinator responsiveness](standards-coordination.md#coordinator-responsiveness).
 
-- **Package:** the coordinator picks the work up from `+/_WORK/<territory>.prj.<project>/`, whose `_index.md` defines the work and holds its current state only, and keeps it current under the work-package standard. `_index.md` names its Project in front matter; the Project note does not link down.
+- **Package:** the coordinator picks the work up from `work/<territory>/<territory>.prj.<project>/` in the Cairn store, whose `_index.md` defines the work and holds its current state only, and keeps it current under the work-package standard. `_index.md` names its Project in front matter; the Project note does not link down.
 - **Decisions:** log each owner approval in the change document it belongs to before launching the work it authorises.
 - **State of play:** the [State of play](#territory-work) owns cross-Project priorities, releases and decisions touching more than one Project, and Project work raises those there. Releases follow the `ki-repo-tools` release-on-demand policy: a delivery run never releases by default, and a release run carries the `release` footer for the named release only.
 - **Naming:** where the runtime can name a session, it takes its seat's thread line, such as `⚒️ 🔑 ki.prj.ways-of-working`, under [Work naming](standards-opening.md#work-naming).

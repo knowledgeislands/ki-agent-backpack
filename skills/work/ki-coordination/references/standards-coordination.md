@@ -26,7 +26,7 @@ This is the core of the coordinating-work standard: the rules every coordinating
 Coordinating work, a State of play or Project work, is how the owner's worker holds Knowledge Islands work that has runs of its own: the coordinator dispatches, decides with the owner and reports. This standard owns how a session behaves while coordinating, how it reports and how it keeps itself current.
 
 - **With `ki-delegation`:** this is the coordinator half of the practice whose run half the `ki-delegation` [background-run standard](../../../agentic-systems/ki-delegation/references/standards-background-runs.md) governs: detachment, the run packet, prompt shape, authority tiers, the run side of logging decisions, coordination, concurrency and monitoring. This standard owns the [owner report](standards-reporting.md#owner-report) with its [tags](standards-reporting.md#needs-tags), which every report a background agent or a coordinator gives takes, and the [generated surfaces](#generated-surfaces) that carry it.
-- **With `ki-work-package`:** the work's definition is `+/_WORK/<id>/_index.md` and its state `state.md`, beside `discussions.md`, `messages.md` and `decisions.md`. The package itself, its closed list, entry points, tidy rules, review area and line shape, is the `ki-work-package` [work-package standard](../../ki-work-package/references/standard-work-package.md)'s. This standard says when the package is tidied, whether an outcome has a durable home, and how a decision is logged and what becomes of it.
+- **With `ki-work-package`:** the work's definition and state are `work/<territory>/<id>/_index.md` in the Cairn store, beside its change documents, which carry its decisions and open queries; messages reach it under [Messages between work](standards-messages.md#messages-between-work). The package itself, its closed list, entry points, tidy rules, review area and line shape, is the `ki-work-package` [work-package standard](../../ki-work-package/references/standard-work-package.md)'s. This standard says when the package is tidied, whether an outcome has a durable home, and how a decision is logged and what becomes of it.
 
 A repository that runs coordinating work declares `[skills.ki-coordination]` in `.ki.toml`. The declaration enables the hook and output-style binding as checkout capabilities; it does not make an interactive session a coordinator.
 
@@ -79,7 +79,7 @@ The Work Process note's Words table owns the model's words: work, work item, the
 | run | What a coordinator starts on its agent host's own subagents and later receives: a named set of agents, its reports and briefs living in the package of the work it serves | `ki-delegation` |
 | agent | A [subagent](../../../keystone/ki-agentic-systems/knowledge/industry/industry.subagent.md) started through the session's agent host under the background-run contract; an in-session subagent is not one, and another session never is. In the industry's sense every one is an [agent](../../../keystone/ki-agentic-systems/knowledge/industry/industry.agent.md); this narrowing is the standard's | `ki-delegation`, the terms `ki-agentic-systems` |
 | agent host | An [agent host](../../../keystone/ki-agentic-systems/knowledge/industry/industry.agent-host.md), such as Orca, Claude Desktop, ChatGPT Desktop or ChatGPT Mobile; launcher and session launcher were aliases. A **rig** is the [machine](../../../keystone/ki-agentic-systems/knowledge/industry/industry.machine.md) they run on | `ki-agentic-systems` |
-| package | `+/_WORK/<id>/` and its five files, `_index.md`, `state.md`, `discussions.md`, `messages.md` and `decisions.md`, always named by file name | `ki-work-package` |
+| package | `work/<territory>/<id>/` in the Cairn store: its `_index.md`, its change documents and its sub-packages, always named by file name | `ki-work-package` |
 | State of play | A territory's coordinating work, main or secondary | `ki-coordination` |
 | line | One entry in `messages.md` | `ki-work-package` |
 | watcher | The one detached loop that wakes the coordinator; a **wake** is the watcher exiting on news | `ki-coordination` |
@@ -350,7 +350,7 @@ The sender or territory's State of play may create an absent, registered Project
 
 This style applies only while the owner explicitly opens or resumes coordination under `ki-coordination` on a valid work package, whether `territory`, `project` or `regular`. Package type, id, home, binding and repository capability do not select the role. In a conversational session, including regular or ad hoc work without a coordinating opener, set it aside and use the `ki-coordination` reply forms: plain conversational reply by default, and the owner report without heading or banner when a unit ends, each opening with its reply id and, where it asks Kris to decide anything, ending with the reply block. A background agent follows its brief's report rule.
 
-The model of work is the Work Process note in Knowledge Islands Principal, `Pillars/Philosophy/Model/Processes/Work Process/Work Process.md`: the unit is work; you are the worker to Kris, the supervisor, and the supervisor of your runs; the work lies in one of seven states; the two moves are send and receive; and the work lives in its work package, `+/_WORK/<id>/`: `_index.md` defines it, `state.md` holds its state, `discussions.md` its open and parked queries, `messages.md` its incoming queue and `decisions.md` its decisions, with Git as its logbook. Read the note at bootstrap.
+The model of work is the Work Process note in Knowledge Islands Principal, `Pillars/Philosophy/Model/Processes/Work Process/Work Process.md`: the unit is work; you are the worker to Kris, the supervisor, and the supervisor of your runs; the work lies in one of seven states; the two moves are send and receive; and the work lives in its work package, `work/<territory>/<id>/` in the Cairn store: `_index.md` defines it and holds its state, and its change documents carry its decisions and its open and parked queries, with Git as its logbook. Read the note at bootstrap.
 
 You are a coordinator under the Knowledge Islands `ki-coordination` standard. Kris set the principle on 2026-10-13 in these words:
 
@@ -433,7 +433,7 @@ These rules apply to every coordinator.
 
 ### Committing the work folder
 
-The package `+/_WORK/<id>/` is tracked, and its knowledge is safe only once it is in Git on a remote.
+The package `work/<territory>/<id>/` in the Cairn store is tracked, and its knowledge is safe only once it is in Git on a remote.
 
 - **When:** commit and push the package at every send, every owner receive, every mark and hold, and before the work finishes, by explicit path, never with another session's uncommitted changes, each commit's subject carrying the move. A line written into other work's `messages.md` is committed and pushed at once.
 - **Checks:** every such commit and line first passes the repository's own checks under the `ki-git` [checks before committing](../../../repository/ki-git/references/standards-git.md#checks-before-committing) rule.

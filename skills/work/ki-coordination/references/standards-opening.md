@@ -15,7 +15,7 @@ The Work Process note's Levels and forms of work table sets the three levels, th
 | | State of play | Project work | Regular work and ad hoc work |
 | --- | --- | --- | --- |
 | Id | `<territory>.summit`, such as `ki.summit`, which replaced `<territory>.sop.main`; a secondary `<territory>.sop.<name>`, such as `hnr.sop.5ge` | `<territory>.prj.<project>`, such as `ki.prj.ways-of-working` | `<territory>.reg.main`; ad hoc `<territory>.reg.<slug>` |
-| `_index.md` | `work/<territory>/<territory>.summit/_index.md` in the Cairn store, and `+/_WORK/<territory>.sop.<name>/_index.md` for each secondary | `+/_WORK/<territory>.prj.<project>/_index.md` in the Capital | `+/_WORK/<territory>.reg.main/_index.md`, and one package per ad hoc piece |
+| `_index.md` | `work/<territory>/<territory>.summit/_index.md` in the Cairn store, and `+/_WORK/<territory>.sop.<name>/_index.md` for each secondary | `work/<territory>/<territory>.prj.<project>/_index.md` in the Cairn store | `work/<territory>/<territory>.reg.main/_index.md`, and one package per ad hoc piece |
 | Coordinates | Assigned packages: priorities, the queue and cross-cutting decisions; a secondary, only its `covers` subset; executes nothing | One Project's work items and runs when explicitly opened | Its own work, conversationally or through explicitly opened coordination |
 | Governed by | This standard | This standard while coordinating | Activity notes, `ki-work-recurring` and declared skills; this standard while coordinating |
 | Report forms | The coordinator forms, the report heading reading `› State of play` | The coordinator forms while coordinating, under the Project's heading | The coordinator forms while coordinating, under the real work label and page; otherwise the conversational reply forms |
@@ -121,7 +121,7 @@ For Project work:
 Bootstrap as <territory>.prj.<project> Project work under ki-coordination.
 Session: <thread line>. Your first act is to rename this session to it with your agent host's rename, such as /rename <thread line>.
 Role: coordinator only. The coordinator never does substantive work itself; every unit of work goes to a detached background agent; an owner message never pre-empts work in flight. Dispatch, decide with me, report; stay responsive.
-Label: <Territory> > <Theme> > <Project> (<territory>.prj.<project>). Work package: +/_WORK/<territory>.prj.<project>/ in <capital>.
+Label: <Territory> > <Theme> > <Project> (<territory>.prj.<project>). Work package: work/<territory>/<territory>.prj.<project>/ in the Cairn store.
 Project: <project>; work only this Project's records.
 Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive to messages and to me while they run; let them do most of the work, and check what each returns before you post it.
 Steering: my messages steer; stop or abort only when I expressly say so, naming the work.
@@ -147,7 +147,7 @@ For explicitly selected regular or ad hoc coordination, keeping its actual level
 Bootstrap as <id> regular work under ki-coordination.
 Session: <thread line>. Your first act is to rename this session to it with your agent host's rename, such as /rename <thread line>.
 Role: coordinator only, explicitly selected for this package. Delegate substantive units to detached background agents; stay responsive; owner messages steer and never pre-empt work in flight.
-Label: <actual work label> (<id>). Work package: +/_WORK/<id>/ in <actual package-home repository>.
+Label: <actual work label> (<id>). Work package: work/<territory>/<id>/ in the Cairn store.
 Authority: <owner opening instruction or logged decision>. Scope: <approved episode>; end condition: <bounded end condition, or explicitly approved continuity>.
 Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive to messages and to me while they run; let them do most of the work, and check what each returns before you post it.
 Next step: follow Bootstrap in ki-coordination, checking capability or the specific owner-approved exception, then give the full re-bootstrap report.
