@@ -1,5 +1,5 @@
 ---
-type: sources@2026-11-09T21:36:32Z
+type: sources@2026-11-15T00:17:25Z
 revised: 2026-11-14T03:24:34Z
 refresh: external-spec · monthly
 ---

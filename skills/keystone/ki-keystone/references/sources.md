@@ -1,5 +1,5 @@
 ---
-type: sources@2026-11-14T03:22:59Z
+type: sources@2026-11-15T00:17:25Z
 revised: 2026-11-14T16:34:42Z
 refresh: canonical · on-change
 ---
