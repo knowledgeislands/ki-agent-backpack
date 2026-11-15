@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-14T19:34:48Z
+revised: 2026-11-15T00:49:56Z
 status: in force
 ---
 
@@ -54,7 +54,7 @@ The configuration every Knowledge Islands repo carries, locally and on GitHub, a
 
 - Layer 1, the repository files, including orientation, the ignore contract and the legacy `.ki/` state.
 - The repository kind, Knowledge Base stores and Project shapes.
-- Repository write authority, working areas and the commit gate.
+- Repository write authority, working areas, sharing what a session makes, and the commit gate.
 - Layer 2, the core GitHub settings and `package.json` identity, and Layer 3, the deeper GitHub settings.
 - Repository naming, visibility, island maturity, per-repo overrides and the coverage cascade.
 - Applying, verifying and conforming to the standard.
@@ -214,6 +214,8 @@ A declared capability with a stable specialist working-area subarea owns an exac
 - `ki-repo-kb` owns `-/_DIGESTS/README.md` and session digests in a Knowledge Base.
 
 For the work model's tolerance window, which phase 5 of the migration closes, the thread-model areas stay accepted until each territory's migration moves them, each with a COV-1 warning naming its new home: `ki-work-package`'s `+/_CHECKPOINTS/README.md` and its old checkpoints, and `ki-delegation`'s `+/_THREADS/<run>/` thread folders, a coordinating thread's decisions log and its background agents' reports.
+
+A session working in a repository shares what the owner is to see where the owner can open it (SHARE-OUTPUTS a, Kris, 14 November 2026). It commits it in a form GitHub shows, such as Markdown with its tables and trees, pushes it where `ki-git` lets it push, and gives the link that opens where the owner is reading, as the agent host shows: the file's local path when the owner reads on the machine that holds it, its GitHub link on `main` when the owner may be elsewhere, never a link that needs another sign-in, and both when it cannot tell; it names a file not yet pushed as such, with the machine that holds it. A page made with an agent host's own tool, such as a hosted artifact, may sit beside the committed file, never in its place. In a meeting, the agenda says where each participant's outputs go, under `ki-meeting`.
 
 [Back to contents](#contents)
 
