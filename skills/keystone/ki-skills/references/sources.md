@@ -45,8 +45,8 @@ The portable contract, established practice, the runtime overlays and the house 
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| SPEC — [Agent Skills specification][spec] | Format and constraints | 2026-09-26 |
-| — [`skills-ref validate`][skills-ref]‡ | Demonstration validator | 2026-09-26 |
+| SPEC — [Agent Skills specification][spec] | Format and constraints | 2026-11-15 |
+| — [`skills-ref validate`][skills-ref]‡ | Demonstration validator | 2026-11-15 |
 
 ‡ The reference library explicitly says it is demonstration-only and unsuitable as a production validator; it remains supporting validation evidence subordinate to the specification.
 
@@ -58,17 +58,17 @@ The Agent Skills [documentation index][agentskills-index] is the inventory autho
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| AS — [Agent Skills documentation index][agentskills-index] | Page inventory | 2026-09-26 |
-| AS — [Agent Skills overview][home] | Conceptual overview | 2026-09-26 |
-| AS — [Skill-creator quickstart][quickstart] | First-skill workflow | 2026-09-26 |
-| AS — [Skill-creator best practices][agentskills-best-practices] | Authoring guidance | 2026-09-26 |
-| AS — [Optimising descriptions][optimizing-descriptions] | Description quality | 2026-09-26 |
-| AS — [Evaluating skills][evaluating-skills] | Evaluation practice | 2026-09-26 |
-| AS — [Using scripts][using-scripts] | Script execution | 2026-09-26 |
-| AS — [Client showcase][clients] | Client inventory | 2026-09-26 |
-| AS — [Adding skills support][adding-skills-support] | Client implementation | 2026-09-26 |
-| BP — [Skill authoring best practices][bp] | Authoring checklist | 2026-09-26 |
-| ENG — [Equipping agents with Agent Skills][eng]† | Design rationale | 2026-09-26 |
+| AS — [Agent Skills documentation index][agentskills-index] | Page inventory | 2026-11-15 |
+| AS — [Agent Skills overview][home] | Conceptual overview | 2026-11-15 |
+| AS — [Skill-creator quickstart][quickstart] | First-skill workflow | 2026-11-15 |
+| AS — [Skill-creator best practices][agentskills-best-practices] | Authoring guidance | 2026-11-15 |
+| AS — [Optimising descriptions][optimizing-descriptions] | Description quality | 2026-11-15 |
+| AS — [Evaluating skills][evaluating-skills] | Evaluation practice | 2026-11-15 |
+| AS — [Using scripts][using-scripts] | Script execution | 2026-11-15 |
+| AS — [Client showcase][clients] | Client inventory | 2026-11-15 |
+| AS — [Adding skills support][adding-skills-support] | Client implementation | 2026-11-15 |
+| BP — [Skill authoring best practices][bp] | Authoring checklist | 2026-11-15 |
+| ENG — [Equipping agents with Agent Skills][eng]† | Design rationale | 2026-11-15 |
 
 † Published 2025-10-16; updated to announce the open standard 2025-12-18.
 
@@ -78,7 +78,7 @@ The Agent Skills [documentation index][agentskills-index] is the inventory autho
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| OA — [OpenAI Build skills][openai-skills] | ChatGPT/Codex runtime overlay | 2026-09-26 |
+| OA — [OpenAI Build skills][openai-skills] | ChatGPT/Codex runtime overlay | 2026-11-15 |
 
 `OA` documents OpenAI runtime discovery, listing, path metadata, implicit invocation, and `agents/openai.yaml`. It qualifies runtime claims but never changes the portable Agent Skills contract.
 
@@ -88,9 +88,9 @@ The Agent Skills [documentation index][agentskills-index] is the inventory autho
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| ki-agent-backpack README — The repo's own `README.md` | Harness structure | 2026-09-26 |
-| ADR-KI-HARNESS-SKILLS-004 — Local decision record | Standalone skills and variation | 2026-09-26 |
-| ADR-KI-HARNESS-SKILLS-006 — Local decision record | Kind, taxonomy, and dependencies | 2026-09-26 |
+| ki-agent-backpack README — The repo's own `README.md` | Harness structure | 2026-11-15 |
+| ADR-KI-HARNESS-SKILLS-004 — Local decision record | Standalone skills and variation | 2026-11-15 |
+| ADR-KI-HARNESS-SKILLS-006 — Local decision record | Kind, taxonomy, and dependencies | 2026-11-15 |
 
 The README is cited only for the harness's four-part structure. Local decision records, rather than the README, support the semantic house claims.
 
@@ -100,7 +100,7 @@ The README is cited only for the harness's four-part structure. Local decision r
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| CC — [Claude Code — skills][cc] | Claude runtime overlay† | 2026-09-26 |
+| CC — [Claude Code — skills][cc] | Claude runtime overlay† | 2026-11-15 |
 
 † Claude Code extensions and runtime behaviour. This overlay may qualify a portable or Knowledge Islands rule for Claude Code, but never weakens the portable contract.
 
@@ -118,7 +118,7 @@ The Claude blog is a discovery source, not a normative standard. On each REFRESH
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| BLOG — [Claude blog][claude-blog] | Agentic-practice and authoring article discovery | 2026-09-26 |
+| BLOG — [Claude blog][claude-blog] | Agentic-practice and authoring article discovery | 2026-11-15 |
 
 [Back to contents](#contents)
 
@@ -128,7 +128,7 @@ The OpenAI News page is a discovery source, not a normative standard. On each RE
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| OPENAI — [OpenAI News][openai-news] | Agentic-practice and authoring article discovery | 2026-09-26 |
+| OPENAI — [OpenAI News][openai-news] | Agentic-practice and authoring article discovery | 2026-11-15 |
 
 [Back to contents](#contents)
 
@@ -136,10 +136,10 @@ The OpenAI News page is a discovery source, not a normative standard. On each RE
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| COMMUNITY — [Skill Authoring Patterns][patterns] | Patterns and feedback | 2026-09-26 |
-| COMMUNITY — [obra/superpowers writing-skills][superpowers]† | Convergent conventions | 2026-09-26 |
-| COMMUNITY — [skills.sh — Open Agent Skills Ecosystem][skills-sh] | Registry and security | 2026-09-26 |
-| FAFF — [shftwst/faff][faff] | Claude Code delivery-harness and autonomy-gate discovery | 2026-09-26 |
+| COMMUNITY — [Skill Authoring Patterns][patterns] | Patterns and feedback | 2026-11-15 |
+| COMMUNITY — [obra/superpowers writing-skills][superpowers]† | Convergent conventions | 2026-11-15 |
+| COMMUNITY — [skills.sh — Open Agent Skills Ecosystem][skills-sh] | Registry and security | 2026-11-15 |
+| FAFF — [shftwst/faff][faff] | Claude Code delivery-harness and autonomy-gate discovery | 2026-11-15 |
 
 † Community restatement of the best-practices document.
 
@@ -173,6 +173,8 @@ The OpenAI News page is a discovery source, not a normative standard. On each RE
 [Back to contents](#contents)
 
 ## 4. Last review
+
+REFRESH last run **2026-11-15**. It fetched [the documentation index][agentskills-index] first; it still lists the same nine pages, and every page, the specification, `skills-ref`, BP, ENG, OA, CC, the house sources and the community sources were re-read and still support the standards and rubric as written. One small correction was made: the Superpowers file has moved into the skill's `references/` folder, and its link now follows it. The OpenAI News page refused the fetch, so it was read through its own news feed instead; neither discovery source carried a new article on skill authoring, and the Claude blog's piece on always-on agents is agentic-practice background, not a rule. Nothing found requires a standard or rubric change, but four points are watched for the owner: Claude Code now accepts the portable `license`, `compatibility` and `metadata` fields and rejects any other key outside Claude Code, in claude.ai uploads and the Skills API; Claude Code adds `${CLAUDE_PROJECT_DIR}` and plugin-only substitutions that ※3's list does not name; OpenAI lets `skills.max_context_tokens` raise the Codex list budget to 10,000 tokens; and ADR-KI-HARNESS-SKILLS-006 still describes concern-first folders, which GUILD-FOLDERS has since replaced with a folder per guild. This run checked sources only and did not repeat the in-house scan.
 
 REFRESH last run **2026-09-26**. It fetched [the documentation index][agentskills-index] first; it still lists the same nine pages and the specification retains the portable format and budgets. The review found no immediate standard or rubric change; its material follow-ups were dispositioned on 2026-10-06, as recorded below.
 
@@ -215,5 +217,5 @@ REFRESH last run **2026-09-26**. It fetched [the documentation index][agentskill
 [faff]: https://github.com/shftwst/faff
 [skills-ref]: https://github.com/agentskills/agentskills/tree/main/skills-ref
 [patterns]: https://generativeprogrammer.com/p/skill-authoring-patterns-from-anthropics
-[superpowers]: https://github.com/obra/superpowers/blob/main/skills/writing-skills/anthropic-best-practices.md
+[superpowers]: https://github.com/obra/superpowers/blob/main/skills/writing-skills/references/anthropic-best-practices.md
 [skills-sh]: https://www.skills.sh/
