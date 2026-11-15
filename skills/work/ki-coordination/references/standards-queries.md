@@ -68,7 +68,7 @@ Before a query reaches the owner, it goes to one blind review run if it is mediu
 - **Which queries:** each query whose option a) carries `medium` or `low` confidence, and each `high` one whose recommended course destroys, deletes or publishes, including queries drafted and not yet sent.
 - **The review:** one blind review run, a background agent on the strongest model at high effort, under Codex rather than Claude Code where independence from the session's own model matters.
   - It is masked: the brief carries the query's Context and Query only, with the options in no ranked order and no recommendation, confidence or reason.
-  - The reviewer never reads the work's `discussions.md`, `decisions.md` or any report, where the recommendation is written.
+  - The reviewer never reads the work's change documents or any report, where the recommendation is written.
   - It checks what it can directly and returns its own recommended option with a confidence and a one-line reason.
 - **Independence:** the brief carries the [review-independence sentence](#review-independence-source) word for word. Its Context states each earlier decision as a dated fact, what was decided, by whom and when, never as a premise the question takes for granted.
 - **Agreement:** where the review recommends the same course, the confidence rises one level, `low` to `medium` or `medium` to `high`, and its reason begins `reviewed`, as in `a) (recommended, confidence high - reviewed, the patch is already on main) push it`. A `high` query keeps `high` and is marked `reviewed` the same way.

@@ -234,7 +234,7 @@ test('a Stop and a Finished banner pass in their own shapes', () => {
     '## Done',
     '### ⏸️ On hold · paused until Monday · at 21:10 GMT',
     '⏸️ drained · 🅿️ 2 queries parked',
-    '- [parked] 2 queries in `discussions.md`',
+    '- [parked] 2 queries in the change documents',
     listening,
     thread
   ].join('\n\n')
@@ -248,7 +248,7 @@ test('a Stop and a Finished banner pass in their own shapes', () => {
     '## Done',
     '### 💤 Snoozing (on hold) · at 21:10 GMT',
     '💤 waiting for a message · 🅿️ 2 queries parked',
-    '- [parked] 2 queries in `discussions.md`\n- [release] a message arrives, or `resume`',
+    '- [parked] 2 queries in the change documents\n- [release] a message arrives, or `resume`',
     '👂 listening',
     thread
   ].join('\n\n')
@@ -265,7 +265,7 @@ test('a Stop and a Finished banner pass in their own shapes', () => {
     '💤 waiting for a message · 🅿️ 2 queries parked',
     roadmap,
     pkg,
-    '- [parked] 2 queries in `discussions.md`',
+    '- [parked] 2 queries in the change documents',
     '👂 listening',
     thread
   ].join('\n\n')

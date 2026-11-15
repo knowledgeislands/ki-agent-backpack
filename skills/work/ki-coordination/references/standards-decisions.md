@@ -24,7 +24,7 @@ Write each entry by hand, and commit and push the change document under [Committ
 - A change document's entries are the work's working record until the change closes, not a Decision Record. Each entry is classed under [decision classes](#decision-classes) and homed under the [life cycle](#decisions-life-cycle), so nothing durable lives only in the package.
 - The run side, that the session logs the owner's decisions and no background agent does, is the `ki-delegation` [decisions log](../../../agentic-systems/ki-delegation/references/standards-background-runs.md#decisions-log)'s.
 
-Sources: DECISION-NO-NUMBER and LOG-NO-LOSS in [the decision register](sources.md#decision-register).
+Sources: DECISION-NO-NUMBER, LOG-NO-LOSS and OLD-SHAPE-HOMES in [the decision register](sources.md#decision-register).
 
 ### Decision classes
 

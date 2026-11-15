@@ -222,7 +222,7 @@ Sources: QUIET-TOOLS and RESTART-AGREE in [the decision register](sources.md#dec
 
 ### Tags
 
-Each outstanding query carries a short mnemonic tag, such as `BOT-1`, `CSWAP` or `PUSH`, never a bare number, so the owner can answer "BOT-1 do it". The tag heads the query in a report and labels the same item in `discussions.md`'s parked tags, the banner and a Summary's status table: it is the one vocabulary for open items. A tag is stable: it keeps its meaning across reports until the item is resolved and is never reused. Queries are never numbered.
+Each outstanding query carries a short mnemonic tag, such as `BOT-1`, `CSWAP` or `PUSH`, never a bare number, so the owner can answer "BOT-1 do it". The tag heads the query in a report and labels the same item in the change documents' parked tags, the banner and a Summary's status table: it is the one vocabulary for open items. A tag is stable: it keeps its meaning across reports until the item is resolved and is never reused. Queries are never numbered.
 
 ## Links and wording
 

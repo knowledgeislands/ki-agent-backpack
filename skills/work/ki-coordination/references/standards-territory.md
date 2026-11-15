@@ -41,7 +41,7 @@ Its duties:
 - **Regular work:** it may discuss regular work and send it lines without opening coordination on that package; dispatch follows its explicit assignment and the owner-approved scope.
 - **Acting for idle work:** where a package in its territory has no active session, `listening_status` not `on`, the State of play takes its lines; otherwise nothing would until the package is next opened.
   - It takes the package's Inbound under [Messages between work](standards-messages.md#messages-between-work), `IMPORTANT` lines first, then in queue order, one package per turn.
-  - For each line it ACKs at the top of the sender's Inbound; routes a part belonging to other work by a line in that work's `messages.md`, under **Dispatch** below; answers what the territory's coordination can answer by a reply line to the sender; and puts what needs the package's own judgement or the owner into the package's `_index.md` Now or `discussions.md`.
+  - For each line it ACKs at the top of the sender's Inbound; routes a part belonging to other work by a line in that work's `messages.md`, under **Dispatch** below; answers what the territory's coordination can answer by a reply line to the sender; and puts what needs the package's own judgement or the owner into the package's `_index.md` Now or the Open section of the change document it belongs to.
   - It then removes the line in a commit naming the line and the package, `docs(work): <id> messages taken by <State of play id>`.
   - It takes the package's work forward only where its own assignment already covers it. Acting for the package, it launches no run and changes none of its state, holder, `since`, mark, hold or decisions; an On hold package stays on hold.
   - Acting for is not stewardship and transfers nothing under [Coordinating assigned packages](#coordinating-assigned-packages). A package whose home is absent, stale or ambiguous is surfaced, not acted for.
@@ -54,7 +54,7 @@ Its duties:
 - **Acceptance first:** at bootstrap and resume, its first call on the owner, before any other query, is the territory's records awaiting acceptance, as one bundle per work under [Acceptance bundles](standards-queries.md#acceptance-bundles).
 - **Seeding:** before Project work opens, the State of play creates or reconciles its package and gives the owner its [opener](standards-opening.md#opening-work), so the session opens with one message. The sender or the State of play may create an absent, registered Project's package solely to queue its first line, within the receiving repository's authority: all five files, with a minimal definition, empty queries and decisions, `state: on-hold`, `hold.reason: paused` and `hold.release: when Kris opens this Project work`. A queued line neither opens nor releases the work.
 - **Flags:** at its own mark, it names by a line in each owning work's `messages.md` every package the `ki-work-package` rubric's [FOLDER](../../ki-work-package/references/rubric.md) items flag, under [Pruning the work folder](standards-mark.md#pruning-the-work-folder).
-  - It never names a finished work's package in a line: it closes that package itself under the `ki-work-package` [close-out](../../ki-work-package/references/standard-work-package.md#410-the-tidy), putting the query in its own `discussions.md` if a close-out check fails.
+  - It never names a finished work's package in a line: it closes that package itself under the `ki-work-package` [close-out](../../ki-work-package/references/standard-work-package.md#410-the-tidy), putting the query in the Open section of its own change document for that close-out if a check fails.
   - It never prunes another package otherwise.
   - At the same mark it runs the [worktree sweep](#worktree-sweep) and reports only what it finds.
 - **Other territories:** it coordinates with another territory's State of play only through the owner, and never acts with authority in another territory's repositories. Each Capital keeps its own ownership; cross-repository work moves under `ki-trades` or the receiving repository's own process.
@@ -93,7 +93,7 @@ Sources: SOP-ACTS-FOR-IDLE, WORK-ROUTING and STEWARD-HOME in [the decision regis
 
 **One Summary across packages.** A territory Summary reports across the packages it stewards, naming the package on every item.
 
-- A query's identity is `(work id, tag)`; its full text lives in that package's `discussions.md`, and the owner's answer in that package's change document.
+- A query's identity is `(work id, tag)`; its full text lives in the Open section of that package's change document, and the owner's answer in the same change document.
 - Each package keeps its own state, `since`, mark and beat. A territory mark never moves Project marks, and an acknowledgement moves only the work it clearly names.
 - Keep a decision spanning Projects once, at the territory home, and link it, rather than copying it as several grants.
 

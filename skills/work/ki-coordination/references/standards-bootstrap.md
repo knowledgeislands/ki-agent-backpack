@@ -81,7 +81,7 @@ Run the [repository level check](standards-sync.md#repository-level-check) befor
 - One read of the package's files counts as one call: all five at bootstrap and re-anchoring; otherwise `state.md`, `messages.md`, `discussions.md` and `decisions.md`, with `_index.md` only when it changed.
 - A write to the package's files with a brief counts as one write set, so the five-call budget is not spent before the first launch.
 - After bootstrap, read only what changed since the last read, plus the entries bearing on the question, not every decision and query at each owner message.
-- A report's `## Queries` is rendered from `discussions.md`'s `## Open`.
+- A report's `## Queries` is rendered from the open questions in the package's change documents, each from its change document's Open section.
 
 **Identity.** The closing thread line identifies the work to pick up; no session gets a copyable send or resume prompt beyond the [restart suggestion](standards-coordination.md#banner) when a trigger holds. Before acting, the coordinator verifies the id and exact label against `_index.md` and grounds itself in the primary checkout of the package's repository. It re-bootstraps, takes stock from its change documents, its agents in its agent host, `messages.md` and the owner's messages, follows the state's first step above and restarts authorised work.
 

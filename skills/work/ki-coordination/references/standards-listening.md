@@ -46,7 +46,7 @@ A coordinator may hold two capabilities. Each is switched on only by the owner's
 - keep `_index.md`'s state fields, Now and Held true;
 - prune received reports and spent briefs under the `ki-work-package` [tidy rules](../../ki-work-package/references/standard-work-package.md#410-the-tidy);
 - strike a decision, or cut it to a one-line pointer, once a durable home carries it, under the [decisions life cycle](standards-decisions.md#decisions-life-cycle);
-- clear answered entries from `discussions.md`;
+- clear answered questions from the change documents' Open sections, once each answer is recorded where it belongs;
 - raise what it cannot settle as a query.
 
 It mentions a tidy only when something needs the owner. It never edits another package; it may flag a problem there with one line in that package's `messages.md`.
