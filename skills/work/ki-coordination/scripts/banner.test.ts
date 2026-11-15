@@ -738,7 +738,7 @@ test('unknown-session hook sources stay short and conditional while the style re
   for (const text of [standard, outputStyle]) {
     expect(text).toContain('before each state-file update')
     expect(text).toContain('method_read')
-    expect(text).toContain('all five files of your work package in full')
+    expect(text).toContain('the change documents in hand in full')
     expect(text).toContain('one blind review')
   }
 })

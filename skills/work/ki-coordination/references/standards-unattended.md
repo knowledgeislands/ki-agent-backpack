@@ -56,7 +56,7 @@ A headless pass is one bounded coordinator turn without a live session: a machin
 - **Trigger:** the job is shell-only and spends no model time. For each work it watches it asks: has `messages.md` changed since the job's last stamp; has one of the work's runs finished; has a deadline the package records passed, such as a window's end, a hold's release date or a dated next step? If none, it writes its stamp and exits; if one, it starts one pass for that work. Firings missed while a Mac slept coalesce into one under launchd's `StartCalendarInterval`.
 - **Which work:** only work that names passes: an open [unattended window](#unattended-windows) whose grant names headless passes, or a standing decision in one of the work's own change documents naming them and what they may do. Other work is stamped and left alone, its change waiting for the next attended wake. A pass never runs for work On hold or Finished.
 - **What a pass may do:** exactly what the coordinator does at a wake, within the [turn budget](standards-coordination.md#coordinator-responsiveness):
-  - read the package, the five files and every open finding;
+  - read the package, its `_index.md` and the change documents in hand, and every open finding;
   - act on each `messages.md` line in queue order under [Messages between work](standards-messages.md#messages-between-work);
   - receive each finished run, copying its queries into the Open section of the change document each belongs to, recording its disposition and tidying under [Pruning the work folder](standards-mark.md#pruning-the-work-folder);
   - start, on its agent host's own subagents, only the units the plan in the change document's Steps and the logged decisions already authorise;
