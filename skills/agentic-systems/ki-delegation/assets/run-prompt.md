@@ -1,6 +1,6 @@
 # Task: <one-line outcome>
 
-<Owner> approved this on <date>, in these words: "<the owner's words>". The entry is in `+/_WORK/<id>/decisions.md`.
+<Owner> approved this on <date>, in these words: "<the owner's words>". The entry is in `work/<territory>/<id>/<NN-slug>.change.md` in the Cairn store.
 
 <Context the agent needs that it cannot discover: paths, records by full identifier, prior reports.>
 

@@ -32,7 +32,7 @@ Any coordinator may message other work; the State of play also spreads common in
   - [Seeding](standards-territory.md#territory-work) is the only exception that creates a package for a first line; otherwise the one-line write boundary holds.
 - **Receiver:** the coordinator pulls fast-forward, then reads `messages.md` at bootstrap, every pick-up, every owner message, every wake, every Summary and before launching work.
   - It takes `IMPORTANT` lines first, then ordinary lines from the top, grouping similar ordinary lines into one unit of work where that makes sense.
-  - It records each line's disposition where it lands, in `decisions.md`, `_index.md`'s Now or Held, or `discussions.md`, then removes the line in a commit that names it and every line grouped with it. That commit is the receipt, not necessarily completion of the requested work.
+  - It records each line's disposition where it lands, in a change document, `_index.md`'s Now or Held, or `discussions.md`, then removes the line in a commit that names it and every line grouped with it. That commit is the receipt, not necessarily completion of the requested work.
   - A line it cannot act on yet stays, with an open query naming it; the line may point to that query.
   - A line linking a feedback package is taken with its package: the receiver records each point's disposition where it lands, and the package stays until a tidy finds every point homed.
   - Where the work has no active session, its State of play takes the queue for it under [acting for idle work](standards-territory.md#territory-work).

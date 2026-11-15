@@ -1,28 +1,28 @@
 # Coordinating-work standard: decisions and change documents
 
-This file holds `decisions.md`, decision classes, their life cycle and change documents. It extends [the core](standards-coordination.md).
+This file holds how decisions are logged in change documents, decision classes, their life cycle and change documents. It extends [the core](standards-coordination.md).
 
 ## Decisions and design
 
 A logged, unrevoked owner decision authorises its stated scope across sessions. Ask again only for a new decision, an explicit later gate or a changed boundary. A relay is not approval, and narrower repository gates still apply.
 
-The coordinator logs every owner decision in the turn it arrives, in the owner's words, in the work's `decisions.md`, under the [rules below](#decisions-log). A record, report or banner describes a decision by its words and date, never by a number.
+The coordinator logs every owner decision in the turn it arrives, in the owner's words, in the change document it belongs to, under the [rules below](#decisions-log). A record, report or banner describes a decision by its words and date, never by a number.
 
 Sources: DECISION-NO-NUMBER in [the decision register](sources.md#decision-register).
 
 ### Decisions log
 
-Each owner decision about the work is one timestamped entry in `+/_WORK/<id>/decisions.md`, in the owner's own words where possible. Where the work declares focus areas, the entry's first line under its heading opens `focus: <id> · `, under the `ki-work-package` [focus areas](../../ki-work-package/references/standard-work-package.md#47-sub-packages). Entries carry no numbers, and a prompt, brief, record, report, package file or banner describes the decision it acts under in the owner's words and with its date.
+Each owner decision about the work is one timestamped entry in the change document it belongs to, in its Agreed or Decided part, in the owner's own words where possible; a point still open, a question, gap or consequence, goes into that change document's Open section instead, under the `ki-work-package` [change documents](../../ki-work-package/references/standard-work-package.md#46-change-documents) rule. Kris set these homes under OLD-SHAPE-HOMES a on 14 November 2026: "The decision log is now the gaps in a given change record… it's the things that are agreed as well as the gaps". A decision whose area has no change document yet opens one. Where the work declares focus areas, the entry's first line opens `focus: <id> · `, under the `ki-work-package` [focus areas](../../ki-work-package/references/standard-work-package.md#47-sub-packages). Entries carry no numbers, and a prompt, brief, record, report, package file or banner describes the decision it acts under in the owner's words and with its date.
 
 The owner's words are whole only on the turn they arrive: a context-compressing proxy, a compaction or a shell read of a transcript can silently rewrite earlier turns. Two rules keep the log faithful on any machine and proxy setting:
 
 - **Log in the turn it arrives:** write the decision in the same turn as the message carrying it, before doing anything else with the message.
 - **Verify later quotations from the file:** check any later quotation of the owner's words, in an entry, brief, record or report, against the session transcript file read with the runtime's file-read tool, which the proxy protects. Never quote from recall or from shell output such as `cat` or `grep`, which it does not protect.
 
-Write the log by hand, and commit and push it under [Committing the work folder](standards-coordination.md#committing-the-work-folder).
+Write each entry by hand, and commit and push the change document under [Committing the work folder](standards-coordination.md#committing-the-work-folder).
 
-- The log is the work's working record between consolidations, not a Decision Record. Each entry is classed under [decision classes](#decision-classes) and homed under the [life cycle](#decisions-life-cycle), so nothing durable lives only in the package.
-- The run side, that the session keeps the log and no background agent writes it, is the `ki-delegation` [decisions log](../../../agentic-systems/ki-delegation/references/standards-background-runs.md#decisions-log)'s.
+- A change document's entries are the work's working record until the change closes, not a Decision Record. Each entry is classed under [decision classes](#decision-classes) and homed under the [life cycle](#decisions-life-cycle), so nothing durable lives only in the package.
+- The run side, that the session logs the owner's decisions and no background agent does, is the `ki-delegation` [decisions log](../../../agentic-systems/ki-delegation/references/standards-background-runs.md#decisions-log)'s.
 
 Sources: DECISION-NO-NUMBER and LOG-NO-LOSS in [the decision register](sources.md#decision-register).
 
@@ -35,21 +35,21 @@ Every entry is one of four classes, and its class sets its home.
 | Operational | Approves or steers one piece of work: a push, a tidy, an adoption, a release. Most entries | The record or commit it drove; where there is none, the entry itself until the work finishes |
 | Rule | Changes how work is done from now on | The skill standard owning the practice, through a record in the owning repository, or root `AGENTS.md` for a repository-local convention |
 | Standalone | Durable rationale or authority a reader needs without the package: a structural or policy choice | A Decision Record, amended in place where one already owns the concern |
-| Held | Open, or deferred to a later wave | Its query in `discussions.md`, under its tag, until it resolves into another class |
+| Held | Open, or deferred to a later wave | Its question in the change document's Open section, under its tag, until it resolves into another class |
 
 What is not a decision is not logged: a relay from other work is a receive, an instruction to other work is a send, and an operational event such as a push, a restart or a drain is a move. Those are commits.
 
-**Record threshold.** A record opens only for a product or standard change that needs the owner's acceptance. Operational work runs on `decisions.md`, the brief, the report and Git, and opens no record. `ki-work-roadmap`'s graduation test sets a due record's shape; this threshold says whether one is due.
+**Record threshold.** A record opens only for a product or standard change that needs the owner's acceptance. Operational work runs on its change document's entries, the brief, the report and Git, and opens no record. `ki-work-roadmap`'s graduation test sets a due record's shape; this threshold says whether one is due.
 
 Sources: DECISION-CLASSES and RECORD-THRESHOLD in [the decision register](sources.md#decision-register).
 
 ### Decisions life cycle
 
-At each mark, check each entry against its durable home, under the Work Process note's Decisions life cycle, and:
+An entry stays in its change document while the change is open; when the change closes, each entry goes to its durable home and the change document is deleted, under the `ki-work-package` [change documents](../../ki-work-package/references/standard-work-package.md#46-change-documents) rule. At each mark, check each entry of every change document against its durable home, under the Work Process note's Decisions life cycle:
 
-- **strike it** when a standard, skill, note, record, Decision Record or commit wholly carries it; a struck entry leaves no stub;
-- **cut it to a one-line pointer**, the tag, the owner's date and a link, when it still governs live work whose home is elsewhere;
-- **keep it** otherwise. A standalone entry with no Decision Record yet is kept, and `_index.md`'s Held carries it as `homeless: <TAG>`, so the Summary shows it, until a Decision Record takes it.
+- **homed** when a standard, skill, note, record, Decision Record or commit wholly carries it; it needs nothing more, and goes with its change document;
+- **pointed** when it still governs live work whose home is elsewhere: the tag, the owner's date and a link carry it once the change closes;
+- **kept** otherwise, and its change document stays open. A standalone entry with no Decision Record yet is kept, and `_index.md`'s Held carries it as `homeless: <TAG>`, so the Summary shows it, until a Decision Record takes it.
 
 Who homes each class:
 
@@ -59,7 +59,7 @@ Who homes each class:
 - held: whoever homes the class it resolves into;
 - anything left at [Finishing Project work](standards-mark.md#finishing-project-work): the coordinator. A conversational session homes at its recap.
 
-The work's `decisions.md` is its one decisions list for its whole life: successive sessions share it, and it stays in the package, not beside the Project note. A design loop's own decisions file is a stage artefact holding only the answers to its report's tagged decisions, and each answer is also an entry in `decisions.md`, logged in the turn it arrived.
+The work's change documents are its one record of decisions for as long as each is open: successive sessions share them, and they stay in the package, not beside the Project note. A design loop's own decisions file is a stage artefact holding only the answers to its report's tagged decisions, and each answer is also an entry in the change document the loop designs, logged in the turn it arrived.
 
 ### Change documents
 

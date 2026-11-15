@@ -28,8 +28,8 @@ Every rule below rests on one of two grounds, named beside it: **proved**, Orca 
 ## When Orca launches
 
 - **Reach.** Orca launches runs only on attended Macs, and only for work packages that opt in by a logged owner decision; on any host without Orca and for any package without an opt-in, a session delegates to its own agent host's subagents. Decided: ORCA-REACH a), 30 October 2026, held in the background-run standard's [Agent hosts](../../ki-delegation/references/standards-background-runs.md#agent-hosts).
-- **Opt-in.** A package opts in by a decisions-log entry, as ORCA-OPTIN b) of 30 October 2026 does for `ki.prj.orca-evaluation`: "this Project dispatches all its runs through Orca on attended Macs until Kris revokes it". Each opt-in says what it covers, such as hosts or kinds of run; there is no one-launcher-per-host rule. Decided: ORCA-OPTIN b), and ONE-LAUNCHER closed with no rule on 7 November 2026.
-- **One launcher per unit.** Each dispatched unit has exactly one launcher answerable for it, recorded with the unit at dispatch in the decisions log. Before dispatching, the coordinator checks both the decisions log and the live running work, the Orca Run's `worker-list` and any other agent host's view of the session's agents, because two Macs or two sessions could each pass a Git-synced log check before either pushes; a unit already recorded or running is not started again. Decided: ONE-LAUNCHER-UNIT a), 7 November 2026.
+- **Opt-in.** A package opts in by an entry in one of its change documents, as ORCA-OPTIN b) of 30 October 2026 does for `ki.prj.orca-evaluation`: "this Project dispatches all its runs through Orca on attended Macs until Kris revokes it". Each opt-in says what it covers, such as hosts or kinds of run; there is no one-launcher-per-host rule. Decided: ORCA-OPTIN b), and ONE-LAUNCHER closed with no rule on 7 November 2026.
+- **One launcher per unit.** Each dispatched unit has exactly one launcher answerable for it, recorded with the unit at dispatch in the change document it serves. Before dispatching, the coordinator checks both that change document and the live running work, the Orca Run's `worker-list` and any other agent host's view of the session's agents, because two Macs or two sessions could each pass a Git-synced log check before either pushes; a unit already recorded or running is not started again. Decided: ONE-LAUNCHER-UNIT a), 7 November 2026.
 - **Survival.** A run that must outlive its coordinator goes through a launcher whose workers are proved to survive it: the worker keeps working, a fresh session finds it with its progress and result, and it finishes. With `ki agent` removed in `tools-ki` v0.15.0, no agent host is yet proved to carry such a run; Orca's standing is in the migration file. Decided: OUTLIVE a), 7 November 2026.
 
 ## Start
@@ -66,7 +66,7 @@ Every rule below rests on one of two grounds, named beside it: **proved**, Orca 
 
 A Run is bound to the session that made it: a new chat session could not use the previous session's Run ("caller not bound"), and `run-use --takeover-legacy` works only from a live coordinator terminal, not from a chat. Proved: the gotcha "A Run is bound to the session that made it".
 
-A new coordinator session therefore makes a new Run, finds the old one by its objective, which starts with the work id, and settles each worker under the old Run, or names it with what it still owes, without starting any unit a second time. It logs the old Run as retired in the decisions log only once every worker under it is settled or named unreachable with what it owes. Decided: RUN-RECOVERY a), 7 November 2026; it is what was done on 1 November 2026.
+A new coordinator session therefore makes a new Run, finds the old one by its objective, which starts with the work id, and settles each worker under the old Run, or names it with what it still owes, without starting any unit a second time. It logs the old Run as retired in the change document it serves only once every worker under it is settled or named unreachable with what it owes. Decided: RUN-RECOVERY a), 7 November 2026; it is what was done on 1 November 2026.
 
 ## Queueing
 
@@ -95,7 +95,7 @@ In an Orca trial, a worker commits its own note by explicit path inside the writ
 
 ## What stays in Knowledge Islands
 
-The work package is the record: definition, state, queries, messages and decisions in Git. Orca's Runs, Tasks, Dispatches and messages are host-local and may be lost; no decision rests on them when each report copies every ask's question, options, answer and message ids and the decisions log records the outcome. Proved: plan069, checked at its `worker_done`. Orca's state is never hand-edited: a hand edit stopped Orca starting on terra, and it was recovered only with `orca profile state rollback --backup <id>` from Orca's own backups. Proved.
+The work package is the record: definition, state, queries, messages and decisions in Git. Orca's Runs, Tasks, Dispatches and messages are host-local and may be lost; no decision rests on them when each report copies every ask's question, options, answer and message ids and the change document records the outcome. Proved: plan069, checked at its `worker_done`. Orca's state is never hand-edited: a hand edit stopped Orca starting on terra, and it was recovered only with `orca profile state rollback --backup <id>` from Orca's own backups. Proved.
 
 ## Known gotchas
 

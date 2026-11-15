@@ -18,7 +18,7 @@ On hold is the Work Process note's state, with its two reasons: paused, and more
 - **Committing:** in every repository the coordinator or its agents touched, commit your own work by explicit path under the repository's gate and `ki-git`. Pull fast-forward only into a clean checkout, under [Committing the work folder](standards-coordination.md#committing-the-work-folder), and push under [Pushing beneath other sessions](standards-sync.md#pushing-beneath-other-sessions): stacked commits go with your own and stay out of the report. Never use `--no-verify` or force-push. Name another session's uncommitted file in `## Left over` and leave it alone.
 - **Tidy first:** before any hold, paused, Snoozing or idle, the package keeps nothing already dealt with, under the `ki-work-package` [tidy before a hold](../../ki-work-package/references/standard-work-package.md#410-the-tidy). The rubric fails a held package that still does.
 - **Parking:**
-  - strike the mark under [The mark](standards-mark.md#the-mark), strike decisions under the [decisions life cycle](standards-decisions.md#decisions-life-cycle) and prune the package;
+  - strike the mark under [The mark](standards-mark.md#the-mark), check the change documents' decisions under the [decisions life cycle](standards-decisions.md#decisions-life-cycle) and prune the package;
   - move every open query from `## Open` to `## Parked` in `discussions.md`, with its tag, one line of context and its recommended option;
   - carry every held item, parked item and waiting-on item into its home in the package, with its release condition where it has one, so nothing outstanding is left only in the session;
   - write `_index.md`'s Now and Held for when the work is back in use;
@@ -38,7 +38,7 @@ On hold is the Work Process note's state, with its two reasons: paused, and more
 - **Territory hold:** the owner issues it through the State of play. Every piece of Project work goes on hold first and the State of play last. The State of play's Now and Held name the work that restarts when the hold lifts and the work that stays on hold.
 - **Snoozing:** a hold that waits for more to come, `💤 Snoozing (on hold)`. It replaces the more-expected hold and the listening hold.
   - The owner asks in words such as `snooze`, "hold on snooze waiting for a message" or "done for now, more to come". Regular work rests Snoozing between occurrences, and a Project may rest Snoozing between waves.
-  - Log the request in `decisions.md` and drain as above. Once the snooze lands, re-arm the one watcher and set `listening_status: on`, and `listening_enabled: true` where the owner asked it to wait for a message.
+  - Log the request in the change document it belongs to and drain as above. Once the snooze lands, re-arm the one watcher and set `listening_status: on`, and `listening_enabled: true` where the owner asked it to wait for a message.
   - `hold.release` reads `a message arrives, or resume`.
   - Banner, under the [one table of states](standards-coordination.md#banner): heading `### 💤 Snoozing (on hold) · at <time>`; counts `💤 waiting for a message · 🅿️ <n> queries parked`, never `drained`, because the coordinator still listens; items `[parked]` and ``[release] a message arrives, or `resume` ``; then `👂 listening`.
   - A new line in `messages.md`, or new work arriving, releases it under **Release** and the coordinator acts on it.

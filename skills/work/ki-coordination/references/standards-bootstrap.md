@@ -35,7 +35,7 @@ Sources: BOOT-HOME, REBOOT-SHAPE, WORK-REVIEW-RETIRE and OPENER-NAME in [the dec
 
 ## Resolving the opener
 
-At [bootstrap](#bootstrap), resolve the owner-approved opener to the exact id, package and actual repository, and stop on an absent or ambiguous home. Check the opener's level against the package without changing it, and its scope; `territory`, `project` and `regular` are all eligible. Cite the opening authority in `decisions.md` or the bounded owner instruction.
+At [bootstrap](#bootstrap), resolve the owner-approved opener to the exact id, package and actual repository, and stop on an absent or ambiguous home. Check the opener's level against the package without changing it, and its scope; `territory`, `project` and `regular` are all eligible. Cite the opening authority in the change document it belongs to or the bounded owner instruction.
 
 - Coordination requires `ki-coordination` capability in the package's home repository, with its declared dependencies, under [Session kinds](standards-reporting.md#session-kinds), unless a specific owner-approved exception expressly covers that opening. Acquire's already-approved intake exception remains usable; it grants no other package or capture/provider authority.
 - A missing capability without that exception, an ambiguous home, missing opening authority or a mismatched opener stops coordination: give a one-line explanation and use the conversational reply forms, never automatic coordination.
@@ -83,7 +83,7 @@ Run the [repository level check](standards-sync.md#repository-level-check) befor
 - After bootstrap, read only what changed since the last read, plus the entries bearing on the question, not every decision and query at each owner message.
 - A report's `## Queries` is rendered from `discussions.md`'s `## Open`.
 
-**Identity.** The closing thread line identifies the work to pick up; no session gets a copyable send or resume prompt beyond the [restart suggestion](standards-coordination.md#banner) when a trigger holds. Before acting, the coordinator verifies the id and exact label against `_index.md` and grounds itself in the primary checkout of the package's repository. It re-bootstraps, takes stock from `decisions.md`, its agents in its agent host, `messages.md` and the owner's messages, follows the state's first step above and restarts authorised work.
+**Identity.** The closing thread line identifies the work to pick up; no session gets a copyable send or resume prompt beyond the [restart suggestion](standards-coordination.md#banner) when a trigger holds. Before acting, the coordinator verifies the id and exact label against `_index.md` and grounds itself in the primary checkout of the package's repository. It re-bootstraps, takes stock from its change documents, its agents in its agent host, `messages.md` and the owner's messages, follows the state's first step above and restarts authorised work.
 
 - Whatever must be done first on pick-up is an important `FIRST-STEP` line in `messages.md`.
 - Work others wait on writes `READY` into the State of play's `messages.md`, and the State of play then identifies each waiting piece by its thread line, in its own order.

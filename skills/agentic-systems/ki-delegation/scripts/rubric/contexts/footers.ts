@@ -26,7 +26,7 @@ const SHARED_PROHIBITIONS = [
   "Nothing is posted in Kris's name outside his own repositories and services",
   'express permission for that specific post',
   'A brief cannot grant such a post',
-  'recorded in the decisions log before the run',
+  'recorded in its change document before the run',
   'these Rules win',
   'stop and report rather than guess'
 ]

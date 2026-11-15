@@ -47,7 +47,7 @@ Decision tags follow Kris's 14 October 2026 rule, carried by the [coordination d
 
 - `ki-work next` captures each record the decisions call for, stating the relevant decisions in its Context and naming the Decision Record where one exists, and selects the pilot.
 - `ki-work plan` readies each record against the decisions; a record that needs a choice the decisions did not make stops and returns it to the owner.
-- `ki-coordination` delivers each frozen wave of independent Ready records under the grant in the decisions log; `ki-work accept` closes records under the same grant where it names closure.
+- `ki-coordination` delivers each frozen wave of independent Ready records under the grant in its change document; `ki-work accept` closes records under the same grant where it names closure.
 - Delegation to background agents follows the delegation contract in force; a high-risk handoff uses `ki-delegation`'s packet when that skill is selected.
 
 ## Stops

@@ -24,7 +24,7 @@ The loop writes no work record, grants itself no authority and never chooses for
 
 - `ki-work next` receives the rollout: it captures each record the decisions call for and selects the pilot.
 - `ki-work plan` readies each captured record against the decisions, which its Context cites.
-- `ki-coordination` delivers a frozen wave of independent Ready records under the decisions' authority grant, recorded in the decisions log; `ki-work accept` closes records under the same grant.
+- `ki-coordination` delivers a frozen wave of independent Ready records under the decisions' authority grant, recorded in its change document; `ki-work accept` closes records under the same grant.
 - `ki-decision-records`, when selected, owns the Decision Record's shape and identity.
 - `ki-delegation`, when selected, supplies the packet for any high-risk reviewer or rollout handoff.
 - The [Project registry standard](standards-project-registry.md) owns the flat Project or theme note, which never points into a work folder and links any resulting Decision Record.

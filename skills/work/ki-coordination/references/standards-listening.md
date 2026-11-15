@@ -4,7 +4,7 @@ This file holds the inbox watch, the two session capabilities and host sync. It 
 
 ## Inbox watch
 
-- **Inbox watch:** a coordinator listens only once the owner expressly asks, in words such as "listen for messages" or "keep listening", and logs the request in `decisions.md`. A Rig host sync thread, `personal.reg.rig-<host>`, listens by its role, because [host sync](#thread-capabilities) implies listening. A coordinator never asked does not listen. "stop the wake" or "stop listening" ends listening until the owner asks again.
+- **Inbox watch:** a coordinator listens only once the owner expressly asks, in words such as "listen for messages" or "keep listening", and logs the request in the change document it belongs to. A Rig host sync thread, `personal.reg.rig-<host>`, listens by its role, because [host sync](#thread-capabilities) implies listening. A coordinator never asked does not listen. "stop the wake" or "stop listening" ends listening until the owner asks again.
 - **When:** while a listening coordinator is open and its work is not draining, On hold or Finished, it keeps one watcher armed, whoever holds the work. Work [Snoozing](standards-holds.md#putting-work-on-hold) keeps it armed On hold too.
 - **The watcher:** one long-running detached shell loop that spends no model time. The heartbeat while runs go is separate and stays, listening or not, and joins the watcher in one loop.
   - Every couple of minutes it fetches and fast-forwards local `main` silently and compares the Git object of the work's `messages.md` with the one it started from, reading no content.
@@ -30,7 +30,7 @@ Sources: INBOX-WATCH, LISTEN-STATUS, LISTEN-OPT-IN, QUIET-LISTEN and WAKE-SESSIO
 
 ## Session capabilities
 
-A coordinator may hold two capabilities. Each is switched on only by the owner's express word, logged in `decisions.md`, or by an agreed role, such as a Rig host sync thread's. `_index.md` records them in four state fields under the `ki-work-package` [state](../../ki-work-package/references/standard-work-package.md#45-the-state):
+A coordinator may hold two capabilities. Each is switched on only by the owner's express word, logged in the change document it belongs to, or by an agreed role, such as a Rig host sync thread's. `_index.md` records them in four state fields under the `ki-work-package` [state](../../ki-work-package/references/standard-work-package.md#45-the-state):
 
 | Field | Values | Set |
 | --- | --- | --- |

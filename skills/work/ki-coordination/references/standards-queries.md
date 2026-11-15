@@ -41,7 +41,7 @@ After a Summary that lists open queries, or on the owner's request, the coordina
    - **Descriptions:** one or two sentences per option saying what it means; the recommended option's opens with `Why:`.
    - **Own words:** the card's free-text box takes the owner's own words, so no option offers them.
    - **Pairs:** two related questions may share one card, each with a short header; otherwise one question per card.
-3. **After the answer.** Log it in `decisions.md`, then go back to step 1, whose read-back opens the next query's first reply.
+3. **After the answer.** Log it in the change document it belongs to, then go back to step 1, whose read-back opens the next query's first reply.
 4. **Why.** Orca folds everything in a reply under "Worked for" except its last text, and does not show text written after a card's answer in the same reply. So the context is the first reply's last text, the card stands alone in its own reply, and the read-back travels with the next context. Orca's card also drops line breaks in its title, as reported to Orca, while chat text renders in full above the card.
 5. **At the end of the set.** When the last query is answered and logged, the next reply reads it back, takes a mark and gives the Summary, for a clean baseline and a fresh view.
 
@@ -57,7 +57,7 @@ Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET
 
 ## Goal-setting pass
 
-The owner asks for a goal-setting pass with "goals" or `/ki-coordination goals`. The coordinator walks `_index.md`'s Focus list in order, one area at a time, in the [interactive pass](#interactive-pass)'s two-reply shape: it reads back the area's line, which states its goal, and its place in the order, and asks the owner to confirm, reword, reorder, add or retire it. At the end it writes the steward's own `_index.md` in one commit, logs the owner's words in `decisions.md` and closes with a Status. It strikes no mark and launches nothing.
+The owner asks for a goal-setting pass with "goals" or `/ki-coordination goals`. The coordinator walks `_index.md`'s Focus list in order, one area at a time, in the [interactive pass](#interactive-pass)'s two-reply shape: it reads back the area's line, which states its goal, and its place in the order, and asks the owner to confirm, reword, reorder, add or retire it. At the end it writes the steward's own `_index.md` in one commit, logs the owner's words in the change document they belong to and closes with a Status. It strikes no mark and launches nothing.
 
 Sources: GOAL-SETTING in [the decision register](sources.md#decision-register).
 
@@ -105,7 +105,7 @@ Records awaiting acceptance reach the owner as one bundle per work, and the Stat
 
 - **When:** at bootstrap and resume, the State of play's first call on the owner, before any other query, is the territory's `awaiting-review` records. Project work brings its own at each handoff to the owner.
 - **Shape:** one `ACCEPT` query per work, tagged with the work's name, listing each record oldest first, linked under [Linking records](standards-reporting.md#linking-records), with its outcome and any concern in one line. The owner answers `ACCEPT`, or `ACCEPT` with the exceptions named.
-- **Grant:** the coordinator quotes the answer in `decisions.md` with its source and lists the exact records it covers. That is the standing human grant the `ki-work accept` [closure authority](../../../keystone/ki-work/references/standards-acceptance.md#2-obtain-closure-authority) recognises. A named exception stays `awaiting-review` and keeps its own query.
+- **Grant:** the coordinator quotes the answer in the change document it belongs to with its source and lists the exact records it covers. That is the standing human grant the `ki-work accept` [closure authority](../../../keystone/ki-work/references/standards-acceptance.md#2-obtain-closure-authority) recognises. A named exception stays `awaiting-review` and keeps its own query.
 - **Closure:** one `ki-work accept` run per repository closes the accepted records from that quotation and prunes them in the next prune-only commit. The coordinator never accepts a record in its own turn.
 
 Sources: ACCEPT-BUNDLE in [the decision register](sources.md#decision-register).
