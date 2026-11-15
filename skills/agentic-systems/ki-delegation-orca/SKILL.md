@@ -30,7 +30,7 @@ Read [the Orca delegation standard](references/standards-orca-delegation.md) bef
 2. **Start.** One Run per package per coordinator session, its objective starting with the work id; one worker per brief, with the brief's runtime as its agent and the checked brief as its spec. → [Start](references/standards-orca-delegation.md#start)
 3. **Wait.** One detached, bounded `check --wait`, re-armed after each wake, as the launcher's `wait`. → [Wait](references/standards-orca-delegation.md#wait)
 4. **Steer, stop and read status** without treating silence or `unverifiable` as a stall, stopping a worker only on the owner's named word. → [Status, steering and stopping](references/standards-orca-delegation.md#status-steering-and-stopping)
-5. **Receive and close out** each settled worker: read the report and the Git log, copy the report into the work folder, then close it out under `ki-coordination`'s Closing out Orca workers, and start the next queued worker. → [Receive and close-out](references/standards-orca-delegation.md#receive-and-close-out)
+5. **Receive and close out** each settled worker: read the report and the Git log, home its outcomes in the change documents they reach, then close it out under `ki-coordination`'s Closing out Orca workers, and start the next queued worker. → [Receive and close-out](references/standards-orca-delegation.md#receive-and-close-out)
 6. **Recover** after a coordinator session changes by making a new Run and settling the old one's workers. → [Recovery](references/standards-orca-delegation.md#recovery-after-a-coordinator-session-changes)
 
 `help`, `-h` or `?` explains this boundary, the procedure and what the migration file still holds, then stops.

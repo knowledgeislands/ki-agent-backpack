@@ -39,7 +39,7 @@ Every rule below rests on one of two grounds, named beside it: **proved**, Orca 
 3. **Ids.** Read the Task and Dispatch ids from `orca orchestration worker-list --run <run id> --json`, not from the start receipt, which nests them. Proved: the gotcha "worker-start's receipt nests the ids".
 4. **Worktree.** A writing run works in its own worktree, Orca's `new-child`, under the background-run standard's [worktree baseline](../../ki-delegation/references/standards-background-runs.md#coordination); a worker commits by pathspec, and workers that touch the same files are chained, never run in parallel. Decided: WORKTREE-OPTOUT a), 30 October 2026; proved: ORCA-DISPATCH-LEARNINGS (2).
 5. **Agent.** Pass the brief's runtime as `--agent` and use Orca's own launch; switch to `orca terminal create` with `worker-start --terminal` only if a worker meets permission prompts or blocked writes. Decided: ORCA-PLACEMENT a), taken in `ki.prj.ways-of-working`.
-6. **Brief as spec.** The spec is the whole rendered brief, with its tier footer, progress protocol and report rule, under the background-run standard's [prompt shape](../../ki-delegation/references/standards-background-runs.md#prompt-shape). The coordinator passes a brief already in the work folder, kept exactly as launched, and checks it first for leftover placeholders, a missing or doubled authority footer, a wrong report path and shell truncation. Passing a brief never adds authority. Proved: the four trial workers of 1 November 2026 ran this way; decided: PROMPT-RENDER a), 7 November 2026.
+6. **Brief as spec.** The spec is the whole rendered brief, with its tier footer, progress protocol and report rule, under the background-run standard's [prompt shape](../../ki-delegation/references/standards-background-runs.md#prompt-shape). The coordinator passes a brief already in the run packet, kept exactly as launched, and checks it first for leftover placeholders, a missing or doubled authority footer, a wrong report path and shell truncation. Passing a brief never adds authority. Proved: the four trial workers of 1 November 2026 ran this way; decided: PROMPT-RENDER a), 7 November 2026.
 
 ## Wait
 
@@ -59,7 +59,7 @@ Every rule below rests on one of two grounds, named beside it: **proved**, Orca 
 ## Receive and close-out
 
 - **Read before redispatch.** `worker_done` reflects the worker's last step, not the run's outcome: read the report and the Git log before any redispatch. Proved: plan069 reported `failed` although its planning succeeded.
-- **Report home.** At receive the coordinator copies the worker's report into the work folder, under [Ids, briefs and reports](#ids-briefs-and-reports).
+- **Report home.** At receive the coordinator homes the report's outcomes in the change documents they reach, under [Ids, briefs and reports](#ids-briefs-and-reports).
 - **Close-out.** Each settled worker is reused, retained at the owner's explicit request, or released with `orca orchestration worker-release --dispatch <id> --json`, only after an accepted settlement, and no reclaimable worker remains before a mark, a hold or Finished. A chat coordinator on the runtime proved under [Runtime binding](#runtime-binding) can release a worker it started, closing the worker's terminal and keeping its transcript. Decided: ORCA-CLOSE-OUT a) and CLOSEOUT-STRIKE a), held in `ki-coordination`'s [Closing out Orca workers](../../../work/ki-coordination/references/standards-mark.md#closing-out-orca-workers); proved: TRIAL-SHAPE, 1 November 2026.
 
 ## Recovery after a coordinator session changes
