@@ -610,7 +610,7 @@ export const createStreamsSession = ({
     operationalAreas.push({
       level: 'FAIL',
       message:
-        'Streams/ holds only definitions and records; move this design folder to the work folder, +/_WORK/<id>/design/.',
+        'Streams/ holds only definitions and records; move this design folder into a change document in the package of its work, work/<territory>/<id>/.',
       subject: relative(root, path)
     })
   const legacyFolders: StreamsEvidence[] = [

@@ -29,7 +29,7 @@ The tracked readable rubric is the exact publication of the structured catalogue
 Operational-area layout, legacy migration, and adapter routing.
 
 - **STREAM-1 [M] — operational areas** — Streams contains the Roadmap operational area and no design folder; recurring definitions belong in Activities, with Trades reserved for later explicit adoption. (standards-streams-structure.md)
-  - _Remediation:_ diagnostic — Establish Roadmap; move any design folder to its work folder, +/_WORK/<id>/design/; reconcile any Housekeeping definitions into configured Activities only with owner approval, preserving linked-run evidence.
+  - _Remediation:_ diagnostic — Establish Roadmap; move any design folder into a change document in the package of its work, work/<territory>/<id>/; reconcile any Housekeeping definitions into configured Activities only with owner approval, preserving linked-run evidence.
 - **STREAM-2 [M] — legacy state folders** — Legacy state and Focus folders, Streams/Initiatives/ and Project folder notes are migration inputs, not target Streams structure. (standards-streams-structure.md)
   - _Remediation:_ diagnostic — Classify each retained legacy record before removing or replacing a legacy navigation folder; move each Initiative to a theme page and each Project folder note to a flat note.
 - **STREAM-4 [J] — adapter-owned records** — Roadmap records follow their owning adapter; recurring definitions are Activity notes rather than a generic Streams record model. (standards-streams-structure.md)

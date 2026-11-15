@@ -72,7 +72,6 @@
     "+/_THREADS/<run>/",
     "+/_WORK/",
     "+/_WORK/<id>/",
-    "+/_WORK/<id>/<focus-id>/",
     "+/_WORK/<id>/decisions.md",
     "+/_WORK/<id>/design/",
     "+/_WORK/<id>/_index.md",

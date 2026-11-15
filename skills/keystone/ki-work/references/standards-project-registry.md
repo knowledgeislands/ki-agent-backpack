@@ -37,7 +37,7 @@ Streams/Themes/
   <slug>.md            # one theme page per theme
 ```
 
-A work record's `project` value is a Project slug, so it resolves to `Streams/Projects/<slug>.md`; a `theme` value resolves to `Streams/Themes/<slug>.md`. Every registry note is flat: no folder note, and no `design/` folder anywhere under `Streams/`. A [`ki-work design`](mode-design.md) design lives in its work folder, `+/_WORK/<id>/design/`, with the work's other churning papers. Slugs are lowercase kebab-case and scoped to the territory: each territory keeps its own registry and its own slugs. A record in another territory names an entry with a [cross-territory reference](#cross-territory-references).
+A work record's `project` value is a Project slug, so it resolves to `Streams/Projects/<slug>.md`; a `theme` value resolves to `Streams/Themes/<slug>.md`. Every registry note is flat: no folder note, and no `design/` folder anywhere under `Streams/`. A [`ki-work design`](mode-design.md) design is a change document in its work's package, `work/<territory>/<id>/` in the Cairn store. Slugs are lowercase kebab-case and scoped to the territory: each territory keeps its own registry and its own slugs. A record in another territory names an entry with a [cross-territory reference](#cross-territory-references).
 
 ## Project note
 
@@ -186,7 +186,7 @@ The thread-model registry stays readable, with a warning on each shape, until a 
 
 The `Streams/Initiatives/` and `initiative:` warnings become failures on 7 November 2026, or earlier once a scan finds no residue, under Kris's THEME-CLOSE decision of 25 October 2026. The Project-folder tolerance is unchanged.
 
-A `design/` folder under `Streams/` is not tolerated: the Streams checker fails it, and its papers move to the work folder.
+A `design/` folder under `Streams/` is not tolerated: the Streams checker fails it, and its papers move into a change document in the work's package.
 
 ## Validation
 

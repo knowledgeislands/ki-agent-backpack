@@ -606,7 +606,7 @@ describe('ki-repo-kb-streams session', () => {
       'Streams/Roadmap/design',
       'Streams/Themes/model/design'
     ])
-    expect(areas.at(-1)?.message).toContain('+/_WORK/<id>/design/')
+    expect(areas.at(-1)?.message).toContain('work/<territory>/<id>/')
   })
 
   test('checks a folder note but not the design artefacts beside it', () => {

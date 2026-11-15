@@ -15,7 +15,7 @@ const STREAM_1: RubricItem<StreamRubricContext> = {
     remediation: {
       class: 'diagnostic',
       guidance:
-        'Establish Roadmap; move any design folder to its work folder, +/_WORK/<id>/design/; reconcile any Housekeeping definitions into configured Activities only with owner approval, preserving linked-run evidence.'
+        'Establish Roadmap; move any design folder into a change document in the package of its work, work/<territory>/<id>/; reconcile any Housekeeping definitions into configured Activities only with owner approval, preserving linked-run evidence.'
     },
     audit: { phase: 'INSPECT', run: (context) => auditEvidence(context.operationalAreas, 'WARN', ['FAIL']) }
   }

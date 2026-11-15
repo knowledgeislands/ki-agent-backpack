@@ -72,7 +72,7 @@ Run `ki repo conform --skill ki-work --repo <repo> --dry-run`. It makes no adapt
 
 ### Mode DESIGN
 
-`design start <subject>` or `design resume <id>` runs the design loop: a brief, independent reviews, one merged report, the owner's decisions and a piloted rollout, committed in the work folder's `design/`. Read [the design reference](references/mode-design.md) and follow it; it starts each artefact from the templates in `assets/design/`. It writes no work record and never chooses for the owner.
+`design start <subject>` or `design resume <id>` runs the design loop: a brief, independent reviews, one merged report, the owner's decisions and a piloted rollout, homed in a change document in the work's package. Read [the design reference](references/mode-design.md) and follow it; it starts each artefact from the templates in `assets/design/`. It writes no work record and never chooses for the owner.
 
 ### Mode EDUCATE
 
