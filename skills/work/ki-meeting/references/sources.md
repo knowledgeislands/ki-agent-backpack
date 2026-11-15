@@ -1,6 +1,6 @@
 ---
 type: sources@2026-11-09T21:36:32Z
-revised: 2026-11-14T19:15:06Z
+revised: 2026-11-15T00:49:56Z
 refresh: canonical · on-change
 ---
 
@@ -31,6 +31,7 @@ The changes and the meeting the standards draw on.
 | --- | --- | --- |
 | [Change 34, Meetings](https://github.com/krisb/ki-cairn-store/blob/b450e98f2f69e3479bb56c8e557d43a47bc60edd/work/cairn/cairn.summit/34-meetings.change.md), the Cairn summit's, §4.1 and §4.2 | Every rule in the meeting standard: §4.1's decisions of 11 and 13 November and the four taken overnight on 14 November, and §4.2's seventeen points for meetings held by hand, from the first trial, of 13 November | 2026-11-14 |
 | [Change 35, The first meeting's lessons](https://github.com/krisb/ki-cairn-store/blob/b450e98f2f69e3479bb56c8e557d43a47bc60edd/work/cairn/cairn.summit/35-meeting-trial.change.md), the Cairn summit's, §4.1 and §6 | The six lessons of the first meeting taken overnight on 14 November, and where each is written | 2026-11-14 |
+| [Change 26, Where guidance lives](https://github.com/krisb/ki-cairn-store/blob/66c47da2e02bc386dce12aa51d55de40f8b6fbe0/work/cairn/cairn.summit/26-where-guidance-lives.change.md#43-sharing-outputs-the-first-case), the Cairn summit's, §4.3 | SHARE-OUTPUTS: where each participant's outputs go, and how Claude Design and the illustrator share theirs | 2026-11-15 |
 | [Change 24, Runtimes and skill copies](https://github.com/krisb/ki-cairn-store/blob/1ffac0a5ee2ea0b94fda4e973596c889f9341573/work/cairn/cairn.summit/24-runtimes-and-skill-copies.change.md#44-the-meetings-skill), §4.2 and §4.4 | The skill itself: the meeting standard and one standard per type, each saying what the type produces; the committed copy in the Cairn store | 2026-11-13 |
 | [The Cairn store contract](https://github.com/krisb/ki-cairn-store/blob/1ffac0a5ee2ea0b94fda4e973596c889f9341573/STORE.md#meetings), its Meetings section | The short form of the standard, now a pointer to this skill, and what stays the store's: the folder path and who keeps `meetings/` | 2026-11-13 |
 
@@ -82,11 +83,13 @@ Kris took each decision below as recommended, unless the Status says otherwise. 
 | OPENER-NAME | Every brief or opener that starts a new agent session names the session line it is to take and tells it to rename itself to that line as its first act, `/rename <line>` in Claude Code; meeting participants' openers included. Kris, in conversation, relayed by Wayland. | 2026-11-14 | [sittings](standard-meeting.md#47-sittings-and-the-roll-call) | In force |
 | OPENER-DELEGATE | Every opener or brief that starts a session tells it to delegate its work to its agent host's own subagents, stay responsive to its messages and to the owner while that work runs, and let the subagents do most of the work, checking what they return before posting it; meeting participants' openers included. Kris, in conversation. | 2026-11-14 | [sittings](standard-meeting.md#47-sittings-and-the-roll-call), [doing the work](standard-meeting.md#411-doing-the-work) | In force |
 | SEAT-LINE | A seat working in a package without its keys, such as a maker in a meeting, is named `<role glyph> <work-id>+<role>`, as Wayland named `📐 ki.cairn+architect` and `🎨 ki.cairn+illustrator` for sitting D; the form is `ki-work-package`'s thread line. Kris, in conversation. | 2026-11-14 | [sittings](standard-meeting.md#47-sittings-and-the-roll-call) | In force |
+| SHARE-OUTPUTS | Outputs go where their readers can open them: in a meeting the agenda says where each participant's outputs go, and unless it says otherwise each also lands in the output folder; Claude Design shares its boards as its own artifacts as well, and the illustrator does not send Kris to GitHub. From the Cairn summit's change 26, §4.3. | 2026-11-14 | [where a meeting is kept](standard-meeting.md#44-where-a-meeting-is-kept), [the entry file](standard-meeting.md#45-the-entry-file), [runtime binding](standard-meeting.md#416-runtime-binding) | In force; taken overnight 2026-11-14 under REMIT-HIGH and confirmed by Kris that day |
 
 [Back to contents](#contents)
 
 ## 4. Last review
 
+- 2026-11-15 - SHARE-OUTPUTS a, from the Cairn summit's change 26, written into [4.4](standard-meeting.md#44-where-a-meeting-is-kept), the agenda in [4.5](standard-meeting.md#45-the-entry-file) and [4.16](standard-meeting.md#416-runtime-binding): the agenda says where each participant's outputs go, unless it says otherwise each also lands in the output folder, and Claude Design and the illustrator share as 4.16 sets; `ki-repo` holds the same rule for a session working in a repository. The Cairn store's committed copy of this skill needs refreshing. No external source refreshed.
 - 2026-11-14 - DRAW-BUILD a, which Kris took that day, pointed to from the workshop standard's [4.1](standard-workshop.md#41-what-a-workshop-produces); `ki-design-system` holds the rule. No external source refreshed.
 - 2026-11-14 - WAKE-OPENER a, which Kris took that day, written into [4.7](standard-meeting.md#47-sittings-and-the-roll-call) and the agenda in [4.5](standard-meeting.md#45-the-entry-file). No external source refreshed.
 - 2026-11-14 - REMIT-HIGH a: Kris confirmed as a whole the ten points taken overnight, so each is in force and the standard no longer marks them for review. No external source refreshed.

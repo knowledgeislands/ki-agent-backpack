@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-14T19:15:06Z
+revised: 2026-11-15T00:49:56Z
 status: in force
 ---
 
@@ -35,7 +35,7 @@ status: in force
 
 A meeting is a room at one node of the work tree, where named participants come together for a while, with a purpose and an express remit, to make, review or look back on something, and then go back to working alone. It is held by hand today, in a folder of plain files that every participant reaches by its own route; a tool may later hold the same shape. The owner, the person whose work it is, owns every meeting, and the meeting holds the conversation, never the decision. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
 
-Ten points taken overnight on 14 November 2026 under the owner's remit for high-confidence work were confirmed by the owner as a whole the same day; [the sources file](sources.md#3-decisions) lists them.
+Ten points taken overnight on 14 November 2026 under the owner's remit for high-confidence work were confirmed by the owner as a whole the same day, as was SHARE-OUTPUTS, from the Cairn summit's change 26; [the sources file](sources.md#3-decisions) lists them.
 
 [Back to contents](#contents)
 
@@ -133,7 +133,8 @@ A meeting runs by this standard and by its type's.
    - an output folder named for the work, such as `designs/`;
    - `notes/`, for anything too long for a message.
 3. **How output is named** belongs to the kind of work, such as a design meeting's levels, not to this standard.
-4. **Nothing in the folder is a decision.** Outcomes live in change documents ([4.13](#413-decisions)).
+4. **Outputs land where their readers can open them** (SHARE-OUTPUTS, Kris, 14 November 2026). The agenda says where each participant's outputs go ([4.5](#45-the-entry-file)); unless the agenda says otherwise, each participant also puts what it makes in the output folder. How each agent host in use shares its outputs is in [4.16](#416-runtime-binding).
+5. **Nothing in the folder is a decision.** Outcomes live in change documents ([4.13](#413-decisions)).
 
 [Back to contents](#contents)
 
@@ -167,7 +168,7 @@ The `chair` field (CHAIR-FIELD, Kris, 14 November 2026) names the chair by its r
 
 1. **Summary,** kept current: where the meeting stands, the decisions it has led to, and what comes next.
 2. **Brief:** why the meeting exists, what it should produce, the change document that will hold its decisions, and what participants work from.
-3. **Agenda:** the sittings, each with its items and its end, stated when it opens ([4.7](#47-sittings-and-the-roll-call)), and each participant with its role, its session line ([4.7](#47-sittings-and-the-roll-call)), how it is reached, how it is woken, how it writes, and who listens at what interval and until when.
+3. **Agenda:** the sittings, each with its items and its end, stated when it opens ([4.7](#47-sittings-and-the-roll-call)), and each participant with its role, its session line ([4.7](#47-sittings-and-the-roll-call)), how it is reached, how it is woken, how it writes, where its outputs go, and who listens at what interval and until when.
 4. **Boundaries:** what the meeting may and may not do.
 5. **Open asks,** as a checklist the caller ticks as each is answered.
 6. **Minutes,** one part per sitting ([4.14](#414-minutes)).
@@ -286,6 +287,7 @@ How the rules above fall on the agent hosts in use when the standard was written
 - **In the room on the file system:** Claude Design in Claude Desktop, and an illustrator in the ChatGPT desktop app's Codex, each reading and writing the folder directly and committing its own files.
 - **Through a connector:** ChatGPT's voice mode, which cannot reach the file system, through its own GitHub connector.
 - **Between machines:** the remote messaging to try is Claude Code's Remote Control, between a session on sol and one on terra (CROSS-RIG-TRY).
+- **Sharing outputs:** Claude Design shares its boards as its own artifacts, which is what the owner expects there, and in a meeting puts them in the output folder too; the illustrator works in its own app and puts what it makes in the output folder, and does not send the owner to GitHub.
 - **Without Git:** Claude Design works in a sandboxed shell that cannot delete Git's lock files and has no checkout or push of its own, so it is a participant without Git, and the chair commits its files.
 - **Listening:** the caller runs a shell watcher on the folder; Claude Desktop, which cannot keep a shell loop open between turns, listens by scheduled wake-ups. In the first sitting the caller checked every 30 seconds and Claude Design every two minutes until a set time.
 
