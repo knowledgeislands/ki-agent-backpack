@@ -266,6 +266,8 @@ Declared agent-runtime support and orientation.
   - _Remediation:_ diagnostic — Move shared root orientation into AGENTS.md, import it from CLAUDE.md with a bare @AGENTS.md line, and rerun the audit.
 - **RUNTIMES-5 [M] — Claude orientation location** — Repository-local Claude orientation is not stored at .claude/CLAUDE.md at any depth. (standard-repository.md)
   - _Remediation:_ diagnostic — Move shared guidance into root AGENTS.md and Claude-specific guidance into root CLAUDE.md.
+- **RUNTIMES-6 [M] — Vendored skill copies** — A skill declared with mode "vendored" keeps a physical .agents/skills source naming it and, when Claude Code is supported, a relative Claude link to it; mode is "current" or "vendored", and a recorded commit is a full hash. (standard-configuration.md#434-vendored-skills)
+  - _Remediation:_ diagnostic — Restore the committed copy and its Claude link, or correct the declared mode or commit, then rerun the audit.
 - **RUNTIMES-J1 [J] — Runtime orientation split** — Multi-runtime repositories use a shared AGENTS.md orientation with a thin Claude import unless a justified exception applies. (standard-repository.md)
   - _Evidence scope:_ The shared AGENTS.md and runtime-specific orientation files for every declared runtime.
   - _Review prompt:_ Review whether orientation is shared cleanly across the declared runtimes without duplicated or Claude-only instructions.

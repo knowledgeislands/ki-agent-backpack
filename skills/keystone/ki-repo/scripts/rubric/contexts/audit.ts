@@ -1455,6 +1455,74 @@ const localKiSelfFindings = (dir: string, runtimes: readonly string[]): Finding[
   return f
 }
 
+const VENDORED_SKILL_ROOT = '.agents/skills'
+const CLAUDE_SKILL_ROOT = '.claude/skills'
+const COMMIT_NAME = /^(?:[0-9a-f]{40}|[0-9a-f]{64})$/
+const VENDORED_STD = 'references/standard-configuration.md#434-vendored-skills'
+
+/** The `name` a SKILL.md front matter declares, or undefined where it declares none. */
+const skillFrontMatterName = (text: string): string | undefined => {
+  const frontMatter = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/u.exec(text)?.[1] ?? ''
+  return /^name:[ \t]*["']?([^"'\r\n]*?)["']?[ \t]*$/mu.exec(frontMatter)?.[1]
+}
+
+// RUNTIMES-6: a skill declared `mode = "vendored"` is the repository's committed copy. Its
+// `.agents/skills/<name>/` source is physical and names the skill, and a declared claude-code
+// runtime reaches it through a relative `.claude/skills/<name>` link. `mode` and `commit` are the
+// `.ki.toml` contract's host-owned keys; the host compares the copy with `commit` itself.
+const vendoredSkillFindings = (dir: string, text: string, runtimes: readonly string[]): Finding[] => {
+  const { f, fail } = mk()
+  let document: Record<string, unknown>
+  try {
+    document = TOML.parse(text) as Record<string, unknown>
+  } catch {
+    // parseSupportedRuntimes has already reported unparseable TOML.
+    return f
+  }
+  const push = (message: string, file = KI_CONFIG): void => fail('RUNTIMES-6', message, file, VENDORED_STD)
+  for (const [name, table] of Object.entries(declaredSkills(document))) {
+    if (!table || typeof table !== 'object' || Array.isArray(table)) continue
+    const { mode, commit } = table as { mode?: unknown; commit?: unknown }
+    if (mode === undefined || mode === 'current') continue
+    if (mode !== 'vendored') {
+      push(`[skills.${name}] mode must be "current" or "vendored"`)
+      continue
+    }
+    if (commit !== undefined && (typeof commit !== 'string' || !COMMIT_NAME.test(commit)))
+      push(`[skills.${name}] commit must be a full lower-case Git commit hash`)
+    if (name === 'ki-self') {
+      push('[skills.ki-self] is repository-local and cannot be vendored')
+      continue
+    }
+    const sourcePath = `${VENDORED_SKILL_ROOT}/${name}`
+    const source = join(dir, sourcePath)
+    const sourceState = localState(source)
+    const skillState = localState(join(source, 'SKILL.md'))
+    if (!sourceState?.isDirectory() || !skillState?.isFile()) {
+      push(`vendored ${name} must keep a physical ${sourcePath}/ containing SKILL.md`, sourcePath)
+      continue
+    }
+    if (skillFrontMatterName(readFileSync(join(source, 'SKILL.md'), 'utf8')) !== name)
+      push(`${sourcePath}/SKILL.md must name ${name} in its front matter`, sourcePath)
+    if (!runtimes.includes('claude-code')) continue
+    const projectionPath = `${CLAUDE_SKILL_ROOT}/${name}`
+    const projection = join(dir, projectionPath)
+    const projectionState = localState(projection)
+    if (!projectionState?.isSymbolicLink() || isAbsolute(readlinkSync(projection))) {
+      push(`declares claude-code, so ${projectionPath} must be a relative link to ${sourcePath}`, projectionPath)
+      continue
+    }
+    let resolved: string | undefined
+    try {
+      resolved = realpathSync(projection)
+    } catch {
+      resolved = undefined
+    }
+    if (resolved !== realpathSync(source)) push(`${projectionPath} must resolve to ${sourcePath}`, projectionPath)
+  }
+  return f
+}
+
 const HEADROOM_LEARN_START = '<!-- headroom:learn:start -->'
 const HEADROOM_LEARN_END = '<!-- headroom:learn:end -->'
 
@@ -1580,6 +1648,7 @@ function localConfigFindings(dir: string): Finding[] {
       KI_CONFIG
     )
   f.push(...localKiSelfFindings(dir, parsed.runtimes))
+  f.push(...vendoredSkillFindings(dir, readFileSync(cfgPath, 'utf8'), parsed.runtimes))
   f.push(...localRuntimeOrientationFindings(dir, parsed.runtimes))
   return f
 }

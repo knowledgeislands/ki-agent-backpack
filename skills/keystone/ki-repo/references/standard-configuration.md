@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-14T19:34:48Z
+revised: 2026-11-15T00:13:46Z
 status: in force
 ---
 
@@ -22,6 +22,7 @@ status: in force
     - [4.3.1 Declaring harnesses and skills](#431-declaring-harnesses-and-skills)
     - [4.3.2 Resolution](#432-resolution)
     - [4.3.3 The out-of-list exception](#433-the-out-of-list-exception)
+    - [4.3.4 Vendored skills](#434-vendored-skills)
   - [4.4 Marker vs config tables](#44-marker-vs-config-tables)
   - [4.5 Validate your own table](#45-validate-your-own-table)
   - [4.6 Declared divergences](#46-declared-divergences)
@@ -47,7 +48,7 @@ The meaning of `.ki.toml` and the protocol between the skills that read it.
 
 - The shared file, its conformance header and its role as the compliance marker.
 - Presentation neighbourhoods and the layout rules `ki-repo` checks.
-- The `[repo]` harness list, the `[skills]` namespace, and how a bare skill name resolves.
+- The `[repo]` harness list, the `[skills]` namespace, how a bare skill name resolves, and how a repository declares a vendored skill.
 - Marker and config tables, validating a skill's own table, declared divergences, and what is overridable.
 - Territory and Capital, territory selection, and coverage enforcement.
 - The repository kind fields, scaffolding and ownership of tables, and the local registry.
@@ -70,6 +71,7 @@ The meaning of `.ki.toml` and the protocol between the skills that read it.
 | **Compliance marker** | The presence of `.ki.toml` at a repository's root, which declares it a Knowledge Islands–compliant repo and gates the coverage cascade. **Standard:** this one, [4.1](#41-the-shared-file--the-compliance-marker) |
 | **Neighbourhood banner** | The exact three-line comment introducing one of the stable `.ki.toml` neighbourhoods: Foundation, Repository shape, Governance and runtime, Change management, Relationships. **Standard:** this one, [4.2.1](#421-neighbourhood-banners) |
 | **Bare name** | A skill's declaration key under `[skills]`, bound to exactly one provider among the declared `harnesses`. **Standard:** this one, [4.3.2](#432-resolution) |
+| **Skill mode** | A `[skills.<name>]` table's host-owned `mode`: `"current"`, the default, links the skill from its backpack; `"vendored"` keeps a committed copy that the host leaves alone. **Standard:** this one, [4.3.4](#434-vendored-skills) |
 | **Marker table** | A `[skills.<name>]` table whose presence declares that the skill governs the repo. **Standard:** this one, [4.4](#44-marker-vs-config-tables) |
 | **Config table** | A `[skills.<name>]` table carrying per-repo declarations the skill reads. **Standard:** this one, [4.4](#44-marker-vs-config-tables) |
 | **Declared divergence** | A recorded departure from a skill's default, kept in that skill's own table so it reads as a choice, not drift. **Standard:** this one, [4.6](#46-declared-divergences) |
@@ -207,6 +209,26 @@ A skill drawn from a harness outside the declared list keeps a quoted, fully-qua
 ```
 
 This is the only place a qualified key appears in the file.
+
+[Back to contents](#contents)
+
+#### 4.3.4 Vendored skills
+
+A repository may hold a skill as a committed copy rather than as a link to its backpack, so the copy stays fixed while the backpack moves on. It declares this with the host-owned `mode` key in the skill's own table, and records the backpack commit the copy came from in `commit`:
+
+```toml
+[skills.ki-meeting]
+mode = "vendored"
+commit = "063b2195c53dbb002aa7281dadc23a4f96abfa3e"
+```
+
+- **`mode`** is `"current"` or `"vendored"`. `"current"`, or no `mode`, is the ordinary declaration: the skill resolves to its backpack and the host links it. Any other value makes the declaration invalid.
+- **A vendored skill** keeps its copy as a physical directory at `.agents/skills/<name>/` with a `SKILL.md` naming it, and, where `claude-code` is a supported runtime, a relative `.claude/skills/<name>` link to that directory. Both are committed, so the repository's own ignore rules re-include them.
+- **`commit`**, optional and read only for a vendored skill, is the full lower-case hash of the backpack commit the copy was taken from.
+
+The host resolves a vendored skill to no backpack. It runs none of the skill's operations, never activates or links it from a backpack, never replaces or removes its copy or links, and refuses to add or remove it; the skill still satisfies another declared skill's dependency on its name. Where `commit` is recorded, the host's audit compares the copy with the skill's directory at that commit and reports drift as a warning on the `ki-repo` report, for the owner to resolve by refreshing the copy or recording the commit it now matches; no repair or conform action rewrites the copy. The repository-local `ki-self` is never vendored.
+
+`mode` and `commit` belong to this contract, not to the skill: the host keeps them from the configuration it hands the skill, so a skill validating its own table never sees them. `RUNTIMES-6` checks the copy's shape and the two keys' values, and every other reader of the file, the Wayfinder among them, uses the same names and rules.
 
 [Back to contents](#contents)
 

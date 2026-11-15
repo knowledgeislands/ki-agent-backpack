@@ -10,12 +10,12 @@ test('source-loaded remediation inventory covers every structured criterion exac
   expect(inventory.issues).toEqual([])
   expect(inventory.counts).toEqual({
     catalogues: 61,
-    criteria: 912,
-    mechanical: 595,
+    criteria: 913,
+    mechanical: 596,
     judgment: 374,
     hybrid: 57,
     automatic: 118,
-    diagnostic: 454,
+    diagnostic: 455,
     guarded: 23
   })
   expect(inventory.counts.mechanical).toBe(

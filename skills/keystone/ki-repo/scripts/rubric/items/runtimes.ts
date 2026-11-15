@@ -80,6 +80,23 @@ const RUNTIMES_5: RubricItem<RuntimesRubricContext> = {
   }
 }
 
+const RUNTIMES_6: RubricItem<RuntimesRubricContext> = {
+  code: 'RUNTIMES-6',
+  title: 'Vendored skill copies',
+  description:
+    'A skill declared with mode "vendored" keeps a physical .agents/skills source naming it and, when Claude Code is supported, a relative Claude link to it; mode is "current" or "vendored", and a recorded commit is a full hash.',
+  sources: ['standard-configuration.md#434-vendored-skills'],
+  mechanical: {
+    level: 'FAIL',
+    remediation: {
+      class: 'diagnostic',
+      guidance:
+        'Restore the committed copy and its Claude link, or correct the declared mode or commit, then rerun the audit.'
+    },
+    audit: { phase: 'INSPECT', run: (context) => auditEvidence(context.runtimes6, 'FAIL') }
+  }
+}
+
 const RUNTIMES_J1: RubricItem<RuntimesRubricContext> = {
   code: 'RUNTIMES-J1',
   title: 'Runtime orientation split',
@@ -101,5 +118,5 @@ export const RUNTIMES: RubricFamily<RepoRubricContext, RuntimesRubricContext> = 
   description: 'Declared agent-runtime support and orientation.',
   standard: SOURCE,
   selectContext: (context) => context.runtimes,
-  items: [RUNTIMES_1, RUNTIMES_2, RUNTIMES_3, RUNTIMES_4, RUNTIMES_5, RUNTIMES_J1]
+  items: [RUNTIMES_1, RUNTIMES_2, RUNTIMES_3, RUNTIMES_4, RUNTIMES_5, RUNTIMES_6, RUNTIMES_J1]
 }

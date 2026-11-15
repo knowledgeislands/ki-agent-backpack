@@ -654,6 +654,98 @@ supported_runtimes = ["claude-code", "claude-desktop", "chatgpt-codex"]
   })
 })
 
+describe('vendored skill copies', () => {
+  const vendored = async (
+    meeting: string,
+    runtimes = '["claude-code", "chatgpt-codex"]',
+    layout: (root: string) => void = (root) => {
+      mkdirSync(join(root, '.agents', 'skills', 'ki-meeting'), { recursive: true })
+      writeFileSync(join(root, '.agents', 'skills', 'ki-meeting', 'SKILL.md'), '---\nname: ki-meeting\n---\n')
+      mkdirSync(join(root, '.claude', 'skills'), { recursive: true })
+      symlinkSync('../../.agents/skills/ki-meeting', join(root, '.claude', 'skills', 'ki-meeting'), 'dir')
+    }
+  ) => {
+    const root = repository()
+    layout(root)
+    writeFileSync(
+      join(root, '.ki.toml'),
+      `[skills.ki-repo]\nsupported_runtimes = ${runtimes}\n\n[skills.ki-meeting]\n${meeting}\n`
+    )
+    return (await collectAuditFindings([root])).findings
+      .filter(({ code }) => code === 'RUNTIMES-6')
+      .map(({ message }) => message)
+  }
+
+  test('accepts a committed copy with its relative Claude link and a full commit', async () => {
+    expect(await vendored(`mode = "vendored"\ncommit = "${'a'.repeat(40)}"`)).toEqual([])
+  })
+
+  test('ignores a current skill and a skill without mode, whatever its own keys', async () => {
+    expect(await vendored('mode = "current"\ncommit = "kept"', '["claude-code"]', () => {})).toEqual([])
+    expect(await vendored('commit = "kept"', '["claude-code"]', () => {})).toEqual([])
+  })
+
+  test('rejects an unknown mode and a short commit', async () => {
+    expect(await vendored('mode = "vendor"')).toEqual(['[skills.ki-meeting] mode must be "current" or "vendored"'])
+    expect(await vendored('mode = "vendored"\ncommit = "063b219"')).toEqual([
+      '[skills.ki-meeting] commit must be a full lower-case Git commit hash'
+    ])
+  })
+
+  test('requires a physical source that names the skill', async () => {
+    expect(await vendored('mode = "vendored"', '["chatgpt-codex"]', () => {})).toEqual([
+      'vendored ki-meeting must keep a physical .agents/skills/ki-meeting/ containing SKILL.md'
+    ])
+    expect(
+      await vendored('mode = "vendored"', '["chatgpt-codex"]', (root) => {
+        mkdirSync(join(root, '.agents', 'skills', 'ki-meeting'), { recursive: true })
+        writeFileSync(join(root, '.agents', 'skills', 'ki-meeting', 'SKILL.md'), '---\nname: ki-other\n---\n')
+      })
+    ).toEqual(['.agents/skills/ki-meeting/SKILL.md must name ki-meeting in its front matter'])
+  })
+
+  test('requires a relative Claude link that resolves to the source only when Claude Code is declared', async () => {
+    const source = (root: string) => {
+      mkdirSync(join(root, '.agents', 'skills', 'ki-meeting'), { recursive: true })
+      writeFileSync(join(root, '.agents', 'skills', 'ki-meeting', 'SKILL.md'), '---\nname: "ki-meeting"\n---\n')
+    }
+    expect(await vendored('mode = "vendored"', '["chatgpt-codex"]', source)).toEqual([])
+    expect(await vendored('mode = "vendored"', '["claude-code"]', source)).toEqual([
+      'declares claude-code, so .claude/skills/ki-meeting must be a relative link to .agents/skills/ki-meeting'
+    ])
+    expect(
+      await vendored('mode = "vendored"', '["claude-code"]', (root) => {
+        source(root)
+        mkdirSync(join(root, '.claude', 'skills'), { recursive: true })
+        symlinkSync(join(root, '.agents', 'skills', 'ki-meeting'), join(root, '.claude', 'skills', 'ki-meeting'), 'dir')
+      })
+    ).toEqual([
+      'declares claude-code, so .claude/skills/ki-meeting must be a relative link to .agents/skills/ki-meeting'
+    ])
+    expect(
+      await vendored('mode = "vendored"', '["claude-code"]', (root) => {
+        source(root)
+        mkdirSync(join(root, '.claude', 'skills'), { recursive: true })
+        symlinkSync('../../.agents/skills/ki-missing', join(root, '.claude', 'skills', 'ki-meeting'), 'dir')
+      })
+    ).toEqual(['.claude/skills/ki-meeting must resolve to .agents/skills/ki-meeting'])
+  })
+
+  test('never accepts a vendored ki-self', async () => {
+    const root = repository()
+    writeFileSync(
+      join(root, '.ki.toml'),
+      '[skills.ki-repo]\nsupported_runtimes = ["chatgpt-codex"]\n\n[skills.ki-self]\nmode = "vendored"\n'
+    )
+
+    expect(
+      (await collectAuditFindings([root])).findings
+        .filter(({ code }) => code === 'RUNTIMES-6')
+        .map(({ message }) => message)
+    ).toEqual(['[skills.ki-self] is repository-local and cannot be vendored'])
+  })
+})
+
 describe('root runtime orientation', () => {
   const findings = async (
     runtimes: string,
