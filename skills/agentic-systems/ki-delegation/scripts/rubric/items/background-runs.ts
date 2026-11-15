@@ -43,21 +43,21 @@ export const RUN: RubricFamily<DelegationRubricContext, DelegationRubricContext[
       code: 'RUN-3',
       title: 'run records are tracked and consolidated',
       description:
-        "A run's brief, decisions log and agent reports live in the tracked work folder `+/_WORK/<id>/` of the work that launched it, the brief as `briefs/<name>.md` until its report is received, a thread folder `+/_THREADS/<run>/` being read for the tolerance window, and are committed at each send, each owner decision is logged before the work it authorises launches, in-force decisions are consolidated into a Decision Record, skill or the work file rather than living only in the agent host's runtime, at each mark the coordinator deletes by explicit path every report whose queries are all answered and whose outcome has a durable home and every brief whose report it has, while Git history holds the rest, and a prompt or record describes a decision by the owner's words and date, never by its number.",
+        "A run's brief and agent reports live in its run packet, `$TMPDIR/ki-agents/<run>/`, outside every repository, the brief until its report is received; each owner decision is logged in the change document it belongs to, in the package of the work that launched the run, before the work it authorises launches, and the package is committed at each send; in-force decisions are consolidated into a Decision Record, skill or the package rather than living only in the agent host's runtime or a run packet; the session homes each report's outcomes in the change documents they reach or in a record, and its queries in their change documents' Open sections, before removing the packet by literal path, while Git history holds the rest; and a prompt or record describes a decision by the owner's words and date, never by its number.",
       sources: ['standards-background-runs.md'],
       judgment: {
         scope: 'Work folders, decisions logs and run prompts the owner selects for review.',
         prompt:
-          'Is every decision logged in the tracked work folder before its work launched, does anything durable exist only in the agent host runtime, does the work folder hold only its closed list after each mark, with the answered and homed reports and the received briefs deleted by explicit path, and does any prompt or record cite a decision by number alone?',
+          'Is every decision logged in its change document before its work launched, does anything durable exist only in the agent host runtime or a run packet, does the package hold only its closed list after each mark, with the outcomes and queries of each removed packet homed first, and does any prompt or record cite a decision by number alone?',
         outcomes: [
           'conforming',
           'consolidate decisions',
           'log decisions',
-          'prune the work folder',
+          'home outcomes and tidy the package',
           'escalate to owner'
         ],
         guidance:
-          "Consolidate in-force decisions into their durable owner, record missing decisions before further launches, and replace a bare decision number with the owner's words and the date, and delete by explicit path each report whose queries are answered and whose outcome is homed and each brief whose report is in, keeping one whose home is unclear; escalate when the durable owner is unclear."
+          "Consolidate in-force decisions into their durable owner, record missing decisions before further launches, and replace a bare decision number with the owner's words and the date, and home each report's outcomes and queries before removing its run packet by literal path, keeping a packet whose outcome has no clear home; escalate when the durable owner is unclear."
       }
     },
     {

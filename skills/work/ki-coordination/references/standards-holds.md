@@ -14,7 +14,7 @@ On hold is the Work Process note's state, with its two reasons: paused, and more
 
 **The drain**, in order:
 
-- **Wrapping up:** leave nothing running or queued. Let each agent that will finish within about 15 minutes finish. Stop each other agent at a safe point, recording where it stopped and how to restart it in `_index.md`'s Now, with its brief kept open in its focus folder or `briefs/<run>.md`. Finish small open items where possible, through a run if needed. Start no new work once the drain begins. Reuse, retain or release every settled Orca worker the work started, under [Closing out Orca workers](standards-mark.md#closing-out-orca-workers).
+- **Wrapping up:** leave nothing running or queued. Let each agent that will finish within about 15 minutes finish. Stop each other agent at a safe point, recording where it stopped and how to restart it in `_index.md`'s Now, with its brief kept open in its run packet. Finish small open items where possible, through a run if needed. Start no new work once the drain begins. Reuse, retain or release every settled Orca worker the work started, under [Closing out Orca workers](standards-mark.md#closing-out-orca-workers).
 - **Committing:** in every repository the coordinator or its agents touched, commit your own work by explicit path under the repository's gate and `ki-git`. Pull fast-forward only into a clean checkout, under [Committing the work folder](standards-coordination.md#committing-the-work-folder), and push under [Pushing beneath other sessions](standards-sync.md#pushing-beneath-other-sessions): stacked commits go with your own and stay out of the report. Never use `--no-verify` or force-push. Name another session's uncommitted file in `## Left over` and leave it alone.
 - **Tidy first:** before any hold, paused, Snoozing or idle, the package keeps nothing already dealt with, under the `ki-work-package` [tidy before a hold](../../ki-work-package/references/standard-work-package.md#410-the-tidy). The rubric fails a held package that still does.
 - **Parking:**
@@ -22,7 +22,7 @@ On hold is the Work Process note's state, with its two reasons: paused, and more
   - park every open query where it stands in its change document's Open section, marking it parked, with its tag, one line of context and its recommended option;
   - carry every held item, parked item and waiting-on item into its home in the package, with its release condition where it has one, so nothing outstanding is left only in the session;
   - write `_index.md`'s Now and Held for when the work is back in use;
-  - copy into the package anything its agent host keeps that is needed to resume, and remove re-copied retired reports by explicit path;
+  - copy into the package anything its agent host or an open run packet keeps that is needed to resume, in `_index.md` or the change document it belongs to;
   - set `_index.md`'s state fields to `state: on-hold`, with `hold.reason` (`paused`, or `more-expected` for Snoozing), `hold.release` in words, and `since`;
   - commit with the subject `docs(work): <id> hold, paused` or `docs(work): <id> hold, snoozing`, and push. Make no baseline or empty commit.
 - **Report:** the Stop, trigger T3 in the [coordinator reply format](standards-report-forms.md#triggers), is the send that announces the hold, and nothing else is said.
