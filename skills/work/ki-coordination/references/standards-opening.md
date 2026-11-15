@@ -15,8 +15,8 @@ The Work Process note's Levels and forms of work table sets the three levels, th
 | | State of play | Project work | Regular work and ad hoc work |
 | --- | --- | --- | --- |
 | Id | `<territory>.summit`, such as `ki.summit`, which replaced `<territory>.sop.main`; a secondary `<territory>.sop.<name>`, such as `hnr.sop.5ge` | `<territory>.prj.<project>`, such as `ki.prj.ways-of-working` | `<territory>.reg.main`; ad hoc `<territory>.reg.<slug>` |
-| `_index.md` | `work/<territory>/<territory>.summit/_index.md` in the Cairn store, and `+/_WORK/<territory>.sop.<name>/_index.md` for each secondary | `work/<territory>/<territory>.prj.<project>/_index.md` in the Cairn store | `work/<territory>/<territory>.reg.main/_index.md`, and one package per ad hoc piece |
-| Coordinates | Assigned packages: priorities, the queue and cross-cutting decisions; a secondary, only its `covers` subset; executes nothing | One Project's work items and runs when explicitly opened | Its own work, conversationally or through explicitly opened coordination |
+| `_index.md` | `work/<territory>/<territory>.summit/_index.md` in the Cairn store, and `work/<territory>/<territory>.sop.<name>/_index.md` for each node beneath it | `work/<territory>/<territory>.prj.<project>/_index.md` in the Cairn store | `work/<territory>/<territory>.reg.main/_index.md`, and one package per ad hoc piece |
+| Coordinates | Assigned packages: priorities, the queue and cross-cutting decisions; a node beneath the summit, only the part the summit splits off to it; executes nothing | One Project's work items and runs when explicitly opened | Its own work, conversationally or through explicitly opened coordination |
 | Governed by | This standard | This standard while coordinating | Activity notes, `ki-work-recurring` and declared skills; this standard while coordinating |
 | Report forms | The coordinator forms, the report heading reading `› State of play` | The coordinator forms while coordinating, under the Project's heading | The coordinator forms while coordinating, under the real work label and page; otherwise the conversational reply forms |
 
@@ -30,7 +30,7 @@ The Work Process note's Levels and forms of work table sets the three levels, th
 
 The State of play sends direction down into Project work through each receiving package's [`messages.md`](standards-messages.md#messages-between-work). Its first concern with any new matter is where the work goes, not holding it in its own context.
 
-Sources: SOP-ROLE in [the decision register](sources.md#decision-register).
+Sources: SOP-ROLE and SECONDARY-SOP in [the decision register](sources.md#decision-register).
 
 ## Work naming
 
@@ -134,8 +134,8 @@ For a secondary State of play:
 Bootstrap as <territory>.sop.<name> territory work under ki-coordination.
 Session: <thread line>. Your first act is to rename this session to it with your agent host's rename, such as /rename <thread line>.
 Role: coordinator only. The coordinator never does substantive work itself; every unit of work goes to a detached background agent; an owner message never pre-empts work in flight. Dispatch, decide with me, report; stay responsive.
-Label: <Territory> > SoP (<name>) (<territory>.sop.<name>). Work package: +/_WORK/<territory>.sop.<name>/ in <capital>.
-Secondary State of play under <Territory> > SoP (<territory>.summit): project management only for the work its _index.md covers, within its own cap; the main State of play stays the owner's front door and owns cross-cutting decisions, so route those to it.
+Label: <Territory> > SoP (<name>) (<territory>.sop.<name>). Work package: work/<territory>/<territory>.sop.<name>/ in the Cairn store.
+A node beneath <Territory> > SoP (<territory>.summit), under its rules: project management only for the work beneath this node; the summit stays the owner's front door and owns cross-cutting decisions, the territory's ceiling on active Project work and acceptance, so take those to it in a meeting or a change document.
 Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive to messages and to me while they run; let them do most of the work, and check what each returns before you post it.
 Steering: my messages steer; stop or abort only when I expressly say so, naming the work.
 Next step: follow the Bootstrap in ki-coordination, then give the full re-bootstrap report.
@@ -157,4 +157,4 @@ For a session already on this contract, the one-line `Re-bootstrap as <id> under
 
 The owner takes each opener from these templates, filled from each work's `_index.md`, for the main State of play, each secondary and each unfinished eligible package, regular and ad hoc work included. Reports and banners carry none, under the [thread line](standards-coordination.md#banner).
 
-Sources: RENAME-NAME, STAGE-C-ROLES, THREAD-RENAME, RENAME-THREAD-FORM, RESPONSIVE-PRINCIPLE, OPENER-NAME and OPENER-DELEGATE in [the decision register](sources.md#decision-register).
+Sources: RENAME-NAME, STAGE-C-ROLES, THREAD-RENAME, RENAME-THREAD-FORM, RESPONSIVE-PRINCIPLE, OPENER-NAME, OPENER-DELEGATE and SECONDARY-SOP in [the decision register](sources.md#decision-register).

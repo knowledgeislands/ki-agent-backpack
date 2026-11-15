@@ -20,18 +20,18 @@ Project work coordinates exactly one Project for the owner. It always delegates:
 - **State of play:** the [State of play](#territory-work) owns cross-Project priorities, releases and decisions touching more than one Project, and Project work raises those there. Releases follow the `ki-repo-tools` release-on-demand policy: a delivery run never releases by default, and a release run carries the `release` footer for the named release only.
 - **Naming:** where the runtime can name a session, it takes its seat's thread line, such as `⚒️ 🔑 ki.prj.ways-of-working`, under [Work naming](standards-opening.md#work-naming).
 - **Opening:** open Project work only where there is active work to drive, within the State of play's [cap](#territory-work). A dormant, registered Project may have an On hold package seeded with its first step, under [Seeding](#territory-work).
-- **Scope:** work only the Project's own records. Work belonging to another Project goes to that Project's `messages.md` through the State of play, the secondary covering both where one does.
+- **Scope:** work only the Project's own records. Work belonging to another Project goes to that Project's `messages.md` through the State of play, the node both sit beneath where there is one.
 - **Close:** Project work shows Finished only at [Finishing Project work](standards-mark.md#finishing-project-work); until then it moves between the other six states.
 
 ### Territory work
 
 Since WP-STORE (Kris, 9 November 2026), work packages live in the Cairn store, territory work in its `work/<territory>/`, so a Capital need not hold its territory work, and the check accepts a Capital that holds none (ROAD-7 a with COORD-1, Kris, 14 November 2026). Where a Capital still holds territory work, the rules below apply to it.
 
-Each territory has one main State of play, its summit, `<territory>.summit`, at `work/<territory>/<territory>.summit/_index.md` in the Cairn store: the coordination of the territory's coordinations. The summit replaced `<territory>.sop.main` under the `ki-work-package` [location and identity](../../ki-work-package/references/standard-work-package.md#42-location-and-identity) rule. It may also hold [secondary States of play](#secondary-states-of-play), each coordinating a named part of the territory under the main.
+Each territory has one main State of play, its summit, `<territory>.summit`, at `work/<territory>/<territory>.summit/_index.md` in the Cairn store: the coordination of the territory's coordinations. The summit replaced `<territory>.sop.main` under the `ki-work-package` [location and identity](../../ki-work-package/references/standard-work-package.md#42-location-and-identity) rule. Nodes may sit beneath it, [secondary States of play](#secondary-states-of-play), each taking a named part of the territory's work under the summit's rules.
 
 - Each does project management and may coordinate explicitly assigned Project packages. Delivery stays in those packages and their product repositories, never in the State of play's own package.
-- Only a Capital holds a State of play. The main is never Finished while the territory is open.
-- "The State of play" unqualified means the main; a secondary takes those duties only for the work it covers, under [Secondary States of play](#secondary-states-of-play).
+- Only a Capital holds a State of play. The summit is never Finished while the territory is open.
+- "The State of play" unqualified means the summit; a node beneath it takes only the duties the summit splits off to it, under [Secondary States of play](#secondary-states-of-play).
 
 Its duties:
 
@@ -45,7 +45,7 @@ Its duties:
   - It then removes the line in a commit naming the line and the package, `docs(work): <id> messages taken by <State of play id>`.
   - It takes the package's work forward only where its own assignment already covers it. Acting for the package, it launches no run and changes none of its state, holder, `since`, mark, hold or decisions; an On hold package stays on hold.
   - Acting for is not stewardship and transfers nothing under [Coordinating assigned packages](#coordinating-assigned-packages). A package whose home is absent, stale or ambiguous is surfaced, not acted for.
-  - A secondary acts for the packages it covers, the main for the rest.
+  - A node acts for the packages beneath it, the summit for the rest.
   - When the package's own session opens, it takes only the lines still queued, finds the dispositions in its files and Git, and the State of play stops acting for it.
 - **Cap:** at most three or four Project packages are active at once, however many sessions act on them; On hold and Finished do not count.
   - Exceeding the cap needs the owner's explicit agreement beforehand; the coordinator cannot raise it alone. Until then, queue the next piece.
@@ -73,7 +73,7 @@ Its duties:
 - When Ways of working finishes, the State of play's `_index.md` description gains method stewardship and its Scope says where method changes go. It keeps a method backlog, dispatches each accepted small improvement as small regular work or into the Project it most affects, with a design review for a change of shape, and sends the `REFRESH` lines itself. A significant change revives Ways of working, or a more targeted Project under the Model theme.
 - Lasting method authority stays in the skills and Decision Records, and the State of play still executes nothing.
 
-Sources: SOP-ACTS-FOR-IDLE, WORK-ROUTING, STEWARD-HOME and FIRST-STEP-HOME in [the decision register](sources.md#decision-register).
+Sources: SOP-ACTS-FOR-IDLE, WORK-ROUTING, STEWARD-HOME, FIRST-STEP-HOME and SECONDARY-SOP in [the decision register](sources.md#decision-register).
 
 ### Coordinating assigned packages
 
@@ -109,21 +109,16 @@ Sources: SOP-ACTS-FOR-IDLE, WORK-ROUTING, STEWARD-HOME and FIRST-STEP-HOME in [t
 
 ### Secondary States of play
 
-A territory always has its main State of play and may add secondaries where it has more work than one coordinator can hold, such as `HNR > SoP (main)`, `HNR > SoP (5ge)` and `HNR > SoP (sites)`. A territory with no secondary needs no change.
+A secondary State of play, `<territory>.sop.<name>`, is a node beneath its territory's summit that splits off part of the summit's authority, as Kris set under SECONDARY-SOP a on 15 November 2026, under the `ki-work-package` [location and identity](../../ki-work-package/references/standard-work-package.md#42-location-and-identity) rule: its package is `work/<territory>/<territory>.sop.<name>/` in the Cairn store, its `parent` the summit, and it works under the summit's rules now. A territory with no node beneath its summit needs no change.
 
-- **Declaration:** a secondary is a State of play in the Capital, `+/_WORK/<territory>.sop.<name>/`, a five-file package at `level: territory`, with `parent: <territory>` and `covers` naming its assigned same-territory Project and ad hoc work.
-  - Every package below the main names its coordinating State of play as `parent`.
-  - The main's `covers` is the register of record, including coverage through secondaries and registered work whose package is absent or pruned; a secondary's list is an assigned subset.
-  - Check parents against the register, same-territory membership, unique secondary coverage and cycles, under the `ki-work-package` [definition fields](../../ki-work-package/references/standard-work-package.md#44-the-entry-file).
-  - Work with no secondary stays with the main.
-- **Creating:** the owner decides each secondary and its coverage at the main, which logs the decision and prepares the package On hold until the owner opens it. Changing coverage is a main decision, made in both `_index.md` files in one commit.
-- **Front door:** the main stays the owner's only front door and the single dispatch coordinator. Owner dumps, units with no clear owner, method improvements, and anything touching more than one secondary, or a secondary and uncovered work, come to the main.
-- **Main owns:** the registry, membership and Known Lands; releases and priorities across secondaries; the territory-wide ceiling on active Project work; method stewardship; the worktree sweep; and every decision touching more than one secondary.
-- **Secondary owns,** for its covered work alone: cross-Project priorities; its queue in its own `state.md` `## Queue`, within its share of the main's ceiling; acceptance bundles; decisions touching more than one covered Project; and routing between them. It rolls up the five views across its covered work; the main rolls up all.
-- **Routing down:** the main routes a unit within one secondary's coverage as one `ROUTE` line into that secondary's `messages.md`, and the secondary routes it on. A unit for one named covered work may go straight there.
-- **Routing up and across:** covered work sends a matter across its covered Projects to its secondary, and a `METHOD` line or anything beyond the coverage to the main. A secondary sends cross-cutting matters to the main and may message another secondary directly where the matter's owner is clear. A secondary returns a part it cannot place to the main, once; the main places it or asks the owner.
-- **Acceptance:** each secondary brings its covered work's acceptance bundles first at its own bootstrap and resume; the main brings the rest and shows each secondary's count.
-- **Opening:** the owner opens a secondary with the [secondary opener](standards-opening.md#opening-work), and takes every opener for the territory from [Opening work](standards-opening.md#opening-work).
+- **Creating:** the owner decides each node at the summit, which records the decision in the change document it belongs to and seeds the package On hold, under [Seeding](#territory-work), until the owner opens it. A node folds back into the summit when it is no longer needed.
+- **Front door:** the summit stays the owner's only front door and the single dispatch coordinator. Owner dumps, units with no clear owner, method improvements and anything touching more than one node, or a node and other work, come to the summit.
+- **The summit owns** what the main State of play owned: the registry, membership and Known Lands; releases and priorities across the territory; the territory-wide [ceiling on active Project work](#territory-work), which counts the work beneath every node and gives no node a share of its own; method stewardship; the worktree sweep; and every decision touching more than one node.
+- **A node** does project management for the work beneath it, within the authority the summit splits off to it, and rolls up the five views across that work; the summit rolls up all.
+- **Acceptance:** the summit brings the territory's records awaiting acceptance first, the work beneath its nodes included, under **Acceptance first** in [Territory work](#territory-work).
+- **Routing:** a unit goes between the summit, a node and the work beneath it, down, up or across, through a meeting under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md) or a change document, no longer as a `ROUTE` line in `messages.md`. A part a node cannot place goes back to the summit once; the summit places it or asks the owner.
+- **Covers:** the summit's `covers` stays the register of the territory's work, the work beneath its nodes included, under [Territory work](#territory-work). A node's own `covers` waits on COVERS-REGISTER, open in the Cairn summit's [change 20](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/20-learnings.change.md#71-questions), and nothing here sets it until that is settled.
+- **Opening:** the owner opens a node with the [secondary opener](standards-opening.md#opening-work), and takes every opener for the territory from [Opening work](standards-opening.md#opening-work).
 
 Sources: SECONDARY-SOP and OLD-SHAPE-HOMES in [the decision register](sources.md#decision-register).
 

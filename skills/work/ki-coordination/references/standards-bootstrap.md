@@ -22,7 +22,7 @@ A one-line opener brings a new or running session onto this contract, for exampl
 3. checks through its agent host which of its agents still run and reconciles what is actually running;
 4. [resolves the opener](#resolving-the-opener) to one package, `work/<territory>/<id>/` in the Cairn store, reads `messages.md` first, then its `_index.md`, the change documents in hand and every change document's Open section, reconciles it under the work-package standard and checks `method_read`;
 5. acts first on the top line of `_index.md`'s Now, the work's first step, then on each line of [`messages.md`](standards-messages.md#messages-between-work), `IMPORTANT` lines first, then in queue order, before launching any work;
-6. as a State of play, gathers every record awaiting acceptance across its territory's repositories, or, as a secondary, across the work it covers, and brings them first, ahead of every other query, as one bundle per work under [Acceptance bundles](standards-queries.md#acceptance-bundles);
+6. as the summit, gathers every record awaiting acceptance across its territory's repositories, the work beneath its nodes included, and brings them first, ahead of every other query, as one bundle per work under [Acceptance bundles](standards-queries.md#acceptance-bundles);
 7. gives the Bootstrap, trigger T2 in the [coordinator reply format](standards-report-forms.md#triggers), a full Medium [report](standards-reporting.md#owner-report) under the [report heading](standards-report-forms.md#banner-detail), form line `**Bootstrap at <local time> · last mark <local time>**`:
    - `## Done` gives its coordinator role and where the work stands, ending with `Rename thread: /rename <thread line>`, the thread line being `<role glyph> 🔑 <work-id>`, or `🧵 <work-id>` with no role yet, the same line the opener named, under [Opening work](standards-opening.md#opening-work);
    - `## In Progress` gives what is running;
@@ -31,7 +31,7 @@ A one-line opener brings a new or running session onto this contract, for exampl
 
 Work opened, bootstrapped or restarted in a new session with no mark strikes one at its start, writing `mark` in `_index.md`'s state fields, so every work carries a mark. [Re-anchoring](#re-anchoring-after-compaction) in the same session moves none.
 
-Sources: BOOT-HOME, REBOOT-SHAPE, WORK-REVIEW-RETIRE, OPENER-NAME and FIRST-STEP-HOME in [the decision register](sources.md#decision-register).
+Sources: BOOT-HOME, REBOOT-SHAPE, WORK-REVIEW-RETIRE, OPENER-NAME, FIRST-STEP-HOME and SECONDARY-SOP in [the decision register](sources.md#decision-register).
 
 ## Resolving the opener
 
