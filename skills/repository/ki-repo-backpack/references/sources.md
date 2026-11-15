@@ -8,8 +8,8 @@ The tracked sources behind [the compatible harness standard](standards-compatibl
 
 | Tag | Source | Governs | Last reviewed |
 | --- | --- | --- | --- |
-| [AS] | [Agent Skills specification][as-spec] | The individual `SKILL.md` format the harness serves † | 2026-09-26 |
-| [CC] | [Claude Code subagent docs][cc-subagents] | The subagent definition format the `subagents/` part serves | 2026-09-26 |
+| [AS] | [Agent Skills specification][as-spec] | The individual `SKILL.md` format the harness serves † | 2026-11-15 |
+| [CC] | [Claude Code subagent docs][cc-subagents] | The subagent definition format the `subagents/` part serves | 2026-11-15 |
 
 † Including the directory-name = `name:` constraint and the `references/`, `scripts/`, `assets/` layout.
 
@@ -17,18 +17,33 @@ The tracked sources behind [the compatible harness standard](standards-compatibl
 
 | Tag | Source | Governs | Last reviewed |
 | --- | --- | --- | --- |
-| [AH] | [ki-agent-backpack README][ah-readme] | The KI canonical source-harness implementation § | 2026-09-26 |
-| [CH] | [ADR-KI-HARNESS-012][compatible] | Installed identity, direct payload, capability, host, and activation boundaries | 2026-09-26 |
-| [KR] | `ki-repo` skill | The `.ki.toml` contract and what makes a KI-governed repository | 2026-09-26 |
-| [KS] | `ki-skills` skill | The governed-rubric family, session, and host boundary ‡ | 2026-09-26 |
-| [KE] | `ki-engineering` skill | Development toolchain ownership outside compatible-harness installation semantics | 2026-09-26 |
-| [BD] | Cairn summit change 23, BACKPACK-DEPTH (Kris, 14 November 2026) | This skill's name: `ki-repo-backpack` became `ki-repo-backpack`; the harness wording in its standards follows when the backpack words are rolled out | 2026-11-14 |
+| [AH] | [ki-agent-backpack README][ah-readme] | The KI canonical source-harness implementation § | 2026-11-15 |
+| [CH] | [ADR-KI-HARNESS-012][compatible] | Installed identity, direct payload, capability, host, and activation boundaries | 2026-11-15 |
+| [KR] | `ki-repo` skill | The `.ki.toml` contract and what makes a KI-governed repository | 2026-11-15 |
+| [KS] | `ki-skills` skill | The governed-rubric family, session, and host boundary ‡ | 2026-11-15 |
+| [KE] | `ki-engineering` skill | Development toolchain ownership outside compatible-harness installation semantics | 2026-11-15 |
+| [BD] | Cairn summit change 23, BACKPACK-DEPTH (Kris, 14 November 2026) | This skill's name: `ki-repo-harness` became `ki-repo-backpack`; the harness wording in its standards follows when the backpack words are rolled out | 2026-11-15 |
 
 § Source layout and shelf practice are inferred from this repository; installed-payload policy comes from [CH].
 
 ‡ Catalogue shape, context/session ownership, generated publication, and direct host execution.
 
 ## Last review
+
+_REFRESH last run **2026-11-15** (previous: 2026-09-26)._
+
+**Confirmed:**
+
+- [AS] re-fetched live: the specification still defines no bundle, harness, container or multi-skill grouping, still requires `name` to match the parent directory, and still describes the optional `scripts/`, `references/` and `assets/` folders. It now also forbids consecutive hyphens in `name` and points to the `skills-ref` validator; both are `ki-skills` matters, not this container standard.
+- [CC] re-fetched live: a subagent is still one Markdown file with `name` and `description` required, optional `tools` and `model`, and the body as its system prompt, installed at project (`.claude/agents/`) or user (`~/.claude/agents/`) level. The page now lists many more optional fields and says subfolders under `agents/` are scanned without changing a project or user agent's identity. None of this changes the `subagents/` part of the harness contract.
+- [AH] and [CH] re-read from this repository: the README still names the four shelves, and the ADR is current and still says the installed payload holds regular `skills/`, `subagents/` and `hooks/`, with no checkout, cache, runtime projection or `.ki/` folder ever an operation source.
+- [KR], [KS] and [KE] re-read: `ki-repo` still owns the `.ki.toml` contract, `ki-skills` the governed-rubric framework, and `ki-engineering` package scripts and the toolchain.
+- [BD] re-read in the Cairn store: BACKPACK-DEPTH renamed `ki-repo-harness` to `ki-repo-backpack`. The row had been caught by the rename itself and read "`ki-repo-backpack` became `ki-repo-backpack`"; it now names the old name again.
+
+**Watching:**
+
+- [CH] still calls `knowledgeislands/ki-agentic-harness` the baseline compatible harness; the repository is now `ki-agent-backpack`. The ADR owns that wording, and BACKPACK-DEPTH has the harness words follow when the backpack words are rolled out.
+- The open watch-items below still stand.
 
 _REFRESH last run **2026-09-26** (previous: 2026-08-12)._
 
