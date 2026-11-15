@@ -119,7 +119,7 @@ Adjusts [Bootstrap](standards-bootstrap.md#bootstrap). Beside the one-line `Re-b
 
 ## Legacy records at bootstrap
 
-Adjusts [Bootstrap](standards-bootstrap.md#bootstrap), step 4. Where a work has not yet moved to a work package, the coordinator reads its tolerated legacy record in place of the package's five files, `messages.md` first. Delete when the [tolerance window](#thread-model) closes.
+Adjusts [Bootstrap](standards-bootstrap.md#bootstrap), step 4. Where a work has not yet moved to a work package, the coordinator reads its tolerated legacy record in place of the package's `_index.md` and change documents, `messages.md` first. Delete when the [tolerance window](#thread-model) closes.
 
 ## Old-shape pick-up blocks
 
@@ -151,7 +151,7 @@ A hold committed before SNOOZE may read `hold, more expected` in its commit subj
 
 ## Single-file work package shapes
 
-These tolerances keep work that has not yet moved to the five-file work package readable. Each is deleted once no work remains in the single-file shape.
+These tolerances keep work that has not yet moved to the work package readable. Each is deleted once no work remains in the single-file shape.
 
 - **Pruning reports:** In the single-file tolerance shape, retain the report until its queries are answered and read back in the log, under `ki-work-package` [Tidying the work folder](../../ki-work-package/references/standard-work-package.md#410-the-tidy). Adjusts the Judgement item of [Pruning the work folder](standards-mark.md#pruning-the-work-folder).
 - **Message queue:** Work still in the single-file shape keeps its `## Messages` section, and an old-shape checkpoint its bold-line messages block, until it moves. Adjusts Place and shape in [Messages between work](standards-messages.md#messages-between-work).
