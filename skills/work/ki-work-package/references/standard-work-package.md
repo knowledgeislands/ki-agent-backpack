@@ -286,9 +286,11 @@ Every writer is named, and every other party only reads. This standing contract 
 | The package's keyholder† | `_index.md`, its change documents and sub-packages, and tidy deletions | Another package |
 | A background run, design runs and `ki-work design` included | A change document in the package its brief names | Any other kind, its report included |
 
-† The keyholder is the work's own steward, and includes its explicitly assigned State of play. Other work and State of play write nothing in a package: they send a message.
+† The keyholder is the work's own steward, and includes its explicitly assigned State of play. Other work and State of play write nothing in a package: they ask its keyholder in a meeting or a conversation.
 
-The `description` in `_index.md` is written by the work's steward, at seeding with State of play; State of play proposes a change to it by a message. Readers, such as `ki work status`, the Observatory and the rubrics, change nothing; a change of shape names them as consumers.
+A new package is seeded by its parent node's keyholder, usually the guardian, or by any session the owner points at it on the owner's word, which holds the new package's keys while it seeds it: it writes `_index.md` on hold, with the package's first step as the top line of its Now, and a first change document only if there is a change to carry. Whatever must be done first on pick-up stays the top line of Now, as Kris set under FIRST-STEP-HOME a on 15 November 2026.
+
+The `description` in `_index.md` is written at seeding by whoever seeds the package, and afterwards by the work's steward; State of play proposes a change to it to the keyholder. Readers, such as `ki work status`, the Observatory and the rubrics, change nothing; a change of shape names them as consumers.
 
 A Project package has one explicitly assigned coordinating work, either its covering State of play or its own Project coordination work. The assignment is committed when the package is created or adopted and names work, never a host, session or `self`. It is distinct from the holder derived from state, worker and supervisor: assignment neither receives work nor releases a hold. Where the assignment is recorded is not yet set (STEWARD-FIELD); this rule adds no field, changes no holder field and does not select a storage encoding.
 
@@ -371,7 +373,7 @@ The manual portable flow is deliberately small:
 1. Require the user-selected work id or, from an opener, the Project slug.
 2. Resolve to one exact package, `work/<territory>/<id>/` in the Cairn store. If no folder, or more than one, matches, stop and ask the human which package is meant.
 3. Read `_index.md` in full and validate the package's identity and schema; open a change document or sub-package when the work in hand lies in it.
-4. Act on its state as `ki-coordination`'s Picking work up sets it, its messages first, and continue from its Now.
+4. Act on its state as `ki-coordination`'s Picking work up sets it, its first step, the top line of its Now, first, then its messages, and continue from its Now.
 
 The title and label never take part in resolution. Do not search archived or nested paths as a fallback. Resume creates a fresh working context; it does not reopen, locate, or authenticate to the conversation that last held the work.
 
