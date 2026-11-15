@@ -7,13 +7,6 @@ import {
   bindingOutcomes,
   createCoordinationSession,
   isCapital,
-  recordIdentifiers,
-  reportConfidenceFindings,
-  reportHasGlyphForm,
-  reportIssuedDay,
-  reportLinkFindings,
-  reportMultipleRecommendationFindings,
-  reportOpensWithHeading,
   repositoryIdentity,
   THEMES_CLOSE,
   themeOutcomes,
@@ -21,8 +14,6 @@ import {
 } from './coordination.ts'
 
 const roots: string[] = []
-/** An audited checkout root that does not exist, so a link inside it is checked for existence and fails. */
-const CHECKOUT = '/checkout'
 
 const fixture = (identity: { repository: string; capital: string } | null): string => {
   const root = mkdtempSync(join(tmpdir(), 'ki-coordination-'))
@@ -41,11 +32,6 @@ const checkpoint = (root: string, name: string, fields: Record<string, string>):
     .map(([key, value]) => `${key}: '${value}'`)
     .join('\n')
   writeFileSync(join(root, '+', '_CHECKPOINTS', `${name}.md`), `---\n${frontmatter}\n---\n\n# ${name}\n`)
-}
-
-const report = (root: string, run: string, name: string, body: string): void => {
-  mkdirSync(join(root, '+', '_THREADS', run), { recursive: true })
-  writeFileSync(join(root, '+', '_THREADS', run, `${name}.report.md`), body)
 }
 
 const work = (root: string, id: string, fields: Record<string, string>): string => {
@@ -147,7 +133,6 @@ describe('state-of-play checkpoint', () => {
     expect(statuses(ctx.master.outcomes)).toEqual(['NOT_APPLICABLE'])
     expect(statuses(ctx.labels.outcomes)).toEqual(['NOT_APPLICABLE'])
     expect(statuses(ctx.cap.outcomes)).toEqual(['NOT_APPLICABLE'])
-    expect(statuses(ctx.links.outcomes)).toEqual(['NOT_APPLICABLE'])
   })
 })
 
@@ -291,301 +276,6 @@ describe('active thread cap', () => {
   })
 })
 
-describe('record identifiers in prose', () => {
-  test('full identifiers are found once each and Needs tags and short forms are not', () => {
-    const text =
-      'Accepted KI-HARNESS-GOV-187 and KI-TOOL-KI-CLI-127; KI-HARNESS-GOV-187 again. Kris said "ACCEPT-181" and "GOV-187-REVIEW / accept"; GOV-187 is a short form and KI-HARNESS-HK-012 a run.'
-    expect(recordIdentifiers(text)).toEqual(['KI-HARNESS-GOV-187', 'KI-TOOL-KI-CLI-127', 'KI-HARNESS-HK-012'])
-  })
-
-  test('an identifier inside a link is linked and one outside is bare', () => {
-    const findings = reportLinkFindings(
-      '- Accepted [KI-HARNESS-GOV-187](/checkout/KI-HARNESS-GOV-187.md) and KI-HARNESS-GOV-188; see [`KI-PRINCIPAL-ECO-013`](https://example.invalid/ECO-013).\n',
-      CHECKOUT
-    )
-    expect(findings.bare).toEqual(['KI-HARNESS-GOV-188'])
-    expect(findings.missing).toEqual(['KI-HARNESS-GOV-187 -> /checkout/KI-HARNESS-GOV-187.md'])
-  })
-
-  test('a fenced reply block is not prose', () => {
-    const findings = reportLinkFindings('Prose.\n\n```text\nACCEPT-188\n\naccept KI-HARNESS-GOV-188\n```\n', CHECKOUT)
-    expect(findings).toEqual({ bare: [], missing: [], misshapen: [] })
-  })
-
-  test('an inline code span is not prose, but an identifier beside one is', () => {
-    const findings = reportLinkFindings(
-      'Committed `docs(roadmap): close KI-HARNESS-GOV-206` and ``a `quoted` KI-HARNESS-GOV-207``, spanning `a\nKI-HARNESS-GOV-208`; KI-HARNESS-GOV-209 is bare.\n',
-      CHECKOUT
-    )
-    expect(findings).toEqual({ bare: ['KI-HARNESS-GOV-209'], missing: [], misshapen: [] })
-  })
-
-  test('an unclosed backtick or a span across a blank line does not hide an identifier', () => {
-    expect(reportLinkFindings('A stray ` before KI-HARNESS-GOV-210.\n', CHECKOUT).bare).toEqual(['KI-HARNESS-GOV-210'])
-    expect(reportLinkFindings('Opens `here\n\nKI-HARNESS-GOV-211 then` closes.\n', CHECKOUT).bare).toEqual([
-      'KI-HARNESS-GOV-211'
-    ])
-  })
-
-  test('a link whose text is a code span still has its target checked', () => {
-    const findings = reportLinkFindings('See [`KI-HARNESS-GOV-212`](/checkout/KI-HARNESS-GOV-212.md).\n', CHECKOUT)
-    expect(findings).toEqual({
-      bare: [],
-      missing: ['KI-HARNESS-GOV-212 -> /checkout/KI-HARNESS-GOV-212.md'],
-      misshapen: []
-    })
-  })
-
-  test('a link outside the checkout whose folder is absent is checked for shape only', () => {
-    const findings = reportLinkFindings(
-      '- [KI-TOOL-KI-CLI-123](/Users/nobody/workspaces/tools-ki/docs/roadmap/KI-TOOL-KI-CLI-123-channel.md#goal) and [ADR-KI-HARNESS-010](/Users/nobody/workspaces/ki-agent-backpack/docs/decisions/ADR-KI-HARNESS-010.md) pass;\n- [KI-TOOL-KI-CLI-124](/Users/nobody/workspaces/tools-ki/docs/roadmap/KI-TOOL-KI-CLI-125-other.md), [KI-TOOL-KI-CLI-126](/Users/nobody/workspaces/tools-ki/docs/roadmap/) and [KI-TOOL-KI-CLI-127](/Users/nobody/workspaces/tools-ki/docs/roadmap/KI-TOOL-KI-CLI-1270-x.md) do not.\n',
-      CHECKOUT
-    )
-    expect(findings).toEqual({
-      bare: [],
-      missing: [],
-      misshapen: [
-        'KI-TOOL-KI-CLI-124 -> /Users/nobody/workspaces/tools-ki/docs/roadmap/KI-TOOL-KI-CLI-125-other.md',
-        'KI-TOOL-KI-CLI-126 -> /Users/nobody/workspaces/tools-ki/docs/roadmap/',
-        'KI-TOOL-KI-CLI-127 -> /Users/nobody/workspaces/tools-ki/docs/roadmap/KI-TOOL-KI-CLI-1270-x.md'
-      ]
-    })
-  })
-
-  test('a link outside the checkout whose folder is present on this machine is checked for existence', () => {
-    const checkout = fixture(null)
-    const other = fixture(null)
-    writeFileSync(join(other, 'KI-TOOL-KI-CLI-123-channel.md'), '# record\n')
-    const live = join(other, 'KI-TOOL-KI-CLI-123-channel.md')
-    const gone = join(other, 'KI-TOOL-KI-CLI-124-gone.md')
-    const findings = reportLinkFindings(
-      `- [KI-TOOL-KI-CLI-123](${live}) and [KI-TOOL-KI-CLI-124](${gone}).\n`,
-      checkout
-    )
-    expect(findings).toEqual({ bare: [], missing: [`KI-TOOL-KI-CLI-124 -> ${gone}`], misshapen: [] })
-  })
-
-  test('a link inside the checkout is checked for existence even when its folder is absent', () => {
-    const target = '/checkout/docs/roadmap/KI-HARNESS-GOV-213-gone.md'
-    const findings = reportLinkFindings(`- [KI-HARNESS-GOV-213](${target}).\n`, CHECKOUT)
-    expect(findings).toEqual({ bare: [], missing: [`KI-HARNESS-GOV-213 -> ${target}`], misshapen: [] })
-  })
-})
-
-describe('thread report links', () => {
-  test('a report whose identifiers are all linked to existing files passes', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    mkdirSync(join(root, 'docs', 'roadmap'), { recursive: true })
-    const record = join(root, 'docs', 'roadmap', 'KI-HARNESS-GOV-187-thread-model-and-banner.md')
-    writeFileSync(record, '# record\n')
-    report(root, 'ways-of-working', 'links', `# Report\n\n- Accepted [KI-HARNESS-GOV-187](${record}) as done.\n`)
-    const outcomes = context(root).links.outcomes
-    expect(statuses(outcomes)).toEqual(['PASS'])
-    expect(outcomes[0]?.message).toContain('1 work report')
-  })
-
-  test('a bare identifier in a report is a violation naming it', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    report(
-      root,
-      'ways-of-working',
-      'bare',
-      '# Report\n\n- Accepted KI-HARNESS-GOV-187 as done; Kris said "ACCEPT-187".\n'
-    )
-    const outcomes = context(root).links.outcomes
-    expect(statuses(outcomes)).toEqual(['VIOLATION'])
-    expect(outcomes[0]?.subject).toBe(join('+', '_THREADS', 'ways-of-working', 'bare.report.md'))
-    expect(outcomes[0]?.message).toContain('unlinked: KI-HARNESS-GOV-187')
-    expect(outcomes[0]?.message).not.toContain('ACCEPT-187')
-  })
-
-  test('a pruned record linked as `<FULL-ID> (pruned)` to its last GitHub revision passes, linked to its deleted file does not', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    report(
-      root,
-      'ways-of-working',
-      'pruned',
-      '# Report\n\n- Pruned [KI-HARNESS-GOV-181 (pruned)](https://github.com/knowledgeislands/ki-agent-backpack/blob/50dc6a56/docs/roadmap/KI-HARNESS-GOV-181-link-rule.md) and [KI-HARNESS-GOV-185 (pruned)](https://github.com/knowledgeislands/ki-agent-backpack/blob/50dc6a56/docs/roadmap/KI-HARNESS-GOV-185-ki-coordination-extraction.md).\n'
-    )
-    expect(statuses(context(root).links.outcomes)).toEqual(['PASS'])
-    report(
-      root,
-      'ways-of-working',
-      'deleted',
-      `# Report\n\n- Pruned [KI-HARNESS-GOV-181](${join(root, 'docs', 'roadmap', 'KI-HARNESS-GOV-181-gone.md')}).\n`
-    )
-    const outcomes = context(root).links.outcomes
-    expect(statuses(outcomes)).toEqual(['VIOLATION'])
-    expect(outcomes[0]?.subject).toBe(join('+', '_THREADS', 'ways-of-working', 'deleted.report.md'))
-    expect(outcomes[0]?.message).toContain('missing: KI-HARNESS-GOV-181 ->')
-  })
-
-  test('a link to another checkout absent from this machine passes by shape and a misshapen one is a violation', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    const elsewhere = '/Users/nobody/workspaces/ki-agent-backpack/docs/roadmap'
-    report(
-      root,
-      'ways-of-working',
-      'runner',
-      `# Report\n\n- Planned [KI-HARNESS-GOV-197](${elsewhere}/KI-HARNESS-GOV-197-pmo-7-outside-checkout-links.md).\n`
-    )
-    expect(statuses(context(root).links.outcomes)).toEqual(['PASS'])
-    report(root, 'ways-of-working', 'misshapen', `# Report\n\n- Planned [KI-HARNESS-GOV-197](${elsewhere}/notes.md).\n`)
-    const outcomes = context(root).links.outcomes
-    expect(statuses(outcomes)).toEqual(['VIOLATION'])
-    expect(outcomes[0]?.subject).toBe(join('+', '_THREADS', 'ways-of-working', 'misshapen.report.md'))
-    expect(outcomes[0]?.message).toContain(`misshapen: KI-HARNESS-GOV-197 -> ${elsewhere}/notes.md`)
-  })
-
-  test('a thread folder with no reports, and files that are not reports, pass', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    mkdirSync(join(root, '+', '_THREADS', 'ways-of-working'), { recursive: true })
-    writeFileSync(join(root, '+', '_THREADS', 'ways-of-working', 'decisions.md'), '- accept KI-HARNESS-GOV-187\n')
-    const outcomes = context(root).links.outcomes
-    expect(statuses(outcomes)).toEqual(['PASS'])
-    expect(outcomes[0]?.message).toContain('No work report')
-  })
-})
-
-describe('recommendation confidence', () => {
-  const footer = (issued: string): string => `\n\`\`\`text\n╭─ run report · ${issued} ─────────────╮\n\`\`\`\n`
-  const options = (...lines: string[]): string =>
-    `# Report\n\n## Queries\n\n### TAG - title\n\n**Options:**\n\n${lines.join('\n')}\n\n\`\`\`text\nTAG\n\na) (recommended) do it\n\`\`\`\n`
-
-  test('the latest footer border dates a report, and a report with no footer has no date', () => {
-    expect(reportIssuedDay(`${footer('2026-10-17T22:00:00Z')}${footer('2026-10-18T01:00:00Z')}`)).toBe('2026-10-18')
-    expect(reportIssuedDay('# Report\n')).toBeUndefined()
-  })
-
-  test('only a recommended option without the confidence form is flagged, never in a fenced block', () => {
-    const text = options(
-      'a) (recommended, confidence high - already on main) push it',
-      'a) (recommended) push it',
-      '**Options:** a) (recommended, confidence) push it',
-      'b) leave it'
-    )
-    expect(reportConfidenceFindings(text)).toEqual([
-      'a) (recommended) push it',
-      '**Options:** a) (recommended, confidence) push it'
-    ])
-    expect(reportConfidenceFindings('# Report\n\n## Done\n\na) (recommended) outside Queries\n')).toEqual([])
-    expect(reportConfidenceFindings(text.replace('## Queries', '## Discussion'))).toHaveLength(2)
-  })
-
-  test('a report issued on or after 18 October with a bare recommendation is a violation naming it', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    report(root, 'ways-of-working', 'bare', options('a) (recommended) push it') + footer('2026-10-18T09:00:00Z'))
-    const outcomes = context(root).confidence.outcomes
-    expect(statuses(outcomes)).toEqual(['VIOLATION'])
-    expect(outcomes[0]?.subject).toBe(join('+', '_THREADS', 'ways-of-working', 'bare.report.md'))
-    expect(outcomes[0]?.message).toContain('a) (recommended) push it')
-  })
-
-  test('an earlier or undated report is not checked, and a confident one passes', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    report(root, 'ways-of-working', 'old', options('a) (recommended) push it') + footer('2026-10-17T23:59:59Z'))
-    report(root, 'ways-of-working', 'undated', options('a) (recommended) push it'))
-    report(
-      root,
-      'ways-of-working',
-      'new',
-      options('a) (recommended, confidence low - not verified) push it') + footer('2026-10-18T09:00:00Z')
-    )
-    expect(statuses(context(root).confidence.outcomes)).toEqual(['PASS'])
-  })
-
-  test('a reply block grouped under numbered headings, each line carrying its confidence, is never read as a query', () => {
-    const grouped = [
-      '# Report',
-      '',
-      '## Queries',
-      '',
-      '### WINDOW-BUILD - build the baseline',
-      '',
-      '**Options:**',
-      '',
-      'a) (recommended, confidence high - the baseline is on main) build it',
-      '',
-      'b) wait',
-      '',
-      '```text',
-      "1 · Baseline build, can run while you're away",
-      'WINDOW-BUILD a (high)',
-      'ROADMAP-ATL003 a (high)',
-      '',
-      '2 · Window design',
-      'CON-PROFILE a (medium)',
-      '',
-      '### KI-HARNESS-GOV-999 a (low)',
-      'a) (recommended) b) (recommended)',
-      '```',
-      ''
-    ].join('\n')
-    expect(reportConfidenceFindings(grouped)).toEqual([])
-    expect(reportMultipleRecommendationFindings(grouped)).toEqual([])
-    expect(reportLinkFindings(grouped, CHECKOUT)).toEqual({ bare: [], missing: [], misshapen: [] })
-  })
-
-  test('a query marking more than one option recommended warns, naming the query', () => {
-    const packed = options(
-      'a) (recommended, confidence high - on main) push it',
-      'b) (recommended, confidence medium - quicker) leave it'
-    )
-    const text = `${packed}\n### OTHER - single\n\na) (recommended, confidence high - fine) do it\nb) not\n`
-    expect(reportMultipleRecommendationFindings(text)).toEqual(['TAG - title'])
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    report(root, 'ways-of-working', 'packed', packed + footer('2026-10-25T01:00:00Z'))
-    const outcomes = context(root).confidence.outcomes
-    expect(statuses(outcomes)).toEqual(['WARN'])
-    expect(outcomes[0]?.message).toContain('TAG - title')
-  })
-
-  test('no thread folder is not applicable', () => {
-    expect(statuses(context(fixture(null)).confidence.outcomes)).toEqual(['NOT_APPLICABLE'])
-  })
-})
-
-describe('report heading', () => {
-  test('a report opens with its heading, after front matter if it has any', () => {
-    expect(
-      reportOpensWithHeading('# [Model](/m.md) › run\n\n**🤖 → 👤 Handoff to supervisor · Run report at 08:00 BST**\n')
-    ).toBe(true)
-    expect(reportOpensWithHeading('\n\n# Report\n')).toBe(true)
-    expect(reportOpensWithHeading('---\nid: KI-HARNESS-GOV-175\nstatus: draft\n---\n\n# Report\n')).toBe(true)
-  })
-
-  test('a frame, a lint directive, a form line or unclosed front matter first does not', () => {
-    expect(reportOpensWithHeading('---\n\n**Run report at 00:50 BST**\n\n---\n\n## Done\n')).toBe(false)
-    expect(reportOpensWithHeading('<!-- rumdl-disable-file MD041 -->\n# Report\n')).toBe(false)
-    expect(reportOpensWithHeading('**Run report at 00:50 BST**\n\n# Report\n')).toBe(false)
-    expect(reportOpensWithHeading('## Done\n')).toBe(false)
-    expect(reportOpensWithHeading('---\nid: KI-HARNESS-GOV-175\n\n# Report\n')).toBe(false)
-    expect(reportOpensWithHeading('')).toBe(false)
-  })
-
-  test('a work report that does not open with its heading is a violation naming it', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    const folder = work(root, 'ki.ways-of-working', { id: 'ki.ways-of-working' })
-    writeFileSync(join(folder, 'framed.report.md'), '---\n\n**Run report at 00:50 BST**\n\n---\n\n## Done\n')
-    writeFileSync(join(folder, 'headed.report.md'), '# Report\n\n## Done\n')
-    mkdirSync(join(folder, 'reports'))
-    writeFileSync(join(folder, 'reports', 'boxed.report.md'), '**Run report at 00:50 BST**\n\n# Report\n')
-    const outcomes = context(root).headings.outcomes
-    expect(statuses(outcomes)).toEqual(['VIOLATION', 'VIOLATION'])
-    expect(outcomes.map((outcome) => outcome.subject)).toEqual([
-      join('+', '_WORK', 'ki.ways-of-working', 'framed.report.md'),
-      join('+', '_WORK', 'ki.ways-of-working', 'reports', 'boxed.report.md')
-    ])
-  })
-
-  test('headed reports pass, and no work or thread folder is not applicable', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    report(root, 'ways-of-working', 'headed', '# Report\n\n## Done\n')
-    expect(statuses(context(root).headings.outcomes)).toEqual(['PASS'])
-    expect(statuses(context(fixture(null)).headings.outcomes)).toEqual(['NOT_APPLICABLE'])
-  })
-})
-
 describe('work files', () => {
   const capital = { repository: 'ki-principal', capital: 'ki-principal' }
   const project = (state = 'with-worker') => ({
@@ -716,49 +406,6 @@ describe('work files', () => {
     const root = fixture(capital)
     mkdirSync(join(root, '+', '_WORK_REVIEW', 'ki.old-thread'), { recursive: true })
     expect(context(root).cap.outcomes.some((outcome) => outcome.status === 'VIOLATION')).toBe(false)
-  })
-
-  test('a report in a work folder has its links checked', () => {
-    const root = fixture(capital)
-    const folder = work(root, 'ki.ways-of-working', project())
-    writeFileSync(join(folder, 'run.report.md'), '# Run\n\nDelivered KI-HARNESS-GOV-210.\n')
-    const outcomes = context(root).links.outcomes
-    expect(statuses(outcomes)).toEqual(['VIOLATION'])
-    expect(outcomes[0]?.message).toContain('KI-HARNESS-GOV-210')
-  })
-
-  test('a report in a declared focus folder has its links checked, and an undeclared folder is not read', () => {
-    const root = fixture(capital)
-    const folder = work(root, 'ki.ways-of-working', project())
-    const definition = readFileSync(join(folder, '_index.md'), 'utf8')
-    writeFileSync(
-      join(folder, '_index.md'),
-      `${definition}\n## Focus\n\n1. \`layout\` — the layout.\n2. \`_emerging\` — the rest.\n`
-    )
-    mkdirSync(join(folder, 'layout'))
-    writeFileSync(join(folder, 'layout', 'pilot.report.md'), '# Run\n\nDelivered KI-HARNESS-GOV-210.\n')
-    mkdirSync(join(folder, 'scratch'))
-    writeFileSync(join(folder, 'scratch', 'old.report.md'), '# Run\n\nDelivered KI-HARNESS-GOV-211.\n')
-    const outcomes = context(root).links.outcomes
-    expect(statuses(outcomes)).toEqual(['VIOLATION'])
-    expect(outcomes[0]?.subject).toBe(join('+', '_WORK', 'ki.ways-of-working', 'layout', 'pilot.report.md'))
-  })
-
-  test('a report with a glyph form line has its confidence checked whatever its date', () => {
-    expect(
-      reportHasGlyphForm('**🤖 → 👤 Handoff to supervisor · Run report at 23:10 BST · last mark 22:34 BST**')
-    ).toBe(true)
-    expect(reportHasGlyphForm('**Summary at 19:13 BST · last mark 14:54 BST**')).toBe(true)
-    expect(reportHasGlyphForm('**Run report at 20:40 BST · last mark 14:54 BST**')).toBe(true)
-    expect(reportHasGlyphForm('**Stop at 21:10 GMT · mark 21:10 GMT**')).toBe(true)
-    expect(reportHasGlyphForm('**Summary at 19:13 BST**')).toBe(false)
-    const root = fixture(capital)
-    const folder = work(root, 'ki.ways-of-working', project())
-    writeFileSync(
-      join(folder, 'run.report.md'),
-      '# Run\n\n**🤖 → 👤 Handoff to supervisor · Run report at 23:10 BST · last mark 22:34 BST**\n\n## Queries\n\n### TAG - a question\n\n**Options:**\n\na) (recommended) Do it.\n'
-    )
-    expect(statuses(context(root).confidence.outcomes)).toEqual(['VIOLATION'])
   })
 
   test('more than eight records awaiting acceptance for a Project, across the territory, is a warning', () => {

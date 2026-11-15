@@ -78,57 +78,6 @@ const COORD_3: RubricItem<CoordinationRubricContext> = {
   }
 }
 
-const COORD_7: RubricItem<CoordinationRubricContext> = {
-  code: 'COORD-7',
-  title: 'every record identifier in a work report is a link',
-  description:
-    "In every report in a work folder, in each focus folder its `_index.md` declares, `+/_WORK/<id>/<focus-id>/*.report.md`, and in `+/_WORK/<id>/reports/*.report.md`, and for the tolerance windows in every report still at a work folder's top level and every thread report `+/_THREADS/<run>/*.report.md`, each full record identifier in the prose, a work record such as `KI-HARNESS-GOV-187` or a Decision Record such as `ADR-KI-HARNESS-010`, sits inside the text of a Markdown link, and a link that names a record and targets an absolute local path points at a file that exists, inside the audited checkout or wherever the target's folder is present on the machine; a target outside the checkout whose folder is absent, as on a CI runner, is checked for shape only, a Markdown file name opening with the linked identifier; a pruned record is linked as `<FULL-ID> (pruned)` to the GitHub link to the file at its last revision. Fenced blocks, such as a past reply block, inline code spans, which quote literal text such as a commit subject, and Needs tags such as `ACCEPT-181` are not checked.",
-  sources: [`${REPORTING}#linking-records`, `${MIGRATION}#coord-7-and-thread-folders`],
-  mechanical: {
-    level: 'FAIL',
-    remediation: {
-      class: 'diagnostic',
-      guidance:
-        'Make each bare identifier the text of a link to its record by absolute path; where the record has been pruned, link it as `[<FULL-ID> (pruned)](https://github.com/<owner>/<repo>/blob/<last revision>/<path>)`. Fix only the reports of the work under review.'
-    },
-    audit: { phase: 'INSPECT', run: ({ links }) => links.outcomes }
-  }
-}
-
-const COORD_11: RubricItem<CoordinationRubricContext> = {
-  code: 'COORD-11',
-  title: 'every recommended option in a work report carries its confidence',
-  description:
-    'In every report under `+/_WORK/<id>/` or `+/_THREADS/<run>/` whose form line leads with a glyph state, or whose block-letter footer was issued on or after 2026-10-18, each line of its Queries section that marks a lettered option recommended, `<letter>) (recommended`, reads `<letter>) (recommended, confidence high|medium|low - <reason>)`, and no `###` query marks more than one option recommended. A report issued earlier, or with neither to date it, and fenced blocks are not checked.',
-  sources: [`${REPORTING}#owner-report`, `${QUERIES}#query-review`, `${MIGRATION}#coord-11-confidence-cutover`],
-  mechanical: {
-    level: 'WARN',
-    remediation: {
-      class: 'diagnostic',
-      guidance:
-        'Give each flagged option its confidence and a one-line reason, never `high` for a destructive course resting on claims not verified directly; split a query that recommends more than one option into separately tagged queries. Fix only the reports of the work under review.'
-    },
-    audit: { phase: 'INSPECT', run: ({ confidence }) => confidence.outcomes }
-  }
-}
-
-const COORD_12: RubricItem<CoordinationRubricContext> = {
-  code: 'COORD-12',
-  title: 'every work report opens with its report heading',
-  description:
-    'Every report under `+/_WORK/<id>/` or `+/_THREADS/<run>/` has the `#` report heading as its first non-blank line, or, for a report saved with front matter, the front matter first and the heading as the first non-blank line after it. A frame rule, a lint directive or a form line before the heading does not pass. Work awaiting review is not read.',
-  sources: [`${REPORTING}#owner-report`, `${REPORT_FORMS}#report-forms`],
-  mechanical: {
-    level: 'FAIL',
-    remediation: {
-      class: 'diagnostic',
-      guidance:
-        'Move the report heading to the top of each flagged report, after its front matter if it has any, before the work is marked or sent. Fix only the reports of the work under review; other work fixes its own before its next mark.'
-    },
-    audit: { phase: 'INSPECT', run: ({ headings }) => headings.outcomes }
-  }
-}
-
 const COORD_8: RubricItem<CoordinationRubricContext> = {
   code: 'COORD-8',
   title: 'the coordinator hook and output style are bound where ki-coordination is declared',
@@ -241,18 +190,5 @@ export const COORD: RubricFamily<CoordinationRubricContext, CoordinationRubricCo
     'The territory work and Project work a repository shows in its work files, with old-shape checkpoints for the tolerance window, and the responsiveness, reporting and currency of the coordinators behind them.',
   standard: SOURCE,
   selectContext: (context) => context,
-  items: [
-    COORD_1,
-    COORD_2,
-    COORD_10,
-    COORD_3,
-    COORD_7,
-    COORD_11,
-    COORD_12,
-    COORD_8,
-    COORD_4,
-    COORD_5,
-    COORD_6,
-    COORD_13
-  ]
+  items: [COORD_1, COORD_2, COORD_10, COORD_3, COORD_8, COORD_4, COORD_5, COORD_6, COORD_13]
 }

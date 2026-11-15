@@ -1,9 +1,9 @@
 /**
  * Read-only discovery of a repository's coordinating work for the thin `ki-coordination` rubric.
  *
- * Boundary: reads the repository's `.ki.toml` identity, its work files `+/_WORK/<id>/_index.md` and the reports and
- * decisions logs beside them, and for the tolerance window its `+/_CHECKPOINTS/` records and the thread reports under `+/_THREADS/<run>/`, each old shape passing with a
- * warning; on a Capital the `Streams/Projects/`, `Streams/Themes/` and legacy `Streams/Initiatives/` registry; and the
+ * Boundary: reads the repository's `.ki.toml` identity, its work files `+/_WORK/<id>/_index.md`, and for the tolerance
+ * window its `+/_CHECKPOINTS/` records, each old shape passing with a warning; reports are no longer read, their checks
+ * retired under COORD-REPORT-CHECKS (Kris, 15 November 2026); on a Capital the `Streams/Projects/`, `Streams/Themes/` and legacy `Streams/Initiatives/` registry; and the
  * coordinator binding: the repository's and the user's Claude Code settings, of which it reads only the output style and the hook
  * commands, and the deployed output style; and for the owner-queue cap the front matter of the roadmap records in the
  * checkout and in each checkout beside it that names the same Capital. It never
@@ -11,14 +11,13 @@
  * owner selects.
  */
 import { type Dirent, existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs'
-import { basename, dirname, extname, isAbsolute, join, relative, resolve, sep } from 'node:path'
+import { basename, dirname, extname, join, relative, resolve } from 'node:path'
 import type {
   AuditOutcome,
   RubricContextOptions,
   RubricPublicationContext,
   RubricSession
 } from '../../shared/rubric.ts'
-import { REPOSITORY_CODE, SCOPE_SEGMENT, SERIAL } from '../../shared/work-identifiers.ts'
 
 /** Territory work's cap on simultaneously active Project work. */
 export const ACTIVE_THREAD_CAP = 4
@@ -28,10 +27,6 @@ const WORK_DIRECTORY = join('+', '_WORK')
 const PROJECTS_DIRECTORY = join('Streams', 'Projects')
 const THEMES_DIRECTORY = join('Streams', 'Themes')
 const INITIATIVES_DIRECTORY = join('Streams', 'Initiatives')
-const THREADS_DIRECTORY = join('+', '_THREADS')
-const REPORT_SUFFIX = '.report.md'
-/** A focus area's list item under `_index.md`'s `## Focus`: its kebab-case id leading as a code span. */
-const FOCUS_ITEM = /^(?:\d+[.)]|[-*+])[ \t]+`([a-z0-9]+(?:-[a-z0-9]+)*)`/
 /** A work's entry file under INDEX-ENTRY (Kris, 8 November 2026), then `work.md`, still read during its rollout. */
 const ENTRY_FILES = ['_index.md', 'work.md'] as const
 /** The entry file a folder holds, `_index.md` first, or the `_index.md` it lacks. */
@@ -52,28 +47,10 @@ const WORK_ID = new RegExp(`^${WORK_SEGMENT}(?:\\.${WORK_SEGMENT}){0,2}$`)
 const SUB_PACKAGE_ID = new RegExp(`^${WORK_SEGMENT}\\.(?:reg|prj)(?:\\.${WORK_SEGMENT}){2}$`)
 /** The work states a work file's `state` takes, as the Work Process note's observatory fields name them. */
 const SETTLED_STATES: ReadonlySet<string> = new Set(['on-hold', 'finished'])
-/**
- * A full record identifier in prose: repository code, issuing area and serial, composed from the shared grammar, which
- * also matches a Decision Record such as `ADR-KI-HARNESS-010`.
- * A Needs tag such as `ACCEPT-181` or `GOV-187-REVIEW` has no issuing-area segment between a repository code and a
- * serial and is not matched; neither is a short form such as `GOV-187`, which the judgment items review.
- */
-const RECORD_IDENTIFIER = new RegExp(`(?<![A-Z0-9-])${REPOSITORY_CODE}-${SCOPE_SEGMENT}-${SERIAL}(?![A-Z0-9-])`, 'g')
-const FENCED_BLOCK = /^(`{3,}|~{3,})[^\n]*\n[\s\S]*?^\1[ \t]*$/gm
-const MARKDOWN_LINK = /\[([^\]\n]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g
-/** An inline code span: a run of backticks closed by a run of the same length, within one paragraph. */
-const CODE_SPAN = /(?<!`)(`+)(?!`)(?:[^\n]|\n(?![ \t]*\n))*?(?<!`)\1(?!`)/g
 const OUTPUT_STYLE = 'ki-coordinator'
 const COORDINATOR_HOOK = 'coordinator-reminder.sh'
 const HOOK_EVENTS = ['UserPromptSubmit', 'SessionStart'] as const
 const PROJECT_THREAD = /^(?<initiative>[a-z0-9]+(?:-[a-z0-9]+)*)\.(?<project>[a-z0-9]+(?:-[a-z0-9]+)*)$/
-/**
- * A report whose form line leads with a glyph state was written under the work model, so on or after 2026-10-18; 🧑 and
- * → 👤 are the glyphs before GLYPH-OWNER. A form line with no state, closing on its mark, is the reply format's.
- */
-const GLYPH_FORM_LINE =
-  /^\*\*(?:(?:🤖|👤|🧑|⏸️|💤|🏁|→ 🎯|→ 👤)[^\n]* · (?:Summary|Status|Recap|Full summary|Re-bootstrap|Run report|Hold report|Finish report) at |(?:Summary|Status|Bootstrap|Run report|Stop) at [^*\n]* · (?:last )?mark )/mu
-
 export type OutcomeContext = { readonly outcomes: readonly AuditOutcome[] }
 
 export type CoordinationRubricContext = {
@@ -82,9 +59,6 @@ export type CoordinationRubricContext = {
   readonly labels: OutcomeContext
   readonly roles: OutcomeContext
   readonly cap: OutcomeContext
-  readonly links: OutcomeContext
-  readonly confidence: OutcomeContext
-  readonly headings: OutcomeContext
   readonly binding: OutcomeContext
   readonly judgment: OutcomeContext
 }
@@ -494,222 +468,6 @@ const capOutcomes = (records: readonly Checkpoint[], works: readonly Work[]): Au
 }
 
 /**
- * The focus folders a work folder's `_index.md` declares under `## Focus`, LAYOUT-PILLARS (2 November 2026): each list
- * item leading with its kebab-case id as a code span, under the `ki-work-package` focus areas.
- */
-const focusFolders = (folder: string): readonly string[] => {
-  const path = entryPath(folder)
-  if (!existsSync(path) || !lstatSync(path).isFile()) return []
-  const focus = /^## Focus[ \t]*$([\s\S]*?)(?=^#{1,2} |(?![\s\S]))/m.exec(readFileSync(path, 'utf8'))?.[1] ?? ''
-  return focus
-    .split(/\r?\n/)
-    .flatMap((line) => FOCUS_ITEM.exec(line)?.[1] ?? [])
-    .map((id) => join(folder, id))
-}
-
-/**
- * Reports in work folders, in each declared focus folder `+/_WORK/<id>/<focus-id>/*.report.md` and in
- * `+/_WORK/<id>/reports/*.report.md`, and for the tolerance windows those still at a work folder's top level and in
- * thread folders, `+/_THREADS/<run>/*.report.md`; undefined when neither subarea exists. Work awaiting review is not
- * read.
- */
-const workReports = (root: string): readonly string[] | undefined => {
-  const work = folders(join(root, WORK_DIRECTORY))
-  const threads = folders(join(root, THREADS_DIRECTORY))
-  if (!work && !threads) return undefined
-  const reports: string[] = []
-  const reportFolders = (work ?? [])
-    .flatMap((folder) => [join(folder, 'reports'), ...focusFolders(folder)])
-    .filter((folder) => existsSync(folder) && !lstatSync(folder).isSymbolicLink() && lstatSync(folder).isDirectory())
-  for (const folder of [...reportFolders, ...(work ?? []), ...(threads ?? [])])
-    for (const entry of readdirSync(folder, { withFileTypes: true }))
-      if (entry.isFile() && !entry.isSymbolicLink() && entry.name.endsWith(REPORT_SUFFIX))
-        reports.push(join(folder, entry.name))
-  return reports.sort((left, right) => left.localeCompare(right))
-}
-
-/** The distinct full record identifiers a text names, in order of first appearance. */
-export const recordIdentifiers = (text: string): readonly string[] => [
-  ...new Set(Array.from(text.matchAll(RECORD_IDENTIFIER), (match) => match[0]))
-]
-
-/**
- * How a record link's absolute local target is checked: for existence inside the audited checkout, or outside it
- * where the target's folder is present on this machine, such as another checkout beside it; otherwise, as on a CI
- * runner where no other checkout exists, for shape only.
- */
-const linkCheck = (root: string, file: string): 'existence' | 'shape' => {
-  const within = relative(resolve(root), file)
-  const inside = !isAbsolute(within) && within.split(sep)[0] !== '..'
-  return inside || existsSync(dirname(file)) ? 'existence' : 'shape'
-}
-
-/** A record link's shape: its file name is a Markdown file opening with one of the identifiers its text names. */
-const recordShaped = (file: string, named: readonly string[]): boolean => {
-  const name = basename(file)
-  return (
-    name.endsWith('.md') && named.some((identifier) => name.startsWith(`${identifier}-`) || name === `${identifier}.md`)
-  )
-}
-
-/**
- * Review one report for the linking rule: every full record identifier in its prose sits inside the text of a
- * Markdown link, and a link whose text names a record and whose target is an absolute local path points at a file
- * that exists, so a pruned record is linked as `<FULL-ID> (pruned)` to the GitHub link to the file at its last
- * revision rather than to its deleted file. A target outside the audited checkout `root` whose folder is absent from
- * this machine cannot be checked for existence, so it is checked for shape only: its file name opens with a named
- * identifier and ends `.md`. Fenced blocks, such as the reply block the owner pastes back, are not prose
- * and are skipped; so are inline code spans, which quote literal text such as a commit subject and cannot hold a link.
- * Links are read first, so a link whose text is a code span still has its target checked.
- */
-export const reportLinkFindings = (
-  text: string,
-  root: string
-): { readonly bare: readonly string[]; readonly missing: readonly string[]; readonly misshapen: readonly string[] } => {
-  const prose = text.replace(FENCED_BLOCK, ' ')
-  const missing = new Set<string>()
-  const misshapen = new Set<string>()
-  const unlinked = prose.replace(MARKDOWN_LINK, (_whole, label: string, target: string) => {
-    const named = recordIdentifiers(label)
-    if (named.length > 0 && target.startsWith('/')) {
-      const file = target.split('#')[0] ?? target
-      if (linkCheck(root, file) === 'existence') {
-        if (!existsSync(file)) for (const identifier of named) missing.add(`${identifier} -> ${target}`)
-      } else if (!recordShaped(file, named)) for (const identifier of named) misshapen.add(`${identifier} -> ${target}`)
-    }
-    return ' '
-  })
-  return { bare: recordIdentifiers(unlinked.replace(CODE_SPAN, ' ')), missing: [...missing], misshapen: [...misshapen] }
-}
-
-const linkOutcomes = (root: string, reports: readonly string[]): AuditOutcome[] => {
-  const outcomes: AuditOutcome[] = []
-  for (const report of reports) {
-    const subject = relative(root, report)
-    const { bare, missing, misshapen } = reportLinkFindings(readFileSync(report, 'utf8'), root)
-    if (bare.length > 0)
-      outcomes.push({
-        status: 'VIOLATION',
-        message: `every record identifier in a work report is a link to its local file; unlinked: ${bare.join(', ')}`,
-        subject
-      })
-    if (missing.length > 0)
-      outcomes.push({
-        status: 'VIOLATION',
-        message: `a record link points at a file that exists, or for a pruned record at the GitHub link to the file at its last revision; missing: ${missing.join(', ')}`,
-        subject
-      })
-    if (misshapen.length > 0)
-      outcomes.push({
-        status: 'VIOLATION',
-        message: `a record link outside this checkout, whose folder is not on this machine, targets a Markdown file named for the record; misshapen: ${misshapen.join(', ')}`,
-        subject
-      })
-  }
-  return outcomes
-}
-
-/** The prose of a report's `## Discussion` or `## Queries` section, fenced blocks blanked, or empty when it has none. */
-const querySection = (text: string): string =>
-  /^## (?:Discussion|Queries)[ \t]*$([\s\S]*?)(?=^## |(?![\s\S]))/m.exec(text.replace(FENCED_BLOCK, ' '))?.[1] ?? ''
-
-/** The first UTC day on which a report's recommended option must carry a confidence, set by KI-HARNESS-GOV-207. */
-export const CONFIDENCE_SINCE = '2026-10-18'
-/** A footer banner's top border, `╭─ <form> · <YYYY-MM-DDTHH:MM:SSZ> ─…`, capturing the issued UTC day. */
-const ISSUED_BORDER = /^╭─ [a-z -]+ · (\d{4}-\d{2}-\d{2})T\d{2}:\d{2}:\d{2}Z /gm
-const RECOMMENDED_OPTION = /^[ \t]*(?:\*\*Options:\*\*[ \t]*)?[a-z]\) \(recommended/
-const CONFIDENT_OPTION =
-  /^[ \t]*(?:\*\*Options:\*\*[ \t]*)?[a-z]\) \(recommended, confidence (?:high|medium|low) - [^)\s][^)]*\)/
-
-/** The latest UTC day a report's footer banners were issued, or undefined for a report with no footer. */
-export const reportIssuedDay = (text: string): string | undefined =>
-  Array.from(text.matchAll(ISSUED_BORDER), (match) => match[1] ?? '')
-    .sort()
-    .at(-1)
-
-/**
- * The lines of a report's Queries section that mark an option recommended without the confidence form
- * `(recommended, confidence high|medium|low - <reason>)`. Fenced blocks, such as the reply block, are skipped.
- */
-export const reportConfidenceFindings = (text: string): readonly string[] => {
-  const section = querySection(text)
-  return section
-    .split(/\r?\n/)
-    .filter((line) => RECOMMENDED_OPTION.test(line) && !CONFIDENT_OPTION.test(line))
-    .map((line) => line.trim())
-}
-
-/**
- * The `###` headings of a report's Queries section under which more than one lettered option is marked recommended,
- * under REVIEW-CHECK. Fenced blocks are skipped.
- */
-export const reportMultipleRecommendationFindings = (text: string): readonly string[] =>
-  querySection(text)
-    .split(/^(?=### )/m)
-    .filter((query) => query.startsWith('### '))
-    .filter((query) => query.split(/\r?\n/).filter((line) => RECOMMENDED_OPTION.test(line)).length > 1)
-    .map((query) => (query.split(/\r?\n/, 1)[0] ?? '').slice(4).trim())
-
-/** Whether a report's form line leads with a glyph state or takes the reply format's, so it was written under the work model. */
-export const reportHasGlyphForm = (text: string): boolean => GLYPH_FORM_LINE.test(text)
-
-/**
- * A report is held to the confidence form when its form line leads with a glyph state, which the work model brought
- * in on {@link CONFIDENCE_SINCE}, or when a block-letter footer dates it on or after that day; an earlier report, or
- * one with neither to date it, is not checked.
- */
-const confidenceOutcomes = (root: string, reports: readonly string[]): AuditOutcome[] => {
-  const outcomes: AuditOutcome[] = []
-  for (const report of reports) {
-    const text = readFileSync(report, 'utf8')
-    const issued = reportIssuedDay(text)
-    if (!reportHasGlyphForm(text) && (!issued || issued < CONFIDENCE_SINCE)) continue
-    const lines = reportConfidenceFindings(text)
-    if (lines.length > 0)
-      outcomes.push({
-        status: 'VIOLATION',
-        message: `a recommended option reads \`a) (recommended, confidence high|medium|low - <reason>)\`; without it: ${lines.map((line) => `\`${line.slice(0, 60)}\``).join(', ')}`,
-        subject: relative(root, report)
-      })
-    const packed = reportMultipleRecommendationFindings(text)
-    if (packed.length > 0)
-      outcomes.push({
-        status: 'VIOLATION',
-        level: 'WARN',
-        message: `a query recommends one option; more than one is marked recommended under: ${packed.map((heading) => `\`${heading.slice(0, 60)}\``).join(', ')}`,
-        subject: relative(root, report)
-      })
-  }
-  return outcomes
-}
-
-/**
- * Whether a saved report opens with its `#` heading: the first non-blank line, or for a report saved with front matter,
- * a leading `---` block whose first line is a YAML key, the first non-blank line after it. A frame rule, a comment or
- * any other line first does not count.
- */
-export const reportOpensWithHeading = (text: string): boolean => {
-  const lines = text.replace(/^\uFEFF/u, '').split('\n')
-  let start = 0
-  if (lines[0]?.trim() === '---' && /^[A-Za-z_][\w-]*:/u.test(lines[1] ?? '')) {
-    const close = lines.findIndex((line, at) => at > 0 && line.trim() === '---')
-    if (close < 0) return false
-    start = close + 1
-  }
-  const first = lines.slice(start).find((line) => line.trim() !== '')
-  return first !== undefined && /^# \S/u.test(first)
-}
-
-const headingOutcomes = (root: string, reports: readonly string[]): AuditOutcome[] =>
-  reports
-    .filter((report) => !reportOpensWithHeading(readFileSync(report, 'utf8')))
-    .map((report) => ({
-      status: 'VIOLATION' as const,
-      message: "a saved report's first non-blank line is its `#` report heading, after front matter if it has any",
-      subject: relative(root, report)
-    }))
-
-/**
  * The checkouts whose roadmaps count towards the owner queue: the audited root, and each checkout beside it whose
  * `.ki.toml` names the same Capital, so a Capital counts the records its siblings hold for its Projects.
  */
@@ -857,15 +615,11 @@ export const createCoordinationSession = ({
   const capital = isCapital(identity)
   const records = checkpoints(root)
   const works = workFiles(root)
-  const reports = workReports(root)
   const workFolders = folders(join(root, WORK_DIRECTORY))
   const absent =
     records || works
       ? undefined
       : 'No `+/_WORK/` or `+/_CHECKPOINTS/` subarea is present; no coordinating work has opened here.'
-  const unreported = reports
-    ? undefined
-    : 'No `+/_WORK/` or `+/_THREADS/` folder is present; no coordinating work has reported here.'
   const context: CoordinationRubricContext = {
     rubric: { publication },
     master: {
@@ -899,33 +653,6 @@ export const createCoordinationSession = ({
         [...capOutcomes(records ?? [], works ?? []), ...queueOutcomes(root, workFolders ?? [])],
         'The active Project work and its records awaiting acceptance are within the cap.',
         absent
-      )
-    },
-    links: {
-      outcomes: one(
-        linkOutcomes(root, reports ?? []),
-        reports && reports.length > 0
-          ? `Every record identifier in the ${reports.length} work report(s) is a link to an existing file, or outside this checkout to a record-shaped one.`
-          : 'No work report is present under `+/_WORK/` or `+/_THREADS/`.',
-        unreported
-      )
-    },
-    confidence: {
-      outcomes: one(
-        confidenceOutcomes(root, reports ?? []),
-        reports && reports.length > 0
-          ? `Every recommended option in the work reports written on or after ${CONFIDENCE_SINCE} carries its confidence.`
-          : 'No work report is present under `+/_WORK/` or `+/_THREADS/`.',
-        unreported
-      )
-    },
-    headings: {
-      outcomes: one(
-        headingOutcomes(root, reports ?? []),
-        reports && reports.length > 0
-          ? `Each of the ${reports.length} work report(s) opens with its \`#\` heading.`
-          : 'No work report is present under `+/_WORK/` or `+/_THREADS/`.',
-        unreported
       )
     },
     binding: { outcomes: bindingOutcomes(root, userHome) },

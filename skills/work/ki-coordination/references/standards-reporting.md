@@ -152,7 +152,7 @@ The label is written `Outstanding - no action requested now` and the query headi
   - **Paragraphs:** the three parts are separate paragraphs with a blank line between them, and each option is its own paragraph with a blank line between options, so the query passes `rumdl check` under the house `.rumdl.toml`, whose MD013 reflow would otherwise join lazily continued lines.
   - **Recommendation:** option a) is always the recommendation and carries `(recommended, confidence <level> - <reason>)` before its text, the level `high`, `medium` or `low` and the reason one line, as in `a) (recommended, confidence high - the patch is already on main) push it`. Only option a) carries a confidence.
   - **Confidence:** reflects how reversible the course is and how much of what it rests on the session verified directly, rather than took from another agent's report. A course that destroys, deletes or publishes and rests on claims not verified directly is never `high`. Consistency with an earlier decision is not a reason and earns no level: an option a) whose only reason is an earlier decision is capped at `medium`.
-  - **Checks:** the rubric's COORD-11 warns on any line of a Queries section beginning `<letter>) (recommended` without `, confidence high|medium|low - <reason>)`, and when one `###` query marks more than one option `(recommended`; such a query is split into separately tagged queries.
+  - **One recommendation:** a `###` query marks only one option recommended; a query that would recommend more than one is split into separately tagged queries. No file check reads reports for this or for the confidence form; COORD-6 reviews both as judgement, under COORD-REPORT-CHECKS.
   - **Review:** before reaching the owner, a query passes the [query review](standards-queries.md#query-review) where its confidence or course calls for one.
   - **Alternatives:** further options appear only when they are real alternatives. A query needing only confirmation still gives a), plus b) for the obvious alternative, such as "leave it as it is".
   - **Reply block:** every reply or report that asks the owner to decide anything closes with the reply block, ready for the owner to copy, change and send, whatever its form: a coordinator's reply, a run report and a conversational session's report after their queries, and a conversational reply after its prose. It is one fenced `text` block holding exactly the text to send back, with nothing to strip out. A reply that asks nothing carries none.
@@ -200,7 +200,7 @@ The label is written `Outstanding - no action requested now` and the query headi
   - No level hides a failure, a required decision or a material risk.
   - In a coordinator session the level never changes the layout and governs only the wording inside B1, the Answer, under the [coordinator reply format](standards-report-forms.md#coordinator-reply-format).
 
-Sources: REPORT-SOURCE, OWNER-REPORT-FORMAT, REPORT-HEADINGS, REPLY-BLOCK, REPLY-ID, HOLD-QUERIES, SUMMARY-WINDOW, FINDINGS-SECTION, QUERY-SHAPE, FORM-VS-RUMDL, CONFIDENCE-STANDARD, REVIEW-LIFT, ACCEPT-BY-CRITERIA, CONFIDENCE-CHECK, REVIEW-CHECK, NO-EXTERNAL-POSTING, PLAIN-ENGLISH, REPLY-FORMAT and REPLY-GROUPS in [the decision register](sources.md#decision-register).
+Sources: REPORT-SOURCE, OWNER-REPORT-FORMAT, REPORT-HEADINGS, REPLY-BLOCK, REPLY-ID, HOLD-QUERIES, SUMMARY-WINDOW, FINDINGS-SECTION, QUERY-SHAPE, FORM-VS-RUMDL, CONFIDENCE-STANDARD, REVIEW-LIFT, ACCEPT-BY-CRITERIA, CONFIDENCE-CHECK, REVIEW-CHECK, NO-EXTERNAL-POSTING, PLAIN-ENGLISH, REPLY-FORMAT, REPLY-GROUPS and COORD-REPORT-CHECKS in [the decision register](sources.md#decision-register).
 
 ### Answers
 
@@ -226,7 +226,7 @@ Each outstanding query carries a short mnemonic tag, such as `BOT-1`, `CSWAP` or
 
 ## Links and wording
 
-- **Links:** every record a report names is linked by its full identifier to its local file under [Linking records](#linking-records). The rubric flags any record identifier a report leaves unlinked.
+- **Links:** every record a report names is linked by its full identifier to its local file under [Linking records](#linking-records).
 - **Wording:** plain language; "background agents" for the worker processes and "runs" for their groups, never "helpers". When the owner must paste a message into another session, give it in a code block ready to copy.
 
 ## Linking records
@@ -237,13 +237,9 @@ Whenever a session or report mentions a roadmap or work record, a package file, 
 - **Never invented:** when a target cannot be resolved, the text says so.
 - **Pruned records:** a pruned record has no local file, so it is linked as `[<FULL-ID> (pruned)](https://github.com/<owner>/<repo>/blob/<last revision>/<path>)`. The link text is always the full identifier followed by `(pruned)`, and the last revision is the last commit in which the file existed, usually the parent of the prune commit. A live record keeps its local-file link; a pruned record is never pointed at the Project note that carries it, nor left as a bare identifier.
 - **Scope:** status lines, reports, recaps and package files alike, a background agent's report included.
-- **Check:** the rubric's COORD-7 checks the reports under `+/_WORK/<id>/`, in each focus folder its `_index.md` declares and in `reports/`.
-  - Every full record identifier in their prose, a record or a Decision Record, sits inside a Markdown link.
-  - A link that names a record and targets an absolute local path points at a file that exists, inside the audited checkout and wherever the target's folder is present on the machine, so a checkout beside it is checked too.
-  - A target outside the checkout whose folder is absent, as every other repository is on a CI runner, is checked for shape only: a Markdown file whose name opens with the linked identifier, as [KI-HARNESS-GOV-197 (pruned)](https://github.com/knowledgeislands/ki-agent-backpack/blob/95a1ab58/docs/roadmap/KI-HARNESS-GOV-197-pmo-7-outside-checkout-links.md) set.
-  - Fenced blocks, inline code spans, which quote literal text such as a commit subject and cannot hold a link, and tags such as `ACCEPT-181` are not record identifiers and are not checked.
+- **No file check:** no rubric item reads reports for links any more, under COORD-REPORT-CHECKS; COORD-5 reviews linking as judgement. That every record identifier in a record is a link is the record's owner's rule: the Cairn store's contract and its [change 20](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/20-learnings.change.md#42-the-record).
 
-Sources: LINK-FORM in [the decision register](sources.md#decision-register).
+Sources: LINK-FORM and COORD-REPORT-CHECKS in [the decision register](sources.md#decision-register).
 
 ## Report rule sources
 

@@ -25,7 +25,6 @@ const toleranceCapital = (): string => {
   write(root, '+/_CHECKPOINTS/_state-of-play.md', "---\nlabel: 'KI state of play'\n---\n\n# SoP\n")
   write(root, '+/_CHECKPOINTS/model.ways-of-working.md', "---\nlabel: 'KI Model: ways-of-working'\n---\n\n# WoW\n")
   write(root, '+/_THREADS/wow/stray.png', 'scratch')
-  write(root, '+/_THREADS/wow/run.report.md', '<!-- rumdl-disable -->\n# Report\n')
   return root
 }
 
@@ -60,17 +59,5 @@ describe('declared outcome levels', () => {
     const coord1 = COORD.items.find((item) => item.code === 'COORD-1')
     expect(coord1?.mechanical?.level).toBe('FAIL')
     expect(coord1?.mechanical?.overrideLevels).toContain('WARN')
-  })
-
-  test('COORD-12 fails a report that opens with a lint directive', () => {
-    const coord12 = COORD.items.find((item) => item.code === 'COORD-12')
-    expect(coord12?.mechanical?.level).toBe('FAIL')
-    const audit = coord12?.mechanical?.audit
-    if (!audit) throw new Error('COORD-12 has no mechanical audit')
-    const outcomes = audit.run(COORD.selectContext(context(toleranceCapital()))) as readonly AuditOutcome[]
-    const violations = outcomes.filter((outcome) => outcome.status === 'VIOLATION')
-    expect(violations).toHaveLength(1)
-    expect(JSON.stringify(violations[0])).toContain('run.report.md')
-    expect(violations.every((outcome) => !('level' in outcome) || outcome.level === 'FAIL')).toBe(true)
   })
 })

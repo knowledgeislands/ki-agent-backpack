@@ -12,10 +12,8 @@ This file holds temporary adjustments to [the coordinating-work standard](standa
 - [Done, Failed and Needs owner report shape](#done-failed-and-needs-owner-report-shape)
 - [Pre-14-October owner reports](#pre-14-october-owner-reports)
 - [Single-paragraph queries before 26 October](#single-paragraph-queries-before-26-october)
-- [COORD-11 confidence cutover](#coord-11-confidence-cutover)
 - [Handoffs outstanding until done](#handoffs-outstanding-until-done)
 - [Pre-18-October reply blocks](#pre-18-october-reply-blocks)
-- [COORD-7 and thread folders](#coord-7-and-thread-folders)
 - [Older summary words](#older-summary-words)
 - [Pre-SUMMARY-MODEL summaries](#pre-summary-model-summaries)
 - [Older mode and sync lines](#older-mode-and-sync-lines)
@@ -89,10 +87,6 @@ A report written before 2026-10-14 keeps its earlier heading, and anything that 
 
 A query in a report written before 26 October 2026, when Kris chose FORM-VS-RUMDL a), keeps its single-paragraph shape, and anything that reads past reports accepts both. This adjusts the **Queries** part of the [owner report](standards-reporting.md#owner-report).
 
-## COORD-11 confidence cutover
-
-The rubric's COORD-11 warning on a recommended option without `, confidence high|medium|low - <reason>)` applies only in reports issued on or after 2026-10-18. This adjusts the **Queries** part of the [owner report](standards-reporting.md#owner-report).
-
 ## Handoffs outstanding until done
 
 The windowed Summary replaces the earlier rule that a handoff stayed outstanding until the owner said it was done. This adjusts the **In Progress** part of the [owner report](standards-reporting.md#owner-report).
@@ -100,10 +94,6 @@ The windowed Summary replaces the earlier rule that a handoff stayed outstanding
 ## Pre-18-October reply blocks
 
 A report written before 18 October keeps its reply block, and anything that reads past reports accepts it. This adjusts [Answers](standards-reporting.md#answers).
-
-## COORD-7 and thread folders
-
-The rubric's COORD-7 also checks the reports under `+/_THREADS/<run>/` for [the tolerance window](#thread-model). This adjusts [Linking records](standards-reporting.md#linking-records); delete it when the tolerance window closes.
 
 ## Older summary words
 
