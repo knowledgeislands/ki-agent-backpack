@@ -69,6 +69,7 @@ The decisions the standards cite by id, oldest first; each standard keeps citing
 | COMMIT-VS-CI | A commit hook runs only fast, check-only, offline checks over what is staged; the full `ki repo audit` runs in CI, never in the hook. | 2026-10-26 | [repository](standard-repository.md#45-commit-gate) | In force |
 | INTERIM-HOMEPAGE-OMISSION | Where `.ki.toml` declares no `homepage`, a homepage left in the root `package.json` or on GitHub is drift: the audit reports it, and conform proposes clearing it but clears nothing without explicit approval. | 2026-10-26 | [repository](standard-repository.md#462-packagejson-identity--metadata) | In force |
 | NAMING-TO-KI | A site repository is named `apps-` and its hostname's labels in reverse order; widened on 29 October 2026 to rename every existing site repository, not only new ones. | 2026-10-27 | [repository](standard-repository.md#48-repository-naming) | In force |
+| REPORTS-RETIRE | The managed ignore block reserves every `reports/` folder, with no exception for an earlier package copy's `+/_WORK/<id>/reports/`, since a work package keeps no reports and no checkout tracks such a copy; it changes every repository's managed block at its next conform. | 2026-11-14 | [repository](standard-repository.md#411-root-files) | In force |
 
 [Back to contents](#contents)
 

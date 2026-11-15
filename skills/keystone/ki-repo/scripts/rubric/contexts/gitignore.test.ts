@@ -64,7 +64,7 @@ custom-output/
     expect(inspection.content.match(/^\/?tmp\/?$/gm)).toEqual(['tmp/'])
   })
 
-  test("tracks a work package's reports/ while other reports/ folders stay ignored", () => {
+  test("ignores every reports/ folder, an earlier package copy's included", () => {
     const root = mkdtempSync(join(tmpdir(), 'ki-gitignore-'))
     try {
       const { content } = inspectGitignore('', managedGitignoreBlocks(['ki-repo'], runtimeRules))
@@ -80,7 +80,7 @@ custom-output/
       expect(spawnSync('git', ['init', '-q'], { cwd: root }).status).toBe(0)
       const ignored = (file: string): boolean =>
         spawnSync('git', ['check-ignore', '-q', '--no-index', file], { cwd: root }).status === 0
-      expect(files.map(ignored)).toEqual([false, true])
+      expect(files.map(ignored)).toEqual([true, true])
     } finally {
       rmSync(root, { recursive: true, force: true })
     }
