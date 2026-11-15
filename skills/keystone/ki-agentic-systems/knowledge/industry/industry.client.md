@@ -25,7 +25,8 @@ Anthropic says "surface", covering agent host and client together; OpenAI, Googl
 
 ## Next
 
-The channel card, still to come.
+[Cross-session messaging][industry.cross-session-messaging] lets one session send another a message while both run. The channel card, a proposal, is to come before it.
 
 [industry.session]: ./industry.session.md
 [industry.agent-host]: ./industry.agent-host.md
+[industry.cross-session-messaging]: ./industry.cross-session-messaging.md

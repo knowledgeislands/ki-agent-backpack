@@ -47,19 +47,23 @@ Read them in order:
 8. [Machine](knowledge/industry/industry.machine.md): the computer, physical or virtual, that environments run on.
 9. [Agent host](knowledge/industry/industry.agent-host.md): the application or process that runs agent harnesses and owns their sessions, independently of clients.
 10. [Client](knowledge/industry/industry.client.md): a window onto a session an agent host owns.
+11. [Cross-session messaging](knowledge/industry/industry.cross-session-messaging.md): one session sending another a plain-text message; a peer is the session at the other end.
+12. [Agent team](knowledge/industry/industry.agent-team.md): several sessions on one piece of work, a team lead and teammates messaging each other.
+13. [Remote agent](knowledge/industry/industry.remote-agent.md): an agent in another system, reached over a protocol and opaque to the agent that asks it.
+14. [Plugin](knowledge/industry/industry.plugin.md): an installable bundle of skills and more that extends an agent harness.
+15. [Agentic system](knowledge/industry/industry.agentic-system.md): any system in which models direct some of their own steps, workflows and agents alike; the umbrella over every term here.
 
 Pending, in this order and not yet defined here:
 
-1. Channel, drafted as a [proposal](knowledge/industry/industry.channel.md) under CARD-CHANNEL's option A, the industry's words; then integration and session-to-session messaging, under a card for the ways into a session.
-2. The agent kinds beside the subagent, drafted as proposals: the [peer agent](knowledge/industry/industry.peer-agent.md) and the [remote agent](knowledge/industry/industry.remote-agent.md).
-3. Agent team, tool, instruction file and plugin.
-4. The system's own terms (NAMES): rig, actor, work package and role, and backpack, the KI harness's own name, mapped onto plugin. Title, seat and worker go. What is still open is decided in the Cairn summit's change 23. Guild, the first of them, is written below.
+1. Channel, drafted as a [proposal](knowledge/industry/industry.channel.md) under CARD-CHANNEL's option A, the industry's words; then integration, under a card for the ways into a session with cross-session messaging.
+2. Tool and instruction file.
+3. The system's own terms (NAMES): rig, actor, work package and role, and backpack, the KI harness's own name, mapped onto plugin. Title, seat and worker go. What is still open is decided in the Cairn summit's change 23. Guild, the first of them, is written below.
 
 ### Specification cards
 
 - [The Agent Skills specification](knowledge/specs/agent-skills/spec.agent-skills.md), with its part [progressive disclosure](knowledge/specs/agent-skills/spec.agent-skills.progressive-disclosure.md).
 
-Proposals, drafted for the owner's decision in the Cairn summit's change 22 and not yet agreed, so no agreed card links them yet:
+Proposals, drafted for the owner's decision in the Cairn summit's change 22 and not yet agreed, so no agreed card links them yet, except the remote agent card's link to A2A's remote agent, which NAMES-REMOTE keeps:
 
 - [The Model Context Protocol](knowledge/specs/mcp/spec.mcp.md), with its parts [MCP host](knowledge/specs/mcp/spec.mcp.host.md), [MCP client](knowledge/specs/mcp/spec.mcp.client.md), [MCP server](knowledge/specs/mcp/spec.mcp.server.md), [tools](knowledge/specs/mcp/spec.mcp.tools.md) and [transports](knowledge/specs/mcp/spec.mcp.transports.md).
 - [The Agent Client Protocol](knowledge/specs/acp/spec.acp.md), with its [client](knowledge/specs/acp/spec.acp.client.md), [agent](knowledge/specs/acp/spec.acp.agent.md) and [session](knowledge/specs/acp/spec.acp.session.md).

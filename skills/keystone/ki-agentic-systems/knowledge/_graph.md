@@ -72,7 +72,7 @@ A predicate reads from the card that holds it to its target. A vendor card whose
 
 | Subgraph | Id prefix | Subject | Cards | Folder |
 | --- | --- | --- | --- | --- |
-| Industry | `industry.` | The industry's terms, in reading order | [model][industry.model], [agent harness][industry.agent-harness], [agent][industry.agent], [session][industry.session], [subagent][industry.subagent], [skill][industry.skill], [environment][industry.environment], [machine][industry.machine], [agent host][industry.agent-host], [client][industry.client] | `industry/` |
+| Industry | `industry.` | The industry's terms, in reading order | [model][industry.model], [agent harness][industry.agent-harness], [agent][industry.agent], [session][industry.session], [subagent][industry.subagent], [skill][industry.skill], [environment][industry.environment], [machine][industry.machine], [agent host][industry.agent-host], [client][industry.client], [cross-session messaging][industry.cross-session-messaging], [agent team][industry.agent-team], [remote agent][industry.remote-agent], [plugin][industry.plugin], [agentic system][industry.agentic-system] | `industry/` |
 | Specifications | `spec.` | The specifications the terms rest on | [Agent Skills][spec.agent-skills], with [progressive disclosure][spec.agent-skills.progressive-disclosure] | `specs/`, a folder for each specification, as `specs/mcp/` |
 | Anthropic | `anthropic.` | Anthropic's own words | [Claude][anthropic.claude], [Claude Code][anthropic.claude-code], [model][anthropic.model], [agentic harness][anthropic.agentic-harness], [agentic coding tool][anthropic.agentic-coding-tool], [session][anthropic.session], [conversation][anthropic.conversation], [subagent][anthropic.subagent], [agent team][anthropic.agent-team], [skill][anthropic.skill] | `vendors/anthropic/` |
 | OpenAI | `openai.` | OpenAI's own words | [Codex][openai.codex], [ChatGPT][openai.chatgpt], [model][openai.model], [harness][openai.harness], [agent][openai.agent], [task][openai.task], [chat][openai.chat], [thread][openai.thread], [subagent][openai.subagent], [skill][openai.skill], [plugin][openai.plugin] | `vendors/openai/` |
@@ -85,11 +85,11 @@ A predicate reads from the card that holds it to its target. A vendor card whose
 
 ## Extent and limitations
 
-- **What it covers:** ten terms, from the model to the client, the Agent Skills specification, the four leading vendors' words for those terms as their documentation used them on 12 November 2026, Orca's and Zed Industries' words, two diagrams, and the first of the system's own words, guild. Other vendors are added where they matter (VENDORS).
+- **What it covers:** fifteen terms, from the model to the agentic system, the Agent Skills specification, the four leading vendors' words for those terms as their documentation used them on 12 November 2026, Orca's and Zed Industries' words, two diagrams, and the first of the system's own words, guild. Other vendors are added where they matter (VENDORS).
 - **Where the cards sit:** the root folder is the skill's `knowledge/` folder, which holds this root definition and a folder for each subgraph, as the table above names, and nothing but the graph (KNOWLEDGE-FOLDER, GRAPH-FOLDERS). A card's folder is never part of its identity, so links in front matter are keyed by id alone.
 - **Beside the graph:** the skill's `references/` folder holds [the sources](../references/sources.md), with every vendor source and the date it was last checked, and the decisions behind the cards; it is not a card.
 - **Refreshed monthly** (TERMS-REFRESH): the vendor cards' examples date quickly, as products are renamed, merged and closed.
-- **Pending terms,** in this order: `industry.channel`, agent team, tool, instruction file and plugin, and the system's own terms: rig, actor, work package, role and backpack. The `system/` subgraph is where change 23 proposes they sit, under TERMS-SOURCE; guild is written there first. A vendor card that would link to one gains that link when the card is written.
+- **Pending terms,** in this order: `industry.channel`, tool and instruction file, and the system's own terms: rig, actor, work package, role and backpack. The `system/` subgraph is where change 23 proposes they sit, under TERMS-SOURCE; guild is written there first. A vendor card that would link to one gains that link when the card is written.
 - **Resources outside the graph's folder:** a `resource` card points to its diagram in the harness's `docs/diagrams/`, where the living-diagram manifest keeps its question, sources, staleness trigger and regeneration prompt; the card holds what it shows, not the image (DIAGRAM-RESOURCE).
 - **Pending specifications:** `spec.mcp`, the Model Context Protocol; `spec.acp`, the Agent Client Protocol; `spec.ahp`, the Agent Host Protocol; and `spec.a2a`, Agent2Agent.
 - **Due a vocabulary review:** the `ki:` predicates, until the `ki:` namespace is published.
@@ -104,6 +104,11 @@ A predicate reads from the card that holds it to its target. A vendor card whose
 [industry.machine]: ./industry/industry.machine.md
 [industry.agent-host]: ./industry/industry.agent-host.md
 [industry.client]: ./industry/industry.client.md
+[industry.cross-session-messaging]: ./industry/industry.cross-session-messaging.md
+[industry.agent-team]: ./industry/industry.agent-team.md
+[industry.remote-agent]: ./industry/industry.remote-agent.md
+[industry.plugin]: ./industry/industry.plugin.md
+[industry.agentic-system]: ./industry/industry.agentic-system.md
 [orca.runtime]: ./vendors/orca/orca.runtime.md
 [orca.app]: ./vendors/orca/orca.app.md
 [zed.zed]: ./vendors/zed/zed.zed.md

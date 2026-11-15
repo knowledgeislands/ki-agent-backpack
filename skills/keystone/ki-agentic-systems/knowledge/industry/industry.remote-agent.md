@@ -2,10 +2,10 @@
 id: industry.remote-agent
 title: Remote agent
 type: term
-status: proposal
+status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, AGENT-KINDS, drafted as a proposal for the owner's review (12 November 2026)
+origin: Cairn summit change 22, AGENT-KINDS (12 November 2026), and change 23, NAMES-REMOTE a (13 November 2026)
 links:
   industry.agent:
     predicate: skos:broader
@@ -29,10 +29,16 @@ A2A defines the term; Google's Agent Development Kit and Gemini CLI use it for a
 
 ## Our conventions
 
-No Knowledge Islands system offers or reach a remote agent today; a session on another rig is a peer agent, not a remote agent, because it is in the same system.
+No Knowledge Islands system offers or reaches a remote agent today; a session on another rig is a peer, in [cross-session messaging][industry.cross-session-messaging]'s sense, not a remote agent, because it is in the same system.
+
+## Next
+
+A [plugin][industry.plugin] is an installable bundle that extends an agent harness with skills and more.
 
 [industry.agent]: ./industry.agent.md
 [industry.subagent]: ./industry.subagent.md
 [spec.a2a.remote-agent]: ../specs/a2a/spec.a2a.remote-agent.md
 [google.remote-subagent]: ../vendors/google/google.remote-subagent.md
+[industry.cross-session-messaging]: ./industry.cross-session-messaging.md
+[industry.plugin]: ./industry.plugin.md
 [A2A1]: https://a2a-protocol.org/latest/specification/

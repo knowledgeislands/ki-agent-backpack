@@ -1,6 +1,6 @@
 ---
-type: sources@2026-11-09T21:36:32Z
-revised: 2026-11-14T03:16:02Z
+type: sources@2026-11-15T00:17:25Z
+revised: 2026-11-15T00:22:04Z
 refresh: external-spec · monthly
 ---
 
@@ -43,8 +43,10 @@ The vendors' own documentation and the specifications the cards follow, checked 
 | **[A5]** [Anthropic, Subagents](https://code.claude.com/docs/en/sub-agents) | Subagent: Claude Code's subagents | 2026-11-12 |
 | **[A6]** [Anthropic, Extend Claude with skills](https://code.claude.com/docs/en/skills) | Skill: Claude Code's skills on the Agent Skills open standard; descriptions in context, bodies on use; custom commands merged into skills | 2026-11-12 |
 | **[A7]** [Anthropic, Claude Code channels](https://code.claude.com/docs/en/channels) | Channel card (proposal): "an MCP server that pushes events into your running Claude Code session"; integrations start a new session; research preview | 2026-11-12 |
-| **[A8]** [Anthropic, Cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging) | Channel and peer agent cards (proposals): one session messaging another; "Peer address" | 2026-11-12 |
-| **[A9]** [Anthropic, Agent teams](https://code.claude.com/docs/en/agent-teams) | Peer agent card (proposal): teammates, each "a full, independent Claude Code session", messaging each other; experimental | 2026-11-12 |
+| **[A8]** [Anthropic, Cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging) | Cross-session messaging card, and the channel card (proposal): one session messaging another, on the same machine or beyond it; "Peer address" and `/peers` | 2026-11-15 |
+| **[A9]** [Anthropic, Agent teams](https://code.claude.com/docs/en/agent-teams) | Agent team card: team lead and teammates, each "a full, independent Claude Code session", messaging each other; experimental | 2026-11-15 |
+| **[A10]** [Anthropic, Plugins overview](https://code.claude.com/docs/en/plugins) | Plugin card: "a directory of skills, agents, hooks, MCP servers, or other components that Claude Code installs and loads as one unit"; marketplaces | 2026-11-15 |
+| **[A11]** [Anthropic, Building effective agents](https://www.anthropic.com/engineering/building-effective-agents) | Agentic system card: the umbrella term, workflows and agents; 19 December 2024 | 2026-11-15 |
 | **[O1]** [OpenAI, Models](https://learn.chatgpt.com/docs/models.md) | Model: current GPT models | 2026-11-12 |
 | **[O2]** [OpenAI, Workspace model availability](https://learn.chatgpt.com/docs/enterprise/workspace-model-availability.md) | Model: models still listed | 2026-11-12 |
 | **[O3]** [OpenAI, Unlocking the Codex harness](https://openai.com/index/unlocking-the-codex-harness/) | Agent harness: "Codex harness", 4 February 2026; refused the fetcher, title and date from search results | 2026-11-12 |
@@ -66,7 +68,7 @@ The vendors' own documentation and the specifications the cards follow, checked 
 | **[G6]** [Google, Jules changelog](https://jules.google/docs/changelog/) | Agent and session: Jules wind-down notice of 29 October 2026; task and Session | 2026-11-12 |
 | **[G7]** [Google, Gemini CLI subagents](https://geminicli.com/docs/core/subagents/) | Subagent: Gemini CLI's subagents, which cannot call other subagents, and its remote subagents over A2A | 2026-11-12 |
 | **[G8]** [Google, Agent Skills in Gemini CLI](https://geminicli.com/docs/cli/skills/) | Skill: Gemini CLI's Agent Skills, activated by `activate_skill`, against GEMINI.md | 2026-11-12 |
-| **[G9]** [Google, ADK collaborative workflows](https://adk.dev/workflows/collaboration/) | Peer agent card (proposal): "peer agents" in a parallel workflow, used descriptively | 2026-11-12 |
+| **[G9]** [Google, ADK collaborative workflows](https://adk.dev/workflows/collaboration/) | Cross-session messaging card: "peer agents" in a parallel workflow, used descriptively | 2026-11-12 |
 | **[M1]** [Microsoft, MAI models](https://microsoft.ai/models/) | Model: Microsoft's own models | 2026-11-12 |
 | **[M2]** [GitHub, Copilot supported models](https://docs.github.com/en/copilot/reference/ai-models/supported-models) | Model: the models Copilot serves | 2026-11-12 |
 | **[M3]** [VS Code, Build with agents](https://code.visualstudio.com/docs/copilot/agents/overview) | Agent harness, agent and session: VS Code's harnesses, agent mode and agent session | 2026-11-12 |
@@ -166,10 +168,13 @@ The vendors' own documentation and the specifications the cards follow, checked 
 | OWNER-UNNAMED | The owner's word, relayed by the Cairn summit's guardian: nothing in this skill or its graph names the owner. A decision is the owner's, and the system's own words are Knowledge Islands' own: a rig is a machine Knowledge Islands manages through Rig | 2026-11-13 | [SKILL.md](../SKILL.md), [the root definition](../knowledge/_graph.md) | In force |
 | NAMES, HARNESS-NAME | The owner's word, relayed by the Cairn summit's guardian: a rig is Knowledge Islands' word for a machine, the same idea; actor and work package are kept; title, seat and worker go; plugin gets an industry card; and the KI harness's own name is backpack, mapped onto plugin. The naming proposal moved to the Cairn summit's change 23, where what is still open is decided | 2026-11-13 | [SKILL.md](../SKILL.md#the-cards), [the root definition](../knowledge/_graph.md) | In force |
 | GUILD-TERM, GUILD-LEAD, KEYSTONE-HUB | The owner's decisions, 13 November 2026, in the Cairn summit's change 25: a guild is a set of skills that belong together and work together, led by one lead skill named after it; Keystone is the guild of guilds. The card is the first in the `system/` subgraph change 23 proposes. | 2026-11-13 | [guild](../knowledge/system/system.guild.md) | In force |
+| NAMES-SYSTEM, NAMES-TEAM, NAMES-PEER, NAMES-REMOTE | The owner's word, relayed by the Cairn summit's guardian, in change 23: agentic system is kept as the industry's umbrella term, with a card of its own; agent team gets an industry card, team lead and teammate on it; the peer agent card is withdrawn and peer is defined on a cross-session messaging card; the remote agent card stays, linked to A2A's. With plugin's card under NAMES, the cards were written on 15 November 2026, their drafts checked against [A8] to [A11], [O13] and [A2A1]. | 2026-11-13 | [cross-session messaging](../knowledge/industry/industry.cross-session-messaging.md), [agent team](../knowledge/industry/industry.agent-team.md), [remote agent](../knowledge/industry/industry.remote-agent.md), [plugin](../knowledge/industry/industry.plugin.md), [agentic system](../knowledge/industry/industry.agentic-system.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 15 November 2026 five industry cards were written from the picks in the Cairn summit's change 23: [cross-session messaging](../knowledge/industry/industry.cross-session-messaging.md), [agent team](../knowledge/industry/industry.agent-team.md), [plugin](../knowledge/industry/industry.plugin.md) and [agentic system](../knowledge/industry/industry.agentic-system.md), and the [remote agent](../knowledge/industry/industry.remote-agent.md) card agreed; the peer agent card was withdrawn. They follow the client in reading order. [A8] and [A9] were re-read and [A10] and [A11] added. The draft definition of cross-session messaging said sessions on the same machine; [A8] now reaches sessions on other machines and in the cloud, so the card says so. Anthropic's agent team, OpenAI's plugin and Google's remote subagent now link to their industry cards. The living diagrams still label a peer agent, until they are next regenerated.
 
 On 12 November 2026 the skill was written from the Cairn summit's change 22, knowledge skills, and a survey of the four vendors' documentation made that day for the cards. Every authoritative source above was checked then, except [O3], which refused the fetcher and is dated from search results. The same day the cards were reshaped into a knowledge graph under change 06: a root definition, the industry's subgraph, a specification subgraph and a subgraph for each vendor, the vendor rows of each term card becoming vendor cards linked by SKOS predicates, and the skill card and the Agent Skills specification's cards written from [A6], [O12], [O13], [G8], [M10] and [S1].
 
