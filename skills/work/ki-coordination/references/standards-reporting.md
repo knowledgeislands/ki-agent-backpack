@@ -70,13 +70,13 @@ A conversational session does bounded work directly, without delegating, opening
 - It becomes a coordinator only when the owner opens or re-bootstraps it with a coordinating [opener](standards-opening.md#opening-work), never on its own.
 - When the work outgrows the bound, because it needs a Project's decisions, more than one run at once, or would keep the owner waiting across sessions, the session says so in one line and proposes the Project's work, or new Project work through the State of play.
 
-Work that must outlive the session takes an ad hoc package, `+/_WORK/<territory>.reg.<slug>/`, under the work-package standard. It pauses by putting the work On hold through a `state.md` update, with no Stop or banner. Its agents head their reports `# <work title> › <run name>` with `**Run report at <local time>**` and no banner.
+Work that must outlive the session takes an ad hoc package, `+/_WORK/<territory>.reg.<slug>/`, under the work-package standard. It pauses by putting the work On hold through an update of the state in its `_index.md`, with no Stop or banner. Its agents head their reports `# <work title> › <run name>` with `**Run report at <local time>**` and no banner.
 
 Sources: CONVERSATIONAL-RUN and CONVRUN-NARROW in [the decision register](sources.md#decision-register).
 
 ### Coordinator-only machinery
 
-The report heading and form line, the banner and its thread line, the mark, the acting rule for `messages.md`, re-anchoring after compaction, the turn budget and the watcher belong to coordinators only. A conversational session's optional package is a plain record: it notes a pause in `state.md`'s front matter and how to carry on in its next steps, and is finished and pruned when the work ends.
+The report heading and form line, the banner and its thread line, the mark, the acting rule for `messages.md`, re-anchoring after compaction, the turn budget and the watcher belong to coordinators only. A conversational session's optional package is a plain record: it notes a pause in `_index.md`'s state fields and how to carry on in its Now, and is finished and pruned when the work ends.
 
 ### Weighing what to do
 

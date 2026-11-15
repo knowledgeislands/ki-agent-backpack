@@ -30,7 +30,7 @@ Sources: INBOX-WATCH, LISTEN-STATUS, LISTEN-OPT-IN, QUIET-LISTEN and WAKE-SESSIO
 
 ## Session capabilities
 
-A coordinator may hold two capabilities. Each is switched on only by the owner's express word, logged in `decisions.md`, or by an agreed role, such as a Rig host sync thread's. `state.md` records them in four fields under the `ki-work-package` [state file](../../ki-work-package/references/standard-work-package.md#45-the-state):
+A coordinator may hold two capabilities. Each is switched on only by the owner's express word, logged in `decisions.md`, or by an agreed role, such as a Rig host sync thread's. `_index.md` records them in four state fields under the `ki-work-package` [state](../../ki-work-package/references/standard-work-package.md#45-the-state):
 
 | Field | Values | Set |
 | --- | --- | --- |
@@ -43,7 +43,7 @@ A coordinator may hold two capabilities. Each is switched on only by the owner's
 
 **Listening.** The coordinator keeps the [watcher](#inbox-watch) armed. At each wake it also makes at most one small tidy of its own package, within the turn budget:
 
-- keep `state.md`'s front matter and next steps true;
+- keep `_index.md`'s state fields, Now and Held true;
 - prune received reports and spent briefs under the `ki-work-package` [tidy rules](../../ki-work-package/references/standard-work-package.md#410-the-tidy);
 - strike a decision, or cut it to a one-line pointer, once a durable home carries it, under the [decisions life cycle](standards-decisions.md#decisions-life-cycle);
 - clear answered entries from `discussions.md`;
@@ -53,6 +53,6 @@ It mentions a tidy only when something needs the owner. It never edits another p
 
 **Host sync.** The coordinator is its Mac's sync thread. It repeats each pass until the Mac and GitHub are clean and level, or something needs judgement, and only then waits for its next slot. A quiet pass says nothing, a pass that changed something says at most one short line, and only a matter for judgement or the owner gets a full report. Host sync implies listening.
 
-The banner shows only the listening status, `👂 listening` or `🔇 not listening`. Host sync has no banner line, because Cairn keeps the machines in sync through each machine's household package; the `syncing_enabled` and `syncing_status` fields stay in `state.md`.
+The banner shows only the listening status, `👂 listening` or `🔇 not listening`. Host sync has no banner line, because Cairn keeps the machines in sync through each machine's household package; the `syncing_enabled` and `syncing_status` fields stay in `_index.md`'s state fields.
 
 Sources: THREAD-CAPABILITIES, FOOTER-CAPABILITY-STATUS-2, LISTEN-OPT-IN, LISTEN-TENDS-PACKAGE, SYNC-UNTIL-CLEAN, SYNC-QUIET, SYNC-LINE-OFF and REPLY-FORMAT in [the decision register](sources.md#decision-register).

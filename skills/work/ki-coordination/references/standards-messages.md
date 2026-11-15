@@ -32,12 +32,12 @@ Any coordinator may message other work; the State of play also spreads common in
   - [Seeding](standards-territory.md#territory-work) is the only exception that creates a package for a first line; otherwise the one-line write boundary holds.
 - **Receiver:** the coordinator pulls fast-forward, then reads `messages.md` at bootstrap, every pick-up, every owner message, every wake, every Summary and before launching work.
   - It takes `IMPORTANT` lines first, then ordinary lines from the top, grouping similar ordinary lines into one unit of work where that makes sense.
-  - It records each line's disposition where it lands, in `decisions.md`, `state.md` next steps or `discussions.md`, then removes the line in a commit that names it and every line grouped with it. That commit is the receipt, not necessarily completion of the requested work.
+  - It records each line's disposition where it lands, in `decisions.md`, `_index.md`'s Now or Held, or `discussions.md`, then removes the line in a commit that names it and every line grouped with it. That commit is the receipt, not necessarily completion of the requested work.
   - A line it cannot act on yet stays, with an open query naming it; the line may point to that query.
   - A line linking a feedback package is taken with its package: the receiver records each point's disposition where it lands, and the package stays until a tidy finds every point homed.
   - Where the work has no active session, its State of play takes the queue for it under [acting for idle work](standards-territory.md#territory-work).
 - **Route receipt:** a routed work cannot reject what it is given, and a line confers no execution authority. The receiver does what it can with each line:
-  - the part its existing authority covers goes into `state.md` next steps;
+  - the part its existing authority covers goes into `_index.md`'s Now;
   - the part needing the owner's authority, capacity or a scope change becomes a query in `discussions.md`;
   - only the part it judges is not its own goes back, once and with the reason, to the `messages.md` of the State of play that routed it, main or secondary. It returns a part only after doing what it can with the rest, and never the whole.
 - **Handoffs and rollouts:** a handoff or rollout to other work or another repository is a line in the receiving work's `messages.md`, or the State of play's where no work owns it, never a record in the receiver's roadmap or triage.
@@ -61,12 +61,12 @@ Sources: MESSAGES-ASYNC, WORK-QUEUE-PRIORITY, FEEDBACK-AS-MESSAGE, ROUTE-RECEIPT
 
 A coordinator receives lines from other work through its package's `messages.md`, which travels through Git, and from a run through its report and its agent host's notice. Where the agent host can message another live session on the same machine, as Claude Code can and Codex cannot, the sender may also nudge a live session with one runtime message naming the entry.
 
-**A backend reply is not visible progress.** A reply to a nudge counts only once it is on a surface the owner looks at. The receiving coordinator writes what it did into its next owner-facing turn and its `state.md`; the sender keeps the item under its tag, as "acked by backend, not yet visible", until then.
+**A backend reply is not visible progress.** A reply to a nudge counts only once it is on a surface the owner looks at. The receiving coordinator writes what it did into its next owner-facing turn and its `_index.md`'s Now; the sender keeps the item under its tag, as "acked by backend, not yet visible", until then.
 
 | Surface | Carries | Who writes it | When |
 | --- | --- | --- | --- |
 | Transcript | Owner turns and the coordinator's own replies; nothing injected | The coordinator, in its report | Every owner-facing turn names the lines received and acted on since the last one |
-| Package | `_index.md` and `state.md` front matter, which the Observatory reads; the `messages.md` queue; parked tags in `discussions.md` | The coordinator, under the work-package standard; other work writes only its own `messages.md` line | `state.md` at every send, receive, mark and hold; `_index.md` when the definition changes |
+| Package | `_index.md`'s front matter, which the Observatory reads; the `messages.md` queue; parked tags in `discussions.md` | The coordinator, under the work-package standard; other work writes only its own `messages.md` line | `_index.md`'s state at every send, receive, mark and hold, and its definition when the work changes |
 | Work status | `ki work status --format json`, schema `ki/work-status/v1`, and the five views | `ki`, reading every package | On demand; the Observatory reads only this |
 | Notification | Line received, acknowledgement sent, session recovered, session errored | Not this standard | The notification record in Knowledge Islands Principal owns the channel |
 

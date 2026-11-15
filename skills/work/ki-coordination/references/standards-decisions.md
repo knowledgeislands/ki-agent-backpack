@@ -49,7 +49,7 @@ At each mark, check each entry against its durable home, under the Work Process 
 
 - **strike it** when a standard, skill, note, record, Decision Record or commit wholly carries it; a struck entry leaves no stub;
 - **cut it to a one-line pointer**, the tag, the owner's date and a link, when it still governs live work whose home is elsewhere;
-- **keep it** otherwise. A standalone entry with no Decision Record yet is kept, and `state.md`'s next steps carry it as `homeless: <TAG>`, so the Summary shows it, until a Decision Record takes it.
+- **keep it** otherwise. A standalone entry with no Decision Record yet is kept, and `_index.md`'s Held carries it as `homeless: <TAG>`, so the Summary shows it, until a Decision Record takes it.
 
 Who homes each class:
 

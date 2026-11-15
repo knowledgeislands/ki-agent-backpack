@@ -29,7 +29,7 @@ A one-line opener brings a new or running session onto this contract, for exampl
    - `## Queries` gives every open query in full;
    - the [banner](standards-coordination.md#banner) and thread line close it, rendered as every banner is, without the roadmap and package lines, the thread line last.
 
-Work opened, bootstrapped or restarted in a new session with no mark strikes one at its start, writing `mark` in `state.md`, so every work carries a mark. [Re-anchoring](#re-anchoring-after-compaction) in the same session moves none.
+Work opened, bootstrapped or restarted in a new session with no mark strikes one at its start, writing `mark` in `_index.md`'s state fields, so every work carries a mark. [Re-anchoring](#re-anchoring-after-compaction) in the same session moves none.
 
 Sources: BOOT-HOME, REBOOT-SHAPE, WORK-REVIEW-RETIRE and OPENER-NAME in [the decision register](sources.md#decision-register).
 
@@ -63,7 +63,7 @@ Sources: STYLE-STALE in [the decision register](sources.md#decision-register).
 
 Prefer a fresh session once the package holds everything needed to resume.
 
-The package alone says how work is picked up. `state.md`'s front matter, its state, since, hold and mark, with the holder derived from `_index.md`'s worker and supervisor, says where the work lies; its next steps say what the worker does when back in use. Every send, receive, mark and hold rewrites `state.md`'s front matter to agree with the report's banner; `_index.md` changes only with the definition. Neither file records a session host seat; an inventory-based host requirement may appear in the work label under `ki-work-package`.
+The package alone says how work is picked up. `_index.md`'s state fields, its state, since, hold and mark, with the holder derived from its worker and supervisor, say where the work lies; its Now and Held say what the worker does when back in use. Every send, receive, mark and hold rewrites the state fields, Now and Held to agree with the report's banner; the definition changes only with the work. The file records no session host seat; an inventory-based host requirement may appear in the work label under `ki-work-package`.
 
 | State | First on pick-up |
 | --- | --- |
@@ -71,7 +71,7 @@ The package alone says how work is picked up. `state.md`'s front matter, its sta
 | Handoff to supervisor, With supervisor | Re-read the package, take the owner's answers, mark, Summary with the open queries carried forward |
 | Handoff to worker | Receive: re-read the package, read back the owner's answers, restart authorised work |
 | Handoff to `<target>` | Check the target's state; stay in handoff until it receives or replies |
-| On hold | Only on `resume`, the release, or the State of play's next steps naming it: put the parked queries back and continue from the next steps; a line routed meanwhile waits in `messages.md` without waking it |
+| On hold | Only on `resume`, the release, or the State of play's Now naming it: put the parked queries back and continue from Now; a line routed meanwhile waits in `messages.md` without waking it |
 | Finished | Nothing resumes. Reopening is a new opener from the State of play |
 
 Run the [repository level check](standards-sync.md#repository-level-check) before resuming on another Mac and before leaving a host.
