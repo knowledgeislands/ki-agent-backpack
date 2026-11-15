@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-15T00:13:46Z
+revised: 2026-11-15T00:30:18Z
 status: in force
 ---
 
@@ -226,7 +226,7 @@ commit = "063b2195c53dbb002aa7281dadc23a4f96abfa3e"
 - **A vendored skill** keeps its copy as a physical directory at `.agents/skills/<name>/` with a `SKILL.md` naming it, and, where `claude-code` is a supported runtime, a relative `.claude/skills/<name>` link to that directory. Both are committed, so the repository's own ignore rules re-include them.
 - **`commit`**, optional and read only for a vendored skill, is the full lower-case hash of the backpack commit the copy was taken from.
 
-The host resolves a vendored skill to no backpack. It runs none of the skill's operations, never activates or links it from a backpack, never replaces or removes its copy or links, and refuses to add or remove it; the skill still satisfies another declared skill's dependency on its name. Where `commit` is recorded, the host's audit compares the copy with the skill's directory at that commit and reports drift as a warning on the `ki-repo` report, for the owner to resolve by refreshing the copy or recording the commit it now matches; no repair or conform action rewrites the copy. The repository-local `ki-self` is never vendored.
+The host resolves a vendored skill to no backpack. It runs none of the skill's operations, never activates or links it from a backpack, never replaces or removes its copy or links, and refuses to add or remove it; the skill still satisfies another declared skill's dependency on its name. Where `commit` is recorded, the host's audit compares the copy with the skill's directory at that commit and reports drift as a warning on the `ki-repo` report, for the owner to resolve by refreshing the copy or recording the commit it now matches; no repair or conform action rewrites the copy. The repository-local `ki-self` is never vendored, nor is `ki-repo`, which checks the vendored copies. Where `claude-code` is not a supported runtime, the repository keeps no `.claude/skills/<name>` link for a vendored skill.
 
 `mode` and `commit` belong to this contract, not to the skill: the host keeps them from the configuration it hands the skill, so a skill validating its own table never sees them. `RUNTIMES-6` checks the copy's shape and the two keys' values, and every other reader of the file, the Wayfinder among them, uses the same names and rules.
 

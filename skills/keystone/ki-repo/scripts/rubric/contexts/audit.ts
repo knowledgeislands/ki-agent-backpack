@@ -1494,6 +1494,10 @@ const vendoredSkillFindings = (dir: string, text: string, runtimes: readonly str
       push('[skills.ki-self] is repository-local and cannot be vendored')
       continue
     }
+    if (name === 'ki-repo') {
+      push('[skills.ki-repo] audits vendored copies and cannot be vendored')
+      continue
+    }
     const sourcePath = `${VENDORED_SKILL_ROOT}/${name}`
     const source = join(dir, sourcePath)
     const sourceState = localState(source)
@@ -1504,10 +1508,14 @@ const vendoredSkillFindings = (dir: string, text: string, runtimes: readonly str
     }
     if (skillFrontMatterName(readFileSync(join(source, 'SKILL.md'), 'utf8')) !== name)
       push(`${sourcePath}/SKILL.md must name ${name} in its front matter`, sourcePath)
-    if (!runtimes.includes('claude-code')) continue
     const projectionPath = `${CLAUDE_SKILL_ROOT}/${name}`
     const projection = join(dir, projectionPath)
     const projectionState = localState(projection)
+    if (!runtimes.includes('claude-code')) {
+      if (projectionState)
+        push(`${projectionPath} is present but claude-code is not declared in supported_runtimes`, projectionPath)
+      continue
+    }
     if (!projectionState?.isSymbolicLink() || isAbsolute(readlinkSync(projection))) {
       push(`declares claude-code, so ${projectionPath} must be a relative link to ${sourcePath}`, projectionPath)
       continue

@@ -704,6 +704,12 @@ describe('vendored skill copies', () => {
     ).toEqual(['.agents/skills/ki-meeting/SKILL.md must name ki-meeting in its front matter'])
   })
 
+  test('rejects a Claude link left behind when Claude Code is not declared', async () => {
+    expect(await vendored('mode = "vendored"', '["chatgpt-codex"]')).toEqual([
+      '.claude/skills/ki-meeting is present but claude-code is not declared in supported_runtimes'
+    ])
+  })
+
   test('requires a relative Claude link that resolves to the source only when Claude Code is declared', async () => {
     const source = (root: string) => {
       mkdirSync(join(root, '.agents', 'skills', 'ki-meeting'), { recursive: true })
@@ -729,6 +735,20 @@ describe('vendored skill copies', () => {
         symlinkSync('../../.agents/skills/ki-missing', join(root, '.claude', 'skills', 'ki-meeting'), 'dir')
       })
     ).toEqual(['.claude/skills/ki-meeting must resolve to .agents/skills/ki-meeting'])
+  })
+
+  test('never accepts a vendored ki-repo', async () => {
+    const root = repository()
+    writeFileSync(
+      join(root, '.ki.toml'),
+      '[skills.ki-repo]\nsupported_runtimes = ["chatgpt-codex"]\nmode = "vendored"\n'
+    )
+
+    expect(
+      (await collectAuditFindings([root])).findings
+        .filter(({ code }) => code === 'RUNTIMES-6')
+        .map(({ message }) => message)
+    ).toEqual(['[skills.ki-repo] audits vendored copies and cannot be vendored'])
   })
 
   test('never accepts a vendored ki-self', async () => {
