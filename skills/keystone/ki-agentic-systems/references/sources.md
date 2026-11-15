@@ -59,7 +59,7 @@ The vendors' own documentation and the specifications the cards follow, checked 
 | **[O10]** [OpenAI, Remote connections](https://learn.chatgpt.com/docs/remote-connections.md) | Session: chat, and the heading renamed from thread to task to chat | 2026-11-12 |
 | **[O11]** [OpenAI, Subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents) | Session and subagent: Codex subagents and their agent threads | 2026-11-12 |
 | **[O12]** [OpenAI, Build skills](https://learn.chatgpt.com/docs/build-skills.md) | Skill: a directory with a SKILL.md on the open standard; the 2% cap on the initial skill list; plugins as distribution | 2026-11-12 |
-| **[O13]** [OpenAI, Skills and plugins](https://learn.chatgpt.com/docs/skills-and-plugins.md) | Skill: a skill and a plugin, "an installable bundle that can include skills and Model Context Protocol (MCP) servers" | 2026-11-12 |
+| **[O13]** [OpenAI, Skills and plugins](https://learn.chatgpt.com/docs/skills-and-plugins.md) | Skill and plugin cards: a skill and a plugin, "an installable bundle that can include skills and Model Context Protocol (MCP) servers" | 2026-11-12 |
 | **[G1]** [Google, Gemini models](https://aistudio.google.com/docs/models) | Model: current Gemini models | 2026-11-12 |
 | **[G2]** [Google, Antigravity overview](https://antigravity.google/docs/overview) | Agent harness, agent, session and subagent: the Antigravity harness and its surfaces; conversation; subagents in their own worktrees | 2026-11-12 |
 | **[G3]** [Google, Gemini CLI docs](https://geminicli.com/docs/) | Agent: Gemini CLI and its replacement | 2026-11-12 |
@@ -115,7 +115,7 @@ The vendors' own documentation and the specifications the cards follow, checked 
 | **[AHP7]** [AHP, specification 1.0.0 release](https://github.com/microsoft/agent-host-protocol/releases/tag/spec%2Fv1.0.0) | AHP card (proposal): spec 1.0.0 of 2 October 2026 | 2026-11-12 |
 | **[AHP8]** [AHP, MCP servers](https://microsoft.github.io/agent-host-protocol/guide/mcp.html) | AHP agent host card (proposal): it wraps a harness | 2026-11-12 |
 | **[AHP9]** [AHP, versioning](https://microsoft.github.io/agent-host-protocol/specification/versioning.html) | AHP card (proposal): versioning | 2026-11-12 |
-| **[A2A1]** [Agent2Agent, specification](https://a2a-protocol.org/latest/specification/) | A2A cards (proposals): client, remote agent, Agent Card and task | 2026-11-12 |
+| **[A2A1]** [Agent2Agent, specification](https://a2a-protocol.org/latest/specification/) | A2A cards (proposals): client, remote agent, Agent Card and task; the remote agent and agentic system cards | 2026-11-12 |
 | **[A2A2]** [A2A, key concepts](https://a2a-protocol.org/latest/topics/key-concepts/) | A2A remote agent and Agent Card cards (proposals): opaque agents | 2026-11-12 |
 | **[A2A3]** [A2A, life of a task](https://a2a-protocol.org/latest/topics/life-of-a-task/) | A2A task card (proposal): task and contextId | 2026-11-12 |
 | **[A2A4]** [A2A, release 1.0.1](https://github.com/a2aproject/A2A/releases/tag/v1.0.1) | A2A card (proposal): 1.0.0 of 12 March 2026, 1.0.1 of 28 May 2026 | 2026-11-12 |

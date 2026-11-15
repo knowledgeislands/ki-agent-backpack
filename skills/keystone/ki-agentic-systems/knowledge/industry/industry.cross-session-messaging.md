@@ -19,10 +19,6 @@ Cross-session messaging lets one session tell another what it needs to know whil
 
 Cross-session messaging is one [session][industry.session] sending a plain-text message to another, on the same [machine][industry.machine] or beyond it. A message is text the sending agent writes, never its history or files. The receiving agent reads it between tool calls during a turn, or, when its session is idle, a new turn starts with it. A **peer** is the session at the other end; there is no separate peer agent. Each session keeps its own permissions, and a message from a peer is never the user's consent.
 
-## What the industry says
-
-Anthropic, who lead (LEADERS), name it: cross-session messaging "lets Claude deliver a message from one of your Claude Code sessions to another", over a socket on the same machine and through Anthropic's servers to sessions on other machines or in the cloud ([cross-session messaging][a8]). Peer is their only word for the other end: a session's inbox is its "Peer address", `/peers` lists the sessions it can reach, and a delivered message is a peer message. Elsewhere "peer" is descriptive, as in the "peer agents" of Google's Agent Development Kit ([ADK collaborative workflows][g9]).
-
 ## Our conventions
 
 Sessions on Knowledge Islands' rigs that message one another, such as a session handing the housekeeper on its rig a piece of work, are peers in this sense.
@@ -34,5 +30,3 @@ An [agent team][industry.agent-team] is several sessions working on one piece of
 [industry.session]: ./industry.session.md
 [industry.machine]: ./industry.machine.md
 [industry.agent-team]: ./industry.agent-team.md
-[a8]: https://code.claude.com/docs/en/cross-session-messaging
-[g9]: https://adk.dev/workflows/collaboration/
