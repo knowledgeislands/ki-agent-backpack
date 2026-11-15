@@ -18,7 +18,7 @@ audience = "Skill authors and reviewers deciding where a new or changed skill si
 traced = ["skills/*/*/SKILL.md"]
 stale_when = "a skill joins or leaves the Fundamentals functional area, or one of its skills is moved, renamed or removed, its ki-applicability changes, or a ki-depends-on or ki-optional-depends-on declaration to or from one of its skills changes"
 regenerate = "Run `bun skills/repository/ki-repo-backpack/scripts/skill-graph.ts --write` to derive the source from the skills layout, SKILL.md frontmatter and the functional-area table, then run `bun run self:diagrams:html --svg skill-area-fundamentals` to finalize it at showcase quality, commit its HTML and re-export the SVG. Do not hand-draw it."
-last_checked = "ccbe690457da02b9d5ff7f6c07a94c4650b41ee5"
+last_checked = "6cfea0518bb5a551b46f18c58c5d969e3323ccf4"
 commit_html = true
 
 [skill-area-records-and-code]
