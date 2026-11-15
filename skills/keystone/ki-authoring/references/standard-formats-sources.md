@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-09T21:36:32Z
+revised: 2026-11-15T00:17:25Z
 status: in force
 ---
 
@@ -79,7 +79,8 @@ refresh: <kind> · <cadence>
 1. **Sections:** 1 Introduction, 2 Outside sources (2.1 Authoritative, 2.2 Advisory), 3 Decisions, 4 Last review.
 2. **The Introduction** names the standards the file backs.
 3. **Outside sources** are tables of Source, Governs or Informs, and Last reviewed: authoritative sources are specifications the standards follow; advisory sources inform judgement only.
-4. **Last review** says what the latest review confirmed and what it is watching.
+4. **Sub-groups:** either class may divide its sources into sub-groups, each a numbered subsection, as `2.1.1`, with its own table of the same columns. The class then holds only a short lead-in before them, as the [format format](standard-formats-format.md#44-shape) asks of any section with subsections.
+5. **Last review** says what the latest review confirmed and what it is watching.
 
 [Back to contents](#contents)
 

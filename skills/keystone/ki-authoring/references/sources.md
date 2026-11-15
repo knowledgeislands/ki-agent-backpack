@@ -1,6 +1,6 @@
 ---
-type: sources@2026-11-09T21:36:32Z
-revised: 2026-11-14T19:12:18Z
+type: sources@2026-11-15T00:17:25Z
+revised: 2026-11-15T00:17:25Z
 refresh: external-spec · monthly
 ---
 
@@ -75,6 +75,7 @@ Advisory sources inform local judgment conventions but are not specifications, m
 | TERMS-TABLE | A standard's Terms and definitions table is the one exception to the two-column-table rule: a glossary, each definition read with its **Standard:** line. Taken overnight by the Cairn summit's guardian under REMIT-HIGH and confirmed by Kris as a whole that day. | 2026-11-14 | [Markdown](standard-markdown.md#441-table-or-list) | In force |
 | INTRO-RULES | The rules left in the Markdown and TOML standards' Introductions move, unreworded, into their Rules: the Markdown standard's into its 4.1 and the TOML standard's into its 4.2. Taken overnight by the Cairn summit's guardian under REMIT-HIGH and confirmed by Kris as a whole that day. | 2026-11-14 | [Markdown](standard-markdown.md#41-what-to-leave-to-the-linter), [TOML](standard-toml.md#42-configuration-structure) | In force |
 | AUTH-ROUTER | `SKILL.md` stays a thin router: its owned-file detail points to the authoring enforcement standard, which holds it. Taken overnight by the Cairn summit's guardian under REMIT-HIGH and confirmed by Kris as a whole that day. | 2026-11-14 | [authoring enforcement](standard-authoring.md#41-owned-configuration) | In force |
+| SOURCES-SUBGROUPS | Either class of a sources file's outside sources may divide them into numbered sub-groups, each with its own table, as `ki-skills`' sources file already does. Taken overnight by the Cairn summit's guardian under REMIT-HIGH. | 2026-11-15 | [sources format](standard-formats-sources.md#42-shape) | In force |
 
 [Back to contents](#contents)
 
