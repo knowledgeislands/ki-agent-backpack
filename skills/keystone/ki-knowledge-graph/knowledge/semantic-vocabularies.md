@@ -39,7 +39,7 @@ links:
 - **[PROV-O][prov-o]** can describe knowledge derivation and provenance.
 - **[SHACL][shacl]** is a candidate for validating expected data shapes separately from inference.
 
-These are candidate vocabularies and standards for the [Knowledge Graph][graph], not a commitment to adopt all of them. The minimal `ki:` predicate vocabulary remains to be formally defined and mapped to persistent IRIs, under ki.sop.main's vocabulary work in ki-principal; until then its prefix carries a placeholder address on the Knowledge Islands website, in the Knowledge Islands territory card.
+These are candidate vocabularies and standards for the [Knowledge Graph][graph], not a commitment to adopt all of them. The minimal `ki:` predicate vocabulary remains to be formally defined and mapped to persistent IRIs, under ki.summit's vocabulary work in ki-principal; until then its prefix carries a placeholder address on the Knowledge Islands website, in the Knowledge Islands territory card.
 
 [sovereignty]: ./semantic-sovereignty.md
 [rdf]: ./rdf.md

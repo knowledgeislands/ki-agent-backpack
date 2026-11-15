@@ -12,7 +12,7 @@ A hook reaches a runtime in three parts, each with one owner, as Kris set on 6 N
 2. **`ki`.** `ki` installs the payload to `~/.local/share/ki/harnesses/<org>/<harness>/hooks/`. For each registered harness, `ki doctor` reports each hook that is missing, unregistered in Claude Code or Codex, or lacking its current Codex trusted hash, and `ki repair` registers the missing ones. Where a dotfiles manager owns the settings, both report "managed by chezmoi, run chezmoi apply" instead of writing them.
 3. **User-environment manager.** The user-environment manager, such as chezmoi, registers each hook from the installed path, never from a checkout.
 
-Part 2 is the expected behaviour, not shipped behaviour. Its `ki` implementation is tracked with tools-ki through `ki.sop.main`'s tooling audit. Today `ki doctor` checks only that each harness is installed, and `ki repair` repairs only skill links and legacy configuration metadata; neither inspects or registers runtime hooks.
+Part 2 is the expected behaviour, not shipped behaviour. Its `ki` implementation is tracked with tools-ki through `ki.summit`'s tooling audit. Today `ki doctor` checks only that each harness is installed, and `ki repair` repairs only skill links and legacy configuration metadata; neither inspects or registers runtime hooks.
 
 ## Payload
 

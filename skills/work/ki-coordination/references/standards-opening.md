@@ -14,8 +14,8 @@ The Work Process note's Levels and forms of work table sets the three levels, th
 
 | | State of play | Project work | Regular work and ad hoc work |
 | --- | --- | --- | --- |
-| Id | `<territory>.sop.main`, such as `ki.sop.main`; a secondary `<territory>.sop.<name>`, such as `hnr.sop.5ge` | `<territory>.prj.<project>`, such as `ki.prj.ways-of-working` | `<territory>.reg.main`; ad hoc `<territory>.reg.<slug>` |
-| `_index.md` | `+/_WORK/<territory>.sop.main/_index.md` in the Capital, and `+/_WORK/<territory>.sop.<name>/_index.md` for each secondary | `+/_WORK/<territory>.prj.<project>/_index.md` in the Capital | `+/_WORK/<territory>.reg.main/_index.md`, and one package per ad hoc piece |
+| Id | `<territory>.summit`, such as `ki.summit`, which replaced `<territory>.sop.main`; a secondary `<territory>.sop.<name>`, such as `hnr.sop.5ge` | `<territory>.prj.<project>`, such as `ki.prj.ways-of-working` | `<territory>.reg.main`; ad hoc `<territory>.reg.<slug>` |
+| `_index.md` | `work/<territory>/<territory>.summit/_index.md` in the Cairn store, and `+/_WORK/<territory>.sop.<name>/_index.md` for each secondary | `+/_WORK/<territory>.prj.<project>/_index.md` in the Capital | `+/_WORK/<territory>.reg.main/_index.md`, and one package per ad hoc piece |
 | Coordinates | Assigned packages: priorities, the queue and cross-cutting decisions; a secondary, only its `covers` subset; executes nothing | One Project's work items and runs when explicitly opened | Its own work, conversationally or through explicitly opened coordination |
 | Governed by | This standard | This standard while coordinating | Activity notes, `ki-work-recurring` and declared skills; this standard while coordinating |
 | Report forms | The coordinator forms, the report heading reading `› State of play` | The coordinator forms while coordinating, under the Project's heading | The coordinator forms while coordinating, under the real work label and page; otherwise the conversational reply forms |
@@ -23,7 +23,8 @@ The Work Process note's Levels and forms of work table sets the three levels, th
 `_index.md` declares the level in its `level` field under the work-package standard: `territory`, `regular` or `project`, ad hoc work taking `regular`. The level follows from the id:
 
 - one segment: the main State of play;
-- second segment `sop`: a State of play, `main` or a named [secondary](standards-territory.md#secondary-states-of-play);
+- second segment `summit`: the territory's summit, its main State of play;
+- second segment `sop`: a State of play, `main` under the summit's old id or a named [secondary](standards-territory.md#secondary-states-of-play);
 - second segment `reg`: regular or ad hoc work;
 - any other second segment: Project work.
 
@@ -37,14 +38,14 @@ Every piece of work above a work item has an **id**, a **slug** and a **title**;
 
 | Work | Id | Slug | Title |
 | --- | --- | --- | --- |
-| Main State of play | `<territory>.sop.main` | `<territory>-sop-main` | `<Territory> > SoP` |
+| Main State of play, the summit | `<territory>.summit` | `<territory>-summit` | `<Territory> > SoP` |
 | Secondary State of play | `<territory>.sop.<name>` | `<territory>-sop-<name>` | `<Territory> > SoP (<name>)` |
 | Project work | `<territory>.prj.<project>` | `<territory>-prj-<project>` | `<Territory> > <Theme title> > <Project title>`, or `<Territory> > <Project title>` with no theme |
 | Regular work | `<territory>.reg.main` | `<territory>-reg-main` | `<Territory> > Regular work` |
 | Ad hoc work | `<territory>.reg.<slug>` | `<territory>-reg-<slug>` | `<Territory> > <topic>` |
 | Sub-package | `<parent id>.<parent focus id>` | `<parent slug>-<parent focus id>` | `<parent title> > <focus in words>` |
 
-Canonical stored names are `<territory>.sop.main`, `<territory>.prj.<project>`, `<territory>.reg.main` and `<territory>.reg.<topic>`; secondaries keep `<territory>.sop.<name>`. The Project slug stays `<project>`.
+Canonical stored names are `<territory>.summit`, which replaced `<territory>.sop.main`, `<territory>.prj.<project>`, `<territory>.reg.main` and `<territory>.reg.<topic>`; secondaries keep `<territory>.sop.<name>`. The Project slug stays `<project>`.
 
 A member-repository Project session is a seat for its Capital package, not authority to move that package. Deliberate member-homed regular exceptions stay valid. A package's existence never selects coordination.
 
@@ -71,7 +72,7 @@ A member-repository Project session is a seat for its Capital package, not autho
 - **State of play:** `SoP` in the title and `State of play` in full in the report heading. A secondary adds its name in brackets: `HNR > SoP (5ge)` in the title, `State of play (5ge)` in the heading.
 - **Topic:** ad hoc work's slug in words, in sentence case, unless the owner names it otherwise.
 - **Label:** the title, plus a `(<host>)` suffix, after a space, only when the work is limited to that machine. The id, slug and title never carry a host.
-- **Work name:** the label followed by the id in brackets, `<label> (<id>)`, as in `KI > Model > Ways of working (ki.prj.ways-of-working)` and `KI > SoP (ki.sop.main)`.
+- **Work name:** the label followed by the id in brackets, `<label> (<id>)`, as in `KI > Model > Ways of working (ki.prj.ways-of-working)` and `KI > SoP (ki.summit)`.
 
 **Where each name is used.**
 
@@ -81,7 +82,7 @@ A member-repository Project session is a seat for its Capital package, not autho
 
 | Work | Id | Title | Old shape |
 | --- | --- | --- | --- |
-| Knowledge Islands main State of play | `ki.sop.main` | `KI > SoP` | `_state-of-play.md`, `ki.sop`, `ki` |
+| Knowledge Islands main State of play | `ki.summit` | `KI > SoP` | `_state-of-play.md`, `ki.sop`, `ki`, `ki.sop.main` |
 | A Humans not Robots secondary State of play | `hnr.sop.5ge` | `HNR > SoP (5ge)` | none |
 | Ways of working | `ki.prj.ways-of-working` | `KI > Model > Ways of working` | `knowledge-islands-model.ways-of-working.md`, `ki.ways-of-working` |
 | Tools burndown | `ki.prj.tools-burndown` | `KI > Foundations > Tools burndown` | `platform-foundations.tools-burndown.md`, `ki.tools-burndown` |
@@ -104,10 +105,10 @@ The owner opens a session in the actual package-home checkout, the Capital by de
 For the main State of play:
 
 ```text
-Bootstrap as <territory>.sop.main territory work under ki-coordination.
+Bootstrap as <territory>.summit territory work under ki-coordination.
 Session: <thread line>. Your first act is to rename this session to it with your agent host's rename, such as /rename <thread line>.
 Role: coordinator only. The coordinator never does substantive work itself; every unit of work goes to a detached background agent; an owner message never pre-empts work in flight. Dispatch, decide with me, report; stay responsive.
-Label: <Territory> > SoP (<territory>). Work package: +/_WORK/<territory>.sop.main/ in <capital>.
+Label: <Territory> > SoP (<territory>.summit). Work package: work/<territory>/<territory>.summit/ in the Cairn store.
 Project management only: priorities, the Project-work queue (cap three or four), decisions and releases; route real work to Project work.
 Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive to messages and to me while they run; let them do most of the work, and check what each returns before you post it.
 Steering: my messages steer; stop or abort only when I expressly say so, naming the work.
@@ -134,7 +135,7 @@ Bootstrap as <territory>.sop.<name> territory work under ki-coordination.
 Session: <thread line>. Your first act is to rename this session to it with your agent host's rename, such as /rename <thread line>.
 Role: coordinator only. The coordinator never does substantive work itself; every unit of work goes to a detached background agent; an owner message never pre-empts work in flight. Dispatch, decide with me, report; stay responsive.
 Label: <Territory> > SoP (<name>) (<territory>.sop.<name>). Work package: +/_WORK/<territory>.sop.<name>/ in <capital>.
-Secondary State of play under <Territory> > SoP (<territory>): project management only for the work its _index.md covers, within its own cap; the main State of play stays the owner's front door and owns cross-cutting decisions, so route those to it.
+Secondary State of play under <Territory> > SoP (<territory>.summit): project management only for the work its _index.md covers, within its own cap; the main State of play stays the owner's front door and owns cross-cutting decisions, so route those to it.
 Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive to messages and to me while they run; let them do most of the work, and check what each returns before you post it.
 Steering: my messages steer; stop or abort only when I expressly say so, naming the work.
 Next step: follow the Bootstrap in ki-coordination, then give the full re-bootstrap report.
