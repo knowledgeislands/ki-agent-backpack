@@ -12,7 +12,7 @@ Sources: DECISION-NO-NUMBER in [the decision register](sources.md#decision-regis
 
 ### Decisions log
 
-Each owner decision about the work is one timestamped entry in the change document it belongs to, in its Agreed or Decided part, in the owner's own words where possible; a point still open, a question, gap or consequence, goes into that change document's Open section instead, under the `ki-work-package` [change documents](../../ki-work-package/references/standard-work-package.md#46-change-documents) rule. Kris set these homes under OLD-SHAPE-HOMES a on 14 November 2026: "The decision log is now the gaps in a given change record… it's the things that are agreed as well as the gaps". A decision whose area has no change document yet opens one. Where the work declares focus areas, the entry's first line opens `focus: <id> · `, under the `ki-work-package` [focus areas](../../ki-work-package/references/standard-work-package.md#47-sub-packages). Entries carry no numbers, and a prompt, brief, record, report, package file or banner describes the decision it acts under in the owner's words and with its date.
+Each owner decision about the work is one timestamped entry in the change document it belongs to, where it belongs in the change, such as its Outline or Steps, in the owner's own words where possible; a point still open, a question, gap or consequence, goes into that change document's Open section instead, under the `ki-work-package` [change documents](../../ki-work-package/references/standard-work-package.md#46-change-documents) rule. Kris set these homes under OLD-SHAPE-HOMES a on 14 November 2026: "The decision log is now the gaps in a given change record… it's the things that are agreed as well as the gaps". A decision whose area has no change document yet opens one. Where the work declares focus areas, the entry's first line opens `focus: <id> · `, under the `ki-work-package` [focus areas](../../ki-work-package/references/standard-work-package.md#47-sub-packages). Entries carry no numbers, and a prompt, brief, record, report, package file or banner describes the decision it acts under in the owner's words and with its date.
 
 The owner's words are whole only on the turn they arrive: a context-compressing proxy, a compaction or a shell read of a transcript can silently rewrite earlier turns. Two rules keep the log faithful on any machine and proxy setting:
 
@@ -48,8 +48,8 @@ Sources: DECISION-CLASSES and RECORD-THRESHOLD in [the decision register](source
 An entry stays in its change document while the change is open; when the change closes, each entry goes to its durable home and the change document is deleted, under the `ki-work-package` [change documents](../../ki-work-package/references/standard-work-package.md#46-change-documents) rule. At each mark, check each entry of every change document against its durable home, under the Work Process note's Decisions life cycle:
 
 - **homed** when a standard, skill, note, record, Decision Record or commit wholly carries it; it needs nothing more, and goes with its change document;
-- **pointed** when it still governs live work whose home is elsewhere: the tag, the owner's date and a link carry it once the change closes;
-- **kept** otherwise, and its change document stays open. A standalone entry with no Decision Record yet is kept, and `_index.md`'s Held carries it as `homeless: <TAG>`, so the Summary shows it, until a Decision Record takes it.
+- **pointed** when it still governs live work whose home is elsewhere: the tag, the owner's date and a link carry it, and when the change closes they move to the home of the live work it governs;
+- **kept** otherwise, and its change document stays open. A standing grant not yet revoked, such as an Orca opt-in or a listening request, is kept. A standalone entry with no Decision Record yet is kept, and `_index.md`'s Held carries it as `homeless: <TAG>`, so the Summary shows it, until a Decision Record takes it.
 
 Who homes each class:
 
@@ -59,7 +59,7 @@ Who homes each class:
 - held: whoever homes the class it resolves into;
 - anything left at [Finishing Project work](standards-mark.md#finishing-project-work): the coordinator. A conversational session homes at its recap.
 
-The work's change documents are its one record of decisions for as long as each is open: successive sessions share them, and they stay in the package, not beside the Project note. A design loop's own decisions file is a stage artefact holding only the answers to its report's tagged decisions, and each answer is also an entry in the change document the loop designs, logged in the turn it arrived.
+The work's change documents are its one record of decisions for as long as each is open: successive sessions share them, and they stay in the package, not beside the Project note. A design loop's answers to its report's tagged decisions are entries in the change document the loop designs, each logged in the turn it arrived.
 
 ### Change documents
 

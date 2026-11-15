@@ -20,7 +20,7 @@ A one-line opener brings a new or running session onto this contract, for exampl
 1. where the opener starts a new session, renames the session to the thread line the opener names, as its first act, before any read, by its agent host's rename (runtime-specific: `/rename <thread line>` in Claude Code), under [Opening work](standards-opening.md#opening-work);
 2. reads this standard and the Work Process note;
 3. checks through its agent host which of its agents still run and reconciles what is actually running;
-4. [resolves the opener](#resolving-the-opener) to one package, `work/<territory>/<id>/` in the Cairn store, reads `messages.md` first, then its `_index.md` and the change documents in hand, reconciles it under the work-package standard and checks `method_read`;
+4. [resolves the opener](#resolving-the-opener) to one package, `work/<territory>/<id>/` in the Cairn store, reads `messages.md` first, then its `_index.md`, the change documents in hand and every change document's Open section, reconciles it under the work-package standard and checks `method_read`;
 5. acts on each line of [`messages.md`](standards-messages.md#messages-between-work), `IMPORTANT` lines first, `FIRST-STEP` among them, then in queue order, before launching any work;
 6. as a State of play, gathers every record awaiting acceptance across its territory's repositories, or, as a secondary, across the work it covers, and brings them first, ahead of every other query, as one bundle per work under [Acceptance bundles](standards-queries.md#acceptance-bundles);
 7. gives the Bootstrap, trigger T2 in the [coordinator reply format](standards-report-forms.md#triggers), a full Medium [report](standards-reporting.md#owner-report) under the [report heading](standards-report-forms.md#banner-detail), form line `**Bootstrap at <local time> · last mark <local time>**`:
@@ -49,7 +49,7 @@ The owner may compact a long session with the runtime's compaction facility, kee
 
 After any compaction, owner's or runtime's, the coordinator, before answering anything else:
 
-1. re-reads this standard, the harness output style `output-styles/ki-coordinator.md` from disk and its package's `_index.md` and the change documents in hand in full, and follows the style file wherever it differs from the loaded style;
+1. re-reads this standard, the harness output style `output-styles/ki-coordinator.md` from disk and its package's `_index.md`, the change documents in hand in full and every change document's Open section, and follows the style file wherever it differs from the loaded style;
 2. checks its agents through its agent host and reads `messages.md`, `IMPORTANT` lines first;
 3. confirms in one line that it has re-anchored, then answers with the Bootstrap, heading block to banner.
 
@@ -78,7 +78,7 @@ Run the [repository level check](standards-sync.md#repository-level-check) befor
 
 **Pick-up reads.** Picking work up stays within the [turn budget](standards-coordination.md#coordinator-responsiveness).
 
-- One read of the package counts as one call: its `_index.md` and the change documents in hand, with `messages.md`, at bootstrap, at re-anchoring and at every other read.
+- One read of the package counts as one call: its `_index.md`, the change documents in hand and every Open section, with `messages.md`, at bootstrap, at re-anchoring and at every other read.
 - A write to the package's files with a brief counts as one write set, so the five-call budget is not spent before the first launch.
 - After bootstrap, read only what changed since the last read, plus the entries bearing on the question, not every decision and query at each owner message.
 - A report's `## Queries` is rendered from the open questions in the package's change documents, each from its change document's Open section.
