@@ -20,7 +20,7 @@ The user configuration and installed backpack payloads are separate from a repos
 
 ## Backpacks and skills
 
-`ki harness list`, `ki harness info <id>`, `ki harness install <id>`, and `ki harness uninstall <id>` manage compatible installed backpacks. The canonical backpack is always retained.
+`ki backpack list`, `ki backpack info <id>`, `ki backpack install <id>`, and `ki backpack uninstall <id>` manage compatible installed backpacks. The canonical backpack is always retained.
 
 `ki skill add <skill>` and `ki skill remove <skill>` manage a skill in configured user agent spaces.
 
@@ -40,7 +40,7 @@ A coordinating session needs more than the skills `ki bootstrap` activates: the 
 
 ## Development boundary
 
-An installed verified payload is the authoritative source of capabilities. Local development is explicit: `ki dev local set <harness-id> <local-harness-path>` validates and records a checkout, `ki dev local on [harness-id]` selects it, and `ki dev local off [harness-id]` restores the verified archive. A selected local checkout is a mutable development source, not a verified installed payload; activation and loaded runtime capability remain separate host evidence.
+An installed verified payload is the authoritative source of capabilities. Local development is explicit: `ki dev local set <backpack-id> <local-backpack-path>` validates and records a checkout, `ki dev local on [backpack-id]` selects it, and `ki dev local off [backpack-id]` restores the verified archive. A selected local checkout is a mutable development source, not a verified installed payload; activation and loaded runtime capability remain separate host evidence.
 
 For command grammar, run `ki --help`. For repository coverage, use `ki-repo`.
 

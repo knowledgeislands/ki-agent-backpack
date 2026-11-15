@@ -21,9 +21,9 @@ ki bootstrap --refresh
 ## Additional compatible backpack
 
 ```sh
-ki harness install example/operations
-ki harness list
-ki harness info example/operations
+ki backpack install example/operations
+ki backpack list
+ki backpack info example/operations
 ```
 
 Installation adds verified capability sources to the user-owned backpack set. It does not make every skill in that backpack discoverable and does not change a repository.

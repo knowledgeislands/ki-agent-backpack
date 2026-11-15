@@ -86,7 +86,7 @@ One verified, XDG-managed backpack set exists per user. The canonical `knowledge
 
 The backpack payload, configuration, cache, and mutable state occupy separate XDG-owned locations. `ki diag --full` reports the effective paths.
 
-`ki harness install <harness-id>` acquires or atomically replaces the selected backpack from immutable release evidence verified by the installed `ki` release. `ki harness list` and `ki harness info <harness-id>` inspect the installed set.
+`ki backpack install <backpack-id>` acquires or atomically replaces the selected backpack from immutable release evidence verified by the installed `ki` release. `ki backpack list` and `ki backpack info <backpack-id>` inspect the installed set.
 
 Verified installed compatible backpacks are the sole source of registered capabilities and operations.
 
@@ -94,7 +94,7 @@ A local backpack checkout, a cached temporary acquisition, a repository `.ki/` d
 
 If a required backpack is unavailable, untrusted, or incompatible, the command must fail with recovery guidance before repository or runtime state changes.
 
-The canonical backpack cannot be uninstalled. `ki harness uninstall <harness-id>` applies only to an installed non-canonical backpack and removes it only after ownership checks pass.
+The canonical backpack cannot be uninstalled. `ki backpack uninstall <backpack-id>` applies only to an installed non-canonical backpack and removes it only after ownership checks pass.
 
 [Back to contents](#contents)
 
@@ -164,13 +164,13 @@ Bootstrap does not declare governance in any repository and does not activate ev
 This checklist is the one path from a fresh machine to a working coordinator. Kris homed it in this skill under BOOT-HOME on 26 October 2026, so that a hook or an output style that fails silently has one accountable place; `ki-coordination`'s Bootstrap begins at the opener and cites this as its "Before the opener" step. How a hook is shipped, installed and registered is set once in the backpack hooks README's [How hooks are expected to work](../../../../hooks/README.md#how-hooks-are-expected-to-work); steps 2 and 5 apply it. Run it on a fresh machine, after a chezmoi, backpack or runtime change, and whenever a coordinator looks right but drifts. Each step says what to check and who repairs a failure; no step copies or edits files across the source, installed and runtime-discovery surfaces.
 
 1. **Tools and checkouts.** Workstation tooling has installed `ki`; the Capital and its repositories are cloned at the paths `ki registry` records; each checkout is fetched and level with its remote, because a work package behind its remote bootstraps on stale state. Repair: the workstation tooling for tools, `ki registry` for paths, a fast-forward pull for a checkout behind.
-2. **User environment.** `chezmoi apply` has placed the runtime files for Claude Code and Codex, registered `hooks/coordinator-reminder/coordinator-reminder.sh` from the installed backpack at `~/.local/share/ki/harnesses/<org>/<harness>/hooks/`, never from a checkout, at `SessionStart` and `UserPromptSubmit` for each runtime, and linked the Claude Code output style `~/.claude/output-styles/ki-coordinator.md` to the primary backpack checkout's `output-styles/ki-coordinator.md`; Codex has no output style, so its binding is the hook alone. Check: `readlink ~/.claude/output-styles/ki-coordinator.md` resolves into that checkout and `chezmoi diff` shows nothing pending for those targets. Repair: chezmoi, never a hand edit under `~/.claude` or `~/.codex`.
+2. **User environment.** `chezmoi apply` has placed the runtime files for Claude Code and Codex, registered `hooks/coordinator-reminder/coordinator-reminder.sh` from the installed backpack at `~/.local/share/ki/backpacks/<org>/<backpack>/hooks/`, never from a checkout, at `SessionStart` and `UserPromptSubmit` for each runtime, and linked the Claude Code output style `~/.claude/output-styles/ki-coordinator.md` to the primary backpack checkout's `output-styles/ki-coordinator.md`; Codex has no output style, so its binding is the hook alone. Check: `readlink ~/.claude/output-styles/ki-coordinator.md` resolves into that checkout and `chezmoi diff` shows nothing pending for those targets. Repair: chezmoi, never a hand edit under `~/.claude` or `~/.codex`.
 3. **Backpack and process skills.** `ki bootstrap` has installed the canonical backpack and activated the core skills, `ki-keystone` and `ki-work`, whose `design` subcommand runs the design loop. Check: `ki bootstrap --refresh` runs clean and `ki skill` lists `ki-work`. Repair: `ki`.
 4. **Package-home declarations.** The package-home repository's `.ki.toml` declares `ki-work`, `ki-work-roadmap`, `ki-work-package`, `ki-delegation` and `ki-coordination`; `ki repo skill add` has projected them; and the package-home repository's tracked `.claude/settings.json` selects `"outputStyle": "ki-coordinator"`. Check: `ki repo audit --skill ki-coordination --repo <package-home>` and `ki repo audit --skill ki-work-package --repo <package-home>` pass. Repair: the package-home repository's own committed configuration.
 5. **The hook works.** From the actual package-home checkout, feed the hook a synthetic owner message and read its line back:
 
    ```bash
-   printf '{"hook_event_name":"UserPromptSubmit","cwd":"%s"}' "$PWD" | ~/.local/share/ki/harnesses/<org>/<harness>/hooks/coordinator-reminder/coordinator-reminder.sh
+   printf '{"hook_event_name":"UserPromptSubmit","cwd":"%s"}' "$PWD" | ~/.local/share/ki/backpacks/<org>/<backpack>/hooks/coordinator-reminder/coordinator-reminder.sh
    ```
 
    It prints one JSON object whose `additionalContext` opens "In coordinating work only". Silence from the package home means `jq` is missing, the checkout does not declare `ki-coordination`, or the script is not where chezmoi registered it; silence from a repository that does not declare `ki-coordination` is correct.
@@ -187,13 +187,13 @@ A member home must be the existing deliberately approved regular/ad hoc exceptio
 
 Installed verified payloads remain authoritative during ordinary use.
 
-`ki dev local set <harness-id> <local-harness-path>` validates and remembers the local checkout without enabling it. `ki dev local on [harness-id]` is the explicit development-only exception for one configured backpack; it switches that backpack's payload to the recorded source. `ki dev local off [harness-id]` restores the verified archive.
+`ki dev local set <backpack-id> <local-backpack-path>` validates and remembers the local checkout without enabling it. `ki dev local on [backpack-id]` is the explicit development-only exception for one configured backpack; it switches that backpack's payload to the recorded source. `ki dev local off [backpack-id]` restores the verified archive.
 
 A nearby checkout is never selected implicitly.
 
-While `ki dev local on [harness-id]` is active the selected checkout is live, so every `ki` invocation on the machine resolves governance through its **working tree**, uncommitted edits included. Governance is then no longer a fixed input: editing the backpack changes how `ki repo audit` and `ki repo conform` behave everywhere, immediately, including in sessions that did not make the edit. A rubric criterion can appear, change level, or acquire a new dependency underneath work already in progress, and a repository's audit result can move with no change to that repository at all.
+While `ki dev local on [backpack-id]` is active the selected checkout is live, so every `ki` invocation on the machine resolves governance through its **working tree**, uncommitted edits included. Governance is then no longer a fixed input: editing the backpack changes how `ki repo audit` and `ki repo conform` behave everywhere, immediately, including in sessions that did not make the edit. A rubric criterion can appear, change level, or acquire a new dependency underneath work already in progress, and a repository's audit result can move with no change to that repository at all.
 
-The exposure is widest where backpack edits and backpack-dependent verification overlap in time, which is most likely when either is delegated: a worker editing the backpack and a worker auditing repositories against it are, in development mode, sharing one mutable input. Separating them in time removes the interaction, and `ki dev local off [harness-id]` removes it entirely by resolving the run against the verified archive, which is what makes a result reproducible or comparable across sessions.
+The exposure is widest where backpack edits and backpack-dependent verification overlap in time, which is most likely when either is delegated: a worker editing the backpack and a worker auditing repositories against it are, in development mode, sharing one mutable input. Separating them in time removes the interaction, and `ki dev local off [backpack-id]` removes it entirely by resolving the run against the verified archive, which is what makes a result reproducible or comparable across sessions.
 
 `ki diag --full` distinguishes the two cases after the fact. `Installation` and the local backpack `source` and `mode` lines say whether governance came from a mutable tree, so an audit or conform result that moved while the target repository did not is explained there rather than in the repository.
 
@@ -201,7 +201,7 @@ The exposure is widest where backpack edits and backpack-dependent verification 
 
 ### 4.9 Managed-state recovery
 
-Backpack source, installed payloads, runtime-discovery links, and repository declarations are separate owned surfaces. A command refuses unfamiliar, altered, escaping, or unsafe managed state before it overwrites or removes anything. Treat that refusal as a diagnostic: inspect it with `ki diag --full`, `ki doctor`, or the applicable `ki harness`, `ki skill`, or `ki repo skill` command rather than copying or deleting files across surfaces.
+Backpack source, installed payloads, runtime-discovery links, and repository declarations are separate owned surfaces. A command refuses unfamiliar, altered, escaping, or unsafe managed state before it overwrites or removes anything. Treat that refusal as a diagnostic: inspect it with `ki diag --full`, `ki doctor`, or the applicable `ki backpack`, `ki skill`, or `ki repo skill` command rather than copying or deleting files across surfaces.
 
 After a command changes a managed skill link or switches the selected development source, start a new agent session so the runtime re-scans its discovery directories. An already-running session is not evidence that the new activation is loaded.
 
