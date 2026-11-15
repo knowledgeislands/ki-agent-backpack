@@ -92,4 +92,4 @@ The tap opts into governance with a keyless `[skills.ki-repo-homebrew-tap]` tabl
 
 [cookbook]: https://docs.brew.sh/Formula-Cookbook
 [standardreadme]: https://github.com/RichardLitt/standard-readme
-[testbot]: https://docs.brew.sh/Brew-Test-Bot
+[testbot]: https://docs.brew.sh/BrewTestBot
