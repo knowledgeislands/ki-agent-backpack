@@ -133,8 +133,8 @@ Each part: what it carries, when it appears and how the structure, the state and
 - **F2 Banner heading:** `### <glyph state> · at <time the work entered this state>`, from the [one table of states](standards-coordination.md#banner). It is the only place the work's state appears.
 - **F3 Counts line:** `🤖 <n> running · ⏳ <n> queued · 👤 <n> with you · ⛔ <n> blocked · 🅿️ <n> parked`, all five views with zeros written, adding `· 📥 <n> to accept` in Project work with records awaiting the owner's acceptance. The state sets its content on hold: `⏸️ drained · 🅿️ <n> queries parked` on a paused hold, `💤 waiting for a message · 🅿️ <n> queries parked` while Snoozing. Left out only when the work is Finished.
 - **F4 Roadmap line:** `🗺️ roadmap · <n> records · <n> open · <n> done awaiting prune · <n> ideas`, or `🗺️ roadmap · none` where the package's repository has no roadmap, under **Roadmap and package lines** in [Banner detail](#banner-detail).
-- **F5 Package line:** `📦 package · inbox <n> · outbox <n> · held <n> · awaiting ACK <n>`, under the same.
-- **F6 Item list:** one line per live item, `- [<state>] <what> · <holder> · at <time>`, under **Glyph banner** in [the core](standards-coordination.md#banner). It carries no `[awaiting ACK]` items; their count stays in F5. On hold it lists only `[parked]` and `[release]`; Finished lists `[finished]`.
+- **F5 Package line:** `📦 package · changes <n> · open <n> · held <n> · meetings <n>`, under the same.
+- **F6 Item list:** one line per live item, `- [<state>] <what> · <holder> · at <time>`, under **Glyph banner** in [the core](standards-coordination.md#banner). It carries no `[awaiting ACK]` items. On hold it lists only `[parked]` and `[release]`; Finished lists `[finished]`.
 - **F7 Heading-for line:** `↪️ <draining or finishing> → <target>`, only while the work is heading for a hold or a handoff, under **Heading for a hold or a handoff** in [the core](standards-coordination.md#banner).
 - **F8 Listening line:** `👂 listening` while the [inbox watcher](standards-listening.md#inbox-watch) is armed, and `🔇 not listening` otherwise, by default, including a session the owner has not asked to listen. Left out only when the work is Finished.
 - **F9 Thread line:** `<role glyph> 🔑 <work-id>`, `<role glyph> <work-id>+<role>` for a seat without the keys, or `🧵 <work-id>`, always last, under **Thread line** in [the core](standards-coordination.md#banner).
@@ -202,7 +202,7 @@ b) <the alternative>
 
 🗺️ roadmap · <n> records · <n> open · <n> done awaiting prune · <n> ideas    F4
 
-📦 package · inbox <n> · outbox <n> · held <n> · awaiting ACK <n>             F5
+📦 package · changes <n> · open <n> · held <n> · meetings <n>                 F5
 
 - [<state>] <what> · <holder> · at <time>                                    F6
 
@@ -454,7 +454,7 @@ A State of play opening a Bootstrap whose last mark was the day before:
 **Roadmap and package lines.** Directly beneath the counts line, each after a blank line, a Full reply's footer carries one line of roadmap counts and one of package counts. In a Full reply on work On hold the counts line is the hold line, with the two lines beneath it, so the counts stay together under the heading and the thread line stays last.
 
 - **Roadmap line:** `🗺️ roadmap · <n> records · <n> open · <n> done awaiting prune · <n> ideas`, from `ki repo roadmap summary` in the repository homing the package. Records is the total, ideas the `triage` horizon, done awaiting prune the done and cancelled records, and open every other record. A count of one takes the singular, as in `1 record` or `1 idea`. A repository with no roadmap shows `🗺️ roadmap · none`.
-- **Package line:** `📦 package · inbox <n> · outbox <n> · held <n> · awaiting ACK <n>`, from the package: inbox counts the lines in `messages.md`'s `## Inbound`, outbox those in its `## Outbound`, held the items under `_index.md`'s `## Held`, and awaiting ACK the Outbound lines no ACK has answered.
+- **Package line:** `📦 package · changes <n> · open <n> · held <n> · meetings <n>`, from the package, as Kris let it be aligned under OLD-SHAPE-HOMES a on 14 November 2026: "you can align whatever you need to align [for] the footer message counts": changes counts its change documents, its sub-packages' included, open the open queries across their Open sections, held the items under `_index.md`'s `## Held`, and meetings the open meetings in the Cairn store's `meetings/` that the work sits in.
 - Both are counted afresh for each Full reply and write their zeros; they are counts, never items. Medium and Short replies carry neither.
 
 **Mode lines.** The listening line, F8, sits below the list and any heading-for line and above the thread line, a blank line before it, in every Full, Bootstrap and Position reply and in a Stop unless the work is Finished.
@@ -482,7 +482,7 @@ With worker, closing a Summary while runs are out:
 
 🗺️ roadmap · 6 records · 4 open · 1 done awaiting prune · 1 idea
 
-📦 package · inbox 1 · outbox 0 · held 0 · awaiting ACK 0
+📦 package · changes 3 · open 1 · held 0 · meetings 0
 
 - [running] work-model · run/work-model · at 23:20
 - [running] tools-burndown fix · work/ki.tools-burndown · at 23:05
@@ -505,7 +505,7 @@ Handoff to supervisor, closing a Summary that sends the work to the owner:
 
 🗺️ roadmap · 6 records · 3 open · 2 done awaiting prune · 1 idea
 
-📦 package · inbox 0 · outbox 1 · held 0 · awaiting ACK 1
+📦 package · changes 3 · open 2 · held 0 · meetings 1
 
 - [with you] WORK-MODEL · owner · at 23:52
 - [with you] WORK-HOME · owner · at 22:58

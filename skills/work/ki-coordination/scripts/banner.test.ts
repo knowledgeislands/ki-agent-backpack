@@ -104,7 +104,7 @@ const LISTEN_OFF_LINE = /^🔇 not listening$/u
 const ROADMAP_LINE =
   /^🗺️ roadmap · (?:none|(?:1 record|(?!1 )\d+ records) · \d+ open · \d+ done awaiting prune · (?:1 idea|(?!1 )\d+ ideas))$/u
 /** The package line under FOOTER-COUNTS, beside the roadmap line in a Full reply's footer. */
-const PACKAGE_LINE = /^📦 package · inbox (\d+) · outbox (\d+) · held \d+ · awaiting ACK (\d+)$/u
+const PACKAGE_LINE = /^📦 package · changes \d+ · open \d+ · held \d+ · meetings \d+$/u
 /** The sync line SYNC-LINE-OFF removed from every banner, read only in past reports. */
 const SYNC_LINE = /^🔄 (?:not )?syncing for [a-z0-9<>-]+$/u
 /** The standard less its Generated surfaces sources, whose text is checked through what they render. */
@@ -178,9 +178,7 @@ const expectBanner = (lines: string[]): void => {
       expect(lines[first + 2]).toMatch(PACKAGE_LINE)
       first += 2
     }
-    const [, , outbox, awaiting] = lines[first]?.match(PACKAGE_LINE) ?? []
-    if (awaiting !== undefined) {
-      expect(Number(outbox)).toBeGreaterThanOrEqual(Number(awaiting))
+    if (PACKAGE_LINE.test(lines[first] ?? '')) {
       expect(lines[first + 1]).toBe('')
       first += 2
     }
@@ -920,9 +918,9 @@ test('the opener launches the session under its thread line', () => {
   expect(standard).not.toContain('claude --name "<label> (<id>)"')
 })
 
-// Under REPLY-FORMAT, agreed on 7 November 2026, a sent line awaiting its ACK is counted in the package line only, no
-// longer listed as the `[awaiting ACK]` item NO-LINK-MARK set on 4 November.
-test('a sent line awaiting its ACK is counted in the package line, never listed as an item', () => {
+// Under REPLY-FORMAT, agreed on 7 November 2026, a sent line awaiting its ACK is no longer listed as the
+// `[awaiting ACK]` item NO-LINK-MARK set on 4 November; since OLD-SHAPE-HOMES a the package line no longer counts it.
+test('a sent line awaiting its ACK is never listed as an item', () => {
   const banner = [
     '### 👤 With supervisor · at 23:52 GMT',
     '',
@@ -930,7 +928,7 @@ test('a sent line awaiting its ACK is counted in the package line, never listed 
     '',
     '🗺️ roadmap · none',
     '',
-    '📦 package · inbox 0 · outbox 1 · held 0 · awaiting ACK 1',
+    '📦 package · changes 2 · open 1 · held 0 · meetings 0',
     '',
     '- [with you] WORK-HOME · owner · at 22:58',
     '',
@@ -956,13 +954,14 @@ test('a sent line awaiting its ACK is counted in the package line, never listed 
 test("a Full reply's footer carries the roadmap and package lines beneath its counts line, and the other layouts neither", () => {
   expect('🗺️ roadmap · 1 record · 0 open · 1 done awaiting prune · 0 ideas').toMatch(ROADMAP_LINE)
   expect('🗺️ roadmap · none').toMatch(ROADMAP_LINE)
-  expect('📦 package · inbox 0 · outbox 0 · held 0 · awaiting ACK 0').toMatch(PACKAGE_LINE)
+  expect('📦 package · changes 0 · open 0 · held 0 · meetings 0').toMatch(PACKAGE_LINE)
   for (const line of [
     '🗺️ roadmap · 1 records · 0 open · 0 done awaiting prune · 0 ideas',
     '🗺️ roadmap · 2 records · 1 open · 0 done awaiting prune · 1 ideas'
   ])
     expect(line).not.toMatch(ROADMAP_LINE)
-  expect('📦 package · inbox 0').not.toMatch(PACKAGE_LINE)
+  expect('📦 package · changes 0').not.toMatch(PACKAGE_LINE)
+  expect('📦 package · inbox 0 · outbox 0 · held 0 · awaiting ACK 0').not.toMatch(PACKAGE_LINE)
   expect(() =>
     expectBanner([
       '### 👤 With supervisor · at 23:52 GMT',
@@ -984,7 +983,7 @@ test("a Full reply's footer carries the roadmap and package lines beneath its co
     '',
     '🗺️ roadmap · 6 records · 4 open · 1 done awaiting prune · 1 idea',
     '',
-    '📦 package · inbox 1 · outbox 0 · held 0 · awaiting ACK 0'
+    '📦 package · changes 3 · open 1 · held 0 · meetings 0'
   ])
   expect(handoff?.[4]).toMatch(ROADMAP_LINE)
   expect(handoff?.[6]).toMatch(PACKAGE_LINE)
@@ -993,7 +992,7 @@ test("a Full reply's footer carries the roadmap and package lines beneath its co
   for (const text of [standard, outputStyle]) {
     expect(text).toContain('`🗺️ roadmap · <n> records · <n> open · <n> done awaiting prune · <n> ideas`')
     expect(text).toContain('`🗺️ roadmap · none`')
-    expect(text).toContain('`📦 package · inbox <n> · outbox <n> · held <n> · awaiting ACK <n>`')
+    expect(text).toContain('`📦 package · changes <n> · open <n> · held <n> · meetings <n>`')
     expect(text).toContain('`ki repo roadmap summary`')
     expect(text).toContain('FOOTER-COUNTS')
   }
