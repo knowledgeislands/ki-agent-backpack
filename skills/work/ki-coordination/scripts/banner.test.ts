@@ -857,6 +857,10 @@ test('an interactive pass ends a timed first reply with the read-back and contex
     expect(text).not.toContain('never in the same one')
     expect(text).toContain('Reply with 1, 2 or 3, or your own words.')
     expect(text).not.toContain('Never ask through a question tool')
+    // Kris, 15 November 2026, under CARD-READBACK a: the read-back says what the answer changes, in card and chat mode.
+    expect(text).toContain('what gets recorded, what gets built and what is left alone')
+    expect(text).toContain('the read-back of the previous answer and what it changes')
+    expect(text).not.toContain('one-line read-back')
   }
   expect(standard).not.toContain('The coordinator never asks through')
   expect(standard).toContain('Where the runtime has no question card, or no way for a timer to wake the coordinator')

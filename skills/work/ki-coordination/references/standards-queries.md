@@ -20,10 +20,10 @@ Queries reach the owner in the Summary by default. After a Summary that lists op
 
 After a Summary that lists open queries, or on the owner's request, the coordinator takes the open queries in an interactive pass; either one alone starts it. The pass after the Summary that closes a pass asks only the queries that pass did not. The pass never batches: one decision at a time, two replies per query, so the owner sends nothing between questions.
 
-1. **First reply.** Start a short background timer, about 5 seconds, such as a background `sleep 5` whose completion wakes the coordinator. End the reply with its last text: the one-line read-back of the previous answer, if any, then the next query's context as ordinary Markdown:
+1. **First reply.** Start a short background timer, about 5 seconds, such as a background `sleep 5` whose completion wakes the coordinator. End the reply with its last text: the [read-back](#the-read-back) of the previous answer, if any, then the next query's context as ordinary Markdown:
 
    ```markdown
-   <one-line read-back of the previous answer>
+   <read-back of the previous answer: what was chosen, then what it changes>
 
    Query <n> of <total>
 
@@ -41,19 +41,21 @@ After a Summary that lists open queries, or on the owner's request, the coordina
    - **Descriptions:** one or two sentences per option saying what it means; the recommended option's opens with `Why:`.
    - **Own words:** the card's free-text box takes the owner's own words, so no option offers them.
    - **Pairs:** two related questions may share one card, each with a short header; otherwise one question per card.
-3. **After the answer.** Log it in the change document it belongs to, then go back to step 1, whose read-back opens the next query's first reply.
-4. **Why.** Orca folds everything in a reply under "Worked for" except its last text, and does not show text written after a card's answer in the same reply. So the context is the first reply's last text, the card stands alone in its own reply, and the read-back travels with the next context. Orca's card also drops line breaks in its title, as reported to Orca, while chat text renders in full above the card.
-5. **At the end of the set.** When the last query is answered and logged, the next reply reads it back, takes a mark and gives the Summary, for a clean baseline and a fresh view.
+3. **After the answer.** Log it in the change document it belongs to, then go back to step 1, whose read-back, saying what was chosen and what it changes, opens the next query's first reply.
+4. **Why.** Orca folds everything in a reply under "Worked for" except its last text, and does not show text written after a card's answer in the same reply. So the context is the first reply's last text, the card stands alone in its own reply, and the read-back, plain chat after the answer, breaks the run of tool calls so the next context renders on its own instead of folding away with them. Orca's card also drops line breaks in its title, as reported to Orca, while chat text renders in full above the card.
+5. **At the end of the set.** When the last query is answered and logged, the next reply reads it back, with what it changes, takes a mark and gives the Summary, for a clean baseline and a fresh view.
 
 **Where things stand** is a few short bullets, enough to decide without scrolling back.
 
-**Plain fallback.** Where the runtime has no question card, or no way for a timer to wake the coordinator, ask in plain chat Markdown alone: one reply with the read-back, the context and **The options**, numbered, each with a bold name and what it means, the recommended one first carrying _(recommended, <confidence> confidence)_ and a one-line _Why:_, closing with "Reply with 1, 2 or 3, or your own words.". Then stop and wait. An unattended window asks in plain text, never through a card, because a card blocks the session.
+<a id="the-read-back"></a>**The read-back** is a short line or two in plain chat: what the owner chose, then what it changes, naming what gets recorded, what gets built and what is left alone. It reads the same in card mode and in the plain fallback.
+
+**Plain fallback.** Where the runtime has no question card, or no way for a timer to wake the coordinator, ask in plain chat Markdown alone: one reply with the read-back of the previous answer and what it changes, the context and **The options**, numbered, each with a bold name and what it means, the recommended one first carrying _(recommended, <confidence> confidence)_ and a one-line _Why:_, closing with "Reply with 1, 2 or 3, or your own words.". Then stop and wait. An unattended window asks in plain text, never through a card, because a card blocks the session.
 
 - Never put the next query's card in the same reply as an answer's read-back.
 - The total is the number of open queries when the pass starts. When an answer raises a new query, add it to the total and say so.
 - Nothing is shortened because it is asked interactively, and each query keeps its [tag](standards-reporting.md#needs-tags).
 
-Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET-MARK, CARD-LOOP and CARD-PATTERN in [the decision register](sources.md#decision-register).
+Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET-MARK, CARD-LOOP, CARD-PATTERN and CARD-READBACK in [the decision register](sources.md#decision-register).
 
 ## Goal-setting pass
 
