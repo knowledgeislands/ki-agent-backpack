@@ -10,17 +10,17 @@ Two layers feed the standard: the **external specs** (shellcheck, bats, keep-a-c
 
 | Tag | Source | Governs | Last reviewed |
 | --- | --- | --- | --- |
-| SHELLCHECK | [ShellCheck][shellcheck] | Shell-tool lint gate (SHELL-LINT) — clean in CI | 2026-07-09 |
-| BATS | [bats-core][bats] | Shell-tool test framework (SHELL-TEST) — `*.bats` + CI run; fatal `[[ ]]` and `!` assertions (SHELL-FATAL) | 2026-07-09 |
-| CHANGELOG | [Keep a Changelog][keepachangelog] | Optional chronological changelog shape | 2026-07-30 |
-| SEMVER | [Semantic Versioning 2.0.0][semver] | `vX.Y.Z` version marker + release tags | 2026-07-09 |
-| XDG | [XDG Base Directory Specification][xdg] | Where the tool writes config/state/cache; the [command-line conventions](standards-cli-conventions.md#configuration-state-and-cache) directory table | 2026-10-18 |
-| POSIX-UTIL | [POSIX.1-2024 Utility Conventions][posix-util] | [Command-line](standards-cli-conventions.md) option syntax, `--`, `-` as standard input | 2026-10-18 |
-| POSIX-FIND | [POSIX `find`][posix-find] and the `cp`, `chown`, `cd` pages | `-H`, `-L` and `-P` symbolic-link options | 2026-10-18 |
+| SHELLCHECK | [ShellCheck][shellcheck] | Shell-tool lint gate (SHELL-LINT) — clean in CI | 2026-11-15 |
+| BATS | [bats-core][bats] | Shell-tool test framework (SHELL-TEST) — `*.bats` + CI run; fatal `[[ ]]` and `!` assertions (SHELL-FATAL) | 2026-11-15 |
+| CHANGELOG | [Keep a Changelog][keepachangelog] | Optional chronological changelog shape | 2026-11-15 |
+| SEMVER | [Semantic Versioning 2.0.0][semver] | `vX.Y.Z` version marker + release tags | 2026-11-15 |
+| XDG | [XDG Base Directory Specification][xdg] | Where the tool writes config/state/cache; the [command-line conventions](standards-cli-conventions.md#configuration-state-and-cache) directory table | 2026-11-15 |
+| POSIX-UTIL | [POSIX.1-2024 Utility Conventions][posix-util] | [Command-line](standards-cli-conventions.md) option syntax, `--`, `-` as standard input | 2026-11-15 |
+| POSIX-FIND | [POSIX `find`][posix-find] and the `cp`, `chown`, `cd` pages | `-H`, `-L` and `-P` symbolic-link options | 2026-11-15 |
 | GNU-CLI | [GNU Coding Standards: Command-Line Interfaces][gnu-cli] | Long options, `--help`, `--version`, the option table | 2026-10-18 |
 | BASH-EXIT | [Bash Reference Manual: Exit Status][bash-exit] | 2 for usage, 126, 127 and 128 + n | 2026-10-18 |
-| CLIG | [Command Line Interface Guidelines][clig] | Streams, prompts, colour, signals, secrets, configuration precedence | 2026-10-18 |
-| NO-COLOR | [NO_COLOR][no-color] | Disabling colour by environment | 2026-10-18 |
+| CLIG | [Command Line Interface Guidelines][clig] | Streams, prompts, colour, signals, secrets, configuration precedence | 2026-11-15 |
+| NO-COLOR | [NO_COLOR][no-color] | Disabling colour by environment | 2026-11-15 |
 
 ## In-house tool repositories
 
@@ -35,6 +35,8 @@ The tool repositories under `knowledgeislands/` provide evidence for house style
 | ALMANAC | `tools-git-almanac` | Read-only Git inspection, reporting boundary, Node artifact delivery | 2026-10-04 |
 
 ## Last review
+
+The external-spec REFRESH of **15 November 2026** re-read nine of the eleven external sources and confirmed them. ShellCheck is unchanged. bats-core 1.14.0, released in July, still supports Bash 3.2, and its gotchas page still says a failing `[[ ]]` mid-test passes on Bash before 4.1 and that `|| false` fixes both that and `!`, which is what SHELL-FATAL asks for. Keep a Changelog is still 1.1.0, and Semantic Versioning still 2.0.0, which still treats a `v` prefix as a tag convention rather than part of the version. The XDG specification is still version 0.8 with the same defaults and the same rule for relative paths, but it has moved to a new address, which is now linked. The POSIX.1-2024 utility guidelines and the `find`, `cp`, `chown` and `cd` pages, clig.dev and `NO_COLOR` read as the command-line conventions say. The two GNU sources, the Coding Standards' command-line page and the Bash manual's Exit Status page, refused every request this run, so they keep 18 October. Being watched: bats-core 1.14.0 now applies `set -e` inside `run` and fails a suite that finds no tests; POSIX `find` has only `-H` and `-L`, with `-P` coming from `cp`, `chown` and the GNU and BSD `find`; clig.dev would let `-v` mean version, where the house rule keeps it for verbose; and all five tool repositories have changed a great deal since the 4 October in-house review, including CI and release workflows that now run only on manual dispatch. The in-house rows were not re-reviewed and keep their dates.
 
 The bounded in-house review of 29 October 2026 records RELEASE-NOTICE: after an authorised release, the releasing territory owner or coordinator informs affected owning work through its messages queue, falling back to receiving State of play when ownership is unclear, with version, change, compatibility, adoption and reply needs. Existing release approval, receiver ownership and routing boundaries remain; no release, consumer selection engine or rollout is performed. External sources were not re-fetched.
 
@@ -53,7 +55,7 @@ The owner-approved diagnostic review on **2026-10-05** compared all five tools' 
 [bats]: https://bats-core.readthedocs.io/
 [keepachangelog]: https://keepachangelog.com/en/1.1.0/
 [semver]: https://semver.org/spec/v2.0.0.html
-[xdg]: https://specifications.freedesktop.org/basedir-spec/latest/
+[xdg]: https://specifications.freedesktop.org/basedir/latest/
 [posix-util]: https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap12.html
 [posix-find]: https://pubs.opengroup.org/onlinepubs/9799919799/utilities/find.html
 [gnu-cli]: https://www.gnu.org/prep/standards/html_node/Command_002dLine-Interfaces.html
