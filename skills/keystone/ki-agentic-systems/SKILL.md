@@ -57,7 +57,7 @@ Pending, in this order and not yet defined here:
 
 1. Channel, drafted as a [proposal](knowledge/industry/industry.channel.md) under CARD-CHANNEL's option A, the industry's words; then integration, under a card for the ways into a session with cross-session messaging.
 2. Tool and instruction file.
-3. The system's own terms (NAMES): rig, actor, work package and role, and backpack, the KI harness's own name, mapped onto plugin. Title, seat and worker go. What is still open is decided in the Cairn summit's change 23. Guild, the first of them, is written below.
+3. The system's own terms (NAMES): rig, actor, work package and role, and backpack, Knowledge Islands' own name for its bundle, mapped onto plugin. Title, seat and worker go. What is still open is decided in the Cairn summit's change 23. Guild, the first of them, is written below.
 
 ### Specification cards
 
@@ -85,7 +85,7 @@ Knowledge Islands' own words, in the `system/` subgraph, each mapped onto the in
 
 ### Diagrams
 
-Resource cards (`diagram.`) point to diagrams of the terms, kept with the harness's living diagrams: [agentic terms by example](knowledge/diagrams/diagram.agentic-terms-by-example.md), an instance diagram from machine to client, and [agentic standards and channels](knowledge/diagrams/diagram.agentic-standards.md), a proposal until the channel card is settled.
+Resource cards (`diagram.`) point to diagrams of the terms, kept with the backpack's living diagrams: [agentic terms by example](knowledge/diagrams/diagram.agentic-terms-by-example.md), an instance diagram from machine to client, and [agentic standards and channels](knowledge/diagrams/diagram.agentic-standards.md), a proposal until the channel card is settled.
 
 ## Adding a card
 
@@ -125,6 +125,6 @@ Explain the named term from its industry card: its purpose and definition first,
 
 ### Mode REFRESH
 
-REFRESH writes only in this skill's canonical source in the `ki-agent-backpack` repository; invoked from an installed copy, stop and name the harness as the place to run it.
+REFRESH writes only in this skill's canonical source in the `ki-agent-backpack` repository; invoked from an installed copy, stop and name the backpack as the place to run it.
 
 Refreshing is a regular activity (TERMS-REFRESH), because vendors' naming keeps changing. Follow the procedure in [the sources](references/sources.md#1-introduction): re-check each vendor source, see how the industry's terms are moving, keep every vendor card's examples and links current, add a vendor card for a new word and retire one a vendor has dropped, and record the review there. A change to an industry card's definition is not a refresh; it goes back to the change that settles cards.

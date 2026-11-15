@@ -8,7 +8,7 @@ Invoked as `pulse capture <url-or-source> [reason]`, `pulse scan <interest-or-qu
 
 Pulse may inspect public content and user-supplied material the user is entitled to provide. It creates no Pulse-owned configuration, subscription, credential store, inbox, log, backlog, bookmark collection, or monitoring record. It does not use authenticated scraping, reopen an unbounded signal history, select work, or implement a recommendation.
 
-Every result is transient unless the user explicitly authorises a durable hand-off and the destination owner is available. Resolve destinations from the current host and repository; never assume a personal Knowledge Base or this Harness is the owner.
+Every result is transient unless the user explicitly authorises a durable hand-off and the destination owner is available. Resolve destinations from the current host and repository; never assume a personal Knowledge Base or this backpack is the owner.
 
 ## Operations
 

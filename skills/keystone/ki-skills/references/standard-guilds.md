@@ -23,7 +23,7 @@ status: in force
 
 ## 1. Introduction
 
-How the skills of a Knowledge Islands harness are grouped into guilds, each led by one skill, with Keystone as the guild of guilds. It sits beside [the Knowledge Islands skill standard](standard-knowledge-islands.md), whose skill shape declares the guild keys this standard gives meaning to. The decisions behind these rules are in [the sources file](sources.md#3-decisions); they were settled in the Cairn summit's change 25.
+How the skills of a Knowledge Islands backpack are grouped into guilds, each led by one skill, with Keystone as the guild of guilds. It sits beside [the Knowledge Islands skill standard](standard-knowledge-islands.md), whose skill shape declares the guild keys this standard gives meaning to. The decisions behind these rules are in [the sources file](sources.md#3-decisions); they were settled in the Cairn summit's change 25.
 
 [Back to contents](#contents)
 
@@ -46,7 +46,7 @@ What a guild is, how one is led, named and joined, and how a session finds its w
 
 - Skill shape, kind, applicability and dependency composition: [the Knowledge Islands skill standard](standard-knowledge-islands.md).
 - Which guild each skill belongs to: each skill's own frontmatter, read into the guild map.
-- How a harness repository lays out and publishes its skills: `ki-repo-backpack`.
+- How a backpack repository lays out and publishes its skills: `ki-repo-backpack`.
 
 [Back to contents](#contents)
 
@@ -110,10 +110,10 @@ A member named before its guild was settled keeps its name until its guild is re
 Membership is declared, never foldered (GUILD-PLACE). Every Knowledge Islands skill names its guild in exact frontmatter, `ki-guild: <guild>`, and a lead also names the guild it leads, `ki-leads: <guild>`. Both keys carry the `ki-` prefix every Knowledge Islands key carries, so neither collides with the Agent Skills specification's (KI-KEYS).
 
 - **A lead is a member of Keystone,** `ki-guild: keystone`, and only `ki-keystone` declares `ki-leads: keystone`.
-- **The folder is storage, not structure.** A harness stores its skills in one folder per guild, named by the guild's machine name, with every lead in `keystone/` (GUILD-FOLDERS); tools and readers take membership from the frontmatter, never from the path.
+- **The folder is storage, not structure.** A backpack stores its skills in one folder per guild, named by the guild's machine name, with every lead in `keystone/` (GUILD-FOLDERS); tools and readers take membership from the frontmatter, never from the path.
 - **A repository-local `ki-self`** belongs to no guild.
 
-The Knowledge Islands skill standard's [skill shape](standard-knowledge-islands.md#42-skill-shape) carries the keys, rubric **KI-SHAPE-22** checks each skill's declaration, and the harness's capability publication checks the collection: every skill declares a guild, every lead is a member of Keystone, and no guild has more than one lead.
+The Knowledge Islands skill standard's [skill shape](standard-knowledge-islands.md#42-skill-shape) carries the keys, rubric **KI-SHAPE-22** checks each skill's declaration, and the backpack's capability publication checks the collection: every skill declares a guild, every lead is a member of Keystone, and no guild has more than one lead.
 
 [Back to contents](#contents)
 
@@ -134,6 +134,6 @@ A lead discloses its guild the way a skill discloses its references: a little at
 
 ### 4.6 The guild map
 
-`ki-keystone` holds the guild map: each guild in a line, with its purpose and its lead, generated from the skills' frontmatter rather than written by hand (KEYSTONE-SKILL). It also names where a session starts in a repository, `ki-repo`, `ki-authoring` and `ki-agentic-systems`, and states Keystone's joining rule, pointing here for the rest of the guild rules. A harness's published skills catalogue groups skills by their declared guild in the same way.
+`ki-keystone` holds the guild map: each guild in a line, with its purpose and its lead, generated from the skills' frontmatter rather than written by hand (KEYSTONE-SKILL). It also names where a session starts in a repository, `ki-repo`, `ki-authoring` and `ki-agentic-systems`, and states Keystone's joining rule, pointing here for the rest of the guild rules. A backpack's published skills catalogue groups skills by their declared guild in the same way.
 
 [Back to contents](#contents)

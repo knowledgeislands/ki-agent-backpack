@@ -20,7 +20,7 @@ links:
 A diagram of what each open standard connects: MCP an [agent][industry.agent] to its tools, ACP one [client][industry.client] to one agent, AHP many clients to one [agent host][industry.agent-host], and A2A an agent to an opaque remote agent in another agentic system. It also draws channels within a system and between systems, and an integration, which are provisional until CARD-CHANNEL and AGENT-KINDS are settled; this card is a proposal until then.
 
 - **Figure:** [agentic-standards.svg][svg], with the [interactive viewer][html].
-- **Source and regeneration:** [its Archify source][src] and its table in the harness's [diagram manifest][manifest].
+- **Source and regeneration:** [its Archify source][src] and its table in the backpack's [diagram manifest][manifest].
 
 The specification cards it points to, [MCP][spec.mcp], [ACP][spec.acp], [AHP][spec.ahp] and [A2A][spec.a2a], are proposals; CARD-CHANNEL took option A, the industry's words, so the diagram's channel labels are to be redrawn in them.
 

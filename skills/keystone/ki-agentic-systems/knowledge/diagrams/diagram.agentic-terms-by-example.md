@@ -28,7 +28,7 @@ links:
 An instance diagram that shows how the terms nest, with real examples: [machines][industry.machine] give [environments][industry.environment], local, remote and cloud; [agent hosts][industry.agent-host] run [agents][industry.agent]; each agent runs a [session][industry.session], with [subagent][industry.subagent] threads inside it; and [clients][industry.client] view the agent hosts.
 
 - **Figure:** [agentic-terms-by-example.svg][svg], with the [interactive viewer][html].
-- **Source and regeneration:** [its Archify source][src] and its table in the harness's [diagram manifest][manifest], which holds the question it answers, what it is traced from, when it goes stale and how to regenerate it.
+- **Source and regeneration:** [its Archify source][src] and its table in the backpack's [diagram manifest][manifest], which holds the question it answers, what it is traced from, when it goes stale and how to regenerate it.
 
 sol's session and the cloud row are illustrative.
 

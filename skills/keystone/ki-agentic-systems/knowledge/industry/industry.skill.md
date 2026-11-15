@@ -25,7 +25,7 @@ Tools, instruction files and plugins are not skills: a tool is an action the har
 
 ## Our conventions
 
-Every skill in the KI harness's `skills/` folder is a skill in this sense. The `ki-skills` skill governs how they are written, and adds the system's own front-matter metadata, such as `ki-kind`, within what the specification allows.
+Every skill in the KI backpack's `skills/` folder is a skill in this sense. The `ki-skills` skill governs how they are written, and adds the system's own front-matter metadata, such as `ki-kind`, within what the specification allows.
 
 ## Next
 

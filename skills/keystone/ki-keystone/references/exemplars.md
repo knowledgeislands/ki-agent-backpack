@@ -10,7 +10,7 @@ ki doctor
 ki diag --full
 ```
 
-The first command detects supported agent runtimes, establishes the user configuration, installs the canonical harness, and activates the core user skills, `ki-keystone` and `ki-work`. `ki-delegation` remains an opt-in standard for durable delegation packets. `ki doctor` checks the resulting environment; `ki diag --full` reports the effective configuration, harness inventory, repository, and XDG paths.
+The first command detects supported agent runtimes, establishes the user configuration, installs the canonical backpack, and activates the core user skills, `ki-keystone` and `ki-work`. `ki-delegation` remains an opt-in standard for durable delegation packets. `ki doctor` checks the resulting environment; `ki diag --full` reports the effective configuration, backpack inventory, repository, and XDG paths.
 
 Running `ki bootstrap` again leaves correctly managed state in place. Use the refresh form after adding or removing a supported agent runtime or after reconciling installed state:
 
@@ -18,7 +18,7 @@ Running `ki bootstrap` again leaves correctly managed state in place. Use the re
 ki bootstrap --refresh
 ```
 
-## Additional compatible harness
+## Additional compatible backpack
 
 ```sh
 ki harness install example/operations
@@ -26,15 +26,15 @@ ki harness list
 ki harness info example/operations
 ```
 
-Installation adds verified capability sources to the user-owned harness set. It does not make every skill in that harness discoverable and does not change a repository.
+Installation adds verified capability sources to the user-owned backpack set. It does not make every skill in that backpack discoverable and does not change a repository.
 
-When exactly one installed harness provides `example-engineering`, activate it for the configured user runtimes:
+When exactly one installed backpack provides `example-engineering`, activate it for the configured user runtimes:
 
 ```sh
 ki skill add example-engineering
 ```
 
-Remove that activation without uninstalling its harness:
+Remove that activation without uninstalling its backpack:
 
 ```sh
 ki skill remove example-engineering
@@ -50,7 +50,7 @@ ki repo skill add ki-work-roadmap --repo .
 
 The command adds the `[skills.ki-work-roadmap]` declaration and managed runtime-discovery links only for that repository. It does not add the skill to user scope.
 
-Native repository maintenance then resolves the repository's declared skills from verified installed harnesses:
+Native repository maintenance then resolves the repository's declared skills from verified installed backpacks:
 
 ```sh
 ki repo educate --repo .
@@ -64,7 +64,7 @@ Remove the repository declaration and its managed repository links without chang
 ki repo skill remove ki-work-roadmap --repo .
 ```
 
-## Canonical harness development
+## Canonical backpack development
 
 Use a checkout only through the explicit development switch:
 

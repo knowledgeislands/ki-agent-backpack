@@ -14,14 +14,14 @@ status: in force
   - [2.2 Out of scope](#22-out-of-scope)
 - [3. Terms and definitions](#3-terms-and-definitions)
 - [4. Rules](#4-rules)
-  - [4.1 Authoritative installed harnesses](#41-authoritative-installed-harnesses)
+  - [4.1 Authoritative installed backpacks](#41-authoritative-installed-backpacks)
   - [4.2 Declarative repository selection](#42-declarative-repository-selection)
   - [4.3 Explicit activation scopes](#43-explicit-activation-scopes)
   - [4.4 Skill access in delegated work](#44-skill-access-in-delegated-work)
   - [4.5 Native repository operations](#45-native-repository-operations)
   - [4.6 First-time bootstrap](#46-first-time-bootstrap)
   - [4.7 Machine readiness for coordinating work](#47-machine-readiness-for-coordinating-work)
-  - [4.8 Local harness development](#48-local-harness-development)
+  - [4.8 Local backpack development](#48-local-backpack-development)
   - [4.9 Managed-state recovery](#49-managed-state-recovery)
   - [4.10 Unowned repository state](#410-unowned-repository-state)
   - [4.11 CI and direct automation](#411-ci-and-direct-automation)
@@ -33,7 +33,7 @@ This standard implements the architecture in [ADR-KI-HARNESS-012](../../../../do
 
 `ki-keystone bootstrap` is guidance for the delivered user setup and capability-activation model. It does not publish a rubric, register a native repository operation, or own public command grammar.
 
-`tools-ki` owns the executable, harness acquisition and inventory, activation, repository resolution, governed-rubric host, transactions, reporting, and diagnostics. Compatible harnesses own their published capability content and domain semantics.
+`tools-ki` owns the executable, backpack acquisition and inventory, activation, repository resolution, governed-rubric host, transactions, reporting, and diagnostics. Compatible backpacks own their published capability content and domain semantics.
 
 Run `ki --help` for the installed command grammar. This standard explains the boundaries those commands preserve.
 
@@ -45,12 +45,12 @@ The user setup and capability-activation model, and the boundaries the `ki` comm
 
 ### 2.1 In scope
 
-- The verified installed harness set, and how harnesses are installed, replaced and uninstalled.
+- The verified installed backpack set, and how backpacks are installed, replaced and uninstalled.
 - Declarative repository selection through `.ki.toml`, and the user and repository activation scopes.
 - Skill access when work is delegated into another repository.
 - Native repository operations and what they never execute.
 - First-time bootstrap, and the machine-readiness checklist for coordinating work.
-- Local harness development, managed-state recovery, unowned repository state, and CI and direct automation.
+- Local backpack development, managed-state recovery, unowned repository state, and CI and direct automation.
 - The separation of user and repository state.
 
 [Back to contents](#contents)
@@ -58,7 +58,7 @@ The user setup and capability-activation model, and the boundaries the `ki` comm
 ### 2.2 Out of scope
 
 - The installed command grammar: `ki --help`.
-- The executable, harness acquisition, activation, repository resolution, rubric host, transactions, reporting and diagnostics: `tools-ki`.
+- The executable, backpack acquisition, activation, repository resolution, rubric host, transactions, reporting and diagnostics: `tools-ki`.
 - The schema, creation and declared coverage of `.ki.toml`: `ki-repo`.
 - What happens from the opener onwards in coordinating work: `ki-coordination`'s Bootstrap.
 
@@ -68,10 +68,10 @@ The user setup and capability-activation model, and the boundaries the `ki` comm
 
 | Term | Definition |
 | --- | --- |
-| **Canonical harness** | `knowledgeislands/ki-agent-backpack`, always registered and installed by `ki bootstrap`, and never uninstalled. **Standard:** this one, [4.1](#41-authoritative-installed-harnesses) |
-| **Activation** | Changing the managed discovery links and configuration that make a skill available, for the user's runtimes or for one repository; separate from installing a harness. **Standard:** this one, [4.3](#43-explicit-activation-scopes) |
+| **Canonical backpack** | `knowledgeislands/ki-agent-backpack`, always registered and installed by `ki bootstrap`, and never uninstalled. **Standard:** this one, [4.1](#41-authoritative-installed-backpacks) |
+| **Activation** | Changing the managed discovery links and configuration that make a skill available, for the user's runtimes or for one repository; separate from installing a backpack. **Standard:** this one, [4.3](#43-explicit-activation-scopes) |
 | **Ready to coordinate** | The result when every step of the machine-readiness checklist passes. **Standard:** this one, [4.7](#47-machine-readiness-for-coordinating-work) |
-| **User state** | The XDG-owned harness registry and data, configuration, cache, state, and user-runtime activation. **Standard:** this one, [4.12](#412-scope-and-safety-separation) |
+| **User state** | The XDG-owned backpack registry and data, configuration, cache, state, and user-runtime activation. **Standard:** this one, [4.12](#412-scope-and-safety-separation) |
 | **Repository state** | `.ki.toml`, repository-scope activation links, and registered native-operation writes. **Standard:** this one, [4.12](#412-scope-and-safety-separation) |
 
 [Back to contents](#contents)
@@ -80,21 +80,21 @@ The user setup and capability-activation model, and the boundaries the `ki` comm
 
 The rules, part by part.
 
-### 4.1 Authoritative installed harnesses
+### 4.1 Authoritative installed backpacks
 
-One verified, XDG-managed harness set exists per user. The canonical `knowledgeislands/ki-agent-backpack` is always registered and installed by `ki bootstrap`; each additional compatible harness is installed explicitly.
+One verified, XDG-managed backpack set exists per user. The canonical `knowledgeislands/ki-agent-backpack` is always registered and installed by `ki bootstrap`; each additional compatible backpack is installed explicitly.
 
-The harness payload, configuration, cache, and mutable state occupy separate XDG-owned locations. `ki diag --full` reports the effective paths.
+The backpack payload, configuration, cache, and mutable state occupy separate XDG-owned locations. `ki diag --full` reports the effective paths.
 
-`ki harness install <harness-id>` acquires or atomically replaces the selected harness from immutable release evidence verified by the installed `ki` release. `ki harness list` and `ki harness info <harness-id>` inspect the installed set.
+`ki harness install <harness-id>` acquires or atomically replaces the selected backpack from immutable release evidence verified by the installed `ki` release. `ki harness list` and `ki harness info <harness-id>` inspect the installed set.
 
-Verified installed compatible harnesses are the sole source of registered capabilities and operations.
+Verified installed compatible backpacks are the sole source of registered capabilities and operations.
 
-A local harness checkout, a cached temporary acquisition, a repository `.ki/` directory, or a runtime-discovery link cannot supply a missing capability or substitute for integrity verification.
+A local backpack checkout, a cached temporary acquisition, a repository `.ki/` directory, or a runtime-discovery link cannot supply a missing capability or substitute for integrity verification.
 
-If a required harness is unavailable, untrusted, or incompatible, the command must fail with recovery guidance before repository or runtime state changes.
+If a required backpack is unavailable, untrusted, or incompatible, the command must fail with recovery guidance before repository or runtime state changes.
 
-The canonical harness cannot be uninstalled. `ki harness uninstall <harness-id>` applies only to an installed non-canonical harness and removes it only after ownership checks pass.
+The canonical backpack cannot be uninstalled. `ki harness uninstall <harness-id>` applies only to an installed non-canonical backpack and removes it only after ownership checks pass.
 
 [Back to contents](#contents)
 
@@ -104,7 +104,7 @@ The canonical harness cannot be uninstalled. `ki harness uninstall <harness-id>`
 
 `ki-repo` owns the file's schema, creation, and declared coverage.
 
-The native resolver physically resolves the selected repository, reads those declarations, validates every explicit dependency, and resolves only the selected skills from verified installed compatible harnesses.
+The native resolver physically resolves the selected repository, reads those declarations, validates every explicit dependency, and resolves only the selected skills from verified installed compatible backpacks.
 
 Dependencies must be declared explicitly; a resolver must not inject a baseline, infer an undeclared skill, or silently rename a declaration.
 
@@ -114,13 +114,13 @@ Missing, incompatible, undeclared, or untrusted skills are fail-closed errors be
 
 ### 4.3 Explicit activation scopes
 
-Harness installation and skill activation are separate. Installing a harness does not activate all its skills.
+Backpack installation and skill activation are separate. Installing a backpack does not activate all its skills.
 
 `ki skill add <skill>` and `ki skill remove <skill>` change only the managed discovery links and configuration for the detected user runtimes.
 
-`ki repo skill add <skill>` and `ki repo skill remove <skill>` change only the selected repository: its `.ki.toml` declaration and managed repository-runtime discovery links. They do not alter user activation or uninstall a harness.
+`ki repo skill add <skill>` and `ki repo skill remove <skill>` change only the selected repository: its `.ki.toml` declaration and managed repository-runtime discovery links. They do not alter user activation or uninstall a backpack.
 
-Activation resolves a bare skill name only when one installed harness provides it. Ambiguous, missing, foreign, altered, or escaping targets fail closed. Existing KI-managed links are re-pointed only through the command's explicit replacement option.
+Activation resolves a bare skill name only when one installed backpack provides it. Ambiguous, missing, foreign, altered, or escaping targets fail closed. Existing KI-managed links are re-pointed only through the command's explicit replacement option.
 
 [Back to contents](#contents)
 
@@ -128,7 +128,7 @@ Activation resolves a bare skill name only when one installed harness provides i
 
 A session can invoke only the user-scope skills (the process skills) and the skills projected into the repository it started in. It does not gain the target repository's declared skills by working there, so a recipient sent into another repository may lack a governance skill that repository declares. Observed for Claude Code (`.claude/skills/`) and Codex (`.agents/skills/`) on 2026-10-04; Cowork has not been verified.
 
-A delegator sending work into another repository therefore names each governance skill the work needs with a readable source: the target's projection (`<target>/.agents/skills/<name>/SKILL.md` or `<target>/.claude/skills/<name>/SKILL.md`) or the canonical harness source. The recipient reads that file when the skill is absent from its own list, rather than discovering the gap by a failed invocation. `ki repo audit --skill <name>` runs from the target repository without runtime invocation. A missing or dangling projection is reported as an activation repair, not repaired by the recipient.
+A delegator sending work into another repository therefore names each governance skill the work needs with a readable source: the target's projection (`<target>/.agents/skills/<name>/SKILL.md` or `<target>/.claude/skills/<name>/SKILL.md`) or the canonical backpack source. The recipient reads that file when the skill is absent from its own list, rather than discovering the gap by a failed invocation. `ki repo audit --skill <name>` runs from the target repository without runtime invocation. A missing or dangling projection is reported as an activation repair, not repaired by the recipient.
 
 [Back to contents](#contents)
 
@@ -136,11 +136,11 @@ A delegator sending work into another repository therefore names each governance
 
 A governance skill may publish a compatible in-process rubric catalogue for its mechanical operations. `ki repo educate`, `ki repo audit`, and `ki repo conform` resolve the selected repository's declarations and execute the applicable catalogues in dependency order through one host-owned model.
 
-Scoped execution may run only a compatible skill declared by that repository. A clean clone therefore needs the verified installed harnesses that provide its declarations before native maintenance can run.
+Scoped execution may run only a compatible skill declared by that repository. A clean clone therefore needs the verified installed backpacks that provide its declarations before native maintenance can run.
 
 AUDIT is read-only. CONFORM validates the complete proposed write set, preserves the physical repository boundary, honours dry-run, commits safe writes transactionally, and re-audits.
 
-The host never executes `scripts/govern.ts`, `.ki/bin` wrappers, copied checkers, a nearby harness checkout, or an ad hoc child process as a fallback.
+The host never executes `scripts/govern.ts`, `.ki/bin` wrappers, copied checkers, a nearby backpack checkout, or an ad hoc child process as a fallback.
 
 [Back to contents](#contents)
 
@@ -150,22 +150,22 @@ The host never executes `scripts/govern.ts`, `.ki/bin` wrappers, copied checkers
 
 - detect supported local agent runtimes;
 - create the KI user configuration when absent;
-- install or restore the verified canonical harness; and
+- install or restore the verified canonical backpack; and
 - activate the core user skills, `ki-keystone` and `ki-work`, for each detected runtime; `ki-keystone` carries this bootstrap guidance and `ki-work` the work subcommands that were once skills of their own.
 
-Repeated bootstrap is idempotent over correctly managed state. `ki bootstrap --refresh` redetects runtimes and rebuilds the recorded installed-harness and managed user-skill inventory from current state.
+Repeated bootstrap is idempotent over correctly managed state. `ki bootstrap --refresh` redetects runtimes and rebuilds the recorded installed-backpack and managed user-skill inventory from current state.
 
-Bootstrap does not declare governance in any repository and does not activate every skill in the canonical harness.
+Bootstrap does not declare governance in any repository and does not activate every skill in the canonical backpack.
 
 [Back to contents](#contents)
 
 ### 4.7 Machine readiness for coordinating work
 
-This checklist is the one path from a fresh machine to a working coordinator. Kris homed it in this skill under BOOT-HOME on 26 October 2026, so that a hook or an output style that fails silently has one accountable place; `ki-coordination`'s Bootstrap begins at the opener and cites this as its "Before the opener" step. How a hook is shipped, installed and registered is set once in the harness hooks README's [How hooks are expected to work](../../../../hooks/README.md#how-hooks-are-expected-to-work); steps 2 and 5 apply it. Run it on a fresh machine, after a chezmoi, harness or runtime change, and whenever a coordinator looks right but drifts. Each step says what to check and who repairs a failure; no step copies or edits files across the source, installed and runtime-discovery surfaces.
+This checklist is the one path from a fresh machine to a working coordinator. Kris homed it in this skill under BOOT-HOME on 26 October 2026, so that a hook or an output style that fails silently has one accountable place; `ki-coordination`'s Bootstrap begins at the opener and cites this as its "Before the opener" step. How a hook is shipped, installed and registered is set once in the backpack hooks README's [How hooks are expected to work](../../../../hooks/README.md#how-hooks-are-expected-to-work); steps 2 and 5 apply it. Run it on a fresh machine, after a chezmoi, backpack or runtime change, and whenever a coordinator looks right but drifts. Each step says what to check and who repairs a failure; no step copies or edits files across the source, installed and runtime-discovery surfaces.
 
 1. **Tools and checkouts.** Workstation tooling has installed `ki`; the Capital and its repositories are cloned at the paths `ki registry` records; each checkout is fetched and level with its remote, because a work package behind its remote bootstraps on stale state. Repair: the workstation tooling for tools, `ki registry` for paths, a fast-forward pull for a checkout behind.
-2. **User environment.** `chezmoi apply` has placed the runtime files for Claude Code and Codex, registered `hooks/coordinator-reminder/coordinator-reminder.sh` from the installed harness at `~/.local/share/ki/harnesses/<org>/<harness>/hooks/`, never from a checkout, at `SessionStart` and `UserPromptSubmit` for each runtime, and linked the Claude Code output style `~/.claude/output-styles/ki-coordinator.md` to the primary harness checkout's `output-styles/ki-coordinator.md`; Codex has no output style, so its binding is the hook alone. Check: `readlink ~/.claude/output-styles/ki-coordinator.md` resolves into that checkout and `chezmoi diff` shows nothing pending for those targets. Repair: chezmoi, never a hand edit under `~/.claude` or `~/.codex`.
-3. **Harness and process skills.** `ki bootstrap` has installed the canonical harness and activated the core skills, `ki-keystone` and `ki-work`, whose `design` subcommand runs the design loop. Check: `ki bootstrap --refresh` runs clean and `ki skill` lists `ki-work`. Repair: `ki`.
+2. **User environment.** `chezmoi apply` has placed the runtime files for Claude Code and Codex, registered `hooks/coordinator-reminder/coordinator-reminder.sh` from the installed backpack at `~/.local/share/ki/harnesses/<org>/<harness>/hooks/`, never from a checkout, at `SessionStart` and `UserPromptSubmit` for each runtime, and linked the Claude Code output style `~/.claude/output-styles/ki-coordinator.md` to the primary backpack checkout's `output-styles/ki-coordinator.md`; Codex has no output style, so its binding is the hook alone. Check: `readlink ~/.claude/output-styles/ki-coordinator.md` resolves into that checkout and `chezmoi diff` shows nothing pending for those targets. Repair: chezmoi, never a hand edit under `~/.claude` or `~/.codex`.
+3. **Backpack and process skills.** `ki bootstrap` has installed the canonical backpack and activated the core skills, `ki-keystone` and `ki-work`, whose `design` subcommand runs the design loop. Check: `ki bootstrap --refresh` runs clean and `ki skill` lists `ki-work`. Repair: `ki`.
 4. **Package-home declarations.** The package-home repository's `.ki.toml` declares `ki-work`, `ki-work-roadmap`, `ki-work-package`, `ki-delegation` and `ki-coordination`; `ki repo skill add` has projected them; and the package-home repository's tracked `.claude/settings.json` selects `"outputStyle": "ki-coordinator"`. Check: `ki repo audit --skill ki-coordination --repo <package-home>` and `ki repo audit --skill ki-work-package --repo <package-home>` pass. Repair: the package-home repository's own committed configuration.
 5. **The hook works.** From the actual package-home checkout, feed the hook a synthetic owner message and read its line back:
 
@@ -183,25 +183,25 @@ A member home must be the existing deliberately approved regular/ad hoc exceptio
 
 [Back to contents](#contents)
 
-### 4.8 Local harness development
+### 4.8 Local backpack development
 
 Installed verified payloads remain authoritative during ordinary use.
 
-`ki dev local set <harness-id> <local-harness-path>` validates and remembers the local checkout without enabling it. `ki dev local on [harness-id]` is the explicit development-only exception for one configured harness; it switches that harness's payload to the recorded source. `ki dev local off [harness-id]` restores the verified archive.
+`ki dev local set <harness-id> <local-harness-path>` validates and remembers the local checkout without enabling it. `ki dev local on [harness-id]` is the explicit development-only exception for one configured backpack; it switches that backpack's payload to the recorded source. `ki dev local off [harness-id]` restores the verified archive.
 
 A nearby checkout is never selected implicitly.
 
-While `ki dev local on [harness-id]` is active the selected checkout is live, so every `ki` invocation on the machine resolves governance through its **working tree**, uncommitted edits included. Governance is then no longer a fixed input: editing the harness changes how `ki repo audit` and `ki repo conform` behave everywhere, immediately, including in sessions that did not make the edit. A rubric criterion can appear, change level, or acquire a new dependency underneath work already in progress, and a repository's audit result can move with no change to that repository at all.
+While `ki dev local on [harness-id]` is active the selected checkout is live, so every `ki` invocation on the machine resolves governance through its **working tree**, uncommitted edits included. Governance is then no longer a fixed input: editing the backpack changes how `ki repo audit` and `ki repo conform` behave everywhere, immediately, including in sessions that did not make the edit. A rubric criterion can appear, change level, or acquire a new dependency underneath work already in progress, and a repository's audit result can move with no change to that repository at all.
 
-The exposure is widest where harness edits and harness-dependent verification overlap in time, which is most likely when either is delegated: a worker editing the harness and a worker auditing repositories against it are, in development mode, sharing one mutable input. Separating them in time removes the interaction, and `ki dev local off [harness-id]` removes it entirely by resolving the run against the verified archive, which is what makes a result reproducible or comparable across sessions.
+The exposure is widest where backpack edits and backpack-dependent verification overlap in time, which is most likely when either is delegated: a worker editing the backpack and a worker auditing repositories against it are, in development mode, sharing one mutable input. Separating them in time removes the interaction, and `ki dev local off [harness-id]` removes it entirely by resolving the run against the verified archive, which is what makes a result reproducible or comparable across sessions.
 
-`ki diag --full` distinguishes the two cases after the fact. `Installation` and the local harness `source` and `mode` lines say whether governance came from a mutable tree, so an audit or conform result that moved while the target repository did not is explained there rather than in the repository.
+`ki diag --full` distinguishes the two cases after the fact. `Installation` and the local backpack `source` and `mode` lines say whether governance came from a mutable tree, so an audit or conform result that moved while the target repository did not is explained there rather than in the repository.
 
 [Back to contents](#contents)
 
 ### 4.9 Managed-state recovery
 
-Harness source, installed payloads, runtime-discovery links, and repository declarations are separate owned surfaces. A command refuses unfamiliar, altered, escaping, or unsafe managed state before it overwrites or removes anything. Treat that refusal as a diagnostic: inspect it with `ki diag --full`, `ki doctor`, or the applicable `ki harness`, `ki skill`, or `ki repo skill` command rather than copying or deleting files across surfaces.
+Backpack source, installed payloads, runtime-discovery links, and repository declarations are separate owned surfaces. A command refuses unfamiliar, altered, escaping, or unsafe managed state before it overwrites or removes anything. Treat that refusal as a diagnostic: inspect it with `ki diag --full`, `ki doctor`, or the applicable `ki harness`, `ki skill`, or `ki repo skill` command rather than copying or deleting files across surfaces.
 
 After a command changes a managed skill link or switches the selected development source, start a new agent session so the runtime re-scans its discovery directories. An already-running session is not evidence that the new activation is loaded.
 
@@ -209,7 +209,7 @@ After a command changes a managed skill link or switches the selected developmen
 
 ### 4.10 Unowned repository state
 
-Native operations execute only the declared catalogues resolved from verified installed harnesses. A repository directory, executable, manifest, or runtime payload does not become an operation source merely by being present.
+Native operations execute only the declared catalogues resolved from verified installed backpacks. A repository directory, executable, manifest, or runtime payload does not become an operation source merely by being present.
 
 Normal repository operations leave unowned material unchanged. They never infer ownership, run it as a fallback, or turn repository maintenance into a broad cleanup operation.
 
@@ -217,19 +217,19 @@ Normal repository operations leave unowned material unchanged. They never infer 
 
 ### 4.11 CI and direct automation
 
-CI and direct automation explicitly establish the verified installed harnesses, then invoke the native `ki repo` operation required by the repository declaration.
+CI and direct automation explicitly establish the verified installed backpacks, then invoke the native `ki repo` operation required by the repository declaration.
 
 They must pin or otherwise verify immutable release evidence according to the installed CLI's trust contract.
 
 If acquisition, verification, registry loading, or declared-skill resolution fails, automation fails rather than falling back to vendored files or a checkout-local executor.
 
-Recovery guidance must identify the failed layer: CLI release, harness acquisition, harness integrity, repository declaration, compatibility, or operation availability.
+Recovery guidance must identify the failed layer: CLI release, backpack acquisition, backpack integrity, repository declaration, compatibility, or operation availability.
 
 [Back to contents](#contents)
 
 ### 4.12 Scope and safety separation
 
-User state comprises the XDG-owned harness registry and data, configuration, cache, state, and user-runtime activation.
+User state comprises the XDG-owned backpack registry and data, configuration, cache, state, and user-runtime activation.
 
 Repository state comprises `.ki.toml`, repository-scope activation links, and registered native-operation writes.
 

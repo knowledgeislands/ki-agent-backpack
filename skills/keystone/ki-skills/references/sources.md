@@ -88,11 +88,11 @@ The Agent Skills [documentation index][agentskills-index] is the inventory autho
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| ki-agent-backpack README — The repo's own `README.md` | Harness structure | 2026-11-15 |
+| ki-agent-backpack README — The repo's own `README.md` | Backpack structure | 2026-11-15 |
 | ADR-KI-HARNESS-SKILLS-004 — Local decision record | Standalone skills and variation | 2026-11-15 |
 | ADR-KI-HARNESS-SKILLS-006 — Local decision record | Kind, taxonomy, and dependencies | 2026-11-15 |
 
-The README is cited only for the harness's four-part structure. Local decision records, rather than the README, support the semantic house claims.
+The README is cited only for the backpack's four-part structure. Local decision records, rather than the README, support the semantic house claims.
 
 [Back to contents](#contents)
 

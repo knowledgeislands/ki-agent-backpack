@@ -50,7 +50,7 @@ The format of a sources file.
 | Term | Definition |
 | --- | --- |
 | **Sources file** | A skill's record of the outside specifications and the decisions its standards rest on. **Standard:** this one, [1](#1-introduction) |
-| **Outside source** | A specification or tool outside the harness that a standard follows, reviewed on a cadence. **Standard:** this one, [4.2](#42-shape) |
+| **Outside source** | A specification or tool outside the backpack that a standard follows, reviewed on a cadence. **Standard:** this one, [4.2](#42-shape) |
 | **Decision** | A choice behind a rule, given an id when the change that makes it lands. **Standard:** this one, [4.4](#44-decisions) |
 
 [Back to contents](#contents)

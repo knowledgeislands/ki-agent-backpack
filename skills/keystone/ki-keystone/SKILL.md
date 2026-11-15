@@ -70,7 +70,7 @@ A skill joins Keystone only when it leads a guild, or when every guild rests on 
 
 - **`ki-skills`** owns what a guild and a lead are, how skills are named and how membership is declared.
 - **Each lead** owns its own guild: which members it has and when to use each.
-- **`ki-repo-backpack`** owns how a harness publishes its skills, including the catalogue in its `skills/README.md`, grouped by the same guilds.
+- **`ki-repo-backpack`** owns how a backpack publishes its skills, including the catalogue in its `skills/README.md`, grouped by the same guilds.
 
 ## Operating modes
 
@@ -78,11 +78,11 @@ For `help`, `-h`, `?` or no recognised mode, explain Keystone, where to start, t
 
 ### Mode AUDIT
 
-Run `ki repo audit --skill ki-keystone --repo <repo>`. In a repository with no skill collection, every criterion is not applicable. In a harness, the audit checks that each skill declares its guild, that each guild has one lead in Keystone, and that the guild map is current; then review the joining rule and each lead's disclosure against [the standard](references/standard-keystone.md).
+Run `ki repo audit --skill ki-keystone --repo <repo>`. In a repository with no skill collection, every criterion is not applicable. In a backpack, the audit checks that each skill declares its guild, that each guild has one lead in Keystone, and that the guild map is current; then review the joining rule and each lead's disclosure against [the standard](references/standard-keystone.md).
 
 ### Mode BOOTSTRAP
 
-`bootstrap` explains first-time Knowledge Islands activation through the `ki` CLI: `ki bootstrap`, installed harnesses, user and repository skill activation, native repository operations, machine readiness for coordinating work, and local harness development. Read [the bootstrap reference](references/mode-bootstrap.md) and follow it; it loads [the bootstrap standard](references/standard-bootstrap.md) and [the exemplars](references/exemplars.md) as needed. It changes no user or repository state. Route exact command and option questions to `ki --help`, and `.ki.toml` coverage to `ki-repo`.
+`bootstrap` explains first-time Knowledge Islands activation through the `ki` CLI: `ki bootstrap`, installed backpacks, user and repository skill activation, native repository operations, machine readiness for coordinating work, and local backpack development. Read [the bootstrap reference](references/mode-bootstrap.md) and follow it; it loads [the bootstrap standard](references/standard-bootstrap.md) and [the exemplars](references/exemplars.md) as needed. It changes no user or repository state. Route exact command and option questions to `ki --help`, and `.ki.toml` coverage to `ki-repo`.
 
 ### Mode CONFORM
 

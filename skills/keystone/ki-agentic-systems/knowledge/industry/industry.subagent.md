@@ -23,7 +23,7 @@ Harnesses vary in how they implement subagents, such as whether a subagent may s
 
 ## Our conventions
 
-The definitions in the KI harness's `subagents/` folder describe roles a subagent takes, such as a reviewer or an explorer; each is run as a subagent of the controlling agent. The `ki-subagents` skill and its bindings say how to run them in a given agent host.
+The definitions in the KI backpack's `subagents/` folder describe roles a subagent takes, such as a reviewer or an explorer; each is run as a subagent of the controlling agent. The `ki-subagents` skill and its bindings say how to run them in a given agent host.
 
 ## Next
 

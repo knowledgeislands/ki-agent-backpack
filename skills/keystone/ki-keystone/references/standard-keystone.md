@@ -41,7 +41,7 @@ The Keystone guild, and the guild tree of any skill collection organised into gu
 ### 2.2 Out of scope
 
 - What a guild, a lead and a member are, names and prefixes, and membership keys: `ki-skills`' [guilds standard](../../ki-skills/references/standard-guilds.md).
-- A harness's published skills catalogue: `ki-repo-backpack`.
+- A backpack's published skills catalogue: `ki-repo-backpack`.
 - Which members a guild has and when to use each: each guild's lead.
 
 [Back to contents](#contents)
@@ -69,7 +69,7 @@ A skill joins Keystone only when it leads a guild, or when every guild rests on 
 
 ### 4.2 One lead for each guild
 
-Once any skill in a repository's `skills/` collection declares a guild, every skill there declares one (GUILD-PLACE). Every guild a skill declares or leads has exactly one lead, and every lead is a member of Keystone, so Keystone lists the leads and each guild opens from its lead (GUILD-LEAD, KEYSTONE-HUB). Rubric **KEYSTONE-1** and **KEYSTONE-2** check it, and the harness's capability publication checks the same of the collection it publishes.
+Once any skill in a repository's `skills/` collection declares a guild, every skill there declares one (GUILD-PLACE). Every guild a skill declares or leads has exactly one lead, and every lead is a member of Keystone, so Keystone lists the leads and each guild opens from its lead (GUILD-LEAD, KEYSTONE-HUB). Rubric **KEYSTONE-1** and **KEYSTONE-2** check it, and the backpack's capability publication checks the same of the collection it publishes.
 
 A lead discloses its guild as the guilds standard sets out: a line of purpose, and each member once with when to use it. Rubric **KEYSTONE-5** reviews it.
 
@@ -79,7 +79,7 @@ A lead discloses its guild as the guilds standard sets out: a line of purpose, a
 
 `ki-keystone` holds the guild map in its SKILL.md, between the `ki-keystone:guild-map` markers: each guild, Keystone first and the rest by name, with its lead and its members, rendered from every skill's `ki-guild` and `ki-leads` and never written by hand (KEYSTONE-SKILL). `ki dev skill generate ki-keystone` renders it, and rubric **KEYSTONE-3** checks the committed map against the frontmatter. Each guild's purpose, in a line, is written beside the map in the same SKILL.md, because frontmatter carries no purpose.
 
-The harness's published catalogue, in its `skills/README.md`, stays with `ki-repo-backpack` and groups every skill by the same declared guild; the guild map is the short form a session reads first.
+The backpack's published catalogue, in its `skills/README.md`, stays with `ki-repo-backpack` and groups every skill by the same declared guild; the guild map is the short form a session reads first.
 
 [Back to contents](#contents)
 

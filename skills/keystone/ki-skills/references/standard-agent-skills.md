@@ -85,7 +85,7 @@ Read this standard from the most portable authority to the most local:
 
 1. **Portable Agent Skills contract** — `SPEC` defines the cross-runtime requirements a skill must meet.
 2. **Established authoring practice** — `AS`, `BP`, `ENG`, and `COMMUNITY` explain effective patterns where the portable contract leaves room for judgment.
-3. **Knowledge Islands house standard** — [the separate KI standard](standard-knowledge-islands.md) defines conventions added by this harness.
+3. **Knowledge Islands house standard** — [the separate KI standard](standard-knowledge-islands.md) defines conventions added by this backpack.
 
 `CC` and `OA` are **runtime overlays**, not additional portable authority levels. They may extend or qualify a portable or KI rule for Claude Code or OpenAI products, but never weaken the portable contract. Runtime-only requirements remain explicitly labelled so a skill can distinguish portability from a supported runtime feature.
 

@@ -60,7 +60,7 @@ None: the graph is one flat list, and every id is a plain name.
 
 ## Extent and limitations
 
-- **What it covers:** the 22 cards the Inbox curated under the Principal's Pillars and dispatched to the harness on 7 November 2026, all proposals but one future concept. The island and pillar on each record where they were staged; their long-term home as knowledge may still be the Principal's Pillars.
+- **What it covers:** the 22 cards the Inbox curated under the Principal's Pillars and dispatched to the backpack on 7 November 2026, all proposals but one future concept. The island and pillar on each record where they were staged; their long-term home as knowledge may still be the Principal's Pillars.
 - **Where the cards sit:** the root folder is the skill's `knowledge/` folder, which holds this root definition and the cards, flat, since the graph has no subgraphs, and nothing but the graph (KNOWLEDGE-FOLDER, GRAPH-FOLDERS).
 - **Beside the graph:** the skill's `references/` folder holds the standard, its migration overlay, the generated rubric and the sources; those files are not cards.
 - **Links left behind:** links to cards outside this graph were removed when the cards moved, their text kept: the Knowledge Islands territory card, the KIG tool card, the assistant repository's `context/` folder, and the Inbox's knowledge-tending cards for knowledge capture, the capture funnel, the change-log graph, knowledge tending and knowledge independence, and its ethical-knowledge card. Each can come back as a shadow node once its graph declares an attachment point.

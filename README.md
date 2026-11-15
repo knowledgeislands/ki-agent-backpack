@@ -4,9 +4,9 @@ The **agent backpack** for Knowledge Islands work — the canonical home for wha
 
 ## Place in the Knowledge Islands ecosystem
 
-The backpack is the canonical source for reusable Knowledge Islands agentic capabilities. It generalises patterns proven in [Knowledge Islands Principal](https://github.com/knowledgeislands/ki-principal) into compatible harnesses, skills, agents, evals, and hooks; it does not originate the Knowledge Islands philosophy or model, implement the public CLI, or contain MCP servers. [tools-ki](https://github.com/knowledgeislands/tools-ki) supplies the `ki` executable platform that installs and hosts those capabilities. MCP servers remain independently released `mcp-*` repositories in the Knowledge Islands territory. Implementation evidence from these repositories may inform future [KI Specifications](https://github.com/knowledgeislands/ki-specifications) after the ecosystem reaches its v1 boundary.
+The backpack is the canonical source for reusable Knowledge Islands agentic capabilities. It generalises patterns proven in [Knowledge Islands Principal](https://github.com/knowledgeislands/ki-principal) into compatible backpacks, skills, agents, evals, and hooks; it does not originate the Knowledge Islands philosophy or model, implement the public CLI, or contain MCP servers. [tools-ki](https://github.com/knowledgeislands/tools-ki) supplies the `ki` executable platform that installs and hosts those capabilities. MCP servers remain independently released `mcp-*` repositories in the Knowledge Islands territory. Implementation evidence from these repositories may inform future [KI Specifications](https://github.com/knowledgeislands/ki-specifications) after the ecosystem reaches its v1 boundary.
 
-Knowledge Islands Principal's [Engineering Practice](https://github.com/knowledgeislands/ki-principal/blob/main/Pillars/Engineering%20Practice/Engineering%20Practice.md) translates the Knowledge Islands philosophy into engineering practice and may inform the harness, without owning its capability semantics. The [KI Website](https://github.com/knowledgeislands/ki-website) may vendor source-labelled harness documentation for public publication, while this repository remains canonical for the capability artifacts it publishes. Knowledge Islands Principal's [ecosystem decision](https://github.com/knowledgeislands/ki-principal/blob/main/Admin/Governance/Decisions/GDR-KI-PRINCIPAL-006-knowledge-islands-ecosystem-fundamentals.md) defines the six authorities and publication flows.
+Knowledge Islands Principal's [Engineering Practice](https://github.com/knowledgeislands/ki-principal/blob/main/Pillars/Engineering%20Practice/Engineering%20Practice.md) translates the Knowledge Islands philosophy into engineering practice and may inform the backpack, without owning its capability semantics. The [KI Website](https://github.com/knowledgeislands/ki-website) may vendor source-labelled backpack documentation for public publication, while this repository remains canonical for the capability artifacts it publishes. Knowledge Islands Principal's [ecosystem decision](https://github.com/knowledgeislands/ki-principal/blob/main/Admin/Governance/Decisions/GDR-KI-PRINCIPAL-006-knowledge-islands-ecosystem-fundamentals.md) defines the six authorities and publication flows.
 
 A backpack is **four parts** — the things an agent is given to work with:
 
@@ -24,19 +24,19 @@ brew install knowledgeislands/tap/ki
 ki bootstrap
 ```
 
-`ki bootstrap` configures detected agent runtimes, installs the verified canonical harness, and activates the core user skills. Repository governance remains explicit through `.ki.toml`, `ki repo skill`, and the native `ki repo` operations. [Install and get started](https://knowledgeislands.info/guidance/using-ki/getting-started/) covers the complete flow; [Use skills](https://knowledgeislands.info/guidance/using-ki/using-skills/) explains how to work with the resulting skills. Harness contributors should see [local harness development](docs/guides/developer/local-harness-development.md).
+`ki bootstrap` configures detected agent runtimes, installs the verified canonical backpack, and activates the core user skills. Repository governance remains explicit through `.ki.toml`, `ki repo skill`, and the native `ki repo` operations. [Install and get started](https://knowledgeislands.info/guidance/using-ki/getting-started/) covers the complete flow; [Use skills](https://knowledgeislands.info/guidance/using-ki/using-skills/) explains how to work with the resulting skills. Backpack contributors should see [local harness development](docs/guides/developer/local-harness-development.md).
 
 ## Documentation
 
-- [Overview](https://knowledgeislands.info/guidance/using-ki/) — a short account of what the harness is, what it does for its owner, and how the parts fit.
+- [Overview](https://knowledgeislands.info/guidance/using-ki/) — a short account of what the backpack is, what it does for its owner, and how the parts fit.
 - [Install and get started](https://knowledgeislands.info/guidance/using-ki/getting-started/) — install `ki`, bootstrap the user environment, activate skills, and govern a repository.
 - [Use skills](https://knowledgeislands.info/guidance/using-ki/using-skills/) — how a skill fires from a plain-language request or slash command.
 - [Choose a skill by outcome](https://knowledgeislands.info/guidance/skills/by-outcome/) — route an intended result to the smallest useful skill or delivery journey.
 - [Capability catalogue](skills/README.md#generated-capability-catalogue) — the generated complete inventory, argument hints, runtime bindings, and formal dependencies.
-- [Onboarding reference](https://knowledgeislands.info/guidance/using-ki/onboarding/) — the detailed installed-harness, activation, and native-governance boundaries.
+- [Onboarding reference](https://knowledgeislands.info/guidance/using-ki/onboarding/) — the detailed installed-backpack, activation, and native-governance boundaries.
 - [Command-line interface](https://knowledgeislands.info/guidance/using-ki/command-line-interface/) — the current end-user `ki` command surface and scope boundaries.
 - [Optional tools](https://knowledgeislands.info/guidance/using-ki/recommended-tools/) — optional user and system tools: chezmoi, headroom-ai, Codex skill discovery, mcporter, and claude.ai connectors.
-- [Local harness development](docs/guides/developer/local-harness-development.md) — use a local checkout as the active canonical harness.
+- [Local harness development](docs/guides/developer/local-harness-development.md) — use a local checkout as the active canonical backpack.
 - [Prompting guides](https://knowledgeislands.info/guidance/prompting/) — how to prompt the models we run, with one source-backed guide per model.
 
 The public website guidance is self-contained. For how it relates to the decisions, specifications, roadmap items, and skill code underneath it — and to the Knowledge Islands concept — see [docs/docs.md](docs/docs.md).

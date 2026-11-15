@@ -21,7 +21,7 @@ An agent is a [model][industry.model] working through an [agent harness][industr
 
 ## Our conventions
 
-The definitions under the KI harness's `subagents/` folder describe roles an agent takes when it is run as a subagent, not agents of their own; the [subagent][industry.subagent] card places them.
+The definitions under the KI backpack's `subagents/` folder describe roles an agent takes when it is run as a subagent, not agents of their own; the [subagent][industry.subagent] card places them.
 
 ## Next
 

@@ -42,7 +42,7 @@ When the long content is a URL rather than prose, convert it to a **reference-st
 
 ### Correct relative link style (no wikilinks in skill files)
 
-In `SKILL.md` files and all harness documents, use standard relative Markdown links. Obsidian wikilinks (`[[…]]`) break when a file is relocated, symlinked, or read outside the base, and the `[[target|display text]]` form contains a literal `|` that Markdown parsers treat as a column separator, silently corrupting table layout. Refer to another skill by its `name` in backticks, never by a file path — skill locations on disk are not stable.
+In `SKILL.md` files and all backpack documents, use standard relative Markdown links. Obsidian wikilinks (`[[…]]`) break when a file is relocated, symlinked, or read outside the base, and the `[[target|display text]]` form contains a literal `|` that Markdown parsers treat as a column separator, silently corrupting table layout. Refer to another skill by its `name` in backticks, never by a file path — skill locations on disk are not stable.
 
 ```markdown
 <!-- Correct: relative Markdown link -->
