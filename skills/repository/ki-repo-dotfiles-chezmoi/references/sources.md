@@ -14,30 +14,30 @@ Three different kinds of claim live in this standard, and they carry different c
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [Reference: source state attributes][attributes] | the `dot_`/`executable_`/`private_`/`.tmpl` naming-prefix system and prefix stacking | 2026-07-12 |
-| [Reference: `.chezmoiignore`][chezmoiignore] | ignore-file syntax, including negation-through-ignored-parents | 2026-07-12 |
-| [Reference: scripts][scripts] | `run_onchange_` script semantics — when chezmoi re-runs a script | 2026-07-12 |
-| [Reference: templating][templating] | `.chezmoidata`/`.chezmoitemplates`, Go-template rendering | 2026-07-12 |
-| [CLI: `chezmoi doctor`][doctor] | built-in diagnostics | 2026-07-12 |
-| [CLI: `chezmoi status` / `managed` / `unmanaged`][status] | drift-checking commands | 2026-07-12 |
-| [CLI: `source-path` / `target-path`][source-path] | resolving between source and target paths | 2026-07-12 |
+| [Reference: source state attributes][attributes] | the `dot_`/`executable_`/`private_`/`.tmpl` naming-prefix system and prefix stacking | 2026-11-15 |
+| [Reference: `.chezmoiignore`][chezmoiignore] | ignore-file syntax, including negation-through-ignored-parents | 2026-11-15 |
+| [User guide: use scripts to perform actions][scripts] | `run_onchange_` script semantics — when chezmoi re-runs a script | 2026-11-15 |
+| [Reference: templating][templating] | `.chezmoidata`/`.chezmoitemplates`, Go-template rendering | 2026-11-15 |
+| [CLI: `chezmoi doctor`][doctor] | built-in diagnostics | 2026-11-15 |
+| [CLI: `chezmoi status` / `managed` / `unmanaged`][status] | drift-checking commands | 2026-11-15 |
+| [CLI: `source-path` / `target-path`][source-path] | resolving between source and target paths | 2026-11-15 |
 
 ## Authoritative (format tooling)
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [TOMLKit README and limitations][tomlkit] | style-preserving TOML document model and its known ordering limitation | 2026-07-16 |
-| [ruamel.yaml round-trip details][ruamel-round-trip] | comment, anchor, merge, and blank-line preservation in the round-trip API | 2026-07-16 |
-| [ruamel.yaml indentation details][ruamel-indentation] | normalization limits for inconsistently indented YAML | 2026-07-16 |
-| [Microsoft `jsonc-parser` utilities][jsonc-parser] | localized path edits, missing-property creation, and applying text edits | 2026-07-16 |
-| [uv: running a script with dependencies][uv-script-dependencies] | `uv run --with` and `--no-project` dependency execution | 2026-07-16 |
+| [TOMLKit README and limitations][tomlkit] | style-preserving TOML document model and its known ordering limitation | 2026-11-15 |
+| [ruamel.yaml round-trip details][ruamel-round-trip] | comment, anchor, merge, and blank-line preservation in the round-trip API | 2026-11-15 |
+| [ruamel.yaml indentation details][ruamel-indentation] | normalization limits for inconsistently indented YAML | 2026-11-15 |
+| [Microsoft `jsonc-parser` utilities][jsonc-parser] | localized path edits, missing-property creation, and applying text edits | 2026-11-15 |
+| [uv: running a script with dependencies][uv-script-dependencies] | `uv run --with` and `--no-project` dependency execution | 2026-11-15 |
 
 ## House convention (n=1 case study — not chezmoi.io-sourced)
 
 | Source                                                          | Governs                   | Last reviewed |
 | --------------------------------------------------------------- | ------------------------- | ------------- |
-| One anonymized personal chezmoi dotfiles repo, audited directly | House patterns†           | 2026-07-12    |
-| A surgical TOML patch in the same repo, reviewed directly       | Config-editing heuristic‡ | 2026-07-14    |
+| One anonymized personal chezmoi dotfiles repo, audited directly | House patterns†           | 2026-11-15    |
+| A surgical TOML patch in the same repo, reviewed directly       | Config-editing heuristic‡ | 2026-11-15    |
 | The owner's agreed script-header shape, applied across the same repo | Script headers‖ | 2026-11-07 |
 
 † Shell-loader and bin/env dispatcher patterns; Pattern A/B decision rule; single-source multi-target templating; agent-instruction layering; audit etiquette.
@@ -50,8 +50,8 @@ Three different kinds of claim live in this standard, and they carry different c
 
 | Source                                                    | Governs                      | Last reviewed |
 | --------------------------------------------------------- | ---------------------------- | ------------- |
-| Inode comparison across a forced `chezmoi apply`, v2.72.0 | Apply-replaces-target claim§ | 2026-08-08    |
-| `rg -a` / `nm -a` over one shipped GUI application binary | Config-surface discovery¶    | 2026-08-08    |
+| Inode comparison across a forced `chezmoi apply`, v2.74.1 | Apply-replaces-target claim§ | 2026-11-15    |
+| `rg -a` / `nm -a` over one shipped GUI application binary | Config-surface discovery¶    | 2026-11-15    |
 
 § That `chezmoi apply` replaces a target rather than editing it in place, and the consequence for an application watching its own config file. Measured on one target on macOS; chezmoi.io does not document the write mechanism, so re-measure before relying on it for another platform or a materially newer chezmoi.
 
@@ -59,21 +59,28 @@ Three different kinds of claim live in this standard, and they carry different c
 
 ## Last review
 
+Scheduled REFRESH, **2026-11-15** — every outside source re-read, the measured claims re-measured on chezmoi v2.74.1, and the case-study repo re-read.
+
+- **chezmoi.io sources**: confirmed. Two pages had moved: `.chezmoiignore` now sits under `special-files/`, and the scripts reference has become the user guide page "Use scripts to perform actions". The attributes link pointed at the target-types page, so it now points at the source state attributes page its row names. The prefixes, `run_onchange_` re-running on changed rendered content, `.chezmoidata` and `.chezmoitemplates`, `doctor`, `status` recursing by default, and `source-path`/`target-path` all read as the standard says. `.chezmoiignore` still does not document negation through an ignored parent, but its rule that every exclude beats every include agrees, and a sandbox test confirmed it.
+- **Format-tooling sources**: confirmed. The ruamel.yaml section anchors are now case-sensitive and were corrected. TOMLKit keeps its one ordering limitation, `jsonc-parser`'s `modify` still creates missing properties, and `uv run --with` and `--no-project` are unchanged.
+- **House-convention and observed sources**: the case-study repo still shows the loader, `bin/`, templating and layering patterns, and its TOML binding still uses tomlkit through `uv`. It is now a `modify_` binding, the standard's Pattern C, rather than a post-apply patch. `chezmoi apply` still replaced the target's inode, and `chezmoi diff <dir>` still printed nothing without `-r`. The standard now records v2.74.1 beside its earlier versions. `rg -a` still recovered setting names from the same application's binary, though `nm -a` yielded little. The script-header row was not re-checked and keeps 7 November.
+- **Watching**: the source state attributes page says prefixes must come in a fixed order for each kind of entry, and allows no `executable_` on a directory. The standard's prefix example, `executable_dot_bash/private_secrets.tmpl`, and its "mode `0600`" for `private_` (the page says it removes group and world permissions) have been raised with the owner rather than changed.
+
 Focused format-editor promotion, **2026-07-16** — the surgical config-editing heuristic proven in the case-study repo was generalized into the standard and bounded by the selected editors' primary documentation.
 
 - **chezmoi.io sources**: not re-fetched in this focused review; their last-reviewed dates remain 2026-07-12.
 - **Format-tooling sources**: TOMLKit, ruamel.yaml, Microsoft `jsonc-parser`, and uv documentation fetched and reviewed 2026-07-16. The standard records documented preservation behavior and explicit limits rather than promising universal byte identity.
 - **House-convention source**: the same single case study, explicitly not treated as a corpus. Its TOML fixture demonstrated a byte-stable no-op round trip and missing-key creation for that file and tool version; those observations became verification requirements, not universal tool guarantees. A version-specific `dasel` limitation and the time-sensitive claim that JSON5 lacks mature tooling were deliberately not promoted. Re-confirm every `[J]` criterion once a second and third chezmoi repo have been audited against this skill; narrow or retire anything that proves case-specific.
 
-[attributes]: https://www.chezmoi.io/reference/target-types/
-[chezmoiignore]: https://www.chezmoi.io/reference/special-files-and-directories/chezmoiignore/
-[scripts]: https://www.chezmoi.io/reference/scripts/
+[attributes]: https://www.chezmoi.io/reference/source-state-attributes/
+[chezmoiignore]: https://www.chezmoi.io/reference/special-files/chezmoiignore/
+[scripts]: https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/
 [templating]: https://www.chezmoi.io/user-guide/templating/
 [doctor]: https://www.chezmoi.io/reference/commands/doctor/
 [status]: https://www.chezmoi.io/reference/commands/status/
 [source-path]: https://www.chezmoi.io/reference/commands/source-path/
 [tomlkit]: https://github.com/python-poetry/tomlkit
-[ruamel-round-trip]: https://yaml.dev/doc/ruamel.yaml/detail/#round-trip-including-comments
-[ruamel-indentation]: https://yaml.dev/doc/ruamel.yaml/detail/#inconsistently-indented-yaml
+[ruamel-round-trip]: https://yaml.dev/doc/ruamel.yaml/detail/#Round_trip_including_comments
+[ruamel-indentation]: https://yaml.dev/doc/ruamel.yaml/detail/#Inconsistently_indented_YAML
 [jsonc-parser]: https://github.com/microsoft/node-jsonc-parser#utilities
 [uv-script-dependencies]: https://docs.astral.sh/uv/guides/scripts/#running-a-script-with-dependencies
