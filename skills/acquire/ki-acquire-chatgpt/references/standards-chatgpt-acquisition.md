@@ -14,7 +14,7 @@ This standard adds ChatGPT's coverage and capability rules to the `ki-acquire` c
 
 ## Readable source
 
-Capture only conversation text the runtime can actually read, or an official account export kept outside Git. Opaque local-store records, interface titles, browser scraping and undocumented private APIs are never conversation content. The executable bridge, the assistant's `ki-muninn chatgpt import` and `chatgpt export`, checks one user-prepared readable capture and writes it as a Knowledge Export Package; it contacts no provider and claims nothing more. An account export is a bounded snapshot, not proof of complete project membership.
+Capture only conversation text the runtime can actually read, or an official account export kept outside Git. Opaque local-store records, interface titles, browser scraping and undocumented private APIs are never conversation content. The executable bridge, the Inbox's `ki-muninn chatgpt import` and `chatgpt export`, checks one user-prepared readable capture and writes it as a Knowledge Export Package; it contacts no provider and claims nothing more. An account export is a bounded snapshot, not proof of complete project membership.
 
 ## Coverage and end point
 

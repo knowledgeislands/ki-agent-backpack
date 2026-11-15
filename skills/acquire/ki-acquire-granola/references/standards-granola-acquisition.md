@@ -2,7 +2,7 @@
 
 ## Scope
 
-This standard adds Granola's completeness and capability rules to the `ki-acquire` common contract. It governs read-only import, the separately confirmed additive Acquired marker and the separately confirmed Triaged-to-Captured move. The assistant's `ki-muninn` executes them as `granola import`, `mark` and `images`, reading the receiving repository's `[muninn.granola]` settings, and its README and the assistant's Granola operator guide own commands, flags and defaults; Knowledge Islands Principal owns the provider-neutral lifecycle.
+This standard adds Granola's completeness and capability rules to the `ki-acquire` common contract. It governs read-only import, the separately confirmed additive Acquired marker and the separately confirmed Triaged-to-Captured move. The Inbox's `ki-muninn` executes them as `granola import`, `mark` and `images`, reading the receiving repository's `[muninn.granola]` settings, and its README and the Inbox's Granola operator guide own commands, flags and defaults; Knowledge Islands Principal owns the provider-neutral lifecycle.
 
 Acquisition keeps no ledger, checkpoint, journal or flagged-identity file. The committed capture is the only record: its front matter carries the source identity, account binding, hashes and folder memberships, and Git history holds earlier bytes. An interrupted run is simply repeated.
 

@@ -8,7 +8,7 @@ Review additionally alongside material changes to the common capture contract.
 - The `ki-acquire-chatgpt` and `ki-acquire-granola` standards own provider fidelity, capability limits and separately authorised mutations.
 - Acquire's README, AGENTS.md and CAPTURE.md, its intake work `personal.reg.assistant-terra`, formerly `personal.reg.acquire-intake`, and that package's design note `design/acquire-structure.md` publish Kris's decisions of 30 October to 1 November 2026 on the port and staging model, the `captured/`, `context/` and `curated/<territory>/<island>/` layout, incremental curation, front-matter card origins, cross-territory copies, meetings as sources, lean captures, held historical captures and future ideas. Acquire's own text is the authority for them for now (ACQ020-OWNER), and Acquire intake is the primary source for the acquisition structure (ACQUIRE-STRUCTURE-SOURCE).
 - tools-ki commit `26c754f3` removed the Granola ledger, and its acquisition specification records the capture as the only record under ACQUIRE-019.
-- tools-ki commit `4faf9724` removed `ki acquire` on 5 November 2026; the assistant's `ki-muninn` README in krisb/assistant now owns executable Granola and ChatGPT acquisition.
+- tools-ki commit `4faf9724` removed `ki acquire` on 5 November 2026; the Inbox's `ki-muninn` README in krisb/inbox now owns executable Granola and ChatGPT acquisition.
 
 ## Last review
 
