@@ -53,7 +53,7 @@ Coordinating work - territory work or Project work, the two coordinating forms o
 
 What stays here is the run side of that relationship. Coordinating work records each owner decision in the change document it belongs to, its [decisions log](#decisions-log), before starting the work it authorises, waits only on its agent host's notice that an agent has finished, under [Concurrency](#concurrency) and [Monitoring](#monitoring), and reports in the `ki-coordination` [owner report](../../../work/ki-coordination/references/standards-reporting.md#owner-report) form, which every agent report, Summary, recap and full summary takes unchanged.
 
-At restart, each piece of coordinating work acts on the important `FIRST-STEP` line of its [message queue](../../../work/ki-coordination/references/standards-messages.md#messages-between-work), `messages.md`, or in a single-file work folder its work file's Messages section, before launching any run. Kris set on 2026-10-17 that "each thread fixes its checkpoint form and adds role on its FIRST-STEP line at restart"; under the work model the work file's front matter carries the level, worker and supervisor that the checkpoint's `role` carried.
+At restart, each piece of coordinating work acts on its first step, the top line of its package's `_index.md` Now, before launching any run, under `ki-coordination`'s [Picking work up](../../../work/ki-coordination/references/standards-bootstrap.md#picking-work-up), as Kris set under FIRST-STEP-HOME a on 15 November 2026; the first step was once a `FIRST-STEP` line in the package's `messages.md`. Under the work model the package's front matter carries the level, worker and supervisor that the old checkpoint's `role` carried.
 
 ## Run packet
 

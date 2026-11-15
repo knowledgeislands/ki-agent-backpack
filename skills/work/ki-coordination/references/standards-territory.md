@@ -19,7 +19,7 @@ Project work coordinates exactly one Project for the owner. It always delegates:
 - **Decisions:** log each owner approval in the change document it belongs to before launching the work it authorises.
 - **State of play:** the [State of play](#territory-work) owns cross-Project priorities, releases and decisions touching more than one Project, and Project work raises those there. Releases follow the `ki-repo-tools` release-on-demand policy: a delivery run never releases by default, and a release run carries the `release` footer for the named release only.
 - **Naming:** where the runtime can name a session, it takes its seat's thread line, such as `⚒️ 🔑 ki.prj.ways-of-working`, under [Work naming](standards-opening.md#work-naming).
-- **Opening:** open Project work only where there is active work to drive, within the State of play's [cap](#territory-work). A dormant, registered Project may have an On hold package solely to receive its first line, under [Seeding](#territory-work).
+- **Opening:** open Project work only where there is active work to drive, within the State of play's [cap](#territory-work). A dormant, registered Project may have an On hold package seeded with its first step, under [Seeding](#territory-work).
 - **Scope:** work only the Project's own records. Work belonging to another Project goes to that Project's `messages.md` through the State of play, the secondary covering both where one does.
 - **Close:** Project work shows Finished only at [Finishing Project work](standards-mark.md#finishing-project-work); until then it moves between the other six states.
 
@@ -52,7 +52,7 @@ Its duties:
   - Keep the ordered queue in the summit's change documents, each piece with its title and opener, and show in the summit's `_index.md` what is active, in Now, and what waits, in Held, as Kris set under OLD-SHAPE-HOMES a on 14 November 2026: "The queue is similar, so basically now it all orientates around the change .md files." Open the next queued piece when an active one goes on hold or finishes.
   - Within one piece, about three background agents run at once and the rest wait in the run queue, under [Coordinator responsiveness](standards-coordination.md#coordinator-responsiveness).
 - **Acceptance first:** at bootstrap and resume, its first call on the owner, before any other query, is the territory's records awaiting acceptance, as one bundle per work under [Acceptance bundles](standards-queries.md#acceptance-bundles).
-- **Seeding:** before Project work opens, the State of play creates or reconciles its package and gives the owner its [opener](standards-opening.md#opening-work), so the session opens with one message. The sender or the State of play may create an absent, registered Project's package solely to queue its first line, within the receiving repository's authority: all five files, with a minimal definition, empty queries and decisions, `state: on-hold`, `hold.reason: paused` and `hold.release: when Kris opens this Project work`. A queued line neither opens nor releases the work.
+- **Seeding:** before Project work opens, the State of play creates or reconciles its package and gives the owner its [opener](standards-opening.md#opening-work), so the session opens with one message. A new package is seeded by its parent node's keyholder, usually the guardian, or by any session the owner points at it on the owner's word, under the `ki-work-package` [writers](../../ki-work-package/references/standard-work-package.md#49-writers): `_index.md` on hold, the first step as the top line of its Now, and a first change document only if there is a change to carry. Others ask the keyholder in a meeting or a conversation. A dormant, registered Project's package is seeded with `hold.reason: paused` and `hold.release: when Kris opens this Project work`; seeding neither opens nor releases the work, as Kris set under FIRST-STEP-HOME a on 15 November 2026.
 - **Flags:** at its own mark, it names by a line in each owning work's `messages.md` every package the `ki-work-package` rubric's [FOLDER](../../ki-work-package/references/rubric.md) items flag, under [Pruning the work folder](standards-mark.md#pruning-the-work-folder).
   - It never names a finished work's package in a line: it closes that package itself under the `ki-work-package` [close-out](../../ki-work-package/references/standard-work-package.md#410-the-tidy), putting the query in the Open section of its own change document for that close-out if a check fails.
   - It never prunes another package otherwise.
@@ -73,7 +73,7 @@ Its duties:
 - When Ways of working finishes, the State of play's `_index.md` description gains method stewardship and its Scope says where method changes go. It keeps a method backlog, dispatches each accepted small improvement as small regular work or into the Project it most affects, with a design review for a change of shape, and sends the `REFRESH` lines itself. A significant change revives Ways of working, or a more targeted Project under the Model theme.
 - Lasting method authority stays in the skills and Decision Records, and the State of play still executes nothing.
 
-Sources: SOP-ACTS-FOR-IDLE, WORK-ROUTING and STEWARD-HOME in [the decision register](sources.md#decision-register).
+Sources: SOP-ACTS-FOR-IDLE, WORK-ROUTING, STEWARD-HOME and FIRST-STEP-HOME in [the decision register](sources.md#decision-register).
 
 ### Coordinating assigned packages
 
@@ -88,7 +88,7 @@ Sources: SOP-ACTS-FOR-IDLE, WORK-ROUTING and STEWARD-HOME in [the decision regis
 - Its field stays the marked STEWARD-FIELD placeholder; add no field and do not reinterpret `worker`.
 - The old steward stops launches and reconciles runs in flight, queued launches and pending writes; the new steward acknowledges and takes their supervision before acting.
 - No absent session, missing binding, quiet session or timeout transfers stewardship. Assignment never changes the holder or releases On hold work.
-- An assigned State of play may use the package's own entry points, tidying included. It may create or adopt a package only for a registered Project within the cap, with a state the actual move justifies. First-line seeding of dormant work stays On hold.
+- An assigned State of play may use the package's own entry points, tidying included. It may create or adopt a package only for a registered Project within the cap, with a state the actual move justifies. A package it seeds for dormant work stays On hold.
 - A package assigned elsewhere receives only lines. A territory hold drains assigned Project packages first and asks any independent steward to drain its own; it never writes another steward's package.
 
 **One Summary across packages.** A territory Summary reports across the packages it stewards, naming the package on every item.

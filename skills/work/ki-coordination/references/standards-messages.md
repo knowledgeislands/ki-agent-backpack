@@ -23,13 +23,13 @@ Any coordinator may message other work; the State of play also spreads common in
 - **Priority order:** lines stand in priority order, top first.
   - An ordinary line goes at the end; a State of play dispatching may place a line where its priority warrants.
   - An important line, `- IMPORTANT · <date> · <TAG> · <sender label> (<sender id>): ...`, goes above every ordinary line and is taken first. Important lines are taken in order, one at a time, never grouped or reordered.
-  - A method change, a `REFRESH` or a stop-and-redirect goes in as an important line, and `FIRST-STEP` lines are important lines. This is how the State of play changes how a work works.
+  - A method change, a `REFRESH` or a stop-and-redirect goes in as an important line. This is how the State of play changes how a work works. A work's first step is never a line: it is the top line of its `_index.md`'s Now.
 - **Sender:** any coordinator in the same Capital.
   - Its only write into the receiver's package is adding its own line, or replacing its own line not yet acted on. It checks that path under the `ki-git` [checks before committing](../../../repository/ki-git/references/standards-git.md#checks-before-committing) rule, commits it alone and pushes at once.
   - The State of play routes the owner's dumps and anything with no owning work, may write into its territory's Project notes to dispatch work, and alone writes to another Capital, through that Capital's State of play.
   - The owner, through the Observatory, is also a sender: it writes one consolidated feedback package, `feedback/<date>-<slug>.md`, into the package of the work that produced the document, and one line linking it, committed together, under the `ki-work-package` [entry points](../../ki-work-package/references/standard-work-package.md#49-writers).
   - Other owner feedback on a document is an ordinary line, added by the owner or written word for word from the owner's words by the work's own steward, naming the owner as speaker.
-  - [Seeding](standards-territory.md#territory-work) is the only exception that creates a package for a first line; otherwise the one-line write boundary holds.
+  - A sender never creates a package: a new package is seeded by its parent node's keyholder, or a session the owner points at it, under [Seeding](standards-territory.md#territory-work), and the one-line write boundary holds.
 - **Receiver:** the coordinator pulls fast-forward, then reads `messages.md` at bootstrap, every pick-up, every owner message, every wake, every Summary and before launching work.
   - It takes `IMPORTANT` lines first, then ordinary lines from the top, grouping similar ordinary lines into one unit of work where that makes sense.
   - It records each line's disposition where it lands, in a change document, its Open section included, or `_index.md`'s Now or Held, then removes the line in a commit that names it and every line grouped with it. That commit is the receipt, not necessarily completion of the requested work.
@@ -55,7 +55,7 @@ Any coordinator may message other work; the State of play also spreads common in
 - **Release notices:** after an authorised release, the releasing territory owner or coordinator sends each affected owning work a release notice in its `messages.md`, or in the receiving State of play's queue where no clear owner exists. It names the released version, the relevant change, compatibility, adoption steps and any reply needed, within the existing sender and cross-territory boundaries. The receiver owns adoption and any genuinely deferred record. The notice is an obligation only: it grants no release authority, consumer selection, rollout execution or foreign-record creation.
 - **Inbox check at each wake:** each wake of the [watcher](standards-listening.md#inbox-watch) compares `messages.md`'s last commit and the harness revision with what was last read, and acts on a new line at once, in queue order, without stopping running work. Nothing adds a wake where none is armed: the State of play acts for work that is not listening under [acting for idle work](standards-territory.md#territory-work), and shows the age of any line it leaves.
 
-Sources: MESSAGES-ASYNC, WORK-QUEUE-PRIORITY, FEEDBACK-AS-MESSAGE, ROUTE-RECEIPT, HANDOFF-AS-MESSAGE, URGENT-CRITERIA, ROUTE-UP, HOW-WE-WORK, LIVENESS, BROADCAST-FORM, BROADCAST-POINTER and STORE-TERRITORY in [the decision register](sources.md#decision-register).
+Sources: MESSAGES-ASYNC, WORK-QUEUE-PRIORITY, FEEDBACK-AS-MESSAGE, ROUTE-RECEIPT, HANDOFF-AS-MESSAGE, URGENT-CRITERIA, ROUTE-UP, HOW-WE-WORK, LIVENESS, BROADCAST-FORM, BROADCAST-POINTER, STORE-TERRITORY and FIRST-STEP-HOME in [the decision register](sources.md#decision-register).
 
 ## Surfaces
 
