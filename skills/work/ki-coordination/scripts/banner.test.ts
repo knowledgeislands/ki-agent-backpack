@@ -663,7 +663,8 @@ test("a reply's structure, which its trigger chooses, sets whether it ends with 
 // relayed as SUMMARY-NOW: the mark is only a timestamp, and one Summary form
 // replaces the Summary, recap and full summary, superseding MARK-STATUS's
 // table after the queries. Its footer's art and lines are Cairn's (FOOTER-AGORA).
-// Under REPLY-FORMAT its section is `## Summary`, with no time.
+// Under REPLY-FORMAT its section is `## Summary`, with no time. Under FOCUS-ROWS
+// (15 November 2026) its status table has a row per live change and one catch-all.
 test('the Summary runs its summary, the two-column status table, the queries in full, then the footer', () => {
   const summary = standard.slice(standard.indexOf('### The Summary'), standard.indexOf('## Coordinating work'))
   const parts = [
@@ -676,14 +677,17 @@ test('the Summary runs its summary, the two-column status table, the queries in 
   const at = parts.map((part) => summary.indexOf(part))
   expect(at.every((index) => index > 0)).toBe(true)
   expect([...at].sort((a, b) => a - b)).toEqual(at)
-  expect(summary).toContain('| Focus | Where it stands |')
+  expect(summary).toContain('| Change | Where it stands |')
+  expect(summary).not.toContain('| Focus |')
   expect(summary).not.toContain('Waiting on you |')
   for (const glyph of ['👤 the owner', '🤖 a worker or run', '🧵 another session', '🌐 the outside world'])
     expect(summary).toContain(glyph)
   expect(summary).toContain('⏳ means queued only')
   expect(summary).not.toContain('⏳ the outside world')
   expect(outputStyle).toContain('🌐 the outside world')
-  expect(summary).toContain('`**\\_emerging**`')
+  expect(summary).toContain('**Not in a change yet**')
+  expect(summary).not.toContain('**\\_emerging**')
+  expect(outputStyle).toContain("in the order `_index.md`'s Changes lists them")
   expect(summary).toContain('FOOTER-AGORA')
   expect(summary).toContain('TABLE-ALIGN')
   for (const verb of ['mark', 'mark only', 'summary', 'summary since 14:00']) {

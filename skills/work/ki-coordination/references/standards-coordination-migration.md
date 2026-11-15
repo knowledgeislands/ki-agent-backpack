@@ -30,7 +30,7 @@ This file holds temporary adjustments to [the coordinating-work standard](standa
 - [Hold commits from before Snoozing](#hold-commits-from-before-snoozing)
 - [Single-file work package shapes](#single-file-work-package-shapes)
 - [Old thread run folders](#old-thread-run-folders)
-- [Pre-focus and numbered decisions-log entries](#pre-focus-and-numbered-decisions-log-entries)
+- [Focus and numbered decisions-log entries](#focus-and-numbered-decisions-log-entries)
 - [The earlier design-note home](#the-earlier-design-note-home)
 - [Design notes named `.design.md`](#design-notes-named-designmd)
 - [Observatory feedback packages](#observatory-feedback-packages)
@@ -171,9 +171,9 @@ These tolerances keep work that has not yet moved to the five-file work package 
 
 A `+/_THREADS/<run>/` folder is checked against its old closed list, `decisions.md` and `<name>.report.md`, for the tolerance window. Adjusts the Flagging item of [Pruning the work folder](standards-mark.md#pruning-the-work-folder).
 
-## Pre-focus and numbered decisions-log entries
+## Focus and numbered decisions-log entries
 
-A decisions-log entry written before the work declared focus areas carries no `focus:` opener. A log written before the work model keeps its numbers as history. Adjusts [Decisions log](standards-decisions.md#decisions-log).
+A decisions-log entry written while the work declared focus areas keeps its `focus:` opener as history; FOCUS-ROWS retired the opener on 15 November 2026. A log written before the work model keeps its numbers as history. Adjusts [Decisions log](standards-decisions.md#decisions-log).
 
 ## The earlier design-note home
 

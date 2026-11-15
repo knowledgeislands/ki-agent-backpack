@@ -48,7 +48,7 @@ const AWAITING_ACCEPTANCE = 'awaiting-review'
 const WORK_SEGMENT = '[a-z0-9]+(?:-[a-z0-9]+)*'
 /** A work id: the territory, then a Project slug or `regular`, then for ad hoc work its slug. */
 const WORK_ID = new RegExp(`^${WORK_SEGMENT}(?:\\.${WORK_SEGMENT}){0,2}$`)
-/** A sub-package's id, `<parent id>.<parent focus id>` under a typed regular or Project package. */
+/** A sub-package's id, `<parent id>.<slug>` under a typed regular or Project package. */
 const SUB_PACKAGE_ID = new RegExp(`^${WORK_SEGMENT}\\.(?:reg|prj)(?:\\.${WORK_SEGMENT}){2}$`)
 /** The work states a work file's `state` takes, as the Work Process note's observatory fields name them. */
 const SETTLED_STATES: ReadonlySet<string> = new Set(['on-hold', 'finished'])

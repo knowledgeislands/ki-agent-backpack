@@ -66,9 +66,9 @@ Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET
 
 ## Goal-setting pass
 
-The owner asks for a goal-setting pass with "goals" or `/ki-coordination goals`. The coordinator walks `_index.md`'s Focus list in order, one area at a time, in the [interactive pass](#interactive-pass)'s two-reply shape: it reads back the area's line, which states its goal, and its place in the order, and asks the owner to confirm, reword, reorder, add or retire it. At the end it writes the steward's own `_index.md` in one commit, logs the owner's words in the change document they belong to and closes with a Status. It strikes no mark and launches nothing.
+The owner asks for a goal-setting pass with "goals" or `/ki-coordination goals`. The coordinator walks the Goals section of `_index.md` in order, one goal at a time, in the [interactive pass](#interactive-pass)'s two-reply shape: it reads back the goal and its place in the order, and asks the owner to confirm, reword, reorder, add or retire it. At the end it writes the Goals section of the steward's own `_index.md` in one commit, logs the owner's words in the change document they belong to and closes with a Status. It strikes no mark and launches nothing.
 
-Sources: GOAL-SETTING in [the decision register](sources.md#decision-register).
+Sources: GOAL-SETTING and FOCUS-ROWS in [the decision register](sources.md#decision-register).
 
 ## Query review
 

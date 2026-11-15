@@ -166,9 +166,9 @@ Each structure has one complete template. A line in angle brackets says what goe
 
 ## Status                                                                    B3
 
-| Focus | Where it stands |
+| Change | Where it stands |
 | --- | --- |
-| **<focus id>** ⭐<br><focus line from _index.md> | **<state in a few words>**<br>🤖 <run work>; next: <step><br>🧵 <other package>: <what>; next: <step><br>🌐 <waiting on whom><br>👤 <with you>: <TAG> |
+| **<NN slug>**<br><what it is, from _index.md's Changes> | **<state in a few words>**<br>🤖 <run work>; next: <step><br>🧵 <other package>: <what>; next: <step><br>🌐 <waiting on whom><br>👤 <with you>: <TAG> |
 
 ## Findings                                                                  B4
 
@@ -373,39 +373,39 @@ The verbs, which the same plain words in chat also do:
 - `/ki-coordination drain`: stop launching while the work stays With worker, let what is running finish, then give a Summary whose `## Summary` carries the drain check's result, `DRAINED`, or `NOT DRAINED` with what remains.
 - `/ki-coordination resume`: release held work under **Release** in [Putting work on hold](standards-holds.md#putting-work-on-hold), as the word `resume` does.
 - `/ki-coordination send`: make the send under [States and moves](standards-coordination.md#states-and-moves): commit and sync the package and give the Summary whose banner names the handoff.
-- `/ki-coordination goals`: walk the Focus list in a [goal-setting pass](standards-queries.md#goal-setting-pass), as the word `goals` does, closing with a Status.
+- `/ki-coordination goals`: walk `_index.md`'s Goals section in a [goal-setting pass](standards-queries.md#goal-setting-pass), as the word `goals` does, closing with a Status.
 - `/ki-coordination receive`: take the owner's receive under [States and moves](standards-coordination.md#states-and-moves), as `with me` does, and commit it with the next send.
 - Every reply that sends is followed by [committing and pushing the package](standards-coordination.md#committing-the-work-folder).
 
 `ki-work recap` keeps only the ordinary session recap; every summary while coordinating is the Summary.
 
-Sources: SUMMARY-MODEL, SUMMARY-NOW, STATUS-FORM, STATUS-FORM-2, STATUS-FORM-3, MARK-STATUS, MARK-DURABLE, STATUS-DESIGN, HOLD-VERBS, REPORT-FORMS-TIDY, COORD-COMMANDS, GOAL-SETTING, RECAP-OWNER and REPLY-FORMAT in [the decision register](sources.md#decision-register).
+Sources: SUMMARY-MODEL, SUMMARY-NOW, STATUS-FORM, STATUS-FORM-2, STATUS-FORM-3, MARK-STATUS, MARK-DURABLE, STATUS-DESIGN, HOLD-VERBS, REPORT-FORMS-TIDY, COORD-COMMANDS, GOAL-SETTING, RECAP-OWNER, REPLY-FORMAT and FOCUS-ROWS in [the decision register](sources.md#decision-register).
 
 ### The Summary
 
 The **Summary** is the coordinator's one summary form, a Full reply. It runs from the last mark, from the session's start where there is none, or from any time the owner names, laid out for about 90 columns unless the owner asks for another width. Where the owner named the window's start, B2's headline names it. It holds, in order, the parts the [structure–part matrix](#structurepart-matrix) gives: the heading block, the Answer where there is one, `## Summary`, `## Status`, `## Findings` while one is open, `## Queries` with every open query in full and the reply block, then the footer, the art unless `no art` was asked for, and the banner with its roadmap and package lines and its thread line. The [interactive pass](standards-queries.md#interactive-pass) follows `## Queries`, keeping each query's tag, Context, Query and Options.
 
-**The status table** has two columns, **Focus** and **Where it stands**, and one row per focus area holding items, in `_index.md`'s Focus order with the primary first. It is the full board, not a delta: every live item appears whether or not it changed.
+**The status table** has two columns, **Change** and **Where it stands**, and one row per change document or sub-package that holds a live item, in the order `_index.md`'s Changes section lists them, then one catch-all row, **Not in a change yet**, for live items no change document holds yet: a run, a Now line or another session's work. It is the full board, not a delta: every live item appears whether or not it changed.
 
-- **Focus cell:** line one is the focus id alone in bold, the underscore escaped, as in `**\_emerging**`, with ⭐ on the primary. Under it, at normal size, the focus's line from `_index.md`'s Focus section, word for word. The Focus column takes at most a third of the table's width, so each focus line stays one short phrase of goal and order; a longer line is shortened in `_index.md`, never reworded in the Summary.
-- **Where it stands:** a bold headline giving the focus's state in a few words, then one line per item, opening with its **holder**, 👤 the owner, 🤖 a worker or run, 🧵 another session or 🌐 the outside world, then what it is and its next step. ⏳ means queued only. The owner's items come last and name their query's tag, so no waiting column is needed. Uncommitted work, unlogged decisions and repositories behind their remote, under the [repository level check](standards-sync.md#repository-level-check), are 🤖 lines in their own row, or the primary's.
-- **`_emerging`** is a usable catch-all focus and gets a row like any other.
+- **Change cell:** line one is the change document's number and slug in bold, as in `**10 skills-review**`, or the sub-package's slug, and the catch-all row's is `**Not in a change yet**`. Under it, at normal size, what the change or sub-package is, a short phrase from its line in `_index.md`'s Changes section. The Change column takes at most a third of the table's width; a longer line is shortened in `_index.md`, never reworded in the Summary.
+- **Where it stands:** a bold headline giving the row's state in a few words, then one line per item, opening with its **holder**, 👤 the owner, 🤖 a worker or run, 🧵 another session or 🌐 the outside world, then what it is and its next step. ⏳ means queued only. The owner's items come last and name their query's tag, so no waiting column is needed. Uncommitted work, unlogged decisions and repositories behind their remote, under the [repository level check](standards-sync.md#repository-level-check), are 🤖 lines in the row of the change they belong to, or the catch-all row.
+- **No row** is given to a change document or sub-package with nothing live, and the catch-all row is left out when it has no item.
 - **Rendering:** a plain Markdown table with `<br>` between the lines of a cell. The owner wants top-aligned cells, which Markdown cannot ask for; Orca's chat view is asked for them under [PERSONAL-DOTFILES-UE-107 (pruned)](https://github.com/krisb/dotfiles/blob/7f5a625/docs/roadmap/PERSONAL-DOTFILES-UE-107-decide-orca-adoption.md), ORCA-TABLE-ALIGN. Until then cells centre.
 
 ```markdown
 ## Status
 
-| Focus | Where it stands |
+| Change | Where it stands |
 | --- | --- |
-| **reporting** ⭐<br>Status-led reports every session can read cold | **Landing in the standard**<br>🤖 summary-model writes the Summary into ki-coordination; next: checks<br>👤 STATUS-WIDTH: whether 90 columns suits every surface |
-| **\_emerging**<br>Side asks that may grow into focus areas | **Waiting outside**<br>🌐 Orca top-aligned table cells; next: Orca's answer |
+| **10 reporting**<br>Status-led reports every session can read cold | **Landing in the standard**<br>🤖 summary-model writes the Summary into ki-coordination; next: checks<br>👤 STATUS-WIDTH: whether 90 columns suits every surface |
+| **Not in a change yet**<br>Runs, Now lines and other sessions' work | **Waiting outside**<br>🌐 Orca top-aligned table cells; next: Orca's answer |
 ```
 
 **The footer** is the Knowledge Islands art, then the banner. The art shows on every Summary and Status unless the owner added `no art`, and on no other reply. What the art and the footer lines carry is for Knowledge Islands Cairn, `ki.cairn`, to decide, liaising with `ki.summit` as the keeper of this standard. Until Cairn publishes its own, the art is the 88-column Knowledge Islands drawing in the [summary-model design note](https://github.com/krisb/dotfiles/blob/29dc51c/+/_WORK/personal.reg.household-terra/_emerging/summary-model.design.md), its scroll saying only KNOWLEDGE ISLANDS, with no host, state, counts, date or time. The art stays as a visible marker and can go later without touching anything else.
 
 **Sources of a Summary:** the package's change documents; every report received since the mark, from its run packet or, once a [tidy](standards-mark.md#pruning-the-work-folder) has removed the packet, from the change documents and records its outcome reached; the parked tags in the change documents; the agent host's view of its agents; record transitions in the work's scope from the Git history of the roadmap paths; and `git log -- work/<territory>/<id>/` in the Cairn store, the logbook. The mark bounds them all. Where a report can no longer be read and its outcome was not homed, the Summary says what it could not read rather than reconstructing it from memory.
 
-Sources: SUMMARY-MODEL, TABLE-ALIGN, FOOTER-AGORA, FOOTER-COUNTS and REPLY-FORMAT in [the decision register](sources.md#decision-register).
+Sources: SUMMARY-MODEL, TABLE-ALIGN, FOOTER-AGORA, FOOTER-COUNTS, REPLY-FORMAT and FOCUS-ROWS in [the decision register](sources.md#decision-register).
 
 ## Banner detail
 

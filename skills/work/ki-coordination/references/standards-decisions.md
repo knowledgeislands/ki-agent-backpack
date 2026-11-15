@@ -12,7 +12,7 @@ Sources: DECISION-NO-NUMBER in [the decision register](sources.md#decision-regis
 
 ### Decisions log
 
-Each owner decision about the work is one timestamped entry in the change document it belongs to, where it belongs in the change, such as its Outline or Steps, in the owner's own words where possible; a point still open, a question, gap or consequence, goes into that change document's Open section instead, under the `ki-work-package` [change documents](../../ki-work-package/references/standard-work-package.md#46-change-documents) rule. Kris set these homes under OLD-SHAPE-HOMES a on 14 November 2026: "The decision log is now the gaps in a given change record… it's the things that are agreed as well as the gaps". A decision whose area has no change document yet opens one. Where the work declares focus areas, the entry's first line opens `focus: <id> · `, under the `ki-work-package` [focus areas](../../ki-work-package/references/standard-work-package.md#47-sub-packages). Entries carry no numbers, and a prompt, brief, record, report, package file or banner describes the decision it acts under in the owner's words and with its date.
+Each owner decision about the work is one timestamped entry in the change document it belongs to, where it belongs in the change, such as its Outline or Steps, in the owner's own words where possible; a point still open, a question, gap or consequence, goes into that change document's Open section instead, under the `ki-work-package` [change documents](../../ki-work-package/references/standard-work-package.md#46-change-documents) rule. Kris set these homes under OLD-SHAPE-HOMES a on 14 November 2026: "The decision log is now the gaps in a given change record… it's the things that are agreed as well as the gaps". A decision whose area has no change document yet opens one. An entry opens with no `focus:` line, since the change document it sits in places it. Entries carry no numbers, and a prompt, brief, record, report, package file or banner describes the decision it acts under in the owner's words and with its date.
 
 The owner's words are whole only on the turn they arrive: a context-compressing proxy, a compaction or a shell read of a transcript can silently rewrite earlier turns. Two rules keep the log faithful on any machine and proxy setting:
 
@@ -24,7 +24,7 @@ Write each entry by hand, and commit and push the change document under [Committ
 - A change document's entries are the work's working record until the change closes, not a Decision Record. Each entry is classed under [decision classes](#decision-classes) and homed under the [life cycle](#decisions-life-cycle), so nothing durable lives only in the package.
 - The run side, that the session logs the owner's decisions and no background agent does, is the `ki-delegation` [decisions log](../../../agentic-systems/ki-delegation/references/standards-background-runs.md#decisions-log)'s.
 
-Sources: DECISION-NO-NUMBER, LOG-NO-LOSS and OLD-SHAPE-HOMES in [the decision register](sources.md#decision-register).
+Sources: DECISION-NO-NUMBER, LOG-NO-LOSS, OLD-SHAPE-HOMES and FOCUS-ROWS in [the decision register](sources.md#decision-register).
 
 ### Decision classes
 

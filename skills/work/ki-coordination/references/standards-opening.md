@@ -43,7 +43,7 @@ Every piece of work above a work item has an **id**, a **slug** and a **title**;
 | Project work | `<territory>.prj.<project>` | `<territory>-prj-<project>` | `<Territory> > <Theme title> > <Project title>`, or `<Territory> > <Project title>` with no theme |
 | Regular work | `<territory>.reg.main` | `<territory>-reg-main` | `<Territory> > Regular work` |
 | Ad hoc work | `<territory>.reg.<slug>` | `<territory>-reg-<slug>` | `<Territory> > <topic>` |
-| Sub-package | `<parent id>.<parent focus id>` | `<parent slug>-<parent focus id>` | `<parent title> > <focus in words>` |
+| Sub-package | `<parent id>.<slug>` | `<parent slug>-<slug>` | `<parent title> > <strand in words>` |
 
 Canonical stored names are `<territory>.summit`, which replaced `<territory>.sop.main`, `<territory>.prj.<project>`, `<territory>.reg.main` and `<territory>.reg.<topic>`; secondaries keep `<territory>.sop.<name>`. The Project slug stays `<project>`.
 
@@ -56,7 +56,7 @@ A member-repository Project session is a seat for its Capital package, not autho
 - **Project:** the `slug` of the Project note under the `ki-work` [Project registry standard](../../../keystone/ki-work/references/standards-project-registry.md), such as `tools-burndown`. No id carries a theme, so relabelling a Project's theme renames nothing.
 - **Secondary name:** the third segment of a [secondary State of play](standards-territory.md#secondary-states-of-play), a short kebab name for what it covers, such as `5ge` or `sites`, chosen by the owner. `sop` is reserved as a second segment, so no Project or ad hoc slug is `sop`.
 - **Ad hoc slug:** chosen when the work first takes a package, by the owner, or proposed by the agent and confirmed: a short kebab name for the subject, led by the system it works on where the subject alone would be ambiguous, as in `acquire-intake` rather than `intake`. It is never `regular`, never a Project slug of the territory, and never carries a date or host.
-- **Sub-package:** a grounded doer's own short-lived package for one focus area of a regular, ad hoc or Project package. Its id is the parent's canonical id with the focus id as a fourth segment, as in `personal.reg.inbox-terra.kiv`, the only four-part id. A sub-package has no sub-package; the folder, slug and title rules apply unchanged. It exists so each package has one worker and one inbox; its parent, writers and fold-back are the work-package standard's [Sub-packages](../../ki-work-package/references/standard-work-package.md#47-sub-packages).
+- **Sub-package:** a grounded doer's own short-lived package for one strand of a regular, ad hoc or Project package. Its id is the parent's canonical id with the sub-package's slug as a fourth segment, as in `personal.reg.inbox-terra.kiv`, the only four-part id. A sub-package has no sub-package; the folder, slug and title rules apply unchanged. It exists so each package has one worker and one inbox; its parent, writers and fold-back are the work-package standard's [Sub-packages](../../ki-work-package/references/standard-work-package.md#47-sub-packages).
 - **Unique and stable:** no two pieces of work in a territory share an id or a slug. The id is set once, when the package is created, and changes only through an owner-approved rename when a Project's slug is renamed; every derived name then changes in the same commit.
 
 **Slug.** The id with each `.` written as `-`: one path component in the run-name alphabet, `[A-Za-z0-9_-]`, which has no dot.
