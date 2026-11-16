@@ -49,10 +49,10 @@ const MEETING_5: RubricItem<MeetingContext> = {
   code: 'MEETING-5',
   title: 'messages are one immutable, clock-named file each',
   description:
-    "Each message is one file in `messages/`, never edited once written, named from `date -u` with its sender's role, and opens with who it is from, who it is for and what it answers, closing with its asks; the caller keeps the open asks in the entry file until each is answered.",
+    "Each message is one file in `messages/`, never edited once written, named from `date -u` with its sender's actor id, and opens with who it is from, who it is for and what it answers, closing with its asks; the caller keeps the open asks in the entry file until each is answered.",
   sources: ['standard-meeting.md#48-messages'],
   judgment: judgment(
-    'Is every message a single unedited file, named from the clock and its role, saying whom it is from and for, what it answers and what it asks?'
+    "Is every message a single unedited file, named from the clock and its sender's actor id, saying whom it is from and for, what it answers and what it asks?"
   )
 }
 
