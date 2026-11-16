@@ -93,10 +93,20 @@ const TIERS: readonly string[] = ['leaders', 'managers', 'makers']
 /**
  * The closed keys of a `workers` entry, its binding under the role standard (ROSTER-SPLIT a, 14 November 2026), and
  * the keys the role migration file tolerates; presence, host, rig and last seen, is the roster's, and listening is read
- * from meetings alone (LISTEN-HOME a, 16 November 2026).
+ * from meetings alone (LISTEN-HOME a, 16 November 2026). The entry points at its actor by typed id, never a copy of its
+ * name (ACTOR-KEY a, 16 November 2026), so a leftover `name` or `actor` warns.
  */
-const WORKER_FIELDS: ReadonlySet<string> = new Set(['name', 'role', 'tier', 'since', 'status'])
-const WORKER_RETIRED_FIELDS: ReadonlySet<string> = new Set(['uri', 'designation', 'focus', 'listening'])
+const WORKER_FIELDS: ReadonlySet<string> = new Set(['id', 'role', 'tier', 'since', 'status'])
+const WORKER_RETIRED_FIELDS: ReadonlySet<string> = new Set([
+  'uri',
+  'designation',
+  'focus',
+  'listening',
+  'name',
+  'actor'
+])
+/** An actor's typed id, `actor:<id>`: a name such as `wayland`, or a seat's title such as `ki.cairn+architect`. */
+const ACTOR_ID = /^actor:[a-z0-9][a-z0-9.+-]*$/
 const WORKER_STATUSES: readonly unknown[] = ['active', 'idle']
 /** Old role and tier words read under the role migration file, each warned on. */
 const ROLE_ALIASES: Readonly<Record<string, string>> = { assistant: 'gatekeeper', keeper: 'warden', steward: 'warden' }
@@ -431,7 +441,7 @@ const roleOutcome = (
 
 /**
  * `workers` under the role standard: a list of live seats, each one catalogue role with its catalogue tier and at most
- * name, since and status. The retired entry keys, focus and listening among them, warn.
+ * the actor's id, since and status. The retired entry keys, focus, listening and name among them, warn.
  */
 const workersChecks = (
   record: ParsedRecord,
@@ -459,7 +469,7 @@ const workersChecks = (
     }
     const unknown = Object.keys(entry).filter((key) => !WORKER_FIELDS.has(key) && !WORKER_RETIRED_FIELDS.has(key))
     if (unknown.length > 0)
-      fail(`${at} carries field(s) outside name, role, tier, since and status: ${unknown.join(', ')}`)
+      fail(`${at} carries field(s) outside id, role, tier, since and status: ${unknown.join(', ')}`)
     const retired = Object.keys(entry).filter((key) => WORKER_RETIRED_FIELDS.has(key))
     if (retired.length > 0) warn(`${at} carries ${retired.join(', ')}, which the role standard drops`)
     const roleResult = roleOutcome(record, entry.role, at, catalogue)
@@ -473,7 +483,8 @@ const workersChecks = (
     else if (expected && resolved !== expected) fail(`${at} tier must be ${expected}, the catalogue tier of ${role}`)
     if ('since' in entry && !validTimestamp(entry.since)) fail(`${at} since must be a UTC RFC 3339 timestamp`)
     if ('status' in entry && !WORKER_STATUSES.includes(entry.status)) fail(`${at} status must be active or idle`)
-    if ('name' in entry && !singleLine(entry.name)) fail(`${at} name must be the actor's name, on one line`)
+    if ('id' in entry && (typeof entry.id !== 'string' || !ACTOR_ID.test(entry.id)))
+      fail(`${at} id must be the actor's typed id, actor:<id>`)
   })
 }
 

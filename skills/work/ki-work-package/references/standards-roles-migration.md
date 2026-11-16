@@ -14,6 +14,8 @@ This file holds the tolerance for the forms [the role standard](standard-roles.m
 | `uri` or `designation` in a `workers` entry | Dropped: a session address stays out of the package | RECORD-2 warns |
 | `focus` in a `workers` entry | Dropped: a package has no focus areas | RECORD-2 warns |
 | `listening` in a `workers` entry | Dropped: listening is read from the meetings a session sits in, and no roster file holds it either (LISTEN-HOME) | RECORD-2 warns |
+| `name` or `actor` in a `workers` entry | `id: actor:<id>`, the holding actor's typed id; the entry passes ids, never copies (ACTOR-KEY) | RECORD-2 warns |
+| `actor: <id>` or `titles` in a roster file | `id: actor:<id>` with `type: actor`; titles are read from the tree's `workers` entries (ACTOR-KEY) | No checker reads roster files; a reader takes the old keys as shown |
 | `covers` in `_index.md` | Dropped: the tree beneath a node, read from `parent`, is its register (COVERS-REGISTER) | RECORD-2 warns |
 | ⭐ or 🔧 in a glyph run, as in `🦉⭐ 🔑 personal.reg.inbox-terra` | The role glyph alone; neither is a role, and ⭐ and 🔧 leave the thread line under MARKS-RETIRE | The footer hook warns |
 | `🧵 🔑 <work-id>` | `🧵 <work-id>`, or the role glyph's key form once the seat has a role | The footer hook warns |

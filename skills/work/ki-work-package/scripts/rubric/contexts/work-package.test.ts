@@ -310,7 +310,7 @@ describe('RECORD-2 schema', () => {
       {
         fields: ['workers:\n  - role: warden\n    tier: managers\n    host: orca']
       },
-      'outside name, role, tier, since and status'
+      'outside id, role, tier, since and status'
     ],
     [
       'a parent outside the territory',
@@ -438,7 +438,9 @@ describe('RECORD-2 schema', () => {
     ['a worker focus', { fields: ['workers:\n  - role: warden\n    tier: managers\n    focus:\n      - pilot'] }],
     ['the old tier enablers', { fields: ['workers:\n  - role: warden\n    tier: enablers'] }],
     ['a worker listening', { fields: ['workers:\n  - role: warden\n    tier: managers\n    listening: off'] }],
-    ['a leftover covers', { fields: ['covers: []'] }]
+    ['a leftover covers', { fields: ['covers: []'] }],
+    ['a worker name', { fields: ['workers:\n  - name: Wayland\n    role: warden\n    tier: managers'] }],
+    ['a worker actor', { fields: ['workers:\n  - actor: wayland\n    role: warden\n    tier: managers'] }]
   ]
   for (const [name, change] of tolerated)
     test(`${name} warns under the role migration file`, () => {
@@ -447,9 +449,16 @@ describe('RECORD-2 schema', () => {
       expect(messages(outcomes)).toContain('standards-roles-migration.md')
     })
 
-  test('a worker binding with a name passes', () => {
-    const binding = 'workers:\n  - name: Wayland\n    role: warden\n    tier: managers\n    status: active'
+  test("a worker binding with its actor's typed id passes", () => {
+    const binding = 'workers:\n  - id: actor:wayland\n    role: warden\n    tier: managers\n    status: active'
     expect(statuses(run(RECORD, 'RECORD-2', context(store({ fields: [binding] }))))).toEqual(['PASS'])
+  })
+
+  test('a worker id that is not a typed actor id fails', () => {
+    const binding = 'workers:\n  - id: wayland\n    role: warden\n    tier: managers'
+    expect(messages(run(RECORD, 'RECORD-2', context(store({ fields: [binding] }))))).toContain(
+      "id must be the actor's typed id"
+    )
   })
 
   test('every outcome level is one RECORD-2 declares', () => {

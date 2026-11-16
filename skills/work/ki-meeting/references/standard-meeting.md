@@ -144,27 +144,24 @@ The caller makes the folder and writes `_index.md`. Setting a meeting up and bri
 
 ```yaml
 ---
-meeting: cairn.wayfinder.designs   # the folder's name
+id: meeting:cairn.wayfinder.designs  # meeting:<folder's name>
+type: meeting
+name: Wayfinder designs            # optional, a human label, never a copy of the id
 kind: workshop                     # workshop | review | retrospective
 sitting: C                         # the current or last sitting
-chair: warden                      # the chair's role; the caller's, unless the owner started another session to chair
+chair: actor:wayland               # the chair's actor id; the caller's, unless the owner started another session to chair
 status: open                       # open | adjourned | closed, the meeting closed after its last sitting
 opened: 2026-11-13T22:29Z          # when this sitting opened, from date -u
 closed:                            # when this sitting was adjourned or the meeting closed
 participants:                      # those who answered this sitting's roll call
-  - role: warden                   # its messages' <from>, lower-case kebab-case
-    name: Wayland                  # its name, where the owner has given one
-    host: orca                     # its agent host, spelt as the roster spells hosts
-    rig: sol
-    route: host                    # host | folder | exchange, as 4.6 numbers them
-  - role: information-architect
-    host: claude-desktop
-    rig: sol
+  - id: actor:wayland              # the participant's actor id, naming its roster file
+    route: folder                  # host | folder | exchange, as 4.6 numbers them
+  - id: actor:ki.cairn+information-architect
     route: folder
 ---
 ```
 
-The `chair` field (CHAIR-FIELD, Kris, 14 November 2026) names the chair by its role. A tool reads this block and the message file names ([4.8](#48-messages)), and nothing else in the folder. The owner is not listed; the owner is at every meeting. Then, in order:
+Every resource passes ids, never copies (ACTOR-KEY, Kris, 16 November 2026): the block opens with the meeting's own `id`, `meeting:<folder's name>`, then `type`, an optional human `name` and `kind`, and every reference in it is a typed id. The `chair` field (CHAIR-FIELD, Kris, 14 November 2026) names the chair by its actor id. A participant carries only its `id` and its `route`: its name, host and rig are its roster file's, and the role it takes is the agenda's. Every seat in a meeting has a roster file in the store; one with no name is named by its title, `<work id>+<role>`, as `actor:ki.cairn+information-architect`, and that file holds its host and rig. A tool reads this block and the message file names ([4.8](#48-messages)), and nothing else in the folder. The owner is not listed; the owner is at every meeting. Then, in order:
 
 1. **Summary,** kept current: where the meeting stands, the decisions it has led to, and what comes next.
 2. **Brief:** why the meeting exists, what it should produce, the change document that will hold its decisions, and what participants work from.
@@ -203,7 +200,7 @@ How participants reach each other, three levels, the first that works:
 ### 4.8 Messages
 
 1. **One file per message** in `messages/`, never edited once written.
-2. **Named** `<YYYYMMDD>T<HHMM>Z-<from>-<subject>.md` from `date -u`, so the folder lists in order and two messages in one minute stay distinct. `<from>` is the sender's `role` in the entry file's front matter ([4.5](#45-the-entry-file)), exactly, since tools read who posted when from the name; a message the owner carries keeps the role of the participant it is from.
+2. **Named** `<YYYYMMDD>T<HHMM>Z-<from>-<subject>.md` from `date -u`, so the folder lists in order and two messages in one minute stay distinct. `<from>` is the sender's role as the agenda gives it ([4.5](#45-the-entry-file)), lower-case kebab-case and exactly, since tools read who posted when from the name; a message the owner carries keeps the role of the participant it is from.
 3. **Each opens** with who it is from, who it is for, and the message it answers, if any; then what changed, in plain words; the files it points to, by their path in the folder; and a closing `Asks:` naming who must do what.
 4. **Open asks.** The caller keeps them in the entry file and ticks each off when it is answered, so nothing asked is lost.
 5. **Against crossing** (TRIAL-LESSONS, Kris, 14 November 2026). A participant that needs the others to wait posts a one-line "hold"; each board or other piece of output is rendered once per review pass; and new messages are read in the order of their times.
