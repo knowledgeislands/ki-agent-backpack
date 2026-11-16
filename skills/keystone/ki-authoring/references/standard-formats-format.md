@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-09T21:36:32Z
+revised: 2026-11-16T17:04:00Z
 status: in force
 ---
 
@@ -46,6 +46,7 @@ The parts every type of document shares.
 
 - What is particular to one type: its own format standard says it.
 - Where a document lives: each owner says.
+- Files whose shape another owner already sets take no format type: a skill's `SKILL.md`, whose front matter the Agent Skills specification and `ki-skills` set; a generated `rubric.md`; and a knowledge graph's cards, whose `type` names their card type.
 
 [Back to contents](#contents)
 
