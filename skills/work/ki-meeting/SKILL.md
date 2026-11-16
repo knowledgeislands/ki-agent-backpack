@@ -29,7 +29,7 @@ Use a meeting when sessions that cannot reach each other through their own agent
 - **Routes, the first that works:** the agent host's own messaging; a meeting folder, reached on the file system or through the participant's own connector to the repository's host; exchange mode, the owner carrying prompts both ways, only as the exception.
 - **One caller** calls, keeps and closes the meeting, and is the only session of its agent host in the room; the owner owns it, and the owner's word decides.
 - **The folder** is `meetings/<node id>/<date>-<slug>/` in the store that holds the work tree, today the Cairn store: `_index.md` (summary, brief, agenda, boundaries, open asks, minutes), `messages/`, `brief/`, an output folder named for the work, and `notes/`.
-- **Sittings,** A, B, C and on, each with a stated end and a closing call before it, opened by a roll call, kept by listening and 15-minute check-ins, and adjourned with minutes and a resume note.
+- **Sittings,** A, B, C and on, each with a stated end and a closing call before it, opened by a roll call, kept by listening and 15-minute check-ins while work runs, and adjourned with minutes and a resume note.
 - **The meeting holds the conversation, never the decision.** Each decision the owner takes goes into its change document as it is taken; each choice left to the owner goes into that document's open questions.
 
 ## Relationship boundary

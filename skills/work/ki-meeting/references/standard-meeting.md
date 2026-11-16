@@ -215,7 +215,7 @@ How participants reach each other, three levels, the first that works:
 2. **A host without a lasting shell** listens by scheduled wake-ups instead, and otherwise re-reads `messages/` when the owner prompts it and before each new piece of work.
 3. **The agenda states** each participant's interval, the longest a message waits for it, and when its listening ends.
 4. **Sessions outside the room** do not watch it.
-5. **Check-ins.** Every 15 minutes the caller posts `<caller> → all: check-in` in the folder and sends each participant outside the room a short note by its host's messaging; each replies with what is done, what it is doing and what blocks it, or "nothing". A participant that wrote in the last 15 minutes may skip it.
+5. **Check-ins.** While work is running, as in a workshop's round, every 15 minutes the caller posts `<caller> → all: check-in` in the folder and sends each participant outside the room a short note by its host's messaging; each replies with what is done, what it is doing and what blocks it, or "nothing". A participant that wrote in the last 15 minutes may skip it. Between rounds, with no work running, the caller sends a check-in only when there is news, since an empty one wakes every participant for nothing (CHECKIN-QUIET, Kris, 16 November 2026).
 
 [Back to contents](#contents)
 

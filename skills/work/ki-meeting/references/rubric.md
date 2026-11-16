@@ -51,7 +51,7 @@ A meeting is the right channel, kept in the standard folder, reached by the firs
   - _Review prompt:_ Is every message a single unedited file, named from the clock and its role, saying whom it is from and for, what it answers and what it asks?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-- **MEETING-6 [J] — the caller listens and checks in while the meeting is open** — The caller watches the whole folder while the meeting is open, the agenda states each participant's listening interval, and the caller posts a check-in every 15 minutes, which each participant answers unless it wrote in that time. (standard-meeting.md#49-listening-and-check-ins)
+- **MEETING-6 [J] — the caller listens and checks in while the meeting is open** — The caller watches the whole folder while the meeting is open, the agenda states each participant's listening interval, and the caller posts a check-in every 15 minutes while work is running, which each participant answers unless it wrote in that time, and between rounds only when there is news. (standard-meeting.md#49-listening-and-check-ins)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ Did the caller listen to the whole folder, did the agenda state each interval, and were check-ins sent as the standard sets?
   - _Outcomes:_ conforming; gap; exclusion

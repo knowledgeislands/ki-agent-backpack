@@ -60,7 +60,7 @@ const MEETING_6: RubricItem<MeetingContext> = {
   code: 'MEETING-6',
   title: 'the caller listens and checks in while the meeting is open',
   description:
-    "The caller watches the whole folder while the meeting is open, the agenda states each participant's listening interval, and the caller posts a check-in every 15 minutes, which each participant answers unless it wrote in that time.",
+    "The caller watches the whole folder while the meeting is open, the agenda states each participant's listening interval, and the caller posts a check-in every 15 minutes while work is running, which each participant answers unless it wrote in that time, and between rounds only when there is news.",
   sources: ['standard-meeting.md#49-listening-and-check-ins'],
   judgment: judgment(
     'Did the caller listen to the whole folder, did the agenda state each interval, and were check-ins sent as the standard sets?'
