@@ -485,7 +485,16 @@ describe('RECORD-2 schema', () => {
     ['a worker actor', { fields: ['workers:\n  - actor: wayland\n    role: warden\n    tier: managers'] }],
     [
       'a seat id in the earlier + form',
-      { fields: ['workers:\n  - id: actor:ki.cairn+architect\n    role: architect\n    tier: makers'] }
+      {
+        fields: [
+          'workers:\n  - id: actor:ki.cairn+information-architect\n    role: information-architect\n    tier: makers'
+        ]
+      }
+    ],
+    ['the split role architect', { drop: ['role'], fields: ['role: architect'] }],
+    [
+      'an architect seat',
+      { fields: ['workers:\n  - id: actor:ki.cairn@architect\n    role: architect\n    tier: makers'] }
     ]
   ]
   for (const [name, change] of tolerated)
@@ -501,8 +510,11 @@ describe('RECORD-2 schema', () => {
   })
 
   test("a worker binding with a seat's id passes", () => {
-    for (const id of ['actor:ki.cairn@architect', 'actor:hnr.summit+website@information-architect']) {
-      const binding = `workers:\n  - id: ${id}\n    role: architect\n    tier: makers`
+    for (const [id, role] of [
+      ['actor:ki.cairn@information-architect', 'information-architect'],
+      ['actor:hnr.summit+website@technical-architect', 'technical-architect']
+    ]) {
+      const binding = `workers:\n  - id: ${id}\n    role: ${role}\n    tier: makers`
       expect(statuses(run(RECORD, 'RECORD-2', context(store({ fields: [binding] }))))).toEqual(['PASS'])
     }
   })
@@ -582,12 +594,15 @@ test('the role catalogue is read from the role standard', () => {
     'guildmaster',
     'journeyman',
     'illustrator',
-    'architect'
+    'information-architect',
+    'technical-architect'
   ])
   const glyphs = [...catalogue.values()].map((role) => role.glyph)
   expect(new Set(glyphs).size).toBe(glyphs.length)
   expect(catalogue.get('housekeeper')).toEqual({ tier: 'managers', glyph: '🏠' })
   expect(catalogue.get('quartermaster')).toEqual({ tier: 'leaders', glyph: '🧰' })
   expect(catalogue.get('guardian')).toEqual({ tier: 'leaders', glyph: '🪨' })
-  expect(catalogue.get('architect')?.tier).toBe('makers')
+  expect(catalogue.get('information-architect')).toEqual({ tier: 'makers', glyph: '📐' })
+  expect(catalogue.get('technical-architect')).toEqual({ tier: 'makers', glyph: '🏗️' })
+  expect(catalogue.has('architect')).toBe(false)
 })

@@ -87,7 +87,7 @@ Every institution in this model exists to serve its purpose and the people it se
 | --- | --- | --- | --- | --- |
 | leaders | Within their territory; matters that cross territories go to the leaders together | Kris, with queries | governor | councillor, quartermaster, guardian |
 | managers | Within standing grants; exceptions go up to the territory's leaders | The territory's leaders | warden | housekeeper, gatekeeper, librarian, guildmaster |
-| makers | Within the hand-off they were given | The seat that handed the work over, never Kris directly | journeyman | illustrator, architect |
+| makers | Within the hand-off they were given | The seat that handed the work over, never Kris directly | journeyman | illustrator, information-architect, technical-architect |
 
 Each tier has one default role, and every other role in the tier is a specialisation of it: the housekeeper is the warden of a machine, the gatekeeper of what comes in and goes out, the librarian of the library and the guildmaster of the standards and skills, as Kris took ROLE-DEFAULTS a on 11 November 2026.
 
@@ -110,7 +110,10 @@ Every seat takes exactly one role from this table, and this table is the one pla
 | guildmaster | managers | ⚖️ | This catalogue and the skills that capture how we work | Judges roles alone, since Kris and the council may overturn it, or builds the tools and does the work its skills govern |
 | journeyman | makers | 🐝 | A handed-off unit of general making, reported to the seat that handed it over | Takes work no seat handed it, or reports to Kris directly |
 | illustrator | makers | 🎨 | Visual design and its artefacts for a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
-| architect | makers | 📐 | Information architecture: the structure, naming and models of a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
+| information-architect | makers | 📐 | Information architecture: the structure, naming, navigation and models of a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
+| technical-architect | makers | 🏗️ | Technical architecture: the components, data, interfaces and technology choices of a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
+
+The two architects are two makers because their responsibilities differ, as Kris took ARCHITECT-SPLIT a on 16 November 2026: the information architect shapes how a piece is organised and found, the technical architect how it is built, as `ki-design`'s [design standard](../../../keystone/ki-design/references/standard-design.md#41-what-design-covers) draws them. Their seats read `ki.cairn@information-architect` and `ki.cairn@technical-architect`; the one `architect` they replace is read under [the role migration file](standards-roles-migration.md).
 
 Every territory's summit, `<territory>.summit`, is seated by its governor; councillor is kept for any further leader, as Kris took SOP-MAIN-GOVERNOR a) under ROLES-WRITE on 7 November 2026, for the main State of play the summit has replaced. The quartermaster's seat is `ki.tools`, under `ki.summit`, as Kris set under QUARTERMASTER-SOP on 7 November 2026, "the actual quartermaster should be ki.sop.tools, and it should live as a leader", the id becoming `ki.tools` under KIND-DROP on 11 November 2026, when secondary States of play gave way to nodes beneath the summit. The guardian's seat is `cairn.summit`, the root of the Cairn store's work tree: Kris took the role as the agoranomos under AGORANOMOS-ROLE on 10 November 2026, and renamed it the guardian, glyph 🪨, under ROOT-ROLE and THREAD-GLYPH a on 11 November 2026. Each role glyph differs from every other and from the banner's state and line glyphs under `ki-coordination`'s [Banner](../../ki-coordination/references/standards-coordination.md#banner).
 
@@ -162,13 +165,13 @@ thread-line = role-glyph " 🔑 " work-id ; the seat holding the package's keys
             | "🧵 " work-id             ; a session with no role yet, and every background run
 seat-id     = work-id "@" role
 role-glyph  = the catalogue glyph of the seat's one role
-role        = the catalogue name of that role, such as architect
+role        = the catalogue name of that role, such as information-architect
 work-id     = the authoritative id from _index.md, a sub-package's being <parent id>+<slug>
 ```
 
 Examples: `⚖️ 🔑 ki.reg.guilds`, `🏛️ 🔑 ki.summit`, `🏠 🔑 personal.reg.household-sol`, `🦉 🔑 personal.reg.inbox-terra`. The role glyph standing ahead of the work id says the role, so the work id stays the package's own id. A background run closes its report with `🧵 <work-id>` of the work it reports to, as Kris took RUN-THREAD-LINE a) under ROLES-WRITE.
 
-Only the keyholder carries 🔑. A seat working inside a package without holding its keys, such as a maker in a meeting or a role handed work in the package, takes the keyless form: its catalogue glyph, no key, and its seat's id, `<package>@<role>`, or `<package>+<slug>@<role>` in a sub-package, as in `📐 ki.cairn@architect`, `🎨 ki.cairn@illustrator` and `📐 hnr.summit+website@architect`, as Kris took SEAT-LINE a on 14 November 2026 and SEAT-AT a on 16 November 2026. The package is the one it works in. In an id, `.` builds a package's name, `+` adds a strand and `@` names a seat; the seat's id replaces what the Cairn store called a title, `<work id>+<role>`, which [the role migration file](standards-roles-migration.md) reads.
+Only the keyholder carries 🔑. A seat working inside a package without holding its keys, such as a maker in a meeting or a role handed work in the package, takes the keyless form: its catalogue glyph, no key, and its seat's id, `<package>@<role>`, or `<package>+<slug>@<role>` in a sub-package, as in `📐 ki.cairn@information-architect`, `🎨 ki.cairn@illustrator` and `🏗️ hnr.summit+website@technical-architect`, as Kris took SEAT-LINE a on 14 November 2026 and SEAT-AT a on 16 November 2026. The package is the one it works in. In an id, `.` builds a package's name, `+` adds a strand and `@` names a seat; the seat's id replaces what the Cairn store called a title, `<work id>+<role>`, which [the role migration file](standards-roles-migration.md) reads.
 
 The same string appears on each surface:
 

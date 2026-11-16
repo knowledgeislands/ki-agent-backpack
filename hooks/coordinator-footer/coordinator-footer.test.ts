@@ -378,17 +378,17 @@ test('a key-form Summary and banner pass, in the session name form of the role s
 // without its keys closes `<role glyph> <package>@<role>`, its catalogue glyph, no key and its seat's id, with
 // `+<slug>` for a sub-package; the earlier `<work-id>+<role>` passes with a warning.
 test('a keyless seat thread line passes as the thread line', () => {
-  expect(run(stop(rebootstrap(heading, counts, items, listening, '📐 ki.cairn@architect'), plain))).toEqual(silent)
+  expect(run(stop(rebootstrap(heading, counts, items, listening, '📐 ki.cairn@information-architect'), plain))).toEqual(silent)
   expect(run(stop(summary(art, heading, counts, roadmap, pkg, items, listening, '🎨 ki.cairn@illustrator'), plain))).toEqual(silent)
-  expect(run(stop(rebootstrap(heading, counts, items, listening, '📐 hnr.summit+website@architect'), plain))).toEqual(silent)
-  expect(run(stop(`${rebootstrap(heading, counts, items, listening, '📐 ki.cairn@architect')}\n\nAnything else?`, plain)).reason).toContain(
+  expect(run(stop(rebootstrap(heading, counts, items, listening, '🏗️ hnr.summit+website@technical-architect'), plain))).toEqual(silent)
+  expect(run(stop(`${rebootstrap(heading, counts, items, listening, '📐 ki.cairn@information-architect')}\n\nAnything else?`, plain)).reason).toContain(
     'the thread line as the very last line'
   )
   expect(run(stop(rebootstrap(heading, counts, items, listening, '📐 ki.cairn+architect'), plain)).warning).toContain(
     'a seat line in the earlier <work-id>+<role> form'
   )
   const seated = transcript([
-    { owner: 'Join the meeting', reply: rebootstrap(heading, counts, items, listening, '📐 ki.cairn@architect') },
+    { owner: 'Join the meeting', reply: rebootstrap(heading, counts, items, listening, '📐 ki.cairn@information-architect') },
     { owner: 'mark' }
   ])
   expect(run(stop('Mark struck.', seated)).reason).toContain('the thread line, <role glyph> 🔑 <work-id> or 🧵 <work-id>')

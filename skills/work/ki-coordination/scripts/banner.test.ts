@@ -806,10 +806,11 @@ test('regular coordination is explicit, capability-checked and uses its real wor
     expect(`⚖️ 🔑 ${id}`).toMatch(THREAD_LINE)
   }
   for (const seat of [
-    '📐 ki.cairn@architect',
+    '📐 ki.cairn@information-architect',
+    '🏗️ ki.cairn@technical-architect',
     '🎨 ki.cairn@illustrator',
     '🐝 ki.ways-of-working@journeyman',
-    '📐 hnr.summit+website@architect'
+    '📐 hnr.summit+website@information-architect'
   ])
     expect(seat).toMatch(THREAD_LINE)
   for (const invalid of [
@@ -817,9 +818,9 @@ test('regular coordination is explicit, capability-checked and uses its real wor
     '⚖️ ki.reg.guilds',
     '⚖️ 🔑 KI.reg.guilds',
     'guild 🔑 ki.reg.guilds',
-    '📐 🔑 ki.cairn@architect',
-    'architect ki.cairn@architect',
-    '📐 ki.cairn@Architect',
+    '📐 🔑 ki.cairn@information-architect',
+    'information-architect ki.cairn@information-architect',
+    '📐 ki.cairn@Information-architect',
     '📐 ki.cairn+architect'
   ])
     expect(invalid).not.toMatch(THREAD_LINE)

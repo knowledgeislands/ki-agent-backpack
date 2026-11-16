@@ -118,15 +118,23 @@ const WORKER_RETIRED_FIELDS: ReadonlySet<string> = new Set([
 ])
 /**
  * An actor's typed id, `actor:<id>`: a name such as `wayland`, or for an actor with no name its seat's id,
- * `<package>@<role>` or `<package>+<slug>@<role>` in a sub-package, such as `ki.cairn@architect` (SEAT-AT a, 16
+ * `<package>@<role>` or `<package>+<slug>@<role>` in a sub-package, such as `ki.cairn@information-architect` (SEAT-AT a, 16
  * November 2026).
  */
 const ACTOR_ID = new RegExp(`^actor:(?:${KEBAB}(?:\\.${KEBAB})*(?:\\+${KEBAB})*@${KEBAB}|[a-z0-9][a-z0-9.-]*)$`)
 /** A seat's id in the form SEAT-AT replaces, `<work id>+<role>`, read as `<work id>@<role>` and warned on. */
 const LEGACY_SEAT_ID = new RegExp(`^actor:${KEBAB}(?:\\.${KEBAB})*\\+${KEBAB}$`)
 const WORKER_STATUSES: readonly unknown[] = ['active', 'idle']
-/** Old role and tier words read under the role migration file, each warned on. */
-const ROLE_ALIASES: Readonly<Record<string, string>> = { assistant: 'gatekeeper', keeper: 'warden', steward: 'warden' }
+/**
+ * Old role and tier words read under the role migration file, each warned on; `architect`, split into two makers under
+ * ARCHITECT-SPLIT a (16 November 2026), is read as the information architect it was defined as.
+ */
+const ROLE_ALIASES: Readonly<Record<string, string>> = {
+  assistant: 'gatekeeper',
+  keeper: 'warden',
+  steward: 'warden',
+  architect: 'information-architect'
+}
 const TIER_ALIASES: Readonly<Record<string, string>> = { enablers: 'managers', doers: 'makers' }
 const REVISION = /^[0-9a-f]{7,40}$/
 /** The two limits the standard keeps, warned and never failed. */
@@ -459,7 +467,7 @@ export const roleCatalogue = (standard = readFileSync(ROLE_STANDARD, 'utf8')): R
       .split('|')
       .slice(1, -1)
       .map((cell) => cell.trim())
-    if (/^[a-z]+$/.test(role) && TIERS.includes(tier) && glyph.length > 0) roles.set(role, { tier, glyph })
+    if (/^[a-z]+(?:-[a-z]+)*$/.test(role) && TIERS.includes(tier) && glyph.length > 0) roles.set(role, { tier, glyph })
   }
   return roles
 }

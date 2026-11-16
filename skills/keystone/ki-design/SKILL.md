@@ -16,7 +16,7 @@ argument-hint: 'audit <repo> | conform <repo> | educate <repo> | help | refresh'
 
 # Design
 
-The Design guild covers all design, technical as well as visual: an information architect is one kind of architect, and a technical architect sits beside them. This skill says how a design is shaped, from a brief through options and review, and which member or neighbouring skill takes each kind. [The design standard](references/standard-design.md) holds the rules.
+The Design guild covers all design, technical as well as visual, with two architects among its makers: the information architect for a piece's structure, naming, navigation and models, and the technical architect for its components, data, interfaces and technology choices. This skill says how a design is shaped, from a brief through options and review, and which member or neighbouring skill takes each kind. [The design standard](references/standard-design.md) holds the rules.
 
 Design shapes; Authoring writes down. Once a choice is made, Authoring's skills record it: a decision record for each choice, a specification once a design is accepted, and diagrams for an architecture.
 

@@ -62,7 +62,7 @@ The rules, part by part.
 
 ### 4.1 What design covers
 
-The Design guild covers all design, technical as well as visual (DESIGN-LEAD). An information architect is one kind of architect, and a technical architect sits beside them. `ki-design` leads the guild; `ki-design-system` is its member for visual design and `ki-design-inspiration` for visual references. Technical design stays in the lead until it needs a member of its own (DESIGN-AUTHORING).
+The Design guild covers all design, technical as well as visual (DESIGN-LEAD). Its two architects are two makers in `ki-work-package`'s [role catalogue](../../../work/ki-work-package/references/standard-roles.md#43-role-catalogue), since their responsibilities differ (ARCHITECT-SPLIT): the information architect, `information-architect` 📐, shapes the structure, naming, navigation and models of a handed-off piece, and the technical architect, `technical-architect` 🏗️, its components, data, interfaces and technology choices. `ki-design` leads the guild; `ki-design-system` is its member for visual design and `ki-design-inspiration` for visual references. Technical design stays in the lead until it needs a member of its own (DESIGN-AUTHORING).
 
 [Back to contents](#contents)
 
