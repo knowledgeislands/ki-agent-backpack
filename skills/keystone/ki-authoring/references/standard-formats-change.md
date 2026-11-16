@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-09T21:36:32Z
+revised: 2026-11-16T17:00:00Z
 status: in force
 ---
 
@@ -115,7 +115,7 @@ A short status line may open the Introduction where it helps a reader, but the f
 3. **Deltas call-out** at the end of each lowest-level section that changes, leaves open or causes something: a quote block of bullets, each opening **Change** (its row in Changes), **Open** (its question), **Gap** (its item in Gaps) or **Consequence** (its item in Consequences), naming the item's number and linking to its list, not the single item.
 4. **Links back:** each row in Changes names in Where the output file and section it changes, and links to the section of this document it comes from; each question, gap and consequence ends with a **From:** link.
 5. **Terms and definitions** is a two-column table of concepts, not front matter fields, each definition ending with a **Standard:** line naming the standard that defines it, or saying none yet.
-6. **Changes** is a numbered table: number, Where, Before, After. Each row is a change to an output: Before is what the output says at its input ref, After what it will say once the change lands. Rows carry no status: the table may change during review like the rest, and is agreed with the whole.
+6. **Changes** is a numbered table: number, Where, Before, After. Each row is a change to an output: Before is what the output says at its input ref, After what it will say once the change lands. Rows carry no status: the table may change during review like the rest, and is agreed with the whole. For an output that is code, Where names the repository and the component, Before and After say the behaviour or interface a user or caller meets, never the code, and the commits that carry it go in Steps.
 7. **New and changed outputs.** For a new document, Steps say where it will live and what it takes to put it there, and Changes has one row: Before is None, After is the new document at its path. For a changed document, Steps say where it lives and what happens to it, such as edits, a move, a split or a rename, and Changes has a row for each change.
 8. **Refinements are edits, not changes.** Improving the document's own wording or ideas during review leaves no trace in it; Git history keeps it.
 9. **No names or dates on agreements:** Git history records who agreed what, and when. A date stays where it is itself content, such as a decision quoted from elsewhere.
