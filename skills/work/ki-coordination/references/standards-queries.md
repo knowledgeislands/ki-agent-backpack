@@ -33,6 +33,7 @@ After a Summary that lists open queries, or on the owner's request, the coordina
 
    - <a short bullet>
    - <a few more, enough to decide without scrolling back>
+   - <for a field or a format: its real current value, quoted from its file, and what it would become>
    ```
 
 2. **Second reply.** Woken by the timer, the reply holds only the card, through the runtime's question tool, such as `AskUserQuestion`:
@@ -46,6 +47,8 @@ After a Summary that lists open queries, or on the owner's request, the coordina
 5. **At the end of the set.** Take again the queries deferred to the end, in the order they were deferred, each opening with a short discussion in plain chat before its first reply. When the last query is answered and logged, the next reply reads it back, with what it changes, takes a mark and gives the Summary, for a clean baseline and a fresh view.
 
 **Where things stand** is a few short bullets, enough to decide without scrolling back.
+
+<a id="the-real-example"></a>**The real example.** A query about a field or a format shows the real thing in its context, from the store or the repository it concerns: the actual current value, quoted from its file and named by its path, and what it would become under the recommended choice, and under another where they differ, so the owner decides on the thing itself rather than a description of it, as Kris took CONTEXT-EXAMPLE a on 16 November 2026: "that level of detail… is exactly what is useful to me".
 
 <a id="the-read-back"></a>**The read-back** is a short line or two in plain chat: what the owner chose, then what it changes, naming what gets recorded, what gets built and what is left alone. It reads the same in card mode and in the plain fallback. For a discussion option it says which was chosen and that nothing is recorded yet.
 
@@ -62,7 +65,7 @@ A quick first run through the set thus decides what it can. While a query is tal
 - The total is the number of open queries when the pass starts. When an answer raises a new query, add it to the total and say so. A query deferred to the end keeps its number when it is taken again.
 - Nothing is shortened because it is asked interactively, and each query keeps its [tag](standards-reporting.md#needs-tags).
 
-Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET-MARK, CARD-LOOP, CARD-PATTERN, CARD-READBACK and CARD-DISCUSS in [the decision register](sources.md#decision-register).
+Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET-MARK, CARD-LOOP, CARD-PATTERN, CARD-READBACK, CARD-DISCUSS and CONTEXT-EXAMPLE in [the decision register](sources.md#decision-register).
 
 ## Goal-setting pass
 
