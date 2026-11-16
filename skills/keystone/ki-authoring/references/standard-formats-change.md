@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-16T17:00:00Z
+revised: 2026-11-16T17:02:00Z
 status: in force
 ---
 
@@ -135,6 +135,7 @@ A change document uses the suffix pattern, `[<name>.]change.md`. Where several a
 - **Open fills** while a change is in `draft` and `review`, and empties as it moves on. A gap may be raised as a question and answered: either the change comes to cover it, or it is accepted as a known gap.
 - **By `agreed`,** Questions is None, and every gap left is accepted by that status, with no marker.
 - **Before `done`,** each consequence and gap gets a home outside the standard, chosen by whatever manages the change: a step in this change if it is done in the rollout, or otherwise a record or a new change wherever that work keeps them. A home may lie ahead, and the item links forward to it. A link to its home then replaces the item, so by `done`, Gaps and Consequences are None too.
+- **A new standard may stand first as a draft.** A change that creates a standard may put it at its final path with `status: draft` before it lands, where something must name or link it first, as documents of a new type name their format standard; it need not, and otherwise the standard lands with the change.
 - **Nothing from Open is written into a standard,** which stands complete within its scope.
 
 [Back to contents](#contents)
