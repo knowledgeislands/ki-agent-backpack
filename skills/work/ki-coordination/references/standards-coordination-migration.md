@@ -112,6 +112,7 @@ These adjust the **Mode lines** under [Banner detail](standards-report-forms.md#
 - A report written between REPORT-FORMS-TIDY and SNOOZE, both on 6 November 2026, may carry `👂 listening · a message releases the hold`, and anything that reads past reports accepts it.
 - A report written before SYNC-LINE-OFF may carry a `🔄 syncing for <host>` or `🔄 not syncing for <host>` line, and anything that reads past reports accepts it.
 - A report written before FOOTER-LAYOUT keeps its one listening line, such as `👂 listening · not the sync thread for terra`, and one written before FOOTER-NOT-LISTENING may carry a `🔇` line on a thread that never listened; anything that reads past reports accepts both.
+- A report written before LISTEN-LINE, on 16 November 2026, may carry `👂 listening` or `🔇 not listening`, and anything that reads past reports accepts it; in a new reply the [footer check](standards-coordination.md#generated-surfaces) warns on it. Delete this line once the output styles in use render `👂 in <meeting>`.
 
 ## Thread-model re-bootstrap openers
 

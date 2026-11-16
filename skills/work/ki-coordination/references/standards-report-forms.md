@@ -98,14 +98,14 @@ Which parts each reply structure carries, one column per structure with its layo
 | **F5** · Package line | ● | ● |  |  |  |  |  |  |
 | **F6** · Item list | ● | ● | ● | ● | ● | ● |  |  |
 | **F7** · Heading-for line | ○ | ○ | ○ |  | ○ | ○ |  |  |
-| **F8** · Listening line | ● | ● | ● |  | ○ | ● |  |  |
+| **F8** · Listening line | ○ | ○ | ○ |  | ○ | ○ |  |  |
 | **F9** · Thread line | ● | ● | ● | ● | ● | ● |  |  |
 
 ● required · ○ optional, on its condition under [Part content](#part-content) · empty: not used.
 
-F3, F4 and F8 show always or never by reply structure, never by judgement of whether they apply; F3 and F8 leave Stop only when the work is Finished.
+F3 and F4 show always or never by reply structure, never by judgement of whether they apply; F3 leaves Stop only when the work is Finished. F8 shows exactly while the session is in a meeting, whatever the structure.
 
-Sources: REPLY-FORMAT in [the decision register](sources.md#decision-register).
+Sources: REPLY-FORMAT and LISTEN-LINE in [the decision register](sources.md#decision-register).
 
 ### Part content
 
@@ -136,10 +136,10 @@ Each part: what it carries, when it appears and how the structure, the state and
 - **F5 Package line:** `📦 package · changes <n> · open <n> · held <n> · meetings <n>`, under the same.
 - **F6 Item list:** one line per live item, `- [<state>] <what> · <holder> · at <time>`, under **Glyph banner** in [the core](standards-coordination.md#banner). It carries no `[awaiting ACK]` items. On hold it lists only `[parked]` and `[release]`; Finished lists `[finished]`.
 - **F7 Heading-for line:** `↪️ <draining or finishing> → <target>`, only while the work is heading for a hold or a handoff, under **Heading for a hold or a handoff** in [the core](standards-coordination.md#banner).
-- **F8 Listening line:** `👂 listening` while the [inbox watcher](standards-listening.md#inbox-watch) is armed, and `🔇 not listening` otherwise, by default, including a session the owner has not asked to listen. Left out only when the work is Finished.
+- **F8 Listening line:** `👂 in <meeting>` while the session is in a meeting, naming each meeting it is in by its entry file's `meeting` field, two or more joined by `, `, as in `👂 in cairn.wayfinder.designs`, and left off when it is in none. A session is in a meeting while it is a participant of an open meeting with a sitting under way, `status: open` in the meeting's entry file under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). Listening means only this, under LISTEN-LINE; the [inbox watcher](standards-listening.md#inbox-watch) has no line.
 - **F9 Thread line:** `<role glyph> 🔑 <work-id>`, `<role glyph> <work-id>+<role>` for a seat without the keys, or `🧵 <work-id>`, always last, under **Thread line** in [the core](standards-coordination.md#banner).
 
-Sources: REPLY-FORMAT and REPLY-GROUPS in [the decision register](sources.md#decision-register).
+Sources: REPLY-FORMAT, REPLY-GROUPS and LISTEN-LINE in [the decision register](sources.md#decision-register).
 
 ### Templates
 
@@ -208,7 +208,7 @@ b) <the alternative>
 
 ↪️ <draining or finishing> → <target>                                        F7
 
-<👂 listening | 🔇 not listening>                                            F8
+<👂 in <meeting>; only while in a meeting>                                   F8
 
 <role glyph> 🔑 <work-id>                                                    F9
 ````
@@ -248,7 +248,7 @@ Rename thread: /rename <role glyph> 🔑 <work-id>
 
 - [<state>] <what> · <holder> · at <time>
 
-<👂 listening | 🔇 not listening>
+<👂 in <meeting>; only while in a meeting>
 
 <role glyph> 🔑 <work-id>
 ```
@@ -283,8 +283,6 @@ Left over: <another session's uncommitted file, or Nothing>
 - [parked] <n> queries in the change documents
 - [release] <release>, or `resume`
 
-🔇 not listening
-
 <role glyph> 🔑 <work-id>
 ```
 
@@ -297,8 +295,6 @@ Left over: <another session's uncommitted file, or Nothing>
 
 - [parked] <n> queries in the change documents
 - [release] a message arrives, or `resume`
-
-👂 listening
 
 <role glyph> 🔑 <work-id>
 ```
@@ -344,7 +340,7 @@ No outstanding queries
 
 <↪️ heading-for line; only when there is one>
 
-<👂 listening | 🔇 not listening>
+<👂 in <meeting>; only while in a meeting>
 
 <role glyph> 🔑 <work-id>
 ```
@@ -457,19 +453,18 @@ A State of play opening a Bootstrap whose last mark was the day before:
 - **Package line:** `📦 package · changes <n> · open <n> · held <n> · meetings <n>`, from the package, as Kris let it be aligned under OLD-SHAPE-HOMES a on 14 November 2026: "you can align whatever you need to align [for] the footer message counts": changes counts its change documents, its sub-packages' included, open the open queries across their Open sections, held the items under `_index.md`'s `## Held`, and meetings the open meetings in the Cairn store's `meetings/` that the work sits in.
 - Both are counted afresh for each Full reply and write their zeros; they are counts, never items. Medium and Short replies carry neither.
 
-**Mode lines.** The listening line, F8, sits below the list and any heading-for line and above the thread line, a blank line before it, in every Full, Bootstrap and Position reply and in a Stop unless the work is Finished.
+**Mode lines.** The listening line, F8, sits below the list and any heading-for line and above the thread line, a blank line before it, in any reply that closes with the banner while the session is in a meeting, and nowhere else.
 
-- `👂 listening` while the [watcher](standards-listening.md#inbox-watch) is armed, `listening_status: on`; `🔇 not listening` otherwise, `listening_status: off`, which is the default: while draining, On hold and paused, after "stop the wake" or "stop listening", where the runtime cannot be woken, and where the owner has not asked the session to listen and it is no host sync thread.
-- Work [Snoozing](standards-holds.md#putting-work-on-hold) shows plain `👂 listening` while its watcher is armed, because its 💤 heading and counts already say it waits for a message.
-- There is no sync line: a host sync thread shows only its listening line. A listening host sync thread on sol closes:
+- `👂 in <meeting>` while the session is in a meeting, naming each meeting it is in by its entry file's `meeting` field, two or more joined by `, `, as in `👂 in cairn.wayfinder.designs`, and left off when it is in none. A session is in a meeting while it is a participant of an open meeting with a sitting under way, `status: open` in the meeting's entry file under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). Listening means only this, as Kris set under LISTEN-LINE a on 16 November 2026: "it should indicate meetings it's in or not. Otherwise should be left off". The [inbox watcher](standards-listening.md#inbox-watch) has no line; the earlier `👂 listening` and `🔇 not listening` are gone, and the `listening_enabled` and `listening_status` fields still record the watcher.
+- There is no sync line. A host sync thread on sol sitting in one meeting closes:
 
 ```text
-👂 listening
+👂 in cairn.summit.voice
 
 🏠 🔑 personal.reg.rig-sol
 ```
 
-A run report's banner carries no mode lines and no heading-for line, because a run neither listens nor drains.
+A run report's banner carries no mode lines and no heading-for line, because a run neither sits in a meeting nor drains.
 
 With worker, closing a Summary while runs are out:
 
@@ -488,8 +483,6 @@ With worker, closing a Summary while runs are out:
 - [running] tools-burndown fix · work/ki.tools-burndown · at 23:05
 - [with you] WORK-HOME · owner · at 22:58
 - [blocked] work folder commit · repo/ki-principal · at 22:40
-
-👂 listening
 
 ⚒️ 🔑 ki.prj.ways-of-working
 ```
@@ -511,7 +504,7 @@ Handoff to supervisor, closing a Summary that sends the work to the owner:
 - [with you] WORK-HOME · owner · at 22:58
 - [parked] 1
 
-👂 listening
+👂 in cairn.wayfinder.designs
 
 ⚒️ 🔑 ki.prj.ways-of-working
 ```
@@ -529,8 +522,6 @@ With worker, a Position while draining towards a hold after `pause`, with one ru
 - [with you] WORK-HOME · owner · at 22:58
 
 ↪️ draining → ⏸️ On hold
-
-🔇 not listening
 
 ⚒️ 🔑 ki.prj.ways-of-working
 ```
@@ -571,8 +562,6 @@ On hold, closing a Stop:
 - [parked] 9 queries in the change documents
 - [release] after the harness migration lands, or `resume`
 
-🔇 not listening
-
 ⚒️ 🔑 ki.prj.ways-of-working
 ```
 
@@ -587,8 +576,6 @@ Snoozing, closing a Stop for a hold that waits for more to come:
 
 - [parked] 2 queries in the change documents
 - [release] a message arrives, or `resume`
-
-👂 listening
 
 ⚒️ 🔑 ki.prj.ways-of-working
 ```
@@ -615,4 +602,4 @@ Finished, closing the Stop at [Finishing Project work](standards-mark.md#finishi
 ## Done
 ```
 
-Sources: BANNER-GLYPHS, RICH-HEADING, REPORT-FORMS-TIDY, SNOOZE-HEADING, FOOTER-COUNTS, LISTEN-STATUS, FOOTER-LAYOUT, FOOTER-CAPABILITY-STATUS-2, FOOTER-NOT-LISTENING, SYNC-LINE-OFF, RESTART-SUGGEST and REPLY-FORMAT in [the decision register](sources.md#decision-register).
+Sources: BANNER-GLYPHS, RICH-HEADING, REPORT-FORMS-TIDY, SNOOZE-HEADING, FOOTER-COUNTS, LISTEN-STATUS, FOOTER-LAYOUT, FOOTER-CAPABILITY-STATUS-2, FOOTER-NOT-LISTENING, SYNC-LINE-OFF, RESTART-SUGGEST, REPLY-FORMAT and LISTEN-LINE in [the decision register](sources.md#decision-register).

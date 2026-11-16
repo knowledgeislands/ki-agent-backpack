@@ -32,7 +32,7 @@ const counts = '🤖 0 running · ⏳ 0 queued · 👤 1 with you · ⛔ 0 block
 const roadmap = '🗺️ roadmap · 6 records · 3 open · 2 done awaiting prune · 1 idea'
 const pkg = '📦 package · changes 3 · open 2 · held 0 · meetings 1'
 const items = '- [with you] FOOTER-HOOK · owner · at 21:10'
-const listening = '🔇 not listening'
+const listening = '👂 in cairn.wayfinder.designs'
 const thread = '🧵 ki.prj.demo'
 const summaryBody = [
   '# [Demo](/tmp/demo.md)',
@@ -242,14 +242,13 @@ test('a Stop and a Finished banner pass in their own shapes', () => {
   // A Finished banner carries no counts line.
   expect(run(stop(['### 🏁 Finished · Demo closed at 18:00 GMT', '- [finished] 3 work items accepted', thread].join('\n\n'), plain))).toEqual(silent)
   expect(run(stop(hold.replace('⏸️ drained · 🅿️ 2 queries parked\n\n', ''), plain)).warning).toContain('no counts line')
-  // Snoozing, under SNOOZE, keeps listening, so its counts line waits for a message rather than saying drained.
+  // Snoozing, under SNOOZE, keeps its watcher armed, so its counts line waits for a message rather than saying drained.
   const snoozing = [
     '**Stop at 21:10 GMT · mark 21:10 GMT**',
     '## Done',
     '### 💤 Snoozing (on hold) · at 21:10 GMT',
     '💤 waiting for a message · 🅿️ 2 queries parked',
     '- [parked] 2 queries in the change documents\n- [release] a message arrives, or `resume`',
-    '👂 listening',
     thread
   ].join('\n\n')
   expect(run(stop(snoozing, plain))).toEqual(silent)
@@ -266,7 +265,6 @@ test('a Stop and a Finished banner pass in their own shapes', () => {
     roadmap,
     pkg,
     '- [parked] 2 queries in the change documents',
-    '👂 listening',
     thread
   ].join('\n\n')
   expect(run(stop(snoozingStatus, coordinated('mark, status only')))).toEqual(silent)
@@ -276,11 +274,15 @@ test('a Stop and a Finished banner pass in their own shapes', () => {
   expect(run(stop(hold.replace('**Stop at', '**⏸️ On hold · Hold report at'), plain))).toEqual(silent)
 })
 
-test('a missing listening line passes with a warning, except at Finished', () => {
-  expect(run(stop(rebootstrap(heading, counts, items, thread), plain)).warning).toStartWith(
-    "Footer check: this reply's banner has no listening line, 👂 listening or 🔇 not listening. "
-  )
-  expect(run(stop(rebootstrap(heading, counts, items, '👂 listening', thread), plain))).toEqual(silent)
+// LISTEN-LINE, Kris, 16 November 2026: the listening line names the meetings the session is in and is left off in
+// none, so a banner without it passes quietly and the earlier on-or-off line warns.
+test('the listening line is optional, and its earlier on-or-off form warns', () => {
+  expect(run(stop(rebootstrap(heading, counts, items, thread), plain))).toEqual(silent)
+  expect(run(stop(rebootstrap(heading, counts, items, '👂 in cairn.summit.voice, cairn.wayfinder.designs', thread), plain))).toEqual(silent)
+  for (const old of ['👂 listening', '🔇 not listening'])
+    expect(run(stop(rebootstrap(heading, counts, items, old, thread), plain)).warning).toStartWith(
+      "Footer check: this reply's banner has a listening line in the earlier 👂 listening or 🔇 not listening form, which LISTEN-LINE replaces with 👂 in <meeting>, or no line in no meeting. "
+    )
 })
 
 test('a reply that opens a banner but leaves it unfinished is held back', () => {

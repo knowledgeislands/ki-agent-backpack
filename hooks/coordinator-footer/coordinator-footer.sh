@@ -5,8 +5,10 @@
 # or Position phrase must close with a banner: a ### state heading and the thread
 # line, last: <role glyph> 🔑 <work-id>, <role glyph> <work-id>+<role> for a seat
 # without the package's keys (SEAT-LINE), or 🧵 <work-id> for a session with no role
-# yet. An unrecognised state heading, a missing or odd counts line, a missing
-# listening line before Finished, ⭐, 🔧 or 🧵 in the role glyph's place, and in a
+# yet. An unrecognised state heading, a missing or odd counts line, a listening
+# line in the earlier 👂 listening or 🔇 not listening form, which LISTEN-LINE
+# replaces with 👂 in <meeting> or no line at all, ⭐, 🔧 or 🧵 in the role glyph's
+# place, and in a
 # Summary or Status missing art, roadmap or package line pass with a warning, so the owner can confirm the form was intended. The
 # hook holds no copy of the role catalogue, which ki-work-package owns.
 # In every session, coordinating or not, a reply that asks the owner to decide, a
@@ -183,14 +185,15 @@ footer() {
       is_thread = key || keyless || $0 ~ /^🧵 [^ ]+ *$/
       # A state heading opens with its glyph or names a state; a query or finding heading opens with its tag.
       state = $0 ~ /^### .*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished)/
-      if (state || $0 ~ /^### [^ -~]/) { heading = NR; known = state; finished = index($0, "Finished") > 0; counts_seen = 0; counts = 0; odd = 0; road = 0; pack = 0; listen = 0; next }
+      if (state || $0 ~ /^### [^ -~]/) { heading = NR; known = state; finished = index($0, "Finished") > 0; counts_seen = 0; counts = 0; odd = 0; road = 0; pack = 0; oldlisten = 0; next }
       if (heading && !counts_seen) {
         counts_seen = 1
         if (!is_thread && $0 !~ /^(- \[|🧵|🗺|📦|👂|🔇|↪)/) { counts = 1; odd = $0 !~ /^(🤖|👤|⛔|🅿|⏸|💤|📥|🎯|⏳)/ }
       }
       if (heading && $0 ~ /^🗺/ && index($0, "roadmap")) road = 1
       if (heading && $0 ~ /^📦/ && index($0, "package")) pack = 1
-      if (heading && $0 ~ /^(👂 listening|🔇 not listening)/) listen = 1
+      # The listening line names the meetings the session is in, and is left off in none (LISTEN-LINE).
+      if (heading && $0 ~ /^(👂 listening|🔇 not listening)/) oldlisten = 1
       if (is_thread) {
         thread = NR
         glyphs = key ? substr($0, 1, index($0, " 🔑") - 1) : keyless ? substr($0, 1, index($0, " ") - 1) : ""
@@ -208,7 +211,7 @@ footer() {
       if (heading && !known) warn[++w] = "a state heading the table of states does not name"
       if (heading && !finished && !counts) warn[++w] = "no counts line beneath the state heading"
       if (heading && counts && odd) warn[++w] = "a counts line opening with none of the counts glyphs"
-      if (heading && known && !finished && !listen) warn[++w] = "no listening line, 👂 listening or 🔇 not listening"
+      if (heading && oldlisten) warn[++w] = "a listening line in the earlier 👂 listening or 🔇 not listening form, which LISTEN-LINE replaces with 👂 in <meeting>, or no line in no meeting"
       if (long && art && (!art_at || (heading && art_at > heading))) warn[++w] = "no Knowledge Islands art above the banner"
       if (long && roadmap && !road) warn[++w] = "no 🗺️ roadmap line"
       if (long && !pack) warn[++w] = "no 📦 package line"

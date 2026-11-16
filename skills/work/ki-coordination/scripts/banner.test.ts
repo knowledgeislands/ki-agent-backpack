@@ -94,11 +94,13 @@ const HEADING_FOR_LINE =
 /** The counts line of a live state: all five views, zeros written, and the records awaiting acceptance where any are. */
 const COUNTS_LINE =
   /^🤖 \d+ running · ⏳ \d+ queued · 👤 \d+ with you · ⛔ \d+ blocked · 🅿️ \d+ parked(?: · 📥 \d+ to accept)?$/u
-/** The listening line while the inbox watcher is armed. */
+/** The listening line under LISTEN-LINE: the meetings the session is in, by their ids, joined by `, `. */
+const MEETING_LINE = /^👂 in [a-z0-9-]+(?:\.[a-z0-9-]+)*(?:, [a-z0-9-]+(?:\.[a-z0-9-]+)*)*$/u
+/** The listening line while the inbox watcher was armed, before LISTEN-LINE, read only in past reports. */
 const LISTEN_LINE = /^👂 listening$/u
 /** The listening line REPORT-FORMS-TIDY gave a hold waiting for a message, which SNOOZE replaced with plain listening. */
 const LISTEN_HOLD_LINE = '👂 listening · a message releases the hold'
-/** The listening line otherwise, its default. */
+/** The listening line otherwise, its default before LISTEN-LINE, read only in past reports. */
 const LISTEN_OFF_LINE = /^🔇 not listening$/u
 /** The roadmap line under FOOTER-COUNTS, in a Full reply's footer, reading none where the repository has no roadmap. */
 const ROADMAP_LINE =
@@ -146,7 +148,7 @@ const expectReportHeading = (lines: string[] | undefined): void => {
  * A banner, top to bottom under FOOTER-LAYOUT and REPLY-FORMAT: the heading, a blank line, a counts line where live, a
  * blank line, then in a Full reply's footer under FOOTER-COUNTS the roadmap line and the package line, each followed by a
  * blank line, the items, then each closing line after a blank line: the heading-for line where one stands, the listening
- * line, on or off, before Finished, and the thread line last.
+ * line while the session is in a meeting and never at Finished (LISTEN-LINE), and the thread line last.
  */
 const expectBanner = (lines: string[]): void => {
   expect(lines[0]).toMatch(BANNER_HEADING)
@@ -163,10 +165,10 @@ const expectBanner = (lines: string[]): void => {
   expect(lines[end - 1]).toBe('')
   let at = 0
   if (HEADING_FOR_LINE.test(closing[at] ?? '')) at += 1
-  const listening = LISTEN_LINE.test(closing[at] ?? '') || LISTEN_OFF_LINE.test(closing[at] ?? '')
+  const listening = MEETING_LINE.test(closing[at] ?? '')
   if (listening) at += 1
   expect(at).toBe(closing.length)
-  expect(listening).toBe(!finished)
+  if (finished) expect(listening).toBe(false)
   let first = 2
   if (!finished) {
     const hold = /^### (?:⏸️|💤)/u.test(lines[0] ?? '')
@@ -254,12 +256,10 @@ test('With worker names the hold or handoff it is heading for in its own line be
   expect('(draining → ⏸️ On hold)').not.toMatch(HEADING_FOR_LINE)
   const draining = banners(standard).find((lines) => lines.some((line) => HEADING_FOR_LINE.test(line)))
   expect(draining?.[0]).toBe('### 🤖 With worker · at 23:41 BST')
-  expect(draining?.slice(-7)).toEqual([
+  expect(draining?.slice(-5)).toEqual([
     '- [with you] WORK-HOME · owner · at 22:58',
     '',
     '↪️ draining → ⏸️ On hold',
-    '',
-    '🔇 not listening',
     '',
     PROJECT_THREAD_LINE
   ])
@@ -271,88 +271,65 @@ test('With worker names the hold or handoff it is heading for in its own line be
   }
 })
 
-// Kris, 31 October 2026, under LISTEN-STATUS: "that should be something that comes out in the summary mode, which is
-// whether or not the thread is listening to messages or not, whether it's draining". A drain and a hold stop listening.
-// Under REPLY-FORMAT, agreed on 7 November 2026, every banner before Finished shows the listening line, `🔇 not
-// listening` by default. Kris removed the sync line under SYNC-LINE-OFF, about 18:00 GMT on 4 November 2026: "remove the
-// sync mode line from the banner entirely", as Cairn keeps machines in sync.
-test('every banner before Finished shows the listening line, on or off, and never a sync line', () => {
-  expect('👂 listening').toMatch(LISTEN_LINE)
-  expect('🔇 not listening').toMatch(LISTEN_OFF_LINE)
-  for (const line of ['🔇 not listening while draining', '👂 listening off', '🔇 draining, so not listening'])
-    expect(line).not.toMatch(LISTEN_OFF_LINE)
+// Kris, 16 November 2026, under LISTEN-LINE: "it should indicate meetings it's in or not. Otherwise should be left off".
+// Listening means only whether a session is in a meeting, so the listening line names the meetings it is in and is left
+// off in none; the inbox watcher keeps its status fields and has no line. Kris removed the sync line under SYNC-LINE-OFF,
+// about 18:00 GMT on 4 November 2026: "remove the sync mode line from the banner entirely", as Cairn keeps machines in
+// sync.
+test('the listening line names the meetings the session is in, is left off in none, and there is no sync line', () => {
+  expect('👂 in cairn.wayfinder.designs').toMatch(MEETING_LINE)
+  expect('👂 in cairn.summit.voice, cairn.wayfinder.designs').toMatch(MEETING_LINE)
   for (const line of [
-    '🔇 not listening while draining',
+    '👂 listening',
     '🔇 not listening',
-    '👂 listening · sync thread for terra',
-    '🔇 draining, so not listening',
-    '🔇 not listening · not the sync thread for terra',
+    '👂 in',
+    '👂 in cairn.summit.voice,cairn.wayfinder.designs',
     '🧵 ki.sop.main'
   ])
-    expect(line).not.toMatch(LISTEN_LINE)
-  expectBanner([
+    expect(line).not.toMatch(MEETING_LINE)
+  const banner = (closing: string[]): string[] => [
     '### 🤖 With worker · at 09:00 GMT',
     '',
     '🤖 1 running · ⏳ 0 queued · 👤 0 with you · ⛔ 0 blocked · 🅿️ 0 parked',
     '',
     '- [running] host pass · run/host-pass · at 08:58',
     '',
-    '↪️ draining → ⏸️ On hold',
-    '',
-    '🔇 not listening',
-    '',
+    ...closing.flatMap((line) => [line, '']),
     '🧵 personal.reg.rig-sol'
-  ])
-  for (const sync of ['🔄 syncing for sol', '🔄 not syncing for sol'])
-    expect(() =>
-      expectBanner([
-        '### 🤖 With worker · at 09:00 GMT',
-        '',
-        '🤖 1 running · ⏳ 0 queued · 👤 0 with you · ⛔ 0 blocked · 🅿️ 0 parked',
-        '',
-        '- [running] host pass · run/host-pass · at 08:58',
-        '',
-        '👂 listening',
-        '',
-        sync,
-        '',
-        '🧵 personal.reg.rig-sol'
-      ])
-    ).toThrow()
+  ]
+  expectBanner(banner([]))
+  expectBanner(banner(['↪️ draining → ⏸️ On hold']))
+  expectBanner(banner(['👂 in cairn.summit.voice']))
+  expectBanner(banner(['↪️ draining → ⏸️ On hold', '👂 in cairn.summit.voice, cairn.wayfinder.designs']))
+  for (const closing of [['👂 listening'], ['🔇 not listening'], ['👂 in cairn.summit.voice', '🔄 syncing for sol']])
+    expect(() => expectBanner(banner(closing))).toThrow()
   expect(() =>
     expectBanner([
-      '### 🤖 With worker · at 09:00 GMT',
+      '### 🏁 Finished · Demo closed at 18:00 GMT',
       '',
-      '🤖 1 running · ⏳ 0 queued · 👤 0 with you · ⛔ 0 blocked · 🅿️ 0 parked',
+      '- [finished] 3 work items accepted',
       '',
-      '- [running] host pass · run/host-pass · at 08:58',
+      '👂 in cairn.summit.voice',
       '',
-      '🧵 personal.reg.rig-sol'
+      '🧵 ki.prj.demo'
     ])
   ).toThrow()
-  for (const lines of banners(standard)) expect(lines.some((line) => SYNC_LINE.test(line))).toBe(false)
-  const [withWorker, handoff, , hold, snoozing, finished] = banners(standard)
-  expect(withWorker?.at(-3)).toBe('👂 listening')
-  expect(handoff?.at(-3)).toBe('👂 listening')
-  expect(hold?.at(-3)).toBe('🔇 not listening')
-  expect(snoozing?.at(-3)).toBe('👂 listening')
-  expect(finished?.at(-3)).toMatch(/^- \[/)
-  for (const lines of banners(standard))
-    for (const line of lines.filter((line) => line.startsWith('🔇'))) expect(line).toMatch(LISTEN_OFF_LINE)
-  for (const lines of banners(standard))
-    expect(lines.some((line) => / · (?:not the )?sync thread for /u.test(line))).toBe(false)
+  for (const lines of banners(standard)) {
+    expect(lines.some((line) => SYNC_LINE.test(line))).toBe(false)
+    expect(lines.some((line) => LISTEN_LINE.test(line) || LISTEN_OFF_LINE.test(line))).toBe(false)
+  }
+  const [withWorker, handoff, draining, hold, snoozing] = banners(standard)
+  expect(handoff?.at(-3)).toBe('👂 in cairn.wayfinder.designs')
+  for (const lines of [withWorker, draining, hold, snoozing])
+    expect(lines?.some((line) => line.startsWith('👂'))).toBe(false)
   expect(standard).toContain('**Mode lines.**')
-  expect(standard).toContain('which is the default')
-  expect(standard).toContain('LISTEN-STATUS')
-  expect(standard).toContain('FOOTER-NOT-LISTENING')
-  expect(standard).toContain('FOOTER-CAPABILITY-STATUS-2')
+  for (const name of ['LISTEN-LINE', 'LISTEN-STATUS', 'FOOTER-CAPABILITY-STATUS-2', 'SYNC-LINE-OFF'])
+    expect(standard).toContain(name)
   expect(standard).toContain('- **Inbox watch:**')
   for (const text of [standard, outputStyle]) {
-    expect(text).toContain('`👂 listening`')
-    expect(withoutSources(text)).not.toMatch(/`🔇 not listening(?: while draining)?` (?:from|where)/u)
-    expect(text).not.toContain('always the listening line')
-    expect(text).toContain('`🔇 not listening`')
-    expect(text).toContain('SYNC-LINE-OFF')
+    expect(text).toContain('`👂 in <meeting>`')
+    expect(text).toContain('as in `👂 in cairn.wayfinder.designs`')
+    expect(text).toContain('a sitting under way')
     expect(withoutSources(text)).not.toMatch(/^🔄 /mu)
     for (const field of ['listening_enabled', 'listening_status', 'syncing_enabled', 'syncing_status'])
       expect(text).toContain(field)
@@ -360,9 +337,11 @@ test('every banner before Finished shows the listening line, on or off, and neve
     expect(text).not.toContain('not the sync thread for <host>')
     expect(text).toContain('the inbox watcher')
   }
+  expect(outputStyle).not.toContain('`👂 listening`')
+  expect(outputStyle).not.toContain('`🔇 not listening`')
   for (const text of [standard, outputStyle])
     expect(text).toContain(
-      'after a blank line following its listening line, or its list where it has none, with exactly one plain Markdown thread line'
+      'after a blank line following its listening line, or its list or heading-for line where it has none, with exactly one plain Markdown thread line'
     )
 })
 
@@ -950,7 +929,7 @@ test('a sent line awaiting its ACK is never listed as an item', () => {
     '',
     '- [with you] WORK-HOME · owner · at 22:58',
     '',
-    '🔇 not listening',
+    '👂 in cairn.summit.voice',
     '',
     '🧵 ki.sop.main'
   ]
@@ -990,7 +969,7 @@ test("a Full reply's footer carries the roadmap and package lines beneath its co
       '',
       '- [with you] WORK-HOME · owner · at 22:58',
       '',
-      '🔇 not listening',
+      '👂 in cairn.summit.voice',
       '',
       '🧵 ki.sop.main'
     ])
@@ -1065,12 +1044,12 @@ test('each reply structure has one template, and the form line carries no state'
 // snoozing now. That's a better term than more expected"; it gets the z's, keeps listening and so is not drained; one
 // table of states renders every state the same way; and the banner heading says "at", because "The word since isn't
 // useful".
-test('Snoozing has its own glyph, keeps listening, is never drained, and one table renders every state', () => {
+test('Snoozing has its own glyph, keeps its watcher, is never drained, and one table renders every state', () => {
   const snoozing = banners(standard).find((lines) => lines[0]?.startsWith('### 💤'))
   expect(snoozing?.[0]).toBe('### 💤 Snoozing (on hold) · at 23:58 GMT')
   expect(snoozing?.[2]).toBe('💤 waiting for a message · 🅿️ 2 queries parked')
   expect(snoozing).toContain('- [release] a message arrives, or `resume`')
-  expect(snoozing).toContain('👂 listening')
+  expect(snoozing?.some((line) => line.startsWith('👂'))).toBe(false)
   expect(snoozing?.some((line) => line.includes('drained'))).toBe(false)
   expect(
     snoozing?.filter((line) => line.startsWith('- [')).every((line) => /^- \[(parked|release)\] /.test(line))
