@@ -109,21 +109,21 @@ Templates are stubs — headings, frontmatter keys, and inline `<!-- prompts -->
 
 ## Project bindings
 
-Almost everything is fixed by the structure above. Only these come from the host project - take the narrative bindings from the auto-loaded `CLAUDE.md`, then the root memory index. **Declarative overrides** (the zone alias and the lists below) are read from the base's `.ki.toml` `[skills.ki-repo-kb]` table instead — see the `ki-repo` skill for the shared-file contract; validate your own table (warn on an unrecognised key) without validating sibling tables. Consume shared `[skills.ki-repo].store_roles` metadata only to select source-mirror applicability. A base never ships a `<base>-kb` skill: what it needs differently is declared here (data) or in its `CLAUDE.md` (prose), never forked into a coupled skill.
+Almost everything is fixed by the structure above. Only these come from the host project - take the narrative bindings from the base's root `AGENTS.md`, which every agent host loads, then the root memory index. **Declarative overrides** (the zone alias and the lists below) are read from the base's `.ki.toml` `[skills.ki-repo-kb]` table instead — see the `ki-repo` skill for the shared-file contract; validate your own table (warn on an unrecognised key) without validating sibling tables. Consume shared `[skills.ki-repo].store_roles` metadata only to select source-mirror applicability. A base never ships a `<base>-kb` skill: what it needs differently is declared here (data) or in its `AGENTS.md` (prose), never forked into a coupled skill.
 
 - **Notes store** — canonical alias and location of the notes store. _Default:_ the connected base; refer to it as "the base".
 - **Sources store** — whether a paired sources store is declared, following the [source mirror contract](references/standards-source-mirrors.md). _Default:_ none.
 - **Scope usage** — whether the base is Pillar-scoped (declare an active Pillar) or single-Pillar / flat. _Default:_ Pillar-scoped.
 - **Zone names** — the canonical folder per zone, overridable per base. A `[skills.ki-repo-kb.zones]` sub-table maps any canonical zone or working area to this base's local folder name (e.g. `Pillars = "<local folder>"`); resolve every zone reference through it. Useful for a base mid-migration (drop the entry once the folder is renamed) or one that simply names a zone differently. _Default:_ the canonical names (`Calendar` / `Pillars` / `Resources` / `Streams` / `Admin`, plus the `+` / `-` working areas).
-- **Required frontmatter** — the keys every note carrying frontmatter must include. Declare them with `required_frontmatter = ["tags", "status", "author"]` under `[skills.ki-repo-kb]` to have the checker enforce their presence mechanically (extra keys stay free; keys are always `snake_case`). _Default:_ none declared — required frontmatter stays a judgment call resolved from the host `CLAUDE.md`.
+- **Required frontmatter** — the keys every note carrying frontmatter must include. Declare them with `required_frontmatter = ["tags", "status", "author"]` under `[skills.ki-repo-kb]` to have the checker enforce their presence mechanically (extra keys stay free; keys are always `snake_case`). _Default:_ none declared — required frontmatter stays a judgment call resolved from the host's `AGENTS.md`.
 - **Writing standards** — language variant, citation format, structural norms. _Default:_ British English; cite source paths; concise prose.
 - **Domain pre-flight** — any extra reads before drafting (profiles, domain context). Declare them as `preflight = ["<path-or-glob>", …]` under `[skills.ki-repo-kb]` — a list of note paths/globs to read before drafting, which the checker validates _down_. _Default:_ none beyond the memory cascade.
 
 ## Step 1 - Load context
 
-1. The host `CLAUDE.md` (auto-loaded) is the authority on the bindings above; follow it. Read the root `Admin/MEMORY.md` for active Pillars.
+1. The host's root `AGENTS.md`, which every agent host loads and a Claude-only `CLAUDE.md` imports, is the authority on the bindings above; follow it. Read the root `Admin/MEMORY.md` for active Pillars.
 2. If the base is Pillar-scoped, declare or confirm the active Pillar, then load `Pillars/<Pillar>/MEMORY.md` and any profile index. Confirm: "Session scoped to [Pillar]." If the user switches Pillar mid-session, re-scope before proceeding.
-3. Pre-flight before writing anything substantive: scope cascade loaded; if the work engages a named person/entity with a profile note, read it first; run any domain pre-flight declared in `.ki.toml` (`preflight`) or the host `CLAUDE.md`.
+3. Pre-flight before writing anything substantive: scope cascade loaded; if the work engages a named person/entity with a profile note, read it first; run any domain pre-flight declared in `.ki.toml` (`preflight`) or the host's `AGENTS.md`.
 
 ## Operating modes
 
@@ -147,7 +147,7 @@ The memory cascade and the canonical-zone Enactment gate are part of the shared 
 ## Notes
 
 - This skill assumes the Knowledge Islands structure. If a base does not follow it, or a binding cannot be resolved and no default fits, ask the user rather than guess.
-- A base supplies its specifics by **declaration**, not a coupled skill: structured data (zone aliases, required frontmatter, pre-flight reads) in its `.ki.toml` `[skills.ki-repo-kb]` table, narrative bindings (store alias, scope, writing standards) in its `CLAUDE.md`. There is no `<base>-kb` extension skill; relationships to sibling skills are composition (e.g. the `Streams` zone delegates to `ki-repo-kb-streams`).
+- A base supplies its specifics by **declaration**, not a coupled skill: structured data (zone aliases, required frontmatter, pre-flight reads) in its `.ki.toml` `[skills.ki-repo-kb]` table, narrative bindings (store alias, scope, writing standards) in its root `AGENTS.md`. There is no `<base>-kb` extension skill; relationships to sibling skills are composition (e.g. the `Streams` zone delegates to `ki-repo-kb-streams`).
 
 Normative detail: [the Knowledge Islands knowledge-base standard](references/standards-knowledge-base.md). Checkable criteria: [the generated rubric](references/rubric.md), enforced mechanically by `ki repo audit --skill ki-repo-kb`. After changing the catalogue under `scripts/rubric/items/`, regenerate the published catalogue with `ki dev skill rubric ki-repo-kb --write`.
 

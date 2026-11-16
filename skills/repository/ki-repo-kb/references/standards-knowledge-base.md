@@ -50,14 +50,14 @@ A base declaring `sources` in `[skills.ki-repo].store_roles` follows the [source
 
 ## Onboarding a base to this skill
 
-Because the zone model is fixed, onboarding is small - resolve only the **project bindings**, ideally in the base's auto-loaded `CLAUDE.md`:
+Because the zone model is fixed, onboarding is small - resolve only the **project bindings**, ideally in the base's root `AGENTS.md`, which every agent host loads; a `CLAUDE.md` imports it and keeps only what is Claude's own (see `ki-repo`'s repository standard):
 
 1. **Notes store** - the canonical alias and location of the notes store, and the alias rule (always use the alias, never the raw mount).
 2. **Sources store** - whether a paired sources store is declared, following [Source mirrors](#source-mirrors).
 3. **Scope usage** - whether the base is Pillar-scoped (declare an active Pillar each session) or single-Pillar / flat.
 4. **Writing standards** - language variant, citation format, structural norms (defaults: British English, cite source paths, concise prose).
-5. **Domain pre-flight** - any extra reads before drafting; declared as a `preflight` list in the base's `.ki.toml` `[skills.ki-repo-kb]` table, not in `CLAUDE.md`.
-6. **Zone names** - only if a folder diverges from its canonical name during a migration; declared in `.ki.toml`, not `CLAUDE.md` (see [Zone aliases](#zone-aliases-and-the-skillski-repo-kb-config-table)).
+5. **Domain pre-flight** - any extra reads before drafting; declared as a `preflight` list in the base's `.ki.toml` `[skills.ki-repo-kb]` table, not in `AGENTS.md`.
+6. **Zone names** - only if a folder diverges from its canonical name during a migration; declared in `.ki.toml`, not `AGENTS.md` (see [Zone aliases](#zone-aliases-and-the-skillski-repo-kb-config-table)).
 7. **Template overrides** - optional zone-keyed paths under `[skills.ki-repo-kb.templates]`, relative to the base.
 
 A base that follows the structure and defines the notes store needs nothing more; the rest runs on defaults.
@@ -104,6 +104,6 @@ A Knowledge Base has no package toolchain, so its committed hooks are the `ki-re
 A base never ships a `<base>-kb` extension skill. What it needs differently is **declared**, so the mode logic stays in one place and the base specifics stay auditable:
 
 - **Structured data** → the base's `.ki.toml` `[skills.ki-repo-kb]` table, read **validate-down** by this skill: the `[skills.ki-repo-kb.zones]` aliases, `[skills.ki-repo-kb.templates]` overrides, the `required_frontmatter` array, and the `preflight` array (note paths/globs to read before drafting — the base-specific pre-flight that scope declaration and domain context once justified an extension for).
-- **Narrative bindings** (store alias, scope usage, writing standards) → the base's auto-loaded `CLAUDE.md`.
+- **Narrative bindings** (store alias, scope usage, writing standards) → the base's root `AGENTS.md`.
 
 Relationships to sibling skills use explicit boundaries, never extension. Selecting this skill also selects its declared focused prerequisites — `ki-repo-kb-activities`, `ki-repo-kb-live-artifacts`, and `ki-repo-kb-streams` — before the wider base audit. Coverage selects `ki-authoring` separately for Markdown conventions. No skill imports another. A genuinely base-specific _behaviour_ that no declaration can express is a signal to generalise it into this standard skill (a REFRESH candidate), not to fork a coupled one.
