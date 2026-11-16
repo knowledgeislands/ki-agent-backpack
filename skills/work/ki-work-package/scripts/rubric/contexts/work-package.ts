@@ -92,7 +92,8 @@ const ROLE_MIGRATION = 'standards-roles-migration.md'
 const TIERS: readonly string[] = ['leaders', 'managers', 'makers']
 /**
  * The closed keys of a `workers` entry, its binding under the role standard (ROSTER-SPLIT a, 14 November 2026), and
- * the keys the role migration file tolerates; presence, host, rig, listening and last seen, is the roster's.
+ * the keys the role migration file tolerates; presence, host, rig and last seen, is the roster's, and listening is read
+ * from meetings alone (LISTEN-HOME a, 16 November 2026).
  */
 const WORKER_FIELDS: ReadonlySet<string> = new Set(['name', 'role', 'tier', 'since', 'status'])
 const WORKER_RETIRED_FIELDS: ReadonlySet<string> = new Set(['uri', 'designation', 'focus', 'listening'])
@@ -430,7 +431,7 @@ const roleOutcome = (
 
 /**
  * `workers` under the role standard: a list of live seats, each one catalogue role with its catalogue tier and at most
- * since, status and listening. The retired entry keys, focus among them, warn.
+ * name, since and status. The retired entry keys, focus and listening among them, warn.
  */
 const workersChecks = (
   record: ParsedRecord,

@@ -214,7 +214,7 @@ How participants reach each other, three levels, the first that works:
 
 ### 4.9 Listening and check-ins
 
-1. **The caller listens** while the meeting is open, watching the whole folder and waking when anything in it changes, since a participant can write a note or a brief without a message. Where participants have presence entries, such as the Cairn store's roster, the caller's shows `listening` while it attends an open meeting.
+1. **The caller listens** while the meeting is open, watching the whole folder and waking when anything in it changes, since a participant can write a note or a brief without a message. Whether a session is listening is read from the meeting alone (LISTEN-HOME, Kris, 16 November 2026): a session is listening while it is a participant of an open meeting with a sitting under way, listed under `participants` in the entry file with `status: open` ([4.5](#45-the-entry-file)). No presence entry, such as the Cairn store's roster, carries `listening`.
 2. **A host without a lasting shell** listens by scheduled wake-ups instead, and otherwise re-reads `messages/` when the owner prompts it and before each new piece of work.
 3. **The agenda states** each participant's interval, the longest a message waits for it, and when its listening ends.
 4. **Sessions outside the room** do not watch it.
@@ -273,7 +273,7 @@ Kris, 14 November 2026 (MEET-BUSY):
 ### 4.15 Closing
 
 1. **The caller's last message closes the meeting,** naming each outcome and the change document that now holds it. Nothing closes by itself. The close restates each choice and recommendation it carries, and never refers back to an earlier message for them (CHOICES-WHOLE, Kris, 14 November 2026).
-2. **Listening ends.** The caller's watcher stops, and its presence entry's `listening` is set back to false.
+2. **Listening ends.** The caller's watcher stops, and with `status` no longer `open` in the entry file no participant reads as listening.
 3. **Work that landed** during the meeting gets its record, as the store's own rule for records sets.
 4. **The folder is removed** from the tree once the owner has reviewed that record, and Git history keeps it.
 
