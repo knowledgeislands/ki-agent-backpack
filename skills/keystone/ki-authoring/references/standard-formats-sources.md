@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-15T00:17:25Z
+revised: 2026-11-16T16:58:00Z
 status: in force
 ---
 
@@ -78,9 +78,11 @@ refresh: <kind> · <cadence>
 
 1. **Sections:** 1 Introduction, 2 Outside sources (2.1 Authoritative, 2.2 Advisory), 3 Decisions, 4 Last review.
 2. **The Introduction** names the standards the file backs.
-3. **Outside sources** are tables of Source, Governs or Informs, and Last reviewed: authoritative sources are specifications the standards follow; advisory sources inform judgement only.
-4. **Sub-groups:** either class may divide its sources into sub-groups, each a numbered subsection, as `2.1.1`, with its own table of the same columns. The class then holds only a short lead-in before them, as the [format format](standard-formats-format.md#44-shape) asks of any section with subsections.
-5. **Last review** says what the latest review confirmed and what it is watching.
+3. **Outside sources** are tables of Source, Governs or Informs, and Last reviewed: authoritative sources are specifications the standards follow; advisory sources inform judgement only. A skill that follows no outside source says None there, with no 2.1 or 2.2.
+4. **Tags:** a short tag that the standards or the rubric cite opens the Source cell, as `| SPEC — [Agent Skills specification][spec] | … |`. There is no Tag column.
+5. **Sub-groups:** either class may divide its sources into sub-groups, each a numbered subsection, as `2.1.1`, with its own table of the same columns. The class then holds only a short lead-in before them, as the [format format](standard-formats-format.md#44-shape) asks of any section with subsections. Sources kept in-house, such as the house's own tool repositories, are a sub-group of the class they serve, as `2.2.1 In-house tool repositories`, never a class of their own.
+6. **Last review** says what the latest review confirmed, and lists what it is watching under **Watching**. Watch items have no other place in the file.
+7. **Older shapes:** a sources file written before this format comes into it with its guild's review, or sooner when it is next changed; audit reports it until then. Files are not converted in bulk.
 
 [Back to contents](#contents)
 
@@ -105,5 +107,6 @@ Beyond the format format's checks, a validator checks:
 1. **Front matter:** `refresh` is present.
 2. **Sections:** the four sections are present, in order.
 3. **Decisions:** each id is unique, each Backs names a standard that exists, and each superseded decision names an id that exists.
+4. **Outside sources:** each table has the three columns and no Tag column, or the section says None.
 
 [Back to contents](#contents)
