@@ -1,6 +1,6 @@
 ---
-type: sources@2026-11-15T00:17:25Z
-revised: 2026-11-15T00:22:04Z
+type: sources@2026-11-16T16:58:00Z
+revised: 2026-11-16T17:30:00Z
 refresh: external-spec · monthly
 ---
 
@@ -169,10 +169,13 @@ The vendors' own documentation and the specifications the cards follow, checked 
 | NAMES, HARNESS-NAME | The owner's word, relayed by the Cairn summit's guardian: a rig is Knowledge Islands' word for a machine, the same idea; actor and work package are kept; title, seat and worker go; plugin gets an industry card; and the KI harness's own name is backpack, mapped onto plugin. The naming proposal moved to the Cairn summit's change 12, where what is still open is decided | 2026-11-13 | [SKILL.md](../SKILL.md#the-cards), [the root definition](../knowledge/_graph.md) | In force |
 | GUILD-TERM, GUILD-LEAD, KEYSTONE-HUB | The owner's decisions, 13 November 2026, in the Cairn summit's change 14: a guild is a set of skills that belong together and work together, led by one lead skill named after it; Keystone is the guild of guilds. The card is the first in the `system/` subgraph change 12 proposes. | 2026-11-13 | [guild](../knowledge/system/system.guild.md) | In force |
 | NAMES-SYSTEM, NAMES-TEAM, NAMES-PEER, NAMES-REMOTE | The owner's word, relayed by the Cairn summit's guardian, in change 12: agentic system is kept as the industry's umbrella term, with a card of its own; agent team gets an industry card, team lead and teammate on it; the peer agent card is withdrawn and peer is defined on a cross-session messaging card; the remote agent card stays, linked to A2A's. With plugin's card under NAMES, the cards were written on 15 November 2026, their drafts checked against [A8] to [A11], [O13] and [A2A1]. | 2026-11-13 | [cross-session messaging](../knowledge/industry/industry.cross-session-messaging.md), [agent team](../knowledge/industry/industry.agent-team.md), [remote agent](../knowledge/industry/industry.remote-agent.md), [plugin](../knowledge/industry/industry.plugin.md), [agentic system](../knowledge/industry/industry.agentic-system.md) | In force |
+| TERMS-SOURCE | The owner's word, 16 November 2026, about 16:22 GMT, relayed by the Cairn summit's guardian from the summit's [change 12](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/12-names.change.md#72-gaps), gap 4: the system's own words live in this graph's `system/` subgraph, where the guild card already sits and the `system-term` card type exists, not in a home of their own beside the role catalogue. | 2026-11-16 | [root definition](../knowledge/_graph.md#extent-and-limitations) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 16 November 2026 an in-house review applied TERMS-SOURCE a, which the owner took that day at about 16:22 GMT, relayed by the Cairn summit's guardian from the summit's [change 12](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/12-names.change.md#72-gaps): the system's own terms sit in the `system/` subgraph, after guild, and the root definition's pending line says so in place of a proposal. This file moves to the sources format's new version, its watch list taking the **Watching** label. No outside source refreshed.
 
 On 15 November 2026 five industry cards were written from the picks in the Cairn summit's change 23 (now 12): [cross-session messaging](../knowledge/industry/industry.cross-session-messaging.md), [agent team](../knowledge/industry/industry.agent-team.md), [plugin](../knowledge/industry/industry.plugin.md) and [agentic system](../knowledge/industry/industry.agentic-system.md), and the [remote agent](../knowledge/industry/industry.remote-agent.md) card agreed; the peer agent card was withdrawn. They follow the client in reading order. [A8] and [A9] were re-read and [A10] and [A11] added. The draft definition of cross-session messaging said sessions on the same machine; [A8] now reaches sessions on other machines and in the cloud, so the card says so. Anthropic's agent team, OpenAI's plugin and Google's remote subagent now link to their industry cards. The living diagrams still label a peer agent, until they are next regenerated.
 
@@ -181,7 +184,7 @@ On 12 November 2026 the skill was written from the Cairn summit's change 22, kno
 - **Confirmed:** Anthropic, Google and Microsoft each name the layer an agent harness, or an agentic harness, and OpenAI the Codex harness; vendors name an agent after its harness; VS Code alone calls Copilot, Claude and Codex harnesses. Session is Anthropic's word and the majority's; OpenAI says task or chat by surface, and Google conversation in Antigravity's app; OpenAI's top-level thread is the primary thread. All four vendors say subagent, and differ only on how subagents nest. All four build their skills on the Agent Skills specification, and OpenAI distributes them in plugins.
 - **The knowledge kind:** `ki-skills` defines `ki-kind: knowledge` and how a knowledge skill holds its graph in `knowledge/`, so the cards are checked as graph cards: `_graph.md` and files named by their ids. On 12 November 2026 the graph moved from `references/` to `knowledge/`, a folder for each subgraph, under KNOWLEDGE-FOLDER and GRAPH-FOLDERS.
 - **Specification cards, proposed:** the cards for MCP, ACP, AHP and A2A, each split into its parts, were drafted as proposals from [MCP1] to [MCP10], [ACP1] to [ACP10], [AHP1] to [AHP9] and [A2A1] to [A2A4], for the owner's decision in the Cairn summit's change 22; none is agreed, and no decision above backs them.
-- **Open watch-items:**
+- **Watching:**
   - Jules closes on 31 December 2026, and Gemini CLI's replacement by the Antigravity CLI is spreading; move both to past examples when they go.
   - GitHub renamed its cloud agent Copilot in the cloud on 28 October 2026; check the older name has left the docs.
   - Gemini 4 Carbon became generally available on 10 November 2026 and GPT-5.5 is retiring; refresh the vendors' model cards.
