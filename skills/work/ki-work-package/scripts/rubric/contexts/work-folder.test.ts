@@ -49,14 +49,14 @@ describe('the layout under work/', () => {
   test('finds packages and their sub-packages, each with the id its place gives it', () => {
     const root = fixture()
     pkg(root, ['10-pilot.change.md', 'viewer/'])
-    write(root, join(PACKAGE, 'viewer', '_index.md'), '# ki.reg.pilot.viewer\n')
-    write(root, join(PACKAGE, 'viewer', 'deep', '_index.md'), '# ki.reg.pilot.viewer.deep\n')
+    write(root, join(PACKAGE, 'viewer', '_index.md'), '# ki.reg.pilot+viewer\n')
+    write(root, join(PACKAGE, 'viewer', 'deep', '_index.md'), '# ki.reg.pilot+viewer+deep\n')
     const layout = workLayout(root)
     expect(layout?.violations).toEqual([])
     expect(layout?.packages.map((folder) => [folder.subject, folder.expectedId, folder.territory])).toEqual([
       ['work/ki/ki.reg.pilot', 'ki.reg.pilot', 'ki'],
-      ['work/ki/ki.reg.pilot/viewer', 'ki.reg.pilot.viewer', 'ki'],
-      ['work/ki/ki.reg.pilot/viewer/deep', 'ki.reg.pilot.viewer.deep', 'ki']
+      ['work/ki/ki.reg.pilot/viewer', 'ki.reg.pilot+viewer', 'ki'],
+      ['work/ki/ki.reg.pilot/viewer/deep', 'ki.reg.pilot+viewer+deep', 'ki']
     ])
   })
 

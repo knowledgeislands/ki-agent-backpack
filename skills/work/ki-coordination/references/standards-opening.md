@@ -43,7 +43,7 @@ Every piece of work above a work item has an **id**, a **slug** and a **title**;
 | Project work | `<territory>.prj.<project>` | `<territory>-prj-<project>` | `<Territory> > <Theme title> > <Project title>`, or `<Territory> > <Project title>` with no theme |
 | Regular work | `<territory>.reg.main` | `<territory>-reg-main` | `<Territory> > Regular work` |
 | Ad hoc work | `<territory>.reg.<slug>` | `<territory>-reg-<slug>` | `<Territory> > <topic>` |
-| Sub-package | `<parent id>.<slug>` | `<parent slug>-<slug>` | `<parent title> > <strand in words>` |
+| Sub-package | `<parent id>+<slug>` | `<parent slug>-<slug>` | `<parent title> > <strand in words>` |
 
 Canonical stored names are `<territory>.summit`, which replaced `<territory>.sop.main`, `<territory>.prj.<project>`, `<territory>.reg.main` and `<territory>.reg.<topic>`; secondaries keep `<territory>.sop.<name>`. The Project slug stays `<project>`.
 
@@ -51,15 +51,16 @@ A member-repository Project session is a seat for its Capital package, not autho
 
 **Id.**
 
-- **Segments:** joined by `.`, each a lower-case kebab name, `[a-z0-9]+(-[a-z0-9]+)*`, so a segment never holds a dot, an underscore, a host or a runtime session identifier.
+- **Segments:** joined by `.`, which builds a package's name, each a lower-case kebab name, `[a-z0-9]+(-[a-z0-9]+)*`, so a segment never holds a dot, an underscore, a host or a runtime session identifier.
 - **Territory:** the alias of the territory whose Capital holds `_index.md`, from the estate's territory list in the principal Knowledge Base: `ki`, `hnr`, `er`, `tmx`, `va`, `lgl`, `personal` or `si`. `personal` is the reserved handle for the owner's own territory under the `ki-repo` [territory selection](../../../keystone/ki-repo/references/standard-configuration.md#49-territory-selection) standard.
 - **Project:** the `slug` of the Project note under the `ki-work` [Project registry standard](../../../keystone/ki-work/references/standards-project-registry.md), such as `tools-burndown`. No id carries a theme, so relabelling a Project's theme renames nothing.
 - **Secondary name:** the third segment of a [secondary State of play](standards-territory.md#secondary-states-of-play), a short kebab name for what it covers, such as `5ge` or `sites`, chosen by the owner. `sop` is reserved as a second segment, so no Project or ad hoc slug is `sop`.
 - **Ad hoc slug:** chosen when the work first takes a package, by the owner, or proposed by the agent and confirmed: a short kebab name for the subject, led by the system it works on where the subject alone would be ambiguous, as in `acquire-intake` rather than `intake`. It is never `regular`, never a Project slug of the territory, and never carries a date or host.
-- **Sub-package:** a grounded doer's own short-lived package for one strand of a regular, ad hoc or Project package. Its id is the parent's canonical id with the sub-package's slug as a fourth segment, as in `personal.reg.inbox-terra.kiv`, the only four-part id. A sub-package has no sub-package; the folder, slug and title rules apply unchanged. It exists so each package has one worker and one inbox; its parent, writers and fold-back are the work-package standard's [Sub-packages](../../ki-work-package/references/standard-work-package.md#47-sub-packages).
+- **Sub-package:** one strand of a package that the parent's own seat works, the root's and the summits' included. Its id is the parent's canonical id, `+` and the sub-package's slug, as in `hnr.summit+website`, `+` adding a strand, as Kris took SUMMIT-SUB-PACKAGES b on 16 November 2026; its folder is the slug, inside the parent's. A strand that needs a seat of its own is a node of its own instead, `<territory>.<slug>`. A sub-package has no sub-package; the slug and title rules apply unchanged. Its level, parent, writers and fold-back are the work-package standard's [Sub-packages](../../ki-work-package/references/standard-work-package.md#47-sub-packages).
+- **Seat:** a seat in a package is named by its id, `<package id>@<role>`, `@` naming the seat, as in `ki.cairn@warden`, `cairn.summit@guardian` and `hnr.summit+website@information-architect`, as Kris took SEAT-AT a on 16 November 2026; it replaces the title, `<work id>+<role>`. An actor with no name takes its seat's id, as `actor:ki.cairn@information-architect`, under the `ki-work-package` [role fields](../../ki-work-package/references/standard-roles.md#45-role-fields).
 - **Unique and stable:** no two pieces of work in a territory share an id or a slug. The id is set once, when the package is created, and changes only through an owner-approved rename when a Project's slug is renamed; every derived name then changes in the same commit.
 
-**Slug.** The id with each `.` written as `-`: one path component in the run-name alphabet, `[A-Za-z0-9_-]`, which has no dot.
+**Slug.** The id with each `.` and `+` written as `-`: one path component in the run-name alphabet, `[A-Za-z0-9_-]`, which has no dot.
 
 - It names the work's native-session binding, `~/.local/state/ki/threads/<repository>/<slug>.json`, and its coordinator run. The package folder itself is named by the dotted id.
 - Existing runtime folder names and immutable run tokens stay unchanged through a package rename; only mutable current home pointers follow the package. Runs keep their own hyphenated slugs.
@@ -77,7 +78,7 @@ A member-repository Project session is a seat for its Capital package, not autho
 **Where each name is used.**
 
 - The work name names the work in replies and reports, as the sender of a [line](standards-messages.md#messages-between-work), in a handoff and in the opener's `Label:` line.
-- A native session takes its seat's [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line) instead: `<role glyph> 🔑 <work-id>`, the glyph of its one role from the [role catalogue](../../ki-work-package/references/standard-roles.md#43-role-catalogue), with 🔑 marking the keyholder, the session holding the package's keys; `<role glyph> <work-id>+<role>`, with no key, for a seat working in the package without its keys, such as a maker in a meeting; or `🧵 <work-id>` while it has no role. The launch name, the `Rename thread:` line, every report's [thread line](standards-coordination.md#banner) and the sender of every line the seat writes agree. A line's sender is the label with the thread line in brackets, as in `KI > Guilds (⚖️ 🔑 ki.reg.guilds):`. The work id stays last, so the name still names the work.
+- A native session takes its seat's [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line) instead: `<role glyph> 🔑 <work-id>`, the glyph of its one role from the [role catalogue](../../ki-work-package/references/standard-roles.md#43-role-catalogue), with 🔑 marking the keyholder, the session holding the package's keys; `<role glyph> <package>@<role>`, with no key, the seat's id, for a seat working in the package without its keys, such as a maker in a meeting; or `🧵 <work-id>` while it has no role. The launch name, the `Rename thread:` line, every report's [thread line](standards-coordination.md#banner) and the sender of every line the seat writes agree. A line's sender is the label with the thread line in brackets, as in `KI > Guilds (⚖️ 🔑 ki.reg.guilds):`. The work id stays last, so the name still names the work.
 - The label stays in the opener and the [report heading](standards-coordination.md#banner). The report heading uses the same display names, linked to their notes and joined by ` › `, without the territory.
 
 | Work | Id | Title | Old shape |
@@ -89,7 +90,7 @@ A member-repository Project session is a seat for its Capital package, not autho
 | Knowledge Islands regular work | `ki.reg.main` | `KI > Regular work` | recurring work in Initiative notes, `ki.regular` |
 | Registry removal | `ki.reg.registry-removal` | `KI > Registry removal` | a conversational session, `ki.regular.registry-removal` |
 
-Sources: NAMING-MODEL, SUB-PACKAGE, TITLE-THEME, LABEL-HOST, WORK-LABEL, STAGE-C-ROLES, RENAME-NAME and SEAT-LINE in [the decision register](sources.md#decision-register).
+Sources: NAMING-MODEL, SUB-PACKAGE, TITLE-THEME, LABEL-HOST, WORK-LABEL, STAGE-C-ROLES, RENAME-NAME, SEAT-LINE, SUMMIT-SUB-PACKAGES and SEAT-AT in [the decision register](sources.md#decision-register).
 
 ## Opening work
 

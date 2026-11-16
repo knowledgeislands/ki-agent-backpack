@@ -27,7 +27,7 @@ export type PackageFolder = {
   readonly subject: string
   readonly name: string
   readonly territory: string
-  /** The id the folder's place gives it: its own name at the top, `<parent id>.<slug>` for a sub-package. */
+  /** The id the folder's place gives it: its own name at the top, `<parent id>+<slug>` for a sub-package. */
   readonly expectedId: string
   readonly parent?: PackageFolder
 }
@@ -75,7 +75,7 @@ const withSubPackages = (folder: PackageFolder, root: string): PackageFolder[] =
           subject: relative(root, path),
           name: entry.name,
           territory: folder.territory,
-          expectedId: `${folder.expectedId}.${entry.name}`,
+          expectedId: `${folder.expectedId}+${entry.name}`,
           parent: folder
         },
         root

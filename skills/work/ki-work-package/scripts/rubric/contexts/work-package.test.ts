@@ -248,12 +248,12 @@ describe('RECORD-1 identity', () => {
     expect(messages(run(RECORD, 'RECORD-1', context(root)))).toContain('dotted id')
   })
 
-  test('a sub-package is `<parent id>.<slug>`', () => {
+  test('a sub-package is `<parent id>+<slug>`', () => {
     const root = store({ changes: ['10-pilot.change.md', 'viewer/'] })
     write(
       root,
       'work/ki/ki.reg.pilot/viewer/_index.md',
-      entry({ id: 'ki.reg.pilot.viewer', drop: ['parent'], fields: ['parent: ki.reg.pilot'] })
+      entry({ id: 'ki.reg.pilot+viewer', drop: ['parent'], fields: ['parent: ki.reg.pilot'] })
     )
     write(root, 'work/ki/ki.reg.pilot/viewer/10-pilot.change.md', '# Viewer\n')
     expect(statuses(run(RECORD, 'RECORD-1', context(root)))).toEqual(['PASS'])
@@ -263,7 +263,21 @@ describe('RECORD-1 identity', () => {
       'work/ki/ki.reg.pilot/viewer/_index.md',
       entry({ id: 'ki.reg.viewer', drop: ['parent'], fields: ['parent: ki.reg.pilot'] })
     )
-    expect(messages(run(RECORD, 'RECORD-1', context(root)))).toContain('id must be ki.reg.pilot.viewer')
+    expect(messages(run(RECORD, 'RECORD-1', context(root)))).toContain('id must be ki.reg.pilot+viewer')
+  })
+
+  test('the earlier `<parent id>.<slug>` sub-package id warns under the role migration file', () => {
+    const root = store({ changes: ['10-pilot.change.md', 'viewer/'] })
+    write(
+      root,
+      'work/ki/ki.reg.pilot/viewer/_index.md',
+      entry({ id: 'ki.reg.pilot.viewer', drop: ['parent'], fields: ['parent: ki.reg.pilot'] })
+    )
+    write(root, 'work/ki/ki.reg.pilot/viewer/10-pilot.change.md', '# Viewer\n')
+    const outcomes = run(RECORD, 'RECORD-1', context(root))
+    expect(statuses(outcomes)).toEqual(['WARN'])
+    expect(messages(outcomes)).toContain('standards-roles-migration.md')
+    expect(statuses(run(RECORD, 'RECORD-2', context(root)))).toEqual(['PASS'])
   })
 })
 
@@ -422,12 +436,34 @@ describe('RECORD-2 schema', () => {
     write(
       root,
       'work/ki/ki.reg.pilot/viewer/_index.md',
-      entry({ id: 'ki.reg.pilot.viewer' }).replace('level: regular', 'level: project')
+      entry({ id: 'ki.reg.pilot+viewer' }).replace('level: regular', 'level: project')
     )
     write(root, 'work/ki/ki.reg.pilot/viewer/10-pilot.change.md', '# Viewer\n')
     const text = messages(run(RECORD, 'RECORD-2', context(root)))
     expect(text).toContain("parent must name the sub-package's parent package, ki.reg.pilot")
     expect(text).toContain("a sub-package's level is its parent's, regular")
+  })
+
+  test("a summit's sub-package takes level regular", () => {
+    const root = store()
+    write(
+      root,
+      'work/ki/ki.summit/_index.md',
+      MAIN.replace('## Changes\n\nNone', '## Changes\n\n- [website/](website/) - in hand.')
+    )
+    const sub = (level: string): string =>
+      entry({ id: 'ki.summit+website', drop: ['parent'], fields: ['parent: ki.summit'] }).replace(
+        'level: regular',
+        `level: ${level}`
+      )
+    write(root, 'work/ki/ki.summit/website/_index.md', sub('regular'))
+    write(root, 'work/ki/ki.summit/website/10-pilot.change.md', '# Website\n')
+    expect(statuses(run(RECORD, 'RECORD-1', context(root)))).toEqual(['PASS'])
+    expect(statuses(run(RECORD, 'RECORD-2', context(root)))).toEqual(['PASS'])
+    write(root, 'work/ki/ki.summit/website/_index.md', sub('territory'))
+    expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain(
+      'a sub-package of the root or a summit takes level regular'
+    )
   })
 
   const tolerated: readonly [string, Partial<Entry>][] = [
@@ -440,7 +476,11 @@ describe('RECORD-2 schema', () => {
     ['a worker listening', { fields: ['workers:\n  - role: warden\n    tier: managers\n    listening: off'] }],
     ['a leftover covers', { fields: ['covers: []'] }],
     ['a worker name', { fields: ['workers:\n  - name: Wayland\n    role: warden\n    tier: managers'] }],
-    ['a worker actor', { fields: ['workers:\n  - actor: wayland\n    role: warden\n    tier: managers'] }]
+    ['a worker actor', { fields: ['workers:\n  - actor: wayland\n    role: warden\n    tier: managers'] }],
+    [
+      'a seat id in the earlier + form',
+      { fields: ['workers:\n  - id: actor:ki.cairn+architect\n    role: architect\n    tier: makers'] }
+    ]
   ]
   for (const [name, change] of tolerated)
     test(`${name} warns under the role migration file`, () => {
@@ -452,6 +492,13 @@ describe('RECORD-2 schema', () => {
   test("a worker binding with its actor's typed id passes", () => {
     const binding = 'workers:\n  - id: actor:wayland\n    role: warden\n    tier: managers\n    status: active'
     expect(statuses(run(RECORD, 'RECORD-2', context(store({ fields: [binding] }))))).toEqual(['PASS'])
+  })
+
+  test("a worker binding with a seat's id passes", () => {
+    for (const id of ['actor:ki.cairn@architect', 'actor:hnr.summit+website@information-architect']) {
+      const binding = `workers:\n  - id: ${id}\n    role: architect\n    tier: makers`
+      expect(statuses(run(RECORD, 'RECORD-2', context(store({ fields: [binding] }))))).toEqual(['PASS'])
+    }
   })
 
   test('a worker id that is not a typed actor id fails', () => {

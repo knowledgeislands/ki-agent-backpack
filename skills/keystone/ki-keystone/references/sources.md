@@ -45,12 +45,15 @@ Keystone's guild rules have none: Keystone is Knowledge Islands' own, and the in
 | BOOTSTRAP-FOLD | The owner's decision, in change 14: `ki-bootstrap` becomes `ki-keystone bootstrap`, its body a reference loaded only when the mode is called. | 2026-11-13 | [mode-bootstrap.md](mode-bootstrap.md) | In force |
 | OPENER-DELEGATE | Kris's decision in conversation, option a: every opener or brief that starts a session tells it to delegate its work to its agent host's own subagents, stay responsive to its messages and to the owner while that work runs, and let the subagents do most of the work, checking what they return before posting it. | 2026-11-14 | [bootstrap standard](standard-bootstrap.md#47-machine-readiness-for-coordinating-work) | In force |
 | OPENER-NAME | Kris's decision in conversation, option a: every opener that starts a new agent session names its thread line and tells the session to rename itself to it as its first act. | 2026-11-14 | [bootstrap standard](standard-bootstrap.md#47-machine-readiness-for-coordinating-work) | In force |
-| SEAT-LINE | Kris's decision in conversation, option a: a seat working in a package without its keys is named `<role glyph> <work-id>+<role>`, under `ki-work-package`'s thread line. | 2026-11-14 | [bootstrap standard](standard-bootstrap.md#47-machine-readiness-for-coordinating-work) | In force |
+| SEAT-LINE | Kris's decision in conversation, option a: a seat working in a package without its keys is named `<role glyph> <work-id>+<role>`, under `ki-work-package`'s thread line. | 2026-11-14 | [bootstrap standard](standard-bootstrap.md#47-machine-readiness-for-coordinating-work) | In force; the seat re-spelt `<package>@<role>` under SEAT-AT |
 | GUILD-TREE | The owner's decision, in change 14, option a: the guild tree, with each guild's one-line purpose as its working label. | 2026-11-14 | [SKILL.md](../SKILL.md#the-guilds) | In force |
+| SEAT-AT | Kris's decision, option a, relayed by the Cairn summit's guardian from the summit's [change 20](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/20-learnings.change.md#45-decided): a seat is `<package>@<role>`, or `<package>+<slug>@<role>` in a sub-package, in place of `<work id>+<role>`, so a seat working in a package without its keys is named `<role glyph> <package>@<role>`, under `ki-work-package`'s thread line. | 2026-11-16 | [bootstrap standard](standard-bootstrap.md#47-machine-readiness-for-coordinating-work) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 16 November 2026 Kris took SEAT-AT a, relayed by the Cairn summit's guardian: the checklist's opener step names the keyless thread line `<role glyph> <package>@<role>`, the seat's id, in place of `<role glyph> <work-id>+<role>`, `+` now adding a sub-package's strand under SUMMIT-SUB-PACKAGES. No external source refreshed.
 
 On 14 November 2026 Kris took OPENER-DELEGATE a in conversation: the checklist's opener step now has the opener tell the session to delegate its work to its agent host's own subagents, stay responsive while they run and check what they return before posting it. No external source refreshed.
 

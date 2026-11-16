@@ -93,7 +93,7 @@ The Work Process note's Words table owns the model's words: work, work item, the
 | banner | F2 to F9: the state, counts, items, modes and thread line | `ki-coordination` |
 | holder | Who an item is with: 👤 the owner, 🤖 a worker or run, 🧵 another session, 🌐 the outside world | `ki-coordination` |
 | time | The owner's local time, as a friendly time naming the day where it is not today, or an ISO 8601 timestamp with its offset where a friendly time does not fit | `ki-coordination` |
-| thread line | The closing line of every banner and the session's name, `<role glyph> 🔑 <work-id>`, `<role glyph> <work-id>+<role>` for a seat without the package's keys, or `🧵 <work-id>` for a session with no role yet, under [Banner](#banner); its grammar and the role glyphs are the [role standard](../../ki-work-package/references/standard-roles.md#46-thread-line)'s | `ki-work-package` |
+| thread line | The closing line of every banner and the session's name, `<role glyph> 🔑 <work-id>`, `<role glyph> <package>@<role>` for a seat without the package's keys, or `🧵 <work-id>` for a session with no role yet, under [Banner](#banner); its grammar and the role glyphs are the [role standard](../../ki-work-package/references/standard-roles.md#46-thread-line)'s | `ki-work-package` |
 | query, tag | An open decision and its stable mnemonic | `ki-coordination` |
 | decision | One entry in a change document: agreed or decided, or an open point in its Open section | `ki-coordination` |
 | record | A roadmap work record | `ki-work-roadmap` |
@@ -285,7 +285,7 @@ The report heading, rendered glyphs, roadmap and package lines, mode lines, rest
 **Thread line.** Every banner closes with one plain Markdown line, after a blank line following its listening line, or its list or heading-for line where it has none: the session's [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line).
 
 - `<role glyph> 🔑 <work-id>` for every explicitly coordinating package whose seat has a role, main or secondary State of play, Project, regular or ad hoc work; `🧵 <work-id>` for a session with no role yet. Use the authoritative work id from `_index.md` and the glyph of the seat's one catalogue role.
-- A seat working in the package without its keys, such as a maker in a meeting, closes with `<role glyph> <work-id>+<role>`, with no key, under the role standard's [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line); only the keyholder carries 🔑.
+- A seat working in the package without its keys, such as a maker in a meeting, closes with `<role glyph> <package>@<role>`, its seat's id, with no key, under the role standard's [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line); only the keyholder carries 🔑.
 - A run report closes with `🧵 <work-id>` of the work it reports to, without its run name, because a run takes no seat.
 - The opener that starts a session names this line, and the session renames itself to it first, under [Opening work](standards-opening.md#opening-work).
 - It closes every state, handoff, On hold and Finished included. Rich report headings, work labels, banner counts and states are unchanged by it.

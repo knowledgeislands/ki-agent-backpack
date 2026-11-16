@@ -3,12 +3,12 @@
 # and warn on anything else unusual. A Summary or a Status, a Bootstrap or a Stop,
 # a reply that already opens a banner, and a reply to an owner's mark, state word
 # or Position phrase must close with a banner: a ### state heading and the thread
-# line, last: <role glyph> 🔑 <work-id>, <role glyph> <work-id>+<role> for a seat
-# without the package's keys (SEAT-LINE), or 🧵 <work-id> for a session with no role
-# yet. An unrecognised state heading, a missing or odd counts line, a listening
-# line in the earlier 👂 listening or 🔇 not listening form, which LISTEN-LINE
-# replaces with 👂 in <meeting> or no line at all, ⭐, 🔧 or 🧵 in the role glyph's
-# place, and in a
+# line, last: <role glyph> 🔑 <work-id>, <role glyph> <package>@<role> for a seat
+# without the package's keys (SEAT-LINE, SEAT-AT), or 🧵 <work-id> for a session with
+# no role yet. A seat line in the earlier <work-id>+<role> form, an unrecognised
+# state heading, a missing or odd counts line, a listening line in the earlier
+# 👂 listening or 🔇 not listening form, which LISTEN-LINE replaces with 👂 in
+# <meeting> or no line at all, ⭐, 🔧 or 🧵 in the role glyph's place, and in a
 # Summary or Status missing art, roadmap or package line pass with a warning, so the owner can confirm the form was intended. The
 # hook holds no copy of the role catalogue, which ki-work-package owns.
 # In every session, coordinating or not, a reply that asks the owner to decide, a
@@ -126,7 +126,7 @@ footer() {
     /^(```|~~~)/ { fence = !fence; next }
     fence { next }
     /^## Summary$/ || /^## Summary since / || /^\*\*(.* · )?(Summary|Status) at / { print "summary"; exit }
-    /^\*\*(.* · )?(Bootstrap|Stop|Re-bootstrap|Hold report|Finish report) at / || /^### .*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished)/ || /^(🧵|[^ -~]+ 🔑) [^ ]+ *$/ || /^[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+[+][a-z]+(-[a-z]+)* *$/ { other = 1 }
+    /^\*\*(.* · )?(Bootstrap|Stop|Re-bootstrap|Hold report|Finish report) at / || /^### .*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished)/ || /^(🧵|[^ -~]+ 🔑) [^ ]+ *$/ || /^[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)* *$/ { other = 1 }
     END { if (other) print "banner" }')
 
   if [ -z "$form" ]; then
@@ -147,7 +147,7 @@ footer() {
         pause | 'done for now' | snooze | drain | hold | resume | finish | send | receive | 'with me' | ack | 'got it' | seen) ;;
       *) return 0 ;;
     esac
-    recent | LC_ALL=C grep -F '"type":"assistant"' | LC_ALL=C grep -Eq '(\\n|")((🧵|[^ -~"\\]+ 🔑) [A-Za-z0-9][A-Za-z0-9._+-]*|[^ -~"\\]+ [a-z0-9-]+([.][a-z0-9-]+)+[+][a-z]+(-[a-z]+)*)(\\n|")' || return 0
+    recent | LC_ALL=C grep -F '"type":"assistant"' | LC_ALL=C grep -Eq '(\\n|")((🧵|[^ -~"\\]+ 🔑) [A-Za-z0-9][A-Za-z0-9._+-]*|[^ -~"\\]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)*)(\\n|")' || return 0
     form=banner
   fi
 
@@ -181,7 +181,7 @@ footer() {
     {
       last = NR
       key = $0 ~ /^[^ -~]+ 🔑 [^ ]+ *$/
-      keyless = $0 ~ /^[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+[+][a-z]+(-[a-z]+)* *$/
+      keyless = $0 ~ /^[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)* *$/
       is_thread = key || keyless || $0 ~ /^🧵 [^ ]+ *$/
       # A state heading opens with its glyph or names a state; a query or finding heading opens with its tag.
       state = $0 ~ /^### .*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished)/
@@ -199,6 +199,7 @@ footer() {
         glyphs = key ? substr($0, 1, index($0, " 🔑") - 1) : keyless ? substr($0, 1, index($0, " ") - 1) : ""
         marks = index(glyphs, "⭐") || index(glyphs, "🔧")
         spun = index(glyphs, "🧵") > 0
+        oldseat = keyless && !index($0, "@")
       }
     }
     END {
@@ -207,6 +208,7 @@ footer() {
       if (!thread) block[++b] = "the thread line, <role glyph> 🔑 <work-id> or 🧵 <work-id>, last"
       else if (thread != last) block[++b] = "the thread line as the very last line"
       if (thread && marks) warn[++w] = "⭐ or 🔧 beside the role glyph, which the role standard retires"
+      if (thread && oldseat) warn[++w] = "a seat line in the earlier <work-id>+<role> form, which SEAT-AT replaces with <package>@<role>"
       if (thread && spun) warn[++w] = "🧵 in the role glyph\047s place; a seat with a role closes <role glyph> 🔑 <work-id>"
       if (heading && !known) warn[++w] = "a state heading the table of states does not name"
       if (heading && !finished && !counts) warn[++w] = "no counts line beneath the state heading"

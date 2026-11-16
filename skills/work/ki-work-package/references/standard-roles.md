@@ -122,7 +122,7 @@ Two marks stand in the thread line beside the role glyph. They are not roles and
 
 | Mark | Name | Meaning |
 | --- | --- | --- |
-| 🔑 | keyholder | The session holding the package's keys: the seat that may write its package and speak for it. A seat without the keys carries no mark and closes with its seat address instead |
+| 🔑 | keyholder | The session holding the package's keys: the seat that may write its package and speak for it. A seat without the keys carries no mark and closes with its seat's id instead |
 | 🧵 | thread | A session with no role yet, and every background run, which takes no seat and reports to the work it serves |
 
 [Back to contents](#contents)
@@ -140,13 +140,13 @@ A package records its role and its live seats in its entry file, `_index.md`, as
 | --- | --- | --- |
 | `role` | required | One catalogue role |
 | `tier` | required | The catalogue tier of that role: `leaders`, `managers` or `makers` |
-| `id` | optional | The typed id of the actor holding the seat, `actor:<id>`, naming its roster file, as `actor:wayland`; absent while no actor holds it (SEAT-VACANT a) |
+| `id` | optional | The typed id of the actor holding the seat, `actor:<id>`, naming its roster file, as `actor:wayland`, or `actor:<package>@<role>` for an actor with no name; absent while no actor holds it (SEAT-VACANT a) |
 | `since` | optional | UTC time the seat took the package up |
 | `status` | optional | `active` or `idle` |
 
 An entry is the seat's binding and carries nothing else. It points at its actor by typed id and never copies the actor's name or anything else of it, as Kris set under ACTOR-KEY a on 16 November 2026. Presence, where and how the actor runs, its host, rig and last seen, is the actor's roster file's in the Cairn store, never the entry's, and a reader takes each from its home, as the Cairn summit's guardian took ROSTER-SPLIT a under Kris's word on 14 November 2026.
 
-The roster is the list of actors, agent or person, one roster file each. A roster file opens with the actor's `id`, `actor:<id>`, then `type: actor`, an optional human `name` that is never a copy of the id, and `kind`, `agent` or `person`, then its presence, `host`, `rig` and `last_seen`, under ACTOR-KEY a. It holds no titles: who sits where is read from the tree's `workers` entries, each naming its actor's id. A seat with no name, such as a maker in a meeting, still has a roster file, named by its title `<work id>+<role>`, as `actor:ki.cairn+information-architect`, and that file holds its host and rig.
+The roster is the list of actors, agent or person, one roster file each. A roster file opens with the actor's `id`, `actor:<id>`, then `type: actor`, an optional human `name` that is never a copy of the id, and `kind`, `agent` or `person`, then its presence, `host`, `rig` and `last_seen`, under ACTOR-KEY a. It holds no titles: who sits where is read from the tree's `workers` entries, each naming its actor's id. An actor with no name, such as a maker in a meeting, still has a roster file: it takes its seat's id, `<package>@<role>`, as `actor:ki.cairn@information-architect` in `roster/ki.cairn@information-architect.md`, under SEAT-AT a, and that file holds its host and rig.
 
 Whether a session is listening is in neither: it is read from meetings alone, a session listening while it is a participant of an open meeting with a sitting under way, under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file), as Kris set under LISTEN-HOME a on 16 November 2026. The seat's thread line is never stored: it is derived from its role's glyph and the work id, with its role for a seat without the keys, as the [thread line](#46-thread-line) sets out. An entry carries no session address or vendor session id, under the work-package standard's [prohibited payloads](standard-work-package.md#416-prohibited-payloads-and-claims), as Kris answered WORKERS-URI on 7 November 2026: "Drop it". A reader that needs to find a seat's live session, such as Cairn, reads the uncommitted machine-local thread binding `~/.local/state/ki/threads/<repository>/<slug>.json`, never the package. The `ki-work-package` rubric's RECORD-2 checks every value against this catalogue, reading the table in [4.3](#43-role-catalogue) at audit time, so the checker holds no copy of it.
 
@@ -157,18 +157,18 @@ Whether a session is listening is in neither: it is read from meetings alone, a 
 The thread line is the one string that names a session's seat. It closes every banner under `ki-coordination`'s [Banner](../../ki-coordination/references/standards-coordination.md#banner), names the session, ends a bootstrap or re-bootstrap report's `Rename thread:` line and signs every message the seat sends:
 
 ```text
-thread-line  = role-glyph " 🔑 " work-id   ; the seat holding the package's keys
-             | role-glyph " " seat-address ; a seat working in the package without its keys
-             | "🧵 " work-id               ; a session with no role yet, and every background run
-seat-address = work-id "+" role
-role-glyph   = the catalogue glyph of the seat's one role
-role         = the catalogue name of that role, such as architect
-work-id      = the authoritative id from _index.md
+thread-line = role-glyph " 🔑 " work-id ; the seat holding the package's keys
+            | role-glyph " " seat-id   ; a seat working in the package without its keys
+            | "🧵 " work-id             ; a session with no role yet, and every background run
+seat-id     = work-id "@" role
+role-glyph  = the catalogue glyph of the seat's one role
+role        = the catalogue name of that role, such as architect
+work-id     = the authoritative id from _index.md, a sub-package's being <parent id>+<slug>
 ```
 
 Examples: `⚖️ 🔑 ki.reg.guilds`, `🏛️ 🔑 ki.summit`, `🏠 🔑 personal.reg.household-sol`, `🦉 🔑 personal.reg.inbox-terra`. The role glyph standing ahead of the work id says the role, so the work id stays the package's own id. A background run closes its report with `🧵 <work-id>` of the work it reports to, as Kris took RUN-THREAD-LINE a) under ROLES-WRITE.
 
-Only the keyholder carries 🔑. A seat working inside a package without holding its keys, such as a maker in a meeting or a role handed work in the package, takes the keyless form: its catalogue glyph, no key, and its seat address, `<work-id>+<role>`, as in `📐 ki.cairn+architect` and `🎨 ki.cairn+illustrator`, as Kris took SEAT-LINE a on 14 November 2026. The work id is the package it works in; a seat address is what the Cairn store calls a title.
+Only the keyholder carries 🔑. A seat working inside a package without holding its keys, such as a maker in a meeting or a role handed work in the package, takes the keyless form: its catalogue glyph, no key, and its seat's id, `<package>@<role>`, or `<package>+<slug>@<role>` in a sub-package, as in `📐 ki.cairn@architect`, `🎨 ki.cairn@illustrator` and `📐 hnr.summit+website@architect`, as Kris took SEAT-LINE a on 14 November 2026 and SEAT-AT a on 16 November 2026. The package is the one it works in. In an id, `.` builds a package's name, `+` adds a strand and `@` names a seat; the seat's id replaces what the Cairn store called a title, `<work id>+<role>`, which [the role migration file](standards-roles-migration.md) reads.
 
 The same string appears on each surface:
 

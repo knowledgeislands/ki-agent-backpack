@@ -41,8 +41,14 @@ const SUMMIT_SEGMENT = 'summit'
 /** The root of the one work tree, the only package with no parent (AGORA-ABOVE, ROOT-LEVEL). */
 const ROOT_ID = 'cairn.summit'
 const WORK_ID = new RegExp(`^${KEBAB}(?:\\.${KEBAB})*$`)
+/** A package's id: a dotted work id, and `+<slug>` for each strand a sub-package adds (SUMMIT-SUB-PACKAGES b). */
+const PACKAGE_ID = new RegExp(`^${KEBAB}(?:\\.${KEBAB})*(?:\\+${KEBAB})*$`)
+/** The levels whose sub-packages take `level: regular`, the one exception to a parent's level (SUMMIT-SUB-PACKAGES b). */
+const SUMMIT_LEVELS: readonly unknown[] = ['root', 'territory']
 const SLUG = new RegExp(`^${KEBAB}$`)
-const HOLDER = new RegExp(`^(?:owner|agent|(?:run|person|repo)/[A-Za-z0-9_.-]+|work/${KEBAB}(?:\\.${KEBAB})*)$`)
+const HOLDER = new RegExp(
+  `^(?:owner|agent|(?:run|person|repo)/[A-Za-z0-9_.-]+|work/${KEBAB}(?:\\.${KEBAB})*(?:\\+${KEBAB})*)$`
+)
 /** The definition fields of `_index.md`, each required one listed first. */
 const DEFINITION_REQUIRED = ['id', 'level', 'description', 'worker', 'supervisor', 'repositories'] as const
 const DEFINITION_FIELDS: readonly string[] = [
@@ -105,8 +111,14 @@ const WORKER_RETIRED_FIELDS: ReadonlySet<string> = new Set([
   'name',
   'actor'
 ])
-/** An actor's typed id, `actor:<id>`: a name such as `wayland`, or a seat's title such as `ki.cairn+architect`. */
-const ACTOR_ID = /^actor:[a-z0-9][a-z0-9.+-]*$/
+/**
+ * An actor's typed id, `actor:<id>`: a name such as `wayland`, or for an actor with no name its seat's id,
+ * `<package>@<role>` or `<package>+<slug>@<role>` in a sub-package, such as `ki.cairn@architect` (SEAT-AT a, 16
+ * November 2026).
+ */
+const ACTOR_ID = new RegExp(`^actor:(?:${KEBAB}(?:\\.${KEBAB})*(?:\\+${KEBAB})*@${KEBAB}|[a-z0-9][a-z0-9.-]*)$`)
+/** A seat's id in the form SEAT-AT replaces, `<work id>+<role>`, read as `<work id>@<role>` and warned on. */
+const LEGACY_SEAT_ID = new RegExp(`^actor:${KEBAB}(?:\\.${KEBAB})*\\+${KEBAB}$`)
 const WORKER_STATUSES: readonly unknown[] = ['active', 'idle']
 /** Old role and tier words read under the role migration file, each warned on. */
 const ROLE_ALIASES: Readonly<Record<string, string>> = { assistant: 'gatekeeper', keeper: 'warden', steward: 'warden' }
@@ -274,7 +286,17 @@ const placementFailures = (id: string, fields: Readonly<Record<string, unknown>>
   return failures
 }
 
-/** A sub-package's placement: its parent package named as `parent` and its parent's level. */
+/**
+ * The id a sub-package carried before SUMMIT-SUB-PACKAGES b, `<parent id>.<slug>`, read as `<parent id>+<slug>` and
+ * warned on under the role migration file; undefined at the top.
+ */
+const legacySubPackageId = (folder: PackageFolder): string | undefined =>
+  folder.parent ? `${folder.parent.expectedId}.${folder.name}` : undefined
+
+/**
+ * A sub-package's placement: its parent package named as `parent`, and its parent's level, except under the root or a
+ * summit, where a sub-package takes `level: regular` (SUMMIT-SUB-PACKAGES b, 16 November 2026).
+ */
 const subPackageFailures = (
   folder: PackageFolder,
   fields: Readonly<Record<string, unknown>>,
@@ -282,8 +304,12 @@ const subPackageFailures = (
 ): readonly string[] => {
   const failures: string[] = []
   const parentId = folder.parent?.expectedId
-  if (fields.parent !== parentId) failures.push(`parent must name the sub-package's parent package, ${parentId}`)
-  if (parentFields && fields.level !== parentFields.level)
+  if (fields.parent !== parentId && (typeof parentFields?.id !== 'string' || fields.parent !== parentFields.id))
+    failures.push(`parent must name the sub-package's parent package, ${parentId}`)
+  if (parentFields && SUMMIT_LEVELS.includes(parentFields.level)) {
+    if (fields.level !== 'regular')
+      failures.push(`a sub-package of the root or a summit takes level regular, not its parent's`)
+  } else if (parentFields && fields.level !== parentFields.level)
     failures.push(`a sub-package's level is its parent's, ${String(parentFields.level)}`)
   return failures
 }
@@ -299,15 +325,25 @@ const definitionChecks = (
   const fail = (list: AuditOutcome[], message: string): void => {
     list.push({ status: 'VIOLATION', message, subject: entry.path })
   }
-  if (!WORK_ID.test(folder.expectedId) || UUID.test(folder.name) || OPAQUE_SESSION_NAME.test(folder.name))
+  if (
+    !(folder.parent ? PACKAGE_ID : WORK_ID).test(folder.expectedId) ||
+    UUID.test(folder.name) ||
+    OPAQUE_SESSION_NAME.test(folder.name)
+  )
     fail(evidence.identity, 'a package folder is named by a dotted id of lower-case kebab segments')
-  if (fields.id !== folder.expectedId)
-    fail(
-      evidence.identity,
-      folder.parent
-        ? `id must be ${folder.expectedId}, the parent's id and the sub-package's folder name`
-        : 'id must exactly match the package folder name'
-    )
+  if (fields.id !== folder.expectedId) {
+    if (folder.parent && fields.id === legacySubPackageId(folder))
+      evidence.identity.push(
+        warning(entry, `sub-package id ${String(fields.id)} is read as ${folder.expectedId}, <parent id>+<slug>`)
+      )
+    else
+      fail(
+        evidence.identity,
+        folder.parent
+          ? `id must be ${folder.expectedId}, the parent's id, + and the sub-package's folder name`
+          : 'id must exactly match the package folder name'
+      )
+  }
   if (!folder.parent && folder.expectedId.split('.')[0] !== folder.territory)
     fail(
       evidence.identity,
@@ -483,7 +519,9 @@ const workersChecks = (
     else if (expected && resolved !== expected) fail(`${at} tier must be ${expected}, the catalogue tier of ${role}`)
     if ('since' in entry && !validTimestamp(entry.since)) fail(`${at} since must be a UTC RFC 3339 timestamp`)
     if ('status' in entry && !WORKER_STATUSES.includes(entry.status)) fail(`${at} status must be active or idle`)
-    if ('id' in entry && (typeof entry.id !== 'string' || !ACTOR_ID.test(entry.id)))
+    if ('id' in entry && typeof entry.id === 'string' && LEGACY_SEAT_ID.test(entry.id))
+      warn(`${at} id ${entry.id} is a seat's id in the earlier <work id>+<role> form, read as <package>@<role>`)
+    else if ('id' in entry && (typeof entry.id !== 'string' || !ACTOR_ID.test(entry.id)))
       fail(`${at} id must be the actor's typed id, actor:<id>`)
   })
 }
@@ -533,12 +571,14 @@ const packageEvidence = (
     evidence.schema.push(
       warning(entry, `${ENTRY_FILE} carries ${retired.join(', ')}, which the work package standard drops`)
     )
+  const legacy = legacySubPackageId(folder)
+  const h1 = legacy !== undefined && fields.id === legacy ? legacy : folder.expectedId
   const middle = [[], [VALUES_HEADING]].find((optional) =>
-    sameOutline(entry.body, folder.expectedId, [...BODY_BEFORE_VALUES, ...optional, ...BODY_AFTER_VALUES])
+    sameOutline(entry.body, h1, [...BODY_BEFORE_VALUES, ...optional, ...BODY_AFTER_VALUES])
   )
   if (!middle)
     fail(
-      `${ENTRY_FILE} headings must be the id H1 "# ${folder.expectedId}", then Goals, Scope, an optional Values, Now, Held and Changes`
+      `${ENTRY_FILE} headings must be the id H1 "# ${h1}", then Goals, Scope, an optional Values, Now, Held and Changes`
     )
   const sections = h2Sections(entry.body)
   for (const heading of [...BODY_BEFORE_VALUES, ...BODY_AFTER_VALUES])

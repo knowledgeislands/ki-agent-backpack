@@ -169,8 +169,8 @@ The definition's field set is closed; the state fields of [4.5](#45-the-state) s
 
 | Field | Presence | Value |
 | --- | --- | --- |
-| `id` | required | the work's dotted id, agreeing with its folder |
-| `level` | required | `root`, on `cairn.summit` alone, `territory`, `regular` or `project` |
+| `id` | required | the work's dotted id, agreeing with its folder, or a sub-package's `<parent id>+<slug>` |
+| `level` | required | `root`, on `cairn.summit` alone, `territory`, `regular` or `project`; a sub-package's is its parent's, or `regular` beneath the root or a summit |
 | `label` | optional | title with an inventory host or category requirement suffix; never a session seat |
 | `project` | required at `project` level, else absent | the Project note's slug, typed id's third segment |
 | `theme` | optional | a theme page's slug, or `null` |
@@ -181,7 +181,7 @@ The definition's field set is closed; the state fields of [4.5](#45-the-state) s
 | `created_at` | optional | UTC time the package was created, no later than `since` |
 | `repositories` | required | a list of the repository names the package mainly works in, empty where it works in none |
 
-Territory work is the territory's summit, id `<territory>.summit`, its State of play; `summit` is never the second and last segment at another level, and `level: root` belongs to `cairn.summit` alone. The level is the one authority for the kind of work: not the title, a native session name, the folder name, the repository declaration, an output style, a hook line or a cached copy.
+Territory work is the territory's summit, id `<territory>.summit`, its State of play; `summit` is never the second and last segment at another level, and `level: root` belongs to `cairn.summit` alone. A sub-package takes its parent's level, except that one beneath the root or a territory's summit takes `level: regular`, as Kris took SUMMIT-SUB-PACKAGES b on 16 November 2026. The level is the one authority for the kind of work: not the title, a native session name, the folder name, the repository declaration, an output style, a hook line or a cached copy.
 
 The `description` is written for routing, in a skill description's voice, as Kris answered DESCRIPTION-SHAPE: third person, what the work does, then "Takes ..." naming the kinds of unit it accepts, then "Not for ..." naming the neighbouring works by id, one to three sentences, tested against a handful of ambiguous routing examples. There is no `active` or `accepts` field: every state except `finished` can receive, and a work winding down says "Not taking new units" in its description.
 
@@ -232,7 +232,7 @@ The state lives in `_index.md`: its state fields, at most five Now lines, Held a
 | `listening_status` | required while `listening_enabled` is `true`, else absent | `on` while the inbox watcher is armed, `off` otherwise |
 | `syncing_enabled` | optional | `true` when the thread is its host's sync thread; absent reads `false`; `true` requires `listening_enabled: true` |
 | `syncing_status` | required while `syncing_enabled` is `true`, else absent | `on` while host sync runs, `off` otherwise |
-| `workers` | optional | the package's live seats, each its binding: a mapping of `role` and `tier` and at most `id`, the holding actor's typed id `actor:<id>` (ACTOR-KEY a), `since` and `status`, under [the role standard's fields](standard-roles.md#45-role-fields), presence staying in the actor's roster file; absent or empty when no seat is live, since a node may have no worker |
+| `workers` | optional | the package's live seats, each its binding: a mapping of `role` and `tier` and at most `id`, the holding actor's typed id `actor:<id>` (ACTOR-KEY a), an actor with no name taking its seat's id, `<package>@<role>` (SEAT-AT a), `since` and `status`, under [the role standard's fields](standard-roles.md#45-role-fields), presence staying in the actor's roster file; absent or empty when no seat is live, since a node may have no worker |
 
 The holder the work lies with now and its role are derived from `state`, `target`, `worker` and `supervisor`, never stored. Timestamps use UTC RFC 3339 second precision; quote `label` in YAML where it contains `>`. There is no `title` field: a package's id and its place in the tree name it, and a view works out its words from them (TITLE-DROP and TITLE-WORDS, Kris, 13 November 2026). The four capability fields record the thread capabilities under `ki-coordination`'s [Thread capabilities](../../ki-coordination/references/standards-listening.md#thread-capabilities), as Kris set under FOOTER-CAPABILITY-STATUS-2, relayed on 1 November 2026: each thread carries `listening_enabled`, `listening_status`, `syncing_enabled` and `syncing_status`, and if `syncing_enabled` is true, `listening_enabled` must be true, because a syncing thread is always a listening thread. `_enabled` says whether the thread has the capability; `_status` says whether it is on now, and the banner's mode lines read both. These are the fields the Work Process note's Observatory fields read through `ki work status`. `method_read` replaces the body line a coordinator once wrote under its refresh rule; setting it is the confirmation that a `REFRESH` message has been acted on, under `ki-coordination`'s [Refreshing this guidance](../../ki-coordination/references/standards-coordination.md#refreshing-this-guidance).
 
@@ -257,8 +257,9 @@ History stays out, as Kris answered STATE-HISTORY: the recap since the mark read
 
 A sub-package is one strand of a package's work: a package in miniature, with its own `_index.md` and one or more change documents, in a folder of the package named by a lower-case kebab slug. A package with one strand needs none.
 
-- **Identity:** its id is `<parent id>.<slug>`, under `ki-coordination`'s [Work naming](../../ki-coordination/references/standards-opening.md#work-naming), and its folder, `id` and H1 agree.
-- **Form:** the package's shape, its `level` the parent's. Its `parent` names the parent package, not a State of play, so it sits in the tree beneath its parent.
+- **Identity:** its id is `<parent id>+<slug>`, as `hnr.summit+website` in `work/hnr/hnr.summit/website/`, under `ki-coordination`'s [Work naming](../../ki-coordination/references/standards-opening.md#work-naming): `.` builds a package's name and `+` adds a strand. Its folder is the slug, and its `id` and H1 agree with the parent's id and that slug. The earlier `<parent id>.<slug>` is read under [the role migration file](standards-roles-migration.md).
+- **Form:** the package's shape, its `level` the parent's, except under the root or a territory's summit, where a sub-package takes `level: regular`, the one exception, as Kris took SUMMIT-SUB-PACKAGES b on 16 November 2026. Its `parent` names the parent package, so it sits in the tree beneath its parent.
+- **Sub-package or node:** a strand the parent's own seat works is a sub-package; a strand that needs a seat of its own is a node of its own beneath, `<territory>.<slug>`, with its own package. Most territories run their work through the summit's package, with sub-packages where a strand needs its own.
 - **Links:** the parent's Changes section links it.
 
 [Back to contents](#contents)
