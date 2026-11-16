@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-16T17:10:00Z
+revised: 2026-11-16T23:15:00Z
 status: draft
 ---
 
@@ -31,7 +31,7 @@ This standard is a draft. It stands at its final path so that records have a for
 - **`type` means three things.** A format document's `type` names its format at a version, as `record@…` or `change@…`; a resource's names its kind of resource alone, as `type: actor` or `type: meeting`; and a graph card's names its card type, as `type: term`. A record is both a format document and a resource, so it opens `id: record:<name>` and `type: record@<version>`; how the three senses are reconciled is a later change's, not this standard's.
 - **Records written before this draft** open `type: record`, with no version and no `id` or `revised`. They are read as they are, and each comes into line when next changed; whether the app that reads the store reads `record@…` is checked before any record moves.
 - **When this standard comes into force,** which ends the record's pilot, and whether the owner still walks the records at the start of each working session.
-- **A batch record in the review's four parts.** One record of 16 November 2026 reports a single batch in the four parts of a consolidated review; whether a batch record may take that shape is open.
+- **A batch record in the review's three parts.** One record of 16 November 2026 reports a single batch in the parts of a consolidated review; whether a batch record may take the review's three parts is open.
 - **Where a `changes wanted` note is kept,** beyond the work it becomes.
 
 [Back to contents](#contents)
@@ -122,14 +122,13 @@ A record has nothing for the owner to do but review it, so `changes wanted` asks
 
 ### 4.4 A consolidated review
 
-Several records on one topic may be consolidated into one review, so that what stands today is read in one place:
+Several records on one topic may be consolidated into one review, so that what stands today is read in one place, compiled as a block and said in terms of its outputs, not its commits. A review has three parts:
 
-1. **An opening paragraph** under the H1 says which records the review takes the place of, the span of time they cover, and the commit at which what it describes stands.
-2. **What stands today:** the topic as it now stands, in prose by theme, with `cairn://` links into the app that shows it where they help.
-3. **Replaced since:** what the records reported that has since been replaced, each with what replaced it and its commit.
-4. **Detail:** a subsection for each original record or batch, giving its time, a link to the original record at its last revision, what was asked, built and decided, and its commits by short SHA, each linked.
-5. **Left open:** what is still to settle on the topic. A review may carry it, where a batch record may not, because it is read as the topic's current account.
-6. **The originals are removed in the same commit** as the review is added, and Git history keeps them. A review is itself a record: it carries the front matter above, starts at `review: awaiting`, and may later be consolidated again.
+1. **An opening line** under the H1 names the records the review takes the place of, each linked at its last revision.
+2. **What stands today:** the full account of the topic as it now stands, in prose by area and in no time order, with `cairn://` links into the app that shows it where they help. Anything the records reported that is no longer true is folded into its area as no longer so, and only where it matters.
+3. **Left open:** what is still to settle on the topic. A review may carry it, where a batch record may not, because it is read as the topic's current account.
+
+A review carries no commit lists, no account of each original batch and no history of how the topic got where it stands: the linked originals and Git history keep those. **The originals are removed in the same commit** as the review is added. A review is itself a record: it carries the front matter above, starts at `review: awaiting`, and may later be consolidated again.
 
 [Back to contents](#contents)
 
@@ -152,7 +151,8 @@ Several records on one topic may be consolidated into one review, so that what s
 Beyond the format format's checks, as this standard replaces them, a validator checks:
 
 1. **Front matter:** `id` is `record:` and the file's name, `at` matches the file name's time, `packages` is a list, and `review` is one of the three values.
-2. **Sections:** a batch record has Purpose, Goals and What changed, in order, and no other section; a consolidated review has What stands today, Replaced since, Detail and Left open, in order.
-3. **Name:** the file name is a time and a slug of five words at most.
+2. **Sections:** a batch record has Purpose, Goals and What changed, in order, and no other section; a consolidated review has What stands today and Left open, in order, and no other section.
+3. **Opening line:** a consolidated review's first paragraph under the H1 links at least one record, and each record it links is pinned at a commit.
+4. **Name:** the file name is a time and a slug of five words at most.
 
 [Back to contents](#contents)
