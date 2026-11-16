@@ -605,7 +605,6 @@ test('FMT-record fails a record that breaks the record format and reads an older
     ['record/20261114T0400Z-older-and-wrong.md', "`at` is missing or differs from the file name's time"],
     ['record/20261114T0400Z-older-and-wrong.md', '`review` is not awaiting, changes wanted or approved'],
     ['record/20261116T2315Z-one-two-three-four-five-six.md', '`review` is not awaiting, changes wanted or approved'],
-    ['record/20261116T2315Z-one-two-three-four-five-six.md', 'the slug is longer than five words'],
     ['record/20261116T2315Z-review-no-links.md', 'the opening line links no record it replaces'],
     [
       'record/20261116T2315Z-review-old-parts.md',

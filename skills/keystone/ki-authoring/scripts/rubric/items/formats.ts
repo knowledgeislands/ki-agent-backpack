@@ -146,7 +146,6 @@ const recordProblems = (record: RecordEvidence): readonly string[] => {
   return [
     ...problems,
     ...(named ? [] : ['the file name is not <YYYYMMDD>T<HHMM>Z-<slug>']),
-    ...(slug.split('-').length > 5 ? ['the slug is longer than five words'] : []),
     ...(record.id ? [] : ['no `id`']),
     ...(record.revised ? [] : ['no `revised`']),
     ...(record.packagesList ? [] : ['`packages` is not a list']),
@@ -172,7 +171,7 @@ const FMT_RECORD: RubricItem<FormatsRubricContext> = {
   code: 'FMT-record',
   title: 'a record follows the record format',
   description:
-    "A record, a document whose `type` is `record@<version>`, passes the record format's Validation: `id` is `record:` and its file name, `at` matches the name's time, `revised` is present, `packages` is a list and `review` one of its three values; a batch record has Purpose, Goals and What changed, or a review's sections; a consolidated review, named `review-…`, has What stands today and Left open, and its opening line links the records it replaces, each pinned at a commit; and the name is a time and a slug of five words at most. An older record, `type: record` with no version, is read as written: only its `at`, `review` and any `id` are checked.",
+    "A record, a document whose `type` is `record@<version>`, passes the record format's Validation: `id` is `record:` and its file name, `at` matches the name's time, `revised` is present, `packages` is a list and `review` one of its three values; a batch record has Purpose, Goals and What changed, or a review's sections; a consolidated review, named `review-…`, has What stands today and Left open, and its opening line links the records it replaces, each pinned at a commit; and the name is a time and a slug, whose length in words is left to review, since a hyphen may join one word or separate two. An older record, `type: record` with no version, is read as written: only its `at`, `review` and any `id` are checked.",
   sources: ['standard-formats-record.md#47-validation'],
   mechanical: {
     level: 'FAIL',

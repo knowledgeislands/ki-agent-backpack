@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-16T23:19:50Z
+revised: 2026-11-16T23:26:35Z
 status: in force
 ---
 
@@ -151,6 +151,6 @@ Beyond the format format's checks, as this standard replaces them, a validator c
 3. **Opening line:** a consolidated review's first paragraph under the H1 links at least one record, and each record it links is pinned at a commit.
 4. **Name:** the file name is a time and a slug of five words at most.
 
-An older record, whose `type` has no version, is read as written: only its `at`, its `review` and any `id` it carries are checked. These checks are `ki-authoring`'s FMT-record rubric item, run mechanically by `ki repo audit --skill ki-authoring`, and a record that breaks one fails.
+An older record, whose `type` has no version, is read as written: only its `at`, its `review` and any `id` it carries are checked. These checks are `ki-authoring`'s FMT-record rubric item, run mechanically by `ki repo audit --skill ki-authoring`, and a record that breaks one fails; only the slug's length is left to review, since a hyphen may join one word, as in walk-through, or separate two.
 
 [Back to contents](#contents)
