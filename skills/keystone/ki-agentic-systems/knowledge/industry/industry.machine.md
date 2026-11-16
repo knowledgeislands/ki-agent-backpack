@@ -19,7 +19,7 @@ Networking calls a machine a host, and OpenAI and Google write "host" or "host m
 
 ## Our conventions
 
-A rig, Knowledge Islands' word for a machine it manages through Rig, such as terra or sol, maps onto a machine; its card comes with the system's own terms.
+A [rig][system.rig], Knowledge Islands' word for a machine it manages through Rig, such as terra or sol, maps onto a machine.
 
 ## Next
 
@@ -27,3 +27,4 @@ An [agent host][industry.agent-host] runs on a machine, in an environment, and o
 
 [industry.environment]: ./industry.environment.md
 [industry.agent-host]: ./industry.agent-host.md
+[system.rig]: ../system/system.rig.md

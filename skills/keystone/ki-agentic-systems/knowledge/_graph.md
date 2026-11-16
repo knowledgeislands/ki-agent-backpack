@@ -72,7 +72,7 @@ A predicate reads from the card that holds it to its target. A vendor card whose
 
 | Subgraph | Id prefix | Subject | Cards | Folder |
 | --- | --- | --- | --- | --- |
-| Industry | `industry.` | The industry's terms, in reading order | [model][industry.model], [agent harness][industry.agent-harness], [agent][industry.agent], [session][industry.session], [subagent][industry.subagent], [skill][industry.skill], [environment][industry.environment], [machine][industry.machine], [agent host][industry.agent-host], [client][industry.client], [cross-session messaging][industry.cross-session-messaging], [agent team][industry.agent-team], [remote agent][industry.remote-agent], [plugin][industry.plugin], [agentic system][industry.agentic-system] | `industry/` |
+| Industry | `industry.` | The industry's terms, in reading order | [model][industry.model], [agent harness][industry.agent-harness], [agent][industry.agent], [session][industry.session], [subagent][industry.subagent], [skill][industry.skill], [environment][industry.environment], [machine][industry.machine], [agent host][industry.agent-host], [client][industry.client], [cross-session messaging][industry.cross-session-messaging], [agent team][industry.agent-team], [remote agent][industry.remote-agent], [plugin][industry.plugin], [agentic system][industry.agentic-system]; and [channel][industry.channel], agreed, its place in the order still to settle | `industry/` |
 | Specifications | `spec.` | The specifications the terms rest on | [Agent Skills][spec.agent-skills], with [progressive disclosure][spec.agent-skills.progressive-disclosure] | `specs/`, a folder for each specification, as `specs/mcp/` |
 | Anthropic | `anthropic.` | Anthropic's own words | [Claude][anthropic.claude], [Claude Code][anthropic.claude-code], [model][anthropic.model], [agentic harness][anthropic.agentic-harness], [agentic coding tool][anthropic.agentic-coding-tool], [session][anthropic.session], [conversation][anthropic.conversation], [subagent][anthropic.subagent], [agent team][anthropic.agent-team], [skill][anthropic.skill] | `vendors/anthropic/` |
 | OpenAI | `openai.` | OpenAI's own words | [Codex][openai.codex], [ChatGPT][openai.chatgpt], [model][openai.model], [harness][openai.harness], [agent][openai.agent], [task][openai.task], [chat][openai.chat], [thread][openai.thread], [subagent][openai.subagent], [skill][openai.skill], [plugin][openai.plugin] | `vendors/openai/` |
@@ -81,15 +81,15 @@ A predicate reads from the card that holds it to its target. A vendor card whose
 | Zed Industries | `zed.` | Zed Industries' own words | [Zed][zed.zed] | `vendors/zed/` |
 | Diagrams | `diagram.` | Diagrams of the terms, as resources | [agentic terms by example][diagram.agentic-terms-by-example], [agentic standards and channels][diagram.agentic-standards] (proposal) | `diagrams/` |
 | Microsoft | `microsoft.` | Microsoft's and GitHub's own words | [Copilot][microsoft.copilot], [model][microsoft.model], [agent harness][microsoft.agent-harness], [agent][microsoft.agent], [agent session][microsoft.agent-session], [chat][microsoft.chat], [subagent][microsoft.subagent], [agent skill][microsoft.agent-skill] | `vendors/microsoft/` |
-| System | `system.` | Knowledge Islands' own words, each mapped onto the industry's | [guild][system.guild] | `system/` |
+| System | `system.` | Knowledge Islands' own words, each mapped onto the industry's | [guild][system.guild], [rig][system.rig], [actor][system.actor], [work package][system.work-package], [backpack][system.backpack] | `system/` |
 
 ## Extent and limitations
 
-- **What it covers:** fifteen terms, from the model to the agentic system, the Agent Skills specification, the four leading vendors' words for those terms as their documentation used them on 12 November 2026, Orca's and Zed Industries' words, two diagrams, and the first of the system's own words, guild. Other vendors are added where they matter (VENDORS).
+- **What it covers:** fifteen terms in reading order, from the model to the agentic system, and the channel; the Agent Skills specification; the four leading vendors' words for those terms as their documentation used them on 12 November 2026; Orca's and Zed Industries' words; two diagrams; and five of the system's own words, guild, rig, actor, work package and backpack. Other vendors are added where they matter (VENDORS).
 - **Where the cards sit:** the root folder is the skill's `knowledge/` folder, which holds this root definition and a folder for each subgraph, as the table above names, and nothing but the graph (KNOWLEDGE-FOLDER, GRAPH-FOLDERS). A card's folder is never part of its identity, so links in front matter are keyed by id alone.
 - **Beside the graph:** the skill's `references/` folder holds [the sources](../references/sources.md), with every vendor source and the date it was last checked, and the decisions behind the cards; it is not a card.
 - **Refreshed monthly** (TERMS-REFRESH): the vendor cards' examples date quickly, as products are renamed, merged and closed.
-- **Pending terms,** in this order: `industry.channel`, tool and instruction file, and the system's own terms: rig, actor, work package, role and backpack. The system's own terms sit in the `system/` subgraph (TERMS-SOURCE), after guild. A vendor card that would link to one gains that link when the card is written.
+- **Pending terms,** in this order: tool and instruction file, and the system's own role. The system's own terms sit in the `system/` subgraph (TERMS-SOURCE), after guild; role waits on the Cairn summit's NAMES-ROLE, and the channel's place in the reading order on CARD-ORDER. A vendor card that would link to one gains that link when the card is written.
 - **Resources outside the graph's folder:** a `resource` card points to its diagram in the backpack's `docs/diagrams/`, where the living-diagram manifest keeps its question, sources, staleness trigger and regeneration prompt; the card holds what it shows, not the image (DIAGRAM-RESOURCE).
 - **Pending specifications:** `spec.mcp`, the Model Context Protocol; `spec.acp`, the Agent Client Protocol; `spec.ahp`, the Agent Host Protocol; and `spec.a2a`, Agent2Agent.
 - **Due a vocabulary review:** the `ki:` predicates, until the `ki:` namespace is published.
@@ -109,6 +109,7 @@ A predicate reads from the card that holds it to its target. A vendor card whose
 [industry.remote-agent]: ./industry/industry.remote-agent.md
 [industry.plugin]: ./industry/industry.plugin.md
 [industry.agentic-system]: ./industry/industry.agentic-system.md
+[industry.channel]: ./industry/industry.channel.md
 [orca.runtime]: ./vendors/orca/orca.runtime.md
 [orca.app]: ./vendors/orca/orca.app.md
 [zed.zed]: ./vendors/zed/zed.zed.md
@@ -117,6 +118,10 @@ A predicate reads from the card that holds it to its target. A vendor card whose
 [spec.agent-skills]: ./specs/agent-skills/spec.agent-skills.md
 
 [system.guild]: ./system/system.guild.md
+[system.rig]: ./system/system.rig.md
+[system.actor]: ./system/system.actor.md
+[system.work-package]: ./system/system.work-package.md
+[system.backpack]: ./system/system.backpack.md
 [spec.agent-skills.progressive-disclosure]: ./specs/agent-skills/spec.agent-skills.progressive-disclosure.md
 [anthropic.claude]: ./vendors/anthropic/anthropic.claude.md
 [anthropic.claude-code]: ./vendors/anthropic/anthropic.claude-code.md

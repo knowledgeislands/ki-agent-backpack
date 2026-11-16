@@ -21,7 +21,7 @@ A plugin is an installable bundle that extends an [agent harness][industry.agent
 
 ## Our conventions
 
-Each territory's backpack, such as the KI backpack, is Knowledge Islands' plugin: a bundle of skills, subagent definitions, evals and hooks. It is a close match until the repositories ship plugin manifests, and its card comes with the system's own terms.
+Each territory's [backpack][system.backpack], such as the KI backpack, is Knowledge Islands' plugin: a bundle of skills, subagent definitions, evals and hooks. It is a close match until the repositories ship plugin manifests.
 
 ## Next
 
@@ -30,3 +30,4 @@ An [agentic system][industry.agentic-system] is any system in which models direc
 [industry.agent-harness]: ./industry.agent-harness.md
 [industry.skill]: ./industry.skill.md
 [industry.agentic-system]: ./industry.agentic-system.md
+[system.backpack]: ../system/system.backpack.md

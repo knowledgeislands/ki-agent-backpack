@@ -2,10 +2,10 @@
 id: industry.channel
 title: Channel
 type: term
-status: proposal
+status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, CARD-CHANNEL a, on the owner's word for high-confidence recommendations; wording a proposal for the owner's review (12 November 2026)
+origin: Cairn summit change 22, CARD-CHANNEL a (12 November 2026), and change 12, its wording agreed under CARDS (16 November 2026)
 links:
   industry.session:
     predicate: skos:related
@@ -15,13 +15,15 @@ links:
     predicate: dcterms:conformsTo
   spec.ahp.channels:
     predicate: skos:related
+  industry.cross-session-messaging:
+    predicate: skos:related
 ---
 
 # Channel
 
 A channel lets something outside an agent's session reach it while it runs, so the agent can react to events that happen while nobody is watching.
 
-Option A of CARD-CHANNEL was taken on the owner's word for every high-confidence recommendation (12 November 2026): the industry's words only. The card stays a proposal until its wording is agreed.
+Option A of CARD-CHANNEL was taken on the owner's word for every high-confidence recommendation (12 November 2026): the industry's words only. The owner agreed the card's wording on 16 November 2026.
 
 ## What the industry says
 
@@ -40,11 +42,12 @@ Sessions messaging one another are a fourth thing, which Anthropic call **cross-
 
 ## Our conventions
 
-Cairn's messages between sessions on Knowledge Islands' rigs, sent through the Cairn MCP, are session-to-session messaging under option A, not channels; a Cairn notice pushed into a running session would be a channel.
+Knowledge Islands' sessions work together in meetings, each message a file in the meeting's folder in the store, which the participants read rather than have pushed into their sessions, so a meeting is not a channel; sessions on a rig that message each other directly are [cross-session messaging][industry.cross-session-messaging]. A notice pushed into a running session from outside, as the Cairn app might push one, would be a channel.
 
 [industry.session]: ./industry.session.md
 [industry.client]: ./industry.client.md
 [spec.mcp]: ../specs/mcp/spec.mcp.md
 [spec.ahp.channels]: ../specs/ahp/spec.ahp.channels.md
+[industry.cross-session-messaging]: ./industry.cross-session-messaging.md
 [a7]: https://code.claude.com/docs/en/channels
 [a8]: https://code.claude.com/docs/en/cross-session-messaging
