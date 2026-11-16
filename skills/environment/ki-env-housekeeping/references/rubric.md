@@ -31,7 +31,7 @@ Native memory is an explicit policy, durable learning goes into reviewed guidanc
   - _Review prompt:_ Is the native-memory policy explicit, any transition being closed, and any enabled memory approved and opted in?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-- **HOUSE-2 [J] — durable learning goes into reviewed guidance** — Durable learning is routed into reviewed repository guidance or knowledge-base notes, never kept in native memory, and no repair creates or deletes a memory. (standard-housekeeping.md#42-durable-learning)
+- **HOUSE-2 [J] — durable learning goes into reviewed guidance** — Durable learning goes to the home `ki-authoring`'s placement ladder gives it, never to native memory, and no repair creates or deletes a memory. (standard-housekeeping.md#42-durable-learning)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ Has durable learning been routed into reviewed guidance rather than kept in native memory?
   - _Outcomes:_ conforming; gap; exclusion

@@ -235,7 +235,7 @@ Apply these lenses in order, moving from the repository's widest ecosystem respo
 - [ ] Historical change remains in version control or explicitly historical records instead of current-state guidance.
 - [ ] Each legacy Claude artifact has an explicit disposition: migrate to its current canonical owner, retain it with a current reason, or retire it.
 - [ ] Still-useful `.claude/commands/` behaviour is owned by a skill rather than maintained as a parallel legacy command.
-- [ ] Durable content from legacy repository-local `.claude/memory/` is promoted by meaning to `AGENTS.md`, runtime-specific `CLAUDE.md`, a Decision Record, Specification, Guide, skill, synchronised user configuration, or roadmap; runtime-only retrieval aids remain in selected native memory.
+- [ ] Durable content from legacy repository-local `.claude/memory/` is promoted by meaning to the home that `ki-authoring`'s [placement ladder](../../ki-authoring/references/standard-knowledge-promotion.md#41-placement-ladder) gives it; runtime-only retrieval aids remain in selected native memory.
 - [ ] A legacy artifact is removed only after its retained content, inbound references, and live runtime dependencies have been reconciled.
 - [ ] Each Decision Record can be understood as a coherent, self-contained account without following its links.
 - [ ] Overlapping Decision Records are consolidated so each independent decision has one authoritative record.

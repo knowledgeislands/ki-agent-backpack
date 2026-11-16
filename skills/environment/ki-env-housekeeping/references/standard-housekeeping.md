@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-14T03:32:28Z
-revised: 2026-11-14T03:32:28Z
+revised: 2026-11-16T23:50:00Z
 status: in force
 ---
 
@@ -68,7 +68,7 @@ Every repository that declares a runtime housekeeping skill sets its native-memo
 
 ### 4.2 Durable learning
 
-Durable learning goes into reviewed repository guidance or knowledge-base notes, never into native memory. A housekeeping repair never creates empty memory files and never deletes a memory as a checker repair. Rubric **HOUSE-2** reviews it.
+Durable learning goes to the home that `ki-authoring`'s [placement ladder](../../../keystone/ki-authoring/references/standard-knowledge-promotion.md#41-placement-ladder) gives it, which is never native memory. A housekeeping repair never creates empty memory files and never deletes a memory as a checker repair. Rubric **HOUSE-2** reviews it.
 
 [Back to contents](#contents)
 

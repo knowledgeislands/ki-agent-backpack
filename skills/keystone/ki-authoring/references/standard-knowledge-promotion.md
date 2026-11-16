@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-09T22:09:53Z
+revised: 2026-11-16T23:50:00Z
 status: in force
 ---
 
@@ -35,7 +35,7 @@ Where durable knowledge goes, and the types of durable document.
 
 ### 2.1 In scope
 
-- The placement ladder of durable homes, and the evidence for each.
+- The placement ladder of guidance layers and durable homes, and the evidence for each.
 - The durable document types and their format standards.
 - The promotion loop, and classifying user-level instructions.
 - Keeping knowledge independent of a replaceable execution environment.
@@ -53,7 +53,8 @@ Where durable knowledge goes, and the types of durable document.
 
 | Term | Definition |
 | --- | --- |
-| **Placement ladder** | The table of durable homes, from session context to roadmap or plan, used to choose the narrowest durable home that reaches the people and agents who need the knowledge. **Standard:** this one, [4.1](#41-placement-ladder) |
+| **Placement ladder** | The one table of where knowledge is placed: the guidance layers first, then the other durable homes, from session context to roadmap or plan, used to choose the narrowest durable home that reaches the people and agents who need the knowledge. **Standard:** this one, [4.1](#41-placement-ladder) |
+| **Guidance layer** | One of the places guidance can live, from the user's own instructions to a single piece of work, each reaching a different set of sessions: user, agent host, repository, skills and the work. **Standard:** this one, [4.1](#41-placement-ladder) |
 | **Document type** | The kind of a document, such as standard, change or sources: the same word in its `type` field and its file name. **Standard:** [format format](standard-formats-format.md#41-document-types) |
 
 [Back to contents](#contents)
@@ -64,18 +65,22 @@ The rules, part by part.
 
 ### 4.1 Placement ladder
 
-Choose the narrowest durable home that reaches the people and agents who need the knowledge.
+Choose the narrowest durable home that reaches the people and agents who need the knowledge. The first five rows are the guidance layers, from the user's own instructions to a single piece of work: each holds only what is true of every session it reaches, and anything narrower goes down a layer. The rows after them are the other durable homes and the places knowledge passes through on its way to one.
 
-| Place | What belongs there | Promotion evidence | Durable destination | Reconciliation |
-| --- | --- | --- | --- | --- |
-| Session context | Tentative observations and the current work state | It remains useful after the session, or recurs in another task | Promote using the rows below; do not treat runtime memory as the canonical record | Leave transient context behind once its durable owner exists |
-| Runtime memory | A stable personal retrieval aid for one runtime, not a standing repository rule | An explicit, narrowly scoped opt-in and review show it is useful beyond the session but has no shared owner | The selected runtime's memory, only while that opt-in remains effective | Promote durable value to its reviewed repository or KB owner; do not keep a divergent local copy |
-| Repository orientation | A standing rule needed for most work in one repository | It is always-on, stable, and repository-wide | Portable guidance in `AGENTS.md`; runtime-specific guidance only in that runtime's file, such as `CLAUDE.md` | Replace lower-layer copies with a concise pointer or remove them |
-| On-demand guide | A bounded procedure with a known reader that need not be loaded every session | A repeatable task needs detail but not standing context | An existing appropriate `docs/guides/` area | Keep orientation to a one-line pointer; do not create a guide area by default |
-| Shared standard or reference | A rule, source, decision, or method used by more than one repository or skill | It has cross-repository reach, is normative, or needs authoritative provenance | The owning `ki-*` skill's standard/reference, a decision record, or a source list | Replace repository copies with a pointer to the shared owner |
-| Reusable skill | A reusable agent operation that needs selection-time discovery, a procedure, or a checker | The same operation recurs across contexts and has a clear capability owner | The owning skill and its supporting references | Keep the standard normative; make the skill point to it rather than duplicate it |
-| Personal cross-project configuration | A durable user preference or machine convention, not a repository rule | It applies across repositories for one user | The user's synchronised configuration | Remove repository copies unless the repository has an independent reason to state it |
-| Roadmap or plan | Unfinished work, a dependency, or a future decision | It needs prioritisation or execution, not merely recall | The owning repository's roadmap or plan | Do not disguise open work as a convention or memory |
+| Layer or place | Reaches | What belongs there | Promotion evidence | Where | Reconciliation |
+| --- | --- | --- | --- | --- | --- |
+| **User** | Every session the user runs, on every agent host | The user's own preferences and machine conventions that hold everywhere, such as how they are spoken to, their spelling and their handles; never a repository rule | It applies across repositories and agent hosts for one user | The user's synchronised user-level instructions and configuration | Remove repository copies unless the repository has an independent reason to state it |
+| **Agent host** | Sessions of one kind, such as Claude Design, ChatGPT or Claude Code in a repository | What that kind of session does with its own outputs and channels | It holds for every session of that kind, and differs between kinds | A section per host in the skill that governs the host or the work, and that host's own user file for its runtime habits; never the user layer | Move it out of the user layer to its host section, leaving no copy |
+| **Repository** | Sessions working in that repository | A standing rule needed for most work there, and only what is specific to working there beyond its skills | It is always-on, stable, and repository-wide | Portable guidance in `AGENTS.md`, kept minimal, with `.ki.toml`; runtime-specific guidance only in that runtime's file, such as `CLAUDE.md` | Replace lower-layer copies with a concise pointer or remove them |
+| **Skills** | Every session that uses the skill | Shared ways of working: a reusable agent operation that needs selection-time discovery, a procedure, or a checker | The same operation recurs across contexts and has a clear capability owner | The owning skill and its supporting references, in the harness, linked or vendored | Keep the standard normative; make the skill point to it rather than duplicate it |
+| **The work** | The sessions in one piece of work | Who takes part, each one's route, and where each one's outputs go | It holds for that piece of work and no other | A meeting's agenda, or a work package's `_index.md` | It goes with the work; promote anything that outlives the work by the rows here |
+| Session context | The one session | Tentative observations and the current work state | It remains useful after the session, or recurs in another task | Promote using the other rows; do not treat runtime memory as the canonical record | Leave transient context behind once its durable owner exists |
+| Runtime memory | One user's sessions in one runtime | A stable personal retrieval aid for one runtime, not a standing repository rule | An explicit, narrowly scoped opt-in and review show it is useful beyond the session but has no shared owner | The selected runtime's memory, only while that opt-in remains effective | Promote durable value to its reviewed repository or KB owner; do not keep a divergent local copy |
+| On-demand guide | Sessions in a repository that load it for the task | A bounded procedure with a known reader that need not be loaded every session | A repeatable task needs detail but not standing context | An existing appropriate `docs/guides/` area | Keep orientation to a one-line pointer; do not create a guide area by default |
+| Shared standard or reference | Every repository and skill that cites it | A rule, source, decision, or method used by more than one repository or skill | It has cross-repository reach, is normative, or needs authoritative provenance | The owning `ki-*` skill's standard/reference, a decision record, or a source list | Replace repository copies with a pointer to the shared owner |
+| Roadmap or plan | Whoever takes up the work in its owning repository | Unfinished work, a dependency, or a future decision | It needs prioritisation or execution, not merely recall | The owning repository's roadmap or plan | Do not disguise open work as a convention or memory |
+
+Sources: PROMOTION-ONE in [the sources](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -98,7 +103,7 @@ Sources: FORMATS-FORMAT in [the sources](sources.md#3-decisions).
 ### 4.3 Promotion loop
 
 1. Capture the observation with enough context to judge it, but do not make a durable write by default.
-2. Classify its scope: session, repository, shared governance, reusable operation, personal configuration, or unfinished work.
+2. Classify its scope: session, user, agent host, repository, reusable operation, a piece of work, shared governance, or unfinished work.
 3. Test the evidence in the placement ladder and choose one owner.
 4. Write or update that owner only with the appropriate confirmation and verification.
 5. Reconcile the source layer: remove a duplicate, replace it with a pointer, or explicitly retain it only when it serves a different audience.

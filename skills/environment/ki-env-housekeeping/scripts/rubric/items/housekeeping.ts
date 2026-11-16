@@ -16,7 +16,7 @@ const HOUSE_2: RubricItem<HousekeepingContext> = {
   code: 'HOUSE-2',
   title: 'durable learning goes into reviewed guidance',
   description:
-    'Durable learning is routed into reviewed repository guidance or knowledge-base notes, never kept in native memory, and no repair creates or deletes a memory.',
+    "Durable learning goes to the home `ki-authoring`'s placement ladder gives it, never to native memory, and no repair creates or deletes a memory.",
   sources: ['standard-housekeeping.md#42-durable-learning'],
   judgment: judgment('Has durable learning been routed into reviewed guidance rather than kept in native memory?')
 }

@@ -1,6 +1,6 @@
 ---
 type: sources@2026-11-09T21:36:32Z
-revised: 2026-11-15T00:49:56Z
+revised: 2026-11-16T23:50:00Z
 refresh: external-spec · monthly
 ---
 
@@ -72,10 +72,13 @@ The decisions the standards cite by id, oldest first; each standard keeps citing
 | REPORTS-RETIRE | The managed ignore block reserves every `reports/` folder, with no exception for an earlier package copy's `+/_WORK/<id>/reports/`, since a work package keeps no reports and no checkout tracks such a copy; it changes every repository's managed block at its next conform. | 2026-11-14 | [repository](standard-repository.md#411-root-files) | In force |
 | SKILL-MODE-KEY | A repository declares a skill vendored with the host-owned `mode` in its `[skills.<name>]` table, `"current"` or `"vendored"`, recording the backpack `commit` its copy came from; the host leaves the copy alone and reports drift from that commit as a warning. | 2026-11-14 | [configuration](standard-configuration.md#434-vendored-skills) | In force |
 | SHARE-OUTPUTS | A session working in a repository commits what the owner is to see in a form GitHub shows and gives the link that opens where the owner is reading; an agent host's own page may sit beside it, never in its place. From the Cairn summit's change 15, §4.3, with the owner's LINKS-WHERE-READ. | 2026-11-14 | [repository](standard-repository.md#44-working-areas) | In force |
+| PROMOTION-ONE | Where REVIEW sends durable content is `ki-authoring`'s placement ladder, the one table of where knowledge is placed, and the procedure points at it instead of listing its homes. Kris's word, 16 November, about 23:30 GMT, relayed by the Cairn summit's guardian from the summit's [change 11](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided). | 2026-11-16 | [REVIEW](mode-review.md#documentation-and-knowledge) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 16 November 2026 an in-house review applied PROMOTION-ONE a, which Kris took that day at about 23:30 GMT, relayed by the Cairn summit's guardian from the summit's [change 11](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided). [REVIEW's](mode-review.md#documentation-and-knowledge) check on legacy `.claude/memory/` points at `ki-authoring`'s placement ladder instead of listing its homes. No outside source refreshed.
 
 REFRESH last run **2026-09-26** against all nine tracked sources. Repository settings, classic protection and rulesets, Dependabot endpoints, secret-scanning scope, Actions permissions, CLI routes, and licence guidance remain available. GitHub's current REST examples use API version `2026-03-10`, but no governed field or criterion changed in this refresh.
 
