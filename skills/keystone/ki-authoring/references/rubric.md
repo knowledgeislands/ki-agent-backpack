@@ -9,6 +9,7 @@ Line-by-line criteria for auditing ki-authoring. Classifications are derived fro
 ## Contents
 
 - [RUBRIC — Generated rubric publication](#rubric--generated-rubric-publication)
+- [FMT — Document formats](#fmt--document-formats)
 - [MD — Markdown authoring](#md--markdown-authoring)
 - [OWN — Owned authoring configuration](#own--owned-authoring-configuration)
 - [TOML — TOML formatting](#toml--toml-formatting)
@@ -23,6 +24,22 @@ The tracked readable rubric is the exact publication of the structured catalogue
 
 - **RUBRIC-1 [M] — structured catalogue publication is exact** — A structured catalogue tracks `references/rubric.md` as its exact generated publication. The host supplies only validated publication evidence: a missing or differing file is a FAIL; during CONFORM this item requests the host-owned derived write without choosing its path or bytes. (../../../keystone/ki-skills/references/standard-rubric-authoring.md#414-generated-rubric-publication)
   - _Remediation:_ automatic
+
+## FMT — Document formats
+
+→ [standard](standard-formats-format.md#47-validation)
+
+Typed documents follow the format standard their `type` names, at its current version.
+
+- **FMT-type [M] — a typed document names a format standard that exists** — A Markdown document whose front matter `type` is `<type>@<version ref>` names a format standard, `standard-formats-<type>.md`, that exists in `ki-authoring`, and carries `revised`. A `type` with no `@` names a resource or a card type, not a format, and is not checked here. (standard-formats-format.md#42-front-matter, standard-formats-format.md#47-validation)
+  - _Remediation:_ diagnostic — Use the finding and this criterion to make the appropriate local change, then rerun the audit.
+- **FMT-version [M] — a typed document follows its format at its current version** — The version ref in a typed document's `type` is its format standard's current version, the standard's `revised`. An older time is reported out of date, to be brought into line when the document is next changed; a later one names no version of the format. A commit ref is left to review. (standard-formats-format.md#43-version-refs, standard-formats-format.md#47-validation)
+  - _Remediation:_ diagnostic — When the document is next changed, bring it into line with the current format and move its `type` up to that version.
+- **FMT-shape [J] — a typed document has its format's name and shape** — A typed document's file name follows its format's pattern, or the place says why it differs; it has the shape every format shares, Contents, numbered sections and Back to contents links, unless its format replaces it; and it passes its own format standard's Validation section. (standard-formats-format.md#47-validation, standard-formats-standard.md#45-validation, standard-formats-change.md#46-validation, standard-formats-sources.md#45-validation, standard-formats-record.md#47-validation)
+  - _Evidence scope:_ Every Markdown document whose `type` names a format, as listed by FMT-type.
+  - _Review prompt:_ Assess each typed document's name, shared shape and its own format standard's Validation checks.
+  - _Outcomes:_ conforming; reshape required; difference justified
+  - _Conforming guidance:_ Bring the document to its format when it is next changed, or record where the place says why its name or shape differs.
 
 ## MD — Markdown authoring
 

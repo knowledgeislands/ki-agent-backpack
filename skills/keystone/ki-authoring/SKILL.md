@@ -33,7 +33,7 @@ This skill leads the Authoring guild: documents and writing things down. It hold
 
 ## Document formats come first
 
-Every standard, change document, sources file and record follows the format standard for its type, and every format standard follows the [format format](references/standard-formats-format.md): the [standard](references/standard-formats-standard.md), [change document](references/standard-formats-change.md) and [sources file](references/standard-formats-sources.md) formats, and the [record](references/standard-formats-record.md) format, a draft. These formats are the baseline the other conventions build on; a document is written to its format before anything else here applies. AUDIT reports a document that does not follow its format, or follows an older version of it, and CONFORM brings it into line when it is next changed.
+Every standard, change document, sources file and record follows the format standard for its type, and every format standard follows the [format format](references/standard-formats-format.md): the [standard](references/standard-formats-standard.md), [change document](references/standard-formats-change.md) and [sources file](references/standard-formats-sources.md) formats, and the [record](references/standard-formats-record.md) format, a draft. These formats are the baseline the other conventions build on; a document is written to its format before anything else here applies. AUDIT reports a document that does not follow its format, or follows an older version of it, through the FMT items in [the rubric](references/rubric.md), and CONFORM brings it into line when it is next changed.
 
 ## The two layers
 

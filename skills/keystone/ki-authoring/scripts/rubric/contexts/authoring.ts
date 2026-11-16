@@ -149,8 +149,25 @@ export type OwnedRubricContext = {
 }
 export type TomlRubricContext = Record<string, never>
 export type SynchronisationRubricContext = Record<string, never>
+/** A Markdown document whose front matter `type` names a format at a version, `<word>@<ref>`. */
+export type TypedDocumentEvidence = {
+  path: string
+  word: string
+  ref: string
+  revised: boolean
+}
+/** A format standard beside this rubric, `standard-formats-<word>.md`, and its current version, its `revised`. */
+export type FormatStandardEvidence = {
+  word: string
+  revised?: string
+}
+export type FormatsRubricContext = {
+  documents: readonly TypedDocumentEvidence[]
+  standards: readonly FormatStandardEvidence[]
+}
 export type AuthoringRubricContext = {
   rubric: RubricPublicationContext
+  formats: FormatsRubricContext
   markdown: MarkdownRubricContext
   owned: OwnedRubricContext
   toml: TomlRubricContext
@@ -275,6 +292,38 @@ const createFrontmatterDrafts = (repository: string, mutable: boolean): readonly
         proposal: () => (requested ? { path, content: normalised.content } : undefined)
       }
     ]
+  })
+
+const FRONTMATTER = /^---\n([\s\S]*?)\n---(?:\n|$)/
+const frontmatterField = (frontmatter: string, field: string): string | undefined =>
+  new RegExp(`^${field}:[ \\t]*(.*?)[ \\t]*$`, 'm').exec(frontmatter)?.[1]
+// A format's word and version ref, as `type: change@<ref>`; a `type` with no `@` is a resource or a card type.
+const TYPED = /^([a-z][a-z0-9-]*)@(\S+)$/
+
+/** The format standards that sit beside this rubric, in the skill's own `references/`. */
+export const FORMAT_STANDARDS_DIRECTORY = resolve(import.meta.dir, '../../../references')
+
+export const inspectFormatStandards = (
+  directory: string = FORMAT_STANDARDS_DIRECTORY
+): readonly FormatStandardEvidence[] => {
+  if (!existsSync(directory)) return []
+  return readdirSync(directory)
+    .flatMap((name) => {
+      const word = /^standard-formats-([a-z][a-z0-9-]*)\.md$/.exec(name)?.[1]
+      if (!word) return []
+      const frontmatter = FRONTMATTER.exec(readFileSync(join(directory, name), 'utf8'))?.[1] ?? ''
+      const revised = frontmatterField(frontmatter, 'revised')
+      return [{ word, ...(revised ? { revised } : {}) }]
+    })
+    .sort((left, right) => left.word.localeCompare(right.word))
+}
+
+const inspectTypedDocuments = (repository: string, paths: readonly string[]): readonly TypedDocumentEvidence[] =>
+  paths.flatMap((path) => {
+    const frontmatter = FRONTMATTER.exec(readFileSync(join(repository, path), 'utf8'))?.[1]
+    const typed = frontmatter ? TYPED.exec(frontmatterField(frontmatter, 'type') ?? '') : null
+    if (!frontmatter || !typed) return []
+    return [{ path, word: typed[1], ref: typed[2], revised: Boolean(frontmatterField(frontmatter, 'revised')) }]
   })
 
 const inspectOwnedFile = (repository: string, name: OwnedFile): OwnedFileState => {
@@ -434,7 +483,8 @@ export const inspectMarkdownHook = (root: string): readonly AuditOutcome[] => {
 
 export const createAuthoringSession = (
   { mode, repository, configuration, publication }: RubricContextOptions,
-  markdownInspector: MarkdownInspector = inspectMarkdown
+  markdownInspector: MarkdownInspector = inspectMarkdown,
+  formatStandards: string = FORMAT_STANDARDS_DIRECTORY
 ): RubricSession<AuthoringRubricContext> => {
   const target = resolve(repository)
   const targetExists = existsSync(target) && lstatSync(target).isDirectory()
@@ -468,6 +518,10 @@ export const createAuthoringSession = (
   })
   const context: AuthoringRubricContext = {
     rubric: { publication },
+    formats: {
+      documents: targetExists ? inspectTypedDocuments(target, markdownFiles(target, markdownExclusions(target))) : [],
+      standards: inspectFormatStandards(formatStandards)
+    },
     markdown: {
       target,
       exists: targetExists,
@@ -495,7 +549,7 @@ export const createAuthoringSession = (
   return {
     subjects: [
       { families: ['RUBRIC'], context: () => context },
-      { families: ['MD', 'OWN', 'TOML', 'WP', 'SYNC'], context: () => context }
+      { families: ['FMT', 'MD', 'OWN', 'TOML', 'WP', 'SYNC'], context: () => context }
     ],
     proposal: () => ({
       writes: ownedDrafts

@@ -13,6 +13,7 @@ import {
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createAuthoringSession, EDITORCONFIG_DEFAULT, RUMDL_DEFAULT } from '../contexts/authoring.ts'
+import * as formatsModule from './formats.ts'
 import catalogue, * as indexModule from './index.ts'
 import * as markdownModule from './markdown.ts'
 import * as ownedModule from './owned.ts'
@@ -34,17 +35,21 @@ const temporaryRepository = (): string => {
 
 test('the default export is the sole catalogue entrypoint and families are complete modules', () => {
   expect(Object.keys(indexModule)).toEqual(['default'])
+  expect(Object.keys(formatsModule)).toEqual(['FORMATS'])
   expect(Object.keys(markdownModule)).toEqual(['MARKDOWN'])
   expect(Object.keys(ownedModule)).toEqual(['OWNED'])
   expect(Object.keys(tomlModule)).toEqual(['TOML'])
   expect(Object.keys(whitepapersModule)).toEqual(['WHITEPAPERS'])
   expect(Object.keys(synchronisationModule)).toEqual(['SYNCHRONISATION'])
-  expect(catalogue.families.map((family) => family.code)).toEqual(['RUBRIC', 'MD', 'OWN', 'TOML', 'WP', 'SYNC'])
+  expect(catalogue.families.map((family) => family.code)).toEqual(['RUBRIC', 'FMT', 'MD', 'OWN', 'TOML', 'WP', 'SYNC'])
   expect(
     catalogue.families
       .filter((family) => family.code !== 'RUBRIC')
       .flatMap((family) => family.items.map((item) => item.code))
   ).toEqual([
+    'FMT-type',
+    'FMT-version',
+    'FMT-shape',
     'MD-mech',
     'MD-frontmatter',
     'MD-table',
@@ -511,4 +516,74 @@ test('frontmatter honours repository Markdown exclusions and preserves capture b
     { path: 'docs/new-report.md', content: capture.replace('"capture"', 'capture') }
   ])
   expect(readFileSync(join(repository, 'captures/one/README.md'), 'utf8')).toBe(capture)
+})
+
+test('FMT checks typed documents against the format standards beside the rubric', () => {
+  const repository = temporaryRepository()
+  const standards = temporaryRepository()
+  writeFileSync(
+    join(standards, 'standard-formats-sources.md'),
+    '---\ntype: standard@x\nrevised: 2026-11-16T16:58:00Z\n---\n'
+  )
+  writeFileSync(
+    join(standards, 'standard-formats-change.md'),
+    '---\ntype: standard@x\nrevised: 2026-11-09T21:36:32Z\n---\n'
+  )
+  mkdirSync(join(repository, 'docs'))
+  const documents: Record<string, string> = {
+    'docs/current.md': '---\ntype: sources@2026-11-16T16:58:00Z\nrevised: 2026-11-16T17:00:00Z\n---\n',
+    'docs/older.md': '---\ntype: sources@2026-11-15T00:17:25Z\nrevised: 2026-11-15T00:22:04Z\n---\n',
+    'docs/ahead.md': '---\ntype: change@2026-11-14T03:00:00Z\nrevised: 2026-11-14T03:00:00Z\n---\n',
+    'docs/commit.md': '---\ntype: change@61229e2d5\nrevised: 2026-11-16T10:25:00Z\n---\n',
+    'docs/unknown.md': '---\ntype: record@2026-11-16T17:10:00Z\nrevised: 2026-11-16T17:10:00Z\n---\n',
+    'docs/unrevised.md': '---\ntype: change@2026-11-09T21:36:32Z\n---\n',
+    'docs/resource.md': '---\nid: actor:wayland\ntype: actor\n---\n',
+    'docs/card.md': '---\nid: industry.tool\ntype: term\n---\n'
+  }
+  for (const [path, content] of Object.entries(documents)) writeFileSync(join(repository, path), content)
+  const session = createAuthoringSession(
+    { mode: 'audit', repository, userHome: tmpdir(), configuration: {} },
+    () => ({ clean: true }),
+    standards
+  )
+  const context = session.subjects[1]?.context()
+  const formats = context?.formats as NonNullable<typeof context>['formats']
+  expect(formats.documents.map((document) => document.path)).toEqual([
+    'docs/ahead.md',
+    'docs/commit.md',
+    'docs/current.md',
+    'docs/older.md',
+    'docs/unknown.md',
+    'docs/unrevised.md'
+  ])
+  const [type, version] = formatsModule.FORMATS.items
+  expect(
+    type?.mechanical?.audit.run(formats).map(({ status, subject, message }) => [status, subject, message])
+  ).toEqual([
+    ['VIOLATION', 'docs/unknown.md', 'type names "record", which has no format standard'],
+    ['VIOLATION', 'docs/unrevised.md', 'typed document has no `revised`']
+  ])
+  expect(version?.mechanical?.audit.run(formats).map(({ status, subject }) => [status, subject])).toEqual([
+    ['VIOLATION', 'docs/ahead.md'],
+    ['VIOLATION', 'docs/older.md']
+  ])
+  expect(
+    type?.mechanical?.audit.run({ documents: formats.documents, standards: [] }).map(({ status }) => status)
+  ).toEqual(['NOT_APPLICABLE'])
+})
+
+test('FMT reads the real format standards beside the rubric', () => {
+  const session = createAuthoringSession(
+    { mode: 'audit', repository: temporaryRepository(), userHome: tmpdir(), configuration: {} },
+    () => ({ clean: true })
+  )
+  const context = session.subjects[1]?.context()
+  expect(context?.formats.standards.map((standard) => standard.word)).toEqual([
+    'change',
+    'format',
+    'record',
+    'sources',
+    'standard'
+  ])
+  expect(context?.formats.standards.every((standard) => Boolean(standard.revised))).toBe(true)
 })

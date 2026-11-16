@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-16T17:04:00Z
+revised: 2026-11-16T17:20:00Z
 status: in force
 ---
 
@@ -142,5 +142,7 @@ A validator of any format checks:
 2. **Format version:** the version ref in `type` is the current one; if not, the document is reported out of date.
 3. **Name:** the file name follows its format's pattern, or the place says why it differs.
 4. **Shape:** Contents, numbered sections and Back to contents links are present.
+
+These checks, and each format's own, are `ki-authoring`'s rubric items in its FMT family, run by `ki repo audit --skill ki-authoring` over every Markdown document in a repository whose `type` names a format at a version: the first two mechanically, as warnings, and the name, the shape and each format's own checks by judgement.
 
 [Back to contents](#contents)

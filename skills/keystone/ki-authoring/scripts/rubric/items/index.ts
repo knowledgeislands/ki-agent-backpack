@@ -1,5 +1,6 @@
 import type { SkillRubricDefinition } from '../../shared/rubric.ts'
 import { type AuthoringRubricContext, createAuthoringSession } from '../contexts/authoring.ts'
+import { FORMATS } from './formats.ts'
 import { MARKDOWN } from './markdown.ts'
 import { OWNED } from './owned.ts'
 import { RUBRIC } from './publication.ts'
@@ -12,5 +13,5 @@ export default {
   name: 'ki-authoring',
   concern: 'Knowledge Islands authoring conventions',
   createSession: createAuthoringSession,
-  families: [RUBRIC, MARKDOWN, OWNED, TOML, WHITEPAPERS, SYNCHRONISATION]
+  families: [RUBRIC, FORMATS, MARKDOWN, OWNED, TOML, WHITEPAPERS, SYNCHRONISATION]
 } satisfies SkillRubricDefinition<AuthoringRubricContext>
