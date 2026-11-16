@@ -15,7 +15,7 @@ const mechanical = <Context>(family: { items: readonly RubricItem<Context>[] }, 
 
 test('fresh agent can reconstruct a portable hand-off without transcript or runtime state', () => {
   const repository = mkdtempSync(join(tmpdir(), 'ki-work-package-handoff-'))
-  const folder = join(repository, 'work', 'ki', 'ki.prj.remote-agent-proof')
+  const folder = join(repository, 'work', 'ki', 'ki.remote-agent-proof')
 
   try {
     mkdirSync(folder, { recursive: true })
@@ -23,7 +23,7 @@ test('fresh agent can reconstruct a portable hand-off without transcript or runt
       join(folder, '_index.md'),
       [
         '---',
-        'id: ki.prj.remote-agent-proof',
+        'id: ki.remote-agent-proof',
         'parent: ki.summit',
         'level: project',
         'project: remote-agent-proof',
@@ -38,7 +38,7 @@ test('fresh agent can reconstruct a portable hand-off without transcript or runt
         'since: 2026-09-15T13:00:00Z',
         '---',
         '',
-        '# ki.prj.remote-agent-proof',
+        '# ki.remote-agent-proof',
         '',
         '## Goals',
         '',

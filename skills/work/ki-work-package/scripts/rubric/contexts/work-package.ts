@@ -40,6 +40,11 @@ const KEBAB = '[a-z0-9]+(?:-[a-z0-9]+)*'
 const SUMMIT_SEGMENT = 'summit'
 /** The root of the one work tree, the only package with no parent (AGORA-ABOVE, ROOT-LEVEL). */
 const ROOT_ID = 'cairn.summit'
+/**
+ * The kind words an id's second segment carried before ids dropped their kind (KIND-DROP), read under the role
+ * migration file and warned on: a node is `<territory>.<slug>`, its kind its `level` (NODE-ID a, 16 November 2026).
+ */
+const KIND_SEGMENTS: ReadonlySet<string> = new Set(['sop', 'prj', 'reg', 'regular'])
 const WORK_ID = new RegExp(`^${KEBAB}(?:\\.${KEBAB})*$`)
 /** A package's id: a dotted work id, and `+<slug>` for each strand a sub-package adds (SUMMIT-SUB-PACKAGES b). */
 const PACKAGE_ID = new RegExp(`^${KEBAB}(?:\\.${KEBAB})*(?:\\+${KEBAB})*$`)
@@ -344,6 +349,14 @@ const definitionChecks = (
           : 'id must exactly match the package folder name'
       )
   }
+  const kind = folder.expectedId.split('.')[1]
+  if (!folder.parent && kind !== undefined && KIND_SEGMENTS.has(kind))
+    evidence.identity.push(
+      warning(
+        entry,
+        `id ${folder.expectedId} carries the kind ${kind}, which ids no longer name: a node is <territory>.<slug>, its kind its level`
+      )
+    )
   if (!folder.parent && folder.expectedId.split('.')[0] !== folder.territory)
     fail(
       evidence.identity,

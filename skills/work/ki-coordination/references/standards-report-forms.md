@@ -484,7 +484,7 @@ With worker, closing a Summary while runs are out:
 - [with you] WORK-HOME · owner · at 22:58
 - [blocked] work folder commit · repo/ki-principal · at 22:40
 
-⚒️ 🔑 ki.prj.ways-of-working
+⚒️ 🔑 ki.ways-of-working
 ```
 
 Handoff to supervisor, closing a Summary that sends the work to the owner:
@@ -506,7 +506,7 @@ Handoff to supervisor, closing a Summary that sends the work to the owner:
 
 👂 in cairn.wayfinder.designs
 
-⚒️ 🔑 ki.prj.ways-of-working
+⚒️ 🔑 ki.ways-of-working
 ```
 
 With worker, a Position while draining towards a hold after `pause`, with one run still finishing:
@@ -523,22 +523,22 @@ With worker, a Position while draining towards a hold after `pause`, with one ru
 
 ↪️ draining → ⏸️ On hold
 
-⚒️ 🔑 ki.prj.ways-of-working
+⚒️ 🔑 ki.ways-of-working
 ```
 
 **Restart suggestion.** Suggest restarting a session only when one of three triggers holds, and for nothing else:
 
-- **Identity changed:** the work's id, level, label or run name changed in this session, as when a package moves from `hnr.prj.email-routing` to `hnr.reg.email-routing`. The session's name, run and opener no longer match `_index.md`, and only a fresh opener sets all three again.
+- **Identity changed:** the work's id, level, label or run name changed in this session, as when a package moves from `hnr.email-routing` to `personal.email-routing`. The session's name, run and opener no longer match `_index.md`, and only a fresh opener sets all three again.
 - **Repeated compaction:** the session has been compacted twice or more. Each [re-anchoring](standards-bootstrap.md#re-anchoring-after-compaction) rebuilds from a summary of a summary, and a fresh bootstrap from the package is more faithful.
 - **Method moved on:** since the session opened, the method changed its opener, the hook line or the output style, checked under [Refreshing this guidance](standards-coordination.md#refreshing-this-guidance). A session keeps the style and opener it loaded at start; only a fresh session loads the current ones.
 
 The suggestion is a single closing item placed directly before F2, the banner's `###` heading, after `## Queries` and its reply block, or after the Answer in a Position, so the banner and thread line stay last. It is one bold line naming the trigger and saying plainly that the session would be better restarted, then the work's opener, filled from its `_index.md` under [Opening work](standards-opening.md#opening-work), in one fenced block:
 
 ````text
-**Restart suggested:** the work moved from hnr.prj.email-routing to hnr.reg.email-routing in this session, so its label, run name and opener changed; this work would be better restarted in a fresh session with this opener.
+**Restart suggested:** the work moved from hnr.email-routing to personal.email-routing in this session, so its id, label, run name and opener changed; this work would be better restarted in a fresh session with this opener.
 
 ```text
-Bootstrap as hnr.reg.email-routing regular work under ki-coordination.
+Bootstrap as personal.email-routing regular work under ki-coordination.
 ...
 ```
 ````
@@ -562,7 +562,7 @@ On hold, closing a Stop:
 - [parked] 9 queries in the change documents
 - [release] after the harness migration lands, or `resume`
 
-⚒️ 🔑 ki.prj.ways-of-working
+⚒️ 🔑 ki.ways-of-working
 ```
 
 Snoozing, closing a Stop for a hold that waits for more to come:
@@ -577,7 +577,7 @@ Snoozing, closing a Stop for a hold that waits for more to come:
 - [parked] 2 queries in the change documents
 - [release] a message arrives, or `resume`
 
-⚒️ 🔑 ki.prj.ways-of-working
+⚒️ 🔑 ki.ways-of-working
 ```
 
 Finished, closing the Stop at [Finishing Project work](standards-mark.md#finishing-project-work):
@@ -587,7 +587,7 @@ Finished, closing the Stop at [Finishing Project work](standards-mark.md#finishi
 
 - [finished] 14 work items accepted, decisions homed, work folder pruned
 
-⚒️ 🔑 ki.prj.ways-of-working
+⚒️ 🔑 ki.ways-of-working
 ```
 
 **In an agent's report.** A background agent's run report takes the same heading block and banner, under the [owner report](standards-reporting.md#owner-report): the heading of the work it reports to with `› <run name>` added and the structure `Run report`, so its form line reads `**Run report at <local time> · last mark <local time>**`, the mark being that work's. Its banner gives the run's state and items, `### 🤖 → 👤 Handoff to supervisor · at <time>`, or `### 🤖 → 👤 Handoff to supervisor · blocked · at <time>` where it sends back with a blocking query, closing with the thread line of the work it reports to. Opening a run report:

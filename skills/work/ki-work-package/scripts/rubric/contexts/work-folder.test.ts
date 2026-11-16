@@ -24,13 +24,13 @@ const write = (root: string, path: string, text: string): string => {
   return file
 }
 
-const PACKAGE = join('work', 'ki', 'ki.reg.pilot')
+const PACKAGE = join('work', 'ki', 'ki.pilot')
 
 const statuses = (outcomes: readonly AuditOutcome[]): string[] =>
   outcomes.map((outcome) => (outcome.status === 'VIOLATION' ? (outcome.level ?? 'VIOLATION') : outcome.status))
 
 const index = (changes: readonly string[], state = 'with-worker'): string =>
-  `---\nid: ki.reg.pilot\nstate: ${state}\n---\n# ki.reg.pilot\n\n## Now\n\nNone\n\n## Changes\n\n${
+  `---\nid: ki.pilot\nstate: ${state}\n---\n# ki.pilot\n\n## Now\n\nNone\n\n## Changes\n\n${
     changes.length > 0 ? changes.map((target) => `- [${target}](${target}) - in hand.`).join('\n') : 'None'
   }\n`
 
@@ -49,20 +49,20 @@ describe('the layout under work/', () => {
   test('finds packages and their sub-packages, each with the id its place gives it', () => {
     const root = fixture()
     pkg(root, ['10-pilot.change.md', 'viewer/'])
-    write(root, join(PACKAGE, 'viewer', '_index.md'), '# ki.reg.pilot+viewer\n')
-    write(root, join(PACKAGE, 'viewer', 'deep', '_index.md'), '# ki.reg.pilot+viewer+deep\n')
+    write(root, join(PACKAGE, 'viewer', '_index.md'), '# ki.pilot+viewer\n')
+    write(root, join(PACKAGE, 'viewer', 'deep', '_index.md'), '# ki.pilot+viewer+deep\n')
     const layout = workLayout(root)
     expect(layout?.violations).toEqual([])
     expect(layout?.packages.map((folder) => [folder.subject, folder.expectedId, folder.territory])).toEqual([
-      ['work/ki/ki.reg.pilot', 'ki.reg.pilot', 'ki'],
-      ['work/ki/ki.reg.pilot/viewer', 'ki.reg.pilot+viewer', 'ki'],
-      ['work/ki/ki.reg.pilot/viewer/deep', 'ki.reg.pilot+viewer+deep', 'ki']
+      ['work/ki/ki.pilot', 'ki.pilot', 'ki'],
+      ['work/ki/ki.pilot/viewer', 'ki.pilot+viewer', 'ki'],
+      ['work/ki/ki.pilot/viewer/deep', 'ki.pilot+viewer+deep', 'ki']
     ])
   })
 
   test('a territory folder not named by a kebab slug fails', () => {
     const root = fixture()
-    write(root, join('work', 'KI_Main', 'ki.reg.pilot', '_index.md'), '# ki.reg.pilot\n')
+    write(root, join('work', 'KI_Main', 'ki.pilot', '_index.md'), '# ki.pilot\n')
     expect(workLayout(root)?.violations.map((outcome) => outcome.subject)).toEqual(['work/KI_Main'])
   })
 })
@@ -99,9 +99,9 @@ describe('FOLDER-1 closed list', () => {
   test('a sub-package without a change document fails', () => {
     const root = fixture()
     pkg(root, ['10-pilot.change.md', 'viewer/'])
-    write(root, join(PACKAGE, 'viewer', '_index.md'), '# ki.reg.pilot.viewer\n\n## Changes\n\nNone\n')
+    write(root, join(PACKAGE, 'viewer', '_index.md'), '# ki.pilot.viewer\n\n## Changes\n\nNone\n')
     const outcomes = folderOutcomes(root).closed
-    expect(outcomes.map((outcome) => outcome.subject)).toEqual(['work/ki/ki.reg.pilot/viewer'])
+    expect(outcomes.map((outcome) => outcome.subject)).toEqual(['work/ki/ki.pilot/viewer'])
     expect(outcomes[0]?.message).toContain('one or more change documents')
   })
 })
@@ -131,7 +131,7 @@ describe('FOLDER-8 Changes links', () => {
     write(
       root,
       join(PACKAGE, '_index.md'),
-      '# ki.reg.pilot\n\n## Now\n\n- [10](10-pilot.change.md)\n\n## Changes\n\nNone\n'
+      '# ki.pilot\n\n## Now\n\n- [10](10-pilot.change.md)\n\n## Changes\n\nNone\n'
     )
     expect(unlinkedChanges(folder)).toEqual(['10-pilot.change.md'])
   })
@@ -148,7 +148,7 @@ describe('FOLDER-4 finished packages', () => {
   test("a finished work's package is due for close-out", () => {
     const root = fixture()
     pkg(root, undefined, 'finished')
-    expect(folderOutcomes(root).finished.map((outcome) => outcome.subject)).toEqual(['work/ki/ki.reg.pilot'])
+    expect(folderOutcomes(root).finished.map((outcome) => outcome.subject)).toEqual(['work/ki/ki.pilot'])
   })
 
   test('live work passes', () => {

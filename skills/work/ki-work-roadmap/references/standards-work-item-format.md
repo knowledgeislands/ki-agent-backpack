@@ -62,7 +62,7 @@ project: baseline-rollout
 component: checker
 priority: high
 size: l
-assignee: work/ki.prj.baseline-rollout
+assignee: work/ki.baseline-rollout
 horizon: next
 status: draft
 blocks: []

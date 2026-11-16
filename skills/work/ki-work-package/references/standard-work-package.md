@@ -110,7 +110,7 @@ A work package lives in the Cairn store, at `work/<territory>/<work id>/`, one p
 
 A package names the repositories it mainly works in under `repositories:` in its entry file, and it may still change others. Records remain in the repositories that own their plans, priority and acceptance; a record's `project` resolves through the Capital's registry without execution authority. A record without `project` goes first to its regular or ad hoc owner, then to State of play only when unresolved.
 
-The packages form one tree, rooted at `cairn.summit`, `level: root`: the owner's seat over the territories, not a territory, and the only package with no `parent` (AGORA-ABOVE, Kris, 11 November 2026). Each territory's top is its summit, `<territory>.summit`, its State of play, which names `cairn.summit` as `parent` and sits directly under it, because each territory needs an independence of its own; the summit replaces the main State of play, `<territory>.sop.main`, and every secondary State of play, `<territory>.sop.<name>` (KIND-DROP and MASSIF, Kris, 11 November 2026). Every other package, a Project, regular work or ad hoc work, names as `parent` the node of its own territory whose authority it sits under, its summit or a node beneath it; a sub-package names its parent package instead. Any node can split its authority by adding nodes beneath it, and nodes fold back up when they are no longer needed, so a Project sits where the authority it needs is. The tree is the register: a node covers everything beneath it, read from the `parent` links, and work with no package yet belongs on the roadmap, not in any package (COVERS-REGISTER, Kris, 16 November 2026). Check that each parent resolves, stays within its territory and closes no cycle.
+The packages form one tree, rooted at `cairn.summit`, `level: root`: the owner's seat over the territories, not a territory, and the only package with no `parent` (AGORA-ABOVE, Kris, 11 November 2026). Each territory's top is its summit, `<territory>.summit`, its State of play, which names `cairn.summit` as `parent` and sits directly under it, because each territory needs an independence of its own; the summit replaces the main State of play, `<territory>.sop.main` (KIND-DROP and MASSIF, Kris, 11 November 2026). Every other package, a Project, regular work, ad hoc work or a secondary State of play, is a node beneath the summit: its id is `<territory>.<slug>`, with a further dot segment for a node beneath a node, as `ki.cairn` beneath `ki.summit` and `personal.rig.sol` beneath `personal.rig.summit`, and its level `regular`, or `project` where it carries one Project, the id naming no kind, as Kris took NODE-ID a on 16 November 2026. Each names as `parent` the node of its own territory whose authority it sits under, its summit or a node beneath it; a sub-package names its parent package instead. Any node can split its authority by adding nodes beneath it, and nodes fold back up when they are no longer needed, so a Project sits where the authority it needs is. The tree is the register: a node covers everything beneath it, read from the `parent` links, and work with no package yet belongs on the roadmap, not in any package (COVERS-REGISTER, Kris, 16 November 2026). Check that each parent resolves, stays within its territory and closes no cycle.
 
 [Back to contents](#contents)
 
@@ -140,7 +140,7 @@ A package's entry file is `_index.md`, so it sorts first, as Kris set under INDE
 
 ```yaml
 ---
-id: ki.prj.observatory
+id: ki.observatory
 parent: ki.summit
 level: project
 project: observatory
@@ -148,7 +148,7 @@ theme: model
 description: >-
   Builds and runs the local Observatory in apps-observatory.local, the territory's read-only view of work, runs
   and diagrams. Takes Observatory features, its design system and `ki work status` consumers. Not for timelines
-  and calendars (ki.reg.timelines) or the work model itself (ki.prj.ways-of-working).
+  and calendars (ki.timelines) or the work model itself (ki.ways-of-working).
 worker: agent
 supervisor: owner
 role: warden
@@ -172,7 +172,7 @@ The definition's field set is closed; the state fields of [4.5](#45-the-state) s
 | `id` | required | the work's dotted id, agreeing with its folder, or a sub-package's `<parent id>+<slug>` |
 | `level` | required | `root`, on `cairn.summit` alone, `territory`, `regular` or `project`; a sub-package's is its parent's, or `regular` beneath the root or a summit |
 | `label` | optional | title with an inventory host or category requirement suffix; never a session seat |
-| `project` | required at `project` level, else absent | the Project note's slug, typed id's third segment |
+| `project` | required at `project` level, else absent | the Project note's slug, the node's own slug in its id |
 | `theme` | optional | a theme page's slug, or `null` |
 | `parent` | required below the root, absent on the root | `cairn.summit` on a territory's summit, else a node of the same territory, or a sub-package's parent package |
 | `description` | required | the routing description, at most 500 characters |
@@ -188,7 +188,7 @@ The `description` is written for routing, in a skill description's voice, as Kri
 The body has exactly this heading sequence, with an optional one-line `## Values` after Scope:
 
 ```markdown
-# ki.prj.observatory
+# ki.observatory
 
 ## Goals
 
@@ -358,7 +358,7 @@ The only first-delivery action is a compact reminder that the already-selected p
 
 Every send, receive, mark and hold rewrites the state in `_index.md`, its fields, Now and Held, under `ki-coordination`'s [Picking work up](../../ki-coordination/references/standards-bootstrap.md#picking-work-up), and otherwise the package changes only on explicit user request or a documented repository-local trigger, such as before context compaction or a known pause. The definition changes only when the work does. A generic Stop event is not authority to create or choose a package.
 
-An update replaces the current state in place. It never appends a moves list, timestamped copies or transcript history. Only sends and the supervisor's receives commit, each subject carrying the move, as in `docs(work): ki.prj.ways-of-working send to owner`; the package's Git log is the logbook.
+An update replaces the current state in place. It never appends a moves list, timestamped copies or transcript history. Only sends and the supervisor's receives commit, each subject carrying the move, as in `docs(work): ki.ways-of-working send to owner`; the package's Git log is the logbook.
 
 Write durable decisions, accepted work state, or reusable knowledge to their proper owners before referring to them from the package. The package may name those canonical artifacts; it must not become their only copy.
 

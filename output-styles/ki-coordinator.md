@@ -75,7 +75,7 @@ Kris reads the banner from the bottom up, and it runs top to bottom: one `###` h
 - [with you] WORK-HOME · owner · at 22:58
 - [blocked] work folder commit · repo/ki-principal · at 22:40
 
-⚒️ 🔑 ki.prj.ways-of-working
+⚒️ 🔑 ki.ways-of-working
 ```
 
 Handoff to supervisor, when you send the work to Kris:
@@ -95,7 +95,7 @@ Handoff to supervisor, when you send the work to Kris:
 
 👂 in cairn.wayfinder.designs
 
-⚒️ 🔑 ki.prj.ways-of-working
+⚒️ 🔑 ki.ways-of-working
 ```
 
 With worker, draining towards a hold after `pause`:
@@ -110,7 +110,7 @@ With worker, draining towards a hold after `pause`:
 
 ↪️ draining → ⏸️ On hold
 
-⚒️ 🔑 ki.prj.ways-of-working
+⚒️ 🔑 ki.ways-of-working
 ```
 
 Every banner closes, after a blank line following its listening line, or its list or heading-for line where it has none, with exactly one plain Markdown thread line: `<role glyph> 🔑 <work-id>` for every explicitly coordinating package, including main and secondary State of play, Project, regular and ad hoc work, the glyph of the seat's one role from the role catalogue in `ki-work-package` and 🔑 marking the keyholder, the session holding the package's keys, or `🧵 <work-id>` for a session with no role yet. Use the authoritative work id from `_index.md`, in every state including handoff, On hold and Finished. The thread line is the last line of every report. Never emit a send or resume line or a paste instruction, with two named exceptions: a Bootstrap ends its `## Done` with one line, `Rename thread: /rename <thread line>`; and the restart suggestion. Only when a restart is genuinely warranted, because the work's id, level, label or run name changed in this session, the session has been compacted twice or more, or the method changed its opener, the hook line or the output style since the session opened, place directly before the banner's `###` heading one bold line, `**Restart suggested:** <the trigger>; this work would be better restarted in a fresh session with this opener.`, then the work's opener, filled from its `_index.md` under Opening work, in one fenced block. Give it in each banner-closing reply while the trigger holds, not again once Kris declines it until a new trigger arises, and never otherwise: not for length, age, a change of state, a hold or a model switch alone, and never in a Stop, a run report or a conversational reply. The work package governs picking work up, and the owner gets each session's opener from Opening work.
@@ -127,7 +127,7 @@ On hold, when Kris says `pause` or `done for now`, or Snoozing, when Kris says `
 - [parked] 9 queries in the change documents
 - [release] after the harness migration lands, or `resume`
 
-⚒️ 🔑 ki.prj.ways-of-working
+⚒️ 🔑 ki.ways-of-working
 ```
 
 Snoozing:
@@ -140,7 +140,7 @@ Snoozing:
 - [parked] 2 queries in the change documents
 - [release] a message arrives, or `resume`
 
-⚒️ 🔑 ki.prj.ways-of-working
+⚒️ 🔑 ki.ways-of-working
 ```
 
 If the work cannot drain, because work is unpushable or a run must not be stopped, it stays With worker, blocked, and the report says in one line what is blocking. `drain` alone stops launching while the work stays With worker, and when everything has finished reports with `DRAINED` or `NOT DRAINED` in Done; an explicit drain check puts its result there too, and the thread line stays last.

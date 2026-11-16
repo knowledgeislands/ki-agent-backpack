@@ -15,10 +15,10 @@ This file holds States of play, Project work under them, assigned packages, the 
 
 Project work coordinates exactly one Project for the owner. It always delegates: it runs its work as background agents on its agent host's own subagents under the `ki-delegation` [background-run standard](../../../agentic-systems/ki-delegation/references/standards-background-runs.md), and keeps its own turns short under [Coordinator responsiveness](standards-coordination.md#coordinator-responsiveness).
 
-- **Package:** the coordinator picks the work up from `work/<territory>/<territory>.prj.<project>/` in the Cairn store, whose `_index.md` defines the work and holds its current state only, and keeps it current under the work-package standard. `_index.md` names its Project in front matter; the Project note does not link down.
+- **Package:** the coordinator picks the work up from `work/<territory>/<territory>.<project>/` in the Cairn store, whose `_index.md` defines the work and holds its current state only, and keeps it current under the work-package standard. `_index.md` names its Project in front matter; the Project note does not link down.
 - **Decisions:** log each owner approval in the change document it belongs to before launching the work it authorises.
 - **State of play:** the [State of play](#territory-work) owns cross-Project priorities, releases and decisions touching more than one Project, and Project work raises those there. Releases follow the `ki-repo-tools` release-on-demand policy: a delivery run never releases by default, and a release run carries the `release` footer for the named release only.
-- **Naming:** where the runtime can name a session, it takes its seat's thread line, such as `⚒️ 🔑 ki.prj.ways-of-working`, under [Work naming](standards-opening.md#work-naming).
+- **Naming:** where the runtime can name a session, it takes its seat's thread line, such as `⚒️ 🔑 ki.ways-of-working`, under [Work naming](standards-opening.md#work-naming).
 - **Opening:** open Project work only where there is active work to drive, within the State of play's [cap](#territory-work). A dormant, registered Project may have an On hold package seeded with its first step, under [Seeding](#territory-work).
 - **Scope:** work only the Project's own records. Work belonging to another Project goes to that Project's `messages.md` through the State of play, the node both sit beneath where there is one.
 - **Close:** Project work shows Finished only at [Finishing Project work](standards-mark.md#finishing-project-work); until then it moves between the other six states.
@@ -109,7 +109,7 @@ Sources: SOP-ACTS-FOR-IDLE, WORK-ROUTING, STEWARD-HOME, FIRST-STEP-HOME and SECO
 
 ### Secondary States of play
 
-A secondary State of play, `<territory>.sop.<name>`, is a node beneath its territory's summit that splits off part of the summit's authority, as Kris set under SECONDARY-SOP a on 15 November 2026, under the `ki-work-package` [location and identity](../../ki-work-package/references/standard-work-package.md#42-location-and-identity) rule: its package is `work/<territory>/<territory>.sop.<name>/` in the Cairn store, its `parent` the summit, and it works under the summit's rules now. A territory with no node beneath its summit needs no change.
+A secondary State of play is a node beneath its territory's summit that splits off part of the summit's authority, as Kris set under SECONDARY-SOP a on 15 November 2026, under the `ki-work-package` [location and identity](../../ki-work-package/references/standard-work-package.md#42-location-and-identity) rule: its id is `<territory>.<slug>` and its level `regular`, as Kris took NODE-ID a on 16 November 2026 under [Work naming](standards-opening.md#work-naming), its package is `work/<territory>/<territory>.<slug>/` in the Cairn store, its `parent` the summit, and it works under the summit's rules now. A territory with no node beneath its summit needs no change.
 
 - **Creating:** the owner decides each node at the summit, which records the decision in the change document it belongs to and seeds the package On hold, under [Seeding](#territory-work), until the owner opens it. A node folds back into the summit when it is no longer needed.
 - **Front door:** the summit stays the owner's only front door and the single dispatch coordinator. Owner dumps, units with no clear owner, method improvements and anything touching more than one node, or a node and other work, come to the summit.
@@ -120,7 +120,7 @@ A secondary State of play, `<territory>.sop.<name>`, is a node beneath its terri
 - **Register:** the tree beneath a node, read from `parent`, is its register: the summit's is all the territory's work, the work beneath its nodes included, and a node's the work beneath it. Work with no package yet belongs on the roadmap, as Kris set under COVERS-REGISTER a on 16 November 2026.
 - **Opening:** the owner opens a node with the [secondary opener](standards-opening.md#opening-work), and takes every opener for the territory from [Opening work](standards-opening.md#opening-work).
 
-Sources: SECONDARY-SOP, OLD-SHAPE-HOMES and COVERS-REGISTER in [the decision register](sources.md#decision-register).
+Sources: SECONDARY-SOP, OLD-SHAPE-HOMES, COVERS-REGISTER and NODE-ID in [the decision register](sources.md#decision-register).
 
 ## Owner queue
 

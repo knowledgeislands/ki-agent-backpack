@@ -7,7 +7,7 @@ const RECORD_1: RubricItem<RecordContext> = {
   code: 'RECORD-1',
   title: 'package identity is chosen and consistent',
   description:
-    "Each package folder is named by the work's dotted id, lower-case kebab segments joined by `.` with no mechanically recognisable opaque runtime-session identifier, and stands in the territory folder of the id's first segment; a sub-package's id is `<parent id>+<slug>`, its folder named by the slug, the earlier `<parent id>.<slug>` warned on under the role migration file. The folder, the `id` field of `_index.md` and its H1 agree.",
+    "Each package folder is named by the work's dotted id, lower-case kebab segments joined by `.` with no mechanically recognisable opaque runtime-session identifier, and stands in the territory folder of the id's first segment; a node beneath a summit is `<territory>.<slug>`, an id still naming its kind, `sop`, `prj` or `reg`, warned on under the role migration file; a sub-package's id is `<parent id>+<slug>`, its folder named by the slug, the earlier `<parent id>.<slug>` warned on under the role migration file. The folder, the `id` field of `_index.md` and its H1 agree.",
   sources: [`${SOURCE}#42-location-and-identity`, `${SOURCE}#47-sub-packages`],
   mechanical: {
     level: 'FAIL',

@@ -79,7 +79,7 @@ const ITEM = /^- \[(running|queued|with you|stuck|blocked|parked|on hold|release
 const BODY_ITEM = /^- \[(handoff|committed|uncommitted|recovered|unlogged|behind)\]/
 const HOLDER_ITEM =
   /^- \[(running|queued|with you|stuck)\] [^·]+ · (owner|agent|run\/[\w-]+|work\/[\w.-]+|person\/[\w-]+|repo\/[\w-]+) · at \d{2}:\d{2}$/
-const PROJECT_THREAD_LINE = '⚒️ 🔑 ki.prj.ways-of-working'
+const PROJECT_THREAD_LINE = '⚒️ 🔑 ki.ways-of-working'
 const TERRITORY_THREAD_LINE = '🧵 ki.sop.main'
 /**
  * The thread line under STAGE-C-ROLES (Kris, 7 November 2026): `<role glyph> 🔑 <work-id>`, or `🧵 <work-id>` for a
@@ -808,7 +808,7 @@ test('regular coordination is explicit, capability-checked and uses its real wor
   for (const seat of [
     '📐 ki.cairn@architect',
     '🎨 ki.cairn@illustrator',
-    '🐝 ki.prj.ways-of-working@journeyman',
+    '🐝 ki.ways-of-working@journeyman',
     '📐 hnr.summit+website@architect'
   ])
     expect(seat).toMatch(THREAD_LINE)

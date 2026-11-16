@@ -132,11 +132,11 @@ Adjusts [Levels and forms](standards-opening.md#levels-and-forms). A checkpoint 
 
 ## Old-shape checkpoint ids
 
-Adjusts [Work naming](standards-opening.md#work-naming). An old-shape checkpoint's id is read from its stem until it moves: `_state-of-play` gives `<territory>`, `<initiative>.<project>` gives `<territory>.prj.<project>`, and any other stem gives `<territory>.regular.<stem>`. Delete once every old-shape checkpoint has moved.
+Adjusts [Work naming](standards-opening.md#work-naming). An old-shape checkpoint's id is read from its stem until it moves: `_state-of-play` gives `<territory>`, `<initiative>.<project>` gives `<territory>.<project>`, and any other stem gives `<territory>.<stem>`. Delete once every old-shape checkpoint has moved.
 
 ## Legacy work ids
 
-Adjusts [Levels and forms](standards-opening.md#levels-and-forms) and [Work naming](standards-opening.md#work-naming). A second id segment `regular`, the legacy form of `reg`, is regular or ad hoc work. Legacy `<territory>`, `<territory>.<project>`, `<territory>.regular`, `<territory>.regular.main` and `<territory>.regular.<topic>` remain readable indefinitely, including existing HNR inputs. This naming transition changes no work level, state, mark, immutable native/run identity or history. Derive old/new resolution from actual valid definitions; two physical definitions for one work are ambiguous, never two independently opened packages. The text sets no deletion condition: the legacy ids are readable indefinitely.
+Adjusts [Levels and forms](standards-opening.md#levels-and-forms) and [Work naming](standards-opening.md#work-naming). An id whose second segment names a kind, `sop`, `prj`, `reg` or its legacy form `regular`, is read as the node its package's `level` gives, since ids carry no kind (KIND-DROP, NODE-ID): `<territory>.sop.<name>`, `<territory>.prj.<project>`, `<territory>.reg.main`, `<territory>.reg.<topic>`, and legacy `<territory>`, `<territory>.regular`, `<territory>.regular.main` and `<territory>.regular.<topic>` remain readable indefinitely, including existing HNR inputs and the packages still parked in the Cairn store's `work-legacy/`; a package placed in `work/` takes its `<territory>.<slug>` id. This naming transition changes no work level, state, mark, immutable native/run identity or history. Derive old/new resolution from actual valid definitions; two physical definitions for one work are ambiguous, never two independently opened packages. The text sets no deletion condition: the legacy ids are readable indefinitely.
 
 ## Labels without ids
 

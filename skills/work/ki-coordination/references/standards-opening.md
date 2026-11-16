@@ -14,23 +14,20 @@ The Work Process note's Levels and forms of work table sets the three levels, th
 
 | | State of play | Project work | Regular work and ad hoc work |
 | --- | --- | --- | --- |
-| Id | `<territory>.summit`, such as `ki.summit`, which replaced `<territory>.sop.main`; a secondary `<territory>.sop.<name>`, such as `hnr.sop.5ge` | `<territory>.prj.<project>`, such as `ki.prj.ways-of-working` | `<territory>.reg.main`; ad hoc `<territory>.reg.<slug>` |
-| `_index.md` | `work/<territory>/<territory>.summit/_index.md` in the Cairn store, and `work/<territory>/<territory>.sop.<name>/_index.md` for each node beneath it | `work/<territory>/<territory>.prj.<project>/_index.md` in the Cairn store | `work/<territory>/<territory>.reg.main/_index.md`, and one package per ad hoc piece |
+| Id | `<territory>.summit`, such as `ki.summit`; a node beneath it `<territory>.<slug>`, such as `ki.tools` | `<territory>.<project>`, such as `ki.ways-of-working` | `<territory>.<slug>`, such as `personal.inbox` |
+| `_index.md` | `work/<territory>/<territory>.summit/_index.md` in the Cairn store, and `work/<territory>/<id>/_index.md` for each node beneath it | `work/<territory>/<territory>.<project>/_index.md` in the Cairn store | `work/<territory>/<id>/_index.md`, one package per ad hoc piece |
 | Coordinates | Assigned packages: priorities, the queue and cross-cutting decisions; a node beneath the summit, only the part the summit splits off to it; executes nothing | One Project's work items and runs when explicitly opened | Its own work, conversationally or through explicitly opened coordination |
 | Governed by | This standard | This standard while coordinating | Activity notes, `ki-work-recurring` and declared skills; this standard while coordinating |
 | Report forms | The coordinator forms, the report heading reading `› State of play` | The coordinator forms while coordinating, under the Project's heading | The coordinator forms while coordinating, under the real work label and page; otherwise the conversational reply forms |
 
-`_index.md` declares the level in its `level` field under the work-package standard: `territory`, `regular` or `project`, ad hoc work taking `regular`. The level follows from the id:
+`_index.md` declares the level in its `level` field under the work-package standard: `territory`, `regular` or `project`, ad hoc work taking `regular`. The id names no kind, so the level is read from the `level` field, never from the id, and a package changing kind keeps its id (KIND-DROP, Kris, 11 November 2026):
 
-- one segment: the main State of play;
-- second segment `summit`: the territory's summit, its main State of play;
-- second segment `sop`: a State of play, `main` under the summit's old id or a named [secondary](standards-territory.md#secondary-states-of-play);
-- second segment `reg`: regular or ad hoc work;
-- any other second segment: Project work.
+- second segment `summit`: the territory's summit, its main State of play, `level: territory`;
+- any other id: a node beneath the summit, `level: regular`, as a [secondary](standards-territory.md#secondary-states-of-play) is, or `level: project` where it carries one Project (NODE-ID, Kris, 16 November 2026).
 
 The State of play sends direction down into Project work through each receiving package's [`messages.md`](standards-messages.md#messages-between-work). Its first concern with any new matter is where the work goes, not holding it in its own context.
 
-Sources: SOP-ROLE and SECONDARY-SOP in [the decision register](sources.md#decision-register).
+Sources: SOP-ROLE, SECONDARY-SOP and NODE-ID in [the decision register](sources.md#decision-register).
 
 ## Work naming
 
@@ -39,13 +36,11 @@ Every piece of work above a work item has an **id**, a **slug** and a **title**;
 | Work | Id | Slug | Title |
 | --- | --- | --- | --- |
 | Main State of play, the summit | `<territory>.summit` | `<territory>-summit` | `<Territory> > SoP` |
-| Secondary State of play | `<territory>.sop.<name>` | `<territory>-sop-<name>` | `<Territory> > SoP (<name>)` |
-| Project work | `<territory>.prj.<project>` | `<territory>-prj-<project>` | `<Territory> > <Theme title> > <Project title>`, or `<Territory> > <Project title>` with no theme |
-| Regular work | `<territory>.reg.main` | `<territory>-reg-main` | `<Territory> > Regular work` |
-| Ad hoc work | `<territory>.reg.<slug>` | `<territory>-reg-<slug>` | `<Territory> > <topic>` |
+| A node beneath the summit, a secondary State of play, regular or ad hoc work | `<territory>.<slug>`, and a further `.<slug>` for a node beneath a node | `<territory>-<slug>` | `<Territory> > <node in words>` |
+| A node carrying Project work | `<territory>.<project>` | `<territory>-<project>` | `<Territory> > <Theme title> > <Project title>`, or `<Territory> > <Project title>` with no theme |
 | Sub-package | `<parent id>+<slug>` | `<parent slug>-<slug>` | `<parent title> > <strand in words>` |
 
-Canonical stored names are `<territory>.summit`, which replaced `<territory>.sop.main`, `<territory>.prj.<project>`, `<territory>.reg.main` and `<territory>.reg.<topic>`; secondaries keep `<territory>.sop.<name>`. The Project slug stays `<project>`.
+Canonical stored names are `<territory>.summit`, which replaced `<territory>.sop.main`, and `<territory>.<slug>` for every node beneath it, as `ki.cairn` and `ki.tools`, with a further dot segment for a node beneath a node, as `personal.rig.sol` beneath `personal.rig.summit`, as Kris took NODE-ID a on 16 November 2026. An id names no kind (KIND-DROP, Kris, 11 November 2026): `<territory>.sop.<name>`, `<territory>.prj.<project>`, `<territory>.reg.main` and `<territory>.reg.<topic>` are earlier forms, read only under [the migration file](standards-coordination-migration.md). A Project's node takes the Project's slug, `<project>`.
 
 A member-repository Project session is a seat for its Capital package, not authority to move that package. Deliberate member-homed regular exceptions stay valid. A package's existence never selects coordination.
 
@@ -53,9 +48,9 @@ A member-repository Project session is a seat for its Capital package, not autho
 
 - **Segments:** joined by `.`, which builds a package's name, each a lower-case kebab name, `[a-z0-9]+(-[a-z0-9]+)*`, so a segment never holds a dot, an underscore, a host or a runtime session identifier.
 - **Territory:** the alias of the territory whose Capital holds `_index.md`, from the estate's territory list in the principal Knowledge Base: `ki`, `hnr`, `er`, `tmx`, `va`, `lgl`, `personal` or `si`. `personal` is the reserved handle for the owner's own territory under the `ki-repo` [territory selection](../../../keystone/ki-repo/references/standard-configuration.md#49-territory-selection) standard.
-- **Project:** the `slug` of the Project note under the `ki-work` [Project registry standard](../../../keystone/ki-work/references/standards-project-registry.md), such as `tools-burndown`. No id carries a theme, so relabelling a Project's theme renames nothing.
-- **Secondary name:** the third segment of a [secondary State of play](standards-territory.md#secondary-states-of-play), a short kebab name for what it covers, such as `5ge` or `sites`, chosen by the owner. `sop` is reserved as a second segment, so no Project or ad hoc slug is `sop`.
-- **Ad hoc slug:** chosen when the work first takes a package, by the owner, or proposed by the agent and confirmed: a short kebab name for the subject, led by the system it works on where the subject alone would be ambiguous, as in `acquire-intake` rather than `intake`. It is never `regular`, never a Project slug of the territory, and never carries a date or host.
+- **Node:** every package beneath a territory's summit is a node, `<territory>.<slug>`, its `level` `regular`, or `project` where it carries one Project; a node beneath another node adds a dot segment to that node's path, as `personal.rig.sol` beneath `personal.rig.summit` (NODE-ID). A [secondary State of play](standards-territory.md#secondary-states-of-play) is such a node, `level: regular`.
+- **Project slug:** a node carrying Project work takes the `slug` of the Project note under the `ki-work` [Project registry standard](../../../keystone/ki-work/references/standards-project-registry.md), such as `tools-burndown`. No id carries a theme, so relabelling a Project's theme renames nothing.
+- **Node slug:** any other node's slug is chosen when the work first takes a package, by the owner, or proposed by the agent and confirmed: a short kebab name for the subject, led by the system it works on where the subject alone would be ambiguous, as in `acquire-intake` rather than `intake`. It is never `summit`, which names a summit, never a Project slug of the territory, and never carries a date or host.
 - **Sub-package:** one strand of a package that the parent's own seat works, the root's and the summits' included. Its id is the parent's canonical id, `+` and the sub-package's slug, as in `hnr.summit+website`, `+` adding a strand, as Kris took SUMMIT-SUB-PACKAGES b on 16 November 2026; its folder is the slug, inside the parent's. A strand that needs a seat of its own is a node of its own instead, `<territory>.<slug>`. A sub-package has no sub-package; the slug and title rules apply unchanged. Its level, parent, writers and fold-back are the work-package standard's [Sub-packages](../../ki-work-package/references/standard-work-package.md#47-sub-packages).
 - **Seat:** a seat in a package is named by its id, `<package id>@<role>`, `@` naming the seat, as in `ki.cairn@warden`, `cairn.summit@guardian` and `hnr.summit+website@information-architect`, as Kris took SEAT-AT a on 16 November 2026; it replaces the title, `<work id>+<role>`. An actor with no name takes its seat's id, as `actor:ki.cairn@information-architect`, under the `ki-work-package` [role fields](../../ki-work-package/references/standard-roles.md#45-role-fields).
 - **Unique and stable:** no two pieces of work in a territory share an id or a slug. The id is set once, when the package is created, and changes only through an owner-approved rename when a Project's slug is renamed; every derived name then changes in the same commit.
@@ -70,27 +65,27 @@ A member-repository Project session is a seat for its Capital package, not autho
 
 - **Territory:** the territory's name where it is one word, `Personal`, `Legal` or `Techmedix`, otherwise its alias in capitals, `KI`, `HNR`, `ER`, `VA` or `SI`.
 - **Theme and Project:** the `title` fields of the theme page and the Project note as they stand, such as `Model` and `Ways of working`. A title follows a registry change at `_index.md`'s next update; the id does not.
-- **State of play:** `SoP` in the title and `State of play` in full in the report heading. A secondary adds its name in brackets: `HNR > SoP (5ge)` in the title, `State of play (5ge)` in the heading.
-- **Topic:** ad hoc work's slug in words, in sentence case, unless the owner names it otherwise.
+- **State of play:** `SoP` in the title and `State of play` in full in the report heading.
+- **Node:** a node's slug in words, in sentence case, unless the owner names it otherwise, as `KI > Tools` for `ki.tools`.
 - **Label:** the title, plus a `(<host>)` suffix, after a space, only when the work is limited to that machine. The id, slug and title never carry a host.
-- **Work name:** the label followed by the id in brackets, `<label> (<id>)`, as in `KI > Model > Ways of working (ki.prj.ways-of-working)` and `KI > SoP (ki.summit)`.
+- **Work name:** the label followed by the id in brackets, `<label> (<id>)`, as in `KI > Model > Ways of working (ki.ways-of-working)` and `KI > SoP (ki.summit)`.
 
 **Where each name is used.**
 
 - The work name names the work in replies and reports, as the sender of a [line](standards-messages.md#messages-between-work), in a handoff and in the opener's `Label:` line.
-- A native session takes its seat's [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line) instead: `<role glyph> 🔑 <work-id>`, the glyph of its one role from the [role catalogue](../../ki-work-package/references/standard-roles.md#43-role-catalogue), with 🔑 marking the keyholder, the session holding the package's keys; `<role glyph> <package>@<role>`, with no key, the seat's id, for a seat working in the package without its keys, such as a maker in a meeting; or `🧵 <work-id>` while it has no role. The launch name, the `Rename thread:` line, every report's [thread line](standards-coordination.md#banner) and the sender of every line the seat writes agree. A line's sender is the label with the thread line in brackets, as in `KI > Guilds (⚖️ 🔑 ki.reg.guilds):`. The work id stays last, so the name still names the work.
+- A native session takes its seat's [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line) instead: `<role glyph> 🔑 <work-id>`, the glyph of its one role from the [role catalogue](../../ki-work-package/references/standard-roles.md#43-role-catalogue), with 🔑 marking the keyholder, the session holding the package's keys; `<role glyph> <package>@<role>`, with no key, the seat's id, for a seat working in the package without its keys, such as a maker in a meeting; or `🧵 <work-id>` while it has no role. The launch name, the `Rename thread:` line, every report's [thread line](standards-coordination.md#banner) and the sender of every line the seat writes agree. A line's sender is the label with the thread line in brackets, as in `KI > Tools (⚒️ 🔑 ki.tools):`. The work id stays last, so the name still names the work.
 - The label stays in the opener and the [report heading](standards-coordination.md#banner). The report heading uses the same display names, linked to their notes and joined by ` › `, without the territory.
 
 | Work | Id | Title | Old shape |
 | --- | --- | --- | --- |
 | Knowledge Islands main State of play | `ki.summit` | `KI > SoP` | `_state-of-play.md`, `ki.sop`, `ki`, `ki.sop.main` |
-| A Humans not Robots secondary State of play | `hnr.sop.5ge` | `HNR > SoP (5ge)` | none |
-| Ways of working | `ki.prj.ways-of-working` | `KI > Model > Ways of working` | `knowledge-islands-model.ways-of-working.md`, `ki.ways-of-working` |
-| Tools burndown | `ki.prj.tools-burndown` | `KI > Foundations > Tools burndown` | `platform-foundations.tools-burndown.md`, `ki.tools-burndown` |
-| Knowledge Islands regular work | `ki.reg.main` | `KI > Regular work` | recurring work in Initiative notes, `ki.regular` |
-| Registry removal | `ki.reg.registry-removal` | `KI > Registry removal` | a conversational session, `ki.regular.registry-removal` |
+| The quartermaster's node beneath the Knowledge Islands summit | `ki.tools` | `KI > Tools` | `ki.sop.tools` |
+| Sol's rig, a node beneath a node | `personal.rig.sol` | `Personal > Rig sol` | `personal.reg.rig-sol` |
+| Ways of working | `ki.ways-of-working` | `KI > Model > Ways of working` | `knowledge-islands-model.ways-of-working.md`, `ki.prj.ways-of-working` |
+| Tools burndown | `ki.tools-burndown` | `KI > Foundations > Tools burndown` | `platform-foundations.tools-burndown.md`, `ki.prj.tools-burndown` |
+| Registry removal | `ki.registry-removal` | `KI > Registry removal` | a conversational session, `ki.regular.registry-removal`, `ki.reg.registry-removal` |
 
-Sources: NAMING-MODEL, SUB-PACKAGE, TITLE-THEME, LABEL-HOST, WORK-LABEL, STAGE-C-ROLES, RENAME-NAME, SEAT-LINE, SUMMIT-SUB-PACKAGES and SEAT-AT in [the decision register](sources.md#decision-register).
+Sources: NAMING-MODEL, SUB-PACKAGE, TITLE-THEME, LABEL-HOST, WORK-LABEL, STAGE-C-ROLES, RENAME-NAME, SEAT-LINE, SUMMIT-SUB-PACKAGES, SEAT-AT and NODE-ID in [the decision register](sources.md#decision-register).
 
 ## Opening work
 
@@ -119,23 +114,23 @@ Next step: follow the Bootstrap in ki-coordination, then give the full re-bootst
 For Project work:
 
 ```text
-Bootstrap as <territory>.prj.<project> Project work under ki-coordination.
+Bootstrap as <territory>.<project> Project work under ki-coordination.
 Session: <thread line>. Your first act is to rename this session to it with your agent host's rename, such as /rename <thread line>.
 Role: coordinator only. The coordinator never does substantive work itself; every unit of work goes to a detached background agent; an owner message never pre-empts work in flight. Dispatch, decide with me, report; stay responsive.
-Label: <Territory> > <Theme> > <Project> (<territory>.prj.<project>). Work package: work/<territory>/<territory>.prj.<project>/ in the Cairn store.
+Label: <Territory> > <Theme> > <Project> (<territory>.<project>). Work package: work/<territory>/<territory>.<project>/ in the Cairn store.
 Project: <project>; work only this Project's records.
 Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive to messages and to me while they run; let them do most of the work, and check what each returns before you post it.
 Steering: my messages steer; stop or abort only when I expressly say so, naming the work.
 Next step: follow the Bootstrap in ki-coordination, then give the full re-bootstrap report.
 ```
 
-For a secondary State of play:
+For a secondary State of play, a node beneath the summit:
 
 ```text
-Bootstrap as <territory>.sop.<name> territory work under ki-coordination.
+Bootstrap as <id> regular work under ki-coordination, a node beneath the summit.
 Session: <thread line>. Your first act is to rename this session to it with your agent host's rename, such as /rename <thread line>.
 Role: coordinator only. The coordinator never does substantive work itself; every unit of work goes to a detached background agent; an owner message never pre-empts work in flight. Dispatch, decide with me, report; stay responsive.
-Label: <Territory> > SoP (<name>) (<territory>.sop.<name>). Work package: work/<territory>/<territory>.sop.<name>/ in the Cairn store.
+Label: <Territory> > <node in words> (<id>). Work package: work/<territory>/<id>/ in the Cairn store.
 A node beneath <Territory> > SoP (<territory>.summit), under its rules: project management only for the work beneath this node; the summit stays the owner's front door and owns cross-cutting decisions, the territory's ceiling on active Project work and acceptance, so take those to it in a meeting or a change document.
 Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive to messages and to me while they run; let them do most of the work, and check what each returns before you post it.
 Steering: my messages steer; stop or abort only when I expressly say so, naming the work.

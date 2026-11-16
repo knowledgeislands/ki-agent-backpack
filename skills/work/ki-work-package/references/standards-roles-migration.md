@@ -19,6 +19,7 @@ This file holds the tolerance for the forms [the role standard](standard-roles.m
 | A seat's id in the earlier `<work id>+<role>` form, the Cairn store's title, as `actor:ki.cairn+information-architect` | `<package>@<role>`, as `actor:ki.cairn@information-architect`, its roster file renamed to match; `+` now adds a strand (SEAT-AT) | RECORD-2 warns on a `workers` entry's `id`; no checker reads roster files or meetings |
 | A thread line's seat in the earlier `<role glyph> <work-id>+<role>` form, as `📐 ki.cairn+architect` | `<role glyph> <package>@<role>`, as `📐 ki.cairn@architect` (SEAT-AT) | The footer hook warns |
 | A sub-package's id in the earlier `<parent id>.<slug>` form | `<parent id>+<slug>`, the folder unchanged (SUMMIT-SUB-PACKAGES) | RECORD-1 warns |
+| A package's id naming its kind, `<territory>.sop.<name>`, `<territory>.prj.<project>` or `<territory>.reg.<slug>`, or the legacy `regular` | `<territory>.<slug>`, its kind its `level`, the package renamed with its folder when it is next placed (NODE-ID) | RECORD-1 warns |
 | `covers` in `_index.md` | Dropped: the tree beneath a node, read from `parent`, is its register (COVERS-REGISTER) | RECORD-2 warns |
 | ⭐ or 🔧 in a glyph run, as in `🦉⭐ 🔑 personal.reg.inbox-terra` | The role glyph alone; neither is a role, and ⭐ and 🔧 leave the thread line under MARKS-RETIRE | The footer hook warns |
 | `🧵 🔑 <work-id>` | `🧵 <work-id>`, or the role glyph's key form once the seat has a role | The footer hook warns |

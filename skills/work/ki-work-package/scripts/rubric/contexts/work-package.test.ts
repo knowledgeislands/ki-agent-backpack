@@ -98,12 +98,12 @@ const MAIN = entry({
   changes: []
 }).replace('level: regular', 'level: territory')
 
-/** A store with the territory's summit and one regular package, `ki.reg.pilot`, each passing. */
+/** A store with the territory's summit and one regular package, `ki.pilot`, each passing. */
 const store = (pilot: Partial<Entry> = {}): string => {
   const root = fixture()
   write(root, 'work/ki/ki.summit/_index.md', MAIN)
-  write(root, 'work/ki/ki.reg.pilot/_index.md', entry({ id: 'ki.reg.pilot', ...pilot }))
-  write(root, 'work/ki/ki.reg.pilot/10-pilot.change.md', '# Pilot\n')
+  write(root, 'work/ki/ki.pilot/_index.md', entry({ id: 'ki.pilot', ...pilot }))
+  write(root, 'work/ki/ki.pilot/10-pilot.change.md', '# Pilot\n')
   return root
 }
 
@@ -156,8 +156,8 @@ describe('a store in the standard shape', () => {
     const root = store()
     write(
       root,
-      'work/ki/ki.reg.pilot/_index.md',
-      entry({ id: 'ki.reg.pilot' }).replace('## Now', '## Values\n\nThe shared values.\n\n## Now')
+      'work/ki/ki.pilot/_index.md',
+      entry({ id: 'ki.pilot' }).replace('## Now', '## Values\n\nThe shared values.\n\n## Now')
     )
     expect(statuses(run(RECORD, 'RECORD-2', context(root)))).toEqual(['PASS'])
   })
@@ -204,15 +204,13 @@ describe('STRUCTURE', () => {
 
   test('a symlinked package folder fails', () => {
     const root = store()
-    symlinkSync(join(root, 'work', 'ki', 'ki.reg.pilot'), join(root, 'work', 'ki', 'ki.reg.alias'))
-    expect(run(STRUCTURE, 'STRUCTURE-1', context(root)).map((outcome) => outcome.subject)).toEqual([
-      'work/ki/ki.reg.alias'
-    ])
+    symlinkSync(join(root, 'work', 'ki', 'ki.pilot'), join(root, 'work', 'ki', 'ki.alias'))
+    expect(run(STRUCTURE, 'STRUCTURE-1', context(root)).map((outcome) => outcome.subject)).toEqual(['work/ki/ki.alias'])
   })
 
   test('each earlier copy in a retired working area is listed and warned', () => {
     const root = store()
-    for (const area of ['_WORK', '_THREADS']) write(root, `+/${area}/ki.reg.pilot/_index.md`, '# old\n')
+    for (const area of ['_WORK', '_THREADS']) write(root, `+/${area}/ki.pilot/_index.md`, '# old\n')
     const outcomes = run(STRUCTURE, 'STRUCTURE-2', context(root))
     expect(outcomes.map((outcome) => outcome.subject)).toEqual(['+/_WORK', '+/_THREADS'])
     expect(STRUCTURE.items.find((item) => item.code === 'STRUCTURE-2')?.mechanical?.level).toBe('WARN')
@@ -228,13 +226,9 @@ describe('STRUCTURE', () => {
 describe('RECORD-1 identity', () => {
   test('the id, folder and H1 agree, and the territory folder is the first segment', () => {
     const root = store({ fields: [] })
-    write(
-      root,
-      'work/ki/ki.reg.pilot/_index.md',
-      entry({ id: 'ki.reg.pilot' }).replace('id: ki.reg.pilot', 'id: ki.reg.other')
-    )
-    write(root, 'work/hnr/ki.reg.stray/_index.md', entry({ id: 'ki.reg.stray' }))
-    write(root, 'work/hnr/ki.reg.stray/10-pilot.change.md', '# Pilot\n')
+    write(root, 'work/ki/ki.pilot/_index.md', entry({ id: 'ki.pilot' }).replace('id: ki.pilot', 'id: ki.other'))
+    write(root, 'work/hnr/ki.stray/_index.md', entry({ id: 'ki.stray' }))
+    write(root, 'work/hnr/ki.stray/10-pilot.change.md', '# Pilot\n')
     const text = messages(run(RECORD, 'RECORD-1', context(root)))
     expect(text).toContain('id must exactly match the package folder name')
     expect(text).toContain('territory folder of its id')
@@ -252,32 +246,44 @@ describe('RECORD-1 identity', () => {
     const root = store({ changes: ['10-pilot.change.md', 'viewer/'] })
     write(
       root,
-      'work/ki/ki.reg.pilot/viewer/_index.md',
-      entry({ id: 'ki.reg.pilot+viewer', drop: ['parent'], fields: ['parent: ki.reg.pilot'] })
+      'work/ki/ki.pilot/viewer/_index.md',
+      entry({ id: 'ki.pilot+viewer', drop: ['parent'], fields: ['parent: ki.pilot'] })
     )
-    write(root, 'work/ki/ki.reg.pilot/viewer/10-pilot.change.md', '# Viewer\n')
+    write(root, 'work/ki/ki.pilot/viewer/10-pilot.change.md', '# Viewer\n')
     expect(statuses(run(RECORD, 'RECORD-1', context(root)))).toEqual(['PASS'])
     expect(statuses(run(RECORD, 'RECORD-2', context(root)))).toEqual(['PASS'])
     write(
       root,
-      'work/ki/ki.reg.pilot/viewer/_index.md',
-      entry({ id: 'ki.reg.viewer', drop: ['parent'], fields: ['parent: ki.reg.pilot'] })
+      'work/ki/ki.pilot/viewer/_index.md',
+      entry({ id: 'ki.viewer', drop: ['parent'], fields: ['parent: ki.pilot'] })
     )
-    expect(messages(run(RECORD, 'RECORD-1', context(root)))).toContain('id must be ki.reg.pilot+viewer')
+    expect(messages(run(RECORD, 'RECORD-1', context(root)))).toContain('id must be ki.pilot+viewer')
   })
 
   test('the earlier `<parent id>.<slug>` sub-package id warns under the role migration file', () => {
     const root = store({ changes: ['10-pilot.change.md', 'viewer/'] })
     write(
       root,
-      'work/ki/ki.reg.pilot/viewer/_index.md',
-      entry({ id: 'ki.reg.pilot.viewer', drop: ['parent'], fields: ['parent: ki.reg.pilot'] })
+      'work/ki/ki.pilot/viewer/_index.md',
+      entry({ id: 'ki.pilot.viewer', drop: ['parent'], fields: ['parent: ki.pilot'] })
     )
-    write(root, 'work/ki/ki.reg.pilot/viewer/10-pilot.change.md', '# Viewer\n')
+    write(root, 'work/ki/ki.pilot/viewer/10-pilot.change.md', '# Viewer\n')
     const outcomes = run(RECORD, 'RECORD-1', context(root))
     expect(statuses(outcomes)).toEqual(['WARN'])
     expect(messages(outcomes)).toContain('standards-roles-migration.md')
     expect(statuses(run(RECORD, 'RECORD-2', context(root)))).toEqual(['PASS'])
+  })
+
+  test('an id still naming its kind, sop, prj or reg, warns under the role migration file (NODE-ID)', () => {
+    for (const id of ['ki.sop.tools', 'ki.prj.observatory', 'ki.reg.guilds']) {
+      const root = fixture()
+      write(root, 'work/ki/ki.summit/_index.md', MAIN)
+      write(root, `work/ki/${id}/_index.md`, entry({ id }))
+      write(root, `work/ki/${id}/10-pilot.change.md`, '# Pilot\n')
+      const outcomes = run(RECORD, 'RECORD-1', context(root))
+      expect(statuses(outcomes)).toEqual(['WARN'])
+      expect(messages(outcomes)).toContain('<territory>.<slug>')
+    }
   })
 })
 
@@ -343,10 +349,10 @@ describe('RECORD-2 schema', () => {
     const root = store()
     write(
       root,
-      'work/ki/ki.reg.pilot/_index.md',
+      'work/ki/ki.pilot/_index.md',
       entry({
-        id: 'ki.reg.pilot',
-        body: '# ki.reg.pilot\n\n## Goals\n\nPilot.\n\n## Scope\n\nIn: all.\n\n## Focus\n\n- `pilot`\n'
+        id: 'ki.pilot',
+        body: '# ki.pilot\n\n## Goals\n\nPilot.\n\n## Scope\n\nIn: all.\n\n## Focus\n\n- `pilot`\n'
       })
     )
     expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain(
@@ -356,7 +362,7 @@ describe('RECORD-2 schema', () => {
 
   test('an empty section fails', () => {
     const root = store()
-    write(root, 'work/ki/ki.reg.pilot/_index.md', entry({ id: 'ki.reg.pilot' }).replace('None\n', '\n'))
+    write(root, 'work/ki/ki.pilot/_index.md', entry({ id: 'ki.pilot' }).replace('None\n', '\n'))
     expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain('Held must say something')
   })
 
@@ -371,10 +377,10 @@ describe('RECORD-2 schema', () => {
     )
     write(
       root,
-      'work/ki/ki.reg.pilot-part/_index.md',
-      entry({ id: 'ki.reg.pilot-part', drop: ['parent'], fields: ['parent: ki.reg.pilot'] })
+      'work/ki/ki.pilot-part/_index.md',
+      entry({ id: 'ki.pilot-part', drop: ['parent'], fields: ['parent: ki.pilot'] })
     )
-    write(root, 'work/ki/ki.reg.pilot-part/10-pilot.change.md', '# Part\n')
+    write(root, 'work/ki/ki.pilot-part/10-pilot.change.md', '# Part\n')
     expect(statuses(run(RECORD, 'RECORD-2', context(root)))).toEqual(['PASS'])
   })
 
@@ -421,13 +427,13 @@ describe('RECORD-2 schema', () => {
     })
 
   test('a parent chain that loops fails', () => {
-    const root = store({ drop: ['parent'], fields: ['parent: ki.reg.pilot-part'] })
+    const root = store({ drop: ['parent'], fields: ['parent: ki.pilot-part'] })
     write(
       root,
-      'work/ki/ki.reg.pilot-part/_index.md',
-      entry({ id: 'ki.reg.pilot-part', drop: ['parent'], fields: ['parent: ki.reg.pilot'] })
+      'work/ki/ki.pilot-part/_index.md',
+      entry({ id: 'ki.pilot-part', drop: ['parent'], fields: ['parent: ki.pilot'] })
     )
-    write(root, 'work/ki/ki.reg.pilot-part/10-pilot.change.md', '# Part\n')
+    write(root, 'work/ki/ki.pilot-part/10-pilot.change.md', '# Part\n')
     expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain('the parent chain loops back to this package')
   })
 
@@ -435,12 +441,12 @@ describe('RECORD-2 schema', () => {
     const root = store({ changes: ['10-pilot.change.md', 'viewer/'] })
     write(
       root,
-      'work/ki/ki.reg.pilot/viewer/_index.md',
-      entry({ id: 'ki.reg.pilot+viewer' }).replace('level: regular', 'level: project')
+      'work/ki/ki.pilot/viewer/_index.md',
+      entry({ id: 'ki.pilot+viewer' }).replace('level: regular', 'level: project')
     )
-    write(root, 'work/ki/ki.reg.pilot/viewer/10-pilot.change.md', '# Viewer\n')
+    write(root, 'work/ki/ki.pilot/viewer/10-pilot.change.md', '# Viewer\n')
     const text = messages(run(RECORD, 'RECORD-2', context(root)))
-    expect(text).toContain("parent must name the sub-package's parent package, ki.reg.pilot")
+    expect(text).toContain("parent must name the sub-package's parent package, ki.pilot")
     expect(text).toContain("a sub-package's level is its parent's, regular")
   })
 
@@ -532,8 +538,8 @@ describe('LIFECYCLE', () => {
     const now = Array.from({ length: 6 }, (_, index) => `- 2026-11-0${index + 1} line ${index}`).join('\n')
     write(
       root,
-      'work/ki/ki.reg.pilot/_index.md',
-      entry({ id: 'ki.reg.pilot', drop: ['description'], fields: [`description: ${'x'.repeat(501)}`] }).replace(
+      'work/ki/ki.pilot/_index.md',
+      entry({ id: 'ki.pilot', drop: ['description'], fields: [`description: ${'x'.repeat(501)}`] }).replace(
         '- The pilot runs.',
         now
       )
@@ -550,8 +556,8 @@ describe('BOUNDARY', () => {
     const root = store({ fields: ['session_id: abc'] })
     write(
       root,
-      'work/ki/ki.reg.pilot/_index.md',
-      entry({ id: 'ki.reg.pilot', fields: ['session_id: abc'] }).replace(
+      'work/ki/ki.pilot/_index.md',
+      entry({ id: 'ki.pilot', fields: ['session_id: abc'] }).replace(
         '- The pilot runs.',
         '- Resume the conversation session to continue.'
       )
