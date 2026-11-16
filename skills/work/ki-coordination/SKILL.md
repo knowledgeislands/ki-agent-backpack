@@ -33,7 +33,7 @@ It does not launch, brief, monitor or report for background agents, which `ki-de
 
 The [deferred host-move design notes](references/sources.md#deferred-host-move-evidence) retain unresolved queue, host-bound-run and historical handover questions without granting implementation authority.
 
-The [assigned-package cascade](references/standards-territory.md#coordinating-assigned-packages) covers explicit stewardship and handover, one package per turn, one territory Summary with work-qualified queries, per-package marks and the main `covers` register. STEWARD-FIELD remains a placeholder and creates no field. Where a package of the territory has no active session, its State of play [acts for it](references/standards-territory.md#territory-work) on its messages alone, receiving, ACKing, routing and answering them without taking its work forward or transferring stewardship.
+The [assigned-package cascade](references/standards-territory.md#coordinating-assigned-packages) covers explicit stewardship and handover, one package per turn, one territory Summary with work-qualified queries, per-package marks and the tree beneath each node, read from `parent`, as its register. STEWARD-FIELD remains a placeholder and creates no field. Where a package of the territory has no active session, its State of play [acts for it](references/standards-territory.md#territory-work) on its messages alone, receiving, ACKing, routing and answering them without taking its work forward or transferring stewardship.
 
 ## Operating modes
 

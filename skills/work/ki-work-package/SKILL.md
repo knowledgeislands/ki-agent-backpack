@@ -37,7 +37,7 @@ Project notes and theme pages are not a home for status: a package says where wo
 
 `ki-work recap` writes no package: every package write, a hand-off's update included, goes through this skill's update procedure, as Kris took RECAP-NARROW a) on 7 November 2026.
 
-The standard also owns assigned stewardship under [the writers](references/standard-work-package.md#49-writers), including the unresolved STEWARD-FIELD placeholder, `parent` and `covers` relations, and inventory-based host requirements. These rules add no unattended field.
+The standard also owns assigned stewardship under [the writers](references/standard-work-package.md#49-writers), including the unresolved STEWARD-FIELD placeholder, `parent` relations, the tree beneath a node being its register,, and inventory-based host requirements. These rules add no unattended field.
 
 ## Operating modes
 

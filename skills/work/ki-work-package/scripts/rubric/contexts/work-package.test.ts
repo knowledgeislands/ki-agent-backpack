@@ -94,7 +94,7 @@ const entry = ({ id, fields = [], drop = [], body, changes = ['10-pilot.change.m
 const MAIN = entry({
   id: 'ki.summit',
   drop: ['parent'],
-  fields: ['parent: cairn.summit', 'covers:\n  - ki.reg.pilot'],
+  fields: ['parent: cairn.summit'],
   changes: []
 }).replace('level: regular', 'level: territory')
 
@@ -313,11 +313,6 @@ describe('RECORD-2 schema', () => {
       'outside name, role, tier, since and status'
     ],
     [
-      'covers below territory level',
-      { fields: ['covers:\n  - ki.reg.other'] },
-      "covers belongs only to a territory's summit"
-    ],
-    [
       'a parent outside the territory',
       { drop: ['parent'], fields: ['parent: hnr.summit'] },
       'parent must name a different node of the same territory'
@@ -351,12 +346,6 @@ describe('RECORD-2 schema', () => {
     expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain('Held must say something')
   })
 
-  test("work absent from its summit's register fails", () => {
-    const root = store()
-    write(root, 'work/ki/ki.summit/_index.md', MAIN.replace('covers:\n  - ki.reg.pilot', 'covers: []'))
-    expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain("absent from its summit's covers register")
-  })
-
   test('the tree is rooted at cairn.summit, each summit under it, and any node may split', () => {
     const root = store()
     write(
@@ -365,11 +354,6 @@ describe('RECORD-2 schema', () => {
       entry({ id: 'cairn.summit', drop: ['parent'], changes: [] })
         .replace('level: regular', 'level: root')
         .replace('role: warden', 'role: guardian')
-    )
-    write(
-      root,
-      'work/ki/ki.summit/_index.md',
-      MAIN.replace('  - ki.reg.pilot', '  - ki.reg.pilot\n  - ki.reg.pilot-part')
     )
     write(
       root,
@@ -413,11 +397,6 @@ describe('RECORD-2 schema', () => {
     .replace('role: warden', 'role: guardian')
   const misrooted: readonly [string, string, string][] = [
     ['a root with a parent', ROOT.replace('level: root', 'level: root\nparent: ki.summit'), 'carries no parent'],
-    [
-      'a root with covers',
-      ROOT.replace('level: root', 'level: root\ncovers: []'),
-      "covers belongs only to a territory's summit"
-    ],
     ['the root at another level', ROOT.replace('level: root', 'level: territory'), 'level root belongs to the root']
   ]
   for (const [name, text, expected] of misrooted)
@@ -427,19 +406,8 @@ describe('RECORD-2 schema', () => {
       expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain(expected)
     })
 
-  test('a summit without its register fails', () => {
-    const root = store()
-    write(root, 'work/ki/ki.summit/_index.md', MAIN.replace('covers:\n  - ki.reg.pilot', ''))
-    expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain("covers must be the summit's register")
-  })
-
   test('a parent chain that loops fails', () => {
     const root = store({ drop: ['parent'], fields: ['parent: ki.reg.pilot-part'] })
-    write(
-      root,
-      'work/ki/ki.summit/_index.md',
-      MAIN.replace('  - ki.reg.pilot', '  - ki.reg.pilot\n  - ki.reg.pilot-part')
-    )
     write(
       root,
       'work/ki/ki.reg.pilot-part/_index.md',
@@ -454,12 +422,11 @@ describe('RECORD-2 schema', () => {
     write(
       root,
       'work/ki/ki.reg.pilot/viewer/_index.md',
-      entry({ id: 'ki.reg.pilot.viewer', fields: ['covers: []'] }).replace('level: regular', 'level: project')
+      entry({ id: 'ki.reg.pilot.viewer' }).replace('level: regular', 'level: project')
     )
     write(root, 'work/ki/ki.reg.pilot/viewer/10-pilot.change.md', '# Viewer\n')
     const text = messages(run(RECORD, 'RECORD-2', context(root)))
     expect(text).toContain("parent must name the sub-package's parent package, ki.reg.pilot")
-    expect(text).toContain("covers belongs only to a territory's summit")
     expect(text).toContain("a sub-package's level is its parent's, regular")
   })
 
@@ -470,7 +437,8 @@ describe('RECORD-2 schema', () => {
     ['a steward seat', { fields: ['workers:\n  - role: steward\n    tier: managers'] }],
     ['a worker focus', { fields: ['workers:\n  - role: warden\n    tier: managers\n    focus:\n      - pilot'] }],
     ['the old tier enablers', { fields: ['workers:\n  - role: warden\n    tier: enablers'] }],
-    ['a worker listening', { fields: ['workers:\n  - role: warden\n    tier: managers\n    listening: off'] }]
+    ['a worker listening', { fields: ['workers:\n  - role: warden\n    tier: managers\n    listening: off'] }],
+    ['a leftover covers', { fields: ['covers: []'] }]
   ]
   for (const [name, change] of tolerated)
     test(`${name} warns under the role migration file`, () => {

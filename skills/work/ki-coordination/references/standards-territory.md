@@ -77,7 +77,7 @@ Sources: SOP-ACTS-FOR-IDLE, WORK-ROUTING, STEWARD-HOME, FIRST-STEP-HOME and SECO
 
 ### Coordinating assigned packages
 
-**Tending.** The acknowledged steward tends a package's disposition, queues and tidy independently of any active coordinator. The parent State of play reconciles assigned regular umbrellas, children and declared member homes through `parent`/`covers` and the home reference at opening, bootstrap, approved moves and ordinary tending.
+**Tending.** The acknowledged steward tends a package's disposition, queues and tidy independently of any active coordinator. The parent State of play reconciles assigned regular umbrellas, children and declared member homes through `parent`, the tree beneath it being its register, and the home reference at opening, bootstrap, approved moves and ordinary tending.
 
 - Surface absent, stale, inaccessible or ambiguous homes and unacknowledged ownership; do not take over or clear their lines.
 - The Capital's prose home reference is discovery, never a second package, state or inbox.
@@ -117,10 +117,10 @@ A secondary State of play, `<territory>.sop.<name>`, is a node beneath its terri
 - **A node** does project management for the work beneath it, within the authority the summit splits off to it, and rolls up the five views across that work; the summit rolls up all.
 - **Acceptance:** the summit brings the territory's records awaiting acceptance first, the work beneath its nodes included, under **Acceptance first** in [Territory work](#territory-work).
 - **Routing:** a unit goes between the summit, a node and the work beneath it, down, up or across, through a meeting under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md) or a change document, no longer as a `ROUTE` line in `messages.md`. A part a node cannot place goes back to the summit once; the summit places it or asks the owner.
-- **Covers:** the summit's `covers` stays the register of the territory's work, the work beneath its nodes included, under [Territory work](#territory-work). A node's own `covers` waits on COVERS-REGISTER, open in the Cairn summit's [change 20](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/20-learnings.change.md#71-questions), and nothing here sets it until that is settled.
+- **Register:** the tree beneath a node, read from `parent`, is its register: the summit's is all the territory's work, the work beneath its nodes included, and a node's the work beneath it. Work with no package yet belongs on the roadmap, as Kris set under COVERS-REGISTER a on 16 November 2026.
 - **Opening:** the owner opens a node with the [secondary opener](standards-opening.md#opening-work), and takes every opener for the territory from [Opening work](standards-opening.md#opening-work).
 
-Sources: SECONDARY-SOP and OLD-SHAPE-HOMES in [the decision register](sources.md#decision-register).
+Sources: SECONDARY-SOP, OLD-SHAPE-HOMES and COVERS-REGISTER in [the decision register](sources.md#decision-register).
 
 ## Owner queue
 

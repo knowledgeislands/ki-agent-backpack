@@ -51,7 +51,6 @@ const DEFINITION_FIELDS: readonly string[] = [
   'project',
   'theme',
   'parent',
-  'covers',
   'role',
   'created_at'
 ]
@@ -74,6 +73,11 @@ const STATE_FIELDS: readonly string[] = [
   ...CAPABILITY_FIELDS
 ]
 const ENTRY_FIELDS: ReadonlySet<string> = new Set([...DEFINITION_FIELDS, ...STATE_FIELDS])
+/**
+ * Entry fields the work package standard has dropped, tolerated and warned on under the role migration file: `covers`,
+ * whose register is now the tree beneath each node, read from `parent` (COVERS-REGISTER, Kris, 16 November 2026).
+ */
+const ENTRY_RETIRED_FIELDS: ReadonlySet<string> = new Set(['covers'])
 const ENTRY_REQUIRED: readonly string[] = [...DEFINITION_REQUIRED, ...STATE_REQUIRED]
 /** The body of `_index.md`: the id H1, then these sections, with an optional `## Values` after Scope. */
 const BODY_BEFORE_VALUES = ['Goals', 'Scope'] as const
@@ -235,7 +239,7 @@ const boundaryOutcomes = (record: ParsedRecord, fields: Readonly<Record<string, 
 
 /**
  * A top-level package's place in the one tree: the root alone carries no parent, each territory's summit names the
- * root, and other work names a node of its own territory; the summit's register survives absent packages.
+ * root, and other work names a node of its own territory; the tree beneath a node is its register (COVERS-REGISTER).
  */
 const placementFailures = (id: string, fields: Readonly<Record<string, unknown>>): readonly string[] => {
   const segments = id.split('.')
@@ -256,29 +260,10 @@ const placementFailures = (id: string, fields: Readonly<Record<string, unknown>>
     if (parent !== ROOT_ID) failures.push(`a territory's summit names the root, ${ROOT_ID}, as parent`)
   } else if (typeof parent !== 'string' || !WORK_ID.test(parent) || parent.split('.')[0] !== territory || parent === id)
     failures.push('parent must name a different node of the same territory')
-  if (fields.level !== 'territory') {
-    if ('covers' in fields) failures.push("covers belongs only to a territory's summit")
-    return failures
-  }
-  const covers = fields.covers
-  if (!Array.isArray(covers)) failures.push("covers must be the summit's register, an array")
-  else {
-    if (new Set(covers).size !== covers.length) failures.push('covers must not repeat a work id')
-    for (const covered of covers)
-      if (
-        typeof covered !== 'string' ||
-        !WORK_ID.test(covered) ||
-        !covered.startsWith(`${territory}.`) ||
-        covered === id
-      )
-        failures.push(
-          `covers names ${String(covered)}, which is not Project, regular or ad hoc work of territory ${territory}`
-        )
-  }
   return failures
 }
 
-/** A sub-package's placement: its parent package named as `parent`, its parent's level, and no covers. */
+/** A sub-package's placement: its parent package named as `parent` and its parent's level. */
 const subPackageFailures = (
   folder: PackageFolder,
   fields: Readonly<Record<string, unknown>>,
@@ -287,7 +272,6 @@ const subPackageFailures = (
   const failures: string[] = []
   const parentId = folder.parent?.expectedId
   if (fields.parent !== parentId) failures.push(`parent must name the sub-package's parent package, ${parentId}`)
-  if ('covers' in fields) failures.push("covers belongs only to a territory's summit")
   if (parentFields && fields.level !== parentFields.level)
     failures.push(`a sub-package's level is its parent's, ${String(parentFields.level)}`)
   return failures
@@ -527,10 +511,15 @@ const packageEvidence = (
   }
   const keys = Object.keys(fields)
   const missing = ENTRY_REQUIRED.filter((field) => !keys.includes(field))
-  const unknown = keys.filter((field) => !ENTRY_FIELDS.has(field))
+  const unknown = keys.filter((field) => !ENTRY_FIELDS.has(field) && !ENTRY_RETIRED_FIELDS.has(field))
   if (missing.length > 0 || unknown.length > 0)
     fail(
       `${ENTRY_FILE} front matter must use only its closed field set${missing.length > 0 ? `; missing: ${missing.join(', ')}` : ''}${unknown.length > 0 ? `; outside it: ${unknown.join(', ')}` : ''}`
+    )
+  const retired = keys.filter((field) => ENTRY_RETIRED_FIELDS.has(field))
+  if (retired.length > 0)
+    evidence.schema.push(
+      warning(entry, `${ENTRY_FILE} carries ${retired.join(', ')}, which the work package standard drops`)
     )
   const middle = [[], [VALUES_HEADING]].find((optional) =>
     sameOutline(entry.body, folder.expectedId, [...BODY_BEFORE_VALUES, ...optional, ...BODY_AFTER_VALUES])
@@ -576,7 +565,7 @@ const packageEvidence = (
   evidence.boundary.push(...boundaryOutcomes(entry, fields))
 }
 
-/** The top-level packages' tree: each parent resolves, no parent chain loops, and each summit's register lists its work. */
+/** The top-level packages' tree: each parent resolves and no parent chain loops; the tree is the register. */
 const relationshipEvidence = (packages: readonly Package[], evidence: Evidence): void => {
   const top = packages.filter((item) => !item.folder.parent && item.entry.fields)
   const id = (item: Package): string => item.folder.expectedId
@@ -611,10 +600,6 @@ const relationshipEvidence = (packages: readonly Package[], evidence: Evidence):
       if (seen.has(next)) break
       seen.add(next)
     }
-    if (fields.level === 'root' || fields.level === 'territory' || !summit) continue
-    const register = summit.entry.fields?.covers
-    if (Array.isArray(register) && !register.includes(id(item)))
-      fail(item, "work is absent from its summit's covers register")
   }
 }
 
