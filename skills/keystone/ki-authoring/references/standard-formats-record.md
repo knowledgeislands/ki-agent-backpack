@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-16T23:26:35Z
+revised: 2026-11-16T23:45:00Z
 status: in force
 ---
 
@@ -26,7 +26,7 @@ status: in force
 
 What a record is: the report of one batch of work that has landed, written by the session that did it, for the owner to review afterwards, and later consolidated or pruned. It follows the [format format](standard-formats-format.md). The decisions behind these rules are in [the sources file](sources.md).
 
-The rules were set in the Cairn summit's [change 20, the record](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/20-learnings.change.md#42-the-record) and [change 11](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided). One point is still open: where a `changes wanted` note is kept, beyond the work it becomes.
+The rules were set in the Cairn summit's [change 20, the record](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/20-learnings.change.md#42-the-record) and [change 11](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided).
 
 [Back to contents](#contents)
 
@@ -87,7 +87,7 @@ review: awaiting
 - **`at`** is when the batch landed, in UTC to the second, the same time as the file name's; for a consolidated review, when it was consolidated.
 - **`title`** says what the batch was for in a few words, and is the record's H1.
 - **`packages`** lists the ids of the packages the batch served; a consolidated review lists every package its records served.
-- **`review`** takes one of the three values in [4.2](#42-review).
+- **`review`** takes one of the two values in [4.2](#42-review).
 - **Older records** open `type: record`, with no version, and may lack `id` and `revised`. They are read as they are written, and each comes into line when it is next changed or consolidated.
 
 [Back to contents](#contents)
@@ -99,10 +99,9 @@ The owner reviews a whole record, one at a time, and the record's `review` field
 | Value | Meaning |
 | --- | --- |
 | `awaiting` | Written and not yet reviewed. Every record is written with it. |
-| `changes wanted` | Reviewed, with a note of what is to change. The writer sets it on the owner's word and takes the note as more work, kept where that work is kept, such as a change document's open points or a roadmap, never in the record. |
-| `approved` | Reviewed, with nothing left to do. Set when the owner approves the record, or, after `changes wanted`, by the writer once the work the note became has landed. |
+| `approved` | Reviewed. Set when the owner approves the record, as it stands or with changes. |
 
-A record has nothing for the owner to do but review it, so `changes wanted` asks for work, not for the record to be rewritten. The owner reviews records in the Wayfinder, and that is the review: no session walks the owner through the records at its start.
+**A record accepted with changes is set to `approved` at once,** and its note becomes new work in a change document. The note is that work and is kept nowhere else, never in the record: a record has nothing for the owner to do but review it, so changes ask for work, not for the record to be rewritten. The owner reviews records in the Wayfinder, and that is the review: no session walks the owner through the records at its start.
 
 [Back to contents](#contents)
 
@@ -146,7 +145,7 @@ A review carries no commit lists, no account of each original batch and no histo
 
 Beyond the format format's checks, as this standard replaces them, a validator checks:
 
-1. **Front matter:** `id` is `record:` and the file's name, `at` matches the file name's time, `revised` is present, `packages` is a list, and `review` is one of the three values.
+1. **Front matter:** `id` is `record:` and the file's name, `at` matches the file name's time, `revised` is present, `packages` is a list, and `review` is `awaiting` or `approved`.
 2. **Sections:** a batch record has Purpose, Goals and What changed, in order, or a consolidated review's sections, and no other section; a consolidated review has What stands today and Left open, in order, and no other section.
 3. **Opening line:** a consolidated review's first paragraph under the H1 links at least one record, and each record it links is pinned at a commit.
 4. **Name:** the file name is a time and a slug of five words at most.

@@ -114,7 +114,7 @@ const FMT_SHAPE: RubricItem<FormatsRubricContext> = {
   }
 }
 
-const REVIEW_VALUES = new Set(['awaiting', 'changes wanted', 'approved'])
+const REVIEW_VALUES = new Set(['awaiting', 'approved'])
 const RECORD_NAME = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})Z-([a-z0-9]+(?:-[a-z0-9]+)*)$/
 const BATCH_SECTIONS = ['Purpose', 'Goals', 'What changed']
 const REVIEW_SECTIONS = ['What stands today', 'Left open']
@@ -134,9 +134,7 @@ const recordProblems = (record: RecordEvidence): readonly string[] => {
     ...(!record.at || (time && !record.at.startsWith(time))
       ? ["`at` is missing or differs from the file name's time"]
       : []),
-    ...(record.review && REVIEW_VALUES.has(record.review)
-      ? []
-      : ['`review` is not awaiting, changes wanted or approved']),
+    ...(record.review && REVIEW_VALUES.has(record.review) ? [] : ['`review` is not awaiting or approved']),
     ...(record.id && record.id !== `record:${name}` ? [`\`id\` is not record:${name}`] : [])
   ]
   if (!record.versioned) return problems
@@ -171,7 +169,7 @@ const FMT_RECORD: RubricItem<FormatsRubricContext> = {
   code: 'FMT-record',
   title: 'a record follows the record format',
   description:
-    "A record, a document whose `type` is `record@<version>`, passes the record format's Validation: `id` is `record:` and its file name, `at` matches the name's time, `revised` is present, `packages` is a list and `review` one of its three values; a batch record has Purpose, Goals and What changed, or a review's sections; a consolidated review, named `review-…`, has What stands today and Left open, and its opening line links the records it replaces, each pinned at a commit; and the name is a time and a slug, whose length in words is left to review, since a hyphen may join one word or separate two. An older record, `type: record` with no version, is read as written: only its `at`, `review` and any `id` are checked.",
+    "A record, a document whose `type` is `record@<version>`, passes the record format's Validation: `id` is `record:` and its file name, `at` matches the name's time, `revised` is present, `packages` is a list and `review` `awaiting` or `approved`; a batch record has Purpose, Goals and What changed, or a review's sections; a consolidated review, named `review-…`, has What stands today and Left open, and its opening line links the records it replaces, each pinned at a commit; and the name is a time and a slug, whose length in words is left to review, since a hyphen may join one word or separate two. An older record, `type: record` with no version, is read as written: only its `at`, `review` and any `id` are checked.",
   sources: ['standard-formats-record.md#47-validation'],
   mechanical: {
     level: 'FAIL',
