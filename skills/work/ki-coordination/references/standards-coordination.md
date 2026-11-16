@@ -467,14 +467,12 @@ Sources: TIMES-CLOCK in [the decision register](sources.md#decision-register).
 
 The native rubric is thin and complements `ki-work-package`'s. It checks only what the repository shows:
 
-- a Capital holds its State of play, and no other repository does;
 - each piece of Project work names a Project that resolves in the Capital's registry, and any theme resolves too;
-- the level each `_index.md` declares agrees with its id;
 - the active Project work is within the cap;
 - each package holds only its closed list, and reports with open queries;
 - no work is over the owner-queue cap of eight open queries across its change documents or eight records awaiting acceptance.
 
-It cannot judge whether a coordinator kept its turn budget, whether a report took the owner-report shape under its heading and closed with the banner, whether a spoken answer was read back, whether a Summary covered the window since the mark, whether decisions were struck, pointed or kept, or whether the coordinator refreshed this guidance. The COORD judgement items review those from transcripts, reports and packages the owner selects. No item reads report files since COORD-REPORT-CHECKS, which Kris took on 15 November 2026: whether every record identifier is a link, whether a recommended option carries its confidence with no second option recommended, and whether a report opens with its heading are judged under COORD-5 and COORD-6.
+It cannot judge whether a coordinator kept its turn budget, whether a report took the owner-report shape under its heading and closed with the banner, whether a spoken answer was read back, whether a Summary covered the window since the mark, whether decisions were struck, pointed or kept, or whether the coordinator refreshed this guidance. The COORD judgement items review those from transcripts, reports and packages the owner selects. No item reads report files since COORD-REPORT-CHECKS, which Kris took on 15 November 2026: whether every record identifier is a link, whether a recommended option carries its confidence with no second option recommended, and whether a report opens with its heading are judged under COORD-5 and COORD-6. Nor does any item check where territory work sits or the level a work file declares since COORD-RETIRE, which Kris took on 16 November 2026: no packages remain in a repository's `+/_WORK/`, and `ki-work-package` checks the packages in the Cairn store.
 
 ## Moved sections
 

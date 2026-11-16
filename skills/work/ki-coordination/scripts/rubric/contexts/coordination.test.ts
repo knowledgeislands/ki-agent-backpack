@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, test } from 'bun:test'
-import { mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, renameSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import {
@@ -84,53 +84,10 @@ describe('repository identity', () => {
   })
 })
 
-describe('state-of-play checkpoint', () => {
-  test('a Capital without territory work passes, since territory work lives in the Cairn store', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    checkpoint(root, 'knowledge-islands-model.ways-of-working', { label: 'KI Model: ways-of-working' })
-    expect(context(root).master.outcomes).toEqual([
-      {
-        status: 'PASS',
-        message: "The Capital holds no territory work here; it lives in the Cairn store's `work/<territory>/`."
-      }
-    ])
-  })
-
-  test('a Capital with no working areas at all passes', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    expect(statuses(context(root).master.outcomes)).toEqual(['PASS'])
-  })
-
-  test('a Capital with a labelled state-of-play checkpoint passes with the tolerance warning', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    checkpoint(root, '_state-of-play', { label: 'Master: state-of-play' })
-    expect(statuses(context(root).master.outcomes)).toEqual(['WARN'])
-  })
-
-  test('a state-of-play checkpoint labelled `<Space> > SoP` passes with the tolerance warning', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    checkpoint(root, '_state-of-play', { label: 'KI > SoP' })
-    expect(statuses(context(root).master.outcomes)).toEqual(['WARN'])
-  })
-
-  test('a state-of-play checkpoint with another label is a violation', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    checkpoint(root, '_state-of-play', { label: 'KI state of play' })
-    expect(statuses(context(root).master.outcomes)).toEqual(['VIOLATION', 'WARN'])
-  })
-
-  test('a state-of-play checkpoint outside a Capital is a violation', () => {
-    const root = fixture({ repository: 'ki-agent-backpack', capital: 'ki-principal' })
-    checkpoint(root, '_state-of-play', { label: 'Master: state-of-play' })
-    const [outcome] = context(root).master.outcomes
-    expect(outcome?.status).toBe('VIOLATION')
-    expect(outcome?.subject).toBe(join('+', '_CHECKPOINTS', '_state-of-play.md'))
-  })
-
-  test('no checkpoints outside a Capital is not applicable', () => {
+describe('outside a Capital', () => {
+  test('no working areas outside a Capital is not applicable', () => {
     const root = fixture({ repository: 'ki-agent-backpack', capital: 'ki-principal' })
     const ctx = context(root)
-    expect(statuses(ctx.master.outcomes)).toEqual(['NOT_APPLICABLE'])
     expect(statuses(ctx.labels.outcomes)).toEqual(['NOT_APPLICABLE'])
     expect(statuses(ctx.cap.outcomes)).toEqual(['NOT_APPLICABLE'])
   })
@@ -197,53 +154,14 @@ describe('coordination thread checkpoints', () => {
   })
 })
 
-describe('coordinating thread roles', () => {
-  test('coordinating checkpoints that declare their role pass', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    checkpoint(root, '_state-of-play', { label: 'KI > SoP', role: 'state-of-play' })
-    checkpoint(root, 'knowledge-islands-model.ways-of-working', {
-      label: 'KI > Model > ways of working',
-      role: 'coordination'
-    })
-    checkpoint(root, 'knowledge-islands-model.mics', { label: 'KI > mics', role: 'conversational' })
-    checkpoint(root, 'mics-webcams', { label: 'KI > mics / webcams' })
-    expect(statuses(context(root).roles.outcomes)).toEqual(['PASS'])
-  })
-
-  test('a coordinating checkpoint without a role is a violation', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    checkpoint(root, '_state-of-play', { label: 'KI > SoP' })
-    checkpoint(root, 'knowledge-islands-model.ways-of-working', { label: 'KI > Model > ways of working' })
-    const outcomes = context(root).roles.outcomes
-    expect(statuses(outcomes)).toEqual(['VIOLATION', 'VIOLATION'])
-    expect(outcomes[1]?.message).toContain('role: coordination')
-  })
-
-  test('only the state-of-play checkpoint declares state-of-play', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    checkpoint(root, '_state-of-play', { label: 'KI > SoP', role: 'coordination' })
-    checkpoint(root, 'mics-webcams', { label: 'KI > mics / webcams', role: 'state-of-play' })
-    expect(statuses(context(root).roles.outcomes)).toEqual(['VIOLATION', 'VIOLATION'])
-  })
-})
-
 describe('sub-packages', () => {
-  test('a four-part sub-package id passes the level check and leaves the Project checks and cap', () => {
+  test('a four-part sub-package id leaves the Project checks and cap', () => {
     const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
     work(root, 'ki.reg.topic.viewer', { level: 'regular' })
     work(root, 'ki.prj.alpha.site', { level: 'project', state: 'with-worker' })
-    expect(statuses(context(root).roles.outcomes)).toEqual(['PASS'])
     expect(context(root).labels.outcomes.map((outcome) => outcome.subject)).not.toContain(
       '+/_WORK/ki.prj.alpha.site/_index.md'
     )
-  })
-
-  test('any other four-part id is not a work folder name', () => {
-    const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
-    work(root, 'ki.sop.topic.viewer', { level: 'territory' })
-    const outcomes = context(root).roles.outcomes
-    expect(statuses(outcomes)).toEqual(['VIOLATION'])
-    expect(outcomes[0]?.message).toContain('four for a sub-package')
   })
 })
 
@@ -295,31 +213,6 @@ describe('work files', () => {
     expect(workLevel('ki.sop.sites')).toBe('territory')
   })
 
-  test('a Capital holding territory work passes with no warning, whatever its title', () => {
-    const root = fixture(capital)
-    work(root, 'ki', { id: 'ki', level: 'territory', title: 'KI state of play' })
-    expect(statuses(context(root).master.outcomes)).toEqual(['PASS'])
-  })
-
-  test('territory work outside a Capital is a violation', () => {
-    const outside = fixture({ repository: 'ki-agent-backpack', capital: 'ki-principal' })
-    work(outside, 'ki', { id: 'ki', level: 'territory', title: 'KI > SoP' })
-    expect(statuses(context(outside).master.outcomes)).toEqual(['VIOLATION'])
-  })
-
-  test('a secondary State of play passes beside the main, whatever its title', () => {
-    const root = fixture(capital)
-    work(root, 'ki', { id: 'ki', level: 'territory', title: 'KI > SoP' })
-    work(root, 'ki.sop.sites', { id: 'ki.sop.sites', level: 'territory', title: 'KI > SoP (web)', parent: 'ki' })
-    expect(statuses(context(root).master.outcomes)).toEqual(['PASS'])
-  })
-
-  test('a secondary State of play outside a Capital is a violation', () => {
-    const outside = fixture({ repository: 'ki-agent-backpack', capital: 'ki-principal' })
-    work(outside, 'ki.sop.sites', { id: 'ki.sop.sites', level: 'territory', title: 'KI > SoP (sites)', parent: 'ki' })
-    expect(statuses(context(outside).master.outcomes)).toEqual(['VIOLATION'])
-  })
-
   test('Project work naming a registered Project and theme in flat pages passes', () => {
     const root = fixture(capital)
     work(root, 'ki', { id: 'ki', level: 'territory', title: 'KI > SoP' })
@@ -327,7 +220,6 @@ describe('work files', () => {
     page(root, 'Projects', 'ways-of-working')
     page(root, 'Themes', 'model')
     expect(statuses(context(root).labels.outcomes)).toEqual(['PASS'])
-    expect(statuses(context(root).roles.outcomes)).toEqual(['PASS'])
   })
 
   test('Project work is not checked against its Project title, which packages no longer carry', () => {
@@ -373,13 +265,6 @@ describe('work files', () => {
     page(root, 'Themes', 'model')
     page(root, 'Projects', 'other')
     expect(statuses(context(root).labels.outcomes)).toEqual(['VIOLATION', 'VIOLATION', 'VIOLATION'])
-  })
-
-  test('a level or id that disagrees with the folder is a violation', () => {
-    const root = fixture(capital)
-    work(root, 'ki.ways-of-working', { ...project(), id: 'ki.other', level: 'regular' })
-    work(root, 'Bad_Id', { level: 'project' })
-    expect(statuses(context(root).roles.outcomes)).toEqual(['VIOLATION', 'VIOLATION', 'VIOLATION'])
   })
 
   test('active Project work counts toward the cap and on-hold or finished work does not', () => {
@@ -500,55 +385,17 @@ describe('coordinator binding', () => {
   })
 })
 
-test('Project packages live in the Capital while member regular packages remain permitted', () => {
-  const member = fixture({ repository: 'member', capital: 'ki-principal' })
-  work(member, 'ki.ways-of-working', {
-    level: 'project',
-    title: 'KI > Model > Ways of working',
-    project: 'ways-of-working'
-  })
-  expect(context(member).master.outcomes).toContainEqual(
-    expect.objectContaining({ status: 'VIOLATION', message: 'a Project package lives in its territory Capital' })
-  )
-  const regular = fixture({ repository: 'member', capital: 'ki-principal' })
-  const folder = work(regular, 'ki.regular', { level: 'regular', title: 'KI > Regular work' })
-  const path = join(folder, '_index.md')
-  writeFileSync(path, `${readFileSync(path, 'utf8')}\n## Scope\n\nHome: member, deliberately approved.\n`)
-  expect(context(regular).master.outcomes.some((outcome) => outcome.status === 'VIOLATION')).toBe(false)
-})
-
-test('member regular umbrella and children are discovered and declare their actual home in Scope', () => {
-  const root = fixture({ repository: 'acquire', capital: 'personal-principal' })
-  for (const id of ['personal.regular', 'personal.regular.acquire-intake']) {
-    const folder = work(root, id, { id, level: 'regular', title: "'Personal > Intake'" })
-    const path = join(folder, '_index.md')
-    const definition = readFileSync(path, 'utf8')
-    writeFileSync(
-      path,
-      `${definition}\n## Scope\n\nHome: this package lives in Acquire by deliberate owner approval.\n`
-    )
-  }
-  expect(statuses(context(root).master.outcomes)).toEqual(['PASS'])
-  const path = join(root, '+/_WORK/personal.regular/_index.md')
-  writeFileSync(path, readFileSync(path, 'utf8').replace('Home:', 'Elsewhere:'))
-  expect(context(root).master.outcomes).toEqual([
-    expect.objectContaining({ status: 'VIOLATION', subject: '+/_WORK/personal.regular/_index.md' })
-  ])
-})
-
 // INDEX-ENTRY (Kris, 8 November 2026): a work whose entry file is still `work.md` is read the same during the rollout.
-test('a member regular package whose entry file is still work.md is found and read', () => {
-  const root = fixture({ repository: 'acquire', capital: 'personal-principal' })
-  const folder = work(root, 'personal.regular', { level: 'regular', title: "'Personal > Intake'" })
-  const legacy = join(folder, 'work.md')
-  renameSync(join(folder, '_index.md'), legacy)
-  writeFileSync(legacy, `${readFileSync(legacy, 'utf8')}\n## Scope\n\nElsewhere: no home declared.\n`)
-  expect(context(root).master.outcomes).toEqual([
-    expect.objectContaining({ status: 'VIOLATION', subject: '+/_WORK/personal.regular/work.md' })
-  ])
+test('a Project package whose entry file is still work.md is found and read', () => {
+  const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
+  const folder = work(root, 'ki.ways-of-working', { level: 'project', project: 'other' })
+  renameSync(join(folder, '_index.md'), join(folder, 'work.md'))
+  expect(context(root).labels.outcomes).toContainEqual(
+    expect.objectContaining({ status: 'VIOLATION', subject: '+/_WORK/ki.ways-of-working/work.md' })
+  )
 })
 
-test('typed main is the Capital main and typed Project resolves its unchanged registry slug', () => {
+test('typed Project resolves its unchanged registry slug', () => {
   const root = fixture({ repository: 'ki-principal', capital: 'ki-principal' })
   work(root, 'ki.sop.main', { id: 'ki.sop.main', level: 'territory', title: 'KI > SoP' })
   work(root, 'ki.prj.ways-of-working', {
@@ -559,7 +406,6 @@ test('typed main is the Capital main and typed Project resolves its unchanged re
   })
   page(root, 'Projects', 'ways-of-working')
   const value = context(root)
-  expect(value.master.outcomes.some((outcome) => outcome.status === 'VIOLATION')).toBe(false)
   expect(value.labels.outcomes.some((outcome) => outcome.message.includes('prj'))).toBe(false)
 })
 

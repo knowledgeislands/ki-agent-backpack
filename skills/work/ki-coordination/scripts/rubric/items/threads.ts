@@ -7,25 +7,6 @@ const REPORT_FORMS = 'standards-report-forms.md'
 const QUERIES = 'standards-queries.md'
 const TERRITORY = 'standards-territory.md'
 const OPENING = 'standards-opening.md'
-const MIGRATION = 'standards-coordination-migration.md'
-
-const COORD_1: RubricItem<CoordinationRubricContext> = {
-  code: 'COORD-1',
-  title: 'territory work belongs to the Capital',
-  description:
-    "Territory work lives in the Cairn store's `work/<territory>/` since WP-STORE, so a territory Capital, a repository whose declared `capital` is itself, need not hold it; where it does, it holds it as `+/_WORK/<territory>.sop.main/_index.md`, retaining legacy `<territory>` input indefinitely, and no other repository holds territory or Project packages; deliberately owner-approved regular/ad hoc member work declares Home: in _index.md Scope, and its parent maintains the existing covers/home reference without a second package. Regular umbrella and child packages remain eligible; coverage never opens coordination. For the tolerance window a Capital whose territory work is still the state-of-play checkpoint `+/_CHECKPOINTS/_state-of-play.md` passes with a warning naming its new home.",
-  sources: [`${TERRITORY}#territory-work`, `${MIGRATION}#thread-model`],
-  mechanical: {
-    level: 'FAIL',
-    overrideLevels: ['WARN'],
-    remediation: {
-      class: 'diagnostic',
-      guidance:
-        "Keep territory work in the Cairn store's `work/<territory>/`; where a Capital still holds it, keep it under the `ki-work-package` work-package standard, or move the state-of-play checkpoint at the territory's migration, and remove territory work from any repository that is not its own capital."
-    },
-    audit: { phase: 'INSPECT', run: ({ master }) => master.outcomes }
-  }
-}
 
 const COORD_2: RubricItem<CoordinationRubricContext> = {
   code: 'COORD-2',
@@ -41,23 +22,6 @@ const COORD_2: RubricItem<CoordinationRubricContext> = {
         "Correct the work file's `project` or `theme` at its next update, or register the Project or theme under the `ki-work` registry standard."
     },
     audit: { phase: 'INSPECT', run: ({ labels }) => labels.outcomes }
-  }
-}
-
-const COORD_10: RubricItem<CoordinationRubricContext> = {
-  code: 'COORD-10',
-  title: 'work files declare a level that agrees with their id',
-  description:
-    'Each work file declares its `level`, which agrees with its id: `sop` names territory work (`main` or a named secondary), `prj` names Project work and `reg` names regular work (legacy `regular` stays readable); legacy one- and two-part names stay readable indefinitely. For the tolerance window the `_state-of-play.md` checkpoint carries `role: state-of-play` and each `<initiative>.<project>.md` checkpoint `role: coordination`, or `role: conversational`, and no other checkpoint declares `state-of-play`.',
-  sources: [`${OPENING}#levels-and-forms`],
-  mechanical: {
-    level: 'WARN',
-    remediation: {
-      class: 'diagnostic',
-      guidance:
-        "Have the work correct its `level`, or an old-shape checkpoint its `role`, at its next update, or ask by a line in its `messages.md`; never edit another piece of work's front matter to change it."
-    },
-    audit: { phase: 'INSPECT', run: ({ roles }) => roles.outcomes }
   }
 }
 
@@ -190,5 +154,5 @@ export const COORD: RubricFamily<CoordinationRubricContext, CoordinationRubricCo
     'The territory work and Project work a repository shows in its work files, with old-shape checkpoints for the tolerance window, and the responsiveness, reporting and currency of the coordinators behind them.',
   standard: SOURCE,
   selectContext: (context) => context,
-  items: [COORD_1, COORD_2, COORD_10, COORD_3, COORD_8, COORD_4, COORD_5, COORD_6, COORD_13]
+  items: [COORD_2, COORD_3, COORD_8, COORD_4, COORD_5, COORD_6, COORD_13]
 }

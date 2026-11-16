@@ -51,13 +51,7 @@ const undeclaredLevels = (ctx: CoordinationRubricContext): string[] =>
 describe('declared outcome levels', () => {
   test("every item's outcomes over a tolerance-window Capital use a declared level", () => {
     const ctx = context(toleranceCapital())
-    expect(ctx.master.outcomes.some((outcome) => 'level' in outcome && outcome.level === 'WARN')).toBe(true)
+    expect(ctx.labels.outcomes.some((outcome) => 'level' in outcome && outcome.level === 'WARN')).toBe(true)
     expect(undeclaredLevels(ctx)).toEqual([])
-  })
-
-  test('COORD-1 admits the tolerance-window warning', () => {
-    const coord1 = COORD.items.find((item) => item.code === 'COORD-1')
-    expect(coord1?.mechanical?.level).toBe('FAIL')
-    expect(coord1?.mechanical?.overrideLevels).toContain('WARN')
   })
 })

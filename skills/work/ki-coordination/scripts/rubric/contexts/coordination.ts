@@ -3,7 +3,8 @@
  *
  * Boundary: reads the repository's `.ki.toml` identity, its work files `+/_WORK/<id>/_index.md`, and for the tolerance
  * window its `+/_CHECKPOINTS/` records, each old shape passing with a warning; reports are no longer read, their checks
- * retired under COORD-REPORT-CHECKS (Kris, 15 November 2026); on a Capital the `Streams/Projects/`, `Streams/Themes/` and legacy `Streams/Initiatives/` registry; and the
+ * retired under COORD-REPORT-CHECKS (Kris, 15 November 2026), and where territory work sits and the level a work file
+ * declares are no longer checked, those checks retired under COORD-RETIRE (Kris, 16 November 2026); on a Capital the `Streams/Projects/`, `Streams/Themes/` and legacy `Streams/Initiatives/` registry; and the
  * coordinator binding: the repository's and the user's Claude Code settings, of which it reads only the output style and the hook
  * commands, and the deployed output style; and for the owner-queue cap the front matter of the roadmap records in the
  * checkout and in each checkout beside it that names the same Capital. It never
@@ -21,7 +22,6 @@ import type {
 
 /** Territory work's cap on simultaneously active Project work. */
 export const ACTIVE_THREAD_CAP = 4
-const MASTER_THREAD = '_state-of-play'
 const CHECKPOINT_DIRECTORY = join('+', '_CHECKPOINTS')
 const WORK_DIRECTORY = join('+', '_WORK')
 const PROJECTS_DIRECTORY = join('Streams', 'Projects')
@@ -41,8 +41,6 @@ const ROADMAP_DIRECTORIES = [join('Streams', 'Roadmap'), join('docs', 'roadmap')
 /** The roadmap status of a record whose delivery waits on the owner's acceptance. */
 const AWAITING_ACCEPTANCE = 'awaiting-review'
 const WORK_SEGMENT = '[a-z0-9]+(?:-[a-z0-9]+)*'
-/** A work id: the territory, then a Project slug or `regular`, then for ad hoc work its slug. */
-const WORK_ID = new RegExp(`^${WORK_SEGMENT}(?:\\.${WORK_SEGMENT}){0,2}$`)
 /** A sub-package's id, `<parent id>.<slug>` under a typed regular or Project package. */
 const SUB_PACKAGE_ID = new RegExp(`^${WORK_SEGMENT}\\.(?:reg|prj)(?:\\.${WORK_SEGMENT}){2}$`)
 /** The work states a work file's `state` takes, as the Work Process note's observatory fields name them. */
@@ -55,9 +53,7 @@ export type OutcomeContext = { readonly outcomes: readonly AuditOutcome[] }
 
 export type CoordinationRubricContext = {
   readonly rubric: RubricPublicationContext
-  readonly master: OutcomeContext
   readonly labels: OutcomeContext
-  readonly roles: OutcomeContext
   readonly cap: OutcomeContext
   readonly binding: OutcomeContext
   readonly judgment: OutcomeContext
@@ -201,12 +197,6 @@ const registrySlugs = (directory: string): ReadonlySet<string> | undefined => {
   return slugs
 }
 
-const LEGACY_MASTER_LABEL = 'Master: state-of-play'
-const MASTER_LABEL = /^\S.* > SoP$/
-
-const masterLabel = (label: unknown): boolean =>
-  typeof label === 'string' && (label === LEGACY_MASTER_LABEL || MASTER_LABEL.test(label))
-
 const projectLabel = (label: string, project: string, title = project.replaceAll('-', ' ')): boolean =>
   label.endsWith(`: ${project}`) || label.toLowerCase().endsWith(` > ${title.toLowerCase()}`)
 
@@ -217,68 +207,6 @@ const legacy = (message: string, subject: string): AuditOutcome => ({
   message,
   subject
 })
-
-const masterOutcomes = (
-  root: string,
-  records: readonly Checkpoint[] | undefined,
-  works: readonly Work[] | undefined,
-  capital: boolean
-): AuditOutcome[] => {
-  const territory = works?.find((work) => !work.id.includes('.') || work.id.endsWith('.sop.main'))
-  const secondaries =
-    works?.filter(
-      (work) => work.id.includes('.') && !work.id.endsWith('.sop.main') && workLevel(work.id) === 'territory'
-    ) ?? []
-  const master = records?.find((record) => record.thread === MASTER_THREAD)
-  // A Capital need not hold its territory work: work packages live in the Cairn store's `work/<territory>/`
-  // since WP-STORE (Kris, 9 November 2026), and the check accepts that layout (ROAD-7 a with COORD-1, Kris,
-  // 14 November 2026). Territory work a Capital still holds is checked below.
-  if (!capital && (territory || secondaries.length || master))
-    return [
-      {
-        status: 'VIOLATION',
-        message: 'only a Capital holds territory work; this repository is not its own capital',
-        subject: territory?.path ?? secondaries[0]?.path ?? master?.path ?? WORK_DIRECTORY
-      }
-    ]
-  const outcomes: AuditOutcome[] = []
-  if (!capital)
-    for (const work of works ?? [])
-      if (workLevel(work.id) === 'project')
-        outcomes.push({
-          status: 'VIOLATION',
-          message: 'a Project package lives in its territory Capital',
-          subject: work.path
-        })
-  // A declared member home is an existing exception, not a second package or role assignment.
-  if (!capital && repositoryIdentity(root).capital)
-    for (const work of works ?? []) {
-      if (workLevel(work.id) !== 'regular') continue
-      const text = readFileSync(entryPath(work.folder), 'utf8')
-      const scope = /^## Scope[ \t]*\r?\n([\s\S]*?)(?=^## |$(?![\s\S]))/m.exec(text)?.[1] ?? ''
-      if (!/^(?:- )?Home:[ \t]*\S/m.test(scope))
-        outcomes.push({
-          status: 'VIOLATION',
-          message: 'a regular or ad hoc member package declares its deliberate Home: in its _index.md Scope',
-          subject: work.path
-        })
-    }
-  if (master && !masterLabel(master.fields?.label))
-    outcomes.push({
-      status: 'VIOLATION',
-      message:
-        'the state-of-play thread checkpoint is labelled `<Space> > SoP`, or `Master: state-of-play` until its change is approved',
-      subject: master.path
-    })
-  if (master)
-    outcomes.push(
-      legacy(
-        "the state-of-play checkpoint is the thread-model shape; territory work moves to `+/_WORK/<territory>/_index.md` at the territory's migration",
-        master.path
-      )
-    )
-  return outcomes
-}
 
 /** The first UTC day on which a theme resolving only in `Streams/Initiatives/` fails rather than warns, set under THEME-CLOSE. */
 export const THEMES_CLOSE = '2026-11-07'
@@ -383,65 +311,6 @@ const labelOutcomes = (
         record.path
       )
     )
-  }
-  return outcomes
-}
-
-/**
- * Each work file declares a `level` that agrees with its id, and its `id`, where given, is its folder name. For the
- * tolerance window, coordinating checkpoints declare their type in `role`: `_state-of-play` as `state-of-play`, an
- * `<initiative>.<project>` checkpoint as `coordination`, unless the owner has declared it `conversational`, since the
- * file name is never authority for the role. Only `_state-of-play` carries `state-of-play`.
- */
-const roleOutcomes = (records: readonly Checkpoint[], works: readonly Work[]): AuditOutcome[] => {
-  const outcomes: AuditOutcome[] = []
-  for (const work of works) {
-    if (!WORK_ID.test(work.id) && !SUB_PACKAGE_ID.test(work.id)) {
-      outcomes.push({
-        status: 'VIOLATION',
-        message:
-          'a work folder is named by its id: lower-case kebab segments joined by `.`, at most three, or four for a sub-package',
-        subject: work.path
-      })
-      continue
-    }
-    const id = work.fields?.id
-    if (id !== undefined && id !== work.id)
-      outcomes.push({
-        status: 'VIOLATION',
-        message: `a work file's \`id\` is its folder name, \`${work.id}\``,
-        subject: work.path
-      })
-    const level = workLevel(work.id)
-    if (work.fields?.level !== level)
-      outcomes.push({
-        status: 'VIOLATION',
-        message: `a work file declares the level its id implies, \`level: ${level}\``,
-        subject: work.path
-      })
-  }
-  for (const record of records) {
-    const role = record.fields?.role
-    const master = record.thread === MASTER_THREAD
-    if (master && role !== 'state-of-play')
-      outcomes.push({
-        status: 'VIOLATION',
-        message: 'the state-of-play thread checkpoint declares `role: state-of-play`',
-        subject: record.path
-      })
-    else if (!master && role === 'state-of-play')
-      outcomes.push({
-        status: 'VIOLATION',
-        message: 'only the `_state-of-play` checkpoint declares `role: state-of-play`',
-        subject: record.path
-      })
-    else if (!master && PROJECT_THREAD.test(record.thread) && role === undefined)
-      outcomes.push({
-        status: 'VIOLATION',
-        message:
-          'a coordination thread checkpoint declares `role: coordination`, or `role: conversational` where the owner runs it as a conversation',
-        subject: record.path
-      })
   }
   return outcomes
 }
@@ -622,29 +491,10 @@ export const createCoordinationSession = ({
       : 'No `+/_WORK/` or `+/_CHECKPOINTS/` subarea is present; no coordinating work has opened here.'
   const context: CoordinationRubricContext = {
     rubric: { publication },
-    master: {
-      outcomes: one(
-        masterOutcomes(root, records, works, capital),
-        capital
-          ? works?.some((work) => workLevel(work.id) === 'territory') ||
-            records?.some((record) => record.thread === MASTER_THREAD)
-            ? 'The Capital holds its territory work.'
-            : "The Capital holds no territory work here; it lives in the Cairn store's `work/<territory>/`."
-          : 'No territory work is present outside a Capital.',
-        !capital && absent ? absent : undefined
-      )
-    },
     labels: {
       outcomes: one(
         labelOutcomes(root, records ?? [], works ?? [], capital, today),
         'Every piece of Project work names its Project and it resolves in the registry.',
-        absent
-      )
-    },
-    roles: {
-      outcomes: one(
-        roleOutcomes(records ?? [], works ?? []),
-        'Every work file declares the level its id implies.',
         absent
       )
     },

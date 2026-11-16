@@ -25,7 +25,7 @@ Project work coordinates exactly one Project for the owner. It always delegates:
 
 ### Territory work
 
-Since WP-STORE (Kris, 9 November 2026), work packages live in the Cairn store, territory work in its `work/<territory>/`, so a Capital need not hold its territory work, and the check accepts a Capital that holds none (ROAD-7 a with COORD-1, Kris, 14 November 2026). Where a Capital still holds territory work, the rules below apply to it.
+Since WP-STORE (Kris, 9 November 2026), work packages live in the Cairn store, territory work in its `work/<territory>/`, so a Capital need not hold its territory work (ROAD-7 a, Kris, 14 November 2026), and no rubric item checks where territory work sits since COORD-RETIRE (Kris, 16 November 2026). Where a Capital still holds territory work, the rules below apply to it.
 
 Each territory has one main State of play, its summit, `<territory>.summit`, at `work/<territory>/<territory>.summit/_index.md` in the Cairn store: the coordination of the territory's coordinations. The summit replaced `<territory>.sop.main` under the `ki-work-package` [location and identity](../../ki-work-package/references/standard-work-package.md#42-location-and-identity) rule. Nodes may sit beneath it, [secondary States of play](#secondary-states-of-play), each taking a named part of the territory's work under the summit's rules.
 

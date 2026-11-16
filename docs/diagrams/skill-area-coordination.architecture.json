@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "cc464494c13ede11e5044f1c9b36b715f2705ba3"
+      "revision": "e5c0c3c37fc5941ee09ef9ace465ae7e016d9072"
     },
     "legend": {
       "mode": "auto",
@@ -82,7 +82,7 @@
           "path": "skills/work/ki-coordination/SKILL.md"
         }
       ],
-      "tag": "R10 · CL · F17",
+      "tag": "R8 · CL · F17",
       "pos": [
         44,
         268
