@@ -142,10 +142,10 @@ The committed `.env*.example` template (real `.env.*` gitignored) and the `proce
 
 ## 11. Docs
 
-**Presence** of `README.md`, `CLAUDE.md`, and `ROADMAP.md` is `ki-repo`'s layer (the first two universal/FAIL, `ROADMAP.md` a warn); this section owns their **MCP content contract**, plus the three MCP-family root docs whose presence is the **MCP delta**:
+**Presence** of `README.md`, `CLAUDE.md`, and `ROADMAP.md` is `ki-repo`'s layer (the first two universal/FAIL, `ROADMAP.md` a warn), as is where orientation lives: shared guidance in root `AGENTS.md`, which every agent host loads, imported by a `CLAUDE.md` that keeps only what is Claude's own. This section owns their **MCP content contract**, plus the three MCP-family root docs whose presence is the **MCP delta**:
 
 - **`README.md`** — user-facing: tool catalog (purpose + I/O shape per tool), install/config, client setup, dev commands.
-- **`CLAUDE.md`** — architecture invariants, security requirements, and what an agent needs beyond the README. Must stay in sync with the code: a `CLAUDE.md` describing a layer that has since been renamed/moved (e.g. an `orchestrator/` section after the move to `cli/` + `main/`) is a finding.
+- **`AGENTS.md`** — architecture invariants, security requirements, and what an agent needs beyond the README, for every agent host; `CLAUDE.md` imports it and does not restate them. Must stay in sync with the code: an `AGENTS.md` describing a layer that has since been renamed/moved (e.g. an `orchestrator/` section after the move to `cli/` + `main/`) is a finding.
 - **`ROADMAP.md`** — planned features / deprecations.
 - **`CONTRIBUTING.md`** — setup, dev loop, conventions (code / commits / testing), pre-PR checklist. _(MCP delta: presence required.)_
 - **`SECURITY.md`** — vulnerability reporting, scope (in / out), supported versions (OAuth repos add a token-storage note). _(MCP delta: presence required.)_

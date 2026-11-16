@@ -99,7 +99,7 @@ Both are report-only from ki-repo-mcp. Client registration, web/admin changes, r
 
 ## Notes
 
-- This skill targets the standard documented in the sibling repos' own `CLAUDE.md` files; when they disagree, the **majority shape** is the standard and the outlier is a finding (unless the outlier is a deliberate, documented exception). When unsure whether a divergence is intentional, ask rather than "fix" it.
+- This skill targets the standard documented in the sibling repos' own `AGENTS.md` files; when they disagree, the **majority shape** is the standard and the outlier is a finding (unless the outlier is a deliberate, documented exception). When unsure whether a divergence is intentional, ask rather than "fix" it.
 - Keep shared utilities aligned through the optional `legacy-v1-core` or `modern-v2-core` profile where a repository has deliberately adopted one. Undeclared utilities remain repository-owned; never copy a majority implementation over domain-specific audit or result behaviour.
 - The standard sits on top of a moving spec. When citing a requirement, know whether it is **spec-driven** (traces to the official MCP spec in [the source list](references/sources.md)) or **house style** — never present a workspace preference as a protocol "MUST". Run Mode REFRESH when in doubt.
 - Full detail: [Workspace MCP Standard](references/standards-mcp-servers.md), [MCP source distribution](references/standards-mcp-distribution.md), [Audit Rubric](references/rubric.md), and the tracked [source list](references/sources.md).

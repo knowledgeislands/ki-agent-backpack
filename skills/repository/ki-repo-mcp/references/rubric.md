@@ -53,8 +53,8 @@ MCP-specific root documentation exists and remains substantive.
 
 - **DOC-1 [M + J] — MCP root documents** — ROADMAP.md is present; CONTRIBUTING.md and SECURITY.md are present; CHANGELOG.md is present and non-empty. (standards-mcp-servers.md#11-docs)
   - _Remediation:_ diagnostic — Add or repair the required root documentation using current repository evidence.
-  - _Evidence scope:_ CLAUDE.md, README setup instructions, and the current MCP implementation.
-  - _Review prompt:_ Review CLAUDE.md for drift against the code and README setup documentation for current client and configuration instructions.
+  - _Evidence scope:_ AGENTS.md, the CLAUDE.md that imports it, README setup instructions, and the current MCP implementation.
+  - _Review prompt:_ Review AGENTS.md for drift against the code and README setup documentation for current client and configuration instructions.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Update the affected documentation from verified implementation evidence, or record a gap or explicit exclusion.
 

@@ -46,9 +46,9 @@ const DOC_1: RubricItem<McpDocumentationContext> = {
     }
   },
   judgment: {
-    scope: 'CLAUDE.md, README setup instructions, and the current MCP implementation.',
+    scope: 'AGENTS.md, the CLAUDE.md that imports it, README setup instructions, and the current MCP implementation.',
     prompt:
-      'Review CLAUDE.md for drift against the code and README setup documentation for current client and configuration instructions.',
+      'Review AGENTS.md for drift against the code and README setup documentation for current client and configuration instructions.',
     outcomes: ['conforming', 'gap', 'exclusion'],
     guidance:
       'Update the affected documentation from verified implementation evidence, or record a gap or explicit exclusion.'

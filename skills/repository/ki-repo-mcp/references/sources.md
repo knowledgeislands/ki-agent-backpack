@@ -56,7 +56,7 @@ The standard is defined as the **majority shape** across the six sibling repos u
 | Tag    | Source                      | Governs                                                       | Last reviewed |
 | ------ | --------------------------- | ------------------------------------------------------------- | ------------- |
 | REPOS  | The six sibling repos †     | Layout, config, tool naming, shared `utils/`, the toolchain ‡ | 2026-10-18    |
-| CLAUDE | Each repo's own `CLAUDE.md` | Per-repo invariants ※                                         | 2026-10-18    |
+| CLAUDE | Each repo's own `AGENTS.md` | Per-repo invariants ※                                         | 2026-10-18    |
 
 † `mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-ki-kb-notion-mirror`. Two newer v1 repositories (`mcp-acquire-whatsapp`, `mcp-housekeeping-chatgpt`) are not yet part of the majority basis.
 
@@ -77,6 +77,8 @@ These primary sources ground the separate source-install contract. They do not m
 | BUN-LOCK | [Bun lockfile documentation][bun-lock] | Committed dependency evidence | 2026-10-18    |
 
 ## Last review
+
+On 16 November 2026 an in-house review applied MCP-AGENTS a, which Kris took that day at about 16:22 GMT, relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions): the standard's [§11](standards-mcp-servers.md#11-docs) names root `AGENTS.md` as the home of a server's architecture invariants and security requirements, imported by a `CLAUDE.md` that keeps only what is Claude's own, and the audit procedure, the docs judgement item and the CLAUDE row follow. The MCP repositories' own invariant sections are not trimmed here. The file keeps its older shape until its guild's review.
 
 REFRESH last ran **2026-10-18** under KI-HARNESS-GOV-194. Every row was re-fetched, and the sibling repositories were re-scanned locally.
 
