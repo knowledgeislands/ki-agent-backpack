@@ -6,41 +6,6 @@ const REPORTING = 'standards-reporting.md'
 const REPORT_FORMS = 'standards-report-forms.md'
 const QUERIES = 'standards-queries.md'
 const TERRITORY = 'standards-territory.md'
-const OPENING = 'standards-opening.md'
-
-const COORD_2: RubricItem<CoordinationRubricContext> = {
-  code: 'COORD-2',
-  title: 'Project work resolves in the registry',
-  description:
-    "Each Project work file `+/_WORK/<territory>.prj.<project>/_index.md` names its `project`, and on a Capital its Project resolves in `Streams/Projects/` and any `theme` in `Streams/Themes/`; a theme resolving only in the legacy `Streams/Initiatives/` warns, naming its new page, until 2026-11-07 and fails from that day. For the tolerance window an `<initiative>.<project>.md` checkpoint is checked as before, its label ending in its Project's title, or its slug in words where the Project note has no title, and its Initiative resolving in `Streams/Initiatives/`, with a warning naming its new home.",
-  sources: [`${OPENING}#work-naming`, `${TERRITORY}#coordinating-work`],
-  mechanical: {
-    level: 'WARN',
-    remediation: {
-      class: 'diagnostic',
-      guidance:
-        "Correct the work file's `project` or `theme` at its next update, or register the Project or theme under the `ki-work` registry standard."
-    },
-    audit: { phase: 'INSPECT', run: ({ labels }) => labels.outcomes }
-  }
-}
-
-const COORD_3: RubricItem<CoordinationRubricContext> = {
-  code: 'COORD-3',
-  title: 'active Project work is within the cap',
-  description:
-    "At most three or four pieces of Project work are active at once, neither On hold nor Finished, reading the state from `state.md` where the work package has one, counting old-shape coordination checkpoints whose state is active; territory work and regular work are not counted. Under the owner-queue cap, more than eight roadmap records with `status: awaiting-review` naming a piece of Project work's Project also warn, counted in the checkout and in each checkout beside it that names the same Capital.",
-  sources: [`${TERRITORY}#territory-work`],
-  mechanical: {
-    level: 'WARN',
-    remediation: {
-      class: 'diagnostic',
-      guidance:
-        'Have territory work put Project work on hold or queue it until the active list is within the cap; exceeding that active Project cap requires explicit owner agreement beforehand, never a unilateral increase; over eight records awaiting acceptance, launch no new build or planning run until acceptance catches up, keeping acceptance fixes and backlog-clearing work.'
-    },
-    audit: { phase: 'INSPECT', run: ({ cap }) => cap.outcomes }
-  }
-}
 
 const COORD_8: RubricItem<CoordinationRubricContext> = {
   code: 'COORD-8',
@@ -151,8 +116,8 @@ export const COORD: RubricFamily<CoordinationRubricContext, CoordinationRubricCo
   code: 'COORD',
   title: 'Coordinating work',
   description:
-    'The territory work and Project work a repository shows in its work files, with old-shape checkpoints for the tolerance window, and the responsiveness, reporting and currency of the coordinators behind them.',
+    'The coordinator binding a repository shows, and the responsiveness, reporting and currency of the coordinators who work there.',
   standard: SOURCE,
   selectContext: (context) => context,
-  items: [COORD_2, COORD_3, COORD_8, COORD_4, COORD_5, COORD_6, COORD_13]
+  items: [COORD_8, COORD_4, COORD_5, COORD_6, COORD_13]
 }

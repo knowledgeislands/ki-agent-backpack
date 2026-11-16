@@ -43,7 +43,7 @@ At every send and every mark, prune your own package, so `work/<territory>/<id>/
   - Whether each candidate's outcome is homed stays the owning coordinator's judgement; the list is never permission to delete.
   - At its own mark, the State of play names each flagged package by a line in that work's `messages.md`, and its coordinator prunes it at its next send. A finished work's package is the exception: the State of play closes it itself under the `ki-work-package` [close-out](../../ki-work-package/references/standard-work-package.md#410-the-tidy).
   - No item counts the open questions across a package's change documents; the coordinator keeps them under the [owner queue](standards-coordination.md#coordinating-practices) cap itself.
-  - COORD-3 warns, under the [owner queue](standards-coordination.md#coordinating-practices) cap, when more than eight roadmap records naming the Project of a piece of Project work await acceptance, counted across the Capital and the repositories beside it that name it as their Capital.
+  - No item counts the records awaiting acceptance either since COORD-REPOINT (Kris, 16 November 2026); the coordinator keeps them under the same cap, until the check returns in `ki-work-package` as a warning under [Mechanical boundary](standards-coordination.md#mechanical-boundary).
 
 Sources: THREAD-TIDY and THREADS-TRIM in [the decision register](sources.md#decision-register).
 

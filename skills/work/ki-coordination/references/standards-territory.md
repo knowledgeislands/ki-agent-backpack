@@ -128,7 +128,7 @@ Each piece of Project work is capped at eight records awaiting acceptance and at
 
 - Over either cap, launch no new build or planning run until the owner catches up; acceptance fixes and work that clears the backlog stay allowed.
 - Bring acceptance as one bundle per work under [Acceptance bundles](standards-queries.md#acceptance-bundles); the banner's counts line shows the records waiting, under [Banner](standards-coordination.md#banner).
-- The rubric warns over either cap, under [Pruning the work folder](standards-mark.md#pruning-the-work-folder).
+- No rubric item warns over either cap since COORD-REPOINT (Kris, 16 November 2026); the coordinator keeps both by judgement, under [Pruning the work folder](standards-mark.md#pruning-the-work-folder), until the check returns in `ki-work-package` as a warning.
 
 Sources: OWNER-QUEUE in [the decision register](sources.md#decision-register).
 

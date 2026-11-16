@@ -12,19 +12,12 @@ afterEach(() => {
   for (const root of roots.splice(0)) rmSync(root, { recursive: true, force: true })
 })
 
-const write = (root: string, path: string, body: string): void => {
-  mkdirSync(join(root, path, '..'), { recursive: true })
-  writeFileSync(join(root, path), body)
-}
-
-/** A Capital still in the tolerance window: every old-shape checkpoint the `legacy()` helper warns on. */
-const toleranceCapital = (): string => {
+/** A repository with user settings present but no binding, so every binding check reports. */
+const unbound = (): string => {
   const root = mkdtempSync(join(tmpdir(), 'ki-coordination-levels-'))
   roots.push(root)
-  write(root, '.ki.toml', '[skills.ki-repo]\nrepository = "ki-principal"\ncapital = "ki-principal"\n')
-  write(root, '+/_CHECKPOINTS/_state-of-play.md', "---\nlabel: 'KI state of play'\n---\n\n# SoP\n")
-  write(root, '+/_CHECKPOINTS/model.ways-of-working.md', "---\nlabel: 'KI Model: ways-of-working'\n---\n\n# WoW\n")
-  write(root, '+/_THREADS/wow/stray.png', 'scratch')
+  mkdirSync(join(root, '.claude'), { recursive: true })
+  writeFileSync(join(root, '.claude', 'settings.json'), '{}')
   return root
 }
 
@@ -49,9 +42,9 @@ const undeclaredLevels = (ctx: CoordinationRubricContext): string[] =>
   })
 
 describe('declared outcome levels', () => {
-  test("every item's outcomes over a tolerance-window Capital use a declared level", () => {
-    const ctx = context(toleranceCapital())
-    expect(ctx.labels.outcomes.some((outcome) => 'level' in outcome && outcome.level === 'WARN')).toBe(true)
+  test("every item's outcomes over an unbound repository use a declared level", () => {
+    const ctx = context(unbound())
+    expect(ctx.binding.outcomes.some((outcome) => outcome.status === 'VIOLATION')).toBe(true)
     expect(undeclaredLevels(ctx)).toEqual([])
   })
 })
