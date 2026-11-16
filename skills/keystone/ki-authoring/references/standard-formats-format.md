@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-16T17:20:00Z
+revised: 2026-11-16T23:19:50Z
 status: in force
 ---
 
@@ -85,7 +85,7 @@ revised: 2026-11-09T21:36:32Z
 ---
 ```
 
-- **`type`** names the format standard the document follows, at the version it follows. There is no separate format field.
+- **`type`** always names the kind of thing a file is, and adds `@` and a version when that kind has a format standard: here, the format standard the document follows, at the version it follows. There is no separate format field. A file whose kind has no format standard, such as a resource's `type: actor` or a card's `type: term`, names its kind alone, and a reader takes the part before `@` as the kind, so the field has one sense everywhere.
 - **`revised`** is the date and time, in UTC to the second, of the document's last change of substance. It must be accurate: it moves with every change of substance, and not with a mechanical edit. A date survives a repository's history being squashed, where a commit would not.
 - **The title** is the document's name alone; when it stands is in `revised`.
 
@@ -143,6 +143,6 @@ A validator of any format checks:
 3. **Name:** the file name follows its format's pattern, or the place says why it differs.
 4. **Shape:** Contents, numbered sections and Back to contents links are present.
 
-These checks, and each format's own, are `ki-authoring`'s rubric items in its FMT family, run by `ki repo audit --skill ki-authoring` over every Markdown document in a repository whose `type` names a format at a version: the first two mechanically, as warnings, and the name, the shape and each format's own checks by judgement.
+These checks, and each format's own, are `ki-authoring`'s rubric items in its FMT family, run by `ki repo audit --skill ki-authoring` over every Markdown document in a repository whose `type` names a format at a version: the first two mechanically, as warnings, and the name, the shape and each format's own checks by judgement, unless a format in force runs its own checks mechanically, as the record format's FMT-record does, failing.
 
 [Back to contents](#contents)

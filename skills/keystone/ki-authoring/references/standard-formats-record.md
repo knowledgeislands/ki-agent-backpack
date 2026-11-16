@@ -1,7 +1,7 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-16T23:15:00Z
-status: draft
+revised: 2026-11-16T23:19:50Z
+status: in force
 ---
 
 # Record format
@@ -26,13 +26,7 @@ status: draft
 
 What a record is: the report of one batch of work that has landed, written by the session that did it, for the owner to review afterwards, and later consolidated or pruned. It follows the [format format](standard-formats-format.md). The decisions behind these rules are in [the sources file](sources.md).
 
-This standard is a draft. It stands at its final path so that records have a format to name, ahead of the change that sets it, the Cairn summit's [change 20, the record](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/20-learnings.change.md#42-the-record), which holds its open points. Those that bear on it most are:
-
-- **`type` means three things.** A format document's `type` names its format at a version, as `record@…` or `change@…`; a resource's names its kind of resource alone, as `type: actor` or `type: meeting`; and a graph card's names its card type, as `type: term`. A record is both a format document and a resource, so it opens `id: record:<name>` and `type: record@<version>`; how the three senses are reconciled is a later change's, not this standard's.
-- **Records written before this draft** open `type: record`, with no version and no `id` or `revised`. They are read as they are, and each comes into line when next changed; whether the app that reads the store reads `record@…` is checked before any record moves.
-- **When this standard comes into force,** which ends the record's pilot, and whether the owner still walks the records at the start of each working session.
-- **A batch record in the review's three parts.** One record of 16 November 2026 reports a single batch in the parts of a consolidated review; whether a batch record may take the review's three parts is open.
-- **Where a `changes wanted` note is kept,** beyond the work it becomes.
+The rules were set in the Cairn summit's [change 20, the record](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/20-learnings.change.md#42-the-record) and [change 11](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided). One point is still open: where a `changes wanted` note is kept, beyond the work it becomes.
 
 [Back to contents](#contents)
 
@@ -88,12 +82,13 @@ review: awaiting
 ```
 
 - **`id` opens and `type` follows,** as every resource opens with its typed id: `record:` and the file's name without `.md`, as `record:20261116T1553Z-the-walk-through-ids-and-seats`. A reference to a record uses this id.
-- **`type`** names this format at the version the record follows.
+- **`type`** names the kind of thing the file is, `record`, and, since that kind has a format standard, adds `@` and the version of this format the record follows. As for every file, a reader takes the part before `@` as the kind, so a record's `type` is the same field as a resource's or a card's.
 - **`revised`** is the time of the record's last change of substance, the same as `at` when it is written. Setting `review` is not a change of substance.
 - **`at`** is when the batch landed, in UTC to the second, the same time as the file name's; for a consolidated review, when it was consolidated.
 - **`title`** says what the batch was for in a few words, and is the record's H1.
 - **`packages`** lists the ids of the packages the batch served; a consolidated review lists every package its records served.
 - **`review`** takes one of the three values in [4.2](#42-review).
+- **Older records** open `type: record`, with no version, and may lack `id` and `revised`. They are read as they are written, and each comes into line when it is next changed or consolidated.
 
 [Back to contents](#contents)
 
@@ -107,7 +102,7 @@ The owner reviews a whole record, one at a time, and the record's `review` field
 | `changes wanted` | Reviewed, with a note of what is to change. The writer sets it on the owner's word and takes the note as more work, kept where that work is kept, such as a change document's open points or a roadmap, never in the record. |
 | `approved` | Reviewed, with nothing left to do. Set when the owner approves the record, or, after `changes wanted`, by the writer once the work the note became has landed. |
 
-A record has nothing for the owner to do but review it, so `changes wanted` asks for work, not for the record to be rewritten.
+A record has nothing for the owner to do but review it, so `changes wanted` asks for work, not for the record to be rewritten. The owner reviews records in the Wayfinder, and that is the review: no session walks the owner through the records at its start.
 
 [Back to contents](#contents)
 
@@ -117,6 +112,7 @@ A record has nothing for the owner to do but review it, so `changes wanted` asks
 2. **Purpose first, not a digest:** a record says what the work is for and how far each goal got. What changed is said from the owner's side, as release notes for users are, never as a developer's changelog.
 3. **Goals and what changed only:** a record asks the owner for nothing, and an entry ends at the fact. What comes next belongs in the change documents' open points or the roadmaps.
 4. **One record for each batch that lands,** not one a day; a session spent deciding writes none, since its decisions are in the change documents.
+5. **Or the review's shape:** a record of a single batch may instead take a consolidated review's shape, as in [4.4](#44-a-consolidated-review), its opening line saying what the batch was for in place of the records it replaces.
 
 [Back to contents](#contents)
 
@@ -126,7 +122,7 @@ Several records on one topic may be consolidated into one review, so that what s
 
 1. **An opening line** under the H1 names the records the review takes the place of, each linked at its last revision.
 2. **What stands today:** the full account of the topic as it now stands, in prose by area and in no time order, with `cairn://` links into the app that shows it where they help. Anything the records reported that is no longer true is folded into its area as no longer so, and only where it matters.
-3. **Left open:** what is still to settle on the topic. A review may carry it, where a batch record may not, because it is read as the topic's current account.
+3. **Left open:** what is still to settle on the topic. A review may carry it, and so may a batch record in its shape, where a batch record in the sections of [4.3](#43-a-batch-record) may not, because it is read as the topic's current account.
 
 A review carries no commit lists, no account of each original batch and no history of how the topic got where it stands: the linked originals and Git history keep those. **The originals are removed in the same commit** as the review is added. A review is itself a record: it carries the front matter above, starts at `review: awaiting`, and may later be consolidated again.
 
@@ -150,9 +146,11 @@ A review carries no commit lists, no account of each original batch and no histo
 
 Beyond the format format's checks, as this standard replaces them, a validator checks:
 
-1. **Front matter:** `id` is `record:` and the file's name, `at` matches the file name's time, `packages` is a list, and `review` is one of the three values.
-2. **Sections:** a batch record has Purpose, Goals and What changed, in order, and no other section; a consolidated review has What stands today and Left open, in order, and no other section.
+1. **Front matter:** `id` is `record:` and the file's name, `at` matches the file name's time, `revised` is present, `packages` is a list, and `review` is one of the three values.
+2. **Sections:** a batch record has Purpose, Goals and What changed, in order, or a consolidated review's sections, and no other section; a consolidated review has What stands today and Left open, in order, and no other section.
 3. **Opening line:** a consolidated review's first paragraph under the H1 links at least one record, and each record it links is pinned at a commit.
 4. **Name:** the file name is a time and a slug of five words at most.
+
+An older record, whose `type` has no version, is read as written: only its `at`, its `review` and any `id` it carries are checked. These checks are `ki-authoring`'s FMT-record rubric item, run mechanically by `ki repo audit --skill ki-authoring`, and a record that breaks one fails.
 
 [Back to contents](#contents)

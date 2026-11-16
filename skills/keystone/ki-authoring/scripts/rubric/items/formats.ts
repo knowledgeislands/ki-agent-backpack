@@ -1,5 +1,6 @@
+import { basename } from 'node:path'
 import { DIAGNOSTIC_REMEDIATION, type RubricFamily, type RubricItem } from '../../shared/rubric.ts'
-import type { AuthoringRubricContext, FormatsRubricContext } from '../contexts/authoring.ts'
+import type { AuthoringRubricContext, FormatsRubricContext, RecordEvidence } from '../contexts/authoring.ts'
 
 // A version ref is a UTC time to the second or a Git ref; only a time can be compared without the repository's history.
 const TIME_REF = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/
@@ -113,11 +114,95 @@ const FMT_SHAPE: RubricItem<FormatsRubricContext> = {
   }
 }
 
+const REVIEW_VALUES = new Set(['awaiting', 'changes wanted', 'approved'])
+const RECORD_NAME = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})Z-([a-z0-9]+(?:-[a-z0-9]+)*)$/
+const BATCH_SECTIONS = ['Purpose', 'Goals', 'What changed']
+const REVIEW_SECTIONS = ['What stands today', 'Left open']
+const RECORD_FILE = /(?:^|\/)\d{8}T\d{4}Z-[^/#]+\.md(?:#.*)?$/
+const PINNED = /^https:\/\/github\.com\/[^/]+\/[^/]+\/blob\/[0-9a-f]{7,40}\//
+
+const inOrder = (headings: readonly string[], sections: readonly string[]) =>
+  headings.length === sections.length && headings.every((heading, index) => heading === sections[index])
+
+// What one record breaks of the record format's 4.7; a record with no version is an older record, read as written,
+// with only its `at`, `review` and any `id` checked.
+const recordProblems = (record: RecordEvidence): readonly string[] => {
+  const name = basename(record.path, '.md')
+  const named = RECORD_NAME.exec(name)
+  const time = named ? `${named[1]}-${named[2]}-${named[3]}T${named[4]}:${named[5]}` : undefined
+  const problems = [
+    ...(!record.at || (time && !record.at.startsWith(time))
+      ? ["`at` is missing or differs from the file name's time"]
+      : []),
+    ...(record.review && REVIEW_VALUES.has(record.review)
+      ? []
+      : ['`review` is not awaiting, changes wanted or approved']),
+    ...(record.id && record.id !== `record:${name}` ? [`\`id\` is not record:${name}`] : [])
+  ]
+  if (!record.versioned) return problems
+  const slug = named?.[6] ?? ''
+  const consolidated = slug.startsWith('review-')
+  const recordLinks = record.openingLinks.filter((link) => RECORD_FILE.test(link))
+  return [
+    ...problems,
+    ...(named ? [] : ['the file name is not <YYYYMMDD>T<HHMM>Z-<slug>']),
+    ...(slug.split('-').length > 5 ? ['the slug is longer than five words'] : []),
+    ...(record.id ? [] : ['no `id`']),
+    ...(record.revised ? [] : ['no `revised`']),
+    ...(record.packagesList ? [] : ['`packages` is not a list']),
+    ...(consolidated
+      ? [
+          ...(inOrder(record.headings, REVIEW_SECTIONS)
+            ? []
+            : ['a consolidated review has What stands today and Left open, and no other section']),
+          ...(recordLinks.length === 0 ? ['the opening line links no record it replaces'] : []),
+          ...(recordLinks.every((link) => PINNED.test(link))
+            ? []
+            : ['a record the opening line links is not pinned at a commit'])
+        ]
+      : inOrder(record.headings, BATCH_SECTIONS) || inOrder(record.headings, REVIEW_SECTIONS)
+        ? []
+        : [
+            "a batch record has Purpose, Goals and What changed, or the review's What stands today and Left open, and no other section"
+          ])
+  ]
+}
+
+const FMT_RECORD: RubricItem<FormatsRubricContext> = {
+  code: 'FMT-record',
+  title: 'a record follows the record format',
+  description:
+    "A record, a document whose `type` is `record@<version>`, passes the record format's Validation: `id` is `record:` and its file name, `at` matches the name's time, `revised` is present, `packages` is a list and `review` one of its three values; a batch record has Purpose, Goals and What changed, or a review's sections; a consolidated review, named `review-…`, has What stands today and Left open, and its opening line links the records it replaces, each pinned at a commit; and the name is a time and a slug of five words at most. An older record, `type: record` with no version, is read as written: only its `at`, `review` and any `id` are checked.",
+  sources: ['standard-formats-record.md#47-validation'],
+  mechanical: {
+    level: 'FAIL',
+    remediation: DIAGNOSTIC_REMEDIATION,
+    audit: {
+      phase: 'INSPECT',
+      run: (context) => {
+        const records = context.records ?? []
+        if (records.length === 0) return [{ status: 'NOT_APPLICABLE', message: 'no records' }]
+        const findings = records.flatMap((record) =>
+          recordProblems(record).map((message) => ({ status: 'VIOLATION' as const, message, subject: record.path }))
+        )
+        if (findings.length > 0) return findings
+        const older = records.filter((record) => !record.versioned).length
+        return [
+          {
+            status: 'PASS',
+            message: `${records.length - older} records follow the record format; ${older} older records read as written`
+          }
+        ]
+      }
+    }
+  }
+}
+
 export const FORMATS: RubricFamily<AuthoringRubricContext, FormatsRubricContext> = {
   code: 'FMT',
   title: 'Document formats',
   description: 'Typed documents follow the format standard their `type` names, at its current version.',
   standard: 'standard-formats-format.md#47-validation',
   selectContext: (context: AuthoringRubricContext) => context.formats,
-  items: [FMT_TYPE, FMT_VERSION, FMT_SHAPE]
+  items: [FMT_TYPE, FMT_VERSION, FMT_RECORD, FMT_SHAPE]
 }

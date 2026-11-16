@@ -161,9 +161,22 @@ export type FormatStandardEvidence = {
   word: string
   revised?: string
 }
+/** A record, a Markdown document whose `type` is `record`, with or without a version; one without is an older record. */
+export type RecordEvidence = {
+  path: string
+  versioned: boolean
+  id?: string
+  at?: string
+  revised: boolean
+  review?: string
+  packagesList: boolean
+  headings: readonly string[]
+  openingLinks: readonly string[]
+}
 export type FormatsRubricContext = {
   documents: readonly TypedDocumentEvidence[]
   standards: readonly FormatStandardEvidence[]
+  records?: readonly RecordEvidence[]
 }
 export type AuthoringRubricContext = {
   rubric: RubricPublicationContext
@@ -324,6 +337,44 @@ const inspectTypedDocuments = (repository: string, paths: readonly string[]): re
     const typed = frontmatter ? TYPED.exec(frontmatterField(frontmatter, 'type') ?? '') : null
     if (!frontmatter || !typed) return []
     return [{ path, word: typed[1], ref: typed[2], revised: Boolean(frontmatterField(frontmatter, 'revised')) }]
+  })
+
+// A record's kind is `record`, with `@<version>` when it follows the record format; readers take the part before `@`.
+const RECORD_TYPE = /^record(?:@\S+)?$/
+const MARKDOWN_LINK = /\]\(([^)\s]+)\)/g
+// `packages` as a block list of at least one item, or a flow list.
+const PACKAGES_LIST = /^packages:[ \t]*(?:\[.*\][ \t]*|\n[ \t]*-[ \t]+\S.*)$/m
+
+const inspectRecords = (repository: string, paths: readonly string[]): readonly RecordEvidence[] =>
+  paths.flatMap((path) => {
+    const content = readFileSync(join(repository, path), 'utf8')
+    const match = FRONTMATTER.exec(content)
+    const frontmatter = match?.[1]
+    const type = frontmatter ? frontmatterField(frontmatter, 'type') : undefined
+    if (!frontmatter || !type || !RECORD_TYPE.test(type)) return []
+    const lines = content.slice(match[0].length).split('\n')
+    const title = lines.findIndex((line) => line.startsWith('# '))
+    const rest = title === -1 ? [] : lines.slice(title + 1)
+    const start = rest.findIndex((line) => line.trim() !== '')
+    const end = rest.findIndex((line, index) => index > start && line.trim() === '')
+    const opening = start === -1 || rest[start]?.startsWith('#') ? [] : rest.slice(start, end === -1 ? undefined : end)
+    const field = (name: string) => frontmatterField(frontmatter, name) || undefined
+    const id = field('id')
+    const at = field('at')
+    const review = field('review')
+    return [
+      {
+        path,
+        versioned: type.includes('@'),
+        ...(id ? { id } : {}),
+        ...(at ? { at } : {}),
+        revised: Boolean(field('revised')),
+        ...(review ? { review } : {}),
+        packagesList: PACKAGES_LIST.test(frontmatter),
+        headings: lines.filter((line) => line.startsWith('## ')).map((line) => line.slice(3).trim()),
+        openingLinks: [...opening.join('\n').matchAll(MARKDOWN_LINK)].map((link) => link[1] ?? '')
+      }
+    ]
   })
 
 const inspectOwnedFile = (repository: string, name: OwnedFile): OwnedFileState => {
@@ -516,11 +567,13 @@ export const createAuthoringSession = (
         : {})
     }
   })
+  const typedPaths = targetExists ? markdownFiles(target, markdownExclusions(target)) : []
   const context: AuthoringRubricContext = {
     rubric: { publication },
     formats: {
-      documents: targetExists ? inspectTypedDocuments(target, markdownFiles(target, markdownExclusions(target))) : [],
-      standards: inspectFormatStandards(formatStandards)
+      documents: targetExists ? inspectTypedDocuments(target, typedPaths) : [],
+      standards: inspectFormatStandards(formatStandards),
+      records: targetExists ? inspectRecords(target, typedPaths) : []
     },
     markdown: {
       target,

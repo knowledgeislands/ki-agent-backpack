@@ -49,6 +49,7 @@ test('the default export is the sole catalogue entrypoint and families are compl
   ).toEqual([
     'FMT-type',
     'FMT-version',
+    'FMT-record',
     'FMT-shape',
     'MD-mech',
     'MD-frontmatter',
@@ -569,6 +570,51 @@ test('FMT checks typed documents against the format standards beside the rubric'
   ])
   expect(
     type?.mechanical?.audit.run({ documents: formats.documents, standards: [] }).map(({ status }) => status)
+  ).toEqual(['NOT_APPLICABLE'])
+})
+
+test('FMT-record fails a record that breaks the record format and reads an older record as written', () => {
+  const repository = temporaryRepository()
+  mkdirSync(join(repository, 'record'))
+  const front = (name: string, extra = '') =>
+    `---\nid: record:${name}\ntype: record@2026-11-16T23:15:00Z\nrevised: 2026-11-16T23:15:00Z\nat: 2026-11-16T23:15:00Z\ntitle: T\npackages:\n  - cairn.summit\nreview: awaiting\n${extra}---\n\n# T\n\n`
+  const pinned = 'https://github.com/krisb/ki-cairn-store/blob/9968877/record/20261114T0339Z-overnight.md'
+  const records: Record<string, string> = {
+    '20261116T2315Z-a-batch': `${front('20261116T2315Z-a-batch')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
+    '20261116T2315Z-a-batch-as-review': `${front('20261116T2315Z-a-batch-as-review')}Lead.\n\n## What stands today\n\n## Left open\n`,
+    '20261116T2315Z-review-good': `${front('20261116T2315Z-review-good')}It replaces [one](${pinned}).\n\n## What stands today\n\n## Left open\n`,
+    '20261116T2315Z-review-old-parts': `${front('20261116T2315Z-review-old-parts')}It replaces [one](20261114T0339Z-overnight.md).\n\n## What stands today\n\n## Replaced since\n\n## Detail\n\n## Left open\n`,
+    '20261116T2315Z-review-no-links': `${front('20261116T2315Z-review-no-links')}It replaces nothing linked.\n\n## What stands today\n\n## Left open\n`,
+    '20261116T2315Z-one-two-three-four-five-six': `${front('20261116T2315Z-one-two-three-four-five-six').replace('review: awaiting', 'review: done')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
+    '20261114T0339Z-an-older-record-with-a-long-slug':
+      '---\ntype: record\nat: 2026-11-14T03:39:00Z\ntitle: T\npackages:\n  - cairn.summit\nreview: changes wanted\n---\n\n# T\n\nLead.\n\n## What stands today\n\n## Replaced since\n\n## Detail\n\n## Left open\n',
+    '20261114T0400Z-older-and-wrong':
+      '---\ntype: record\nat: 2026-11-14T05:00:00Z\ntitle: T\npackages: []\nreview: maybe\n---\n\n# T\n'
+  }
+  for (const [name, content] of Object.entries(records))
+    writeFileSync(join(repository, 'record', `${name}.md`), content)
+  const session = createAuthoringSession({ mode: 'audit', repository, userHome: tmpdir(), configuration: {} }, () => ({
+    clean: true
+  }))
+  const formats = session.subjects[1]?.context()?.formats as NonNullable<
+    ReturnType<NonNullable<(typeof session.subjects)[1]>['context']>
+  >['formats']
+  const record = formatsModule.FORMATS.items.find((item) => item.code === 'FMT-record')
+  expect(record?.mechanical?.level).toBe('FAIL')
+  expect(record?.mechanical?.audit.run(formats).map(({ subject, message }) => [subject, message])).toEqual([
+    ['record/20261114T0400Z-older-and-wrong.md', "`at` is missing or differs from the file name's time"],
+    ['record/20261114T0400Z-older-and-wrong.md', '`review` is not awaiting, changes wanted or approved'],
+    ['record/20261116T2315Z-one-two-three-four-five-six.md', '`review` is not awaiting, changes wanted or approved'],
+    ['record/20261116T2315Z-one-two-three-four-five-six.md', 'the slug is longer than five words'],
+    ['record/20261116T2315Z-review-no-links.md', 'the opening line links no record it replaces'],
+    [
+      'record/20261116T2315Z-review-old-parts.md',
+      'a consolidated review has What stands today and Left open, and no other section'
+    ],
+    ['record/20261116T2315Z-review-old-parts.md', 'a record the opening line links is not pinned at a commit']
+  ])
+  expect(
+    record?.mechanical?.audit.run({ documents: [], standards: [], records: [] }).map(({ status }) => status)
   ).toEqual(['NOT_APPLICABLE'])
 })
 
