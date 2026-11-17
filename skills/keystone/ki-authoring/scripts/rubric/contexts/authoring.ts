@@ -185,6 +185,8 @@ export type RecordEvidence = {
   id?: string
   at?: string
   revised: boolean
+  /** The front matter's `ki-revised`, or the older `revised`, unquoted. */
+  revisedAt?: string
   review?: string
   theme?: string
   packagesList: boolean
@@ -477,7 +479,8 @@ const inspectRecords = (repository: string, paths: readonly string[]): readonly 
     const opening = start === -1 || rest[start]?.startsWith('#') ? [] : rest.slice(start, end === -1 ? undefined : end)
     const field = (name: string) => kiField(frontmatter, name) || undefined
     const id = field('id')
-    const at = field('at')
+    const at = field('at')?.replace(/^(['"])(.*)\1$/, '$2')
+    const revisedAt = field('revised')?.replace(/^(['"])(.*)\1$/, '$2')
     const review = field('review')
     const theme = field('theme')
     const unprefixed = unprefixedFields(frontmatter)
@@ -488,7 +491,8 @@ const inspectRecords = (repository: string, paths: readonly string[]): readonly 
         ...(unprefixed.length > 0 ? { unprefixed } : {}),
         ...(id ? { id } : {}),
         ...(at ? { at } : {}),
-        revised: Boolean(field('revised')),
+        revised: Boolean(revisedAt),
+        ...(revisedAt ? { revisedAt } : {}),
         ...(review ? { review } : {}),
         ...(theme ? { theme } : {}),
         packagesList: PACKAGES_LIST.test(frontmatter),

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T02:23:23Z
+ki-revised: 2026-11-17T03:06:19Z
 ki-status: in force
 ---
 
@@ -89,8 +89,8 @@ ki-review: awaiting
 
 - **`ki-id` opens and `ki-document-type` follows,** as every resource opens with its typed id: `record:` and the file's name without `.md`, as `record:20261116T1553Z-the-walk-through-ids-and-seats`, or `record:wayfinder` for a living record. A reference to a record uses this id.
 - **`ki-document-type`** names the kind of document the file is, `record`, and, since that kind has a format standard, adds `@` and the version of this format the record follows. As for every document, a reader takes the part before `@` as the kind, so a record's `ki-document-type` is the same field as a resource's.
-- **`ki-revised`** is the time of the record's last change of substance, the same as `ki-at` when a dated record is written. Setting `ki-review` or `ki-theme` is not a change of substance.
-- **`ki-at`** is when the batch landed, in UTC to the second, the same time as the file name's; for a consolidated review, when it was consolidated. A living record carries none: its `ki-revised` says when it last changed, and each record in its history when its batch landed.
+- **`ki-revised`** means what it means on every KI document, as the [format format](standard-formats-format.md#42-front-matter) sets: the time the file was last written, its last change of substance. On a dated record it is therefore when the record was written, at or after its `ki-at`, and never taken to equal it. Setting `ki-review` or `ki-theme` is not a change of substance.
+- **`ki-at`** is when the batch landed, in UTC to the second, the same time as the file name's; for a consolidated review, when it was consolidated. It stays there when the record is written or changed later; `ki-revised` moves instead. A living record carries none: its `ki-revised` says when it last changed, and each record in its history when its batch landed.
 - **`title`** says what the batch was for in a few words, and is the record's H1; it is the one field meant for other tools, so it keeps its name. A living record's title is its theme's phrase, as the list of themes gives it.
 - **`ki-theme`** names the record's one theme, a word from the list of themes: for a dated record, the theme its batch served most; for a living record, its own, which is also its file's name. A batch that served two themes takes the one its owner would look under first, and the other's living record may still say what it changed.
 - **`ki-packages`** lists the ids of the packages the batch served; a consolidated review lists every package its records served, and a living record every package its theme's work served.
@@ -166,7 +166,7 @@ Each theme has one living record, its current account, read before anything bene
 
 Beyond the format format's checks, as this standard replaces them, a validator checks:
 
-1. **Front matter:** `ki-id` is `record:` and the file's name, `ki-revised` is present, `ki-theme` is a lower-case word, `ki-packages` is a list, and `ki-review` is `awaiting` or `approved`; a dated record's `ki-at` matches the file name's time, and a living record's `ki-theme` is its file's name.
+1. **Front matter:** `ki-id` is `record:` and the file's name, `ki-revised` is present, `ki-theme` is a lower-case word, `ki-packages` is a list, and `ki-review` is `awaiting` or `approved`; a dated record's `ki-at` matches the file name's time and its `ki-revised` is at or after its `ki-at`, and a living record's `ki-theme` is its file's name.
 2. **Sections:** a batch record has Purpose, Goals and What changed, in order, or a consolidated review's sections, and no other section; a consolidated review has What stands today and Left open, in order, and no other section; a living record has What stands today, Left open and History, in order, and no other section.
 3. **Opening line:** a consolidated review's first paragraph under the H1 links at least one record, and each record it links is pinned at a commit.
 4. **Name:** the file name is a time and a slug of five words at most, or a theme.

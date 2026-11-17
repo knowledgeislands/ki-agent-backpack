@@ -215,6 +215,16 @@ const datedProblems = (record: RecordEvidence, slug: string): readonly string[] 
   ]
 }
 
+// Whether a dated record's `ki-revised`, when it was last written, is earlier than its `ki-at`, when its batch landed;
+// `ki-revised` means the same on every document and is at or after `ki-at`, never taken to equal it (REVISED-MEANS).
+// A date with no time is read as the end of that day, and a value that is not a time is not compared.
+const revisedBeforeAt = (record: RecordEvidence): boolean => {
+  if (!record.revisedAt || !record.at) return false
+  const revised = Date.parse(record.revisedAt) + (DATE_ONLY.test(record.revisedAt) ? DAY_MS : 0)
+  const at = Date.parse(record.at)
+  return !Number.isNaN(revised) && !Number.isNaN(at) && revised < at
+}
+
 // What one record breaks of the record format's 4.8; a record with no version is an older record, read as written,
 // with only its `ki-at`, `ki-review` and any `ki-id` checked. Each is read under its older bare name too. A living
 // record is named by its theme and carries no `ki-at`.
@@ -236,6 +246,7 @@ const recordProblems = (record: RecordEvidence): readonly string[] => {
     ...(named || living ? [] : ['the file name is not <YYYYMMDD>T<HHMM>Z-<slug> or a theme']),
     ...(record.id ? [] : ['no `ki-id`']),
     ...(record.revised ? [] : ['no `ki-revised`']),
+    ...(revisedBeforeAt(record) ? ['`ki-revised` is earlier than `ki-at`'] : []),
     ...(record.theme && THEME.test(record.theme) ? [] : ['`ki-theme` is missing or not a lower-case word']),
     ...(record.packagesList ? [] : ['`ki-packages` is not a list']),
     ...(living
@@ -253,7 +264,7 @@ const FMT_RECORD: RubricItem<FormatsRubricContext> = {
   code: 'FMT-record',
   title: 'a record follows the record format',
   description:
-    "A record, a document whose `ki-document-type` is `record@<version>`, passes the record format's Validation: `ki-id` is `record:` and its file name, `ki-revised` is present, `ki-theme` a lower-case word, `ki-packages` a list and `ki-review` `awaiting` or `approved`; a dated record's `ki-at` matches the name's time, and its name is a time and a slug, whose length in words is left to review, since a hyphen may join one word or separate two; a batch record has Purpose, Goals and What changed, or a review's sections; a consolidated review, named `review-…`, has What stands today and Left open, and its opening line links the records it replaces, each pinned at a commit; and a living record, named by its theme, carries that theme in `ki-theme`, needs no `ki-at`, and has What stands today, Left open and History. An older record, `record` with no version, is read as written: only its `ki-at`, `ki-review` and any `ki-id` are checked. Each field is read under its older bare name too, as FMT-prefix warns.",
+    "A record, a document whose `ki-document-type` is `record@<version>`, passes the record format's Validation: `ki-id` is `record:` and its file name, `ki-revised` is present, `ki-theme` a lower-case word, `ki-packages` a list and `ki-review` `awaiting` or `approved`; a dated record's `ki-at` matches the name's time and its `ki-revised`, when it was last written, is at or after its `ki-at`, and its name is a time and a slug, whose length in words is left to review, since a hyphen may join one word or separate two; a batch record has Purpose, Goals and What changed, or a review's sections; a consolidated review, named `review-…`, has What stands today and Left open, and its opening line links the records it replaces, each pinned at a commit; and a living record, named by its theme, carries that theme in `ki-theme`, needs no `ki-at`, and has What stands today, Left open and History. An older record, `record` with no version, is read as written: only its `ki-at`, `ki-review` and any `ki-id` are checked. Each field is read under its older bare name too, as FMT-prefix warns.",
   sources: ['standard-formats-record.md#48-validation'],
   mechanical: {
     level: 'FAIL',

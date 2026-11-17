@@ -738,7 +738,7 @@ test('FMT reads the fields written without the ki- prefix and FMT-prefix warns o
   ).toEqual(['PASS'])
 })
 
-test('FMT-record fails a record that breaks the record format, checks living records and reads an older record as written', () => {
+test('FMT-record fails a record that breaks the record format, lets ki-revised follow ki-at, checks living records and reads an older record as written', () => {
   const repository = temporaryRepository()
   mkdirSync(join(repository, 'record'))
   const front = (name: string, extra = '') =>
@@ -754,6 +754,8 @@ test('FMT-record fails a record that breaks the record format, checks living rec
     '20261116T2315Z-review-no-links': `${front('20261116T2315Z-review-no-links')}It replaces nothing linked.\n\n## What stands today\n\n## Left open\n`,
     '20261116T2315Z-one-two-three-four-five-six': `${front('20261116T2315Z-one-two-three-four-five-six').replace('ki-review: awaiting', 'ki-review: changes wanted')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
     '20261116T2315Z-no-theme': `${front('20261116T2315Z-no-theme').replace('ki-theme: store\n', '')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
+    '20261116T2315Z-written-later': `${front('20261116T2315Z-written-later').replace('ki-revised: 2026-11-16T23:15:00Z', 'ki-revised: 2026-11-17T03:00:00Z')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
+    '20261116T2315Z-earlier-revised': `${front('20261116T2315Z-earlier-revised').replace('ki-revised: 2026-11-16T23:15:00Z', 'ki-revised: 2026-11-16T23:00:00Z')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
     store: living('store', 'ki-theme: store\n', '## What stands today\n\n## Left open\n\n## History\n'),
     skills: living('skills', 'ki-theme: estate\n', '## What stands today\n\n## Left open\n'),
     legal: living('legal', '', '## What stands today\n\n## Left open\n\n## History\n'),
@@ -775,6 +777,7 @@ test('FMT-record fails a record that breaks the record format, checks living rec
   expect(record?.mechanical?.audit.run(formats).map(({ subject, message }) => [subject, message])).toEqual([
     ['record/20261114T0400Z-older-and-wrong.md', "`ki-at` is missing or differs from the file name's time"],
     ['record/20261114T0400Z-older-and-wrong.md', '`ki-review` is not awaiting or approved'],
+    ['record/20261116T2315Z-earlier-revised.md', '`ki-revised` is earlier than `ki-at`'],
     ['record/20261116T2315Z-no-theme.md', '`ki-theme` is missing or not a lower-case word'],
     ['record/20261116T2315Z-one-two-three-four-five-six.md', '`ki-review` is not awaiting or approved'],
     ['record/20261116T2315Z-review-no-links.md', 'the opening line links no record it replaces'],
