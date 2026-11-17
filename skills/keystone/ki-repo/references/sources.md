@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-09T21:36:32Z
-ki-revised: 2026-11-16T23:50:00Z
+ki-document-type: sources@2026-11-17T00:28:37Z
+ki-revised: 2026-11-17T01:17:42Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -73,10 +73,13 @@ The decisions the standards cite by id, oldest first; each standard keeps citing
 | SKILL-MODE-KEY | A repository declares a skill vendored with the host-owned `mode` in its `[skills.<name>]` table, `"current"` or `"vendored"`, recording the backpack `commit` its copy came from; the host leaves the copy alone and reports drift from that commit as a warning. | 2026-11-14 | [configuration](standard-configuration.md#434-vendored-skills) | In force |
 | SHARE-OUTPUTS | A session working in a repository commits what the owner is to see in a form GitHub shows and gives the link that opens where the owner is reading; an agent host's own page may sit beside it, never in its place. From the Cairn summit's change 15, §4.3, with the owner's LINKS-WHERE-READ. | 2026-11-14 | [repository](standard-repository.md#44-working-areas) | In force |
 | PROMOTION-ONE | Where REVIEW sends durable content is `ki-authoring`'s placement ladder, the one table of where knowledge is placed, and the procedure points at it instead of listing its homes. Kris's word, 16 November, about 23:30 GMT, relayed by the Cairn summit's guardian from the summit's [change 11](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided). | 2026-11-16 | [REVIEW](mode-review.md#documentation-and-knowledge) | In force |
+| DESIGN-PLACE | `docs/design/` is a documentation root, selecting `ki-design`, whose design documents follow `ki-authoring`'s design format; all six repositories that keep designs already put them there. Kris's word, 17 November, about 00:56 GMT, taking the high-confidence points: "you've got high confidence in some of these, so I think you need to take them and get on with it", relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [repository](standard-repository.md), [configuration](standard-configuration.md), [documentation topology](standard-documentation-topology.md#41-the-five-concerns) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 17 November 2026 an in-house review applied DESIGN-PLACE a, which Kris took that day at about 00:56 GMT, relayed by the Cairn summit's guardian from the summit's [change 16, the Design guild](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). `docs/design/` joins the documentation roots: the coverage cascade detects it and asks for `[skills.ki-design]`, so `ki-design` moves from declaration-only to detected and joins `ki-detects`; [the repository](standard-repository.md) and [configuration](standard-configuration.md) standards name it, and [the documentation topology](standard-documentation-topology.md#41-the-five-concerns) gains Designs as its fifth concern. A repository that keeps designs and does not yet declare `ki-design` now fails COV-1 until it declares it or sets `coverage-design = false`. No outside source refreshed.
 
 On 16 November 2026 an in-house review applied PROMOTION-ONE a, which Kris took that day at about 23:30 GMT, relayed by the Cairn summit's guardian from the summit's [change 11](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided). [REVIEW's](mode-review.md#documentation-and-knowledge) check on legacy `.claude/memory/` points at `ki-authoring`'s placement ladder instead of listing its homes. No outside source refreshed.
 

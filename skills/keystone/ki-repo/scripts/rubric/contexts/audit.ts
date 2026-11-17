@@ -636,6 +636,12 @@ const COVERAGE: { skill: string; table: string; artifact: string; detect: (s: Si
     detect: (s) => [...s.tree].some((p) => p.startsWith('docs/guides/'))
   },
   {
+    skill: 'design',
+    table: skillTable('ki-design'),
+    artifact: 'docs/design/**',
+    detect: (s) => [...s.tree].some((p) => p.startsWith('docs/design/'))
+  },
+  {
     skill: 'engineering',
     table: skillTable('ki-engineering'),
     artifact: 'package.json',

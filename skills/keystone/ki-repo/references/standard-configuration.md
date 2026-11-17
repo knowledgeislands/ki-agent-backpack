@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-15T00:30:18Z
+ki-revised: 2026-11-17T01:17:42Z
 ki-status: in force
 ---
 
@@ -333,7 +333,7 @@ The read-only machine endpoint is `ki territory roots --null --territory <handle
 
 ### 4.10 Coverage enforcement
 
-The file's presence is the **gate of an audit cascade**. Once a repo is confirmed a ki-repo (it carries `.ki.toml`), `ki-repo`'s auditor checks that the repo **declares an opt-in table for every governance skill whose applicability is detectable in it**. A detected-but-undeclared signal FAILs ("looks governed by `ki-<skill>` but declares no `[skills.ki-<skill>]`"); a declared-but-undetected table WARNs as a possibly stale opt-in, unless the `ki-depends-on` closure of another declared skill requires it, as `ki-repo-backpack` requires `ki-subagents`, because the host will not run that skill without it. Documentation is mechanically owned: content under `docs/decisions/` (or a Knowledge Base's `Admin/Governance/Decisions/`) requires `ki-decision-records`, content under `docs/specs/` requires `ki-specs`, and content under `docs/guides/` requires `ki-guides`.
+The file's presence is the **gate of an audit cascade**. Once a repo is confirmed a ki-repo (it carries `.ki.toml`), `ki-repo`'s auditor checks that the repo **declares an opt-in table for every governance skill whose applicability is detectable in it**. A detected-but-undeclared signal FAILs ("looks governed by `ki-<skill>` but declares no `[skills.ki-<skill>]`"); a declared-but-undetected table WARNs as a possibly stale opt-in, unless the `ki-depends-on` closure of another declared skill requires it, as `ki-repo-backpack` requires `ki-subagents`, because the host will not run that skill without it. Documentation is mechanically owned: content under `docs/decisions/` (or a Knowledge Base's `Admin/Governance/Decisions/`) requires `ki-decision-records`, content under `docs/specs/` requires `ki-specs`, content under `docs/guides/` requires `ki-guides`, and content under `docs/design/` requires `ki-design`.
 
 The gate is what prevents a **false positive**: a plain git repo that has, say, an `eleventy.config` but **no `.ki.toml`** is not a ki-repo, so it is never told to declare a website table. It simply takes the `ki-config` required-file FAIL. Coverage is only ever considered _after_ the marker confirms a ki-repo.
 
@@ -344,6 +344,7 @@ The detection signals `ki-repo` uses (one recursive tree read + `package.json`):
 | `ki-decision-records` | `docs/decisions/**` or `Admin/Governance/Decisions/**` | `[skills.ki-decision-records]` |
 | `ki-specs` | `docs/specs/**` | `[skills.ki-specs]` |
 | `ki-guides` | `docs/guides/**` | `[skills.ki-guides]` |
+| `ki-design` | `docs/design/**` | `[skills.ki-design]` |
 | `ki-engineering` | `package.json` present | `[skills.ki-engineering]` |
 | `ki-repo-kb` | canonical zones (`Pillars/` + `Resources/`) | `[skills.ki-repo-kb]` |
 | `ki-repo-kb-streams` | `Streams/` zone | `[skills.ki-repo-kb-streams]` |
