@@ -342,3 +342,116 @@ describe('KI-SHAPE-22', () => {
     ])
   })
 })
+
+const graphCards = KI_SHAPE.items.find(({ code }) => code === 'KI-SHAPE-23')
+const nextLinks = KI_SHAPE.items.find(({ code }) => code === 'KI-SHAPE-24')
+
+if (!graphCards?.mechanical) throw new Error('KI-SHAPE-23 mechanical check missing')
+if (!nextLinks?.mechanical) throw new Error('KI-SHAPE-24 mechanical check missing')
+
+const card = (
+  type: string | null,
+  status: string | null,
+  next: string[] | null = null,
+  brokenLinks: string[] = []
+) => ({
+  type,
+  status,
+  next,
+  brokenLinks
+})
+
+describe('KI-SHAPE-23, a knowledge graph’s cards', () => {
+  const graph = (
+    cards: Record<string, ReturnType<typeof card>>,
+    ids: Record<string, string>,
+    types = ['graph', 'term']
+  ) =>
+    graphCards.mechanical?.audit.run(
+      createKiShapeContext({
+        skill: {
+          knowledgeIslandsSkill: true,
+          kiKind: 'knowledge',
+          knowledgePaths: Object.keys(cards),
+          knowledgeIds: ids,
+          knowledgeCards: cards,
+          knowledgeCardTypes: types
+        }
+      })
+    )
+
+  test('passes a well-formed graph', () => {
+    const findings = graph(
+      { '_graph.md': card('graph', 'agreed'), 'industry/industry.model.md': card('term', 'proposal') },
+      { '_graph.md': 'g', 'industry/industry.model.md': 'industry.model' }
+    )
+    expect(findings).toEqual([{ status: 'PASS', message: expect.any(String) }])
+  })
+
+  test('checks the root, each card’s id, type and status, and its links', () => {
+    const findings = graph(
+      {
+        '_graph.md': card('term', 'agreed'),
+        'a.md': card('concept', 'draft', null, ['../missing.md']),
+        'b.md': card(null, null)
+      },
+      { '_graph.md': 'g', 'a.md': 'other' }
+    )
+    const messages = (findings ?? []).map(({ message }) => message)
+    expect(findings?.every(({ status }) => status === 'VIOLATION')).toBe(true)
+    expect(messages).toEqual([
+      'the root definition is a card of type `graph`',
+      "the card's id `other` differs from its file name",
+      "the card's type `concept` is not one its root definition declares",
+      "the card's status `draft` is not `proposal`, `future-concept` or `agreed`",
+      'the link to `../missing.md` resolves to no file',
+      'the card has no front-matter `id`',
+      'the card has no front-matter `type`',
+      'the card has no front-matter `status`'
+    ])
+  })
+
+  test('does not apply without a graph', () => {
+    const findings = graphCards.mechanical?.audit.run(
+      createKiShapeContext({ skill: { knowledgeIslandsSkill: true, kiKind: 'governance' } })
+    )
+    expect(findings?.[0]?.status).toBe('NOT_APPLICABLE')
+  })
+})
+
+describe('KI-SHAPE-24, the Next link', () => {
+  const run = (cards: Record<string, ReturnType<typeof card>>) =>
+    nextLinks.mechanical?.audit.run(
+      createKiShapeContext({
+        skill: {
+          knowledgeIslandsSkill: true,
+          kiKind: 'knowledge',
+          knowledgePaths: ['_graph.md', ...Object.keys(cards)],
+          knowledgeCards: { '_graph.md': card('graph', 'agreed'), ...cards }
+        }
+      })
+    )
+
+  test('exempts the last card of a chain', () => {
+    const findings = run({
+      'a.md': card('term', 'agreed', ['b.md']),
+      'b.md': card('term', 'agreed', ['c.md']),
+      'c.md': card('term', 'agreed', [])
+    })
+    expect(findings).toEqual([{ status: 'PASS', message: expect.any(String) }])
+  })
+
+  test('warns on a Next section that links nothing and ends no chain', () => {
+    const findings = run({
+      'a.md': card('term', 'agreed', ['b.md']),
+      'b.md': card('term', 'agreed', []),
+      'stray.md': card('term', 'agreed', [])
+    })
+    expect(findings).toEqual([{ status: 'VIOLATION', message: expect.any(String), subject: 'knowledge/stray.md' }])
+    expect(nextLinks.mechanical?.level).toBe('WARN')
+  })
+
+  test('does not apply to a graph read in no order', () => {
+    expect(run({ 'a.md': card('term', 'agreed') })?.[0]?.status).toBe('NOT_APPLICABLE')
+  })
+})

@@ -128,6 +128,18 @@ type OwnershipCollision = {
   skills: readonly string[]
 }
 
+/** One Markdown file of a skill's knowledge graph, as the rubric reads it. */
+export type KnowledgeCardEvidence = {
+  /** The front-matter `type`, or null when it has none. */
+  type: string | null
+  /** The front-matter `status`, or null when it has none. */
+  status: string | null
+  /** Relative link destinations, outside code, that resolve to no file. */
+  brokenLinks: readonly string[]
+  /** Null without a `## Next` section; otherwise the cards it links, as paths relative to `knowledge/`. */
+  next: readonly string[] | null
+}
+
 export type KiShapeSkillContext = {
   name: string
   knowledgeIslandsSkill: boolean
@@ -155,6 +167,10 @@ export type KiShapeSkillContext = {
   knowledgePaths: readonly string[]
   /** Front-matter ids of the Markdown files under `knowledge/` that declare one, keyed by path relative to it. */
   knowledgeIds: Readonly<Record<string, string>>
+  /** What each Markdown file under `knowledge/` says of itself, keyed by path relative to it (RUBRIC-KNOWLEDGE). */
+  knowledgeCards: Readonly<Record<string, KnowledgeCardEvidence>>
+  /** The card types the graph's root definition declares in its Card types table. */
+  knowledgeCardTypes: readonly string[]
   operatingModesSection: string | null
   bodyModes: ReadonlySet<string>
   operatingModesIntro: string
@@ -265,6 +281,8 @@ const emptyKiShapeSkill: KiShapeSkillContext = {
   referencePaths: [],
   knowledgePaths: [],
   knowledgeIds: {},
+  knowledgeCards: {},
+  knowledgeCardTypes: [],
   operatingModesSection: null,
   bodyModes: new Set(),
   operatingModesIntro: '',

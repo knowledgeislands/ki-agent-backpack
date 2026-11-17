@@ -6,7 +6,8 @@ import {
   createKiShapeContext,
   createKiShapeFrontmatterEvidence,
   type KiShapeSkillContext,
-  type KiSkillsRubricContext
+  type KiSkillsRubricContext,
+  type KnowledgeCardEvidence
 } from './contexts.ts'
 import { type SkillDependencyNode, skillMentions } from './dependencies.ts'
 import { inspectSkillFormats, kiSkillField } from './formats.ts'
@@ -153,6 +154,97 @@ const readKnowledgeIds = (knowledgeDirectory: string, knowledgePaths: readonly s
   return ids
 }
 
+const FRONT_MATTER = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/
+const REFERENCE_DEFINITION = /^ {0,3}\[([^\]]+)\]:\s*<?([^\s>]+)>?/gm
+const INLINE_LINK = /\]\(\s*<?([^\s)>]+)>?(?:\s+"[^"]*")?\s*\)/g
+const REFERENCE_LINK = /\[([^\]]+)\](?:\[([^\]]*)\])?(?![:(])/g
+
+const frontMatterValue = (document: string | undefined, key: string): string | null =>
+  document?.match(new RegExp(`^${key}:\\s*['"]?([^'"\\n]*?)['"]?\\s*$`, 'm'))?.[1]?.trim() || null
+
+/** A link destination that names a local file, without its fragment or query; null for a URL or a bare fragment. */
+const localTarget = (destination: string): string | null => {
+  if (/^[a-z][a-z0-9+.-]*:/i.test(destination) || destination.startsWith('#') || destination.startsWith('/'))
+    return null
+  const path = destination.replace(/[#?].*$/, '')
+  if (!path) return null
+  try {
+    return decodeURIComponent(path)
+  } catch {
+    return path
+  }
+}
+
+/** The card types a graph's root definition declares: the backticked first cells of its `## Card types` table. */
+const readKnowledgeCardTypes = (knowledgeDirectory: string): string[] => {
+  const root = join(knowledgeDirectory, '_graph.md')
+  if (!existsSync(root)) return []
+  const section = readFileSync(root, 'utf8').match(/^##\s+Card types\s*$([\s\S]*?)(?=^##\s|$(?![\s\S]))/m)?.[1] ?? ''
+  return [...section.matchAll(/^\|\s*`([^`]+)`\s*\|/gm)].map((match) => match[1] as string)
+}
+
+/** Each graph file's type and status, its relative links that resolve to nothing, and the cards its Next section links. */
+const readKnowledgeCards = (
+  knowledgeDirectory: string,
+  knowledgePaths: readonly string[],
+  ids: Readonly<Record<string, string>>
+): Record<string, KnowledgeCardEvidence> => {
+  const cards: Record<string, KnowledgeCardEvidence> = {}
+  for (const path of knowledgePaths) {
+    if (!path.endsWith('.md')) continue
+    const file = join(knowledgeDirectory, path)
+    const content = readFileSync(file, 'utf8')
+    const document = content.match(FRONT_MATTER)?.[1]
+    const body = content.replace(/```[\s\S]*?```/g, '').replace(/`[^`\n]*`/g, '')
+    const definitions = new Map<string, string>()
+    for (const match of body.matchAll(REFERENCE_DEFINITION))
+      definitions.set((match[1] as string).toLowerCase(), match[2] as string)
+    const destinations = [
+      ...definitions.values(),
+      ...[...body.matchAll(INLINE_LINK)].map((match) => match[1] as string)
+    ]
+    const resolveLocal = (destination: string): string | null => {
+      const target = localTarget(destination)
+      return target === null ? null : resolve(dirname(file), target)
+    }
+    const brokenLinks = [
+      ...new Set(
+        destinations.filter((destination) => {
+          const target = resolveLocal(destination)
+          return target !== null && !existsSync(target)
+        })
+      )
+    ]
+    const nextSection = body.match(/^##\s+Next\s*$([\s\S]*?)(?=^##\s|$(?![\s\S]))/m)?.[1]
+    let next: string[] | null = null
+    if (nextSection !== undefined) {
+      const prose = nextSection.replace(REFERENCE_DEFINITION, '')
+      const linked = [
+        ...[...prose.matchAll(INLINE_LINK)].map((match) => match[1] as string),
+        ...[...prose.matchAll(REFERENCE_LINK)]
+          .map((match) => definitions.get((match[2] || match[1] || '').toLowerCase()))
+          .filter((destination): destination is string => destination !== undefined)
+      ]
+      next = [
+        ...new Set(
+          linked
+            .map(resolveLocal)
+            .filter((target): target is string => target !== null)
+            .map((target) => relative(knowledgeDirectory, target))
+            .filter((target) => target in ids && target !== '_graph.md')
+        )
+      ]
+    }
+    cards[path] = {
+      type: frontMatterValue(document, 'type'),
+      status: frontMatterValue(document, 'status'),
+      brokenLinks,
+      next
+    }
+  }
+  return cards
+}
+
 const rubricFamilyModules = (
   scriptsDirectory: string
 ): {
@@ -284,6 +376,7 @@ const createKiShapeEvidence = (
   const scriptNames = existsSync(scriptsDirectory) ? readdirSync(scriptsDirectory) : []
   const referencePaths = listSupportFiles(join(skillDirectory, 'references'))
   const knowledgePaths = listSupportFiles(join(skillDirectory, 'knowledge'))
+  const knowledgeIds = readKnowledgeIds(join(skillDirectory, 'knowledge'), knowledgePaths)
   const refreshReference = join(skillDirectory, 'references', 'mode-refresh.md')
   const refreshSection = section?.match(/^###\s+Mode\s+REFRESH\b[\s\S]*?(?=^###\s+Mode\s+|$(?![\s\S]))/im)?.[0] ?? ''
   const rubricItemSources = listScriptFiles(join(scriptsDirectory, 'rubric', 'items'))
@@ -299,7 +392,9 @@ const createKiShapeEvidence = (
     rubricCatalogue: existsSync(join(scriptsDirectory, 'rubric', 'items', 'index.ts')),
     referencePaths,
     knowledgePaths,
-    knowledgeIds: readKnowledgeIds(join(skillDirectory, 'knowledge'), knowledgePaths),
+    knowledgeIds,
+    knowledgeCards: readKnowledgeCards(join(skillDirectory, 'knowledge'), knowledgePaths, knowledgeIds),
+    knowledgeCardTypes: readKnowledgeCardTypes(join(skillDirectory, 'knowledge')),
     operatingModesSection: section,
     bodyModes: extractBodyModes(section),
     operatingModesIntro: section?.split(/^###\s+|^\s*\|/m)[0] ?? '',

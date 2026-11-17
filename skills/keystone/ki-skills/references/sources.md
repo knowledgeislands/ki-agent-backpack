@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-15T00:17:25Z
-ki-revised: 2026-11-17T04:25:00Z
+ki-revised: 2026-11-17T23:48:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -174,10 +174,13 @@ The OpenAI News page is a discovery source, not a normative standard. On each RE
 | REVIEW-HOME | Option b, Kris's word, 17 November 2026, about 01:37 GMT, raised to high by his word that consistency is vital, relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided): one general review standard in `ki-authoring`, which every reviewable document cites, skills among them. A REVIEW candidate is also a finding in its shape. | 2026-11-17 | [REVIEW](mode-review.md), [candidate shape](standard-candidate-findings.md#41-candidate-shape) | In force |
 | STANDARDS-RENAME | Taken by the Cairn summit's guardian, 17 November 2026, about 04:03 GMT, under Kris's direction to take high-confidence calls, from the summit's change 11, gap 1: the plural `standards-<topic>.md` files, 108 across about 50 skills on 14 November, are renamed guild by guild in each guild's review, and the allowance is removed after the last; nothing is renamed ahead of the reviews. Reversible; Kris can overturn it. | 2026-11-17 | [Reference vocabulary](standard-knowledge-islands.md) | In force |
 | REF-5-SOURCE | In-house correction, 17 November 2026, from the Cairn summit's change 11, gap 2: REF-5 cited "SPEC §8", which traced to this skill's July standard, whose section 8 was Progressive disclosure, not to the Agent Skills specification that SPEC labels; it now cites that section's home, [`standard-agent-skills.md` §4.4.2](standard-agent-skills.md#442-progressive-disclosure), where the mode-router shape is set. | 2026-11-17 | [rubric](rubric.md) | In force |
+| RUBRIC-KNOWLEDGE | Kris's word, 17 November 2026, about 23:34 GMT, under GUARDIAN-LANDS a, relayed by the Cairn summit's guardian from the summit's [change 11](https://github.com/krisb/ki-cairn-store/blob/c17433e/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided): option a, the rubric checks a knowledge graph: its root definition, each card's id against its file name, its type and its status, and its links; the check that each card read in order links the next only warns, and exempts the last card of a chain. | 2026-11-17 | [Skill shape](standard-knowledge-islands.md#42-skill-shape), KI-SHAPE-23, KI-SHAPE-24 | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+A later in-house review on **2026-11-17** applied RUBRIC-KNOWLEDGE a, which Kris took that night: [the skill shape](standard-knowledge-islands.md#42-skill-shape) now says how the rubric checks a knowledge graph, KI-SHAPE-23 failing a malformed root definition, a card whose id, type or status is wrong, or a relative link that resolves to nothing, and KI-SHAPE-24 warning on a card read in order whose Next section links no card and ends no chain. Both pass on `ki-agentic-systems` and `ki-knowledge-graph`; the broken link in `ki-knowledge-graph`'s `semantic-markdown.md` was fixed earlier that day. No outside source refreshed.
 
 A later in-house review on **2026-11-17** recorded STANDARDS-RENAME, taken by the Cairn summit's guardian, in [the reference vocabulary](standard-knowledge-islands.md), and corrected REF-5's citation (REF-5-SOURCE).
 

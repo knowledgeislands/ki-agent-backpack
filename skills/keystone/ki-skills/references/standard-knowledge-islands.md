@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T04:25:00Z
+ki-revised: 2026-11-17T23:48:00Z
 ki-status: in force
 ---
 
@@ -102,6 +102,8 @@ Every top-level Markdown file in a Knowledge Islands skill's `references/` direc
 - `<topic>-proposal.md` holds a proposal awaiting a decision, such as a naming proposal; it settles nothing, and goes once its decisions are recorded (KNOWLEDGE-FOLDER).
 
 A skill that holds a knowledge graph keeps it in `knowledge/` at the skill's top level, its own area outside `references/`: the graph's root definition, `knowledge/_graph.md`, and its cards, each named `<id>.md` with its front-matter `id` equal to that name, as the `ki-knowledge-graph` standard sets. The root definition opens the graph, and a file is one of its cards only when its id matches its name. Only the graph sits in `knowledge/`; the skill's standards, sources, rubric, proposals and everything else stay in `references/` under the vocabulary above (KNOWLEDGE-FOLDER). Inside `knowledge/` there is a folder for each subgraph the root definition declares, as `knowledge/industry/industry.session.md`, and a graph without subgraphs sits flat; ids and front-matter links never change with a card's folder, and only relative Markdown links follow it (GRAPH-FOLDERS). A knowledge skill always holds such a graph; any other skill may hold one, as `ki-knowledge-graph` holds the concepts its own standard relies on. (KNOWLEDGE-KIND; KG-HOME)
+
+The rubric checks a graph mechanically (RUBRIC-KNOWLEDGE). The root definition is a card of type `graph` that declares the graph's card types; every other card's front-matter `id` equals its file name, its `type` is one the root definition declares, and its `status` is `proposal`, `future-concept` or `agreed`; and every relative link in the graph, outside code, resolves to a file (rubric **KI-SHAPE-23**). A card with a `## Next` section is read in order and links the next card there; the last card of a chain, which another card's Next section reaches, may end it without a link, and this check only warns (rubric **KI-SHAPE-24**).
 
 A standard or sources file that does not yet follow its format is out of date: AUDIT reports it, and it is brought into line when next changed. A skill includes only the classes it needs. A bare `standards.md`, `<topic>-standards.md`, nested `references/` content, and ad hoc `guide`, `contract`, or `format` filenames are not alternate classes. Templates and other reusable output material live under `assets/`. The executable catalogue remains `scripts/rubric/items/index.ts`; domain-specific executable helpers remain under `scripts/`. Graph cards are named by their ids rather than by these classes. This is a convention of the `ki-*` set rather than a requirement on every Agent Skill, so a skill outside a Knowledge Islands repo is exempt for now (rubric **KI-SHAPE-6**). (ki-agent-backpack README)
 

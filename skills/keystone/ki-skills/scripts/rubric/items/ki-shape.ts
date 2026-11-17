@@ -879,6 +879,118 @@ const KI_SHAPE_22: RubricItem<KiShapeRubricContext> = {
   }
 }
 
+const CARD_STATUSES: ReadonlySet<string> = new Set(['proposal', 'future-concept', 'agreed'])
+
+const KI_SHAPE_23: RubricItem<KiShapeRubricContext> = {
+  code: 'KI-SHAPE-23',
+  title: 'a knowledge graph’s cards are well formed',
+  description:
+    'In a skill that holds a knowledge graph, the root definition `knowledge/_graph.md` is a card of type `graph` that declares its card types; every other card has a front-matter `id` equal to its file name, a `type` its root definition declares and a `status` of `proposal`, `future-concept` or `agreed`; and every relative link in the graph, outside code, resolves to a file, under the `ki-knowledge-graph` standard.',
+  sources: ['RUBRIC-KNOWLEDGE', 'KNOWLEDGE-KIND', 'KNOWLEDGE-FOLDER', 'standard-knowledge-islands.md §4.2'],
+  mechanical: {
+    level: 'FAIL',
+    remediation: {
+      class: 'diagnostic',
+      guidance:
+        'Name each card from its front-matter id, give it a type its root definition declares and a status from the closed list, declare any missing type in the root definition’s Card types table, and repair or remove each link that resolves to nothing.'
+    },
+    audit: {
+      phase: 'INSPECT',
+      run: ({ skill }) => {
+        if (!skill?.knowledgeIslandsSkill || !skill.knowledgePaths.includes(GRAPH_ROOT))
+          return [{ status: 'NOT_APPLICABLE', message: 'the skill holds no knowledge graph' }]
+        const violations: AuditOutcome[] = []
+        const declared = new Set(skill.knowledgeCardTypes)
+        const root = skill.knowledgeCards[GRAPH_ROOT]
+        if (root?.type !== 'graph')
+          violations.push({
+            status: 'VIOLATION',
+            message: 'the root definition is a card of type `graph`',
+            subject: `knowledge/${GRAPH_ROOT}`
+          })
+        if (declared.size === 0)
+          violations.push({
+            status: 'VIOLATION',
+            message: 'the root definition declares the graph’s card types in a `## Card types` table',
+            subject: `knowledge/${GRAPH_ROOT}`
+          })
+        for (const [path, card] of Object.entries(skill.knowledgeCards)) {
+          const subject = `knowledge/${path}`
+          if (path !== GRAPH_ROOT) {
+            const name = path.slice(path.lastIndexOf('/') + 1, -'.md'.length)
+            const id = skill.knowledgeIds[path]
+            if (id !== name)
+              violations.push({
+                status: 'VIOLATION',
+                message: id
+                  ? `the card's id \`${id}\` differs from its file name`
+                  : 'the card has no front-matter `id`',
+                subject
+              })
+            if (!card.type || (declared.size > 0 && !declared.has(card.type)))
+              violations.push({
+                status: 'VIOLATION',
+                message: card.type
+                  ? `the card's type \`${card.type}\` is not one its root definition declares`
+                  : 'the card has no front-matter `type`',
+                subject
+              })
+          }
+          if (!card.status || !CARD_STATUSES.has(card.status))
+            violations.push({
+              status: 'VIOLATION',
+              message: card.status
+                ? `the card's status \`${card.status}\` is not \`proposal\`, \`future-concept\` or \`agreed\``
+                : 'the card has no front-matter `status`',
+              subject
+            })
+          for (const link of card.brokenLinks)
+            violations.push({ status: 'VIOLATION', message: `the link to \`${link}\` resolves to no file`, subject })
+        }
+        const [first, ...rest] = violations
+        return first ? [first, ...rest] : [{ status: 'PASS', message: 'the knowledge graph’s cards are well formed' }]
+      }
+    }
+  }
+}
+
+const KI_SHAPE_24: RubricItem<KiShapeRubricContext> = {
+  code: 'KI-SHAPE-24',
+  title: 'a card read in order links the next',
+  description:
+    'A card with a `## Next` section is read in order, and that section links the next card of its graph; the last card of a chain, which another card’s Next section reaches, may end it without a link. The check only warns, since the order is the graph’s to settle (CARD-ORDER).',
+  sources: ['RUBRIC-KNOWLEDGE', 'standard-knowledge-islands.md §4.2'],
+  mechanical: {
+    level: 'WARN',
+    remediation: {
+      class: 'diagnostic',
+      guidance:
+        'Link the next card in the Next section, or, where the card ends its chain, link it from the card before it.'
+    },
+    audit: {
+      phase: 'INSPECT',
+      run: ({ skill }) => {
+        if (!skill?.knowledgeIslandsSkill || !skill.knowledgePaths.includes(GRAPH_ROOT))
+          return [{ status: 'NOT_APPLICABLE', message: 'the skill holds no knowledge graph' }]
+        const cards = Object.entries(skill.knowledgeCards).filter(([, card]) => card.next !== null)
+        if (cards.length === 0) return [{ status: 'NOT_APPLICABLE', message: 'no card in the graph is read in order' }]
+        const reached = new Set(cards.flatMap(([, card]) => card.next ?? []))
+        const findings: AuditOutcome[] = cards
+          .filter(([path, card]) => card.next?.length === 0 && !reached.has(path))
+          .map(([path]) => ({
+            status: 'VIOLATION' as const,
+            message: 'the Next section links no card, and no card’s Next section reaches this one as a chain’s end',
+            subject: `knowledge/${path}`
+          }))
+        const [first, ...rest] = findings
+        return first
+          ? [first, ...rest]
+          : [{ status: 'PASS', message: 'every card read in order links the next or ends its chain' }]
+      }
+    }
+  }
+}
+
 export const KI_SHAPE: RubricFamily<KiSkillsRubricContext, KiShapeRubricContext> = {
   code: 'KI-SHAPE',
   title: 'Knowledge Islands skill shape',
@@ -906,6 +1018,8 @@ export const KI_SHAPE: RubricFamily<KiSkillsRubricContext, KiShapeRubricContext>
     KI_SHAPE_19,
     KI_SHAPE_20,
     KI_SHAPE_21,
-    KI_SHAPE_22
+    KI_SHAPE_22,
+    KI_SHAPE_23,
+    KI_SHAPE_24
   ]
 }
