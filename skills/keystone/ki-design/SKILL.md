@@ -2,7 +2,7 @@
 name: ki-design
 ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
-ki-applicability: declaration-only
+ki-applicability: detected
 ki-guild: keystone
 ki-leads: design
 ki-depends-on: []
@@ -17,9 +17,9 @@ argument-hint: 'audit <repo> | conform <repo> | educate <repo> | help | refresh'
 
 # Design
 
-The Design guild covers all design, technical as well as visual, with two architects among its makers: the information architect for a piece's structure, naming, navigation and models, and the technical architect for its components, data, interfaces and technology choices. This skill says how a design is shaped, from a brief through options and review, and which member or neighbouring skill takes each kind. [The design standard](references/standard-design.md) holds the rules.
+The Design guild covers all design, technical as well as visual, with two architects among its makers: the information architect for a piece's structure, naming, navigation and models, and the technical architect for its components, data, interfaces and technology choices. This skill says how a design is shaped, from a brief through options and review, each kind's levels, and which member or neighbouring skill takes each kind. [The design standard](references/standard-design.md) holds the rules.
 
-Design shapes; Authoring writes down. Once a choice is made, Authoring's skills record it: a decision record for each choice, a specification once a design is accepted, and diagrams for an architecture.
+Design shapes; Authoring writes down. A design is written down as a design document, in `ki-authoring`'s [design format](../ki-authoring/references/standard-formats-design.md), under `docs/design/`, which selects this skill among a repository's documentation roots; this skill owns its life cycle, from `draft` through change documents. The choices, contracts and architecture it settles still go to Authoring's other skills, linked from it: a decision record for a choice whose reason must be kept, a specification for a contract, and diagrams for an architecture.
 
 ## Members
 
@@ -29,6 +29,7 @@ Design shapes; Authoring writes down. Once a choice is made, Authoring's skills 
 ## Neighbours
 
 - **`ki-work design`** shapes a Project, theme or model before any work record exists.
+- **`ki-authoring`** sets the design format a design document is written in.
 - **`ki-decision-records`**, **`ki-specs`** and **`ki-diagrams`** write down the decisions, specifications and diagrams a design leaves.
 
 Technical design stays in this skill until it needs a member of its own.
@@ -39,7 +40,7 @@ For `help`, `-h`, `?` or no recognised mode, explain the guild, how a design is 
 
 ### Mode AUDIT
 
-Run `ki repo audit --skill ki-design --repo <repo>`; the host checks the rubric publication. Then review the repository's design work against [the standard](references/standard-design.md): whether each design started from a brief, weighed options, was reviewed, and left its records in Authoring's forms.
+Run `ki repo audit --skill ki-design --repo <repo>`; the host checks the rubric publication. Then review the repository's design work against [the standard](references/standard-design.md): whether each design started from a brief, weighed options, was reviewed as its review step sets out, was drawn at its kind's levels, and is written as a design document under `docs/design/`, linking its records in Authoring's forms.
 
 ### Mode CONFORM
 
@@ -47,7 +48,7 @@ Run AUDIT, then `ki repo conform --skill ki-design --repo <repo> --dry-run`. The
 
 ### Mode EDUCATE
 
-Start a design: write the brief, name the kind and the level it starts at, and route visual design to `ki-design-system` and a Project's shape to `ki-work design`.
+Start a design: write the brief, as the Introduction of a draft design document, name the kind and the level it starts at, and route visual design to `ki-design-system` and a Project's shape to `ki-work design`.
 
 ### Mode REFRESH
 

@@ -23,10 +23,10 @@ const DESIGN_3: RubricItem<DesignContext> = {
   code: 'DESIGN-3',
   title: 'a second reader reviews the design',
   description:
-    'A second reader checks the chosen design against its brief and the governing standard before it is called final, and the design says what has not been checked.',
+    'A reviewer who did not draw the design checks it against its brief, the governing standards and earlier decisions before it is called final, and says what has not been checked; each finding is anchored to one exact place, says its kind, whether it blocks, what to change and its confidence, and the outcome is recorded through the change document that moves the design.',
   sources: ['standard-design.md#42-how-a-design-is-shaped'],
   judgment: judgment(
-    'Was the design reviewed against its brief and standard by a second reader, and does it say what was not checked?'
+    'Was the design reviewed by someone who did not draw it, against its brief, standards and precedent, with each finding anchored and shaped alike, what was not checked said, and the outcome taken through its change document?'
   )
 }
 
@@ -34,19 +34,19 @@ const DESIGN_4: RubricItem<DesignContext> = {
   code: 'DESIGN-4',
   title: 'each level is agreed before the finer one',
   description:
-    "A design is drawn at its kind's levels, coarsest first, and each level is agreed before the next is drawn: for visual design, information architecture, then wireframes, then mock-ups.",
+    "A design is drawn at its kind's levels, coarsest first, and each level is agreed before the next is drawn: for visual design, information architecture, then wireframes, then mock-ups; for architecture, system context, containers, then components; for a component, black box, white box, then runtime; for an API, resources, operations, then its contract.",
   sources: ['standard-design.md#43-each-kinds-levels'],
-  judgment: judgment('Was each coarser level agreed before the finer one was drawn?')
+  judgment: judgment("Was the design drawn at its kind's levels, each coarser level agreed before the finer one?")
 }
 
 const DESIGN_5: RubricItem<DesignContext> = {
   code: 'DESIGN-5',
-  title: "a design's choices are written down in Authoring's forms",
+  title: 'a design is written down as a design document, linking its records',
   description:
-    "Each choice a design settles is a decision record, an accepted design a specification, and an architecture a diagram, each in its Authoring skill's form.",
+    "A design is written down as a design document in `ki-authoring`'s design format, under `docs/design/`, its status moved only through a change document and a living design's builds added only to its Built section; each choice that needs its reason kept is a decision record, a contract a specification and an architecture a diagram, each in its Authoring skill's form and linked from the design rather than restated.",
   sources: ['standard-design.md#44-where-a-design-is-written-down'],
   judgment: judgment(
-    "Is each settled choice, accepted design and architecture written down in its Authoring skill's form?"
+    "Is each design a design document under `docs/design/`, moved only through change documents, linking its decision records, specifications and diagrams in their Authoring skills' forms?"
   )
 }
 
@@ -54,7 +54,7 @@ export const DESIGN: RubricFamily<DesignContext, DesignContext> = {
   code: 'DESIGN',
   title: 'Design shaping',
   description:
-    "Each design starts from a brief, weighs options, is reviewed, is drawn at its kind's levels and leaves its records in Authoring's forms.",
+    "Each design starts from a brief, weighs options, is reviewed, is drawn at its kind's levels and is written down as a design document linking its records in Authoring's forms.",
   standard: 'standard-design.md',
   selectContext: (context) => context,
   items: [DESIGN_1, DESIGN_2, DESIGN_3, DESIGN_4, DESIGN_5]
