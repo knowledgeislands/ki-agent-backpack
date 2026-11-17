@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode CONFORM — bring a base's Streams into line
 
 _On-demand procedure for Streams CONFORM. The shared model lives in [`SKILL.md`](../SKILL.md) and is already loaded._

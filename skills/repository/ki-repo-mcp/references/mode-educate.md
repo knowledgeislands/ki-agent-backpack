@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode EDUCATE — scaffold a new MCP server
 
 _On-demand procedure for mcp's EDUCATE mode. The canonical shape, surface-area model, tool naming, access-level gate, and layer boundaries live in [`SKILL.md`](../SKILL.md) and are already loaded; this file is the procedure only._

@@ -1,11 +1,12 @@
 ---
 name: ki-work-package
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: detected
 ki-guild: work
 ki-depends-on: []
 ki-shared-dependencies: [ki-skills:rubric]
-contributes: ['.ki.toml']
+ki-contributes: ['.ki.toml']
 description: >
   Own the work package of one piece of work, `work/<territory>/<id>/` in the Cairn store: its `_index.md`, holding the
   definition with its routing description, goals, scope and repositories and the state for recovery, its

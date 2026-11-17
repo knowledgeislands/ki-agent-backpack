@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode AUDIT — check a repository against the MCP standard
 
 _On-demand procedure for ki-repo-mcp's AUDIT mode. The canonical shape, surface-area model, tool naming, and access-level gate live in [`SKILL.md`](../SKILL.md) and are already loaded; this file is the procedure only._

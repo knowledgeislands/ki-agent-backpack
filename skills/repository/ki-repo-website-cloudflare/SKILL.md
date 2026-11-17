@@ -1,11 +1,12 @@
 ---
 name: ki-repo-website-cloudflare
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: detected
 ki-guild: repository
 ki-shared-dependencies: [ki-repo-website:site-selection, ki-skills:rubric]
 ki-depends-on: [ki-repo-website]
-contributes: ['.gitignore']
+ki-contributes: ['.gitignore']
 description: >
   Govern Cloudflare Workers Static Assets hosting—not Pages—for either KI website implementation. Use for
   `wrangler.jsonc`, `dist/`, Workers Builds, workers.dev, domains, deploy scripts, or static-deployment

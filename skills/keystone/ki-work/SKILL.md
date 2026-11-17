@@ -1,5 +1,6 @@
 ---
 name: ki-work
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: declaration-only
 ki-guild: keystone
@@ -7,7 +8,7 @@ ki-leads: work
 ki-depends-on: []
 ki-optional-depends-on: [ki-authoring, ki-decision-records, ki-delegation]
 ki-shared-dependencies: [ki-skills:rubric, ki-work-roadmap:work-identifiers]
-contributes: ['.ki.toml']
+ki-contributes: ['.ki.toml']
 description: >
   Lead the Work guild: choose, plan, deliver, accept and recap work. Use `next` to capture prospective work or decide
   what comes next, `plan` to make selected work Ready, `implement` to deliver one Ready record to review, `accept`

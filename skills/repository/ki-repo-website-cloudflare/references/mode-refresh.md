@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode REFRESH — re-anchor Cloudflare hosting
 
 Refresh this skill's Cloudflare-facing facts and house convention.

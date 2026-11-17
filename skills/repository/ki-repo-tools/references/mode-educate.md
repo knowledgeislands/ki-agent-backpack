@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode EDUCATE — scaffold a new tool repo
 
 Create physical regular files at `docs/guides/developer/definition-of-done.md` and `docs/guides/developer/releasing.md`. Supply procedures appropriate to the repository's own delivery and release lifecycle; there is no universal content template.

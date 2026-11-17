@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode CONFORM — align Cloudflare hosting
 
 Bring an existing static-site hosting footprint to the [Cloudflare hosting standard](standards-cloudflare-hosting.md).

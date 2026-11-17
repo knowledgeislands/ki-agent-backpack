@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode CONFORM — repair bounded Claude state
 
 _On-demand procedure for `ki-env-housekeeping-claude` CONFORM. The domain and auto-memory model live in [`SKILL.md`](../SKILL.md) and its standards._

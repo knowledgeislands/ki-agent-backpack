@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode CONFORM - bring a diagram set into line
 
 **Precondition:** run [AUDIT](mode-audit.md) first and retain the gap list.

@@ -1,5 +1,6 @@
 ---
 name: ki-repo-backpack
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: declaration-only
 ki-guild: repository
@@ -7,7 +8,7 @@ ki-runtime-binding: true
 ki-depends-on: [ki-skills, ki-subagents, ki-decision-records, ki-work-roadmap]
 ki-optional-depends-on: [ki-diagrams]
 ki-shared-dependencies: [ki-skills:rubric, ki-diagrams:diagram-receipts, ki-diagrams:staged-diagram-receipts]
-contributes: [skills/README.md, '.githooks/pre-commit']
+ki-contributes: [skills/README.md, '.githooks/pre-commit']
 description: >
   Audit or design a KI-compatible harness that publishes skills, subagents, evals, and hooks as a
   verified installed payload. Use for source layout, prefix identity, declarations, or catalogue publication;

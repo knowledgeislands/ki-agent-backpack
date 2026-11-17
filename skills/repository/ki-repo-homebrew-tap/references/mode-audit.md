@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode AUDIT — check a tap against the standard
 
 _On-demand procedure for ki-repo-homebrew-tap's AUDIT mode. The canonical shape, name constraint, and adjacent coverage boundaries live in [`SKILL.md`](../SKILL.md) and are already loaded; this file is the procedure only._

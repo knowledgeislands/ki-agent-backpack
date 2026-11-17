@@ -1,11 +1,12 @@
 ---
 name: ki-work-recurring
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: declaration-only
 ki-guild: work
 ki-depends-on: []
 ki-shared-dependencies: [ki-work-roadmap:work-identifiers]
-contributes: ['.ki.toml']
+ki-contributes: ['.ki.toml']
 description: >
   Govern recurring-work identity, cadence, due-run reservation, and successful-run evidence for Project templates
   and opted-in KB Activities. Use for recurring maintenance; `ki-repo-kb-activities` owns Activity notes and

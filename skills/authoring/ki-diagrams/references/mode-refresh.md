@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode REFRESH - regenerate stale diagrams, or re-anchor the standard
 
 **Precondition:** re-anchoring edits this skill's own canonical files, which exist only in `ki-agent-backpack`. Invoked from an installed copy, it stops there and names the harness as where to run it; regenerating an adopting repository's own diagrams is the only REFRESH work done elsewhere.

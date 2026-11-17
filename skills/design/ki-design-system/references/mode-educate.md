@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode EDUCATE - establish a design system
 
 1. Confirm the repository has a user interface and a token source. Without a token source, stop: establish one first, with `ki-repo-website-content` for a content site or the repository's own toolchain otherwise.

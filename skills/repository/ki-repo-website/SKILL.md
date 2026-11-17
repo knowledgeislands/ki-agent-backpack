@@ -1,14 +1,15 @@
 ---
 name: ki-repo-website
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: detected
 ki-guild: repository
 ki-shared-modules: [site-selection]
 ki-shared-dependencies: [ki-skills:rubric]
 ki-depends-on: []
-owns: []
-contributes: ['.ki.toml', '.gitignore', package.json]
-requires: []
+ki-owns: []
+ki-contributes: ['.ki.toml', '.gitignore', package.json]
+ki-requires: []
 description: >
   Govern the generator-neutral KI website seam: source root, reproducible `dist/`, and `ki:site:build`,
   `ki:site:dev`, and `ki:site:clean`. Use before choosing `ki-repo-website-content` or `ki-repo-website-app`;

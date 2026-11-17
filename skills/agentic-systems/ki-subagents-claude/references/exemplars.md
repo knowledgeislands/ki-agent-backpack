@@ -1,3 +1,7 @@
+---
+ki-document-type: exemplars@2026-11-17T00:55:00Z
+---
+
 # Claude projection examples
 
 Project a role already approved through `ki-subagents` into Claude Markdown/YAML:

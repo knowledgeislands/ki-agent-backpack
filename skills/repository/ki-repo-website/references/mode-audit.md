@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # AUDIT
 
 1. Run `ki repo audit --skill ki-repo-website --repo <repo>`; confirm `site-root` is safe, the root `ki:site:*` aliases are present, and the selected site's manifest and `dist/` ignore seam agree.

@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Repository REVIEW procedure
 
 _On-demand REVIEW procedure for `ki-repo`. The repository compliance standard and universal modes live in [`SKILL.md`](../SKILL.md); REVIEW inspects purpose, architecture, human comprehension, and implementation without turning judgement into compliance rules._

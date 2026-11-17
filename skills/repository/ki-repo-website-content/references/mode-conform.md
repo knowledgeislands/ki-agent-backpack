@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode CONFORM — bring the site up to standard
 
 **Precondition:** Run [Mode AUDIT](mode-audit.md) first so the change starts from a concrete gap list.

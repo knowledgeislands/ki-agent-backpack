@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode AUDIT — check Decision Records against the standard
 
 _On-demand procedure for the decision-records AUDIT mode. The format standard, prefix table, naming convention, index rule, and placement rule live in [`SKILL.md`](../SKILL.md) and are already loaded; this file is the procedure only._

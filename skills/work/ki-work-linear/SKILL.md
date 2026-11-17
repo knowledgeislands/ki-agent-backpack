@@ -1,11 +1,12 @@
 ---
 name: ki-work-linear
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: declaration-only
 ki-guild: work
 ki-depends-on: []
 ki-shared-dependencies: [ki-skills:rubric]
-contributes: ['.ki.toml']
+ki-contributes: ['.ki.toml']
 description: >
   Define Linear configuration, lifecycle mapping, hierarchy, dependencies, review, closure, and remote-write
   safety as a KI work adapter. Use when Linear is selected; remote execution is unavailable, while local files

@@ -1,13 +1,14 @@
 ---
 name: ki-repo-website-app
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: detected
 ki-guild: repository
 ki-shared-dependencies: [ki-skills:rubric]
 ki-depends-on: [ki-repo-website]
-owns: [vite.config.ts, vite.config.js, vite.config.mjs, vite.config.mts]
-contributes: ['.ki.toml', package.json]
-requires: []
+ki-owns: [vite.config.ts, vite.config.js, vite.config.mjs, vite.config.mts]
+ki-contributes: ['.ki.toml', package.json]
+ki-requires: []
 description: >
   Govern the KI interactive website implementation: one client-side React application bundled by Vite to
   `dist/`. Use for dashboards or single SPAs; select it instead of `ki-repo-website-content`, with

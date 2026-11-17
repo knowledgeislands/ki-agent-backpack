@@ -1,3 +1,7 @@
+---
+ki-document-type: exemplars@2026-11-17T00:55:00Z
+---
+
 # Exemplars
 
 These illustrate [the Diagrams standard](standards-diagrams.md) but do not add requirements.

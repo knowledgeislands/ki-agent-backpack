@@ -1,11 +1,12 @@
 ---
 name: ki-repo-kb-principal
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: declaration-only
 ki-guild: repository
 ki-depends-on: [ki-repo-kb, ki-decision-records]
 ki-shared-dependencies: [ki-skills:rubric]
-owns: ['+/_ACQUIRED/README.md']
+ki-owns: ['+/_ACQUIRED/README.md']
 description: >
   Audit or conform a designated principal KI knowledge base's governance overlay: territorial Charter,
   Known Lands inventory and signposting, memory root, acquired-packet scaffold, and Enactment gate. Use for principal governance

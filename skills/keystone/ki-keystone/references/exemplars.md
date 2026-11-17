@@ -1,3 +1,7 @@
+---
+ki-document-type: exemplars@2026-11-17T00:55:00Z
+---
+
 # Bootstrap exemplars
 
 These examples illustrate the scope boundaries in [the bootstrap standard](standard-bootstrap.md). For the exact options supported by an installed release, use `ki --help`.

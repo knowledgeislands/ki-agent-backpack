@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode CONSOLIDATE - bring the collection back to "what is"
 
 _On-demand and recurring procedure for decision-records' CONSOLIDATE mode. The present-state, self-contained-collection and writing rules live in [the Decision Records standard](standards-decision-records.md); this file is the procedure only._

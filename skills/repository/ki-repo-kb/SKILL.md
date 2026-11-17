@@ -1,12 +1,13 @@
 ---
 name: ki-repo-kb
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: detected
 ki-guild: repository
 ki-shared-dependencies: [ki-skills:rubric]
 ki-depends-on: [ki-repo-kb-activities, ki-repo-kb-live-artifacts, ki-repo-kb-streams]
-owns: ['-/_DIGESTS/README.md']
-contributes: ['.githooks/pre-commit']
+ki-owns: ['-/_DIGESTS/README.md']
+ki-contributes: ['.githooks/pre-commit']
 description: >
   Create, query, update, distil, or audit a KI knowledge base using Calendar, Pillars, Resources, Streams, and
   directional `+` and `-` areas. Use for notes, session digests, search, or zone conformance;

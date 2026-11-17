@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode AUDIT - check a design system
 
 Read [the Design System standard](standards-design-system.md) and [the rubric](rubric.md) first.

@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode CONFORM — repair structural gaps
 
 _On-demand procedure for live-artifacts CONFORM. The live artifact model — pairing convention, required frontmatter, index note, and project bindings — lives in [`SKILL.md`](../SKILL.md) and is already loaded._

@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode AUDIT — check activity notes
 
 Read the [Activity standard](standards-activities.md) and [rubric](rubric.md) first.

@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode CONFORM — bring an existing tap up to standard
 
 **Precondition:** Run [Mode AUDIT](mode-audit.md) first so every change starts from a known gap list.

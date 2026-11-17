@@ -1,12 +1,13 @@
 ---
 name: ki-trades
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: declaration-only
 ki-guild: work
 ki-depends-on: []
 ki-shared-dependencies: [ki-skills:rubric]
-contributes: [".ki.toml"]
-owns: ["+/_TRADES/README.md", "-/_TRADES/README.md"]
+ki-contributes: [".ki.toml"]
+ki-owns: ["+/_TRADES/README.md", "-/_TRADES/README.md"]
 description: >
   Govern directional work and knowledge trades between KI repositories: routes, records, authority, receipt,
   decisions, release, and pruning. Use to design or audit the system; `ki-trade` performs one side and

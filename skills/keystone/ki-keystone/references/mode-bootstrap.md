@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Bootstrap
 
 `ki-keystone bootstrap` explains first-time Knowledge Islands activation through the `ki` CLI: user bootstrap, verified backpack selection, skills, and repository governance. It was the `ki-bootstrap` skill until Keystone folded it into its lead (BOOTSTRAP-FOLD). It changes no user or repository state.

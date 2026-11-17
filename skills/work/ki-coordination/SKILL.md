@@ -1,11 +1,12 @@
 ---
 name: ki-coordination
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: declaration-only
 ki-guild: work
 ki-depends-on: [ki-delegation, ki-work-package]
 ki-shared-dependencies: [ki-skills:rubric]
-contributes: ['.ki.toml']
+ki-contributes: ['.ki.toml']
 description: >
   Govern coordinating work under the Knowledge Islands work model: the responsive coordinator and its turn budget, the
   work levels and forms with their ids, openers and bootstrap, the seven states and the receive words, the mark and the one

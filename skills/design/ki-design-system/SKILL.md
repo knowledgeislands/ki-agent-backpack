@@ -1,11 +1,12 @@
 ---
 name: ki-design-system
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: declaration-only
 ki-guild: design
 ki-depends-on: []
 ki-shared-dependencies: [ki-skills:rubric]
-contributes: ['.ki.toml']
+ki-contributes: ['.ki.toml']
 description: >
   Create, audit or refresh how a repository keeps its user-interface design: the token source, the design guide,
   the component library sorted by atomic design, shells and their state, design Specifications and Decision Records,

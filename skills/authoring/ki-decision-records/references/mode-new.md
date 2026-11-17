@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode NEW — draft a new Decision Record
 
 _On-demand procedure for decision-records' NEW mode. The prefix table, naming convention, and placement rule live in [`SKILL.md`](../SKILL.md) and are already loaded; the full format with required sections and writing guidance is in [the Decision Records standard](standards-decision-records.md)._

@@ -1,13 +1,14 @@
 ---
 name: ki-authoring
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: baseline
 ki-guild: keystone
 ki-leads: authoring
 ki-depends-on: []
 ki-shared-dependencies: [ki-skills:rubric]
-owns: ['.editorconfig', '.rumdl.toml']
-contributes: ['.githooks/pre-commit']
+ki-owns: ['.editorconfig', '.rumdl.toml']
+ki-contributes: ['.githooks/pre-commit']
 description: >
   Lead the Authoring guild and govern KI document formats, Markdown, TOML, README composition, industry white papers,
   and durable knowledge placement. Use to format or audit authored documents, shape a README, decide where learning

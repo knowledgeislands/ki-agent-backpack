@@ -1,13 +1,14 @@
 ---
 name: ki-repo-website-content
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: detected
 ki-guild: repository
 ki-shared-dependencies: [ki-repo-website:site-selection, ki-skills:rubric]
 ki-depends-on: [ki-repo-website]
-owns: [eleventy.config.ts, eleventy.config.js, eleventy.config.mjs, eleventy.config.cjs]
-contributes: ['.ki.toml', package.json]
-requires: [ROADMAP.md]
+ki-owns: [eleventy.config.ts, eleventy.config.js, eleventy.config.mjs, eleventy.config.cjs]
+ki-contributes: ['.ki.toml', package.json]
+ki-requires: [ROADMAP.md]
 description: >
   Govern KI content sites built with Eleventy 3, Markdown or data, Nunjucks, Tailwind 4 tokens, and portable
   `dist/`. Use for documentation, publication, or marketing pages; use `ki-repo-website-app` for a React/Vite

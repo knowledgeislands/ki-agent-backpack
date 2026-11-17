@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode CONFORM — bring Decision Records into line
 
 **Precondition:** run [Mode AUDIT](mode-audit.md) first and retain its findings.

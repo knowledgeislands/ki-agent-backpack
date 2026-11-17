@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode EDUCATE - start a diagram set
 
 1. Confirm Archify is installed (`[skill.archify]` in the Rig skills configuration, source `tt-a1i/archify`). Without it, stop and give that install instruction.

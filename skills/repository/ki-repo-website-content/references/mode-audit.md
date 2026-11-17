@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode AUDIT — check the site against the standard
 
 _On-demand procedure for `ki-repo-website-content`'s AUDIT mode. The hosted rubric inspects the site-build delta; separate skills and explicit build or hosting checks remain distinct._

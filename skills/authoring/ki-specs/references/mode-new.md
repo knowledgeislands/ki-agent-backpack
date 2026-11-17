@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode NEW — draft a requirement area
 
 Read the [Specifications standard](standards-specs.md) and [exemplars](exemplars.md) first.

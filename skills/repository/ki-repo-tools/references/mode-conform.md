@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode CONFORM — bring an existing tool repository up to standard
 
 Missing developer delivery guides remain report-only: author repository-specific procedures at `docs/guides/developer/definition-of-done.md` and `docs/guides/developer/releasing.md`. CONFORM does not invent or standardise their contents.

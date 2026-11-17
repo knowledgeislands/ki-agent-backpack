@@ -1,5 +1,6 @@
 ---
 name: ki-repo
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: baseline
 ki-guild: keystone
@@ -8,9 +9,9 @@ ki-detects: [ki-decision-records, ki-engineering, ki-guides, ki-repo-homebrew-ta
 ki-runtime-binding: true
 ki-depends-on: [ki-authoring, ki-git]
 ki-shared-dependencies: [ki-skills:rubric, ki-work-roadmap:work-identifiers]
-owns: ['.gitignore']
-contributes: ['.ki.toml']
-requires: ['.githooks/pre-commit']
+ki-owns: ['.gitignore']
+ki-contributes: ['.ki.toml']
+ki-requires: ['.githooks/pre-commit']
 description: >
   Lead the Repository guild and audit or conform the universal KI repository contract declared by `.ki.toml`, including
   setup, GitHub settings, and top-level `+` and `-` working areas. Use for whole-repository review or to find the skill

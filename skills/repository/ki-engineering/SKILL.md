@@ -1,13 +1,14 @@
 ---
 name: ki-engineering
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: detected
 ki-guild: repository
 ki-depends-on: []
 ki-shared-dependencies: [ki-skills:rubric]
-owns: [mise.toml, tsconfig.json, biome.json, knip.json, commitlint.config.ts]
-contributes: ['.ki.toml', '.gitignore', package.json, '.githooks/pre-commit', '.githooks/commit-msg']
-requires: ['tooling/depcruise/package.json']
+ki-owns: [mise.toml, tsconfig.json, biome.json, knip.json, commitlint.config.ts]
+ki-contributes: ['.ki.toml', '.gitignore', package.json, '.githooks/pre-commit', '.githooks/commit-msg']
+ki-requires: ['tooling/depcruise/package.json']
 description: >
   Audit or conform KI TypeScript/Bun engineering: modularity, reuse, boundary testing, package scripts,
   tsconfig, Biome, and toolchain consistency. Use `ki-repo` for repository configuration, `ki-authoring` for

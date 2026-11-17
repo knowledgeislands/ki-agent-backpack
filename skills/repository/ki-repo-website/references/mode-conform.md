@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # CONFORM
 
 Conform never materialises the implicit `apps/site` default. It writes `site-root` only when an explicit non-default root has been selected.

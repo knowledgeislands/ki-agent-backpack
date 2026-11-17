@@ -1,11 +1,12 @@
 ---
 name: ki-repo-specifications
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: detected
 ki-guild: repository
 ki-depends-on: []
 ki-shared-dependencies: [ki-skills:rubric]
-contributes: [.ki.toml, '.githooks/pre-commit']
+ki-contributes: [.ki.toml, '.githooks/pre-commit']
 description: >
   Audit or scaffold the KI Specifications repository container: proposals, specifications, schemas, templates,
   examples, docs, and tooling. Use `ki-specs` for requirement records, `ki-decision-records` for decisions,

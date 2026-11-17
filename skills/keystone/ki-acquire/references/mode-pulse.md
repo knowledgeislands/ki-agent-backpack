@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Pulse
 
 `ki-acquire pulse` runs one bounded, on-demand knowledge-acquisition pulse and retains no standing state. It was the `ki-pulse` process skill until the Acquire guild folded it into its lead (PROCESS-SUBCOMMANDS). Read [the Pulse standard](standards-pulse.md) before Capture, Scan, or Triage. It defines the invocation-scoped brief, common signal shape, evidence rules, dispositions, and destination owners.

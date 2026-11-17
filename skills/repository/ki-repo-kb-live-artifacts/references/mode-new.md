@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode NEW — author a new live artifact
 
 _On-demand procedure for live-artifacts' NEW mode. The pairing convention, required frontmatter, and artifacts directory path live in [`SKILL.md`](../SKILL.md) and are already loaded; this file is the procedure only._

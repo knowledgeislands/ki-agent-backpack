@@ -1,11 +1,12 @@
 ---
 name: ki-repo-tools
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: detected
 ki-guild: repository
 ki-depends-on: []
 ki-shared-dependencies: [ki-skills:rubric]
-contributes: ['.githooks/pre-commit']
+ki-contributes: ['.githooks/pre-commit']
 description: >
   Audit or scaffold a KI `tools-*` repository containing one CLI, installer, releases, changelog, CI, help,
   completion, and optional manual. Use `ki-repo-homebrew-tap` for formulae, `ki-engineering` for

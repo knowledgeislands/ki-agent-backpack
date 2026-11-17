@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode AUDIT — check a repository against the standard
 
 The mechanical audit treats missing or non-regular `docs/guides/developer/definition-of-done.md` and `docs/guides/developer/releasing.md` as FAIL findings. It verifies only their exact paths and safe file type; review their repository-defined contents against the shared checklists in the judgment pass.

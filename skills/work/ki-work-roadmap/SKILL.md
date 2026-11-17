@@ -1,12 +1,13 @@
 ---
 name: ki-work-roadmap
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: declaration-only
 ki-guild: work
 ki-depends-on: []
 ki-shared-modules: [work-identifiers, roadmap-areas]
 ki-shared-dependencies: [ki-skills:rubric]
-owns: ['ROADMAP.md']
+ki-owns: ['ROADMAP.md']
 description: >
   Govern flat local work items, roadmap horizons, lifecycle detail, dependencies, root orientation, and
   done-before-prune commit boundaries. Use to audit or shape roadmap records; `ki-work next`, `ki-work plan`,

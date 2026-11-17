@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode AUDIT — check a base against the structure model
 
 _On-demand procedure for the KB AUDIT mode. The five-zone structure, routing test, memory cascade, project bindings, and context-loading procedure live in [`SKILL.md`](../SKILL.md) and are already loaded._

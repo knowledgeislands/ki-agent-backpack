@@ -1,5 +1,6 @@
 ---
 name: ki-repo-kb-live-artifacts
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: declaration-only
 ki-guild: repository

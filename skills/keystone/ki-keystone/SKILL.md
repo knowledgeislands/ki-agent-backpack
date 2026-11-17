@@ -1,5 +1,6 @@
 ---
 name: ki-keystone
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: baseline
 ki-guild: keystone

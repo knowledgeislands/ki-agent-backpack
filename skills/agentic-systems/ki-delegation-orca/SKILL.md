@@ -1,5 +1,6 @@
 ---
 name: ki-delegation-orca
+ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: process
 ki-applicability: invocation-only
 ki-guild: agentic-systems

@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Next
 
 `ki-work next` is a subcommand of the Work guild's lead. It was the `ki-next` process skill until the guild folded it into `ki-work` (PROCESS-SUBCOMMANDS), and keeps that skill's procedure and boundaries.

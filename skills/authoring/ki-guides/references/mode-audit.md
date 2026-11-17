@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode AUDIT — check guides
 
 Where a guide depends on stable behaviour, follow its applicable existing Specification; otherwise record the contract gap for `ki-specs` without demanding an unrelated Specification corpus.

@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # REFRESH — re-anchor Codex housekeeping
 
 ## Preconditions

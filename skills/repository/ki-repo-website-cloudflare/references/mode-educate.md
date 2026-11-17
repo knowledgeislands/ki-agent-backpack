@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode EDUCATE — scaffold Cloudflare hosting
 
 Scaffold Cloudflare Workers Static Assets hosting for a new Knowledge Islands site. Follow this once per site; subsequent changes are handled by CONFORM or AUDIT. The full contract is in [the Cloudflare hosting standard](standards-cloudflare-hosting.md).

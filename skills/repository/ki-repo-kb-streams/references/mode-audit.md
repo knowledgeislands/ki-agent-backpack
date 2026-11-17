@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode AUDIT — check a base's Streams against the model
 
 _On-demand procedure for Streams AUDIT. The shared model lives in [`SKILL.md`](../SKILL.md) and is already loaded._

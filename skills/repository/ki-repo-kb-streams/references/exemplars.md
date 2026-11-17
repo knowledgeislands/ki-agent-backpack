@@ -1,3 +1,7 @@
+---
+ki-document-type: exemplars@2026-11-17T00:55:00Z
+---
+
 # Streams container exemplars
 
 These illustrations show the KB placement contract. They do not prescribe a base's repository code, roadmap areas, topical vocabulary, or historic migration map.

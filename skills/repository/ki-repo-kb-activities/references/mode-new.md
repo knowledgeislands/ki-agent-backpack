@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode NEW — author a new activity note
 
 Read the [Activity standard](standards-activities.md) first; this file contains only the NEW procedure.

@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode REVIEW — assess a skill's evolution
 
 Use REVIEW for an existing skill or skill set when the question is architectural evolution rather than rubric conformance alone.

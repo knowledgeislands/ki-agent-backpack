@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode AUDIT — inspect Cloudflare hosting
 
 Check one repository's static-site hosting without launching Wrangler or changing Cloudflare.

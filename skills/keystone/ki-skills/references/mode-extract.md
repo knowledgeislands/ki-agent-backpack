@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode EXTRACT — find reusable capabilities in a project
 
 Use EXTRACT to inspect a repository for reusable capabilities. It is opt-in for history: `extract <repo>` inspects current repository material only; `--history <path>` permits reading only the named history input.

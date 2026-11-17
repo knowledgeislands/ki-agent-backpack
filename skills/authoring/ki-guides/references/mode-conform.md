@@ -1,3 +1,7 @@
+---
+ki-document-type: mode@2026-11-17T00:55:00Z
+---
+
 # Mode CONFORM — bring guides into line
 
 Preserve a guide whose stable behaviour has no existing Specification and route that contract gap to `ki-specs`; do not invent a speculative corpus during CONFORM.
