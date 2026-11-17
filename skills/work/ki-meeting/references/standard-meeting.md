@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T00:36:20Z
+ki-revised: 2026-11-17T03:30:00Z
 ki-status: in force
 ---
 
@@ -207,6 +207,15 @@ How participants reach each other, three levels, the first that works:
 6. **A correction names what it corrects** (TRIAL-LESSONS, Kris, 14 November 2026): the message it corrects, by its file name.
 7. **Times come from the clock** (TIMES-CLOCK, Kris, 14 November 2026). Every time recorded in a message, the entry file or the minutes comes from `date -u` or from Git, never from memory; any other time is marked "about".
 
+The old message queue's best parts come into meetings here (MSG-HOME, Kris, 15 November 2026: "take [the] best bits from [the queue] and bring it into the meeting standards on messaging"):
+
+8. **Important first.** A message that must be taken before the others says so with `IMPORTANT` on its first line, and is kept for what changes how the others work, such as a stop, a redirect or a change of method. Each participant takes important messages first, one at a time in the order of their times and never grouped, then the rest in order.
+9. **Urgent is earned.** A message is urgent only when it carries a stated deadline or a change of method the others must follow; not everything is an escalation. Its sender writes `URGENT` on its first line, which also makes it important, and wakes its recipient by the recipient's route at once ([4.6](#46-routes)) rather than waiting for its next listen; where the recipient has not answered within its interval ([4.9](#49-listening-and-check-ins)), the chair tells the owner.
+10. **The answer is the receipt.** No message is acknowledged on its own: a participant shows it has taken a message by answering it, naming the message it answers (item 3), and the caller ticks the ask off. Joining a sitting acknowledges its opening ([4.1](#41-when-to-meet)).
+11. **Taking an ask.** An ask grants no authority, and a participant never refuses one whole. It does what its remit in the meeting covers; the part only the owner can decide becomes a choice left to the owner with its recommendation ([4.14](#414-minutes)); and only the part it judges is not its own goes back, once and with the reason, after it has done the rest.
+12. **A change of method.** When a standard the meeting runs by changes during it, the chair posts one important message pointing to the standard at its revision, never restating it, and each participant reads it before its next piece of work and says so in its next message.
+13. **A message is its file.** For a participant in the room, a message counts once its file is in `messages/`: a nudge through an agent host's messaging names that file, and a sender that only nudged has not sent. An answer given only through a backend is not progress until it is on a surface the owner reads.
+
 [Back to contents](#contents)
 
 ### 4.9 Listening and check-ins
@@ -216,6 +225,7 @@ How participants reach each other, three levels, the first that works:
 3. **The agenda states** each participant's interval, the longest a message waits for it, and when its listening ends.
 4. **Sessions outside the room** do not watch it.
 5. **Check-ins.** While work is running, as in a workshop's round, every 15 minutes the caller posts `<caller> → all: check-in` in the folder and sends each participant outside the room a short note by its host's messaging; each replies with what is done, what it is doing and what blocks it, or "nothing". A participant that wrote in the last 15 minutes may skip it. Between rounds, with no work running, the caller sends a check-in only when there is news, since an empty one wakes every participant for nothing (CHECKIN-QUIET, Kris, 16 November 2026).
+6. **At each wake** (MSG-HOME, Kris, 15 November 2026). Each time a participant wakes or is prompted, it reads the messages new since it last read, important ones first and then in the order of their times ([4.8](#48-messages)), and acts on them without stopping work already running.
 
 [Back to contents](#contents)
 
