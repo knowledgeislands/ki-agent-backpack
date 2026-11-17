@@ -122,7 +122,7 @@ Almost everything is fixed by the structure above. Only these come from the host
 
 ## Step 1 - Load context
 
-1. The host's root `AGENTS.md`, which every agent host loads and a Claude-only `CLAUDE.md` imports, is the authority on the bindings above; follow it. Read the root `Admin/MEMORY.md` for active Pillars.
+1. The host's root `AGENTS.md`, which every agent host loads and a runtime-specific `CLAUDE.md` imports, is the authority on the bindings above; follow it. Read the root `Admin/MEMORY.md` for active Pillars.
 2. If the base is Pillar-scoped, declare or confirm the active Pillar, then load `Pillars/<Pillar>/MEMORY.md` and any profile index. Confirm: "Session scoped to [Pillar]." If the user switches Pillar mid-session, re-scope before proceeding.
 3. Pre-flight before writing anything substantive: scope cascade loaded; if the work engages a named person/entity with a profile note, read it first; run any domain pre-flight declared in `.ki.toml` (`preflight`) or the host's `AGENTS.md`.
 

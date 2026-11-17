@@ -50,7 +50,7 @@ A base declaring `sources` in `[skills.ki-repo].store_roles` follows the [source
 
 ## Onboarding a base to this skill
 
-Because the zone model is fixed, onboarding is small - resolve only the **project bindings**, ideally in the base's root `AGENTS.md`, which every agent host loads; a `CLAUDE.md` imports it and keeps only what is Claude's own (see `ki-repo`'s repository standard):
+Because the zone model is fixed, onboarding is small - resolve only the **project bindings**, ideally in the base's root `AGENTS.md`, which every agent host loads; a `CLAUDE.md` imports it and keeps only its runtime-specific additions (see `ki-repo`'s repository standard):
 
 1. **Notes store** - the canonical alias and location of the notes store, and the alias rule (always use the alias, never the raw mount).
 2. **Sources store** - whether a paired sources store is declared, following [Source mirrors](#source-mirrors).
