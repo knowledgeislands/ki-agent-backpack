@@ -1,5 +1,6 @@
 import type { RubricPublicationContext } from '../../shared/rubric.ts'
 import type { SkillDependencyNode, SkillMention } from './dependencies.ts'
+import type { SkillFormatsRubricContext } from './formats.ts'
 import type { ParsedFrontmatter } from './frontmatter.ts'
 import type { RefreshContext } from './longevity.ts'
 import { hintVerbs, isProcessSkill } from './modes.ts'
@@ -322,6 +323,7 @@ type KiSkillsRubricFacets = {
   shape: KiShapeRubricContext
   collision: CollisionRubricContext
   longevity: LongevityRubricContext
+  formats: SkillFormatsRubricContext
 }
 
 /** A subject supplies only the evidence facets declared by its applicable families. */

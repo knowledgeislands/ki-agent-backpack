@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-14T03:24:34Z
+ki-revised: 2026-11-17T00:55:00Z
 ki-status: in force
 ---
 
@@ -43,6 +43,7 @@ The conventions a Knowledge Islands skill follows beyond the portable contract.
 - The portable Agent Skills contract and established practice: [the Agent Skills standard](standard-agent-skills.md).
 - The `.ki.toml` contract: `ki-repo`.
 - The standard and sources formats: `ki-authoring`.
+- The formats of a skill's own files, `SKILL.md`, a mode file, `exemplars.md` and `rubric.md`: the [skill](standard-formats-skill.md), [mode](standard-formats-mode.md), [exemplars](standard-formats-exemplars.md) and [rubric](standard-formats-rubric.md) formats.
 
 [Back to contents](#contents)
 
@@ -94,10 +95,10 @@ A **governance skill** — one that holds a house standard — exposes a common 
 Every top-level Markdown file in a Knowledge Islands skill's `references/` directory belongs to this closed vocabulary:
 
 - `standard-<topic>.md` holds a normative standard, process doctrine, artifact format, or shared mode contract, and follows the [standard format](../../ki-authoring/references/standard-formats-standard.md). The older plural, `standards-<topic>.md`, is accepted until each standard is next changed and renamed.
-- `rubric.md` is the generated readable publication of executable pass/fail criteria.
+- `rubric.md` is the generated readable publication of executable pass/fail criteria, in the [rubric format](standard-formats-rubric.md).
 - `sources.md` tracks provenance, refresh state and the decisions behind the standards, and follows the [sources format](../../ki-authoring/references/standard-formats-sources.md).
-- `exemplars.md` holds optional worked examples.
-- `mode-<verb>.md` holds exactly one independently invoked procedure; combined names such as `mode-audit-conform.md` are split, and each procedure states its own preconditions.
+- `exemplars.md` holds optional worked examples, in the [exemplars format](standard-formats-exemplars.md).
+- `mode-<verb>.md` holds exactly one independently invoked procedure, in the [mode format](standard-formats-mode.md); combined names such as `mode-audit-conform.md` are split, and each procedure states its own preconditions.
 - `<topic>-proposal.md` holds a proposal awaiting a decision, such as a naming proposal; it settles nothing, and goes once its decisions are recorded (KNOWLEDGE-FOLDER).
 
 A skill that holds a knowledge graph keeps it in `knowledge/` at the skill's top level, its own area outside `references/`: the graph's root definition, `knowledge/_graph.md`, and its cards, each named `<id>.md` with its front-matter `id` equal to that name, as the `ki-knowledge-graph` standard sets. The root definition opens the graph, and a file is one of its cards only when its id matches its name. Only the graph sits in `knowledge/`; the skill's standards, sources, rubric, proposals and everything else stay in `references/` under the vocabulary above (KNOWLEDGE-FOLDER). Inside `knowledge/` there is a folder for each subgraph the root definition declares, as `knowledge/industry/industry.session.md`, and a graph without subgraphs sits flat; ids and front-matter links never change with a card's folder, and only relative Markdown links follow it (GRAPH-FOLDERS). A knowledge skill always holds such a graph; any other skill may hold one, as `ki-knowledge-graph` holds the concepts its own standard relies on. (KNOWLEDGE-KIND; KG-HOME)

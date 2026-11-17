@@ -9,6 +9,7 @@ import {
   type KiSkillsRubricContext
 } from './contexts.ts'
 import { type SkillDependencyNode, skillMentions } from './dependencies.ts'
+import { inspectSkillFormats, kiSkillField } from './formats.ts'
 import { type ParsedFrontmatter, parseFrontmatter } from './frontmatter.ts'
 import { scriptHelpEvidence } from './scripts.ts'
 import { listMarkdownFiles } from './skill-files.ts'
@@ -329,9 +330,9 @@ const createKiShapeEvidence = (
     supportedRuntimesPresent: frontmatter.present.has('ki-supported-runtimes'),
     supportedRuntimes: (frontmatter.keys.get('ki-supported-runtimes') ?? '').trim(),
     runtimeBinding: frontmatter.values['ki-runtime-binding'] === true,
-    owns: frontmatterList(frontmatter.keys.get('owns')),
-    contributes: frontmatterList(frontmatter.keys.get('contributes')),
-    requires: frontmatterList(frontmatter.keys.get('requires')),
+    owns: frontmatterList(kiSkillField(frontmatter, 'owns')),
+    contributes: frontmatterList(kiSkillField(frontmatter, 'contributes')),
+    requires: frontmatterList(kiSkillField(frontmatter, 'requires')),
     implementationSource: implementationSource || null
   }
 }
@@ -432,7 +433,8 @@ export const createSkillRubricContext = (
         skill: createKiShapeEvidence(directory, frontmatter, body, dependencyGraph),
         addArgumentHintVerbs: capabilities.addArgumentHintVerbs
       }),
-      size: { bodyLines: body.split(/\r?\n/).length, bodyTokens: estimateTokens(body) }
+      size: { bodyLines: body.split(/\r?\n/).length, bodyTokens: estimateTokens(body) },
+      formats: inspectSkillFormats(directory, content, frontmatter, (name ?? '').startsWith('ki-'))
     }
   }
 }

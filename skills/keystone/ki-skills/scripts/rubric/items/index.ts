@@ -4,6 +4,7 @@ import { createKiSkillsSession } from '../contexts/subjects.ts'
 import { BODY } from './body.ts'
 import { COLLISION } from './collision.ts'
 import { DESC } from './description.ts'
+import { SKILL_FORMATS } from './formats.ts'
 import { FRONTMATTER } from './frontmatter.ts'
 import { KI_CHECKER } from './ki-checker.ts'
 import { KI_INVOKE } from './ki-invoke.ts'
@@ -40,6 +41,7 @@ export default {
     KI_LINK,
     PORTABILITY,
     KI_SHAPE,
+    SKILL_FORMATS,
     KI_INVOKE,
     PROCESS,
     COLLISION,

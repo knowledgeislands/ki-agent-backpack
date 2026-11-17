@@ -3,6 +3,7 @@ import { basename, dirname, extname, join, relative, resolve, sep } from 'node:p
 import type { RubricContextOptions, RubricSession, RubricSubject } from '../../shared/rubric.ts'
 import { type ConformDocumentState, createConformDocumentState, createSkillConformState } from './conform.ts'
 import { createKiShapeContext, type KiSkillsRubricContext } from './contexts.ts'
+import { kiSkillField } from './formats.ts'
 import { parseFrontmatter } from './frontmatter.ts'
 import { createRefreshContext } from './longevity.ts'
 import { createSkillRubricContext, frontmatterList, skillDependencyNode } from './skill.ts'
@@ -29,7 +30,21 @@ type KiSkillsSubject = RubricSubject<KiSkillsRubricContext> & {
 const KI_SKILLS_SUBJECT_FAMILIES = {
   target: ['LAY'],
   invalidSkill: ['LAY', 'FM'],
-  skill: ['LAY', 'FM', 'NAME', 'DESC', 'OPT', 'SIZE', 'BODY', 'SCRIPT', 'KI-CHECKER', 'KI-SHAPE', 'KI-INVOKE', 'PROC'],
+  skill: [
+    'LAY',
+    'FM',
+    'NAME',
+    'DESC',
+    'OPT',
+    'SIZE',
+    'BODY',
+    'SCRIPT',
+    'KI-CHECKER',
+    'KI-SHAPE',
+    'KI-INVOKE',
+    'PROC',
+    'SKILL-FMT'
+  ],
   rubric: ['RUBRIC'],
   markdown: ['LAY', 'KI-LINK'],
   reference: ['LAY', 'KI-LINK', 'REF'],
@@ -83,7 +98,9 @@ const markdownSubject = ({
 const ownershipCollisions = (directories: readonly string[]): { file: string; skills: string[] }[] => {
   const byFile = new Map<string, Set<string>>()
   for (const directory of directories) {
-    const owns = frontmatterList(parseFrontmatter(readFileSync(join(directory, 'SKILL.md'), 'utf8')).keys.get('owns'))
+    const owns = frontmatterList(
+      kiSkillField(parseFrontmatter(readFileSync(join(directory, 'SKILL.md'), 'utf8')), 'owns')
+    )
     for (const file of owns) {
       if (!byFile.has(file)) byFile.set(file, new Set())
       byFile.get(file)?.add(basename(directory))

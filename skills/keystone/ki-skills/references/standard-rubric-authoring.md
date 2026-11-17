@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-09T22:38:25Z
+ki-revised: 2026-11-17T00:55:00Z
 ki-status: in force
 ---
 
@@ -448,7 +448,7 @@ The structured TypeScript definition is the authored source.
 
 The required projection is the readable `references/rubric.md` publication.
 
-It is generated from the structured catalogue, begins with a conspicuous notice that the canonical definitions live under `scripts/rubric/`, and has an exact read-only parity check.
+It is generated from the structured catalogue, in the [rubric format](standard-formats-rubric.md), begins after its front matter with a conspicuous notice that the canonical definitions live under `scripts/rubric/`, and has an exact read-only parity check.
 
 The `ki-skills` exemplar's `RUBRIC-1` makes missing or differing publication bytes a FAIL. During CONFORM, the item requests only a host-injected derived-publication capability; `ki` validates the catalogue, chooses the target and bytes, and publishes each derived write atomically through its guarded incremental publisher. A later failure retains earlier safe writes, then re-audits and reports the remaining state; the host does not roll those writes back.
 
@@ -557,7 +557,7 @@ A skill adopts the host contract atomically. There is no Markdown-policy fallbac
 
 The readable `references/rubric.md` remains useful for people and agents, but it is generated rather than maintained alongside the TypeScript catalogue.
 
-Its first content is a generated notice naming `scripts/rubric/` as the canonical definition and directing changes there.
+Its front matter is the `ki-document-type` the [rubric format](standard-formats-rubric.md) sets, and its first content after it is a generated notice naming `scripts/rubric/` as the canonical definition and directing changes there.
 
 The renderer uses family metadata and ordered item metadata to reproduce:
 

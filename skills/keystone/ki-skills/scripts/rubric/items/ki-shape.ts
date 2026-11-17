@@ -467,14 +467,14 @@ const KI_SHAPE_16: RubricItem<KiShapeRubricContext> = {
   code: 'KI-SHAPE-16',
   title: 'target files have declared ownership',
   description:
-    "_Declared file ownership, three tiers._ A skill whose rubric reads or changes a house-standard file in the **target repository's** working tree declares that relationship in frontmatter, alongside `ki-depends-on:`, under one of three keys: `requires:` (must exist, doesn't create/control it — any number of skills may share a `requires:` filename), `contributes:` (writes/expects only its own section of a shared file — any number of skills may share a `contributes:` filename, e.g. `.ki.toml`, `package.json`), or `owns:` (sole author of the whole file — **exclusive**, at most one skill per filename). The mechanical heuristic verifies that declared filenames occur in the skill's production implementation and that no filename is owned by more than one skill. Judgment confirms that every session proposal and governed read has the appropriate declaration.",
+    "_Declared file ownership, three tiers._ A skill whose rubric reads or changes a house-standard file in the **target repository's** working tree declares that relationship in frontmatter, alongside `ki-depends-on:`, under one of three keys: `ki-requires:` (must exist, doesn't create/control it — any number of skills may share a `ki-requires:` filename), `ki-contributes:` (writes/expects only its own section of a shared file — any number of skills may share a `ki-contributes:` filename, e.g. `.ki.toml`, `package.json`), or `ki-owns:` (sole author of the whole file — **exclusive**, at most one skill per filename). The older bare `requires:`, `contributes:` and `owns:` are read under these names while the skills are swept, as SKILL-FMT-3 warns. The mechanical heuristic verifies that declared filenames occur in the skill's production implementation and that no filename is owned by more than one skill. Judgment confirms that every session proposal and governed read has the appropriate declaration.",
   sources: ['KI'],
   mechanical: {
     level: 'WARN',
     remediation: {
       class: 'diagnostic',
       guidance:
-        'Trace the skill’s real target-file reads and writes, choose requires, contributes, or owns accordingly, and resolve exclusive ownership collisions with the affected skills.'
+        'Trace the skill’s real target-file reads and writes, choose ki-requires, ki-contributes, or ki-owns accordingly, and resolve exclusive ownership collisions with the affected skills.'
     },
     heuristic: true,
     audit: {
@@ -489,13 +489,13 @@ const KI_SHAPE_16: RubricItem<KiShapeRubricContext> = {
               if (!skill.implementationSource.includes(file))
                 violations.push({
                   status: 'VIOLATION',
-                  message: `declares \`${file}\` (owns/contributes/requires) but its production implementation does not reference it`
+                  message: `declares \`${file}\` (ki-owns/ki-contributes/ki-requires) but its production implementation does not reference it`
                 })
         }
         for (const collision of ownershipCollisions)
           violations.push({
             status: 'VIOLATION',
-            message: `\`owns: ${collision.file}\` is declared by ${[...collision.skills].sort().join(', ')} — owns: is exclusive; split into a single owner plus contributes:/requires: on the rest`
+            message: `\`ki-owns: ${collision.file}\` is declared by ${[...collision.skills].sort().join(', ')} — ki-owns: is exclusive; split into a single owner plus ki-contributes:/ki-requires: on the rest`
           })
         const sorted = violations.sort((left, right) => left.message.localeCompare(right.message))
         const [first, ...rest] = sorted

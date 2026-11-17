@@ -1,4 +1,4 @@
-# EXTRACT procedure
+# Mode EXTRACT — find reusable capabilities in a project
 
 Use EXTRACT to inspect a repository for reusable capabilities. It is opt-in for history: `extract <repo>` inspects current repository material only; `--history <path>` permits reading only the named history input.
 
