@@ -540,7 +540,10 @@ test('FMT checks typed documents against the format standards beside the rubric'
     'docs/unknown.md': '---\nki-document-type: record@2026-11-16T17:10:00Z\nki-revised: 2026-11-16T17:10:00Z\n---\n',
     'docs/unrevised.md': '---\nki-document-type: change@2026-11-09T21:36:32Z\n---\n',
     'docs/resource.md': '---\nki-id: actor:wayland\nki-document-type: actor\n---\n',
-    'docs/card.md': '---\nid: industry.tool\ntype: term\n---\n'
+    'docs/card.md': '---\nid: industry.tool\ntype: term\n---\n',
+    'docs/SKILL.md':
+      '---\nname: ki-example\nki-document-type: skill@2026-11-17T01:00:00Z\ndescription: An example.\n---\n',
+    'docs/mode-audit.md': '---\nki-document-type: mode@2026-11-17T01:00:00Z\n---\n'
   }
   for (const [path, content] of Object.entries(documents)) writeFileSync(join(repository, path), content)
   const session = createAuthoringSession(
@@ -550,6 +553,7 @@ test('FMT checks typed documents against the format standards beside the rubric'
   )
   const context = session.subjects[1]?.context()
   const formats = context?.formats as NonNullable<typeof context>['formats']
+  // The skill files' formats are `ki-skills`', which its own rubric checks.
   expect(formats.documents.map((document) => document.path)).toEqual([
     'docs/ahead.md',
     'docs/commit.md',

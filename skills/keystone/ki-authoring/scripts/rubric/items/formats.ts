@@ -33,7 +33,7 @@ const FMT_TYPE: RubricItem<FormatsRubricContext> = {
   code: 'FMT-type',
   title: 'a typed document names a format standard that exists and keeps `ki-revised` up with its commits',
   description:
-    "A Markdown document whose front matter `ki-document-type`, or the older `type`, is `<type>@<version ref>` names a format standard, `standard-formats-<type>.md`, that exists in `ki-authoring`, and carries `ki-revised`, which is no earlier than the file's last Git commit by more than five minutes, a commit carrying the `Revised-Unchanged: true` trailer being passed over; a `ki-revised` behind its commit warns, since a mechanical edit leaves it where it is, and a file not in Git or with no commits is not compared. A kind with no `@` has no format standard, and a knowledge graph card's own `type` names its card type; neither is checked here.",
+    "A Markdown document whose front matter `ki-document-type`, or the older `type`, is `<type>@<version ref>` names a format standard, `standard-formats-<type>.md`, that exists in `ki-authoring`, and carries `ki-revised`, which is no earlier than the file's last Git commit by more than five minutes, a commit carrying the `Revised-Unchanged: true` trailer being passed over; a `ki-revised` behind its commit warns, since a mechanical edit leaves it where it is, and a file not in Git or with no commits is not compared. A kind with no `@` has no format standard, a knowledge graph card's own `type` names its card type, and a skill's own files, `skill`, `mode`, `exemplars` and `rubric`, follow `ki-skills`' formats, which its SKILL-FMT items check; none is checked here.",
   sources: ['standard-formats-format.md#42-front-matter', 'standard-formats-format.md#47-validation'],
   mechanical: {
     level: 'WARN',

@@ -343,6 +343,11 @@ const unprefixedFields = (frontmatter: string): readonly string[] =>
     .filter((name) => !name.startsWith('ki-') && !FOREIGN_FIELDS.has(name))
 // A format's word and version ref, as `ki-document-type: change@<ref>`; a kind with no `@` has no format standard.
 const TYPED = /^([a-z][a-z0-9-]*)@(\S+)$/
+/**
+ * The formats of a skill's own files, whose standards `ki-skills` owns and whose checks are its rubric's SKILL-FMT
+ * items (SKILL-FORMAT a, Kris, 17 November 2026); FMT passes over them.
+ */
+export const SKILL_FILE_FORMATS: ReadonlySet<string> = new Set(['skill', 'mode', 'exemplars', 'rubric'])
 
 /** The format standards that sit beside this rubric, in the skill's own `references/`. */
 export const FORMAT_STANDARDS_DIRECTORY = resolve(import.meta.dir, '../../../references')
@@ -423,7 +428,7 @@ const inspectTypedDocuments = (repository: string, paths: readonly string[]): re
   const documents = paths.flatMap((path) => {
     const frontmatter = FRONTMATTER.exec(readFileSync(join(repository, path), 'utf8'))?.[1]
     const typed = frontmatter ? TYPED.exec(documentType(frontmatter) ?? '') : null
-    if (!frontmatter || !typed) return []
+    if (!frontmatter || !typed || SKILL_FILE_FORMATS.has(typed[1] ?? '')) return []
     const revisedAt = kiField(frontmatter, 'revised')?.replace(/^(['"])(.*)\1$/, '$2')
     const unprefixed = unprefixedFields(frontmatter)
     return [

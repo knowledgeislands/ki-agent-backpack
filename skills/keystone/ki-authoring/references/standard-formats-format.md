@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T00:28:37Z
+ki-revised: 2026-11-17T00:55:00Z
 ki-status: in force
 ---
 
@@ -46,7 +46,8 @@ The parts every type of document shares.
 
 - What is particular to one type: its own format standard says it.
 - Where a document lives: each owner says.
-- Files whose shape another owner already sets take no format type: a skill's `SKILL.md`, whose front matter the Agent Skills specification and `ki-skills` set; a generated `rubric.md`; and a knowledge graph's cards, whose own `type` names their card type and keeps its name.
+- The formats of a skill's own files: `SKILL.md`, a mode file, `exemplars.md` and a generated `rubric.md` follow `ki-skills`' skill, mode, exemplars and rubric formats, which are instances of this one and are checked by its rubric.
+- A knowledge graph's cards, whose own `type` names their card type and keeps its name.
 
 [Back to contents](#contents)
 
@@ -71,7 +72,7 @@ The rules, part by part.
 ### 4.1 Document types
 
 - **Each type has one word,** such as `standard`, `change` or `sources`, used in its `ki-document-type` field and its file name.
-- **Each type has one format standard,** `standard-formats-<type>.md`, in `ki-authoring`'s `references/`.
+- **Each type has one format standard,** `standard-formats-<type>.md`, in `ki-authoring`'s `references/`, but for a skill's own files, whose formats sit in `ki-skills`' `references/`, beside the rubric that checks them.
 - **A format standard not yet agreed** stands at its final path as a draft, with `ki-status: draft`, so that documents of its type have something to name; the agreed standard later replaces it at the same path.
 
 [Back to contents](#contents)
@@ -83,7 +84,7 @@ Every document opens with front matter, then its title. Every type carries at le
 ```yaml
 ---
 ki-document-type: <type>@<version ref of standard-formats-<type>.md>
-ki-revised: 2026-11-09T21:36:32Z
+ki-revised: 2026-11-17T00:55:00Z
 ---
 ```
 
@@ -151,6 +152,6 @@ A validator of any format checks:
 4. **Name:** the file name follows its format's pattern, or the place says why it differs.
 5. **Shape:** Contents, numbered sections and Back to contents links are present.
 
-These checks, and each format's own, are `ki-authoring`'s rubric items in its FMT family, run by `ki repo audit --skill ki-authoring` over every Markdown document in a repository whose `ki-document-type`, or the older `type`, names a format at a version: the first three mechanically, as warnings, the last commits read with one `git log` for many files, and the name, the shape and each format's own checks by judgement, unless a format in force runs its own checks mechanically, as the record format's FMT-record does, failing.
+These checks, and each format's own, are `ki-authoring`'s rubric items in its FMT family, run by `ki repo audit --skill ki-authoring` over every Markdown document in a repository whose `ki-document-type`, or the older `type`, names a format at a version: the first three mechanically, as warnings, the last commits read with one `git log` for many files, and the name, the shape and each format's own checks by judgement, unless a format in force runs its own checks mechanically, as the record format's FMT-record does, failing. A skill's own files are passed over here: `ki-skills`' SKILL-FMT items check them.
 
 [Back to contents](#contents)
