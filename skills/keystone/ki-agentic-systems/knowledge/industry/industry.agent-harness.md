@@ -21,7 +21,7 @@ Vendor text often writes "harness" for the harness and the agent together; read 
 
 ## Our conventions
 
-The Knowledge Islands harness, the `ki-agent-backpack` repository of skills, subagents, evals and hooks, is not an agent harness: it runs no loop and calls no model. Under INDUSTRY-FIRST it takes another name, settled after the industry's cards. Until then, write "the KI harness" or name the repository, and never a bare "harness" for it.
+A territory's bundle of skills, subagents, evals and hooks, such as the `ki-agent-backpack` repository, is not an agent harness: it runs no loop and calls no model. Under INDUSTRY-FIRST it has its own name, a [backpack][system.backpack] (HARNESS-NAME); never call it a harness.
 
 ## Next
 
@@ -29,3 +29,4 @@ The [agent][industry.agent] is a model working through an agent harness.
 
 [industry.model]: ./industry.model.md
 [industry.agent]: ./industry.agent.md
+[system.backpack]: ../system/system.backpack.md

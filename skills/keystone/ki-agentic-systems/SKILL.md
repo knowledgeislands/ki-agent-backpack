@@ -84,6 +84,7 @@ Knowledge Islands' own words, in the `system/` subgraph, each mapped onto the in
 - [Work package](knowledge/system/system.work-package.md): the folder for one piece of work above a work item, a node of the work tree, `<territory>.<slug>`, its strands `<parent id>+<slug>`.
 - [Backpack](knowledge/system/system.backpack.md): a territory's installable bundle of skills, subagent definitions, evals and hooks; Knowledge Islands' plugin.
 - [Role](knowledge/system/system.role.md): a job within a tier, from the role catalogue, the part of a seat after its `@`; close to agent frameworks' role.
+- [Seat](knowledge/system/system.seat.md): the place for one role in one work package, `<package>@<role>`, held by an actor and kept when the actor changes.
 
 ### Vendor subgraphs
 

@@ -9,8 +9,8 @@ origin: Cairn summit change 25 (now 14), GUILD-TERM, GUILD-LEAD and KEYSTONE-HUB
 links:
   industry.skill:
     predicate: dcterms:hasPart
-  industry.agent-harness:
-    predicate: skos:related
+  system.backpack:
+    predicate: dcterms:isPartOf
 ---
 
 # Guild
@@ -21,7 +21,7 @@ A guild is a set of skills led by one lead skill, named after the guild, which s
 
 ## Our conventions
 
-The KI [agent harness's][industry.agent-harness] skills each declare their guild in front matter, `ki-guild`, and a lead the guild it leads, `ki-leads`. The `ki-skills` skill's guilds standard sets the rules, and `ki-keystone` holds the guild map. A guild is kept by its guildmaster, within the backpack a territory carries.
+The skills of a [backpack][system.backpack] each declare their guild in front matter, `ki-guild`, and a lead the guild it leads, `ki-leads`. The `ki-skills` skill's guilds standard sets the rules, and `ki-keystone` holds the guild map. A guild is kept by its guildmaster, within the backpack its territory carries.
 
 [industry.skill]: ../industry/industry.skill.md
-[industry.agent-harness]: ../industry/industry.agent-harness.md
+[system.backpack]: ./system.backpack.md

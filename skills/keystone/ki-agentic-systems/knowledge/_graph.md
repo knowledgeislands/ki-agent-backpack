@@ -81,11 +81,11 @@ A predicate reads from the card that holds it to its target. A vendor card whose
 | Zed Industries | `zed.` | Zed Industries' own words | [Zed][zed.zed] | `vendors/zed/` |
 | Diagrams | `diagram.` | Diagrams of the terms, as resources | [agentic terms by example][diagram.agentic-terms-by-example], [agentic standards and channels][diagram.agentic-standards] (proposal) | `diagrams/` |
 | Microsoft | `microsoft.` | Microsoft's and GitHub's own words | [Copilot][microsoft.copilot], [model][microsoft.model], [agent harness][microsoft.agent-harness], [agent][microsoft.agent], [agent session][microsoft.agent-session], [chat][microsoft.chat], [subagent][microsoft.subagent], [agent skill][microsoft.agent-skill] | `vendors/microsoft/` |
-| System | `system.` | Knowledge Islands' own words, each mapped onto the industry's | [guild][system.guild], [rig][system.rig], [actor][system.actor], [work package][system.work-package], [backpack][system.backpack], [role][system.role] | `system/` |
+| System | `system.` | Knowledge Islands' own words, each mapped onto the industry's | [guild][system.guild], [rig][system.rig], [actor][system.actor], [work package][system.work-package], [backpack][system.backpack], [role][system.role], [seat][system.seat] | `system/` |
 
 ## Extent and limitations
 
-- **What it covers:** fifteen terms in reading order, from the model to the agentic system, and the channel; the Agent Skills specification; the four leading vendors' words for those terms as their documentation used them on 12 November 2026; Orca's and Zed Industries' words; two diagrams; six of the system's own words, guild, rig, actor, work package, backpack and role; and the tool and instruction file, as proposals. Other vendors are added where they matter (VENDORS).
+- **What it covers:** fifteen terms in reading order, from the model to the agentic system, and the channel; the Agent Skills specification; the four leading vendors' words for those terms as their documentation used them on 12 November 2026; Orca's and Zed Industries' words; two diagrams; seven of the system's own words, guild, rig, actor, work package, backpack, role and seat; and the tool and instruction file, as proposals. Other vendors are added where they matter (VENDORS).
 - **Where the cards sit:** the root folder is the skill's `knowledge/` folder, which holds this root definition and a folder for each subgraph, as the table above names, and nothing but the graph (KNOWLEDGE-FOLDER, GRAPH-FOLDERS). A card's folder is never part of its identity, so links in front matter are keyed by id alone.
 - **Beside the graph:** the skill's `references/` folder holds [the sources](../references/sources.md), with every vendor source and the date it was last checked, and the decisions behind the cards; it is not a card.
 - **Refreshed monthly** (TERMS-REFRESH): the vendor cards' examples date quickly, as products are renamed, merged and closed.
@@ -125,6 +125,7 @@ A predicate reads from the card that holds it to its target. A vendor card whose
 [system.work-package]: ./system/system.work-package.md
 [system.backpack]: ./system/system.backpack.md
 [system.role]: ./system/system.role.md
+[system.seat]: ./system/system.seat.md
 [spec.agent-skills.progressive-disclosure]: ./specs/agent-skills/spec.agent-skills.progressive-disclosure.md
 [anthropic.claude]: ./vendors/anthropic/anthropic.claude.md
 [anthropic.claude-code]: ./vendors/anthropic/anthropic.claude-code.md

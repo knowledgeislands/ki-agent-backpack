@@ -11,6 +11,8 @@ links:
     predicate: skos:related
   system.work-package:
     predicate: skos:related
+  system.seat:
+    predicate: skos:related
 ---
 
 # Role
@@ -22,9 +24,10 @@ A role is a job within a tier, leader, manager or maker, from the role catalogue
 ## Our conventions
 
 - **One catalogue:** `ki-work-package`'s roles standard holds every role, its tier, glyph, what it owns and what it never does; nothing else decides a role.
-- **The job after the `@`:** an actor's place in a package is written `<package>@<role>`, as `ki.cairn@warden`, so the role is the part after the `@` (SEAT-AT).
+- **The job after the `@`:** an actor's place in a package, its [seat][system.seat], is written `<package>@<role>`, as `ki.cairn@warden`, so the role is the part after the `@` (SEAT-AT).
 - **One file each in the store:** each role has a file in the store's roster, `roster/roles/<role>.md`, opening `ki-id: role:<role>`, its fields taken word for word from the catalogue (ROLES-IN-STORE).
 
 [system.actor]: ./system.actor.md
 [system.work-package]: ./system.work-package.md
 [CR1]: https://docs.crewai.com/en/concepts/agents
+[system.seat]: ./system.seat.md
