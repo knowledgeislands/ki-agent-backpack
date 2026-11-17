@@ -395,12 +395,6 @@ test('adapter and protocol records delegate note-type metadata to their owning s
     'Streams/Roadmap/ITEM.md',
     '+/_BATCHES/KI-EXAMPLE-BATCH-001.md',
     '+/_CHECKPOINTS/active-thread.md',
-    '+/_WORK/ki.ways-of-working/_index.md',
-    '+/_WORK/ki.ways-of-working/state.md',
-    '+/_WORK/ki.ways-of-working/queries.md',
-    '+/_WORK/ki.other/discussions.md',
-    '+/_WORK/ki.ways-of-working/messages.md',
-    '+/_WORK/ki.ways-of-working/decisions.md',
     '+/_ACQUIRE/granola/2026-07-28--example.md',
     '+/_TRADES/sender/repository/TRD-01234567.md',
     '-/_TRADES/receiver/repository/TRD-89abcdef.md'
@@ -423,6 +417,26 @@ test('adapter and protocol records delegate note-type metadata to their owning s
       message: 'Frontmatter uses note_type and does not use the legacy type field.'
     }
   ])
+})
+
+test('package files left under the work folder are out of place, pointing to the Cairn store', () => {
+  const repository = createBase()
+  const records = [
+    '+/_WORK/ki.ways-of-working/_index.md',
+    '+/_WORK/ki.ways-of-working/state.md',
+    '+/_WORK/ki.other/discussions.md'
+  ]
+  for (const relativePath of records) {
+    const path = join(repository, relativePath)
+    mkdirSync(dirname(path), { recursive: true })
+    writeFileSync(path, '---\nstatus: active\n---\n\n# Earlier copy\n')
+  }
+
+  const finding = collectKbAuditEvidence(repository).find((candidate) => candidate.code === 'NOTE-1c')
+  expect(finding?.level).toBe('FAIL')
+  expect(finding?.message).toContain("earlier work-package copy, out of place (a package lives in the Cairn store's")
+  expect(finding?.message).not.toContain('missing note_type')
+  for (const relativePath of records) expect(finding?.message).toContain(relativePath)
 })
 
 test('other files in a work folder keep the note-type metadata check', () => {

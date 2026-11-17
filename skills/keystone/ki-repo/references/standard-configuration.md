@@ -363,9 +363,9 @@ The detection signals `ki-repo` uses (one recursive tree read + `package.json`):
 | `ki-subagents` | Claude Markdown or Codex TOML projection | `[skills.ki-subagents]` |
 | `ki-subagents-claude` | `subagents/**/*.md` | `[skills.ki-subagents-claude]` |
 | `ki-subagents-chatgpt` | `.codex/agents/**/*.toml` | `[skills.ki-subagents-chatgpt]` |
-| `ki-work-package` | `+/_WORK/` subarea, or the old `+/_CHECKPOINTS/` | `[skills.ki-work-package]` |
+| `ki-work-package` | the old `+/_CHECKPOINTS/` subarea | `[skills.ki-work-package]` |
 
-For the work model's tolerance window the old `+/_CHECKPOINTS/` subarea still satisfies the `ki-work-package` signal, and each thread-model area present, `+/_CHECKPOINTS/` or `+/_THREADS/`, adds one COV-1 warning naming its new home, the Cairn store's `work/<territory>/<id>/`, until its territory's migration moves it.
+For the work model's tolerance window the old `+/_CHECKPOINTS/` subarea still satisfies the `ki-work-package` signal, and each thread-model area present, `+/_CHECKPOINTS/` or `+/_THREADS/`, adds one COV-1 warning naming its new home, the Cairn store's `work/<territory>/<id>/`, until its territory's migration moves it. A `+/_WORK/` folder is no longer a signal (COVERAGE-SIGNAL a): a work package lives in the Cairn store, so a `+/_WORK/` left in a repository adds one COV-1 warning that it is out of place, naming the same home.
 
 This is the **one place** `ki-repo` reads across skill tables. It normally reads only table **presence**; app discovery also consumes the core-owned `site-root` solely to locate the selected Vite config and package manifest. The website core still owns and validates that value, preserving _validate down, ignore across_ for its contents. It is an **audit-time enforcement** run by `repo`'s auditor, not behaviour baked into the regular use of each skill. A repo opts out of a single signal with a `coverage-<skill> = false` entry under `[skills.ki-repo.checks]`; the auditor emits an informational note so that deliberate non-activation remains explicit. Website keys are independent: `coverage-website`, `coverage-website-content`, `coverage-website-app`, and `coverage-website-cloudflare` do not disable one another.
 

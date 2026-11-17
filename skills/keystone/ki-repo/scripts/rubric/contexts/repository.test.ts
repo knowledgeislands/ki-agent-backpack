@@ -1154,22 +1154,19 @@ describe('local repository evidence', () => {
     ])
   })
 
-  test('takes the work area as the checkpoint signal', async () => {
+  test('warns on a work area as out of place, not as a work-package signal', async () => {
     const root = repository()
     mkdirSync(join(root, '+', '_WORK', 'ki.example'), { recursive: true })
     writeFileSync(join(root, '+', '_WORK', 'ki.example', '_index.md'), '# ki.example\n')
     writeFileSync(join(root, '.ki.toml'), '[skills.ki-repo]\n')
 
-    const findings = (await collectAuditFindings([root])).findings.filter((finding) => finding.code === 'COV-1')
-    expect(findings).toContainEqual(
-      expect.objectContaining({
-        level: 'FAIL',
-        message: expect.stringContaining('looks governed by ki-work-package')
-      })
-    )
-
-    writeFileSync(join(root, '.ki.toml'), '[skills.ki-repo]\n\n[skills.ki-work-package]\n')
-    expect((await collectAuditFindings([root])).findings.filter((finding) => finding.code === 'COV-1')).toEqual([])
+    expect(
+      (await collectAuditFindings([root])).findings
+        .filter((finding) => finding.code === 'COV-1')
+        .map(({ level, message }) => `${level} ${message}`)
+    ).toEqual([
+      "WARN +/_WORK/ holds an earlier copy of a work package and is out of place — a package lives in the Cairn store's work/<territory>/<id>/"
+    ])
   })
 
   test('warns on a thread folder as a thread-model working area', async () => {

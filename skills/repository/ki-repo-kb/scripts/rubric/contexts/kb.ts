@@ -60,13 +60,6 @@ const delegatedNoteTypeRecord = (
     return true
   if (
     segments[0] === zones.inbound &&
-    segments[1] === '_WORK' &&
-    segments.length === 4 &&
-    WORK_PACKAGE_FILES.has(segments[3] ?? '')
-  )
-    return true
-  if (
-    segments[0] === zones.inbound &&
     segments[1] === '_ACQUIRE' &&
     segments[2] &&
     segments.length === 4 &&
@@ -79,6 +72,18 @@ const delegatedNoteTypeRecord = (
     segments[1] === '_TRADES' &&
     segments.length === 5 &&
     TRADE_RECORD.test(segments[4] ?? '')
+  )
+}
+
+// A package file under `+/_WORK/<id>/` is an earlier copy, out of place: a work package lives
+// in the Cairn store (COVERAGE-SIGNAL a).
+const earlierPackageFile = (relativePath: string, inbound: string): boolean => {
+  const segments = relativePath.split('/')
+  return (
+    segments[0] === inbound &&
+    segments[1] === '_WORK' &&
+    segments.length === 4 &&
+    WORK_PACKAGE_FILES.has(segments[3] ?? '')
   )
 }
 
@@ -481,6 +486,7 @@ export const collectKbAuditEvidence = (target: string): readonly KbEvidenceFindi
   const legacyType: string[] = []
   const misplacedOutputs: string[] = []
   const retiredHandoffs: string[] = []
+  const earlierPackages: string[] = []
   const inboundZone = zoneOf('+')
   const outboundZone = zoneOf('-')
   const outbound = `${outboundZone}/`
@@ -518,7 +524,8 @@ export const collectKbAuditEvidence = (target: string): readonly KbEvidenceFindi
     }
     for (const key of value.keys) if (!SNAKE_CASE.test(key)) badKeys.push(`${relative}: ${key}`)
     for (const key of required) if (!value.keys.includes(key)) missingRequired.push(`${relative} (${key})`)
-    if (!delegatedNoteTypeRecord(relative, delegatedZones)) {
+    if (earlierPackageFile(relative, inboundZone)) earlierPackages.push(relative)
+    else if (!delegatedNoteTypeRecord(relative, delegatedZones)) {
       if (!value.noteType) missingNoteType.push(relative)
       if (value.keys.includes('type')) legacyType.push(relative)
     }
@@ -553,14 +560,19 @@ export const collectKbAuditEvidence = (target: string): readonly KbEvidenceFindi
     'NOTE-1b',
     badKeys.length ? `Non-snake_case frontmatter keys: ${sample(badKeys)}.` : 'Frontmatter keys use snake_case.'
   )
+  const invalidNoteType =
+    missingNoteType.length || legacyType.length || retiredHandoffs.length || earlierPackages.length
   add(
-    missingNoteType.length || legacyType.length || retiredHandoffs.length ? 'FAIL' : 'PASS',
+    invalidNoteType ? 'FAIL' : 'PASS',
     'NOTE-1c',
-    missingNoteType.length || legacyType.length || retiredHandoffs.length
+    invalidNoteType
       ? `Invalid note-type metadata: ${[
           missingNoteType.length ? `missing note_type: ${sample(missingNoteType)}` : '',
           legacyType.length ? `legacy type: ${sample(legacyType)}` : '',
-          retiredHandoffs.length ? `retired handoff note_type (use ki-trades): ${sample(retiredHandoffs)}` : ''
+          retiredHandoffs.length ? `retired handoff note_type (use ki-trades): ${sample(retiredHandoffs)}` : '',
+          earlierPackages.length
+            ? `earlier work-package copy, out of place (a package lives in the Cairn store's work/<territory>/<id>/): ${sample(earlierPackages)}`
+            : ''
         ]
           .filter(Boolean)
           .join('; ')}.`

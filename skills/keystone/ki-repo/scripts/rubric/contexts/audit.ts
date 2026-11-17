@@ -740,8 +740,8 @@ const COVERAGE: { skill: string; table: string; artifact: string; detect: (s: Si
   {
     skill: 'work-package',
     table: skillTable('ki-work-package'),
-    artifact: '+/_WORK/ subarea',
-    detect: (s) => [...s.tree].some((p) => ['+/_WORK/', '+/_CHECKPOINTS/'].some((area) => p.startsWith(area)))
+    artifact: 'old +/_CHECKPOINTS/ subarea',
+    detect: (s) => [...s.tree].some((p) => p.startsWith('+/_CHECKPOINTS/'))
   }
 ]
 // The declared skills whose `ki-depends-on` closure requires each coverage table. A required
@@ -761,6 +761,8 @@ const requiredByDeclared = (kiText: string, table: string): boolean =>
   (COVERAGE_REQUIRED_BY[table] ?? []).some((dependent) => declaresTable(kiText, dependent))
 // Thread-model working areas read for the work model's tolerance window, each warned with its new home.
 const LEGACY_WORKING_AREAS = ['+/_CHECKPOINTS/', '+/_THREADS/'] as const
+// A work package lives in the Cairn store; a `+/_WORK/` copy is out of place (COVERAGE-SIGNAL a).
+const EARLIER_PACKAGE_AREA = '+/_WORK/'
 const COVERAGE_SKILLS = new Set(COVERAGE.map((c) => c.skill))
 export const detectedCoverageSkills = (): readonly string[] => COVERAGE.map((entry) => entry.table).sort()
 // A primary structure is exclusive; all other ki-repo-* skills are composable
@@ -1177,6 +1179,11 @@ async function auditRepo(
           'COV-1',
           `${area} is a thread-model working area, read for the tolerance window — its territory's migration moves it to the Cairn store's work/<territory>/<id>/`
         )
+    if ([...signals.tree].some((p) => p.startsWith(EARLIER_PACKAGE_AREA)))
+      warn(
+        'COV-1',
+        `${EARLIER_PACKAGE_AREA} holds an earlier copy of a work package and is out of place — a package lives in the Cairn store's work/<territory>/<id>/`
+      )
 
     // ── primary-structure cardinality ── STRUCT-1/2
     // Project and KB are mutually exclusive primaries. Repository specialisations compose

@@ -209,7 +209,7 @@ Every KI repository, Knowledge Bases included, may also use a top-level `tmp/` w
 
 A declared capability with a stable specialist working-area subarea owns an exact README scaffold, requires it while declared, retains it when no records remain, and safely restores it through its own CONFORM. The scaffold is the visible capability boundary; records inside retain their shorter owner-defined lifecycle. Before removing the declaration, resolve or remove owned records and then remove the now-undeclared scaffold. `ki-repo` owns only the generic working-area scaffold and neither creates, interprets, nor retains specialist subareas.
 
-- `ki-work-package` owns no working area: a work package lives in the Cairn store, at `work/<territory>/<id>/`, and a `+/_WORK/` left in a repository holds only earlier copies of packages, which its audit lists for their owner.
+- `ki-work-package` owns no working area: a work package lives in the Cairn store, at `work/<territory>/<id>/`, and a `+/_WORK/` left in a repository holds only earlier copies of packages, out of place: `ki-repo`'s audit warns on it under COV-1, naming the Cairn store, and `ki-work-package`'s audit lists its packages for their owner (COVERAGE-SIGNAL a).
 - `ki-trades` owns `+/_TRADES/README.md`, `-/_TRADES/README.md`, and cross-repository trade records.
 - `ki-repo-kb` owns `-/_DIGESTS/README.md` and session digests in a Knowledge Base.
 
