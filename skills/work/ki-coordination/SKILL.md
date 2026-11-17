@@ -11,7 +11,7 @@ description: >
   Govern coordinating work under the Knowledge Islands work model: the responsive coordinator and its turn budget, the
   work levels and forms with their ids, openers and bootstrap, the seven states and the receive words, the mark and the one
   Summary with its status table and footer, the reply format, the closing glyph banner and thread line, On hold with its
-  Stop, the work package and its message queue, route receipt and the inbox check, re-anchoring after compaction, decision
+  Stop, the work package, route receipt along the tree and the inbox watch, re-anchoring after compaction, decision
   classes and their life cycle, change documents, Finished, the working rules, and the three reply forms every session uses. Use while coordinating
   any explicitly opened work package to give a summary or banner or strike the mark, or to decide how any
   session replies; `ki-delegation` owns the background runs the coordinator launches.
@@ -110,6 +110,6 @@ While coordinating, `/ki-coordination summary` gives [the Summary](references/st
 - Every send, receive, mark and hold rewrites `_index.md`'s state fields, Now and Held, under [Picking work up](references/standards-bootstrap.md#picking-work-up), and no work package records a session host seat; inventory-based host requirements follow `ki-work-package`.
 - Each session commits its own work by explicit path after every finished change, syncs at least every 15 minutes while work runs, and may push everything stacked on `main`, other sessions' commits included, fast-forward only, never forced or with `--no-verify`, stopping on divergence, under [Pushing beneath other sessions](references/standards-sync.md#pushing-beneath-other-sessions).
 - Work lands, then is reviewed: within a remit from change documents worked through together, high-confidence or reversible work lands on `main` without waiting for the owner, a pull request only where something major is at stake and destructive work only on the owner's word, and the session that did the work writes its record as it lands, one for each unattended run or batch that lands real work and none for a session spent deciding, under [Landing, then review](references/standards-sync.md#landing-then-review).
-- The refresh rule compares `git log -1 --format=%h -- skills/work/ki-coordination skills/work/ki-work-package skills/agentic-systems/ki-delegation output-styles/ki-coordinator.md` with `_index.md`'s `ki-method_read`, and an important `REFRESH` line in `messages.md` targets it.
+- The refresh rule compares `git log -1 --format=%h -- skills/work/ki-coordination skills/work/ki-work-package skills/agentic-systems/ki-delegation output-styles/ki-coordinator.md` with `_index.md`'s `ki-method_read`.
 - The openers read `Bootstrap as <id> ... under ki-coordination`; the thread-model forms, naming the `state-of-play thread` or the `<project> coordination thread`, and the older `under ki-delegation`, `project thread` and `territory master thread` forms are accepted for the tolerance window and mean the same work.
 - The local rubric is the materialised domain contract; generic execution, reporting, transaction safety, and publication remain owned by `ki`.

@@ -27,7 +27,7 @@ When the owner raises a side topic in passing, record it as one dated line, say 
 
 - **Where:** a parked tangent becomes a new change document for its area, numbered after the others, to come back to, as Kris set under OLD-SHAPE-HOMES a on 14 November 2026: "Parked tangents are effectively you can create a new change .md for that area, and then we can come back to it basically with a higher number". Its Open section holds the dated line. Work waiting on a named decision or event goes to `_index.md`'s `## Held` with its release condition. Deferred deliverable work becomes a triage record in its home repository under `ki-work next`'s [capture rule](../../../keystone/ki-work/references/standards-next-work.md#capture-substantive-prospective-work).
 - **Counting:** tangents count as outstanding in the [Summary](standards-report-forms.md#the-summary).
-- **Picking up:** on request, such as "what's parked?", list them. When the owner picks one up, its change document is worked like any other, or the tangent gets a home elsewhere, a Project, a record through `ki-work next` or a line in other work's `messages.md`, or is dropped, and its change document goes in the same update.
+- **Picking up:** on request, such as "what's parked?", list them. When the owner picks one up, its change document is worked like any other, or the tangent gets a home elsewhere, a Project, a record through `ki-work next` or feedback up the tree to other work, or is dropped, and its change document goes in the same update.
 
 Sources: HELD-VS-RECORD and OLD-SHAPE-HOMES in [the decision register](sources.md#decision-register).
 
@@ -41,7 +41,7 @@ At every send and every mark, prune your own package, so `work/<territory>/<id>/
 - **Record threshold:** deletion is operational work under the [record threshold](standards-decisions.md#decision-classes) and opens no record.
 - **Flagging:** the `ki-work-package` rubric's [FOLDER](../../ki-work-package/references/rubric.md) items fail a package holding a file outside the closed list. They fail a package holding a report, a brief or any other file outside the closed list, and name every finished work's package as due for close-out.
   - Whether each candidate's outcome is homed stays the owning coordinator's judgement; the list is never permission to delete.
-  - At its own mark, the State of play names each flagged package by a line in that work's `messages.md`, and its coordinator prunes it at its next send. A finished work's package is the exception: the State of play closes it itself under the `ki-work-package` [close-out](../../ki-work-package/references/standard-work-package.md#410-the-tidy).
+  - At its own mark, the State of play names each flagged package as steer recorded in that work's package, and its coordinator prunes it at its next send. A finished work's package is the exception: the State of play closes it itself under the `ki-work-package` [close-out](../../ki-work-package/references/standard-work-package.md#410-the-tidy).
   - No item counts the open questions across a package's change documents; the coordinator keeps them under the [owner queue](standards-coordination.md#coordinating-practices) cap itself.
   - No item counts the records awaiting acceptance either since COORD-REPOINT (Kris, 16 November 2026); the coordinator keeps them under the same cap, until the check returns in `ki-work-package` as a warning under [Mechanical boundary](standards-coordination.md#mechanical-boundary).
 
@@ -72,7 +72,7 @@ Project work moves to Finished once only, on the owner's `finish`, after the clo
 1. every logged decision is homed under the [decisions life cycle](standards-decisions.md#decisions-life-cycle), none left homeless or held;
 2. its change documents, in the package and its sub-packages, are resolved: every one graduated and deleted;
 3. `_index.md`'s state is set to `ki-state: finished`, its durable information routed, and the commit `docs(work): <id> finish` made;
-4. the package is deleted at the mark that closes it, under the `ki-work-package` [close-out](../../ki-work-package/references/standard-work-package.md#410-the-tidy), Git keeping it. Where the package outlives the finishing session, the State of play closes it at an owner-authorised mark of its own whose report names the package, rather than by a line in the finished work's `messages.md`, which no coordinator reads.
+4. the package is deleted at the mark that closes it, under the `ki-work-package` [close-out](../../ki-work-package/references/standard-work-package.md#410-the-tidy), Git keeping it. Where the package outlives the finishing session, the State of play closes it at an owner-authorised mark of its own whose report names the package, rather than by steer into the finished work's packaged`, which no coordinator reads.
 
 Before the Finished banner, every Orca worker the work started is settled under [Closing out Orca workers](#closing-out-orca-workers). The last report is the Stop at Finished under [Templates](standards-report-forms.md#templates), closing with the Finished banner. The Project note then points at the outcome. Reopening a Project is a new opener from the State of play, not a send.
 

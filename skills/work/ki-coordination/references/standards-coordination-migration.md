@@ -33,6 +33,7 @@ This file holds temporary adjustments to [the coordinating-work standard](standa
 - [Design notes named `.design.md`](#design-notes-named-designmd)
 - [Observatory feedback packages](#observatory-feedback-packages)
 - [Openers that name the re-bootstrap report](#openers-that-name-the-re-bootstrap-report)
+- [Retired message queues](#retired-message-queues)
 
 ## Thread model
 
@@ -120,7 +121,7 @@ Adjusts [Bootstrap](standards-bootstrap.md#bootstrap). Beside the one-line `Re-b
 
 ## Legacy records at bootstrap
 
-Adjusts [Bootstrap](standards-bootstrap.md#bootstrap), step 4. Where a work has not yet moved to a work package, the coordinator reads its tolerated legacy record in place of the package's `_index.md` and change documents, `messages.md` first. Delete when the [tolerance window](#thread-model) closes.
+Adjusts [Bootstrap](standards-bootstrap.md#bootstrap), step 4. Where a work has not yet moved to a work package, the coordinator reads its tolerated legacy record in place of the package's `_index.md` and change documents. Delete when the [tolerance window](#thread-model) closes.
 
 ## Old-shape pick-up blocks
 
@@ -181,3 +182,7 @@ The owner's consolidated Observatory feedback package, `feedback/<date>-<slug>.m
 ## Openers that name the re-bootstrap report
 
 An opener whose first step says to give "the full re-bootstrap report", as the openers under [Opening work](standards-opening.md#opening-work) still print them, asks for the Bootstrap, and a past report headed `Re-bootstrap`, `Hold report` or `Finish report`, or carrying a state in its form line, stays readable as the Bootstrap or Stop it was. Delete this adjustment once the openers here name the Bootstrap. It adjusts trigger T2 in [Triggers](standards-report-forms.md#triggers).
+
+## Retired message queues
+
+A package that still holds a `messages.md`, or a legacy record a `## Messages` section, from before the queue retired (MSG-RETIRE) keeps it until its holder, or the root's guardian while none holds it, takes each line still in it along the tree under [Work between packages](standards-messages.md#messages-between-work), records each disposition where it lands and deletes the file in the same commit; nobody adds a line meanwhile. Delete this adjustment once no package or legacy record holds one. It adjusts [Work between packages](standards-messages.md#messages-between-work).

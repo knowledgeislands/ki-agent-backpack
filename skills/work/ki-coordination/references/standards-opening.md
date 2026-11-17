@@ -25,7 +25,7 @@ The Work Process note's Levels and forms of work table sets the three levels, th
 - second segment `summit`: the territory's summit, its main State of play, `ki-level: territory`;
 - any other id: a node beneath the summit, `ki-level: regular`, as a [secondary](standards-territory.md#secondary-states-of-play) is, or `ki-level: project` where it carries one Project (NODE-ID, Kris, 16 November 2026).
 
-The State of play sends direction down into Project work through each receiving package's [`messages.md`](standards-messages.md#messages-between-work). Its first concern with any new matter is where the work goes, not holding it in its own context.
+The State of play sends direction down into Project work as steer, under [Work between packages](standards-messages.md#messages-between-work). Its first concern with any new matter is where the work goes, not holding it in its own context.
 
 Sources: SOP-ROLE, SECONDARY-SOP and NODE-ID in [the decision register](sources.md#decision-register).
 
@@ -72,7 +72,7 @@ A member-repository Project session is a seat for its Capital package, not autho
 
 **Where each name is used.**
 
-- The work name names the work in replies and reports, as the sender of a [line](standards-messages.md#messages-between-work), in a handoff and in the opener's `Label:` line.
+- The work name names the work in replies and reports, as the sender of [steer or feedback](standards-messages.md#messages-between-work), in a handoff and in the opener's `Label:` line.
 - A native session takes its seat's [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line) instead: `<role glyph> 🔑 <work-id>`, the glyph of its one role from the [role catalogue](../../ki-work-package/references/standard-roles.md#43-role-catalogue), with 🔑 marking the keyholder, the session holding the package's keys; `<role glyph> <package>@<role>`, with no key, the seat's id, for a seat working in the package without its keys, such as a maker in a meeting; or `🧵 <work-id>` while it has no role. The launch name, the `Rename thread:` line, every report's [thread line](standards-coordination.md#banner) and the sender of every line the seat writes agree. A line's sender is the label with the thread line in brackets, as in `KI > Tools (⚒️ 🔑 ki.tools):`. The work id stays last, so the name still names the work.
 - The label stays in the opener and the [report heading](standards-coordination.md#banner). The report heading uses the same display names, linked to their notes and joined by ` › `, without the territory.
 

@@ -7,11 +7,11 @@ This file holds the inbox watch, the two session capabilities and host sync. It 
 - **Inbox watch:** a coordinator listens only once the owner expressly asks, in words such as "listen for messages" or "keep listening", and logs the request in the change document it belongs to. A Rig host sync thread, `personal.reg.rig-<host>`, listens by its role, because [host sync](#thread-capabilities) implies listening. A coordinator never asked does not listen. "stop the wake" or "stop listening" ends listening until the owner asks again.
 - **When:** while a listening coordinator is open and its work is not draining, On hold or Finished, it keeps one watcher armed, whoever holds the work. Work [Snoozing](standards-holds.md#putting-work-on-hold) keeps it armed On hold too.
 - **The watcher:** one long-running detached shell loop that spends no model time. The heartbeat while runs go is separate and stays, listening or not, and joins the watcher in one loop.
-  - Every couple of minutes it fetches and fast-forwards local `main` silently and compares the Git object of the work's `messages.md` with the one it started from, reading no content.
-  - It exits only on news: a new line in `messages.md`, a run in this coordinator's group finishing, or a pull that cannot fast-forward, which needs a resolve.
+  - Every couple of minutes it fetches and fast-forwards local `main` silently and compares the `messages/` folder of each meeting the session sits in with the one it started from, reading no content.
+  - It exits only on news: a new message in such a meeting, a run in this coordinator's group finishing, or a pull that cannot fast-forward, which needs a resolve.
   - It has no timed bound while idle, so a quiet period brings no wake, no tool calls and no chat line.
   - Polling is the baseline. AHP may later replace the polling, and only the polling, for an agent host the `ki-agentic-radar` radar shows supports it, under [The Cairn Beacon](standards-messages.md#the-cairn-beacon).
-- **At a wake:** speak only about what landed. On a new line, act on it under [Messages between work](standards-messages.md#messages-between-work), commit, re-arm and tell the owner in one timed line what was done. On a finished run, receive it in one timed line and re-arm.
+- **At a wake:** speak only about what landed. On a new message, act on it under `ki-meeting`'s [messages](../../ki-meeting/references/standard-meeting.md#48-messages), commit, re-arm and tell the owner in one timed line what was done. On a finished run, receive it in one timed line and re-arm.
 - **One loop:** a coordinator never holds more than one loop. After a compaction or a recovery it checks whether one is armed before arming another.
 - **Session-bound:** the watcher lives and dies with the session. It is a session wake, not a scheduled agent, and promises nothing once the session closes. A runtime with no proven way for the watcher's exit to wake the session checks the inbox only at owner messages and run events, with `ki-listening_status: off`.
 - **Open questions:** a shared shell command for the watcher, and each runtime's wake, remain with the owner.
@@ -49,7 +49,7 @@ A coordinator may hold two capabilities. Each is switched on only by the owner's
 - clear answered questions from the change documents' Open sections, once each answer is recorded where it belongs;
 - raise what it cannot settle as a query.
 
-It mentions a tidy only when something needs the owner. It never edits another package; it may flag a problem there with one line in that package's `messages.md`.
+It mentions a tidy only when something needs the owner. It never edits another package; a problem there goes up the tree as feedback.
 
 **Host sync.** The coordinator is its Mac's sync thread. It repeats each pass until the Mac and GitHub are clean and level, or something needs judgement, and only then waits for its next slot. A quiet pass says nothing, a pass that changed something says at most one short line, and only a matter for judgement or the owner gets a full report. Host sync implies listening.
 

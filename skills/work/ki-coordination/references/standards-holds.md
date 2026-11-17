@@ -10,7 +10,7 @@ On hold is the Work Process note's state, with its two reasons: paused, and more
 - A hold serves a move between hosts, closes work for a period or rests it between waves. It never says which host the work comes back up on.
 - A conversational session's ad hoc work goes On hold through an update of the state in its `_index.md`, with no Stop.
 
-**First steps.** Read `IMPORTANT` lines first, cancel every wake this session holds, the watcher included, and report whether anything is still running, queued or scheduled. Work going Snoozing re-arms the watcher once the snooze lands.
+**First steps.** Read any `IMPORTANT` message in a meeting the session sits in first, cancel every wake this session holds, the watcher included, and report whether anything is still running, queued or scheduled. Work going Snoozing re-arms the watcher once the snooze lands.
 
 **The drain**, in order:
 
@@ -41,16 +41,16 @@ On hold is the Work Process note's state, with its two reasons: paused, and more
   - Log the request in the change document it belongs to and drain as above. Once the snooze lands, re-arm the one watcher and set `ki-listening_status: on`, and `ki-listening_enabled: true` where the owner asked it to wait for a message.
   - `ki-hold.release` reads `a message arrives, or resume`.
   - Banner, under the [one table of states](standards-coordination.md#banner): heading `### 💤 Snoozing (on hold) · at <time>`; counts `💤 waiting for a message · 🅿️ <n> queries parked`, never `drained`, because the coordinator still listens; items `[parked]` and ``[release] a message arrives, or `resume` ``; then the listening line only while the session is in a meeting.
-  - A new line in `messages.md`, or new work arriving, releases it under **Release** and the coordinator acts on it.
+  - New work arriving, or a new message in a meeting it sits in, releases it under **Release** and the coordinator acts on it.
   - "stop the wake" or "stop listening" sets `ki-listening_status: off`. The work stays Snoozing until `resume`, or a line its State of play handles under [acting for idle work](standards-territory.md#territory-work).
   - Once the session closes, the State of play acts for the snoozing package on its lines alone.
 - **Idle:** a worker may put its own work into Snoozing by itself, the idle hold, and into no other hold.
-  - It may go idle only while all five hold: no run running or queued; nothing in handoff to a target; no unprocessed line in `messages.md`; no open query with the owner in a change document's Open section, parked queries allowed; every repository the work touched committed and pushed. Any query with the owner keeps the work With supervisor.
+  - It may go idle only while all five hold: no run running or queued; nothing in handoff to a target; nothing received and not yet taken; no open query with the owner in a change document's Open section, parked queries allowed; every repository the work touched committed and pushed. Any query with the owner keeps the work With supervisor.
   - The package is tidied first, as for any hold, but idle needs no drain and no Stop. Set `ki-state: on-hold`, `hold.reason: more-expected`, `hold.set_by: worker`, `hold.release: a message arrives, or resume` and `ki-since`; commit `docs(work): <id> hold, idle`; say so in one line.
   - The banner is Snoozing's, with the heading `### 💤 Snoozing (on hold) · idle · at <time>`. It listens only while `ki-listening_enabled` is true.
   - A line arriving on a listening idle coordinator is received at once, moving the work straight to With worker, not Handoff to worker, because the worker is already there.
   - The owner's `pause`, `done for now` or `snooze` turns an idle hold into the owner's form, `hold.set_by: owner`. A hold with no `set_by` was set by the owner.
-- **Paused work and important lines:** a paused hold stays closed to every line, `URGENT` and `IMPORTANT` included. The line waits unread. The State of play, acting for the held work under [acting for idle work](standards-territory.md#territory-work), shows the count and puts an important or urgent line to the owner as a `resume` query in the Open section of its own change document for that work; the package stays paused until the owner answers. A sender with genuinely urgent work sends it to a live owner under [Urgent work](standards-messages.md#messages-between-work), not into the paused queue.
+- **Paused work and urgent work:** a paused hold stays closed to whatever arrives. Work sent to it waits in its package. The node above, acting for the held work under [acting for idle work](standards-territory.md#territory-work), puts anything that will not wait to the owner as a `resume` query in the Open section of its own change document for that work; the package stays paused until the owner answers. A sender with genuinely urgent work sends it to the owner under [Urgent work](standards-messages.md#messages-between-work), not into the paused package.
 - **Release:** `resume`, the release condition being met, or, while Snoozing, a new line or new work, moves the work to Handoff to worker. The coordinator re-reads the package, takes the parked queries in the change documents' Open sections back up as open and starts from `_index.md`'s Now. `finish` moves the work to Finished. A paused hold older than 31 days is flagged in the views.
 
 Sources: HOLD-DRAIN, HOLD-NAMES, HOLD-TIDY, SNOOZE, DRAIN-END, TERRITORY-HOLD, SNOOZE-STATE, SNOOZE-HEADING, HOLD-IDLE, HOLD-SELF, HOLD-LISTEN and HOLD-URGENT in [the decision register](sources.md#decision-register).

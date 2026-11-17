@@ -638,6 +638,10 @@
     "🤖 <n> running · 👤 <n> with you · ⛔ <n> blocked",
     "👤 2 with you · 🅿️ 1 parked",
     "📦 package · changes 0 · open 0 · held 0 · meetings 0",
-    "🤖 1 running · 👤 1 with you"
+    "🤖 1 running · 👤 1 with you",
+    "- <date> · ROUTE · <Territory> > SoP (<territory>): <the unit in the owner's words, with links>",
+    "- IMPORTANT · <date> · <TAG> · <sender label> (<sender id>): ...",
+    "SUPERSEDED",
+    "docs(work): <id> messages taken by <State of play id>"
   ]
 }

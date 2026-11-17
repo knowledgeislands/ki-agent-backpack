@@ -924,8 +924,9 @@ test('the opener launches the session under its thread line', () => {
 })
 
 // Under REPLY-FORMAT, agreed on 7 November 2026, a sent line awaiting its ACK is no longer listed as the
-// `[awaiting ACK]` item NO-LINK-MARK set on 4 November; since OLD-SHAPE-HOMES a the package line no longer counts it.
-test('a sent line awaiting its ACK is never listed as an item', () => {
+// `[awaiting ACK]` item NO-LINK-MARK set on 4 November; since OLD-SHAPE-HOMES a the package line no longer counts it,
+// and since MSG-RETIRE, on 17 November, there is no queue and no ACK at all.
+test('the banner lists no `[awaiting ACK]` item', () => {
   const banner = [
     '### 👤 With supervisor · at 23:52 GMT',
     '',
@@ -946,7 +947,7 @@ test('a sent line awaiting its ACK is never listed as an item', () => {
   listed.splice(9, 0, '- [awaiting ACK] MSG-8029f0fa · to personal.reg.assistant-sol · at 22:27')
   expect(() => expectBanner(listed)).toThrow()
   for (const lines of banners(standard)) expect(lines.some((line) => line.startsWith('- [awaiting ACK]'))).toBe(false)
-  expect(standard).toContain('never listed as an item')
+  expect(standard).toContain('MSG-RETIRE')
   for (const text of [standard, outputStyle]) expect(text).not.toContain('`- [awaiting ACK] <id>')
   expect(standard).toContain('NO-LINK-MARK')
 })

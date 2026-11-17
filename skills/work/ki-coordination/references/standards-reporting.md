@@ -50,7 +50,7 @@ Sources: REPORTING-FORMS in [the decision register](sources.md#decision-register
 A unit of work ends, and a report is owed, when at least one of these holds since the last report:
 
 1. **Changed:** a change to a repository, configuration or external system was committed, or deliberately left uncommitted with the reason stated.
-2. **Sent:** work passed to other work, a repository, a record or a person, such as a captured record, a trade, a `messages.md` line or a handoff.
+2. **Sent:** work passed to other work, a repository, a record or a person, such as a captured record, a trade, steer or feedback, or a handoff.
 3. **Run finished:** a run the session launched has finished; for a background agent, its own run is ending.
 4. **Deliverable:** a deliverable the owner asked for, such as a document, report, draft or analysis written to a file, has been produced.
 5. **Stopped for the owner:** the work stopped before completion with something the owner must decide, supply or do, such as a failure, a block or a decision.
@@ -76,7 +76,7 @@ Sources: CONVERSATIONAL-RUN and CONVRUN-NARROW in [the decision register](source
 
 ### Coordinator-only machinery
 
-The report heading and form line, the banner and its thread line, the mark, the acting rule for `messages.md`, re-anchoring after compaction, the turn budget and the watcher belong to coordinators only. A conversational session's optional package is a plain record: it notes a pause in `_index.md`'s state fields and how to carry on in its Now, and is finished and pruned when the work ends.
+The report heading and form line, the banner and its thread line, the mark, the acting rule for work received along the tree, re-anchoring after compaction, the turn budget and the watcher belong to coordinators only. A conversational session's optional package is a plain record: it notes a pause in `_index.md`'s state fields and how to carry on in its Now, and is finished and pruned when the work ends.
 
 ### Weighing what to do
 

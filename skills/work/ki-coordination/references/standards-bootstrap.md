@@ -20,8 +20,8 @@ A one-line opener brings a new or running session onto this contract, for exampl
 1. where the opener starts a new session, renames the session to the thread line the opener names, as its first act, before any read, by its agent host's rename (runtime-specific: `/rename <thread line>` in Claude Code), under [Opening work](standards-opening.md#opening-work);
 2. reads this standard and the Work Process note;
 3. checks through its agent host which of its agents still run and reconciles what is actually running;
-4. [resolves the opener](#resolving-the-opener) to one package, `work/<territory>/<id>/` in the Cairn store, reads `messages.md` first, then its `_index.md`, the change documents in hand and every change document's Open section, reconciles it under the work-package standard and checks `ki-method_read`;
-5. acts first on the top line of `_index.md`'s Now, the work's first step, then on each line of [`messages.md`](standards-messages.md#messages-between-work), `IMPORTANT` lines first, then in queue order, before launching any work;
+4. [resolves the opener](#resolving-the-opener) to one package, `work/<territory>/<id>/` in the Cairn store, reads its `_index.md`, the change documents in hand and every change document's Open section, reconciles it under the work-package standard and checks `ki-method_read`;
+5. acts first on the top line of `_index.md`'s Now, the work's first step, then on whatever has reached the work along the tree under [Work between packages](standards-messages.md#messages-between-work), before launching any work;
 6. as the summit, gathers every record awaiting acceptance across its territory's repositories, the work beneath its nodes included, and brings them first, ahead of every other query, as one bundle per work under [Acceptance bundles](standards-queries.md#acceptance-bundles);
 7. gives the Bootstrap, trigger T2 in the [coordinator reply format](standards-report-forms.md#triggers), a full Medium [report](standards-reporting.md#owner-report) under the [report heading](standards-report-forms.md#banner-detail), form line `**Bootstrap at <local time> · last mark <local time>**`:
    - `## Done` gives its coordinator role and where the work stands, ending with `Rename thread: /rename <thread line>`, the thread line being `<role glyph> 🔑 <work-id>`, or `🧵 <work-id>` with no role yet, the same line the opener named, under [Opening work](standards-opening.md#opening-work);
@@ -50,7 +50,7 @@ The owner may compact a long session with the runtime's compaction facility, kee
 After any compaction, owner's or runtime's, the coordinator, before answering anything else:
 
 1. re-reads this standard, the harness output style `output-styles/ki-coordinator.md` from disk and its package's `_index.md`, the change documents in hand in full and every change document's Open section, and follows the style file wherever it differs from the loaded style;
-2. checks its agents through its agent host, takes the top line of `_index.md`'s Now as its first step, and reads `messages.md`, `IMPORTANT` lines first;
+2. checks its agents through its agent host, takes the top line of `_index.md`'s Now as its first step, and reads any meeting it sits in, `IMPORTANT` messages first;
 3. confirms in one line that it has re-anchored, then answers with the Bootstrap, heading block to banner.
 
 The style file wins because a session keeps the style it loaded at start through a compaction, so the loaded copy can lag the file on disk; the [compact pointer](standards-coordination.md#generated-surfaces) and the style's re-anchoring paragraph say the same.
@@ -71,22 +71,22 @@ The package alone says how work is picked up. `_index.md`'s state fields, its st
 | Handoff to supervisor, With supervisor | Re-read the package, take the owner's answers, mark, Summary with the open queries carried forward |
 | Handoff to worker | Receive: re-read the package, read back the owner's answers, restart authorised work |
 | Handoff to `<target>` | Check the target's state; stay in handoff until it receives or replies |
-| On hold | Only on `resume`, the release, or the State of play's Now naming it: put the parked queries back and continue from Now; a line routed meanwhile waits in `messages.md` without waking it |
+| On hold | Only on `resume`, the release, or the State of play's Now naming it: put the parked queries back and continue from Now; work sent meanwhile waits in the package without waking it |
 | Finished | Nothing resumes. Reopening is a new opener from the State of play |
 
 Run the [repository level check](standards-sync.md#repository-level-check) before resuming on another Mac and before leaving a host.
 
 **Pick-up reads.** Picking work up stays within the [turn budget](standards-coordination.md#coordinator-responsiveness).
 
-- One read of the package counts as one call: its `_index.md`, the change documents in hand and every Open section, with `messages.md`, at bootstrap, at re-anchoring and at every other read.
+- One read of the package counts as one call: its `_index.md`, the change documents in hand and every Open section, at bootstrap, at re-anchoring and at every other read.
 - A write to the package's files with a brief counts as one write set, so the five-call budget is not spent before the first launch.
 - After bootstrap, read only what changed since the last read, plus the entries bearing on the question, not every decision and query at each owner message.
 - A report's `## Queries` is rendered from the open questions in the package's change documents, each from its change document's Open section.
 
-**Identity.** The closing thread line identifies the work to pick up; no session gets a copyable send or resume prompt beyond the [restart suggestion](standards-coordination.md#banner) when a trigger holds. Before acting, the coordinator verifies the id and exact label against `_index.md` and grounds itself in the primary checkout of the package's repository. It re-bootstraps, takes stock from its change documents, its agents in its agent host, `messages.md` and the owner's messages, follows the state's first step above and restarts authorised work.
+**Identity.** The closing thread line identifies the work to pick up; no session gets a copyable send or resume prompt beyond the [restart suggestion](standards-coordination.md#banner) when a trigger holds. Before acting, the coordinator verifies the id and exact label against `_index.md` and grounds itself in the primary checkout of the package's repository. It re-bootstraps, takes stock from its change documents, its agents in its agent host, the meetings it sits in and the owner's messages, follows the state's first step above and restarts authorised work.
 
 - Whatever must be done first on pick-up is the top line of `_index.md`'s Now, written there when the package is seeded and kept there at every move.
-- Work others wait on writes `READY` into the State of play's `messages.md`, and the State of play then identifies each waiting piece by its thread line, in its own order.
+- Work others wait on says `READY` up the tree as feedback, and the node above identifies each waiting piece by its thread line, in its own order.
 
 Sources: PICKUP-PRINCIPLE, PICKUP-READS and FIRST-STEP-HOME in [the decision register](sources.md#decision-register).
 
@@ -102,13 +102,8 @@ Sources: RED-X-RECOVERY in [the decision register](sources.md#decision-register)
 
 ## Targeted refresh and landed notices
 
-**Targeted refresh.** After an approved method change lands, the sender writes one dated `REFRESH` line, flagged important so it is taken before ordinary lines, only into the `messages.md` of works whose `ki-method_read` predates the change and whom it affects. The line links the standard at its revision and states the practical effect in a sentence.
+**Targeted refresh.** No `REFRESH` line is sent since the queue retired (MSG-RETIRE): a method change reaches work through the bootstrap and update revision checks under [Refreshing this guidance](standards-coordination.md#refreshing-this-guidance), and the receiver rereads at its next safe point, before launching further work. Held work is not woken.
 
-- While Ways of working is defining the method it sends these lines itself; afterwards the State of play sends them under [Stewardship of continual improvement](standards-territory.md#territory-work).
-- A sender may replace its own earlier `REFRESH` line not yet acted on, so changes coalesce; the replacement keeps every pending effect of the line it replaces.
-- The receiver rereads at its next safe point, before launching further work. Held work is not woken; the line waits.
-- The bootstrap and update revision checks stay as the fallback.
+**Landed notices.** When a change a coordinator asked for lands, or one that changes how it works, the session that landed it says so along the tree, as steer recorded in that work's package. A coordinator that finds its `ki-method_read` behind at bootstrap, says in its next reply, in a line or two, how its own behaviour has changed, naming the Ways of working change. No acknowledgement line is needed: setting `ki-method_read` is the confirmation.
 
-**Landed notices.** When Ways of working delivers a change a coordinator asked for, or one that changes how it works, it sends that coordinator a targeted `REFRESH` line saying what landed and what it changes there. A coordinator that takes such a line, or finds its `ki-method_read` behind at bootstrap, says in its next reply, in a line or two, how its own behaviour has changed, naming the Ways of working change. No acknowledgement line is needed: setting `ki-method_read` is the confirmation.
-
-Sources: REFRESH-TARGET, WOW-REFRESH and LANDED-NOTICE in [the decision register](sources.md#decision-register).
+Sources: REFRESH-TARGET, WOW-REFRESH, LANDED-NOTICE and MSG-RETIRE in [the decision register](sources.md#decision-register).
