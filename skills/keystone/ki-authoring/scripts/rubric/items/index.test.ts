@@ -738,11 +738,13 @@ test('FMT reads the fields written without the ki- prefix and FMT-prefix warns o
   ).toEqual(['PASS'])
 })
 
-test('FMT-record fails a record that breaks the record format and reads an older record as written', () => {
+test('FMT-record fails a record that breaks the record format, checks living records and reads an older record as written', () => {
   const repository = temporaryRepository()
   mkdirSync(join(repository, 'record'))
   const front = (name: string, extra = '') =>
-    `---\nki-id: record:${name}\nki-document-type: record@2026-11-16T23:15:00Z\nki-revised: 2026-11-16T23:15:00Z\nki-at: 2026-11-16T23:15:00Z\ntitle: T\nki-packages:\n  - cairn.summit\nki-review: awaiting\n${extra}---\n\n# T\n\n`
+    `---\nki-id: record:${name}\nki-document-type: record@2026-11-16T23:15:00Z\nki-revised: 2026-11-16T23:15:00Z\nki-at: 2026-11-16T23:15:00Z\ntitle: T\nki-theme: store\nki-packages:\n  - cairn.summit\nki-review: awaiting\n${extra}---\n\n# T\n\n`
+  const living = (name: string, theme: string, sections: string) =>
+    `---\nki-id: record:${name}\nki-document-type: record@2026-11-17T02:23:23Z\nki-revised: 2026-11-17T02:23:23Z\ntitle: T\n${theme}ki-packages:\n  - cairn.summit\nki-review: approved\n---\n\n# T\n\nWhat the theme covers.\n\n${sections}`
   const pinned = 'https://github.com/krisb/ki-cairn-store/blob/9968877/record/20261114T0339Z-overnight.md'
   const records: Record<string, string> = {
     '20261116T2315Z-a-batch': `${front('20261116T2315Z-a-batch')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
@@ -751,6 +753,10 @@ test('FMT-record fails a record that breaks the record format and reads an older
     '20261116T2315Z-review-old-parts': `${front('20261116T2315Z-review-old-parts')}It replaces [one](20261114T0339Z-overnight.md).\n\n## What stands today\n\n## Replaced since\n\n## Detail\n\n## Left open\n`,
     '20261116T2315Z-review-no-links': `${front('20261116T2315Z-review-no-links')}It replaces nothing linked.\n\n## What stands today\n\n## Left open\n`,
     '20261116T2315Z-one-two-three-four-five-six': `${front('20261116T2315Z-one-two-three-four-five-six').replace('ki-review: awaiting', 'ki-review: changes wanted')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
+    '20261116T2315Z-no-theme': `${front('20261116T2315Z-no-theme').replace('ki-theme: store\n', '')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
+    store: living('store', 'ki-theme: store\n', '## What stands today\n\n## Left open\n\n## History\n'),
+    skills: living('skills', 'ki-theme: estate\n', '## What stands today\n\n## Left open\n'),
+    legal: living('legal', '', '## What stands today\n\n## Left open\n\n## History\n'),
     '20261114T0339Z-an-older-record-with-a-long-slug':
       '---\ntype: record\nat: 2026-11-14T03:39:00Z\ntitle: T\npackages:\n  - cairn.summit\nreview: approved\n---\n\n# T\n\nLead.\n\n## What stands today\n\n## Replaced since\n\n## Detail\n\n## Left open\n',
     '20261114T0400Z-older-and-wrong':
@@ -769,13 +775,17 @@ test('FMT-record fails a record that breaks the record format and reads an older
   expect(record?.mechanical?.audit.run(formats).map(({ subject, message }) => [subject, message])).toEqual([
     ['record/20261114T0400Z-older-and-wrong.md', "`ki-at` is missing or differs from the file name's time"],
     ['record/20261114T0400Z-older-and-wrong.md', '`ki-review` is not awaiting or approved'],
+    ['record/20261116T2315Z-no-theme.md', '`ki-theme` is missing or not a lower-case word'],
     ['record/20261116T2315Z-one-two-three-four-five-six.md', '`ki-review` is not awaiting or approved'],
     ['record/20261116T2315Z-review-no-links.md', 'the opening line links no record it replaces'],
     [
       'record/20261116T2315Z-review-old-parts.md',
       'a consolidated review has What stands today and Left open, and no other section'
     ],
-    ['record/20261116T2315Z-review-old-parts.md', 'a record the opening line links is not pinned at a commit']
+    ['record/20261116T2315Z-review-old-parts.md', 'a record the opening line links is not pinned at a commit'],
+    ['record/legal.md', '`ki-theme` is missing or not a lower-case word'],
+    ['record/skills.md', "a living record's `ki-theme` is not skills"],
+    ['record/skills.md', 'a living record has What stands today, Left open and History, and no other section']
   ])
   expect(
     record?.mechanical?.audit.run({ documents: [], standards: [], records: [] }).map(({ status }) => status)

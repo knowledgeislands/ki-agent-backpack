@@ -186,6 +186,7 @@ export type RecordEvidence = {
   at?: string
   revised: boolean
   review?: string
+  theme?: string
   packagesList: boolean
   headings: readonly string[]
   openingLinks: readonly string[]
@@ -478,6 +479,7 @@ const inspectRecords = (repository: string, paths: readonly string[]): readonly 
     const id = field('id')
     const at = field('at')
     const review = field('review')
+    const theme = field('theme')
     const unprefixed = unprefixedFields(frontmatter)
     return [
       {
@@ -488,6 +490,7 @@ const inspectRecords = (repository: string, paths: readonly string[]): readonly 
         ...(at ? { at } : {}),
         revised: Boolean(field('revised')),
         ...(review ? { review } : {}),
+        ...(theme ? { theme } : {}),
         packagesList: PACKAGES_LIST.test(frontmatter),
         headings: lines.filter((line) => line.startsWith('## ')).map((line) => line.slice(3).trim()),
         openingLinks: [...opening.join('\n').matchAll(MARKDOWN_LINK)].map((link) => link[1] ?? '')

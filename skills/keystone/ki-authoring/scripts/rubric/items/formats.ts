@@ -171,7 +171,7 @@ const FMT_SHAPE: RubricItem<FormatsRubricContext> = {
     'standard-formats-standard.md#45-validation',
     'standard-formats-change.md#46-validation',
     'standard-formats-sources.md#45-validation',
-    'standard-formats-record.md#47-validation',
+    'standard-formats-record.md#48-validation',
     'standard-formats-design.md#47-validation'
   ],
   judgment: {
@@ -185,52 +185,67 @@ const FMT_SHAPE: RubricItem<FormatsRubricContext> = {
 
 const REVIEW_VALUES = new Set(['awaiting', 'approved'])
 const RECORD_NAME = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})Z-([a-z0-9]+(?:-[a-z0-9]+)*)$/
+const THEME = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/
 const BATCH_SECTIONS = ['Purpose', 'Goals', 'What changed']
 const REVIEW_SECTIONS = ['What stands today', 'Left open']
+const LIVING_SECTIONS = ['What stands today', 'Left open', 'History']
 const RECORD_FILE = /(?:^|\/)\d{8}T\d{4}Z-[^/#]+\.md(?:#.*)?$/
 const PINNED = /^https:\/\/github\.com\/[^/]+\/[^/]+\/blob\/[0-9a-f]{7,40}\//
 
 const inOrder = (headings: readonly string[], sections: readonly string[]) =>
   headings.length === sections.length && headings.every((heading, index) => heading === sections[index])
 
-// What one record breaks of the record format's 4.7; a record with no version is an older record, read as written,
-// with only its `ki-at`, `ki-review` and any `ki-id` checked. Each is read under its older bare name too.
+// What a dated record's sections break: a consolidated review's three parts and pinned originals, or a batch record's.
+const datedProblems = (record: RecordEvidence, slug: string): readonly string[] => {
+  if (!slug.startsWith('review-'))
+    return inOrder(record.headings, BATCH_SECTIONS) || inOrder(record.headings, REVIEW_SECTIONS)
+      ? []
+      : [
+          "a batch record has Purpose, Goals and What changed, or the review's What stands today and Left open, and no other section"
+        ]
+  const recordLinks = record.openingLinks.filter((link) => RECORD_FILE.test(link))
+  return [
+    ...(inOrder(record.headings, REVIEW_SECTIONS)
+      ? []
+      : ['a consolidated review has What stands today and Left open, and no other section']),
+    ...(recordLinks.length === 0 ? ['the opening line links no record it replaces'] : []),
+    ...(recordLinks.every((link) => PINNED.test(link))
+      ? []
+      : ['a record the opening line links is not pinned at a commit'])
+  ]
+}
+
+// What one record breaks of the record format's 4.8; a record with no version is an older record, read as written,
+// with only its `ki-at`, `ki-review` and any `ki-id` checked. Each is read under its older bare name too. A living
+// record is named by its theme and carries no `ki-at`.
 const recordProblems = (record: RecordEvidence): readonly string[] => {
   const name = basename(record.path, '.md')
   const named = RECORD_NAME.exec(name)
+  const living = record.versioned && !named && THEME.test(name)
   const time = named ? `${named[1]}-${named[2]}-${named[3]}T${named[4]}:${named[5]}` : undefined
   const problems = [
-    ...(!record.at || (time && !record.at.startsWith(time))
+    ...(!living && (!record.at || (time && !record.at.startsWith(time)))
       ? ["`ki-at` is missing or differs from the file name's time"]
       : []),
     ...(record.review && REVIEW_VALUES.has(record.review) ? [] : ['`ki-review` is not awaiting or approved']),
     ...(record.id && record.id !== `record:${name}` ? [`\`ki-id\` is not record:${name}`] : [])
   ]
   if (!record.versioned) return problems
-  const slug = named?.[6] ?? ''
-  const consolidated = slug.startsWith('review-')
-  const recordLinks = record.openingLinks.filter((link) => RECORD_FILE.test(link))
   return [
     ...problems,
-    ...(named ? [] : ['the file name is not <YYYYMMDD>T<HHMM>Z-<slug>']),
+    ...(named || living ? [] : ['the file name is not <YYYYMMDD>T<HHMM>Z-<slug> or a theme']),
     ...(record.id ? [] : ['no `ki-id`']),
     ...(record.revised ? [] : ['no `ki-revised`']),
+    ...(record.theme && THEME.test(record.theme) ? [] : ['`ki-theme` is missing or not a lower-case word']),
     ...(record.packagesList ? [] : ['`ki-packages` is not a list']),
-    ...(consolidated
+    ...(living
       ? [
-          ...(inOrder(record.headings, REVIEW_SECTIONS)
+          ...(record.theme && record.theme !== name ? [`a living record's \`ki-theme\` is not ${name}`] : []),
+          ...(inOrder(record.headings, LIVING_SECTIONS)
             ? []
-            : ['a consolidated review has What stands today and Left open, and no other section']),
-          ...(recordLinks.length === 0 ? ['the opening line links no record it replaces'] : []),
-          ...(recordLinks.every((link) => PINNED.test(link))
-            ? []
-            : ['a record the opening line links is not pinned at a commit'])
+            : ['a living record has What stands today, Left open and History, and no other section'])
         ]
-      : inOrder(record.headings, BATCH_SECTIONS) || inOrder(record.headings, REVIEW_SECTIONS)
-        ? []
-        : [
-            "a batch record has Purpose, Goals and What changed, or the review's What stands today and Left open, and no other section"
-          ])
+      : datedProblems(record, named?.[6] ?? ''))
   ]
 }
 
@@ -238,8 +253,8 @@ const FMT_RECORD: RubricItem<FormatsRubricContext> = {
   code: 'FMT-record',
   title: 'a record follows the record format',
   description:
-    "A record, a document whose `ki-document-type` is `record@<version>`, passes the record format's Validation: `ki-id` is `record:` and its file name, `ki-at` matches the name's time, `ki-revised` is present, `ki-packages` is a list and `ki-review` `awaiting` or `approved`; a batch record has Purpose, Goals and What changed, or a review's sections; a consolidated review, named `review-…`, has What stands today and Left open, and its opening line links the records it replaces, each pinned at a commit; and the name is a time and a slug, whose length in words is left to review, since a hyphen may join one word or separate two. An older record, `record` with no version, is read as written: only its `ki-at`, `ki-review` and any `ki-id` are checked. Each field is read under its older bare name too, as FMT-prefix warns.",
-  sources: ['standard-formats-record.md#47-validation'],
+    "A record, a document whose `ki-document-type` is `record@<version>`, passes the record format's Validation: `ki-id` is `record:` and its file name, `ki-revised` is present, `ki-theme` a lower-case word, `ki-packages` a list and `ki-review` `awaiting` or `approved`; a dated record's `ki-at` matches the name's time, and its name is a time and a slug, whose length in words is left to review, since a hyphen may join one word or separate two; a batch record has Purpose, Goals and What changed, or a review's sections; a consolidated review, named `review-…`, has What stands today and Left open, and its opening line links the records it replaces, each pinned at a commit; and a living record, named by its theme, carries that theme in `ki-theme`, needs no `ki-at`, and has What stands today, Left open and History. An older record, `record` with no version, is read as written: only its `ki-at`, `ki-review` and any `ki-id` are checked. Each field is read under its older bare name too, as FMT-prefix warns.",
+  sources: ['standard-formats-record.md#48-validation'],
   mechanical: {
     level: 'FAIL',
     remediation: DIAGNOSTIC_REMEDIATION,

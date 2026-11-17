@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:50:03Z
+ki-revised: 2026-11-17T02:23:23Z
 ki-status: in force
 ---
 
@@ -142,6 +142,7 @@ A review gives its findings in the order of their anchors, then its line of what
 2. **Recorded where the thing changes,** in the field its format already gives it: a record's `ki-review`; a change document's `ki-status`, from `review` to `agreed`; and a design or standard through the change document that moves it. No review field is added to a document that has none.
 3. **Findings go to the change document.** Where a change document moves the thing, its review is that change's review: blocking findings become its questions, the other issues and suggestions its gaps or notes, and notes and praise need nothing.
 4. **Setting a thing aside is not a review outcome.** Shelving, replacing or withdrawing goes through the thing's own life cycle, by a change document.
+5. **An approval covers the version the owner saw.** A change of substance to an approved thing sets it back to awaiting review, and the owner reviews what changed since the version approved, as the record format sets for a record, whose living record changes as its theme's work lands (RECORDS-THEMES); a design or standard changes only through a change document, which takes its own review.
 
 [Back to contents](#contents)
 
