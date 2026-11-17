@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:48:38Z
+ki-revised: 2026-11-17T01:50:03Z
 ki-status: in force
 ---
 
@@ -97,7 +97,7 @@ Use this readable report shape:
 
 1. Read the target repository's canonical roadmap and run its read-only `ki-work-roadmap` audit before proposing a durable route.
 2. Compare each candidate against existing items by concern, scope, and evidence; treat a similar title as a review prompt, not proof of duplication.
-3. Present only the deduplicated candidate set, including whether each is a new item, an amendment, or no roadmap work. Stop for the user's explicit decision.
+3. Present only the deduplicated candidate set, including whether each is a new item, an amendment, or no roadmap work. Stop for the user's explicit decision; for REVIEW, that decision is the review's outcome, Approve or Accept with changes, as the [review standard](../../ki-authoring/references/standard-review.md#45-the-outcome) and [the REVIEW procedure](mode-review.md) set.
 4. After the user confirms a roadmap change, use the repository's ordinary roadmap process to make it. Let `ki-work next` select and promote eligible work; let `ki-work plan` create and progress a plan only when the user requests planned execution.
 
 Neither REVIEW nor EXTRACT writes a roadmap, plan, skill, script, agent, hook, or transcript-derived memory. Historical material is read only when the user names its path or otherwise selects its exact scope.

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:48:38Z
+ki-revised: 2026-11-17T01:50:03Z
 ki-status: in force
 ---
 
@@ -138,7 +138,7 @@ A review gives its findings in the order of their anchors, then its line of what
 
 ### 4.5 The outcome
 
-1. **Two outcomes, both the owner's.** **Approve:** accepted as it stands. **Accept with changes:** accepted, with the open findings turned into new work in a change document, and the thing approved at once rather than rewritten, as the record format's ACCEPT-WITH-CHANGES sets for a record. There is no third outcome: a thing whose blocking findings are open stays awaiting review.
+1. **Two outcomes, both the owner's.** **Approve:** accepted as it stands. **Accept with changes:** accepted, with the open findings turned into new work in a change document, or wherever the kind's skill routes its work, and the thing approved at once rather than rewritten, as the record format's ACCEPT-WITH-CHANGES sets for a record. There is no third outcome: a thing whose blocking findings are open stays awaiting review.
 2. **Recorded where the thing changes,** in the field its format already gives it: a record's `ki-review`; a change document's `ki-status`, from `review` to `agreed`; and a design or standard through the change document that moves it. No review field is added to a document that has none.
 3. **Findings go to the change document.** Where a change document moves the thing, its review is that change's review: blocking findings become its questions, the other issues and suggestions its gaps or notes, and notes and praise need nothing.
 4. **Setting a thing aside is not a review outcome.** Shelving, replacing or withdrawing goes through the thing's own life cycle, by a change document.
@@ -165,7 +165,7 @@ Everything reviewable is either awaiting its owner or approved, so one list show
 
 - **`ki-design`** adds the design anchors, a board code and region, a component by its name and level, a C4 element, and an API resource or operation, and reviews a design against the design format, its kind's levels and, for a visual design, the design system's floor.
 - **`ki-design-system`** reviews each board of a round against the brief's rules and its rubric before the round is posted.
-- **`ki-skills`**' REVIEW mode adds a candidate's disposition and roadmap treatment.
+- **`ki-skills`**' REVIEW mode adds a candidate's disposition and roadmap treatment, and its Accept with changes routes the accepted candidates to the roadmap as the work it creates.
 - **The [record format](standard-formats-record.md#42-review)** keeps a record's review state and turns an acceptance with changes into new work.
 - **`ki-meeting`**'s review standard holds a review as a meeting: its brief, its verdicts on each part and how it closes.
 

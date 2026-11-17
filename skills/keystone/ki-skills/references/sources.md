@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-15T00:17:25Z
-ki-revised: 2026-11-17T01:48:38Z
+ki-revised: 2026-11-17T01:50:03Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -177,7 +177,7 @@ The OpenAI News page is a discovery source, not a normative standard. On each RE
 
 ## 4. Last review
 
-A later in-house review on **2026-11-17** applied REVIEW-HOME b, which Kris took that day: [REVIEW](mode-review.md) and [the candidate shape](standard-candidate-findings.md#41-candidate-shape) cite `ki-authoring`'s review standard, so that a REVIEW candidate is also a finding in its shape, its Evidence the anchor and its Proposed action what to change, with its kind, whether it blocks and its confidence, and the report saying what was not checked. REVIEW's outcome is unchanged: the user confirms the proposed roadmap routes. EXTRACT's candidates are unchanged. No outside source refreshed.
+A later in-house review on **2026-11-17** applied REVIEW-HOME b, which Kris took that day: [REVIEW](mode-review.md) and [the candidate shape](standard-candidate-findings.md#41-candidate-shape) cite `ki-authoring`'s review standard, so that a REVIEW candidate is also a finding in its shape, its Evidence the anchor and its Proposed action what to change, with its kind, whether it blocks and its confidence, and the report saying what was not checked. REVIEW now ends with the review standard's two outcomes: Approve, or Accept with changes, whose work is the accepted candidates routed to the roadmap, so confirming the routes is part of that outcome. EXTRACT's candidates are unchanged, since giving them a finding's kind, blocking and confidence would change what EXTRACT reports, not only its words. No outside source refreshed.
 
 An in-house review on **2026-11-17** applied SKILL-FORMAT a and, for `SKILL.md`, KI-PREFIX a, which Kris took that day, relayed by the Cairn summit's guardian from the summit's [change 11](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided). Four format standards now set a skill's own files, each an instance of `ki-authoring`'s format format: [the skill format](standard-formats-skill.md), [the mode format](standard-formats-mode.md), [the exemplars format](standard-formats-exemplars.md) and [the rubric format](standard-formats-rubric.md). They name the fields and rules the Agent Skills, Knowledge Islands and rubric-authoring standards already set rather than repeat them. The new SKILL-FMT family warns on a missing or out-of-date `ki-document-type` and on `SKILL.md` fields without the prefix, and `ki dev skill rubric` writes the rubric's field. No outside source refreshed.
 
