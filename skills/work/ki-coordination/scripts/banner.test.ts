@@ -97,13 +97,21 @@ const AGREED = new Set(GLYPH_ROWS.flatMap(([glyph = '']) => cellGlyphs(glyph)))
 const ITEM_GLYPHS = new Set(
   GLYPH_ROWS.filter(([, , where = '']) => /\bF6\b/.test(where)).flatMap(([glyph = '']) => cellGlyphs(glyph))
 )
-/** The role glyphs, which the table links to `ki-work-package`'s role catalogue rather than copying. */
-const ROLE_GLYPHS = new Set(
-  tableAfter(
-    readFileSync(resolve(skillRoot, '..', 'ki-work-package', 'references', 'standard-roles.md'), 'utf8'),
-    '### 4.3 Role catalogue'
-  ).map(([, , glyph = '']) => bare(glyph))
-)
+/**
+ * The role glyphs, which the table links to `ki-work-package`'s role catalogue rather than copying, read from its Glyph
+ * column by the header, since the catalogue gained a Rank column under ROLE-RANK (Kris, 17 November 2026).
+ */
+const ROLE_GLYPHS = ((): Set<string> => {
+  const roles = readFileSync(resolve(skillRoot, '..', 'ki-work-package', 'references', 'standard-roles.md'), 'utf8')
+  const header =
+    (roles.split('### 4.3 Role catalogue')[1] ?? '').split('\n').find((line) => line.startsWith('| ')) ?? ''
+  const column = header
+    .split('|')
+    .slice(1, -1)
+    .map((cell) => cell.trim())
+    .indexOf('Glyph')
+  return new Set(tableAfter(roles, '### 4.3 Role catalogue').map((row) => bare(row[column] ?? '')))
+})()
 /** The bracketed state words ITEM-GLYPHS retired, each now an agreed glyph's, so never written in brackets. */
 const RETIRED_WORDS = new Set(
   'running queued with-you stuck blocked parked release finished window scheduled stranded branch stash'

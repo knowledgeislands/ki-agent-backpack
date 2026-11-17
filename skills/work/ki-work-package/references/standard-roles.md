@@ -58,6 +58,7 @@ The roles seats take within work, and how a package and a session record them.
 | **Seat** | One role taking part in a package; a session holding a package's keys is its seat. **Standard:** this one, [4.4](#44-marks) |
 | **Tier** | A level of authority: leaders, managers or makers. **Standard:** this one, [4.2](#42-tiers) |
 | **Default role** | A tier's general role, which a seat takes unless the work calls for one of the tier's specialisations. **Standard:** this one, [4.2](#42-tiers) |
+| **Rank** | A role's place within its tier, 1 the highest, set in the catalogue and never by a UI; the default role ranks lowest. **Standard:** this one, [4.3](#43-role-catalogue) |
 | **Role** | The job within a tier, one of the catalogue's. **Standard:** this one, [4.3](#43-role-catalogue) |
 | **Pack** | A seat's own subagents and background runs; private to the seat. **Standard:** this one, [4.7](#47-rules-of-the-role-model) |
 | **Guild** | A set of skills, such as change management, kept by the guildmaster. **Standard:** this one, [4.3](#43-role-catalogue) |
@@ -85,11 +86,13 @@ Every institution in this model exists to serve its purpose and the people it se
 
 | Tier | Decides | Reports to | Default role | Specialised roles |
 | --- | --- | --- | --- | --- |
-| leaders | Within their territory; matters that cross territories go to the leaders together | Kris, with queries | governor | councillor, quartermaster, guardian |
-| managers | Within standing grants; exceptions go up to the territory's leaders | The territory's leaders | warden | housekeeper, gatekeeper, librarian, guildmaster |
-| makers | Within the hand-off they were given | The seat that handed the work over, never Kris directly | journeyman | illustrator, information-architect, technical-architect, voice |
+| leaders | Within their territory; matters that cross territories go to the leaders together | Kris, with queries | councillor | guardian, governor, quartermaster |
+| managers | Within standing grants; exceptions go up to the territory's leaders | The territory's leaders | warden | guildmaster, librarian, gatekeeper, housekeeper |
+| makers | Within the hand-off they were given | The seat that handed the work over, never Kris directly | journeyman | voice, technical-architect, information-architect, illustrator |
 
-Each tier has one default role, and every other role in the tier is a specialisation of it: the housekeeper is the warden of a machine, the gatekeeper of what comes in and goes out, the librarian of the library and the guildmaster of the standards and skills, as Kris took ROLE-DEFAULTS a on 11 November 2026.
+Each tier has one default role, and every other role in the tier is a specialisation of it: the governor is the leader at the head of one territory, the housekeeper is the warden of a machine, the gatekeeper of what comes in and goes out, the librarian of the library and the guildmaster of the standards and skills, as Kris took ROLE-DEFAULTS a on 11 November 2026. The leaders' default is the councillor, not the governor, as Kris took DEFAULT-LEADER on 17 November 2026: "governor is the wrong kind of leader, because it's very specifically the head of a territory"; every territory's summit is still seated by its governor.
+
+The tiers run in this order, leaders, managers, makers, and the specialised roles are listed in rank order, highest first, under ROLE-RANK in [4.3](#43-role-catalogue).
 
 [Back to contents](#contents)
 
@@ -97,22 +100,24 @@ Each tier has one default role, and every other role in the tier is a specialisa
 
 Every seat takes exactly one role from this table, and this table is the one place that says what each role glyph means. Role names are singular, and any seat may be one agent or a lead with a pack. Managers may also make. Chancellor, over several libraries, and a guildmaster for each guild are reserved: neither has a glyph until the work calls for it. Steward is not a role: it folds into warden, since whether a place's work is standing or a Project is its package's `ki-level`, not the role, as Kris took ROLE-DEFAULTS a on 11 November 2026; the warden takes the word's everyday sense, the keeper of a place.
 
-| Role | Tier | Glyph | Owns | Never does |
-| --- | --- | --- | --- | --- |
-| governor | leaders | 🏛️ | Heads one territory: its State of play, priorities, dispatch, the admission of its managers and the queries it brings to Kris; convenes its council | Outranks another territory's governor, decides for another territory, or does its managers' or makers' work |
-| councillor | leaders | 🗳️ | A further leader's share of one territory's decisions, by its governor's grant, and its vote in the council and in admissions | Heads the territory, acts outside it, or decides alone what the council holds |
-| quartermaster | leaders | 🧰 | The island's tools and MCP servers, kept working, released and accounted for, from its own package, `ki.tools` | Decides how a tool must behave, which is the guild's, heads the territory, or releases without Kris |
-| guardian | leaders | 🪨 | The state of every work package in the Cairn store, from `cairn.summit`, the root of its work tree | Does a package's own work, which is its seat's, or acts on a change document before Kris's word |
-| warden | managers | ⚒️ | One place in the work tree, standing work or a Project: its package, records, runs and queue, its standing work within its standing grants, and a Project's delivery from Ready to awaiting acceptance | Sets priority across Projects, takes up territory dispatch, accepts its own delivery, acts past its grants instead of taking the exception up, or works outside its place |
-| housekeeper | managers | 🏠 | One machine's health and its match with the declared setup: applies, drift, doctor findings and the installs Kris decides | Changes another machine, or changes the tooling and standards it applies |
-| gatekeeper | managers | 🦉 | What comes in and goes out: capture, intake, mail and the packs prepared for Kris | Decides what it carries, or sends anything in Kris's name without his word |
-| librarian | managers | 📚 | The library: what knowledge is kept, where, and how it is found | Owns the work the knowledge comes from, or keeps what has a durable home elsewhere |
-| guildmaster | managers | ⚖️ | This catalogue and the skills that capture how we work | Judges roles alone, since Kris and the council may overturn it, or builds the tools and does the work its skills govern |
-| journeyman | makers | 🐝 | A handed-off unit of general making, reported to the seat that handed it over | Takes work no seat handed it, or reports to Kris directly |
-| illustrator | makers | 🎨 | Visual design and its artefacts for a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
-| information-architect | makers | 📐 | Information architecture: the structure, naming, navigation and models of a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
-| technical-architect | makers | 🏗️ | Technical architecture: the components, data, interfaces and technology choices of a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
-| voice | makers | 🦜 | Kris's spoken word carried to and from the seat that holds a package, as messages in its meeting, quoting him exactly | Decides anything, writes anything but messages, or carries as Kris's word what he did not say |
+The rows run tier by tier in the tiers' order, leaders, managers, makers, and within each tier in rank order, highest first: `Rank` is an integer, 1 the highest in its tier, and the tier's default role always ranks lowest, as Kris took ROLE-RANK on 17 November 2026, "the generic ranks should always be the lowest one in each of the categories". A rank is set here, in the skills, never by a UI: a UI sorts tiers by this order and roles by rank, never alphabetically.
+
+| Role | Tier | Rank | Glyph | Owns | Never does |
+| --- | --- | --- | --- | --- | --- |
+| guardian | leaders | 1 | 🪨 | The state of every work package in the Cairn store, from `cairn.summit`, the root of its work tree | Does a package's own work, which is its seat's, or acts on a change document before Kris's word |
+| governor | leaders | 2 | 🏛️ | Heads one territory: its State of play, priorities, dispatch, the admission of its managers and the queries it brings to Kris; convenes its council | Outranks another territory's governor, decides for another territory, or does its managers' or makers' work |
+| quartermaster | leaders | 3 | 🧰 | The island's tools and MCP servers, kept working, released and accounted for, from its own package, `ki.tools` | Decides how a tool must behave, which is the guild's, heads the territory, or releases without Kris |
+| councillor | leaders | 4 | 🗳️ | A further leader's share of one territory's decisions, by its governor's grant, and its vote in the council and in admissions | Heads the territory, acts outside it, or decides alone what the council holds |
+| guildmaster | managers | 1 | ⚖️ | This catalogue and the skills that capture how we work | Judges roles alone, since Kris and the council may overturn it, or builds the tools and does the work its skills govern |
+| librarian | managers | 2 | 📚 | The library: what knowledge is kept, where, and how it is found | Owns the work the knowledge comes from, or keeps what has a durable home elsewhere |
+| gatekeeper | managers | 3 | 🦉 | What comes in and goes out: capture, intake, mail and the packs prepared for Kris | Decides what it carries, or sends anything in Kris's name without his word |
+| housekeeper | managers | 4 | 🏠 | One machine's health and its match with the declared setup: applies, drift, doctor findings and the installs Kris decides | Changes another machine, or changes the tooling and standards it applies |
+| warden | managers | 5 | ⚒️ | One place in the work tree, standing work or a Project: its package, records, runs and queue, its standing work within its standing grants, and a Project's delivery from Ready to awaiting acceptance | Sets priority across Projects, takes up territory dispatch, accepts its own delivery, acts past its grants instead of taking the exception up, or works outside its place |
+| voice | makers | 1 | 🦜 | Kris's spoken word carried to and from the seat that holds a package, as messages in its meeting, quoting him exactly | Decides anything, writes anything but messages, or carries as Kris's word what he did not say |
+| technical-architect | makers | 2 | 🏗️ | Technical architecture: the components, data, interfaces and technology choices of a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
+| information-architect | makers | 3 | 📐 | Information architecture: the structure, naming, navigation and models of a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
+| illustrator | makers | 4 | 🎨 | Visual design and its artefacts for a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
+| journeyman | makers | 5 | 🐝 | A handed-off unit of general making, reported to the seat that handed it over | Takes work no seat handed it, or reports to Kris directly |
 
 The two architects are two makers because their responsibilities differ, as Kris took ARCHITECT-SPLIT a on 16 November 2026: the information architect shapes how a piece is organised and found, the technical architect how it is built, as `ki-design`'s [design standard](../../../keystone/ki-design/references/standard-design.md#41-what-design-covers) draws them. Their seats read `ki.cairn@information-architect` and `ki.cairn@technical-architect`; the one `architect` they replace is read under [the role migration file](standards-roles-migration.md).
 

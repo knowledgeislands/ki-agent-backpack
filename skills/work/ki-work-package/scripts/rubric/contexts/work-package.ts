@@ -483,18 +483,36 @@ const capabilityChecks = (
     fail('syncing_enabled true requires listening_enabled true: a syncing thread is always a listening thread')
 }
 
-export type CatalogueRole = { readonly tier: string; readonly glyph: string }
+export type CatalogueRole = { readonly tier: string; readonly rank: number; readonly glyph: string }
 
-/** The Role catalogue table of the role standard: each role's tier and glyph, by role name. */
+/**
+ * The Role catalogue table of the role standard: each role's tier, rank and glyph, by role name, in the table's order,
+ * tier by tier and by rank within each tier, highest first, the tier's default role lowest (ROLE-RANK, Kris, 17
+ * November 2026). Columns are found by their header, so the table may gain columns without moving these.
+ */
 export const roleCatalogue = (standard = readFileSync(ROLE_STANDARD, 'utf8')): ReadonlyMap<string, CatalogueRole> => {
   const section = standard.split(/^#{2,3} (?:[\d.]+ )?Role catalogue$/m)[1]?.split(/^#{2,3} /m)[0] ?? ''
   const roles = new Map<string, CatalogueRole>()
+  let columns: readonly string[] = []
   for (const line of section.split(/\r?\n/)) {
-    const [role = '', tier = '', glyph = ''] = line
+    const cells = line
       .split('|')
       .slice(1, -1)
       .map((cell) => cell.trim())
-    if (/^[a-z]+(?:-[a-z]+)*$/.test(role) && TIERS.includes(tier) && glyph.length > 0) roles.set(role, { tier, glyph })
+    if (cells[0] === 'Role') {
+      columns = cells.map((cell) => cell.toLowerCase())
+      continue
+    }
+    const cell = (name: string): string => cells[columns.indexOf(name)] ?? ''
+    const [role, tier, glyph, rank] = [cell('role'), cell('tier'), cell('glyph'), Number(cell('rank'))]
+    if (
+      /^[a-z]+(?:-[a-z]+)*$/.test(role) &&
+      TIERS.includes(tier) &&
+      glyph.length > 0 &&
+      Number.isInteger(rank) &&
+      rank > 0
+    )
+      roles.set(role, { tier, rank, glyph })
   }
   return roles
 }

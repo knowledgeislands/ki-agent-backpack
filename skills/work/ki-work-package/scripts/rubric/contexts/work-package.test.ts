@@ -605,29 +605,37 @@ describe('BOUNDARY', () => {
 
 test('the role catalogue is read from the role standard', () => {
   const catalogue = roleCatalogue()
+  // ROLE-RANK, Kris, 17 November 2026: tiers in order, roles by rank within each, the default lowest.
   expect([...catalogue.keys()]).toEqual([
-    'governor',
-    'councillor',
-    'quartermaster',
     'guardian',
-    'warden',
-    'housekeeper',
-    'gatekeeper',
-    'librarian',
+    'governor',
+    'quartermaster',
+    'councillor',
     'guildmaster',
-    'journeyman',
-    'illustrator',
-    'information-architect',
+    'librarian',
+    'gatekeeper',
+    'housekeeper',
+    'warden',
+    'voice',
     'technical-architect',
-    'voice'
+    'information-architect',
+    'illustrator',
+    'journeyman'
   ])
   const glyphs = [...catalogue.values()].map((role) => role.glyph)
   expect(new Set(glyphs).size).toBe(glyphs.length)
-  expect(catalogue.get('housekeeper')).toEqual({ tier: 'managers', glyph: '🏠' })
-  expect(catalogue.get('quartermaster')).toEqual({ tier: 'leaders', glyph: '🧰' })
-  expect(catalogue.get('guardian')).toEqual({ tier: 'leaders', glyph: '🪨' })
-  expect(catalogue.get('information-architect')).toEqual({ tier: 'makers', glyph: '📐' })
-  expect(catalogue.get('technical-architect')).toEqual({ tier: 'makers', glyph: '🏗️' })
-  expect(catalogue.get('voice')).toEqual({ tier: 'makers', glyph: '🦜' })
+  for (const tier of ['leaders', 'managers', 'makers']) {
+    const ranks = [...catalogue.values()].filter((role) => role.tier === tier).map((role) => role.rank)
+    expect(ranks).toEqual(ranks.map((_, index) => index + 1))
+  }
+  expect(catalogue.get('housekeeper')).toEqual({ tier: 'managers', rank: 4, glyph: '🏠' })
+  expect(catalogue.get('quartermaster')).toEqual({ tier: 'leaders', rank: 3, glyph: '🧰' })
+  expect(catalogue.get('guardian')).toEqual({ tier: 'leaders', rank: 1, glyph: '🪨' })
+  expect(catalogue.get('councillor')).toEqual({ tier: 'leaders', rank: 4, glyph: '🗳️' })
+  expect(catalogue.get('warden')).toEqual({ tier: 'managers', rank: 5, glyph: '⚒️' })
+  expect(catalogue.get('journeyman')).toEqual({ tier: 'makers', rank: 5, glyph: '🐝' })
+  expect(catalogue.get('information-architect')).toEqual({ tier: 'makers', rank: 3, glyph: '📐' })
+  expect(catalogue.get('technical-architect')).toEqual({ tier: 'makers', rank: 2, glyph: '🏗️' })
+  expect(catalogue.get('voice')).toEqual({ tier: 'makers', rank: 1, glyph: '🦜' })
   expect(catalogue.has('architect')).toBe(false)
 })
