@@ -27,7 +27,7 @@ A `tools-*` repository under `ki-repo-tools` ships one command that users instal
 | What ships | One command under `bin/`, an installer, a Homebrew formula | One or more source trees, `packages/<package>/`, each copied whole into the consumers that take it and pinned by a lock file |
 | Layout | One tool at the root | Workspaces: the vendored packages, a Storybook app, and any repository-only checks |
 | Version | The tool's own version | The vendored packages' version locations, one version for all; the root is never released |
-| Release | Tag, build artefacts, update the formula | Bump the version locations, add a changelog section, tag; then ask each consumer to re-vendor |
+| Release | Tag, build artefacts, update the formula | Bump the version locations, add a changelog section, tag; no notice is sent, and each consumer finds the release with its own `drift` |
 | Consumers | Installed by users | Repositories that keep a locked copy, found by scanning the local estate |
 
 ## Layout
@@ -91,10 +91,9 @@ A release:
 
 1. bumps the version in each `packages/<package>/package.json` and in each unit manifest that carries one, all of them always agreeing; the root `package.json` keeps its own unreleased version;
 2. adds a `CHANGELOG.md` section for the version, marking breaking changes;
-3. tags `v<version>`;
-4. asks each consumer, found as above, to re-vendor: "run `drift`, then `sync` or `defer` with a reason, and report back".
+3. tags `v<version>`.
 
-A consumer whose deferral is older than two releases becomes a query to the owner. The release is published by the push of its tag; nothing is built or uploaded.
+A release sends no notice. Each consumer finds a new release with its own `drift`, then takes it with `sync` or sets it aside with `defer` and a reason; its changelog says what a consumer must change, and each consumer judges that for itself, as `packages-stoa`'s ADR-STOA-057 and `packages-tessera`'s `AGENTS.md` set. A consumer whose deferral is older than two releases, found in its lock when the estate is scanned, becomes a query to the owner. The release is published by the push of its tag; nothing is built or uploaded.
 
 ## Changing the package
 

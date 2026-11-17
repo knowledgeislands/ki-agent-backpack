@@ -224,16 +224,15 @@ const PKG_J2: RubricItem<PackagesContext> = {
   code: 'PKG-J2',
   title: 'releases follow the release and re-vendor rule',
   description:
-    'Each release bumps the agreeing version locations, adds its changelog section, is tagged `v<version>` and asks each consumer to re-vendor; a deferral older than two releases is raised with the owner.',
+    'Each release bumps the agreeing version locations, adds its changelog section, is tagged `v<version>` and sends no notice, each consumer finding it with its own `drift`; a deferral older than two releases is raised with the owner.',
   sources: [`${STANDARD}#versions-and-releases`],
   judgment: {
-    scope:
-      'The latest releases: version locations, changelog sections, tags, the notices sent and consumers’ deferrals.',
+    scope: 'The latest releases: version locations, changelog sections, tags, and the deferrals in consumers’ locks.',
     prompt:
-      'Do the version locations agree with the tag and changelog, was each consumer asked to re-vendor, and is any deferral older than two releases still unraised?',
+      'Do the version locations agree with the tag and changelog, does the release send no notice, and is any deferral older than two releases still unraised?',
     outcomes: ['conforming', 'release correction required', 'owner query required'],
     guidance:
-      'Bring the version locations, changelog and tag into agreement; send the missing re-vendor notices; raise stale deferrals with the owner.'
+      'Bring the version locations, changelog and tag into agreement; drop any notice step or consumer list; raise stale deferrals with the owner.'
   }
 }
 

@@ -50,11 +50,11 @@ The vendored packages, Storybook, sync paragraphs, consumers, releases, manifest
   - _Review prompt:_ Does any unit hold a constant, name or branch that serves one consumer or organisation rather than a configurable, generic behaviour?
   - _Outcomes:_ conforming; generalisation required; owner decision required
   - _Conforming guidance:_ Move the consumer-specific detail behind configuration, a slot, a custom property or the consumer’s adapter, and remove any consumer name from the vendored tree.
-- **PKG-J2 [J] — releases follow the release and re-vendor rule** — Each release bumps the agreeing version locations, adds its changelog section, is tagged `v<version>` and asks each consumer to re-vendor; a deferral older than two releases is raised with the owner. (standards-package-repositories.md#versions-and-releases)
-  - _Evidence scope:_ The latest releases: version locations, changelog sections, tags, the notices sent and consumers’ deferrals.
-  - _Review prompt:_ Do the version locations agree with the tag and changelog, was each consumer asked to re-vendor, and is any deferral older than two releases still unraised?
+- **PKG-J2 [J] — releases follow the release and re-vendor rule** — Each release bumps the agreeing version locations, adds its changelog section, is tagged `v<version>` and sends no notice, each consumer finding it with its own `drift`; a deferral older than two releases is raised with the owner. (standards-package-repositories.md#versions-and-releases)
+  - _Evidence scope:_ The latest releases: version locations, changelog sections, tags, and the deferrals in consumers’ locks.
+  - _Review prompt:_ Do the version locations agree with the tag and changelog, does the release send no notice, and is any deferral older than two releases still unraised?
   - _Outcomes:_ conforming; release correction required; owner query required
-  - _Conforming guidance:_ Bring the version locations, changelog and tag into agreement; send the missing re-vendor notices; raise stale deferrals with the owner.
+  - _Conforming guidance:_ Bring the version locations, changelog and tag into agreement; drop any notice step or consumer list; raise stale deferrals with the owner.
 - **PKG-J3 [J] — unit changes carry tests and a Storybook story** — Every unit change has its tests in the vendored tree, and every unit has one Storybook story. (standards-package-repositories.md#changing-the-package)
   - _Evidence scope:_ Recent unit changes and the Storybook stories against the unit manifest.
   - _Review prompt:_ Does each changed unit carry tests, and does every unit in the manifest have exactly one Storybook story?
