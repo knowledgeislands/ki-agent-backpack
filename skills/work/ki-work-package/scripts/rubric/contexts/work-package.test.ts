@@ -609,9 +609,9 @@ test('the role catalogue is read from the role standard', () => {
   expect([...catalogue.keys()]).toEqual([
     'guardian',
     'governor',
-    'quartermaster',
     'councillor',
     'guildmaster',
+    'quartermaster',
     'librarian',
     'gatekeeper',
     'housekeeper',
@@ -628,11 +628,11 @@ test('the role catalogue is read from the role standard', () => {
     const ranks = [...catalogue.values()].filter((role) => role.tier === tier).map((role) => role.rank)
     expect(ranks).toEqual(ranks.map((_, index) => index + 1))
   }
-  expect(catalogue.get('housekeeper')).toEqual({ tier: 'managers', rank: 4, glyph: '🏠' })
-  expect(catalogue.get('quartermaster')).toEqual({ tier: 'leaders', rank: 3, glyph: '🧰' })
+  expect(catalogue.get('housekeeper')).toEqual({ tier: 'managers', rank: 5, glyph: '🏠' })
+  expect(catalogue.get('quartermaster')).toEqual({ tier: 'managers', rank: 2, glyph: '🧰' })
   expect(catalogue.get('guardian')).toEqual({ tier: 'leaders', rank: 1, glyph: '🪨' })
-  expect(catalogue.get('councillor')).toEqual({ tier: 'leaders', rank: 4, glyph: '🗳️' })
-  expect(catalogue.get('warden')).toEqual({ tier: 'managers', rank: 5, glyph: '⚒️' })
+  expect(catalogue.get('councillor')).toEqual({ tier: 'leaders', rank: 3, glyph: '🗳️' })
+  expect(catalogue.get('warden')).toEqual({ tier: 'managers', rank: 6, glyph: '⚒️' })
   expect(catalogue.get('journeyman')).toEqual({ tier: 'makers', rank: 5, glyph: '🐝' })
   expect(catalogue.get('information-architect')).toEqual({ tier: 'makers', rank: 3, glyph: '📐' })
   expect(catalogue.get('technical-architect')).toEqual({ tier: 'makers', rank: 2, glyph: '🏗️' })
