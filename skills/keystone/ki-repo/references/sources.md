@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T04:35:00Z
+ki-revised: 2026-11-17T23:56:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -77,10 +77,13 @@ The decisions the standards cite by id, oldest first; each standard keeps citing
 | DESIGN-PLACE | `docs/design/` is a documentation root, selecting `ki-design`, whose design documents follow `ki-authoring`'s design format; all six repositories that keep designs already put them there. Kris's word, 17 November, about 00:56 GMT, taking the high-confidence points: "you've got high confidence in some of these, so I think you need to take them and get on with it", relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [repository](standard-repository.md), [configuration](standard-configuration.md), [documentation topology](standard-documentation-topology.md#41-the-five-concerns) | In force |
 | SETTINGS-SCOPE | The settings plan's `all` array covers every non-fork repository in `knowledgeislands/`, 22 on 17 November, and `public` every public one among them, each checked against GitHub's live visibility; the fork `paperclip` stays out. Taken at high confidence by the Cairn summit's guardian on Kris's word to take high-confidence calls. | 2026-11-17 | [repository](standard-repository.md#413-applying-it) | In force |
 | COVERAGE-SIGNAL | A `+/_WORK/` folder no longer counts as `ki-work-package`'s coverage signal: a work package lives in the Cairn store, so a `+/_WORK/` left in a repository is out of place and COV-1 warns on it, naming the store's `work/<territory>/<id>/`; the old `+/_CHECKPOINTS/` keeps its tolerance-window signal. A check at about 04:15 GMT found no tracked checkout holding such a copy. COVERAGE-SIGNAL a, taken by the Cairn summit's guardian, 17 November 2026, about 04:30 GMT, under Kris's direction to take high-confidence calls, from the summit's [change 10](https://github.com/krisb/ki-cairn-store/blob/57d4c69/work/cairn/cairn.summit/10-skills-review.change.md#71-questions). | 2026-11-17 | [configuration](standard-configuration.md#410-coverage-enforcement) | In force |
+| COPY-DETAILS | A vendored copy the audit cannot check is reported as information, not a warning, since a copy that cannot be checked is not thereby wrong; and where the backpack's current version of the skill differs from the one at the copy's `commit`, the audit adds an information-level note that the backpack has moved on past it. The note's code is `tools-ki`'s, built by ki.tools; the managed `.gitignore` block re-including vendored copies, `RUNTIMES-6` checking they are tracked, and Git computing the hashes go to the Repository guild's review. Kris, 17 November 2026, about 23:34 GMT, under GUARDIAN-LANDS a, from the Cairn summit's [change 13](https://github.com/krisb/ki-cairn-store/blob/c17433e/work/cairn/cairn.summit/13-runtimes-and-skill-copies.change.md#42-standalone-repositories-carry-their-skills). | 2026-11-17 | [configuration](standard-configuration.md#434-vendored-skills) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+Later on 17 November 2026 COPY-DETAILS's first two points were written into [the vendored skills rule](standard-configuration.md#434-vendored-skills): a copy the audit cannot check stays information, and the audit notes, as information, when the backpack has moved on past a copy's `commit`. No criterion changed and no outside source was refreshed; the note's code is `tools-ki`'s.
 
 On 17 November 2026 REFRESH ran against all nine tracked sources, taken by the Cairn summit's guardian at about 04:03 GMT from the summit's change 11, gap 4. No governed field or criterion changed, so no standard or rubric was edited; the organisation scan for emergent topics was not run.
 

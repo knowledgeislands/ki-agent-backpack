@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T03:45:00Z
+ki-revised: 2026-11-17T23:56:00Z
 ki-status: in force
 ---
 
@@ -229,7 +229,7 @@ commit = "063b2195c53dbb002aa7281dadc23a4f96abfa3e"
 - **A vendored skill** keeps its copy as a physical directory at `.agents/skills/<name>/` with a `SKILL.md` naming it, and, where `claude-code` is a supported runtime, a relative `.claude/skills/<name>` link to that directory. Both are committed, so the repository's own ignore rules re-include them.
 - **`commit`**, optional and read only for a vendored skill, is the full lower-case hash of the backpack commit the copy was taken from.
 
-The host resolves a vendored skill to no backpack. It runs none of the skill's operations, never activates or links it from a backpack, never replaces or removes its copy or links, and refuses to add or remove it; the skill still satisfies another declared skill's dependency on its name. Where `commit` is recorded, the host's audit compares the copy with the skill's directory at that commit and reports drift as a warning on the `ki-repo` report, for the owner to resolve by refreshing the copy or recording the commit it now matches; no repair or conform action rewrites the copy. The repository-local `ki-self` is never vendored, nor is `ki-repo`, which checks the vendored copies. Where `claude-code` is not a supported runtime, the repository keeps no `.claude/skills/<name>` link for a vendored skill.
+The host resolves a vendored skill to no backpack. It runs none of the skill's operations, never activates or links it from a backpack, never replaces or removes its copy or links, and refuses to add or remove it; the skill still satisfies another declared skill's dependency on its name. Where `commit` is recorded, the host's audit compares the copy with the skill's directory at that commit and reports drift as a warning on the `ki-repo` report, for the owner to resolve by refreshing the copy or recording the commit it now matches; no repair or conform action rewrites the copy. A copy the audit cannot check, because the commit or the backpack's history is out of its reach, is reported as information, not a warning, since a copy that cannot be checked is not thereby wrong. Where the backpack's current version of the skill differs from the one at `commit`, the audit adds an information-level note that the backpack has moved on past the copy, so the owner can choose when to refresh it; the copy is not wrong for being behind (COPY-DETAILS). The repository-local `ki-self` is never vendored, nor is `ki-repo`, which checks the vendored copies. Where `claude-code` is not a supported runtime, the repository keeps no `.claude/skills/<name>` link for a vendored skill.
 
 `mode` and `commit` belong to this contract, not to the skill: the host keeps them from the configuration it hands the skill, so a skill validating its own table never sees them. `RUNTIMES-6` checks the copy's shape and the two keys' values, and every other reader of the file, the Wayfinder among them, uses the same names and rules.
 
