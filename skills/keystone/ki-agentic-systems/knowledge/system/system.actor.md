@@ -23,7 +23,7 @@ An actor is whoever acts at a node of the work tree, a person or an [agent][indu
 
 ## Our conventions
 
-- **One roster file each:** every actor has one file in the store's roster, named by its id. It opens `id: actor:<id>`, then `type: actor`, an optional human `name`, then `kind`, `agent` or `person`, as `id: actor:wayland` with `name: Wayland` and `kind: agent` (ACTOR-KEY).
+- **One roster file each:** every actor has one file in the store's roster, named by its id. It opens `ki-id: actor:<id>`, then `ki-document-type: actor`, an optional human `ki-name`, then `ki-kind`, `agent` or `person`, as `ki-id: actor:wayland` with `ki-name: Wayland` and `ki-kind: agent` (ACTOR-KEY, in the store contract's `ki-` fields).
 - **An actor with no name of its own** takes the id of its role in its [work package][system.work-package], `<package>@<role>`, as `actor:ki.cairn@information-architect`, its roster file named the same (SEAT-AT).
 - **Ids, never copies:** a work package's `workers` entry points at its actor by `id: actor:<id>`, and a meeting's participant carries only its actor id and how it is reached, so no file repeats another's fields.
 - **Presence lives in the roster file:** the agent host and the [rig][system.rig] an actor runs on are its roster file's; who acts where is the work tree's.
