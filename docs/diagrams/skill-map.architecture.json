@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "5c0f2fff379ad1e9e9683e10438a8d50b6025045"
+      "revision": "03898f0d2164ff50dc36d71087343833d45c8f9e"
     },
     "legend": {
       "mode": "auto",
@@ -148,9 +148,9 @@
     },
     {
       "id": "ki-design",
-      "type": "database",
+      "type": "backend",
       "label": "ki-design",
-      "sublabel": "fundamentals + design · opt-in",
+      "sublabel": "fundamentals + design · automatic",
       "sources": [
         {
           "path": "skills/keystone/ki-design/SKILL.md"
@@ -1634,7 +1634,7 @@
       "dot": "slate",
       "title": "Generated, not drawn",
       "items": [
-        "65 skills in 8 concerns and 10 functional areas: 3 always on, 19 automatic, 38 opt-in, 5 commands.",
+        "65 skills in 8 concerns and 10 functional areas: 3 always on, 20 automatic, 37 opt-in, 5 commands.",
         "Regenerate with ki repo conform --skill ki-repo-backpack; ki-skills owns the kind and applicability fields it reads."
       ]
     }

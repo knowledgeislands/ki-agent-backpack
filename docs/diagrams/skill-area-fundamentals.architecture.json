@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "3b8e5716ef1be9ca67d0e5b22bb5ba639260064b"
+      "revision": "03898f0d2164ff50dc36d71087343833d45c8f9e"
     },
     "legend": {
       "mode": "auto",
@@ -102,7 +102,7 @@
           "path": "skills/keystone/ki-authoring/SKILL.md"
         }
       ],
-      "tag": "R4 · CL · F14",
+      "tag": "R4 · CL · F15",
       "pos": [
         44,
         268
@@ -114,9 +114,9 @@
     },
     {
       "id": "ki-design",
-      "type": "database",
+      "type": "backend",
       "label": "ki-design",
-      "sublabel": "keystone · opt-in",
+      "sublabel": "keystone · automatic",
       "sources": [
         {
           "path": "skills/keystone/ki-design/SKILL.md"

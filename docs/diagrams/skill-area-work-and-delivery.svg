@@ -701,8 +701,8 @@ rect.c-bg-rect { fill: var(--bg); }
         <text x="392" y="336" class="t-database" font-size="7" text-anchor="middle">R24 · CL · F4</text>
         </g>
 
-        <g id="node-ki-authoring" data-node-id="ki-authoring" data-node-label="ki-authoring" tabindex="0" role="button" aria-label="Focus ki-authoring, keystone · always on, Fundamentals · Repository and writing" aria-pressed="false" data-node-kind="security" data-node-sublabel="keystone · always on" data-node-tag="R4 · CM · F13" data-node-context="Fundamentals · Repository and writing">
-          <title>ki-authoring · keystone · always on · Fundamentals · Repository and writing · R4 · CM · F13</title>
+        <g id="node-ki-authoring" data-node-id="ki-authoring" data-node-label="ki-authoring" tabindex="0" role="button" aria-label="Focus ki-authoring, keystone · always on, Fundamentals · Repository and writing" aria-pressed="false" data-node-kind="security" data-node-sublabel="keystone · always on" data-node-tag="R4 · CL · F15" data-node-context="Fundamentals · Repository and writing">
+          <title>ki-authoring · keystone · always on · Fundamentals · Repository and writing · R4 · CL · F15</title>
           <rect x="32" y="596" width="208" height="76" rx="8" class="c-mask"/>
           <rect x="32" y="596" width="208" height="76" rx="8" class="c-security" data-animate="node" style="--step: 3; --flow-node-name: archify-relay-node-5;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(38 602) scale(0.6875)">
@@ -711,7 +711,7 @@ rect.c-bg-rect { fill: var(--bg); }
           </g>
           <text data-node-label="" x="136" y="632" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-authoring</text>
         <text x="136" y="648" class="t-muted" font-size="9" text-anchor="middle">keystone · always on</text>
-        <text x="136" y="664" class="t-security" font-size="7" text-anchor="middle">R4 · CM · F13</text>
+        <text x="136" y="664" class="t-security" font-size="7" text-anchor="middle">R4 · CL · F15</text>
         </g>
 
         <g id="node-ki-decision-records" data-node-id="ki-decision-records" data-node-label="ki-decision-records" tabindex="0" role="button" aria-label="Focus ki-decision-records, authoring · automatic, Records and code · Records" aria-pressed="false" data-node-kind="backend" data-node-sublabel="authoring · automatic" data-node-tag="R37 · CL · F9" data-node-context="Records and code · Records">
