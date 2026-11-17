@@ -342,7 +342,7 @@ Lead the Design guild: how any design, technical or visual, is shaped before it 
 
 - **Kind:** Governance
 - **Leads:** Design
-- **Applicability:** Declaration Only
+- **Applicability:** Detected
 - **Arguments:** `audit <repo> | conform <repo> | educate <repo> | help | refresh`
 - **Dependencies:** None
 - **Runtime:** Portable
@@ -386,7 +386,7 @@ Lead the Repository guild and audit or conform the universal KI repository contr
 - **Kind:** Governance
 - **Leads:** Repository
 - **Applicability:** Baseline
-- **Detects:** `ki-decision-records`, `ki-engineering`, `ki-guides`, `ki-repo-homebrew-tap`, `ki-repo-kb`, `ki-repo-kb-streams`, `ki-repo-mcp`, `ki-repo-specifications`, `ki-repo-tools`, `ki-repo-website`, `ki-repo-website-app`, `ki-repo-website-cloudflare`, `ki-repo-website-content`, `ki-skills`, `ki-specs`, `ki-subagents`, `ki-subagents-chatgpt`, `ki-subagents-claude`, `ki-work-package`
+- **Detects:** `ki-decision-records`, `ki-design`, `ki-engineering`, `ki-guides`, `ki-repo-homebrew-tap`, `ki-repo-kb`, `ki-repo-kb-streams`, `ki-repo-mcp`, `ki-repo-specifications`, `ki-repo-tools`, `ki-repo-website`, `ki-repo-website-app`, `ki-repo-website-cloudflare`, `ki-repo-website-content`, `ki-skills`, `ki-specs`, `ki-subagents`, `ki-subagents-chatgpt`, `ki-subagents-claude`, `ki-work-package`
 - **Arguments:** `audit | conform <repo> | educate <repo> | help | refresh | review [scope] | review close <REV-NNN>`
 - **Dependencies:** `ki-authoring`, `ki-git`
 - **Runtime:** Runtime-bound; supported runtimes are resolved by its host contract
