@@ -41,6 +41,8 @@ An interface is designed three times, each time at a finer grain, and the coarse
 
 Whoever draws may be able to check only the markup, not the picture: an agent that writes a board's HTML does not see it rendered. Until the drawing side can see its render, a reviewer looks at it by eye, and the round's report says which boards have been seen and by whom.
 
+**The reviewer takes the PNG** (BOARD-PNG). The reviewer who renders a board for review takes its PNG in the same pass, with the repository's own browser automation, and commits it beside the board; the drawing session never does. A board carrying store data is rendered on the caller's side, as `ki-meeting`'s [Git and private data](../../../work/ki-meeting/references/standard-meeting.md#412-git-and-private-data) sets.
+
 ## The design book
 
 A visual design's document and its final boards together make its **design book** (DESIGN-RENDER, Kris, 17 November 2026). The document is a design document in `ki-authoring`'s [design format](../../../keystone/ki-authoring/references/standard-formats-design.md), under `docs/design/`; its final boards are the chosen option at each level, kept beside it once the design is agreed, so the design can be walked and reviewed board by board.

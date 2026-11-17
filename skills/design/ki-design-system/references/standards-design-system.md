@@ -60,6 +60,7 @@ The token source is the canonical home of every design value: colour, type, spac
 - A colour that carries meaning, such as a status or a category, belongs to a meaning palette that does not change with the reader's chosen theme.
 - A categorical palette, one colour per category, assigns numbered slots. The category's registry names its slot and a short text code, and the code appears wherever the colour does.
 - A repository with several token files declares each one. A generated token file is acceptable when its generator is the declared source.
+- The token source is CSS custom properties. The W3C Design Tokens Community Group format (DTCG) is an allowed upstream form where a generator writes the CSS from it, as Tessera's `tokens.json` does; it is not required, and no repository moves to it until a tool needs it (TOKEN-SOURCE).
 
 ## The design guide
 

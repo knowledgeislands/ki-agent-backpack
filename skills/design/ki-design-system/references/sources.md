@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:48:38Z
+ki-revised: 2026-11-17T03:45:00Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -61,6 +61,8 @@ The floor follows one specification, and the house's own documentation standards
 | DRAW-BUILD | Kris's decision, in the Cairn summit's change 35: once a decision is agreed its drawing is drawn against the build, and drawings ahead of the build are for open choices only. | 2026-11-14 | [design work](standards-design-system.md#design-work-from-brief-to-rule), [how a round runs](standards-design-levels.md#how-a-round-runs) | In force |
 | DESIGN-RENDER | A visual design keeps its final boards in a folder beside its design document, named by level, `ia-`, `wire-` and `mock-`, each self-contained with a PNG beside it and coded as the annotated board is, read in its Design section by level and from the outside in; Retire moves them there rather than dropping them. Kris's word, 17 November, about 00:56 GMT, taking the high-confidence points: "you've got high confidence in some of these, so I think you need to take them and get on with it", relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [the design book](standards-design-levels.md#the-design-book), [design work](standards-design-system.md#design-work-from-brief-to-rule) | In force |
 | REVIEW-HOME | One general review standard in `ki-authoring`, which every reviewable document cites; a round's review before posting follows it. Option b, Kris's word, 17 November, about 01:37 GMT, relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [how a round runs](standards-design-levels.md#how-a-round-runs) | In force |
+| TOKEN-SOURCE | Option a: the token source stays CSS custom properties, and DTCG is an allowed upstream form where a generator writes the CSS, as Tessera's does; no repository moves to it until a tool needs it. Raised from the DTCG Watching line; taken by the Cairn summit's guardian, 17 November, about 03:38 GMT, under Kris's direction to take high-confidence calls while he is away ("take them and get on with it"), from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/27239c0/work/cairn/cairn.summit/16-design-guild.change.md#71-questions). | 2026-11-17 | [the token source](standards-design-system.md#the-token-source) | In force |
+| BOARD-PNG | Option a: the reviewer who renders a board for review takes its PNG in the same pass and commits it beside the board, never the drawing session; a board carrying store data is rendered on the caller's side. Taken by the Cairn summit's guardian, 17 November, about 03:38 GMT, under Kris's direction to take high-confidence calls while he is away ("take them and get on with it"), from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/27239c0/work/cairn/cairn.summit/16-design-guild.change.md#71-questions). | 2026-11-17 | [seeing what was drawn](standards-design-levels.md#seeing-what-was-drawn) | In force |
 
 [Back to contents](#contents)
 
@@ -77,6 +79,6 @@ On 17 November 2026 an in-house review built the Cairn summit's [change 16, the 
 - 2026-11-03 - Added the annotated board from its first use: Review as stage 0 of design work, the board as a projection of the running interface, DSYS-8 asking whether it was refreshed, and `scripts/annotate-board.ts`, generalised from the first board's tooling, with its pages, selectors and canvas format left to each site.
 - 2026-10-11 - Created from the 5G-EMERGE Phase 3 pilot. Confirmed the placement model against the current Guides, Specifications, Decision Records and design-loop standards, and the floor against WCAG 2.2.
 
-**Watching:** the W3C Design Tokens Community Group format, stable since its 2025.10 version, against the token source's CSS custom properties: whether a token source moves to it, or is generated from it, is not yet proposed.
+**Watching:** the W3C Design Tokens Community Group format, stable since its 2025.10 version: settled on 17 November as an allowed upstream form under TOKEN-SOURCE; watched for a tool that would need a token source to move to it.
 
 [Back to contents](#contents)
