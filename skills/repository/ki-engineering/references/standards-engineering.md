@@ -111,7 +111,7 @@ The shape signal is `workspaces` in `package.json` — a standard tooling conven
 In package.json:
 
 - `"type": "module"`.
-- `"packageManager": "bun@1.3.x"` (pinned patch; bump in one place on the house Bun upgrade).
+- `"packageManager": "bun@1.4.x"` (pinned patch; bump in one place on the house Bun upgrade).
 - `"engines": { "node": ">=22.0.0" }` — `dist/` runs under Node ≥ 22 even though install/dev use Bun.
 
 Repos that publish a compiled library/server add `"main"`, `"files": ["dist"]`, `"bin"`, and `"exports"` — but the _shape_ of those is artifact-specific (§7 covers only the build mechanics).

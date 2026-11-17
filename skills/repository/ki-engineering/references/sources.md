@@ -60,6 +60,8 @@ The standard is a **deliberately selected house shape**, not a vote count. Curre
 
 ## Last review
 
+On 17 November 2026, under ENGINEERING-BUN a, which Kris took that day, relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions), the standard and `SKILL.md` ask for `bun@1.4.x`, the minor every repository pins, in place of `bun@1.3.x`, which the estate had left: read that day, `tools-ki`, `ki-techne-harness` and `mcp-gsuite` pin 1.4.3, `mcp-cairn` 1.4.2, and `packages-stoa`, `apps-cairn.local` and this harness 1.4.4. Levelling the repositories to one patch is the house upgrade the standard already describes, left to each repository's next change. No outside source was fetched.
+
 REFRESH last run **2026-10-06**. Cadence: monthly, alongside the other governance skills.
 
 - **Reconciled declared and resolved evidence:** the canonical harness declares Bun `1.4.3`, Biome `2.5.15`, TypeScript `^7.0.2`, syncpack `^15.3.3`, Commitlint `^21.2.3`, knip `^6.39.0`, lint-staged `^17.6.0` and rumdl `^0.3.0`; its committed lock resolves those releases. rumdl moved from `^0.2.78` on 2026-10-18, after the `ki-authoring` reproductions passed on 0.3.0. The CONFORM scaffold defaults and the Biome exemplar move to the same releases.
