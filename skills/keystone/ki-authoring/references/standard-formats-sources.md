@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-16T16:58:00Z
-status: in force
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-17T00:28:37Z
+ki-status: in force
 ---
 
 # Sources format
@@ -63,14 +63,14 @@ The rules, part by part.
 
 ```yaml
 ---
-type: sources@<version ref of standard-formats-sources.md>
-revised: 2026-11-09T21:36:32Z
-refresh: <kind> · <cadence>
+ki-document-type: sources@<version ref of standard-formats-sources.md>
+ki-revised: 2026-11-09T21:36:32Z
+ki-refresh: <kind> · <cadence>
 ---
 ```
 
-- **`refresh`** says how the skill's outside sources are reviewed, such as `external-spec · monthly`.
-- **A review** that only confirms last-reviewed dates is not a change of substance, so it does not move `revised`.
+- **`ki-refresh`** says how the skill's outside sources are reviewed, such as `external-spec · monthly`.
+- **A review** that only confirms last-reviewed dates is not a change of substance, so it does not move `ki-revised`.
 
 [Back to contents](#contents)
 
@@ -104,7 +104,7 @@ A sources file uses the suffix pattern, `[<name>.]sources.md`; a skill's own is 
 
 Beyond the format format's checks, a validator checks:
 
-1. **Front matter:** `refresh` is present.
+1. **Front matter:** `ki-refresh` is present.
 2. **Sections:** the four sections are present, in order.
 3. **Decisions:** each id is unique, each Backs names a standard that exists, and each superseded decision names an id that exists.
 4. **Outside sources:** each table has the three columns and no Tag column, or the section says None.

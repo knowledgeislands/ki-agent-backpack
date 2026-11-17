@@ -10,13 +10,13 @@ import type {
 // A version ref is a UTC time to the second or a Git ref; only a time can be compared without the repository's history.
 const TIME_REF = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/
 
-// `revised` is often set just before committing, so a commit this soon after it is not behind.
+// `ki-revised` is often set just before committing, so a commit this soon after it is not behind.
 const REVISED_TOLERANCE_MS = 5 * 60 * 1000
 const DATE_ONLY = /^\d{4}-\d{2}-\d{2}$/
 const DAY_MS = 24 * 60 * 60 * 1000
 
-// Whether a document's `revised` is earlier than its last commit by more than the tolerance; a date with no time is
-// read as the end of that day, and a `revised` that is not a time, or a file with no commit, is not compared.
+// Whether a document's `ki-revised` is earlier than its last commit of substance by more than the tolerance; a date with
+// no time is read as the end of that day, and a `ki-revised` that is not a time, or a file with no commit, is not compared.
 const revisedBehind = (document: TypedDocumentEvidence): boolean => {
   if (!document.revisedAt || !document.committed) return false
   const revised = Date.parse(document.revisedAt) + (DATE_ONLY.test(document.revisedAt) ? DAY_MS : 0)
@@ -31,9 +31,9 @@ const noStandards = (context: FormatsRubricContext) =>
 
 const FMT_TYPE: RubricItem<FormatsRubricContext> = {
   code: 'FMT-type',
-  title: 'a typed document names a format standard that exists and keeps `revised` up with its commits',
+  title: 'a typed document names a format standard that exists and keeps `ki-revised` up with its commits',
   description:
-    "A Markdown document whose front matter `type` is `<type>@<version ref>` names a format standard, `standard-formats-<type>.md`, that exists in `ki-authoring`, and carries `revised`, which is no earlier than the file's last Git commit by more than five minutes; a `revised` behind its commit warns, since a mechanical edit leaves it where it is, and a file not in Git or with no commits is not compared. A `type` with no `@` names a resource or a card type, not a format, and is not checked here.",
+    "A Markdown document whose front matter `ki-document-type`, or the older `type`, is `<type>@<version ref>` names a format standard, `standard-formats-<type>.md`, that exists in `ki-authoring`, and carries `ki-revised`, which is no earlier than the file's last Git commit by more than five minutes, a commit carrying the `Revised-Unchanged: true` trailer being passed over; a `ki-revised` behind its commit warns, since a mechanical edit leaves it where it is, and a file not in Git or with no commits is not compared. A kind with no `@` has no format standard, and a knowledge graph card's own `type` names its card type; neither is checked here.",
   sources: ['standard-formats-format.md#42-front-matter', 'standard-formats-format.md#47-validation'],
   mechanical: {
     level: 'WARN',
@@ -50,18 +50,20 @@ const FMT_TYPE: RubricItem<FormatsRubricContext> = {
             : [
                 {
                   status: 'VIOLATION' as const,
-                  message: `type names "${document.word}", which has no format standard`,
+                  message: `\`ki-document-type\` names "${document.word}", which has no format standard`,
                   subject: document.path
                 }
               ]),
           ...(document.revised
             ? []
-            : [{ status: 'VIOLATION' as const, message: 'typed document has no `revised`', subject: document.path }]),
+            : [
+                { status: 'VIOLATION' as const, message: 'typed document has no `ki-revised`', subject: document.path }
+              ]),
           ...(revisedBehind(document)
             ? [
                 {
                   status: 'VIOLATION' as const,
-                  message: `\`revised\` ${document.revisedAt} is behind the file's last commit, ${document.committed}: move it if that commit changed the substance`,
+                  message: `\`ki-revised\` ${document.revisedAt} is behind the file's last commit, ${document.committed}: move it if that commit changed the substance, or mark a mechanical commit \`Revised-Unchanged: true\``,
                   subject: document.path
                 }
               ]
@@ -75,18 +77,56 @@ const FMT_TYPE: RubricItem<FormatsRubricContext> = {
   }
 }
 
+const FMT_PREFIX: RubricItem<FormatsRubricContext> = {
+  code: 'FMT-prefix',
+  title: 'a typed document writes the fields KI defines with the `ki-` prefix',
+  description:
+    'Every top-level front matter field of a typed document or a record but `title` is one KI defines, and carries the `ki-` prefix, as `ki-document-type`, `ki-revised` and `ki-status`, so that no other tool reads or misreads it. While files are swept, a field written without the prefix, such as the older `type` or `revised`, is read under its `ki-` name and warned on, never failed.',
+  sources: ['standard-formats-format.md#42-front-matter', 'standard-formats-format.md#47-validation'],
+  mechanical: {
+    level: 'WARN',
+    remediation: {
+      class: 'diagnostic',
+      guidance:
+        'Rename each field to its `ki-` name, `type` becoming `ki-document-type`, in a mechanical commit carrying the `Revised-Unchanged: true` trailer, leaving `ki-revised` where it is.'
+    },
+    audit: {
+      phase: 'INSPECT',
+      run: (context) => {
+        const subjects = [...context.documents, ...(context.records ?? [])]
+        const seen = new Set<string>()
+        const findings = subjects.flatMap((subject) => {
+          if (seen.has(subject.path) || !subject.unprefixed?.length) return []
+          seen.add(subject.path)
+          return [
+            {
+              status: 'VIOLATION' as const,
+              message: `fields without the \`ki-\` prefix, read under their \`ki-\` names: ${subject.unprefixed.join(', ')}`,
+              subject: subject.path
+            }
+          ]
+        })
+        if (findings.length > 0) return findings
+        return subjects.length > 0
+          ? [{ status: 'PASS', message: 'every typed document writes its KI fields with the `ki-` prefix' }]
+          : [{ status: 'NOT_APPLICABLE', message: 'no typed documents' }]
+      }
+    }
+  }
+}
+
 const FMT_VERSION: RubricItem<FormatsRubricContext> = {
   code: 'FMT-version',
   title: 'a typed document follows its format at its current version',
   description:
-    "The version ref in a typed document's `type` is its format standard's current version, the standard's `revised`. An older time is reported out of date, to be brought into line when the document is next changed; a later one names no version of the format. A commit ref is left to review.",
+    "The version ref in a typed document's `ki-document-type` is its format standard's current version, the standard's `ki-revised`. An older time is reported out of date, to be brought into line when the document is next changed; a later one names no version of the format. A commit ref is left to review.",
   sources: ['standard-formats-format.md#43-version-refs', 'standard-formats-format.md#47-validation'],
   mechanical: {
     level: 'WARN',
     remediation: {
       class: 'diagnostic',
       guidance:
-        'When the document is next changed, bring it into line with the current format and move its `type` up to that version.'
+        'When the document is next changed, bring it into line with the current format and move its `ki-document-type` up to that version.'
     },
     audit: {
       phase: 'INSPECT',
@@ -134,7 +174,7 @@ const FMT_SHAPE: RubricItem<FormatsRubricContext> = {
     'standard-formats-record.md#47-validation'
   ],
   judgment: {
-    scope: 'Every Markdown document whose `type` names a format, as listed by FMT-type.',
+    scope: 'Every Markdown document whose `ki-document-type` names a format, as listed by FMT-type.',
     prompt: "Assess each typed document's name, shared shape and its own format standard's Validation checks.",
     outcomes: ['conforming', 'reshape required', 'difference justified'],
     guidance:
@@ -153,17 +193,17 @@ const inOrder = (headings: readonly string[], sections: readonly string[]) =>
   headings.length === sections.length && headings.every((heading, index) => heading === sections[index])
 
 // What one record breaks of the record format's 4.7; a record with no version is an older record, read as written,
-// with only its `at`, `review` and any `id` checked.
+// with only its `ki-at`, `ki-review` and any `ki-id` checked. Each is read under its older bare name too.
 const recordProblems = (record: RecordEvidence): readonly string[] => {
   const name = basename(record.path, '.md')
   const named = RECORD_NAME.exec(name)
   const time = named ? `${named[1]}-${named[2]}-${named[3]}T${named[4]}:${named[5]}` : undefined
   const problems = [
     ...(!record.at || (time && !record.at.startsWith(time))
-      ? ["`at` is missing or differs from the file name's time"]
+      ? ["`ki-at` is missing or differs from the file name's time"]
       : []),
-    ...(record.review && REVIEW_VALUES.has(record.review) ? [] : ['`review` is not awaiting or approved']),
-    ...(record.id && record.id !== `record:${name}` ? [`\`id\` is not record:${name}`] : [])
+    ...(record.review && REVIEW_VALUES.has(record.review) ? [] : ['`ki-review` is not awaiting or approved']),
+    ...(record.id && record.id !== `record:${name}` ? [`\`ki-id\` is not record:${name}`] : [])
   ]
   if (!record.versioned) return problems
   const slug = named?.[6] ?? ''
@@ -172,9 +212,9 @@ const recordProblems = (record: RecordEvidence): readonly string[] => {
   return [
     ...problems,
     ...(named ? [] : ['the file name is not <YYYYMMDD>T<HHMM>Z-<slug>']),
-    ...(record.id ? [] : ['no `id`']),
-    ...(record.revised ? [] : ['no `revised`']),
-    ...(record.packagesList ? [] : ['`packages` is not a list']),
+    ...(record.id ? [] : ['no `ki-id`']),
+    ...(record.revised ? [] : ['no `ki-revised`']),
+    ...(record.packagesList ? [] : ['`ki-packages` is not a list']),
     ...(consolidated
       ? [
           ...(inOrder(record.headings, REVIEW_SECTIONS)
@@ -197,7 +237,7 @@ const FMT_RECORD: RubricItem<FormatsRubricContext> = {
   code: 'FMT-record',
   title: 'a record follows the record format',
   description:
-    "A record, a document whose `type` is `record@<version>`, passes the record format's Validation: `id` is `record:` and its file name, `at` matches the name's time, `revised` is present, `packages` is a list and `review` `awaiting` or `approved`; a batch record has Purpose, Goals and What changed, or a review's sections; a consolidated review, named `review-…`, has What stands today and Left open, and its opening line links the records it replaces, each pinned at a commit; and the name is a time and a slug, whose length in words is left to review, since a hyphen may join one word or separate two. An older record, `type: record` with no version, is read as written: only its `at`, `review` and any `id` are checked.",
+    "A record, a document whose `ki-document-type` is `record@<version>`, passes the record format's Validation: `ki-id` is `record:` and its file name, `ki-at` matches the name's time, `ki-revised` is present, `ki-packages` is a list and `ki-review` `awaiting` or `approved`; a batch record has Purpose, Goals and What changed, or a review's sections; a consolidated review, named `review-…`, has What stands today and Left open, and its opening line links the records it replaces, each pinned at a commit; and the name is a time and a slug, whose length in words is left to review, since a hyphen may join one word or separate two. An older record, `record` with no version, is read as written: only its `ki-at`, `ki-review` and any `ki-id` are checked. Each field is read under its older bare name too, as FMT-prefix warns.",
   sources: ['standard-formats-record.md#47-validation'],
   mechanical: {
     level: 'FAIL',
@@ -226,8 +266,8 @@ const FMT_RECORD: RubricItem<FormatsRubricContext> = {
 export const FORMATS: RubricFamily<AuthoringRubricContext, FormatsRubricContext> = {
   code: 'FMT',
   title: 'Document formats',
-  description: 'Typed documents follow the format standard their `type` names, at its current version.',
+  description: 'Typed documents follow the format standard their `ki-document-type` names, at its current version.',
   standard: 'standard-formats-format.md#47-validation',
   selectContext: (context: AuthoringRubricContext) => context.formats,
-  items: [FMT_TYPE, FMT_VERSION, FMT_RECORD, FMT_SHAPE]
+  items: [FMT_TYPE, FMT_PREFIX, FMT_VERSION, FMT_RECORD, FMT_SHAPE]
 }

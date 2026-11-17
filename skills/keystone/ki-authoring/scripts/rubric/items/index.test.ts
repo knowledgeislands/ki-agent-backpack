@@ -48,6 +48,7 @@ test('the default export is the sole catalogue entrypoint and families are compl
       .flatMap((family) => family.items.map((item) => item.code))
   ).toEqual([
     'FMT-type',
+    'FMT-prefix',
     'FMT-version',
     'FMT-record',
     'FMT-shape',
@@ -524,21 +525,21 @@ test('FMT checks typed documents against the format standards beside the rubric'
   const standards = temporaryRepository()
   writeFileSync(
     join(standards, 'standard-formats-sources.md'),
-    '---\ntype: standard@x\nrevised: 2026-11-16T16:58:00Z\n---\n'
+    '---\nki-document-type: standard@x\nki-revised: 2026-11-16T16:58:00Z\n---\n'
   )
   writeFileSync(
     join(standards, 'standard-formats-change.md'),
-    '---\ntype: standard@x\nrevised: 2026-11-09T21:36:32Z\n---\n'
+    '---\nki-document-type: standard@x\nki-revised: 2026-11-09T21:36:32Z\n---\n'
   )
   mkdirSync(join(repository, 'docs'))
   const documents: Record<string, string> = {
-    'docs/current.md': '---\ntype: sources@2026-11-16T16:58:00Z\nrevised: 2026-11-16T17:00:00Z\n---\n',
-    'docs/older.md': '---\ntype: sources@2026-11-15T00:17:25Z\nrevised: 2026-11-15T00:22:04Z\n---\n',
-    'docs/ahead.md': '---\ntype: change@2026-11-14T03:00:00Z\nrevised: 2026-11-14T03:00:00Z\n---\n',
-    'docs/commit.md': '---\ntype: change@61229e2d5\nrevised: 2026-11-16T10:25:00Z\n---\n',
-    'docs/unknown.md': '---\ntype: record@2026-11-16T17:10:00Z\nrevised: 2026-11-16T17:10:00Z\n---\n',
-    'docs/unrevised.md': '---\ntype: change@2026-11-09T21:36:32Z\n---\n',
-    'docs/resource.md': '---\nid: actor:wayland\ntype: actor\n---\n',
+    'docs/current.md': '---\nki-document-type: sources@2026-11-16T16:58:00Z\nki-revised: 2026-11-16T17:00:00Z\n---\n',
+    'docs/older.md': '---\nki-document-type: sources@2026-11-15T00:17:25Z\nki-revised: 2026-11-15T00:22:04Z\n---\n',
+    'docs/ahead.md': '---\nki-document-type: change@2026-11-14T03:00:00Z\nki-revised: 2026-11-14T03:00:00Z\n---\n',
+    'docs/commit.md': '---\nki-document-type: change@61229e2d5\nki-revised: 2026-11-16T10:25:00Z\n---\n',
+    'docs/unknown.md': '---\nki-document-type: record@2026-11-16T17:10:00Z\nki-revised: 2026-11-16T17:10:00Z\n---\n',
+    'docs/unrevised.md': '---\nki-document-type: change@2026-11-09T21:36:32Z\n---\n',
+    'docs/resource.md': '---\nki-id: actor:wayland\nki-document-type: actor\n---\n',
     'docs/card.md': '---\nid: industry.tool\ntype: term\n---\n'
   }
   for (const [path, content] of Object.entries(documents)) writeFileSync(join(repository, path), content)
@@ -557,12 +558,13 @@ test('FMT checks typed documents against the format standards beside the rubric'
     'docs/unknown.md',
     'docs/unrevised.md'
   ])
-  const [type, version] = formatsModule.FORMATS.items
+  const type = formatsModule.FORMATS.items.find((item) => item.code === 'FMT-type')
+  const version = formatsModule.FORMATS.items.find((item) => item.code === 'FMT-version')
   expect(
     type?.mechanical?.audit.run(formats).map(({ status, subject, message }) => [status, subject, message])
   ).toEqual([
-    ['VIOLATION', 'docs/unknown.md', 'type names "record", which has no format standard'],
-    ['VIOLATION', 'docs/unrevised.md', 'typed document has no `revised`']
+    ['VIOLATION', 'docs/unknown.md', '`ki-document-type` names "record", which has no format standard'],
+    ['VIOLATION', 'docs/unrevised.md', 'typed document has no `ki-revised`']
   ])
   expect(version?.mechanical?.audit.run(formats).map(({ status, subject }) => [status, subject])).toEqual([
     ['VIOLATION', 'docs/ahead.md'],
@@ -578,17 +580,17 @@ test("FMT-type warns when `revised` is behind the file's last commit, and skips 
   const standards = temporaryRepository()
   writeFileSync(
     join(standards, 'standard-formats-change.md'),
-    '---\ntype: standard@x\nrevised: 2026-11-09T21:36:32Z\n---\n'
+    '---\nki-document-type: standard@x\nki-revised: 2026-11-09T21:36:32Z\n---\n'
   )
-  const typed = (revised: string) => `---\ntype: change@2026-11-09T21:36:32Z\n${revised}---\n`
+  const typed = (revised: string) => `---\nki-document-type: change@2026-11-09T21:36:32Z\n${revised}---\n`
   const documents: Record<string, string> = {
-    'behind.md': typed('revised: 2026-11-16T10:00:00Z\n'),
-    'tolerated.md': typed('revised: 2026-11-16T11:57:00Z\n'),
-    'ahead.md': typed('revised: 2026-11-16T12:30:00Z\n'),
-    'quoted.md': typed("revised: '2026-11-16T10:00:00Z'\n"),
-    'day.md': typed('revised: 2026-11-16\n'),
+    'behind.md': typed('ki-revised: 2026-11-16T10:00:00Z\n'),
+    'tolerated.md': typed('ki-revised: 2026-11-16T11:57:00Z\n'),
+    'ahead.md': typed('ki-revised: 2026-11-16T12:30:00Z\n'),
+    'quoted.md': typed("ki-revised: '2026-11-16T10:00:00Z'\n"),
+    'day.md': typed('ki-revised: 2026-11-16\n'),
     'unrevised.md': typed(''),
-    'untracked.md': typed('revised: 2026-11-01T00:00:00Z\n')
+    'untracked.md': typed('ki-revised: 2026-11-01T00:00:00Z\n')
   }
   for (const [path, content] of Object.entries(documents)) writeFileSync(join(repository, path), content)
   const git = (...args: string[]) =>
@@ -617,27 +619,126 @@ test("FMT-type warns when `revised` is behind the file's last commit, and skips 
     expect(type?.mechanical?.level).toBe('WARN')
     return type?.mechanical?.audit.run(formats).map(({ subject, message }) => [subject, message])
   }
-  expect(audit()).toEqual([['unrevised.md', 'typed document has no `revised`']])
+  expect(audit()).toEqual([['unrevised.md', 'typed document has no `ki-revised`']])
   expect(git('add', '--', ...Object.keys(documents).filter((path) => path !== 'untracked.md')).status).toBe(0)
   expect(git('commit', '-q', '-m', 'fixture').status).toBe(0)
   expect(audit()).toEqual([
     [
       'behind.md',
-      "`revised` 2026-11-16T10:00:00Z is behind the file's last commit, 2026-11-16T12:00:00Z: move it if that commit changed the substance"
+      "`ki-revised` 2026-11-16T10:00:00Z is behind the file's last commit, 2026-11-16T12:00:00Z: move it if that commit changed the substance, or mark a mechanical commit `Revised-Unchanged: true`"
     ],
     [
       'quoted.md',
-      "`revised` 2026-11-16T10:00:00Z is behind the file's last commit, 2026-11-16T12:00:00Z: move it if that commit changed the substance"
+      "`ki-revised` 2026-11-16T10:00:00Z is behind the file's last commit, 2026-11-16T12:00:00Z: move it if that commit changed the substance, or mark a mechanical commit `Revised-Unchanged: true`"
     ],
-    ['unrevised.md', 'typed document has no `revised`']
+    ['unrevised.md', 'typed document has no `ki-revised`']
   ])
+})
+
+test('FMT-type passes over a commit carrying the Revised-Unchanged trailer', () => {
+  const repository = temporaryRepository()
+  const standards = temporaryRepository()
+  writeFileSync(
+    join(standards, 'standard-formats-change.md'),
+    '---\nki-document-type: standard@x\nki-revised: 2026-11-09T21:36:32Z\n---\n'
+  )
+  const git = (date: string, ...args: string[]) =>
+    spawnSync('git', ['-c', 'user.name=T', '-c', 'user.email=t@example.com', '-c', 'commit.gpgsign=false', ...args], {
+      cwd: repository,
+      encoding: 'utf8',
+      env: {
+        PATH: process.env.PATH ?? '',
+        HOME: tmpdir(),
+        GIT_CONFIG_NOSYSTEM: '1',
+        GIT_AUTHOR_DATE: date,
+        GIT_COMMITTER_DATE: date
+      }
+    })
+  const document = (body: string) =>
+    `---\nki-document-type: change@2026-11-09T21:36:32Z\nki-revised: 2026-11-16T12:00:00Z\n---\n\n${body}\n`
+  expect(git('2026-11-16T12:00:00Z', 'init', '-q').status).toBe(0)
+  for (const path of ['mechanical.md', 'substance.md']) writeFileSync(join(repository, path), document('First.'))
+  expect(git('2026-11-16T12:00:00Z', 'add', '--', 'mechanical.md', 'substance.md').status).toBe(0)
+  expect(git('2026-11-16T12:00:00Z', 'commit', '-q', '-m', 'first').status).toBe(0)
+  writeFileSync(join(repository, 'mechanical.md'), document('Renamed.'))
+  expect(git('2026-11-16T14:00:00Z', 'add', '--', 'mechanical.md').status).toBe(0)
+  expect(
+    git(
+      '2026-11-16T14:00:00Z',
+      'commit',
+      '-q',
+      '-m',
+      'sweep\n\nRename.\n\nRevised-Unchanged: true\nCo-Authored-By: T <t@example.com>'
+    ).status
+  ).toBe(0)
+  writeFileSync(join(repository, 'substance.md'), document('Changed.'))
+  expect(git('2026-11-16T15:00:00Z', 'add', '--', 'substance.md').status).toBe(0)
+  expect(git('2026-11-16T15:00:00Z', 'commit', '-q', '-m', 'change\n\nRevised-Unchanged: false').status).toBe(0)
+  const session = createAuthoringSession(
+    { mode: 'audit', repository, userHome: tmpdir(), configuration: {} },
+    () => ({ clean: true }),
+    standards
+  )
+  const formats = session.subjects[1]?.context()?.formats as NonNullable<
+    ReturnType<NonNullable<(typeof session.subjects)[1]>['context']>
+  >['formats']
+  expect(formats.documents.map((entry) => [entry.path, entry.committed])).toEqual([
+    ['mechanical.md', '2026-11-16T12:00:00Z'],
+    ['substance.md', '2026-11-16T15:00:00Z']
+  ])
+  const type = formatsModule.FORMATS.items.find((item) => item.code === 'FMT-type')
+  expect(type?.mechanical?.audit.run(formats).map(({ subject }) => subject)).toEqual(['substance.md'])
+})
+
+test('FMT reads the fields written without the ki- prefix and FMT-prefix warns on them', () => {
+  const repository = temporaryRepository()
+  const standards = temporaryRepository()
+  writeFileSync(
+    join(standards, 'standard-formats-change.md'),
+    '---\ntype: standard@x\nrevised: 2026-11-09T21:36:32Z\n---\n'
+  )
+  const documents: Record<string, string> = {
+    'older.md': '---\ntype: change@2026-11-09T21:36:32Z\nrevised: 2026-11-10T00:00:00Z\nstatus: draft\ntitle: T\n---\n',
+    'mixed.md': '---\nki-document-type: change@2026-11-09T21:36:32Z\nrevised: 2026-11-10T00:00:00Z\n---\n',
+    'current.md':
+      '---\nki-document-type: change@2026-11-09T21:36:32Z\nki-revised: 2026-11-10T00:00:00Z\nki-status: draft\ntitle: T\nki-inputs:\n  - a/b@c\n---\n',
+    'card.md': '---\nid: industry.tool\ntype: term\n---\n'
+  }
+  for (const [path, content] of Object.entries(documents)) writeFileSync(join(repository, path), content)
+  const session = createAuthoringSession(
+    { mode: 'audit', repository, userHome: tmpdir(), configuration: {} },
+    () => ({ clean: true }),
+    standards
+  )
+  const formats = session.subjects[1]?.context()?.formats as NonNullable<
+    ReturnType<NonNullable<(typeof session.subjects)[1]>['context']>
+  >['formats']
+  expect(formats.standards).toEqual([{ word: 'change', revised: '2026-11-09T21:36:32Z' }])
+  expect(formats.documents.map((entry) => [entry.path, entry.word, entry.revisedAt])).toEqual([
+    ['current.md', 'change', '2026-11-10T00:00:00Z'],
+    ['mixed.md', 'change', '2026-11-10T00:00:00Z'],
+    ['older.md', 'change', '2026-11-10T00:00:00Z']
+  ])
+  const type = formatsModule.FORMATS.items.find((item) => item.code === 'FMT-type')
+  expect(type?.mechanical?.audit.run(formats).map(({ status }) => status)).toEqual(['PASS'])
+  const prefix = formatsModule.FORMATS.items.find((item) => item.code === 'FMT-prefix')
+  expect(prefix?.mechanical?.level).toBe('WARN')
+  expect(prefix?.mechanical?.audit.run(formats).map(({ subject, message }) => [subject, message])).toEqual([
+    ['mixed.md', 'fields without the `ki-` prefix, read under their `ki-` names: revised'],
+    ['older.md', 'fields without the `ki-` prefix, read under their `ki-` names: type, revised, status']
+  ])
+  expect(
+    prefix?.mechanical?.audit
+      .run({ documents: formats.documents.filter((entry) => entry.path === 'current.md'), standards: [] })
+      .map(({ status }) => status)
+  ).toEqual(['PASS'])
 })
 
 test('FMT-record fails a record that breaks the record format and reads an older record as written', () => {
   const repository = temporaryRepository()
   mkdirSync(join(repository, 'record'))
   const front = (name: string, extra = '') =>
-    `---\nid: record:${name}\ntype: record@2026-11-16T23:15:00Z\nrevised: 2026-11-16T23:15:00Z\nat: 2026-11-16T23:15:00Z\ntitle: T\npackages:\n  - cairn.summit\nreview: awaiting\n${extra}---\n\n# T\n\n`
+    `---\nki-id: record:${name}\nki-document-type: record@2026-11-16T23:15:00Z\nki-revised: 2026-11-16T23:15:00Z\nki-at: 2026-11-16T23:15:00Z\ntitle: T\nki-packages:\n  - cairn.summit\nki-review: awaiting\n${extra}---\n\n# T\n\n`
   const pinned = 'https://github.com/krisb/ki-cairn-store/blob/9968877/record/20261114T0339Z-overnight.md'
   const records: Record<string, string> = {
     '20261116T2315Z-a-batch': `${front('20261116T2315Z-a-batch')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
@@ -645,7 +746,7 @@ test('FMT-record fails a record that breaks the record format and reads an older
     '20261116T2315Z-review-good': `${front('20261116T2315Z-review-good')}It replaces [one](${pinned}).\n\n## What stands today\n\n## Left open\n`,
     '20261116T2315Z-review-old-parts': `${front('20261116T2315Z-review-old-parts')}It replaces [one](20261114T0339Z-overnight.md).\n\n## What stands today\n\n## Replaced since\n\n## Detail\n\n## Left open\n`,
     '20261116T2315Z-review-no-links': `${front('20261116T2315Z-review-no-links')}It replaces nothing linked.\n\n## What stands today\n\n## Left open\n`,
-    '20261116T2315Z-one-two-three-four-five-six': `${front('20261116T2315Z-one-two-three-four-five-six').replace('review: awaiting', 'review: changes wanted')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
+    '20261116T2315Z-one-two-three-four-five-six': `${front('20261116T2315Z-one-two-three-four-five-six').replace('ki-review: awaiting', 'ki-review: changes wanted')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
     '20261114T0339Z-an-older-record-with-a-long-slug':
       '---\ntype: record\nat: 2026-11-14T03:39:00Z\ntitle: T\npackages:\n  - cairn.summit\nreview: approved\n---\n\n# T\n\nLead.\n\n## What stands today\n\n## Replaced since\n\n## Detail\n\n## Left open\n',
     '20261114T0400Z-older-and-wrong':
@@ -662,9 +763,9 @@ test('FMT-record fails a record that breaks the record format and reads an older
   const record = formatsModule.FORMATS.items.find((item) => item.code === 'FMT-record')
   expect(record?.mechanical?.level).toBe('FAIL')
   expect(record?.mechanical?.audit.run(formats).map(({ subject, message }) => [subject, message])).toEqual([
-    ['record/20261114T0400Z-older-and-wrong.md', "`at` is missing or differs from the file name's time"],
-    ['record/20261114T0400Z-older-and-wrong.md', '`review` is not awaiting or approved'],
-    ['record/20261116T2315Z-one-two-three-four-five-six.md', '`review` is not awaiting or approved'],
+    ['record/20261114T0400Z-older-and-wrong.md', "`ki-at` is missing or differs from the file name's time"],
+    ['record/20261114T0400Z-older-and-wrong.md', '`ki-review` is not awaiting or approved'],
+    ['record/20261116T2315Z-one-two-three-four-five-six.md', '`ki-review` is not awaiting or approved'],
     ['record/20261116T2315Z-review-no-links.md', 'the opening line links no record it replaces'],
     [
       'record/20261116T2315Z-review-old-parts.md',

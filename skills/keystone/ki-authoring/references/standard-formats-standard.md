@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-09T21:36:32Z
-status: in force
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-17T00:28:37Z
+ki-status: in force
 ---
 
 # Standard format
@@ -64,13 +64,13 @@ The rules, part by part.
 
 ```yaml
 ---
-type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-09T21:36:32Z
-status: <draft or in force>
+ki-document-type: standard@2026-11-09T21:36:32Z
+ki-revised: 2026-11-09T21:36:32Z
+ki-status: <draft or in force>
 ---
 ```
 
-- **`status`** is `draft` while the standard stands ahead of the change that sets it, and `in force` once that change lands.
+- **`ki-status`** is `draft` while the standard stands ahead of the change that sets it, and `in force` once that change lands.
 - **There are no inputs or outputs:** a standard is an input others are written against, and its history is in Git.
 
 [Back to contents](#contents)
@@ -93,7 +93,7 @@ A standard uses the prefix pattern, `standard-<name>.md`.
 
 ### 4.4 How a change lands
 
-When a change lands, its Introduction, Scope, Terms and Outline carry into the standard's Introduction, Scope, Terms and Rules. The standard's `revised` moves up, and the change's decisions are recorded in the skill's sources file. Nothing from the change's Open section is written into the standard, which stands complete within its scope.
+When a change lands, its Introduction, Scope, Terms and Outline carry into the standard's Introduction, Scope, Terms and Rules. The standard's `ki-revised` moves up, and the change's decisions are recorded in the skill's sources file. Nothing from the change's Open section is written into the standard, which stands complete within its scope.
 
 [Back to contents](#contents)
 
@@ -101,7 +101,7 @@ When a change lands, its Introduction, Scope, Terms and Outline carry into the s
 
 Beyond the format format's checks, a validator checks:
 
-1. **Status:** `status` is `draft` or `in force`.
+1. **Status:** `ki-status` is `draft` or `in force`.
 2. **Sections:** the four sections are present, in order, and none of a change's parts.
 3. **Sources:** the Introduction links to the skill's sources file.
 

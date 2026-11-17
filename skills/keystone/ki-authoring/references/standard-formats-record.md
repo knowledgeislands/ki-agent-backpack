@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-16T23:45:00Z
-status: in force
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-17T00:28:37Z
+ki-status: in force
 ---
 
 # Record format
@@ -36,7 +36,7 @@ The format of a record and of a consolidated review, which is a record too.
 
 ### 2.1 In scope
 
-- A record's front matter, its `review` values and what each asks of whom.
+- A record's front matter, its `ki-review` values and what each asks of whom.
 - The sections of a batch record and of a consolidated review, and how records are consolidated.
 - How a record links, how it is named, and what a validator checks beyond the format format.
 
@@ -58,7 +58,7 @@ The format of a record and of a consolidated review, which is a record too.
 | **Batch of work** | A significant piece of work taken through to where it lands, one thing or twenty: the unit a record reports. **Standard:** this one, [4.3](#43-a-batch-record) |
 | **Record** | A file reporting one batch of work: what it is for, how far it got, and what is new and noteworthy. **Standard:** this one, [1](#1-introduction) |
 | **Consolidated review** | A record that takes the place of several records on one topic, saying what stands today. **Standard:** this one, [4.4](#44-a-consolidated-review) |
-| **Writer** | The session that did the work and wrote the record, which keeps its `review` field; the Cairn app calls it the record's owner. **Standard:** this one, [4.2](#42-review) |
+| **Writer** | The session that did the work and wrote the record, which keeps its `ki-review` field; the Cairn app calls it the record's owner. **Standard:** this one, [4.2](#42-review) |
 
 [Back to contents](#contents)
 
@@ -70,31 +70,31 @@ The rules, part by part.
 
 ```yaml
 ---
-id: record:<the file name, without .md>
-type: record@<version ref of standard-formats-record.md>
-revised: 2026-11-16T15:53:00Z
-at: 2026-11-16T15:53:00Z
+ki-id: record:<the file name, without .md>
+ki-document-type: record@<version ref of standard-formats-record.md>
+ki-revised: 2026-11-16T15:53:00Z
+ki-at: 2026-11-16T15:53:00Z
 title: <what the batch was for, in a few words>
-packages:
+ki-packages:
   - <package id>
-review: awaiting
+ki-review: awaiting
 ---
 ```
 
-- **`id` opens and `type` follows,** as every resource opens with its typed id: `record:` and the file's name without `.md`, as `record:20261116T1553Z-the-walk-through-ids-and-seats`. A reference to a record uses this id.
-- **`type`** names the kind of thing the file is, `record`, and, since that kind has a format standard, adds `@` and the version of this format the record follows. As for every file, a reader takes the part before `@` as the kind, so a record's `type` is the same field as a resource's or a card's.
-- **`revised`** is the time of the record's last change of substance, the same as `at` when it is written. Setting `review` is not a change of substance.
-- **`at`** is when the batch landed, in UTC to the second, the same time as the file name's; for a consolidated review, when it was consolidated.
-- **`title`** says what the batch was for in a few words, and is the record's H1.
-- **`packages`** lists the ids of the packages the batch served; a consolidated review lists every package its records served.
-- **`review`** takes one of the two values in [4.2](#42-review).
-- **Older records** open `type: record`, with no version, and may lack `id` and `revised`. They are read as they are written, and each comes into line when it is next changed or consolidated.
+- **`ki-id` opens and `ki-document-type` follows,** as every resource opens with its typed id: `record:` and the file's name without `.md`, as `record:20261116T1553Z-the-walk-through-ids-and-seats`. A reference to a record uses this id.
+- **`ki-document-type`** names the kind of document the file is, `record`, and, since that kind has a format standard, adds `@` and the version of this format the record follows. As for every document, a reader takes the part before `@` as the kind, so a record's `ki-document-type` is the same field as a resource's.
+- **`ki-revised`** is the time of the record's last change of substance, the same as `ki-at` when it is written. Setting `ki-review` is not a change of substance.
+- **`ki-at`** is when the batch landed, in UTC to the second, the same time as the file name's; for a consolidated review, when it was consolidated.
+- **`title`** says what the batch was for in a few words, and is the record's H1; it is the one field meant for other tools, so it keeps its name.
+- **`ki-packages`** lists the ids of the packages the batch served; a consolidated review lists every package its records served.
+- **`ki-review`** takes one of the two values in [4.2](#42-review).
+- **Older records** open `type: record`, with no version, and may lack `id` and `revised`; their fields are written without the `ki-` prefix, which the [format format](standard-formats-format.md#42-front-matter) reads under the `ki-` names and warns on. They are read as they are written, and each comes into line when it is next changed or consolidated.
 
 [Back to contents](#contents)
 
 ### 4.2 Review
 
-The owner reviews a whole record, one at a time, and the record's `review` field says where that review stands:
+The owner reviews a whole record, one at a time, and the record's `ki-review` field says where that review stands:
 
 | Value | Meaning |
 | --- | --- |
@@ -123,7 +123,7 @@ Several records on one topic may be consolidated into one review, so that what s
 2. **What stands today:** the full account of the topic as it now stands, in prose by area and in no time order, with `cairn://` links into the app that shows it where they help. Anything the records reported that is no longer true is folded into its area as no longer so, and only where it matters.
 3. **Left open:** what is still to settle on the topic. A review may carry it, and so may a batch record in its shape, where a batch record in the sections of [4.3](#43-a-batch-record) may not, because it is read as the topic's current account.
 
-A review carries no commit lists, no account of each original batch and no history of how the topic got where it stands: the linked originals and Git history keep those. **The originals are removed in the same commit** as the review is added. A review is itself a record: it carries the front matter above, starts at `review: awaiting`, and may later be consolidated again.
+A review carries no commit lists, no account of each original batch and no history of how the topic got where it stands: the linked originals and Git history keep those. **The originals are removed in the same commit** as the review is added. A review is itself a record: it carries the front matter above, starts at `ki-review: awaiting`, and may later be consolidated again.
 
 [Back to contents](#contents)
 
@@ -145,11 +145,11 @@ A review carries no commit lists, no account of each original batch and no histo
 
 Beyond the format format's checks, as this standard replaces them, a validator checks:
 
-1. **Front matter:** `id` is `record:` and the file's name, `at` matches the file name's time, `revised` is present, `packages` is a list, and `review` is `awaiting` or `approved`.
+1. **Front matter:** `ki-id` is `record:` and the file's name, `ki-at` matches the file name's time, `ki-revised` is present, `ki-packages` is a list, and `ki-review` is `awaiting` or `approved`.
 2. **Sections:** a batch record has Purpose, Goals and What changed, in order, or a consolidated review's sections, and no other section; a consolidated review has What stands today and Left open, in order, and no other section.
 3. **Opening line:** a consolidated review's first paragraph under the H1 links at least one record, and each record it links is pinned at a commit.
 4. **Name:** the file name is a time and a slug of five words at most.
 
-An older record, whose `type` has no version, is read as written: only its `at`, its `review` and any `id` it carries are checked. These checks are `ki-authoring`'s FMT-record rubric item, run mechanically by `ki repo audit --skill ki-authoring`, and a record that breaks one fails; only the slug's length is left to review, since a hyphen may join one word, as in walk-through, or separate two.
+An older record, whose `type` has no version, is read as written: only its `at`, its `review` and any `id` it carries are checked, each read as its `ki-` name. These checks are `ki-authoring`'s FMT-record rubric item, run mechanically by `ki repo audit --skill ki-authoring`, and a record that breaks one fails; only the slug's length is left to review, since a hyphen may join one word, as in walk-through, or separate two.
 
 [Back to contents](#contents)

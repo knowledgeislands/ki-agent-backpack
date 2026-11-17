@@ -30,11 +30,20 @@ describe('createRefreshContext', () => {
 describe('the refresh marker', () => {
   test('is read from the sources format front matter', () => {
     const context = createRefreshContext(
-      ['---', 'type: sources@x', 'refresh: external-spec · monthly', '---', ''].join('\n'),
+      ['---', 'ki-document-type: sources@x', 'ki-refresh: external-spec · monthly', '---', ''].join('\n'),
       now
     )
     expect(context.refreshClass).toBe('external-spec')
     expect(context.cadence).toBe('monthly')
+  })
+
+  test('is still read from the front matter field written without the ki- prefix', () => {
+    const context = createRefreshContext(
+      ['---', 'type: sources@x', 'refresh: canonical · quarterly', '---', ''].join('\n'),
+      now
+    )
+    expect(context.refreshClass).toBe('canonical')
+    expect(context.cadence).toBe('quarterly')
   })
 
   test('is still read from an older Refresh line', () => {

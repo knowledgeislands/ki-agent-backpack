@@ -149,26 +149,39 @@ export type OwnedRubricContext = {
 }
 export type TomlRubricContext = Record<string, never>
 export type SynchronisationRubricContext = Record<string, never>
-/** A Markdown document whose front matter `type` names a format at a version, `<word>@<ref>`. */
+/**
+ * A Markdown document whose front matter `ki-document-type`, or the older `type`, names a format at a version,
+ * `<word>@<ref>`.
+ */
 export type TypedDocumentEvidence = {
   path: string
   word: string
   ref: string
   revised: boolean
-  /** The front matter's `revised`, as written. */
+  /** The front matter's `ki-revised`, or the older `revised`, as written. */
   revisedAt?: string
-  /** When the file was last committed, `git log -1 --format=%cI`; absent when it is not in Git or has no commits. */
+  /**
+   * When the file was last committed by a commit of substance, one without the `Revised-Unchanged: true` trailer;
+   * absent when it is not in Git or has no such commit.
+   */
   committed?: string
+  /** The front matter fields KI defines that are written without the `ki-` prefix, read under their `ki-` names. */
+  unprefixed?: readonly string[]
 }
-/** A format standard beside this rubric, `standard-formats-<word>.md`, and its current version, its `revised`. */
+/** A format standard beside this rubric, `standard-formats-<word>.md`, and its current version, its `ki-revised`. */
 export type FormatStandardEvidence = {
   word: string
   revised?: string
 }
-/** A record, a Markdown document whose `type` is `record`, with or without a version; one without is an older record. */
+/**
+ * A record, a Markdown document whose `ki-document-type`, or the older `type`, is `record`, with or without a version;
+ * one without is an older record.
+ */
 export type RecordEvidence = {
   path: string
   versioned: boolean
+  /** The front matter fields KI defines that are written without the `ki-` prefix, read under their `ki-` names. */
+  unprefixed?: readonly string[]
   id?: string
   at?: string
   revised: boolean
@@ -314,7 +327,21 @@ const createFrontmatterDrafts = (repository: string, mutable: boolean): readonly
 const FRONTMATTER = /^---\n([\s\S]*?)\n---(?:\n|$)/
 const frontmatterField = (frontmatter: string, field: string): string | undefined =>
   new RegExp(`^${field}:[ \\t]*(.*?)[ \\t]*$`, 'm').exec(frontmatter)?.[1]
-// A format's word and version ref, as `type: change@<ref>`; a `type` with no `@` is a resource or a card type.
+/**
+ * A field KI defines, read under its `ki-` name, or, while files are swept, under its older bare name (KI-PREFIX a,
+ * Kris, 17 November 2026); the document's kind, `ki-document-type`, was `type` (DOC-TYPE-KEY a).
+ */
+const kiField = (frontmatter: string, name: string, older: string = name): string | undefined =>
+  frontmatterField(frontmatter, `ki-${name}`) ?? frontmatterField(frontmatter, older)
+const documentType = (frontmatter: string): string | undefined => kiField(frontmatter, 'document-type', 'type')
+// The one field of a typed document KI does not define, kept for the tools that read it.
+const FOREIGN_FIELDS: ReadonlySet<string> = new Set(['title'])
+// Every top-level field of a typed document but `title` is KI's, so one written without `ki-` is listed.
+const unprefixedFields = (frontmatter: string): readonly string[] =>
+  [...frontmatter.matchAll(/^([A-Za-z_][\w-]*):/gm)]
+    .map((match) => match[1] ?? '')
+    .filter((name) => !name.startsWith('ki-') && !FOREIGN_FIELDS.has(name))
+// A format's word and version ref, as `ki-document-type: change@<ref>`; a kind with no `@` has no format standard.
 const TYPED = /^([a-z][a-z0-9-]*)@(\S+)$/
 
 /** The format standards that sit beside this rubric, in the skill's own `references/`. */
@@ -329,7 +356,7 @@ export const inspectFormatStandards = (
       const word = /^standard-formats-([a-z][a-z0-9-]*)\.md$/.exec(name)?.[1]
       if (!word) return []
       const frontmatter = FRONTMATTER.exec(readFileSync(join(directory, name), 'utf8'))?.[1] ?? ''
-      const revised = frontmatterField(frontmatter, 'revised')
+      const revised = kiField(frontmatter, 'revised')
       return [{ word, ...(revised ? { revised } : {}) }]
     })
     .sort((left, right) => left.word.localeCompare(right.word))
@@ -337,11 +364,17 @@ export const inspectFormatStandards = (
 
 // Paths per `git log` call, to keep each command line well inside the system's limit.
 const LAST_COMMIT_BATCH = 200
+/**
+ * The trailer a commit that changes no document's substance carries, such as a mechanical sweep, so that the check of
+ * `ki-revised` passes over it: `Revised-Unchanged: true`, on a line of its own in the message's last paragraph.
+ */
+export const REVISED_UNCHANGED_TRAILER = 'Revised-Unchanged: true'
 
 /**
  * When each path was last committed, from one `git log` per batch of paths rather than one per file: a path's first
- * appearance in the log, newest first, is its last commit. A path not in Git is absent, and so is every path when the
- * directory is not in a repository or the repository has no commits yet.
+ * appearance in the log, newest first, is its last commit. A commit carrying the `Revised-Unchanged: true` trailer is
+ * passed over, so a mechanical commit leaves the time where it was. A path not in Git is absent, and so is every path
+ * when the directory is not in a repository or the repository has no commits yet.
  */
 export const inspectLastCommits = (repository: string, paths: readonly string[]): ReadonlyMap<string, string> => {
   const committed = new Map<string, string>()
@@ -357,6 +390,9 @@ export const inspectLastCommits = (repository: string, paths: readonly string[])
         '-c',
         'core.quotePath=false',
         'log',
+        '--regexp-ignore-case',
+        '--invert-grep',
+        `--grep=^${REVISED_UNCHANGED_TRAILER}[[:space:]]*$`,
         '--format=%x00%cI',
         '--name-only',
         '--no-renames',
@@ -386,10 +422,20 @@ export const inspectLastCommits = (repository: string, paths: readonly string[])
 const inspectTypedDocuments = (repository: string, paths: readonly string[]): readonly TypedDocumentEvidence[] => {
   const documents = paths.flatMap((path) => {
     const frontmatter = FRONTMATTER.exec(readFileSync(join(repository, path), 'utf8'))?.[1]
-    const typed = frontmatter ? TYPED.exec(frontmatterField(frontmatter, 'type') ?? '') : null
+    const typed = frontmatter ? TYPED.exec(documentType(frontmatter) ?? '') : null
     if (!frontmatter || !typed) return []
-    const revisedAt = frontmatterField(frontmatter, 'revised')?.replace(/^(['"])(.*)\1$/, '$2')
-    return [{ path, word: typed[1], ref: typed[2], revised: Boolean(revisedAt), ...(revisedAt ? { revisedAt } : {}) }]
+    const revisedAt = kiField(frontmatter, 'revised')?.replace(/^(['"])(.*)\1$/, '$2')
+    const unprefixed = unprefixedFields(frontmatter)
+    return [
+      {
+        path,
+        word: typed[1],
+        ref: typed[2],
+        revised: Boolean(revisedAt),
+        ...(revisedAt ? { revisedAt } : {}),
+        ...(unprefixed.length > 0 ? { unprefixed } : {})
+      }
+    ]
   })
   const committed = inspectLastCommits(
     repository,
@@ -407,15 +453,15 @@ const inspectTypedDocuments = (repository: string, paths: readonly string[]): re
 // A record's kind is `record`, with `@<version>` when it follows the record format; readers take the part before `@`.
 const RECORD_TYPE = /^record(?:@\S+)?$/
 const MARKDOWN_LINK = /\]\(([^)\s]+)\)/g
-// `packages` as a block list of at least one item, or a flow list.
-const PACKAGES_LIST = /^packages:[ \t]*(?:\[.*\][ \t]*|\n[ \t]*-[ \t]+\S.*)$/m
+// `ki-packages`, or the older `packages`, as a block list of at least one item, or a flow list.
+const PACKAGES_LIST = /^(?:ki-)?packages:[ \t]*(?:\[.*\][ \t]*|\n[ \t]*-[ \t]+\S.*)$/m
 
 const inspectRecords = (repository: string, paths: readonly string[]): readonly RecordEvidence[] =>
   paths.flatMap((path) => {
     const content = readFileSync(join(repository, path), 'utf8')
     const match = FRONTMATTER.exec(content)
     const frontmatter = match?.[1]
-    const type = frontmatter ? frontmatterField(frontmatter, 'type') : undefined
+    const type = frontmatter ? documentType(frontmatter) : undefined
     if (!frontmatter || !type || !RECORD_TYPE.test(type)) return []
     const lines = content.slice(match[0].length).split('\n')
     const title = lines.findIndex((line) => line.startsWith('# '))
@@ -423,14 +469,16 @@ const inspectRecords = (repository: string, paths: readonly string[]): readonly 
     const start = rest.findIndex((line) => line.trim() !== '')
     const end = rest.findIndex((line, index) => index > start && line.trim() === '')
     const opening = start === -1 || rest[start]?.startsWith('#') ? [] : rest.slice(start, end === -1 ? undefined : end)
-    const field = (name: string) => frontmatterField(frontmatter, name) || undefined
+    const field = (name: string) => kiField(frontmatter, name) || undefined
     const id = field('id')
     const at = field('at')
     const review = field('review')
+    const unprefixed = unprefixedFields(frontmatter)
     return [
       {
         path,
         versioned: type.includes('@'),
+        ...(unprefixed.length > 0 ? { unprefixed } : {}),
         ...(id ? { id } : {}),
         ...(at ? { at } : {}),
         revised: Boolean(field('revised')),

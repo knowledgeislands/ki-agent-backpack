@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-16T17:02:00Z
-status: in force
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-17T00:28:37Z
+ki-status: in force
 ---
 
 # Change format
@@ -71,19 +71,19 @@ The rules, part by part.
 
 ```yaml
 ---
-type: change@<version ref of standard-formats-change.md>
-revised: 2026-11-09T21:36:32Z
-status: <one of the values below>
-inputs:
+ki-document-type: change@<version ref of standard-formats-change.md>
+ki-revised: 2026-11-09T21:36:32Z
+ki-status: <one of the values below>
+ki-inputs:
   - <organisation>/<repository>@<version ref>
   - <organisation>/<repository>:<path>@<version ref>
   - <file>@<version ref>
-outputs:
+ki-outputs:
   - <organisation>/<repository>:<path, wildcards allowed>
 ---
 ```
 
-`status` takes one of these values:
+`ki-status` takes one of these values:
 
 | Status | Meaning |
 | --- | --- |
@@ -101,10 +101,10 @@ A short status line may open the Introduction where it helps a reader, but the f
 
 ### 4.2 Inputs and outputs
 
-- **`inputs`** lists what the change was written against, each with its version ref: a whole repository, `<organisation>/<repository>@<version ref>`, meaning it was considered as a whole; a file within one, `<organisation>/<repository>:<path>@<version ref>`, pointing out something that specifically informs the change; or another change document, `<file>@<version ref>`, the ref being its `revised` when read. An input outside Git takes a date as its version ref, or its URL where it has one.
-- **`outputs`** lists every file the change writes, standards or code, as `<organisation>/<repository>:<path>`; a path may use wildcards, such as `knowledgeislands/tools-ki:src/agent/**`. A file the change edits is also an input; a file it creates is an output only.
+- **`ki-inputs`** lists what the change was written against, each with its version ref: a whole repository, `<organisation>/<repository>@<version ref>`, meaning it was considered as a whole; a file within one, `<organisation>/<repository>:<path>@<version ref>`, pointing out something that specifically informs the change; or another change document, `<file>@<version ref>`, the ref being its `ki-revised` when read. An input outside Git takes a date as its version ref, or its URL where it has one.
+- **`ki-outputs`** lists every file the change writes, standards or code, as `<organisation>/<repository>:<path>`; a path may use wildcards, such as `knowledgeislands/tools-ki:src/agent/**`. A file the change edits is also an input; a file it creates is an output only.
 - **A moved input does not block.** If an input has moved on by the time the change is acted on, what changed since its ref is taken into account, each Before in Changes is checked against the new version and corrected, and the ref moves up to it.
-- **Out of date.** A change whose input names an older version than its current one is out of date, as for `type` in the format format; it is brought into line when next acted on.
+- **Out of date.** A change whose input names an older version than its current one is out of date, as for `ki-document-type` in the format format; it is brought into line when next acted on.
 
 [Back to contents](#contents)
 
@@ -135,7 +135,7 @@ A change document uses the suffix pattern, `[<name>.]change.md`. Where several a
 - **Open fills** while a change is in `draft` and `review`, and empties as it moves on. A gap may be raised as a question and answered: either the change comes to cover it, or it is accepted as a known gap.
 - **By `agreed`,** Questions is None, and every gap left is accepted by that status, with no marker.
 - **Before `done`,** each consequence and gap gets a home outside the standard, chosen by whatever manages the change: a step in this change if it is done in the rollout, or otherwise a record or a new change wherever that work keeps them. A home may lie ahead, and the item links forward to it. A link to its home then replaces the item, so by `done`, Gaps and Consequences are None too.
-- **A new standard may stand first as a draft.** A change that creates a standard may put it at its final path with `status: draft` before it lands, where something must name or link it first, as documents of a new type name their format standard; it need not, and otherwise the standard lands with the change.
+- **A new standard may stand first as a draft.** A change that creates a standard may put it at its final path with `ki-status: draft` before it lands, where something must name or link it first, as documents of a new type name their format standard; it need not, and otherwise the standard lands with the change.
 - **Nothing from Open is written into a standard,** which stands complete within its scope.
 
 [Back to contents](#contents)
@@ -144,7 +144,7 @@ A change document uses the suffix pattern, `[<name>.]change.md`. Where several a
 
 Beyond the format format's checks, a validator checks:
 
-1. **Front matter:** every field is present, and `status` is one of the seven values.
+1. **Front matter:** every field is present, and `ki-status` is one of the seven values.
 2. **Open against status:** an `agreed` change has no questions left; a `done` change has Gaps and Consequences of None.
 3. **Inputs:** an input that has moved past its version ref is reported, asking for each Before to be checked against the new version; it does not block.
 4. **Shape:** the seven sections and Deltas call-outs are present, and links run both ways.
