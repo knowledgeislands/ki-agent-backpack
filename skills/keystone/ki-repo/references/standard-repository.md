@@ -442,8 +442,17 @@ Website composition has its own narrower cardinality. A repository declaring `[s
 `gh` CLI, authenticated with the GitHub **Administration** permission required for each target repository. The commands below are a reference plan, not an unattended conformer: inspect the live state and exact target set, show the proposed diff, and obtain explicit confirmation before each mutation batch. (zsh: use an array, not a bare string — unquoted `$var` does not word-split.)
 
 ```zsh
-all=(ki-principal ki-agent-backpack ki-repo-website mcp-housekeeping-claude mcp-git-audit mcp-gsuite mcp-kb-fs mcp-ki-repo-kb-notion-mirror mcp-m365)
-public=(mcp-housekeeping-claude mcp-git-audit mcp-gsuite mcp-kb-fs mcp-ki-repo-kb-notion-mirror mcp-m365)
+all=(
+  apps-cairn.local apps-knowledgeislands.info homebrew-tap ki-agent-backpack ki-principal
+  ki-specifications ki-techne-harness mcp-acquire-whatsapp mcp-cairn mcp-git-audit mcp-gsuite
+  mcp-housekeeping-chatgpt mcp-housekeeping-claude mcp-ki-kb-fs mcp-m365 packages-stoa
+  packages-tessera tools-git-almanac tools-ki tools-mgit tools-rig tools-techne
+)
+public=(
+  apps-knowledgeislands.info homebrew-tap ki-agent-backpack ki-principal ki-specifications
+  ki-techne-harness mcp-git-audit mcp-gsuite mcp-housekeeping-chatgpt mcp-housekeeping-claude
+  mcp-ki-kb-fs mcp-m365 packages-tessera tools-git-almanac tools-ki tools-mgit tools-rig tools-techne
+)
 
 # Layer 1 — each repo declares its config in .ki.toml (committed via PR like any file).
 #   Native conform scaffolds/repairs [skills.ki-repo] + [skills.ki-authoring] only.

@@ -17,7 +17,7 @@ Curated patterns from the KI repo set that show what a well-configured Knowledge
 | --- | --- | --- |
 | ki-agent-backpack | [github][harness] | Private repo; all layer-1 files; full `.ki.toml`; rich `CLAUDE.md` |
 | mcp-gsuite | [github][mcp-gsuite] | Public repo; MIT license; standard topic set |
-| mcp-kb-fs | [github][mcp-kb-fs] | Public repo; canonical layer-2/3 settings; `branch-protection` off |
+| mcp-ki-kb-fs | [github][mcp-ki-kb-fs] | Public repo; canonical layer-2/3 settings; `branch-protection` off |
 | GitHub REST API — repo settings | [docs.github.com][repo-settings] | Merge methods, auto-delete-branch, features |
 | GitHub branch protection | [docs.github.com][branch-protection] | Optional `branch-protection` body |
 
@@ -134,6 +134,6 @@ my-repo/
 
 [harness]: https://github.com/knowledgeislands/ki-agent-backpack
 [mcp-gsuite]: https://github.com/knowledgeislands/mcp-gsuite
-[mcp-kb-fs]: https://github.com/knowledgeislands/mcp-kb-fs
+[mcp-ki-kb-fs]: https://github.com/knowledgeislands/mcp-ki-kb-fs
 [repo-settings]: https://docs.github.com/en/rest/repos/repos#update-a-repository
 [branch-protection]: https://docs.github.com/en/rest/branches/branch-protection
