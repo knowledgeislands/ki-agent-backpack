@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T03:45:00Z
+ki-revised: 2026-11-17T04:35:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -29,21 +29,21 @@ The GitHub and licensing specifications the standards follow.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [REST: repository settings][repo-settings] | merge methods, auto-delete-branch, features, description, visibility, and repository-administration permission | 2026-09-26 |
-| [REST: branch protection][branch-protection] | the optional `branch-protection` body (PR, `build` check, linear) | 2026-09-26 |
-| [Repository rulesets][rulesets] | the modern alternative to classic protection (private-repo path) | 2026-09-26 |
-| [REST: Dependabot alerts / fixes][dependabot] | `vulnerability-alerts`, `automated-security-fixes` endpoints | 2026-09-26 |
-| [Secret scanning detection scope][secret-scanning] | public automatic scanning and private/internal GitHub Secret Protection boundary | 2026-09-26 |
-| [REST: Actions permissions for a repository][actions] | `allowed_actions` policy | 2026-09-26 |
-| [`gh` CLI manual][gh-cli] | `gh repo list/view/edit`, `gh api` — how evidence is read and confirmed live changes are applied | 2026-09-26 |
-| [SPDX License List][spdx] | authoritative license identifiers, including MIT and UNLICENSED | 2026-09-26 |
-| [Choose a License][choosealicense] | supporting license-selection guidance | 2026-09-26 |
+| [REST: repository settings][repo-settings] | merge methods, auto-delete-branch, features, description, visibility, and repository-administration permission | 2026-11-17 |
+| [REST: branch protection][branch-protection] | the optional `branch-protection` body (PR, `build` check, linear) | 2026-11-17 |
+| [Repository rulesets][rulesets] | the modern alternative to classic protection (private-repo path) | 2026-11-17 |
+| [REST: Dependabot alerts / fixes][dependabot] | `vulnerability-alerts`, `automated-security-fixes` endpoints | 2026-11-17 |
+| [Secret scanning detection scope][secret-scanning] | public automatic scanning and private/internal GitHub Secret Protection boundary | 2026-11-17 |
+| [REST: Actions permissions for a repository][actions] | `allowed_actions` policy | 2026-11-17 |
+| [`gh` CLI manual][gh-cli] | `gh repo list/view/edit`, `gh api` — how evidence is read and confirmed live changes are applied | 2026-11-17 |
+| [SPDX License List][spdx] | authoritative license identifiers, including MIT and UNLICENSED | 2026-11-17 |
+| [Choose a License][choosealicense] | supporting license-selection guidance | 2026-11-17 |
 
 [repo-settings]: https://docs.github.com/en/rest/repos/repos#update-a-repository
 [branch-protection]: https://docs.github.com/en/rest/branches/branch-protection
 [rulesets]: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets
 [dependabot]: https://docs.github.com/en/rest/repos/repos#enable-vulnerability-alerts
-[secret-scanning]: https://docs.github.com/en/code-security/reference/secret-security/secret-scanning-scope
+[secret-scanning]: https://docs.github.com/en/code-security/secret-scanning/introduction/about-secret-scanning
 [actions]: https://docs.github.com/en/rest/actions/permissions
 [gh-cli]: https://cli.github.com/manual/
 [spdx]: https://spdx.org/licenses/
@@ -80,6 +80,15 @@ The decisions the standards cite by id, oldest first; each standard keeps citing
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 17 November 2026 REFRESH ran against all nine tracked sources, taken by the Cairn summit's guardian at about 04:03 GMT from the summit's change 11, gap 4. No governed field or criterion changed, so no standard or rubric was edited; the organisation scan for emergent topics was not run.
+
+- **REST repository settings / `gh` CLI**: merge methods, `delete_branch_on_merge`, `has_issues`, `has_projects`, `has_wiki`, `description`, `homepage` and `visibility` (`public` or `private`) remain on the update endpoint at API version `2026-03-10`; `security_and_analysis` still takes `secret_scanning` and `secret_scanning_push_protection`, and `gh repo list/view/edit` and `gh api` remain. `use_squash_pr_title_as_default` is closing down in favour of `squash_merge_commit_title`, and `has_pull_requests` and `pull_request_creation_policy` now appear; none is governed here.
+- **REST branch protection / rulesets**: classic protection remains, with no deprecation, and GET still returns the fields the auditor reads. `required_status_checks.contexts` carries a closing-down notice in favour of `checks`; the standard's body already sends `checks` and the auditor reads `checks` before `contexts`. The rulesets page offers conversion from classic protection, presented as a benefit, not a deprecation.
+- **Dependabot / Actions**: the `vulnerability-alerts` and `automated-security-fixes` endpoints are unchanged; `/actions/permissions` keeps `enabled` and `allowed_actions` and adds `sha_pinning_required`, which is not governed here.
+- **Secret scanning**: the scope page no longer states who gets scanning, so the source now points at GitHub's About secret scanning page: it "runs automatically for free" on public repositories, and private and internal ones need GitHub Secret Protection on Team or Enterprise Cloud. The public-only check remains correct.
+- **SPDX / Choose a License**: SPDX list 3.29.0 of 16 September 2026 keeps `MIT`; `UNLICENSED` is npm's word, not an SPDX identifier, and stays the proprietary declaration. Choose a License still recommends MIT for simple permissive use.
+- **Open watch-items:** `contexts` leaving the branch-protection body, when the auditor's fallback can go; whether `sha_pinning_required` should join the Actions policy; and classic protection beside rulesets.
 
 On 17 November 2026 an in-house review applied DESIGN-PLACE a, which Kris took that day at about 00:56 GMT, relayed by the Cairn summit's guardian from the summit's [change 16, the Design guild](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). `docs/design/` joins the documentation roots: the coverage cascade detects it and asks for `[skills.ki-design]`, so `ki-design` moves from declaration-only to detected and joins `ki-detects`; [the repository](standard-repository.md) and [configuration](standard-configuration.md) standards name it, and [the documentation topology](standard-documentation-topology.md#41-the-five-concerns) gains Designs as its fifth concern. A repository that keeps designs and does not yet declare `ki-design` now fails COV-1 until it declares it or sets `coverage-design = false`. No outside source refreshed.
 

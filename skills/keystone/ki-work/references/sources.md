@@ -34,11 +34,11 @@ The runtime documentation behind the transcript and compaction claims:
 
 | Source | Last reviewed | Governs |
 | --- | --- | --- |
-| [OpenAI Codex developer commands](https://learn.chatgpt.com/docs/developer-commands?surface=cli) | 2026-09-26 | User-invocable `/compact` and current Codex session controls |
-| [OpenAI Codex hooks](https://learn.chatgpt.com/docs/hooks) | 2026-09-26 | Manual/automatic compaction hooks and transcript-format stability boundary |
-| [Claude Code sessions](https://code.claude.com/docs/en/sessions) | 2026-10-06 | Session storage, compaction, and transcript parsing boundary |
-| [Claude Code hooks](https://code.claude.com/docs/en/hooks) | 2026-09-26 | Manual/automatic compaction events |
-| [Claude Code environment variables](https://code.claude.com/docs/en/env-vars) | 2026-10-06 | `CLAUDE_CODE_SESSION_ID`, `CLAUDECODE`, `CLAUDE_CONFIG_DIR`, and `CLAUDE_CODE_PROJECT_DIR_NAME` for live-session transcript location |
+| [OpenAI Codex developer commands](https://learn.chatgpt.com/docs/developer-commands?surface=cli) | 2026-11-17 | User-invocable `/compact` and current Codex session controls |
+| [OpenAI Codex hooks](https://learn.chatgpt.com/docs/hooks) | 2026-11-17 | Manual/automatic compaction hooks and transcript-format stability boundary |
+| [Claude Code sessions](https://code.claude.com/docs/en/sessions) | 2026-11-17 | Session storage, compaction, and transcript parsing boundary |
+| [Claude Code hooks](https://code.claude.com/docs/en/hooks) | 2026-11-17 | Manual/automatic compaction events |
+| [Claude Code environment variables](https://code.claude.com/docs/en/env-vars) | 2026-11-17 | `CLAUDE_CODE_SESSION_ID`, `CLAUDECODE`, `CLAUDE_CONFIG_DIR`, and `CLAUDE_CODE_PROJECT_DIR_NAME` for live-session transcript location |
 
 ### design
 
@@ -74,6 +74,8 @@ On 2026-10-05, the owner approved the cross-repository reference preflight after
 On 2026-08-12, the integrated local standards retained selected-adapter resolution, the exact six-heading review packet, completion-observation retention, and the successful-run boundary. `ki-accept` consumes those contracts without creating a remote execution path or a second tracker.
 
 ### recap
+
+On 17 November 2026 REFRESH re-fetched the five runtime sources, taken by the Cairn summit's guardian at about 04:03 GMT from the summit's change 11, gap 4; no claim the recap relies on changed. Both Codex and Claude Code still offer `/compact`, and both document `PreCompact` and `PostCompact` hooks matched on `manual` or `auto`, with `SessionStart` firing again after a compaction. Codex hooks receive `transcript_path` and warn that the transcript format "isn't a stable interface"; Claude Code's sessions page says the same of its JSONL entries and keeps transcripts at `<config>/projects/<project>/<session-id>.jsonl`. `CLAUDE_CODE_SESSION_ID` still matches the hook `session_id`, updates on `/clear`, and takes the resumed id on `--resume <session-id>`; an MCP server subprocess keeps the id it was spawned with. `CLAUDE_CODE_PROJECT_DIR_NAME` now takes effect only when `CLAUDE_CONFIG_DIR` is set too, from Claude Code v2.1.234, which the helper's probe of every project directory already absorbs.
 
 A 2026-11-07 in-house review under `cm-tidy` applies RECAP-NARROW, which Kris took that day as option a): the skill keeps only the conversational session recap and its learning routes. The `checkpoint <work id>` composition and its preflight model are removed, since `ki-work-package` owns every package write, and so is the batch-retention housekeeping, since `ki-batch` is retired under BATCH-RETIRE. The RECAP-NAME paragraph below records the argument's earlier name only.
 
