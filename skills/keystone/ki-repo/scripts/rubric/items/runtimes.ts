@@ -97,6 +97,23 @@ const RUNTIMES_6: RubricItem<RuntimesRubricContext> = {
   }
 }
 
+const RUNTIMES_7: RubricItem<RuntimesRubricContext> = {
+  code: 'RUNTIMES-7',
+  title: 'Every runtime declared',
+  description:
+    'The repository declares every recognised runtime, or records a narrower list as the evidenced exception all-runtimes = false.',
+  sources: ['standard-configuration.md#431-declaring-harnesses-and-skills'],
+  mechanical: {
+    level: 'WARN',
+    remediation: {
+      class: 'diagnostic',
+      guidance:
+        'Add the missing runtimes with their folders, ignores and environment tables, or record the evidenced exception as all-runtimes = false in [skills.ki-repo.checks] with a comment saying why.'
+    },
+    audit: { phase: 'INSPECT', run: (context) => auditEvidence(context.runtimes7, 'WARN') }
+  }
+}
+
 const RUNTIMES_J1: RubricItem<RuntimesRubricContext> = {
   code: 'RUNTIMES-J1',
   title: 'Runtime orientation split',
@@ -118,5 +135,5 @@ export const RUNTIMES: RubricFamily<RepoRubricContext, RuntimesRubricContext> = 
   description: 'Declared agent-runtime support and orientation.',
   standard: SOURCE,
   selectContext: (context) => context.runtimes,
-  items: [RUNTIMES_1, RUNTIMES_2, RUNTIMES_3, RUNTIMES_4, RUNTIMES_5, RUNTIMES_6, RUNTIMES_J1]
+  items: [RUNTIMES_1, RUNTIMES_2, RUNTIMES_3, RUNTIMES_4, RUNTIMES_5, RUNTIMES_6, RUNTIMES_7, RUNTIMES_J1]
 }

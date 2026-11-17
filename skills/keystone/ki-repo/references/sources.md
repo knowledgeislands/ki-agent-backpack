@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:36:00Z
+ki-revised: 2026-11-17T03:45:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -69,6 +69,7 @@ The decisions the standards cite by id, oldest first; each standard keeps citing
 | COMMIT-VS-CI | A commit hook runs only fast, check-only, offline checks over what is staged; the full `ki repo audit` runs in CI, never in the hook. | 2026-10-26 | [repository](standard-repository.md#45-commit-gate) | In force |
 | INTERIM-HOMEPAGE-OMISSION | Where `.ki.toml` declares no `homepage`, a homepage left in the root `package.json` or on GitHub is drift: the audit reports it, and conform proposes clearing it but clears nothing without explicit approval. | 2026-10-26 | [repository](standard-repository.md#462-packagejson-identity--metadata) | In force |
 | NAMING-TO-KI | A site repository is named `apps-` and its hostname's labels in reverse order; widened on 29 October 2026 to rename every existing site repository, not only new ones. | 2026-10-27 | [repository](standard-repository.md#48-repository-naming) | In force |
+| RUNTIMES-ALL | Every Knowledge Islands repository declares every runtime, with the folders and ignores each needs; a narrower list is an evidenced exception in `.ki.toml`, never the default, and runtime-specific skills go only to their own runtime. The exception is the declared divergence `all-runtimes = false`, and `RUNTIMES-7` warns on a narrower list without it. Option a, Kris, 13 November 2026, relayed by the Cairn summit's guardian from the summit's [change 13](https://github.com/krisb/ki-cairn-store/blob/da86f2e/work/cairn/cairn.summit/13-runtimes-and-skill-copies.change.md#41-every-runtime-everywhere). | 2026-11-13 | [configuration](standard-configuration.md#431-declaring-harnesses-and-skills) | In force |
 | REPORTS-RETIRE | The managed ignore block reserves every `reports/` folder, with no exception for an earlier package copy's `+/_WORK/<id>/reports/`, since a work package keeps no reports and no checkout tracks such a copy; it changes every repository's managed block at its next conform. | 2026-11-14 | [repository](standard-repository.md#411-root-files) | In force |
 | SKILL-MODE-KEY | A repository declares a skill vendored with the host-owned `mode` in its `[skills.<name>]` table, `"current"` or `"vendored"`, recording the backpack `commit` its copy came from; the host leaves the copy alone and reports drift from that commit as a warning. | 2026-11-14 | [configuration](standard-configuration.md#434-vendored-skills) | In force |
 | SHARE-OUTPUTS | A session working in a repository commits what the owner is to see in a form GitHub shows and gives the link that opens where the owner is reading; an agent host's own page may sit beside it, never in its place. From the Cairn summit's change 15, §4.3, with the owner's LINKS-WHERE-READ. | 2026-11-14 | [repository](standard-repository.md#44-working-areas) | In force |

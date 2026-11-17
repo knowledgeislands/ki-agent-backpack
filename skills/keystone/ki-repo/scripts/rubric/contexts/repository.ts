@@ -46,6 +46,7 @@ license = "MIT"
 # Required agent-runtime support surface
 supported_runtimes = [
   "claude-code",
+  "claude-desktop",
   "chatgpt-codex",
 ]
 
@@ -140,6 +141,7 @@ export type RuntimesRubricContext = {
   runtimes4: readonly RepoEvidenceFinding[]
   runtimes5: readonly RepoEvidenceFinding[]
   runtimes6: readonly RepoEvidenceFinding[]
+  runtimes7: readonly RepoEvidenceFinding[]
   requestRuntimeSkills?: () => void
 }
 
@@ -581,6 +583,7 @@ export const createRepoSession = async (
       runtimes4: evidence('RUNTIMES-4'),
       runtimes5: evidence('RUNTIMES-5'),
       runtimes6: evidence('RUNTIMES-6'),
+      runtimes7: evidence('RUNTIMES-7'),
       ...(mutable && repositorySkills && runtimeActivation.requestable
         ? {
             requestRuntimeSkills: () => repositorySkills.propose(runtimeActivation.missing)

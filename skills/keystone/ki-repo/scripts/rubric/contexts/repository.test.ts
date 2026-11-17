@@ -592,6 +592,31 @@ supported_runtimes = ["claude-code", "claude-desktop", "chatgpt-codex"]
     ).toEqual([])
   })
 
+  test('warns on a narrower runtime list unless it is a declared exception (RUNTIMES-ALL)', async () => {
+    const runtimesSeven = async (configuration: string) => {
+      const root = repository()
+      writeFileSync(join(root, '.ki.toml'), configuration)
+      return (await collectAuditFindings([root])).findings.filter(({ code }) => code === 'RUNTIMES-7')
+    }
+    expect(await runtimesSeven('[skills.ki-repo]\nsupported_runtimes = ["claude-code", "chatgpt-codex"]\n')).toEqual([
+      {
+        level: 'WARN',
+        code: 'RUNTIMES-7',
+        message:
+          '[skills.ki-repo] supported_runtimes omits claude-desktop: declare every runtime, or record the evidenced exception as all-runtimes = false in [skills.ki-repo.checks]',
+        subject: expect.any(String)
+      }
+    ])
+    expect(
+      await runtimesSeven('[skills.ki-repo]\nsupported_runtimes = ["claude-code", "claude-desktop", "chatgpt-codex"]\n')
+    ).toEqual([])
+    expect(
+      await runtimesSeven(
+        '[skills.ki-repo]\nsupported_runtimes = ["chatgpt-codex"]\n\n[skills.ki-repo.checks]\nall-runtimes = false\n'
+      )
+    ).toEqual([])
+  })
+
   test('rejects the retired Codex runtime identifier with recovery guidance', async () => {
     expect(await runtimeFindings('[skills.ki-repo]\nsupported_runtimes = ["codex"]\n')).toEqual([
       {

@@ -113,7 +113,8 @@ const CHECK_DEFAULTS: Record<string, boolean> = {
   topics: true, //              (public) carries the standard topic set
   'secret-scanning': true, //   (public) secret scanning on
   'push-protection': true, //   (public) secret-scanning push protection on
-  structure: true //            declares one primary repository structure
+  structure: true, //           declares one primary repository structure
+  'all-runtimes': true //       declares every recognised runtime (RUNTIMES-ALL)
 }
 const KI_CONFIG = '.ki.toml'
 export const KI_CONFIGURATION_HEADER = `# Knowledge Islands repository configuration.
@@ -325,6 +326,7 @@ license = "MIT"
 # Required agent-runtime support surface
 supported_runtimes = [
   "claude-code",
+  "claude-desktop",
   "chatgpt-codex",
 ]
 
@@ -1119,7 +1121,8 @@ async function auditRepo(
     topics: 'TOPICS-1',
     'secret-scanning': 'SEC-1',
     'push-protection': 'SEC-1',
-    structure: 'STRUCT-2'
+    structure: 'STRUCT-2',
+    'all-runtimes': 'RUNTIMES-7'
   }
   for (const [id, v] of Object.entries(ki?.checks ?? {})) {
     if (id.startsWith('coverage-')) {
@@ -1627,7 +1630,7 @@ export const requiredRuntimeSkills = (runtimes: readonly string[]): readonly str
 }
 
 function localConfigFindings(dir: string): Finding[] {
-  const { f, fail } = mk()
+  const { f, fail, warn } = mk()
   const cfgPath = join(dir, KI_CONFIG)
   if (!existsSync(cfgPath)) return f
   const parsed = parseSupportedRuntimes(readFileSync(cfgPath, 'utf8'))
@@ -1651,6 +1654,19 @@ function localConfigFindings(dir: string): Finding[] {
       KI_CONFIG
     )
   if (unknown.length) return f
+
+  // RUNTIMES-7: every repository declares every runtime (RUNTIMES-ALL); a narrower list is an
+  // evidenced exception, the declared divergence `all-runtimes = false`, which the override
+  // notes report, so only an undeclared narrower list warns.
+  const missingRuntimes = KNOWN_RUNTIMES.filter((rt) => !parsed.runtimes.includes(rt))
+  const narrowerDeclared = parseKiConfig(readFileSync(cfgPath, 'utf8'))?.checks['all-runtimes'] === false
+  if (missingRuntimes.length && !narrowerDeclared)
+    warn(
+      'RUNTIMES-7',
+      `[skills.${KI_SECTION}] supported_runtimes omits ${missingRuntimes.join(', ')}: declare every runtime, or record the evidenced exception as all-runtimes = false in [skills.${CHECKS_SECTION}]`,
+      KI_CONFIG,
+      'references/standard-configuration.md#431-declaring-harnesses-and-skills'
+    )
 
   const required = requiredRuntimeSkills(parsed.runtimes)
   const declared = new Set(parsed.rootTables)

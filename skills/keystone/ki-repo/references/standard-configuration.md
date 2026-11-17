@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:17:42Z
+ki-revised: 2026-11-17T03:45:00Z
 ki-status: in force
 ---
 
@@ -167,6 +167,7 @@ license = "MIT"
 # Required agent-runtime support surface
 supported_runtimes = [
   "claude-code",
+  "claude-desktop",
   "chatgpt-codex",
 ]
 
@@ -180,6 +181,8 @@ checks.branch-protection = true
 `[skills.ki-repo]` carries repository identity and declared facts the auditor checks. `repository` is mandatory and is the canonical HTTPS GitHub home (`https://github.com/<owner>/<repository>`), checked against GitHub's repository identity. `title` and `description` are mandatory: title exactly matches the README H1, while description exactly matches GitHub and package.json where those surfaces exist. `visibility` (`"public"` | `"private"`, matched against GitHub) and `license` (an [SPDX License List](https://spdx.org/licenses/) identifier — default MIT when unset — matched against the live GitHub license, the `LICENSE` file, and `package.json` `"license"`) are independent: a private repo may be MIT, a public repo proprietary. Use [Choose a License](https://choosealicense.com/) as selection guidance; use `"UNLICENSED"` for all-rights-reserved proprietary. `capital` is mandatory and names the repository's territory Capital as a full canonical HTTPS GitHub URL with the same grammar as `repository`; a Capital names itself. [Territory and Capital](#48-territory-and-capital) defines how it is checked.
 
 The third, `supported_runtimes`, is a **repo-wide** fact — the agent runtimes this repo supports. It lives on `[skills.ki-repo]` rather than `[skills.ki-repo-backpack]` because it drives orientation and runtime-bound capabilities across the whole repo, not just the four-part harness; a non-harness KI repo can support runtimes too. Native activation resolves it to each runtime's discovery path (Claude Code → `.claude/`, ChatGPT Codex → `.agents/`; see the runtime feature-coverage matrix in `SDR-KI-HARNESS-002`). The key is required: support is a stable repository capability, never inferred from the directories present at a moment in time. Values must name a recognised runtime (`claude-code`, `claude-desktop`, or `chatgpt-codex`), must be non-empty, and must not repeat — the auditor's `RUNTIMES-1` FAILs otherwise. The retired `codex` identifier is rejected with recovery guidance; it is not a compatibility alias.
+
+**Every repository declares every runtime** (RUNTIMES-ALL). A Knowledge Islands repository lists all three recognised runtimes and keeps the folders and ignores each needs; a narrower list is an evidenced exception, never the default. The repository records the exception as the declared divergence `all-runtimes = false` in `[skills.ki-repo.checks]`, commented with the evidence for it, and `RUNTIMES-7` warns on a narrower list that records none. A runtime-specific skill is linked only into its own runtime's folder, the `-claude` skills into `.claude/skills/` and their ChatGPT counterparts into `.agents/skills/`, as its `ki-supported-runtimes` declares under `ki-skills`.
 
 Runtime environment coverage follows that declaration rather than being opt-in. Every repository declares portable `[skills.ki-env-binding]` and `[skills.ki-env-tokenomics]`. A repository supporting `claude-code` also declares `[skills.ki-env-binding-claude]`, `[skills.ki-env-housekeeping-claude]`, and `[skills.ki-env-tokenomics-claude]`; one supporting `chatgpt-codex` declares `[skills.ki-env-binding-chatgpt]`, `[skills.ki-env-housekeeping-chatgpt]`, and `[skills.ki-env-tokenomics-chatgpt]`. The ChatGPT-family housekeeping skill audits local Codex memory but never automatically deletes sessions; its app-server remains experimental and requires separate reviewed acquisition and deletion. Each housekeeping table explicitly declares `auto_memory` as `disabled`, `transition`, or a human-approved, project-scoped `enabled` opt-in. `RUNTIMES-2` derives the mandatory set and checks both local declarations and host-resolved repository activation. Its CONFORM action requests one native host proposal for missing capabilities; it never writes a sibling-owned table, creates a runtime link, selects a provider, or changes user configuration itself. Missing, ambiguous, incompatible, unavailable, untrusted, or altered activation evidence fails closed under the host's ownership.
 
