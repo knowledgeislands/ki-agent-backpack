@@ -25,9 +25,9 @@ The definitions under the KI backpack's `subagents/` folder describe roles an ag
 
 ## Next
 
-A [session][industry.session] is one run of an agent.
+An [agentic system][industry.agentic-system] is any system in which models direct some of their own steps: the umbrella over every term here.
 
 [industry.model]: ./industry.model.md
 [industry.agent-harness]: ./industry.agent-harness.md
 [industry.subagent]: ./industry.subagent.md
-[industry.session]: ./industry.session.md
+[industry.agentic-system]: ./industry.agentic-system.md

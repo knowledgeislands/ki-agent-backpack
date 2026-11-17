@@ -41,18 +41,18 @@ Read them in order:
 1. [Model](knowledge/industry/industry.model.md): the LLM, which takes text and images in, gives text out, and acts on nothing by itself.
 2. [Agent harness](knowledge/industry/industry.agent-harness.md): the software that turns a model into an agent, its loop, tools and context handling.
 3. [Agent](knowledge/industry/industry.agent.md): a model working through an agent harness, what you deal with when work gets done.
-4. [Session](knowledge/industry/industry.session.md): one run of an agent, a conversation with its own context, id and folder, made of turns and of threads.
-5. [Subagent](knowledge/industry/industry.subagent.md): an agent subordinate to another, started by it to do part of its work in a thread of its own, returning its result to it.
-6. [Skill](knowledge/industry/industry.skill.md): a common way to extend any agent harness with knowledge and procedures, loaded by progressive disclosure.
-7. [Environment](knowledge/industry/industry.environment.md): where an agent's work runs, a whole machine or a container or sandbox inside one; local, remote or cloud.
-8. [Machine](knowledge/industry/industry.machine.md): the computer, physical or virtual, that environments run on.
-9. [Agent host](knowledge/industry/industry.agent-host.md): the application or process that runs agent harnesses and owns their sessions, independently of clients.
-10. [Client](knowledge/industry/industry.client.md): a window onto a session an agent host owns.
-11. [Cross-session messaging](knowledge/industry/industry.cross-session-messaging.md): one session sending another a plain-text message; a peer is the session at the other end.
-12. [Agent team](knowledge/industry/industry.agent-team.md): several sessions on one piece of work, a team lead and teammates messaging each other.
-13. [Remote agent](knowledge/industry/industry.remote-agent.md): an agent in another system, reached over a protocol and opaque to the agent that asks it.
-14. [Plugin](knowledge/industry/industry.plugin.md): an installable bundle of skills and more that extends an agent harness.
-15. [Agentic system](knowledge/industry/industry.agentic-system.md): any system in which models direct some of their own steps, workflows and agents alike; the umbrella over every term here.
+4. [Agentic system](knowledge/industry/industry.agentic-system.md): any system in which models direct some of their own steps, workflows and agents alike; the umbrella over every term here.
+5. [Session](knowledge/industry/industry.session.md): one run of an agent, a conversation with its own context, id and folder, made of turns and of threads.
+6. [Subagent](knowledge/industry/industry.subagent.md): an agent subordinate to another, started by it to do part of its work in a thread of its own, returning its result to it.
+7. [Skill](knowledge/industry/industry.skill.md): a common way to extend any agent harness with knowledge and procedures, loaded by progressive disclosure.
+8. [Environment](knowledge/industry/industry.environment.md): where an agent's work runs, a whole machine or a container or sandbox inside one; local, remote or cloud.
+9. [Machine](knowledge/industry/industry.machine.md): the computer, physical or virtual, that environments run on.
+10. [Agent host](knowledge/industry/industry.agent-host.md): the application or process that runs agent harnesses and owns their sessions, independently of clients.
+11. [Client](knowledge/industry/industry.client.md): a window onto a session an agent host owns.
+12. [Cross-session messaging](knowledge/industry/industry.cross-session-messaging.md): one session sending another a plain-text message; a peer is the session at the other end.
+13. [Agent team](knowledge/industry/industry.agent-team.md): several sessions on one piece of work, a team lead and teammates messaging each other.
+14. [Remote agent](knowledge/industry/industry.remote-agent.md): an agent in another system, reached over a protocol and opaque to the agent that asks it.
+15. [Plugin](knowledge/industry/industry.plugin.md): an installable bundle of skills and more that extends an agent harness.
 
 [Channel](knowledge/industry/industry.channel.md) is agreed too: something outside a session pushing events into it while it runs. Its place in the reading order is still to settle.
 

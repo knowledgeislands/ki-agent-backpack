@@ -25,9 +25,8 @@ Each territory's [backpack][system.backpack], such as the KI backpack, is Knowle
 
 ## Next
 
-An [agentic system][industry.agentic-system] is any system in which models direct some of their own steps: the umbrella over every term here.
+The industry's terms in reading order end here. The channel's place in the order is still to settle, and the system's own terms follow in a subgraph of their own.
 
 [industry.agent-harness]: ./industry.agent-harness.md
 [industry.skill]: ./industry.skill.md
-[industry.agentic-system]: ./industry.agentic-system.md
 [system.backpack]: ../system/system.backpack.md

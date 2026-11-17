@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T04:20:00Z
+ki-revised: 2026-11-17T23:58:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -148,7 +148,7 @@ The vendors' own documentation and the specifications the cards follow, checked 
 | INDUSTRY-FIRST | The owner's decision: where an industry standard defines a term, its meaning stands and the system's conventions move to fit; each card says where a convention of ours maps onto it, and those that clash are renamed. | 2026-11-12 | [SKILL.md](../SKILL.md#rules), every card | In force |
 | LEADERS | The owner's decision: where vendors differ, Anthropic's and OpenAI's usage leads and the card notes where others differ. | 2026-11-12 | [SKILL.md](../SKILL.md#rules), every card | In force |
 | VENDORS | The owner's decision: each card gives the industry's name, its definition and examples from Anthropic, OpenAI, Google and Microsoft, and others where they matter, and says which sense it means where a vendor uses a name in more than one. | 2026-11-12 | [SKILL.md](../SKILL.md#rules), every card | In force |
-| CARD-ORDER | The owner's decision: the cards are ordered so each uses only words already defined, starting from the model. | 2026-11-12 | [SKILL.md](../SKILL.md#the-cards) | In force |
+| CARD-ORDER | The owner's decision: the cards are ordered so each uses only words already defined, starting from the model. On 17 November 2026, about 23:34 GMT, under GUARDIAN-LANDS a, relayed by the Cairn summit's guardian from the summit's [change 12](https://github.com/krisb/ki-cairn-store/blob/c17433e/work/cairn/cairn.summit/12-names.change.md#45-the-cards-that-follow), the owner moved the agentic system card earlier, read after the agent as the umbrella the cards that follow build up, so the plugin ends the chain. | 2026-11-12 | [SKILL.md](../SKILL.md#the-cards), [agentic system](../knowledge/industry/industry.agentic-system.md) | In force |
 | CARDS-AGENT | the owner's decision, reworked the same day on the vendors' evidence: the first three cards are the model, the agent harness and the agent; vendors name an agent after its harness; the KI harness takes another name, settled after the industry's cards. | 2026-11-12 | [model](../knowledge/industry/industry.model.md), [agent harness](../knowledge/industry/industry.agent-harness.md), [agent](../knowledge/industry/industry.agent.md) | In force |
 | CARD-SESSION | The owner's decision: a session is one run of an agent, a conversation with its own context, its id and the folder it works in, made of turns; the harness runs it and keeps its transcript so it can be resumed; session is Anthropic's word and the majority's, OpenAI's task and chat, Google's conversation and Microsoft's agent session are synonyms, and "task" is kept off every card as a term. | 2026-11-12 | [session](../knowledge/industry/industry.session.md) | In force |
 | SESSION-THREADS | The owner's decision: a thread is not a synonym for a session but a part of one; a session is made of the agent's primary thread and a thread for each subagent, and OpenAI's top-level thread is the primary thread. | 2026-11-12 | [session](../knowledge/industry/industry.session.md) | In force |
@@ -184,6 +184,8 @@ The vendors' own documentation and the specifications the cards follow, checked 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+Later on 17 November 2026 the [agentic system](../knowledge/industry/industry.agentic-system.md) card moved earlier in the reading order under CARD-ORDER, from fifteenth to fourth, after the [agent](../knowledge/industry/industry.agent.md): the agent's Next section now links it, its own links the session, and the [plugin](../knowledge/industry/industry.plugin.md) ends the chain. Its umbrella sentence no longer names the subagent, agent team and remote agent, which are defined on the cards after it. No outside source refreshed.
 
 Later on 17 November 2026 the [seat](../knowledge/system/system.seat.md) card was written and the agent harness and guild cards brought to HARNESS-NAME, under SEAT-CARD and CARD-WORDS-BACKPACK; the NAMES entry was corrected, since SEAT-AT keeps the seat.
 
