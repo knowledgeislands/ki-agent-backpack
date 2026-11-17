@@ -4,12 +4,12 @@
   "type": "architecture",
   "source": {
     "file": "skill-area-repository-types.architecture.json",
-    "sha256": "dc2bc476b9ac60784fd2227b4f641ed80cf2bd250cd57a28ceb5e1578e6d0278",
+    "sha256": "bd4e4639100aea3aecd8a7ba3aab4d9243b861dbc4b41884c30f0070ef9c3421",
     "bytes": 15375
   },
   "html": {
     "file": "skill-area-repository-types.html",
-    "sha256": "4ed56e7d8f10e2b527dc4d922e6bce74d90ba5806b9bcad90ed32393970e10b2",
+    "sha256": "1c2b1811e43933e0c79bc3778f8eaf21fd748a44426462224e0cfc8ae9470322",
     "bytes": 858571
   },
   "renderer": {
