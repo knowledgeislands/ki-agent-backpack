@@ -237,7 +237,7 @@ Whenever a session or report mentions a roadmap or work record, a package file, 
 - **Never invented:** when a target cannot be resolved, the text says so.
 - **Pruned records:** a pruned record has no local file, so it is linked as `[<FULL-ID> (pruned)](https://github.com/<owner>/<repo>/blob/<last revision>/<path>)`. The link text is always the full identifier followed by `(pruned)`, and the last revision is the last commit in which the file existed, usually the parent of the prune commit. A live record keeps its local-file link; a pruned record is never pointed at the Project note that carries it, nor left as a bare identifier.
 - **Scope:** status lines, reports, recaps and package files alike, a background agent's report included.
-- **No file check:** no rubric item reads reports for links any more, under COORD-REPORT-CHECKS; COORD-5 reviews linking as judgement. That every record identifier in a record is a link is the record's owner's rule: the Cairn store's contract and its [change 20](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/20-learnings.change.md#42-the-record).
+- **No file check:** no rubric item reads reports for links any more, under COORD-REPORT-CHECKS; COORD-5 reviews linking as judgement. That every record identifier in a record is a link is the record's owner's rule: the Cairn store's contract and its [change 20](https://github.com/krisb/ki-cairn-store/blob/7fb6be3/work/cairn/cairn.summit/20-learnings.change.md#42-the-record).
 
 Sources: LINK-FORM and COORD-REPORT-CHECKS in [the decision register](sources.md#decision-register).
 

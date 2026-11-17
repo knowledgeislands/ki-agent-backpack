@@ -60,7 +60,7 @@ The standard is a **deliberately selected house shape**, not a vote count. Curre
 
 ## Last review
 
-On 17 November 2026, under ENGINEERING-BUN a, which Kris took that day, relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions), the standard and `SKILL.md` ask for `bun@1.4.x`, the minor every repository pins, in place of `bun@1.3.x`, which the estate had left: read that day, `tools-ki`, `ki-techne-harness` and `mcp-gsuite` pin 1.4.3, `mcp-cairn` 1.4.2, and `packages-stoa`, `apps-cairn.local` and this harness 1.4.4. Levelling the repositories to one patch is the house upgrade the standard already describes, left to each repository's next change. No outside source was fetched.
+On 17 November 2026, under ENGINEERING-BUN a, which Kris took that day, relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/658d48f/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions), the standard and `SKILL.md` ask for `bun@1.4.x`, the minor every repository pins, in place of `bun@1.3.x`, which the estate had left: read that day, `tools-ki`, `ki-techne-harness` and `mcp-gsuite` pin 1.4.3, `mcp-cairn` 1.4.2, and `packages-stoa`, `apps-cairn.local` and this harness 1.4.4. Levelling the repositories to one patch is the house upgrade the standard already describes, left to each repository's next change. No outside source was fetched.
 
 REFRESH last run **2026-10-06**. Cadence: monthly, alongside the other governance skills.
 

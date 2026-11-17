@@ -26,7 +26,7 @@ ki-status: in force
 
 What a design document is: the design that stands, of any kind, visual or technical, written so that it renders and a reader walking a repository can see what the design is now. It is changed only through change documents, as a standard is: a change proposes, and the design document is what the change agrees. It follows the [format format](standard-formats-format.md). The decisions behind these rules are in [the sources file](sources.md).
 
-The rules were set in the Cairn summit's [change 16, the Design guild](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#42-decided).
+The rules were set in the Cairn summit's [change 16, the Design guild](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided).
 
 [Back to contents](#contents)
 

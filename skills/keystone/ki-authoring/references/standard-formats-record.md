@@ -26,7 +26,7 @@ ki-status: in force
 
 What a record is: the report of one batch of work that has landed, written by the session that did it, for the owner to review afterwards, and later consolidated or pruned. It follows the [format format](standard-formats-format.md). The decisions behind these rules are in [the sources file](sources.md).
 
-The rules were set in the Cairn summit's [change 20, the record](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/20-learnings.change.md#42-the-record) and [change 11](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided).
+The rules were set in the Cairn summit's [change 20, the record](https://github.com/krisb/ki-cairn-store/blob/7fb6be3/work/cairn/cairn.summit/20-learnings.change.md#42-the-record) and [change 11](https://github.com/krisb/ki-cairn-store/blob/4bc5285/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided).
 
 [Back to contents](#contents)
 

@@ -26,7 +26,7 @@ ki-status: in force
 
 How anything already made is reviewed in Knowledge Islands: records, change documents, designs, standards and skills alike. Every review has one shape, so that a finding reads the same whatever it is about, and every review ends in one of the same two outcomes, so that everything awaiting its owner can be listed in one place and acted on in the same way. Each kind's own skill cites this standard and adds only its own anchors and what it is reviewed against. The decisions behind these rules are in [the sources file](sources.md).
 
-The rules were set in the Cairn summit's [change 16, the Design guild](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#46-one-design-review), REVIEW-SHAPE and REVIEW-HOME.
+The rules were set in the Cairn summit's [change 16, the Design guild](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#46-one-design-review), REVIEW-SHAPE and REVIEW-HOME.
 
 [Back to contents](#contents)
 
