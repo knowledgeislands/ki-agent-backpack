@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-09T22:09:53Z
+ki-revised: 2026-11-17T03:40:00Z
 ki-status: in force
 ---
 
@@ -108,13 +108,9 @@ The [Markdown authoring standard](standard-markdown.md) defines the judgment cho
 
 ### 4.4 Commit gate
 
-A repository's committed `pre-commit` checks the Markdown it stages, check-only, so a commit never carries Markdown the audit would reject ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)). Where a package exists, lint-staged runs `rumdl check` over the staged Markdown under `ki-engineering` `PKG-6`, check-only: a commit never rewrites, as Kris chose COMMIT-VS-CI a) on 26 October 2026, and `--fix` stays with CONFORM. Where none does, the canonical hook lists the staged Markdown and checks it where it stands:
+A repository's committed `pre-commit` checks the Markdown it stages, check-only, so a commit never carries Markdown the audit would reject ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)). Where a package exists, lint-staged runs `rumdl check` over the staged Markdown under `ki-engineering` `PKG-6`, check-only: a commit never rewrites, as Kris chose COMMIT-VS-CI a) on 26 October 2026, and `--fix` stays with CONFORM. Where none does, the hook lists the staged Markdown and checks it where it stands; its exact line is in the canonical hook that [`ki-repo`'s commit gate](../../ki-repo/references/standard-repository.md#45-commit-gate) composes and each shape skill publishes, since `ki-repo` owns the hook's existence, frame and canonical text.
 
-```sh
-git diff --cached --name-only --diff-filter=ACMR -z -- '*.md' | xargs -0 -r rumdl check --quiet -- || exit 1
-```
-
-`MD-hook` requires a non-comment line that pipes `git diff --cached` to `rumdl check` without `--fix`, and is not applicable without a committed hook or where a `package.json` exists. rumdl applies the `.rumdl.toml` exclusions to the files it is named, so a staged generated or vendored file is skipped as the full gate skips it. `ki-repo` owns the hook's existence, frame and canonical text.
+`MD-hook` requires a non-comment line that pipes `git diff --cached` to `rumdl check` without `--fix`, and is not applicable without a committed hook or where a `package.json` exists. rumdl applies the `.rumdl.toml` exclusions to the files it is named, so a staged generated or vendored file is skipped as the full gate skips it.
 
 The direct frontmatter quote check and its conform proposals honour the repository-relative `global.exclude` patterns in `.rumdl.toml`, including directory descendants. This keeps byte-preserved capture and vendored material outside both Markdown repair paths while newly authored, non-excluded work-package and report Markdown remains checked.
 
