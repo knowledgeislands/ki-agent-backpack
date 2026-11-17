@@ -618,7 +618,8 @@ test('the role catalogue is read from the role standard', () => {
     'journeyman',
     'illustrator',
     'information-architect',
-    'technical-architect'
+    'technical-architect',
+    'voice'
   ])
   const glyphs = [...catalogue.values()].map((role) => role.glyph)
   expect(new Set(glyphs).size).toBe(glyphs.length)
@@ -627,5 +628,6 @@ test('the role catalogue is read from the role standard', () => {
   expect(catalogue.get('guardian')).toEqual({ tier: 'leaders', glyph: '🪨' })
   expect(catalogue.get('information-architect')).toEqual({ tier: 'makers', glyph: '📐' })
   expect(catalogue.get('technical-architect')).toEqual({ tier: 'makers', glyph: '🏗️' })
+  expect(catalogue.get('voice')).toEqual({ tier: 'makers', glyph: '🦜' })
   expect(catalogue.has('architect')).toBe(false)
 })

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T00:36:33Z
+ki-revised: 2026-11-17T03:49:17Z
 ki-status: in force
 ---
 
@@ -87,7 +87,7 @@ Every institution in this model exists to serve its purpose and the people it se
 | --- | --- | --- | --- | --- |
 | leaders | Within their territory; matters that cross territories go to the leaders together | Kris, with queries | governor | councillor, quartermaster, guardian |
 | managers | Within standing grants; exceptions go up to the territory's leaders | The territory's leaders | warden | housekeeper, gatekeeper, librarian, guildmaster |
-| makers | Within the hand-off they were given | The seat that handed the work over, never Kris directly | journeyman | illustrator, information-architect, technical-architect |
+| makers | Within the hand-off they were given | The seat that handed the work over, never Kris directly | journeyman | illustrator, information-architect, technical-architect, voice |
 
 Each tier has one default role, and every other role in the tier is a specialisation of it: the housekeeper is the warden of a machine, the gatekeeper of what comes in and goes out, the librarian of the library and the guildmaster of the standards and skills, as Kris took ROLE-DEFAULTS a on 11 November 2026.
 
@@ -112,8 +112,11 @@ Every seat takes exactly one role from this table, and this table is the one pla
 | illustrator | makers | 🎨 | Visual design and its artefacts for a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
 | information-architect | makers | 📐 | Information architecture: the structure, naming, navigation and models of a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
 | technical-architect | makers | 🏗️ | Technical architecture: the components, data, interfaces and technology choices of a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
+| voice | makers | 🦜 | Kris's spoken word carried to and from the seat that holds a package, as messages in its meeting, quoting him exactly | Decides anything, writes anything but messages, or carries as Kris's word what he did not say |
 
 The two architects are two makers because their responsibilities differ, as Kris took ARCHITECT-SPLIT a on 16 November 2026: the information architect shapes how a piece is organised and found, the technical architect how it is built, as `ki-design`'s [design standard](../../../keystone/ki-design/references/standard-design.md#41-what-design-covers) draws them. Their seats read `ki.cairn@information-architect` and `ki.cairn@technical-architect`; the one `architect` they replace is read under [the role migration file](standards-roles-migration.md).
+
+The voice is a maker because it speaks for the seat that holds the package and reports to it, as Kris asked on 17 November 2026 for a role glyph for his voice client, "some kind of chatterbox thing": its seat reads `<package>@voice`, such as `cairn.summit@voice`, and the store's `VOICE.md` sets how it works.
 
 Every territory's summit, `<territory>.summit`, is seated by its governor; councillor is kept for any further leader, as Kris took SOP-MAIN-GOVERNOR a) under ROLES-WRITE on 7 November 2026, for the main State of play the summit has replaced. The quartermaster's seat is `ki.tools`, under `ki.summit`, as Kris set under QUARTERMASTER-SOP on 7 November 2026, "the actual quartermaster should be ki.sop.tools, and it should live as a leader", the id becoming `ki.tools` under KIND-DROP on 11 November 2026, when secondary States of play gave way to nodes beneath the summit. The guardian's seat is `cairn.summit`, the root of the Cairn store's work tree: Kris took the role as the agoranomos under AGORANOMOS-ROLE on 10 November 2026, and renamed it the guardian, glyph 🪨, under ROOT-ROLE and THREAD-GLYPH a on 11 November 2026. Each role glyph differs from every other and from the banner's state and line glyphs under `ki-coordination`'s [Banner](../../ki-coordination/references/standards-coordination.md#banner).
 

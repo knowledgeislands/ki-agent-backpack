@@ -809,6 +809,7 @@ test('regular coordination is explicit, capability-checked and uses its real wor
     '📐 ki.cairn@information-architect',
     '🏗️ ki.cairn@technical-architect',
     '🎨 ki.cairn@illustrator',
+    '🦜 cairn.summit@voice',
     '🐝 ki.ways-of-working@journeyman',
     '📐 hnr.summit+website@information-architect'
   ])
