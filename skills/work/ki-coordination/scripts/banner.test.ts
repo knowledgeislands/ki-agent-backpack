@@ -1007,7 +1007,7 @@ test('regular coordination is explicit, capability-checked and uses its real wor
 test('a named seat puts its name first and its form in brackets, an unnamed seat keeps the bare form', () => {
   for (const named of [
     'Kitteth (🪨 🔑 cairn.summit)',
-    'EUGENE (🏛️ 🔑 5ge.summit)',
+    'Eugene (🏛️ 🔑 5ge.summit)',
     'Hob Sol (🏠 🔑 personal.rig.sol)',
     'Quire (📐 ki.cairn@information-architect)'
   ])

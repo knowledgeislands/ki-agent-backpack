@@ -400,7 +400,7 @@ test('a keyless seat thread line passes as the thread line', () => {
 test('a named seat thread line passes, keyholder or keyless, and is read as the bare form inside its brackets', () => {
   for (const line of [
     'Kitteth (🪨 🔑 cairn.summit)',
-    'EUGENE (🏛️ 🔑 5ge.summit)',
+    'Eugene (🏛️ 🔑 5ge.summit)',
     'Hob Sol (🏠 🔑 personal.rig.sol)',
     'Quire (📐 ki.cairn@information-architect)'
   ]) {
