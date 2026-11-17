@@ -646,6 +646,12 @@
     "- [stranded] <worktree or branch> · <owning work>",
     "- [window] until <end> · stop the wake",
     "[awaiting ACK]",
-    "[on hold] committed and pushed in ..."
+    "[on hold] committed and pushed in ...",
+    "# [<Theme>](<local theme page>) › [<Project>](<local Project note>)",
+    "# [<Theme>](<local theme page>) › [<Project>](<local Project note>) › <run name>",
+    "# [<actual work label>](<actual local work page>)",
+    "# [<actual work label>](<actual local work page>) › <run name>",
+    "› State of play (<name>)",
+    "🏠 🔑 personal.reg.rig-sol"
   ]
 }

@@ -48,10 +48,13 @@ Keystone's guild rules have none: Keystone is Knowledge Islands' own, and the in
 | SEAT-LINE | Kris's decision in conversation, option a: a seat working in a package without its keys is named `<role glyph> <work-id>+<role>`, under `ki-work-package`'s thread line. | 2026-11-14 | [bootstrap standard](standard-bootstrap.md#47-machine-readiness-for-coordinating-work) | In force; the seat re-spelt `<package>@<role>` under SEAT-AT |
 | GUILD-TREE | The owner's decision, in change 14, option a: the guild tree, with each guild's one-line purpose as its working label. | 2026-11-14 | [SKILL.md](../SKILL.md#the-guilds) | In force |
 | SEAT-AT | Kris's decision, option a, relayed by the Cairn summit's guardian from the summit's [change 20](https://github.com/krisb/ki-cairn-store/blob/7fb6be3/work/cairn/cairn.summit/20-learnings.change.md#45-decided): a seat is `<package>@<role>`, or `<package>+<slug>@<role>` in a sub-package, in place of `<work id>+<role>`, so a seat working in a package without its keys is named `<role glyph> <package>@<role>`, under `ki-work-package`'s thread line. | 2026-11-16 | [bootstrap standard](standard-bootstrap.md#47-machine-readiness-for-coordinating-work) | In force |
+| NAME-FIRST | Kris's decision, option a, relayed by the Cairn summit's guardian: where a seat's actor is named, the thread line puts the actor's `ki-name` first and the seat's form in brackets, as `Kitteth (🪨 🔑 cairn.summit)`, under `ki-work-package`'s thread line; an unnamed seat keeps the bare form. | 2026-11-17 | [bootstrap standard](standard-bootstrap.md#47-machine-readiness-for-coordinating-work) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 17 November 2026 Kris took NAME-FIRST a, relayed by the Cairn summit's guardian: the checklist's opener step names a named seat's session with its actor's name first, as `claude --name "Kitteth (🪨 🔑 cairn.summit)"`, an unnamed seat keeping the bare form. No external source refreshed.
 
 On 16 November 2026 Kris took SEAT-AT a, relayed by the Cairn summit's guardian: the checklist's opener step names the keyless thread line `<role glyph> <package>@<role>`, the seat's id, in place of `<role glyph> <work-id>+<role>`, `+` now adding a sub-package's strand under SUMMIT-SUB-PACKAGES. No external source refreshed.
 

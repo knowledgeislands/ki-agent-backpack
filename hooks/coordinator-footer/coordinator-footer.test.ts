@@ -35,7 +35,7 @@ const items = '- 👤 FOOTER-HOOK · owner · at 21:10'
 const listening = '👂 in cairn.wayfinder.designs'
 const thread = '🧵 ki.prj.demo'
 const summaryBody = [
-  '# [Demo](/tmp/demo.md)',
+  '# [Demo](/tmp/store/work/ki/ki.demo/_index.md)',
   '',
   '**Summary at 21:10 GMT · last mark 20:00 GMT**',
   '',
@@ -54,7 +54,7 @@ const summaryBody = [
 const summary = (...footer: string[]): string => [summaryBody, ...footer].join('\n\n')
 const fullSummary = summary(art, heading, counts, roadmap, pkg, items, listening, thread)
 const rebootstrap = (...banner: string[]): string =>
-  ['# [Demo](/tmp/demo.md)', '', '**Bootstrap at 21:10 GMT · last mark 20:00 GMT**', '', '---', '', '## Done', '', 'Coordinator for ki.prj.demo.', ...banner].join('\n\n')
+  ['# [Demo](/tmp/store/work/ki/ki.demo/_index.md)', '', '**Bootstrap at 21:10 GMT · last mark 20:00 GMT**', '', '---', '', '## Done', '', 'Coordinator for ki.prj.demo.', ...banner].join('\n\n')
 const shortBanner = [heading, counts, items, listening, thread].join('\n\n')
 
 interface Turn {
@@ -392,6 +392,70 @@ test('a keyless seat thread line passes as the thread line', () => {
     { owner: 'mark' }
   ])
   expect(run(stop('Mark struck.', seated)).reason).toContain('the thread line, <role glyph> 🔑 <work-id> or 🧵 <work-id>')
+})
+
+// Kris, about 23:15 GMT on 17 November 2026, under NAME-FIRST a: "where we have a named actor that the name should be
+// first and then in brackets it should be effectively what we're currently putting out". A named seat closes
+// `<Name> (<seat form>)`, the name as its roster's `ki-name` writes it; an unnamed seat keeps the bare form.
+test('a named seat thread line passes, keyholder or keyless, and is read as the bare form inside its brackets', () => {
+  for (const line of [
+    'Kitteth (🪨 🔑 cairn.summit)',
+    'EUGENE (🏛️ 🔑 5ge.summit)',
+    'Hob Sol (🏠 🔑 personal.rig.sol)',
+    'Quire (📐 ki.cairn@information-architect)'
+  ]) {
+    expect(run(stop(rebootstrap(heading, counts, items, listening, line), plain))).toEqual(silent)
+    expect(run(stop(summary(art, heading, counts, roadmap, pkg, items, listening, line), plain))).toEqual(silent)
+  }
+  expect(run(stop(rebootstrap(heading, counts, items, listening, '⚖️ 🔑 ki.guilds'), plain))).toEqual(silent)
+  expect(run(stop(`${rebootstrap(heading, counts, items, listening, 'Kitteth (🪨 🔑 cairn.summit)')}\n\nAnything else?`, plain)).reason).toContain(
+    'the thread line as the very last line'
+  )
+  expect(run(stop(rebootstrap(heading, counts, items, listening, 'Kitteth (🦉⭐ 🔑 cairn.summit)'), plain)).warning).toContain(
+    '⭐ or 🔧 beside the role glyph'
+  )
+  expect(run(stop(rebootstrap(heading, counts, items, listening, 'Quire (📐 ki.cairn+architect)'), plain)).warning).toContain(
+    'a seat line in the earlier <work-id>+<role> form'
+  )
+  for (const invalid of ['Kitteth (🧵 cairn.summit)', '(🪨 🔑 cairn.summit) Kitteth', 'Kitteth (cairn.summit)'])
+    expect(run(stop(rebootstrap(heading, counts, items, listening, invalid), plain)).reason).toContain('the thread line')
+  const named = transcript([
+    { owner: 'Open cairn.summit', reply: rebootstrap(heading, counts, items, listening, 'Kitteth (🪨 🔑 cairn.summit)') },
+    { owner: 'mark' }
+  ])
+  expect(run(stop('Mark struck.', named)).reason).toContain('the thread line, <role glyph> 🔑 <work-id>')
+})
+
+// Kris, about 23:15 GMT on 17 November 2026, under HEADING-FIX a: the report heading links only its package's
+// `_index.md` in the Cairn store, by absolute path, never a repository, README or theme note, and `State of play` is
+// plain text. The hook warns, never blocks, on a heading that drifts.
+test('a report heading that links anything but its package entry file, or links State of play, passes with a warning', () => {
+  const headed = (h1: string): string => rebootstrap(heading, counts, items, listening, keyThread).replace(/^# .*$/m, h1)
+  for (const good of [
+    '# [Demo](/Users/krisbrown/kis/cairn/ki-cairn-store/work/ki/ki.demo/_index.md)',
+    '# Model › [Ways of working](/Users/krisbrown/kis/cairn/ki-cairn-store/work/ki/ki.ways-of-working/_index.md)',
+    '# [Personal](/Users/krisbrown/kis/cairn/ki-cairn-store/work/personal/personal.summit/_index.md) › State of play',
+    '# [Inbox](/s/work/personal/personal.inbox/_index.md) › migrate-phase1'
+  ])
+    expect(run(stop(headed(good), plain))).toEqual(silent)
+  for (const [bad, warning] of [
+    ['# [Tower](/Users/krisbrown/kis/personal/apps-ninja.midnight.tower/README.md)', 'whose first link is not its package'],
+    ['# [Tower](/Users/krisbrown/kis/personal/apps-ninja.midnight.tower) › [State of play](/x/y)', 'whose first link is not its package'],
+    ['# [Personal](/s/work/personal/personal.summit/_index.md) › [State of play](/s/work/personal/personal.summit/_index.md)', 'with State of play linked'],
+    ['# [Model](/p/Streams/Themes/model.md) › [Ways of working](/s/work/ki/ki.ways-of-working/_index.md)', 'whose first link is not its package'],
+    ['# Tower › Personal > Tower', 'links no package'],
+    ['# [Demo](work/ki/ki.demo/_index.md)', 'whose first link is not its package']
+  ]) {
+    const outcome = run(stop(headed(bad ?? ''), plain))
+    expect(outcome.reason).toBeUndefined()
+    expect(outcome.warning).toContain(warning ?? '')
+  }
+  // A heading inside a fence is quoted, not the reply's own.
+  const quoted = headed('# [Demo](/s/work/ki/ki.demo/_index.md)').replace(
+    'Coordinator for ki.prj.demo.',
+    'Coordinator for ki.prj.demo.\n\n```markdown\n# [Tower](/x/README.md)\n```'
+  )
+  expect(run(stop(quoted, plain))).toEqual(silent)
 })
 
 test('a key-form thread line that is not last is held back', () => {

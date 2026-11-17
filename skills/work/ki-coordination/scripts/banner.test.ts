@@ -37,11 +37,14 @@ const standard = standardFiles.map(readReference).join(FILE_BREAK)
 const outputStyle = readFileSync(resolve(harnessRoot, 'output-styles', 'ki-coordinator.md'), 'utf8')
 const hook = readFileSync(resolve(harnessRoot, 'hooks', 'coordinator-reminder', 'coordinator-reminder.sh'), 'utf8')
 
-const THEME_PAGE = '/Users/krisbrown/workspaces/knowledge-islands/ki-principal/Streams/Themes/model.md'
-const PROJECT_NOTE = '/Users/krisbrown/workspaces/knowledge-islands/ki-principal/Streams/Projects/ways-of-working.md'
+/**
+ * The package's entry file in the Cairn store, the one link a report heading carries under HEADING-FIX (Kris, 17
+ * November 2026): never a repository, README or theme page.
+ */
+const PACKAGE_INDEX = '/Users/krisbrown/kis/cairn/ki-cairn-store/work/ki/ki.ways-of-working/_index.md'
 /** The report heading opening a Summary, as the standard and the output style draw it. */
 const HEADING_EXAMPLE = [
-  `# [Model](${THEME_PAGE}) › [Ways of working](${PROJECT_NOTE})`,
+  `# Model › [Ways of working](${PACKAGE_INDEX})`,
   '',
   '**Summary at 23:52 BST · last mark 22:34 BST**',
   '',
@@ -49,9 +52,12 @@ const HEADING_EXAMPLE = [
   '',
   '## Summary'
 ].join('\n')
-/** The `#` heading: a linked theme, ` › `, a linked Project, and for a run report ` › <run name>`. */
-const HEADING_LINE = /^# \[[^\]]+\]\(\/[^)]+\) › \[[^\]]+\]\(\/[^)]+\)( › [a-z0-9-]+)?$/
-/** Territory work's heading: a linked territory or theme, then ` › State of play`. */
+/**
+ * The `#` heading under HEADING-FIX: an optional plain theme and ` › `, the work's name linked to its package's
+ * `_index.md` by absolute path, and for a run report ` › <run name>`.
+ */
+const HEADING_LINE = /^# (?:[^[\]()]+ › )?\[[^\]]+\]\(\/[^)]+\/_index\.md\)( › [a-z0-9-]+)?$/
+/** Territory work's heading: the territory linked to its package's `_index.md`, then a plain ` › State of play`. */
 const STATE_OF_PLAY_LINE = /^# \[[^\]]+\]\([^)]+\) › State of play$/
 /** A glyph state: a settled holder's glyph alone, or an arrow in a handoff state, with an optional reason; never a target in brackets. */
 const GLYPH_STATE = `(?:🤖 With worker|👤 With supervisor|🤖 → 👤 Handoff to supervisor(?: · blocked)?|👤 → 🤖 Handoff to worker|→ 🎯 Handoff to [^·*]+|⏸️ On hold(?: · paused until [^·*]+)?|💤 Snoozing \\(on hold\\)|🏁 Finished)`
@@ -145,8 +151,15 @@ const TERRITORY_THREAD_LINE = '🧵 ki.sop.main'
  * (Kris, 16 November 2026), `<role glyph> <package>@<role>` for a seat working in a package without its keys, the
  * package a sub-package's `<parent id>+<slug>` where the seat works one.
  */
-const THREAD_LINE =
-  /^(?:(?:🧵|[^\s!-~]+ 🔑) [a-z0-9-]+(?:\.[a-z0-9-]+){0,2}|[^\s!-~]+ [a-z0-9-]+(?:\.[a-z0-9-]+){1,3}(?:\+[a-z0-9-]+)?@[a-z]+(?:-[a-z]+)*)$/u
+const SEAT_FORM = String.raw`[^\s!-~]+ 🔑 [a-z0-9-]+(?:\.[a-z0-9-]+){0,2}|[^\s!-~]+ [a-z0-9-]+(?:\.[a-z0-9-]+){1,3}(?:\+[a-z0-9-]+)?@[a-z]+(?:-[a-z]+)*`
+/**
+ * Under NAME-FIRST (Kris, 17 November 2026) a seat whose actor is named puts the actor's roster `ki-name` first and the
+ * seat's form in brackets, as `Kitteth (🪨 🔑 cairn.summit)`; `🧵 <work-id>` never takes a name.
+ */
+const THREAD_LINE = new RegExp(
+  String.raw`^(?:🧵 [a-z0-9-]+(?:\.[a-z0-9-]+){0,2}|${SEAT_FORM}|[A-Za-z][A-Za-z0-9.-]*(?: [A-Za-z][A-Za-z0-9.-]*)* \((?:${SEAT_FORM})\))$`,
+  'u'
+)
 /** The heading-for line: what the worker is doing, an arrow and the hold or handoff it is heading for. */
 const HEADING_FOR_LINE =
   /^↪️ (?:draining → (?:⏸️ On hold|💤 Snoozing \(on hold\))|(?:draining|finishing) → 👤 Handoff to supervisor|finishing → 🎯 Handoff to [^·*]+)$/u
@@ -342,17 +355,17 @@ test('an item takes an agreed glyph alone, a provisional glyph with its word in 
   )
 })
 
-test('the standard carries the report heading as a linked theme › Project heading, the form line and one rule', () => {
+test('the standard carries the report heading linking only the package, the form line and one rule', () => {
   const found = headings(standard)
   expect(found).toHaveLength(3)
   const [summary, territory, runReport] = found
   expect(summary?.join('\n')).toBe(HEADING_EXAMPLE)
   expectReportHeading(summary)
-  expect(territory?.[0]).toBe('# [<territory or theme>](<its local note>) › State of play')
+  expect(territory?.[0]).toBe('# [<Territory>](<store>/work/<territory>/<territory>.summit/_index.md) › State of play')
   expect(territory?.[2]).toBe('**Bootstrap at 09:13 BST · last mark yesterday 18:05 BST**')
   expect(territory?.[6]).toBe('## Done')
   expectReportHeading(territory)
-  expect(runReport?.[0]).toBe(`# [Model](${THEME_PAGE}) › [Ways of working](${PROJECT_NOTE}) › migrate-phase1`)
+  expect(runReport?.[0]).toBe(`# Model › [Ways of working](${PACKAGE_INDEX}) › migrate-phase1`)
   expect(runReport?.[2]).toBe('**Run report at 20:40 BST · last mark 14:54 BST**')
   expectReportHeading(runReport)
 })
@@ -371,6 +384,12 @@ test('the form line names the reply structure, the local time and the last mark,
     expect(`**${retired} at 09:05 GMT · last mark 08:54 GMT**`).not.toMatch(FORM_LINE)
   expect('**Summary at 2026-10-14T17:03:02Z · last mark 14:54 BST**').not.toMatch(FORM_LINE)
   expect('# [Ways of working](/a/b.md)').not.toMatch(HEADING_LINE)
+  expect('# [Inbox](/s/work/personal/personal.inbox/_index.md)').toMatch(HEADING_LINE)
+  expect('# [Model](/a/model.md) › [Ways of working](/s/work/ki/ki.ways-of-working/_index.md)').not.toMatch(
+    HEADING_LINE
+  )
+  expect('# [ki-agent-backpack](/Users/krisbrown/kis/ki/ki-agent-backpack)').not.toMatch(HEADING_LINE)
+  expect('# [Tools](/a/README.md)').not.toMatch(HEADING_LINE)
   expect('# [KI Capital](/a/b.md) › State of play').toMatch(STATE_OF_PLAY_LINE)
 })
 
@@ -937,7 +956,7 @@ test('regular coordination is explicit, capability-checked and uses its real wor
   expect(standard).toContain("Acquire's already-approved intake exception remains usable")
   expect(standard).toContain('Ending that episode does not finish or hold the package, move its mark or abandon runs')
   expect(standard).toContain('Bootstrap as <id> regular work under ki-coordination.')
-  expect(standard).toContain('never fabricate a Project')
+  expect(standard).toContain('never fabricates a Project')
   expect(outputStyle).toContain('including regular or ad hoc work without a coordinating opener')
   for (const id of [
     'ki.sop.main',
@@ -976,9 +995,38 @@ test('regular coordination is explicit, capability-checked and uses its real wor
   for (const surface of generate(harnessRoot).filter((surface) =>
     /(?:run-prompt|rules-[^/]+)\.md$/.test(surface.path)
   )) {
-    expect(surface.content).toContain('# [<actual work label>](<actual local work page>) › <run name>')
+    expect(surface.content).toContain('# [<title>](<package _index.md>) › <run name>')
     expect(surface.content).toContain('regular and ad hoc work')
     expect(surface.content).toContain('including regular or ad hoc work without coordination')
+  }
+})
+
+// Kris, relayed by the Cairn summit's guardian on 17 November 2026 under NAME-FIRST a: "where we have a named actor
+// that the name should be first and then in brackets it should be effectively what we're currently putting out", and
+// under HEADING-FIX a: a report heading links its package's `_index.md` in the Cairn store and nothing else.
+test('a named seat puts its name first and its form in brackets, an unnamed seat keeps the bare form', () => {
+  for (const named of [
+    'Kitteth (🪨 🔑 cairn.summit)',
+    'EUGENE (🏛️ 🔑 5ge.summit)',
+    'Hob Sol (🏠 🔑 personal.rig.sol)',
+    'Quire (📐 ki.cairn@information-architect)'
+  ])
+    expect(named).toMatch(THREAD_LINE)
+  for (const bareLine of ['⚖️ 🔑 ki.guilds', '🧵 cairn.summit', '📐 ki.cairn@information-architect'])
+    expect(bareLine).toMatch(THREAD_LINE)
+  for (const invalid of [
+    '(🪨 🔑 cairn.summit) Kitteth',
+    'Kitteth (🧵 cairn.summit)',
+    'Kitteth (cairn.summit)',
+    'Kitteth 🪨 🔑 cairn.summit',
+    'Kitteth (🪨 🔑 cairn.summit',
+    'Quire (📐 ki.cairn+architect)'
+  ])
+    expect(invalid).not.toMatch(THREAD_LINE)
+  for (const text of [standard, outputStyle]) {
+    expect(text).toContain('Kitteth (🪨 🔑 cairn.summit)')
+    expect(text).toContain('NAME-FIRST')
+    expect(text).toContain('HEADING-FIX')
   }
 })
 

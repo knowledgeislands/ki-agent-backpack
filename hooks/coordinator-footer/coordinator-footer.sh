@@ -5,12 +5,15 @@
 # or Position phrase must close with a banner: a ### state heading and the thread
 # line, last: <role glyph> 🔑 <work-id>, <role glyph> <package>@<role> for a seat
 # without the package's keys (SEAT-LINE, SEAT-AT), or 🧵 <work-id> for a session with
-# no role yet. A seat line in the earlier <work-id>+<role> form, an unrecognised
+# no role yet, either seat form written <Name> (<form>) where the seat's actor is named
+# (NAME-FIRST). A seat line in the earlier <work-id>+<role> form, an unrecognised
 # state heading, a missing or odd counts line, a listening line in the earlier
 # 👂 listening or 🔇 not listening form, which LISTEN-LINE replaces with 👂 in
 # <meeting> or no line at all, ⭐, 🔧 or 🧵 in the role glyph's place, and in a
 # Summary or Status missing art, roadmap or package line pass with a warning, so the owner can confirm the form was intended. The
 # hook holds no copy of the role catalogue, which ki-work-package owns.
+# A report heading whose first link is not a package's _index.md in the Cairn store, or
+# that links none, or whose State of play is a link, warns too (HEADING-FIX).
 # A banner item pairing an agreed glyph with a bracketed state word warns too: an item
 # takes an agreed glyph alone, a provisional glyph with its word in brackets, or the
 # bracketed word alone (GLYPH-FALLBACK).
@@ -132,7 +135,7 @@ footer() {
     /^(```|~~~)/ { fence = !fence; next }
     fence { next }
     /^## Summary$/ || /^## Summary since / || /^\*\*(.* · )?(Summary|Status) at / { print "summary"; exit }
-    /^\*\*(.* · )?(Bootstrap|Stop|Re-bootstrap|Hold report|Finish report) at / || /^### .*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished)/ || /^(🧵|[^ -~]+ 🔑) [^ ]+ *$/ || /^[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)* *$/ { other = 1 }
+    /^\*\*(.* · )?(Bootstrap|Stop|Re-bootstrap|Hold report|Finish report) at / || /^### .*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished)/ || /^(🧵|[^ -~]+ 🔑) [^ ]+ *$/ || /^[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)* *$/ || /^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \(([^ -~]+ 🔑 [^ ]+|[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)*)\) *$/ { other = 1 }
     END { if (other) print "banner" }')
 
   if [ -z "$form" ]; then
@@ -153,7 +156,7 @@ footer() {
         pause | 'done for now' | snooze | drain | hold | resume | finish | send | receive | 'with me' | ack | 'got it' | seen) ;;
       *) return 0 ;;
     esac
-    recent | LC_ALL=C grep -F '"type":"assistant"' | LC_ALL=C grep -Eq '(\\n|")((🧵|[^ -~"\\]+ 🔑) [A-Za-z0-9][A-Za-z0-9._+-]*|[^ -~"\\]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)*)(\\n|")' || return 0
+    recent | LC_ALL=C grep -F '"type":"assistant"' | LC_ALL=C grep -Eq '(\\n|")([A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \()?((🧵|[^ -~"\\]+ 🔑) [A-Za-z0-9][A-Za-z0-9._+-]*|[^ -~"\\]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)*)\)?(\\n|")' || return 0
     form=banner
   fi
 
@@ -189,9 +192,15 @@ footer() {
     fence { last = NR; next }
     {
       last = NR
-      key = $0 ~ /^[^ -~]+ 🔑 [^ ]+ *$/
-      keyless = $0 ~ /^[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)* *$/
-      is_thread = key || keyless || $0 ~ /^🧵 [^ ]+ *$/
+      # The report heading: the first # line, read for its links (HEADING-FIX).
+      if (!h1 && $0 ~ /^# /) h1 = $0
+      # A named seat writes <Name> (<seat form>); the form inside the brackets is read as the bare line (NAME-FIRST).
+      inner = $0
+      named = $0 ~ /^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \(.*\) *$/
+      if (named) { sub(/^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \(/, "", inner); sub(/\) *$/, "", inner) }
+      key = inner ~ /^[^ -~]+ 🔑 [^ ]+ *$/
+      keyless = inner ~ /^[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)* *$/
+      is_thread = key || keyless || (!named && $0 ~ /^🧵 [^ ]+ *$/)
       # A state heading opens with its glyph or names a state; a query or finding heading opens with its tag.
       state = $0 ~ /^### .*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished)/
       if (state || $0 ~ /^### [^ -~]/) { heading = NR; known = state; finished = index($0, "Finished") > 0; counts_seen = 0; counts = 0; odd = 0; road = 0; pack = 0; oldlisten = 0; next }
@@ -212,10 +221,10 @@ footer() {
       }
       if (is_thread) {
         thread = NR
-        glyphs = key ? substr($0, 1, index($0, " 🔑") - 1) : keyless ? substr($0, 1, index($0, " ") - 1) : ""
+        glyphs = key ? substr(inner, 1, index(inner, " 🔑") - 1) : keyless ? substr(inner, 1, index(inner, " ") - 1) : ""
         marks = index(glyphs, "⭐") || index(glyphs, "🔧")
         spun = index(glyphs, "🧵") > 0
-        oldseat = keyless && !index($0, "@")
+        oldseat = keyless && !index(inner, "@")
       }
     }
     END {
@@ -230,6 +239,13 @@ footer() {
       if (heading && !finished && !counts) warn[++w] = "no counts line beneath the state heading"
       if (heading && counts && odd) warn[++w] = "a counts line opening with none of the counts glyphs"
       if (heading && oldlisten) warn[++w] = "a listening line in the earlier 👂 listening or 🔇 not listening form, which LISTEN-LINE replaces with 👂 in <meeting>, or no line in no meeting"
+      # The heading links only the package _index.md in the Cairn store, State of play plain (HEADING-FIX).
+      if (h1) {
+        target = match(h1, /\]\([^)]*\)/) ? substr(h1, RSTART + 2, RLENGTH - 3) : ""
+        if (target == "") warn[++w] = "a report heading that links no package, where HEADING-FIX links the work\047s name to its package\047s _index.md in the Cairn store"
+        else if (target !~ /^\/.*\/work\/[a-z0-9-]+\/[^\/]+\/_index[.]md$/) warn[++w] = "a report heading whose first link is not its package\047s _index.md in the Cairn store, which HEADING-FIX sets, never a repository, README or theme page"
+        if (h1 ~ /State of play[^()]*\]\(/) warn[++w] = "a report heading with State of play linked, which HEADING-FIX keeps as plain text"
+      }
       if (paired) warn[++w] = "a banner item pairing an agreed glyph with a bracketed state word, where GLYPH-FALLBACK sets the agreed glyph alone, keeping brackets for a provisional glyph or a word alone"
       if (long && art && (!art_at || (heading && art_at > heading))) warn[++w] = "no Knowledge Islands art above the banner"
       if (long && roadmap && !road) warn[++w] = "no 🗺️ roadmap line"
