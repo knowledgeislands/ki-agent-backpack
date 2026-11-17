@@ -78,7 +78,7 @@ Top-level `src/` folders are identical across all seven repos: `config`, `main`,
 - **Plural** resource for collection ops (`git_repos_scan`, `gsuite_email_messages_search`, `claude_code_sessions_list`).
 - **Singular** for single-item ops (`claude_code_session_read`, `git_repo_commit`, `gsuite_email_message_get`).
 - Metadata/lifecycle tools may drop the resource segment (`m365_about`, `gsuite_auth_start`).
-- `mcp-ki-kb-fs` works on one implied resource, a Knowledge Base entry, so its tools drop the segment and take `<app>_<action>` (`kb_read`, `kb_list`, `kb_write`, `kb_search`), naming a resource only where another is meant (`kb_folder_create`).
+- **Exception (KB-NAMES):** `mcp-ki-kb-fs`'s tools act on one implied resource, the Knowledge Base entry, so they drop the middle segment and take `<app>_<action>` (`kb_read`, `kb_list`, `kb_write`, `kb_search`), naming a resource only where another is meant (`kb_folder_create`). Accepted, because renaming them would break every client for no gain — do not flag.
 - The CLI verb surface mirrors the tool names.
 
 The house scheme is a deliberate **subset** of what the spec permits: per [TOOLS](sources.md), names SHOULD be 1–128 chars from `[A-Za-z0-9_.-]`. Snake_case `<app>_<resource>_<action>` stays well inside that, so a conformant house name is always a conformant spec name — the constraint to enforce is the house scheme, not the looser spec one.
@@ -96,7 +96,7 @@ These four hints (`readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorl
 
 Levels nest `read ⊂ write ⊂ destructive`; env `MCP_<APP>_ACCESS_LEVEL` (default `read`). Every tool sets `annotations` to a preset from `utils/annotations.ts`: `READ_ONLY`, `WRITE`, `WRITE_IDEMPOTENT`, `WRITE_IDEMPOTENT_REMOTE`, `DESTRUCTIVE`, `DESTRUCTIVE_REMOTE`, `DESTRUCTIVE_ONESHOT`, plus `_REMOTE`/read variants per repo. `DESTRUCTIVE_ONESHOT` = effect depends on current FS/index state. Never bypass the register proxy; never derive the level from the tool name.
 
-**Divergence:** default access level is `read` everywhere except `mcp-acquire-whatsapp`, which defaults to `destructive`, read from its own `WHATSAPP_ACCESS_LEVEL`, so that its spool-writing acquisition tools stay registered; its ADR-KI-MCP-WA-005 records the choice, with an audit log that defaults to `off`.
+**Divergence (WA-DEFAULTS):** default access level is `read` everywhere except `mcp-acquire-whatsapp`, which defaults to `destructive`, and its audit log defaults to `off` rather than `writes`. A `read` default would unregister its seven spool-writing acquisition tools, and a log on by default would keep a record of who the operator talks to. Its ADR-KI-MCP-WA-005 records both choices; the gate and the log are otherwise implemented as this standard sets — accepted, do not flag.
 
 ## 5. Audit logging
 

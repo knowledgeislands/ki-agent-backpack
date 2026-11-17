@@ -4,7 +4,7 @@
 
 The authoritative and community sources behind the [Workspace MCP Standard](standards-mcp-servers.md) and [Audit Rubric](rubric.md). Mode REFRESH reads this file, re-fetches each source, diffs it against the standard, rubric, and [`scripts/rubric/items/index.ts`](../scripts/rubric/items/index.ts), then **bumps the `last reviewed` dates** and refreshes the `## Last review` block below (what changed is recorded in the commit, not a changelog). This is the skill's memory of where the standard comes from—keep it current.
 
-Two layers feed the standard: the **official MCP specification** (what every conformant server must do) and the **in-house workspace convention** (the opinionated shape the five sibling repos share on top of the spec). A finding is only "spec-driven" if it traces to the Authoritative table; everything else is house style and should be labelled as such so it is not mistaken for a protocol requirement.
+Two layers feed the standard: the **official MCP specification** (what every conformant server must do) and the **in-house workspace convention** (the opinionated shape the seven sibling repos share on top of the spec). A finding is only "spec-driven" if it traces to the Authoritative table; everything else is house style and should be labelled as such so it is not mistaken for a protocol requirement.
 
 ## Contents
 
@@ -12,6 +12,7 @@ Two layers feed the standard: the **official MCP specification** (what every con
 - [Community sources](#community)
 - [In-house evidence](#in-house-the-workspace-convention)
 - [Source-distribution sources](#source-distribution)
+- [Decisions](#decisions)
 - [Last review](#last-review)
 - [Previous review](#previous-review)
 
@@ -51,14 +52,14 @@ The spec is versioned by date. Track the **latest released** version and note th
 
 ## In-house (the workspace convention)
 
-The standard is defined as the **majority shape** across the five sibling repos under `knowledgeislands/`. These are the living source of truth for house style; when they diverge from each other, the majority wins and the outlier is a finding unless documented.
+The standard is defined as the **majority shape** across the seven sibling repos under `knowledgeislands/`. These are the living source of truth for house style; when they diverge from each other, the majority wins and the outlier is a finding unless documented.
 
 | Tag    | Source                      | Governs                                                       | Last reviewed |
 | ------ | --------------------------- | ------------------------------------------------------------- | ------------- |
-| REPOS  | The five sibling repos †    | Layout, config, tool naming, shared `utils/`, the toolchain ‡ | 2026-10-18    |
+| REPOS  | The seven sibling repos †   | Layout, config, tool naming, shared `utils/`, the toolchain ‡ | 2026-10-18    |
 | CLAUDE | Each repo's own `AGENTS.md` | Per-repo invariants ※                                         | 2026-10-18    |
 
-† `mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`. The sixth original, `mcp-ki-kb-notion-mirror`, was deleted on 26 October 2026. Two newer v1 repositories (`mcp-acquire-whatsapp`, `mcp-housekeeping-chatgpt`) are not yet part of the majority basis.
+† Every server that declares `[skills.ki-repo-mcp]`, under MCP-BASIS: `mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-housekeeping-chatgpt` and `mcp-acquire-whatsapp`. The sixth original, `mcp-ki-kb-notion-mirror`, was deleted on 26 October 2026.
 
 ‡ Layout, config injection, tool naming, the shared `utils/` helpers, the package/tsconfig/vitest/biome toolchain.
 
@@ -76,9 +77,19 @@ These primary sources ground the separate source-install contract. They do not m
 | BUN-INSTALL | [Bun install documentation][bun-install] | Frozen lockfile installation | 2026-10-18    |
 | BUN-LOCK | [Bun lockfile documentation][bun-lock] | Committed dependency evidence | 2026-10-18    |
 
+## Decisions
+
+The decisions the standard cites by id, oldest first; the standard keeps citing its id where the rule stands.
+
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| KB-NAMES | `mcp-ki-kb-fs`'s short tool names are an accepted exception to `<app>_<resource>_<action>`: its tools act on one implied resource, the Knowledge Base entry, so they drop the middle segment (`kb_read`, `kb_list`, `kb_write`, `kb_rename`, `kb_delete`, `kb_search`, `kb_config`), and renaming eight tools would break every client for no gain. Taken at high confidence by the Cairn summit's guardian on Kris's word to take high-confidence calls. | 2026-11-17 | [Tool naming](standards-mcp-servers.md#3-tool-naming) | In force |
+| WA-DEFAULTS | `mcp-acquire-whatsapp`'s `destructive` access-level default and `off` audit-log default are an accepted exception under its ADR-KI-MCP-WA-005: a `read` default would unregister its seven spool tools, and a log on by default would keep a record of who Kris talks to. Taken at high confidence on the evidence, on the same basis. | 2026-11-17 | [Access-level gate](standards-mcp-servers.md#4-access-level-gate-annotation-driven) | In force |
+| MCP-BASIS | Every server that declares `[skills.ki-repo-mcp]` counts towards the majority basis: all seven, including `mcp-housekeeping-chatgpt` and `mcp-acquire-whatsapp`. Taken at high confidence on the evidence, on the same basis. | 2026-11-17 | [In-house evidence](#in-house-the-workspace-convention) | In force |
+
 ## Last review
 
-On 17 November 2026 an in-house review corrected the server names, resolving the name half of the 2026-10-18 watch-item. The standard, `SKILL.md` and the tool-prefix table had carried names mangled by an old search-and-replace (`mcp-ki-repo-kb-fs` for `mcp-ki-kb-fs`) and the Notion mirror, which Kris deleted on 26 October 2026. They now list the seven servers that declare `[skills.ki-repo-mcp]`, adding `mcp-housekeeping-chatgpt` (`chatgpt`, `codex`) and `mcp-acquire-whatsapp` (`whatsapp`); `mcp-cairn` declares no `.ki.toml` and keeps literal tool names, so it is not listed. The naming examples now use real tools, §3 says how `mcp-ki-kb-fs`'s `kb_<action>` tools fit, and §4's access-level divergence names `mcp-acquire-whatsapp`'s `destructive` default in place of the mirror's. No outside source refreshed.
+On 17 November 2026 an in-house review corrected the server names, resolving the name half of the 2026-10-18 watch-item. The standard, `SKILL.md` and the tool-prefix table had carried names mangled by an old search-and-replace (`mcp-ki-repo-kb-fs` for `mcp-ki-kb-fs`) and the Notion mirror, which Kris deleted on 26 October 2026. They now list the seven servers that declare `[skills.ki-repo-mcp]`, adding `mcp-housekeeping-chatgpt` (`chatgpt`, `codex`) and `mcp-acquire-whatsapp` (`whatsapp`); `mcp-cairn` declares no `.ki.toml` and keeps literal tool names, so it is not listed. The naming examples now use real tools, §3 says how `mcp-ki-kb-fs`'s `kb_<action>` tools fit, and §4's access-level divergence names `mcp-acquire-whatsapp`'s `destructive` default in place of the mirror's. Later that day KB-NAMES, WA-DEFAULTS and MCP-BASIS, recorded under [Decisions](#decisions), settled the rest: §3 states the `kb` naming exception, §4's divergence line accepts the WhatsApp defaults, and all seven declaring servers form the majority basis, which resolves the 2026-10-18 watch-item. No outside source refreshed.
 
 On 17 November 2026 an in-house review applied MCP-TRIM a, which Kris took that day, relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions): [§1's `mcp-server/` line](standards-mcp-servers.md#1-project-layout) said to connect a `StdioServerTransport`, while §12's modern profile, which six of the seven local servers use (`mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude` and `mcp-cairn`), passes a per-connection server factory to `serveStdio`. §1 now says so, keeping `StdioServerTransport` for a server still on the legacy profile, as `mcp-acquire-whatsapp` is. No outside source refreshed.
 
@@ -96,7 +107,6 @@ REFRESH last ran **2026-10-18** under KI-HARNESS-GOV-194. Every row was re-fetch
 
 **Open watch-items:**
 
-- Decide whether the two v1 repositories join the majority basis. The sibling names are corrected, as the 17 November review below records.
 - Add 2026-07-28 TOOLS, SEC and AUTH rows beside the 2025-11-25 ones, make the structured-output rule profile-dependent, and assess the new error-code range, deterministic tool ordering and cacheable-result fields for the 2026-07-28 profile.
 - Track the three AGENTS.md profile declarations above, sibling pins against SDK 2.3.1, and migration of the two v1 repositories.
 - Unchanged: rate limiting for any future remote server, and the open annotation vocabulary proposals.

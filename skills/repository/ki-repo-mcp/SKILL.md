@@ -52,7 +52,7 @@ Decide _where code lives_ by who needs to call it, not by what it does:
 
 ## Tool naming
 
-`<app>_<resource>_<action>`, snake_case. `<app>` is fixed per repo (`git`, `kb`, `gsuite`, `m365`, `claude_code`/`claude_desktop`/`vscode`, `chatgpt`/`codex`, `whatsapp`). **Plural** resource for collection ops (`git_repos_scan`, `gsuite_email_messages_search`); **singular** for single-item ops (`claude_code_session_read`, `git_repo_commit`). Metadata/lifecycle tools may drop the resource segment (`gsuite_auth_start`, `m365_about`). The CLI verb surface mirrors these names.
+`<app>_<resource>_<action>`, snake_case. `<app>` is fixed per repo (`git`, `kb`, `gsuite`, `m365`, `claude_code`/`claude_desktop`/`vscode`, `chatgpt`/`codex`, `whatsapp`). **Plural** resource for collection ops (`git_repos_scan`, `gsuite_email_messages_search`); **singular** for single-item ops (`claude_code_session_read`, `git_repo_commit`). `mcp-ki-kb-fs`'s tools act on one implied resource, the Knowledge Base entry, and drop the middle segment (`kb_read`, `kb_list`): an accepted exception. Metadata/lifecycle tools may drop the resource segment (`gsuite_auth_start`, `m365_about`). The CLI verb surface mirrors these names.
 
 ## Access-level gate
 
