@@ -1,3 +1,7 @@
+---
+ki-document-type: rubric@2026-11-17T00:55:00Z
+---
+
 <!-- GENERATED FILE: produced by `ki dev skill rubric`. Do not hand-edit; edit scripts/rubric/items/, then rerun `ki dev skill rubric <skill> --write`. -->
 
 # Generated rubric — Agent Skills
@@ -22,6 +26,7 @@ Line-by-line criteria for auditing ki-skills. Classifications are derived from i
 - [KI-LINK — Knowledge Islands linking & portability](#ki-link--knowledge-islands-linking--portability)
 - [PORT — Runtime portability](#port--runtime-portability)
 - [KI-SHAPE — Knowledge Islands skill shape](#ki-shape--knowledge-islands-skill-shape)
+- [SKILL-FMT — Skill file formats](#skill-fmt--skill-file-formats)
 - [KI-INVOKE — Invocation protocol](#ki-invoke--invocation-protocol)
 - [PROC — Process / meta](#proc--process--meta)
 - [COLL — Cross-skill collision](#coll--cross-skill-collision)
@@ -433,8 +438,8 @@ The common shape of a Knowledge Islands governance skill.
   - _Remediation:_ diagnostic — Author the REFRESH ownership precondition for the actual source location, including the correct stop-and-redirect or promotion boundary.
 - **KI-SHAPE-15 [M] — governance skills expose no legacy runner entrypoints** — _Direct governance operation shape._ A governance skill exposes its rubric catalogue from `scripts/rubric/items/index.ts`; `ki` resolves and hosts that catalogue from a verified installed Harness or the exact explicitly declared repository-local `.agents/skills/ki-self/` source. `scripts/govern.ts`, `scripts/educate.ts`, `scripts/audit.ts`, and `scripts/conform.ts` are retired, with no compatibility runner or fallback. Process skills are exempt. (standard-knowledge-islands.md §4.2, ADR-KI-HARNESS-007)
   - _Remediation:_ diagnostic — Migrate any still-required behaviour to its catalogue, context, host, or EDUCATE owner before removing the retired governance runner entrypoint.
-- **KI-SHAPE-16 [M-heuristic + J] — target files have declared ownership** — _Declared file ownership, three tiers._ A skill whose rubric reads or changes a house-standard file in the **target repository's** working tree declares that relationship in frontmatter, alongside `ki-depends-on:`, under one of three keys: `requires:` (must exist, doesn't create/control it — any number of skills may share a `requires:` filename), `contributes:` (writes/expects only its own section of a shared file — any number of skills may share a `contributes:` filename, e.g. `.ki.toml`, `package.json`), or `owns:` (sole author of the whole file — **exclusive**, at most one skill per filename). The mechanical heuristic verifies that declared filenames occur in the skill's production implementation and that no filename is owned by more than one skill. Judgment confirms that every session proposal and governed read has the appropriate declaration. (KI)
-  - _Remediation:_ diagnostic — Trace the skill’s real target-file reads and writes, choose requires, contributes, or owns accordingly, and resolve exclusive ownership collisions with the affected skills.
+- **KI-SHAPE-16 [M-heuristic + J] — target files have declared ownership** — _Declared file ownership, three tiers._ A skill whose rubric reads or changes a house-standard file in the **target repository's** working tree declares that relationship in frontmatter, alongside `ki-depends-on:`, under one of three keys: `ki-requires:` (must exist, doesn't create/control it — any number of skills may share a `ki-requires:` filename), `ki-contributes:` (writes/expects only its own section of a shared file — any number of skills may share a `ki-contributes:` filename, e.g. `.ki.toml`, `package.json`), or `ki-owns:` (sole author of the whole file — **exclusive**, at most one skill per filename). The older bare `requires:`, `contributes:` and `owns:` are read under these names while the skills are swept, as SKILL-FMT-3 warns. The mechanical heuristic verifies that declared filenames occur in the skill's production implementation and that no filename is owned by more than one skill. Judgment confirms that every session proposal and governed read has the appropriate declaration. (KI)
+  - _Remediation:_ diagnostic — Trace the skill’s real target-file reads and writes, choose ki-requires, ki-contributes, or ki-owns accordingly, and resolve exclusive ownership collisions with the affected skills.
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ Do all governed target-file reads and session proposals carry the appropriate ownership declaration?
   - _Outcomes:_ conforming; gap; exclusion
@@ -455,6 +460,24 @@ The common shape of a Knowledge Islands governance skill.
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
 - **KI-SHAPE-22 [M] — guild membership is declared** — Every canonical Knowledge Islands skill declares the guild it belongs to, `ki-guild: <guild>`, a kebab-case guild name; the folder it sits in is storage and never declares membership. A lead skill also declares the guild it leads, `ki-leads: <guild>`, and is itself a member of Keystone, `ki-guild: keystone`; only `ki-keystone` leads Keystone. A repository-local `ki-self` is outside every guild. (GUILD-PLACE, KI-KEYS, standard-knowledge-islands.md §4.2, standard-guilds.md §4.4)
   - _Remediation:_ diagnostic — Declare the guild the skill works with, from the guild map in ki-keystone; give a lead skill its ki-leads key and Keystone membership, and never infer either from the folder.
+
+## SKILL-FMT — Skill file formats
+
+→ [standard](standard-formats-skill.md)
+
+A skill's own files, `SKILL.md`, its mode files, `exemplars.md` and the generated `rubric.md`, follow the format their `ki-document-type` names, at its current version.
+
+- **SKILL-FMT-1 [M] — each skill file names its format in `ki-document-type`** — _Skill files have formats._ `SKILL.md` writes `ki-document-type: skill@<version>` as the field after `name`; each `references/mode-<verb>.md` writes `mode@<version>`, `references/exemplars.md` `exemplars@<version>`, and the generated `references/rubric.md` `rubric@<version>`, the word naming the file's format standard beside this rubric. A file without the field, or naming another word, warns, never fails, while the skills are swept. (standard-formats-skill.md#45-validation, standard-formats-mode.md#44-validation, standard-formats-exemplars.md#44-validation, standard-formats-rubric.md#44-validation)
+  - _Remediation:_ diagnostic — Add `ki-document-type: <word>@<the format standard’s ki-revised>` as the file’s front matter, after `name` in `SKILL.md`, in a mechanical commit carrying the `Revised-Unchanged: true` trailer; regenerate a rubric with `ki dev skill rubric <skill> --write` instead of editing it.
+- **SKILL-FMT-2 [M] — each skill file follows its format at its current version** — The version ref in a skill file's `ki-document-type` is its format standard's current version, the standard's `ki-revised`. An older time is reported out of date, to be brought into line when the file is next changed, or for a rubric when it is next regenerated; a later one names no version of the format. A commit ref is left to review. (standard-formats-skill.md#45-validation, standard-formats-rubric.md#44-validation)
+  - _Remediation:_ diagnostic — When the file is next changed, bring it into line with the current format and move its `ki-document-type` up to that version; regenerate a rubric.
+- **SKILL-FMT-3 [M] — `SKILL.md`'s KI fields carry the `ki-` prefix** — Every top-level field of `SKILL.md` is either one the Agent Skills specification or a runtime defines, which keeps its name, as `name`, `description` and `argument-hint`, or one Knowledge Islands defines, written with the `ki-` prefix. While the skills are swept, the older `requires`, `contributes` and `owns` are read under their `ki-` names and warned on, never failed; a field neither defines warns too. (standard-formats-skill.md#42-fields, standard-formats-skill.md#45-validation)
+  - _Remediation:_ diagnostic — Rename `requires`, `contributes` and `owns` to `ki-requires`, `ki-contributes` and `ki-owns` in a mechanical commit carrying the `Revised-Unchanged: true` trailer; set any other new field in the Knowledge Islands standard first, with the prefix, or remove it.
+- **SKILL-FMT-4 [J] — each skill file has its format’s shape** — `SKILL.md` opens its body with an H1 and routes to every reference; a mode file opens with an H1 naming its mode, `Mode <VERB>`, states its preconditions before numbered steps and links the standard it applies rather than restating it; an exemplars file opens with a lead paragraph and holds one exemplar to a heading, each naming the rule it shows. (standard-formats-skill.md#43-shape, standard-formats-mode.md#42-shape, standard-formats-exemplars.md#42-shape)
+  - _Evidence scope:_ The skill's `SKILL.md`, its `references/mode-<verb>.md` files and its `references/exemplars.md`.
+  - _Review prompt:_ Assess each skill file's shape against its format standard's Shape section.
+  - _Outcomes:_ conforming; reshape required
+  - _Conforming guidance:_ Bring a file to its format when it is next changed.
 
 ## KI-INVOKE — Invocation protocol
 

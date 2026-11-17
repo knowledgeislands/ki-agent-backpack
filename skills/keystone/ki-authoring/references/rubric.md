@@ -1,3 +1,7 @@
+---
+ki-document-type: rubric@2026-11-17T00:55:00Z
+---
+
 <!-- GENERATED FILE: produced by `ki dev skill rubric`. Do not hand-edit; edit scripts/rubric/items/, then rerun `ki dev skill rubric <skill> --write`. -->
 
 # Generated rubric — Knowledge Islands authoring conventions
@@ -31,7 +35,7 @@ The tracked readable rubric is the exact publication of the structured catalogue
 
 Typed documents follow the format standard their `ki-document-type` names, at its current version.
 
-- **FMT-type [M] — a typed document names a format standard that exists and keeps `ki-revised` up with its commits** — A Markdown document whose front matter `ki-document-type`, or the older `type`, is `<type>@<version ref>` names a format standard, `standard-formats-<type>.md`, that exists in `ki-authoring`, and carries `ki-revised`, which is no earlier than the file's last Git commit by more than five minutes, a commit carrying the `Revised-Unchanged: true` trailer being passed over; a `ki-revised` behind its commit warns, since a mechanical edit leaves it where it is, and a file not in Git or with no commits is not compared. A kind with no `@` has no format standard, and a knowledge graph card's own `type` names its card type; neither is checked here. (standard-formats-format.md#42-front-matter, standard-formats-format.md#47-validation)
+- **FMT-type [M] — a typed document names a format standard that exists and keeps `ki-revised` up with its commits** — A Markdown document whose front matter `ki-document-type`, or the older `type`, is `<type>@<version ref>` names a format standard, `standard-formats-<type>.md`, that exists in `ki-authoring`, and carries `ki-revised`, which is no earlier than the file's last Git commit by more than five minutes, a commit carrying the `Revised-Unchanged: true` trailer being passed over; a `ki-revised` behind its commit warns, since a mechanical edit leaves it where it is, and a file not in Git or with no commits is not compared. A kind with no `@` has no format standard, a knowledge graph card's own `type` names its card type, and a skill's own files, `skill`, `mode`, `exemplars` and `rubric`, follow `ki-skills`' formats, which its SKILL-FMT items check; none is checked here. (standard-formats-format.md#42-front-matter, standard-formats-format.md#47-validation)
   - _Remediation:_ diagnostic — Use the finding and this criterion to make the appropriate local change, then rerun the audit.
 - **FMT-prefix [M] — a typed document writes the fields KI defines with the `ki-` prefix** — Every top-level front matter field of a typed document or a record but `title` is one KI defines, and carries the `ki-` prefix, as `ki-document-type`, `ki-revised` and `ki-status`, so that no other tool reads or misreads it. While files are swept, a field written without the prefix, such as the older `type` or `revised`, is read under its `ki-` name and warned on, never failed. (standard-formats-format.md#42-front-matter, standard-formats-format.md#47-validation)
   - _Remediation:_ diagnostic — Rename each field to its `ki-` name, `type` becoming `ki-document-type`, in a mechanical commit carrying the `Revised-Unchanged: true` trailer, leaving `ki-revised` where it is.
