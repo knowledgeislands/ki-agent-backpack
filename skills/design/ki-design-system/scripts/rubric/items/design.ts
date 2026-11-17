@@ -217,13 +217,13 @@ const DSYS_8: RubricItem<DesignRubricContext> = {
   code: 'DSYS-8',
   title: 'working material is retired and projections follow the source',
   description:
-    'Briefs, option boards, canvases and screenshots from finished design work are consolidated and not kept as durable documents; every design tool outside the repository is refreshed from the token source and the guide, and the annotated board from the running interface.',
+    'Briefs, option boards, rounds, canvases and screenshots from finished design work are consolidated and not kept as durable documents, while the final boards of the chosen design move into its design book; every design tool outside the repository is refreshed from the token source and the guide, and the annotated board from the running interface.',
   sources: [WORK, PROJECTIONS],
   judgment: {
     scope:
       'Documentation folders and assets that hold design working material, closed design work records, the projections the guide lists, and the annotated board with its refresh stamp.',
     prompt:
-      'Is any brief, option board or canvas kept as a document after its outcome reached the guide, a Specification or a Decision Record? Does any projection, such as a design-system artifact or a design library, disagree with the token source? Was the annotated board refreshed from the current interface, and are the mock-ups of built designs gone from it?',
+      'Is any brief, option board or canvas kept as a document after its outcome reached the guide, a Specification or a Decision Record? Did the final boards of each agreed design move into its design book, named by level? Does any projection, such as a design-system artifact or a design library, disagree with the token source? Was the annotated board refreshed from the current interface, and are the mock-ups of built designs gone from it?',
     outcomes: ['conforming', 'retire', 'refresh'],
     guidance:
       'Confirm the outcome is consolidated, then remove the working material; Git history keeps it. Refresh a stale projection from its source and record the date and revision on it; the annotated board stays as a projection rather than being retired.'
@@ -250,15 +250,16 @@ const DSYS_10: RubricItem<DesignRubricContext> = {
   code: 'DSYS-10',
   title: 'design rounds run through the three levels',
   description:
-    'Interface design is drawn as information architecture, then wireframes, then mock-ups in every state, each level agreed before the next; new names stay proposals until the owner agrees them, and a board nobody has seen rendered says so.',
+    'Interface design is drawn as information architecture, then wireframes, then mock-ups in every state, each level agreed before the next; new names stay proposals until the owner agrees them, a board nobody has seen rendered says so, and an agreed design keeps its final boards in its design book, named `ia-`, `wire-` and `mock-`, each self-contained with its PNG and coded as the annotated board is.',
   sources: [LEVELS],
   judgment: {
-    scope: 'The current or most recent design round: its boards, their file names, names and review notes.',
+    scope:
+      'The current or most recent design round: its boards, their file names, names and review notes; and each agreed design’s book.',
     prompt:
       'Was the architecture agreed before wireframes, and wireframes before mock-ups? Do the mock-ups show loading, empty and failed states? Is any new name or icon used as if agreed? Was each board reviewed by a second reader, and seen rendered or marked as not seen?',
     outcomes: ['conforming', 'redraw at a coarser level', 'gap'],
     guidance:
-      'Return to the coarsest level that is not agreed and settle it with the owner; add the missing states; mark unagreed names as proposals; and say which boards nobody has seen rendered.'
+      'Return to the coarsest level that is not agreed and settle it with the owner; add the missing states; mark unagreed names as proposals; say which boards nobody has seen rendered; and move an agreed design’s final boards into its book, renamed by level, each with its PNG.'
   }
 }
 
