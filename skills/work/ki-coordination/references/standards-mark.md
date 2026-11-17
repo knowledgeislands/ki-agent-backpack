@@ -13,13 +13,14 @@ The mark is only a timestamp, `ki-mark: <UTC timestamp>` in `_index.md`'s state 
   2. work the [decisions life cycle](standards-decisions.md#decisions-life-cycle);
   3. [prune the package](#pruning-the-work-folder) and review its change documents;
   4. [close out Orca workers](#closing-out-orca-workers);
-  5. commit the package and confirm in one line.
+  5. refresh its own presence in the Cairn store's roster, its actor entry's `ki-host`, `ki-rig` and `ki-last_seen`, as at [bootstrap](standards-bootstrap.md#bootstrap), touching no other actor's entry;
+  6. commit the package and its roster entry and confirm in one line.
 - **Open items carry forward:** a mark resets only the window of `## Summary`. Open and parked queries in the change documents, open records in the work's scope, running and queued background agents and parked tangents stay on the status table and in `## Queries`; a mark never drops, closes or hides them.
 - **History:** comes from Git and run reports, never from the state. `git log -- work/<territory>/<id>/_index.md` in the Cairn store shows what the work is and its moves. The state holds no dated log, commit runs or test counts; it may link one report or commit instead of copying it, and the `ki-work-package` rubric's history check warns otherwise.
 - **No mark yet:** the Summary runs from the session's start, or from `_index.md`'s `ki-created_at` where that is unknown, and the first `mark` strikes the first mark.
 - **Not a recap:** a Summary covers the package since the mark, and `ki-work recap` covers one session at a lower level; they share no form or procedure.
 
-Sources: SUMMARY-MODEL, DECISION-NO-NUMBER, MARK-THEN-SUMMARY and STATE-HISTORY in [the decision register](sources.md#decision-register).
+Sources: SUMMARY-MODEL, DECISION-NO-NUMBER, MARK-THEN-SUMMARY, STATE-HISTORY and ROSTER-SELF in [the decision register](sources.md#decision-register).
 
 ## Parking tangents
 

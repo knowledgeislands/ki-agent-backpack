@@ -21,9 +21,10 @@ A one-line opener brings a new or running session onto this contract, for exampl
 2. reads this standard and the Work Process note;
 3. checks through its agent host which of its agents still run and reconciles what is actually running;
 4. [resolves the opener](#resolving-the-opener) to one package, `work/<territory>/<id>/` in the Cairn store, reads its `_index.md`, the change documents in hand and every change document's Open section, reconciles it under the work-package standard and checks `ki-method_read`;
-5. acts first on the top line of `_index.md`'s Now, the work's first step, then on whatever has reached the work along the tree under [Work between packages](standards-messages.md#messages-between-work), before launching any work;
-6. as the summit, gathers every record awaiting acceptance across its territory's repositories, the work beneath its nodes included, and brings them first, ahead of every other query, as one bundle per work under [Acceptance bundles](standards-queries.md#acceptance-bundles);
-7. gives the Bootstrap, trigger T2 in the [coordinator reply format](standards-report-forms.md#triggers), a full Medium [report](standards-reporting.md#owner-report) under the [report heading](standards-report-forms.md#banner-detail), form line `**Bootstrap at <local time> · last mark <local time>**`:
+5. makes sure, as it takes up an actor or seat, that its actor has an entry at `roster/actors/<id>/_index.md` in the Cairn store, `<id>` being the actor's name in lower case, or for an actor with no name its seat, `<package>@<role>`, and sets its own `ki-host`, `ki-rig` and `ki-last_seen` there, the last in quoted UTC with milliseconds, under the store's [Roster](https://github.com/krisb/ki-cairn-store/blob/9336a6a/STORE.md#roster) contract. A session with no entry adds one in the seat form, with that contract's front matter, and tells the guardian, who keeps names, character pages and every other actor's entry; a session never edits another actor's entry;
+6. acts first on the top line of `_index.md`'s Now, the work's first step, then on whatever has reached the work along the tree under [Work between packages](standards-messages.md#messages-between-work), before launching any work;
+7. as the summit, gathers every record awaiting acceptance across its territory's repositories, the work beneath its nodes included, and brings them first, ahead of every other query, as one bundle per work under [Acceptance bundles](standards-queries.md#acceptance-bundles);
+8. gives the Bootstrap, trigger T2 in the [coordinator reply format](standards-report-forms.md#triggers), a full Medium [report](standards-reporting.md#owner-report) under the [report heading](standards-report-forms.md#banner-detail), form line `**Bootstrap at <local time> · last mark <local time>**`:
    - `## Done` gives its coordinator role and where the work stands, ending with `Rename thread: /rename <thread line>`, the thread line being `<role glyph> 🔑 <work-id>`, or `🧵 <work-id>` with no role yet, the same line the opener named, under [Opening work](standards-opening.md#opening-work);
    - `## In Progress` gives what is running;
    - `## Queries` gives every open query in full;
@@ -31,7 +32,7 @@ A one-line opener brings a new or running session onto this contract, for exampl
 
 Work opened, bootstrapped or restarted in a new session with no mark strikes one at its start, writing `ki-mark` in `_index.md`'s state fields, so every work carries a mark. [Re-anchoring](#re-anchoring-after-compaction) in the same session moves none.
 
-Sources: BOOT-HOME, REBOOT-SHAPE, WORK-REVIEW-RETIRE, OPENER-NAME, FIRST-STEP-HOME and SECONDARY-SOP in [the decision register](sources.md#decision-register).
+Sources: BOOT-HOME, REBOOT-SHAPE, WORK-REVIEW-RETIRE, OPENER-NAME, FIRST-STEP-HOME, SECONDARY-SOP and ROSTER-SELF in [the decision register](sources.md#decision-register).
 
 ## Resolving the opener
 
