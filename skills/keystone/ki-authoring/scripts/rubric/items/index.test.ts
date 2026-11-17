@@ -790,6 +790,7 @@ test('FMT reads the real format standards beside the rubric', () => {
   const context = session.subjects[1]?.context()
   expect(context?.formats.standards.map((standard) => standard.word)).toEqual([
     'change',
+    'design',
     'format',
     'record',
     'sources',

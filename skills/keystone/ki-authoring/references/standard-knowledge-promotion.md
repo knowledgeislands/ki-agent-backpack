@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-16T23:50:00Z
+ki-revised: 2026-11-17T01:17:42Z
 ki-status: in force
 ---
 
@@ -89,14 +89,15 @@ Sources: PROMOTION-ONE in [the sources](sources.md#3-decisions).
 A durable document has a type, and each type has its format standard, all following the [format format](standard-formats-format.md):
 
 - **Standard:** the rule itself, in the owning skill's `references/`, as the placement ladder above routes it; its format is the [standard format](standard-formats-standard.md).
-- **Change document:** a proposed change to one or more standards, kept in the work package of the work that proposes it, carrying the design outline and a planning section; its format is the [change format](standard-formats-change.md). There is no separate design type: a design note is a change document. `ki-work design` owns its life cycle, from draft to graduation and deletion.
+- **Change document:** a proposed change to one or more standards, kept in the work package of the work that proposes it, carrying the design outline and a planning section; its format is the [change format](standard-formats-change.md). A design note proposing a change is a change document. `ki-work design` owns its life cycle, from draft to graduation and deletion.
+- **Design document:** the design that stands, of any kind, changed only through change documents, under `docs/design/` in a repository; its format is the [design format](standard-formats-design.md), and `ki-design` owns its life cycle.
 - **Sources file:** a skill's record of the outside specifications and decisions its standards rest on; its format is the [sources format](standard-formats-sources.md).
 
 Run briefs, run reports and the work package's own files keep the shapes their owning skills set.
 
-Migration: an existing `.design.md` design note stays readable as a change document during the rollout and is not renamed; delete this line once none remains.
+Migration: an existing `.design.md` design note whose `ki-document-type` is not `design` stays readable as a change document during the rollout and is not renamed, since a reader goes by `ki-document-type`, not the name; delete this line once none remains.
 
-Sources: FORMATS-FORMAT in [the sources](sources.md#3-decisions).
+Sources: FORMATS-FORMAT and DESIGN-FRONT in [the sources](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
