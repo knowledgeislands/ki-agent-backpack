@@ -46,7 +46,7 @@ links:
 ---
 The [Knowledge Islands Graph (KIG)][kig] provides a CLI.
 
-[kig]: ../../../tools-kig/tools-kig.md
+[kig]: ki-tool-family.md
 ```
 
 A local reference identifier is not a canonical [IRI][iri]; how IRIs map to files and survive relocation is set out under the Knowledge Graph's [Addressing][addressing].
