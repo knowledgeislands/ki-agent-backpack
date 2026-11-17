@@ -117,7 +117,7 @@
     {
       "id": "peer",
       "type": "cloud",
-      "label": "Peer agent",
+      "label": "Peer session",
       "sublabel": "another session, same host",
       "pos": [
         520,
@@ -338,7 +338,7 @@
       "title": "Agent kinds (provisional, AGENT-KINDS)",
       "items": [
         "Subagent: inside a session, subordinate to its agent",
-        "Peer agent: another agent in the same system",
+        "Peer: another session in the same system, reached by cross-session messaging",
         "Remote agent: an agent in another system, opaque"
       ]
     }

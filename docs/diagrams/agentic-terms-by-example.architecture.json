@@ -98,7 +98,7 @@
       "id": "cc-agent2",
       "type": "cloud",
       "label": "Claude Code agent",
-      "sublabel": "a peer agent, same host",
+      "sublabel": "runs a peer session, same host",
       "pos": [
         520,
         150

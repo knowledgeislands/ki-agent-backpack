@@ -1131,14 +1131,14 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         <text x="125" y="346" class="t-muted" font-size="9" text-anchor="middle">phone, another window</text>
         </g>
 
-        <g id="node-peer" data-node-id="peer" data-node-label="Peer agent" tabindex="0" role="button" aria-label="Focus Peer agent, another session, same host, Agentic system A" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="another session, same host" data-node-context="Agentic system A">
-          <title>Peer agent · another session, same host · Agentic system A</title>
+        <g id="node-peer" data-node-id="peer" data-node-label="Peer session" tabindex="0" role="button" aria-label="Focus Peer session, another session, same host, Agentic system A" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="another session, same host" data-node-context="Agentic system A">
+          <title>Peer session · another session, same host · Agentic system A</title>
           <rect x="520" y="300" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="520" y="300" width="170" height="64" rx="8" class="c-cloud" data-animate="node" style="--step: 6; --flow-node-name: archify-relay-node-10;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(526 306) scale(0.6875)">
             <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
           </g>
-          <text data-node-label="" x="605" y="330" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Peer agent</text>
+          <text data-node-label="" x="605" y="330" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Peer session</text>
         <text x="605" y="346" class="t-muted" font-size="9" text-anchor="middle">another session, same host</text>
         </g>
 
