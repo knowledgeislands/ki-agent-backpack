@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T00:55:00Z
+ki-revised: 2026-11-17T04:25:00Z
 ki-status: in force
 ---
 
@@ -94,7 +94,7 @@ A **governance skill** — one that holds a house standard — exposes a common 
 
 Every top-level Markdown file in a Knowledge Islands skill's `references/` directory belongs to this closed vocabulary:
 
-- `standard-<topic>.md` holds a normative standard, process doctrine, artifact format, or shared mode contract, and follows the [standard format](../../ki-authoring/references/standard-formats-standard.md). The older plural, `standards-<topic>.md`, is accepted until each standard is next changed and renamed.
+- `standard-<topic>.md` holds a normative standard, process doctrine, artifact format, or shared mode contract, and follows the [standard format](../../ki-authoring/references/standard-formats-standard.md). The older plural, `standards-<topic>.md`, is accepted while the guilds rename them, guild by guild in each guild's review, and the allowance is removed after the last guild's review (STANDARDS-RENAME).
 - `rubric.md` is the generated readable publication of executable pass/fail criteria, in the [rubric format](standard-formats-rubric.md).
 - `sources.md` tracks provenance, refresh state and the decisions behind the standards, and follows the [sources format](../../ki-authoring/references/standard-formats-sources.md).
 - `exemplars.md` holds optional worked examples, in the [exemplars format](standard-formats-exemplars.md).

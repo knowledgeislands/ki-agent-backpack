@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-15T00:17:25Z
-ki-revised: 2026-11-17T01:50:03Z
+ki-revised: 2026-11-17T04:25:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -172,10 +172,14 @@ The OpenAI News page is a discovery source, not a normative standard. On each RE
 | SKILL-FORMAT | Kris's word, 17 November 2026, about 00:17 GMT, taking the high-confidence points of the Cairn summit's change 11: "it would make sense for us to have a file format then, right? For our skills. We could have more conformance over just the generic skills." A skill's own files have formats, owned by `ki-skills`: `SKILL.md` is `skill`, a mode file `mode`, `exemplars.md` `exemplars` and the generated `rubric.md` `rubric`, the generator writing the field; a knowledge graph's cards keep their own `type`. It reverses `ki-authoring`'s FILES-OWNED. Each file names its format in `ki-document-type` and, being versioned with its skill in Git, carries no `ki-revised`; mode and exemplar files take front matter like the others, so that one check finds and versions all four. | 2026-11-17 | [Skill format](standard-formats-skill.md), [mode format](standard-formats-mode.md), [exemplars format](standard-formats-exemplars.md), [rubric format](standard-formats-rubric.md), SKILL-FMT-1 to SKILL-FMT-4 | In force |
 | KI-PREFIX | Kris's word, 17 November 2026, about 00:17 GMT, in the Cairn summit's change 11: every front matter field Knowledge Islands defines takes the `ki-` prefix, and fields meant for other tools keep their names. In `SKILL.md` the target-file declarations become `ki-requires`, `ki-contributes` and `ki-owns`, read under their older bare names while the skills are swept; the Agent Skills specification's fields and a runtime's own, such as `argument-hint`, keep theirs. | 2026-11-17 | [Skill format](standard-formats-skill.md#42-fields), KI-SHAPE-16, SKILL-FMT-3 | In force |
 | REVIEW-HOME | Option b, Kris's word, 17 November 2026, about 01:37 GMT, raised to high by his word that consistency is vital, relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided): one general review standard in `ki-authoring`, which every reviewable document cites, skills among them. A REVIEW candidate is also a finding in its shape. | 2026-11-17 | [REVIEW](mode-review.md), [candidate shape](standard-candidate-findings.md#41-candidate-shape) | In force |
+| STANDARDS-RENAME | Taken by the Cairn summit's guardian, 17 November 2026, about 04:03 GMT, under Kris's direction to take high-confidence calls, from the summit's change 11, gap 1: the plural `standards-<topic>.md` files, 108 across about 50 skills on 14 November, are renamed guild by guild in each guild's review, and the allowance is removed after the last; nothing is renamed ahead of the reviews. Reversible; Kris can overturn it. | 2026-11-17 | [Reference vocabulary](standard-knowledge-islands.md) | In force |
+| REF-5-SOURCE | In-house correction, 17 November 2026, from the Cairn summit's change 11, gap 2: REF-5 cited "SPEC §8", which traced to this skill's July standard, whose section 8 was Progressive disclosure, not to the Agent Skills specification that SPEC labels; it now cites that section's home, [`standard-agent-skills.md` §4.4.2](standard-agent-skills.md#442-progressive-disclosure), where the mode-router shape is set. | 2026-11-17 | [rubric](rubric.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+A later in-house review on **2026-11-17** recorded STANDARDS-RENAME, taken by the Cairn summit's guardian, in [the reference vocabulary](standard-knowledge-islands.md), and corrected REF-5's citation (REF-5-SOURCE).
 
 A later in-house review on **2026-11-17** applied REVIEW-HOME b, which Kris took that day: [REVIEW](mode-review.md) and [the candidate shape](standard-candidate-findings.md#41-candidate-shape) cite `ki-authoring`'s review standard, so that a REVIEW candidate is also a finding in its shape, its Evidence the anchor and its Proposed action what to change, with its kind, whether it blocks and its confidence, and the report saying what was not checked. REVIEW now ends with the review standard's two outcomes: Approve, or Accept with changes, whose work is the accepted candidates routed to the roadmap, so confirming the routes is part of that outcome. EXTRACT's candidates are unchanged, since giving them a finding's kind, blocking and confidence would change what EXTRACT reports, not only its words. No outside source refreshed.
 

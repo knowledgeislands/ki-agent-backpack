@@ -212,7 +212,7 @@ How a skill routes supporting detail into references.
   - _Review prompt:_ Is the execution intent for each script explicit: run it or read it?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-- **REF-5 [J] — many-moded skills route independently invoked procedures** — _Mode-router for many-moded skills._ A skill whose body is dominated by **independently-invoked** modes keeps the shared model + a dispatch table in `SKILL.md` and moves each mode's procedure to its own flat `references/mode-<name>.md`; combined mode files such as `mode-audit-conform.md` are split, and each procedure states its own preconditions. Behaviour anchors and the shared model stay in the body. Not required when modes are few, short, or call-chained. (BP, SPEC §8)
+- **REF-5 [J] — many-moded skills route independently invoked procedures** — _Mode-router for many-moded skills._ A skill whose body is dominated by **independently-invoked** modes keeps the shared model + a dispatch table in `SKILL.md` and moves each mode's procedure to its own flat `references/mode-<name>.md`; combined mode files such as `mode-audit-conform.md` are split, and each procedure states its own preconditions. Behaviour anchors and the shared model stay in the body. Not required when modes are few, short, or call-chained. (BP, standard-agent-skills.md §4.4.2)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ Where this skill has many independently invoked modes, does SKILL.md retain the shared model and dispatch while flat mode files hold their procedures?
   - _Outcomes:_ conforming; gap; exclusion

@@ -72,7 +72,7 @@ const REF_5: RubricItem<ReferencesRubricContext> = {
   code: 'REF-5',
   title: 'many-moded skills route independently invoked procedures',
   description: `_Mode-router for many-moded skills._ A skill whose body is dominated by **independently-invoked** modes keeps the shared model + a dispatch table in \`SKILL.md\` and moves each mode's procedure to its own flat \`references/mode-<name>.md\`; combined mode files such as \`mode-audit-conform.md\` are split, and each procedure states its own preconditions. Behaviour anchors and the shared model stay in the body. Not required when modes are few, short, or call-chained.`,
-  sources: ['BP', 'SPEC §8'],
+  sources: ['BP', 'standard-agent-skills.md §4.4.2'],
   judgment: judgment(
     'Where this skill has many independently invoked modes, does SKILL.md retain the shared model and dispatch while flat mode files hold their procedures?'
   )
