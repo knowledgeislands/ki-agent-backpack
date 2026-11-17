@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T00:28:37Z
+ki-revised: 2026-11-17T03:40:00Z
 ki-status: in force
 ---
 
@@ -123,6 +123,7 @@ A short status line may open the Introduction where it helps a reader, but the f
 9. **No names or dates on agreements:** Git history records who agreed what, and when. A date stays where it is itself content, such as a decision quoted from elsewhere.
 10. **Scope and Gaps do not repeat each other.** Out of scope sets the boundary and may link to a gap; Gaps holds the detail.
 11. **Questions are weighed.** Questions in 7.1 are numbered. Each carries, one line after its recommendation, `Benefit: high · Cascade: contained · Confidence: high (reason) · Waits on: none`; below high confidence, the line adds what would settle it. Each step says what it waits on, if anything, and a step waiting on an unsettled one is not put forward. Benefit and waits on between them say what comes first, so there is no separate priority. An older change takes the line when it is next worked on.
+12. **Steps are the change's plan.** They are a numbered list in the order taken, each saying what is done, where, and what it waits on; there is no separate plan document, and a change's Steps and a Ready work record's steps are the two places a plan is kept. Each step, once carried out, is marked done in place with its date and what carried it, as "Done 16 November, `1c6b348`", and a step begun but not finished says so with its date, as "Begun 14 November".
 
 [Back to contents](#contents)
 
