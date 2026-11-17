@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T03:19:40Z
+ki-revised: 2026-11-17T04:05:00Z
 ki-status: in force
 ---
 
@@ -270,9 +270,9 @@ A sub-package is one strand of a package's work: a package in miniature, with it
 
 ### 4.8 Messages
 
-Messages between work live in the Cairn store, through its MCP; a package keeps no message queue of its own. Who may send, how a coordinator acts on a message and route receipt are `ki-coordination`'s [Messages between work](../../ki-coordination/references/standards-messages.md#messages-between-work).
+The message queue has retired (MSG-RETIRE): a package keeps no queue of its own and the Cairn store keeps no `messages/`. Work for another package goes along the tree as steer or feedback, and the receiving package's holder, or the root's guardian while none holds it, records it in its change documents, Now or Held, under `ki-coordination`'s [Work between packages](../../ki-coordination/references/standards-messages.md#messages-between-work). Sessions may still talk in a meeting, under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md), or through their agent host's own messaging; that conversation carries no authority, and nothing in it binds a package until its holder records it.
 
-Owner feedback on a document the work produced arrives as a message, as Kris set under FEEDBACK-AS-MESSAGE on 31 October 2026: "we can probably drop the feedback idea. We just send a message with it instead". A message carrying the owner's words quotes them word for word, naming the owner as speaker; any later reading of the feedback, what a point means or where it is homed, goes to the change document the point reaches.
+Owner feedback on a document the work produced reaches the package the same way, as Kris set under FEEDBACK-AS-MESSAGE on 31 October 2026: "we can probably drop the feedback idea. We just send a message with it instead". A point carrying the owner's words quotes them word for word, naming the owner as speaker, in the change document the point reaches.
 
 [Back to contents](#contents)
 
