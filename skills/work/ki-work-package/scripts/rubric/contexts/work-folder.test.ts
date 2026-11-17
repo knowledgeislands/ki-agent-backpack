@@ -30,7 +30,7 @@ const statuses = (outcomes: readonly AuditOutcome[]): string[] =>
   outcomes.map((outcome) => (outcome.status === 'VIOLATION' ? (outcome.level ?? 'VIOLATION') : outcome.status))
 
 const index = (changes: readonly string[], state = 'with-worker'): string =>
-  `---\nid: ki.pilot\nstate: ${state}\n---\n# ki.pilot\n\n## Now\n\nNone\n\n## Changes\n\n${
+  `---\nki-id: ki.pilot\nki-state: ${state}\n---\n# ki.pilot\n\n## Now\n\nNone\n\n## Changes\n\n${
     changes.length > 0 ? changes.map((target) => `- [${target}](${target}) - in hand.`).join('\n') : 'None'
   }\n`
 

@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-14T19:27:53Z
-status: in force
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-17T00:36:33Z
+ki-status: in force
 ---
 
 # Work package
@@ -73,7 +73,7 @@ What a work package holds, where it lives, and how it is kept.
 | --- | --- |
 | **Work package** | The folder for one piece of work above a work item: its entry file and its change documents, with sub-packages of the same shape. **Standard:** this one, [4.3](#43-the-shape) |
 | **Entry file** | A package's `_index.md`: purpose, repositories, the state for recovery, and links to its changes and sub-packages. **Standard:** this one, [4.4](#44-the-entry-file) |
-| **State** | Where the work lies now: the state fields, at most five Now lines, Held and the live seats under `workers`, with no history. **Standard:** this one, [4.5](#45-the-state) |
+| **State** | Where the work lies now: the state fields, at most five Now lines, Held and the live seats under `ki-workers`, with no history. **Standard:** this one, [4.5](#45-the-state) |
 | **Sub-package** | One strand of a package's work, with the same shape as a package. **Standard:** this one, [4.7](#47-sub-packages) |
 | **Change document** | A proposal to change standards or how work is done, with its design outline and a planning section. **Standard:** `ki-authoring`'s [change format](../../../keystone/ki-authoring/references/standard-formats-change.md) |
 | **The tidy** | The pass that brings a package to the shape and keeps only what is current. **Standard:** this one, [4.10](#410-the-tidy) |
@@ -104,13 +104,13 @@ This standard is the one specification of the work package, as Kris answered WOR
 
 ### 4.2 Location and identity
 
-A work package lives in the Cairn store, at `work/<territory>/<work id>/`, one per piece of work above a work item; where the store sits on each rig is whatever that rig sets. A work item has no package, because its record is its home. `<work id>` is the work's dotted id under `ki-coordination`'s [Work naming](../../ki-coordination/references/standards-opening.md#work-naming), which defines the id, slug and title: lower-case kebab segments joined by `.`, never a host, an underscore or a runtime session identifier. `<territory>` is the id's first segment. The folder name, the `id` field of `_index.md` and its H1 agree exactly.
+A work package lives in the Cairn store, at `work/<territory>/<work id>/`, one per piece of work above a work item; where the store sits on each rig is whatever that rig sets. A work item has no package, because its record is its home. `<work id>` is the work's dotted id under `ki-coordination`'s [Work naming](../../ki-coordination/references/standards-opening.md#work-naming), which defines the id, slug and title: lower-case kebab segments joined by `.`, never a host, an underscore or a runtime session identifier. `<territory>` is the id's first segment. The folder name, the `ki-id` field of `_index.md` and its H1 agree exactly.
 
 `work/` holds only territory folders and the root's own, `cairn`, and each of them only packages, each a physical directory with its entry file. Symlinked, timestamped, archived and alternate layouts are invalid; the one nesting is a [sub-package](#47-sub-packages). There is no holding area for work awaiting review, as Kris set under WORK-REVIEW-RETIRE on 8 November 2026: live work is a package, and work that is not live is deleted, Git keeping its history.
 
 A package names the repositories it mainly works in under `repositories:` in its entry file, and it may still change others. Records remain in the repositories that own their plans, priority and acceptance; a record's `project` resolves through the Capital's registry without execution authority. A record without `project` goes first to its regular or ad hoc owner, then to State of play only when unresolved.
 
-The packages form one tree, rooted at `cairn.summit`, `level: root`: the owner's seat over the territories, not a territory, and the only package with no `parent` (AGORA-ABOVE, Kris, 11 November 2026). Each territory's top is its summit, `<territory>.summit`, its State of play, which names `cairn.summit` as `parent` and sits directly under it, because each territory needs an independence of its own; the summit replaces the main State of play, `<territory>.sop.main` (KIND-DROP and MASSIF, Kris, 11 November 2026). Every other package, a Project, regular work, ad hoc work or a secondary State of play, is a node beneath the summit: its id is `<territory>.<slug>`, with a further dot segment for a node beneath a node, as `ki.cairn` beneath `ki.summit` and `personal.rig.sol` beneath `personal.rig.summit`, and its level `regular`, or `project` where it carries one Project, the id naming no kind, as Kris took NODE-ID a on 16 November 2026. Each names as `parent` the node of its own territory whose authority it sits under, its summit or a node beneath it; a sub-package names its parent package instead. Any node can split its authority by adding nodes beneath it, and nodes fold back up when they are no longer needed, so a Project sits where the authority it needs is. The tree is the register: a node covers everything beneath it, read from the `parent` links, and work with no package yet belongs on the roadmap, not in any package (COVERS-REGISTER, Kris, 16 November 2026). Check that each parent resolves, stays within its territory and closes no cycle.
+The packages form one tree, rooted at `cairn.summit`, `ki-level: root`: the owner's seat over the territories, not a territory, and the only package with no `ki-parent` (AGORA-ABOVE, Kris, 11 November 2026). Each territory's top is its summit, `<territory>.summit`, its State of play, which names `cairn.summit` as `ki-parent` and sits directly under it, because each territory needs an independence of its own; the summit replaces the main State of play, `<territory>.sop.main` (KIND-DROP and MASSIF, Kris, 11 November 2026). Every other package, a Project, regular work, ad hoc work or a secondary State of play, is a node beneath the summit: its id is `<territory>.<slug>`, with a further dot segment for a node beneath a node, as `ki.cairn` beneath `ki.summit` and `personal.rig.sol` beneath `personal.rig.summit`, and its level `regular`, or `project` where it carries one Project, the id naming no kind, as Kris took NODE-ID a on 16 November 2026. Each names as `ki-parent` the node of its own territory whose authority it sits under, its summit or a node beneath it; a sub-package names its parent package instead. Any node can split its authority by adding nodes beneath it, and nodes fold back up when they are no longer needed, so a Project sits where the authority it needs is. The tree is the register: a node covers everything beneath it, read from the `ki-parent` links, and work with no package yet belongs on the roadmap, not in any package (COVERS-REGISTER, Kris, 16 November 2026). Check that each parent resolves, stays within its territory and closes no cycle.
 
 [Back to contents](#contents)
 
@@ -140,24 +140,24 @@ A package's entry file is `_index.md`, so it sorts first, as Kris set under INDE
 
 ```yaml
 ---
-id: ki.observatory
-parent: ki.summit
-level: project
-project: observatory
-theme: model
-description: >-
+ki-id: ki.observatory
+ki-parent: ki.summit
+ki-level: project
+ki-project: observatory
+ki-theme: model
+ki-description: >-
   Builds and runs the local Observatory in apps-observatory.local, the territory's read-only view of work, runs
   and diagrams. Takes Observatory features, its design system and `ki work status` consumers. Not for timelines
   and calendars (ki.timelines) or the work model itself (ki.ways-of-working).
-worker: agent
-supervisor: owner
-role: warden
-created_at: 2026-10-13T23:50:00Z
-repositories:
+ki-worker: agent
+ki-supervisor: owner
+ki-role: warden
+ki-created_at: 2026-10-13T23:50:00Z
+ki-repositories:
   - apps-observatory.local
-state: with-worker
-since: 2026-10-19T11:25:41Z
-workers:
+ki-state: with-worker
+ki-since: 2026-10-19T11:25:41Z
+ki-workers:
   - role: warden
     tier: managers
     since: 2026-10-19T07:14:00Z
@@ -165,25 +165,25 @@ workers:
 ---
 ```
 
-The definition's field set is closed; the state fields of [4.5](#45-the-state) stand beside it, and nothing else:
+Every field takes the `ki-` prefix, as KI defines them all (KI-PREFIX, Kris, 17 November 2026), under the [format format](../../../keystone/ki-authoring/references/standard-formats-format.md#42-front-matter): the keys inside a `ki-workers` entry or a `ki-hold` keep their names, and a field written without the prefix is read as its `ki-` name and warned on until packages are swept. The definition's field set is closed; the state fields of [4.5](#45-the-state) stand beside it, and nothing else:
 
 | Field | Presence | Value |
 | --- | --- | --- |
-| `id` | required | the work's dotted id, agreeing with its folder, or a sub-package's `<parent id>+<slug>` |
-| `level` | required | `root`, on `cairn.summit` alone, `territory`, `regular` or `project`; a sub-package's is its parent's, or `regular` beneath the root or a summit |
-| `label` | optional | title with an inventory host or category requirement suffix; never a session seat |
-| `project` | required at `project` level, else absent | the Project note's slug, the node's own slug in its id |
-| `theme` | optional | a theme page's slug, or `null` |
-| `parent` | required below the root, absent on the root | `cairn.summit` on a territory's summit, else a node of the same territory, or a sub-package's parent package |
-| `description` | required | the routing description, at most 500 characters |
-| `worker`, `supervisor` | required | each a holder |
-| `role` | required | the package's role, one role from [the role catalogue](standard-roles.md#43-role-catalogue); a package without one is warned on under [the role migration file](standards-roles-migration.md) |
-| `created_at` | optional | UTC time the package was created, no later than `since` |
-| `repositories` | required | a list of the repository names the package mainly works in, empty where it works in none |
+| `ki-id` | required | the work's dotted id, agreeing with its folder, or a sub-package's `<parent id>+<slug>` |
+| `ki-level` | required | `root`, on `cairn.summit` alone, `territory`, `regular` or `project`; a sub-package's is its parent's, or `regular` beneath the root or a summit |
+| `ki-label` | optional | title with an inventory host or category requirement suffix; never a session seat |
+| `ki-project` | required at `project` level, else absent | the Project note's slug, the node's own slug in its id |
+| `ki-theme` | optional | a theme page's slug, or `null` |
+| `ki-parent` | required below the root, absent on the root | `cairn.summit` on a territory's summit, else a node of the same territory, or a sub-package's parent package |
+| `ki-description` | required | the routing description, at most 500 characters |
+| `ki-worker`, `ki-supervisor` | required | each a holder |
+| `ki-role` | required | the package's role, one role from [the role catalogue](standard-roles.md#43-role-catalogue); a package without one is warned on under [the role migration file](standards-roles-migration.md) |
+| `ki-created_at` | optional | UTC time the package was created, no later than `ki-since` |
+| `ki-repositories` | required | a list of the repository names the package mainly works in, empty where it works in none |
 
-Territory work is the territory's summit, id `<territory>.summit`, its State of play; `summit` is never the second and last segment at another level, and `level: root` belongs to `cairn.summit` alone. A sub-package takes its parent's level, except that one beneath the root or a territory's summit takes `level: regular`, as Kris took SUMMIT-SUB-PACKAGES b on 16 November 2026. The level is the one authority for the kind of work: not the title, a native session name, the folder name, the repository declaration, an output style, a hook line or a cached copy.
+Territory work is the territory's summit, id `<territory>.summit`, its State of play; `summit` is never the second and last segment at another level, and `ki-level: root` belongs to `cairn.summit` alone. A sub-package takes its parent's level, except that one beneath the root or a territory's summit takes `ki-level: regular`, as Kris took SUMMIT-SUB-PACKAGES b on 16 November 2026. The level is the one authority for the kind of work: not the title, a native session name, the folder name, the repository declaration, an output style, a hook line or a cached copy.
 
-The `description` is written for routing, in a skill description's voice, as Kris answered DESCRIPTION-SHAPE: third person, what the work does, then "Takes ..." naming the kinds of unit it accepts, then "Not for ..." naming the neighbouring works by id, one to three sentences, tested against a handful of ambiguous routing examples. There is no `active` or `accepts` field: every state except `finished` can receive, and a work winding down says "Not taking new units" in its description.
+The `ki-description` is written for routing, in a skill description's voice, as Kris answered DESCRIPTION-SHAPE: third person, what the work does, then "Takes ..." naming the kinds of unit it accepts, then "Not for ..." naming the neighbouring works by id, one to three sentences, tested against a handful of ambiguous routing examples. There is no `active` or `accepts` field: every state except `finished` can receive, and a work winding down says "Not taking new units" in its description.
 
 The body has exactly this heading sequence, with an optional one-line `## Values` after Scope:
 
@@ -215,26 +215,26 @@ Each section says something, if only `None`. Nothing else belongs in the entry f
 
 ### 4.5 The state
 
-The state lives in `_index.md`: its state fields, at most five Now lines, Held and `workers`, with no history. It is rewritten in place at every move, so the package's Git log is the history of the work's moves.
+The state lives in `_index.md`: its state fields, at most five Now lines, Held and `ki-workers`, with no history. It is rewritten in place at every move, so the package's Git log is the history of the work's moves.
 
 | Field | Presence | Value |
 | --- | --- | --- |
-| `state` | required | `with-worker`, `handoff-to-supervisor`, `with-supervisor`, `handoff-to-worker`, `handoff`, `on-hold` or `finished` |
-| `target` | required in `handoff`, else absent | the holder the work is in transit to |
-| `hold` | required in `on-hold`, else absent | a mapping of `reason`, `paused`, or `more-expected` for Snoozing until `ki` accepts `snoozing`, `release`, the condition in words, and an optional `set_by`, `owner` or `worker`, the worker setting only the idle `more-expected` hold under `ki-coordination`'s [Putting work on hold](../../ki-coordination/references/standards-holds.md#putting-work-on-hold); absent reads `owner` |
-| `blocking` | optional | `true` only in `handoff-to-supervisor`, when the worker sent back with a blocking query |
-| `since` | required | UTC time of the last move |
-| `received` | optional | UTC time of the supervisor's receive, or `null` |
-| `beat` | optional | UTC time of the last heartbeat while with a worker, or `null` |
-| `mark` | optional | UTC time of the last mark |
-| `method_read` | optional | the short ki-agent-backpack revision whose `ki-coordination` and `ki-work-package` guidance the worker last read, or `null` |
-| `listening_enabled` | optional | `true` when the thread has the listening capability, by the owner's express word or an agreed role; absent reads `false` |
-| `listening_status` | required while `listening_enabled` is `true`, else absent | `on` while the inbox watcher is armed, `off` otherwise |
-| `syncing_enabled` | optional | `true` when the thread is its host's sync thread; absent reads `false`; `true` requires `listening_enabled: true` |
-| `syncing_status` | required while `syncing_enabled` is `true`, else absent | `on` while host sync runs, `off` otherwise |
-| `workers` | optional | the package's live seats, each its binding: a mapping of `role` and `tier` and at most `id`, the holding actor's typed id `actor:<id>` (ACTOR-KEY a), an actor with no name taking its seat's id, `<package>@<role>` (SEAT-AT a), `since` and `status`, under [the role standard's fields](standard-roles.md#45-role-fields), presence staying in the actor's roster file; absent or empty when no seat is live, since a node may have no worker |
+| `ki-state` | required | `with-worker`, `handoff-to-supervisor`, `with-supervisor`, `handoff-to-worker`, `handoff`, `on-hold` or `finished` |
+| `ki-target` | required in `handoff`, else absent | the holder the work is in transit to |
+| `ki-hold` | required in `on-hold`, else absent | a mapping of `reason`, `paused`, or `more-expected` for Snoozing until `ki` accepts `snoozing`, `release`, the condition in words, and an optional `set_by`, `owner` or `worker`, the worker setting only the idle `more-expected` hold under `ki-coordination`'s [Putting work on hold](../../ki-coordination/references/standards-holds.md#putting-work-on-hold); absent reads `owner` |
+| `ki-blocking` | optional | `true` only in `handoff-to-supervisor`, when the worker sent back with a blocking query |
+| `ki-since` | required | UTC time of the last move |
+| `ki-received` | optional | UTC time of the supervisor's receive, or `null` |
+| `ki-beat` | optional | UTC time of the last heartbeat while with a worker, or `null` |
+| `ki-mark` | optional | UTC time of the last mark |
+| `ki-method_read` | optional | the short ki-agent-backpack revision whose `ki-coordination` and `ki-work-package` guidance the worker last read, or `null` |
+| `ki-listening_enabled` | optional | `true` when the thread has the listening capability, by the owner's express word or an agreed role; absent reads `false` |
+| `ki-listening_status` | required while `ki-listening_enabled` is `true`, else absent | `on` while the inbox watcher is armed, `off` otherwise |
+| `ki-syncing_enabled` | optional | `true` when the thread is its host's sync thread; absent reads `false`; `true` requires `ki-listening_enabled: true` |
+| `ki-syncing_status` | required while `ki-syncing_enabled` is `true`, else absent | `on` while host sync runs, `off` otherwise |
+| `ki-workers` | optional | the package's live seats, each its binding: a mapping of `role` and `tier` and at most `id`, the holding actor's typed id `actor:<id>` (ACTOR-KEY a), an actor with no name taking its seat's id, `<package>@<role>` (SEAT-AT a), `since` and `status`, under [the role standard's fields](standard-roles.md#45-role-fields), presence staying in the actor's roster file; absent or empty when no seat is live, since a node may have no worker |
 
-The holder the work lies with now and its role are derived from `state`, `target`, `worker` and `supervisor`, never stored. Timestamps use UTC RFC 3339 second precision; quote `label` in YAML where it contains `>`. There is no `title` field: a package's id and its place in the tree name it, and a view works out its words from them (TITLE-DROP and TITLE-WORDS, Kris, 13 November 2026). The four capability fields record the thread capabilities under `ki-coordination`'s [Thread capabilities](../../ki-coordination/references/standards-listening.md#thread-capabilities), as Kris set under FOOTER-CAPABILITY-STATUS-2, relayed on 1 November 2026: each thread carries `listening_enabled`, `listening_status`, `syncing_enabled` and `syncing_status`, and if `syncing_enabled` is true, `listening_enabled` must be true, because a syncing thread is always a listening thread. `_enabled` says whether the thread has the capability; `_status` says whether it is on now, and the banner's mode lines read both. These are the fields the Work Process note's Observatory fields read through `ki work status`. `method_read` replaces the body line a coordinator once wrote under its refresh rule; setting it is the confirmation that a `REFRESH` message has been acted on, under `ki-coordination`'s [Refreshing this guidance](../../ki-coordination/references/standards-coordination.md#refreshing-this-guidance).
+The holder the work lies with now and its role are derived from `ki-state`, `ki-target`, `ki-worker` and `ki-supervisor`, never stored. Timestamps use UTC RFC 3339 second precision; quote `ki-label` in YAML where it contains `>`. There is no `title` field: a package's id and its place in the tree name it, and a view works out its words from them (TITLE-DROP and TITLE-WORDS, Kris, 13 November 2026). The four capability fields record the thread capabilities under `ki-coordination`'s [Thread capabilities](../../ki-coordination/references/standards-listening.md#thread-capabilities), as Kris set under FOOTER-CAPABILITY-STATUS-2, relayed on 1 November 2026: each thread carries `ki-listening_enabled`, `ki-listening_status`, `ki-syncing_enabled` and `ki-syncing_status`, and if `ki-syncing_enabled` is true, `ki-listening_enabled` must be true, because a syncing thread is always a listening thread. `_enabled` says whether the thread has the capability; `_status` says whether it is on now, and the banner's mode lines read both. These are the fields the Work Process note's Observatory fields read through `ki work status`. `ki-method_read` replaces the body line a coordinator once wrote under its refresh rule; setting it is the confirmation that a `REFRESH` message has been acted on, under `ki-coordination`'s [Refreshing this guidance](../../ki-coordination/references/standards-coordination.md#refreshing-this-guidance).
 
 - **Now** - at most five lines: what is running, what lies with whom, since when. It holds the present only.
 - **Held** - work waiting on a named decision or event, one line each with its release condition. Deferred deliverable work becomes an unadopted triage record in its home repository under `ki-work next`'s [capture rule](../../../keystone/ki-work/references/standards-next-work.md#capture-substantive-prospective-work), as Kris took HELD-VS-RECORD a) on 7 November 2026, and ideas go to the Project note's Notes or to a record through `ki-work next`; neither stays here.
@@ -257,8 +257,8 @@ History stays out, as Kris answered STATE-HISTORY: the recap since the mark read
 
 A sub-package is one strand of a package's work: a package in miniature, with its own `_index.md` and one or more change documents, in a folder of the package named by a lower-case kebab slug. A package with one strand needs none.
 
-- **Identity:** its id is `<parent id>+<slug>`, as `hnr.summit+website` in `work/hnr/hnr.summit/website/`, under `ki-coordination`'s [Work naming](../../ki-coordination/references/standards-opening.md#work-naming): `.` builds a package's name and `+` adds a strand. Its folder is the slug, and its `id` and H1 agree with the parent's id and that slug. The earlier `<parent id>.<slug>` is read under [the role migration file](standards-roles-migration.md).
-- **Form:** the package's shape, its `level` the parent's, except under the root or a territory's summit, where a sub-package takes `level: regular`, the one exception, as Kris took SUMMIT-SUB-PACKAGES b on 16 November 2026. Its `parent` names the parent package, so it sits in the tree beneath its parent.
+- **Identity:** its id is `<parent id>+<slug>`, as `hnr.summit+website` in `work/hnr/hnr.summit/website/`, under `ki-coordination`'s [Work naming](../../ki-coordination/references/standards-opening.md#work-naming): `.` builds a package's name and `+` adds a strand. Its folder is the slug, and its `ki-id` and H1 agree with the parent's id and that slug. The earlier `<parent id>.<slug>` is read under [the role migration file](standards-roles-migration.md).
+- **Form:** the package's shape, its `ki-level` the parent's, except under the root or a territory's summit, where a sub-package takes `ki-level: regular`, the one exception, as Kris took SUMMIT-SUB-PACKAGES b on 16 November 2026. Its `ki-parent` names the parent package, so it sits in the tree beneath its parent.
 - **Sub-package or node:** a strand the parent's own seat works is a sub-package; a strand that needs a seat of its own is a node of its own beneath, `<territory>.<slug>`, with its own package. Most territories run their work through the summit's package, with sub-packages where a strand needs its own.
 - **Links:** the parent's Changes section links it.
 
@@ -290,7 +290,7 @@ Every writer is named, and every other party only reads. This standing contract 
 
 A new package is seeded by its parent node's keyholder, usually the guardian, or by any session the owner points at it on the owner's word, which holds the new package's keys while it seeds it: it writes `_index.md` on hold, with the package's first step as the top line of its Now, and a first change document only if there is a change to carry. Whatever must be done first on pick-up stays the top line of Now, as Kris set under FIRST-STEP-HOME a on 15 November 2026.
 
-The `description` in `_index.md` is written at seeding by whoever seeds the package, and afterwards by the work's steward; State of play proposes a change to it to the keyholder. Readers, such as `ki work status`, the Observatory and the rubrics, change nothing; a change of shape names them as consumers.
+The `ki-description` in `_index.md` is written at seeding by whoever seeds the package, and afterwards by the work's steward; State of play proposes a change to it to the keyholder. Readers, such as `ki work status`, the Observatory and the rubrics, change nothing; a change of shape names them as consumers.
 
 A Project package has one explicitly assigned coordinating work, either its covering State of play or its own Project coordination work. The assignment is committed when the package is created or adopted and names work, never a host, session or `self`. It is distinct from the holder derived from state, worker and supervisor: assignment neither receives work nor releases a hold. Where the assignment is recorded is not yet set (STEWARD-FIELD); this rule adds no field, changes no holder field and does not select a storage encoding.
 
@@ -310,8 +310,8 @@ The pass each package receives to reach the shape, and to keep it:
 2. **Consolidate.** Keep only what is current. Delete anything whose outcome has a lasting home: a commit, a record, a standard or `AGENTS.md`. Git keeps the history.
 3. **Sub-packages.** Each strand of work becomes a sub-package with its own `_index.md` and change documents, or its changes come up to the top where the package has one strand. Retire one that has ended; merge ones that overlap.
 4. **No empty folders.**
-5. **Identity.** `_index.md`'s `id`, `level`, `role` and H1 match the package's current work id and the role catalogue.
-6. **The state is now.** At most five Now lines, waiting items under Held, live seats under `workers`, no history.
+5. **Identity.** `_index.md`'s `ki-id`, `ki-level`, `ki-role` and H1 match the package's current work id and the role catalogue.
+6. **The state is now.** At most five Now lines, waiting items under Held, live seats under `ki-workers`, no history.
 7. **Every open point is in a change document's Open section,** in full, and nothing already answered.
 8. **Every rule has a home.** A decision that changes how work is done goes into the standard that owns the practice or, if local to one repository, that repository's `AGENTS.md`.
 9. **The roster is current.** The package is registered under its current id, with nothing left under an old id.
@@ -332,7 +332,7 @@ Each tidy ends with a check against the work-package rubric and a short report: 
 A native client session, a Claude Code or Codex session or a Zed tab, is seated in one package and may act in other packages that its coordinating work explicitly stewards. The package identifies the work and its level; the session is an actor, never the unit of work or evidence of stewardship. A local binding establishes identity only, not liveness or write authority.
 
 - **Key:** `<repository name>/<work id>`, such as `ki-principal/ki.ways-of-working`. It is stable across hosts, clients and sessions.
-- **Authority:** the entry file's `id` identifies the work and its `level` describes its type. Coordination is an explicitly owner-opened session role on any valid package under `ki-coordination`, not a consequence of level, id, native name or binding. Its opener checks scope, opening authority and coordination capability, preserving any specific owner-approved exception. The native session name derives from the work label; it never decides work identity, level or stewardship.
+- **Authority:** the entry file's `ki-id` identifies the work and its `ki-level` describes its type. Coordination is an explicitly owner-opened session role on any valid package under `ki-coordination`, not a consequence of level, id, native name or binding. Its opener checks scope, opening authority and coordination capability, preserving any specific owner-approved exception. The native session name derives from the work label; it never decides work identity, level or stewardship.
 - **Binding:** the native session identifiers for a piece of work live only in a machine-local runtime file, `~/.local/state/ki/threads/<repository>/<slug>.json`, as Work naming names it. The binding is never committed, never copied into the package, which keeps no runtime identifier under [4.16](#416-prohibited-payloads-and-claims), and never moved between hosts: each host rebuilds its own.
 - **Supply:** identity reaches a session through one of three channels, in this order: the agent host's environment and session name, for a session an agent host or a host tool starts; the `SessionStart` hook on startup, resume and compact, where the binding exists; and the pasted opener or thread identity, which names the id and label, where no hook runs.
 - **Drift:** a mismatch between the binding, the native name and the entry file is reported in one line and never repaired by the session that finds it; the owner renames by hand, or the work's next update corrects the package.
@@ -381,7 +381,7 @@ The title and label never take part in resolution. Do not search archived or nes
 
 ### 4.15 Removal lifecycle
 
-Finished work keeps its package with `state: finished` until the mark that closes it, when the package is deleted in one commit with Git keeping it, by the finishing coordinator or, where the package outlives the finishing thread, by territory work at its own mark, under [4.10](#410-the-tidy) and `ki-coordination`'s [Finishing Project work](../../ki-coordination/references/standards-mark.md#finishing-project-work). Removal otherwise requires explicit user direction; an agent must not infer completion from record content, a quiet session, or a Stop event. First confirm durable facts reached their proper owners, then delete the exact package.
+Finished work keeps its package with `ki-state: finished` until the mark that closes it, when the package is deleted in one commit with Git keeping it, by the finishing coordinator or, where the package outlives the finishing thread, by territory work at its own mark, under [4.10](#410-the-tidy) and `ki-coordination`'s [Finishing Project work](../../ki-coordination/references/standards-mark.md#finishing-project-work). Removal otherwise requires explicit user direction; an agent must not infer completion from record content, a quiet session, or a Stop event. First confirm durable facts reached their proper owners, then delete the exact package.
 
 No retired copy is kept. Git is the recovery mechanism, so `_RETIRED`, archive, timestamped-copy, and other nested layouts are invalid.
 

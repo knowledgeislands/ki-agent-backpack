@@ -35,6 +35,8 @@ type Entry = {
   readonly drop?: readonly string[]
   readonly body?: string
   readonly changes?: readonly string[]
+  /** Write the fields without the `ki-` prefix, as packages written before KI-PREFIX do. */
+  readonly bare?: boolean
 }
 
 const BASE_FIELDS = (id: string): Record<string, string> => ({
@@ -51,16 +53,22 @@ const BASE_FIELDS = (id: string): Record<string, string> => ({
   since: 'since: 2026-11-09T10:00:00Z'
 })
 
-/** An entry file: the base fields less `drop`, plus `fields`, then the standard body. */
-const entry = ({ id, fields = [], drop = [], body, changes = ['10-pilot.change.md'] }: Entry): string => {
+/** A field line with its top-level key given the `ki-` prefix, as every entry file field takes (KI-PREFIX a). */
+const prefixed = (line: string): string => line.replace(/^(?!ki-)([a-z_]+):/, 'ki-$1:')
+
+/**
+ * An entry file: the base fields less `drop`, plus `fields`, each top-level key given the `ki-` prefix unless `bare`,
+ * then the standard body.
+ */
+const entry = ({ id, fields = [], drop = [], body, changes = ['10-pilot.change.md'], bare = false }: Entry): string => {
   const base = Object.entries(BASE_FIELDS(id))
     .filter(([key]) => !drop.includes(key))
-    .map(([, line]) => line)
+    .map(([, line]) => (bare ? line : prefixed(line)))
   const links = changes.length > 0 ? changes.map((target) => `- [${target}](${target}) - in hand.`).join('\n') : 'None'
   return [
     '---',
     ...base,
-    ...fields,
+    ...fields.map((line) => (bare ? line : prefixed(line))),
     '---',
     '',
     body ??
@@ -160,6 +168,21 @@ describe('a store in the standard shape', () => {
       entry({ id: 'ki.pilot' }).replace('## Now', '## Values\n\nThe shared values.\n\n## Now')
     )
     expect(statuses(run(RECORD, 'RECORD-2', context(root)))).toEqual(['PASS'])
+  })
+
+  test('fields written without the ki- prefix are read as their ki- names and warned on, never failed', () => {
+    const root = store()
+    write(root, 'work/ki/ki.pilot/_index.md', entry({ id: 'ki.pilot', bare: true }))
+    const outcomes = run(RECORD, 'RECORD-2', context(root))
+    expect(statuses(outcomes)).toEqual(['WARN'])
+    expect(messages(outcomes)).toContain('writes id, parent, level')
+    expect(messages(outcomes)).toContain('read as ki-id, ki-parent, ki-level')
+    write(
+      root,
+      'work/ki/ki.pilot/_index.md',
+      entry({ id: 'ki.pilot', bare: true, drop: ['since'], fields: ['ki-since: 2026-11-09T10:00:00Z'] })
+    )
+    expect(messages(run(RECORD, 'RECORD-2', context(root)))).not.toContain('since')
   })
 
   test('a repository without `work/` is not applicable, and an undeclared one is never read', () => {
@@ -289,13 +312,13 @@ describe('RECORD-1 identity', () => {
 
 describe('RECORD-2 schema', () => {
   const failing: readonly [string, Partial<Entry>, string][] = [
-    ['a missing repositories', { drop: ['repositories'] }, 'missing: repositories'],
+    ['a missing repositories', { drop: ['repositories'] }, 'missing: ki-repositories'],
     [
       'repositories that is not a list',
       { drop: ['repositories'], fields: ['repositories: harness'] },
       'repositories must be a list'
     ],
-    ['a retired state.md field kept elsewhere', { fields: ['focus: pilot'] }, 'outside it: focus'],
+    ['a retired state.md field kept elsewhere', { fields: ['focus: pilot'] }, 'outside it: ki-focus'],
     ['an unknown state', { drop: ['state'], fields: ['state: done'] }, 'state must be one of'],
     ['a target outside handoff', { fields: ['target: owner'] }, 'target names a holder'],
     ['a hold outside on-hold', { fields: ['hold:\n  reason: paused\n  release: later'] }, 'hold carries reason'],

@@ -97,7 +97,7 @@ A report written before 18 October keeps its reply block, and anything that read
 
 ## Older summary words
 
-For the tolerance window the older words stay readable: `recap` is read as `summary`, `recap and mark` as `mark`, and `full summary` or `summary in full` as a `summary since` the work's `created_at`. This adjusts the verbs under [Report forms](standards-report-forms.md#report-forms); delete it when [the tolerance window](#thread-model) closes.
+For the tolerance window the older words stay readable: `recap` is read as `summary`, `recap and mark` as `ki-mark`, and `full summary` or `summary in full` as a `summary since` the work's `ki-created_at`. This adjusts the verbs under [Report forms](standards-report-forms.md#report-forms); delete it when [the tolerance window](#thread-model) closes.
 
 ## Pre-SUMMARY-MODEL summaries
 
@@ -136,7 +136,7 @@ Adjusts [Work naming](standards-opening.md#work-naming). An old-shape checkpoint
 
 ## Legacy work ids
 
-Adjusts [Levels and forms](standards-opening.md#levels-and-forms) and [Work naming](standards-opening.md#work-naming). An id whose second segment names a kind, `sop`, `prj`, `reg` or its legacy form `regular`, is read as the node its package's `level` gives, since ids carry no kind (KIND-DROP, NODE-ID): `<territory>.sop.<name>`, `<territory>.prj.<project>`, `<territory>.reg.main`, `<territory>.reg.<topic>`, and legacy `<territory>`, `<territory>.regular`, `<territory>.regular.main` and `<territory>.regular.<topic>` remain readable indefinitely, including existing HNR inputs and the packages still parked in the Cairn store's `work-legacy/`; a package placed in `work/` takes its `<territory>.<slug>` id. This naming transition changes no work level, state, mark, immutable native/run identity or history. Derive old/new resolution from actual valid definitions; two physical definitions for one work are ambiguous, never two independently opened packages. The text sets no deletion condition: the legacy ids are readable indefinitely.
+Adjusts [Levels and forms](standards-opening.md#levels-and-forms) and [Work naming](standards-opening.md#work-naming). An id whose second segment names a kind, `sop`, `prj`, `reg` or its legacy form `regular`, is read as the node its package's `ki-level` gives, since ids carry no kind (KIND-DROP, NODE-ID): `<territory>.sop.<name>`, `<territory>.prj.<project>`, `<territory>.reg.main`, `<territory>.reg.<topic>`, and legacy `<territory>`, `<territory>.regular`, `<territory>.regular.main` and `<territory>.regular.<topic>` remain readable indefinitely, including existing HNR inputs and the packages still parked in the Cairn store's `work-legacy/`; a package placed in `work/` takes its `<territory>.<slug>` id. This naming transition changes no work level, state, mark, immutable native/run identity or history. Derive old/new resolution from actual valid definitions; two physical definitions for one work are ambiguous, never two independently opened packages. The text sets no deletion condition: the legacy ids are readable indefinitely.
 
 ## Labels without ids
 

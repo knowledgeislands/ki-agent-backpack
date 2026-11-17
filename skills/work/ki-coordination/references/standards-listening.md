@@ -13,14 +13,14 @@ This file holds the inbox watch, the two session capabilities and host sync. It 
   - Polling is the baseline. AHP may later replace the polling, and only the polling, for an agent host the `ki-agentic-radar` radar shows supports it, under [The Cairn Beacon](standards-messages.md#the-cairn-beacon).
 - **At a wake:** speak only about what landed. On a new line, act on it under [Messages between work](standards-messages.md#messages-between-work), commit, re-arm and tell the owner in one timed line what was done. On a finished run, receive it in one timed line and re-arm.
 - **One loop:** a coordinator never holds more than one loop. After a compaction or a recovery it checks whether one is armed before arming another.
-- **Session-bound:** the watcher lives and dies with the session. It is a session wake, not a scheduled agent, and promises nothing once the session closes. A runtime with no proven way for the watcher's exit to wake the session checks the inbox only at owner messages and run events, with `listening_status: off`.
+- **Session-bound:** the watcher lives and dies with the session. It is a session wake, not a scheduled agent, and promises nothing once the session closes. A runtime with no proven way for the watcher's exit to wake the session checks the inbox only at owner messages and run events, with `ki-listening_status: off`.
 - **Open questions:** a shared shell command for the watcher, and each runtime's wake, remain with the owner.
-- **Watcher status:** `listening_status` is `on` while the watcher is armed and `off` otherwise, which is the default:
+- **Watcher status:** `ki-listening_status` is `on` while the watcher is armed and `off` otherwise, which is the default:
   - while draining, from `pause`, `done for now` or `drain` until the drain ends, because a drain disarms the watcher;
   - On hold and paused;
   - after "stop the wake" or "stop listening";
   - where the runtime cannot be woken;
-  - where the owner has not asked the session to listen and it is no host sync thread, `listening_enabled: false`.
+  - where the owner has not asked the session to listen and it is no host sync thread, `ki-listening_enabled: false`.
 
   Work [Snoozing](standards-holds.md#putting-work-on-hold), the idle hold included, keeps the watcher armed. The watcher shows no line in the banner: the [banner's listening line](standards-report-forms.md#banner-detail) names only the meetings the session is in, under LISTEN-LINE.
 
@@ -34,10 +34,10 @@ A coordinator may hold two capabilities. Each is switched on only by the owner's
 
 | Field | Values | Set |
 | --- | --- | --- |
-| `listening_enabled`, `syncing_enabled` | `true` or `false` | when the owner's word or the agreed role grants the capability; cleared only when the owner withdraws it |
-| `listening_status`, `syncing_status` | `on` or `off` | each `_status` at every arm, stop, drain, hold and resume |
+| `ki-listening_enabled`, `ki-syncing_enabled` | `true` or `false` | when the owner's word or the agreed role grants the capability; cleared only when the owner withdraws it |
+| `ki-listening_status`, `ki-syncing_status` | `on` or `off` | each `_status` at every arm, stop, drain, hold and resume |
 
-- `syncing_enabled: true` requires `listening_enabled: true`: a syncing session always listens.
+- `ki-syncing_enabled: true` requires `ki-listening_enabled: true`: a syncing session always listens.
 - "stop the wake" or "stop listening" sets the status to `off` and keeps the capability.
 - The close-out at [Finished](standards-mark.md#finishing-project-work) clears both `_enabled` fields.
 
@@ -53,6 +53,6 @@ It mentions a tidy only when something needs the owner. It never edits another p
 
 **Host sync.** The coordinator is its Mac's sync thread. It repeats each pass until the Mac and GitHub are clean and level, or something needs judgement, and only then waits for its next slot. A quiet pass says nothing, a pass that changed something says at most one short line, and only a matter for judgement or the owner gets a full report. Host sync implies listening.
 
-Neither capability has a banner line: the listening line names only the meetings the session is in, under LISTEN-LINE. Host sync has no banner line either, because Cairn keeps the machines in sync through each machine's household package; the `syncing_enabled` and `syncing_status` fields stay in `_index.md`'s state fields.
+Neither capability has a banner line: the listening line names only the meetings the session is in, under LISTEN-LINE. Host sync has no banner line either, because Cairn keeps the machines in sync through each machine's household package; the `ki-syncing_enabled` and `ki-syncing_status` fields stay in `_index.md`'s state fields.
 
 Sources: THREAD-CAPABILITIES, FOOTER-CAPABILITY-STATUS-2, LISTEN-OPT-IN, LISTEN-TENDS-PACKAGE, SYNC-UNTIL-CLEAN, SYNC-QUIET, SYNC-LINE-OFF, REPLY-FORMAT and LISTEN-LINE in [the decision register](sources.md#decision-register).

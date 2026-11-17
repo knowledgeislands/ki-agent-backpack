@@ -195,10 +195,12 @@ export const unlinkedChanges = (folder: string): readonly string[] => {
   ]
 }
 
+// A field of the entry file, read under its `ki-` name or, until packages are swept, its older bare name (KI-PREFIX a).
 const frontField = (path: string, field: string): string | undefined => {
   if (!existsSync(path)) return undefined
   const head = /^---\r?\n([\s\S]*?)\r?\n---/.exec(readFileSync(path, 'utf8'))?.[1] ?? ''
-  const value = new RegExp(`^${field}:[ \\t]*['"]?([^'"\\n]*?)['"]?[ \\t]*$`, 'm').exec(head)?.[1]
+  const read = (name: string) => new RegExp(`^${name}:[ \\t]*['"]?([^'"\\n]*?)['"]?[ \\t]*$`, 'm').exec(head)?.[1]
+  const value = read(`ki-${field}`) ?? read(field)
   return value === undefined || value === '' ? undefined : value
 }
 

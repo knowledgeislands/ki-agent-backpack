@@ -154,7 +154,10 @@ const SESSION_LOCATOR =
 
 type ParsedRecord = {
   readonly path: string
+  /** The front matter, each `ki-` field under its name without the prefix, so the checks below read one name. */
   readonly fields: Readonly<Record<string, unknown>> | null
+  /** The fields written without the `ki-` prefix, read as their `ki-` names and warned on (KI-PREFIX a). */
+  readonly unprefixed: readonly string[]
   readonly body: string
 }
 
@@ -192,23 +195,47 @@ const one = (outcomes: readonly AuditOutcome[], pass: string, absent?: string): 
   return outcomes.length > 0 ? outcomes : [{ status: 'PASS', message: pass }]
 }
 
+/** The prefix every field of the entry file takes, as KI defines them all (KI-PREFIX a, Kris, 17 November 2026). */
+const KI_PREFIX = 'ki-'
+
+/**
+ * The entry file's fields under their names without the `ki-` prefix, and those written without it, which are read the
+ * same while packages are swept; where a field is written both ways, the `ki-` one stands.
+ */
+const unprefix = (
+  raw: Readonly<Record<string, unknown>> | null
+): { fields: Readonly<Record<string, unknown>> | null; unprefixed: readonly string[] } => {
+  if (!raw) return { fields: raw, unprefixed: [] }
+  const fields: Record<string, unknown> = {}
+  const unprefixed: string[] = []
+  for (const [key, value] of Object.entries(raw)) {
+    if (key.startsWith(KI_PREFIX)) fields[key.slice(KI_PREFIX.length)] = value
+    else if (!(`${KI_PREFIX}${key}` in raw)) {
+      fields[key] = value
+      unprefixed.push(key)
+    }
+  }
+  return { fields, unprefixed }
+}
+
 const parseRecord = (path: string, root: string): ParsedRecord => {
   const text = readFileSync(path, 'utf8')
   const lines = text.split(/\r?\n/)
   let fields: Readonly<Record<string, unknown>> | null = null
+  let unprefixed: readonly string[] = []
   let body = text
   if (lines[0]?.trim() === '---') {
     const closing = lines.findIndex((line, index) => index > 0 && line.trim() === '---')
     if (closing > 0) {
       try {
-        fields = table(Bun.YAML.parse(lines.slice(1, closing).join('\n')))
+        ;({ fields, unprefixed } = unprefix(table(Bun.YAML.parse(lines.slice(1, closing).join('\n')))))
       } catch {
         fields = null
       }
       body = lines.slice(closing + 1).join('\n')
     }
   }
-  return { path: relative(root, path), fields, body }
+  return { path: relative(root, path), fields, unprefixed, body }
 }
 
 const validTimestamp = (value: unknown): value is string =>
@@ -581,12 +608,21 @@ const packageEvidence = (
     return
   }
   const keys = Object.keys(fields)
+  const written = (field: string) => (entry.unprefixed.includes(field) ? field : `${KI_PREFIX}${field}`)
   const missing = ENTRY_REQUIRED.filter((field) => !keys.includes(field))
   const unknown = keys.filter((field) => !ENTRY_FIELDS.has(field) && !ENTRY_RETIRED_FIELDS.has(field))
   if (missing.length > 0 || unknown.length > 0)
     fail(
-      `${ENTRY_FILE} front matter must use only its closed field set${missing.length > 0 ? `; missing: ${missing.join(', ')}` : ''}${unknown.length > 0 ? `; outside it: ${unknown.join(', ')}` : ''}`
+      `${ENTRY_FILE} front matter must use only its closed field set${missing.length > 0 ? `; missing: ${missing.map((field) => `${KI_PREFIX}${field}`).join(', ')}` : ''}${unknown.length > 0 ? `; outside it: ${unknown.map(written).join(', ')}` : ''}`
     )
+  const bare = entry.unprefixed.filter((field) => ENTRY_FIELDS.has(field) || ENTRY_RETIRED_FIELDS.has(field))
+  if (bare.length > 0)
+    evidence.schema.push({
+      status: 'VIOLATION',
+      level: 'WARN',
+      message: `tolerance: ${ENTRY_FILE} writes ${bare.join(', ')} without the \`${KI_PREFIX}\` prefix, read as ${bare.map((field) => `${KI_PREFIX}${field}`).join(', ')} until packages are swept`,
+      subject: entry.path
+    })
   const retired = keys.filter((field) => ENTRY_RETIRED_FIELDS.has(field))
   if (retired.length > 0)
     evidence.schema.push(

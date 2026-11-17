@@ -4,7 +4,7 @@ This file holds the mark, parking tangents, pruning the package, closing out Orc
 
 ## The mark
 
-The mark is only a timestamp, `mark: <UTC timestamp>` in `_index.md`'s state fields, and the default start of the next [Summary](standards-report-forms.md#the-summary). Each package has one mark; a new mark replaces it, and Git keeps the earlier ones. The mark bounds the logbook, record transitions, background-agent reports and the change documents' entries, which carry their own timestamps.
+The mark is only a timestamp, `ki-mark: <UTC timestamp>` in `_index.md`'s state fields, and the default start of the next [Summary](standards-report-forms.md#the-summary). Each package has one mark; a new mark replaces it, and Git keeps the earlier ones. The mark bounds the logbook, record transitions, background-agent reports and the change documents' entries, which carry their own timestamps.
 
 - **Who moves it:** only the owner, with `mark`, `mark only` or `mark, status only`, and a hold. A Summary or a Status never moves it.
 - **What follows it:** `mark` gives the Summary since the previous mark in the same reply, with every open query in full, and so does the mark that closes a query set. `mark only` gives the Position, the banner after a line or two, `mark, status only` gives the [Status](standards-report-forms.md#report-forms), and a hold's mark gives the [Stop](standards-holds.md#putting-work-on-hold).
@@ -16,7 +16,7 @@ The mark is only a timestamp, `mark: <UTC timestamp>` in `_index.md`'s state fie
   5. commit the package and confirm in one line.
 - **Open items carry forward:** a mark resets only the window of `## Summary`. Open and parked queries in the change documents, open records in the work's scope, running and queued background agents and parked tangents stay on the status table and in `## Queries`; a mark never drops, closes or hides them.
 - **History:** comes from Git and run reports, never from the state. `git log -- work/<territory>/<id>/_index.md` in the Cairn store shows what the work is and its moves. The state holds no dated log, commit runs or test counts; it may link one report or commit instead of copying it, and the `ki-work-package` rubric's history check warns otherwise.
-- **No mark yet:** the Summary runs from the session's start, or from `_index.md`'s `created_at` where that is unknown, and the first `mark` strikes the first mark.
+- **No mark yet:** the Summary runs from the session's start, or from `_index.md`'s `ki-created_at` where that is unknown, and the first `mark` strikes the first mark.
 - **Not a recap:** a Summary covers the package since the mark, and `ki-work recap` covers one session at a lower level; they share no form or procedure.
 
 Sources: SUMMARY-MODEL, DECISION-NO-NUMBER, MARK-THEN-SUMMARY and STATE-HISTORY in [the decision register](sources.md#decision-register).
@@ -71,7 +71,7 @@ Project work moves to Finished once only, on the owner's `finish`, after the clo
 
 1. every logged decision is homed under the [decisions life cycle](standards-decisions.md#decisions-life-cycle), none left homeless or held;
 2. its change documents, in the package and its sub-packages, are resolved: every one graduated and deleted;
-3. `_index.md`'s state is set to `state: finished`, its durable information routed, and the commit `docs(work): <id> finish` made;
+3. `_index.md`'s state is set to `ki-state: finished`, its durable information routed, and the commit `docs(work): <id> finish` made;
 4. the package is deleted at the mark that closes it, under the `ki-work-package` [close-out](../../ki-work-package/references/standard-work-package.md#410-the-tidy), Git keeping it. Where the package outlives the finishing session, the State of play closes it at an owner-authorised mark of its own whose report names the package, rather than by a line in the finished work's `messages.md`, which no coordinator reads.
 
 Before the Finished banner, every Orca worker the work started is settled under [Closing out Orca workers](#closing-out-orca-workers). The last report is the Stop at Finished under [Templates](standards-report-forms.md#templates), closing with the Finished banner. The Project note then points at the outcome. Reopening a Project is a new opener from the State of play, not a send.

@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-14T19:27:53Z
-status: in force
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-17T00:36:33Z
+ki-status: in force
 ---
 
 # Roles
@@ -24,7 +24,7 @@ status: in force
 
 ## 1. Introduction
 
-A role is the job a seat does within a piece of work: what it owns and what it never does. This standard is the one home of the role catalogue, the three tiers, the glyph each role carries, the `role` and `workers` fields that record them, and the thread line a seat closes with. Kris asked for it under STAGE-C-ROLES at 02:30 GMT on 7 November 2026: "land the role catalogue and role glyphs first, end to end", the catalogue in `ki-work-package`, "every role with its tier, a one-line definition (what it owns, what it never does) and its glyph, the one home for what each glyph means". `ki-coordination` uses the thread line in its banner, session names and message senders; it holds no copy of the catalogue. Tolerance for the forms this standard replaces is in [the role migration file](standards-roles-migration.md), which can be deleted whole once the territories have moved. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+A role is the job a seat does within a piece of work: what it owns and what it never does. This standard is the one home of the role catalogue, the three tiers, the glyph each role carries, the `ki-role` and `ki-workers` fields that record them, and the thread line a seat closes with. Kris asked for it under STAGE-C-ROLES at 02:30 GMT on 7 November 2026: "land the role catalogue and role glyphs first, end to end", the catalogue in `ki-work-package`, "every role with its tier, a one-line definition (what it owns, what it never does) and its glyph, the one home for what each glyph means". `ki-coordination` uses the thread line in its banner, session names and message senders; it holds no copy of the catalogue. Tolerance for the forms this standard replaces is in [the role migration file](standards-roles-migration.md), which can be deleted whole once the territories have moved. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -36,7 +36,7 @@ The roles seats take within work, and how a package and a session record them.
 
 - The prime directive every role answers to.
 - The tiers with their default roles, the role catalogue and the marks.
-- The `role` and `workers` fields.
+- The `ki-role` and `ki-workers` fields.
 - The thread line, and the rules of the role model.
 
 [Back to contents](#contents)
@@ -95,7 +95,7 @@ Each tier has one default role, and every other role in the tier is a specialisa
 
 ### 4.3 Role catalogue
 
-Every seat takes exactly one role from this table, and this table is the one place that says what each role glyph means. Role names are singular, and any seat may be one agent or a lead with a pack. Managers may also make. Chancellor, over several libraries, and a guildmaster for each guild are reserved: neither has a glyph until the work calls for it. Steward is not a role: it folds into warden, since whether a place's work is standing or a Project is its package's `level`, not the role, as Kris took ROLE-DEFAULTS a on 11 November 2026; the warden takes the word's everyday sense, the keeper of a place.
+Every seat takes exactly one role from this table, and this table is the one place that says what each role glyph means. Role names are singular, and any seat may be one agent or a lead with a pack. Managers may also make. Chancellor, over several libraries, and a guildmaster for each guild are reserved: neither has a glyph until the work calls for it. Steward is not a role: it folds into warden, since whether a place's work is standing or a Project is its package's `ki-level`, not the role, as Kris took ROLE-DEFAULTS a on 11 November 2026; the warden takes the word's everyday sense, the keeper of a place.
 
 | Role | Tier | Glyph | Owns | Never does |
 | --- | --- | --- | --- | --- |
@@ -136,10 +136,10 @@ A package records its role and its live seats in its entry file, `_index.md`, as
 
 | Field | File | Value |
 | --- | --- | --- |
-| `role` | `_index.md` | The package's role: one catalogue role. Every package names one |
-| `workers` | `_index.md` | A list of the package's live seats, each a mapping with the keys below; absent or empty when no seat is live |
+| `ki-role` | `_index.md` | The package's role: one catalogue role. Every package names one |
+| `ki-workers` | `_index.md` | A list of the package's live seats, each a mapping with the keys below; absent or empty when no seat is live |
 
-| `workers` key | Requirement | Value |
+| `ki-workers` key | Requirement | Value |
 | --- | --- | --- |
 | `role` | required | One catalogue role |
 | `tier` | required | The catalogue tier of that role: `leaders`, `managers` or `makers` |
@@ -149,7 +149,7 @@ A package records its role and its live seats in its entry file, `_index.md`, as
 
 An entry is the seat's binding and carries nothing else. It points at its actor by typed id and never copies the actor's name or anything else of it, as Kris set under ACTOR-KEY a on 16 November 2026. Presence, where and how the actor runs, its host, rig and last seen, is the actor's roster file's in the Cairn store, never the entry's, and a reader takes each from its home, as the Cairn summit's guardian took ROSTER-SPLIT a under Kris's word on 14 November 2026.
 
-The roster is the list of actors, agent or person, one roster file each. A roster file opens with the actor's `id`, `actor:<id>`, then `type: actor`, an optional human `name` that is never a copy of the id, and `kind`, `agent` or `person`, then its presence, `host`, `rig` and `last_seen`, under ACTOR-KEY a. It holds no titles: who sits where is read from the tree's `workers` entries, each naming its actor's id. An actor with no name, such as a maker in a meeting, still has a roster file: it takes its seat's id, `<package>@<role>`, as `actor:ki.cairn@information-architect` in `roster/ki.cairn@information-architect.md`, under SEAT-AT a, and that file holds its host and rig.
+The roster is the list of actors, agent or person, one roster file each. A roster file opens with the actor's `ki-id`, `actor:<id>`, then `ki-document-type: actor`, an optional human `ki-name` that is never a copy of the id, and `ki-kind`, `agent` or `person`, then its presence, `ki-host`, `ki-rig` and `ki-last_seen`, under ACTOR-KEY a, each field taking the `ki-` prefix under KI-PREFIX a. It holds no titles: who sits where is read from the tree's `ki-workers` entries, each naming its actor's id. An actor with no name, such as a maker in a meeting, still has a roster file: it takes its seat's id, `<package>@<role>`, as `actor:ki.cairn@information-architect` in `roster/ki.cairn@information-architect.md`, under SEAT-AT a, and that file holds its host and rig.
 
 Whether a session is listening is in neither: it is read from meetings alone, a session listening while it is a participant of an open meeting with a sitting under way, under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file), as Kris set under LISTEN-HOME a on 16 November 2026. The seat's thread line is never stored: it is derived from its role's glyph and the work id, with its role for a seat without the keys, as the [thread line](#46-thread-line) sets out. An entry carries no session address or vendor session id, under the work-package standard's [prohibited payloads](standard-work-package.md#416-prohibited-payloads-and-claims), as Kris answered WORKERS-URI on 7 November 2026: "Drop it". A reader that needs to find a seat's live session, such as Cairn, reads the uncommitted machine-local thread binding `~/.local/state/ki/threads/<repository>/<slug>.json`, never the package. The `ki-work-package` rubric's RECORD-2 checks every value against this catalogue, reading the table in [4.3](#43-role-catalogue) at audit time, so the checker holds no copy of it.
 

@@ -20,7 +20,7 @@ A one-line opener brings a new or running session onto this contract, for exampl
 1. where the opener starts a new session, renames the session to the thread line the opener names, as its first act, before any read, by its agent host's rename (runtime-specific: `/rename <thread line>` in Claude Code), under [Opening work](standards-opening.md#opening-work);
 2. reads this standard and the Work Process note;
 3. checks through its agent host which of its agents still run and reconciles what is actually running;
-4. [resolves the opener](#resolving-the-opener) to one package, `work/<territory>/<id>/` in the Cairn store, reads `messages.md` first, then its `_index.md`, the change documents in hand and every change document's Open section, reconciles it under the work-package standard and checks `method_read`;
+4. [resolves the opener](#resolving-the-opener) to one package, `work/<territory>/<id>/` in the Cairn store, reads `messages.md` first, then its `_index.md`, the change documents in hand and every change document's Open section, reconciles it under the work-package standard and checks `ki-method_read`;
 5. acts first on the top line of `_index.md`'s Now, the work's first step, then on each line of [`messages.md`](standards-messages.md#messages-between-work), `IMPORTANT` lines first, then in queue order, before launching any work;
 6. as the summit, gathers every record awaiting acceptance across its territory's repositories, the work beneath its nodes included, and brings them first, ahead of every other query, as one bundle per work under [Acceptance bundles](standards-queries.md#acceptance-bundles);
 7. gives the Bootstrap, trigger T2 in the [coordinator reply format](standards-report-forms.md#triggers), a full Medium [report](standards-reporting.md#owner-report) under the [report heading](standards-report-forms.md#banner-detail), form line `**Bootstrap at <local time> · last mark <local time>**`:
@@ -29,7 +29,7 @@ A one-line opener brings a new or running session onto this contract, for exampl
    - `## Queries` gives every open query in full;
    - the [banner](standards-coordination.md#banner) and thread line close it, rendered as every banner is, without the roadmap and package lines, the thread line last.
 
-Work opened, bootstrapped or restarted in a new session with no mark strikes one at its start, writing `mark` in `_index.md`'s state fields, so every work carries a mark. [Re-anchoring](#re-anchoring-after-compaction) in the same session moves none.
+Work opened, bootstrapped or restarted in a new session with no mark strikes one at its start, writing `ki-mark` in `_index.md`'s state fields, so every work carries a mark. [Re-anchoring](#re-anchoring-after-compaction) in the same session moves none.
 
 Sources: BOOT-HOME, REBOOT-SHAPE, WORK-REVIEW-RETIRE, OPENER-NAME, FIRST-STEP-HOME and SECONDARY-SOP in [the decision register](sources.md#decision-register).
 
@@ -102,13 +102,13 @@ Sources: RED-X-RECOVERY in [the decision register](sources.md#decision-register)
 
 ## Targeted refresh and landed notices
 
-**Targeted refresh.** After an approved method change lands, the sender writes one dated `REFRESH` line, flagged important so it is taken before ordinary lines, only into the `messages.md` of works whose `method_read` predates the change and whom it affects. The line links the standard at its revision and states the practical effect in a sentence.
+**Targeted refresh.** After an approved method change lands, the sender writes one dated `REFRESH` line, flagged important so it is taken before ordinary lines, only into the `messages.md` of works whose `ki-method_read` predates the change and whom it affects. The line links the standard at its revision and states the practical effect in a sentence.
 
 - While Ways of working is defining the method it sends these lines itself; afterwards the State of play sends them under [Stewardship of continual improvement](standards-territory.md#territory-work).
 - A sender may replace its own earlier `REFRESH` line not yet acted on, so changes coalesce; the replacement keeps every pending effect of the line it replaces.
 - The receiver rereads at its next safe point, before launching further work. Held work is not woken; the line waits.
 - The bootstrap and update revision checks stay as the fallback.
 
-**Landed notices.** When Ways of working delivers a change a coordinator asked for, or one that changes how it works, it sends that coordinator a targeted `REFRESH` line saying what landed and what it changes there. A coordinator that takes such a line, or finds its `method_read` behind at bootstrap, says in its next reply, in a line or two, how its own behaviour has changed, naming the Ways of working change. No acknowledgement line is needed: setting `method_read` is the confirmation.
+**Landed notices.** When Ways of working delivers a change a coordinator asked for, or one that changes how it works, it sends that coordinator a targeted `REFRESH` line saying what landed and what it changes there. A coordinator that takes such a line, or finds its `ki-method_read` behind at bootstrap, says in its next reply, in a line or two, how its own behaviour has changed, naming the Ways of working change. No acknowledgement line is needed: setting `ki-method_read` is the confirmation.
 
 Sources: REFRESH-TARGET, WOW-REFRESH and LANDED-NOTICE in [the decision register](sources.md#decision-register).
