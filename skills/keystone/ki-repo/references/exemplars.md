@@ -15,7 +15,7 @@ Curated patterns from the KI repo set that show what a well-configured Knowledge
 
 | Source | URL | What it covers |
 | --- | --- | --- |
-| ki-agent-backpack | [github][harness] | Private repo; all layer-1 files; full `.ki.toml`; rich `CLAUDE.md` |
+| ki-agent-backpack | [github][harness] | Public repo; all layer-1 files; full `.ki.toml`; rich `CLAUDE.md` |
 | mcp-gsuite | [github][mcp-gsuite] | Public repo; MIT license; standard topic set |
 | mcp-ki-kb-fs | [github][mcp-ki-kb-fs] | Public repo; canonical layer-2/3 settings; `branch-protection` off |
 | GitHub REST API — repo settings | [docs.github.com][repo-settings] | Merge methods, auto-delete-branch, features |

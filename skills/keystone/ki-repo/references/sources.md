@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:17:42Z
+ki-revised: 2026-11-17T01:36:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -74,6 +74,7 @@ The decisions the standards cite by id, oldest first; each standard keeps citing
 | SHARE-OUTPUTS | A session working in a repository commits what the owner is to see in a form GitHub shows and gives the link that opens where the owner is reading; an agent host's own page may sit beside it, never in its place. From the Cairn summit's change 15, §4.3, with the owner's LINKS-WHERE-READ. | 2026-11-14 | [repository](standard-repository.md#44-working-areas) | In force |
 | PROMOTION-ONE | Where REVIEW sends durable content is `ki-authoring`'s placement ladder, the one table of where knowledge is placed, and the procedure points at it instead of listing its homes. Kris's word, 16 November, about 23:30 GMT, relayed by the Cairn summit's guardian from the summit's [change 11](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided). | 2026-11-16 | [REVIEW](mode-review.md#documentation-and-knowledge) | In force |
 | DESIGN-PLACE | `docs/design/` is a documentation root, selecting `ki-design`, whose design documents follow `ki-authoring`'s design format; all six repositories that keep designs already put them there. Kris's word, 17 November, about 00:56 GMT, taking the high-confidence points: "you've got high confidence in some of these, so I think you need to take them and get on with it", relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [repository](standard-repository.md), [configuration](standard-configuration.md), [documentation topology](standard-documentation-topology.md#41-the-five-concerns) | In force |
+| SETTINGS-SCOPE | The settings plan's `all` array covers every non-fork repository in `knowledgeislands/`, 22 on 17 November, and `public` every public one among them, each checked against GitHub's live visibility; the fork `paperclip` stays out. Taken at high confidence by the Cairn summit's guardian on Kris's word to take high-confidence calls. | 2026-11-17 | [repository](standard-repository.md#413-applying-it) | In force |
 
 [Back to contents](#contents)
 
