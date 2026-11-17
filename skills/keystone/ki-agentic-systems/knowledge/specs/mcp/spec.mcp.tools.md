@@ -23,9 +23,10 @@ A tool is named by a unique `name` and described by a `description`, an `inputSc
 
 Tools are model-controlled: the model chooses them from its context and the user's prompts, and, in this graph's terms, the [agent harness][industry.agent-harness] carries the call out. The specification says there should always be a human able to deny a call, and treats a tool's annotations as untrusted unless its server is trusted ([MCP3]).
 
-The pending `industry.tool` card will rest on this part.
+The [tool][industry.tool] card, a proposal too, rests on this part.
 
 [spec.mcp]: ./spec.mcp.md
 [spec.mcp.server]: ./spec.mcp.server.md
 [industry.agent-harness]: ../../industry/industry.agent-harness.md
+[industry.tool]: ../../industry/industry.tool.md
 [MCP3]: https://modelcontextprotocol.io/specification/2026-07-28/server/tools

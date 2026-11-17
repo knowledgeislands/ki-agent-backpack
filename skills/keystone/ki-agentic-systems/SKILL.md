@@ -56,11 +56,12 @@ Read them in order:
 
 [Channel](knowledge/industry/industry.channel.md) is agreed too: something outside a session pushing events into it while it runs. Its place in the reading order is still to settle.
 
-Pending, in this order and not yet defined here:
+Proposals, drafted for the owner's decision from the Cairn summit's change 12 and not yet agreed, their place in the order after the remote agent and before the plugin:
 
-1. Integration, under a card for the ways into a session with channel and cross-session messaging.
-2. Tool and instruction file.
-3. Role, the last of the system's own terms (NAMES), waiting on the Cairn summit's change 12. The others are written below.
+- [Tool](knowledge/industry/industry.tool.md): a function an agent can call to act or fetch something beyond the model, run for it by the harness, the application or a server.
+- [Instruction file](knowledge/industry/industry.instruction-file.md): a plain-text file a harness loads into sessions as standing instructions, such as `AGENTS.md`, `CLAUDE.md` or `GEMINI.md`.
+
+Pending, not yet defined here: integration, under a card for the ways into a session with channel and cross-session messaging.
 
 ### Specification cards
 
@@ -82,6 +83,7 @@ Knowledge Islands' own words, in the `system/` subgraph, each mapped onto the in
 - [Actor](knowledge/system/system.actor.md): whoever acts at a node of the work tree, a person or an agent, persisting across sessions, with one roster file, `actor:<id>`.
 - [Work package](knowledge/system/system.work-package.md): the folder for one piece of work above a work item, a node of the work tree, `<territory>.<slug>`, its strands `<parent id>+<slug>`.
 - [Backpack](knowledge/system/system.backpack.md): a territory's installable bundle of skills, subagent definitions, evals and hooks; Knowledge Islands' plugin.
+- [Role](knowledge/system/system.role.md): a job within a tier, from the role catalogue, the part of a seat after its `@`; close to agent frameworks' role.
 
 ### Vendor subgraphs
 
