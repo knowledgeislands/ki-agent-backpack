@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-15T00:49:56Z
-status: in force
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-17T00:36:20Z
+ki-status: in force
 ---
 
 # Meeting
@@ -144,24 +144,24 @@ The caller makes the folder and writes `_index.md`. Setting a meeting up and bri
 
 ```yaml
 ---
-id: meeting:cairn.wayfinder.designs  # meeting:<folder's name>
-type: meeting
-name: Wayfinder designs            # optional, a human label, never a copy of the id
-kind: workshop                     # workshop | review | retrospective
-sitting: C                         # the current or last sitting
-chair: actor:wayland               # the chair's actor id; the caller's, unless the owner started another session to chair
-status: open                       # open | adjourned | closed, the meeting closed after its last sitting
-opened: 2026-11-13T22:29Z          # when this sitting opened, from date -u
-closed:                            # when this sitting was adjourned or the meeting closed
-participants:                      # those who answered this sitting's roll call
-  - id: actor:wayland              # the participant's actor id, naming its roster file
-    route: folder                  # host | folder | exchange, as 4.6 numbers them
+ki-id: meeting:cairn.wayfinder.designs  # meeting:<folder's name>
+ki-document-type: meeting
+ki-name: Wayfinder designs              # optional, a human label, never a copy of the id
+ki-kind: workshop                       # workshop | review | retrospective
+ki-sitting: C                           # the current or last sitting
+ki-chair: actor:wayland                 # the chair's actor id; the caller's, unless the owner started another session to chair
+ki-status: open                         # open | adjourned | closed, the meeting closed after its last sitting
+ki-opened: 2026-11-13T22:29Z            # when this sitting opened, from date -u
+ki-closed:                              # when this sitting was adjourned or the meeting closed
+ki-participants:                        # those who answered this sitting's roll call
+  - id: actor:wayland                   # the participant's actor id, naming its roster file
+    route: folder                       # host | folder | exchange, as 4.6 numbers them
   - id: actor:ki.cairn@information-architect
     route: folder
 ---
 ```
 
-Every resource passes ids, never copies (ACTOR-KEY, Kris, 16 November 2026): the block opens with the meeting's own `id`, `meeting:<folder's name>`, then `type`, an optional human `name` and `kind`, and every reference in it is a typed id. The `chair` field (CHAIR-FIELD, Kris, 14 November 2026) names the chair by its actor id. A participant carries only its `id` and its `route`: its name, host and rig are its roster file's, and the role it takes is the agenda's. Every seat in a meeting has a roster file in the store; an actor with no name takes its seat's id, `<package>@<role>`, as `actor:ki.cairn@information-architect` in `roster/ki.cairn@information-architect.md` (SEAT-AT, Kris, 16 November 2026), and that file holds its host and rig. A tool reads this block and the message file names ([4.8](#48-messages)), and nothing else in the folder. The owner is not listed; the owner is at every meeting. Then, in order:
+Every field the block holds is one KI defines, so each takes the `ki-` prefix (KI-PREFIX, Kris, 17 November 2026), under the [format format](../../../keystone/ki-authoring/references/standard-formats-format.md#42-front-matter); a participant's own keys, nested inside `ki-participants`, keep their names, and a reader takes a field written without the prefix under its `ki-` name until the meetings are swept. Every resource passes ids, never copies (ACTOR-KEY, Kris, 16 November 2026): the block opens with the meeting's own `ki-id`, `meeting:<folder's name>`, then `ki-document-type`, the kind of document, an optional human `ki-name` and `ki-kind`, and every reference in it is a typed id. The `ki-chair` field (CHAIR-FIELD, Kris, 14 November 2026) names the chair by its actor id. A participant carries only its `id` and its `route`: its name, host and rig are its roster file's, and the role it takes is the agenda's. Every seat in a meeting has a roster file in the store; an actor with no name takes its seat's id, `<package>@<role>`, as `actor:ki.cairn@information-architect` in `roster/ki.cairn@information-architect.md` (SEAT-AT, Kris, 16 November 2026), and that file holds its host and rig. A tool reads this block and the message file names ([4.8](#48-messages)), and nothing else in the folder. The owner is not listed; the owner is at every meeting. Then, in order:
 
 1. **Summary,** kept current: where the meeting stands, the decisions it has led to, and what comes next.
 2. **Brief:** why the meeting exists, what it should produce, the change document that will hold its decisions, and what participants work from.
@@ -200,7 +200,7 @@ How participants reach each other, three levels, the first that works:
 ### 4.8 Messages
 
 1. **One file per message** in `messages/`, never edited once written.
-2. **Named** `<YYYYMMDD>T<HHMM>Z-<actor id>-<subject>.md` from `date -u`, so the folder lists in order and two messages in one minute stay distinct. `<actor id>` is the sender's actor id, the `<id>` of the `actor:<id>` its entry under `participants` carries ([4.5](#45-the-entry-file)), exactly, as in `20261116T1342Z-wayland-boards-committed.md` or `20261116T1400Z-ki.cairn@information-architect-levels-ready.md`, since tools match who posted when to its participant from the name alone (MSG-FROM, Kris, 16 November 2026); a message the owner carries keeps the actor id of the participant it is from. Messages posted before MSG-FROM keep their names, which carry the sender's role.
+2. **Named** `<YYYYMMDD>T<HHMM>Z-<actor id>-<subject>.md` from `date -u`, so the folder lists in order and two messages in one minute stay distinct. `<actor id>` is the sender's actor id, the `<id>` of the `actor:<id>` its entry under `ki-participants` carries ([4.5](#45-the-entry-file)), exactly, as in `20261116T1342Z-wayland-boards-committed.md` or `20261116T1400Z-ki.cairn@information-architect-levels-ready.md`, since tools match who posted when to its participant from the name alone (MSG-FROM, Kris, 16 November 2026); a message the owner carries keeps the actor id of the participant it is from. Messages posted before MSG-FROM keep their names, which carry the sender's role.
 3. **Each opens** with who it is from, who it is for, and the message it answers, if any; then what changed, in plain words; the files it points to, by their path in the folder; and a closing `Asks:` naming who must do what.
 4. **Open asks.** The caller keeps them in the entry file and ticks each off when it is answered, so nothing asked is lost.
 5. **Against crossing** (TRIAL-LESSONS, Kris, 14 November 2026). A participant that needs the others to wait posts a one-line "hold"; each board or other piece of output is rendered once per review pass; and new messages are read in the order of their times.
@@ -211,7 +211,7 @@ How participants reach each other, three levels, the first that works:
 
 ### 4.9 Listening and check-ins
 
-1. **The caller listens** while the meeting is open, watching the whole folder and waking when anything in it changes, since a participant can write a note or a brief without a message. Whether a session is listening is read from the meeting alone (LISTEN-HOME, Kris, 16 November 2026): a session is listening while it is a participant of an open meeting with a sitting under way, listed under `participants` in the entry file with `status: open` ([4.5](#45-the-entry-file)). No presence entry, such as the Cairn store's roster, carries `listening`.
+1. **The caller listens** while the meeting is open, watching the whole folder and waking when anything in it changes, since a participant can write a note or a brief without a message. Whether a session is listening is read from the meeting alone (LISTEN-HOME, Kris, 16 November 2026): a session is listening while it is a participant of an open meeting with a sitting under way, listed under `ki-participants` in the entry file with `ki-status: open` ([4.5](#45-the-entry-file)). No presence entry, such as the Cairn store's roster, carries `listening`.
 2. **A host without a lasting shell** listens by scheduled wake-ups instead, and otherwise re-reads `messages/` when the owner prompts it and before each new piece of work.
 3. **The agenda states** each participant's interval, the longest a message waits for it, and when its listening ends.
 4. **Sessions outside the room** do not watch it.
@@ -270,7 +270,7 @@ Kris, 14 November 2026 (MEET-BUSY):
 ### 4.15 Closing
 
 1. **The caller's last message closes the meeting,** naming each outcome and the change document that now holds it. Nothing closes by itself. The close restates each choice and recommendation it carries, and never refers back to an earlier message for them (CHOICES-WHOLE, Kris, 14 November 2026).
-2. **Listening ends.** The caller's watcher stops, and with `status` no longer `open` in the entry file no participant reads as listening.
+2. **Listening ends.** The caller's watcher stops, and with `ki-status` no longer `open` in the entry file no participant reads as listening.
 3. **Work that landed** during the meeting gets its record, as the store's own rule for records sets.
 4. **The folder is removed** from the tree once the owner has reviewed that record, and Git history keeps it.
 
