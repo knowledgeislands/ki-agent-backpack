@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-09T22:38:25Z
-status: in force
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-09T22:38:25Z
+ki-status: in force
 ---
 
 # Documentation topology

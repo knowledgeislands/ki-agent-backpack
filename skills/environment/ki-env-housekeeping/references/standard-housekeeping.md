@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-14T03:32:28Z
-revised: 2026-11-16T23:50:00Z
-status: in force
+ki-document-type: standard@2026-11-14T03:32:28Z
+ki-revised: 2026-11-16T23:50:00Z
+ki-status: in force
 ---
 
 # Housekeeping standard

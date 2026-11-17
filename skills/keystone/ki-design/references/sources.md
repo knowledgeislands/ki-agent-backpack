@@ -1,7 +1,7 @@
 ---
-type: sources@2026-11-14T03:31:09Z
-revised: 2026-11-14T03:31:09Z
-refresh: canonical · on-change
+ki-document-type: sources@2026-11-14T03:31:09Z
+ki-revised: 2026-11-14T03:31:09Z
+ki-refresh: canonical · on-change
 ---
 
 # Sources — where the design standard comes from

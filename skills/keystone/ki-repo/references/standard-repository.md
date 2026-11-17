@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-15T00:49:56Z
-status: in force
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-15T00:49:56Z
+ki-status: in force
 ---
 
 # Knowledge Islands repo standard

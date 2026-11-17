@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-12T20:10:00Z
-status: in force
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-12T20:10:00Z
+ki-status: in force
 ---
 
 # Agent Skills standard

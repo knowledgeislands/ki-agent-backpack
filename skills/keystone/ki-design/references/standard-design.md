@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-14T03:31:09Z
-revised: 2026-11-14T03:31:09Z
-status: in force
+ki-document-type: standard@2026-11-14T03:31:09Z
+ki-revised: 2026-11-14T03:31:09Z
+ki-status: in force
 ---
 
 # Design standard

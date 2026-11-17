@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-14T03:12:34Z
-revised: 2026-11-14T03:16:02Z
-status: in force
+ki-document-type: standard@2026-11-14T03:12:34Z
+ki-revised: 2026-11-14T03:16:02Z
+ki-status: in force
 ---
 
 # Guilds standard

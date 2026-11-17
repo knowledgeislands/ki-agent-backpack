@@ -1,7 +1,7 @@
 ---
-type: sources@2026-11-14T03:31:46Z
-revised: 2026-11-14T03:31:46Z
-refresh: canonical · on-change
+ki-document-type: sources@2026-11-14T03:31:46Z
+ki-revised: 2026-11-14T03:31:46Z
+ki-refresh: canonical · on-change
 ---
 
 # Sources — where the environment standard comes from

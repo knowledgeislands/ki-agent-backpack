@@ -1,7 +1,7 @@
 ---
-type: sources@2026-11-15T00:17:25Z
-revised: 2026-11-14T03:24:34Z
-refresh: external-spec · monthly
+ki-document-type: sources@2026-11-15T00:17:25Z
+ki-revised: 2026-11-14T03:24:34Z
+ki-refresh: external-spec · monthly
 ---
 
 # Sources — where the standard comes from

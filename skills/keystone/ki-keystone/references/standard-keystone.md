@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-14T03:22:59Z
-revised: 2026-11-14T03:22:59Z
-status: in force
+ki-document-type: standard@2026-11-14T03:22:59Z
+ki-revised: 2026-11-14T03:22:59Z
+ki-status: in force
 ---
 
 # Keystone standard

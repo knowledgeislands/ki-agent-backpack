@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-14T03:31:46Z
-revised: 2026-11-14T03:31:46Z
-status: in force
+ki-document-type: standard@2026-11-14T03:31:46Z
+ki-revised: 2026-11-14T03:31:46Z
+ki-status: in force
 ---
 
 # Environment standard

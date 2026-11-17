@@ -1,7 +1,7 @@
 ---
-type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-16T23:50:00Z
-status: in force
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-16T23:50:00Z
+ki-status: in force
 ---
 
 # Knowledge promotion
@@ -55,7 +55,7 @@ Where durable knowledge goes, and the types of durable document.
 | --- | --- |
 | **Placement ladder** | The one table of where knowledge is placed: the guidance layers first, then the other durable homes, from session context to roadmap or plan, used to choose the narrowest durable home that reaches the people and agents who need the knowledge. **Standard:** this one, [4.1](#41-placement-ladder) |
 | **Guidance layer** | One of the places guidance can live, from the user's own instructions to a single piece of work, each reaching a different set of sessions: user, agent host, repository, skills and the work. **Standard:** this one, [4.1](#41-placement-ladder) |
-| **Document type** | The kind of a document, such as standard, change or sources: the same word in its `type` field and its file name. **Standard:** [format format](standard-formats-format.md#41-document-types) |
+| **Document type** | The kind of a document, such as standard, change or sources: the same word in its `ki-document-type` field and its file name. **Standard:** [format format](standard-formats-format.md#41-document-types) |
 
 [Back to contents](#contents)
 

@@ -1,7 +1,7 @@
 ---
-type: sources@2026-11-15T00:17:25Z
-revised: 2026-11-14T16:34:42Z
-refresh: canonical · on-change
+ki-document-type: sources@2026-11-15T00:17:25Z
+ki-revised: 2026-11-14T16:34:42Z
+ki-refresh: canonical · on-change
 ---
 
 # Sources — where the Keystone standard comes from

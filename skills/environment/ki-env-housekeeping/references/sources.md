@@ -1,7 +1,7 @@
 ---
-type: sources@2026-11-14T03:32:28Z
-revised: 2026-11-16T23:50:00Z
-refresh: canonical · on-change
+ki-document-type: sources@2026-11-14T03:32:28Z
+ki-revised: 2026-11-16T23:50:00Z
+ki-refresh: canonical · on-change
 ---
 
 # Sources — where the housekeeping standard comes from
