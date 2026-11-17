@@ -1,9 +1,28 @@
 import { basename } from 'node:path'
 import { DIAGNOSTIC_REMEDIATION, type RubricFamily, type RubricItem } from '../../shared/rubric.ts'
-import type { AuthoringRubricContext, FormatsRubricContext, RecordEvidence } from '../contexts/authoring.ts'
+import type {
+  AuthoringRubricContext,
+  FormatsRubricContext,
+  RecordEvidence,
+  TypedDocumentEvidence
+} from '../contexts/authoring.ts'
 
 // A version ref is a UTC time to the second or a Git ref; only a time can be compared without the repository's history.
 const TIME_REF = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/
+
+// `revised` is often set just before committing, so a commit this soon after it is not behind.
+const REVISED_TOLERANCE_MS = 5 * 60 * 1000
+const DATE_ONLY = /^\d{4}-\d{2}-\d{2}$/
+const DAY_MS = 24 * 60 * 60 * 1000
+
+// Whether a document's `revised` is earlier than its last commit by more than the tolerance; a date with no time is
+// read as the end of that day, and a `revised` that is not a time, or a file with no commit, is not compared.
+const revisedBehind = (document: TypedDocumentEvidence): boolean => {
+  if (!document.revisedAt || !document.committed) return false
+  const revised = Date.parse(document.revisedAt) + (DATE_ONLY.test(document.revisedAt) ? DAY_MS : 0)
+  const committed = Date.parse(document.committed)
+  return !Number.isNaN(revised) && !Number.isNaN(committed) && committed - revised > REVISED_TOLERANCE_MS
+}
 
 const noStandards = (context: FormatsRubricContext) =>
   context.standards.length === 0
@@ -12,9 +31,9 @@ const noStandards = (context: FormatsRubricContext) =>
 
 const FMT_TYPE: RubricItem<FormatsRubricContext> = {
   code: 'FMT-type',
-  title: 'a typed document names a format standard that exists',
+  title: 'a typed document names a format standard that exists and keeps `revised` up with its commits',
   description:
-    'A Markdown document whose front matter `type` is `<type>@<version ref>` names a format standard, `standard-formats-<type>.md`, that exists in `ki-authoring`, and carries `revised`. A `type` with no `@` names a resource or a card type, not a format, and is not checked here.',
+    "A Markdown document whose front matter `type` is `<type>@<version ref>` names a format standard, `standard-formats-<type>.md`, that exists in `ki-authoring`, and carries `revised`, which is no earlier than the file's last Git commit by more than five minutes; a `revised` behind its commit warns, since a mechanical edit leaves it where it is, and a file not in Git or with no commits is not compared. A `type` with no `@` names a resource or a card type, not a format, and is not checked here.",
   sources: ['standard-formats-format.md#42-front-matter', 'standard-formats-format.md#47-validation'],
   mechanical: {
     level: 'WARN',
@@ -37,7 +56,16 @@ const FMT_TYPE: RubricItem<FormatsRubricContext> = {
               ]),
           ...(document.revised
             ? []
-            : [{ status: 'VIOLATION' as const, message: 'typed document has no `revised`', subject: document.path }])
+            : [{ status: 'VIOLATION' as const, message: 'typed document has no `revised`', subject: document.path }]),
+          ...(revisedBehind(document)
+            ? [
+                {
+                  status: 'VIOLATION' as const,
+                  message: `\`revised\` ${document.revisedAt} is behind the file's last commit, ${document.committed}: move it if that commit changed the substance`,
+                  subject: document.path
+                }
+              ]
+            : [])
         ])
         return findings.length > 0
           ? findings

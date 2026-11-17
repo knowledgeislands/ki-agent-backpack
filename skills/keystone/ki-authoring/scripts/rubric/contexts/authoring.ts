@@ -155,6 +155,10 @@ export type TypedDocumentEvidence = {
   word: string
   ref: string
   revised: boolean
+  /** The front matter's `revised`, as written. */
+  revisedAt?: string
+  /** When the file was last committed, `git log -1 --format=%cI`; absent when it is not in Git or has no commits. */
+  committed?: string
 }
 /** A format standard beside this rubric, `standard-formats-<word>.md`, and its current version, its `revised`. */
 export type FormatStandardEvidence = {
@@ -331,13 +335,74 @@ export const inspectFormatStandards = (
     .sort((left, right) => left.word.localeCompare(right.word))
 }
 
-const inspectTypedDocuments = (repository: string, paths: readonly string[]): readonly TypedDocumentEvidence[] =>
-  paths.flatMap((path) => {
+// Paths per `git log` call, to keep each command line well inside the system's limit.
+const LAST_COMMIT_BATCH = 200
+
+/**
+ * When each path was last committed, from one `git log` per batch of paths rather than one per file: a path's first
+ * appearance in the log, newest first, is its last commit. A path not in Git is absent, and so is every path when the
+ * directory is not in a repository or the repository has no commits yet.
+ */
+export const inspectLastCommits = (repository: string, paths: readonly string[]): ReadonlyMap<string, string> => {
+  const committed = new Map<string, string>()
+  // A hook's GIT_DIR or GIT_INDEX_FILE would point git at another repository than the one inspected.
+  const env = Object.fromEntries(Object.entries(process.env).filter(([name]) => !name.startsWith('GIT_')))
+  for (let start = 0; start < paths.length; start += LAST_COMMIT_BATCH) {
+    const batch = paths.slice(start, start + LAST_COMMIT_BATCH)
+    const wanted = new Set(batch)
+    const result = spawnSync(
+      'git',
+      [
+        '--literal-pathspecs',
+        '-c',
+        'core.quotePath=false',
+        'log',
+        '--format=%x00%cI',
+        '--name-only',
+        '--no-renames',
+        '--relative',
+        '--',
+        ...batch
+      ],
+      {
+        cwd: repository,
+        encoding: 'utf8',
+        env,
+        maxBuffer: 256 * 1024 * 1024,
+        shell: false,
+        stdio: ['ignore', 'pipe', 'ignore']
+      }
+    )
+    if (result.error || result.status !== 0) return committed
+    let time: string | undefined
+    for (const line of result.stdout.split('\n')) {
+      if (line.startsWith('\0')) time = line.slice(1)
+      else if (time && wanted.has(line) && !committed.has(line)) committed.set(line, time)
+    }
+  }
+  return committed
+}
+
+const inspectTypedDocuments = (repository: string, paths: readonly string[]): readonly TypedDocumentEvidence[] => {
+  const documents = paths.flatMap((path) => {
     const frontmatter = FRONTMATTER.exec(readFileSync(join(repository, path), 'utf8'))?.[1]
     const typed = frontmatter ? TYPED.exec(frontmatterField(frontmatter, 'type') ?? '') : null
     if (!frontmatter || !typed) return []
-    return [{ path, word: typed[1], ref: typed[2], revised: Boolean(frontmatterField(frontmatter, 'revised')) }]
+    const revisedAt = frontmatterField(frontmatter, 'revised')?.replace(/^(['"])(.*)\1$/, '$2')
+    return [{ path, word: typed[1], ref: typed[2], revised: Boolean(revisedAt), ...(revisedAt ? { revisedAt } : {}) }]
   })
+  const committed = inspectLastCommits(
+    repository,
+    documents.filter((document) => document.revisedAt).map((document) => document.path)
+  )
+  return documents.map((document) => {
+    // In UTC to the second, as `revised` is written, whatever offset the committer's clock carried.
+    const time = Date.parse(committed.get(document.path) ?? '')
+    return Number.isNaN(time)
+      ? document
+      : { ...document, committed: new Date(time).toISOString().replace(/\.\d{3}Z$/, 'Z') }
+  })
+}
 
 // A record's kind is `record`, with `@<version>` when it follows the record format; readers take the part before `@`.
 const RECORD_TYPE = /^record(?:@\S+)?$/

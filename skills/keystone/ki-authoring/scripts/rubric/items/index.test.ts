@@ -573,6 +573,66 @@ test('FMT checks typed documents against the format standards beside the rubric'
   ).toEqual(['NOT_APPLICABLE'])
 })
 
+test("FMT-type warns when `revised` is behind the file's last commit, and skips a file Git cannot date", () => {
+  const repository = temporaryRepository()
+  const standards = temporaryRepository()
+  writeFileSync(
+    join(standards, 'standard-formats-change.md'),
+    '---\ntype: standard@x\nrevised: 2026-11-09T21:36:32Z\n---\n'
+  )
+  const typed = (revised: string) => `---\ntype: change@2026-11-09T21:36:32Z\n${revised}---\n`
+  const documents: Record<string, string> = {
+    'behind.md': typed('revised: 2026-11-16T10:00:00Z\n'),
+    'tolerated.md': typed('revised: 2026-11-16T11:57:00Z\n'),
+    'ahead.md': typed('revised: 2026-11-16T12:30:00Z\n'),
+    'quoted.md': typed("revised: '2026-11-16T10:00:00Z'\n"),
+    'day.md': typed('revised: 2026-11-16\n'),
+    'unrevised.md': typed(''),
+    'untracked.md': typed('revised: 2026-11-01T00:00:00Z\n')
+  }
+  for (const [path, content] of Object.entries(documents)) writeFileSync(join(repository, path), content)
+  const git = (...args: string[]) =>
+    spawnSync('git', ['-c', 'user.name=T', '-c', 'user.email=t@example.com', '-c', 'commit.gpgsign=false', ...args], {
+      cwd: repository,
+      encoding: 'utf8',
+      env: {
+        PATH: process.env.PATH ?? '',
+        HOME: tmpdir(),
+        GIT_CONFIG_NOSYSTEM: '1',
+        GIT_AUTHOR_DATE: '2026-11-16T12:00:00Z',
+        GIT_COMMITTER_DATE: '2026-11-16T13:00:00+01:00'
+      }
+    })
+  expect(git('init', '-q').status).toBe(0)
+  const audit = () => {
+    const session = createAuthoringSession(
+      { mode: 'audit', repository, userHome: tmpdir(), configuration: {} },
+      () => ({ clean: true }),
+      standards
+    )
+    const formats = session.subjects[1]?.context()?.formats as NonNullable<
+      ReturnType<NonNullable<(typeof session.subjects)[1]>['context']>
+    >['formats']
+    const type = formatsModule.FORMATS.items.find((item) => item.code === 'FMT-type')
+    expect(type?.mechanical?.level).toBe('WARN')
+    return type?.mechanical?.audit.run(formats).map(({ subject, message }) => [subject, message])
+  }
+  expect(audit()).toEqual([['unrevised.md', 'typed document has no `revised`']])
+  expect(git('add', '--', ...Object.keys(documents).filter((path) => path !== 'untracked.md')).status).toBe(0)
+  expect(git('commit', '-q', '-m', 'fixture').status).toBe(0)
+  expect(audit()).toEqual([
+    [
+      'behind.md',
+      "`revised` 2026-11-16T10:00:00Z is behind the file's last commit, 2026-11-16T12:00:00Z: move it if that commit changed the substance"
+    ],
+    [
+      'quoted.md',
+      "`revised` 2026-11-16T10:00:00Z is behind the file's last commit, 2026-11-16T12:00:00Z: move it if that commit changed the substance"
+    ],
+    ['unrevised.md', 'typed document has no `revised`']
+  ])
+})
+
 test('FMT-record fails a record that breaks the record format and reads an older record as written', () => {
   const repository = temporaryRepository()
   mkdirSync(join(repository, 'record'))

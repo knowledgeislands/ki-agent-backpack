@@ -1,6 +1,6 @@
 ---
 type: standard@2026-11-09T21:36:32Z
-revised: 2026-11-16T23:19:50Z
+revised: 2026-11-17T00:09:15Z
 status: in force
 ---
 
@@ -138,11 +138,11 @@ A format standard is itself a standard, so it follows the standard format as wel
 
 A validator of any format checks:
 
-1. **Front matter:** `type` and `revised` are present, and `type` names a format standard that exists.
+1. **Front matter:** `type` and `revised` are present, `type` names a format standard that exists, and `revised` is no earlier than the file's last Git commit, `git log -1 --format=%cI -- <file>`, by more than a few minutes, since `revised` is often set just before committing. A `revised` behind its commit warns and never fails, since a mechanical edit rightly leaves it where it is; a file not in Git, in a repository with no commits yet, or with no `revised`, is not compared.
 2. **Format version:** the version ref in `type` is the current one; if not, the document is reported out of date.
 3. **Name:** the file name follows its format's pattern, or the place says why it differs.
 4. **Shape:** Contents, numbered sections and Back to contents links are present.
 
-These checks, and each format's own, are `ki-authoring`'s rubric items in its FMT family, run by `ki repo audit --skill ki-authoring` over every Markdown document in a repository whose `type` names a format at a version: the first two mechanically, as warnings, and the name, the shape and each format's own checks by judgement, unless a format in force runs its own checks mechanically, as the record format's FMT-record does, failing.
+These checks, and each format's own, are `ki-authoring`'s rubric items in its FMT family, run by `ki repo audit --skill ki-authoring` over every Markdown document in a repository whose `type` names a format at a version: the first two mechanically, as warnings, the last commits read with one `git log` for many files, and the name, the shape and each format's own checks by judgement, unless a format in force runs its own checks mechanically, as the record format's FMT-record does, failing.
 
 [Back to contents](#contents)
