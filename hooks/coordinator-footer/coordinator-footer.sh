@@ -11,6 +11,9 @@
 # <meeting> or no line at all, ⭐, 🔧 or 🧵 in the role glyph's place, and in a
 # Summary or Status missing art, roadmap or package line pass with a warning, so the owner can confirm the form was intended. The
 # hook holds no copy of the role catalogue, which ki-work-package owns.
+# A banner item pairing an agreed glyph with a bracketed state word warns too: an item
+# takes an agreed glyph alone, a provisional glyph with its word in brackets, or the
+# bracketed word alone (GLYPH-FALLBACK).
 # In every session, coordinating or not, a reply that asks the owner to decide, a
 # fenced text block holding <TAG> <letter> lines, is held back unless the block opens
 # with a `1 · ` group heading and every such line reads <TAG> <letter> (high|medium|low),
@@ -121,6 +124,9 @@ owner_prompt() {
 form=
 missing=
 unusual=
+# Every glyph of ki-coordination's one table of glyphs (GLYPH-TABLE), retired ones included;
+# coordinator-footer.test.ts holds this copy to the table.
+agreed='🤖 👤 🎯 ⏸️ 💤 🏁 → ↪️ ⏳ ⛔ 🅿️ 📥 🪟 ⏰ 🧹 🗺️ 📦 👂 🧵 🔑 🌐 🔇 🔄 🧑 ⭐ 🔧'
 footer() {
   form=$(printf '%s\n' "$reply" | LC_ALL=C awk '
     /^(```|~~~)/ { fence = !fence; next }
@@ -166,12 +172,15 @@ footer() {
 
   # Two lists, separated by a unit separator: the structural parts whose loss holds the
   # reply back, then the unusual parts that only warn.
-  found=$(printf '%s\n' "$reply" | LC_ALL=C awk -v long="$([ "$form" = summary ] && echo 1 || echo 0)" -v art="$art" -v roadmap="$roadmap" '
+  found=$(printf '%s\n' "$reply" | LC_ALL=C awk -v long="$([ "$form" = summary ] && echo 1 || echo 0)" -v art="$art" -v roadmap="$roadmap" \
+    -v agreed="$agreed" -v vs="$(printf '\357\270\217')" '
     function join(list, n,   i, out) {
       out = ""
       for (i = 1; i <= n; i++) out = out (i > 1 ? (i == n ? " and " : ", ") : "") list[i]
       return out
     }
+    # The agreed glyphs, without their variation selectors, so 🅿️ and 🅿 read alike.
+    BEGIN { n = split(agreed, list, " "); for (i = 1; i <= n; i++) { g = list[i]; gsub(vs, "", g); glyph_set[g] = 1 } }
     { sub(/\r$/, "") }
     # The art sits in a fence of its own; nothing else in a fence counts.
     index($0, "KNOWLEDGE  ISLANDS") { art_at = NR }
@@ -194,6 +203,13 @@ footer() {
       if (heading && $0 ~ /^📦/ && index($0, "package")) pack = 1
       # The listening line names the meetings the session is in, and is left off in none (LISTEN-LINE).
       if (heading && $0 ~ /^(👂 listening|🔇 not listening)/) oldlisten = 1
+      # An agreed glyph stands alone; only a provisional glyph carries its word in brackets (GLYPH-FALLBACK).
+      if (heading && $0 ~ /^- [^ -~]+ \[/) {
+        g = substr($0, 3)
+        g = substr(g, 1, index(g, " ") - 1)
+        gsub(vs, "", g)
+        if (g in glyph_set) paired = 1
+      }
       if (is_thread) {
         thread = NR
         glyphs = key ? substr($0, 1, index($0, " 🔑") - 1) : keyless ? substr($0, 1, index($0, " ") - 1) : ""
@@ -214,6 +230,7 @@ footer() {
       if (heading && !finished && !counts) warn[++w] = "no counts line beneath the state heading"
       if (heading && counts && odd) warn[++w] = "a counts line opening with none of the counts glyphs"
       if (heading && oldlisten) warn[++w] = "a listening line in the earlier 👂 listening or 🔇 not listening form, which LISTEN-LINE replaces with 👂 in <meeting>, or no line in no meeting"
+      if (paired) warn[++w] = "a banner item pairing an agreed glyph with a bracketed state word, where GLYPH-FALLBACK sets the agreed glyph alone, keeping brackets for a provisional glyph or a word alone"
       if (long && art && (!art_at || (heading && art_at > heading))) warn[++w] = "no Knowledge Islands art above the banner"
       if (long && roadmap && !road) warn[++w] = "no 🗺️ roadmap line"
       if (long && !pack) warn[++w] = "no 📦 package line"

@@ -1,6 +1,6 @@
 import { expect, test } from 'bun:test'
 import { spawnSync } from 'node:child_process'
-import { mkdirSync, mkdtempSync, rmSync, statSync, writeFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 
@@ -491,5 +491,45 @@ test("a coordinating reply's reply block and footer are checked together", () =>
   const warned = run(stop(withBlock('```text\n1 · Now\nPUSH a\n```').replace(`\n\n${art}`, ''), plain))
   expect(warned.reason).toEndWith(
     "Give the reply again in full with the reply block put right, since the last text is what the owner reads. The Summary's footer also has no Knowledge Islands art above the banner; keep that only where the owner asked for it."
+  )
+})
+
+// Kris, about 09:55 GMT on 17 November 2026, under GLYPH-TABLE and GLYPH-FALLBACK: one table holds every glyph, and a banner
+// item takes an agreed glyph alone, a provisional glyph with its word in brackets, or the bracketed word alone. The hook
+// warns on an agreed glyph with brackets, from its own copy of the table, which this test holds to the standard.
+test("the hook's agreed glyphs are the standard's one table of glyphs", () => {
+  const bare = (glyph: string): string => glyph.replace(/\uFE0F/gu, '')
+  const standard = readFileSync(
+    resolve(import.meta.dir, '..', '..', 'skills', 'work', 'ki-coordination', 'references', 'standards-coordination.md'),
+    'utf8'
+  )
+  const lines = (standard.split('**One table of glyphs.**')[1] ?? '').split('\n')
+  const start = lines.findIndex((line) => line.startsWith('| '))
+  const end = lines.findIndex((line, at) => at > start && !line.startsWith('|'))
+  const table = lines
+    .slice(start + 2, end)
+    .flatMap((line) => [...(line.split('|')[1] ?? '').matchAll(/`([^`]+)`/gu)].map((match) => bare(match[1] ?? '')))
+  const copy = /^agreed='([^']*)'$/mu.exec(readFileSync(script, 'utf8'))?.[1]?.split(' ').map(bare)
+  expect(table.length).toBeGreaterThan(20)
+  expect(copy?.sort()).toEqual(table.sort())
+})
+
+test('a banner item with an agreed glyph and brackets warns; a provisional glyph or a bracketed word passes', () => {
+  const banner = (item: string): string => summary(art, heading, counts, roadmap, pkg, item, listening, thread)
+  for (const item of [
+    '- 👤 FOOTER-HOOK · owner · at 21:10',
+    '- 🌀 [rebasing] ki-agent-backpack · run/rebase · at 21:10',
+    '- [rebasing] ki-agent-backpack · run/rebase · at 21:10'
+  ])
+    expect(run(stop(banner(item), plain))).toEqual(silent)
+  for (const item of [
+    '- 👤 [with you] FOOTER-HOOK · owner · at 21:10',
+    '- 🅿️ [parked] 2 queries in the change documents',
+    '- 🅿 [parked] 2 queries in the change documents',
+    '- 🤖 [rebasing] ki-agent-backpack · run/rebase · at 21:10'
+  ])
+    expect(run(stop(banner(item), plain)).warning).toContain('a banner item pairing an agreed glyph with a bracketed state word')
+  expect(run(stop(banner('- 👤 [with you] FOOTER-HOOK · owner · at 21:10'), plain), {}, '/bin/bash').warning).toContain(
+    'a banner item pairing an agreed glyph'
   )
 })

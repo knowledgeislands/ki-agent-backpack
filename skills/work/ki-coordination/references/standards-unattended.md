@@ -10,7 +10,7 @@ This file holds away grants, unattended windows, scheduled wakes and headless pa
   - any item of the `ki-delegation` [default deny list](../../../agentic-systems/ki-delegation/references/standards-background-runs.md#unattended-deny-list) the grant lifts, within its [authority limits](../../../agentic-systems/ki-delegation/references/standards-background-runs.md#authority-tiers).
 
   Park decisions outside that scope. The window then runs under [Unattended windows](#unattended-windows). An ordinary steering message does not cancel it, and an existing "while I am away" grant stays authority until its return condition.
-- **Scheduled wakes:** a separately requested schedule needs an explicit request or away grant, and a `⏰` scheduled banner item naming its mechanism, observed next firing, session-only or durable lifetime, expiry and "stop the wake". Stop it at the window boundary or at a drain. It is a banner item, not a work state.
+- **Scheduled wakes:** a separately requested schedule needs an explicit request or away grant, and a `⏰` scheduled banner item naming its mechanism, observed next firing, session-only or durable lifetime, expiry and "stop the wake". Stop it at the window boundary or at a drain. It is a banner item, not a work state; its glyph is in the [table of glyphs](standards-coordination.md#banner).
 
 ## Unattended windows
 
@@ -24,7 +24,7 @@ A window is an episode in With worker, not a state: a period the owner grants fo
   - record each repository's `origin/main` and local `main` revisions in the window's entry;
   - give an entry report that shows the plan and says how the session and its machine are kept awake, then start without confirmation.
 - **Awake:** the window keeps the leading chat session alive and its machine awake. On macOS, start `caffeinate -dims -w <session pid>` detached at entry, a power assertion tied to the session's process; elsewhere use the platform's equivalent, such as `systemd-inhibit` on Linux. Release it at expiry, an explicit return or "stop the wake"; it ends with the session anyway. Where the machine cannot be kept awake, the entry report says so and the window promises less.
-- **Banner:** while the window runs, the banner carries `- 🪟 until <end> · stop the wake`.
+- **Banner:** while the window runs, the banner carries `- 🪟 until <end> · stop the wake`, its glyph from the [table of glyphs](standards-coordination.md#banner).
 - **Progress:** within the grant, the coordinator plans already adopted, authorised Now or Next drafts to Ready and delivers eligible Ready records to awaiting review, in waves citing the grant.
   - The grant in its change document is the window's one authority record; no batch record is written.
   - Each wave covers one repository and is frozen before delivery starts: its exact records and order go into the change document's Steps, and nothing joins or leaves it while it runs. A finding raised during a wave is a candidate for a later wave.

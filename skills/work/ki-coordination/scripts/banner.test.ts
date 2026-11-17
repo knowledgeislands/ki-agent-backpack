@@ -70,13 +70,61 @@ const BANNER_HEADING = new RegExp(
   String.raw`^### (?:${GLYPH_STATE} · at \d{2}:\d{2} [A-Z]{3,4}|🏁 Finished · .+ closed at \d{2}:\d{2} [A-Z]{3,4})$`,
   'u'
 )
+/** A glyph without its variation selector, so `🅿️` and `🅿` read alike. */
+const bare = (glyph: string): string => glyph.replace(/\uFE0F/gu, '')
+/** The backticked glyphs of a Markdown table's first cell. */
+const cellGlyphs = (cell: string): string[] => [...cell.matchAll(/`([^`]+)`/gu)].map((match) => bare(match[1] ?? ''))
+/** The rows of the first Markdown table after `marker` in `text`, each as its trimmed cells. */
+const tableAfter = (text: string, marker: string): string[][] => {
+  const lines = (text.split(marker)[1] ?? '').split('\n')
+  const start = lines.findIndex((line) => line.startsWith('| '))
+  const end = lines.findIndex((line, at) => at > start && !line.startsWith('|'))
+  return lines.slice(start + 2, end).map((line) =>
+    line
+      .split('|')
+      .slice(1, -1)
+      .map((cell) => cell.trim())
+  )
+}
 /**
- * A banner item: `- <glyph> <what>`, opening with its state's glyph alone and never a bracketed state word, under
- * ITEM-GLYPHS (Kris, 17 November 2026): the counts line's own glyphs, ⛔ for stuck as for blocked, the hold's ⏸️ or 💤 for
- * its release, 🪟 for an unattended window, ⏰ for a scheduled wake, 🏁 at Finished and 🧹 for a worktree sweep finding. The live items name a holder
- * and end `· at <time>`; housekeeping lives in the report body.
+ * The one table of glyphs under GLYPH-TABLE (Kris, 17 November 2026): "the key thing is to create a single table with all
+ * the glyphs that are used." Read from the core, so the test holds no copy of it.
  */
-const ITEM = /^- (?:🤖|⏳|👤|⛔|🅿️|⏸️|💤|🪟|⏰|🏁|🧹) (?!\[).+$/u
+const GLYPH_ROWS = tableAfter(core, '**One table of glyphs.**')
+/** Every agreed glyph, retired ones included: a provisional glyph clashes with none of them. */
+const AGREED = new Set(GLYPH_ROWS.flatMap(([glyph = '']) => cellGlyphs(glyph)))
+/** The agreed glyphs that open a banner item, F6 in the table's Where it appears. */
+const ITEM_GLYPHS = new Set(
+  GLYPH_ROWS.filter(([, , where = '']) => /\bF6\b/.test(where)).flatMap(([glyph = '']) => cellGlyphs(glyph))
+)
+/** The role glyphs, which the table links to `ki-work-package`'s role catalogue rather than copying. */
+const ROLE_GLYPHS = new Set(
+  tableAfter(
+    readFileSync(resolve(skillRoot, '..', 'ki-work-package', 'references', 'standard-roles.md'), 'utf8'),
+    '### 4.3 Role catalogue'
+  ).map(([, , glyph = '']) => bare(glyph))
+)
+/** The bracketed state words ITEM-GLYPHS retired, each now an agreed glyph's, so never written in brackets. */
+const RETIRED_WORDS = new Set(
+  'running queued with-you stuck blocked parked release finished window scheduled stranded branch stash'
+    .split(' ')
+    .map((word) => word.replace('-', ' '))
+)
+/**
+ * The form of a banner item, `- <glyph> <what>`, under ITEM-GLYPHS and GLYPH-FALLBACK (Kris, 17 November 2026): an agreed
+ * item glyph alone; a provisional glyph, clashing with no agreed or role glyph, followed by its bracketed state word; or the
+ * bracketed state word alone, never one an agreed glyph already names. An agreed glyph with brackets has no form. The live
+ * items name a holder and end `· at <time>`; housekeeping lives in the report body.
+ */
+const itemForm = (line: string): 'agreed' | 'provisional' | 'bracketed' | undefined => {
+  const match = /^- (?:([^\s!-~]+) )?(?:\[([a-z][a-z -]*)\] )?(?!\[)\S.*$/u.exec(line)
+  if (!match) return undefined
+  const [, glyph, word] = match
+  if (glyph === undefined) return word === undefined || RETIRED_WORDS.has(word) ? undefined : 'bracketed'
+  const known = AGREED.has(bare(glyph)) || ROLE_GLYPHS.has(bare(glyph))
+  if (word === undefined) return ITEM_GLYPHS.has(bare(glyph)) ? 'agreed' : undefined
+  return known ? undefined : 'provisional'
+}
 /** The items BANNER-TRIM moved out of the banner and into the report body. */
 const BODY_ITEM = /^- \[(handoff|committed|uncommitted|recovered|unlogged|behind)\]/
 const HOLDER_ITEM =
@@ -190,7 +238,7 @@ const expectBanner = (lines: string[]): void => {
   }
   const items = lines.slice(first, end - 1)
   expect(items.length).toBeGreaterThan(0)
-  for (const item of items) expect(item).toMatch(ITEM)
+  for (const item of items) expect([item, itemForm(item)]).toEqual([item, 'agreed'])
   for (const item of items.filter((line) => /^- (?:🤖|⏳|👤|⛔) /u.test(line))) expect(item).toMatch(HOLDER_ITEM)
   for (const item of items) expect(item).not.toMatch(/decision \d|#\d/)
 }
@@ -210,14 +258,14 @@ test('each holder line opens with its state glyph alone, never a bracketed state
     '- 🧹 stranded run/work-model · ki.ways-of-working',
     '- 🪟 until 08:00 GMT · stop the wake'
   ])
-    expect(line).toMatch(ITEM)
+    expect([line, itemForm(line)]).toEqual([line, 'agreed'])
   for (const line of [
     '- [with you] WORK-HOME · owner · at 22:58',
     '- 👤 [with you] WORK-HOME · owner · at 22:58',
     '- [parked] 1',
     '- [release] a message arrives, or `resume`'
   ])
-    expect(line).not.toMatch(ITEM)
+    expect([line, itemForm(line)]).toEqual([line, undefined])
   for (const text of [standard, outputStyle]) {
     expect(text).not.toMatch(
       /`(?:- )?\[(?:running|queued|with you|stuck|blocked|parked|release|finished|scheduled|window|state)\]/
@@ -226,6 +274,64 @@ test('each holder line opens with its state glyph alone, never a bracketed state
   }
   expect(standard).toContain('`- <glyph> <what> · <holder> · at <time>`')
   expect(standard).toContain('ITEM-GLYPHS')
+})
+
+// Kris, about 09:55 GMT on 17 November 2026, relayed by the Cairn summit's guardian, under GLYPH-TABLE: "the key thing is
+// to create a single table with all the glyphs that are used." Every glyph the standard and the output style write is in
+// the core's one table, or is a role glyph the table links to the role catalogue.
+test('one table holds every glyph the coordination surfaces use', () => {
+  expect(GLYPH_ROWS.length).toBeGreaterThan(20)
+  for (const row of GLYPH_ROWS) expect([row.join(' | '), row.length]).toEqual([row.join(' | '), 3])
+  expect([...ITEM_GLYPHS].sort()).toEqual(
+    ['🤖', '⏳', '👤', '⛔', '🅿️', '⏸️', '💤', '🪟', '⏰', '🏁', '🧹'].map(bare).sort()
+  )
+  for (const glyph of ['→', '↪️', '🎯', '📥', '🗺️', '📦', '👂', '🧵', '🔑', '🌐'].map(bare))
+    expect(AGREED).toContain(glyph)
+  expect(ROLE_GLYPHS.size).toBeGreaterThan(10)
+  expect(
+    GLYPH_ROWS.some(([glyph = '', , where = '']) => glyph === 'Role glyph' && where.includes('#43-role-catalogue'))
+  ).toBe(true)
+  for (const glyph of ROLE_GLYPHS) expect([glyph, AGREED.has(glyph)]).toEqual([glyph, false])
+  const used = new Set(
+    [standard, outputStyle].flatMap((text) =>
+      [...text.matchAll(/(?:\p{Extended_Pictographic}\uFE0F?|→)(?! \[)/gu)].map(([glyph]) => bare(glyph))
+    )
+  )
+  for (const glyph of used) expect([glyph, AGREED.has(glyph) || ROLE_GLYPHS.has(glyph)]).toEqual([glyph, true])
+  for (const name of ['standards-unattended.md', 'standards-territory.md', 'standards-report-forms.md'])
+    expect(readReference(name)).toContain('[table of glyphs](standards-coordination.md#banner)')
+  expect(core).toContain('GLYPH-TABLE')
+})
+
+// Kris, about 09:55 GMT on 17 November 2026, under GLYPH-FALLBACK: "if you've got a glyph that you can use instead of the
+// square brackets in the name, you should do. Otherwise you can use the square brackets", and "if you do make a choice like
+// that, you must show the glyph and then the value in the brackets, because it's not a glyph that's recognized."
+test('an item takes an agreed glyph alone, a provisional glyph with its word in brackets, or the bracketed word alone', () => {
+  expect(itemForm('- 🤖 work-model · run/work-model · at 23:20')).toBe('agreed')
+  expect(itemForm('- 🌀 [rebasing] ki-agent-backpack · run/rebase · at 09:58')).toBe('provisional')
+  expect(itemForm('- [rebasing] ki-agent-backpack · run/rebase · at 09:58')).toBe('bracketed')
+  for (const line of [
+    '- 🤖 [running] work-model · run/work-model · at 23:20',
+    '- 🅿️ [rebasing] ki-agent-backpack · run/rebase · at 09:58',
+    '- 🗺️ [rebasing] ki-agent-backpack · run/rebase · at 09:58',
+    '- 🔇 [rebasing] ki-agent-backpack · run/rebase · at 09:58',
+    '- 📐 [rebasing] ki-agent-backpack · run/rebase · at 09:58',
+    '- 🌀 rebasing ki-agent-backpack · run/rebase · at 09:58',
+    '- 🗺️ ki-agent-backpack · run/rebase · at 09:58',
+    '- [running] work-model · run/work-model · at 23:20',
+    '- 🌀 [rebasing] [rebasing] ki-agent-backpack · run/rebase · at 09:58'
+  ])
+    expect([line, itemForm(line)]).toEqual([line, undefined])
+  for (const text of [core, outputStyle]) {
+    expect(text).toContain('`- 🌀 [rebasing] <what> · <holder> · at <time>`')
+    expect(text).toContain('`- [rebasing] <what> · <holder> · at <time>`')
+    expect(text).toContain('GLYPH-FALLBACK')
+  }
+  expect(core).toContain('An agreed glyph is never paired with brackets.')
+  expect(core).toContain('GLYPH-REVIEW')
+  expect(readFileSync(resolve(skillRoot, 'SKILL.md'), 'utf8')).toContain(
+    'List the provisional glyphs and bracketed state words seen in reports since the last refresh'
+  )
 })
 
 test('the standard carries the report heading as a linked theme › Project heading, the form line and one rule', () => {
