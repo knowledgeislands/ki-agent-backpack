@@ -97,6 +97,8 @@ ki-outputs:
 
 A short status line may open the Introduction where it helps a reader, but the front matter is the record.
 
+**A change in `review` is reviewed as the [review standard](standard-review.md) sets:** findings in its shape, the blocking ones becoming the change's questions, and its owner's outcome, Approve or Accept with changes, moving it to `agreed`.
+
 [Back to contents](#contents)
 
 ### 4.2 Inputs and outputs

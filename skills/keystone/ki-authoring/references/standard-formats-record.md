@@ -101,7 +101,7 @@ The owner reviews a whole record, one at a time, and the record's `ki-review` fi
 | `awaiting` | Written and not yet reviewed. Every record is written with it. |
 | `approved` | Reviewed. Set when the owner approves the record, as it stands or with changes. |
 
-**A record accepted with changes is set to `approved` at once,** and its note becomes new work in a change document. The note is that work and is kept nowhere else, never in the record: a record has nothing for the owner to do but review it, so changes ask for work, not for the record to be rewritten. The owner reviews records in the Wayfinder, and that is the review: no session walks the owner through the records at its start.
+These are the [review standard](standard-review.md)'s two outcomes for a record, Approve and Accept with changes, and any findings on a record take that standard's shape. **A record accepted with changes is set to `approved` at once,** and its note becomes new work in a change document. The note is that work and is kept nowhere else, never in the record: a record has nothing for the owner to do but review it, so changes ask for work, not for the record to be rewritten. The owner reviews records in the Wayfinder, and that is the review: no session walks the owner through the records at its start.
 
 [Back to contents](#contents)
 
