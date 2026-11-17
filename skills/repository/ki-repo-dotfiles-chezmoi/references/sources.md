@@ -14,7 +14,7 @@ Three different kinds of claim live in this standard, and they carry different c
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [Reference: source state attributes][attributes] | the `dot_`/`executable_`/`private_`/`.tmpl` naming-prefix system and prefix stacking | 2026-11-15 |
+| [Reference: source state attributes][attributes] | the `dot_`/`executable_`/`private_`/`.tmpl` naming-prefix system and the fixed prefix order | 2026-11-17 |
 | [Reference: `.chezmoiignore`][chezmoiignore] | ignore-file syntax, including negation-through-ignored-parents | 2026-11-15 |
 | [User guide: use scripts to perform actions][scripts] | `run_onchange_` script semantics — when chezmoi re-runs a script | 2026-11-15 |
 | [Reference: templating][templating] | `.chezmoidata`/`.chezmoitemplates`, Go-template rendering | 2026-11-15 |
@@ -59,12 +59,14 @@ Three different kinds of claim live in this standard, and they carry different c
 
 ## Last review
 
+Focused review, **2026-11-17**: the source state attributes page re-read, and the two points the 15 November refresh raised were measured on chezmoi v2.74.1 in a scratch source and destination. The page sets a fixed prefix order for each kind of entry and allows no `executable_` on a directory; `executable_dot_bad/` applied as a literal directory named `executable_dot_bad`, so the standard's old example did not do what it said. `private_` removes group and world permissions, and `dot_bash/private_executable_secrets.tmpl` applied as `~/.bash/secrets` at mode `0700`, not `0600`. The standard's prefix table and example now follow the page, and those two watch points are closed.
+
 Scheduled REFRESH, **2026-11-15** — every outside source re-read, the measured claims re-measured on chezmoi v2.74.1, and the case-study repo re-read.
 
 - **chezmoi.io sources**: confirmed. Two pages had moved: `.chezmoiignore` now sits under `special-files/`, and the scripts reference has become the user guide page "Use scripts to perform actions". The attributes link pointed at the target-types page, so it now points at the source state attributes page its row names. The prefixes, `run_onchange_` re-running on changed rendered content, `.chezmoidata` and `.chezmoitemplates`, `doctor`, `status` recursing by default, and `source-path`/`target-path` all read as the standard says. `.chezmoiignore` still does not document negation through an ignored parent, but its rule that every exclude beats every include agrees, and a sandbox test confirmed it.
 - **Format-tooling sources**: confirmed. The ruamel.yaml section anchors are now case-sensitive and were corrected. TOMLKit keeps its one ordering limitation, `jsonc-parser`'s `modify` still creates missing properties, and `uv run --with` and `--no-project` are unchanged.
 - **House-convention and observed sources**: the case-study repo still shows the loader, `bin/`, templating and layering patterns, and its TOML binding still uses tomlkit through `uv`. It is now a `modify_` binding, the standard's Pattern C, rather than a post-apply patch. `chezmoi apply` still replaced the target's inode, and `chezmoi diff <dir>` still printed nothing without `-r`. The standard now records v2.74.1 beside its earlier versions. `rg -a` still recovered setting names from the same application's binary, though `nm -a` yielded little. The script-header row was not re-checked and keeps 7 November.
-- **Watching**: the source state attributes page says prefixes must come in a fixed order for each kind of entry, and allows no `executable_` on a directory. The standard's prefix example, `executable_dot_bash/private_secrets.tmpl`, and its "mode `0600`" for `private_` (the page says it removes group and world permissions) have been raised with the owner rather than changed.
+- **Watching**: the source state attributes page says prefixes must come in a fixed order for each kind of entry, and allows no `executable_` on a directory. The standard's prefix example, `executable_dot_bash/private_secrets.tmpl`, and its "mode `0600`" for `private_` (the page says it removes group and world permissions) were raised with the owner rather than changed, and fixed on 2026-11-17 (above).
 
 Focused format-editor promotion, **2026-07-16** — the surgical config-editing heuristic proven in the case-study repo was generalized into the standard and bounded by the selected editors' primary documentation.
 

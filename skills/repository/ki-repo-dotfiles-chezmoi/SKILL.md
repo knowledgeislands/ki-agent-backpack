@@ -25,7 +25,7 @@ No `exemplars.md` is bundled yet: the single source repo is evidence for provisi
 
 ## The standard at a glance
 
-- **Repo layout & naming** — the `dot_`/`executable_`/`private_`/`.tmpl` prefix system and how prefixes stack; the `bin/` executable convention; `.chezmoiignore` negation-through-ignored-parents; the `chezmoi doctor/status/managed/unmanaged` health-check workflow.
+- **Repo layout & naming** — the `dot_`/`executable_`/`private_`/`.tmpl` prefix system and the fixed order prefixes combine in; the `bin/` executable convention; `.chezmoiignore` negation-through-ignored-parents; the `chezmoi doctor/status/managed/unmanaged` health-check workflow.
 - **Edit discipline** — edit the source, never the rendered target; resolve via `chezmoi source-path`/`chezmoi target-path`.
 - **Shell configuration** — rc files as thin loaders over numbered, load-order-prefixed config files, never accreting config inline; idempotent, conditional path setup and upstream-generated completions.
 - **Script headers** — every script opens with a plain-English header: what it is for and why it matters, then Usage, Runs and a Created line from Git history.

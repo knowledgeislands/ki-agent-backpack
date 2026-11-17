@@ -49,7 +49,8 @@ class Mgit < Formula
   end
 
   test do
-    assert_match "mgit #{version}", shell_output("#{bin}/mgit --version")
+    system "git", "init", "--quiet", "repo"                   # a real job, not --version
+    assert_match "repo", shell_output("#{bin}/mgit")
   end
 end
 ```
@@ -58,7 +59,7 @@ Three rules define a well-formed tap — most findings are a violation of one:
 
 1. **The tap is `Formula/*.rb`, one formula per tool.** The directory `Formula/` with at least one `.rb` is what makes a repo a tap; the filename is the formula name (`Formula/mgit.rb` → `brew install …/mgit`). No `Formula/` is a hard FAIL — it is not a tap.
 2. **A formula sources a versioned release, never HEAD.** `url` points at a tagged-release tarball (`/archive/refs/tags/vX.Y.Z.tar.gz` or `/releases/download/…`) with its matching `sha256`. Installing from a branch is unreproducible; that is a finding, not the shape.
-3. **The formula has the seven required parts.** `class <Camel> < Formula`, `desc`, `homepage`, `url`, `sha256`, `license`, a `def install`, and a `test do` that exercises the installed binary. `brew audit`/`brew style` enforce the finer rules on top (this skill runs them when `brew` is present).
+3. **The formula has the seven required parts.** `class <Camel> < Formula`, `desc`, `homepage`, `url`, `sha256`, `license`, a `def install`, and a `test do` that exercises the installed binary doing its basic job, not just `--version` or `--help`. `brew audit`/`brew style` enforce the finer rules on top (this skill runs them when `brew` is present).
 
 ## The name is fixed by Homebrew
 

@@ -43,16 +43,18 @@ The README, LICENSE, `.gitignore`, and GitHub settings are **`ki-repo`'s**, not 
 
 A formula is a Ruby class Homebrew evaluates. The required parts _(spec — Homebrew rejects a formula missing them)_:
 
-| Part          | Rule                                                                                            |
-| ------------- | ----------------------------------------------------------------------------------------------- |
-| `class`       | `class <CamelCase> < Formula`; the class name is the formula name camelised.                    |
-| `desc`        | One-line description, **≤ 80 chars**, and **not** starting with "A ", "An ", or "The ".         |
-| `homepage`    | The tool's canonical URL (its source repo).                                                     |
-| `url`         | A versioned release tarball (see below).                                                        |
-| `sha256`      | The SHA-256 of that exact tarball.                                                              |
-| `license`     | An SPDX identifier (e.g. `"MIT"`).                                                              |
-| `def install` | Installs the built artifact(s), e.g. `bin.install "bin/mgit"`.                                  |
-| `test do`     | Exercises the **installed** binary — asserts on `--version`/`--help` output, not a stub `true`. |
+| Part          | Rule                                                                                                                      |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `class`       | `class <CamelCase> < Formula`; the class name is the formula name camelised.                                              |
+| `desc`        | One-line description, **≤ 80 chars**, and **not** starting with "A ", "An ", or "The ".                                   |
+| `homepage`    | The tool's canonical URL (its source repo).                                                                               |
+| `url`         | A versioned release tarball (see below).                                                                                  |
+| `sha256`      | The SHA-256 of that exact tarball.                                                                                        |
+| `license`     | An SPDX identifier (e.g. `"MIT"`).                                                                                        |
+| `def install` | Installs the built artifact(s), e.g. `bin.install "bin/mgit"`.                                                            |
+| `test do`     | Exercises the **installed** binary doing its basic job in `testpath`, with an assertion on the result, not a stub `true`. |
+
+A good `test do` runs a real command on a small input, as Homebrew's Formula Cookbook asks: for `mgit`, initialise a repository in `testpath` and assert that `mgit` lists it. The Cookbook calls a `--version` or `--help` assertion a bad test, though better than none, so such a test is the floor, kept only where the tool has no basic operation it can run offline, and `TAP-J2` reports it as weak.
 
 The `desc` length and article rules are `brew style`'s; `TAP-4` mirrors them so they are caught without invoking `brew`. Everything finer (interpolation style, `bin`/`libexec` idioms, dependency declarations) is left to explicit `brew audit`/`brew style` checks.
 

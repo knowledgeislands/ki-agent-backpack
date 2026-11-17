@@ -53,7 +53,7 @@ Formula layout, static source evidence, and judgment review of tap correctness.
   - _Conforming guidance:_ Revise the tap through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
 - **TAP-J2 [J] — meaningful formula test** — Each `test do` block exercises an installed binary rather than a placeholder. (standards-homebrew-tap.md)
   - _Evidence scope:_ The Homebrew tap, its formulae, release evidence, and CI configuration.
-  - _Review prompt:_ Does each formula test exercise its installed binary with a meaningful assertion?
+  - _Review prompt:_ Does each formula test run the installed binary on its basic job with a meaningful assertion, not only `--version` or `--help`?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tap through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
 - **TAP-J3 [J] — install correctness** — Each install block installs the artefact the tool actually ships. (standards-homebrew-tap.md)

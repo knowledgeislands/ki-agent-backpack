@@ -277,7 +277,9 @@ const TAP_J2: RubricItem<TapContext> = {
   title: 'meaningful formula test',
   description: 'Each `test do` block exercises an installed binary rather than a placeholder.',
   sources: SOURCE,
-  judgment: judgment('Does each formula test exercise its installed binary with a meaningful assertion?')
+  judgment: judgment(
+    'Does each formula test run the installed binary on its basic job with a meaningful assertion, not only `--version` or `--help`?'
+  )
 }
 const TAP_J3: RubricItem<TapContext> = {
   code: 'TAP-J3',

@@ -21,16 +21,16 @@ The rationale behind [the generated rubric](rubric.md) and its structured catalo
 
 ## Repo layout & naming
 
-chezmoi maps source-tree names to `$HOME` targets through stacking prefixes:
+chezmoi maps source-tree names to `$HOME` targets through prefixes that combine:
 
-| Source prefix       | Target effect                                  |
-| ------------------- | ---------------------------------------------- |
-| `dot_<name>`        | `~/.<name>` (file or directory)                |
-| `executable_<name>` | executable bit set on the rendered target      |
-| `private_<name>`    | target mode `0600`                             |
-| `<name>.tmpl`       | rendered as a Go template before being written |
+| Source prefix       | Target effect                                          |
+| ------------------- | ------------------------------------------------------ |
+| `dot_<name>`        | `~/.<name>` (file or directory)                        |
+| `executable_<name>` | executable bit set on the rendered target (files only) |
+| `private_<name>`    | group and world permissions removed from the target    |
+| `<name>.tmpl`       | rendered as a Go template before being written         |
 
-Prefixes stack in source-name order, e.g. `executable_dot_bash/private_secrets.tmpl` renders to an executable, mode-600, templated file under `~/.bash/`. A leading double-underscore (`executable__foo`) is a legitimate trick to force early lexical sort order among sibling scripts — not a typo.
+Prefixes combine in the fixed order chezmoi's source state attributes page sets for each kind of entry, not in any order: for a regular file `encrypted_`, `private_`, `readonly_`, `empty_`, `executable_`, then `dot_`; for a directory `remove_`, `external_`, `exact_`, `private_`, `readonly_`, then `dot_`, with no `executable_`. So `dot_bash/private_executable_secrets.tmpl` renders to an executable, templated file under `~/.bash/` with group and world permissions removed (mode `0700` under the usual umask). A leading double-underscore (`executable__foo`) is a legitimate trick to force early lexical sort order among sibling scripts — not a typo.
 
 `bin/` **executable convention**: scripts named `executable_<name>` under a `bin/` source directory land on `$PATH` as `~/bin/<name>`. Other chezmoi source-attribute prefixes (`symlink_`, `private_`, `dot_`, etc.) are equally legitimate for a file living under `bin/` — the convention is "every file carries _a_ recognized chezmoi attribute prefix," not "every file is specifically `executable_`."
 
