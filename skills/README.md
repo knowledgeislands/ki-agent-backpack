@@ -327,7 +327,7 @@ Lead the Agentic systems guild and define the words of agentic systems as a know
 
 #### `ki-authoring`
 
-Lead the Authoring guild and govern KI document formats, Markdown, TOML, README composition, industry white papers, and durable knowledge placement. Use to format or audit authored documents, shape a README, decide where learning belongs, or find the skill for decision records, diagrams, specifications or guides; use `ki-skills` for SKILL.md quality, `ki-repo` for repository contracts, and `ki-engineering` for code toolchains.
+Lead the Authoring guild and govern KI document formats, the one review shape, Markdown, TOML, README composition, industry white papers, and durable knowledge placement. Use to format, review or audit authored documents, shape a README, decide where learning belongs, or find the skill for decision records, diagrams, specifications or guides; use `ki-skills` for SKILL.md quality, `ki-repo` for repository contracts, and `ki-engineering` for code toolchains.
 
 - **Kind:** Governance
 - **Leads:** Authoring

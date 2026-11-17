@@ -10,10 +10,10 @@ ki-shared-dependencies: [ki-skills:rubric]
 ki-owns: ['.editorconfig', '.rumdl.toml']
 ki-contributes: ['.githooks/pre-commit']
 description: >
-  Lead the Authoring guild and govern KI document formats, Markdown, TOML, README composition, industry white papers,
-  and durable knowledge placement. Use to format or audit authored documents, shape a README, decide where learning
-  belongs, or find the skill for decision records, diagrams, specifications or guides; use `ki-skills` for SKILL.md
-  quality, `ki-repo` for repository contracts, and `ki-engineering` for code toolchains.
+  Lead the Authoring guild and govern KI document formats, the one review shape, Markdown, TOML, README composition,
+  industry white papers, and durable knowledge placement. Use to format, review or audit authored documents, shape a
+  README, decide where learning belongs, or find the skill for decision records, diagrams, specifications or guides;
+  use `ki-skills` for SKILL.md quality, `ki-repo` for repository contracts, and `ki-engineering` for code toolchains.
 argument-hint: 'audit <path> | conform <path> | educate <target> | help | refresh'
 ---
 
@@ -88,6 +88,7 @@ Each set is a self-contained reference, loaded on demand. Read the one relevant 
 - **[Industry white papers](references/standard-whitepapers.md)** — reader-led argument, evidence, deployment implications, and editorial review; load when authoring or reviewing a white paper.
 - **[Knowledge promotion](references/standard-knowledge-promotion.md)** — runtime-neutral placement, evidence, and reconciliation for durable learnings, and the durable document types, each with its format standard; it routes knowledge deliberately without mining transcripts or creating guide areas automatically.
 - **Format standards** — what every type of document shares, in the [format format](references/standard-formats-format.md), and the format of each type: the [standard](references/standard-formats-standard.md), the [change document](references/standard-formats-change.md) (`.change.md`), the [sources file](references/standard-formats-sources.md), the [record](references/standard-formats-record.md) and the [design document](references/standard-formats-design.md) (`.design.md`). Load when writing or reviewing a document of one of these types.
+- **[Review](references/standard-review.md)** — the one review every record, change, design, standard and skill takes: who reviews, what it is reviewed against, the anchored finding's shape, the two outcomes, Approve and Accept with changes, and the one review perspective; each kind's skill adds only its own anchors. Load when reviewing anything, or when writing a skill's review step.
 - **[Worked exemplars](references/exemplars.md)** — annotated illustrations of the conventions in practice: the footnote-marker series and table spill, relative-link style, and a well-formed `.ki.toml` structure. Reach for these when a rule's application is a judgment call.
 
 Out of scope by design, with their natural homes:

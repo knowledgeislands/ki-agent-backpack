@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:17:42Z
+ki-revised: 2026-11-17T01:48:38Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -17,7 +17,7 @@ ki-refresh: external-spec · monthly
 
 ## 1. Introduction
 
-The sources behind [the enforcement standard](standard-authoring.md), [the Markdown standard](standard-markdown.md), [the TOML standard](standard-toml.md), [the white-paper standard](standard-whitepapers.md), [knowledge promotion](standard-knowledge-promotion.md), and the five format standards: [format](standard-formats-format.md), [standard](standard-formats-standard.md), [change](standard-formats-change.md), [sources](standard-formats-sources.md) and [record](standard-formats-record.md). Mode REFRESH reads this file, re-fetches each outside source, diffs it against the conventions, then **bumps the `last reviewed` dates** and refreshes [Last review](#4-last-review) (what changed is recorded in the commit, not a changelog). The house style is mostly internally owned, but it sits on top of these external tools and specs, which move — so this is the skill's memory of what it rests on.
+The sources behind [the enforcement standard](standard-authoring.md), [the Markdown standard](standard-markdown.md), [the TOML standard](standard-toml.md), [the white-paper standard](standard-whitepapers.md), [knowledge promotion](standard-knowledge-promotion.md), [the review standard](standard-review.md), and the five format standards: [format](standard-formats-format.md), [standard](standard-formats-standard.md), [change](standard-formats-change.md), [sources](standard-formats-sources.md) and [record](standard-formats-record.md). Mode REFRESH reads this file, re-fetches each outside source, diffs it against the conventions, then **bumps the `last reviewed` dates** and refreshes [Last review](#4-last-review) (what changed is recorded in the commit, not a changelog). The house style is mostly internally owned, but it sits on top of these external tools and specs, which move — so this is the skill's memory of what it rests on.
 
 [Industry white-paper authoring](standard-whitepapers.md) is an owner-directed synthesis of editorial practice: reader-led argument, calibrated claims, practical implications and substantive review. It is an internal authoring convention, not an external specification or a prescribed chapter model. Private production evidence and the promotion receipt remain with the originating repository; this public standard carries only the generalised rules.
 
@@ -48,6 +48,12 @@ Advisory sources inform local judgment conventions but are not specifications, m
 | Source                | Informs                                                 | Last reviewed |
 | --------------------- | ------------------------------------------------------- | ------------- |
 | [Standard Readme][sr] | README entry-point structure and reader discoverability | 2026-10-18    |
+| [Conventional Comments][cc] | [The review standard](standard-review.md#44-a-findings-shape)'s finding: each labelled with its kind and whether it blocks | 2026-11-17 |
+| [Design docs at Google][ubl] | [Who reviews](standard-review.md#41-who-reviews): peers who did not write it, early, while change is cheap | 2026-11-17 |
+| [AIP-100][aip100] and [Zalando's API guidelines][zal] | [What it is reviewed against](standard-review.md#42-what-it-is-reviewed-against): precedent and anchored rules, a deviation marked where it is made | 2026-11-17 |
+| [The Rust RFC book][rfc] and [Oxide's RFD 1][rfd] | [The outcome](standard-review.md#45-the-outcome): a stated disposition, held in the document's own state | 2026-11-17 |
+| [Scaling architecture conversationally][advice] | [Who reviews](standard-review.md#41-who-reviews): the advice process, whoever decides consulting first and the advice recorded | 2026-11-17 |
+| [Nielsen Norman Group's design critiques][nng] | [Not taste](standard-review.md#42-what-it-is-reviewed-against): every comment tied to the goals | 2026-11-17 |
 
 [cm]: https://spec.commonmark.org/
 [ru]: https://rumdl.dev/rules
@@ -57,6 +63,14 @@ Advisory sources inform local judgment conventions but are not specifications, m
 [ga]: https://docs.github.com/en/contributing/style-guide-and-content-model/style-guide#alerts
 [toml]: https://toml.io/en/v1.1.0
 [sr]: https://github.com/RichardLitt/standard-readme
+[cc]: https://conventionalcomments.org/
+[ubl]: https://www.industrialempathy.com/posts/design-docs-at-google/
+[aip100]: https://google.aip.dev/100
+[zal]: https://opensource.zalando.com/restful-api-guidelines/
+[rfc]: https://rust-lang.github.io/rfcs/
+[rfd]: https://rfd.shared.oxide.computer/rfd/0001
+[advice]: https://martinfowler.com/articles/scaling-architecture-conversationally.html
+[nng]: https://www.nngroup.com/articles/design-critiques/
 
 [Back to contents](#contents)
 
@@ -107,10 +121,14 @@ Advisory sources inform local judgment conventions but are not specifications, m
 | DESIGN-RENDER | Each design keeps its final boards in a folder beside it, named by level (`ia-`, `wire-`, `mock-`), each with a PNG beside it and coded as the annotated board is; diagrams are committed SVGs under `ki-diagrams`, screenshots PNG, and an HTML page is linked, never embedded. Kris's word, 17 November, about 00:56 GMT, taking the high-confidence points: "you've got high confidence in some of these, so I think you need to take them and get on with it", relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [design format](standard-formats-design.md#45-images-boards-and-diagrams) | In force |
 | DESIGN-PLACE | Designs live in `docs/design/`, owned by `ki-design` among `ki-repo`'s documentation roots; all six repositories that keep designs already put them there. Kris's word, 17 November, about 00:56 GMT, taking the high-confidence points: "you've got high confidence in some of these, so I think you need to take them and get on with it", relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [design format](standard-formats-design.md#46-naming-and-place) | In force |
 | DESIGN-LIVING | A build adds only to a design's Built section, in a commit of its own; anything else changes through a change document. Kris's word, 17 November, about 00:56 GMT, taking the high-confidence points: "you've got high confidence in some of these, so I think you need to take them and get on with it", relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [design format](standard-formats-design.md#44-living-designs) | In force |
+| REVIEW-SHAPE | One review for every kind of design: by a reviewer who did not draw it, against the brief, the standards and earlier decisions; each finding anchored to an exact place, saying whether it blocks and with a confidence; the outcome through the change document, with Approve or Accept with changes as records have. Kris's word, 17 November, about 00:56 GMT, taking the high-confidence points: "you've got high confidence in some of these, so I think you need to take them and get on with it", relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#42-decided); `ki-design` holds it for designs. | 2026-11-17 | [review standard](standard-review.md) | In force; made general by REVIEW-HOME |
+| REVIEW-HOME | One general review standard in Keystone, in `ki-authoring` beside the formats, which every reviewable document cites, designs, skills, standards, changes and records alike, `ki-design` adding only the design anchors and `ki-meeting`'s review standard pointing at it for a review held as a meeting. Option b, Kris's word, 17 November, about 01:37 GMT, raised to high by his word that consistency is vital, relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [review standard](standard-review.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+A fifth 17 November 2026 in-house review built the review standard under REVIEW-HOME b, which Kris took that day at about 01:37 GMT, with REVIEW-SHAPE a, from the Cairn summit's [change 16, 4.6](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#46-one-design-review). [The review standard](standard-review.md) is in force: a reviewer who did not make the thing, reading independently while the owner decides; a review against the brief, the governing standards and precedent; each finding anchored to one thing a reader can open, with its kind, whether it blocks, what to change and its confidence, and the review saying what it did not check; the two outcomes, Approve and Accept with changes, recorded where the thing changes; and one review perspective across records, changes, designs, standards and skills, each kind's skill adding only its own anchors. The change and record formats point at it, in a mechanical commit that leaves their versions where they were, since neither format's rules change. `ki-design`, `ki-design-system`, `ki-meeting` and `ki-skills` cite it in place of their own wording. Change 16's research for its 4.6 joins the advisory sources, read by that change on 17 November and not fetched again.
 
 A fourth 17 November 2026 in-house review built the design format from the Cairn summit's [change 16, the Design guild](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#42-decided), under DESIGN-FRONT a, DESIGN-SECTIONS a, DESIGN-NAME a and DESIGN-LIFE a, taken in change 11, and DESIGN-RENDER a, DESIGN-PLACE a and DESIGN-LIVING a, which Kris took that day at about 00:56 GMT. [The design format](standard-formats-design.md) is in force: a design document is the design that stands, of any kind, with its front matter, five statuses each moved through a change document, six sections with the brief in the Introduction, a living design's Built section, its images, boards and design book, and its name and place under `docs/design/`. [Knowledge promotion's document types](standard-knowledge-promotion.md#42-document-types) gain the design document, a design note proposing a change staying a change document, and its migration line now goes by `ki-document-type` rather than the `.design.md` name. The FMT-shape rubric item reads the design format's Validation by judgement, as it does the change, standard and sources formats'. How a design is reviewed waits on REVIEW-HOME, still open in change 16. No outside source refreshed.
 
