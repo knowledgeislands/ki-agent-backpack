@@ -78,6 +78,8 @@ These primary sources ground the separate source-install contract. They do not m
 
 ## Last review
 
+On 17 November 2026 an in-house review applied MCP-TRIM a, which Kris took that day, relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions): [§1's `mcp-server/` line](standards-mcp-servers.md#1-project-layout) said to connect a `StdioServerTransport`, while §12's modern profile, which six of the seven local servers use (`mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude` and `mcp-cairn`), passes a per-connection server factory to `serveStdio`. §1 now says so, keeping `StdioServerTransport` for a server still on the legacy profile, as `mcp-acquire-whatsapp` is. No outside source refreshed.
+
 On 16 November 2026 an in-house review applied MCP-AGENTS a, which Kris took that day at about 16:22 GMT, relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions): the standard's [§11](standards-mcp-servers.md#11-docs) names root `AGENTS.md` as the home of a server's architecture invariants and security requirements, imported by a `CLAUDE.md` that keeps only what is Claude's own, and the audit procedure, the docs judgement item and the CLAUDE row follow. The MCP repositories' own invariant sections are not trimmed here. The file keeps its older shape until its guild's review.
 
 REFRESH last ran **2026-10-18** under KI-HARNESS-GOV-194. Every row was re-fetched, and the sibling repositories were re-scanned locally.
