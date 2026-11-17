@@ -18,7 +18,7 @@ const TOOL_1: RubricItem<McpToolsContext> = {
   code: 'TOOL-1',
   title: 'MCP tool surface',
   description:
-    'Registered tool names use snake-case app/resource/action forms; source-local structured output declarations are paired with outputSchema; and group registration order is stable. This is not runtime registration, security, or response evidence.',
+    'Registered tool names use snake-case app/resource/action forms, except those `[skills.ki-repo-mcp]` declares in tool-name-exceptions; source-local structured output declarations are paired with outputSchema; and group registration order is stable. This is not runtime registration, security, or response evidence.',
   sources: [STANDARD, SECURITY_STANDARD, RESULT_STANDARD, OAUTH_STANDARD],
   mechanical: {
     level: 'WARN',
@@ -38,7 +38,8 @@ const TOOL_1: RubricItem<McpToolsContext> = {
             subject: 'src/tools'
           })
         else {
-          const invalid = names.filter((name) => !/^[a-z0-9]+(_[a-z0-9]+){1,}$/.test(name))
+          const excepted = new Set(context.toolNameExceptions)
+          const invalid = names.filter((name) => !excepted.has(name) && !/^[a-z0-9]+(_[a-z0-9]+){1,}$/.test(name))
           checks.push({
             status: 'PASS',
             message: `Registered tools (${names.length}): ${[...names].sort().join(', ')}.`,
@@ -52,6 +53,20 @@ const TOOL_1: RubricItem<McpToolsContext> = {
                 : 'All tool names use the documented form.',
             subject: 'src/tools'
           })
+          const kept = names.filter((name) => excepted.has(name))
+          if (kept.length > 0)
+            checks.push({
+              status: 'INFO',
+              message: `Declared exceptions to the naming form: ${kept.join(', ')}.`,
+              subject: '.ki.toml'
+            })
+          const stale = context.toolNameExceptions.filter((name) => !names.includes(name))
+          if (stale.length > 0)
+            checks.push({
+              status: 'VIOLATION',
+              message: `tool-name-exceptions names tools not registered: ${stale.join(', ')}.`,
+              subject: '.ki.toml'
+            })
         }
         const resultFiles = context.files.filter((file) => /\b(?:structuredContent|jsonResult)\b/.test(file.content))
         for (const file of resultFiles)

@@ -45,6 +45,8 @@ export type McpApplicabilityContext = {
   readonly config: ConfigState
   readonly configKeys: readonly string[]
   readonly sharedProfile: unknown
+  /** The raw `tool-name-exceptions` value: tool names declared as exceptions to the naming form. */
+  readonly toolNameExceptions: unknown
   readonly addMarker?: () => void
 }
 
@@ -76,6 +78,8 @@ export type McpTestingContext = {
 
 export type McpToolsContext = {
   readonly files: readonly SourceFile[]
+  /** Tool names `[skills.ki-repo-mcp]` declares as exceptions to the naming form; empty when none or invalid. */
+  readonly toolNameExceptions: readonly string[]
 }
 
 export type McpProtocolContext = {
@@ -162,6 +166,12 @@ const sourceFilesBelow = (root: string, directory: string): SourceFile[] => {
   return files.sort((left, right) => left.path.localeCompare(right.path))
 }
 
+/** The declared tool-name exceptions when the value is a list of tool names, otherwise none. */
+export const declaredToolNameExceptions = (value: unknown): readonly string[] =>
+  Array.isArray(value) && value.every((name) => typeof name === 'string' && /^[a-z0-9_]+$/.test(name))
+    ? (value as string[])
+    : []
+
 const inspectConfig = (
   path: string,
   kind: NodeKind
@@ -170,6 +180,7 @@ const inspectConfig = (
   readonly keys: readonly string[]
   readonly content: string | null
   readonly sharedProfile: unknown
+  readonly toolNameExceptions?: unknown
 } => {
   if (kind === 'missing') return { state: 'missing', keys: [], content: null, sharedProfile: undefined }
   if (kind !== 'file') return { state: 'unsafe', keys: [], content: null, sharedProfile: undefined }
@@ -178,7 +189,13 @@ const inspectConfig = (
     const document = Bun.TOML.parse(content) as Record<string, unknown>
     const table = asTable(asTable(document.skills)?.[CONFIG_SECTION])
     return table
-      ? { state: 'present', keys: Object.keys(table), content, sharedProfile: table.profile }
+      ? {
+          state: 'present',
+          keys: Object.keys(table),
+          content,
+          sharedProfile: table.profile,
+          toolNameExceptions: table['tool-name-exceptions']
+        }
       : { state: 'absent', keys: [], content, sharedProfile: undefined }
   } catch {
     return { state: 'malformed', keys: [], content, sharedProfile: undefined }
@@ -322,7 +339,8 @@ export const createMcpSession = ({
       applicable,
       config: configEvidence.state,
       configKeys: configEvidence.keys,
-      sharedProfile: configEvidence.sharedProfile
+      sharedProfile: configEvidence.sharedProfile,
+      toolNameExceptions: configEvidence.toolNameExceptions
     },
     layout: {
       requiredDirectories: ['config', 'mcp-server', 'tools', 'main', 'utils'].map((directory) => ({
@@ -376,7 +394,7 @@ export const createMcpSession = ({
       vitestFile,
       source: vitestFile ? readFileSync(at(vitestFile), 'utf8') : null
     },
-    tools: { files: toolFiles },
+    tools: { files: toolFiles, toolNameExceptions: declaredToolNameExceptions(configEvidence.toolNameExceptions) },
     protocol: {
       packageJson: originalPackage,
       malformed: packageEvidence.malformed,

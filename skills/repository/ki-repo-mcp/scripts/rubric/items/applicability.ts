@@ -1,5 +1,6 @@
 import type { AuditOutcome, RubricFamily, RubricItem, RubricOutcomes } from '../../shared/rubric.ts'
 import type { McpApplicabilityContext, McpRubricContext } from '../contexts/mcp.ts'
+import { declaredToolNameExceptions } from '../contexts/mcp.ts'
 import { supportedMcpSharedProfiles } from '../contexts/shared-code.ts'
 
 const STANDARD = 'standards-mcp-servers.md#applicability'
@@ -11,7 +12,7 @@ const KI_CONFIG: RubricItem<McpApplicabilityContext> = {
   code: 'KI-CONFIG',
   title: 'MCP applicability and declaration',
   description:
-    'Only [skills.ki-repo-mcp] declares this optional standard applicable. Its optional profile selects one supported whole-file shared-code projection; every other key is rejected.',
+    'Only [skills.ki-repo-mcp] declares this optional standard applicable. Its optional profile selects one supported whole-file shared-code projection, and its optional tool-name-exceptions lists tool names kept outside the naming form; every other key is rejected.',
   sources: [STANDARD],
   mechanical: {
     level: 'WARN',
@@ -51,7 +52,7 @@ const KI_CONFIG: RubricItem<McpApplicabilityContext> = {
             'No [skills.ki-repo-mcp] table; add it to mark this repository as governed.',
             '.ki.toml'
           )
-        const unknownKeys = context.configKeys.filter((key) => key !== 'profile')
+        const unknownKeys = context.configKeys.filter((key) => key !== 'profile' && key !== 'tool-name-exceptions')
         if (unknownKeys.length > 0)
           return outcome(
             'VIOLATION',
@@ -63,6 +64,17 @@ const KI_CONFIG: RubricItem<McpApplicabilityContext> = {
           (typeof context.sharedProfile !== 'string' || !supportedMcpSharedProfiles().includes(context.sharedProfile))
         )
           return outcome('VIOLATION', `profile must be one of: ${supportedMcpSharedProfiles().join(', ')}.`, '.ki.toml')
+        if (
+          context.toolNameExceptions !== undefined &&
+          (!Array.isArray(context.toolNameExceptions) ||
+            context.toolNameExceptions.length === 0 ||
+            declaredToolNameExceptions(context.toolNameExceptions).length === 0)
+        )
+          return outcome(
+            'VIOLATION',
+            'tool-name-exceptions must be a non-empty list of registered tool names, with a comment above it giving the reason.',
+            '.ki.toml'
+          )
         return context.configKeys.length > 0
           ? outcome('PASS', `Configured MCP governance profile: ${String(context.sharedProfile)}.`, '.ki.toml')
           : outcome('PASS', '[skills.ki-repo-mcp] table is present.', '.ki.toml')

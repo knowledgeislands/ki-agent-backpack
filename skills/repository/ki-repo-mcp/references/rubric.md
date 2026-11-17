@@ -33,7 +33,7 @@ Line-by-line criteria for auditing ki-repo-mcp. Classifications are derived from
 
 Scope activation and the optional shared-code profile declaration.
 
-- **KI-CONFIG [M] — MCP applicability and declaration** — Only [skills.ki-repo-mcp] declares this optional standard applicable. Its optional profile selects one supported whole-file shared-code projection; every other key is rejected. (standards-mcp-servers.md#applicability)
+- **KI-CONFIG [M] — MCP applicability and declaration** — Only [skills.ki-repo-mcp] declares this optional standard applicable. Its optional profile selects one supported whole-file shared-code projection, and its optional tool-name-exceptions lists tool names kept outside the naming form; every other key is rejected. (standards-mcp-servers.md#applicability)
   - _Remediation:_ diagnostic — Declare the selected standard through the repository configuration owner.
 
 ## LAY — Source layout
@@ -112,7 +112,7 @@ Selected Vitest coverage excludes generated and pure-wiring MCP layers.
 
 Tool names, result envelopes, schemas, and registration order form a stable MCP surface.
 
-- **TOOL-1 [M + J] — MCP tool surface** — Registered tool names use snake-case app/resource/action forms; source-local structured output declarations are paired with outputSchema; and group registration order is stable. This is not runtime registration, security, or response evidence. (standards-mcp-servers.md#3-tool-naming, standards-mcp-servers.md#6-security-invariants, standards-mcp-servers.md#13-spec-conformance-tool-results-errors--metadata, standards-mcp-servers.md#14-oauth-security-auth-server-repos)
+- **TOOL-1 [M + J] — MCP tool surface** — Registered tool names use snake-case app/resource/action forms, except those `[skills.ki-repo-mcp]` declares in tool-name-exceptions; source-local structured output declarations are paired with outputSchema; and group registration order is stable. This is not runtime registration, security, or response evidence. (standards-mcp-servers.md#3-tool-naming, standards-mcp-servers.md#6-security-invariants, standards-mcp-servers.md#13-spec-conformance-tool-results-errors--metadata, standards-mcp-servers.md#14-oauth-security-auth-server-repos)
   - _Remediation:_ diagnostic — Correct the observed tool surface with the owning API and security decisions.
   - _Evidence scope:_ The full public MCP tool surface, result envelopes, annotations, documentation, and applicable OAuth requirements.
   - _Review prompt:_ Review plural/singular resource choices, CLI mirroring and README catalogues; confirm the annotation-driven access gate, annotation presets, dry-run defaults and that dry runs are side-effect-free across the complete operation, read default, audit/error envelopes, path and subprocess hardening, bounded schemas, error aggregation, output sanitisation, and the applicable OAuth security requirements, including 401 recovery hints that name a path reachable at the configured access tier. Optional metadata remains opt-in.

@@ -4,7 +4,7 @@ The canonical shape shared by every stdio MCP server in the `knowledgeislands/` 
 
 ## Applicability
 
-The standard applies only when a repository declares `[skills.ki-repo-mcp]` in `.ki.toml`. The optional `profile` key selects a supported whole-file projection from the [MCP shared-code standard](standards-mcp-shared-code.md); an absent key leaves existing utilities repository-owned. Detected MCP-shaped source remains coverage evidence for `ki-repo`, not selection authority for this skill.
+The standard applies only when a repository declares `[skills.ki-repo-mcp]` in `.ki.toml`. The optional `profile` key selects a supported whole-file projection from the [MCP shared-code standard](standards-mcp-shared-code.md); an absent key leaves existing utilities repository-owned. The optional `tool-name-exceptions` key lists tool names a repository keeps outside [the naming form](#3-tool-naming), with a comment above it giving the reason (TOOL-EXCEPTION). Detected MCP-shaped source remains coverage evidence for `ki-repo`, not selection authority for this skill.
 
 ## Contents
 
@@ -79,6 +79,7 @@ Top-level `src/` folders are identical across all seven repos: `config`, `main`,
 - **Singular** for single-item ops (`claude_code_session_read`, `git_repo_commit`, `gsuite_email_message_get`).
 - Metadata/lifecycle tools may drop the resource segment (`m365_about`, `gsuite_auth_start`).
 - **Exception (KB-NAMES):** `mcp-ki-kb-fs`'s tools act on one implied resource, the Knowledge Base entry, so they drop the middle segment and take `<app>_<action>` (`kb_read`, `kb_list`, `kb_write`, `kb_search`), naming a resource only where another is meant (`kb_folder_create`). Accepted, because renaming them would break every client for no gain — do not flag.
+- **Declared exceptions (TOOL-EXCEPTION):** a repository that keeps other names records them in `[skills.ki-repo-mcp]` as `tool-name-exceptions = [...]`, with a comment above the key giving the reason and an entry under Exceptions in its `AGENTS.md`; the audit then reports them as declared rather than as a finding, and flags a listed name no tool registers. `mcp-cairn` keeps `who`, `since` and `presence` this way, since renaming them would break every client (MCP-TRIM).
 - The CLI verb surface mirrors the tool names.
 
 The house scheme is a deliberate **subset** of what the spec permits: per [TOOLS](sources.md), names SHOULD be 1–128 chars from `[A-Za-z0-9_.-]`. Snake_case `<app>_<resource>_<action>` stays well inside that, so a conformant house name is always a conformant spec name — the constraint to enforce is the house scheme, not the looser spec one.

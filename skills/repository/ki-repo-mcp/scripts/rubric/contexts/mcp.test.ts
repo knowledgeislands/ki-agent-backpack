@@ -367,6 +367,56 @@ test('result-envelope evidence ignores helper and main modules', () => {
   )
 })
 
+test('declared tool-name exceptions keep bare names out of the naming finding (TOOL-EXCEPTION)', () => {
+  const { repository, config } = fixture()
+  writeFileSync(
+    join(repository, 'src', 'tools', 'example', 'index.ts'),
+    "server.registerTool('example_items_list', {})\nserver.registerTool('who', {})\n"
+  )
+  writeFileSync(
+    config,
+    '[skills.ki-repo]\n[skills.ki-repo-mcp]\n# renaming would break every client\ntool-name-exceptions = ["who", "gone"]\n'
+  )
+  const session = createMcpSession(options(repository, 'audit'))
+  const { context } = rootContext(session)
+  const item = TOOL.items.find((candidate) => candidate.code === 'TOOL-1')
+  const outcomes = item?.mechanical?.audit.run(TOOL.selectContext(context)) ?? []
+
+  expect(applicabilityItem().audit.run(KI.selectContext(context))[0]?.status).toBe('PASS')
+  expect(outcomes).toContainEqual({
+    status: 'PASS',
+    message: 'All tool names use the documented form.',
+    subject: 'src/tools'
+  })
+  expect(outcomes).toContainEqual({
+    status: 'INFO',
+    message: 'Declared exceptions to the naming form: who.',
+    subject: '.ki.toml'
+  })
+  expect(outcomes).toContainEqual({
+    status: 'VIOLATION',
+    message: 'tool-name-exceptions names tools not registered: gone.',
+    subject: '.ki.toml'
+  })
+})
+
+test('a malformed tool-name-exceptions value is rejected and excepts nothing', () => {
+  const { repository, config } = fixture()
+  writeFileSync(join(repository, 'src', 'tools', 'example', 'index.ts'), "server.registerTool('who', {})\n")
+  writeFileSync(config, '[skills.ki-repo]\n[skills.ki-repo-mcp]\ntool-name-exceptions = "who"\n')
+  const session = createMcpSession(options(repository, 'audit'))
+  const { context } = rootContext(session)
+  const item = TOOL.items.find((candidate) => candidate.code === 'TOOL-1')
+  const outcomes = item?.mechanical?.audit.run(TOOL.selectContext(context)) ?? []
+
+  expect(applicabilityItem().audit.run(KI.selectContext(context))[0]?.status).toBe('VIOLATION')
+  expect(outcomes).toContainEqual({
+    status: 'VIOLATION',
+    message: 'Names not matching the documented form: who.',
+    subject: 'src/tools'
+  })
+})
+
 test('tool-surface review cites the dry-run and tier-reachable recovery rules', () => {
   const item = TOOL.items.find((candidate) => candidate.code === 'TOOL-1')
 
