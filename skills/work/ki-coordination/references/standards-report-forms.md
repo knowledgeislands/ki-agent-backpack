@@ -134,12 +134,12 @@ Each part: what it carries, when it appears and how the structure, the state and
 - **F3 Counts line:** `🤖 <n> running · ⏳ <n> queued · 👤 <n> with you · ⛔ <n> blocked · 🅿️ <n> parked`, all five views with zeros written, adding `· 📥 <n> to accept` in Project work with records awaiting the owner's acceptance. The state sets its content on hold: `⏸️ drained · 🅿️ <n> queries parked` on a paused hold, `💤 waiting for a message · 🅿️ <n> queries parked` while Snoozing. Left out only when the work is Finished.
 - **F4 Roadmap line:** `🗺️ roadmap · <n> records · <n> open · <n> done awaiting prune · <n> ideas`, or `🗺️ roadmap · none` where the package's repository has no roadmap, under **Roadmap and package lines** in [Banner detail](#banner-detail).
 - **F5 Package line:** `📦 package · changes <n> · open <n> · held <n> · meetings <n>`, under the same.
-- **F6 Item list:** one line per live item, `- [<state>] <what> · <holder> · at <time>`, under **Glyph banner** in [the core](standards-coordination.md#banner). It carries no `[awaiting ACK]` items. On hold it lists only `[parked]` and `[release]`; Finished lists `[finished]`.
+- **F6 Item list:** one line per live item, `- <glyph> <what> · <holder> · at <time>`, opening with its state's glyph alone, never a bracketed state word, under **Glyph banner** in [the core](standards-coordination.md#banner). It carries no awaiting-ACK items. On hold it lists only `🅿️` parked and the release under the hold's own glyph, `⏸️` or `💤`; Finished lists `🏁`.
 - **F7 Heading-for line:** `↪️ <draining or finishing> → <target>`, only while the work is heading for a hold or a handoff, under **Heading for a hold or a handoff** in [the core](standards-coordination.md#banner).
 - **F8 Listening line:** `👂 in <meeting>` while the session is in a meeting, naming each meeting it is in by its entry file's `meeting` field, two or more joined by `, `, as in `👂 in cairn.wayfinder.designs`, and left off when it is in none. A session is in a meeting while it is a participant of an open meeting with a sitting under way, `status: open` in the meeting's entry file under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). Listening means only this, under LISTEN-LINE; the [inbox watcher](standards-listening.md#inbox-watch) has no line.
 - **F9 Thread line:** `<role glyph> 🔑 <work-id>`, `<role glyph> <package>@<role>` for a seat without the keys, or `🧵 <work-id>`, always last, under **Thread line** in [the core](standards-coordination.md#banner).
 
-Sources: REPLY-FORMAT, REPLY-GROUPS and LISTEN-LINE in [the decision register](sources.md#decision-register).
+Sources: REPLY-FORMAT, REPLY-GROUPS, LISTEN-LINE and ITEM-GLYPHS in [the decision register](sources.md#decision-register).
 
 ### Templates
 
@@ -204,7 +204,7 @@ b) <the alternative>
 
 📦 package · changes <n> · open <n> · held <n> · meetings <n>                 F5
 
-- [<state>] <what> · <holder> · at <time>                                    F6
+- <glyph> <what> · <holder> · at <time>                                      F6
 
 ↪️ <draining or finishing> → <target>                                        F7
 
@@ -246,7 +246,7 @@ Rename thread: /rename <role glyph> 🔑 <work-id>
 
 🤖 <n> running · ⏳ <n> queued · 👤 <n> with you · ⛔ <n> blocked · 🅿️ <n> parked
 
-- [<state>] <what> · <holder> · at <time>
+- <glyph> <what> · <holder> · at <time>
 
 <👂 in <meeting>; only while in a meeting>
 
@@ -280,8 +280,8 @@ Left over: <another session's uncommitted file, or Nothing>
 
 ⏸️ drained · 🅿️ <n> queries parked
 
-- [parked] <n> queries in the change documents
-- [release] <release>, or `resume`
+- 🅿️ <n> queries in the change documents
+- ⏸️ <release>, or `resume`
 
 <role glyph> 🔑 <work-id>
 ```
@@ -293,8 +293,8 @@ Left over: <another session's uncommitted file, or Nothing>
 
 💤 waiting for a message · 🅿️ <n> queries parked
 
-- [parked] <n> queries in the change documents
-- [release] a message arrives, or `resume`
+- 🅿️ <n> queries in the change documents
+- 💤 a message arrives, or `resume`
 
 <role glyph> 🔑 <work-id>
 ```
@@ -322,7 +322,7 @@ No outstanding queries
 
 ### 🏁 Finished · <work label> closed at <time>
 
-- [finished] <what closed>
+- 🏁 <what closed>
 
 <role glyph> 🔑 <work-id>
 ```
@@ -336,7 +336,7 @@ No outstanding queries
 
 🤖 <n> running · ⏳ <n> queued · 👤 <n> with you · ⛔ <n> blocked · 🅿️ <n> parked
 
-- [<state>] <what> · <holder> · at <time>
+- <glyph> <what> · <holder> · at <time>
 
 <↪️ heading-for line; only when there is one>
 
@@ -479,10 +479,10 @@ With worker, closing a Summary while runs are out:
 
 📦 package · changes 3 · open 1 · held 0 · meetings 0
 
-- [running] work-model · run/work-model · at 23:20
-- [running] tools-burndown fix · work/ki.tools-burndown · at 23:05
-- [with you] WORK-HOME · owner · at 22:58
-- [blocked] work folder commit · repo/ki-principal · at 22:40
+- 🤖 work-model · run/work-model · at 23:20
+- 🤖 tools-burndown fix · work/ki.tools-burndown · at 23:05
+- 👤 WORK-HOME · owner · at 22:58
+- ⛔ work folder commit · repo/ki-principal · at 22:40
 
 ⚒️ 🔑 ki.ways-of-working
 ```
@@ -500,9 +500,9 @@ Handoff to supervisor, closing a Summary that sends the work to the owner:
 
 📦 package · changes 3 · open 2 · held 0 · meetings 1
 
-- [with you] WORK-MODEL · owner · at 23:52
-- [with you] WORK-HOME · owner · at 22:58
-- [parked] 1
+- 👤 WORK-MODEL · owner · at 23:52
+- 👤 WORK-HOME · owner · at 22:58
+- 🅿️ 1
 
 👂 in cairn.wayfinder.designs
 
@@ -518,8 +518,8 @@ With worker, a Position while draining towards a hold after `pause`, with one ru
 
 🤖 1 running · ⏳ 0 queued · 👤 1 with you · ⛔ 0 blocked · 🅿️ 0 parked
 
-- [running] work-model · run/work-model · at 23:20
-- [with you] WORK-HOME · owner · at 22:58
+- 🤖 work-model · run/work-model · at 23:20
+- 👤 WORK-HOME · owner · at 22:58
 
 ↪️ draining → ⏸️ On hold
 
@@ -559,8 +559,8 @@ On hold, closing a Stop:
 
 ⏸️ drained · 🅿️ 9 queries parked
 
-- [parked] 9 queries in the change documents
-- [release] after the harness migration lands, or `resume`
+- 🅿️ 9 queries in the change documents
+- ⏸️ after the harness migration lands, or `resume`
 
 ⚒️ 🔑 ki.ways-of-working
 ```
@@ -574,8 +574,8 @@ Snoozing, closing a Stop for a hold that waits for more to come:
 
 💤 waiting for a message · 🅿️ 2 queries parked
 
-- [parked] 2 queries in the change documents
-- [release] a message arrives, or `resume`
+- 🅿️ 2 queries in the change documents
+- 💤 a message arrives, or `resume`
 
 ⚒️ 🔑 ki.ways-of-working
 ```
@@ -585,7 +585,7 @@ Finished, closing the Stop at [Finishing Project work](standards-mark.md#finishi
 ```markdown
 ### 🏁 Finished · Ways of working closed at 18:00 BST
 
-- [finished] 14 work items accepted, decisions homed, work folder pruned
+- 🏁 14 work items accepted, decisions homed, work folder pruned
 
 ⚒️ 🔑 ki.ways-of-working
 ```
@@ -602,4 +602,4 @@ Finished, closing the Stop at [Finishing Project work](standards-mark.md#finishi
 ## Done
 ```
 
-Sources: BANNER-GLYPHS, RICH-HEADING, REPORT-FORMS-TIDY, SNOOZE-HEADING, FOOTER-COUNTS, LISTEN-STATUS, FOOTER-LAYOUT, FOOTER-CAPABILITY-STATUS-2, FOOTER-NOT-LISTENING, SYNC-LINE-OFF, RESTART-SUGGEST, REPLY-FORMAT and LISTEN-LINE in [the decision register](sources.md#decision-register).
+Sources: BANNER-GLYPHS, RICH-HEADING, REPORT-FORMS-TIDY, SNOOZE-HEADING, FOOTER-COUNTS, LISTEN-STATUS, FOOTER-LAYOUT, FOOTER-CAPABILITY-STATUS-2, FOOTER-NOT-LISTENING, SYNC-LINE-OFF, RESTART-SUGGEST, REPLY-FORMAT, LISTEN-LINE and ITEM-GLYPHS in [the decision register](sources.md#decision-register).

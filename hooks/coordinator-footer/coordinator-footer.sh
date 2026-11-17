@@ -188,7 +188,7 @@ footer() {
       if (state || $0 ~ /^### [^ -~]/) { heading = NR; known = state; finished = index($0, "Finished") > 0; counts_seen = 0; counts = 0; odd = 0; road = 0; pack = 0; oldlisten = 0; next }
       if (heading && !counts_seen) {
         counts_seen = 1
-        if (!is_thread && $0 !~ /^(- \[|🧵|🗺|📦|👂|🔇|↪)/) { counts = 1; odd = $0 !~ /^(🤖|👤|⛔|🅿|⏸|💤|📥|🎯|⏳)/ }
+        if (!is_thread && $0 !~ /^(- |🧵|🗺|📦|👂|🔇|↪)/) { counts = 1; odd = $0 !~ /^(🤖|👤|⛔|🅿|⏸|💤|📥|🎯|⏳)/ }
       }
       if (heading && $0 ~ /^🗺/ && index($0, "roadmap")) road = 1
       if (heading && $0 ~ /^📦/ && index($0, "package")) pack = 1

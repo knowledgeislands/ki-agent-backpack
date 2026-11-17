@@ -28,7 +28,7 @@ On hold is the Work Process note's state, with its two reasons: paused, and more
 - **Report:** the Stop, trigger T3 in the [coordinator reply format](standards-report-forms.md#triggers), is the send that announces the hold, and nothing else is said.
   - Form line `**Stop at <local time> · mark <local time>**`, under the [report heading](standards-report-forms.md#banner-detail); the state shows only in the banner heading.
   - Sections `## Done`, one line per repository; `## In Progress`, holding Left over, another session's uncommitted file, or `Nothing`; and `## Queries`, holding the tags parked in the change documents, one line each, with no **Context**, **Query**, **Options** or reply block.
-  - The On hold or Snoozing banner, listing nothing waiting under [Banner](standards-coordination.md#banner): counts `⏸️ drained · 🅿️ <n> queries parked`, or `💤 waiting for a message · 🅿️ <n> queries parked`; items only `[parked]` and `[release]`.
+  - The On hold or Snoozing banner, listing nothing waiting under [Banner](standards-coordination.md#banner): counts `⏸️ drained · 🅿️ <n> queries parked`, or `💤 waiting for a message · 🅿️ <n> queries parked`; items only `🅿️` parked and the release under the hold's own glyph, `⏸️` or `💤`.
   - The thread line is the last line; no send or resume prompt follows. Nothing about pushes appears beyond a failure.
 
 **Other cases:**
@@ -40,7 +40,7 @@ On hold is the Work Process note's state, with its two reasons: paused, and more
   - The owner asks in words such as `snooze`, "hold on snooze waiting for a message" or "done for now, more to come". Regular work rests Snoozing between occurrences, and a Project may rest Snoozing between waves.
   - Log the request in the change document it belongs to and drain as above. Once the snooze lands, re-arm the one watcher and set `ki-listening_status: on`, and `ki-listening_enabled: true` where the owner asked it to wait for a message.
   - `ki-hold.release` reads `a message arrives, or resume`.
-  - Banner, under the [one table of states](standards-coordination.md#banner): heading `### 💤 Snoozing (on hold) · at <time>`; counts `💤 waiting for a message · 🅿️ <n> queries parked`, never `drained`, because the coordinator still listens; items `[parked]` and ``[release] a message arrives, or `resume` ``; then the listening line only while the session is in a meeting.
+  - Banner, under the [one table of states](standards-coordination.md#banner): heading `### 💤 Snoozing (on hold) · at <time>`; counts `💤 waiting for a message · 🅿️ <n> queries parked`, never `drained`, because the coordinator still listens; items `🅿️` parked and ``💤 a message arrives, or `resume` ``; then the listening line only while the session is in a meeting.
   - New work arriving, or a new message in a meeting it sits in, releases it under **Release** and the coordinator acts on it.
   - "stop the wake" or "stop listening" sets `ki-listening_status: off`. The work stays Snoozing until `resume`, or a line its State of play handles under [acting for idle work](standards-territory.md#territory-work).
   - Once the session closes, the State of play acts for the snoozing package on its lines alone.

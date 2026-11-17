@@ -10,7 +10,7 @@ This file holds away grants, unattended windows, scheduled wakes and headless pa
   - any item of the `ki-delegation` [default deny list](../../../agentic-systems/ki-delegation/references/standards-background-runs.md#unattended-deny-list) the grant lifts, within its [authority limits](../../../agentic-systems/ki-delegation/references/standards-background-runs.md#authority-tiers).
 
   Park decisions outside that scope. The window then runs under [Unattended windows](#unattended-windows). An ordinary steering message does not cancel it, and an existing "while I am away" grant stays authority until its return condition.
-- **Scheduled wakes:** a separately requested schedule needs an explicit request or away grant, and a `[scheduled]` banner item naming its mechanism, observed next firing, session-only or durable lifetime, expiry and "stop the wake". Stop it at the window boundary or at a drain. It is a banner item, not a work state.
+- **Scheduled wakes:** a separately requested schedule needs an explicit request or away grant, and a `⏰` scheduled banner item naming its mechanism, observed next firing, session-only or durable lifetime, expiry and "stop the wake". Stop it at the window boundary or at a drain. It is a banner item, not a work state.
 
 ## Unattended windows
 
@@ -24,7 +24,7 @@ A window is an episode in With worker, not a state: a period the owner grants fo
   - record each repository's `origin/main` and local `main` revisions in the window's entry;
   - give an entry report that shows the plan and says how the session and its machine are kept awake, then start without confirmation.
 - **Awake:** the window keeps the leading chat session alive and its machine awake. On macOS, start `caffeinate -dims -w <session pid>` detached at entry, a power assertion tied to the session's process; elsewhere use the platform's equivalent, such as `systemd-inhibit` on Linux. Release it at expiry, an explicit return or "stop the wake"; it ends with the session anyway. Where the machine cannot be kept awake, the entry report says so and the window promises less.
-- **Banner:** while the window runs, the banner carries `- [window] until <end> · stop the wake`.
+- **Banner:** while the window runs, the banner carries `- 🪟 until <end> · stop the wake`.
 - **Progress:** within the grant, the coordinator plans already adopted, authorised Now or Next drafts to Ready and delivers eligible Ready records to awaiting review, in waves citing the grant.
   - The grant in its change document is the window's one authority record; no batch record is written.
   - Each wave covers one repository and is frozen before delivery starts: its exact records and order go into the change document's Steps, and nothing joins or leaves it while it runs. A finding raised during a wave is a candidate for a later wave.
@@ -77,7 +77,7 @@ A headless pass is one bounded coordinator turn without a live session: a machin
 - **Report:** a pass sends nothing to the owner and writes no report.
   - Its record is the change document whose grant or decision names the passes: one dated entry per pass that moved anything, naming the lines acted on, runs received and units launched, in the commit that carries them. A pass that found nothing writes nothing.
   - The next attended Summary or return report carries what passes did since the mark under [the Summary](standards-report-forms.md#the-summary), with each miss beside its unit: usage-limit stops, skipped firings, passes that found a live session and failed runs.
-  - While the job watches a work, the banner carries it as a `[scheduled]` item under **Scheduled wakes**, naming the launchd job, its observed next firing, its durable lifetime, its expiry and "stop the wake".
+  - While the job watches a work, the banner carries it as a `⏰` scheduled item under **Scheduled wakes**, naming the launchd job, its observed next firing, its durable lifetime, its expiry and "stop the wake".
 - **Stopping:** "stop the wake" stops the job starting passes for that work, logged in the change document that named the passes and dropped from the banner. A hold drains it under [Putting work on hold](standards-holds.md#putting-work-on-hold), and Finished removes it. A pass stops a run only when the owner has named it and said stop.
 
 Sources: WAKE-SUBSTRATE and OOS-WAKE in [the decision register](sources.md#decision-register).

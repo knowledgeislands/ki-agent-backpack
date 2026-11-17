@@ -22,7 +22,7 @@ Sources: WORK-MODES, LAND-THEN-REVIEW, NO-PR-UNLESS-MAJOR, RECORD-WHO, RECORD-GR
 Several sessions commit into one checkout, so one session's commits can sit on another's unpushed ones.
 
 - **Commit:** every session, coordinator or background agent, commits its own work by explicit path under the `ki-delegation` [coordination](../../../agentic-systems/ki-delegation/references/standards-background-runs.md#coordination) rules. It never commits, reverts or stashes another session's files.
-- **Push:** fetch first. Where local `main` is ahead and fast-forwards its remote, push everything stacked, other sessions' commits included, within the session's authority and the repository's own rules. Never force-push or use `--no-verify`. Where the branches have diverged, stop and send the pull to the conflict run. A push is never put against the owner: it is no `[with you]` item, "with you" count or query.
+- **Push:** fetch first. Where local `main` is ahead and fast-forwards its remote, push everything stacked, other sessions' commits included, within the session's authority and the repository's own rules. Never force-push or use `--no-verify`. Where the branches have diverged, stop and send the pull to the conflict run. A push is never put against the owner: it is no `👤` item, "with you" count or query.
 - **Conflict run:** a pull that cannot fast-forward goes to a bounded resolve run at push tier in its own worktree.
   - It rebases only this work's unpublished commits onto the remote and verifies them.
   - It stops on another session's content, uncertain ownership or a judgement call. File ownership alone does not prove a file holds no other session's content.

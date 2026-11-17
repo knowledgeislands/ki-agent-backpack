@@ -642,6 +642,10 @@
     "- <date> · ROUTE · <Territory> > SoP (<territory>): <the unit in the owner's words, with links>",
     "- IMPORTANT · <date> · <TAG> · <sender label> (<sender id>): ...",
     "SUPERSEDED",
-    "docs(work): <id> messages taken by <State of play id>"
+    "docs(work): <id> messages taken by <State of play id>",
+    "- [stranded] <worktree or branch> · <owning work>",
+    "- [window] until <end> · stop the wake",
+    "[awaiting ACK]",
+    "[on hold] committed and pushed in ..."
   ]
 }

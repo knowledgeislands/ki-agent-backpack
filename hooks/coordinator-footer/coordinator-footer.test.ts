@@ -31,7 +31,7 @@ const heading = '### 🤖 → 👤 Handoff to supervisor · at 21:10 GMT'
 const counts = '🤖 0 running · ⏳ 0 queued · 👤 1 with you · ⛔ 0 blocked · 🅿️ 0 parked'
 const roadmap = '🗺️ roadmap · 6 records · 3 open · 2 done awaiting prune · 1 idea'
 const pkg = '📦 package · changes 3 · open 2 · held 0 · meetings 1'
-const items = '- [with you] FOOTER-HOOK · owner · at 21:10'
+const items = '- 👤 FOOTER-HOOK · owner · at 21:10'
 const listening = '👂 in cairn.wayfinder.designs'
 const thread = '🧵 ki.prj.demo'
 const summaryBody = [
@@ -234,13 +234,13 @@ test('a Stop and a Finished banner pass in their own shapes', () => {
     '## Done',
     '### ⏸️ On hold · paused until Monday · at 21:10 GMT',
     '⏸️ drained · 🅿️ 2 queries parked',
-    '- [parked] 2 queries in the change documents',
+    '- 🅿️ 2 queries in the change documents',
     listening,
     thread
   ].join('\n\n')
   expect(run(stop(hold, plain))).toEqual(silent)
   // A Finished banner carries no counts line.
-  expect(run(stop(['### 🏁 Finished · Demo closed at 18:00 GMT', '- [finished] 3 work items accepted', thread].join('\n\n'), plain))).toEqual(silent)
+  expect(run(stop(['### 🏁 Finished · Demo closed at 18:00 GMT', '- 🏁 3 work items accepted', thread].join('\n\n'), plain))).toEqual(silent)
   expect(run(stop(hold.replace('⏸️ drained · 🅿️ 2 queries parked\n\n', ''), plain)).warning).toContain('no counts line')
   // Snoozing, under SNOOZE, keeps its watcher armed, so its counts line waits for a message rather than saying drained.
   const snoozing = [
@@ -248,7 +248,7 @@ test('a Stop and a Finished banner pass in their own shapes', () => {
     '## Done',
     '### 💤 Snoozing (on hold) · at 21:10 GMT',
     '💤 waiting for a message · 🅿️ 2 queries parked',
-    '- [parked] 2 queries in the change documents\n- [release] a message arrives, or `resume`',
+    '- 🅿️ 2 queries in the change documents\n- 💤 a message arrives, or `resume`',
     thread
   ].join('\n\n')
   expect(run(stop(snoozing, plain))).toEqual(silent)
@@ -264,7 +264,7 @@ test('a Stop and a Finished banner pass in their own shapes', () => {
     '💤 waiting for a message · 🅿️ 2 queries parked',
     roadmap,
     pkg,
-    '- [parked] 2 queries in the change documents',
+    '- 🅿️ 2 queries in the change documents',
     thread
   ].join('\n\n')
   expect(run(stop(snoozingStatus, coordinated('mark, status only')))).toEqual(silent)

@@ -71,14 +71,16 @@ const BANNER_HEADING = new RegExp(
   'u'
 )
 /**
- * A banner item: `- [<state>] <what>`, the live items naming a holder and ending `· at <time>`; housekeeping lives in the
- * report body, and a line awaiting its ACK is counted in the package line only.
+ * A banner item: `- <glyph> <what>`, opening with its state's glyph alone and never a bracketed state word, under
+ * ITEM-GLYPHS (Kris, 17 November 2026): the counts line's own glyphs, ⛔ for stuck as for blocked, the hold's ⏸️ or 💤 for
+ * its release, 🪟 for an unattended window, ⏰ for a scheduled wake, 🏁 at Finished and 🧹 for a worktree sweep finding. The live items name a holder
+ * and end `· at <time>`; housekeeping lives in the report body.
  */
-const ITEM = /^- \[(running|queued|with you|stuck|blocked|parked|on hold|release|finished)\] .+$/
+const ITEM = /^- (?:🤖|⏳|👤|⛔|🅿️|⏸️|💤|🪟|⏰|🏁|🧹) (?!\[).+$/u
 /** The items BANNER-TRIM moved out of the banner and into the report body. */
 const BODY_ITEM = /^- \[(handoff|committed|uncommitted|recovered|unlogged|behind)\]/
 const HOLDER_ITEM =
-  /^- \[(running|queued|with you|stuck)\] [^·]+ · (owner|agent|run\/[\w-]+|work\/[\w.-]+|person\/[\w-]+|repo\/[\w-]+) · at \d{2}:\d{2}$/
+  /^- (?:🤖|⏳|👤|⛔) [^·]+ · (owner|agent|run\/[\w-]+|work\/[\w.-]+|person\/[\w-]+|repo\/[\w-]+) · at \d{2}:\d{2}$/u
 const PROJECT_THREAD_LINE = '⚒️ 🔑 ki.ways-of-working'
 const TERRITORY_THREAD_LINE = '🧵 ki.sop.main'
 /**
@@ -159,7 +161,7 @@ const expectBanner = (lines: string[]): void => {
   expect(lines.filter((line) => THREAD_LINE.test(line))).toHaveLength(1)
   let end = lines.length - 1
   const closing: string[] = []
-  while (end > 1 && lines[end - 1] === '' && !lines[end - 2]?.startsWith('- [')) {
+  while (end > 1 && lines[end - 1] === '' && !lines[end - 2]?.startsWith('- ')) {
     closing.unshift(lines[end - 2] ?? '')
     end -= 2
   }
@@ -189,10 +191,42 @@ const expectBanner = (lines: string[]): void => {
   const items = lines.slice(first, end - 1)
   expect(items.length).toBeGreaterThan(0)
   for (const item of items) expect(item).toMatch(ITEM)
-  for (const item of items.filter((line) => /^- \[(running|queued|with you|stuck)\]/.test(line)))
-    expect(item).toMatch(HOLDER_ITEM)
+  for (const item of items.filter((line) => /^- (?:🤖|⏳|👤|⛔) /u.test(line))) expect(item).toMatch(HOLDER_ITEM)
   for (const item of items) expect(item).not.toMatch(/decision \d|#\d/)
 }
+
+// Kris, 09:26 GMT on 17 November 2026, relayed by ki.cairn's warden, under ITEM-GLYPHS: "I'm happy to use the glyphs
+// rather than the square brackets, but don't use the glyph and the square brackets." Each holder line opens with its
+// state's glyph alone.
+test('each holder line opens with its state glyph alone, never a bracketed state word', () => {
+  for (const line of [
+    '- 👤 Ten decisions from the window · owner · at 07:47',
+    '- 🤖 work-model · run/work-model · at 23:20',
+    '- ⛔ work-model stuck · run/work-model · at 23:20',
+    '- 🅿️ 2 queries in the change documents',
+    '- ⏸️ after the harness migration lands, or `resume`',
+    '- 💤 a message arrives, or `resume`',
+    '- 🏁 14 work items accepted',
+    '- 🧹 stranded run/work-model · ki.ways-of-working',
+    '- 🪟 until 08:00 GMT · stop the wake'
+  ])
+    expect(line).toMatch(ITEM)
+  for (const line of [
+    '- [with you] WORK-HOME · owner · at 22:58',
+    '- 👤 [with you] WORK-HOME · owner · at 22:58',
+    '- [parked] 1',
+    '- [release] a message arrives, or `resume`'
+  ])
+    expect(line).not.toMatch(ITEM)
+  for (const text of [standard, outputStyle]) {
+    expect(text).not.toMatch(
+      /`(?:- )?\[(?:running|queued|with you|stuck|blocked|parked|release|finished|scheduled|window|state)\]/
+    )
+    for (const lines of banners(text)) expect(lines.some((line) => line.startsWith('- ['))).toBe(false)
+  }
+  expect(standard).toContain('`- <glyph> <what> · <holder> · at <time>`')
+  expect(standard).toContain('ITEM-GLYPHS')
+})
 
 test('the standard carries the report heading as a linked theme › Project heading, the form line and one rule', () => {
   const found = headings(standard)
@@ -258,7 +292,7 @@ test('With worker names the hold or handoff it is heading for in its own line be
   const draining = banners(standard).find((lines) => lines.some((line) => HEADING_FOR_LINE.test(line)))
   expect(draining?.[0]).toBe('### 🤖 With worker · at 23:41 BST')
   expect(draining?.slice(-5)).toEqual([
-    '- [with you] WORK-HOME · owner · at 22:58',
+    '- 👤 WORK-HOME · owner · at 22:58',
     '',
     '↪️ draining → ⏸️ On hold',
     '',
@@ -268,7 +302,7 @@ test('With worker names the hold or handoff it is heading for in its own line be
   for (const name of ['DRAIN-TARGET', 'FOOTER-LAYOUT']) expect(standard).toContain(name)
   for (const text of [standard, outputStyle]) {
     expect(text).toContain('the target is never a count or an item')
-    expect(text).toMatch(/runs still finishing count and list as `\[running\]`/)
+    expect(text).toMatch(/runs still finishing count and list as `🤖` running/u)
   }
 })
 
@@ -293,7 +327,7 @@ test('the listening line names the meetings the session is in, is left off in no
     '',
     '🤖 1 running · ⏳ 0 queued · 👤 0 with you · ⛔ 0 blocked · 🅿️ 0 parked',
     '',
-    '- [running] host pass · run/host-pass · at 08:58',
+    '- 🤖 host pass · run/host-pass · at 08:58',
     '',
     ...closing.flatMap((line) => [line, '']),
     '🧵 personal.reg.rig-sol'
@@ -308,7 +342,7 @@ test('the listening line names the meetings the session is in, is left off in no
     expectBanner([
       '### 🏁 Finished · Demo closed at 18:00 GMT',
       '',
-      '- [finished] 3 work items accepted',
+      '- 🏁 3 work items accepted',
       '',
       '👂 in cairn.summit.voice',
       '',
@@ -400,29 +434,28 @@ test('the standard carries the With worker, handoff, draining, On hold, Snoozing
   for (const lines of found) expectBanner(lines)
   const [withWorker, handoff, , hold] = found
   expect(withWorker?.[2]).toBe('🤖 2 running · ⏳ 0 queued · 👤 1 with you · ⛔ 1 blocked · 🅿️ 0 parked')
-  expect(withWorker).toContain('- [running] work-model · run/work-model · at 23:20')
-  expect(handoff).toContain('- [parked] 1')
+  expect(withWorker).toContain('- 🤖 work-model · run/work-model · at 23:20')
+  expect(handoff).toContain('- 🅿️ 1')
   expect(found.flat().some((line) => BODY_ITEM.test(line))).toBe(false)
-  expect(handoff?.some((line) => line.startsWith('- [running]'))).toBe(false)
+  expect(handoff?.some((line) => line.startsWith('- 🤖'))).toBe(false)
   expect(hold?.[0]).toBe('### ⏸️ On hold · paused until the harness migration lands · at 00:10 BST')
-  expect(hold).toContain('- [release] after the harness migration lands, or `resume`')
+  expect(hold).toContain('- ⏸️ after the harness migration lands, or `resume`')
   expect(hold?.[2]).toBe('⏸️ drained · 🅿️ 9 queries parked')
-  expect(hold?.filter((line) => line.startsWith('- [')).every((line) => /^- \[(parked|release)\] /.test(line))).toBe(
-    true
-  )
+  expect(hold?.filter((line) => line.startsWith('- ')).every((line) => /^- (?:🅿️|⏸️) /u.test(line))).toBe(true)
 })
 
 test('reports omit routine push state, and an On hold banner lists nothing waiting', () => {
   for (const text of [standard, outputStyle]) {
     expect(text).not.toContain('who decides the push')
     expect(text).not.toContain('- [on hold] committed')
+    expect(text).not.toContain('- ⏸️ committed and pushed')
     expect(text).toContain('`⏸️ drained · 🅿️ <n> queries parked`')
-    expect(text).toContain('items are only `[parked]` and `[release]`')
+    expect(text).toContain("items are only `🅿️` parked and its release under the hold's own glyph")
     for (const lines of banners(text)) {
-      for (const item of lines.filter((line) => line.startsWith('- ['))) expect(item).not.toMatch(/push/i)
+      for (const item of lines.filter((line) => line.startsWith('- '))) expect(item).not.toMatch(/push/i)
       if (!lines[0]?.startsWith('### ⏸️')) continue
       expect(lines[2]).not.toContain('with you')
-      expect(lines.some((line) => /^- \[(with you|running|queued|on hold)\]/.test(line))).toBe(false)
+      expect(lines.some((line) => /^- (?:👤|🤖|⏳|\[)/u.test(line))).toBe(false)
     }
   }
   expect(standard).toContain('**Push state stays out of reports.**')
@@ -937,7 +970,7 @@ test('the banner lists no `[awaiting ACK]` item', () => {
     '',
     '📦 package · changes 2 · open 1 · held 0 · meetings 0',
     '',
-    '- [with you] WORK-HOME · owner · at 22:58',
+    '- 👤 WORK-HOME · owner · at 22:58',
     '',
     '👂 in cairn.summit.voice',
     '',
@@ -977,7 +1010,7 @@ test("a Full reply's footer carries the roadmap and package lines beneath its co
       '',
       '🗺️ roadmap · 1 record · 0 open · 1 done awaiting prune · 0 ideas',
       '',
-      '- [with you] WORK-HOME · owner · at 22:58',
+      '- 👤 WORK-HOME · owner · at 22:58',
       '',
       '👂 in cairn.summit.voice',
       '',
@@ -1058,12 +1091,10 @@ test('Snoozing has its own glyph, keeps its watcher, is never drained, and one t
   const snoozing = banners(standard).find((lines) => lines[0]?.startsWith('### 💤'))
   expect(snoozing?.[0]).toBe('### 💤 Snoozing (on hold) · at 23:58 GMT')
   expect(snoozing?.[2]).toBe('💤 waiting for a message · 🅿️ 2 queries parked')
-  expect(snoozing).toContain('- [release] a message arrives, or `resume`')
+  expect(snoozing).toContain('- 💤 a message arrives, or `resume`')
   expect(snoozing?.some((line) => line.startsWith('👂'))).toBe(false)
   expect(snoozing?.some((line) => line.includes('drained'))).toBe(false)
-  expect(
-    snoozing?.filter((line) => line.startsWith('- [')).every((line) => /^- \[(parked|release)\] /.test(line))
-  ).toBe(true)
+  expect(snoozing?.filter((line) => line.startsWith('- ')).every((line) => /^- (?:🅿️|💤) /u.test(line))).toBe(true)
   expect('**Stop at 23:58 GMT · mark 23:55 GMT**').toMatch(FORM_LINE)
   expect('### ⏸️ On hold · more expected · at 23:58 GMT').not.toMatch(BANNER_HEADING)
   expect('### 👤 With supervisor · since 23:52 GMT').not.toMatch(BANNER_HEADING)
