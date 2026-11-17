@@ -1,6 +1,6 @@
 # Workspace MCP Standard
 
-The canonical shape shared by every stdio MCP server in the `knowledgeislands/` workspace: `mcp-git-audit`, `mcp-ki-repo-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-ki-repo-kb-notion-mirror`. This is the reference the `ki-repo-mcp` skill codifies and audits against. Where repos disagree, the majority shape is the standard; documented per-repo exceptions are noted inline.
+The canonical shape shared by every stdio MCP server in the `knowledgeislands/` workspace: `mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-housekeeping-chatgpt`, `mcp-acquire-whatsapp`. This is the reference the `ki-repo-mcp` skill codifies and audits against. Where repos disagree, the majority shape is the standard; documented per-repo exceptions are noted inline.
 
 ## Applicability
 
@@ -37,7 +37,7 @@ src/
 └── utils/                  # cross-MCP helpers, kept in sync across siblings
 ```
 
-Top-level `src/` folders are identical across all six repos: `config`, `main`, `mcp-server`, `tools`, `utils`, plus `cli` where a human-runnable command exists, and per-domain extras (`auth-server` in gmail/m365; `types.ts`).
+Top-level `src/` folders are identical across all seven repos: `config`, `main`, `mcp-server`, `tools`, `utils`, plus `cli` where a human-runnable command exists, and per-domain extras (`auth-server` in gsuite/m365; `types.ts`).
 
 ### Layer responsibilities
 
@@ -59,27 +59,29 @@ Top-level `src/` folders are identical across all six repos: `config`, `main`, `
   - `type AuditLogMode = 'off' | 'writes' | 'all'`
   - `loadConfig`, plus parse helpers (`parseAccessLevel`, `parseAuditLogMode`, `parseNonNegativeInt`).
 - `Config` always includes `accessLevel`, `auditLogMode`, `auditLogPath`, `auditLogMaxBytes` (default 10 MiB), `auditLogKeep` (default 5), plus domain fields (`safeRoots`, `rootPath`, `auth`, …).
-- **Divergence:** gmail/m365 export `SERVER_NAME`/`SERVER_VERSION` from `config/index.ts`; others hard-code the name in `mcp-server` or `audit-log.ts`.
+- **Divergence:** gsuite/m365 export `SERVER_NAME`/`SERVER_VERSION` from `config/index.ts`; others hard-code the name in `mcp-server` or `audit-log.ts`.
 
 ## 3. Tool naming
 
 `<app>_<resource>_<action>`, snake_case.
 
-| Repo                    | `<app>` prefix(es)                        |
-| ----------------------- | ----------------------------------------- |
-| mcp-git-audit           | `git`                                     |
-| mcp-ki-repo-kb-fs            | `kb`                                      |
-| mcp-gsuite              | `gsuite`                                  |
-| mcp-m365                | `m365`                                    |
-| mcp-housekeeping-claude | `claude_code`, `claude_desktop`, `vscode` |
-| mcp-ki-repo-kb-notion-mirror | `notion_mirror`                           |
+| Repo                     | `<app>` prefix(es)                        |
+| ------------------------ | ----------------------------------------- |
+| mcp-git-audit            | `git`                                     |
+| mcp-ki-kb-fs             | `kb`                                      |
+| mcp-gsuite               | `gsuite`                                  |
+| mcp-m365                 | `m365`                                    |
+| mcp-housekeeping-claude  | `claude_code`, `claude_desktop`, `vscode` |
+| mcp-housekeeping-chatgpt | `chatgpt`, `codex`                        |
+| mcp-acquire-whatsapp     | `whatsapp`                                |
 
-- **Plural** resource for collection ops (`git_repos_scan`, `gsuite_email_messages_search`, `kb_notes_list`).
-- **Singular** for single-item ops (`kb_note_read`, `git_repo_commit`, `gsuite_email_message_get`).
+- **Plural** resource for collection ops (`git_repos_scan`, `gsuite_email_messages_search`, `claude_code_sessions_list`).
+- **Singular** for single-item ops (`claude_code_session_read`, `git_repo_commit`, `gsuite_email_message_get`).
 - Metadata/lifecycle tools may drop the resource segment (`m365_about`, `gsuite_auth_start`).
+- `mcp-ki-kb-fs` works on one implied resource, a Knowledge Base entry, so its tools drop the segment and take `<app>_<action>` (`kb_read`, `kb_list`, `kb_write`, `kb_search`), naming a resource only where another is meant (`kb_folder_create`).
 - The CLI verb surface mirrors the tool names.
 
-The house scheme is a deliberate **subset** of what the spec permits: per [TOOLS](sources.md), names SHOULD be 1–128 chars from `[A-Za-z0-9_.-]`. Snake*case `<app>*<resource>\_<action>` stays well inside that, so a conformant house name is always a conformant spec name — the constraint to enforce is the house scheme, not the looser spec one.
+The house scheme is a deliberate **subset** of what the spec permits: per [TOOLS](sources.md), names SHOULD be 1–128 chars from `[A-Za-z0-9_.-]`. Snake_case `<app>_<resource>_<action>` stays well inside that, so a conformant house name is always a conformant spec name — the constraint to enforce is the house scheme, not the looser spec one.
 
 ## 4. Access-level gate (annotation-driven)
 
@@ -94,7 +96,7 @@ These four hints (`readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorl
 
 Levels nest `read ⊂ write ⊂ destructive`; env `MCP_<APP>_ACCESS_LEVEL` (default `read`). Every tool sets `annotations` to a preset from `utils/annotations.ts`: `READ_ONLY`, `WRITE`, `WRITE_IDEMPOTENT`, `WRITE_IDEMPOTENT_REMOTE`, `DESTRUCTIVE`, `DESTRUCTIVE_REMOTE`, `DESTRUCTIVE_ONESHOT`, plus `_REMOTE`/read variants per repo. `DESTRUCTIVE_ONESHOT` = effect depends on current FS/index state. Never bypass the register proxy; never derive the level from the tool name.
 
-**Divergence:** default access level is `read` everywhere except `mcp-ki-repo-kb-notion-mirror`, which defaults to `write` (it ships no read-only tools) — intentional, do not flag.
+**Divergence:** default access level is `read` everywhere except `mcp-acquire-whatsapp`, which defaults to `destructive`, read from its own `WHATSAPP_ACCESS_LEVEL`, so that its spool-writing acquisition tools stay registered; its ADR-KI-MCP-WA-005 records the choice, with an audit log that defaults to `off`.
 
 ## 5. Audit logging
 

@@ -63,6 +63,6 @@ export const scenarios: Scenario[] = [
       }
     ],
     rubric:
-      'House convention: workspace MCP tools are named `<app>_<resource>_<action>` in snake_case; `<app>` is FIXED per repo (git, kb, gsuite, m365, claude_code/claude_desktop/vscode, voicenotes); metadata/lifecycle tools may drop the resource segment (e.g. gsuite_auth_start, m365_about); and the CLI verb surface MIRRORS the tool names (same resource/action structure). A correct answer gives the `<app>_<resource>_<action>` snake_case shape, the per-repo-fixed `<app>`, and the CLI-mirrors-tools relationship.'
+      'House convention: workspace MCP tools are named `<app>_<resource>_<action>` in snake_case; `<app>` is FIXED per repo (git, kb, gsuite, m365, claude_code/claude_desktop/vscode, chatgpt/codex, whatsapp); metadata/lifecycle tools may drop the resource segment (e.g. gsuite_auth_start, m365_about); and the CLI verb surface MIRRORS the tool names (same resource/action structure). A correct answer gives the `<app>_<resource>_<action>` snake_case shape, the per-repo-fixed `<app>`, and the CLI-mirrors-tools relationship.'
   }
 ]

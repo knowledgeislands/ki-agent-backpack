@@ -16,7 +16,7 @@ argument-hint: 'audit <repo> | conform <repo> | educate <repo> | help | refresh'
 
 # Knowledge Islands MCP standards
 
-You are helping audit, conform, or scaffold a **workspace MCP server** — one of the stdio MCP servers in the `knowledgeislands/` workspace (`mcp-git-audit`, `mcp-ki-repo-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-ki-repo-kb-notion-mirror`). They all share one canonical shape, so a new one should be scaffolded to it and an existing one should be auditable against it. This skill carries that standard and the audit procedure.
+You are helping audit, conform, or scaffold a **workspace MCP server** — one of the stdio MCP servers in the `knowledgeislands/` workspace (`mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-housekeeping-chatgpt`, `mcp-acquire-whatsapp`). They all share one canonical shape, so a new one should be scaffolded to it and an existing one should be auditable against it. This skill carries that standard and the audit procedure.
 
 This skill audits declared **server source shape** — `src/` layout, config injection, tool declarations, and tooling. A structural result is not evidence that a server was registered, loaded, secured, or executed. A repo's GitHub configuration and standard files, and a `SKILL.md`'s prose, are out of scope (other skills own those). How the skills divide the work is documented once in the ki-agent-backpack `README.md`.
 
@@ -52,7 +52,7 @@ Decide _where code lives_ by who needs to call it, not by what it does:
 
 ## Tool naming
 
-`<app>_<resource>_<action>`, snake_case. `<app>` is fixed per repo (`git`, `kb`, `gsuite`, `m365`, `claude_code`/`claude_desktop`/`vscode`, `voicenotes`, `notion_mirror`). **Plural** resource for collection ops (`git_repos_scan`, `gsuite_email_messages_search`); **singular** for single-item ops (`kb_note_read`, `git_repo_commit`). Metadata/lifecycle tools may drop the resource segment (`gsuite_auth_start`, `m365_about`). The CLI verb surface mirrors these names.
+`<app>_<resource>_<action>`, snake_case. `<app>` is fixed per repo (`git`, `kb`, `gsuite`, `m365`, `claude_code`/`claude_desktop`/`vscode`, `chatgpt`/`codex`, `whatsapp`). **Plural** resource for collection ops (`git_repos_scan`, `gsuite_email_messages_search`); **singular** for single-item ops (`claude_code_session_read`, `git_repo_commit`). Metadata/lifecycle tools may drop the resource segment (`gsuite_auth_start`, `m365_about`). The CLI verb surface mirrors these names.
 
 ## Access-level gate
 

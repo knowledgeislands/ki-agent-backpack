@@ -4,7 +4,7 @@
 
 The authoritative and community sources behind the [Workspace MCP Standard](standards-mcp-servers.md) and [Audit Rubric](rubric.md). Mode REFRESH reads this file, re-fetches each source, diffs it against the standard, rubric, and [`scripts/rubric/items/index.ts`](../scripts/rubric/items/index.ts), then **bumps the `last reviewed` dates** and refreshes the `## Last review` block below (what changed is recorded in the commit, not a changelog). This is the skill's memory of where the standard comes from—keep it current.
 
-Two layers feed the standard: the **official MCP specification** (what every conformant server must do) and the **in-house workspace convention** (the opinionated shape the six sibling repos share on top of the spec). A finding is only "spec-driven" if it traces to the Authoritative table; everything else is house style and should be labelled as such so it is not mistaken for a protocol requirement.
+Two layers feed the standard: the **official MCP specification** (what every conformant server must do) and the **in-house workspace convention** (the opinionated shape the five sibling repos share on top of the spec). A finding is only "spec-driven" if it traces to the Authoritative table; everything else is house style and should be labelled as such so it is not mistaken for a protocol requirement.
 
 ## Contents
 
@@ -51,14 +51,14 @@ The spec is versioned by date. Track the **latest released** version and note th
 
 ## In-house (the workspace convention)
 
-The standard is defined as the **majority shape** across the six sibling repos under `knowledgeislands/`. These are the living source of truth for house style; when they diverge from each other, the majority wins and the outlier is a finding unless documented.
+The standard is defined as the **majority shape** across the five sibling repos under `knowledgeislands/`. These are the living source of truth for house style; when they diverge from each other, the majority wins and the outlier is a finding unless documented.
 
 | Tag    | Source                      | Governs                                                       | Last reviewed |
 | ------ | --------------------------- | ------------------------------------------------------------- | ------------- |
-| REPOS  | The six sibling repos †     | Layout, config, tool naming, shared `utils/`, the toolchain ‡ | 2026-10-18    |
+| REPOS  | The five sibling repos †    | Layout, config, tool naming, shared `utils/`, the toolchain ‡ | 2026-10-18    |
 | CLAUDE | Each repo's own `AGENTS.md` | Per-repo invariants ※                                         | 2026-10-18    |
 
-† `mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-ki-kb-notion-mirror`. Two newer v1 repositories (`mcp-acquire-whatsapp`, `mcp-housekeeping-chatgpt`) are not yet part of the majority basis.
+† `mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`. The sixth original, `mcp-ki-kb-notion-mirror`, was deleted on 26 October 2026. Two newer v1 repositories (`mcp-acquire-whatsapp`, `mcp-housekeeping-chatgpt`) are not yet part of the majority basis.
 
 ‡ Layout, config injection, tool naming, the shared `utils/` helpers, the package/tsconfig/vitest/biome toolchain.
 
@@ -78,6 +78,8 @@ These primary sources ground the separate source-install contract. They do not m
 
 ## Last review
 
+On 17 November 2026 an in-house review corrected the server names, resolving the name half of the 2026-10-18 watch-item. The standard, `SKILL.md` and the tool-prefix table had carried names mangled by an old search-and-replace (`mcp-ki-repo-kb-fs` for `mcp-ki-kb-fs`) and the Notion mirror, which Kris deleted on 26 October 2026. They now list the seven servers that declare `[skills.ki-repo-mcp]`, adding `mcp-housekeeping-chatgpt` (`chatgpt`, `codex`) and `mcp-acquire-whatsapp` (`whatsapp`); `mcp-cairn` declares no `.ki.toml` and keeps literal tool names, so it is not listed. The naming examples now use real tools, §3 says how `mcp-ki-kb-fs`'s `kb_<action>` tools fit, and §4's access-level divergence names `mcp-acquire-whatsapp`'s `destructive` default in place of the mirror's. No outside source refreshed.
+
 On 17 November 2026 an in-house review applied MCP-TRIM a, which Kris took that day, relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions): [§1's `mcp-server/` line](standards-mcp-servers.md#1-project-layout) said to connect a `StdioServerTransport`, while §12's modern profile, which six of the seven local servers use (`mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude` and `mcp-cairn`), passes a per-connection server factory to `serveStdio`. §1 now says so, keeping `StdioServerTransport` for a server still on the legacy profile, as `mcp-acquire-whatsapp` is. No outside source refreshed.
 
 On 16 November 2026 an in-house review applied MCP-AGENTS a, which Kris took that day at about 16:22 GMT, relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions): the standard's [§11](standards-mcp-servers.md#11-docs) names root `AGENTS.md` as the home of a server's architecture invariants and security requirements, imported by a `CLAUDE.md` that keeps only what is Claude's own, and the audit procedure, the docs judgement item and the CLAUDE row follow. The MCP repositories' own invariant sections are not trimmed here. The file keeps its older shape until its guild's review.
@@ -94,7 +96,7 @@ REFRESH last ran **2026-10-18** under KI-HARNESS-GOV-194. Every row was re-fetch
 
 **Open watch-items:**
 
-- Correct the sibling names in the standard and `SKILL.md`, which still say `mcp-ki-repo-kb-fs` and `mcp-ki-repo-kb-notion-mirror`, and decide whether the two v1 repositories join the majority basis.
+- Decide whether the two v1 repositories join the majority basis. The sibling names are corrected, as the 17 November review below records.
 - Add 2026-07-28 TOOLS, SEC and AUTH rows beside the 2025-11-25 ones, make the structured-output rule profile-dependent, and assess the new error-code range, deterministic tool ordering and cacheable-result fields for the 2026-07-28 profile.
 - Track the three AGENTS.md profile declarations above, sibling pins against SDK 2.3.1, and migration of the two v1 repositories.
 - Unchanged: rate limiting for any future remote server, and the open annotation vocabulary proposals.
@@ -132,7 +134,7 @@ TOOLS/SEC/AUTH and the Community/In-house rows were not re-fetched this pass (fi
 
 - **Re-anchor §12–13 + §4 to 2026-07-28 through a v2 migration pilot.** SDK support is available; select the rollout profile before making the new protocol requirements universal. The required `resultType` touches each repo's shared `jsonResult` / `errorResult` envelope helpers, and `server/discover` changes the stdio entry point. For the auth repos, assess RFC 9207 `iss` + DCR `application_type` under the selected profile.
 - Rate-limiting is a spec MUST kept lower-priority for local stdio servers (revisit if one goes remote).
-- **Structured output is now partly adopted, unevenly.** `mcp-git-audit`, `mcp-gsuite`, `mcp-m365`, `mcp-ki-repo-kb-notion-mirror`, and `mcp-housekeeping-claude` declare `outputSchema`; **`mcp-ki-repo-kb-fs` declares none while its shared `jsonResult` emits `structuredContent` for every tool**, which is the WARN condition in §12. (Supersedes the retired "no repo yet declares `outputSchema`" item.)
+- **Structured output is now partly adopted, unevenly.** `mcp-git-audit`, `mcp-gsuite`, `mcp-m365`, `mcp-ki-kb-notion-mirror`, and `mcp-housekeeping-claude` declare `outputSchema`; **`mcp-ki-kb-fs` declares none while its shared `jsonResult` emits `structuredContent` for every tool**, which is the WARN condition in §12. (Supersedes the retired "no repo yet declares `outputSchema`" item.)
 - Five proposed annotation SEPs (`unsafeOutputHint`, `secretHint`, `trustedHint`, trust/sensitivity, governance/UX) still Draft — gate's four-hint vocabulary stable, no action; watch for any landing in a released spec.
 
 (What past reviews changed in the standard / checklist / native rubric — structured output, the OAuth security invariants, tool-name charset bounds, output sanitization, the relaxed tool-name regex — is in git.)

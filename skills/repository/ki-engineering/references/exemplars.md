@@ -18,7 +18,7 @@ For the full upstream pin list and in-house sources, see [sources.md](sources.md
 | Source | URL | What it covers |
 | --- | --- | --- |
 | mcp-gsuite | [github][mcp-gsuite] | Canonical flat-repo compiled-TS profile with env config |
-| mcp-kb-fs | [github][mcp-kb-fs] | Canonical flat-repo compiled-TS profile, no CLI binary |
+| mcp-ki-kb-fs | [github][mcp-ki-kb-fs] | Canonical flat-repo compiled-TS profile, no CLI binary |
 | ki-agent-backpack | [github][harness] | Scripts-only profile; runner-neutral standalone self-tests |
 | Biome configuration reference | [biomejs.dev][biome-config] | The schema the `$schema` pin tracks |
 | TypeScript compiler options | [typescriptlang.org][ts-tsconfig] | The invariants and the compiled-TS profile options |
@@ -310,7 +310,7 @@ The table is a conformance marker — its presence declares "the engineering sta
 ```
 
 [mcp-gsuite]: https://github.com/knowledgeislands/mcp-gsuite
-[mcp-kb-fs]: https://github.com/knowledgeislands/mcp-kb-fs
+[mcp-ki-kb-fs]: https://github.com/knowledgeislands/mcp-ki-kb-fs
 [harness]: https://github.com/knowledgeislands/ki-agent-backpack
 [biome-config]: https://biomejs.dev/reference/configuration/
 [ts-tsconfig]: https://www.typescriptlang.org/tsconfig
