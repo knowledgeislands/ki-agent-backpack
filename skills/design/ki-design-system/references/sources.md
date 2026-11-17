@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:17:42Z
+ki-revised: 2026-11-17T01:48:38Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -60,10 +60,13 @@ The floor follows one specification, and the house's own documentation standards
 | COMPONENT-LIBRARY | Kris's decision, in the Cairn summit's change 14: the words component library and web component library, in place of UI kit, with one components document per library. | 2026-11-14 | [the component library](standards-design-system.md#the-component-library) | In force |
 | DRAW-BUILD | Kris's decision, in the Cairn summit's change 35: once a decision is agreed its drawing is drawn against the build, and drawings ahead of the build are for open choices only. | 2026-11-14 | [design work](standards-design-system.md#design-work-from-brief-to-rule), [how a round runs](standards-design-levels.md#how-a-round-runs) | In force |
 | DESIGN-RENDER | A visual design keeps its final boards in a folder beside its design document, named by level, `ia-`, `wire-` and `mock-`, each self-contained with a PNG beside it and coded as the annotated board is, read in its Design section by level and from the outside in; Retire moves them there rather than dropping them. Kris's word, 17 November, about 00:56 GMT, taking the high-confidence points: "you've got high confidence in some of these, so I think you need to take them and get on with it", relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [the design book](standards-design-levels.md#the-design-book), [design work](standards-design-system.md#design-work-from-brief-to-rule) | In force |
+| REVIEW-HOME | One general review standard in `ki-authoring`, which every reviewable document cites; a round's review before posting follows it. Option b, Kris's word, 17 November, about 01:37 GMT, relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [how a round runs](standards-design-levels.md#how-a-round-runs) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+Later on 17 November 2026 an in-house review applied REVIEW-HOME b, which Kris took that day at about 01:37 GMT, relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#42-decided): [how a round runs](standards-design-levels.md#how-a-round-runs), step 5, reviews each board as `ki-authoring`'s [review standard](../../../keystone/ki-authoring/references/standard-review.md) sets, its findings anchored to a board code and region, the blocking ones settled before the round is final. What the review does is unchanged. No outside source refreshed.
 
 On 17 November 2026 an in-house review built the Cairn summit's [change 16, the Design guild](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md), under DESIGN-RENDER a, which Kris took that day at about 00:56 GMT. [The design levels](standards-design-levels.md#the-design-book) gain the design book: an agreed design's final boards kept beside its design document, named by level and coded as the annotated board is, and read in its Design section by level and from the outside in. The levels name the component library's one table rather than atomic design's labels, so a different taxonomy later changes only that table. [Design work's Retire](standards-design-system.md#design-work-from-brief-to-rule) keeps a chosen design's final boards in its book, and DSYS-8 and DSYS-10 ask for it. This file came into the sources format with the change. Change 16 found atomic design the best-known method but defined by no standards body, the largest public design systems sorting their parts otherwise; it was not fetched again here.
 

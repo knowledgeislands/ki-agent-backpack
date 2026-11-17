@@ -33,7 +33,7 @@ An interface is designed three times, each time at a finer grain, and the coarse
 2. **Draw the architecture, and stop for agreement** on names and structure before anything finer is drawn.
 3. **Draw the wireframes that share a shape together,** side by side with the same region codes, so that what stays and what changes are both plain.
 4. **Mock up in every state.** Loading, empty and failed are part of the first mock-up, not a later round.
-5. **Review before posting.** A second reader checks each file against the brief's rules and this skill's rubric, and the fixes are made before the round is called final.
+5. **Review before posting.** A second reader reviews each file against the brief's rules and this skill's rubric, as `ki-authoring`'s [review standard](../../../keystone/ki-authoring/references/standard-review.md) sets, each finding anchored to a board code and region; the blocking findings are settled before the round is called final, and the owner's outcome comes through the design's change.
 6. **Say what has not been checked.** A board nobody has seen rendered is posted as such.
 7. **Once a level is agreed and built, draw against the build.** Drawings ahead of the build are for open choices only, as [design work](standards-design-system.md#design-work-from-brief-to-rule) sets (DRAW-BUILD).
 

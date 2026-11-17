@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:17:42Z
+ki-revised: 2026-11-17T01:48:38Z
 ki-status: in force
 ---
 
@@ -34,7 +34,7 @@ The shaping of a design, technical or visual, from its brief to the choices it s
 - What the Design guild covers.
 - The brief, the options and the review every design goes through.
 - Each kind of design's levels, and who holds them.
-- How a design is reviewed.
+- What a design's review adds to the general one.
 - Where a design is written down, and its life cycle.
 
 [Back to contents](#contents)
@@ -44,6 +44,7 @@ The shaping of a design, technical or visual, from its brief to the choices it s
 - How a repository keeps its interface design, the three visual levels and the component library: `ki-design-system`.
 - Shaping a Project, theme or model before any work exists: `ki-work design`.
 - The format of a design document: `ki-authoring`'s [design format](../../ki-authoring/references/standard-formats-design.md).
+- The review every kind shares: `ki-authoring`'s [review standard](../../ki-authoring/references/standard-review.md).
 - The forms of decision records, specifications and diagrams: Authoring's skills.
 
 [Back to contents](#contents)
@@ -55,8 +56,8 @@ The shaping of a design, technical or visual, from its brief to the choices it s
 | **Design** | The shaping of something before it is built: what it is made of, how its parts fit and, for an interface, how it looks and behaves. **Standard:** this one, [4.1](#41-what-design-covers) |
 | **Brief** | What a design is for, what it must satisfy and what it leaves out, agreed before any option is drawn. **Standard:** this one, [4.2](#42-how-a-design-is-shaped) |
 | **Level** | One grain at which a kind of design is drawn, agreed before the finer one, as information architecture comes before a wireframe. **Standard:** this one, [4.3](#43-each-kinds-levels) |
-| **Finding** | One reviewer's point on one anchored part of a design: its kind, whether it blocks, what to change, and its confidence. **Standard:** this one, [4.2](#42-how-a-design-is-shaped) |
-| **Anchor** | What a finding names exactly: a section number, a board code with its region, a component, a C4 element, an API resource or operation, a requirement's id or a rubric item. **Standard:** this one, [4.2](#42-how-a-design-is-shaped) |
+| **Finding** | One reviewer's point on one anchored part of a design, in the shape the review standard sets. **Standard:** [review standard](../../ki-authoring/references/standard-review.md#44-a-findings-shape) |
+| **Anchor** | What a finding names exactly: the review standard's general anchors, and for a design a board code with its region, a component, a C4 element, or an API resource or operation. **Standard:** [review standard](../../ki-authoring/references/standard-review.md#43-anchors), and this one, [4.2](#42-how-a-design-is-shaped) |
 | **Design document** | The design that stands, in `ki-authoring`'s design format, changed only through change documents. **Standard:** [design format](../../ki-authoring/references/standard-formats-design.md) |
 
 [Back to contents](#contents)
@@ -77,14 +78,10 @@ Every design goes through the same three steps, whatever its kind (DESIGN-AUTHOR
 
 1. **The brief.** What the design is for, what it must satisfy and what it leaves out, written and agreed before any option is drawn. The names already in use, in code or in the work, are read first.
 2. **The options.** More than one way to meet the brief, each with what it costs, and the one recommended marked, so the choice is the owner's.
-3. **The review.** A second reader checks the chosen design against the brief and the governing standard before it is called final, and says what has not been checked. One review serves every kind of design (REVIEW-SHAPE):
-   - **Who.** A reviewer who did not draw it, reading before any other reviewer's view; the owner decides.
-   - **Against what.** The brief, in the design's Introduction; the governing standards, the design format, this standard's levels for its kind and, for a visual design, the design system's floor; and precedent, the agreed designs and decision records beside it. A coarser level is reviewed and agreed before the finer one.
-   - **Each finding anchored** to one thing the reader can open: a section number, a board code and region, such as "wayfinder 2.1b P3", a component by its name and level, a C4 element, an API resource or operation, a requirement's id or a rubric item.
-   - **Each finding shaped alike:** its anchor; its kind, issue, suggestion, question, note or praise; whether it blocks; what to change; and its confidence, with what would raise it when below high. The reviewer runs that check where it can before writing the finding.
-   - **The outcome through the change document** that moves the design: blocking findings become its questions, the rest its gaps or notes, and the owner's Approve takes the design to `agreed`; Accept with changes does the same and turns the open findings into a new change document, as for a record. No field is added to the design.
-
-   Pending: where the full review standard is written is still open (REVIEW-HOME, in the Cairn summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/16-design-guild.change.md#71-questions)). Until it is settled, this step is the review's rule; once it is, this step points at that standard and keeps only its first sentence.
+3. **The review.** A second reader checks the chosen design before it is called final, as `ki-authoring`'s [review standard](../../ki-authoring/references/standard-review.md) sets for every kind: who reviews, the finding's shape, what was not checked, and the outcome, Approve or Accept with changes (REVIEW-SHAPE, REVIEW-HOME). A design adds only this:
+   - **Against what.** Its brief is its Introduction; its governing standards are the design format, this standard's levels for its kind and, for a visual design, the design system's floor; its precedent is the agreed designs and decision records beside it. A coarser level is reviewed and agreed before the finer one.
+   - **The design anchors,** beside the review standard's general ones: a board code and region, such as "wayfinder 2.1b P3", a component by its name and level, a C4 element, and an API resource or operation.
+   - **The outcome through the change document** that moves the design, as the review standard sets: the owner's Approve takes the design to `agreed`, and no field is added to the design.
 
 Rubric **DESIGN-1** to **DESIGN-3** review it.
 
