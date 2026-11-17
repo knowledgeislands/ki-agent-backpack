@@ -53,6 +53,8 @@ The loop is house practice, recorded from its first full run rather than importe
 
 ## Last review
 
+On 17 November 2026 Kris took IDEAS-INBOX a, at about 02:25 GMT in the Cairn summit's [change 42](https://github.com/krisb/ki-cairn-store/blob/4af7d31/work/cairn/cairn.summit/42-roadmap-2.change.md#61-stop-keeping-ideasmd-in-roadmaps): roadmaps stop keeping `_IDEAS.md`, and an idea no Project or theme owns goes through capture, intake and maturation in the Inbox until it is ready to become a record. `ki-work next`'s [capture rule](standards-next-work.md#capture-substantive-prospective-work) and its mode summary now send such an idea to the Inbox, following the roadmap standard's [ideas rule](../../../work/ki-work-roadmap/references/standards-repository-roadmaps.md#ideas-and-graduation). This is an in-house decision review; no external source was refreshed.
+
 On 14 November 2026 Kris also took OPENER-DELEGATE a in conversation: every opener or brief that starts a session tells it to delegate its work to its agent host's own subagents, stay responsive while that work runs, and check what they return before posting it. The design loop's [Reviews](standards-work-design.md#stage-contracts) stage now says so for a review started in a session of its own. No external source was refreshed.
 
 On 14 November 2026 Kris took OPENER-NAME a in conversation: every brief that starts a new agent session names its thread line and tells the session to rename itself to it first. The design loop's [Reviews](standards-work-design.md#stage-contracts) stage now says so for a review started in a session of its own; a background run needs nothing. No external source was refreshed.
