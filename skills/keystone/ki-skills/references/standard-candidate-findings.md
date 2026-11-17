@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-09T22:38:25Z
+ki-revised: 2026-11-17T01:48:38Z
 ki-status: in force
 ---
 
@@ -66,6 +66,8 @@ Each candidate has all of these fields:
 | Disposition       | Exactly one of the values below.                                                             |
 | Roadmap treatment | `new item`, `amend existing item`, or `no roadmap work`.                                     |
 | Proposed action   | The smallest useful next action and its owner.                                               |
+
+A candidate from REVIEW is also a finding in the shape of `ki-authoring`'s [review standard](../../ki-authoring/references/standard-review.md#44-a-findings-shape), its Evidence the anchor and its Proposed action what to change, with the finding's kind, whether it blocks and its confidence added, as [the REVIEW procedure](mode-review.md) sets.
 
 Allowed dispositions are:
 
