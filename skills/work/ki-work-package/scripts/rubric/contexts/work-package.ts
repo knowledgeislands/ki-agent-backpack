@@ -12,6 +12,7 @@ import type {
   RubricPublicationContext,
   RubricSession
 } from '../../shared/rubric.ts'
+import { workIdentifier } from '../../shared/work-identifiers.ts'
 import {
   EARLIER_AREAS,
   ENTRY_FILE,
@@ -63,7 +64,8 @@ const DEFINITION_FIELDS: readonly string[] = [
   'theme',
   'parent',
   'role',
-  'created_at'
+  'created_at',
+  'records'
 ]
 /** The thread capability fields Kris set under FOOTER-CAPABILITY-STATUS-2 on 1 November 2026. */
 const CAPABILITIES = ['listening', 'syncing'] as const
@@ -354,7 +356,10 @@ const subPackageFailures = (
   return failures
 }
 
-/** The definition fields: level, label, project, theme, placement, holders, created_at and repositories. */
+/** A full record id, as `KI-HARNESS-GOV-152`, found by its prefix through the ki registry (RECORD-LINKS a). */
+const RECORD_ID = workIdentifier()
+
+/** The definition fields: level, label, project, theme, placement, holders, created_at, repositories and records. */
 const definitionChecks = (
   item: Package,
   fields: Readonly<Record<string, unknown>>,
@@ -418,6 +423,11 @@ const definitionChecks = (
     (!Array.isArray(fields.repositories) || fields.repositories.some((name) => !singleLine(name)))
   )
     fail(evidence.schema, 'repositories must be a list of repository names, empty where the package works in none')
+  if (
+    'records' in fields &&
+    (!Array.isArray(fields.records) || fields.records.some((id) => typeof id !== 'string' || !RECORD_ID.test(id)))
+  )
+    fail(evidence.schema, 'records must be a list of full record ids, as KI-HARNESS-GOV-152')
 }
 
 /** The state fields: state, target, hold, blocking, the move times and method_read. */

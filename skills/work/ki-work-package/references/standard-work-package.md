@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T00:34:23Z
+ki-revised: 2026-11-18T03:53:00Z
 ki-status: in force
 ---
 
@@ -110,7 +110,7 @@ A work package lives in the Cairn store, at `work/<territory>/<work id>/`, one p
 
 A package names the repositories it mainly works in under `repositories:` in its entry file, and it may still change others. Records remain in the repositories that own their plans, priority and acceptance; a record's `project` resolves through the Capital's registry without execution authority. A record without `project` goes first to its regular or ad hoc owner, then to State of play only when unresolved.
 
-Roadmap records stay with their code and hold work ready to build, under `ki-work-roadmap`'s [Records and work packages](../../ki-work-roadmap/references/standards-repository-roadmaps.md#records-and-work-packages). A package names the records it works, so the Wayfinder can follow them, and never copies their state; a change document's steps become records in the repositories they touch. A package manages and runs what is left: residual fallout and the changes themselves. Kris took this as ROADMAP-PACKAGE a on 17 November 2026, in the Cairn summit's [change 42](https://github.com/krisb/ki-cairn-store/blob/4af7d31/work/cairn/cairn.summit/42-roadmap-2.change.md#62-roadmap-items-work-packages-and-change-documents): once the packages are worked through, most work runs from roadmap items directly in the repositories, "so roadmaps become simple".
+Roadmap records stay with their code and hold work ready to build, under `ki-work-roadmap`'s [Records and work packages](../../ki-work-roadmap/references/standard-repository-roadmaps.md#49-records-and-work-packages). A package names the records it works in its entry file's `ki-records`, by full record id, so the Wayfinder can follow them, and never copies their state; a change document's steps become records in the repositories they touch. A package manages and runs what is left: residual fallout and the changes themselves. Kris took this as ROADMAP-PACKAGE a on 17 November 2026, in the Cairn summit's [change 42](https://github.com/krisb/ki-cairn-store/blob/4af7d31/work/cairn/cairn.summit/42-roadmap-2.change.md#62-roadmap-items-work-packages-and-change-documents): once the packages are worked through, most work runs from roadmap items directly in the repositories, "so roadmaps become simple". The form, a `ki-records` list read by the Wayfinder, was taken as RECORD-LINKS a by the Cairn summit's guardian on 18 November 2026, under Kris's direction to land high-confidence work, once ki.cairn's warden confirmed the Wayfinder reads it.
 
 An old package's open work comes into the store's owning package, the territory's summit or a node, as its outstanding items, in one shape the Wayfinder reviews, and becomes a roadmap record only once it is ready to build, as Kris took LEGACY-ROADMAP a on 17 November 2026 in the [same change](https://github.com/krisb/ki-cairn-store/blob/4af7d31/work/cairn/cairn.summit/42-roadmap-2.change.md#63-roadmaps-for-the-migrated-packages), after turning down records first: "You're meant to be working on a new way, not on an old way".
 
@@ -194,6 +194,7 @@ Every field takes the `ki-` prefix, as KI defines them all (KI-PREFIX, Kris, 17 
 | `ki-role` | required | the package's role, one role from [the role catalogue](standard-roles.md#43-role-catalogue); a package without one is warned on under [the role migration file](standards-roles-migration.md) |
 | `ki-created_at` | optional | UTC time the package was created, no later than `ki-since` |
 | `ki-repositories` | required | a list of the repositories the package mainly works in, each named `<territory folder>/<repository>`, as `ki/apps-cairn.local` or `cairn/ki-cairn-store`, empty where it works in none |
+| `ki-records` | optional | a list of the records the package works, each by its full record id, as `KI-HARNESS-GOV-152`, never a short one; each links to its record by the id's prefix through the ki registry, and the record's state is never copied |
 
 Territory work is the territory's summit, id `<territory>.summit`, its State of play; `summit` is never the second and last segment at another level, and `ki-level: root` belongs to `cairn.summit` alone. A sub-package takes its parent's level, except that one beneath the root or a territory's summit takes `ki-level: regular`, as Kris took SUMMIT-SUB-PACKAGES b on 16 November 2026. The level is the one authority for the kind of work: not the title, a native session name, the folder name, the repository declaration, an output style, a hook line or a cached copy.
 

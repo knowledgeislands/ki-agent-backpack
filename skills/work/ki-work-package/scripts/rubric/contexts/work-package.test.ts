@@ -318,6 +318,16 @@ describe('RECORD-2 schema', () => {
       { drop: ['repositories'], fields: ['repositories: harness'] },
       'repositories must be a list'
     ],
+    [
+      'records that is not a list',
+      { fields: ['records: KI-HARNESS-GOV-152'] },
+      'records must be a list of full record ids'
+    ],
+    [
+      'a record named by its repository and id',
+      { fields: ['records:\n  - KI-HARNESS-GOV-152\n  - ki/tools-ki#KI-TOOL-KI-CLI-127'] },
+      'records must be a list of full record ids'
+    ],
     ['a retired state.md field kept elsewhere', { fields: ['focus: pilot'] }, 'outside it: ki-focus'],
     ['an unknown state', { drop: ['state'], fields: ['state: done'] }, 'state must be one of'],
     ['a target outside handoff', { fields: ['target: owner'] }, 'target names a holder'],
@@ -367,6 +377,11 @@ describe('RECORD-2 schema', () => {
       expect(statuses(outcomes)).toContain('VIOLATION')
       expect(messages(outcomes)).toContain(expected)
     })
+
+  test('a list of full record ids passes (RECORD-LINKS)', () => {
+    const outcomes = run(RECORD, 'RECORD-2', context(store({ fields: ['records:\n  - KI-HARNESS-GOV-152'] })))
+    expect(statuses(outcomes)).toEqual(['PASS'])
+  })
 
   test('the old body sections fail', () => {
     const root = store()

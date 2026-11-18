@@ -5,7 +5,7 @@ ki-kind: governance
 ki-applicability: detected
 ki-guild: work
 ki-depends-on: []
-ki-shared-dependencies: [ki-skills:rubric]
+ki-shared-dependencies: [ki-skills:rubric, ki-work-roadmap:work-identifiers]
 ki-contributes: ['.ki.toml']
 description: >
   Own the work package of one piece of work, `work/<territory>/<id>/` in the Cairn store: its `_index.md`, holding the
