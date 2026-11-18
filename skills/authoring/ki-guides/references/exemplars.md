@@ -4,7 +4,7 @@ ki-document-type: exemplars@2026-11-17T00:55:00Z
 
 # Exemplars
 
-Shapes to adapt when authoring a repository-local guide collection. They illustrate the [Guides standard](standards-guides.md) but do not add requirements.
+Shapes to adapt when authoring a repository-local guide collection. They illustrate the [Guides standard](standard-guides.md) but do not add requirements.
 
 ## A guide index
 

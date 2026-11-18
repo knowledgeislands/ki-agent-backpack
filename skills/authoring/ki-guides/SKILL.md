@@ -15,7 +15,7 @@ argument-hint: 'audit [dir] | conform [dir] | help | educate [dir] | refresh'
 
 # Knowledge Islands Guides standard
 
-You are applying the **Knowledge Islands Guides standard** — the durable home for practical repository knowledge: how to use, operate, contribute to, or maintain a system. Read [the Guides standard](references/standards-guides.md) before authoring, auditing, or conforming a collection; [the rubric](references/rubric.md) publishes its checkable criteria, [exemplars](references/exemplars.md) illustrate representative shapes, and [sources](references/sources.md) records provenance.
+You are applying the **Knowledge Islands Guides standard** — the durable home for practical repository knowledge: how to use, operate, contribute to, or maintain a system. Read [the Guides standard](references/standard-guides.md) before authoring, auditing, or conforming a collection; [the rubric](references/rubric.md) publishes its checkable criteria, [exemplars](references/exemplars.md) illustrate representative shapes, and [sources](references/sources.md) records provenance.
 
 ## What this skill owns
 

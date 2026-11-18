@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { GuidesLayoutContext, GuidesRubricContext } from '../contexts/guides.ts'
 
-const SOURCE = 'standards-guides.md#guide-root-and-index'
+const SOURCE = 'standard-guides.md#44-guide-root-and-index'
 
 const GUIDE_1: RubricItem<GuidesLayoutContext> = {
   code: 'GUIDE-1',
@@ -88,7 +88,7 @@ const GUIDE_4: RubricItem<GuidesLayoutContext> = {
   title: 'a guide links no document outside its collection',
   description:
     'No guide below `docs/guides/` links a Markdown document outside the collection; code paths and sibling guides are unaffected.',
-  sources: ['standards-guides.md#a-guide-is-self-contained'],
+  sources: ['standard-guides.md#43-a-guide-is-self-contained'],
   mechanical: {
     level: 'FAIL',
     remediation: {
@@ -142,7 +142,7 @@ const GUIDE_6: RubricItem<GuidesLayoutContext> = {
   title: 'a guide opens with its outcome',
   description:
     'Every guide below `docs/guides/`, except its root `README.md`, has at least 120 characters of prose before its first `##`; front matter, the H1, and HTML lines do not count.',
-  sources: ['standards-guides.md#a-guide-opens-with-its-outcome'],
+  sources: ['standard-guides.md#42-a-guide-opens-with-its-outcome'],
   mechanical: {
     level: 'FAIL',
     remediation: {

@@ -1,25 +1,95 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:04:18Z
+ki-status: in force
+---
+
 # Guides standard
 
-This standard defines the home and minimum navigability of repository-local practical documentation. The hosted structured rubric enforces its mechanical criteria; the generated [rubric](rubric.md) publishes every criterion, and [exemplars](exemplars.md) illustrate representative outcomes.
+## Contents
 
-## The four-doc split
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 The four-doc split](#41-the-four-doc-split)
+  - [4.2 A guide opens with its outcome](#42-a-guide-opens-with-its-outcome)
+  - [4.3 A guide is self-contained](#43-a-guide-is-self-contained)
+    - [4.3.1 Every guide](#431-every-guide)
+    - [4.3.2 What a reader can be expected to reach](#432-what-a-reader-can-be-expected-to-reach)
+  - [4.4 Guide root and index](#44-guide-root-and-index)
+  - [4.5 Boundary and migration rules](#45-boundary-and-migration-rules)
+  - [4.6 Judgment boundary](#46-judgment-boundary)
+
+## 1. Introduction
+
+This standard defines the home and minimum navigability of repository-local practical documentation. The hosted structured rubric enforces its mechanical criteria; the generated [rubric](rubric.md) publishes every criterion, and [exemplars](exemplars.md) illustrate representative outcomes. The decisions and sources behind it are in [the sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+The home and minimum navigability of a repository's practical guides.
+
+### 2.1 In scope
+
+- Where guides sit among a repository's four durable documentation concerns.
+- How a guide opens, and what it may and may not link.
+- The guide root, its index and audience folders.
+- Retired documentation roots, and what review judges rather than the checker.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- Applying the repository-wide documentation topology: `ki-repo`.
+- Decision Records, Specifications and repository work items: `ki-decision-records`, `ki-specs` and `ki-work-roadmap`.
+- A Knowledge Base's own documentation: `ki-repo-kb`.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Guide** | A practical document in `docs/guides/` saying how to use, operate, contribute to or maintain a system. **Standard:** this one, [4.1](#41-the-four-doc-split) |
+| **Guide collection** | A repository's `docs/guides/` tree, movable as a unit, opened by its `README.md`. **Standard:** this one, [4.3.1](#431-every-guide) |
+| **Audience folder** | A folder under `docs/guides/` named for the reader its guides serve. **Standard:** this one, [4.4](#44-guide-root-and-index) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 The four-doc split
 
 A non-Knowledge-Base repository uses four durable documentation concerns. `ki-repo` owns applying that repository-wide topology; this skill owns only the practical-guide concern:
 
-| Location          | Question | Instrument                                     |
-| ----------------- | -------- | ---------------------------------------------- |
-| `docs/decisions/` | Why      | Decision Records (`ki-decision-records`)       |
-| `docs/specs/`  | What     | Specifications (`ki-specs`) |
-| `docs/guides/`    | How      | Guides (**this skill**)                        |
-| `docs/roadmap/`   | When     | Repository work items (`ki-work-roadmap`)           |
+| Location | Question | Instrument |
+| --- | --- | --- |
+| `docs/decisions/` | Why | Decision Records (`ki-decision-records`) |
+| `docs/specs/` | What | Specifications (`ki-specs`) |
+| `docs/guides/` | How | Guides (**this skill**) |
+| `docs/roadmap/` | When | Repository work items (`ki-work-roadmap`) |
 
 Each source has one job. A guide names a Decision Record, Specification, or roadmap item when that helps a reader act, but it does not link one and does not duplicate the source's authority. A guide that relies on stable system behaviour routes to the applicable existing Specification. Where no durable behaviour contract exists, identify the gap for `ki-specs`; do not manufacture speculative requirements or require an unrelated corpus before publishing the guide.
 
-## A guide opens with its outcome
+[Back to contents](#contents)
+
+### 4.2 A guide opens with its outcome
 
 A guide MUST open, before its first `##`, with prose saying what the reader will be able to do once they have read it, in at least 120 characters. Front matter, the H1, headings, and HTML blocks do not count towards that floor. A page that opens by describing itself - "this page summarises material in X" - has told the reader nothing they can act on and does not meet the rule, whatever its length.
 
-## A guide is self-contained
+[Back to contents](#contents)
+
+### 4.3 A guide is self-contained
+
+The floor every guide meets, then what its reader can be expected to reach.
+
+#### 4.3.1 Every guide
 
 A guide MUST read completely without following any link. The collection is therefore movable as a unit: a reader who has `docs/guides/` has everything its guides depend on, and the collection can be published, copied, or relocated without carrying a trail of documents behind it. This mirrors the same requirement on a Decision Record, and for the same reason.
 
@@ -33,7 +103,9 @@ External URLs are permitted as supplementary. The guide must still read complete
 
 Link text carries a fact the guide has already stated; it is never the place the answer lives. Remove the link and the sentence should still say something true and useful. Link text such as "the full guide", "see the README", or a bare "here" fails that test because the content the guide owes is behind it. This is a review judgment about each sentence, not a phrase list: a list refuses honest sentences and passes dishonest ones.
 
-### What a reader can be expected to reach
+[Back to contents](#contents)
+
+#### 4.3.2 What a reader can be expected to reach
 
 The rule above is the floor and applies to every guide. Above it, the obligation tightens with the reader's distance from the repository, which is a review judgment rather than a directory check.
 
@@ -43,7 +115,9 @@ A guide written for somebody **using what the repository produces** may not. Tha
 
 Because every guide sits in an audience folder, the collection declares which guides are held to which standard. Folder names stay local information architecture — this standard does not mandate `user/` or any other name — and the review reads each folder as the author's own statement of its guides' audience.
 
-## Guide root and index
+[Back to contents](#contents)
+
+### 4.4 Guide root and index
 
 - Guides live in **`docs/guides/`**.
 - **`docs/guides/README.md`** is the collection entry point. It gives the reader a concise scope statement and links to each guide or guide area with enough description to choose one.
@@ -53,13 +127,19 @@ Because every guide sits in an audience folder, the collection declares which gu
 - AUDIT fails every guide directly below `docs/guides/` other than the root `README.md`. CONFORM never moves an authored guide between folders. Whether a folder name truly names an audience, and whether each guide sits with its primary reader, remain review judgments.
 - Each guide Markdown file other than the root `README.md` has exactly one H1. It identifies the task, outcome, or operating context; its body gives the conditions, ordered work, verification, and recovery information appropriate to the topic.
 
-## Boundary and migration rules
+[Back to contents](#contents)
+
+### 4.5 Boundary and migration rules
 
 - **`docs/spec/` is not a durable documentation category.** Behavioural, testable specifications migrate to `docs/specs/` and are governed by `ki-specs`. Other material is reclassified according to its actual concern.
 - **`docs/developer/` is not a parallel root.** Contributor and maintainer instructions migrate to `docs/guides/developer/`.
 - **`docs/logs/` requires an explicit specialised owner before it is classified.** This skill does not infer that a path is a generic log archive from its name. Keep ephemeral logs out of version control unless a specialised operational system owns and governs them; record any durable conclusion with its governing Decision Record, guide, Specification, or roadmap item.
 - Diagram sources and other assets live beside the concern they explain or in a repository-specific asset location. This skill does not impose a graphics format or asset pipeline.
 
-## Judgment boundary
+[Back to contents](#contents)
+
+### 4.6 Judgment boundary
 
 The checker can prove that a root, entry point, headings, audience folders, and retired roots are present or absent. It cannot truthfully prove that a procedure is safe, complete, current, or placed in the most useful category. During review, ask whether the index and audience folders give each intended reader a clear route, whether specialised exact-role paths preserve that route, and whether a reader can complete the guide's outcome without hidden context, verify success, and recover from known failure states. Ask too whether each link's text carries a fact the guide states rather than standing in for content it owes. The checker measures the length of a guide's opening prose; whether that opening says what the reader will be able to do is a review judgment.
+
+[Back to contents](#contents)

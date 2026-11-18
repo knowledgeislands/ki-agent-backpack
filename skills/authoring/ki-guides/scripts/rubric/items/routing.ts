@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { GuidesRubricContext } from '../contexts/guides.ts'
 
-const SOURCE = 'standards-guides.md#boundary-and-migration-rules'
+const SOURCE = 'standard-guides.md#45-boundary-and-migration-rules'
 
 const ROUTE_1: RubricItem<GuidesRubricContext> = {
   code: 'ROUTE-1',
@@ -52,7 +52,7 @@ const ROUTE_3: RubricItem<GuidesRubricContext> = {
   title: 'a guide cites only what its reader can reach',
   description:
     "Each guide names internal governance artefacts only where its intended reader holds the repository; a guide written for somebody using what the repository produces is bounded by the product, its configuration, the files it leaves on that reader's machine, and its sibling guides.",
-  sources: ['standards-guides.md#what-a-reader-can-be-expected-to-reach'],
+  sources: ['standard-guides.md#432-what-a-reader-can-be-expected-to-reach'],
   judgment: {
     scope:
       'Every guide below `docs/guides/`, read against the audience its collection declares by grouping or by its own framing.',
@@ -69,7 +69,7 @@ const ROUTE_4: RubricItem<GuidesRubricContext> = {
   title: 'link text carries a fact, not a deferral',
   description:
     'Each link in a guide carries a fact the guide has already stated; no link text stands in for content the guide owes its reader.',
-  sources: ['standards-guides.md#a-guide-is-self-contained'],
+  sources: ['standard-guides.md#43-a-guide-is-self-contained'],
   judgment: {
     scope: 'Every link in every guide below `docs/guides/`, read with the sentence that holds it.',
     prompt:
