@@ -84,7 +84,7 @@ Every adapter carries an explicit mapping for record identity, status/lifecycle 
 
 ### 4.3 Abstract record vocabulary
 
-Every adapter maps these abstract terms; the [repository-roadmap standard](../../../work/ki-work-roadmap/references/standards-repository-roadmaps.md) and [work-item format](../../../work/ki-work-roadmap/references/standards-work-item-format.md) give their local shape.
+Every adapter maps these abstract terms; the [repository-roadmap standard](../../../work/ki-work-roadmap/references/standard-repository-roadmaps.md) and [work-item format](../../../work/ki-work-roadmap/references/standard-work-item-format.md) give their local shape.
 
 - **Status** - how far work has got: triage (unadopted intake), draft, ready, in progress, awaiting review, and two terminal endings, done and cancelled.
 - **Horizon** - when adopted, open work is intended: now, next, soon, future, or hold. Hold carries a reason, a named release condition, an optional review date, and any observed trades.

@@ -39,7 +39,7 @@ Legacy `Active`, `Background`, `Dormant`, and Focus-style folders are migration 
 
 ## Status lifecycle
 
-A roadmap item's `status` and `horizon` are set by the [status and horizon table](../../work/ki-work-roadmap/references/standards-repository-roadmaps.md#status-and-horizon), which `ki-work-roadmap` owns; this container repeats neither.
+A roadmap item's `status` and `horizon` are set by the [status and horizon table](../../work/ki-work-roadmap/references/standard-repository-roadmaps.md#43-status-and-horizon), which `ki-work-roadmap` owns; this container repeats neither.
 
 ## Record ownership
 

@@ -57,7 +57,7 @@ How one approved record is delivered and brought to review.
 | Term | Definition |
 | --- | --- |
 | **Baseline** | The full current `HEAD` commit ID recorded when delivery starts, the immutable starting evidence. **Standard:** this one, [4.2](#42-start-one-delivery) |
-| **Review packet** | The six `###` headings under a roadmap record's `## Review`, in fixed order, that bring delivered work to review. **Standard:** `ki-work-roadmap`'s [work-item format](../../../work/ki-work-roadmap/references/standards-work-item-format.md#awaiting-review) |
+| **Review packet** | The six `###` headings under a roadmap record's `## Review`, in fixed order, that bring delivered work to review. **Standard:** `ki-work-roadmap`'s [work-item format](../../../work/ki-work-roadmap/references/standard-work-item-format.md#4136-awaiting-review) |
 
 [Back to contents](#contents)
 

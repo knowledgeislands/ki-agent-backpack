@@ -80,9 +80,9 @@ The repository roadmap MUST list only open work — no completed items, no ticke
 
 _Conformance:_ conforming
 
-_Verify:_ `ki-work-roadmap`'s [repository-roadmap standard](../../skills/work/ki-work-roadmap/references/standards-repository-roadmaps.md), plus its mechanical audit of the root orientation and canonical work items.
+_Verify:_ `ki-work-roadmap`'s [repository-roadmap standard](../../skills/work/ki-work-roadmap/references/standard-repository-roadmaps.md), plus its mechanical audit of the root orientation and canonical work items.
 
-_Evidence:_ `ki-work-roadmap`'s [repository-roadmap standard](../../skills/work/ki-work-roadmap/references/standards-repository-roadmaps.md), plus its mechanical audit of the root orientation and canonical work items.
+_Evidence:_ `ki-work-roadmap`'s [repository-roadmap standard](../../skills/work/ki-work-roadmap/references/standard-repository-roadmaps.md), plus its mechanical audit of the root orientation and canonical work items.
 
 ### HARN-008 — CLAUDE.md orientation coverage
 
