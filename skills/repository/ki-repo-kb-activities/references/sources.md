@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:44:50Z
+ki-revised: 2026-11-18T04:58:00Z
 ki-refresh: canonical · on-change
 ---
 
@@ -47,7 +47,7 @@ None recorded by id here. The standard cites Kris's THEME-CLOSE decision of 25 O
 
 ## 4. Last review
 
-On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Activity standard](standard-activities.md), formerly `standards-activities.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format. The rubric's source names and anchors follow. No rule changed and no outside source was refreshed.
+On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Activity standard](standard-activities.md), formerly `standards-activities.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format. The rubric's source names and anchors follow. No rule changed and no outside source was refreshed. The same review brought the regular-work rule into the work model: the territory's summit, not its state of play, may discuss regular work.
 
 **REFRESH last run 2026-08-12** (internal-model re-anchor — no web research).
 
