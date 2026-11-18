@@ -109,7 +109,7 @@ The `+/` and `-/` working areas and their subfolders carry no same-name index. S
 
 ### 4.5 Source mirrors
 
-A base declaring `sources` in `[skills.ki-repo].store_roles` follows the [source mirror content and derived label contract](standard-source-mirrors.md). It owns substantive extracts, one-file `mirrors` declarations with `mirror_type` and `mirror_sha256`, and its enrichment work. Notes derived from a source rather than mirroring it record `source_path` and `source_sha256` instead, and are not mirrors. Search labels describe only checks over authorised Markdown; neither a label nor a harness audit establishes source existence, fidelity or freshness. Both relationships are distinct from an acquisition adapter’s upstream provenance.
+A base declaring `sources` in `[skills.ki-repo].store_roles` follows the [source mirror content and derived label contract](standard-source-mirrors.md). It owns substantive extracts, one-file `mirrors` declarations with `mirror_type` and `mirror_sha256`, and its enrichment work. Notes derived from a source rather than mirroring it record `source_path` and `source_sha256` instead, and are not mirrors. Search labels describe only checks over authorised Markdown; neither a label nor a backpack audit establishes source existence, fidelity or freshness. Both relationships are distinct from an acquisition adapter’s upstream provenance.
 
 [Back to contents](#contents)
 

@@ -123,6 +123,6 @@ Labels operate only over authorised Markdown, after zone and access checks and b
 
 ### 4.6 Per-base enrichment work
 
-The receiving base owns a separate enrichment record: inventory the declared source store against its mirrors under that base's access authority; record controlled groups and missing mirrors; add or extend extracts and checksums; verify freshness where authorised; and report remaining unknown or pointer coverage. No shared harness audit or search-label delivery grants access to that store or writes these records. Legacy notes lacking recognized metadata remain unclassified until their owner reconciles them.
+The receiving base owns a separate enrichment record: inventory the declared source store against its mirrors under that base's access authority; record controlled groups and missing mirrors; add or extend extracts and checksums; verify freshness where authorised; and report remaining unknown or pointer coverage. No shared backpack audit or search-label delivery grants access to that store or writes these records. Legacy notes lacking recognized metadata remain unclassified until their owner reconciles them.
 
 [Back to contents](#contents)
