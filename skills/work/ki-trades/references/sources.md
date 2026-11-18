@@ -57,6 +57,8 @@ None.
 
 ## 4. Last review
 
+On 18 November 2026 the territory example was brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Work guild: its channel reports to the backpack, as `backpack-maintenance`. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Work guild's review, from the Cairn summit's change 10, brought the files into the formats: [the trade standard](standard-trades.md), formerly `standards-trades.md`, and `ki-trade`'s [trade-operations procedure](../../ki-trade/references/standard-trade-operations.md), formerly `standards-trade-operations.md`, were renamed and reshaped to the standard format with their rules unchanged, and this file to the sources format. The rubric's source names follow. No rule changed and no outside source was refreshed.
 
 - 2026-10-26 - TRADES-FATE, decided by Kris on 26 October 2026 with the twenty-query "all": narrowed the skill to the routes the Capital's declared trade policy grants, pointed handoffs and rollouts to the receiving work's `messages.md` under HANDOFF-AS-MESSAGE, kept full support for existing trades and the ban on new submissions, and made opening the Trades revamp Project the next review trigger with a fallback date of 2026-12-31 on `HOLD-1`. GDR-KI-HARNESS-013 is unchanged: no authority or lifecycle moved.

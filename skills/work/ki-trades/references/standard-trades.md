@@ -125,8 +125,8 @@ The Capital's own `[skills.ki-trades]` carries the territory trade policy under 
 shared-capability-maintenance = "Non-sensitive findings about shared capabilities."
 
 [[skills.ki-trades.territory.channels]]
-id = "harness-maintenance"
-purpose = "Members report work and knowledge about shared capabilities to the harness."
+id = "backpack-maintenance"
+purpose = "Members report work and knowledge about shared capabilities to the backpack."
 from = ["https://github.com/owner/sender"]
 to = ["https://github.com/owner/receiver"]
 kinds = ["work", "knowledge"]
