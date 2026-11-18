@@ -1,5 +1,5 @@
 ---
-ki-document-type: sources@2026-11-14T03:32:28Z
+ki-document-type: sources@2026-11-17T00:28:37Z
 ki-revised: 2026-11-16T23:50:00Z
 ki-refresh: canonical · on-change
 ---
@@ -35,6 +35,8 @@ None of its own. Each agent host's documentation is a source of its runtime skil
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 18 November 2026 the Environment guild's review, from the Cairn summit's change 10, moved the standard and this file to the current version of `ki-authoring`'s formats; both were already in shape. No rule changed and no outside source was refreshed.
 
 On 16 November 2026 an in-house review applied PROMOTION-ONE a, which Kris took that day at about 23:30 GMT, relayed by the Cairn summit's guardian from the summit's [change 11](https://github.com/krisb/ki-cairn-store/blob/4bc5285/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided). [Durable learning](standard-housekeeping.md#42-durable-learning) now points at `ki-authoring`'s placement ladder for where the learning goes, keeping only that native memory is never that home, and HOUSE-2 follows.
 
