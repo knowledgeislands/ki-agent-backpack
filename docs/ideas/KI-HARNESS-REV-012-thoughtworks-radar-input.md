@@ -51,7 +51,7 @@ The first deliverable should define the source and discovery route, relevance fi
 
 The [weekly model-radar review](../housekeeping/KI-HARNESS-HK-003-weekly-model-radar-review.md) already checks tracked model sources, including the ThoughtWorks FAQ for ring semantics; the [weekly agentic-radar review](../housekeeping/KI-HARNESS-HK-005-weekly-agentic-radar-review.md) checks agentic patterns. This request adds new-volume content as a broader tool and learning input, rather than duplicating either weekly refresh. Planning should choose the smallest suitable extension or separate template and cross-reference existing evidence instead of copying source ledgers or creating a second catalogue.
 
-The current ThoughtWorks Radar and FAQ use Adopt / Trial / Assess / Caution; Build Your Own Radar still uses Hold. The [model-radar source notes](../../skills/agentic-systems/ki-model-radar/references/sources.md#last-review) explicitly adapt Caution as Hold. Compare those meanings explicitly; this intake does not silently rename that separate model. Tool assessment remains independent of installation, and retirement remains a separate lifecycle action.
+The current ThoughtWorks Radar and FAQ use Adopt / Trial / Assess / Caution; Build Your Own Radar still uses Hold. The [model-radar source notes](../../skills/agentic-systems/ki-model-radar/references/sources.md#4-last-review) explicitly adapt Caution as Hold. Compare those meanings explicitly; this intake does not silently rename that separate model. Tool assessment remains independent of installation, and retirement remains a separate lifecycle action.
 
 ### Alternatives and authority
 
