@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:55:30Z
+ki-revised: 2026-11-18T04:00:46Z
 ki-status: in force
 ---
 
@@ -120,7 +120,7 @@ purpose: upkeep
 ---
 ```
 
-`status` is `active` or `paused` for Project templates. Retiring a Project template means explicitly ending its schedule and disposing any active run before deleting the template. KB Activities also permit retained `retired` status with rationale and `housekeeping.active_run: null`; retired Activities never enter schedule evaluation. `cadence` and `grace` are ISO-8601 calendar durations using one positive unit: `P<n>D`, `P<n>W`, or `P<n>M`. `last-run` is the evidenced ISO date of the last successfully completed review, or `null` without successful-run evidence. A future `last-run` blocks evaluation. `active-run` is `null` or the linked run identity. `spawn-policy` is `manual`, `when-due`, or `when-overdue`; `spawn-horizon` is one of `now`, `next`, `soon`, or `future`. The KB profile maps these fields as described below.
+`status` is `active` or `paused` for Project templates. Retiring a Project template means explicitly ending its schedule and disposing any active run before deleting the template. KB Activities also permit retained `retired` status with rationale and `housekeeping.active_run: null`; retired Activities never enter schedule evaluation. The other fields follow; the KB profile maps them as described below.
 
 `cadence` and `grace` are ISO-8601 calendar durations using one positive unit: `P<n>D`, `P<n>W`, or `P<n>M`. `last-run` is the evidenced ISO date of the last successfully completed review, or `null` for a template without successful-run evidence. A future `last-run` is invalid completion evidence and blocks evaluation; it cannot postpone calendar review or enable volume-triggered work. `active-run` is `null` or the linked run identity. `spawn-policy` is `manual`, `when-due`, or `when-overdue`; `spawn-horizon` is one of `now`, `next`, `soon`, or `future`. The former `waiting-for` and `parked` values warn during the roadmap [migration tolerance window](../../ki-work-roadmap/references/standard-repository-roadmaps.md#47-migration-tolerance).
 

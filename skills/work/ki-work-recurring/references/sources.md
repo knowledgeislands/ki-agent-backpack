@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:55:56Z
+ki-revised: 2026-11-18T04:00:46Z
 ki-refresh: canonical · on-change
 ---
 
@@ -50,6 +50,8 @@ None recorded by id. The skill's name follows Kris's naming decision of 14 Octob
 [Back to contents](#contents)
 
 ## 4. Last review
+
+Later on 18 November 2026 the same review dropped the shorter of two copies of the template's field rules in [4.4](standard-recurring-work.md#44-frontmatter): the first paragraph restated `cadence`, `grace`, `last-run`, `active-run`, `spawn-policy` and `spawn-horizon`, which the next paragraph sets in full, with nothing the second lacks. No rule changed.
 
 On 18 November 2026 the Work guild's review, from the Cairn summit's change 10, brought the standard and this file into `ki-authoring`'s formats: the standard was renamed `standard-recurring-work.md` and its rules placed, unchanged, under numbered sections, its Scope section becoming 4.1, What a template is, and this file took the sources format. No rule changed and no outside source was refreshed.
 
