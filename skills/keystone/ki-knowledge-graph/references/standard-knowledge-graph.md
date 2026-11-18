@@ -104,7 +104,7 @@ Its front matter carries `id`, `title`, `type: graph` and `status`, with any fur
 | Section | What it declares |
 | --- | --- |
 | **Card types** | Every card type the graph supports, what a card of that type is about, and the properties it requires beyond the shared ones. A type not declared here is not used. |
-| **Link vocabulary** | The vocabularies its link predicates are drawn from, each prefix with its namespace, and the predicates in use. SKOS, the W3C standard for vocabularies, is the default; another established vocabulary, such as Dublin Core terms, may be declared where SKOS has no term; the `ki:` prefix is only for what no declared vocabulary has (LINK-VOCAB). |
+| **Link vocabulary** | The vocabularies its link predicates are drawn from, each prefix with its namespace, and the predicates in use. SKOS, the W3C standard for vocabularies, is the default; another established vocabulary, such as Dublin Core terms, may be declared where SKOS has no term; the `ki:` prefix is only for what no declared vocabulary has (LINK-VOCAB). It may also carry a table headed `Predicate` and `Meaning`, giving a predicate in use its meaning in one line, which readers such as the Wayfinder show. |
 | **Properties** | Every front-matter property cards carry, what it means, its values and which card types require it. |
 | **Constraints** | The rules a card must meet beyond this standard, such as an order of reading or a word kept off every card. |
 | **Subgraphs** | Each subgraph, its id prefix and its subject, and its folder where the graph has folders; a graph with no subgraphs says so. |
