@@ -43,6 +43,21 @@ This graph gives every Knowledge Islands session the same words for agentic syst
 
 A predicate reads from the card that holds it to its target. A vendor card whose word means the industry's term exactly uses `skos:exactMatch`, nearly `skos:closeMatch`; one whose word is narrower than the term, as a product is, uses `skos:broadMatch`, saying the target is broader; and one whose word is only related, as a part of the thing or something easily mistaken for it, uses `skos:relatedMatch`.
 
+| Predicate | Meaning |
+| --- | --- |
+| `skos:exactMatch` | Means exactly what the target means |
+| `skos:closeMatch` | Means nearly what the target means |
+| `skos:broadMatch` | Narrower than the target, which is broader, as a product is narrower than its term |
+| `skos:relatedMatch` | Only related to the target, as a part of it or something easily mistaken for it |
+| `dcterms:hasPart` | The target is a part of this whole |
+| `dcterms:isPartOf` | This is a part of the target, a whole |
+| `dcterms:conformsTo` | This conforms to the target, such as a specification |
+| `dcterms:subject` | The target is what this resource is about |
+| `ki:runs` | This runs the target, as an agent host runs agent harnesses |
+| `ki:run-of` | This is one run of the target, as a session is one run of an agent |
+| `ki:run-by` | The target runs this, as an agent harness runs a session |
+| `ki:extends` | This extends the target, as a skill extends an agent harness |
+
 ## Properties
 
 | Property | Meaning | Values | Required for |
