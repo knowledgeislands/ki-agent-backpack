@@ -54,6 +54,8 @@ None recorded by id: the standard rests on the BCP 14 pair and the house convent
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Authoring guild: REFRESH names the backpack as where to run it. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Authoring guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Specifications standard](standard-specs.md), formerly `standard-specs.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format. The rubric's source names follow. No rule changed and no outside source was refreshed.
 
 - 2026-08-12 — Refreshed the BCP 14 authority pair. RFC 8174 confirms uppercase-only interpretation and `NOT RECOMMENDED`; the local standard and checker now name the pair. Demoted the unpinned reference corpus to supporting discovery. Serial scope and applicability remain owner-gated policy questions, not source-derived mechanics.

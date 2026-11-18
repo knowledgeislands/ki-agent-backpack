@@ -4,7 +4,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 # Mode REFRESH — re-anchor the standard
 
-**Precondition:** REFRESH edits this skill's own canonical files, which exist only in `ki-agent-backpack`. Invoked from an installed copy, it stops here and names the harness as where to run it — or, for a pattern recurring across bases, routes it through `ki-repo-kb`'s IMPROVE mode instead.
+**Precondition:** REFRESH edits this skill's own canonical files, which exist only in `ki-agent-backpack`. Invoked from an installed copy, it stops here and names the backpack as where to run it — or, for a pattern recurring across bases, routes it through `ki-repo-kb`'s IMPROVE mode instead.
 
 Canonical, on-change: this skill tracks no external spec beyond BCP 14 (RFC 2119 and RFC 8174), which is stable. Re-anchor when the **format model** changes — the four-doc split, the areas-table shape, the ID scheme, the requirement/`_Verify:_` shape, or the Gaps convention — or when the reference corpus this skill generalizes from ([sources.md](sources.md)) evolves in a way the standard should absorb.
 
