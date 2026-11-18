@@ -98,7 +98,7 @@ The four procedures remain on demand because each coordinates work outside the h
 
 → Read [references/mode-refresh.md](references/mode-refresh.md)
 
-REFRESH writes only in `ki-agent-backpack`; when invoked from an installed copy, stop and redirect the work to the harness.
+REFRESH writes only in `ki-agent-backpack`; when invoked from an installed copy, stop and redirect the work to the backpack.
 
 ## Boundaries (out of scope, with their homes)
 

@@ -58,6 +58,8 @@ None recorded by id: the standard rests on the upstream tools and the in-house c
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Eleventy site standard](standard-eleventy-site.md), formerly `standards-eleventy-site.md`, was renamed and reshaped to the standard format with its rules unchanged, the overlay's selection paragraphs becoming its first rules section, and this file to the sources format, with the open watch items under Watching. The rubric's source names follow. No rule changed and no outside source was refreshed.
 
 REFRESH last run **2026-10-06**. Re-fetched all three upstream sources and their current package metadata, and re-checked that `ki-engineering` still owns the referenced toolchain layer. The standard remains current: no source change affects its Eleventy 3, config-less Tailwind 4, or vanilla Lucide delivery contract, and its `^3.x` Eleventy pin is not stale.

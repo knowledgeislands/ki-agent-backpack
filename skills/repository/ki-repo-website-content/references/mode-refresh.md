@@ -4,7 +4,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 # Mode REFRESH — re-anchor the standard to its sources
 
-**Precondition:** REFRESH edits this skill's canonical files in `ki-agent-backpack`. If the skill is installed elsewhere, stop and run REFRESH in the harness.
+**Precondition:** REFRESH edits this skill's canonical files in `ki-agent-backpack`. If the skill is installed elsewhere, stop and run REFRESH in the backpack.
 
 _On-demand procedure for ki-repo-website-content's REFRESH mode. It performs research and proposes an authored change; the hosted rubric does not fetch sources or rewrite its own contract._
 
