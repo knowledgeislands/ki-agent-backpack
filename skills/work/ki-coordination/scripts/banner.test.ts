@@ -817,7 +817,7 @@ test('the Summary runs its summary, the two-column status table, the queries in 
     'the Answer where there is one, `## Summary`',
     '`## Status`',
     '`## Findings` while one is open',
-    '`## Queries` with every open query in full and the reply block',
+    '`## Queries` with the open queries in full, at most ten under the [query cap](standards-queries.md#query-cap), and the reply block',
     'then the footer'
   ]
   const at = parts.map((part) => summary.indexOf(part))
@@ -868,7 +868,9 @@ test('the core retains all five hard rules and lists every purpose file', () => 
     '4) give every reply the structure and layout its trigger sets in the ki-coordination reply format, a Summary or Status in full, a Bootstrap or Stop in the owner-report shape, heading block to glyph banner, a Position as the banner, an update or plain answer with no footer'
   )
   expect(line).toContain('with a reply block whenever there is a query')
-  expect(line).toContain('a Summary and a Bootstrap restating every open query in full')
+  expect(line).toContain(
+    'a Summary and a Bootstrap restating the open queries in full, at most ten, most critical first'
+  )
   expect(line).toContain(
     'every medium- or low-confidence query, and any high-confidence destructive, deletion or publication one, goes to one blind review before it reaches the owner'
   )

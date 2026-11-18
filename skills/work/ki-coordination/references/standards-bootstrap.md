@@ -27,12 +27,12 @@ A one-line opener brings a new or running session onto this contract, for exampl
 8. gives the Bootstrap, trigger T2 in the [coordinator reply format](standards-report-forms.md#triggers), a full Medium [report](standards-reporting.md#owner-report) under the [report heading](standards-report-forms.md#banner-detail), form line `**Bootstrap at <local time> · last mark <local time>**`:
    - `## Done` gives its coordinator role and where the work stands, ending with `Rename thread: /rename <thread line>`, the thread line being `<role glyph> 🔑 <work-id>`, written `<Name> (<role glyph> 🔑 <work-id>)` where the seat's actor is named (NAME-FIRST), or `🧵 <work-id>` with no role yet, the same line the opener named, under [Opening work](standards-opening.md#opening-work);
    - `## In Progress` gives what is running;
-   - `## Queries` gives every open query in full;
+   - `## Queries` gives the open queries in full, at most ten under the [query cap](standards-queries.md#query-cap);
    - the [banner](standards-coordination.md#banner) and thread line close it, rendered as every banner is, without the roadmap and package lines, the thread line last.
 
 Work opened, bootstrapped or restarted in a new session with no mark strikes one at its start, writing `ki-mark` in `_index.md`'s state fields, so every work carries a mark. [Re-anchoring](#re-anchoring-after-compaction) in the same session moves none.
 
-Sources: BOOT-HOME, REBOOT-SHAPE, WORK-REVIEW-RETIRE, OPENER-NAME, FIRST-STEP-HOME, SECONDARY-SOP and ROSTER-SELF in [the decision register](sources.md#decision-register).
+Sources: BOOT-HOME, REBOOT-SHAPE, WORK-REVIEW-RETIRE, OPENER-NAME, FIRST-STEP-HOME, SECONDARY-SOP, ROSTER-SELF and QUERY-CAP in [the decision register](sources.md#decision-register).
 
 ## Resolving the opener
 

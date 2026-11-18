@@ -156,6 +156,7 @@ The label is written `Outstanding - no action requested now` and the query headi
   - **One recommendation:** a `###` query marks only one option recommended; a query that would recommend more than one is split into separately tagged queries. No file check reads reports for this or for the confidence form; COORD-6 reviews both as judgement, under COORD-REPORT-CHECKS.
   - **Review:** before reaching the owner, a query passes the [query review](standards-queries.md#query-review) where its confidence or course calls for one.
   - **Alternatives:** further options appear only when they are real alternatives. A query needing only confirmation still gives a), plus b) for the obvious alternative, such as "leave it as it is".
+  - **Cap:** a reply or report puts at most ten queries to the owner, the most critical first, then one line saying how many more are open and where they are held, as in `A further 7 are held in the package's change documents.`, under the [query cap](standards-queries.md#query-cap). The reply block carries the same ten and no others.
   - **Reply block:** every reply or report that asks the owner to decide anything closes with the reply block, ready for the owner to copy, change and send, whatever its form: a coordinator's reply, a run report and a conversational session's report after their queries, and a conversational reply after its prose. It is one fenced `text` block holding exactly the text to send back, with nothing to strip out. A reply that asks nothing carries none.
     - **Groups:** the queries are grouped by priority under numbered headings, the most pressing first, each heading `<n> · <what the group is>`, adding `, can run while you're away` where the group's work can go ahead while the owner is away, with a blank line between groups. The block opens with its `1 ·` heading, even where there is one group.
     - **Lines:** under its heading, one line per query, its tag, the recommended option's letter and that option's confidence in brackets, as `<TAG> a (high)`, `(medium)` or `(low)`, with an optional short gloss after a colon, as `<TAG> a (high): what it does`.
@@ -201,7 +202,7 @@ The label is written `Outstanding - no action requested now` and the query headi
   - No level hides a failure, a required decision or a material risk.
   - In a coordinator session the level never changes the layout and governs only the wording inside B1, the Answer, under the [coordinator reply format](standards-report-forms.md#coordinator-reply-format).
 
-Sources: REPORT-SOURCE, OWNER-REPORT-FORMAT, REPORT-HEADINGS, REPLY-BLOCK, REPLY-ID, HOLD-QUERIES, SUMMARY-WINDOW, FINDINGS-SECTION, QUERY-SHAPE, FORM-VS-RUMDL, CONFIDENCE-STANDARD, REVIEW-LIFT, ACCEPT-BY-CRITERIA, CONFIDENCE-CHECK, REVIEW-CHECK, NO-EXTERNAL-POSTING, PLAIN-ENGLISH, REPLY-FORMAT, REPLY-GROUPS and COORD-REPORT-CHECKS in [the decision register](sources.md#decision-register).
+Sources: REPORT-SOURCE, OWNER-REPORT-FORMAT, REPORT-HEADINGS, REPLY-BLOCK, REPLY-ID, HOLD-QUERIES, SUMMARY-WINDOW, FINDINGS-SECTION, QUERY-SHAPE, FORM-VS-RUMDL, CONFIDENCE-STANDARD, REVIEW-LIFT, ACCEPT-BY-CRITERIA, CONFIDENCE-CHECK, REVIEW-CHECK, NO-EXTERNAL-POSTING, PLAIN-ENGLISH, REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP and COORD-REPORT-CHECKS in [the decision register](sources.md#decision-register).
 
 ### Answers
 

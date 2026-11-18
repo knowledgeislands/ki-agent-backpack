@@ -5,6 +5,7 @@ This file holds how queries reach the owner: the interactive and goal-setting pa
 ## Contents
 
 - [Questions](#questions)
+- [Query cap](#query-cap)
 - [Interactive pass](#interactive-pass)
 - [Goal-setting pass](#goal-setting-pass)
 - [Query review](#query-review)
@@ -15,6 +16,18 @@ This file holds how queries reach the owner: the interactive and goal-setting pa
 ## Questions
 
 Queries reach the owner in the Summary by default. After a Summary that lists open queries, or on the owner's request, use the [interactive pass](#interactive-pass): one decision per turn, its context in chat Markdown, then a short question card, or plain chat Markdown alone where the runtime has no card.
+
+## Query cap
+
+A reply puts at most ten queries to the owner, so each reply keeps its context to a sensible size, as Kris set under QUERY-CAP on 18 November 2026.
+
+- **Which ten:** the most critical first: a query whose due date is close, or that blocks other work or another territory. Within the same criticality, the highest confidence first.
+- **The rest:** where more are open, one line after the last query says how many more there are and where they are held, as in `A further 7 are held in the package's change documents.`
+- **Reply block:** it carries the same ten queries and no others.
+- **Where it applies:** to what one reply shows, in `## Queries` and the reply block: the Summary, the Status, the Bootstrap, a run report and every other form that carries queries in full. A Summary or Bootstrap that restates the open queries shows the top ten in full and the further-queries line.
+- **Where it does not:** the queries file and the change documents keep every open query in their Open sections.
+
+Sources: QUERY-CAP in [the decision register](sources.md#decision-register).
 
 ## Interactive pass
 

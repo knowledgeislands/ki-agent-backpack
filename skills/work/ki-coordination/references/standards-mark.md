@@ -7,7 +7,7 @@ This file holds the mark, parking tangents, pruning the package, closing out Orc
 The mark is only a timestamp, `ki-mark: <UTC timestamp>` in `_index.md`'s state fields, and the default start of the next [Summary](standards-report-forms.md#the-summary). Each package has one mark; a new mark replaces it, and Git keeps the earlier ones. The mark bounds the logbook, record transitions, background-agent reports and the change documents' entries, which carry their own timestamps.
 
 - **Who moves it:** only the owner, with `mark`, `mark only` or `mark, status only`, and a hold. A Summary or a Status never moves it.
-- **What follows it:** `mark` gives the Summary since the previous mark in the same reply, with every open query in full, and so does the mark that closes a query set. `mark only` gives the Position, the banner after a line or two, `mark, status only` gives the [Status](standards-report-forms.md#report-forms), and a hold's mark gives the [Stop](standards-holds.md#putting-work-on-hold).
+- **What follows it:** `mark` gives the Summary since the previous mark in the same reply, with the open queries in full, at most ten under the [query cap](standards-queries.md#query-cap), and so does the mark that closes a query set. `mark only` gives the Position, the banner after a line or two, `mark, status only` gives the [Status](standards-report-forms.md#report-forms), and a hold's mark gives the [Stop](standards-holds.md#putting-work-on-hold).
 - **Work at the mark,** in order:
   1. run the [repository level check](standards-sync.md#repository-level-check) before reporting the mark;
   2. work the [decisions life cycle](standards-decisions.md#decisions-life-cycle);
@@ -20,7 +20,7 @@ The mark is only a timestamp, `ki-mark: <UTC timestamp>` in `_index.md`'s state 
 - **No mark yet:** the Summary runs from the session's start, or from `_index.md`'s `ki-created_at` where that is unknown, and the first `mark` strikes the first mark.
 - **Not a recap:** a Summary covers the package since the mark, and `ki-work recap` covers one session at a lower level; they share no form or procedure.
 
-Sources: SUMMARY-MODEL, DECISION-NO-NUMBER, MARK-THEN-SUMMARY, STATE-HISTORY and ROSTER-SELF in [the decision register](sources.md#decision-register).
+Sources: SUMMARY-MODEL, DECISION-NO-NUMBER, MARK-THEN-SUMMARY, STATE-HISTORY, ROSTER-SELF and QUERY-CAP in [the decision register](sources.md#decision-register).
 
 ## Parking tangents
 
