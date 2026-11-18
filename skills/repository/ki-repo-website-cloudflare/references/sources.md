@@ -1,35 +1,79 @@
+---
+ki-document-type: sources@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:47:26Z
+ki-refresh: external-spec · monthly
+---
+
 # Sources — where the standard comes from
 
-**Refresh:** external-spec · monthly
+## Contents
 
-Mode REFRESH re-fetches these sources, reconciles them with the standard and structured catalogue, then updates the review dates and this review note. The dashboard information architecture and Cloudflare's Pages-to-Workers direction remain moving surfaces.
+- [1. Introduction](#1-introduction)
+- [2. Outside sources](#2-outside-sources)
+  - [2.1 Authoritative](#21-authoritative)
+    - [2.1.1 Cloudflare documentation](#211-cloudflare-documentation)
+    - [2.1.2 In-house](#212-in-house)
+- [3. Decisions](#3-decisions)
+- [4. Last review](#4-last-review)
 
-## Authoritative Cloudflare sources
+## 1. Introduction
 
-| Tag | Source | Governs | Last reviewed |
-| --- | --- | --- | --- |
-| ASSETS | [Workers Static Assets][assets] | `assets`, assets-only Workers, and SPA fallback | 2026-10-04 |
-| BUILDS | [Workers Builds configuration][builds] | Build command, deploy command, Preview command, and optional root directory | 2026-10-18 |
-| BRANCHES | [Workers Builds build branches][branches] | Production branch and Enable Preview Builds under Branch control | 2026-10-18 |
-| BUILDS-API | [Workers Builds API reference][builds-api] | Production and preview triggers, branch filters, trigger variables, user-scoped token | 2026-10-18 |
-| BEST | [Workers best practices][best] | Workers Static Assets as the target for new projects | 2026-10-04 |
-| WRANGLER | [Wrangler configuration][wrangler] | Worker identity, routes, assets, observability, `workers_dev`, and `preview_urls` | 2026-10-18 |
-| DOMAIN | [Workers Custom Domains][domains] | Dashboard path and `custom_domain` routes | 2026-10-04 |
-| DEV | [workers.dev][workers-dev] | `<name>.<account-subdomain>.workers.dev` URL syntax; disabling it leaves Version URLs on | 2026-10-18 |
-| VERSIONS | [Version URLs][version-urls] | Version and alias URL syntax, the `preview_urls` default, and alias limits | 2026-10-18 |
-| PREVIEWS | [Worker Previews][previews] | The separate `wrangler preview` model and its one-way switch | 2026-10-18 |
-| ACCESS | [Cloudflare Access for Workers][access] · [Access application paths][access-paths] | Preview protection, rule precedence, and partial-wildcard hostnames | 2026-10-18 |
-| DNS | [Partial setup][dns-partial] · [Subdomain setup][dns-subdomain] | Plan gating for off-Cloudflare zone setups | 2026-10-04 |
+The sources behind [the Cloudflare hosting standard](standard-cloudflare-hosting.md), its [worked exemplars](exemplars.md) and [rubric](rubric.md). Mode REFRESH re-fetches these sources, reconciles them with the standard and structured catalogue, then updates the review dates and this review note. The dashboard information architecture and Cloudflare's Pages-to-Workers direction remain moving surfaces.
+
+[Back to contents](#contents)
+
+## 2. Outside sources
+
+Cloudflare's own documentation governs; the website core supplies the seam the adapter consumes.
+
+### 2.1 Authoritative
+
+Cloudflare's documentation, then the in-house seam.
+
+#### 2.1.1 Cloudflare documentation
+
+| Source | Governs | Last reviewed |
+| --- | --- | --- |
+| ASSETS — [Workers Static Assets][assets] | `assets`, assets-only Workers, and SPA fallback | 2026-10-04 |
+| BUILDS — [Workers Builds configuration][builds] | Build command, deploy command, Preview command, and optional root directory | 2026-10-18 |
+| BRANCHES — [Workers Builds build branches][branches] | Production branch and Enable Preview Builds under Branch control | 2026-10-18 |
+| BUILDS-API — [Workers Builds API reference][builds-api] | Production and preview triggers, branch filters, trigger variables, user-scoped token | 2026-10-18 |
+| BEST — [Workers best practices][best] | Workers Static Assets as the target for new projects | 2026-10-04 |
+| WRANGLER — [Wrangler configuration][wrangler] | Worker identity, routes, assets, observability, `workers_dev`, and `preview_urls` | 2026-10-18 |
+| DOMAIN — [Workers Custom Domains][domains] | Dashboard path and `custom_domain` routes | 2026-10-04 |
+| DEV — [workers.dev][workers-dev] | `<name>.<account-subdomain>.workers.dev` URL syntax; disabling it leaves Version URLs on | 2026-10-18 |
+| VERSIONS — [Version URLs][version-urls] | Version and alias URL syntax, the `preview_urls` default, and alias limits | 2026-10-18 |
+| PREVIEWS — [Worker Previews][previews] | The separate `wrangler preview` model and its one-way switch | 2026-10-18 |
+| ACCESS — [Cloudflare Access for Workers][access] · [Access application paths][access-paths] | Preview protection, rule precedence, and partial-wildcard hostnames | 2026-10-18 |
+| DNS — [Partial setup][dns-partial] · [Subdomain setup][dns-subdomain] | Plan gating for off-Cloudflare zone setups | 2026-10-04 |
 
 The dashboard navigation name **Workers & Pages** remains correct in operator instructions even though Pages is not the deployment target for new projects.
 
-## In-house source
+[Back to contents](#contents)
 
-| Tag | Source | Governs | Last reviewed |
-| --- | --- | --- | --- |
-| BUILD | `ki-repo-website` | The generator-neutral `dist/` seam this adapter consumes | 2026-10-04 |
+#### 2.1.2 In-house
 
-## Last review
+| Source | Governs | Last reviewed |
+| --- | --- | --- |
+| BUILD — `ki-repo-website` | The generator-neutral `dist/` seam this adapter consumes | 2026-10-04 |
+
+[Back to contents](#contents)
+
+## 3. Decisions
+
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| RUN-SECRETS | Kris adopted the Cloudflare half: a run separately authorised to read Cloudflare credentials reads them only through `~/bin/cf-token`, as an access rule, not authority for a credential read or a Cloudflare operation | 2026-10-25 | [4.7](standard-cloudflare-hosting.md#47-credential-access) | taken |
+
+The Zero Trust team naming that Kris set on 29 October 2026 is quoted in the standard beside its rule, [4.8](standard-cloudflare-hosting.md#48-zero-trust-team-naming), and has no id.
+
+[Back to contents](#contents)
+
+## 4. Last review
+
+On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Cloudflare hosting standard](standard-cloudflare-hosting.md), formerly `standards-cloudflare-hosting.md`, was renamed and reshaped to the standard format with its rules unchanged, the overlay's site-selection paragraph becoming its first rules section, and this file to the sources format, with the review's open watch items gathered under Watching and RUN-SECRETS in the Decisions table. The section numbers and anchors in the rubric, the exemplars and the modes follow. No rule changed and no outside source was refreshed.
+
+An in-house policy review on **25 October 2026** read back the Ways of working owner decisions. The Ways of working decisions log entries of 24 and 25 October 2026, read back as taken, govern this change. Coordination carries the report, command, publication and unattended-window decisions; delegation carries the authority, conflict-run and Cloudflare credential boundaries; Cloudflare hosting carries the matching credential-access rule. This is an in-house policy review, with no provider operation or external-source refresh.
 
 A focused refresh on **2026-10-18**, under `KI-HARNESS-GOV-208`, rechecked BUILDS, DEV and WRANGLER and added BRANCHES, BUILDS-API, VERSIONS, PREVIEWS and ACCESS for the branch-previews section; the other rows keep their 4 October review.
 
@@ -44,9 +88,14 @@ REFRESH last ran in full on **2026-10-04**; all eight pages were reachable. Curr
 - `pages_build_output_dir` is retained only as a mechanically rejected legacy Pages marker; use `assets.directory`.
 - Workers Builds has no "deploy directory" field. The deploy command defaults to `npx wrangler deploy`; the Wrangler assets directory owns the output path.
 - An interactive app adds `assets.not_found_handling = "single-page-application"` without adding a `main` Worker entry.
+
+**Watching:**
+
 - Watch: Wrangler remains on major version 4, and Cloudflare now defaults `observability.enabled` to true for new Workers; the explicit declaration stays required.
 - Watch the Pages-to-Workers direction and dashboard information architecture during each monthly refresh.
 - Carried from [KI-HARNESS-GOV-208](https://github.com/knowledgeislands/ki-agent-backpack/blob/87da1b26/docs/roadmap/KI-HARNESS-GOV-208-branch-previews-behind-access.md): at each monthly refresh, check whether the Builds API reference now documents the trigger `DELETE` call the restore path relies on, and whether Worker Previews have matured enough for the house to decide on adopting them in place of Version URLs; raise that decision with Kris when they have.
+
+[Back to contents](#contents)
 
 [assets]: https://developers.cloudflare.com/workers/static-assets/
 [best]: https://developers.cloudflare.com/workers/best-practices/workers-best-practices/
@@ -62,7 +111,3 @@ REFRESH last ran in full on **2026-10-04**; all eight pages were reachable. Curr
 [previews]: https://developers.cloudflare.com/workers/previews/
 [access]: https://developers.cloudflare.com/workers/configuration/cloudflare-access/
 [access-paths]: https://developers.cloudflare.com/cloudflare-one/access-controls/policies/app-paths/
-
-## Owner decisions reviewed on 25 October 2026
-
-The Ways of working decisions log entries of 24 and 25 October 2026, read back as taken, govern this change. Coordination carries the report, command, publication and unattended-window decisions; delegation carries the authority, conflict-run and Cloudflare credential boundaries; Cloudflare hosting carries the matching credential-access rule. This is an in-house policy review, with no provider operation or external-source refresh.

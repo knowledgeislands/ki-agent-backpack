@@ -6,7 +6,7 @@ import {
   type WebsiteCloudflareRubricContext
 } from '../contexts/website-cloudflare.ts'
 
-const SOURCE = 'standards-cloudflare-hosting.md'
+const SOURCE = 'standard-cloudflare-hosting.md'
 const DIAGNOSTIC = {
   class: 'diagnostic' as const,
   guidance:
@@ -32,7 +32,7 @@ const WCF_1: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-1',
   title: 'site Worker config',
   description: 'A site Worker configuration with static assets exists.',
-  sources: [`${SOURCE}#1-model--workers-static-assets-not-pages`],
+  sources: [`${SOURCE}#42-model--workers-static-assets-not-pages`],
   mechanical: {
     level: 'FAIL',
     remediation: DIAGNOSTIC,
@@ -68,7 +68,7 @@ const WCF_2: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-2',
   title: 'Workers deploy',
   description: 'Deployment uses Workers Static Assets and contains no legacy Pages marker or Pages deploy command.',
-  sources: [`${SOURCE}#1-model--workers-static-assets-not-pages`],
+  sources: [`${SOURCE}#42-model--workers-static-assets-not-pages`],
   mechanical: {
     level: 'FAIL',
     remediation: DIAGNOSTIC,
@@ -115,7 +115,7 @@ const WCF_3: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-3',
   title: 'single site Worker',
   description: 'Exactly one site Worker carries an assets block.',
-  sources: [`${SOURCE}#1-model--workers-static-assets-not-pages`],
+  sources: [`${SOURCE}#42-model--workers-static-assets-not-pages`],
   mechanical: {
     level: 'WARN',
     remediation: DIAGNOSTIC,
@@ -141,7 +141,7 @@ const WCF_4: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-4',
   title: 'assets directory',
   description: 'Parsed assets.directory is the exact contained dist output adjacent to its Wrangler config.',
-  sources: [`${SOURCE}#2-the-dist-seam`],
+  sources: [`${SOURCE}#43-the-dist-seam`],
   mechanical: {
     level: 'FAIL',
     remediation: DIAGNOSTIC,
@@ -181,7 +181,7 @@ const WCF_23: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-23',
   title: 'assets-only Worker',
   description: 'A static website Worker has no main field and therefore executes no server-side code.',
-  sources: [`${SOURCE}#1-model--workers-static-assets-not-pages`],
+  sources: [`${SOURCE}#42-model--workers-static-assets-not-pages`],
   mechanical: {
     level: 'FAIL',
     remediation: DIAGNOSTIC,
@@ -213,7 +213,7 @@ const WCF_24: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-24',
   title: 'SPA fallback',
   description: 'An interactive app uses Workers Static Assets single-page-application fallback.',
-  sources: [`${SOURCE}#3-the-site-wranglerjsonc-shape`],
+  sources: [`${SOURCE}#44-the-site-wranglerjsonc-shape`],
   mechanical: {
     level: 'FAIL',
     remediation: DIAGNOSTIC,
@@ -252,7 +252,7 @@ const WCF_26: RubricItem<WebsiteCloudflareContext> = {
   title: 'the Cloudflare guide',
   description:
     'A tracked guide at docs/guides/developer/cloudflare.md records the dashboard-owned settings — Workers Builds commands, domains, redirects — that wrangler.jsonc cannot express.',
-  sources: [`${SOURCE}#7-the-cloudflare-guide--dashboard-owned-settings`],
+  sources: [`${SOURCE}#410-the-cloudflare-guide--dashboard-owned-settings`],
   mechanical: {
     level: 'FAIL',
     remediation: DIAGNOSTIC,
@@ -293,7 +293,7 @@ const WCF_27: RubricItem<WebsiteCloudflareContext> = {
   title: 'preview Access pairing',
   description:
     'When preview_urls is true, the Cloudflare guide declares a preview Access application covering *-<name>.<account-subdomain>.workers.dev, so no preview is a public copy of unreleased work.',
-  sources: [`${SOURCE}#6-branch-previews-behind-access`],
+  sources: [`${SOURCE}#49-branch-previews-behind-access`],
   mechanical: {
     level: 'FAIL',
     heuristic: true,
@@ -343,7 +343,7 @@ const WCF_6: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-6',
   title: 'generated directories ignored',
   description: 'dist and .wrangler are gitignored.',
-  sources: [`${SOURCE}#2-the-dist-seam`, `${SOURCE}#4-the-script-family`],
+  sources: [`${SOURCE}#43-the-dist-seam`, `${SOURCE}#45-the-script-family`],
   mechanical: {
     level: 'WARN',
     remediation: DIAGNOSTIC,
@@ -379,7 +379,7 @@ const WCF_8: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-8',
   title: 'Worker identity',
   description: 'name and compatibility date are present.',
-  sources: [`${SOURCE}#3-the-site-wranglerjsonc-shape`],
+  sources: [`${SOURCE}#44-the-site-wranglerjsonc-shape`],
   mechanical: {
     level: 'WARN',
     remediation: DIAGNOSTIC,
@@ -413,7 +413,7 @@ const WCF_9: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-9',
   title: 'observability',
   description: 'observability.enabled is true.',
-  sources: [`${SOURCE}#3-the-site-wranglerjsonc-shape`],
+  sources: [`${SOURCE}#44-the-site-wranglerjsonc-shape`],
   mechanical: {
     level: 'WARN',
     remediation: DIAGNOSTIC,
@@ -442,7 +442,7 @@ const WCF_10: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-10',
   title: 'optional custom-domain routes',
   description: 'When a custom domain is declared, at least one route uses custom_domain.',
-  sources: [`${SOURCE}#3-the-site-wranglerjsonc-shape`],
+  sources: [`${SOURCE}#44-the-site-wranglerjsonc-shape`],
   mechanical: {
     level: 'WARN',
     remediation: DIAGNOSTIC,
@@ -492,7 +492,7 @@ const WCF_13: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-13',
   title: 'deploy script',
   description: 'The selected site package deploys with Wrangler and the repository root delegates the public alias.',
-  sources: [`${SOURCE}#4-the-script-family`],
+  sources: [`${SOURCE}#45-the-script-family`],
   mechanical: {
     level: 'WARN',
     remediation: DIAGNOSTIC,
@@ -556,7 +556,7 @@ const WCF_14: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-14',
   title: 'preview script',
   description: 'The selected site package previews with Wrangler and the repository root delegates the public alias.',
-  sources: [`${SOURCE}#4-the-script-family`],
+  sources: [`${SOURCE}#45-the-script-family`],
   mechanical: {
     level: 'WARN',
     remediation: DIAGNOSTIC,
@@ -617,7 +617,7 @@ const WCF_25: RubricItem<WebsiteCloudflareContext> = {
   title: 'version-upload authority',
   description:
     'A local upload script and its public alias, optional unless preview_urls is true, create an undeployed Worker version only through explicit remote-effect authority.',
-  sources: [`${SOURCE}#4-the-script-family`, `${SOURCE}#6-branch-previews-behind-access`],
+  sources: [`${SOURCE}#45-the-script-family`, `${SOURCE}#49-branch-previews-behind-access`],
   mechanical: {
     level: 'FAIL',
     remediation: DIAGNOSTIC,
@@ -699,7 +699,7 @@ const WCF_19: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-19',
   title: 'companion Worker boundary',
   description: 'Companion Workers remain out of scope.',
-  sources: [`${SOURCE}#8-boundaries--what-is-not-in-scope`],
+  sources: [`${SOURCE}#411-boundaries--what-is-not-in-scope`],
   mechanical: {
     level: 'WARN',
     remediation: DIAGNOSTIC,
@@ -728,7 +728,7 @@ const WCF_20: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-20',
   title: 'hosting opt-in',
   description: 'The Cloudflare opt-in table is present.',
-  sources: [`${SOURCE}#1-model--workers-static-assets-not-pages`],
+  sources: [`${SOURCE}#42-model--workers-static-assets-not-pages`],
   mechanical: {
     level: 'WARN',
     remediation: DIAGNOSTIC,
@@ -767,7 +767,7 @@ const WCF_21: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-21',
   title: 'opt-in validation',
   description: 'The hosting table is keyless or selects a valid non-empty subset of named website sites.',
-  sources: [`${SOURCE}#1-model--workers-static-assets-not-pages`],
+  sources: [`${SOURCE}#42-model--workers-static-assets-not-pages`],
   mechanical: {
     level: 'WARN',
     remediation: DIAGNOSTIC,
@@ -809,7 +809,7 @@ const WCF_22: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-22',
   title: 'hosting delta',
   description: 'This remains the hosting delta only.',
-  sources: [`${SOURCE}#8-boundaries--what-is-not-in-scope`],
+  sources: [`${SOURCE}#411-boundaries--what-is-not-in-scope`],
   mechanical: {
     level: 'WARN',
     remediation: DIAGNOSTIC,

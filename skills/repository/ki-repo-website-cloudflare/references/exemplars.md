@@ -9,7 +9,7 @@ ki-document-type: exemplars@2026-11-17T00:55:00Z
 - [Collections](#collections)
 - [Selected patterns](#selected-patterns)
 
-These examples are kept separate because they combine several governed artifacts and dashboard choices rather than defining another rule. Load them when a standards clause needs a concrete `wrangler.jsonc`, script-family, or CI/CD illustration. Do not copy them wholesale; adapt the site's `name`, `compatibility_date`, and domain. For the normative contract, see [the Cloudflare hosting standard](standards-cloudflare-hosting.md); for provenance, see [the source list](sources.md).
+These examples are kept separate because they combine several governed artifacts and dashboard choices rather than defining another rule. Load them when a standards clause needs a concrete `wrangler.jsonc`, script-family, or CI/CD illustration. Do not copy them wholesale; adapt the site's `name`, `compatibility_date`, and domain. For the normative contract, see [the Cloudflare hosting standard](standard-cloudflare-hosting.md); for provenance, see [the source list](sources.md).
 
 ## Collections
 
@@ -101,7 +101,7 @@ Commit-SHA injection (`WORKERS_CI_COMMIT_SHA` surfaced into the page as a `<meta
 
 ### Branch previews behind Access — the guide rows
 
-A site with branch previews on, adapted from a hosted repository's Cloudflare guide, with the account, hostnames and policy members replaced by placeholders. The normative steps are in [standard §6](standards-cloudflare-hosting.md#6-branch-previews-behind-access); these are the rows the guide records for them.
+A site with branch previews on, adapted from a hosted repository's Cloudflare guide, with the account, hostnames and policy members replaced by placeholders. The normative steps are in [standard §4.9](standard-cloudflare-hosting.md#49-branch-previews-behind-access); these are the rows the guide records for them.
 
 `wrangler.jsonc` carries the versioned half:
 

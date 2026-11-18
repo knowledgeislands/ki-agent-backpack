@@ -1,25 +1,86 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:47:26Z
+ki-status: in force
+---
+
 # The Cloudflare hosting standard
 
-The hosting overlay applies to the single core-selected site or, with a named multi-site registry, every registered site by default. `[skills.ki-repo-website-cloudflare]` may use only `sites = ["name"]` to select a non-empty subset of known names; it never declares paths. Every selected site receives a separate hosting audit subject. The existing keyless form remains the complete single-site contract.
+## Contents
+
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Selected sites](#41-selected-sites)
+  - [4.2 Model — Workers Static Assets, not Pages](#42-model--workers-static-assets-not-pages)
+  - [4.3 The `dist/` seam](#43-the-dist-seam)
+  - [4.4 The site `wrangler.jsonc` shape](#44-the-site-wranglerjsonc-shape)
+  - [4.5 The script family](#45-the-script-family)
+  - [4.6 CI/CD](#46-cicd)
+  - [4.7 Credential access](#47-credential-access)
+  - [4.8 Zero Trust team naming](#48-zero-trust-team-naming)
+  - [4.9 Branch previews behind Access](#49-branch-previews-behind-access)
+  - [4.10 The Cloudflare guide — dashboard-owned settings](#410-the-cloudflare-guide--dashboard-owned-settings)
+  - [4.11 Boundaries — what is not in scope](#411-boundaries--what-is-not-in-scope)
+
+## 1. Introduction
 
 The normative, quotable reference for serving a built static site on Cloudflare — what good hosting looks like, and why. The audit rubric ([rubric.md](rubric.md)) turns each section into checkable items; the procedure is in the [SKILL.md](../SKILL.md). See [the source list](sources.md) for provenance.
 
 This skill owns the **deploy/serve delta for the site Worker**. The `dist/` it serves is `ki-repo-website`'s output (the seam); the toolchain is `ki-engineering`'s. Both are referenced here, not restated. **Companion Workers are out of scope.**
 
-## Contents
+[Back to contents](#contents)
 
-- [Credential access](#credential-access)
-- [Zero Trust team naming](#zero-trust-team-naming)
-- [1. Model — Workers Static Assets, not Pages](#1-model--workers-static-assets-not-pages)
-- [2. The `dist/` seam](#2-the-dist-seam)
-- [3. The site `wrangler.jsonc` shape](#3-the-site-wranglerjsonc-shape)
-- [4. The script family](#4-the-script-family)
-- [5. CI/CD](#5-cicd)
-- [6. Branch previews behind Access](#6-branch-previews-behind-access)
-- [7. The Cloudflare guide — dashboard-owned settings](#7-the-cloudflare-guide--dashboard-owned-settings)
-- [8. Boundaries — what is not in scope](#8-boundaries--what-is-not-in-scope)
+## 2. Scope
 
-## 1. Model — Workers Static Assets, not Pages
+Serving the selected site's built `dist/` from one Cloudflare Worker with Static Assets.
+
+### 2.1 In scope
+
+- Which sites the hosting overlay covers.
+- The Workers Static Assets model, the `dist/` seam and the site `wrangler.jsonc`.
+- The hosting script family, CI/CD through Workers Builds, and branch previews behind Access.
+- Cloudflare credential access and Zero Trust team naming.
+- The repository's Cloudflare guide for dashboard-owned settings.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+The full list, with each item's home, is in [Boundaries](#411-boundaries--what-is-not-in-scope). In short:
+
+- Companion Workers, and general Cloudflare, Workers and Wrangler usage: the `cloudflare` and `wrangler` skills.
+- Building the `dist/`: `ki-repo-website` with its selected implementation.
+- The toolchain: `ki-engineering`.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Site Worker** | The one Cloudflare Worker with an `assets` block and no `main` that serves the selected site's `dist/`. **Standard:** this one, [4.2](#42-model--workers-static-assets-not-pages) |
+| **`dist/` seam** | The one place the hosting and build layers meet: the build output that `assets.directory` points at. **Standard:** this one, [4.3](#43-the-dist-seam) |
+| **Companion Worker** | Any other Worker, with a `main` entry, bindings, crons or secrets; out of scope here. **Standard:** this one, [4.11](#411-boundaries--what-is-not-in-scope) |
+| **Version URL** | The URL of an undeployed Worker version made by `wrangler versions upload`, which branch previews use. **Standard:** this one, [4.9](#49-branch-previews-behind-access) |
+| **Cloudflare guide** | `docs/guides/developer/cloudflare.md`, recording the settings only the dashboard owns. **Standard:** this one, [4.10](#410-the-cloudflare-guide--dashboard-owned-settings) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part: which sites, the model and seam, configuration, scripts, CI/CD, credentials, team naming, branch previews, the guide and the boundaries.
+
+### 4.1 Selected sites
+
+The hosting overlay applies to the single core-selected site or, with a named multi-site registry, every registered site by default. `[skills.ki-repo-website-cloudflare]` may use only `sites = ["name"]` to select a non-empty subset of known names; it never declares paths. Every selected site receives a separate hosting audit subject. The existing keyless form remains the complete single-site contract.
+
+[Back to contents](#contents)
+
+### 4.2 Model — Workers Static Assets, not Pages
 
 The site is **one Cloudflare Worker serving Static Assets**. The Worker has an `assets` block naming a directory of built files; `wrangler deploy` uploads them and wires the Worker. There is no server-side code for this static deployment — the assets are served directly at the edge.
 
@@ -28,7 +89,9 @@ The site is **one Cloudflare Worker serving Static Assets**. The Worker has an `
 - **One `wrangler.jsonc` per deployable.** The **site** Worker's config carries an `assets` block and no `main`. The absence of `main` is load-bearing: an assets-only Worker executes no server-side code, which is what allows a repository to state mechanically that its published deployment has no control plane.
 - The site root — and thus where its `wrangler.jsonc` lives — is owned by `[skills.ki-repo-website].site-root`, which defaults to **`apps/site`**. The Cloudflare table is a keyless hosting opt-in: it consumes the core location rather than accepting a second site-root declaration. An explicit flat consumer (`site-root = "."`, with config at the repo root) remains valid.
 
-## 2. The `dist/` seam
+[Back to contents](#contents)
+
+### 4.3 The `dist/` seam
 
 The hosting layer and the build layer meet at exactly one place: the **`dist/` directory**.
 
@@ -37,7 +100,9 @@ The hosting layer and the build layer meet at exactly one place: the **`dist/` d
 - **The build runs before deploy.** `dist/` is gitignored and regenerated; deploy reads whatever the last build produced. A `ki:site:preview` script chains build → `wrangler dev` for a local check against the real Worker runtime.
 - Neither layer needs the other's internals — only the `dist/` path. That is what makes the split clean and the hosting skill reusable for any static `dist/`.
 
-## 3. The site `wrangler.jsonc` shape
+[Back to contents](#contents)
+
+### 4.4 The site `wrangler.jsonc` shape
 
 `wrangler.jsonc` (JSONC — comments encouraged, in the house voice explaining each block). The minimal conformant shape:
 
@@ -58,7 +123,7 @@ Required fields:
 
 - **`name`** — the Worker name (kebab-case, usually the repo/site name).
 - **`compatibility_date`** — a pinned `YYYY-MM-DD`. (For a pure-assets Worker there is no runtime code, but the field is set.)
-- **`assets.directory`** — the `dist/` seam (§2).
+- **`assets.directory`** — the `dist/` seam (§4.3).
 - **`observability.enabled: true`** — so `console.*` / request logs are queryable in the dashboard, not just live `wrangler tail`.
 
 Optional when the site has a custom domain; omission is conformant and leaves the deployment on its workers.dev URL:
@@ -70,7 +135,9 @@ Other `assets` keys (`html_handling`, `not_found_handling`, `binding`, `run_work
 
 For `[skills.ki-repo-website-app]`, `assets.not_found_handling` is not optional: set it to `"single-page-application"` so browser navigation to a client-side route returns `index.html`.
 
-## 4. The script family
+[Back to contents](#contents)
+
+### 4.5 The script family
 
 The public hosting alias may resolve through the exact selected-package terminal command, one exact `self:site:<primary>:<operation>` hop, or exact `turbo run <operation>` delegation when root `turbo.json` declares that operation. The hosting seam checks exact `deploy`, `preview`, or `upload` task presence without duplicating `ki-engineering`'s generic task-graph adoption and quality checks. Direct `--cwd` command chains, undeclared or mismatched tasks, additional shell commands, missing aliases, and cyclic forwarding remain invalid.
 
@@ -78,26 +145,32 @@ The selected site's `<site-root>/package.json` owns local operations:
 
 - **`deploy`** → `bunx wrangler deploy`.
 - **`preview`** → build, then `bunx wrangler dev` through the real Worker runtime.
-- **`upload`** → `bunx wrangler versions upload` — create an undeployed Worker version and its Version URL for Workers Builds. It is optional, except that a site with `preview_urls: true` must declare it and its public alias, because its non-production trigger runs `ki:site:upload` ([§6](#6-branch-previews-behind-access)). This is a credentialed remote mutation: only an explicitly authorised operator or Workers Builds service may run it. Audits, conformance, local builds, tests, and dry evaluation inspect the manifest without invoking Wrangler.
+- **`upload`** → `bunx wrangler versions upload` — create an undeployed Worker version and its Version URL for Workers Builds. It is optional, except that a site with `preview_urls: true` must declare it and its public alias, because its non-production trigger runs `ki:site:upload` ([§4.9](#49-branch-previews-behind-access)). This is a credentialed remote mutation: only an explicitly authorised operator or Workers Builds service may run it. Audits, conformance, local builds, tests, and dry evaluation inspect the manifest without invoking Wrangler.
 - **`clean`** → removes `dist/` and `.wrangler/`; the website core owns the build-output part of that lifecycle.
 
 The repository root owns the public aliases. For the default root these are `"ki:site:deploy": "bun run --cwd apps/site deploy"`, `"ki:site:preview": "bun run --cwd apps/site preview"`, and the upload equivalent, `"ki:site:upload": "bun run --cwd apps/site upload"`, whenever the upload script exists. An explicitly flat site uses `bun run <operation>` instead. This keeps public orchestration stable without duplicating `ki:site:*` names inside the application package.
 
 The root `ki:site:build` / `ki:site:dev` aliases and local build/dev operations belong to `ki-repo-website`, not here. `.wrangler/` is gitignored.
 
-## 5. CI/CD
+[Back to contents](#contents)
+
+### 4.6 CI/CD
 
 - **Cloudflare Workers Builds (git integration)** is the deploy path: a push/merge to `main` triggers Cloudflare to build and deploy. The repo needs no deploy workflow of its own for this.
 - Workers Builds runs a **build command** followed by a **deploy command**. The house pair is `bun run ki:site:build` and `bun run ki:site:deploy` (or the equivalent `bunx wrangler deploy`). There is no Pages-style “deploy directory” setting; `assets.directory` in Wrangler owns that path. Use the optional root directory only to choose the project working directory in a monorepo.
-- Builds of every other branch are optional and follow [§6](#6-branch-previews-behind-access): they upload an undeployed version and never run `wrangler deploy`.
+- Builds of every other branch are optional and follow [§4.9](#49-branch-previews-behind-access): they upload an undeployed version and never run `wrangler deploy`.
 - A repo **may** run a **GitHub Action for pre-deploy content work** (e.g. applying content, optimising images) that commits to `main` and lets Workers Builds deploy the result — but that Action is content tooling, not the hosting standard.
 - **Commit-SHA injection** (`WORKERS_CI_COMMIT_SHA` surfaced into the page, e.g. as a `<meta>`) is an optional nicety, not required.
 
-## Credential access
+[Back to contents](#contents)
+
+### 4.7 Credential access
 
 When a run is separately authorised to read Cloudflare credentials, it reads them only through `~/bin/cf-token`. No territory's notes record credential item or token ids, and credential values never enter output or tracked files. Kris adopted the Cloudflare half of RUN-SECRETS on 25 October 2026; this is an access rule, not authority for a credential read or a Cloudflare operation. The background-run [authority limits](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#46-authority-tiers) still apply.
 
-## Zero Trust team naming
+[Back to contents](#contents)
+
+### 4.8 Zero Trust team naming
 
 Each Cloudflare account's Zero Trust team, which gives the Access login its `<team>.cloudflareaccess.com` domain, is named for that account's own identity in kebab case: the personal account's team is `midnight-ninja` and the 5G Emerge account's is `5g-emerge`. A team never keeps the name of another territory or of a project it once hosted, and carries no stale suffix such as `-io`. The organisation name equals the team domain, as in the Valle Armonia and 5G Emerge accounts, and the login page's text belongs to the account, with no other territory's header or footer. Kris set this on 29 October 2026 when renaming both teams, asking that it be "rolled out uniformly ... following conventions".
 
@@ -109,11 +182,13 @@ A team rename is a change to the Access organisation, which makes it connection-
 4. **Confirm.** Re-read the organisation and each identity provider's redirect URL, check that the login endpoint answers, and check that every Access application is intact.
 5. **References.** The territory that owns any document or configuration naming the old team domain updates it there.
 
-## 6. Branch previews behind Access
+[Back to contents](#contents)
+
+### 4.9 Branch previews behind Access
 
 A site may build every non-production branch into an **undeployed preview version**, reachable only through **Cloudflare Access**. Production keeps serving the version last deployed from `main`; nothing promotes a preview except a push to `main`. The pattern was proven on a live site on 18 October 2026 and changes only dashboard state plus one `wrangler.jsonc` key, so it is safe to adopt and to undo, provided the six points below are followed in order.
 
-1. **Restore path first.** Before any change, save the current state as JSON, each part beside the call that puts it back, with policy email addresses redacted and no token. Read the Worker's tag (`GET /accounts/{account_id}/workers/scripts`), its Builds triggers (`GET /accounts/{account_id}/builds/workers/{worker_tag}/triggers`), each trigger's variables (`GET /accounts/{account_id}/builds/triggers/{trigger_uuid}/environment_variables`), the `workers.dev` and preview flags (`GET /accounts/{account_id}/workers/scripts/{name}/subdomain`), the Access applications and reusable policies, and the live deployment. Test one undo call by writing a saved value back unchanged. Record the restore steps in the guide ([§7](#7-the-cloudflare-guide--dashboard-owned-settings)): turn preview URLs off and set `preview_urls` false on `main`, delete the non-production trigger, and only then delete the preview Access application.
+1. **Restore path first.** Before any change, save the current state as JSON, each part beside the call that puts it back, with policy email addresses redacted and no token. Read the Worker's tag (`GET /accounts/{account_id}/workers/scripts`), its Builds triggers (`GET /accounts/{account_id}/builds/workers/{worker_tag}/triggers`), each trigger's variables (`GET /accounts/{account_id}/builds/triggers/{trigger_uuid}/environment_variables`), the `workers.dev` and preview flags (`GET /accounts/{account_id}/workers/scripts/{name}/subdomain`), the Access applications and reusable policies, and the live deployment. Test one undo call by writing a saved value back unchanged. Record the restore steps in the guide ([§4.10](#410-the-cloudflare-guide--dashboard-owned-settings)): turn preview URLs off and set `preview_urls` false on `main`, delete the non-production trigger, and only then delete the preview Access application.
 2. **Token status and expiry.** Check the token with `GET /user/tokens/verify` before the restore capture, and stop if it is inactive or expires within the run. An expired token stops the run before any change, which is the safe failure.
 3. **Scoped token.** A `wrangler` OAuth session usually cannot read the Builds API, which needs a **user-scoped** API token. Use one with Workers Scripts Edit, Workers Builds Configuration Edit, Access: Apps and Policies Edit, and Account Settings Read, held in a secret store and never written to the repository or the restore capture.
 4. **Non-production trigger and command.** A Worker has at most two Workers Builds triggers: production, on the production branch, and preview, on every other branch. The dashboard shows the preview trigger as **Settings → Build → Branch control → Enable Preview Builds** and its **Preview command**; the API holds it as the second trigger. Create it with `POST /accounts/{account_id}/builds/triggers`, copying the production trigger's `external_script_id`, `repo_connection_uuid` and `build_token_uuid`, with `branch_includes ["*"]`, `branch_excludes ["main"]`, the production build command, and the house `bun run ki:site:upload` as its deploy (Preview) command, which runs `bunx wrangler versions upload`. Never use `wrangler deploy` there: it publishes production from any branch. The undo is to delete the trigger.
@@ -122,15 +197,19 @@ A site may build every non-production branch into an **undeployed preview versio
 
 This section uses **Version URLs**, created by `wrangler versions upload`. Cloudflare's newer **Worker Previews**, created by `wrangler preview`, are a separate model: new Workers default to it, and an existing Worker's switch to it is one-way, after which a custom Preview command must invoke `wrangler preview`. Do not make that switch under this section; a Worker already on Worker Previews is a recorded gap until the house standard adopts that model.
 
-## 7. The Cloudflare guide — dashboard-owned settings
+[Back to contents](#contents)
+
+### 4.10 The Cloudflare guide — dashboard-owned settings
 
 Part of a deployment's contract lives in the Cloudflare dashboard, where no versioned file can express it: the Workers Builds build command, deploy command, and root directory; custom-domain and redirect choices; whether `workers.dev` serves. A hosted repository therefore carries **`docs/guides/developer/cloudflare.md`** — the developer and maintainer guide for every Cloudflare aspect of that repository. The exact role stays inside the audience route governed by `ki-guides` rather than bypassing it with a root-level file.
 
-A site with `preview_urls: true` adds preview rows to the guide: the non-production trigger's branch filters, build command and Preview command; the preview Access application's hostnames, login method and policy; the `previews_enabled` flag beside `workers.dev`; and the restore path saved before the change ([§6](#6-branch-previews-behind-access)).
+A site with `preview_urls: true` adds preview rows to the guide: the non-production trigger's branch filters, build command and Preview command; the preview Access application's hostnames, login method and policy; the `previews_enabled` flag beside `workers.dev`; and the restore path saved before the change ([§4.9](#49-branch-previews-behind-access)).
 
 The split rule: **`wrangler.jsonc` owns everything it can express; the guide records only what the dashboard owns**, as the exact values an operator enters — a build-command row, a redirect rule — so the dashboard can be reconstructed from the repository alone and a settings change is visible in review. The guide duplicates nothing the config already declares; it links to `wrangler.jsonc` for the versioned half. When a dashboard setting changes, the guide changes in the same breath — a guide that trails the dashboard is drift, exactly the kind this file exists to catch.
 
-## 8. Boundaries — what is not in scope
+[Back to contents](#contents)
+
+### 4.11 Boundaries — what is not in scope
 
 This standard governs **only the site Worker** — the one that serves `dist/`. Out of scope, with their homes:
 
@@ -139,3 +218,5 @@ This standard governs **only the site Worker** — the one that serves `dist/`. 
 - **General Cloudflare/Workers/wrangler usage** — `wrangler dev` mechanics, general Access mechanics, binding configuration, secret management, deploy flags, runtime APIs → the `cloudflare` / `wrangler` skills.
 - **Building the `dist/`** → `ki-repo-website` plus exactly one of `ki-repo-website-content` or `ki-repo-website-app`.
 - **The toolchain** (Bun, lint/deps, tsconfig/biome) → `ki-engineering`.
+
+[Back to contents](#contents)
