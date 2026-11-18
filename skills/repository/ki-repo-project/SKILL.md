@@ -17,7 +17,7 @@ argument-hint: 'audit <repo> | conform <repo> | educate <repo> | help | refresh'
 
 `ki-repo-project` describes the common baseline for a non-Knowledge-Base KI repository. `ki-repo` is the sole owner of primary-kind declaration and Project/KB mutual exclusion; specialised `ki-repo-*` standards compose with that baseline but do not replace it. A Knowledge Base instead uses the `ki-repo-kb` structure contract.
 
-Read [the Project repository standard](references/standards-project-repository.md) when declaring or changing primary structure. Read [the generated rubric](references/rubric.md) for the checkable configuration boundary and [the sources](references/sources.md) when refreshing it.
+Read [the Project repository standard](references/standard-project-repository.md) when declaring or changing primary structure. Read [the generated rubric](references/rubric.md) for the checkable configuration boundary and [the sources](references/sources.md) when refreshing it.
 
 ## Operating modes
 

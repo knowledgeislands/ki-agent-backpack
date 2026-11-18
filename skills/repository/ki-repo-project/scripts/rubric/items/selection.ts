@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { ProjectRubricContext } from '../types.ts'
 
-const SOURCE = 'standards-project-repository.md'
+const SOURCE = 'standard-project-repository.md'
 
 const PROJECT_1: RubricItem<ProjectRubricContext> = {
   code: 'PROJECT-1',

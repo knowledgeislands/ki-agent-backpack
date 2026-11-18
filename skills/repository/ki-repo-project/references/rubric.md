@@ -17,11 +17,11 @@ Line-by-line criteria for auditing ki-repo-project. Classifications are derived 
 
 ## PROJECT — Project orientation
 
-→ [standard](standards-project-repository.md)
+→ [standard](standard-project-repository.md)
 
 A non-duplicating Project baseline and its owner boundaries.
 
-- **PROJECT-1 [J] — owner-bound Project orientation** — Project orientation delegates primary-kind and forward-work selection to their respective owners. (standards-project-repository.md)
+- **PROJECT-1 [J] — owner-bound Project orientation** — Project orientation delegates primary-kind and forward-work selection to their respective owners. (standard-project-repository.md)
   - _Evidence scope:_ The repository’s declared kind and selected change-management adapter, reviewed through their owner audits.
   - _Review prompt:_ Do the owner-owned kind and adapter declarations support the intended Project orientation?
   - _Outcomes:_ conforming; owner-audit required; migration decision required
@@ -29,9 +29,9 @@ A non-duplicating Project baseline and its owner boundaries.
 
 ## GATE — Project commit gate
 
-→ [standard](standards-project-repository.md)
+→ [standard](standard-project-repository.md)
 
 The general Project gate is check-only; the full audit runs in CI.
 
-- **GATE-1 [M] — Check-only Project commit gate** — Where the general Project is the primary shape and a committed pre-commit exists, it runs only fast check-only staged lints: no ki repo audit, conform, repair, --fix or --write. The full ki repo audit runs in CI. Hook existence, binding and exact text remain with ki-repo. (standards-project-repository.md#commit-gate)
+- **GATE-1 [M] — Check-only Project commit gate** — Where the general Project is the primary shape and a committed pre-commit exists, it runs only fast check-only staged lints: no ki repo audit, conform, repair, --fix or --write. The full ki repo audit runs in CI. Hook existence, binding and exact text remain with ki-repo. (standard-project-repository.md#43-commit-gate)
   - _Remediation:_ diagnostic — Copy the canonical Project pre-commit asset for this package variant, then rerun the audit.
