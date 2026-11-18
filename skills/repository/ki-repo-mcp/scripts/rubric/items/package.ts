@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { McpPackageContext, McpRubricContext } from '../contexts/mcp.ts'
 
-const STANDARD = 'standards-mcp-servers.md#8-packagejson'
+const STANDARD = 'standard-mcp-servers.md#48-packagejson'
 const MAIN = 'dist/mcp-server/index.js'
 
 const PKG_1: RubricItem<McpPackageContext> = {

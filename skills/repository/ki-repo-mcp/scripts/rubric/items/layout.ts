@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { McpLayoutContext, McpRubricContext } from '../contexts/mcp.ts'
 
-const STANDARD = 'standards-mcp-servers.md#1-project-layout'
+const STANDARD = 'standard-mcp-servers.md#41-project-layout'
 
 const LAY_1: RubricItem<McpLayoutContext> = {
   code: 'LAY-1',

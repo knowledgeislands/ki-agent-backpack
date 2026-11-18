@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { McpRubricContext, McpUtilitiesContext } from '../contexts/mcp.ts'
 
-const STANDARD = 'standards-mcp-servers.md#5-audit-logging'
+const STANDARD = 'standard-mcp-servers.md#45-audit-logging'
 
 const UTIL_1: RubricItem<McpUtilitiesContext> = {
   code: 'UTIL-1',

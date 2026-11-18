@@ -1,31 +1,80 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:50:00Z
+ki-status: in force
+---
+
 # Workspace MCP Standard
-
-The canonical shape shared by every stdio MCP server in the `knowledgeislands/` workspace: `mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-housekeeping-chatgpt`, `mcp-acquire-whatsapp`. This is the reference the `ki-repo-mcp` skill codifies and audits against. Where repos disagree, the majority shape is the standard; documented per-repo exceptions are noted inline.
-
-## Applicability
-
-The standard applies only when a repository declares `[skills.ki-repo-mcp]` in `.ki.toml`. The optional `profile` key selects a supported whole-file projection from the [MCP shared-code standard](standards-mcp-shared-code.md); an absent key leaves existing utilities repository-owned. The optional `tool-name-exceptions` key lists tool names a repository keeps outside [the naming form](#3-tool-naming), with a comment above it giving the reason (TOOL-EXCEPTION). Detected MCP-shaped source remains coverage evidence for `ki-repo`, not selection authority for this skill.
 
 ## Contents
 
-1. [Project layout](#1-project-layout)
-2. [Config injection](#2-config-injection)
-3. [Tool naming](#3-tool-naming)
-4. [Access-level gate (annotation-driven)](#4-access-level-gate-annotation-driven)
-5. [Audit logging](#5-audit-logging)
-6. [Security invariants](#6-security-invariants)
-7. [Bun vs Node](#7-bun-vs-node)
-8. [package.json](#8-packagejson)
-9. [tsconfig / vitest / biome](#9-tsconfig--vitest--biome)
-10. [.env.example & env vars](#10-envexample--env-vars)
-11. [Docs](#11-docs)
-12. [Protocol profiles](#12-protocol-profiles)
-13. [Spec conformance: tool results, errors & metadata](#13-spec-conformance-tool-results-errors--metadata)
-14. [OAuth security (auth-server repos)](#14-oauth-security-auth-server-repos)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Project layout](#41-project-layout)
+    - [4.1.1 Layer responsibilities](#411-layer-responsibilities)
+  - [4.2 Config injection](#42-config-injection)
+  - [4.3 Tool naming](#43-tool-naming)
+  - [4.4 Access-level gate (annotation-driven)](#44-access-level-gate-annotation-driven)
+  - [4.5 Audit logging](#45-audit-logging)
+  - [4.6 Security invariants](#46-security-invariants)
+  - [4.7 Bun vs Node](#47-bun-vs-node)
+  - [4.8 package.json](#48-packagejson)
+  - [4.9 tsconfig / vitest / biome](#49-tsconfig--vitest--biome)
+  - [4.10 .env.example & env vars](#410-envexample--env-vars)
+  - [4.11 Docs](#411-docs)
+  - [4.12 Protocol profiles](#412-protocol-profiles)
+  - [4.13 Spec conformance: tool results, errors & metadata](#413-spec-conformance-tool-results-errors--metadata)
+  - [4.14 OAuth security (auth-server repos)](#414-oauth-security-auth-server-repos)
 
-> **Spec vs house style.** Sections 1–11 are the in-house **workspace convention**; §12–14 trace directly to the official MCP specification and supported SDK profiles tracked in [the source list](sources.md). The runtime dependency selects the applicable dated profile, so a legacy server is not falsely measured against modern-only requirements. When citing a rule, know which layer it comes from — never present a workspace preference as a protocol "MUST". Mode REFRESH in the [SKILL](../SKILL.md) re-anchors §12–14 (and the annotation semantics in §4) to the current spec.
+## 1. Introduction
 
-## 1. Project layout
+The canonical shape shared by every stdio MCP server in the `knowledgeislands/` workspace: `mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-housekeeping-chatgpt`, `mcp-acquire-whatsapp`. This is the reference the `ki-repo-mcp` skill codifies and audits against. Where repos disagree, the majority shape is the standard; documented per-repo exceptions are noted inline. The sources and decisions behind it are in [the sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+The standard applies only when a repository declares `[skills.ki-repo-mcp]` in `.ki.toml`. The optional `profile` key selects a supported whole-file projection from the [MCP shared-code standard](standard-mcp-shared-code.md); an absent key leaves existing utilities repository-owned. The optional `tool-name-exceptions` key lists tool names a repository keeps outside [the naming form](#43-tool-naming), with a comment above it giving the reason (TOOL-EXCEPTION). Detected MCP-shaped source remains coverage evidence for `ki-repo`, not selection authority for this skill.
+
+### 2.1 In scope
+
+- The workspace convention: source layout, config injection, tool naming, the access-level gate, audit logging, security invariants, and the MCP delta on the common engineering layer, in [4.1](#41-project-layout) to [4.11](#411-docs).
+- The rules traced to the MCP specification: protocol profiles, tool results and errors, and OAuth security, in [4.12](#412-protocol-profiles) to [4.14](#414-oauth-security-auth-server-repos).
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- The common engineering layer the MCP delta sits on: `ki-engineering`.
+- Repository settings and the presence of the universal root documents: `ki-repo`.
+- Optional vendored utility profiles: the [MCP shared-code standard](standard-mcp-shared-code.md).
+- Versioned source-release evidence and the installer hand-off: the [MCP source-distribution standard](standard-mcp-distribution.md).
+- Enabling servers across client surfaces: the [cross-surface enablement standard](standard-cross-surface-enablement.md).
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Workspace convention** | The in-house majority shape the sibling servers share on top of the MCP specification. **Standard:** this one, [4](#4-rules) |
+| **Access level** | One of `read`, `write` and `destructive`, nesting in that order, derived from a tool's annotations and gated by `MCP_<APP>_ACCESS_LEVEL`. **Standard:** this one, [4.4](#44-access-level-gate-annotation-driven) |
+| **MCP delta** | What an MCP repository adds on top of the common engineering standard. **Standard:** this one, [4.8](#48-packagejson) |
+| **Protocol profile** | The dated MCP revision a server's package family selects: legacy 2025-11-25 or modern 2026-07-28. **Standard:** this one, [4.12](#412-protocol-profiles) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The workspace convention, then the rules traced to the specification.
+
+> **Spec vs house style.** Sections 4.1–4.11 are the in-house **workspace convention**; §4.12–4.14 trace directly to the official MCP specification and supported SDK profiles tracked in [the source list](sources.md). The runtime dependency selects the applicable dated profile, so a legacy server is not falsely measured against modern-only requirements. When citing a rule, know which layer it comes from — never present a workspace preference as a protocol "MUST". Mode REFRESH in the [SKILL](../SKILL.md) re-anchors §4.12–4.14 (and the annotation semantics in §4.4) to the current spec.
+
+### 4.1 Project layout
 
 ```text
 src/
@@ -39,16 +88,20 @@ src/
 
 Top-level `src/` folders are identical across all seven repos: `config`, `main`, `mcp-server`, `tools`, `utils`, plus `cli` where a human-runnable command exists, and per-domain extras (`auth-server` in gsuite/m365; `types.ts`).
 
-### Layer responsibilities
+[Back to contents](#contents)
+
+#### 4.1.1 Layer responsibilities
 
 - **`config/`** — the only place env is read. `loadConfig(env?) → Config`. No module-level config singleton; nothing reads env at import time.
-- **`mcp-server/`** — wiring only: `loadConfig()` once, build the `AuditConfig` slice, then a per-connection server factory that sets `server.registerTool = makeAccessGatedRegister(...)` and calls `registerXxxTools(server, config)` per group. Pass that factory to `serveStdio`, as the modern profile in [§12](#12-protocol-profiles) sets, and log readiness on **stderr**; a server still on the legacy profile connects a `StdioServerTransport` instead.
+- **`mcp-server/`** — wiring only: `loadConfig()` once, build the `AuditConfig` slice, then a per-connection server factory that sets `server.registerTool = makeAccessGatedRegister(...)` and calls `registerXxxTools(server, config)` per group. Pass that factory to `serveStdio`, as the modern profile in [§4.12](#412-protocol-profiles) sets, and log readiness on **stderr**; a server still on the legacy profile connects a `StdioServerTransport` instead.
 - **`tools/`** — thin shells. Validate args with a `.strict()` zod schema, call a `main/` function (passing the needed config slice), map the result or thrown error to an MCP envelope via `jsonResult` / `errorResult`. `tools/**/index.ts` is coverage-excluded — **never put logic here**.
 - **`main/`** — the real implementation, grouped by concern, mirroring the tool groups. Each concern dir has an `index.ts` re-export. Every entry point that touches FS/network/config takes its config (or the specific slice — `safeRoots`, `rootPath`, `NotionConfig`, …) as its **first argument**. No `console.*` here (return data; let the tool/CLI present it). Reusable concerns are surfaced via the package `exports` map.
 - **`cli/`** (optional) — `cli.ts` is the `#!/usr/bin/env node` bin: it loads `.env` itself (Node parity with Bun), parses args, dispatches to the **same** `main/` functions the tools use, and does **all** human-readable printing. `cli/index.ts` re-exports the `main/` library surface. The CLI verb surface mirrors the MCP tool surface (same resource/verb structure). `cli.ts` is coverage-excluded; the `main/` functions it calls are not.
 - **`utils/`** — cross-MCP helpers that take the **specific primitive** they need, not the whole `Config`. Common files kept in sync across siblings: `access-level.ts`, `annotations.ts`, `audit-log.ts`, and per-repo `paths`/ `results`/`errors`. Domain-specific utils (`git-exec.ts`, `mime.ts`, `html-sanitizer.ts`, `odata-helpers.ts`, `protected.ts`, `atomic-write.ts`) live here too but are not shared.
 
-## 2. Config injection
+[Back to contents](#contents)
+
+### 4.2 Config injection
 
 - `loadConfig(env = process.env): Config` hydrates `process.env` from the package's `.env*` files via `process.loadEnvFile()` inside a try/catch (Bun has no such API and throws `TypeError`, which the catch swallows; Bun auto-loads `.env*` itself), then parses env into a plain, immutable `Config`. Resolve each file from the module's own location (`import.meta.url`), **not** `process.cwd()` — the compiled server is launched as `node /abs/path/dist/…` from an arbitrary cwd, so a `./`-relative path silently misses. Load highest precedence first — `.env.local`, then `.env.${NODE_ENV}` (when `NODE_ENV` is set), then `.env`; `loadEnvFile` never overwrites an already-set var, so the launcher's environment always wins over a file.
 - **No module-level singleton.** Nothing reads `process.env` at import time outside `config/index.ts`. `main/` and `utils/` receive config as their first argument; tests build a literal `Config` and pass it (never mutate env, never call `loadConfig()` in a test — critical for repos that walk real user dirs).
@@ -61,7 +114,9 @@ Top-level `src/` folders are identical across all seven repos: `config`, `main`,
 - `Config` always includes `accessLevel`, `auditLogMode`, `auditLogPath`, `auditLogMaxBytes` (default 10 MiB), `auditLogKeep` (default 5), plus domain fields (`safeRoots`, `rootPath`, `auth`, …).
 - **Divergence:** gsuite/m365 export `SERVER_NAME`/`SERVER_VERSION` from `config/index.ts`; others hard-code the name in `mcp-server` or `audit-log.ts`.
 
-## 3. Tool naming
+[Back to contents](#contents)
+
+### 4.3 Tool naming
 
 `<app>_<resource>_<action>`, snake_case.
 
@@ -84,7 +139,9 @@ Top-level `src/` folders are identical across all seven repos: `config`, `main`,
 
 The house scheme is a deliberate **subset** of what the spec permits: per [TOOLS](sources.md), names SHOULD be 1–128 chars from `[A-Za-z0-9_.-]`. Snake_case `<app>_<resource>_<action>` stays well inside that, so a conformant house name is always a conformant spec name — the constraint to enforce is the house scheme, not the looser spec one.
 
-## 4. Access-level gate (annotation-driven)
+[Back to contents](#contents)
+
+### 4.4 Access-level gate (annotation-driven)
 
 `utils/access-level.ts` exports `makeAccessGatedRegister(server, accessLevel, audit)`. At registration it derives a level from each tool's `annotations` and registers the tool only if that level ≤ `config.accessLevel`:
 
@@ -99,11 +156,15 @@ Levels nest `read ⊂ write ⊂ destructive`; env `MCP_<APP>_ACCESS_LEVEL` (defa
 
 **Divergence (WA-DEFAULTS):** default access level is `read` everywhere except `mcp-acquire-whatsapp`, which defaults to `destructive`, and its audit log defaults to `off` rather than `writes`. A `read` default would unregister its six spool-writing acquisition tools, and a log on by default would keep a record of who the operator talks to. Its ADR-KI-MCP-WA-005 records both choices; the gate and the log are otherwise implemented as this standard sets — accepted, do not flag.
 
-## 5. Audit logging
+[Back to contents](#contents)
+
+### 4.5 Audit logging
 
 `utils/audit-log.ts` exports the `AuditConfig` slice (`{ mode, path, maxBytes, keep }`), an `AuditEvent` shape, `appendAuditEvent(audit, event)`, and `withAuditLog(audit, name, level, cb)`. `mcp-server` wires it through the gated register. Append-only JSONL with size-based rotation (`maxBytes` × `keep`). **Secrets never appear in the log** — tokens/PATs/Bearer values are redacted; only ids, arg shapes, and status/scope/expiry are recorded. The tool boundary returns errors via `errorResult` (not `throw`) so the audit wrapper sees the `isError` envelope.
 
-## 6. Security invariants
+[Back to contents](#contents)
+
+### 4.6 Security invariants
 
 1. **Path containment is two-layer.** Every user path goes through a lexical normalize (rejects `..`, Windows separators) **and** a realpath check of the deepest existing ancestor against the allowed root(s) (catches symlink escape), before any `fs.*` / `execFile` / URL call. Validate against the **full** set of roots, threaded in as the first arg of the `main/` function.
 2. **Cached results are re-validated.** A tool that consumes a prior tool's output (e.g. a scan envelope) re-checks every path against the live config before acting — a cached result cannot widen the security boundary.
@@ -117,11 +178,15 @@ Levels nest `read ⊂ write ⊂ destructive`; env `MCP_<APP>_ACCESS_LEVEL` (defa
 10. **Per-item failures don't crash a batch** — aggregate into an `errors[]`.
 11. **Errors and audit logs never leak secrets or absolute paths** — surface caller input relative to the root. A 401 names a recovery path the caller can reach at its configured access level: where `*_auth_start` is registered at that level, name it; otherwise name the out-of-band remedy the repository ships (its `mcp-<name>-auth` bin or equivalent CLI) and the `MCP_<APP>_ACCESS_LEVEL` change that would expose the tool. A hint never names a tool that is not registered.
 
-## 7. Bun vs Node
+[Back to contents](#contents)
+
+### 4.7 Bun vs Node
 
 The Bun-install / Node-run split, the **`bun test` trap**, the `process.loadEnvFile()` parity call, and `NODE_ENV`-only-in-dev are the **common engineering standard**, owned by `ki-engineering`. Run `ki repo audit --skill ki-engineering --repo <repo>` for this layer—it is not re-checked here. The MCP-specific consequence: `ki:server:mcp:dev` / `:inspect` set `NODE_ENV=development`, so production ignores `.env.*` and config must come from the client's `env` block.
 
-## 8. package.json
+[Back to contents](#contents)
+
+### 4.8 package.json
 
 `type` / `packageManager` / `engines` / `files`, aggregate/scoped audit wiring, lifecycle scripts, and the `build`/cli-chmod rule are the **common engineering standard** (`ki-engineering`)—copy them from a healthy sibling and let its hosted audit check them; they are not re-checked here. This section is the **MCP delta** on top:
 
@@ -133,17 +198,23 @@ The Bun-install / Node-run split, the **`bun test` trap**, the `process.loadEnvF
 - **Typed client — `ki:generate:client` script.** Every repo ships a `ki:generate:client` script that emits a typed TypeScript client via `mcporter emit-ts <server-name> --mode client --out src/generated/client.ts --types-out src/generated/types.d.ts`. The emitted `src/generated/client.ts` is committed (it is the deliverable, not build output); it is excluded from vitest coverage. Run `bun run ki:generate:client` explicitly when refreshing it: the script is application code, not a host-owned `ki repo conform` repair. The `<server-name>` must match a registered mcporter instance (`mcporter list`).
 - **Commit gate.** An MCP repository adds no hook content of its own. Its canonical hooks are the `ki-repo` frame with the `ki-engineering` package lines, published as worked examples under [`assets/githooks/`](../assets/githooks/); copy them exactly, since `ki-repo` HOOK-4 compares each hook byte for byte ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)).
 
-## 9. tsconfig / vitest / biome
+[Back to contents](#contents)
+
+### 4.9 tsconfig / vitest / biome
 
 `tsconfig.json` (the shared compiled-TS base), `tsconfig.build.json`, and `biome.json` are the **common engineering standard** (`ki-engineering` §4–§7); when the repository selects Vitest by carrying `vitest.config.*`, that common layer also requires 100% coverage on all four metrics. Only under that selected profile does the **MCP delta** add its coverage `exclude` list — beyond the common `src/**/*.test.ts`, an MCP excludes its pure-wiring layers: `src/mcp-server/index.ts`, `src/tools/**/index.ts`, `src/utils/annotations.ts`, plus `src/auth-server/**`, `src/cli/cli.ts`, and pure-data modules (`src/utils/notion-args.ts`) where present.
 
-## 10. .env.example & env vars
+[Back to contents](#contents)
+
+### 4.10 .env.example & env vars
 
 The committed `.env*.example` template (real `.env.*` gitignored) and the `process.loadEnvFile` parity call are the **common engineering standard** (`ki-engineering` §8). The **MCP delta** is the variable prefix + shared block:
 
 - Prefix `MCP_<SCREAMING_SNAKE_APPNAME>_*`. Shared block across all repos: `MCP_<APP>_ACCESS_LEVEL` (default `read`), `MCP_<APP>_AUDIT_LOG` (default `writes`), `MCP_<APP>_AUDIT_LOG_PATH` (default `~/.local/state/mcp-<name>/audit.jsonl`), `MCP_<APP>_AUDIT_LOG_MAX_BYTES` (10485760), `MCP_<APP>_AUDIT_LOG_KEEP` (5), plus domain vars (`*_SAFE_ROOTS`, `*_ROOT`, OAuth client id/secret, PAT, …).
 
-## 11. Docs
+[Back to contents](#contents)
+
+### 4.11 Docs
 
 **Presence** of `README.md`, `CLAUDE.md`, and `ROADMAP.md` is `ki-repo`'s layer (the first two universal/FAIL, `ROADMAP.md` a warn), as is where orientation lives: shared guidance in root `AGENTS.md`, which every agent host loads, imported by a `CLAUDE.md` that keeps only what is Claude's own. This section owns their **MCP content contract**, plus the three MCP-family root docs whose presence is the **MCP delta**:
 
@@ -154,7 +225,9 @@ The committed `.env*.example` template (real `.env.*` gitignored) and the `proce
 - **`SECURITY.md`** — vulnerability reporting, scope (in / out), supported versions (OAuth repos add a token-storage note). _(MCP delta: presence required.)_
 - **`CHANGELOG.md`** — release notes; present **and non-empty** (an empty stub at 1.0.0 is a finding). _(MCP delta.)_
 
-## 12. Protocol profiles
+[Back to contents](#contents)
+
+### 4.12 Protocol profiles
 
 The server package family selects exactly one dated protocol profile. Do not add a claimable `.ki.toml` switch whose value can drift from executable code.
 
@@ -163,7 +236,9 @@ The server package family selects exactly one dated protocol profile. Do not add
 - **Transition compatibility.** A modern server may retain deliberate legacy client fallback while the fleet migrates, but it remains a modern-profile server. The v2 `@modelcontextprotocol/client` package does not select the server profile.
 - **Fail-closed selection.** Mixed server package families, unknown majors, a modern implementation retaining only the legacy server dependency, or a v2 server retaining the legacy SDK server boundary are violations. Migration remains receiver-owned work; the audit does not rewrite dependencies or server entry points.
 
-## 13. Spec conformance: tool results, errors & metadata
+[Back to contents](#contents)
+
+### 4.13 Spec conformance: tool results, errors & metadata
 
 These trace to the MCP spec ([TOOLS](sources.md) + [CHANGELOG](sources.md), 2025-11-25). They are how the thin `tools/` layer must shape what it returns.
 
@@ -173,9 +248,11 @@ These trace to the MCP spec ([TOOLS](sources.md) + [CHANGELOG](sources.md), 2025
 - **`inputSchema` dialect.** The spec defaults schemas to JSON Schema 2020-12. zod-to-json-schema output is accepted by Claude; no action needed unless a client rejects the emitted dialect — then set an explicit `$schema`.
 - **Optional metadata** (`icons`, `title`, `execution.taskSupport`) is available as of 2025-11-25 but not part of the house standard; adopt per-repo only if a client surfaces it. Async **Tasks** (`execution.taskSupport`) are experimental and irrelevant to these short-lived stdio tools — do not flag their absence.
 
-## 14. OAuth security (auth-server repos)
+[Back to contents](#contents)
 
-Only the OAuth repos — **mcp-gsuite** and **mcp-m365** — have an `auth-server/` and a token store; these items do not apply to the filesystem/subprocess repos. They trace to the spec's [SEC](sources.md) and [AUTH](sources.md) pages. The §6 invariants still apply on top of these.
+### 4.14 OAuth security (auth-server repos)
+
+Only the OAuth repos — **mcp-gsuite** and **mcp-m365** — have an `auth-server/` and a token store; these items do not apply to the filesystem/subprocess repos. They trace to the spec's [SEC](sources.md) and [AUTH](sources.md) pages. The §4.6 invariants still apply on top of these.
 
 **Two roles, only one of them ours — items 1–6 apply, 7–8 don't (yet).** Items 1–6 govern these repos' actual role: an OAuth **client** of a third-party IdP (Google / Microsoft) running the loopback consent flow and holding the resulting downstream tokens. Items 7–8 come from the **MCP authorization framework**, which governs a server that is itself a **remote HTTP OAuth resource server** (and the authorization server fronting it). **No current workspace server occupies that role** — all are stdio servers that obtain their own tokens — so 7–8 are **N/A today**; they go live only if a server is deployed remotely. When citing 7–8, say which role you mean.
 
@@ -184,6 +261,8 @@ Only the OAuth repos — **mcp-gsuite** and **mcp-m365** — have an `auth-serve
 3. **Exact `redirect_uri` match** — loopback redirect compared by exact string, not prefix/wildcard.
 4. **Least-privilege scopes.** Request only the scopes the shipped tools need; do not pre-request a broad catalog. Scope creep is a finding.
 5. **SSRF discipline on any fetched URL.** Discovery/token/Graph endpoints are HTTPS and host-pinned to the known provider; never fetch an attacker-influenceable URL, and never follow redirects to internal/loopback/link-local addresses (`169.254.169.254`, `10/172.16/192.168`, `::1`).
-6. **Secure token storage & redaction.** Refresh/access tokens are stored with restrictive file permissions outside any served root, never logged, and redacted from the audit log and from error messages (already required by §6.11). A 401 never echoes the token; its recovery hint follows §6.11, naming only a path reachable at the configured access level.
+6. **Secure token storage & redaction.** Refresh/access tokens are stored with restrictive file permissions outside any served root, never logged, and redacted from the audit log and from error messages (already required by §4.6.11). A 401 never echoes the token; its recovery hint follows §4.6.11, naming only a path reachable at the configured access level.
 7. **RFC 8707 `resource` parameter + audience validation — _remote resource-server role only; N/A to current repos_.** Per the 2025-11-25 spec (AUTH): when an MCP **client** obtains a token to call a **remote** MCP server, it MUST include a `resource` parameter naming that server's canonical URI; the authorization server SHOULD bind it into the token's `aud`; and the server, **acting as an OAuth resource server**, MUST validate `aud` before accepting the token — rejecting any whose audience isn't itself (a token-passthrough defense, item #1). This governs the MCP authorization framework, not a third-party OAuth-client flow: the current stdio servers are not resource servers, and their IdPs (Google / Microsoft v2) scope tokens by **scope**, not RFC 8707 `resource` — so there is nothing to implement here today. The live protection for our servers is item #1 (no token passthrough).
 8. **Client ID Metadata Documents (SHOULD) — _authorization-server role only; N/A to current repos_.** Per the 2025-11-25 spec (AUTH): an **authorization server** SHOULD declare `client_id_metadata_document_supported: true` and accept URL-formatted `client_id` values — fetch the JSON document at that URL over HTTPS, validate its `client_id` matches the URL exactly, validate the request's `redirect_uri` against its `redirect_uris`, with SSRF mitigations on the fetch (item #5). It is the preferred client-registration path, superseding Dynamic Client Registration. Our servers are OAuth **clients**, not authorization servers — the AS is Google / Microsoft — so they cannot declare CIMD and this does not apply; it goes live only for a workspace component that itself acts as an MCP authorization server.
+
+[Back to contents](#contents)

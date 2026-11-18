@@ -2,7 +2,7 @@ import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric
 import type { McpRubricContext } from '../contexts/mcp.ts'
 import type { McpSharedCodeContext } from '../contexts/shared-code.ts'
 
-const STANDARD = 'standards-mcp-shared-code.md#managed-profile-contract'
+const STANDARD = 'standard-mcp-shared-code.md#45-managed-profile-contract'
 
 const SHARED_1: RubricItem<McpSharedCodeContext> = {
   code: 'SHARED-1',

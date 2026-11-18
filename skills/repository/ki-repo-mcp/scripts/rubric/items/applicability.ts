@@ -3,7 +3,7 @@ import type { McpApplicabilityContext, McpRubricContext } from '../contexts/mcp.
 import { declaredToolNameExceptions } from '../contexts/mcp.ts'
 import { supportedMcpSharedProfiles } from '../contexts/shared-code.ts'
 
-const STANDARD = 'standards-mcp-servers.md#applicability'
+const STANDARD = 'standard-mcp-servers.md#2-scope'
 const outcome = (status: AuditOutcome['status'], message: string, subject?: string): RubricOutcomes<AuditOutcome> => [
   { status, message, ...(subject ? { subject } : {}) } as AuditOutcome
 ]

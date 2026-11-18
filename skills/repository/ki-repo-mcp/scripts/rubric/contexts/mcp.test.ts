@@ -422,8 +422,8 @@ test('tool-surface review cites the dry-run and tier-reachable recovery rules', 
 
   expect(item?.sources).toEqual(
     expect.arrayContaining([
-      'standards-mcp-servers.md#6-security-invariants',
-      'standards-mcp-servers.md#14-oauth-security-auth-server-repos'
+      'standard-mcp-servers.md#46-security-invariants',
+      'standard-mcp-servers.md#414-oauth-security-auth-server-repos'
     ])
   )
   expect(item?.judgment?.prompt).toContain('side-effect-free across the complete operation')

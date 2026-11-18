@@ -1,10 +1,10 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { McpRubricContext, McpToolsContext } from '../contexts/mcp.ts'
 
-const STANDARD = 'standards-mcp-servers.md#3-tool-naming'
-const RESULT_STANDARD = 'standards-mcp-servers.md#13-spec-conformance-tool-results-errors--metadata'
-const SECURITY_STANDARD = 'standards-mcp-servers.md#6-security-invariants'
-const OAUTH_STANDARD = 'standards-mcp-servers.md#14-oauth-security-auth-server-repos'
+const STANDARD = 'standard-mcp-servers.md#43-tool-naming'
+const RESULT_STANDARD = 'standard-mcp-servers.md#413-spec-conformance-tool-results-errors--metadata'
+const SECURITY_STANDARD = 'standard-mcp-servers.md#46-security-invariants'
+const OAUTH_STANDARD = 'standard-mcp-servers.md#414-oauth-security-auth-server-repos'
 
 const registrations = (source: string): string[] => {
   const callers = new Set(['registerTool'])

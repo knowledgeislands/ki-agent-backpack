@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { McpProtocolContext, McpRubricContext } from '../contexts/mcp.ts'
 
-const STANDARD = 'standards-mcp-servers.md#12-protocol-profiles'
+const STANDARD = 'standard-mcp-servers.md#412-protocol-profiles'
 const LEGACY_PACKAGE = '@modelcontextprotocol/sdk'
 const MODERN_PACKAGE = '@modelcontextprotocol/server'
 

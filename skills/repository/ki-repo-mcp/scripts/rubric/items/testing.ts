@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem, RubricOutcomes } from '../../shared/rubric.ts'
 import type { McpRubricContext, McpTestingContext } from '../contexts/mcp.ts'
 
-const STANDARD = 'standards-mcp-servers.md#9-tsconfig--vitest--biome'
+const STANDARD = 'standard-mcp-servers.md#49-tsconfig--vitest--biome'
 const outcome = (status: AuditOutcome['status'], message: string, subject?: string): RubricOutcomes<AuditOutcome> => [
   { status, message, ...(subject ? { subject } : {}) } as AuditOutcome
 ]

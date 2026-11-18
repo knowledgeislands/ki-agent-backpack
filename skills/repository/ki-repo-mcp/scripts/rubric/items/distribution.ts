@@ -2,7 +2,7 @@ import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric
 import { isSemVer } from '../contexts/distribution.ts'
 import type { McpDistributionContext, McpRubricContext } from '../contexts/mcp.ts'
 
-const STANDARD = 'standards-mcp-distribution.md'
+const STANDARD = 'standard-mcp-distribution.md'
 
 const DIST_1: RubricItem<McpDistributionContext> = {
   code: 'DIST-1',

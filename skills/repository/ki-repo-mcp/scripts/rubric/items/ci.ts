@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem, RubricOutcomes } from '../../shared/rubric.ts'
 import type { McpCiContext, McpRubricContext } from '../contexts/mcp.ts'
 
-const STANDARD = 'standards-mcp-servers.md#8-packagejson'
+const STANDARD = 'standard-mcp-servers.md#48-packagejson'
 const outcome = (status: AuditOutcome['status'], message: string, subject?: string): RubricOutcomes<AuditOutcome> => [
   { status, message, ...(subject ? { subject } : {}) } as AuditOutcome
 ]

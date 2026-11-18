@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { McpConfigurationContext, McpRubricContext } from '../contexts/mcp.ts'
 
-const STANDARD = 'standards-mcp-servers.md#2-config-injection'
+const STANDARD = 'standard-mcp-servers.md#42-config-injection'
 
 const CFG_1: RubricItem<McpConfigurationContext> = {
   code: 'CFG-1',

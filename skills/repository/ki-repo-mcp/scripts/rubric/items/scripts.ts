@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { McpRubricContext, McpScriptsContext } from '../contexts/mcp.ts'
 
-const STANDARD = 'standards-mcp-servers.md#8-packagejson'
+const STANDARD = 'standard-mcp-servers.md#48-packagejson'
 
 const SCR_1: RubricItem<McpScriptsContext> = {
   code: 'SCR-1',

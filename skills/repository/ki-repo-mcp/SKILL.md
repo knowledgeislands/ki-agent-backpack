@@ -20,7 +20,7 @@ You are helping audit, conform, or scaffold a **workspace MCP server** — one o
 
 This skill audits declared **server source shape** — `src/` layout, config injection, tool declarations, and tooling. A structural result is not evidence that a server was registered, loaded, secured, or executed. A repo's GitHub configuration and standard files, and a `SKILL.md`'s prose, are out of scope (other skills own those). How the skills divide the work is documented once in the ki-agent-backpack `README.md`.
 
-The full server-shape standard lives in [Workspace MCP Standard](references/standards-mcp-servers.md), [MCP shared code](references/standards-mcp-shared-code.md) owns optional vendored utility profiles, and [MCP source distribution](references/standards-mcp-distribution.md) owns versioned source-release evidence and the installer hand-off. The line-by-line pass/fail items live in [Audit Rubric](references/rubric.md). The hosted rubric contract is [`scripts/rubric/items/index.ts`](scripts/rubric/items/index.ts), enforced by `ki repo audit --skill ki-repo-mcp`. Read those when you need detail; this file is the operating procedure.
+The full server-shape standard lives in [Workspace MCP Standard](references/standard-mcp-servers.md), [MCP shared code](references/standard-mcp-shared-code.md) owns optional vendored utility profiles, and [MCP source distribution](references/standard-mcp-distribution.md) owns versioned source-release evidence and the installer hand-off. The line-by-line pass/fail items live in [Audit Rubric](references/rubric.md). The hosted rubric contract is [`scripts/rubric/items/index.ts`](scripts/rubric/items/index.ts), enforced by `ki repo audit --skill ki-repo-mcp`. Read those when you need detail; this file is the operating procedure.
 
 ## The canonical shape at a glance
 
@@ -93,8 +93,8 @@ The Bun-install / Node-run split, the **`bun test` trap**, and the `process.load
 
 Server-code governance and surface operation are separate. Two standards remain here because they capture MCP-specific runtime semantics that the server standard must route to, while `ki-env-binding` owns actual cross-surface agreement and safe file-backed binding:
 
-- [Cross-surface MCP enablement](references/standards-cross-surface-enablement.md) defines the canonical source, per-surface control boundary, Cowork sandbox constraint, and binding sequence.
-- [claude.ai connector control](references/standards-claude-ai-connectors.md) defines the manual account, organization, and managed Claude Code policy layers for connectors with no local conform surface.
+- [Cross-surface MCP enablement](references/standard-cross-surface-enablement.md) defines the canonical source, per-surface control boundary, Cowork sandbox constraint, and binding sequence.
+- [claude.ai connector control](references/standard-claude-ai-connectors.md) defines the manual account, organization, and managed Claude Code policy layers for connectors with no local conform surface.
 
 Both are report-only from ki-repo-mcp. Client registration, web/admin changes, remote deployment, generated clients, and repository-defined commands are never hidden conform operations.
 
@@ -103,4 +103,4 @@ Both are report-only from ki-repo-mcp. Client registration, web/admin changes, r
 - This skill targets the standard documented in the sibling repos' own `AGENTS.md` files; when they disagree, the **majority shape** is the standard and the outlier is a finding (unless the outlier is a deliberate, documented exception). When unsure whether a divergence is intentional, ask rather than "fix" it.
 - Keep shared utilities aligned through the optional `legacy-v1-core` or `modern-v2-core` profile where a repository has deliberately adopted one. Undeclared utilities remain repository-owned; never copy a majority implementation over domain-specific audit or result behaviour.
 - The standard sits on top of a moving spec. When citing a requirement, know whether it is **spec-driven** (traces to the official MCP spec in [the source list](references/sources.md)) or **house style** — never present a workspace preference as a protocol "MUST". Run Mode REFRESH when in doubt.
-- Full detail: [Workspace MCP Standard](references/standards-mcp-servers.md), [MCP source distribution](references/standards-mcp-distribution.md), [Audit Rubric](references/rubric.md), and the tracked [source list](references/sources.md).
+- Full detail: [Workspace MCP Standard](references/standard-mcp-servers.md), [MCP source distribution](references/standard-mcp-distribution.md), [Audit Rubric](references/rubric.md), and the tracked [source list](references/sources.md).

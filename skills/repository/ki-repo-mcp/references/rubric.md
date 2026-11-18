@@ -29,20 +29,20 @@ Line-by-line criteria for auditing ki-repo-mcp. Classifications are derived from
 
 ## KI — Applicability and declaration
 
-→ [standard](standards-mcp-servers.md#applicability)
+→ [standard](standard-mcp-servers.md#2-scope)
 
 Scope activation and the optional shared-code profile declaration.
 
-- **KI-CONFIG [M] — MCP applicability and declaration** — Only [skills.ki-repo-mcp] declares this optional standard applicable. Its optional profile selects one supported whole-file shared-code projection, and its optional tool-name-exceptions lists tool names kept outside the naming form; every other key is rejected. (standards-mcp-servers.md#applicability)
+- **KI-CONFIG [M] — MCP applicability and declaration** — Only [skills.ki-repo-mcp] declares this optional standard applicable. Its optional profile selects one supported whole-file shared-code projection, and its optional tool-name-exceptions lists tool names kept outside the naming form; every other key is rejected. (standard-mcp-servers.md#2-scope)
   - _Remediation:_ diagnostic — Declare the selected standard through the repository configuration owner.
 
 ## LAY — Source layout
 
-→ [standard](standards-mcp-servers.md#1-project-layout)
+→ [standard](standard-mcp-servers.md#41-project-layout)
 
 The repository separates MCP wiring, tool shells, reusable implementation, configuration, and shared utilities.
 
-- **LAY-1 [M + J] — MCP source layout** — src/ contains config/, mcp-server/, tools/, main/, and utils/; an optional cli/ contains cli.ts and index.ts. (standards-mcp-servers.md#1-project-layout)
+- **LAY-1 [M + J] — MCP source layout** — src/ contains config/, mcp-server/, tools/, main/, and utils/; an optional cli/ contains cli.ts and index.ts. (standard-mcp-servers.md#41-project-layout)
   - _Remediation:_ diagnostic — Restore the required source layout without moving implementation across ownership boundaries automatically.
   - _Evidence scope:_ MCP tool shells, main implementation, utilities, and optional CLI layers.
   - _Review prompt:_ Review tools/ for thin validation-and-envelope shells, main/ for concern-grouped implementation, no console output in main/utils, and cli/ as a shared-main human shell rather than a second implementation.
@@ -51,11 +51,11 @@ The repository separates MCP wiring, tool shells, reusable implementation, confi
 
 ## DOC — MCP documentation
 
-→ [standard](standards-mcp-servers.md#11-docs)
+→ [standard](standard-mcp-servers.md#411-docs)
 
 MCP-specific root documentation exists and remains substantive.
 
-- **DOC-1 [M + J] — MCP root documents** — ROADMAP.md is present; CONTRIBUTING.md and SECURITY.md are present; CHANGELOG.md is present and non-empty. (standards-mcp-servers.md#11-docs)
+- **DOC-1 [M + J] — MCP root documents** — ROADMAP.md is present; CONTRIBUTING.md and SECURITY.md are present; CHANGELOG.md is present and non-empty. (standard-mcp-servers.md#411-docs)
   - _Remediation:_ diagnostic — Add or repair the required root documentation using current repository evidence.
   - _Evidence scope:_ AGENTS.md, the CLAUDE.md that imports it, README setup instructions, and the current MCP implementation.
   - _Review prompt:_ Review AGENTS.md for drift against the code and README setup documentation for current client and configuration instructions.
@@ -64,11 +64,11 @@ MCP-specific root documentation exists and remains substantive.
 
 ## CFG — Configuration
 
-→ [standard](standards-mcp-servers.md#2-config-injection)
+→ [standard](standard-mcp-servers.md#42-config-injection)
 
 Configuration is loaded once, injected explicitly, and absent from ambient implementation state.
 
-- **CFG-1 [M + J] — Injected configuration surface** — config/index.ts exports loadConfig, loads .env through process.loadEnvFile, and refers to ACCESS_LEVELS, ACCESS_LEVEL_RANK, and AuditLogMode; ambient process.env reads elsewhere are surfaced. (standards-mcp-servers.md#2-config-injection)
+- **CFG-1 [M + J] — Injected configuration surface** — config/index.ts exports loadConfig, loads .env through process.loadEnvFile, and refers to ACCESS_LEVELS, ACCESS_LEVEL_RANK, and AuditLogMode; ambient process.env reads elsewhere are surfaced. (standard-mcp-servers.md#42-config-injection)
   - _Remediation:_ diagnostic — Correct the configuration surface and ambient reads with the owning implementation decision.
   - _Evidence scope:_ Configuration loading, injection boundaries, and configuration-dependent tests across the MCP implementation.
   - _Review prompt:_ Verify loadConfig(env?) is the only environmental reader, no module-level config singleton exists, config is the first argument of every main/utils entry point, Config contains the standard audit and access fields, and tests use literal config rather than environment mutation.
@@ -77,11 +77,11 @@ Configuration is loaded once, injected explicitly, and absent from ambient imple
 
 ## UTIL — Shared utilities
 
-→ [standard](standards-mcp-servers.md#5-audit-logging)
+→ [standard](standard-mcp-servers.md#45-audit-logging)
 
 The shared access, annotation, and audit-log utilities are present.
 
-- **UTIL-1 [M + J] — Shared audit logging helper** — utils/audit-log.ts is present as the shared audit-log helper. (standards-mcp-servers.md#5-audit-logging)
+- **UTIL-1 [M + J] — Shared audit logging helper** — utils/audit-log.ts is present as the shared audit-log helper. (standard-mcp-servers.md#45-audit-logging)
   - _Remediation:_ diagnostic — Restore the required shared utility from the owning implementation and security decision.
   - _Evidence scope:_ Audit logging and every tool error envelope in the MCP implementation.
   - _Review prompt:_ Verify audit logging never captures secrets and tool errors are errorResult envelopes so the audit wrapper sees them.
@@ -90,29 +90,29 @@ The shared access, annotation, and audit-log utilities are present.
 
 ## SHARED — Shared-code projection
 
-→ [standard](standards-mcp-shared-code.md#managed-profile-contract)
+→ [standard](standard-mcp-shared-code.md#45-managed-profile-contract)
 
 Optional skill-owned vendored MCP utilities and explicit repository-owned seams.
 
-- **SHARED-1 [M] — Declared shared-code projection** — An optional declared MCP shared-code profile agrees byte-for-byte with its skill-owned manifest while local extension files remain outside the managed set. (standards-mcp-shared-code.md#managed-profile-contract)
+- **SHARED-1 [M] — Declared shared-code projection** — An optional declared MCP shared-code profile agrees byte-for-byte with its skill-owned manifest while local extension files remain outside the managed set. (standard-mcp-shared-code.md#45-managed-profile-contract)
   - _Remediation:_ automatic
 
 ## TEST — Test wiring
 
-→ [standard](standards-mcp-servers.md#9-tsconfig--vitest--biome)
+→ [standard](standard-mcp-servers.md#49-tsconfig--vitest--biome)
 
 Selected Vitest coverage excludes generated and pure-wiring MCP layers.
 
-- **TEST-1 [M] — MCP coverage exclusions** — When a Vitest config exists, coverage excludes mcp-server/index.ts, tools wiring, utils/annotations.ts, and src/generated/. (standards-mcp-servers.md#9-tsconfig--vitest--biome)
+- **TEST-1 [M] — MCP coverage exclusions** — When a Vitest config exists, coverage excludes mcp-server/index.ts, tools wiring, utils/annotations.ts, and src/generated/. (standard-mcp-servers.md#49-tsconfig--vitest--biome)
   - _Remediation:_ diagnostic — Adjust the Vitest coverage exclusions using the repository test-policy decision.
 
 ## TOOL — Tool surface
 
-→ [standard](standards-mcp-servers.md#3-tool-naming)
+→ [standard](standard-mcp-servers.md#43-tool-naming)
 
 Tool names, result envelopes, schemas, and registration order form a stable MCP surface.
 
-- **TOOL-1 [M + J] — MCP tool surface** — Registered tool names use snake-case app/resource/action forms, except those `[skills.ki-repo-mcp]` declares in tool-name-exceptions; source-local structured output declarations are paired with outputSchema; and group registration order is stable. This is not runtime registration, security, or response evidence. (standards-mcp-servers.md#3-tool-naming, standards-mcp-servers.md#6-security-invariants, standards-mcp-servers.md#13-spec-conformance-tool-results-errors--metadata, standards-mcp-servers.md#14-oauth-security-auth-server-repos)
+- **TOOL-1 [M + J] — MCP tool surface** — Registered tool names use snake-case app/resource/action forms, except those `[skills.ki-repo-mcp]` declares in tool-name-exceptions; source-local structured output declarations are paired with outputSchema; and group registration order is stable. This is not runtime registration, security, or response evidence. (standard-mcp-servers.md#43-tool-naming, standard-mcp-servers.md#46-security-invariants, standard-mcp-servers.md#413-spec-conformance-tool-results-errors--metadata, standard-mcp-servers.md#414-oauth-security-auth-server-repos)
   - _Remediation:_ diagnostic — Correct the observed tool surface with the owning API and security decisions.
   - _Evidence scope:_ The full public MCP tool surface, result envelopes, annotations, documentation, and applicable OAuth requirements.
   - _Review prompt:_ Review plural/singular resource choices, CLI mirroring and README catalogues; confirm the annotation-driven access gate, annotation presets, dry-run defaults and that dry runs are side-effect-free across the complete operation, read default, audit/error envelopes, path and subprocess hardening, bounded schemas, error aggregation, output sanitisation, and the applicable OAuth security requirements, including 401 recovery hints that name a path reachable at the configured access tier. Optional metadata remains opt-in.
@@ -121,29 +121,29 @@ Tool names, result envelopes, schemas, and registration order form a stable MCP 
 
 ## PROTO — Protocol profile
 
-→ [standard](standards-mcp-servers.md#12-protocol-profiles)
+→ [standard](standard-mcp-servers.md#412-protocol-profiles)
 
 The installed MCP server package selects one protocol era and its matching stdio and result contract.
 
-- **PROTO-1 [M] — Protocol profile** — The declared server dependency selects exactly one supported protocol profile: @modelcontextprotocol/sdk major 1 for legacy 2025-11-25, or @modelcontextprotocol/server major 2 for modern 2026-07-28 with complete result discriminators and the SDK-owned stdio boundary. (standards-mcp-servers.md#12-protocol-profiles)
+- **PROTO-1 [M] — Protocol profile** — The declared server dependency selects exactly one supported protocol profile: @modelcontextprotocol/sdk major 1 for legacy 2025-11-25, or @modelcontextprotocol/server major 2 for modern 2026-07-28 with complete result discriminators and the SDK-owned stdio boundary. (standard-mcp-servers.md#412-protocol-profiles)
   - _Remediation:_ diagnostic — Use one supported MCP server package family and satisfy only its selected protocol profile; migrate through a separately reviewed receiver-owned work item.
 
 ## PKG — Package entry points
 
-→ [standard](standards-mcp-servers.md#8-packagejson)
+→ [standard](standard-mcp-servers.md#48-packagejson)
 
 The package exposes the compiled MCP server, configuration, and manifest surfaces.
 
-- **PKG-1 [M] — MCP package entry points** — package.json has the MCP main and bin target plus ., ./config, and ./package.json exports. (standards-mcp-servers.md#8-packagejson)
+- **PKG-1 [M] — MCP package entry points** — package.json has the MCP main and bin target plus ., ./config, and ./package.json exports. (standard-mcp-servers.md#48-packagejson)
   - _Remediation:_ automatic
 
 ## SCR — MCP scripts
 
-→ [standard](standards-mcp-servers.md#8-packagejson)
+→ [standard](standard-mcp-servers.md#48-packagejson)
 
 Runtime, auth, client-generation, and recording scripts expose the expected explicit commands.
 
-- **SCR-1 [M + J] — MCP scripts** — MCP server scripts are present, typed-client generation is required, auth-server scripts are paired, and record/replay scripts travel together. (standards-mcp-servers.md#8-packagejson)
+- **SCR-1 [M + J] — MCP scripts** — MCP server scripts are present, typed-client generation is required, auth-server scripts are paired, and record/replay scripts travel together. (standard-mcp-servers.md#48-packagejson)
   - _Remediation:_ diagnostic — Add or correct the declared scripts with the owning runtime and release decision.
   - _Evidence scope:_ Generated client outputs and the explicit generation and smoke commands declared by the package.
   - _Review prompt:_ Verify generated typed-client files are committed and current; where generation is needed, run bun run ki:generate:client explicitly outside hosted conform.
@@ -152,22 +152,22 @@ Runtime, auth, client-generation, and recording scripts expose the expected expl
 
 ## CI — Smoke CI
 
-→ [standard](standards-mcp-servers.md#8-packagejson)
+→ [standard](standard-mcp-servers.md#48-packagejson)
 
 Smoke-test wiring is mechanically visible while execution remains an explicit external step.
 
-- **CI-1 [M] — MCP smoke CI** — When ki:test:smoke is defined, ci.yml invokes it after the common engineering gate. (standards-mcp-servers.md#8-packagejson)
+- **CI-1 [M] — MCP smoke CI** — When ki:test:smoke is defined, ci.yml invokes it after the common engineering gate. (standard-mcp-servers.md#48-packagejson)
   - _Remediation:_ diagnostic — Add the smoke invocation to the CI workflow when the declared smoke script exists.
-- **CI-2 [M] — MCP smoke execution** — When ki:test:smoke is defined, its execution remains an explicit verification step outside hosted audit and conform. (standards-mcp-servers.md#8-packagejson)
+- **CI-2 [M] — MCP smoke execution** — When ki:test:smoke is defined, its execution remains an explicit verification step outside hosted audit and conform. (standard-mcp-servers.md#48-packagejson)
   - _Remediation:_ diagnostic — Run the declared smoke script explicitly and investigate its result outside hosted audit or conform.
 
 ## DIST — MCP source distribution
 
-→ [standard](standards-mcp-distribution.md)
+→ [standard](standard-mcp-distribution.md)
 
 Versioned source releases provide immutable build and provenance evidence without package publication.
 
-- **DIST-1 [M + J] — Source-release readiness** — The repository distinguishes valid development source from annotated release evidence while warning on invalid or malformed source-release evidence. (standards-mcp-distribution.md)
+- **DIST-1 [M + J] — Source-release readiness** — The repository distinguishes valid development source from annotated release evidence while warning on invalid or malformed source-release evidence. (standard-mcp-distribution.md)
   - _Remediation:_ diagnostic — Development-only INFO needs no repair. Repair invalid package, build, lockfile, repository, or HEAD evidence, but leave versions, tags, releases, repository identity, and workflow changes to the repository owner.
   - _Evidence scope:_ Repository release settings, source accessibility, stable-release marker, and installer provenance receipt.
   - _Review prompt:_ Verify public and private source access without changing visibility, ensure omitted versions resolve only the owner-designated latest stable release, and compare the installer receipt with the selected tag and commit.
