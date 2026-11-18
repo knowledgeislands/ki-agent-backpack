@@ -22,7 +22,7 @@ The message queue has retired (MSG-HOME, MSG-RETIRE): no package keeps a `messag
 
 - **Along the tree:** a hand-off, a rollout, a unit to route, a release notice or a method improvement goes up as feedback to the nearest node above both packages, and comes down from it as steer.
   - The receiving package's holder records it, or the root's guardian while no session holds the package: in a change document, its Open section for what needs the owner, or in `_index.md`'s Now or Held.
-  - It is never a record in the receiver's roadmap or triage. Only genuinely deferred work the receiver owns becomes a record, captured by the receiver's own coordinator under the `ki-work next` [capture rule](../../../keystone/ki-work/references/standards-next-work.md#capture-substantive-prospective-work); the sender never writes it.
+  - It is never a record in the receiver's roadmap or triage. Only genuinely deferred work the receiver owns becomes a record, captured by the receiver's own coordinator under the `ki-work next` [capture rule](../../../keystone/ki-work/references/standard-next-work.md#432-capture-substantive-prospective-work); the sender never writes it.
   - A route `ki-trades` declares keeps its trade records.
   - Work is never sent to a package with no one seated, no seat under its `ki-workers`: the node holding it owns it and does it itself, rather than parking it there to wait for a seat.
 - **Receipt:** a package cannot reject what it is given, and steer confers no authority wider than its giver's. The receiver does what it can with each unit:

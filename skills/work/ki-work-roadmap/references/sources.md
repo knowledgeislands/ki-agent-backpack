@@ -5,7 +5,7 @@
 | Source | Last reviewed | Governs |
 | --- | --- | --- |
 | `ROADMAP.md` | 2026-09-22 | Repository-local planning practice, work items, horizons, theme grouping, indexes, and lifecycle |
-| [Change-management adapter standard](../../../keystone/ki-work/references/standards-change-management-adapters.md) | 2026-09-22 | Selector resolution, abstract lifecycle vocabulary, and ownership boundary |
+| [Change-management adapter standard](../../../keystone/ki-work/references/standard-change-management-adapters.md) | 2026-09-22 | Selector resolution, abstract lifecycle vocabulary, and ownership boundary |
 | [`ki-repo-kb-streams` Streams standard](../../../repository/ki-repo-kb-streams/references/standards-streams-structure.md#roadmap) | 2026-09-22 | KB boundary, placement, and off-ramp |
 
 ## Last review

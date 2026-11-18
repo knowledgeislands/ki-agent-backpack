@@ -78,7 +78,7 @@ The title is the area's definition, so the checks stay mechanical: a short noun 
 
 A bare list of codes (`areas = ["FND", "GOV"]`) is the legacy form. The checker fails it in a repository listed in Knowledge Islands Principal's canonical `territory_members`, resolved through the repository's Capital, and warns elsewhere, because other territories keep the list until they migrate. While a repository keeps the list, its roadmap index defines each code under an `## Areas` heading that names the code in backticks, and the checker warns for each code the index does not name.
 
-The optional `components` list is the repository's kebab-case vocabulary for which part of the repository a record touches. An item's `component`, when present, must be declared there. Components are repository-owned; Projects and themes are territory-owned and live in the [Project registry](../../../keystone/ki-work/references/standards-project-registry.md).
+The optional `components` list is the repository's kebab-case vocabulary for which part of the repository a record touches. An item's `component`, when present, must be declared there. Components are repository-owned; Projects and themes are territory-owned and live in the [Project registry](../../../keystone/ki-work/references/standard-project-registry.md).
 
 Keep statuses, horizons, lifecycle moves, work-item location, and reporting behaviour universal rather than per-repository configuration.
 
@@ -120,7 +120,7 @@ Continuous practices belong in a standard or orientation file, not among finite 
 
 ### Triage
 
-A substantive prospective outcome, concern, dependency, or decision that passes the [graduation test](#ideas-and-graduation) may be captured as `status: triage` without prior approval after checking for an existing owner, within the capture gate the `ki-work next` [capture rule](../../../keystone/ki-work/references/standards-next-work.md#capture-substantive-prospective-work) sets: only a blocker, a defect seen failing or an owner-requested item, and never by a background run. Creating one does not adopt, prioritise, plan, implement, or accept the work. A human must explicitly approve every exit from triage: adoption to `draft`, or cancellation. Approval does not bypass the terminal-before-prune rule, and triage has no direct discard path.
+A substantive prospective outcome, concern, dependency, or decision that passes the [graduation test](#ideas-and-graduation) may be captured as `status: triage` without prior approval after checking for an existing owner, within the capture gate the `ki-work next` [capture rule](../../../keystone/ki-work/references/standard-next-work.md#432-capture-substantive-prospective-work) sets: only a blocker, a defect seen failing or an owner-requested item, and never by a background run. Creating one does not adopt, prioritise, plan, implement, or accept the work. A human must explicitly approve every exit from triage: adoption to `draft`, or cancellation. Approval does not bypass the terminal-before-prune rule, and triage has no direct discard path.
 
 ## Lifecycle moves
 
@@ -161,16 +161,16 @@ Every confirmed move is re-evaluated at its destination.
 
 ## Ideas and graduation
 
-An idea has no identifier, horizon, or status, and never owns state. The Project registry's [rooting rule](../../../keystone/ki-work/references/standards-project-registry.md#rooting) first settles its territory and whether it is a concept or work; a concept waits in its owning Capital's Emerging Concepts note, and work waits outside the record queue:
+An idea has no identifier, horizon, or status, and never owns state. The Project registry's [rooting rule](../../../keystone/ki-work/references/standard-project-registry.md#48-rooting) first settles its territory and whether it is a concept or work; a concept waits in its owning Capital's Emerging Concepts note, and work waits outside the record queue:
 
-- as an `Idea:` bullet in its Project note's `## Notes` section when a Project is known, under the [Project registry](../../../keystone/ki-work/references/standards-project-registry.md);
-- in an [idea-stage Project](../../../keystone/ki-work/references/standards-project-registry.md#idea-stage-project) when a decision must be taken before any delivery, the Project's `## Notes` holding the ideas;
+- as an `Idea:` bullet in its Project note's `## Notes` section when a Project is known, under the [Project registry](../../../keystone/ki-work/references/standard-project-registry.md);
+- in an [idea-stage Project](../../../keystone/ki-work/references/standard-project-registry.md#43-idea-stage-project) when a decision must be taken before any delivery, the Project's `## Notes` holding the ideas;
 - as an `Idea:` bullet in its theme page's `## Notes` when the theme is known and no Project fits; or
 - otherwise in the Inbox, where it goes through capture, intake and maturation until it is ready to become a record.
 
 A new idea therefore starts as an `Idea:` bullet in its owning Project note or theme page, and an idea that no Project or theme owns goes to the Inbox. Kris set this on 2026-10-17, as received: "Ideas start as Idea: bullets in the owning Project or Initiative note"; under the work model an Initiative note becomes a theme page. He took IDEAS-INBOX a on 2026-11-17, in the Cairn summit's [change 42](https://github.com/krisb/ki-cairn-store/blob/4af7d31/work/cairn/cairn.summit/42-roadmap-2.change.md#61-stop-keeping-ideasmd-in-roadmaps): roadmaps stop keeping `_IDEAS.md`; an idea goes through capture, intake and maturation in the Inbox until it is ready to become a record, and an `Idea:` bullet in an owning Project note stays.
 
-A roadmap no longer keeps `docs/roadmap/_IDEAS.md`, or `Streams/Roadmap/_IDEAS.md` in a Knowledge Base, and no idea is added to one. Until its entries have moved to the Inbox and it is deleted, an existing `_IDEAS.md` is not a record: it carries no identity, the structural-validity invariant skips it, and CONFORM never creates or rewrites it. When a whole idea graduates, its bullet is removed and useful research moves into the record; a Project note or theme page never names a record identifier, because [links point upwards](../../../keystone/ki-work/references/standards-project-registry.md#links-point-upwards). No record names an idea-stage Project: the Project graduates to `active` first.
+A roadmap no longer keeps `docs/roadmap/_IDEAS.md`, or `Streams/Roadmap/_IDEAS.md` in a Knowledge Base, and no idea is added to one. Until its entries have moved to the Inbox and it is deleted, an existing `_IDEAS.md` is not a record: it carries no identity, the structural-validity invariant skips it, and CONFORM never creates or rewrites it. When a whole idea graduates, its bullet is removed and useful research moves into the record; a Project note or theme page never names a record identifier, because [links point upwards](../../../keystone/ki-work/references/standard-project-registry.md#49-links-point-upwards). No record names an idea-stage Project: the Project graduates to `active` first.
 
 An idea often settles in part while ideation carries on behind it. That part graduates **by quotation**: the settled slice is quoted into its new home, a record, a standard, a Decision Record or a delivering Project, and the idea's place gains one line, "built as" or "settled in", naming that home and otherwise stays as it was. In a registry note the line names the durable home, never a record identifier. Kris asked on 2026-10-14 for a home for ideas "where we've got aspects of them that get built out because we know there's a certain amount of them, which are already valuable and kind of more fixed, but there's a lot more ideation to go on behind it."
 

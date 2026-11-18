@@ -1,6 +1,6 @@
 # Run a work design loop
 
-Use the `ki-work design` skill to shape a Project, an Initiative or a cross-cutting model before any work record exists. The skill's standard, `references/standards-work-design.md`, owns the stage contracts; this guide explains when and how to start it.
+Use the `ki-work design` skill to shape a Project, an Initiative or a cross-cutting model before any work record exists. The skill's standard, `references/standard-work-design.md`, owns the stage contracts; this guide explains when and how to start it.
 
 The loop was the `ki-design-loop` skill until 14 October 2026 and the `ki-work-design` skill until 14 November 2026; `/ki-work design` is the current command.
 
