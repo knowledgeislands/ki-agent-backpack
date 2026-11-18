@@ -35,7 +35,7 @@ ki-work recap (optional current-session context)
               ├─> ki-work implement (one Ready item through Awaiting review)
               │     └─> ki-work accept (Awaiting review through Done)
               └─> ki-coordination (a frozen wave of confirmed independent, synergistic Ready records)
-                    └─> one window grant in the decisions log
+                    └─> one window grant in its change document
                           └─> ki-work implement (each named Ready item through Awaiting review)
 
 The base selector governs adapter choice; `ki-work-roadmap` governs the local record model and `ki-repo-kb-streams` its KB Streams container.

@@ -31,7 +31,7 @@ It never chooses work, starts implementation, edits plan scope, reconstructs mis
 
 Runtime subagents can help execute bounded review preparation only when separately authorised; they cannot approve or delete. `ki-delegation`, when active, supplies the durable packet standard.
 
-`ki-coordination` may close a frozen wave's records only when the window grant in its decisions log names that closure. A grant never grants pruning authority.
+`ki-coordination` may close a frozen wave's records only when the window grant logged in its change document names that closure. A grant never grants pruning authority.
 
 `ki-work-recurring` owns template shape and `ki-work next` owns spawning. After a linked run is accepted, this subcommand alone advances the evidenced completion date `last-run` and reviewed revision `last-run-ref`, then clears `active-run`. Failed, abandoned, and superseded runs retain the active link until an explicit disposition clears it or a replacement atomically substitutes a new linked identity; neither advances successful-run evidence.
 

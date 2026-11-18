@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:43:37Z
+ki-revised: 2026-11-18T03:52:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -102,6 +102,8 @@ The loop of [the work design standard](standard-work-design.md) is house practic
 [Back to contents](#contents)
 
 ## 4. Last review
+
+Later on 18 November 2026 the Keystone guild's review, from the Cairn summit's change 10, brought the old package shape's last words out of `ki-work`: a work package keeps no decisions log, its owner's decisions being logged in its change documents, so [the acceptance procedure](standard-acceptance.md#42-obtain-closure-authority), the `accept` and `next` modes now find an acceptance bundle's answer and an unattended window's grant in the change document, as `ki-coordination`'s unattended rule already did. No criterion changed and no outside source was refreshed.
 
 On 18 November 2026 the Keystone guild's review in the Cairn summit's change 10 brought this skill's files into `ki-authoring`'s formats: each plural standard was renamed `standard-<name>.md` and reshaped to the standard format, its rules moved into numbered sections unchanged in substance, and this file was reshaped to the sources format, the decisions its standards name gathered into [3](#3-decisions) with their recorded dates and words. The adapter migration keeps its plural name for now. No rule changed and no outside source was refreshed.
 
