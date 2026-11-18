@@ -1,12 +1,12 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { DiagramsRubricContext } from '../contexts/diagrams.ts'
 
-const COMMITTED = 'standards-diagrams.md#committed-forms'
-const MANIFEST = 'standards-diagrams.md#the-manifest'
-const PRIVACY = 'standards-diagrams.md#privacy'
-const FRESHNESS = 'standards-diagrams.md#regeneration-and-freshness'
-const CHOOSING = 'standards-diagrams.md#choosing-a-diagram-type'
-const TOOL = 'standards-diagrams.md#the-tool-archify'
+const COMMITTED = 'standard-diagrams.md#44-committed-forms'
+const MANIFEST = 'standard-diagrams.md#45-the-manifest'
+const PRIVACY = 'standard-diagrams.md#47-privacy'
+const FRESHNESS = 'standard-diagrams.md#48-regeneration-and-freshness'
+const CHOOSING = 'standard-diagrams.md#43-choosing-a-diagram-type'
+const TOOL = 'standard-diagrams.md#41-the-tool-archify'
 
 const DIAG_1: RubricItem<DiagramsRubricContext> = {
   code: 'DIAG-1',

@@ -11,7 +11,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 REFRESH regenerates diagrams. It needs Archify; without it, stop with the Rig install instruction.
 
 1. Run [AUDIT](mode-audit.md) and take each diagram whose DIAG-4 change matches its `stale_when`, or whose DIAG-5 review found a gap.
-2. For each, follow [Regeneration and freshness](standards-diagrams.md#regeneration-and-freshness): re-trace with the `regenerate` prompt and the current source, keeping the layout where the facts hold; finalize at showcase quality; re-export the SVG with `scripts/export-svg.ts`, or run both for every diagram with `scripts/build-html.ts --svg`; set `last_checked`.
+2. For each, follow [Regeneration and freshness](standard-diagrams.md#48-regeneration-and-freshness): re-trace with the `regenerate` prompt and the current source, keeping the layout where the facts hold; finalize at showcase quality; re-export the SVG with `scripts/export-svg.ts`, or run both for every diagram with `scripts/build-html.ts --svg`; set `last_checked`.
 3. Review the rebuilt SVG by eye in both themes before committing it with its source and manifest change.
 4. Re-run AUDIT.
 
