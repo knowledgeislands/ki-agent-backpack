@@ -1,7 +1,7 @@
 import { judgment, type RubricFamily, type RubricItem } from '../../shared/rubric.ts'
 import type { ModelRadarRubricContext, RadarLifecycleContext } from '../contexts/radar.ts'
 
-const SOURCE = 'standards-model-radar.md#dates-and-freshness'
+const SOURCE = 'standard-model-radar.md#43-dates-and-freshness'
 
 const LIFECYCLE_1: RubricItem<RadarLifecycleContext> = {
   code: 'LIFECYCLE-1',
@@ -26,7 +26,7 @@ const LIFECYCLE_2: RubricItem<RadarLifecycleContext> = {
   title: 'support and lifecycle combinations are coherent',
   description:
     'Default routes are adopted and use active models; retired models have only hold and not-integrated routes; benchmark retirement and applicability agree; successors resolve. Mechanical contradictions are reported, but their repair requires an explicit recommendation or lifecycle decision.',
-  sources: ['standards-model-radar.md#executable-routes', 'standards-model-radar.md#benchmarks'],
+  sources: ['standard-model-radar.md#423-executable-routes', 'standard-model-radar.md#424-benchmarks'],
   mechanical: {
     level: 'FAIL',
     remediation: {

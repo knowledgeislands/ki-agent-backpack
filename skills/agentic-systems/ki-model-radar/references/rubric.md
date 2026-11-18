@@ -19,22 +19,22 @@ Line-by-line criteria for auditing ki-model-radar. Classifications are derived f
 
 ## SCHEMA — Snapshot schema
 
-→ [standard](standards-model-radar.md#snapshot-schema)
+→ [standard](standard-model-radar.md#42-snapshot-schema)
 
 The TOML snapshot has one stable, mechanically valid representation.
 
-- **SCHEMA-1 [M] — snapshot schema and record identities are valid** — The radar parses as TOML schema 1, contains only the required map tables, uses stable lower-case hyphenated record identities, repeats each identity exactly in its record, and includes the required typed fields without unknown keys. (standards-model-radar.md#snapshot-schema)
+- **SCHEMA-1 [M] — snapshot schema and record identities are valid** — The radar parses as TOML schema 1, contains only the required map tables, uses stable lower-case hyphenated record identities, repeats each identity exactly in its record, and includes the required typed fields without unknown keys. (standard-model-radar.md#42-snapshot-schema)
   - _Remediation:_ diagnostic — Correct the authored radar structure or identity after confirming the intended record; do not infer missing model facts.
 
 ## EVIDENCE — Evidence quality
 
-→ [standard](standards-model-radar.md#evidence)
+→ [standard](standard-model-radar.md#425-evidence)
 
 Evidence is linked, classified, applicable, and proportionate to its use.
 
-- **EVIDENCE-1 [M] — evidence records and links are valid** — Every evidence record has a current identity, HTTP(S) source, declared evaluation unit and independence class, while every evidence and counter-evidence reference resolves without duplication. (standards-model-radar.md#evidence)
+- **EVIDENCE-1 [M] — evidence records and links are valid** — Every evidence record has a current identity, HTTP(S) source, declared evaluation unit and independence class, while every evidence and counter-evidence reference resolves without duplication. (standard-model-radar.md#425-evidence)
   - _Remediation:_ diagnostic — Review the intended source and record linkage, then correct the authored evidence without fabricating a replacement.
-- **EVIDENCE-2 [J] — evidence supports its declared use** — Evidence is assessed within its declared unit and use case; consequential claims retain materially independent corroboration where available, local-fit evidence proportional to recommendation, and visible uncertainty and counter-evidence. Provider performance claims are not decisive independent evidence. (standards-model-radar.md#evidence-and-movement-review)
+- **EVIDENCE-2 [J] — evidence supports its declared use** — Evidence is assessed within its declared unit and use case; consequential claims retain materially independent corroboration where available, local-fit evidence proportional to recommendation, and visible uncertainty and counter-evidence. Provider performance claims are not decisive independent evidence. (standard-model-radar.md#44-evidence-and-movement-review)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ Does each consequential claim have applicable, sufficiently independent evidence with local fit, uncertainty, and counter-evidence preserved?
   - _Outcomes:_ conforming; gap; exclusion
@@ -42,13 +42,13 @@ Evidence is linked, classified, applicable, and proportionate to its use.
 
 ## LIFECYCLE — Review lifecycle
 
-→ [standard](standards-model-radar.md#dates-and-freshness)
+→ [standard](standard-model-radar.md#43-dates-and-freshness)
 
 Dates, classifications, and consequential state combinations remain current and coherent.
 
-- **LIFECYCLE-1 [M] — vocabulary and review dates are valid** — Model, route, benchmark, and evidence classifications use the closed vocabularies; dates are real, non-future ISO calendar dates; reviews older than 9 days warn without invalidating historical evidence. (standards-model-radar.md#dates-and-freshness)
+- **LIFECYCLE-1 [M] — vocabulary and review dates are valid** — Model, route, benchmark, and evidence classifications use the closed vocabularies; dates are real, non-future ISO calendar dates; reviews older than 9 days warn without invalidating historical evidence. (standard-model-radar.md#43-dates-and-freshness)
   - _Remediation:_ diagnostic — Refresh stale evidence or correct malformed vocabulary and dates only after checking the authored source and intended classification.
-- **LIFECYCLE-2 [M + J] — support and lifecycle combinations are coherent** — Default routes are adopted and use active models; retired models have only hold and not-integrated routes; benchmark retirement and applicability agree; successors resolve. Mechanical contradictions are reported, but their repair requires an explicit recommendation or lifecycle decision. (standards-model-radar.md#executable-routes, standards-model-radar.md#benchmarks)
+- **LIFECYCLE-2 [M + J] — support and lifecycle combinations are coherent** — Default routes are adopted and use active models; retired models have only hold and not-integrated routes; benchmark retirement and applicability agree; successors resolve. Mechanical contradictions are reported, but their repair requires an explicit recommendation or lifecycle decision. (standard-model-radar.md#423-executable-routes, standard-model-radar.md#424-benchmarks)
   - _Remediation:_ guarded — Review the supporting evidence and decide which recommendation, support, retirement, or benchmark state is authoritative before editing.
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ Do recommendation, support, retirement, benchmark lifecycle, and recorded movement express a defensible reviewed decision rather than merely a mechanically consistent tuple?

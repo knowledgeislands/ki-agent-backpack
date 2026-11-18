@@ -15,7 +15,7 @@ argument-hint: "audit | conform | educate | help | refresh"
 
 # Knowledge Islands model radar
 
-This governance skill maintains a portable, reviewable snapshot of models, executable routes, benchmark applicability, and evidence. Read [the model-radar standard](references/standards-model-radar.md) before assessing or changing the snapshot. [The generated rubric](references/rubric.md) publishes its criteria, [the radar snapshot](references/radar.toml) holds current structured state, and [the tracked sources](references/sources.md) govern refresh inputs.
+This governance skill maintains a portable, reviewable snapshot of models, executable routes, benchmark applicability, and evidence. Read [the model-radar standard](references/standard-model-radar.md) before assessing or changing the snapshot. [The generated rubric](references/rubric.md) publishes its criteria, [the radar snapshot](references/radar.toml) holds current structured state, and [the tracked sources](references/sources.md) govern refresh inputs.
 
 The radar informs decisions; it does not rank models automatically, install agents, change runtime defaults, buy access, provision infrastructure, or transmit private material. `ki-acquire pulse` discovers public signals, `ki-env-tokenomics` owns portable model-purpose categories, runtime adapters own effective configuration, `ki-work-recurring` owns recurring review templates, `ki-work next` captures approved downstream work, and `ki-skills` assesses the skill artifact itself.
 

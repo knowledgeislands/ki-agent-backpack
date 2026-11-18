@@ -1,7 +1,7 @@
 import { judgment, type RubricFamily, type RubricItem } from '../../shared/rubric.ts'
 import type { ModelRadarRubricContext, RadarOutcomeContext } from '../contexts/radar.ts'
 
-const SOURCE = 'standards-model-radar.md#evidence'
+const SOURCE = 'standard-model-radar.md#425-evidence'
 
 const EVIDENCE_1: RubricItem<RadarOutcomeContext> = {
   code: 'EVIDENCE-1',
@@ -25,7 +25,7 @@ const EVIDENCE_2: RubricItem<RadarOutcomeContext> = {
   title: 'evidence supports its declared use',
   description:
     'Evidence is assessed within its declared unit and use case; consequential claims retain materially independent corroboration where available, local-fit evidence proportional to recommendation, and visible uncertainty and counter-evidence. Provider performance claims are not decisive independent evidence.',
-  sources: ['standards-model-radar.md#evidence-and-movement-review'],
+  sources: ['standard-model-radar.md#44-evidence-and-movement-review'],
   judgment: judgment(
     'Does each consequential claim have applicable, sufficiently independent evidence with local fit, uncertainty, and counter-evidence preserved?'
   )
