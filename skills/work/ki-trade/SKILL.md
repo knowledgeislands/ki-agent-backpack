@@ -18,7 +18,7 @@ argument-hint: 'prepare <receiver> | observe <TRD> | submit <TRD> | abandon <TRD
 
 Operates the selected repository's local side of a trade without writing a peer checkout or deciding the receiver's response.
 
-Read [the trade-operations procedure](references/standards-trade-operations.md) before running a mutating operation.
+Read [the trade-operations procedure](references/standard-trade-operations.md) before running a mutating operation.
 
 ## Lifecycle
 
@@ -54,7 +54,7 @@ It never creates or prioritises roadmap work, retains knowledge, claims local co
 
 `help` / `-h` / `?` explains this skill and stops, taking no action.
 
-The remaining invocations map one-to-one to the local `ki trade` surface. Before any mutation, resolve the physical repository root, run the `ki-trades` audit, inspect the host's exact local write or deletion preview, and obtain any confirmation required by [the procedure](references/standards-trade-operations.md). Re-audit afterward. Do not add an all-or-nothing interpretation to the asynchronous `receive --all` convenience operation, or treat this guidance as proof of any separate host capability.
+The remaining invocations map one-to-one to the local `ki trade` surface. Before any mutation, resolve the physical repository root, run the `ki-trades` audit, inspect the host's exact local write or deletion preview, and obtain any confirmation required by [the procedure](references/standard-trade-operations.md). Re-audit afterward. Do not add an all-or-nothing interpretation to the asynchronous `receive --all` convenience operation, or treat this guidance as proof of any separate host capability.
 
 With no recognised operation, show the lifecycle, observation policies, available operations, and the `ki-work next` disposition off-ramp, then stop.
 
