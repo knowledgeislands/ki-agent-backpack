@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { WebsiteCoreContext } from '../contexts/website.ts'
 
-const SOURCE = 'standards-website.md'
+const SOURCE = 'standard-website.md'
 const remediation = {
   class: 'diagnostic' as const,
   guidance: 'Align the shared website declaration and lifecycle seam, then rerun the audit.'

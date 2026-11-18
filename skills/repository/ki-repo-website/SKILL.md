@@ -25,7 +25,7 @@ Apply the generator- and provider-neutral website contract. A website declares `
 
 The shared seam is a generated `dist/` beside the selected site root and three public aliases in the repository root `package.json`: `ki:site:build`, `ki:site:dev`, and `ki:site:clean`. Build and clean delegate to ordinary lifecycle scripts in the selected site package; development delegates to the package-local capability key `ki:site:dev`. The default site root is `apps/site`; `[skills.ki-repo-website] site-root = "."` retains a flat repository, and another safe relative path is an explicit override. This core skill alone owns that path. The implementation skill owns what the local commands run. The hosting adapter owns how `dist/` is published.
 
-Read [the website core standard](references/standards-website.md) for the contract, [the generated rubric](references/rubric.md) for exact checks, and [the source list](references/sources.md) in REFRESH mode.
+Read [the website core standard](references/standard-website.md) for the contract, [the generated rubric](references/rubric.md) for exact checks, and [the source list](references/sources.md) in REFRESH mode.
 
 ## Select by purpose
 
