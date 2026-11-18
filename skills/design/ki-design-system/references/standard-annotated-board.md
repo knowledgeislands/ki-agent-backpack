@@ -44,7 +44,7 @@ The annotated board an interface with readers keeps, and how it is built, refres
 
 - Design work from brief to rule, and projections in general: [the design system standard](standard-design-system.md).
 - The levels redesigns are drawn at: [the design levels standard](standard-design-levels.md).
-- The site's own browser automation, which the harness does not install.
+- The site's own browser automation, which the backpack does not install.
 
 [Back to contents](#contents)
 
@@ -100,7 +100,7 @@ The rules, part by part.
 
 ### 4.4 Building and refreshing
 
-[`scripts/annotate-board.ts`](../scripts/annotate-board.ts) carries the parts that do not depend on the site: the in-page collector, the region codes, the overlay and a local preview. A site supplies a board plan and its own browser automation; the harness installs no browser driver for it.
+[`scripts/annotate-board.ts`](../scripts/annotate-board.ts) carries the parts that do not depend on the site: the in-page collector, the region codes, the overlay and a local preview. A site supplies a board plan and its own browser automation; the backpack installs no browser driver for it.
 
 1. **Plan.** Write the board plan, a JSON file beside the board's working files, outside the repository: its shells and their parts, with the nested shells as one `shell` zone whose whole is the window and whose parts are listed from the outside in, how page blocks are found and named, and one entry per artboard naming its number, title, screenshot and zones.
 2. **Screenshots.** With the interface running, the site's browser automation takes each view and shell state's screenshot, and each component's element screenshot in each of its states.

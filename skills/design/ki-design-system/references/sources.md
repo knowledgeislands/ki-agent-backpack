@@ -68,6 +68,8 @@ The floor follows one specification, and the house's own documentation standards
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Design guild: REFRESH names the backpack, and the annotated board standard says the backpack installs no browser driver; the pilot's history keeps its words. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Design guild's review, from the Cairn summit's change 10, brought the standards into the standard format: [the design system standard](standard-design-system.md), [the design levels standard](standard-design-levels.md) and [the annotated board standard](standard-annotated-board.md), formerly `standards-design-system.md`, `standards-design-levels.md` and `standards-annotated-board.md`, were renamed and reshaped with their rules unchanged and numbered, and the Decisions' Backs links and the rubric's source names follow. No rule changed and no outside source was refreshed.
 
 Later on 17 November 2026 an in-house review applied REVIEW-HOME b, which Kris took that day at about 01:37 GMT, relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided): [how a round runs](standard-design-levels.md#43-how-a-round-runs), step 5, reviews each board as `ki-authoring`'s [review standard](../../../keystone/ki-authoring/references/standard-review.md) sets, its findings anchored to a board code and region, the blocking ones settled before the round is final. What the review does is unchanged. No outside source refreshed.
