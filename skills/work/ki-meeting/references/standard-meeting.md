@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T03:30:00Z
+ki-revised: 2026-11-18T02:12:12Z
 ki-status: in force
 ---
 
@@ -46,7 +46,7 @@ What a meeting is, how it is called, held and closed, and how its participants r
 ### 2.1 In scope
 
 - When a meeting is the right channel, and who calls, keeps and owns one.
-- The three types of meeting and what each produces, with a standard of its own for each.
+- The four types of meeting and what each produces, with a standard of its own for each.
 - The meeting folder, its entry file and its messages.
 - Routes, sittings, roll calls, listening and check-ins.
 - How work, Git, private data and decisions are handled in a meeting, and its minutes and close.
@@ -75,7 +75,7 @@ What a meeting is, how it is called, held and closed, and how its participants r
 | **Participant** | Each session or person taking part, with a role stated in the agenda, such as caller, maker, reviewer, illustrator or owner. **Standard:** this one, [4.5](#45-the-entry-file) |
 | **Route** | How a participant reaches the others: its agent host's own messaging, the meeting folder, or exchange mode. **Standard:** this one, [4.6](#46-routes) |
 | **Exchange mode** | The exception in which the owner carries prompts both ways for a participant that cannot reach the folder. **Standard:** this one, [4.6](#46-routes) |
-| **Sitting** | One period of a meeting, lettered A, B, C and on, with a stated end, opened by a roll call and ended by its minutes. **Standard:** this one, [4.7](#47-sittings-and-the-roll-call) |
+| **Sitting** | One period of a meeting, lettered A, B, C and on, with a stated end except in a standing room, opened by a roll call and ended by its minutes. **Standard:** this one, [4.7](#47-sittings-and-the-roll-call) |
 | **Closing call** | The chair's message, 15 minutes before a sitting's stated end, that asks what each participant will finish by then. **Standard:** this one, [4.7](#47-sittings-and-the-roll-call) |
 | **Roll call** | Each participant's answer at a sitting's start: its clock, its role and the sitting's goal in its own words. **Standard:** this one, [4.7](#47-sittings-and-the-roll-call) |
 | **Message** | One file in the meeting's `messages/`, never edited once written. **Standard:** this one, [4.8](#48-messages) |
@@ -116,10 +116,11 @@ Each meeting is of one type, named in its entry file, which says what the meetin
 | **Workshop** | Makes something together, such as designs | The thing made, in the output folder, each part final or with its choices listed | [Workshop](standard-workshop.md) |
 | **Review** | Assesses something already made | A verdict on each part | [Review](standard-review.md) |
 | **Retrospective** | Looks back at a meeting or a run of work | What to keep and what to change, each sent to the change document that owns that way of working | [Retrospective](standard-retrospective.md) |
+| **Standing room** | Runs while its members work, as a route between sessions that cannot message each other or a standing conversation, and closes only on the owner's word | Messages and minutes; its decisions go to change documents | [Standing room](standard-standing-room.md) |
 
 A meeting runs by this standard and by its type's.
 
-**The standing room, for now** (STANDING-NOW, Kris, 14 November 2026). The one standing room already held, the housekeepers' room between two rigs, carries on as it is, the one exception to the three types, until the try between machines in [4.6](#46-routes); no fourth type is set until then.
+**The standing room** (MEET-STANDING, Kris, 18 November 2026) is the one type with no time limit per sitting and no `brief/` or output folder; where it differs from the rules below, its standard says so.
 
 [Back to contents](#contents)
 
@@ -129,8 +130,8 @@ A meeting runs by this standard and by its type's.
 2. **The folder holds:**
    - `_index.md`, the entry file, never `README.md`;
    - `messages/`, one file per message;
-   - `brief/`, what participants work from;
-   - an output folder named for the work, such as `designs/`;
+   - `brief/`, what participants work from, except in a standing room;
+   - an output folder named for the work, such as `designs/`, except in a standing room;
    - `notes/`, for anything too long for a message.
 3. **How output is named** belongs to the kind of work, such as a design meeting's levels, not to this standard.
 4. **Outputs land where their readers can open them** (SHARE-OUTPUTS, Kris, 14 November 2026). The agenda says where each participant's outputs go ([4.5](#45-the-entry-file)); unless the agenda says otherwise, each participant also puts what it makes in the output folder. How each agent host in use shares its outputs is in [4.16](#416-runtime-binding).
@@ -147,7 +148,7 @@ The caller makes the folder and writes `_index.md`. Setting a meeting up and bri
 ki-id: meeting:cairn.wayfinder.designs  # meeting:<folder's name>
 ki-document-type: meeting
 ki-name: Wayfinder designs              # optional, a human label, never a copy of the id
-ki-kind: workshop                       # workshop | review | retrospective
+ki-kind: workshop                       # workshop | review | retrospective | standing-room
 ki-sitting: C                           # the current or last sitting
 ki-chair: actor:wayland                 # the chair's actor id; the caller's, unless the owner started another session to chair
 ki-status: open                         # open | adjourned | closed, the meeting closed after its last sitting
@@ -180,14 +181,14 @@ How participants reach each other, three levels, the first that works:
 2. **A meeting folder.** Otherwise they are brought together in a meeting. Each participant must reach the repository that holds the folder, by whatever route its runtime gives. Most reach it on the file system, where each sees what another writes at once, and still commits, pulls and pushes. One that cannot reaches it through its own connector to the repository's host, such as a GitHub connector. The agenda gives each participant's route.
 3. **Exchange mode, the exception.** Only when an agent is too limited to reach the repository at all, or the owner chooses to manage the exchange in person, does the owner carry prompts both ways. The caller writes each prompt as a message ending in one block to paste; the owner pastes it across and brings the answer back; the caller files the answer as that participant's message, marked as carried by the owner, such as "carried by Kris".
 
-**Between machines** (CROSS-RIG-TRY, Kris, 14 November 2026). Sessions on different machines meet in a meeting folder. Nothing is built for a route between machines, a relay included, until one try of the agent host's own remote messaging between a session on each machine, and that try waits for the owner to turn it on at each; [4.16](#416-runtime-binding) names what is tried.
+**Between machines** (CROSS-RIG-TRY, Kris, 14 November 2026, and MEET-STANDING, 18 November 2026). Sessions on different machines meet in a meeting folder. The agent host's own remote messaging was tried between a session on each machine and does not reach the sessions in use, so a route between machines that lasts is a [standing room](standard-standing-room.md); [4.16](#416-runtime-binding) names what was tried.
 
 [Back to contents](#contents)
 
 ### 4.7 Sittings and the roll call
 
 1. **Sittings.** A meeting has no fixed end; it runs in sittings, A, B, C and on. A sitting that reaches its end, or runs out of work, is adjourned: the caller writes its minutes and a resume note saying where the next sitting picks up. The meeting closes after its last sitting.
-2. **Each sitting has a stated end** (SITTING-END, Kris, 14 November 2026). The sitting's opening message states its end, from `date -u`, and the chair may extend it by posting a new one. Fifteen minutes before the end, the chair sends one closing call, asking what each participant will finish by then.
+2. **Each sitting has a stated end** (SITTING-END, Kris, 14 November 2026), except in a standing room, whose sittings have none ([its standard](standard-standing-room.md#43-holding-a-standing-room)). The sitting's opening message states its end, from `date -u`, and the chair may extend it by posting a new one. Fifteen minutes before the end, the chair sends one closing call, asking what each participant will finish by then.
 3. **Waking does not rely on listening** (WAKE-OPENER, Kris, 14 November 2026). The sitting's opening names how each participant is woken; today that is the owner pasting an opener the chair gives the owner for each participant. The sitting starts once every roll call is in, and if one is still missing at a time the opening states, the chair tells the owner.
 4. **Each new session is named and told to delegate** (OPENER-NAME and OPENER-DELEGATE, Kris, 14 November 2026). The opener or brief that starts a participant in a new agent session names the session line it is to take and tells it to rename itself to that line as its first act, by its agent host's rename (runtime-specific: `/rename <line>` in Claude Code). A participant working in the package without its keys, as a maker in a meeting does, takes `<role glyph> <package>@<role>`, as in `📐 ki.cairn@information-architect`: the glyph and name of its role in `ki-work-package`'s role catalogue and the id of the package the meeting serves, `<package>+<slug>` where it serves a sub-package, under that skill's [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line) (SEAT-LINE, Kris, 14 November 2026, and SEAT-AT, 16 November 2026). The holder of the package keeps its own line, with 🔑. A participant whose actor is named puts the name first and its line in brackets, as in `Quire (📐 ki.cairn@information-architect)` and `Kitteth (🪨 🔑 cairn.summit)`, under NAME-FIRST there; an unnamed one keeps the bare line. The same opener tells the participant to delegate its work to its agent host's own subagents, to stay responsive to the meeting's messages and to the owner while that work runs, and to let the subagents do most of the work, checking what they return before posting it, under [4.11](#411-doing-the-work) (OPENER-DELEGATE, Kris, 14 November 2026).
 5. **Roll call.** Each sitting opens with one. Every participant answers with its clock, from `date -u`, its role, and the sitting's goal in its own words, so all work to one time and one aim.
@@ -279,7 +280,7 @@ Kris, 14 November 2026 (MEET-BUSY):
 
 ### 4.15 Closing
 
-1. **The caller's last message closes the meeting,** naming each outcome and the change document that now holds it. Nothing closes by itself. The close restates each choice and recommendation it carries, and never refers back to an earlier message for them (CHOICES-WHOLE, Kris, 14 November 2026).
+1. **The caller's last message closes the meeting,** naming each outcome and the change document that now holds it. Nothing closes by itself, and a standing room closes only on the owner's word. The close restates each choice and recommendation it carries, and never refers back to an earlier message for them (CHOICES-WHOLE, Kris, 14 November 2026).
 2. **Listening ends.** The caller's watcher stops, and with `ki-status` no longer `open` in the entry file no participant reads as listening.
 3. **Work that landed** during the meeting gets its record, as the store's own rule for records sets.
 4. **The folder is removed** from the tree once the owner has reviewed that record, and Git history keeps it.
@@ -293,7 +294,7 @@ How the rules above fall on the agent hosts in use when the standard was written
 - **Agent host messaging:** Orca's messages between its sessions, for Claude Code sessions on one rig. The caller is a Claude Code session; other Claude Code sessions stay out of the room and reach it over Orca.
 - **In the room on the file system:** Claude Design in Claude Desktop, and an illustrator in the ChatGPT desktop app's Codex, each reading and writing the folder directly and committing its own files.
 - **Through a connector:** ChatGPT's voice mode, which cannot reach the file system, through its own GitHub connector.
-- **Between machines:** the remote messaging to try is Claude Code's Remote Control, between a session on sol and one on terra (CROSS-RIG-TRY).
+- **Between machines:** Claude Code's Remote Control was the remote messaging to try, between a session on sol and one on terra (CROSS-RIG-TRY). It does not reach the sessions in use, which run Claude Code as their harness inside Orca as their host, since Remote Control comes only with Claude Code's own interface (Kris, 18 November 2026); so rigs reach each other through a standing room (MEET-STANDING).
 - **Sharing outputs:** Claude Design shares its boards as its own artifacts, which is what the owner expects there, and in a meeting puts them in the output folder too; the illustrator works in its own app and puts what it makes in the output folder, and does not send the owner to GitHub.
 - **Without Git:** Claude Design works in a sandboxed shell that cannot delete Git's lock files and has no checkout or push of its own, so it is a participant without Git, and the chair commits its files.
 - **Listening:** the caller runs a shell watcher on the folder; Claude Desktop, which cannot keep a shell loop open between turns, listens by scheduled wake-ups. In the first sitting the caller checked every 30 seconds and Claude Design every two minutes until a set time.

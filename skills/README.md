@@ -608,7 +608,7 @@ Govern KI content sites built with Eleventy 3, Markdown or data, Nunjucks, Tailw
 
 #### `ki-coordination`
 
-Govern coordinating work under the Knowledge Islands work model: the responsive coordinator and its turn budget, the work levels and forms with their ids, openers and bootstrap, the seven states and the receive words, the mark and the one Summary with its status table and footer, the reply format, the closing glyph banner and thread line, On hold with its Stop, the work package and its message queue, route receipt and the inbox check, re-anchoring after compaction, decision classes and their life cycle, change documents, Finished, the working rules, and the three reply forms every session uses. Use while coordinating any explicitly opened work package to give a summary or banner or strike the mark, or to decide how any session replies; `ki-delegation` owns the background runs the coordinator launches.
+Govern coordinating work under the Knowledge Islands work model: the responsive coordinator and its turn budget, the work levels and forms with their ids, openers and bootstrap, the seven states and the receive words, the mark and the one Summary with its status table and footer, the reply format, the closing glyph banner and thread line, On hold with its Stop, the work package, route receipt along the tree and the inbox watch, re-anchoring after compaction, decision classes and their life cycle, change documents, Finished, the working rules, and the three reply forms every session uses. Use while coordinating any explicitly opened work package to give a summary or banner or strike the mark, or to decide how any session replies; `ki-delegation` owns the background runs the coordinator launches.
 
 - **Kind:** Governance
 - **Applicability:** Declaration Only
@@ -618,7 +618,7 @@ Govern coordinating work under the Knowledge Islands work model: the responsive 
 
 #### `ki-meeting`
 
-Call, hold and close a meeting: a room at one node of the work tree where named participants, each reaching it by the first route that works, make, review or look back on something together, in sittings with a roll call, one file per message, check-ins and minutes, while decisions go to a change document. Use to call a meeting, open, adjourn or join a sitting, or close one, and to choose a workshop, review or retrospective; use `ki-coordination` for coordinating work and its reports, and `ki-work-package` for the package a meeting serves.
+Call, hold and close a meeting: a room at one node of the work tree where named participants, each reaching it by the first route that works, make, review or look back on something together, in sittings with a roll call, one file per message, check-ins and minutes, while decisions go to a change document. Use to call a meeting, open, adjourn or join a sitting, or close one, and to choose a workshop, review, retrospective or standing room; use `ki-coordination` for coordinating work and its reports, and `ki-work-package` for the package a meeting serves.
 
 - **Kind:** Process
 - **Applicability:** Invocation Only
