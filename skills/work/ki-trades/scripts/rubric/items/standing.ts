@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { OutcomeContext, TradesRubricContext } from '../contexts/trades.ts'
 
-const SOURCE = 'standards-trades.md'
+const SOURCE = 'standard-trades.md'
 
 const STANDING_1: RubricItem<OutcomeContext> = {
   code: 'STANDING-1',

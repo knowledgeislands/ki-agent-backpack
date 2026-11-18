@@ -17,7 +17,7 @@ argument-hint: "audit <repo> | conform <repo> | educate <repo> | help | refresh"
 
 # Knowledge Islands cross-repository trades
 
-This governance skill defines safe **trade preparation and submission**, not transfer: a sender may make evolving work or knowledge visible without asking a peer to act, then publish an immutable submission while the receiver alone decides receipt, disposition, and any local follow-on work or knowledge. Read [the trade standard](references/standards-trades.md) before creating or reviewing records; [the generated rubric](references/rubric.md) publishes the mechanical and judgment criteria, and [the source list](references/sources.md) records the contract's provenance.
+This governance skill defines safe **trade preparation and submission**, not transfer: a sender may make evolving work or knowledge visible without asking a peer to act, then publish an immutable submission while the receiver alone decides receipt, disposition, and any local follow-on work or knowledge. Read [the trade standard](references/standard-trades.md) before creating or reviewing records; [the generated rubric](references/rubric.md) publishes the mechanical and judgment criteria, and [the source list](references/sources.md) records the contract's provenance.
 
 > **Trades are on hold, due for review by 2026-12-31 at the latest; opening the Trades revamp Project reviews it sooner.** Submit no new trade. Do the work directly, record it as work in the receiving repository, or send a handoff or rollout along the tree under `ki-coordination`. Existing trades keep the full support described here, so they can still be received, decided and released.
 

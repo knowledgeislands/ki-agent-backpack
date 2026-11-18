@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { ScaffoldContext, TradesRubricContext } from '../contexts/trades.ts'
 
-const SOURCE = 'standards-trades.md'
+const SOURCE = 'standard-trades.md'
 
 const SCAFFOLD_1: RubricItem<ScaffoldContext> = {
   code: 'SCAFFOLD-1',

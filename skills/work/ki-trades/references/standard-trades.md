@@ -1,25 +1,96 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T03:54:46Z
+ki-status: in force
+---
+
 # Cross-repository trade standard
 
-This standard defines typed, directional trade routes between registered Knowledge Islands repositories. Routes are granted by the territory trade policy that the Capital owns; a member declares only that it participates. It grants no transport, peer-write, roadmap, priority, implementation, knowledge, or acceptance authority. The structured catalogue enforces the mechanical rules; the generated [rubric](rubric.md) publishes them.
+## Contents
+
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 What a trade is, and the hold](#41-what-a-trade-is-and-the-hold)
+  - [4.2 Participation](#42-participation)
+  - [4.3 Capital trade policy](#43-capital-trade-policy)
+    - [4.3.1 The policy](#431-the-policy)
+    - [4.3.2 Resolution and activation](#432-resolution-and-activation)
+    - [4.3.3 Knowledge subtypes and standing intake](#433-knowledge-subtypes-and-standing-intake)
+    - [4.3.4 Standing intake provenance](#434-standing-intake-provenance)
+    - [4.3.5 Authority lifecycle and automation boundary](#435-authority-lifecycle-and-automation-boundary)
+  - [4.4 Storage and identity](#44-storage-and-identity)
+  - [4.5 Preparation and observation](#45-preparation-and-observation)
+  - [4.6 Submitted record format](#46-submitted-record-format)
+  - [4.7 Copy and write authority](#47-copy-and-write-authority)
+  - [4.8 Delivery and decision](#48-delivery-and-decision)
+  - [4.9 Observation policies](#49-observation-policies)
+  - [4.10 Release and pruning](#410-release-and-pruning)
+  - [4.11 Roadmap and process boundary](#411-roadmap-and-process-boundary)
+
+## 1. Introduction
+
+This standard defines typed, directional trade routes between registered Knowledge Islands repositories. Routes are granted by the territory trade policy that the Capital owns; a member declares only that it participates. It grants no transport, peer-write, roadmap, priority, implementation, knowledge, or acceptance authority. The structured catalogue enforces the mechanical rules; the generated [rubric](rubric.md) publishes them. The decisions and sources behind it are in [the sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+Typed, directional trade routes between registered Knowledge Islands repositories, and the records that travel them.
+
+### 2.1 In scope
+
+- What a trade is, and the hold on new trades.
+- A member's participation and the Capital's territory trade policy, with its routes, knowledge subtypes and standing intake.
+- Where trade records are stored, their identity and their phases.
+- Preparation, submission and the submitted record's format.
+- Who writes each copy, and the sender projection.
+- Delivery, the receiver's decision, observation policies, release and pruning.
+- The boundary with roadmap work.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- A handoff or a rollout to other work: `ki-coordination`'s [work between packages](../../ki-coordination/references/standards-messages.md#messages-between-work).
+- Operating one side of a trade: `ki-trade`'s [trade-operations procedure](../../ki-trade/references/standard-trade-operations.md).
+- The receiver's disposition of a received trade: `ki-work next`.
+- The generic `+` and `-` working areas and the repository's identity and Capital: `ki-repo`.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Trade** | A typed, directional work or knowledge record passed between registered repositories along a route the Capital's policy grants; nothing else between repositories is one. **Standard:** this one, [4.1](#41-what-a-trade-is-and-the-hold) |
+| **Territory trade policy** | The Capital's `[skills.ki-trades.territory]`: its knowledge subtypes, the channels that grant routes, and the standing grants on them. **Standard:** this one, [4.3.1](#431-the-policy) |
+| **Granted route** | A `(source, receiver, kind)` triple a channel of the policy grants; it permits sender-local preparation and submission. **Standard:** this one, [4.3.2](#432-resolution-and-activation) |
+| **Active route** | A granted route whose peer is registered once, declares ki-trades and names the same Capital; receipt needs one. **Standard:** this one, [4.3.2](#432-resolution-and-activation) |
+| **Standing intake** | An exact grant, layered on an active knowledge route, for direct receiver-local capture of one knowledge subtype. **Standard:** this one, [4.3.3](#433-knowledge-subtypes-and-standing-intake) |
+| **Phase** | What one copy of a record is: `preparing`, `submitted` or `received`. **Standard:** this one, [4.4](#44-storage-and-identity) |
+| **Sender projection** | Every sender frontmatter field and the whole body, immutable in meaning after submission. **Standard:** this one, [4.7](#47-copy-and-write-authority) |
+| **Decision status** | The receiver's own disposition of its inbound copy, from `unconsidered` to a terminal decision. **Standard:** this one, [4.8](#48-delivery-and-decision) |
+| **Observation policy** | What the sender waits for before release: `unattended`, `receipt`, `decision` or `completion`. **Standard:** this one, [4.9](#49-observation-policies) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 What a trade is, and the hold
 
 > **Trades are on hold.** Submit no new trade. Do the work directly, record it as work in the receiving repository, or send a handoff or rollout along the tree. Existing trades keep the full support described here, so they can still be received, decided and released. The skill's own notice carries the review date, and opening the Trades revamp Project reviews the hold sooner.
 
 This standard governs only the routes the Capital's declared trade policy grants; nothing else between repositories is a trade. A handoff or a rollout goes along the tree under `ki-coordination`'s [work between packages](../../ki-coordination/references/standards-messages.md#messages-between-work), never as a trade or a roadmap record, as Kris set under HANDOFF-AS-MESSAGE on 2026-10-20 and narrowed this skill under TRADES-FATE on 26 October 2026.
 
-## Contents
+[Back to contents](#contents)
 
-- [Participation](#participation)
-- [Capital trade policy](#capital-trade-policy)
-- [Storage and identity](#storage-and-identity)
-- [Preparation and observation](#preparation-and-observation)
-- [Submitted record format](#submitted-record-format)
-- [Copy and write authority](#copy-and-write-authority)
-- [Delivery and decision](#delivery-and-decision)
-- [Observation policies](#observation-policies)
-- [Release and pruning](#release-and-pruning)
-- [Roadmap and process boundary](#roadmap-and-process-boundary)
-
-## Participation
+### 4.2 Participation
 
 A repository participates by declaring its own bare table. The member table carries no routes:
 
@@ -37,7 +108,15 @@ The per-repository `routes` and `subtypes` keys are retired. Their presence fail
 
 A member that declares ki-trades but is named in no channel of its resolved policy is warned: either the Capital has yet to grant it a route or the declaration is surplus. While the hold notice in `SKILL.md` stands, the check is not applicable: the hold strips each policy back to a bare `[skills.ki-trades]`, so an empty policy and unnamed members are valid. For the same reason a retained trade record whose route the stripped policy no longer grants is reported as unverifiable rather than refused. Conversely, `ki-repo` fails a member that a resolved policy names but that does not declare ki-trades.
 
-## Capital trade policy
+[Back to contents](#contents)
+
+### 4.3 Capital trade policy
+
+The policy the Capital holds, how a member resolves it, and the standing intake layered on it.
+
+[Back to contents](#contents)
+
+#### 4.3.1 The policy
 
 The Capital's own `[skills.ki-trades]` carries the territory trade policy under `territory`. It defines the knowledge subtype vocabulary, the channels that grant routes, and the standing grants layered on them:
 
@@ -62,7 +141,9 @@ to = ["https://github.com/owner/receiver"]
 
 A standing grant declares exactly a defined `subtype` and non-overlapping canonical `from` and `to` arrays. It expands to `(source, receiver, subtype)` triples; each must already be joined by a `knowledge` channel triple, and no standing triple may repeat. A malformed policy fails closed: it grants no route and no standing grant anywhere in the territory until it is corrected.
 
-### Resolution and activation
+[Back to contents](#contents)
+
+#### 4.3.2 Resolution and activation
 
 A repository resolves its policy through its own declared `capital`, never by scanning for a repository that declares a territory, so several territories can share one registry. The policy is the one held by the unique registered checkout declaring that canonical URL, which must name itself as its capital, declare a territory, and list the member. A Capital resolves its own policy.
 
@@ -74,13 +155,17 @@ A granted route is active only when exactly one registered repository declares t
 
 A granted export authorises sender-local preparation and submission while the receiver is still awaiting registration or participation. Receipt requires an active route of the same kind. Removing a channel or standing grant is a change to the Capital's policy, proposed and accepted there; the Capital should refuse it while a local preparation, submitted outbound record, or retained inbound record still depends on the typed route.
 
-### Knowledge subtypes and standing intake
+[Back to contents](#contents)
+
+#### 4.3.3 Knowledge subtypes and standing intake
 
 Standing intake is an optional, exact grant layered onto an active ordinary `knowledge` route. The Capital's policy owns and describes the subtype vocabulary and grants each `(source, receiver, subtype)` triple; members declare no subtype or standing configuration. Work has no subtype or standing path. A subtype absent from a standing grant, or a grant without its knowledge channel, remains itemised-only; it never degrades into partial standing authority.
 
 An itemised knowledge record may carry optional `subtype` classification. Existing records without it remain valid. The field is invalid on work, and its presence never upgrades an itemised trade into standing intake.
 
-### Standing intake provenance
+[Back to contents](#contents)
+
+#### 4.3.4 Standing intake provenance
 
 Direct capture is receiver-local and begins with the exact marker `<!-- ki-trades:standing-intake -->` immediately followed by a TOML block:
 
@@ -102,13 +187,17 @@ New capture requires a currently active exact-subtype standing import. Removing 
 
 Standing intake grants no peer write, review, priority, implementation, publication, acceptance, completion, or roadmap authority. It may augment an existing record only when the insight directly supports that record's established goal and boundary. A distinct insight, decision, dependency, or scope creates receiver-local draft work. Canonical knowledge may receive a direct capture only when knowledge itself is the outcome; any public contract or implementation change still enters receiver-local work. Territory-derived repository selection is presentational context only and neither activates nor is required for standing intake.
 
-### Authority lifecycle and automation boundary
+[Back to contents](#contents)
+
+#### 4.3.5 Authority lifecycle and automation boundary
 
 Activation requires a current ordinary knowledge route plus an exact-subtype standing grant in the Capital's trade policy; neither member can grant or withhold it locally. Revocation blocks every new capture immediately, while committed introduction-time evidence remains historical and reviewable. Standing intake grants no peer write, review, priority, implementation, publication, acceptance, completion, or roadmap authority.
 
 Standing intake is not automatic transport or execution. Any future agent that discovers, transfers, applies, or publishes work without a contemporaneous operator must have a separate explicit authority contract covering scheduling, idempotency, isolation, failure recovery, evidence, review, and revocation. A standing grant or `unattended` itemised policy supplies none of that authority.
 
-## Storage and identity
+[Back to contents](#contents)
+
+### 4.4 Storage and identity
 
 The generic `+` and `-` working areas remain owned by `ki-repo`. A repository declaring `ki-trades` also carries:
 
@@ -131,7 +220,9 @@ Every copy of a record declares its own `phase`, drawn from a closed vocabulary 
 
 `phase` is required on every record and its value must match the copy the record is. It states the state of that copy, not the disposition of the receiver towards the trade: `decision_status` is a separate field on its own axis, and the two advance independently. `phase` is the one field each side writes for its own copy, so audit excludes it from the immutable sender projection alongside the receiver-local fields.
 
-## Preparation and observation
+[Back to contents](#contents)
+
+### 4.5 Preparation and observation
 
 A preparation uses the submitted sender envelope and body described below with `phase: preparing`. It must declare `observation` explicitly. It is mutable at its sender-local outbound path and is not receivable. Committing it makes it available for silent inspection through the sender's registered repository root but creates no receiver copy, acknowledgement, decision, response expectation, or dialogue record.
 
@@ -139,7 +230,9 @@ Preparation history is Git history. Observation compares the current committed r
 
 Submission rewrites `phase` from `preparing` to `submitted` on a stable path and freezes the raw sender projection. It is an ordinary field update, not a file move and not a text substitution that depends on `phase` being the last key in the block, so reordering the frontmatter cannot leave a submitted record still declaring itself as preparing. It does not require receiver registration or participation. A submitted record is self-contained and survives sender disconnection.
 
-## Submitted record format
+[Back to contents](#contents)
+
+### 4.6 Submitted record format
 
 The sender authors this envelope and payload:
 
@@ -175,7 +268,9 @@ The eight sender fields and `phase` are required strings. `kind` is `work` or `k
 
 An inbound receiver copy sets `phase: received` and adds `decision_status: unconsidered` and, when the committed sender reference is available, `received_from_ref: <full-commit>`. It may also carry receiver-local `reviewed_at`, `rationale`, `applied_commit`, `adopted_as`, `retained_as`, or `superseded_by`. Receiver-local commit references are 40 lower-case hexadecimal characters. No other frontmatter key is valid.
 
-## Copy and write authority
+[Back to contents](#contents)
+
+### 4.7 Copy and write authority
 
 The sender writes and removes only its preparation and outbound record and never sets receiver-local fields. The receiver creates and changes only its inbound copy. The sender projection—every sender frontmatter field and the whole body—is immutable in meaning after submission. `phase` is excluded from it, because it states what each copy is rather than what the sender asserted. Audit derives each sender projection by removing only the recognised single-line `phase` field and, on an inbound copy, the recognised single-line receiver-local fields, then compares the two copies by meaning rather than by byte: frontmatter values are unquoted and whitespace is collapsed, so rewrapping, reindenting, and requoting pass while any change to the words fails. Trade records are therefore formatted like any other authored Markdown, and are not excluded from the formatters. Where no registered peer holds the counterpart copy—most often because the sender has released—the comparison reports as unverifiable rather than passing silently.
 
@@ -187,7 +282,9 @@ Insensitivity to formatting is not a licence to normalise. A receiver never rewr
 
 The governance checker is read-only across repositories. Its only conformable write is the local owned README scaffold. Preparation, observation, submission, receipt, disposition, release, and pruning are explicit local operations outside CONFORM.
 
-## Delivery and decision
+[Back to contents](#contents)
+
+### 4.8 Delivery and decision
 
 Publication, delivery, and decision are independent axes:
 
@@ -210,7 +307,9 @@ The receiver alone moves its inbound decision status:
 
 `applied` and `adopted` are work-only; `retained` is knowledge-only. `retained` is the knowledge form of the receiver keeping a trade locally; `applied` is the work form where the receiver performed the bounded work directly. `adopted` remains distinct: the receiver accepted the work as a named local follow-on record, but that record is not thereby complete. There is no generic trade `completed` status.
 
-## Observation policies
+[Back to contents](#contents)
+
+### 4.9 Observation policies
 
 A sender chooses one policy for an itemised `TRD-*` record without imposing an obligation on the receiver:
 
@@ -221,14 +320,20 @@ A sender chooses one policy for an itemised `TRD-*` record without imposing an o
 
 `parked` and `clarify` remain non-terminal under every policy and continue to wait beyond receipt. `unattended` and `receipt` have the same evidenced release boundary; their only distinction is sender intent about a response. Neither bypasses receiver-created receipt or receiver-owned disposition. A policy grants no deadline, delivery guarantee, response guarantee, priority, implementation, acceptance, or completion authority.
 
-## Release and pruning
+[Back to contents](#contents)
+
+### 4.10 Release and pruning
 
 The sender lifecycle has only mutable `preparing`, immutable `submitted`, and explicit release. “Waiting” is not a stored phase: a submitted record is waiting while its selected policy is unsatisfied. The sender may release its outbound copy only when that policy is satisfied; release removes the submitted sender projection. A release-eligible outbound remains valid until the sender explicitly removes it.
 
 The receiver may prune its inbound copy only after an eligible sender release is observable. Absence before policy satisfaction is premature release, not permission to prune. An inbound record retains enough sender-policy and receiver-decision evidence to distinguish those cases after release. Cleanup is explicit and previewed; neither side performs background deletion.
 
-## Roadmap and process boundary
+[Back to contents](#contents)
+
+### 4.11 Roadmap and process boundary
 
 `ki-work next` presents inbound trades for a human-confirmed disposition. Direct `applied` is available only for one bounded, reversible, independently verifiable local work change with clear authority, no material design decision, dependency, migration, public-contract change, or cross-repository write, and an existing targeted gate. Everything else creates or links separately prioritised local work. Knowledge never uses the direct-work path and is retained only in a named canonical artifact. A future selected-adapter resolver, not this protocol, owns canonical local-work identity and completion evidence.
 
 `ki-work-roadmap` may identify valid inbound records needing review and may record an explicit trade observation on which local work waits: the work item sits at `horizon: hold`, lists the trades in `hold.trades`, and names the observed condition in `hold.condition`. It does not change a route, record, decision, or peer state. Neither skill gains cross-repository write authority.
+
+[Back to contents](#contents)

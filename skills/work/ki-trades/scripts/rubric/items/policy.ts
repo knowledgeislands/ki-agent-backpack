@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { PolicyContext, TradesRubricContext } from '../contexts/trades.ts'
 
-const SOURCE = 'standards-trades.md'
+const SOURCE = 'standard-trades.md'
 
 const POLICY_1: RubricItem<PolicyContext> = {
   code: 'POLICY-1',
