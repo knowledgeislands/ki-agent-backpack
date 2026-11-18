@@ -29,7 +29,7 @@ Knowledge Islands' own delegation practice and the neighbouring skills govern; t
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| Knowledge Islands delegation practice | Durable high-risk handoff, authority, escalation, verification, and return boundaries; background runs on the agent host's own subagents within the package's repositories, run packet and report homing, authority tiers and grants, decisions log and its tracked work-folder home, coordination, worktree placement, concurrency, monitoring, and the owner report with its Needs tags; coordinating work is `ki-coordination`'s | 2026-11-12 |
+| Knowledge Islands delegation practice | Durable high-risk handoff, authority, escalation, verification, and return boundaries; background runs on the agent host's own subagents within the package's repositories, run packet and report homing, authority tiers and grants, decisions log and its tracked home in the package, coordination, worktree placement, concurrency, monitoring, and the owner report with its Needs tags; coordinating work is `ki-coordination`'s | 2026-11-12 |
 | `ki-env-tokenomics` | Model-purpose and context-cost policy belong outside the packet, including the coordinating-thread model | 2026-10-13 |
 | `ki-work-roadmap` | Approved work-record lifecycle, plan ownership, and review boundary | 2026-08-12 |
 
@@ -72,6 +72,8 @@ Kris's decisions behind the rules, each taken in conversation or relayed as its 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 18 November 2026 the work folder wording was brought to the work package standard's word, the package, from the Cairn summit's change 10, §7.3, following `ki-coordination`'s pass: the coordinating-work summary names committing and pruning the package, writes to a package count as writes, the link to `ki-work-package`'s tidy names it as the tidy, the background-runs evidence scope names packages and the rubric was regenerated. This file's history and the decision identifiers keep their words. No rule changed and no outside source refreshed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Agentic systems guild: REFRESH redirects to the backpack, the worktree audit recipe names `ki dev local`'s `<backpack>` argument, the green baseline is the backpack's, and RUN-1's remediation names the canonical backpack skill, the rubric regenerated. Quotations keep their words. No criterion changed and no outside source refreshed.
 
