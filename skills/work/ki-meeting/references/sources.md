@@ -1,5 +1,5 @@
 ---
-ki-document-type: sources@2026-11-09T21:36:32Z
+ki-document-type: sources@2026-11-17T00:28:37Z
 ki-revised: 2026-11-18T03:40:00Z
 ki-refresh: canonical · on-change
 ---
@@ -121,10 +121,12 @@ Kris took each decision below as recommended, unless the Status says otherwise. 
 - 2026-11-14 - OPENER-DELEGATE a, which Kris took that day in conversation, written into [4.7](standard-meeting.md#47-sittings-and-the-roll-call) and [4.11](standard-meeting.md#411-doing-the-work): the opener that starts a participant in a new session also tells it to delegate its work to its agent host's own subagents, stay responsive while that work runs and check what they return before posting it. The Cairn store's committed copy of this skill needs refreshing. No external source refreshed.
 - 2026-11-14 - OPENER-NAME a and SEAT-LINE a, which Kris took that day in conversation, written into [4.7](standard-meeting.md#47-sittings-and-the-roll-call): the opener that starts a participant in a new session names its session line and has it rename itself first, a maker without the package's keys taking `<role glyph> <work-id>+<role>`, and the agenda gives each participant's line. The Cairn store's committed copy of this skill needs refreshing. No external source refreshed.
 - 2026-11-14 - The ten points of change 34 (now 30) §4.1 (MEET-CHAIR, MEET-BUSY, CROSS-RIG-TRY, STANDING-NOW) and change 35 §4.1 (SITTING-END, GIT-ROUTE, CHAIR-FIELD, TRIAL-LESSONS, CHOICES-WHOLE, TIMES-CLOCK), taken overnight by the Cairn summit's guardian under REMIT-HIGH, written into the meeting standard at the sections change 35 §6 names, each marked where it stands, for Kris's review; he confirms or undoes them as a whole. Held for Kris and not written: WAKE-OPENER and DRAW-BUILD from change 35, CHECKIN-QUIET, ROSTER-LISTEN, CROSS-RIG and MEET-STANDING from change 34.
-- 2026-11-13 - The skill written from change 34 (now 30) §4.1 and §4.2 and change 24 (now 13) §4.4, on Kris's word ("you need to write the meeting skill now"), and copied into the Cairn store. Only the workshop has been held, in one meeting; the review and retrospective standards are kept to what each type needs until one is held, and change 34's gap "more meetings to test it" stands. Watching four open questions in [change 34 §7.1](https://github.com/krisb/ki-cairn-store/blob/1ffac0a5ee2ea0b94fda4e973596c889f9341573/work/cairn/cairn.summit/34-meetings.change.md#71-questions), each recommended a):
+- 2026-11-13 - The skill written from change 34 (now 30) §4.1 and §4.2 and change 24 (now 13) §4.4, on Kris's word ("you need to write the meeting skill now"), and copied into the Cairn store. Only the workshop has been held, in one meeting; the review and retrospective standards are kept to what each type needs until one is held, and change 34's gap "more meetings to test it" stands. It watched four open questions in [change 34 §7.1](https://github.com/krisb/ki-cairn-store/blob/1ffac0a5ee2ea0b94fda4e973596c889f9341573/work/cairn/cairn.summit/34-meetings.change.md#71-questions), each recommended a), each since taken, as the entries of 14 and 16 November record, ROSTER-LISTEN by LISTEN-HOME:
   - **CHECKIN-QUIET:** between rounds, when no work is running, a check-in is sent only when there is news; or every 15 minutes regardless.
   - **MEET-CHAIR:** a chair that need not hold the package, as [the standard](standard-meeting.md#42-who-calls-keeps-and-owns-a-meeting) proposes; or the chair is always the package's holder.
   - **MEET-BUSY:** whole briefs and no waiting on replies, as [the standard](standard-meeting.md#410-a-busy-participant) proposes; or left to each meeting's agenda.
   - **ROSTER-LISTEN:** every participant with a roster entry shows `listening` while it takes part in an open meeting; or only the chair does.
+
+**Watching:** none.
 
 [Back to contents](#contents)
