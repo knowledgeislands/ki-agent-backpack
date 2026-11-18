@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { TokenomicsConfigContext, TokenomicsRubricContext } from '../contexts/tokenomics.ts'
 
-const SOURCE = 'standards-tokenomics.md'
+const SOURCE = 'standard-tokenomics.md'
 const CFG_1: RubricItem<TokenomicsConfigContext> = {
   code: 'CFG-1',
   title: 'Selected configuration validates down',

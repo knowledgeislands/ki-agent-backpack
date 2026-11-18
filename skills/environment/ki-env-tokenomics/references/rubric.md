@@ -18,24 +18,24 @@ Line-by-line criteria for auditing ki-env-tokenomics. Classifications are derive
 
 ## CFG — Portable configuration
 
-→ [standard](standards-tokenomics.md)
+→ [standard](standard-tokenomics.md)
 
 Selected-repository tokenomics configuration.
 
-- **CFG-1 [M] — Selected configuration validates down** — Only the selected repository’s [skills.ki-env-tokenomics] table is validated; malformed recognised values FAIL and unknown keys WARN. (standards-tokenomics.md)
+- **CFG-1 [M] — Selected configuration validates down** — Only the selected repository’s [skills.ki-env-tokenomics] table is validated; malformed recognised values FAIL and unknown keys WARN. (standard-tokenomics.md)
   - _Remediation:_ diagnostic — Correct the selected repository tokenomics declaration, then rerun the audit.
 
 ## POL — Portable policy and attribution
 
-→ [standard](standards-tokenomics.md)
+→ [standard](standard-tokenomics.md)
 
 Budget semantics, purpose taxonomy, and owner routing.
 
-- **POL-1 [M] — Declared budget guide-rail policy** — The declared portable policy says that any observed token-budget overage is WARN, not FAIL. (standards-tokenomics.md)
+- **POL-1 [M] — Declared budget guide-rail policy** — The declared portable policy says that any observed token-budget overage is WARN, not FAIL. (standard-tokenomics.md)
   - _Remediation:_ diagnostic — Revise the selected budget guide-rail or record its intended overage, then rerun the audit.
-- **POL-2 [M] — Declared portable model purpose** — The declared portable policy defines frontier, reasoning, standard, and fast purpose taxonomy; it does not observe a model. (standards-tokenomics.md)
+- **POL-2 [M] — Declared portable model purpose** — The declared portable policy defines frontier, reasoning, standard, and fast purpose taxonomy; it does not observe a model. (standard-tokenomics.md)
   - _Remediation:_ diagnostic — Use a declared portable model purpose rather than a provider-specific model choice, then rerun the audit.
-- **POL-3 [M] — Declared standing-surface ownership** — The declared policy routes standing-surface findings to artifact owners or runtime adapters; attribution requires adapter observation. (standards-tokenomics.md)
+- **POL-3 [M] — Declared standing-surface ownership** — The declared policy routes standing-surface findings to artifact owners or runtime adapters; attribution requires adapter observation. (standard-tokenomics.md)
   - _Remediation:_ diagnostic — Route the standing-surface finding to its owning artifact or runtime adapter, then rerun the audit.
 
 ## RUBRIC — Generated rubric publication

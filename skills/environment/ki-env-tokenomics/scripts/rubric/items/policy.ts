@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { TokenomicsConfigContext, TokenomicsRubricContext } from '../contexts/tokenomics.ts'
 
-const SOURCE = 'standards-tokenomics.md'
+const SOURCE = 'standard-tokenomics.md'
 const POL_1: RubricItem<TokenomicsConfigContext> = {
   code: 'POL-1',
   title: 'Declared budget guide-rail policy',
