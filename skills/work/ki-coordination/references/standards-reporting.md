@@ -102,6 +102,7 @@ Sources: TREE-WORKING, 04-RULE2 and 04-REPLY in [the decision register](sources.
 
 Work packages form one tree, and coordination between them runs along it, as Kris took on 11 November 2026 in the Cairn summit's [change 00](https://github.com/krisb/ki-cairn-store/blob/fa651a2c309ff338acf15b533d84820809fd5c7e/work/cairn/cairn.summit/00-authority-tree.change.md).
 
+- **Work cascades down and stays down** under `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down), the tree's governing principle: delegate down, own it if there is no one below, escalate up. Feedback is never a way to hand work back: only a decision beyond a node's remit goes up, node by node along the path the work came down.
 - **Steer goes down,** carrying direction and remit. A node gives remit down from its own, never wider.
 - **Feedback comes up.** It reflects only the view from the node and its immediate parent: it informs the decision above and never overrides it.
 - **Messaging between packages is this cycle,** and nothing else: no sideways traffic. A decision above comes down as fresh steer, so the node below goes on without asking again.
@@ -109,7 +110,7 @@ Work packages form one tree, and coordination between them runs along it, as Kri
 - **A decision is made at the lowest node whose remit covers everything it reaches,** its children included (DECISION-HEIGHT). A finding in one branch that reaches another goes up to the nearest node above both, which steers back down. That node weighs it under [Weighing what to do](#weighing-what-to-do).
 - **The owner acts wherever a decision is needed** (HUMAN-ANYWHERE): a question whose reach stays inside one part of the tree is put to the owner at that node, and goes up only if it reaches wider or is getting nowhere there.
 
-Sources: STEER-FEEDBACK, DECISION-HEIGHT and HUMAN-ANYWHERE in [the decision register](sources.md#decision-register); MEET-ROUTES and MEET-CHAIR in `ki-meeting`'s [sources](../../ki-meeting/references/sources.md#3-decisions).
+Sources: CASCADE-DOWN, STEER-FEEDBACK, DECISION-HEIGHT and HUMAN-ANYWHERE in [the decision register](sources.md#decision-register); MEET-ROUTES and MEET-CHAIR in `ki-meeting`'s [sources](../../ki-meeting/references/sources.md#3-decisions).
 
 ## Owner report
 

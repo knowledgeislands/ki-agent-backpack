@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T04:05:00Z
+ki-revised: 2026-11-18T00:34:23Z
 ki-status: in force
 ---
 
@@ -115,6 +115,16 @@ Roadmap records stay with their code and hold work ready to build, under `ki-wor
 An old package's open work comes into the store's owning package, the territory's summit or a node, as its outstanding items, in one shape the Wayfinder reviews, and becomes a roadmap record only once it is ready to build, as Kris took LEGACY-ROADMAP a on 17 November 2026 in the [same change](https://github.com/krisb/ki-cairn-store/blob/4af7d31/work/cairn/cairn.summit/42-roadmap-2.change.md#63-roadmaps-for-the-migrated-packages), after turning down records first: "You're meant to be working on a new way, not on an old way".
 
 The packages form one tree, rooted at `cairn.summit`, `ki-level: root`: the owner's seat over the territories, not a territory, and the only package with no `ki-parent` (AGORA-ABOVE, Kris, 11 November 2026). Each territory's top is its summit, `<territory>.summit`, its State of play, which names `cairn.summit` as `ki-parent` and sits directly under it, because each territory needs an independence of its own; the summit replaces the main State of play, `<territory>.sop.main` (KIND-DROP and MASSIF, Kris, 11 November 2026). Every other package, a Project, regular work, ad hoc work or a secondary State of play, is a node beneath the summit: its id is `<territory>.<slug>`, with a further dot segment for a node beneath a node, as `ki.cairn` beneath `ki.summit` and `personal.rig.sol` beneath `personal.rig.summit`, and its level `regular`, or `project` where it carries one Project, the id naming no kind, as Kris took NODE-ID a on 16 November 2026. Each names as `ki-parent` the node of its own territory whose authority it sits under, its summit or a node beneath it; a sub-package names its parent package instead. Any node can split its authority by adding nodes beneath it, and nodes fold back up when they are no longer needed, so a Project sits where the authority it needs is. The tree is the register: a node covers everything beneath it, read from the `ki-parent` links, and work with no package yet belongs on the roadmap, not in any package (COVERS-REGISTER, Kris, 16 November 2026). Check that each parent resolves, stays within its territory and closes no cycle.
+
+<a id="cascade-down"></a>
+
+**Work cascades down the tree and stays down** (CASCADE-DOWN, Kris, 18 November 2026): "delegate / cascade work down, or if there's no one to cascade it to, you have to own the work. And it's escalate up." This is the tree's governing principle, and every rule that moves work between packages, in this standard and in `ki-coordination`, follows it.
+
+- **Delegate down.** A node passes work to the next node down that owns it, and that node keeps it.
+- **Own it if there is no one below.** Where the node the work would go to has no one seated, no seat under its `ki-workers`, there is no one to cascade it to: the node holding the work owns it and does it itself, through its own runs where it delegates. It never parks work on an empty node, and never waits for a seat to be filled.
+- **Escalate up.** Only a real escalation comes back up: a decision beyond the node's remit. A node never passes work back up because it got no response, and never because the work is hard.
+- **Confidence is no grant.** High confidence never licenses a node to act without coordination: what it does on its own confidence stays within its remit and is told to the node above, under `ki-coordination`'s [Weighing what to do](../../ki-coordination/references/standards-reporting.md#weighing-what-to-do).
+- **One path.** An escalation travels up the path the work came down, node by node. The owner may still talk to any node directly.
 
 [Back to contents](#contents)
 

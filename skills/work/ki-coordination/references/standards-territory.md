@@ -40,6 +40,7 @@ Its duties:
 - **Views:** it rolls up the five views the Work Process note sets, with you, stuck, blocked, moving and on hold, across the territory through `ki work status`. Work awaiting review stays out of the five views and shows as a count.
 - **Regular work:** it may discuss regular work and send it steer without opening coordination on that package; dispatch follows its explicit assignment and the owner-approved scope.
 - **Acting for idle work:** where a package in its territory has no active session, `ki-listening_status` not `on`, the State of play takes what is sent to it; otherwise nothing would until the package is next opened.
+  - Where the package has no one seated at all, no seat under its `ki-workers`, there is no one to cascade to: under [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down) the node above owns the work and does it itself, as its own work within its own remit, rather than leaving it in the empty package to wait for a seat. What follows is for a seated package whose session is idle.
   - It takes what reaches the package along the tree under [Work between packages](standards-messages.md#messages-between-work), one package per turn.
   - It routes a part belonging to other work as steer to that work, under **Dispatch** below; answers what the territory's coordination can answer as feedback to the sender's node; and puts what needs the package's own judgement or the owner into the package's `_index.md` Now or Held or the Open section of the change document it belongs to.
   - It commits that in a commit naming the package, `docs(work): <id> taken by <State of play id>`.
@@ -63,7 +64,7 @@ Its duties:
 
 - **Matching:** match the unit against the register, the `_index.md` front matter `ki work status` derives from the packages, reading a `_index.md` body only where two descriptions match. Keep no copy of the register.
 - **Routing:** send the unit to the chosen work as steer, in the owner's words with links, recorded in its package where its priority warrants, under [Work between packages](standards-messages.md#messages-between-work). Where nothing matches, propose to the owner a new piece of work, within the cap, or a record captured through `ki-work next`.
-- **Returns:** a returned part is routed once more at most. If it cannot be placed, or would come back again, it goes to the owner as a query, so nothing bounces.
+- **Returns:** a part comes back only as an escalation, a decision beyond the receiver's remit, never for want of a response or because it is hard, under [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down). A returned part is routed once more at most. If it cannot be placed, or would come back again, it goes to the owner as a query, so nothing bounces.
 - **Work not yet taken:** show in the register the count and age of steer nobody has taken up. Work routed to work On hold, paused, waits without waking it. For work Snoozing whose session is closed or not waking, identify the work by its thread line, and ask the owner to lift a hold where the work is urgent.
 
 **Stewardship of continual improvement.** Every work tries to improve continually, and the State of play coordinates it.
@@ -73,9 +74,11 @@ Its duties:
 - When Ways of working finishes, the State of play's `_index.md` description gains method stewardship and its Scope says where method changes go. It keeps a method backlog, dispatches each accepted small improvement as small regular work or into the Project it most affects, with a design review for a change of shape. A significant change revives Ways of working, or a more targeted Project under the Model theme.
 - Lasting method authority stays in the skills and Decision Records, and the State of play still executes nothing.
 
-Sources: SOP-ACTS-FOR-IDLE, WORK-ROUTING, STEWARD-HOME, FIRST-STEP-HOME and SECONDARY-SOP in [the decision register](sources.md#decision-register).
+Sources: CASCADE-DOWN, SOP-ACTS-FOR-IDLE, WORK-ROUTING, STEWARD-HOME, FIRST-STEP-HOME and SECONDARY-SOP in [the decision register](sources.md#decision-register).
 
 ### Coordinating assigned packages
+
+The cascade here is `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down): a package passed down to a steward stays with it, and the steward sends up only an escalation, a decision beyond its remit, never the package's work for want of a response or because it is hard.
 
 **Tending.** The acknowledged steward tends a package's disposition, queues and tidy independently of any active coordinator. The parent State of play reconciles assigned regular umbrellas, children and declared member homes through `ki-parent`, the tree beneath it being its register, and the home reference at opening, bootstrap, approved moves and ordinary tending.
 
@@ -116,11 +119,11 @@ A secondary State of play is a node beneath its territory's summit that splits o
 - **The summit owns** what the main State of play owned: the registry, membership and Known Lands; releases and priorities across the territory; the territory-wide [ceiling on active Project work](#territory-work), which counts the work beneath every node and gives no node a share of its own; method stewardship; the worktree sweep; and every decision touching more than one node.
 - **A node** does project management for the work beneath it, within the authority the summit splits off to it, and rolls up the five views across that work; the summit rolls up all.
 - **Acceptance:** the summit brings the territory's records awaiting acceptance first, the work beneath its nodes included, under **Acceptance first** in [Territory work](#territory-work).
-- **Routing:** a unit goes between the summit, a node and the work beneath it, down, up or across, through a meeting under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md) or a change document; the `ROUTE` line and `messages.md` have retired (MSG-RETIRE). A part a node cannot place goes back to the summit once; the summit places it or asks the owner.
+- **Routing:** a unit goes between the summit, a node and the work beneath it, down as work and up only as an escalation, under [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down), through a meeting under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md) or a change document; the `ROUTE` line and `messages.md` have retired (MSG-RETIRE). A part a node cannot place goes back to the summit once; the summit places it or asks the owner.
 - **Register:** the tree beneath a node, read from `ki-parent`, is its register: the summit's is all the territory's work, the work beneath its nodes included, and a node's the work beneath it. Work with no package yet belongs on the roadmap, as Kris set under COVERS-REGISTER a on 16 November 2026.
 - **Opening:** the owner opens a node with the [secondary opener](standards-opening.md#opening-work), and takes every opener for the territory from [Opening work](standards-opening.md#opening-work).
 
-Sources: SECONDARY-SOP, OLD-SHAPE-HOMES, COVERS-REGISTER and NODE-ID in [the decision register](sources.md#decision-register).
+Sources: CASCADE-DOWN, SECONDARY-SOP, OLD-SHAPE-HOMES, COVERS-REGISTER and NODE-ID in [the decision register](sources.md#decision-register).
 
 ## Owner queue
 

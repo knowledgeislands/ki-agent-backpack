@@ -18,16 +18,18 @@ Sources: AHP-RADAR and MSG-RETIRE in [the decision register](sources.md#decision
 
 ## Work between packages
 
-The message queue has retired (MSG-HOME, MSG-RETIRE): no package keeps a `messages.md`, no session writes a line into another package, and conversation between sessions goes through their agent host's own messaging or a meeting, under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md), whose [messages](../../ki-meeting/references/standard-meeting.md#48-messages) keep the queue's best parts. Work for another package goes along the tree, under [Steer and feedback](standards-reporting.md#steer-and-feedback).
+The message queue has retired (MSG-HOME, MSG-RETIRE): no package keeps a `messages.md`, no session writes a line into another package, and conversation between sessions goes through their agent host's own messaging or a meeting, under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md), whose [messages](../../ki-meeting/references/standard-meeting.md#48-messages) keep the queue's best parts. Work for another package goes along the tree, under [Steer and feedback](standards-reporting.md#steer-and-feedback), and cascades down it under `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down): delegate down, own it if there is no one below, escalate up.
 
 - **Along the tree:** a hand-off, a rollout, a unit to route, a release notice or a method improvement goes up as feedback to the nearest node above both packages, and comes down from it as steer.
   - The receiving package's holder records it, or the root's guardian while no session holds the package: in a change document, its Open section for what needs the owner, or in `_index.md`'s Now or Held.
   - It is never a record in the receiver's roadmap or triage. Only genuinely deferred work the receiver owns becomes a record, captured by the receiver's own coordinator under the `ki-work next` [capture rule](../../../keystone/ki-work/references/standards-next-work.md#capture-substantive-prospective-work); the sender never writes it.
   - A route `ki-trades` declares keeps its trade records.
+  - Work is never sent to a package with no one seated, no seat under its `ki-workers`: the node holding it owns it and does it itself, rather than parking it there to wait for a seat.
 - **Receipt:** a package cannot reject what it is given, and steer confers no authority wider than its giver's. The receiver does what it can with each unit:
   - the part its existing authority covers goes into `_index.md`'s Now;
   - the part needing the owner's authority, capacity or a scope change becomes a query in the Open section of the change document it belongs to;
-  - only the part it judges is not its own goes back up, once and with the reason, after it has done what it can with the rest, and never the whole.
+  - only the part it judges is not its own goes back up, once and with the reason, after it has done what it can with the rest, and never the whole;
+  - otherwise only an escalation goes back up, a decision beyond its remit, along the path the work came down: never for want of a response, and never because the work is hard.
 - **A proposed transfer** of work goes at the bottom of the Summary's Queries, naming the receiving package and asking permission before sending, unless the owner has already authorised that transfer.
 - **Method changes** reach work at its next bootstrap, re-anchoring or update of its state, under [Refreshing this guidance](standards-coordination.md#refreshing-this-guidance): it compares `ki-method_read` with the backpack's latest revision and rereads what changed. No line is sent.
 - **Release notices:** after an authorised release, the releasing coordinator sends each affected package a notice along the tree, naming the released version, the relevant change, compatibility, adoption steps and any reply needed. The receiver owns adoption and any genuinely deferred record. The notice is an obligation only: it grants no release authority, consumer selection, rollout execution or foreign-record creation.
@@ -38,7 +40,7 @@ The message queue has retired (MSG-HOME, MSG-RETIRE): no package keeps a `messag
 
   A worker is **live** when its `ki-workers` entry in the package's `_index.md` says `status: active`, it is listening, and its package or Cairn shows activity within the last 30 minutes. Listening is read from meetings alone: a session is listening while it is a participant of an open meeting with a sitting under way, the `ki-workers` entry's actor id, `id: actor:<id>`, listed in the meeting's entry file under `ki-participants` with `ki-status: open`, the two matched by id alone (ACTOR-KEY), under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). No `ki-workers` entry or roster file carries `listening`. Cairn reads the register and is not a second source.
 
-Sources: MSG-RETIRE, ROUTE-RECEIPT, HANDOFF-AS-MESSAGE, URGENT-CRITERIA, LIVENESS, LISTEN-HOME and FEEDBACK-AS-MESSAGE in [the decision register](sources.md#decision-register); MSG-HOME in `ki-meeting`'s [sources](../../ki-meeting/references/sources.md#3-decisions).
+Sources: CASCADE-DOWN, MSG-RETIRE, ROUTE-RECEIPT, HANDOFF-AS-MESSAGE, URGENT-CRITERIA, LIVENESS, LISTEN-HOME and FEEDBACK-AS-MESSAGE in [the decision register](sources.md#decision-register); MSG-HOME in `ki-meeting`'s [sources](../../ki-meeting/references/sources.md#3-decisions).
 
 ## Surfaces
 
