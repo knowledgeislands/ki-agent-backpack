@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import { outcomesFor, type RoadmapIndexContext, type RoadmapRubricContext } from '../contexts/roadmap.ts'
 
-const SOURCE = 'standards-repository-roadmaps.md'
+const SOURCE = 'standard-repository-roadmaps.md'
 
 const INDEX_1: RubricItem<RoadmapIndexContext> = {
   code: 'ROOT-1',

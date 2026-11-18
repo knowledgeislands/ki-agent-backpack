@@ -3,7 +3,7 @@ import { existsSync, lstatSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { type Finding, legacyAreaList } from './roadmap-evidence.ts'
 
-const STANDARD = 'references/standards-repository-roadmaps.md'
+const STANDARD = 'references/standard-repository-roadmaps.md'
 const TOML = (globalThis as unknown as { Bun: { TOML: { parse(text: string): unknown } } }).Bun.TOML
 
 /** The index that defines area codes: a KB's roadmap index note, otherwise docs/roadmap/README.md. */

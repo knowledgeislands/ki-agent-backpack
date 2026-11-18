@@ -1,25 +1,95 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T03:56:13Z
+ki-status: in force
+---
+
 # Repository roadmap standard
 
-## Scope
+## Contents
+
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Repositories it applies to](#41-repositories-it-applies-to)
+  - [4.2 Canonical shape](#42-canonical-shape)
+  - [4.3 Status and horizon](#43-status-and-horizon)
+  - [4.4 Triage](#44-triage)
+  - [4.5 Lifecycle moves](#45-lifecycle-moves)
+  - [4.6 Ideas and graduation](#46-ideas-and-graduation)
+  - [4.7 Migration tolerance](#47-migration-tolerance)
+  - [4.8 Work-item discipline](#48-work-item-discipline)
+  - [4.9 Records and work packages](#49-records-and-work-packages)
+  - [4.10 Lifecycle commit boundaries](#410-lifecycle-commit-boundaries)
+  - [4.11 Number reservation](#411-number-reservation)
+  - [4.12 Roadmap write locus](#412-roadmap-write-locus)
+  - [4.13 Trade review](#413-trade-review)
+  - [4.14 Conform and educate](#414-conform-and-educate)
+
+## 1. Introduction
+
+How a non-KB repository keeps its roadmap: one canonical shape of flat work-item records under `docs/roadmap/`, their identity, status and horizon, the lifecycle moves between them, how ideas graduate into records, and the commit boundaries that keep identifiers and pruning safe. The record's own fields and sections are in [the work-item format](standard-work-item-format.md). The decisions behind these rules are in the [sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+The repository-roadmap adapter's shape and lifecycle for non-KB repositories.
+
+### 2.1 In scope
+
+- Which repositories the standard applies to, and its boundary with a Knowledge Base's Streams.
+- The canonical roadmap shape, record identity, issuing modes, areas, components and the allocation ledger.
+- Status and horizon, triage and the lifecycle moves.
+- Ideas, the graduation test and the migration windows.
+- Work-item discipline, records and work packages, and the lifecycle commit boundaries, number reservation and write locus.
+- Trade review in a roadmap audit, and what CONFORM and EDUCATE do.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- A work item's fields, body and detail by stage: [the work-item format](standard-work-item-format.md).
+- A Knowledge Base's roadmap container: `ki-repo-kb-streams`.
+- Adapter selection and the abstract record vocabulary: `ki-work`'s [change-management adapter standard](../../../keystone/ki-work/references/standard-change-management-adapters.md).
+- Projects, themes and the rooting of ideas: `ki-work`'s [Project registry](../../../keystone/ki-work/references/standard-project-registry.md).
+- Capture, planning, delivery and acceptance procedures: the `ki-work` subcommands.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Work item** | One canonical Markdown record directly under `docs/roadmap/`, owning its full authored detail. **Standard:** this one, [4.2](#42-canonical-shape) |
+| **Issuing mode** | How a repository allocates identifiers: repository-wide `<REPO>-<NNN>` or fixed-area `<REPO>-<AREA>-<NNN>`. **Standard:** this one, [4.2](#42-canonical-shape) |
+| **Issue-allocation ledger** | `docs/roadmap/_ISSUES.md`, the durable high-water mark that keeps a pruned identifier from reuse. **Standard:** this one, [4.2](#42-canonical-shape) |
+| **Status** | How far work has got: `triage`, `draft`, `ready`, `in-progress`, `awaiting-review`, `done` or `cancelled`. **Standard:** this one, [4.3](#43-status-and-horizon) |
+| **Horizon** | When adopted, open work is intended: `now`, `next`, `soon`, `future` or `hold`. **Standard:** this one, [4.3](#43-status-and-horizon) |
+| **Triage** | Captured but unadopted intake, a status with no horizon. **Standard:** this one, [4.4](#44-triage) |
+| **Idea** | Prospective work that has no identifier, horizon or status and waits outside the record queue. **Standard:** this one, [4.6](#46-ideas-and-graduation) |
+| **Graduation test** | When an idea becomes a `status: triage` record: actionable, a decision with an owner and a needed-by date, or must survive the session. **Standard:** this one, [4.6](#46-ideas-and-graduation) |
+| **Prune** | The removal of explicitly selected terminal records, in a commit of its own. **Standard:** this one, [4.10](#410-lifecycle-commit-boundaries) |
+| **Write locus** | The one designated writing checkout through which every roadmap write in a repository is serialised. **Standard:** this one, [4.12](#412-roadmap-write-locus) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 Repositories it applies to
 
 This standard applies to non-KB repositories.
 
 A repository whose `.ki.toml` declares `repo_type = "kb"` uses `ki-repo-kb-streams` and must not add a parallel project `ROADMAP.md` or `docs/roadmap/` tree. It may declare `[skills.ki-work-roadmap]` alongside `[skills.ki-repo-kb-streams]` to configure the shared record model, issuing areas and components; the declaration does not select the project `roadmap` adapter. Streams remains the KB container and audit owner.
 
-## Contents
+[Back to contents](#contents)
 
-- [Canonical shape](#canonical-shape)
-- [Status and horizon](#status-and-horizon)
-- [Lifecycle moves](#lifecycle-moves)
-- [Ideas and graduation](#ideas-and-graduation)
-- [Migration tolerance](#migration-tolerance)
-- [Work-item discipline](#work-item-discipline)
-- [Records and work packages](#records-and-work-packages)
-- [Lifecycle commit boundaries](#lifecycle-commit-boundaries)
-- [Trade review](#trade-review)
-- [Conform and educate](#conform-and-educate)
-
-## Canonical shape
+### 4.2 Canonical shape
 
 Every non-KB repository uses one shape.
 
@@ -50,13 +120,13 @@ The item identifier is globally unique within its repository. A repository choos
 
 `<AREA>` is an uppercase alphanumeric code for a fixed issuing namespace. It matches the Decision Record scope-segment grammar `[A-Z0-9]*[A-Z][A-Z0-9]*`, so it may lead with a digit, as in `5GE`, but must contain at least one letter. It is selected when the item opens, recorded as `area:` frontmatter, and never changes. It is not a mutable theme or group.
 
-`<NNN>` is a zero-padded serial allocated from `001`. In repository-wide mode it is one repository sequence. In fixed-area mode it is one sequence per area. Never lower a high-water mark, fill a gap, or reuse a number after pruning. An identifier proposed during planning is provisional, not reserved. A serial becomes reserved only when its advanced ledger is committed, and the commit that advances the ledger precedes the commit that writes the record. The writer must re-read the applicable `_ISSUES.md` high-water mark immediately before allocating, allocate one greater than that current value, and commit the advance before the record exists. If the ledger changed since inspection, discard the proposed serial and reallocate from the latest value. [Number reservation](#number-reservation) owns the ordering and the write locus it depends on.
+`<NNN>` is a zero-padded serial allocated from `001`. In repository-wide mode it is one repository sequence. In fixed-area mode it is one sequence per area. Never lower a high-water mark, fill a gap, or reuse a number after pruning. An identifier proposed during planning is provisional, not reserved. A serial becomes reserved only when its advanced ledger is committed, and the commit that advances the ledger precedes the commit that writes the record. The writer must re-read the applicable `_ISSUES.md` high-water mark immediately before allocating, allocate one greater than that current value, and commit the advance before the record exists. If the ledger changed since inspection, discard the proposed serial and reallocate from the latest value. [Number reservation](#411-number-reservation) owns the ordering and the write locus it depends on.
 
 `docs/roadmap/_ISSUES.md` is the canonical durable allocation ledger. Repository-wide mode uses `last_id`; fixed-area mode uses a code-sorted `areas: { AREA: N }` map. Its front matter may also carry `work: <package id>` on the line after the allocation, naming the work package in the Cairn store that does the roadmap's work, since work packages moved to the store (WP-STORE, Kris, 9 November 2026); the checker accepts it, requires only that it is a work id, lower-case kebab-case segments joined by dots, and CONFORM keeps it (ROAD-7 a, Kris, 14 November 2026). The checker verifies that the ledger matches the configured issuing mode and no retained item exceeds its applicable high-water mark; CONFORM scaffolds the file only when it is absent.
 
 The filename repeats the identifier followed by a lowercase kebab-case slug.
 
-`area` declares only the issuing namespace. Grouping lives in the classification fields of [the work-item format](standards-work-item-format.md#classification): `kind`, `purpose`, `project`, `theme`, and `component`.
+`area` declares only the issuing namespace. Grouping lives in the classification fields of [the work-item format](standard-work-item-format.md#46-classification): `kind`, `purpose`, `project`, `theme`, and `component`.
 
 A repository in repository-wide mode declares no issuing vocabulary. A fixed-area repository declares its durable area codes as a map from code to title:
 
@@ -84,7 +154,9 @@ Keep statuses, horizons, lifecycle moves, work-item location, and reporting beha
 
 The former repository `theme` grouping is retired. The checker fails a `themes = [...]` list and an area-to-theme map, whose values are theme slugs (`FND = "foundation-tooling"`) rather than titles. A record's `theme` field is a different thing: it names a territory theme from the Project registry.
 
-## Status and horizon
+[Back to contents](#contents)
+
+### 4.3 Status and horizon
 
 `status` says how far work has got; `horizon` says when it is intended. They are independent axes.
 
@@ -118,11 +190,15 @@ Terminal work is removed only through the lifecycle and pruning commit boundary 
 
 Continuous practices belong in a standard or orientation file, not among finite work items. Recurring obligations stay as `ki-work-recurring` templates or KB Activities whose runs are ordinary records.
 
-### Triage
+[Back to contents](#contents)
 
-A substantive prospective outcome, concern, dependency, or decision that passes the [graduation test](#ideas-and-graduation) may be captured as `status: triage` without prior approval after checking for an existing owner, within the capture gate the `ki-work next` [capture rule](../../../keystone/ki-work/references/standard-next-work.md#432-capture-substantive-prospective-work) sets: only a blocker, a defect seen failing or an owner-requested item, and never by a background run. Creating one does not adopt, prioritise, plan, implement, or accept the work. A human must explicitly approve every exit from triage: adoption to `draft`, or cancellation. Approval does not bypass the terminal-before-prune rule, and triage has no direct discard path.
+### 4.4 Triage
 
-## Lifecycle moves
+A substantive prospective outcome, concern, dependency, or decision that passes the [graduation test](#46-ideas-and-graduation) may be captured as `status: triage` without prior approval after checking for an existing owner, within the capture gate the `ki-work next` [capture rule](../../../keystone/ki-work/references/standard-next-work.md#432-capture-substantive-prospective-work) sets: only a blocker, a defect seen failing or an owner-requested item, and never by a background run. Creating one does not adopt, prioritise, plan, implement, or accept the work. A human must explicitly approve every exit from triage: adoption to `draft`, or cancellation. Approval does not bypass the terminal-before-prune rule, and triage has no direct discard path.
+
+[Back to contents](#contents)
+
+### 4.5 Lifecycle moves
 
 Moves are authored, judgment-led decisions. CONFORM never chooses a move; it only repairs the concise root orientation. Every destination must satisfy the status and horizon table.
 
@@ -159,7 +235,9 @@ When no immediate work is eligible, `ki-work next` evaluates Now and Next first,
 
 Every confirmed move is re-evaluated at its destination.
 
-## Ideas and graduation
+[Back to contents](#contents)
+
+### 4.6 Ideas and graduation
 
 An idea has no identifier, horizon, or status, and never owns state. The Project registry's [rooting rule](../../../keystone/ki-work/references/standard-project-registry.md#48-rooting) first settles its territory and whether it is a concept or work; a concept waits in its owning Capital's Emerging Concepts note, and work waits outside the record queue:
 
@@ -182,7 +260,9 @@ Goal, Context, and Boundary alone are not enough to make a record. After checkin
 
 Unknown implementation is fine for an investigation or decision, and a missing prerequisite alone does not make capture premature. `ki-work next` places an idea that does not yet graduate as an `Idea:` bullet in its Project note's or theme page's Notes section when either is known, and in the Inbox otherwise. This test governs record capture only; it does not change any repository's Enactment threshold. Where coordinating work runs under `ki-coordination`, that standard's record threshold decides first whether a record is due at all: a record opens only for a product or standard change that needs the owner's acceptance, and operational work, however many steps or agents it takes, runs on the work folder's decisions log, the brief, the report and Git without one. Kris set the threshold on 2026-10-14, as received: "RECORD-THRESHOLD / agree: a record only for a product or standard change needing acceptance; operational work runs on the decisions log, brief and report; add it to the ki-coordination standard".
 
-## Migration tolerance
+[Back to contents](#contents)
+
+### 4.7 Migration tolerance
 
 The model stays at v1: new fields and statuses entered v1 directly. The migration window has closed, and done records were pruned rather than migrated. The checker now fails these retired shapes in any record or configuration:
 
@@ -194,21 +274,23 @@ The model stays at v1: new fields and statuses entered v1 directly. The migratio
 
 A few residual shapes still only warn: a `done` record carrying Now or Next, an open record at a horizon the former rule allowed but the table above does not, and a Capital's retired `Streams/Projects/Initiatives.md` index.
 
-The field migration window, set on 2026-10-19, covers the [priority and size](standards-work-item-format.md#priority-and-size) fields, a theme named beside a Project under [Classification](standards-work-item-format.md#classification), and the [retired fields and values](standards-work-item-format.md#retired-fields-and-values). During it the checker warns on an open record without `size`, an adopted open record without `kind`, a record naming `theme` or `initiative` beside `project`, a record naming `initiative`, and `purpose: adoption`; `ki work` lists the same gaps. A closed record, done or cancelled, is exempt from a retrospective `size` and `kind`. An absent `priority` never warns or fails: it reads as `medium`.
+The field migration window, set on 2026-10-19, covers the [priority and size](standard-work-item-format.md#43-priority-and-size) fields, a theme named beside a Project under [Classification](standard-work-item-format.md#46-classification), and the [retired fields and values](standard-work-item-format.md#45-retired-fields-and-values). During it the checker warns on an open record without `size`, an adopted open record without `kind`, a record naming `theme` or `initiative` beside `project`, a record naming `initiative`, and `purpose: adoption`; `ki work` lists the same gaps. A closed record, done or cancelled, is exempt from a retrospective `size` and `kind`. An absent `priority` never warns or fails: it reads as `medium`.
 
 The window's inventory is every repository in the `ki` repository registry that holds `docs/roadmap/` or `Streams/Roadmap/` records. The window closes at whichever comes first: a complete scan of that inventory showing no gaps, in which an unavailable repository counts as unknown, so a scan with one is not complete; or a date backstop 60 days after the `ki` release that accepts the fields. The harness checker then fails each of these shapes, as `ki` does. Migration runs one repository at a time, each with the owner's approval. Mechanical changes need no judgement: a retired horizon becomes `status: triage` or `horizon: hold`, `initiative` becomes `theme`, and a `theme` beside a Project is dropped. `kind` and `size` need judgement: the run proposes them and the owner confirms them. Writers adopt the two fields with the first `ki` release that accepts them; until then a roadmap record leaves out any field the installed `ki` rejects, and the checker's size warning stands.
 
-The assignee window, opened on 5 November 2026 with [Assignee](standards-work-item-format.md#assignee), covers the `assignee` field alone: during it the checker warns on an open record without one, and once it closes it fails. It closes on the same terms as the field migration window, measured from the first `ki` release that accepts the field. A value outside the holder vocabulary, and a changed assignee on an in-progress record, fail from the start.
+The assignee window, opened on 5 November 2026 with [Assignee](standard-work-item-format.md#44-assignee), covers the `assignee` field alone: during it the checker warns on an open record without one, and once it closes it fails. It closes on the same terms as the field migration window, measured from the first `ki` release that accepts the field. A value outside the holder vocabulary, and a changed assignee on an in-progress record, fail from the start.
 
 The work model's tolerance window, which [KI-HARNESS-GOV-210 (pruned)](https://github.com/knowledgeislands/ki-agent-backpack/blob/08468196/docs/roadmap/KI-HARNESS-GOV-210-work-model-write-in.md) opens and a later phase of the migration closes, adds warnings for the thread-model classification: a record's `initiative`, read as its theme; and, in the record's own territory, a registry that keeps `Streams/Initiatives/`, a Project folder note or a Project note's `initiative:`. This section is the one place these rules are defined.
 
-## Work-item discipline
+[Back to contents](#contents)
+
+### 4.8 Work-item discipline
 
 Delivery that changes a repository happens under a governing work item, or under the owner's explicit, scoped direct instruction as its only alternative basis.
 
-When an item has verified tasks in another task system, keep their qualified, provider-keyed `task_links` on that item using the [work-item format](standards-work-item-format.md#task-links). This is an association record, not a second lifecycle, a live ownership claim, or a central task registry. Write and reconcile it only through the repository's [designated primary checkout](#roadmap-write-locus).
+When an item has verified tasks in another task system, keep their qualified, provider-keyed `task_links` on that item using the [work-item format](standard-work-item-format.md#410-task-links). This is an association record, not a second lifecycle, a live ownership claim, or a central task registry. Write and reconcile it only through the repository's [designated primary checkout](#412-roadmap-write-locus).
 
-Every item conforms to [the work-item format](standards-work-item-format.md), including the final topic-oriented `Discussion` section and the detail required at its current horizon and lifecycle state.
+Every item conforms to [the work-item format](standard-work-item-format.md), including the final topic-oriented `Discussion` section and the detail required at its current horizon and lifecycle state.
 
 An item begins with a mandatory plain-language Goal, then its outcome evidence, boundary, current context, and enough discussion to preserve decision-useful reasoning.
 
@@ -222,7 +304,7 @@ This adapter owns the concrete local record lifecycle independently of `horizon`
 
 `triage` → `draft` → `ready` → `in-progress` → `awaiting-review` → `done`, with `cancelled` reachable from any open state.
 
-`triage` is unadopted intake; `draft` covers adopted work that is captured or actively shaped. The [status and horizon table](#status-and-horizon) governs where each state may sit.
+`triage` is unadopted intake; `draft` covers adopted work that is captured or actively shaped. The [status and horizon table](#43-status-and-horizon) governs where each state may sit.
 
 `ki-work implement` owns `ready` → `in-progress` → `awaiting-review`.
 
@@ -242,13 +324,17 @@ A done work item linked from an adopted completion-observation trade remains ret
 
 Every process-owned lifecycle or semantic work-item mutation preserves `created_at`, advances `updated_at` monotonically, and refuses to replace a changed source revision. Remote adapters project provider-native timestamps rather than duplicating them into remote bodies. The work-item format owns the precise timestamp contract.
 
-## Records and work packages
+[Back to contents](#contents)
+
+### 4.9 Records and work packages
 
 Roadmap records stay with their code. Each lives in the repository whose code it changes and is closed against that code by the record chain, and a roadmap holds work ready to build; work not yet ready waits as an idea in the Inbox or as an outstanding item in its owning package. A work package in the Cairn store names the records it works, so the Wayfinder can follow them, and never holds a record's state; a change document's steps become records in the repositories they touch. Once the packages are worked through, most work runs from roadmap records directly in their repositories, and a package manages and runs what is left: residual fallout and the changes themselves. Kris took this as ROADMAP-PACKAGE a on 2026-11-17, in the Cairn summit's [change 42](https://github.com/krisb/ki-cairn-store/blob/4af7d31/work/cairn/cairn.summit/42-roadmap-2.change.md#62-roadmap-items-work-packages-and-change-documents), adding that "roadmaps become simple".
 
 An old package's open work, from a package parked in the store's `work-legacy/`, comes into the store's owning package, the territory's summit or a node, as its outstanding items, in one shape the Wayfinder reviews. It becomes a roadmap record only once it is ready to build; it is not captured as records first. Kris took this as LEGACY-ROADMAP a on 2026-11-17, in the same [change](https://github.com/krisb/ki-cairn-store/blob/4af7d31/work/cairn/cairn.summit/42-roadmap-2.change.md#63-roadmaps-for-the-migrated-packages), after turning down records first: "You're meant to be working on a new way, not on an old way".
 
-## Lifecycle commit boundaries
+[Back to contents](#contents)
+
+### 4.10 Lifecycle commit boundaries
 
 Lifecycle states record operational truth; a transition does not create a mandatory standalone Git commit. Commit a status update with the coherent planning, implementation, review, or closure changes it describes. Git history need not contain every intermediate lifecycle state: an item's first committed form may already be `ready` when capture, shaping, and readiness approval form one coherent operation, and implementation may take a committed `ready` item to `awaiting-review` with its delivery changes after passing through `in-progress` operationally. The state that lands must satisfy its own evidence and authority gates.
 
@@ -256,7 +342,9 @@ Pruning is the exception. Repository history must contain the selected item as `
 
 Pruning a terminal record, `done` or `cancelled`, is sanctioned cleanup. Git history is the archive: the parent of the prune commit holds the record, and pruned records are not restored. The prune commit uses one standardised message so every cleanup is recognisable in the log: the subject `chore(roadmap): prune <N> done work record(s)`, singular for one record, and a body with one `- <ID>` line per record in identifier order. `ki repo roadmap prune` writes this commit itself by default, staging exactly the deleted record paths and running the repository's hooks; it refuses before deleting anything when the repository is not a Git work tree, already has staged changes, or holds a selected record that is untracked or modified, and a rejected commit restores the deleted records. `--dry-run` makes the same selection and checks and reports the records and planned commit without changing anything. `--no-commit` only deletes the records and skips those Git checks, so the caller confirms each record's committed `done` state and commits the deletions alone under the same message.
 
-### Number reservation
+[Back to contents](#contents)
+
+### 4.11 Number reservation
 
 Number reservation is the other exception, and it orders two commits rather than separating them. Advance the applicable `_ISSUES.md` high-water mark and commit that advance on its own, then write the record. The ledger advance may not wait for the record it reserves.
 
@@ -264,13 +352,17 @@ The ordering, not the coupling, is what makes a reservation real. Publishing a r
 
 The reservation commit contains only the ledger advance. It is not a lifecycle transition and carries no work-item evidence, so it does not weaken the rule that a state which lands must satisfy its own gates. Nothing else reserves a number: a plan, an approval, a warm session, a branch name, or an uncommitted working copy is not a reservation.
 
-### Roadmap write locus
+[Back to contents](#contents)
+
+### 4.12 Roadmap write locus
 
 A committed advance only reserves a number if every writer commits to the same history. Two isolated checkouts that each commit an advance on their own branch reproduce the collision exactly, one merge later.
 
 Every write under the roadmap directory — capture, shaping, a lifecycle transition, acceptance, or a prune — is therefore serialised through one designated writing checkout per repository, and concurrent writers queue there rather than each holding their own. A run that works in an isolated checkout for delivery does not use it for roadmap records; it takes its number and writes its record in the designated checkout. Where a coordination plane schedules those runs, its own standard names which checkout is designated; this standard requires only that exactly one is.
 
-## Trade review
+[Back to contents](#contents)
+
+### 4.13 Trade review
 
 Where a repository declares `ki-trades` and its records exist, include their structural relevance in the judgment portion of a roadmap audit.
 
@@ -283,7 +375,9 @@ The review is read-only and reports structural guidance or proposed local roadma
 
 It does not set disposition, infer adoption or acceptance from silence, move or prune trade records, prioritize local work, or change another repository's state.
 
-## Conform and educate
+[Back to contents](#contents)
+
+### 4.14 Conform and educate
 
 `ki repo conform --skill ki-work-roadmap --repo <repo> --dry-run` shows the exact root-orientation replacement.
 
@@ -294,3 +388,5 @@ It never invents an item, changes a horizon, changes lifecycle status, removes a
 `ki repo educate --skill ki-work-roadmap --repo <repo>` scaffolds the root orientation only when the repository has no roadmap artefacts.
 
 It does not create speculative work-item files.
+
+[Back to contents](#contents)

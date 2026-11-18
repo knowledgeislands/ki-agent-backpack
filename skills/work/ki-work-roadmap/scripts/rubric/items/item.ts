@@ -1,8 +1,8 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import { outcomesFor, type RoadmapAuditContext, type RoadmapRubricContext } from '../contexts/roadmap.ts'
 
-const SOURCE = 'standards-repository-roadmaps.md'
-const FORMAT = 'standards-work-item-format.md'
+const SOURCE = 'standard-repository-roadmaps.md'
+const FORMAT = 'standard-work-item-format.md'
 
 const ITEM_1: RubricItem<RoadmapAuditContext> = {
   code: 'ITEM-1',

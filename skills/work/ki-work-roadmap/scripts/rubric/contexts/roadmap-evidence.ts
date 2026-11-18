@@ -130,8 +130,8 @@ const RECORD_FIELDS = new Set([
   'intake_disposition',
   'intake_disposition_target'
 ])
-const STANDARD = 'references/standards-repository-roadmaps.md'
-const FORMAT = 'references/standards-work-item-format.md'
+const STANDARD = 'references/standard-repository-roadmaps.md'
+const FORMAT = 'references/standard-work-item-format.md'
 const RUBRIC = 'references/rubric.md'
 const ROADMAP_CONFIG = 'ki-work-roadmap'
 const REPO_CONFIG = 'ki-repo'

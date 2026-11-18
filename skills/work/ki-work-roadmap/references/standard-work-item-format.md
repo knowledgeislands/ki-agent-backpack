@@ -1,19 +1,87 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T03:56:13Z
+ki-status: in force
+---
+
 # Repository work-item format
 
 ## Contents
 
-- [Placement and identity](#placement-and-identity)
-- [Frontmatter](#frontmatter)
-- [Priority and size](#priority-and-size)
-- [Assignee](#assignee)
-- [Classification](#classification)
-- [Target dates](#target-dates)
-- [Hold](#hold)
-- [Cancellation and resolution](#cancellation-and-resolution)
-- [Body](#body)
-- [Detail by stage](#detail-by-stage)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Placement and identity](#41-placement-and-identity)
+  - [4.2 Frontmatter](#42-frontmatter)
+  - [4.3 Priority and size](#43-priority-and-size)
+  - [4.4 Assignee](#44-assignee)
+  - [4.5 Retired fields and values](#45-retired-fields-and-values)
+  - [4.6 Classification](#46-classification)
+  - [4.7 Target dates](#47-target-dates)
+  - [4.8 Hold](#48-hold)
+  - [4.9 Cancellation and resolution](#49-cancellation-and-resolution)
+  - [4.10 Task links](#410-task-links)
+  - [4.11 Timestamps](#411-timestamps)
+  - [4.12 Body](#412-body)
+  - [4.13 Detail by stage](#413-detail-by-stage)
+    - [4.13.1 Triage, or Future / draft](#4131-triage-or-future--draft)
+    - [4.13.2 Cancelled](#4132-cancelled)
+    - [4.13.3 Soon / draft](#4133-soon--draft)
+    - [4.13.4 Next or Now / draft to ready](#4134-next-or-now--draft-to-ready)
+    - [4.13.5 In progress](#4135-in-progress)
+    - [4.13.6 Awaiting review](#4136-awaiting-review)
+    - [4.13.7 Done](#4137-done)
 
-## Placement and identity
+## 1. Introduction
+
+The shape of one repository work item: where it sits, its front matter fields and their values, its timestamps, its body sections and the detail each stage adds. [The repository-roadmap standard](standard-repository-roadmaps.md) owns the roadmap's shape and lifecycle. The decisions behind these rules are in the [sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+One work item's file, fields and sections, in a project roadmap or a Knowledge Base's Streams.
+
+### 2.1 In scope
+
+- Placement, identity and slug.
+- Front matter fields, including priority and size, assignee, classification, target dates, hold, cancellation and resolution, and task links, and the retired fields.
+- Timestamps.
+- The body sections and the detail each stage adds, including the review packet and closure.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- The roadmap's shape, identifiers, statuses, horizons and lifecycle moves: [the repository-roadmap standard](standard-repository-roadmaps.md).
+- Projects and themes themselves: `ki-work`'s [Project registry](../../../keystone/ki-work/references/standard-project-registry.md).
+- The procedures that write each stage: the `ki-work` subcommands.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Priority** | How important a record is among records at the same horizon: `high`, `medium` or `low`. **Standard:** this one, [4.3](#43-priority-and-size) |
+| **Size** | The relative end-to-end effort a record involves: `s`, `m`, `l` or `xl`. **Standard:** this one, [4.3](#43-priority-and-size) |
+| **Assignee** | Who holds a record, whose it is to take forward, as one of the work model's holder values. **Standard:** this one, [4.4](#44-assignee) |
+| **Classification** | The fields saying what sort of work a record is and what it serves: `kind`, `purpose`, `project`, `theme` and `component`. **Standard:** this one, [4.6](#46-classification) |
+| **Target** | An optional date the work aims towards, `due` or `milestone`, with its outcome. **Standard:** this one, [4.7](#47-target-dates) |
+| **Resolution** | Why a cancelled record ended: `obsolete`, `rejected`, `duplicate`, `merged` or `superseded`. **Standard:** this one, [4.9](#49-cancellation-and-resolution) |
+| **Task link** | A verified, provider-keyed reference from a record to a task in another system. **Standard:** this one, [4.10](#410-task-links) |
+| **Review packet** | The `## Review` section a record carries from `awaiting-review`, the evidence for one acceptance decision. **Standard:** this one, [4.13.6](#4136-awaiting-review) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 Placement and identity
 
 Each work item is one regular Markdown file directly under its adapter's roadmap directory:
 
@@ -24,11 +92,13 @@ Streams/Roadmap/<REPO>-<NNN>-<slug>.md
 Streams/Roadmap/<REPO>-<AREA>-<NNN>-<slug>.md
 ```
 
-`<REPO>-<NNN>` or `<REPO>-<AREA>-<NNN>` is the identifier described by [the repository-roadmap standard](standards-repository-roadmaps.md). The adapter-local `_ISSUES.md` retains the applicable repository or area high-water mark so a pruned record never makes its identifier reusable.
+`<REPO>-<NNN>` or `<REPO>-<AREA>-<NNN>` is the identifier described by [the repository-roadmap standard](standard-repository-roadmaps.md). The adapter-local `_ISSUES.md` retains the applicable repository or area high-water mark so a pruned record never makes its identifier reusable.
 
 `<slug>` is lowercase kebab-case and no longer than 50 characters.
 
-## Frontmatter
+[Back to contents](#contents)
+
+### 4.2 Frontmatter
 
 ```yaml
 ---
@@ -47,7 +117,7 @@ updated_at: 2026-08-12T09:30:00Z
 ---
 ```
 
-`id`, `title`, `status`, `blocks`, `blocked_by`, and `baseline_ref` are required. `size` is required on every open record from capture, whatever the horizon, under [Priority and size](#priority-and-size); during the [migration window](standards-repository-roadmaps.md#migration-tolerance) a missing `size` warns, and a closed record never needs one. `assignee` is required on every open record under [Assignee](#assignee); during the [assignee window](standards-repository-roadmaps.md#migration-tolerance) a missing one warns. `priority` is written at capture, and an absent `priority` reads as `medium`. `horizon` is required exactly when the record is adopted and open. `area` is required only when the repository configures fixed issuing areas, and prohibited otherwise. An adopted record also carries `kind`.
+`id`, `title`, `status`, `blocks`, `blocked_by`, and `baseline_ref` are required. `size` is required on every open record from capture, whatever the horizon, under [Priority and size](#43-priority-and-size); during the [migration window](standard-repository-roadmaps.md#47-migration-tolerance) a missing `size` warns, and a closed record never needs one. `assignee` is required on every open record under [Assignee](#44-assignee); during the [assignee window](standard-repository-roadmaps.md#47-migration-tolerance) a missing one warns. `priority` is written at capture, and an absent `priority` reads as `medium`. `horizon` is required exactly when the record is adopted and open. `area` is required only when the repository configures fixed issuing areas, and prohibited otherwise. An adopted record also carries `kind`.
 
 An adopted record looks like this:
 
@@ -79,7 +149,7 @@ updated_at: 2026-08-12T09:30:00Z
 
 `status` is `triage`, `draft`, `ready`, `in-progress`, `awaiting-review`, `done`, or `cancelled`. `triage` is captured but unadopted intake.
 
-`horizon` is one of `now`, `next`, `soon`, `future`, or `hold`, constrained by status as the [status and horizon table](standards-repository-roadmaps.md#status-and-horizon) states. Triage, done, and cancelled records omit it.
+`horizon` is one of `now`, `next`, `soon`, `future`, or `hold`, constrained by status as the [status and horizon table](standard-repository-roadmaps.md#43-status-and-horizon) states. Triage, done, and cancelled records omit it.
 
 `blocks` and `blocked_by` are arrays of item identifiers and use `[]` when empty. They name records in this repository only. Describe work another repository must deliver in `## Dependencies / blocks`: name that repository, state the need in plain terms and link only durable documentation, never its roadmap record or identifier, because records are pruned and such links break. Hand that need over as a line in the receiving work's `messages.md`, never as a record written into the receiver's roadmap or triage, as Kris set under HANDOFF-AS-MESSAGE on 2026-10-20: "Handoffs are not roadmap items ... we push the need to roll things out into other projects triage folders, and that's not what this is for." The receiver captures a record only for work genuinely deferred that it owns, under the `ki-work next` [capture rule](../../../keystone/ki-work/references/standard-next-work.md#432-capture-substantive-prospective-work).
 
@@ -89,11 +159,13 @@ updated_at: 2026-08-12T09:30:00Z
 
 `area` is the immutable issuing code included in an area-qualified identifier. It is not a mutable group.
 
-`intake_disposition`, `intake_disposition_target`, and `waiting_on_trades` are retired. The [migration window](standards-repository-roadmaps.md#migration-tolerance) has closed, so the checker fails them. The former free-text `theme` grouping is retired with them; `theme` now names a territory theme under [Classification](#classification).
+`intake_disposition`, `intake_disposition_target`, and `waiting_on_trades` are retired. The [migration window](standard-repository-roadmaps.md#47-migration-tolerance) has closed, so the checker fails them. The former free-text `theme` grouping is retired with them; `theme` now names a territory theme under [Classification](#46-classification).
 
 An optional non-empty `transferred_from` records a durable handoff origin.
 
-### Priority and size
+[Back to contents](#contents)
+
+### 4.3 Priority and size
 
 `horizon` says when the work is intended; `priority` says how important it is among records at the same horizon. `priority` is `high`, `medium`, or `low`:
 
@@ -112,11 +184,13 @@ It is written at capture, and an absent `priority` reads as `medium`, so its abs
 
 Reports and messages display a size as a T-shirt label, 👕 and the letter in capitals: `👕 S`, `👕 M`, `👕 L` or `👕 XL`. The field value stays the lower-case `s`, `m`, `l` or `xl`, and there is no XS. Kris asked for it on 24 October 2026, "I wonder if there's a way of showing T-shirt S, M, etc. next to it. And probably put it in a capital letter, almost like it's a label on a t-shirt", and adopted it under SIZE-LABEL on 25 October.
 
-A size set at capture is provisional, set by judgement, and is revisited before the record becomes Ready; a record whose size is uncertain warrants investigation rather than an invented estimate. A `ready` record with `size: xl` fails. During the [migration window](standards-repository-roadmaps.md#migration-tolerance) the checker warns on an open record without `size`; once the window closes it fails. A closed record, done or cancelled, never needs a retrospective `size` or `kind`. A value outside either vocabulary fails at once.
+A size set at capture is provisional, set by judgement, and is revisited before the record becomes Ready; a record whose size is uncertain warrants investigation rather than an invented estimate. A `ready` record with `size: xl` fails. During the [migration window](standard-repository-roadmaps.md#47-migration-tolerance) the checker warns on an open record without `size`; once the window closes it fails. A closed record, done or cancelled, never needs a retrospective `size` or `kind`. A value outside either vocabulary fails at once.
 
 Selection orders work in one sequence, which [`ki-work next`](../../../keystone/ki-work/references/standard-next-work.md#44-select-candidates) applies: adoption, holds and dependencies first, then horizon, then priority, then the nearer target date within that horizon and priority, then size, smallest first. An absent target has no date urgency. Priority never crosses horizons: a `high` record at a later horizon does not overtake a `medium` one at an earlier horizon, but prompts a proposal to move its horizon.
 
-### Assignee
+[Back to contents](#contents)
+
+### 4.4 Assignee
 
 `assignee` names who holds the record: whose it is to take forward. It takes one of the work model's holder values, under the `ki-work-package` [state fields](../../ki-work-package/references/standard-work-package.md#45-the-state):
 
@@ -126,20 +200,24 @@ Selection orders work in one sequence, which [`ki-work next`](../../../keystone/
 - `person/<handle>` - a named person;
 - `repo/<name>` - a repository, for work its own sessions pick up.
 
-Every open record carries one from capture, whatever its status or horizon; a closed record, done or cancelled, never needs a retrospective one. Kris asked for it on 5 November 2026 under ROADMAP-ASSIGNEE: "good to give it an assignee. We can always change the assignee if we run out of work, but it's good that someone has it." A value outside the vocabulary fails at once; during the [assignee window](standards-repository-roadmaps.md#migration-tolerance) an open record without one warns.
+Every open record carries one from capture, whatever its status or horizon; a closed record, done or cancelled, never needs a retrospective one. Kris asked for it on 5 November 2026 under ROADMAP-ASSIGNEE: "good to give it an assignee. We can always change the assignee if we run out of work, but it's good that someone has it." A value outside the vocabulary fails at once; during the [assignee window](standard-repository-roadmaps.md#47-migration-tolerance) an open record without one warns.
 
 Until work starts the assignee changes freely: whoever runs out of work may take a record, and a handover is an assignee change, with no other ceremony. Once a record is `in-progress`, which `ki-work implement` sets together with `baseline_ref`, its assignee is fixed: marking work in progress is what locks who holds it, as Kris set under ASSIGNEE-LOCK the same morning. The lock takes the assignee named in the earliest committed version of the record's current in-progress run, so a record that started with none may have one filled in once. The audit reads the record's Git history and fails an in-progress record whose assignee differs from that; where the history is unavailable it cannot check, and says nothing. The assignee grants no authority: delivery still follows the record's lifecycle and the repository's gates.
 
-### Retired fields and values
+[Back to contents](#contents)
 
-These shapes are retired. A record still carrying one is tolerated with a warning during the [migration window](standards-repository-roadmaps.md#migration-tolerance) and fails once it closes; new records never use them:
+### 4.5 Retired fields and values
+
+These shapes are retired. A record still carrying one is tolerated with a warning during the [migration window](standard-repository-roadmaps.md#47-migration-tolerance) and fails once it closes; new records never use them:
 
 - `initiative`, the thread-model name for `theme`: name the theme in `theme`, read meanwhile as the record's theme under the [Project registry tolerance window](../../../keystone/ki-work/references/standard-project-registry.md#413-tolerance-window);
 - `purpose: adoption`, which no record has used: use `capability` or `upkeep`.
 
-The same review on 2026-10-19 kept three sparsely used shapes: `kind: decide`, which the [graduation test](standards-repository-roadmaps.md#ideas-and-graduation) names for decision records; `resolution_target`, which a duplicate, merged or superseded cancellation needs to name its replacement; and [`task_links`](#task-links), the durable link from a record to its tasks in another system.
+The same review on 2026-10-19 kept three sparsely used shapes: `kind: decide`, which the [graduation test](standard-repository-roadmaps.md#46-ideas-and-graduation) names for decision records; `resolution_target`, which a duplicate, merged or superseded cancellation needs to name its replacement; and [`task_links`](#410-task-links), the durable link from a record to its tasks in another system.
 
-### Classification
+[Back to contents](#contents)
+
+### 4.6 Classification
 
 Classification fields say what sort of work a record is and what it serves. Each has one owner tier that defines its allowed values.
 
@@ -155,13 +233,15 @@ Classification fields say what sort of work a record is and what it serves. Each
 
 `purpose` says why the work exists. Use `upkeep` for work that keeps something accurate and never finishes.
 
-`project` names the finite outcome the record serves; its theme is looked up in the [Project registry](../../../keystone/ki-work/references/standard-project-registry.md). A record without a Project, such as upkeep, may name its `theme` directly instead. A record with a Project takes its theme from it and does not name `theme` beside it: naming both warns during the [migration window](standards-repository-roadmaps.md#migration-tolerance) and fails once it closes, and a contradiction with the registry fails at once. Under the [work model](https://github.com/knowledgeislands/ki-principal/blob/main/Admin/Governance/Decisions/GDR-KI-PRINCIPAL-009-the-work-model.md) a theme is a label only: it owns no work, and the work a record serves is the territory's regular work or a Project. A record still naming the [retired](#retired-fields-and-values) `initiative` reads it as its theme with a warning; naming both `theme` and `initiative` fails. Project and theme slugs are territory-scoped kebab-case. A bare slug names an entry in the repository's own Capital territory; a record serving another territory's Project or theme qualifies it as `<territory>/<slug>`, such as `ki-principal/agent-host`, under the [Project registry standard](../../../keystone/ki-work/references/standard-project-registry.md#411-cross-territory-references). A record whose `project` does not resolve in an available registry fails the roadmap check. An unavailable registry remains an explicit warning, not a successful resolution; unknown theme slugs retain their existing warning. Tagging another repository's record with a Project is classification, not authority: the owning repository keeps its plan, priority, and acceptance.
+`project` names the finite outcome the record serves; its theme is looked up in the [Project registry](../../../keystone/ki-work/references/standard-project-registry.md). A record without a Project, such as upkeep, may name its `theme` directly instead. A record with a Project takes its theme from it and does not name `theme` beside it: naming both warns during the [migration window](standard-repository-roadmaps.md#47-migration-tolerance) and fails once it closes, and a contradiction with the registry fails at once. Under the [work model](https://github.com/knowledgeislands/ki-principal/blob/main/Admin/Governance/Decisions/GDR-KI-PRINCIPAL-009-the-work-model.md) a theme is a label only: it owns no work, and the work a record serves is the territory's regular work or a Project. A record still naming the [retired](#45-retired-fields-and-values) `initiative` reads it as its theme with a warning; naming both `theme` and `initiative` fails. Project and theme slugs are territory-scoped kebab-case. A bare slug names an entry in the repository's own Capital territory; a record serving another territory's Project or theme qualifies it as `<territory>/<slug>`, such as `ki-principal/agent-host`, under the [Project registry standard](../../../keystone/ki-work/references/standard-project-registry.md#411-cross-territory-references). A record whose `project` does not resolve in an available registry fails the roadmap check. An unavailable registry remains an explicit warning, not a successful resolution; unknown theme slugs retain their existing warning. Tagging another repository's record with a Project is classification, not authority: the owning repository keeps its plan, priority, and acceptance.
 
 `component` names the part of the repository the record touches, from the repository's declared vocabulary.
 
 The resolved Project locates its package in the Capital; its `project` tag is the link, not a transfer of authority or records. Selection into `now` neither opens work nor grants execution. The assigned package steward adds the routed record to its next steps at its next wake. A record without `project` goes first to its existing regular or ad hoc owner and reaches State of play's routing queue only if ownership is unresolved. Reclassification first reconciles runs in flight and their reporting package.
 
-### Target dates
+[Back to contents](#contents)
+
+### 4.7 Target dates
 
 An optional `target` mapping records the date the work aims towards:
 
@@ -174,7 +254,9 @@ target:
 
 The mapping contains exactly `date`, a valid ISO calendar date (`YYYY-MM-DD`), `kind`, either `due` for a hard due date or `milestone` for an aim, and `what`, a non-empty single-line description of the outcome. Both kinds may be used at any lifecycle stage, and absence means no target. A target grants no authority and never moves work across horizons or priorities; within one horizon and priority the nearer date goes first, before size. Views flag approaching and past targets and show the date, kind and outcome rather than treating a date as permission to execute. `hold.review` remains the date to reconsider a hold and does not stand in for a target. No unattended-eligibility field is adopted while UNATTENDED-FIELD remains undecided.
 
-### Hold
+[Back to contents](#contents)
+
+### 4.8 Hold
 
 A record at `horizon: hold` carries a `hold` mapping; every other record omits it.
 
@@ -191,7 +273,9 @@ hold:
 
 A held record keeps its status, `baseline_ref`, completed Steps, and review evidence. Release chooses a horizon afresh.
 
-### Cancellation and resolution
+[Back to contents](#contents)
+
+### 4.9 Cancellation and resolution
 
 `status: cancelled` is the second terminal ending. It requires `resolution`, one of:
 
@@ -205,7 +289,9 @@ A held record keeps its status, `baseline_ref`, completed Steps, and review evid
 
 `resolution` and `resolution_target` are forbidden on every other status.
 
-### Task links
+[Back to contents](#contents)
+
+### 4.10 Task links
 
 An item MAY carry `task_links` in its own frontmatter. This is the only authoritative structured map from that item to tasks in other systems; do not create a shared writable lookup table or copy remote task status into the KI lifecycle. The field is absent when no link has been verified. When present, it is a non-empty map from provider names matching `^[a-z][a-z0-9-]*$` to non-empty lists of reference objects. Each reference has exactly six non-empty string fields: `authority`, `scope`, `id`, `key`, `url`, and `relation`. Do not infer a URL scheme or provider-specific ID grammar from the portable field.
 
@@ -222,9 +308,11 @@ task_links:
 
 `relation` is one of `evaluation`, `implementation`, `review`, `integration`, `coordination`, or `related`. It describes why the item cites the task, not whether the task is active, complete, or assigned. A single item may cite several tasks from one provider and several providers. The qualified identity is provider + authority + scope + id; `key` and `url` are readable locators that may change without changing identity. A duplicate identity with the same relation within one item is invalid. A task may be referenced as context from several items, but a delivery task has at most one governing KI work item, recorded in the task-side locator.
 
-These links preserve historical evaluation, implementation and integration evidence after task completion. They are neither a current claim nor a release. Before assigning work, reconcile the item's local claim or hold note against current task and worktree evidence and record the decision on the item through its designated writing checkout. Missing links, stale locators, paused agents and finished historical tasks do not establish availability. Offline structural validation cannot certify live task ownership. Map writes preserve `created_at`, advance `updated_at`, and follow the [roadmap write locus](standards-repository-roadmaps.md#roadmap-write-locus).
+These links preserve historical evaluation, implementation and integration evidence after task completion. They are neither a current claim nor a release. Before assigning work, reconcile the item's local claim or hold note against current task and worktree evidence and record the decision on the item through its designated writing checkout. Missing links, stale locators, paused agents and finished historical tasks do not establish availability. Offline structural validation cannot certify live task ownership. Map writes preserve `created_at`, advance `updated_at`, and follow the [roadmap write locus](standard-repository-roadmaps.md#412-roadmap-write-locus).
 
-## Timestamps
+[Back to contents](#contents)
+
+### 4.11 Timestamps
 
 `created_at` and `updated_at` are mandatory for every local work item. Local work-item timestamps use canonical RFC 3339 UTC at second precision: `YYYY-MM-DDTHH:MM:SSZ`. A new record writes the same instant to both fields. `created_at` is immutable. A governed lifecycle or semantic body mutation preserves `created_at` and advances `updated_at` to the later of the current UTC second or one second after its previous value. Read-only inspection and formatting-only normalisation do not advance `updated_at`.
 
@@ -234,7 +322,9 @@ Remote adapters project their provider-native creation and update timestamps int
 
 The timestamp pair supports age, inactivity, coverage, and stale-active reporting; it does not establish lifecycle event history, cycle time, throughput, or time-in-state evidence.
 
-## Body
+[Back to contents](#contents)
+
+### 4.12 Body
 
 Every item begins with these sections in order and ends with `## Discussion`:
 
@@ -280,25 +370,37 @@ The roadmap item is the durable handoff record until its work is planned; extern
 
 When delivery uses a pull request, record its link in the work-item body, under Context or the relevant Review evidence. Identify the repository and pull-request number unambiguously, for example `[owner/repository#123](https://github.com/owner/repository/pull/123)`. This is a body reference, not a new required frontmatter field or a substitute for the work record's lifecycle: a pull request opening, merging, or closing does not itself change the item's status. Keep local roadmap reading and listing available offline; refresh live pull-request state during an authorised connected review rather than requiring network access for every listing.
 
-## Detail by stage
+[Back to contents](#contents)
 
-### Triage, or Future / draft
+### 4.13 Detail by stage
+
+What a record holds at each stage, from triage to done.
+
+[Back to contents](#contents)
+
+#### 4.13.1 Triage, or Future / draft
 
 `Goal`, `Context`, `Boundary`, and final `Discussion` are sufficient.
 
 They preserve the intended outcome, why the item exists, its deliberate exclusion, and the reasoning needed to shape it later without pretending that it is planned. `status: triage` means the item is captured but not adopted; Future means it has been adopted as long-term work.
 
-### Cancelled
+[Back to contents](#contents)
+
+#### 4.13.2 Cancelled
 
 A human-approved cancellation may close any open record, including triage, without adopting or implementing the work. Insert terminal `## Cancelled` immediately before the final `Discussion`. It records who approved the cancellation and when, why, and any outstanding changes the cancellation leaves; for a target in another repository it also names that repository and the target's path, so the evidence survives pruning. A record cancelled before it started keeps `baseline_ref: null` and gains no execution sections or Review packet merely to close.
 
-### Soon / draft
+[Back to contents](#contents)
+
+#### 4.13.3 Soon / draft
 
 Add `## Shaping` between `Boundary` and `Discussion`.
 
 It states the intended approach, known dependencies, decisions still needed, and the conditions for promotion.
 
-### Next or Now / draft to ready
+[Back to contents](#contents)
+
+#### 4.13.4 Next or Now / draft to ready
 
 Once selected for immediate work, retain the earlier sections and add these sections before `Discussion`, in order:
 
@@ -354,13 +456,17 @@ It becomes `status: ready` only after the sections are concrete, dependencies ar
 
 Every Step is a Markdown task-list item. New and Ready plans use `- [ ]`; implementation marks completed work as `- [x]`. In-progress items may contain both states, while Acceptance and Done items require every Step to be `- [x]`.
 
-### In progress
+[Back to contents](#contents)
+
+#### 4.13.5 In progress
 
 The implementation process records the immutable full `HEAD` commit in `baseline_ref`, sets `status: in-progress`, and marks completed Steps `- [x]` without deleting them.
 
 Record material departures, decisions, and newly discovered constraints under the relevant topic in the final `Discussion`; do not record routine activity.
 
-### Awaiting review
+[Back to contents](#contents)
+
+#### 4.13.6 Awaiting review
 
 Before setting `status: awaiting-review`, insert `## Review` immediately before `Discussion` with `### Delivered`, `### Change Summary`, `### Verification`, `### Outstanding concerns`, `### Post-change review`, and `### Mini recap` in that exact order. The roadmap checker enforces this review-packet shape.
 
@@ -375,7 +481,9 @@ Later process skills reuse these producer/consumer semantics; they do not reinte
 
 This is the required evidence and review packet for an explicit acceptance decision. `ki-work accept` records the interactive review outcome here before closure.
 
-### Done
+[Back to contents](#contents)
+
+#### 4.13.7 Done
 
 After explicit acceptance, insert terminal `## Done` immediately before `Discussion` and set `status: done`. Keep the reviewed record until an explicitly selected prune path or glob removes it.
 
@@ -388,3 +496,5 @@ Pruning destroys the record's contents along with the record. Before selecting a
 At every stage, `Discussion` remains the final top-level section.
 
 Completed Steps remain `- [x]` rather than being removed.
+
+[Back to contents](#contents)

@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import { outcomesFor, type RoadmapAuditContext, type RoadmapRubricContext } from '../contexts/roadmap.ts'
 
-const SOURCE = 'standards-work-item-format.md'
+const SOURCE = 'standard-work-item-format.md'
 
 const mechanical = (
   code: string,

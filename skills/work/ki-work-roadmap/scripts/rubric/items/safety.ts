@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import { outcomesFor, type RoadmapAuditContext, type RoadmapRubricContext } from '../contexts/roadmap.ts'
 
-const SOURCE = 'standards-repository-roadmaps.md'
+const SOURCE = 'standard-repository-roadmaps.md'
 
 const SAFE_1: RubricItem<RoadmapAuditContext> = {
   code: 'SAFE-1',
