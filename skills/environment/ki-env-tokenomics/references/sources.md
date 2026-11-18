@@ -48,6 +48,8 @@ None recorded by id. The coordination recommendation in [Model purpose](standard
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Environment guild: REFRESH redirects to the backpack from an installed copy. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Environment guild's review, from the Cairn summit's change 10, brought the standard and this file into `ki-authoring`'s formats: the standard was renamed `standard-tokenomics.md`, from `standards-tokenomics.md`, and its rules placed, unchanged, under numbered sections, and this file took the sources format. The rubric's source names follow. No rule changed and no outside source was refreshed.
 
 **REFRESH last run 2026-11-15.** Both sources were re-read and confirmed. Anthropic's context-engineering article is unchanged since its September 2025 publication: context is still a finite attention budget that degrades as it grows, and the aim is still the smallest set of high-signal tokens, with tools, retrieval and sub-agents weighed for their cost. The Agent Skills specification still loads every skill's name and description at startup, at about 100 tokens each, and loads the body only on activation, so descriptions remain a standing selection surface. It still caps a description at 1,024 characters and recommends a body under 5,000 tokens and 500 lines. Nothing in either touches the budget defaults, the model-purpose set or POL-2.
