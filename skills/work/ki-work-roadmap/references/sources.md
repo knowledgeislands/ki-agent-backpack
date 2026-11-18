@@ -69,6 +69,8 @@ None.
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Work guild: REFRESH redirects to the backpack and the migration window's checker is the backpack's. No criterion changed and no outside source refreshed.
+
 Later on 2026-11-18 the same review brought the last words of the old package shape out of the two standards: [the work-item format](standard-work-item-format.md#42-frontmatter) hands another repository's need over along the tree under `ki-coordination`'s Work between packages, as MSG-RETIRE set, rather than as a line in the receiving work's `messages.md`, and [the graduation test](standard-repository-roadmaps.md#46-ideas-and-graduation) says operational work runs on its change document's entries, as `ki-coordination`'s record threshold now does, rather than on a work folder's decisions log; Kris's RECORD-THRESHOLD words stay quoted as received. No criterion changed and no outside source was refreshed.
 
 On 2026-11-18 the Work guild's review, from the Cairn summit's change 10, brought the two standards into the standard format, renamed `standard-repository-roadmaps.md` and `standard-work-item-format.md`, their rules unchanged in substance under numbered sections, and this file into the sources format, its decisions gathered from the reviews below. No outside source was refreshed.
