@@ -42,7 +42,7 @@ Read [references/mode-educate.md](references/mode-educate.md).
 
 Read [references/mode-refresh.md](references/mode-refresh.md).
 
-REFRESH writes only in `ki-agent-backpack`; when invoked from an installed copy, stop and redirect the work to the harness.
+REFRESH writes only in `ki-agent-backpack`; when invoked from an installed copy, stop and redirect the work to the backpack.
 
 ### Mode HELP
 

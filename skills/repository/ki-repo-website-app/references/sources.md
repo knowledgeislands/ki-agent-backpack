@@ -42,6 +42,8 @@ None recorded by id: the standard rests on the outside sources above.
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the interactive website standard](standard-app-site.md), formerly `standards-app-site.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format. The rubric's source names follow. No rule changed and no outside source was refreshed.
 
 Reviewed 2026-10-04; all three sources were reachable and no standard change was needed. Vite (now major version 8, bundling with Rolldown) still treats a root `index.html` as the entry, scaffolds `react` and `react-ts` templates with `vite` and `vite build` scripts, and defaults `build.outDir` to `dist`. React still names Vite as a from-scratch build tool for a client-only application alongside framework options. The purpose boundary and the core-owned site-root contract hold. Previously reviewed 2026-08-14, when the interactive app implementation was separated from the content-site standard.
