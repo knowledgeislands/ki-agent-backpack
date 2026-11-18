@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:17:42Z
+ki-revised: 2026-11-18T03:32:23Z
 ki-status: in force
 ---
 
@@ -51,6 +51,7 @@ The format of a design document, from its front matter to its last section, with
 - How a visual design's boards are drawn, named and coded, and the design levels a book is read by: `ki-design-system`.
 - A proposal to change a design: a change document, in the [change format](standard-formats-change.md).
 - The choices, contracts and drawings a design links to: decision records under `ki-decision-records`, specifications under `ki-specs` and diagrams under `ki-diagrams`.
+- A contributor's capture taken in under a team's intake process, which keeps its own life cycle: it is not a design document, as [4.6](#46-naming-and-place) says.
 
 [Back to contents](#contents)
 
@@ -145,6 +146,7 @@ Every picture a design shows renders in any Markdown view and in the Wayfinder.
 - **Named by its slug:** `<slug>.design.md`, the suffix pattern, unnumbered, the slug being the design's name in kebab case, such as `wayfinder-components.design.md`.
 - **In `docs/design/`:** a repository keeps its designs under `docs/design/<area>/`, one of `ki-repo`'s documentation roots, which selects `ki-design`. The area is a short word the repository chooses, such as `ui`, `system` or `api`. A Knowledge Base or the Cairn store keeps them where its own structure says, and says why.
 - **An index** of a repository's designs, where it keeps one, reads each design's status from its front matter rather than restating it.
+- **A capture is not a design.** A contributor's capture taken in under a team's intake process, with its brief, its evidence and that process's own states, is not a design document, even where it sits under `docs/design/`, and is not brought into this format: the format stops where the intake process begins, and its folder's index says it holds captures under that process. What a capture feeds, once it is digested, is written in this format. `HNR Sites` in `apps-be.humansnotrobots.home`'s `docs/design/`, a capture under its team's design-capture process, is one, and stays where it is.
 
 [Back to contents](#contents)
 
@@ -157,6 +159,8 @@ Beyond the format format's checks, a validator checks:
 3. **Status lines:** a shelved design's Introduction says why in its first line, a replaced design's first line links its successor, and an agreed design's Built says what differs.
 4. **Pictures:** each image the design shows exists in its folder; each board in a book is named `ia-`, `wire-` or `mock-` with its PNG beside it; no HTML page is embedded; and no drawing is made in text characters.
 5. **Name and place:** the file is `<slug>.design.md` under `docs/design/`, or the place says why it differs.
+
+A capture under an intake process ([4.6](#46-naming-and-place)) is not checked as a design.
 
 A design written before this format, in another shape, comes into it when it is next changed, as the format format's out-of-date rule says. These checks are `ki-authoring`'s FMT-shape rubric item, reviewed by judgement under `ki repo audit --skill ki-authoring`, as the change, standard and sources formats' are.
 
