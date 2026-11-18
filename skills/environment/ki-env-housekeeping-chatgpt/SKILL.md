@@ -17,7 +17,7 @@ argument-hint: 'audit <repo> | conform <repo> | educate <repo> | help | refresh'
 
 # ChatGPT-family state housekeeping
 
-This skill is the ChatGPT-family home for distinct ChatGPT and Codex state surfaces. Their stores and controls remain separate. [The Codex memory standard](references/standards-codex-memory.md) governs the repository-first memory decision; [the Codex state standard](references/standards-codex-state.md) governs exact physical-repository session selection and permanent-deletion safeguards.
+This skill is the ChatGPT-family home for distinct ChatGPT and Codex state surfaces. Their stores and controls remain separate. [The Codex memory standard](references/standard-codex-memory.md) governs the repository-first memory decision; [the Codex state standard](references/standard-codex-state.md) governs exact physical-repository session selection and permanent-deletion safeguards.
 
 This skill composes `ki-env-housekeeping`, the family's lead, which holds the rules every agent host shares, and adds the ChatGPT and Codex surfaces and controls.
 

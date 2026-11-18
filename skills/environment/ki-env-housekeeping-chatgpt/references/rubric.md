@@ -32,12 +32,12 @@ Provider-specific inventory, provenance, and source-mutation boundaries.
   - _Review prompt:_ Does the provider preserve its no-decrypt, no-write, no-delete boundary?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-- **STATE-3 [J] — Codex inventory is exact and content-minimised** — Codex inventory matches one physical repository exactly, includes active and archived roots and complete descendants, and excludes transcript content. (standards-codex-state.md#repository-identity, standards-codex-state.md#inventory)
+- **STATE-3 [J] — Codex inventory is exact and content-minimised** — Codex inventory matches one physical repository exactly, includes active and archived roots and complete descendants, and excludes transcript content. (standard-codex-state.md#41-repository-identity, standard-codex-state.md#42-inventory)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ Does the Codex provider prove exact repository identity and complete, content-minimised inventory?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-- **STATE-4 [J] — Codex deletion is explicitly reviewed and fail-closed** — Permanent deletion requires a reviewed artifact, exact selection, destructive confirmation, complete revalidation, and partial-execution reporting. (standards-codex-state.md#deletion)
+- **STATE-4 [J] — Codex deletion is explicitly reviewed and fail-closed** — Permanent deletion requires a reviewed artifact, exact selection, destructive confirmation, complete revalidation, and partial-execution reporting. (standard-codex-state.md#43-deletion)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ Does Codex deletion preserve the reviewed selection and every pre-delete safety gate?
   - _Outcomes:_ conforming; gap; exclusion
@@ -45,15 +45,15 @@ Provider-specific inventory, provenance, and source-mutation boundaries.
 
 ## MEMORY — Codex local-memory policy
 
-→ [standard](standards-codex-memory.md)
+→ [standard](standard-codex-memory.md)
 
 Explicit repository policy, readable runtime configuration, and retained-memory reconciliation.
 
-- **MEMORY-1 [M] — repository memory policy is explicit** — A repository supporting Codex declares disabled, transition, or human-approved enabled memory. (standards-codex-memory.md#repository-policy)
+- **MEMORY-1 [M] — repository memory policy is explicit** — A repository supporting Codex declares disabled, transition, or human-approved enabled memory. (standard-codex-memory.md#42-repository-policy)
   - _Remediation:_ diagnostic — Inspect the selected Codex memory store, then explicitly declare disabled or transition; enabled requires human approval.
-- **MEMORY-2 [M] — readable Codex settings agree with policy** — Readable Codex configuration must not enable memory against KI policy; enabled requires project opt-in. (standards-codex-memory.md#runtime-settings)
+- **MEMORY-2 [M] — readable Codex settings agree with policy** — Readable Codex configuration must not enable memory against KI policy; enabled requires project opt-in. (standard-codex-memory.md#43-runtime-settings)
   - _Remediation:_ diagnostic — Review Codex configuration precedence and session overrides; do not change managed user settings without review.
-- **MEMORY-3 [M] — retained local memory is reconciled** — Transition always warns; memory files under disabled policy need reviewed knowledge routing. (standards-codex-memory.md#reconciliation)
+- **MEMORY-3 [M] — retained local memory is reconciled** — Transition always warns; memory files under disabled policy need reviewed knowledge routing. (standard-codex-memory.md#44-reconciliation)
   - _Remediation:_ diagnostic — Preserve local files until useful learning is approved in repository guidance or KB notes.
 
 ## RUBRIC — Generated rubric publication

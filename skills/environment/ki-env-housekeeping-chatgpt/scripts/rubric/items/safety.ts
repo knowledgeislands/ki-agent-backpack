@@ -31,7 +31,7 @@ export const STATE = {
       title: 'Codex inventory is exact and content-minimised',
       description:
         'Codex inventory matches one physical repository exactly, includes active and archived roots and complete descendants, and excludes transcript content.',
-      sources: ['standards-codex-state.md#repository-identity', 'standards-codex-state.md#inventory'],
+      sources: ['standard-codex-state.md#41-repository-identity', 'standard-codex-state.md#42-inventory'],
       judgment: judgment(
         'Does the Codex provider prove exact repository identity and complete, content-minimised inventory?'
       )
@@ -41,7 +41,7 @@ export const STATE = {
       title: 'Codex deletion is explicitly reviewed and fail-closed',
       description:
         'Permanent deletion requires a reviewed artifact, exact selection, destructive confirmation, complete revalidation, and partial-execution reporting.',
-      sources: ['standards-codex-state.md#deletion'],
+      sources: ['standard-codex-state.md#43-deletion'],
       judgment: judgment('Does Codex deletion preserve the reviewed selection and every pre-delete safety gate?')
     }
   ]
