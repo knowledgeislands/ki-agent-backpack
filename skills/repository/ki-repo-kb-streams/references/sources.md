@@ -63,6 +63,8 @@ None recorded by id: the model is canonical to this skill.
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Streams structure standard](standard-streams-structure.md) and [the Enactment Process standard](standard-enactment-process.md), formerly `standards-streams-structure.md` and `standards-enactment-process.md`, were renamed and reshaped to the standard format with their rules unchanged, and this file to the sources format. SKILL.md, the CONFORM mode and the rubric follow the new names and anchors. No rule changed and no outside source was refreshed.
 
 **2026-09-28** — reconciled recurring obligations with canonical Activity notes under the base's configured collection. Streams requires only `Roadmap/`; existing `Housekeeping/` definitions are reported for owner-approved reconciliation, never automatically moved or deleted. The Activity and `ki-work-recurring` contracts own standing definitions and shared run lifecycle. No receiving base is claimed as migrated by this source change.
