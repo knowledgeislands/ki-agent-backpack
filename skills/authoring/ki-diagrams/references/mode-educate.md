@@ -10,7 +10,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
    | Shape                    | Recommended starter set                       |
    | ------------------------ | --------------------------------------------- |
-   | Project or harness       | One `architecture` and one `workflow`         |
+   | Project or backpack      | One `architecture` and one `workflow`         |
    | MCP server               | One `architecture` and one request `sequence` |
    | Knowledge Base           | None by default                               |
 

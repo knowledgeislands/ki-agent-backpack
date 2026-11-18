@@ -6,7 +6,7 @@
  * This is a port of the route Archify drives its own browser gate through, verified against Archify 3.0.1
  * (`bin/visual-check.mjs`: `findChrome`, `chromeVisualBrowserArgs`, `PipeCdp`, `ChromeVisualBrowser`). The discovery
  * order, the `ARCHIFY_CHROME` and `ARCHIFY_CHROME_NO_SANDBOX` overrides and the launch flags are copied as they are, so
- * the exporter and Archify's gate drive the same browser the same way. The module is the harness's own so that
+ * the exporter and Archify's gate drive the same browser the same way. The module is the backpack's own so that
  * `ki-diagrams` depends on no Archify internals and stays installable where the Archify skill is not.
  *
  * Only the pieces the exporter needs are here: find, launch, attach to the first page, `send`, wait for an event,

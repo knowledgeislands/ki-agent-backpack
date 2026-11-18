@@ -93,7 +93,7 @@ Archify was chosen on 2026-10-03 against six criteria: visual quality, a committ
 
 Mermaid and Graphviz were excluded at the owner's direction as not good enough to look at. Mermaid's place is now pending re-evaluation on its current rendering (state, Sankey), since Kris noted on 29 October 2026 that it "looks like it has massively improved its rendering recently"; until that re-evaluation settles it, the exclusion and the audit warning below stand. The audit warns on each fenced `mermaid` block left in the repository's tracked Markdown, naming its file and line, until it is replaced by an Archify diagram or the owner decides to keep it, as Kris set on 19 October 2026 under DIAGRAM-REPLACE: "Re mermaid diagrams, if they can be replaced with archify they should be, e.g. activity diagrams. Flag any others that don't and I'll decide about them too". A kept diagram carries `<!-- ki-diagrams: keep mermaid -->` on the line before its fence, so the decision sits beside it: Mermaid diagrams found in a repository are replaced by Archify diagrams wherever Archify can carry them, and the rest are flagged to the owner. D2 is allowed only for maps generated mechanically from code, such as a route manifest or a dependency graph, styled from the `ki-design` tokens; it has no interactive HTML. LikeC4 models C4 architecture only; Structurizr looks dated; Stately suits state charts only where XState is adopted; SlickMap has no dark theme; Ilograph, Eraser and IcePanel need payment or SaaS, which fails the private-repository rule; tldraw and Excalidraw are hand-drawn rather than generated; react-scanner, Storybook Composition and framework route visualisers are category mismatches. [Sources](sources.md) lists the evidence for each, and [tool preference by diagram kind](#42-tool-preference-by-diagram-kind) ranks the candidates in the owner's order.
 
-The tool choice is recorded here rather than in a Decision Record. `ADR-KI-HARNESS-TOOLCHAIN-002` lists Archify among the harness's adopted complementary tools and links back to this section.
+The tool choice is recorded here rather than in a Decision Record. `ADR-KI-HARNESS-TOOLCHAIN-002` lists Archify among the backpack's adopted complementary tools and links back to this section.
 
 [Back to contents](#contents)
 
@@ -300,7 +300,7 @@ The browser is found and launched the way Archify's own browser gate finds and l
 
 #### 4.8.4 Without Archify or a browser
 
-Both are optional prerequisites. AUDIT, and the build command's `--check`, read committed files and Git history only and run without either. EDUCATE, REFRESH and authoring stop without Archify and give the Rig install instruction. The exporter stops without a Google Chrome or Chromium and gives Archify's own message, `Chrome or Chromium is unavailable. Set ARCHIFY_CHROME to its executable path.`; the browser is the machine's, not a development dependency of the adopting repository or of the harness.
+Both are optional prerequisites. AUDIT, and the build command's `--check`, read committed files and Git history only and run without either. EDUCATE, REFRESH and authoring stop without Archify and give the Rig install instruction. The exporter stops without a Google Chrome or Chromium and gives Archify's own message, `Chrome or Chromium is unavailable. Set ARCHIFY_CHROME to its executable path.`; the browser is the machine's, not a development dependency of the adopting repository or of the backpack.
 
 [Back to contents](#contents)
 
@@ -308,6 +308,6 @@ Both are optional prerequisites. AUDIT, and the build command's `--check`, read 
 
 A knowledge-base island keeps diagrams too, under the same tool, types, forms, manifest and privacy rules. An island diagram explains a model or a process rather than code, so its source and manifest cite the notes it draws from in place of traced source files: `traced` lists those notes' island-relative paths, and the audit's freshness check reads their history as it reads code. Its `stale_when` names the changes to those notes that would make it untrue. An island usually embeds its diagrams in notes and reports rather than serving a viewer, so a static `light` or `ki` form often suits it better than `dual`.
 
-The canonical harness commit gate consumes the published `diagram-receipts` and `staged-diagram-receipts` modules under `ki-repo-backpack` GATE-2. It compares index blobs using the same receipt checker as DIAG-6; working files never supply staged evidence, and a missing staged source or viewer is refused alongside missing or mismatched receipts. Ordinary DIAG-6 continues to check the supplied repository files.
+The canonical backpack commit gate consumes the published `diagram-receipts` and `staged-diagram-receipts` modules under `ki-repo-backpack` GATE-2. It compares index blobs using the same receipt checker as DIAG-6; working files never supply staged evidence, and a missing staged source or viewer is refused alongside missing or mismatched receipts. Ordinary DIAG-6 continues to check the supplied repository files.
 
 [Back to contents](#contents)

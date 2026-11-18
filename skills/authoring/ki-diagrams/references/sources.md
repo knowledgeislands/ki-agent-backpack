@@ -85,6 +85,8 @@ These sources were added on 2026-10-31 for the [tool preference order](standard-
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Authoring guild: REFRESH names the backpack, and the standard, EDUCATE's starter table and the script comments say backpack where they meant the bundle; the adoption history and identifiers keep their words. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Authoring guild's review, from the Cairn summit's change 10, brought the standard and this file into `ki-authoring`'s formats: the standard was renamed `standard-diagrams.md`, from `standards-diagrams.md`, and reshaped to the standard format with its rules unchanged, and this file took the sources format. The rubric's source anchors follow. No rule changed and no outside source was refreshed.
 
 - 2026-11-10 - With `ki agent` removed in `tools-ki` v0.15.0, the build's `mark.toml` names the session and the `--work` id; it no longer reads `KI_AGENT_RUN` or a run packet under the KI state home. No external source refreshed.

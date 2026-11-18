@@ -4,7 +4,7 @@
  * compares them against that file at `KI_DESIGN_REVISION`. To take a newer palette, copy the changed values, advance
  * the revision and rerun the test.
  *
- * The package is private and unpublished, so the harness carries a copy rather than a dependency.
+ * The package is private and unpublished, so the backpack carries a copy rather than a dependency.
  */
 
 /** The `ki-design` commit these values were copied from. */
