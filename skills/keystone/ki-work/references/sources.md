@@ -58,7 +58,7 @@ The adapter contract is a backpack-owned boundary; review its sources when addin
 | [Change-management adapter standard](standard-change-management-adapters.md) | `implement` and `accept`: selected-adapter resolution and the remote no-execution boundary | On change |
 | [Repository work-item format](../../../work/ki-work-roadmap/references/standards-work-item-format.md#awaiting-review) | `implement` and `accept`: the roadmap review packet, its six headings, exact order, and producer/consumer semantics | On change |
 | [Repository-roadmap lifecycle](../../../work/ki-work-roadmap/references/standards-repository-roadmaps.md#work-item-discipline) | `implement`: the local record lifecycle and `baseline_ref` evidence; `accept`: closure, selected pruning, and completion-observation retention | On change |
-| [Housekeeping template state machine](../../../work/ki-work-recurring/references/standards-recurring-work.md#due-run-procedure) | `accept`: template shape and the division between spawning and successful completion | On change |
+| [Housekeeping template state machine](../../../work/ki-work-recurring/references/standard-recurring-work.md#47-due-run-procedure) | `accept`: template shape and the division between spawning and successful completion | On change |
 
 [Back to contents](#contents)
 
