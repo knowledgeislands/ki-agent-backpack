@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { KbLinkContext, KbRubricContext } from '../contexts/kb.ts'
 
-const SOURCE = 'standards-knowledge-base.md'
+const SOURCE = 'standard-knowledge-base.md'
 
 const LINK_1: RubricItem<KbLinkContext> = {
   code: 'LINK-1',

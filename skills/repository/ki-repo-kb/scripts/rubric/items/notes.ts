@@ -1,8 +1,8 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { KbNoteContext, KbRubricContext } from '../contexts/kb.ts'
 
-const FRONTMATTER = 'standards-frontmatter.md'
-const KB = 'standards-knowledge-base.md'
+const FRONTMATTER = 'standard-frontmatter.md'
+const KB = 'standard-knowledge-base.md'
 
 const NOTE_1: RubricItem<KbNoteContext> = {
   code: 'NOTE-1',
@@ -100,7 +100,7 @@ const NOTE_4: RubricItem<KbNoteContext> = {
   title: 'substantive source mirrors',
   description:
     'Declared source mirrors name one aliased store file, an allowed mirror_type, checksum syntax and, unless indexed, some body content; fidelity remains judgment.',
-  sources: [KB, 'standards-source-mirrors.md'],
+  sources: [KB, 'standard-source-mirrors.md'],
   mechanical: {
     level: 'WARN',
     remediation: {

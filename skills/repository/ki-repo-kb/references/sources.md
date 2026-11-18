@@ -1,12 +1,41 @@
+---
+ki-document-type: sources@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:45:05Z
+ki-refresh: canonical · on-change
+---
+
 # Sources - where the structure model comes from
 
-**Refresh:** canonical · on-change
+## Contents
+
+- [1. Introduction](#1-introduction)
+- [2. Outside sources](#2-outside-sources)
+  - [2.1 Authoritative](#21-authoritative)
+    - [2.1.1 Canonical (the structure definition)](#211-canonical-the-structure-definition)
+  - [2.2 Advisory](#22-advisory)
+    - [2.2.1 Living (how the model is actually used)](#221-living-how-the-model-is-actually-used)
+- [3. Decisions](#3-decisions)
+- [4. Last review](#4-last-review)
+
+## 1. Introduction
+
+The sources behind the [knowledge-base standard][kb-standard], the [frontmatter standard][frontmatter], the [source mirror standard](standard-source-mirrors.md), the [derived search standard](standard-search.md), the [acquired-packet triage standard](standard-acquired-triage.md) and the [rubric](rubric.md).
 
 The canonical and living sources behind this skill's zone model, note metadata, routing test, and project-bindings table. Mode REFRESH reads this file, re-anchors the model against each source, then **bumps the `last reviewed` dates** (what changed is recorded in the commit, not a changelog — history lives in git). This is the skill's memory of where its structure comes from - keep it current.
 
 Unlike `ki-repo-mcp` and `ki-skills`, this skill follows **no moving external spec**: its structure is canonical and in-house. So REFRESH re-anchors against the canonical definition and against how the bases actually use it, not against a published standard.
 
-## Canonical (the structure definition)
+[Back to contents](#contents)
+
+## 2. Outside sources
+
+The skill follows no outside specification: its authoritative sources are its own canonical standards, and the bases using it inform judgement.
+
+### 2.1 Authoritative
+
+The canonical in-house structure definition.
+
+#### 2.1.1 Canonical (the structure definition)
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
@@ -15,11 +44,17 @@ Unlike `ki-repo-mcp` and `ki-skills`, this skill follows **no moving external sp
 
 † The authoritative structure: five zones (Calendar / Pillars / Resources / Streams / Admin) flanked by the inbound `+` and outbound `-` working areas. This in-house Reference is the canonical definition — the skill follows no external spec.
 
-## Living (how the model is actually used)
+[Back to contents](#contents)
+
+### 2.2 Advisory
+
+How the bases actually use the model.
+
+#### 2.2.1 Living (how the model is actually used)
 
 These have no URL; they are sampled at REFRESH time through each base's own `kb-fs` MCP and `CLAUDE.md`. The two named bases are the current exemplars and read in tandem. Both have now reached the resolved end-state on the canonical zone names: `ki-principal` has completed conforming _up_ (its `Admin/` and `-/` are in place, each canonical zone carries its same-name index, and its `.ki.toml` `[skills.ki-repo-kb]` table is empty — no aliases), and `kit-legal` carries the same fuller set, its earlier Pillars-zone rename having completed and its alias dropped. So neither tracked base currently holds a live `[skills.ki-repo-kb.zones]` alias; the model keeps the alias as a canonical, reviewable override (and documents its lifecycle, transitional → dropped) regardless of having no live exemplar.
 
-| Source | Governs | Last reviewed |
+| Source | Informs | Last reviewed |
 | --- | --- | --- |
 | `ki-principal` base[^ap] | Whether the zone model, routing test, and bindings still match a real layout and practice | 2026-08-12 |
 | `kit-legal` base[^kl] | The same, from a base further along the structure, now on the canonical zone names (alias dropped) | 2026-07-04 |
@@ -28,7 +63,26 @@ These have no URL; they are sampled at REFRESH time through each base's own `kb-
 
 ※ Which base-specific declarations recur across bases and should be promoted into this standard skill.
 
-## Last review
+[Back to contents](#contents)
+
+## 3. Decisions
+
+The decisions recorded by id that the standards rest on.
+
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| KB-BINDINGS a | A base's narrative bindings live in its root `AGENTS.md`, which a `CLAUDE.md` imports | 2026-11-16 | [knowledge-base standard][kb-standard] | In force |
+| COVERAGE-SIGNAL a | NOTE-1c no longer tolerates work-package files under `+/_WORK/<id>/` | 2026-11-17 | [frontmatter standard][frontmatter] | In force |
+| COMMIT-VS-CI a | The commit gate is check-only and the `ki-repo-kb` audit runs in CI | 2026-10-26 | [knowledge-base standard][kb-standard] | In force |
+| [ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md) | Commit-gate existence and content are owned separately | 2026-10-22 | [knowledge-base standard][kb-standard] | In force |
+| [ADR-KI-HARNESS-TOOLCHAIN-006](../../../../docs/decisions/ADR-KI-HARNESS-TOOLCHAIN-006-qmd-derived-kb-search-index.md) | qmd derived KB search index | 2026-10-05 | [derived search standard](standard-search.md) | In force |
+| [DDR-KI-HARNESS-001](../../../../docs/decisions/DDR-KI-HARNESS-001-mirrors-and-source-provenance-are-separate-relationships.md) | Mirrors and source provenance are separate relationships | 2026-10-05 | [source mirror standard](standard-source-mirrors.md) | In force |
+
+[Back to contents](#contents)
+
+## 4. Last review
+
+On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: the five standards, formerly `standards-knowledge-base.md`, `standards-frontmatter.md`, `standards-source-mirrors.md`, `standards-search.md` and `standards-acquired-triage.md`, were renamed `standard-<topic>.md` and reshaped to the standard format with their rules unchanged, and this file to the sources format, its decisions gathered into [Decisions](#3-decisions) and its open watch-items under **Watching**. The modes, `SKILL.md` and the rubric's source names follow. No rule changed and no outside source was refreshed.
 
 On 16 November 2026 an in-house review applied KB-BINDINGS a, which Kris took that day at about 16:22 GMT, relayed by the Cairn summit's guardian: a base's narrative bindings live in its root `AGENTS.md`, which every agent host loads, and no longer in an auto-loaded `CLAUDE.md`, which imports it and keeps only what is Claude's own. It follows `ki-repo`'s repository standard and the layers of the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/658d48f/work/cairn/cairn.summit/15-where-guidance-lives.change.md#42-the-layers). The [standard's onboarding][kb-standard], the skill's project bindings and Step 1, and the SAVE and REFRESH procedures say so; MEM-2 already accepted either file. The file keeps its older shape until its guild's review.
 
@@ -43,15 +97,17 @@ Per-source outcome:
 - **`kit-legal`** — confirmed. Full canonical structure on canonical zone names; no kb config table (no aliases); config now on the `[ki-*]` prefix. Hosted audit: 0 fail · 3 warn (Charter/Conformance absent, one non-snake_case key). Zone-alias binding still has no live exemplar.
 - **Per-base `.ki.toml` declarations** — confirmed. No recurring base-specific declaration has emerged to promote into the standard this cycle.
 
-Open watch-items:
+**Watching:**
 
 1. **ki-\* rename split across bases.** kit-legal has migrated its `.ki.toml` tables to the `[ki-*]` prefix; ki-principal still declares `[knowledgeislands-*]`. Shared `.ki.toml` contract (owned by `ki-repo`; tracked by the roadmap rename plan) — not a ki-repo-kb model change. Re-check both bases land on `[skills.ki-repo-kb]` once the rename completes.
 2. **No live `[skills.ki-repo-kb.zones]` exemplar.** Both tracked bases have dropped their aliases. The alias binding is kept as a reviewable override with no live exemplar — watch for a new base mid-migration to re-validate it against reality.
 3. **Charter/Conformance adoption.** The model expects `Admin/Governance/Charter.md` + `Conformance.md`; ki-principal lacks Conformance, kit-legal lacks both (all WARN). Watch whether exemplars adopt them or whether the expectation should soften.
 
+[Back to contents](#contents)
+
 [^ap]: The first real Knowledge Islands base this skill tracks. Sampled through its own `kb-fs` MCP server and its `CLAUDE.md` / memory index. It now carries the full canonical structure — `+`, `-`, `Admin/` (with `Admin/Admin.md` and `Admin/MEMORY.md`), `Calendar/`, `Pillars/`, `Resources/`, `Streams/`, each canonical zone with its same-name index — on the canonical zone names, declaring no zone aliases (though its `.ki.toml` still uses the pre-rename `[knowledgeislands-kb]` table — the `ki-*` rename is pending for this base). Its governance Pillar, `Pillars/Knowledge Capital/`, now sits within the canonical `Pillars/` zone, so the earlier mid-migration caveat no longer applies (confirmed 2026-06-21).
 
 [^kl]: A second real base (`github.com/krisb/legal-principal`), sampled via its `kb-fs` MCP (`kit-legal-mcp-kb-fs`). It carries the fuller structure — `+`, `-`, `Admin/` (with `Admin/MEMORY.md`), `Calendar/`, `Pillars/` (with `Pillars/Pillars.md`), `Resources/`, `Streams/` — all on the canonical zone names. It earlier held its Pillars zone under a local folder name, declared as a `[skills.ki-repo-kb.zones]` alias; that rename has since completed and the alias has been dropped (its `.ki.toml` now carries no `[skills.ki-repo-kb.zones]` table, re-confirmed via its live MCP layout 2026-06-21 — `Pillars/Pillars.md` sits at the canonical folder). So it now documents the alias lifecycle's resolved end-state — transitional alias → dropped after the rename — rather than a live alias, and the zone-alias binding currently has no live exemplar among the tracked bases.
 
-[kb-standard]: standards-knowledge-base.md
-[frontmatter]: standards-frontmatter.md
+[kb-standard]: standard-knowledge-base.md
+[frontmatter]: standard-frontmatter.md

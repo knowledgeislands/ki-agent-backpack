@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { KbMemoryContext, KbRubricContext } from '../contexts/kb.ts'
 
-const SOURCE = 'standards-knowledge-base.md'
+const SOURCE = 'standard-knowledge-base.md'
 
 const MEM_1: RubricItem<KbMemoryContext> = {
   code: 'MEM-1',

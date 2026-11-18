@@ -1,8 +1,75 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:45:05Z
+ki-status: in force
+---
+
 # Source mirror content and derived labels
 
-This is the normative source-mirror contract referenced by the [knowledge-base standard](standards-knowledge-base.md#source-mirrors). It applies only when `[skills.ki-repo].store_roles` includes `sources`. It does not bind a base merely because an external directory exists. [DDR-KI-HARNESS-001](../../../../docs/decisions/DDR-KI-HARNESS-001-mirrors-and-source-provenance-are-separate-relationships.md) records the rationale.
+## Contents
 
-## Mirrors and source provenance
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Applicability](#41-applicability)
+  - [4.2 Mirrors and source provenance](#42-mirrors-and-source-provenance)
+  - [4.3 Authored mirror contract](#43-authored-mirror-contract)
+  - [4.4 Source provenance contract](#44-source-provenance-contract)
+  - [4.5 Derived search label schema](#45-derived-search-label-schema)
+  - [4.6 Per-base enrichment work](#46-per-base-enrichment-work)
+
+## 1. Introduction
+
+How a note in a base relates to a file in its source store: the mirror and source-provenance relationships, the authored mirror contract, the derived search labels, and the per-base enrichment work. The decisions behind these rules are in [the sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+Notes that mirror or derive from source-store files, in a base declaring the `sources` store role.
+
+### 2.1 In scope
+
+- When the contract applies.
+- The mirror and source-provenance relationships and their fields.
+- The authored mirror contract and the source provenance contract.
+- The derived `mirror_content` label schema and its classifier.
+- The receiving base's enrichment work.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- The rest of the base's structure: [the knowledge-base standard](standard-knowledge-base.md).
+- Search itself: [the derived search standard](standard-search.md).
+- An acquisition adapter's own upstream provenance, kept in that adapter's fields.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Mirror** | A note that stands in for exactly one source file, declared by `mirrors`, `mirror_type` and `mirror_sha256`. **Standard:** this one, [4.2](#42-mirrors-and-source-provenance) |
+| **Source provenance** | A note's record of the source it was produced from, by `source_path` and `source_sha256`. **Standard:** this one, [4.2](#42-mirrors-and-source-provenance) |
+| **`mirror_content`** | Derived response metadata labelling a note `null`, `extract`, `pointer` or `unknown`. **Standard:** this one, [4.5](#45-derived-search-label-schema) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+Applicability first, then the rules, part by part.
+
+### 4.1 Applicability
+
+This is the normative source-mirror contract referenced by the [knowledge-base standard](standard-knowledge-base.md#45-source-mirrors). It applies only when `[skills.ki-repo].store_roles` includes `sources`. It does not bind a base merely because an external directory exists. [DDR-KI-HARNESS-001](../../../../docs/decisions/DDR-KI-HARNESS-001-mirrors-and-source-provenance-are-separate-relationships.md) records the rationale.
+
+[Back to contents](#contents)
+
+### 4.2 Mirrors and source provenance
 
 A base can relate a note to a source-store file in two distinct ways. Each has its own fields, and neither implies the other.
 
@@ -13,7 +80,9 @@ A base can relate a note to a source-store file in two distinct ways. Each has i
 
 Only `mirrors`, `mirror_type` and `mirror_sha256` make a note a mirror. A mirror carries no `source_*` fields for the file it mirrors. A derived note carries no `mirror*` fields. An acquisition adapter's own upstream provenance, such as a meeting identifier, is a third relationship; preserve it in that adapter's fields rather than turning it into either of these.
 
-## Authored mirror contract
+[Back to contents](#contents)
+
+### 4.3 Authored mirror contract
 
 A mirror keeps its zone's appropriate `note_type`. Its frontmatter carries:
 
@@ -27,11 +96,15 @@ The body states what the file is and records the durable facts a reader would ot
 
 A coverage or index note that lists many source files is an ordinary note, not a mirror, and carries no mirror fields.
 
-## Source provenance contract
+[Back to contents](#contents)
+
+### 4.4 Source provenance contract
 
 A derived note may carry `source_path`, in the same `<store-alias>-sources/<store-relative path>` form, and `source_sha256`, the 64-hexadecimal-character digest of the source it was derived from. Many notes may share one `source_path`. These fields record origin only; mirror labels and `NOTE-4` ignore them.
 
-## Derived search label schema
+[Back to contents](#contents)
+
+### 4.5 Derived search label schema
 
 The pure [classifier](../scripts/internal/source-mirrors.ts) accepts parsed top-level YAML fields, body text after frontmatter and an explicit malformed-frontmatter flag. Callers reject duplicate YAML keys and unterminated, malformed or non-mapping frontmatter before classification; a last-wins parser alone is insufficient. Pass `malformed: true` for ambiguous declarations, even when one parsed value looks valid. Pass the raw YAML payload as `frontmatter` to the same pure classifier in every caller, including `NOTE-4`, so parsing differences cannot confer an extract label. The shared `ambiguousMirrorFrontmatter` check accepts plain, unquoted top-level snake_case keys and plain or quoted scalar mirror values; duplicate keys, quoted or escaped keys, merges, flow documents, indented mirror keys, aliases, anchors, tags, block scalars and scalar escape sequences are conservatively unknown. Ordinary nested metadata may remain; this is a mirror eligibility grammar, not a general YAML parser. The [synthetic fixtures](../scripts/internal/source-mirrors.test.ts) and [native audit fixtures](../scripts/rubric/items/index.test.ts) are the executable examples. Search consumers may vendor the canonical helper with a byte-drift check; there is no public package requirement.
 
@@ -46,6 +119,10 @@ Responses also carry `mirrors`, `mirror_type` and `mirror_sha256` as declared va
 
 Labels operate only over authorised Markdown, after zone and access checks and before snippets or engine expansion. No label reader opens, hashes, follows, crawls or resolves a source store. A selected-checkout audit must skip symlinked note files and directories. `NOTE-4` warns on declared mirrors with invalid declarations or, except for `indexed` mirrors, an empty body, and reports not applicable where the sources role is absent; it never fails merely for mirror quality.
 
-## Per-base enrichment work
+[Back to contents](#contents)
+
+### 4.6 Per-base enrichment work
 
 The receiving base owns a separate enrichment record: inventory the declared source store against its mirrors under that base's access authority; record controlled groups and missing mirrors; add or extend extracts and checksums; verify freshness where authorised; and report remaining unknown or pointer coverage. No shared harness audit or search-label delivery grants access to that store or writes these records. Legacy notes lacking recognized metadata remain unclassified until their owner reconciles them.
+
+[Back to contents](#contents)

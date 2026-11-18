@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { KbRoutingContext, KbRubricContext } from '../contexts/kb.ts'
 
-const SOURCE = 'standards-knowledge-base.md'
+const SOURCE = 'standard-knowledge-base.md'
 
 const ROUTE_1: RubricItem<KbRoutingContext> = {
   code: 'ROUTE-1',

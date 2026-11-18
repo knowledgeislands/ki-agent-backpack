@@ -33,62 +33,62 @@ The tracked readable rubric is the exact publication of the structured catalogue
 
 ## ZONE — zone layout
 
-→ [standard](standards-knowledge-base.md)
+→ [standard](standard-knowledge-base.md)
 
 Required zones, indexes, working areas, output placement, and retained digest scaffold.
 
-- **ZONE-1 [M] — required zone layout** — Calendar/, Pillars/, Resources/, Streams/, and Admin/ resolve through any declared zone alias to readable directories, including directory symlinks. (standards-knowledge-base.md)
+- **ZONE-1 [M] — required zone layout** — Calendar/, Pillars/, Resources/, Streams/, and Admin/ resolve through any declared zone alias to readable directories, including directory symlinks. (standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Correct the required zone layout or placement, then rerun the audit.
-- **ZONE-2 [M] — same-name zone indexes** — Each present zone has its same-name index note. (standards-knowledge-base.md)
+- **ZONE-2 [M] — same-name zone indexes** — Each present zone has its same-name index note. (standard-knowledge-base.md)
   - _Remediation:_ automatic
-- **ZONE-3 [M] — root memory index** — The resolved Admin zone carries MEMORY.md. (standards-knowledge-base.md)
+- **ZONE-3 [M] — root memory index** — The resolved Admin zone carries MEMORY.md. (standard-knowledge-base.md)
   - _Remediation:_ automatic
-- **ZONE-4 [M] — working areas are not zones** — +/ and -/ are reported as working areas only and are exempt from the zone-index rule. (standards-knowledge-base.md)
+- **ZONE-4 [M] — working areas are not zones** — +/ and -/ are reported as working areas only and are exempt from the zone-index rule. (standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Correct the required zone layout or placement, then rerun the audit.
-- **ZONE-5 [M] — produced outputs use the outbound working area** — Notes with note_type session-digest reside under the resolved -/ working area; cross-repository handoffs belong to ki-trades. (standards-knowledge-base.md)
+- **ZONE-5 [M] — produced outputs use the outbound working area** — Notes with note_type session-digest reside under the resolved -/ working area; cross-repository handoffs belong to ki-trades. (standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Correct the required zone layout or placement, then rerun the audit.
-- **ZONE-6 [M] — session-digest scaffold is canonical** — A declared ki-repo-kb capability retains the exact -/_DIGESTS/README.md scaffold after digest records are removed. (standards-knowledge-base.md)
+- **ZONE-6 [M] — session-digest scaffold is canonical** — A declared ki-repo-kb capability retains the exact -/_DIGESTS/README.md scaffold after digest records are removed. (standard-knowledge-base.md)
   - _Remediation:_ automatic
 
 ## CONFIG — KB configuration
 
-→ [standard](standards-knowledge-base.md)
+→ [standard](standard-knowledge-base.md)
 
 Validate-down `[skills.ki-repo-kb]` configuration and zone aliases.
 
-- **CONFIG-0 [M] — parseable KB configuration** — When present, .ki.toml parses before the KB table is evaluated. (standards-knowledge-base.md)
+- **CONFIG-0 [M] — parseable KB configuration** — When present, .ki.toml parses before the KB table is evaluated. (standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Correct the TOML syntax before relying on KB configuration.
-- **CONFIG-1 [M] — known configuration keys** — Only required_frontmatter, preflight, zones, templates, and boolean strict_link_resolution are recognised beneath [skills.ki-repo-kb]. (standards-knowledge-base.md)
+- **CONFIG-1 [M] — known configuration keys** — Only required_frontmatter, preflight, zones, templates, and boolean strict_link_resolution are recognised beneath [skills.ki-repo-kb]. (standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Correct the selected ki-repo-kb configuration evidence, then rerun the audit.
-- **CONFIG-2 [M] — non-redundant zone aliases** — A zone alias does not restate its canonical folder name. (standards-knowledge-base.md)
+- **CONFIG-2 [M] — non-redundant zone aliases** — A zone alias does not restate its canonical folder name. (standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Correct the selected ki-repo-kb configuration evidence, then rerun the audit.
-- **CONFIG-3 [M] — canonical zone alias keys** — Every [skills.ki-repo-kb.zones] key names a canonical zone or working area. (standards-knowledge-base.md)
+- **CONFIG-3 [M] — canonical zone alias keys** — Every [skills.ki-repo-kb.zones] key names a canonical zone or working area. (standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Correct the selected ki-repo-kb configuration evidence, then rerun the audit.
-- **CONFIG-4 [M] — KB configuration boundary** — The checker validates only the ki-repo-kb table; shared ki-repo store_roles metadata selects mirror applicability without validating sibling tables. (standards-knowledge-base.md)
+- **CONFIG-4 [M] — KB configuration boundary** — The checker validates only the ki-repo-kb table; shared ki-repo store_roles metadata selects mirror applicability without validating sibling tables. (standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Correct the selected ki-repo-kb configuration evidence, then rerun the audit.
-- **CONFIG-5 [M] — declared preflight paths** — Literal preflight paths resolve under the base; globs remain runtime-resolved. (standards-knowledge-base.md)
+- **CONFIG-5 [M] — declared preflight paths** — Literal preflight paths resolve under the base; globs remain runtime-resolved. (standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Correct the selected ki-repo-kb configuration evidence, then rerun the audit.
 
 ## ADMIN — Admin zone
 
-→ [standard](standards-knowledge-base.md)
+→ [standard](standard-knowledge-base.md)
 
 Optional Admin subdivisions and their governance baseline.
 
-- **ADMIN-1 [M] — optional Admin subdivisions** — When Governance/ or Operations/ is active, it has its same-name index; absent subdivisions warn only. (standards-knowledge-base.md)
+- **ADMIN-1 [M] — optional Admin subdivisions** — When Governance/ or Operations/ is active, it has its same-name index; absent subdivisions warn only. (standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Add the required Admin evidence or correct its local structure, then rerun the audit.
-- **ADMIN-2 [M] — governance charter** — An active Admin/Governance/ directory carries Charter.md. (standards-knowledge-base.md)
+- **ADMIN-2 [M] — governance charter** — An active Admin/Governance/ directory carries Charter.md. (standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Add the required Admin evidence or correct its local structure, then rerun the audit.
-- **ADMIN-3 [M] — governance conformance record** — An active Admin/Governance/ directory carries Conformance.md. (standards-knowledge-base.md)
+- **ADMIN-3 [M] — governance conformance record** — An active Admin/Governance/ directory carries Conformance.md. (standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Add the required Admin evidence or correct its local structure, then rerun the audit.
 
 ## ROUTE — routing and placement
 
-→ [standard](standards-knowledge-base.md)
+→ [standard](standard-knowledge-base.md)
 
 Judgment review of the knowledge-base routing test.
 
-- **ROUTE-1 [J] — notes follow the routing test** — Notes are placed in the zone selected by their time-bound, active-work, settled-knowledge, or external-reference role. (standards-knowledge-base.md)
+- **ROUTE-1 [J] — notes follow the routing test** — Notes are placed in the zone selected by their time-bound, active-work, settled-knowledge, or external-reference role. (standard-knowledge-base.md)
   - _Evidence scope:_ Sampled notes, their current zones, and the routing test.
   - _Review prompt:_ Does each sampled note sit in the zone selected by the routing test?
   - _Outcomes:_ conforming; move note; routing clarification
@@ -96,33 +96,33 @@ Judgment review of the knowledge-base routing test.
 
 ## NOTE — note conventions
 
-→ [standard](standards-frontmatter.md)
+→ [standard](standard-frontmatter.md)
 
 Frontmatter mechanics and note-authoring judgment.
 
-- **NOTE-1 [M + J] — declared required frontmatter** — When required_frontmatter is declared, each note with frontmatter carries those keys; otherwise key requirements remain a judgment call. (standards-frontmatter.md, standards-knowledge-base.md)
+- **NOTE-1 [M + J] — declared required frontmatter** — When required_frontmatter is declared, each note with frontmatter carries those keys; otherwise key requirements remain a judgment call. (standard-frontmatter.md, standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Add the declared required frontmatter keys, then rerun the audit.
   - _Evidence scope:_ The base frontmatter convention and its host guidance.
   - _Review prompt:_ When no required_frontmatter list is declared, are the required keys appropriate to this base and its host guidance?
   - _Outcomes:_ conforming; convention revision; not applicable
   - _Conforming guidance:_ Set required keys through the base owner’s convention; do not infer them from a mechanical finding.
-- **NOTE-1a [M] — well-formed frontmatter fences** — Every opening frontmatter fence closes. (standards-frontmatter.md)
+- **NOTE-1a [M] — well-formed frontmatter fences** — Every opening frontmatter fence closes. (standard-frontmatter.md)
   - _Remediation:_ diagnostic — Close the affected frontmatter fence, then rerun the audit.
-- **NOTE-1b [M] — snake_case frontmatter keys** — Top-level frontmatter keys use snake_case. (standards-frontmatter.md)
+- **NOTE-1b [M] — snake_case frontmatter keys** — Top-level frontmatter keys use snake_case. (standard-frontmatter.md)
   - _Remediation:_ diagnostic — Rename affected top-level frontmatter keys to snake_case, then rerun the audit.
-- **NOTE-1c [M] — explicit note type metadata** — Every KB-owned note frontmatter uses note_type and never the legacy generic type field or retired handoff classification; acquisition-adapter and protocol records remain with their owning skills. (standards-frontmatter.md)
+- **NOTE-1c [M] — explicit note type metadata** — Every KB-owned note frontmatter uses note_type and never the legacy generic type field or retired handoff classification; acquisition-adapter and protocol records remain with their owning skills. (standard-frontmatter.md)
   - _Remediation:_ diagnostic — Use note_type for KB notes. Route retired handoff records through ki-trades rather than relabelling them; preserve adapter and protocol metadata.
-- **NOTE-2 [J] — note naming convention** — Calendar notes are dated and other note names follow the base convention. (standards-knowledge-base.md)
+- **NOTE-2 [J] — note naming convention** — Calendar notes are dated and other note names follow the base convention. (standard-knowledge-base.md)
   - _Evidence scope:_ Sampled notes and the base naming convention.
   - _Review prompt:_ Do note names follow the base-specific naming convention?
   - _Outcomes:_ conforming; rename note; convention revision
   - _Conforming guidance:_ Apply the base owner’s naming convention without inventing a new taxonomy.
-- **NOTE-3 [J] — source and analysis distinction** — Facts are cited to a source path or reference, and analysis is labelled where the base distinguishes it. (standards-knowledge-base.md)
+- **NOTE-3 [J] — source and analysis distinction** — Facts are cited to a source path or reference, and analysis is labelled where the base distinguishes it. (standard-knowledge-base.md)
   - _Evidence scope:_ Sampled factual and analytical note content and the base convention.
   - _Review prompt:_ Are facts sourced and analysis labelled according to the base convention?
   - _Outcomes:_ conforming; note revision; convention revision
   - _Conforming guidance:_ Add evidence or labels according to the base convention; do not manufacture sources.
-- **NOTE-4 [M + J] — substantive source mirrors** — Declared source mirrors name one aliased store file, an allowed mirror_type, checksum syntax and, unless indexed, some body content; fidelity remains judgment. (standards-knowledge-base.md, standards-source-mirrors.md)
+- **NOTE-4 [M + J] — substantive source mirrors** — Declared source mirrors name one aliased store file, an allowed mirror_type, checksum syntax and, unless indexed, some body content; fidelity remains judgment. (standard-knowledge-base.md, standard-source-mirrors.md)
   - _Remediation:_ diagnostic — Have the base owner reconcile mirror provenance and durable extracts; never open a source store during this audit.
   - _Evidence scope:_ Sampled declared source mirrors and the base-owned enrichment record.
   - _Review prompt:_ Does each extract carry the durable facts a reader would otherwise open the binary for, without private detail of no enduring use? Are fidelity and checksum freshness verified only under base authority?
@@ -131,25 +131,25 @@ Frontmatter mechanics and note-authoring judgment.
 
 ## MEM — memory cascade
 
-→ [standard](standards-knowledge-base.md)
+→ [standard](standard-knowledge-base.md)
 
 Memory-index accuracy and its always-loaded anchor.
 
-- **MEM-1 [J] — active-Pillar memory accuracy** — Admin/MEMORY.md lists the Pillars actually active in the base. (standards-knowledge-base.md)
+- **MEM-1 [J] — active-Pillar memory accuracy** — Admin/MEMORY.md lists the Pillars actually active in the base. (standard-knowledge-base.md)
   - _Evidence scope:_ The memory index and active Pillars in the base.
   - _Review prompt:_ Does the memory index accurately list active Pillars?
   - _Outcomes:_ conforming; memory revision; not applicable
   - _Conforming guidance:_ Update the owned memory index from current base evidence; do not infer active status.
-- **MEM-2 [M] — always-loaded memory cascade anchor** — Root CLAUDE.md or AGENTS.md anchors the memory cascade before substantive work. (standards-knowledge-base.md)
+- **MEM-2 [M] — always-loaded memory cascade anchor** — Root CLAUDE.md or AGENTS.md anchors the memory cascade before substantive work. (standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Add or correct the root memory cascade anchor, then rerun the audit.
 
 ## LINK — base linking
 
-→ [standard](standards-knowledge-base.md)
+→ [standard](standard-knowledge-base.md)
 
 Mechanical internal-link resolution in exact case and judgment review of the preferred GFM form.
 
-- **LINK-1 [M + J] — Internal links resolve in exact case** — Ambiguous wikilinks fail; unresolved or wrong-case internal links warn unless strict_link_resolution is true; GFM is preferred. (standards-knowledge-base.md)
+- **LINK-1 [M + J] — Internal links resolve in exact case** — Ambiguous wikilinks fail; unresolved or wrong-case internal links warn unless strict_link_resolution is true; GFM is preferred. (standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Repair missing or wrong-case destinations and qualify ambiguous wikilinks, then rerun the audit; supported link syntax alone is never a defect.
   - _Evidence scope:_ Sampled base notes and the prescribed linking convention.
   - _Review prompt:_ Do sampled notes prefer descriptive note-relative GFM links in angle brackets, while retaining readable supported wikilinks and preserving meaning during conversion?
@@ -158,9 +158,9 @@ Mechanical internal-link resolution in exact case and judgment review of the pre
 
 ## GATE — commit gate
 
-→ [standard](standards-knowledge-base.md)
+→ [standard](standard-knowledge-base.md)
 
 What a Knowledge Base commit gate runs.
 
-- **GATE-1 [M] — check-only commit gate** — Where a committed `.githooks/pre-commit` exists, it runs only fast check-only staged lints: no `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`. The full `ki repo audit` runs in CI. `ki-repo` HOOK-1 owns whether the hook exists and HOOK-4 its canonical text. (standards-knowledge-base.md)
+- **GATE-1 [M] — check-only commit gate** — Where a committed `.githooks/pre-commit` exists, it runs only fast check-only staged lints: no `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`. The full `ki repo audit` runs in CI. `ki-repo` HOOK-1 owns whether the hook exists and HOOK-4 its canonical text. (standard-knowledge-base.md)
   - _Remediation:_ diagnostic — Copy the canonical pre-commit from `assets/githooks/`, then rerun the audit.
