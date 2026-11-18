@@ -97,6 +97,6 @@ Run `ki repo educate --skill ki-work --repo <repo>` to render the adapter contra
 
 ### Mode REFRESH
 
-**Precondition:** REFRESH writes only this canonical skill under `ki-agent-backpack`. Invoked from an installed copy, stop and redirect to the Harness.
+**Precondition:** REFRESH writes only this canonical skill under `ki-agent-backpack`. Invoked from an installed copy, stop and redirect to the backpack.
 
 On the cadence in [the sources](references/sources.md), compare supported adapters and the subcommands' use of them with [the adapter standard](references/standard-change-management-adapters.md), and re-check the runtime documentation the recap subcommand relies on. Add a new adapter only with an explicit mapping of its stable reference, lifecycle states, authority boundary, and close/prune semantics; record the normative change in the commit.
