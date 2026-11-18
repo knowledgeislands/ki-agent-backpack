@@ -113,6 +113,8 @@ None.
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Agentic systems guild: REFRESH redirects to the backpack, and the card rule and its check speak of the backpack holding `ki-agentic-systems`. No criterion changed and no outside source refreshed.
+
 The review log records outcomes, newest first; source freshness is tracked in each source row so an old log entry does not read as a stale source.
 
 | Review | Outcome | Date |

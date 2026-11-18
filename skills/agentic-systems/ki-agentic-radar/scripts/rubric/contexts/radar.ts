@@ -9,7 +9,7 @@ import type {
 } from '../../shared/rubric.ts'
 
 const RADAR_PATH = fileURLToPath(new URL('../../../references/radar.toml', import.meta.url))
-/** The sibling knowledge skill's graph, present in the canonical harness and absent from a lone installed copy. */
+/** The sibling knowledge skill's graph, present in the canonical backpack and absent from a lone installed copy. */
 const CARD_GRAPH_PATH = fileURLToPath(new URL('../../../../../keystone/ki-agentic-systems/knowledge', import.meta.url))
 const ID = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/
 const ISO_DATE = /^(\d{4})-(\d{2})-(\d{2})$/
