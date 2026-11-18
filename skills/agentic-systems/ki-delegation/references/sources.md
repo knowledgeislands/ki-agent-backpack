@@ -73,6 +73,8 @@ Kris's decisions behind the rules, each taken in conversation or relayed as its 
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Agentic systems guild: REFRESH redirects to the backpack, the worktree audit recipe names `ki dev local`'s `<backpack>` argument, the green baseline is the backpack's, and RUN-1's remediation names the canonical backpack skill, the rubric regenerated. Quotations keep their words. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Agentic systems guild's review, from the Cairn summit's change 10, brought the files into the formats: `standards-background-runs.md` and `standards-delegation-packets.md` were renamed `standard-background-runs.md` and `standard-delegation-packets.md` and reshaped, their rules unchanged under numbered sections, each old Scope becoming the first rules section, and this file took the sources format, with the vendor guides as advisory and the relayed owner decisions in the Decisions table. The footers', SKILL.md's and the rubric's links follow the new names and anchors. No rule changed and no outside source was refreshed.
 
 A 2026-11-18 in-house review applies DIRECT-OR-RUN a, which Kris took that night at about 23:34 GMT under GUARDIAN-LANDS a, relayed by the Cairn summit's guardian: [Scope](standard-background-runs.md#41-background-runs) closes with Direct or run, quick and simple work done directly and longer work handed to a run, and, when a request does not say which, one line saying which and going ahead unless redirected, asking only when the choice is costly to undo. No outside source refreshed.

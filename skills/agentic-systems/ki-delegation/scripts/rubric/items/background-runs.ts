@@ -19,7 +19,7 @@ export const RUN: RubricFamily<DelegationRubricContext, DelegationRubricContext[
         remediation: {
           class: 'diagnostic',
           guidance:
-            'Restore the footer or grant wording in the canonical harness skill so each tier and each grant permits exactly what the standard lists.'
+            'Restore the footer or grant wording in the canonical backpack skill so each tier and each grant permits exactly what the standard lists.'
         },
         audit: { phase: 'INSPECT', run: ({ outcomes }) => outcomes }
       }
