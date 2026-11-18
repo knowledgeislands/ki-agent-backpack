@@ -29,7 +29,7 @@ test('the structured catalogue preserves the complete website rule surface', () 
           Boolean(item.judgment?.guidance.trim())
       )
   ).toBe(true)
-  expect(items.every((item) => item.sources?.includes('standards-eleventy-site.md'))).toBe(true)
+  expect(items.every((item) => item.sources?.includes('standard-eleventy-site.md'))).toBe(true)
 })
 
 test('the sole semantic family module exports one complete family', async () => {

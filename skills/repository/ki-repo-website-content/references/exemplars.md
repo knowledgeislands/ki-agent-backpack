@@ -9,7 +9,7 @@ ki-document-type: exemplars@2026-11-17T00:55:00Z
 - [Collections](#collections)
 - [Selected patterns](#selected-patterns)
 
-Curated patterns worth reading when authoring or auditing a Knowledge Islands Eleventy site. Use these as concrete references — what an `eleventy.config.ts` looks like with the required transforms wired, how the Tailwind entry point is structured, what the `package.json` script family looks like for a monorepo site, and how a `base.njk` layout composes its partials. These complete shapes remain separate because embedding them in the normative standard would make that reference unwieldy. Do not copy them wholesale; adapt to the specific site's content model, tokens, and nav shape. For the full standard, see [the Eleventy site standard](standards-eleventy-site.md); for source provenance, see [sources.md](sources.md).
+Curated patterns worth reading when authoring or auditing a Knowledge Islands Eleventy site. Use these as concrete references — what an `eleventy.config.ts` looks like with the required transforms wired, how the Tailwind entry point is structured, what the `package.json` script family looks like for a monorepo site, and how a `base.njk` layout composes its partials. These complete shapes remain separate because embedding them in the normative standard would make that reference unwieldy. Do not copy them wholesale; adapt to the specific site's content model, tokens, and nav shape. For the full standard, see [the Eleventy site standard](standard-eleventy-site.md); for source provenance, see [sources.md](sources.md).
 
 ## Collections
 

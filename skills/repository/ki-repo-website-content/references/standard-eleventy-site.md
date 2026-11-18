@@ -1,28 +1,85 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:49:45Z
+ki-status: in force
+---
+
 # Eleventy site standard
 
-The content overlay applies to the single core-selected site or, with a named multi-site registry, every registered site by default. `[skills.ki-repo-website-content]` may use only `sites = ["name"]` to select a non-empty subset of known names; it never declares paths. Every selected site receives a separate content audit subject. The existing keyless form remains the complete single-site contract.
+## Contents
+
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Selection and applicability](#41-selection-and-applicability)
+  - [4.2 Stack](#42-stack)
+  - [4.3 Repo layout — the selected site application](#43-repo-layout--the-selected-site-application)
+  - [4.4 The `src/` shape](#44-the-src-shape)
+  - [4.5 `eleventy.config.ts` patterns](#45-eleventyconfigts-patterns)
+  - [4.6 Tailwind 4, config-less](#46-tailwind-4-config-less)
+  - [4.7 Content model](#47-content-model)
+  - [4.8 SEO](#48-seo)
+  - [4.9 Dev-workflow delta](#49-dev-workflow-delta)
+  - [4.10 The `dist/` contract](#410-the-dist-contract)
+
+## 1. Introduction
 
 The normative, quotable reference for the Knowledge Islands content website standard — what a good site looks like, and why. The audit rubric ([rubric.md](rubric.md)) turns each section into checkable items; the procedure is in the [SKILL.md](../SKILL.md). See [the source list](sources.md) for provenance.
 
 This skill owns the **site-build delta**. The toolchain it sits on (Bun mandate, aggregate/scoped audit wiring, direct code-tool execution, `tsconfig`/`biome`, and TypeScript checking) is `ki-engineering`'s and is referenced here, not restated.
 
+[Back to contents](#contents)
+
+## 2. Scope
+
+The content implementation of the Knowledge Islands website: a collection of pages generated from Markdown or structured data by Eleventy.
+
+### 2.1 In scope
+
+- When the content implementation applies, and which sites it covers.
+- The stack, the selected site application's layout and its `src/` shape.
+- `eleventy.config.ts` patterns, config-less Tailwind 4, the content model and SEO.
+- The development workflow and the `dist/` the build hands to hosting.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- The toolchain beneath the site: `ki-engineering`.
+- Selecting the site root and the root `ki:site:*` aliases: `ki-repo-website`.
+- A single interactive application: `ki-repo-website-app`.
+- Serving `dist/`: a hosting adapter such as `ki-repo-website-cloudflare`.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Content implementation** | The website implementation for a collection of pages generated from Markdown or structured data, currently Eleventy. **Standard:** this one, [4.1](#41-selection-and-applicability) |
+| **Selected site application** | The application workspace at the core-selected site root, conventionally `apps/site/`, holding the site's own config, `src/`, manifest and output. **Standard:** this one, [4.3](#43-repo-layout--the-selected-site-application) |
+| **Portable `dist/`** | Build output whose internal links are relative, so it serves from any root. **Standard:** this one, [4.10](#410-the-dist-contract) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part: selection, the stack, layout, configuration, styling, content, SEO, the development workflow and the output.
+
+### 4.1 Selection and applicability
+
+The content overlay applies to the single core-selected site or, with a named multi-site registry, every registered site by default. `[skills.ki-repo-website-content]` may use only `sites = ["name"]` to select a non-empty subset of known names; it never declares paths. Every selected site receives a separate content audit subject. The existing keyless form remains the complete single-site contract.
+
 Use this implementation when the website is a collection of pages generated from Markdown or structured data. A single interactive SPA is a legitimate non-adoption: select `ki-repo-website-app` instead. Eleventy does not bundle React application JavaScript, so combining both implementations would introduce two build systems and is outside the current standard.
 
 The standard applies only when a repository declares a keyless `[skills.ki-repo-website-content]` table in `.ki.toml`. The content skill consumes the site root selected by `[skills.ki-repo-website].site-root`; it does not declare a second path key. An `eleventy.config.{ts,js,mjs,cjs}` file is coverage evidence for `ki-repo`, not local selection authority; an undeclared site receives one `NOT_APPLICABLE` result here.
 
-## Contents
+[Back to contents](#contents)
 
-- [1. Stack](#1-stack)
-- [2. Repo layout — the selected site application](#2-repo-layout--the-selected-site-application)
-- [3. The `src/` shape](#3-the-src-shape)
-- [4. `eleventy.config.ts` patterns](#4-eleventyconfigts-patterns)
-- [5. Tailwind 4, config-less](#5-tailwind-4-config-less)
-- [6. Content model](#6-content-model)
-- [7. SEO](#7-seo)
-- [8. Dev-workflow delta](#8-dev-workflow-delta)
-- [9. The `dist/` contract](#9-the-dist-contract)
-
-## 1. Stack
+### 4.2 Stack
 
 - **Eleventy 3** (`@11ty/eleventy` `^3.x`) is the generator — a static-site generator, **not** a JS application framework. **Not** Astro, Next, React/Vite, or a SPA. The output is HTML + CSS + a little progressive-enhancement JS.
 - **Nunjucks** (`.njk`) is the template engine for both HTML templates and Markdown (`htmlTemplateEngine: 'njk'`, `markdownTemplateEngine: 'njk'`). **Markdown** (`.md`) carries prose content; `.njk` carries logic/layout.
@@ -30,7 +87,9 @@ The standard applies only when a repository declares a keyless `[skills.ki-repo-
 - **Bun is mandated** as the package manager and runtime. The Bun-install / Node-run split, the `packageManager: bun@…` pin, `engines`, aggregate/scoped audit wiring, and internal code-tool checks are `ki-engineering`'s — this standard assumes them.
 - **Lucide** provides icons, copied from `node_modules` as a passthrough and initialised client-side (no build-time icon framework).
 
-## 2. Repo layout — the selected site application
+[Back to contents](#contents)
+
+### 4.3 Repo layout — the selected site application
 
 Every house 11ty/Cloudflare site repo is a **monorepo** in the `ki-engineering` sense (§0 there): the root `package.json` declares a `workspaces` array, and the site is its own application workspace. The conventional site root is **`apps/site/`**, covered by `"workspaces": ["apps/*"]` from day one. A repository may explicitly select another safe repository-relative workspace through `[skills.ki-repo-website].site-root`; the website core can represent `site-root = "."`, but that flat-layout override does not conform when this content implementation is selected. Adding a companion deployable later (a bot or ingress Worker — **out of this skill's scope**, see [SKILL.md](../SKILL.md) boundaries) is then a pure addition rather than a migration of reusable packages.
 
@@ -40,7 +99,9 @@ Every house 11ty/Cloudflare site repo is a **monorepo** in the `ki-engineering` 
 
 The site root is the directory selected by the website core and containing `eleventy.config.ts`. The `workspaces` declaration is governed by `ki-engineering`; this skill verifies its content-specific consequences.
 
-## 3. The `src/` shape
+[Back to contents](#contents)
+
+### 4.4 The `src/` shape
 
 Under the site root, `src/` is Eleventy's input directory and follows a fixed shape:
 
@@ -58,7 +119,7 @@ src/
 │       ├── nav.njk · footer.njk
 │       └── *.njk               # reusable fragments
 ├── assets/
-│   ├── css/                    # main.css + tokens.css + page partials (§5)
+│   ├── css/                    # main.css + tokens.css + page partials (§4.6)
 │   ├── js/                     # progressive-enhancement scripts, kept small
 │   ├── images/ · fonts/        # passthrough-copied verbatim
 └── <content>/                  # Markdown pages, grouped in folders, each with a *.11tydata.json cascade
@@ -67,21 +128,25 @@ src/
 - **Structure lives in `_data/`, not in templates.** A single typed `_data/*.ts` object (e.g. a reading-order / nav definition) drives nav, ordering, and prev/next, so the shape has one source of truth.
 - **`_includes/layouts/` vs `partials/`**: a layout is a whole-page frame (`base.njk` and its extensions); a partial is an `{% include %}`-d fragment.
 
-## 4. `eleventy.config.ts` patterns
+[Back to contents](#contents)
+
+### 4.5 `eleventy.config.ts` patterns
 
 WEB-12 through WEB-16 inspect an ordered, path-qualified configuration source set: the selected site's physical `eleventy.config.{ts,js,mjs,cjs}` first, followed by each unique physical TypeScript or JavaScript module it directly imports through a relative specifier or a root-workspace package export or entry point. Resolution follows exactly one import edge, stays inside the physical repository, uses only workspaces declared by the root `package.json`, and never reads symlinks, installed `node_modules`, dynamic imports, external packages, or imports of an imported module. The required behaviour may therefore live inline or in a repository-local shared configuration module without weakening the same FAIL and WARN outcomes when it is absent. Checks for properties of the selected site config itself continue to inspect only that file.
 
 The config is `export default function (eleventyConfig) { … return { dir, … } }`. These patterns are expected:
 
-- **Portable-`dist/` transform.** An `addTransform` rewrites absolute internal `href`/`src` URLs to paths relative to the current output file (skipping `http(s):`/`mailto:`/`tel:`/`data:`/`#`), so `dist/` serves from any root. The canonical shape is a `toRelativeOutputUrl` helper inside a transform named `explicit-index-links`. **This is invariant 2** — the seam to hosting (§9).
+- **Portable-`dist/` transform.** An `addTransform` rewrites absolute internal `href`/`src` URLs to paths relative to the current output file (skipping `http(s):`/`mailto:`/`tel:`/`data:`/`#`), so `dist/` serves from any root. The canonical shape is a `toRelativeOutputUrl` helper inside a transform named `explicit-index-links`. **This is invariant 2** — the seam to hosting (§4.10).
 - **`.ts` data extension.** `addDataExtension('ts', { read: false, parser })` dynamically imports the file and, mirroring Eleventy's JS handling, **calls the default export if it is a function** (sync or async), else uses it directly.
 - **`.json5` data extension.** `addDataExtension('json5', { read: false, parser: JSON5.parse(readFileSync(...)) })` — JSON5 for human-edited data (comments, trailing commas).
 - **Tailwind in the lifecycle.** `eleventyConfig.on('eleventy.before', ({ runMode }) => …)` runs the Tailwind CLI with `--minify` when `runMode` is **not** `serve`/`watch` (i.e. a one-shot build), and `addWatchTarget('…/dist/assets/css/main.css')` reloads the dev server when the parallel `--watch` process rewrites the CSS. **This is invariant 4.**
 - **Lucide passthrough** + an `external-link-icons` transform that appends an external-link glyph to `https?://` anchors.
 - **Filters**, where used: `jsonDump` (debug), `unique`, `groupBy`. **Collections** sorted by front-matter order keys where a content section needs ordering.
-- **`return { dir: { input: 'src', output: './dist', includes: '_includes', data: '_data' }, htmlTemplateEngine: 'njk', markdownTemplateEngine: 'njk', templateFormats: ['njk','md','html'] }`** — output resolves to `dist/` inside the selected site root, per §2.
+- **`return { dir: { input: 'src', output: './dist', includes: '_includes', data: '_data' }, htmlTemplateEngine: 'njk', markdownTemplateEngine: 'njk', templateFormats: ['njk','md','html'] }`** — output resolves to `dist/` inside the selected site root, per §4.3.
 
-## 5. Tailwind 4, config-less
+[Back to contents](#contents)
+
+### 4.6 Tailwind 4, config-less
 
 - **No `tailwind.config.*` file** anywhere. Tailwind 4 is configured in CSS. **This is invariant 1.**
 - **`main.css` is the entry point** and an import chain: `@import "tailwindcss"` first, then `tokens.css`, then page/section partials (`base.css`, `home.css`, `nav.css`, …). A lean site imports only `tokens.css` + a couple of partials; a full site imports several.
@@ -89,22 +154,28 @@ The config is `export default function (eleventyConfig) { … return { dir, … 
 - **`@theme inline { … }`** then exposes those vars to Tailwind utilities (`--color-background: var(--background)`, `--font-sans: …`, the `--radius-*` scale), so utilities and raw CSS share one palette. Templates use the tokens; they do **not** hard-code hex values.
 - **A theme or mode axis varies colour only.** Where a site offers selectable themes or a light/dark mode, declare them as attribute selectors on `:root` (`:root[data-theme='x']`, `:root[data-theme='x'][data-mode='dark']`) carrying token _values_; `@theme inline` needs no change, because it aliases names. No rule keyed on one of those attributes may set a layout-affecting property — padding, margin, width, height, border-width, font-size, font-weight, letter-spacing, line-height, gap, transform, display or position. A property declared under only one mode makes the element change size when the user switches, shifting everything around it. Reserve the box unconditionally and vary only the paint: padding with a transparent background is invisible, and declaring it in both modes is what stops the jump.
 - **Check that invariant against the built bundle, not by eye.** Scan the compiled CSS for layout declarations inside `data-theme` or `data-mode` selectors. A walk of every theme × mode combination can only show that the combinations sampled look right; the scan proves the whole class of shift is absent, and it costs one command. Beware matching token _names_ — `--border: #262d36` is a colour, not a width.
-- **Declare `tailwindcss` directly, not just `@tailwindcss/cli`.** Tailwind 4 resolves `@import "tailwindcss"` from the CSS file's directory upward, needing a top-level `node_modules/tailwindcss`. In the monorepo shape (§2), bun's workspace hoisting does **not** give a _transitive_ dep (tailwindcss arrives via `@tailwindcss/cli`) a top-level symlink, so the import fails with `Can't resolve 'tailwindcss'` on a clean install. Listing `tailwindcss` as its own dependency (matching the CLI's major) restores the entry. A flat repo happens to hoist it top-level anyway, which is why this only bites after the monorepo migration.
+- **Declare `tailwindcss` directly, not just `@tailwindcss/cli`.** Tailwind 4 resolves `@import "tailwindcss"` from the CSS file's directory upward, needing a top-level `node_modules/tailwindcss`. In the monorepo shape (§4.3), bun's workspace hoisting does **not** give a _transitive_ dep (tailwindcss arrives via `@tailwindcss/cli`) a top-level symlink, so the import fails with `Can't resolve 'tailwindcss'` on a clean install. Listing `tailwindcss` as its own dependency (matching the CLI's major) restores the entry. A flat repo happens to hoist it top-level anyway, which is why this only bites after the monorepo migration.
 
-## 6. Content model
+[Back to contents](#contents)
+
+### 4.7 Content model
 
 - **Pages are Markdown** (`.md`) with YAML front matter (`title`, `description`, and page-specific keys), grouped into content folders.
 - **Cascade data files** (`<folder>.11tydata.json` or `.js`) set shared front matter for a whole folder — typically `layout` and a section/tag — so individual pages stay prose-only.
-- **Structured data lives in `_data/`** as typed `.ts` (or `.json5`) — the single source of truth for nav and ordering (§3).
+- **Structured data lives in `_data/`** as typed `.ts` (or `.json5`) — the single source of truth for nav and ordering (§4.4).
 - **Optional: build-time validation.** A site with structured JSON5 data may validate it with **Zod** at build time and abort on a bad record (the `5g-emerge` pattern) — promoted here as an _optional capability_, not a requirement.
 
-## 7. SEO
+[Back to contents](#contents)
+
+### 4.8 SEO
 
 - **`seo-meta.njk`** partial emits the canonical link, Open Graph, and Twitter-card tags from `site` data + page front matter, and is **included from `base.njk`** so every page carries it.
 - **`noindex`** front matter (e.g. on `404.njk`) emits `<meta name="robots" content="noindex, nofollow">` and nothing else.
 - **A public site ships `sitemap.xml` and `robots.txt`** (generated from a `.njk` template over the page collection; exclude any admin-only section). **A webmanifest + favicons** complete the head. (An internal/unlisted site may skip sitemap/robots — a judgment call, not a blocker.)
 
-## 8. Dev-workflow delta
+[Back to contents](#contents)
+
+### 4.9 Dev-workflow delta
 
 The selected site workspace owns the content-specific local scripts; these exact bare names are a package-local capability contract rather than root script exclusions. The root-owned public lifecycle aliases belong to `ki-repo-website`:
 
@@ -114,13 +185,17 @@ The selected site workspace owns the content-specific local scripts; these exact
 
 TypeScript checking runs inside the registered `ki-engineering` rubric; do not add parallel `types` or `verify` scripts. These exact local scripts execute within the selected site package and do not appear in root `script_exclusions`. Root `ki:site:build` and `ki:site:clean` delegate local lifecycle names, while root `ki:site:dev` delegates the package's same capability key; the public seam belongs to `ki-repo-website`.
 
-## 9. The `dist/` contract
+[Back to contents](#contents)
+
+### 4.10 The `dist/` contract
 
 The build's output, and the **only** thing `ki-repo-website-cloudflare` needs:
 
-- a tree of static files with **relative** internal links (the §4 transform), so it serves from any root;
+- a tree of static files with **relative** internal links (the §4.5 transform), so it serves from any root;
 - `dist/assets/css/main.css` (Tailwind, minified in build mode), plus passthrough `assets/{js,images,fonts}/`;
 - for a public site, `sitemap.xml` + `robots.txt`;
 - `dist/` is **gitignored** and fully regenerated by the build — never hand-edited. When a source route is removed or renamed, run `ki:site:clean` immediately before the validation build and confirm its former output path is absent: Eleventy does not prune obsolete output itself.
 
-`dist/` sits inside the selected site root (`<site-root>/dist/`; conventionally `apps/site/dist/`), per §2. A selected hosting adapter points at that exact output. **Building `dist/` is this skill; serving it belongs to the hosting adapter.**
+`dist/` sits inside the selected site root (`<site-root>/dist/`; conventionally `apps/site/dist/`), per §4.3. A selected hosting adapter points at that exact output. **Building `dist/` is this skill; serving it belongs to the hosting adapter.**
+
+[Back to contents](#contents)

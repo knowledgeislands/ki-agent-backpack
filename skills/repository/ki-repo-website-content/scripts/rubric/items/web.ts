@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem, ViolationLevel } from '../../shared/rubric.ts'
 import type { WebsiteContext } from '../contexts/website.ts'
 
-const SOURCE = 'standards-eleventy-site.md'
+const SOURCE = 'standard-eleventy-site.md'
 
 const inactive = (context: WebsiteContext): readonly AuditOutcome[] | null =>
   !context.available

@@ -26,145 +26,145 @@ The tracked readable rubric is the exact publication of the structured catalogue
 
 ## WEB — Eleventy website standard
 
-→ [standard](standards-eleventy-site.md)
+→ [standard](standard-eleventy-site.md)
 
 The static-site stack, workspace layout, generated output, and sustainable operating boundary.
 
-- **WEB-1 [M] — Eleventy dependency** — `@11ty/eleventy` `^3.x` is a dependency. (standards-eleventy-site.md)
+- **WEB-1 [M] — Eleventy dependency** — `@11ty/eleventy` `^3.x` is a dependency. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-2 [M] — Eleventy rather than SPA stack** — Application-framework and React/Vite dependencies are absent. (standards-eleventy-site.md)
+- **WEB-2 [M] — Eleventy rather than SPA stack** — Application-framework and React/Vite dependencies are absent. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-3 [M] — Native TypeScript runner** — TypeScript runner is declared in package scripts as modern Node or Bun; the legacy `tsx` runner is absent. Runtime execution remains separate evidence. (standards-eleventy-site.md)
+- **WEB-3 [M] — Native TypeScript runner** — TypeScript runner is declared in package scripts as modern Node or Bun; the legacy `tsx` runner is absent. Runtime execution remains separate evidence. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-4 [J] — Nunjucks template engine** — Nunjucks is the HTML and Markdown template engine; content is Markdown and template logic is Nunjucks. (standards-eleventy-site.md)
+- **WEB-4 [J] — Nunjucks template engine** — Nunjucks is the HTML and Markdown template engine; content is Markdown and template logic is Nunjucks. (standard-eleventy-site.md)
   - _Evidence scope:_ Nunjucks is the HTML and Markdown template engine; content is Markdown and template logic is Nunjucks.
   - _Review prompt:_ Does the configuration use Nunjucks and keep content and template logic in their intended forms?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-5 [J] — Lucide icon source** — Lucide is delivered by passthrough and initialized client-side. (standards-eleventy-site.md)
+- **WEB-5 [J] — Lucide icon source** — Lucide is delivered by passthrough and initialized client-side. (standard-eleventy-site.md)
   - _Evidence scope:_ Lucide is delivered by passthrough and initialized client-side.
   - _Review prompt:_ Is Lucide the icon source and is it wired through the intended passthrough/client pattern?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-6 [M] — Site-root configuration** — One Eleventy configuration lives at the site root selected by `[skills.ki-repo-website].site-root`. (standards-eleventy-site.md)
+- **WEB-6 [M] — Site-root configuration** — One Eleventy configuration lives at the site root selected by `[skills.ki-repo-website].site-root`. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-7 [M] — Roadmap** — `ROADMAP.md` is present. (standards-eleventy-site.md)
+- **WEB-7 [M] — Roadmap** — `ROADMAP.md` is present. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-8 [M] — Workspace declaration** — The root package manifest declares a workspace covering the selected site root. (standards-eleventy-site.md)
+- **WEB-8 [M] — Workspace declaration** — The root package manifest declares a workspace covering the selected site root. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-9 [M] — Source layout** — `src/` has `_data/`, `_includes/layouts/`, `_includes/partials/`, and `assets/css/`. (standards-eleventy-site.md)
+- **WEB-9 [M] — Source layout** — `src/` has `_data/`, `_includes/layouts/`, `_includes/partials/`, and `assets/css/`. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-10 [J] — Local script ownership** — The selected site workspace uses the content skill local script names without root `script_exclusions`, while the repository root owns public `ki:site:*` aliases. (standards-eleventy-site.md)
+- **WEB-10 [J] — Local script ownership** — The selected site workspace uses the content skill local script names without root `script_exclusions`, while the repository root owns public `ki:site:*` aliases. (standard-eleventy-site.md)
   - _Evidence scope:_ The selected site workspace uses the content skill local script names without root `script_exclusions`, while the repository root owns public `ki:site:*` aliases.
   - _Review prompt:_ Does the selected site package keep the exact local script contract while the root exposes only the public `ki:site:*` seam?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-11 [J] — Typed structure data** — Navigation and ordering live in a typed `_data/*.ts` source. (standards-eleventy-site.md)
+- **WEB-11 [J] — Typed structure data** — Navigation and ordering live in a typed `_data/*.ts` source. (standard-eleventy-site.md)
   - _Evidence scope:_ Navigation and ordering live in a typed `_data/*.ts` source.
   - _Review prompt:_ Does typed `_data` own navigation and ordering rather than repeated template literals?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-12 [M] — Portable URL transform** — Selected configuration sources include a transform that rewrites absolute internal URLs to relative URLs. (standards-eleventy-site.md)
+- **WEB-12 [M] — Portable URL transform** — Selected configuration sources include a transform that rewrites absolute internal URLs to relative URLs. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-13 [M] — TypeScript data extension** — Selected configuration sources register `addDataExtension('ts', …)`. (standards-eleventy-site.md)
+- **WEB-13 [M] — TypeScript data extension** — Selected configuration sources register `addDataExtension('ts', …)`. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-14 [M] — JSON5 data extension** — Selected configuration sources register `addDataExtension('json5', …)`. (standards-eleventy-site.md)
+- **WEB-14 [M] — JSON5 data extension** — Selected configuration sources register `addDataExtension('json5', …)`. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-15 [M] — Tailwind lifecycle hook** — Selected configuration sources use `eleventy.before` to compile Tailwind in build mode. (standards-eleventy-site.md)
+- **WEB-15 [M] — Tailwind lifecycle hook** — Selected configuration sources use `eleventy.before` to compile Tailwind in build mode. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-16 [M] — CSS watch target** — Selected configuration sources use `addWatchTarget` to observe the compiled CSS. (standards-eleventy-site.md)
+- **WEB-16 [M] — CSS watch target** — Selected configuration sources use `addWatchTarget` to observe the compiled CSS. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-17 [J] — Configuration helpers** — Filters and ordered collections use the documented patterns where needed. (standards-eleventy-site.md)
+- **WEB-17 [J] — Configuration helpers** — Filters and ordered collections use the documented patterns where needed. (standard-eleventy-site.md)
   - _Evidence scope:_ Filters and ordered collections use the documented patterns where needed.
   - _Review prompt:_ Where the content needs them, do filters and ordered collections use the documented patterns?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-18 [M] — Config-less Tailwind** — No `tailwind.config.*` exists. (standards-eleventy-site.md)
+- **WEB-18 [M] — Config-less Tailwind** — No `tailwind.config.*` exists. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-19 [M] — Tailwind import pair** — `main.css` imports `tailwindcss`, then `tokens.css`. (standards-eleventy-site.md)
+- **WEB-19 [M] — Tailwind import pair** — `main.css` imports `tailwindcss`, then `tokens.css`. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-20 [M] — Token utility exposure** — `tokens.css` exposes variables through `@theme inline`. (standards-eleventy-site.md)
+- **WEB-20 [M] — Token utility exposure** — `tokens.css` exposes variables through `@theme inline`. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-21 [J] — Semantic design tokens** — Semantic palette and self-hosted fonts follow the standard. (standards-eleventy-site.md)
+- **WEB-21 [J] — Semantic design tokens** — Semantic palette and self-hosted fonts follow the standard. (standard-eleventy-site.md)
   - _Evidence scope:_ Semantic palette and self-hosted fonts follow the standard.
   - _Review prompt:_ Do semantic tokens and self-hosted fonts follow the standard rather than embedding arbitrary presentation values?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-22 [J] — Template token use** — Templates consume semantic tokens without hard-coded hex values. (standards-eleventy-site.md)
+- **WEB-22 [J] — Template token use** — Templates consume semantic tokens without hard-coded hex values. (standard-eleventy-site.md)
   - _Evidence scope:_ Templates consume semantic tokens without hard-coded hex values.
   - _Review prompt:_ Do templates consume semantic tokens without hard-coded hex colours?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-23 [J] — Markdown content** — Pages are Markdown with YAML front matter and sensible content folders. (standards-eleventy-site.md)
+- **WEB-23 [J] — Markdown content** — Pages are Markdown with YAML front matter and sensible content folders. (standard-eleventy-site.md)
   - _Evidence scope:_ Pages are Markdown with YAML front matter and sensible content folders.
   - _Review prompt:_ Are pages Markdown with YAML front matter and grouped into sensible content folders?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-24 [J] — Folder data cascade** — Cascade files own repeated folder-level front matter. (standards-eleventy-site.md)
+- **WEB-24 [J] — Folder data cascade** — Cascade files own repeated folder-level front matter. (standard-eleventy-site.md)
   - _Evidence scope:_ Cascade files own repeated folder-level front matter.
   - _Review prompt:_ Do cascade data files own repeated folder-level front matter?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-25 [J] — JSON5 validation** — Structured JSON5 is validated during the build. (standards-eleventy-site.md)
+- **WEB-25 [J] — JSON5 validation** — Structured JSON5 is validated during the build. (standard-eleventy-site.md)
   - _Evidence scope:_ Structured JSON5 is validated during the build.
   - _Review prompt:_ Where structured JSON5 exists, is it validated during the build and does invalid data stop the build?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-26 [M] — SEO metadata partial** — A `seo-meta` partial exists under `_includes/partials/`. (standards-eleventy-site.md)
+- **WEB-26 [M] — SEO metadata partial** — A `seo-meta` partial exists under `_includes/partials/`. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-27 [J] — Site-wide SEO metadata** — `base.njk` includes the SEO partial. (standards-eleventy-site.md)
+- **WEB-27 [J] — Site-wide SEO metadata** — `base.njk` includes the SEO partial. (standard-eleventy-site.md)
   - _Evidence scope:_ `base.njk` includes the SEO partial.
   - _Review prompt:_ Does base.njk include seo-meta so all pages receive canonical, Open Graph, and Twitter metadata?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-28 [J] — Noindex metadata** — `noindex` front matter emits robots metadata. (standards-eleventy-site.md)
+- **WEB-28 [J] — Noindex metadata** — `noindex` front matter emits robots metadata. (standard-eleventy-site.md)
   - _Evidence scope:_ `noindex` front matter emits robots metadata.
   - _Review prompt:_ Does noindex front matter emit robots metadata on intentionally non-indexed pages?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-29 [J] — Public site discovery assets** — Public sites ship scoped discovery and application assets. (standards-eleventy-site.md)
+- **WEB-29 [J] — Public site discovery assets** — Public sites ship scoped discovery and application assets. (standard-eleventy-site.md)
   - _Evidence scope:_ Public sites ship scoped discovery and application assets.
   - _Review prompt:_ Where the site is public, does it ship and scope the required discovery and application assets?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-30 [M] — Local build and development scripts** — The selected site package has a local `build` script invoking Eleventy and a local `ki:site:dev` script using `concurrently`. (standards-eleventy-site.md)
+- **WEB-30 [M] — Local build and development scripts** — The selected site package has a local `build` script invoking Eleventy and a local `ki:site:dev` script using `concurrently`. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-31 [M] — Local development script fan-out** — The local `ki:site:dev` script fans out to local `ki:site:dev:css` and `ki:site:dev:serve` scripts. (standards-eleventy-site.md)
+- **WEB-31 [M] — Local development script fan-out** — The local `ki:site:dev` script fans out to local `ki:site:dev:css` and `ki:site:dev:serve` scripts. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-32 [M] — Local cleanup script** — A local `clean` script is present in the selected site package. (standards-eleventy-site.md)
+- **WEB-32 [M] — Local cleanup script** — A local `clean` script is present in the selected site package. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-33 [M] — Dist ignore** — Generated site output is gitignored at the selected site-root path. (standards-eleventy-site.md)
+- **WEB-33 [M] — Dist ignore** — Generated site output is gitignored at the selected site-root path. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-34 [J] — Portable generated links** — Built HTML contains portable relative internal links. (standards-eleventy-site.md)
+- **WEB-34 [J] — Portable generated links** — Built HTML contains portable relative internal links. (standard-eleventy-site.md)
   - _Evidence scope:_ Built HTML contains portable relative internal links.
   - _Review prompt:_ Does the built HTML actually contain portable relative internal links?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-35 [J] — Generated dist boundary** — `dist/` is fully generated and never hand-edited. (standards-eleventy-site.md)
+- **WEB-35 [J] — Generated dist boundary** — `dist/` is fully generated and never hand-edited. (standard-eleventy-site.md)
   - _Evidence scope:_ `dist/` is fully generated and never hand-edited.
   - _Review prompt:_ Is dist treated as fully generated build output and never hand-edited?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-36 [J] — Hosting seam handoff** — The exact `<site-root>/dist` output is consumed by the separately selected hosting projection without claiming deployment or runtime success. (standards-eleventy-site.md)
+- **WEB-36 [J] — Hosting seam handoff** — The exact `<site-root>/dist` output is consumed by the separately selected hosting projection without claiming deployment or runtime success. (standard-eleventy-site.md)
   - _Evidence scope:_ The exact `<site-root>/dist` output is consumed by the separately selected hosting projection without claiming deployment or runtime success.
   - _Review prompt:_ Does the selected hosting projection consume `<site-root>/dist`, with parsed configuration and runtime/deployment evidence kept separate?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-37 [J] — Volatile facts have one home** — Volatile versions and idioms have one canonical home. (standards-eleventy-site.md)
+- **WEB-37 [J] — Volatile facts have one home** — Volatile versions and idioms have one canonical home. (standard-eleventy-site.md)
   - _Evidence scope:_ Volatile versions and idioms have one canonical home.
   - _Review prompt:_ Do volatile facts live in package metadata or the standard rather than being scattered through implementation?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-38 [J] — Current standard** — Mode REFRESH has recently confirmed the cited sources. (standards-eleventy-site.md)
+- **WEB-38 [J] — Current standard** — Mode REFRESH has recently confirmed the cited sources. (standard-eleventy-site.md)
   - _Evidence scope:_ Mode REFRESH has recently confirmed the cited sources.
   - _Review prompt:_ Has Mode REFRESH confirmed the cited sources and updated the review record recently enough?
   - _Outcomes:_ conforming; revision required; design decision required
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
-- **WEB-39 [M] — Parseable package manifest** — The selected site package manifest is physical and parseable. (standards-eleventy-site.md)
+- **WEB-39 [M] — Parseable package manifest** — The selected site package manifest is physical and parseable. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-40 [M] — Tailwind CLI dependency** — `@tailwindcss/cli` is a dependency. (standards-eleventy-site.md)
+- **WEB-40 [M] — Tailwind CLI dependency** — `@tailwindcss/cli` is a dependency. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-41 [M] — Website opt-in** — Applicable sites declare `[skills.ki-repo-website-content]`. (standards-eleventy-site.md)
+- **WEB-41 [M] — Website opt-in** — Applicable sites declare `[skills.ki-repo-website-content]`. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-42 [M] — Website opt-in validation** — The marker table has no unknown keys. (standards-eleventy-site.md)
+- **WEB-42 [M] — Website opt-in validation** — The marker table has no unknown keys. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.

@@ -28,7 +28,7 @@ This is a **base-agnostic governance skill**. It hard-codes no single repo; it a
 
 This skill owns the **content implementation delta**. The neutral lifecycle and `dist/` seam belong to `ki-repo-website`; the generic toolchain belongs to `ki-engineering`; Markdown/TOML style belongs to `ki-authoring`; and serving `dist/` belongs to the independently selected hosting adapter.
 
-The full, quotable standard is [the Eleventy site standard](references/standards-eleventy-site.md); the line-by-line pass/fail items are in [the audit rubric](references/rubric.md); the tracked provenance is [the source list](references/sources.md). `ki repo audit --skill ki-repo-website-content` runs the mechanical checks. Read those for detail; this file is the operating procedure.
+The full, quotable standard is [the Eleventy site standard](references/standard-eleventy-site.md); the line-by-line pass/fail items are in [the audit rubric](references/rubric.md); the tracked provenance is [the source list](references/sources.md). `ki repo audit --skill ki-repo-website-content` runs the mechanical checks. Read those for detail; this file is the operating procedure.
 
 ## The stack at a glance
 
