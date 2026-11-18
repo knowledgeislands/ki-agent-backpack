@@ -297,8 +297,8 @@ const localRaw = (dir: string, path: string): string | null => {
 // `.ki.toml` is a shared per-repo file; each skill reads its own [table].
 // This skill owns the [skills.ki-repo] table. The default block
 // (written by `--educate`) is the authoritative key list — authoring a repo emits it.
-// A declaration is a bare skill name under `[skills]`; the providing harness is resolved from
-// `[repo] harnesses` rather than repeated in every key.
+// A declaration is a bare skill name under `[skills]`; the providing backpack is resolved from
+// `[repo] backpacks` rather than repeated in every key.
 const skillTable = (name: string): string => name
 /** The declared skill tables, or an empty map where the file declares none. */
 const declaredSkills = (document: Record<string, unknown>): Record<string, unknown> => {
@@ -1672,7 +1672,7 @@ function localConfigFindings(dir: string): Finding[] {
       'RUNTIMES-7',
       `[skills.${KI_SECTION}] supported_runtimes omits ${missingRuntimes.join(', ')}: declare every runtime, or record the evidenced exception as all-runtimes = false in [skills.${CHECKS_SECTION}]`,
       KI_CONFIG,
-      'references/standard-configuration.md#431-declaring-harnesses-and-skills'
+      'references/standard-configuration.md#431-declaring-backpacks-and-skills'
     )
 
   const required = requiredRuntimeSkills(parsed.runtimes)

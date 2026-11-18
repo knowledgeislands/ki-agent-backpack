@@ -102,7 +102,7 @@ const RUNTIMES_7: RubricItem<RuntimesRubricContext> = {
   title: 'Every runtime declared',
   description:
     'The repository declares every recognised runtime, or records a narrower list as the evidenced exception all-runtimes = false.',
-  sources: ['standard-configuration.md#431-declaring-harnesses-and-skills'],
+  sources: ['standard-configuration.md#431-declaring-backpacks-and-skills'],
   mechanical: {
     level: 'WARN',
     remediation: {

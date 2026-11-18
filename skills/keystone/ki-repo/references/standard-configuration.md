@@ -18,8 +18,8 @@ ki-status: in force
   - [4.2 Presentation neighbourhoods](#42-presentation-neighbourhoods)
     - [4.2.1 Neighbourhood banners](#421-neighbourhood-banners)
     - [4.2.2 Layout rules](#422-layout-rules)
-  - [4.3 Harnesses and the skills namespace](#43-harnesses-and-the-skills-namespace)
-    - [4.3.1 Declaring harnesses and skills](#431-declaring-harnesses-and-skills)
+  - [4.3 Backpacks and the skills namespace](#43-backpacks-and-the-skills-namespace)
+    - [4.3.1 Declaring backpacks and skills](#431-declaring-backpacks-and-skills)
     - [4.3.2 Resolution](#432-resolution)
     - [4.3.3 The out-of-list exception](#433-the-out-of-list-exception)
     - [4.3.4 Vendored skills](#434-vendored-skills)
@@ -48,7 +48,7 @@ The meaning of `.ki.toml` and the protocol between the skills that read it.
 
 - The shared file, its conformance header and its role as the compliance marker.
 - Presentation neighbourhoods and the layout rules `ki-repo` checks.
-- The `[repo]` harness list, the `[skills]` namespace, how a bare skill name resolves, and how a repository declares a vendored skill.
+- The `[repo]` backpack list, the `[skills]` namespace, how a bare skill name resolves, and how a repository declares a vendored skill.
 - Marker and config tables, validating a skill's own table, declared divergences, and what is overridable.
 - Territory and Capital, territory selection, and coverage enforcement.
 - The repository kind fields, scaffolding and ownership of tables, and the local registry.
@@ -70,7 +70,7 @@ The meaning of `.ki.toml` and the protocol between the skills that read it.
 | --- | --- |
 | **Compliance marker** | The presence of `.ki.toml` at a repository's root, which declares it a Knowledge Islands–compliant repo and gates the coverage cascade. **Standard:** this one, [4.1](#41-the-shared-file--the-compliance-marker) |
 | **Neighbourhood banner** | The exact three-line comment introducing one of the stable `.ki.toml` neighbourhoods: Foundation, Repository shape, Governance and runtime, Change management, Relationships. **Standard:** this one, [4.2.1](#421-neighbourhood-banners) |
-| **Bare name** | A skill's declaration key under `[skills]`, bound to exactly one provider among the declared `harnesses`. **Standard:** this one, [4.3.2](#432-resolution) |
+| **Bare name** | A skill's declaration key under `[skills]`, bound to exactly one provider among the declared `backpacks`. **Standard:** this one, [4.3.2](#432-resolution) |
 | **Skill mode** | A `[skills.<name>]` table's host-owned `mode`: `"current"`, the default, links the skill from its backpack; `"vendored"` keeps a committed copy that the host leaves alone. **Standard:** this one, [4.3.4](#434-vendored-skills) |
 | **Marker table** | A `[skills.<name>]` table whose presence declares that the skill governs the repo. **Standard:** this one, [4.4](#44-marker-vs-config-tables) |
 | **Config table** | A `[skills.<name>]` table carrying per-repo declarations the skill reads. **Standard:** this one, [4.4](#44-marker-vs-config-tables) |
@@ -132,21 +132,21 @@ Every `.ki.toml` follows the six `ki-authoring` TOML layout rules. `ki-repo` che
 - `[skills.ki-trades]` and its child tables are the last tables in the file.
 - An ordinary skill subtable such as `[skills.<skill>.<key>]` is a data map whose keys are data: roadmap `areas`, client names, check names, zones, sites, templates, client names, model tiers, budget surfaces and lifecycle states. A subtable that groups fixed fields fails; those keys belong in the skill table. An array-of-tables heading such as `[[skills.ki-repo-tools.assembled]]` declares an element of a schema-defined record array and is permitted; the owning skill validates that array and its records. `[skills.ki-trades.territory]` is exempt while its trade-policy model is under separate review; the retired `[skills.ki-repo.territory]` is not.
 
-`FILES-10` fails in the Knowledge Islands territory and warns elsewhere, as the roadmap's bare-area-list check does. Its enforcing Capital is the canonical identity `https://github.com/knowledgeislands/ki-principal`, resolved through the local registry as [Territory and Capital](#48-territory-and-capital) describes. Only repositories listed in that Capital's `territory_members`, including the Capital itself, receive strict enforcement. Short territory or Harness prefixes do not determine this policy. An unavailable or ambiguous Capital reads as outside the enforcing territory, so the check warns rather than fails.
+`FILES-10` fails in the Knowledge Islands territory and warns elsewhere, as the roadmap's bare-area-list check does. Its enforcing Capital is the canonical identity `https://github.com/knowledgeislands/ki-principal`, resolved through the local registry as [Territory and Capital](#48-territory-and-capital) describes. Only repositories listed in that Capital's `territory_members`, including the Capital itself, receive strict enforcement. Short territory or backpack prefixes do not determine this policy. An unavailable or ambiguous Capital reads as outside the enforcing territory, so the check warns rather than fails.
 
 [Back to contents](#contents)
 
-### 4.3 Harnesses and the skills namespace
+### 4.3 Backpacks and the skills namespace
 
-How a repository names its harnesses and declares its skills, how a bare name resolves, and the one exception.
+How a repository names its backpacks and declares its skills, how a bare name resolves, and the one exception.
 
-#### 4.3.1 Declaring harnesses and skills
+#### 4.3.1 Declaring backpacks and skills
 
-A repository names the harnesses that provide its skills once, in `[repo]`, and declares each governing skill by its **bare name** under the `[skills]` namespace. A skill that needs declared config owns **exactly one** table there, named for the skill, and may nest sub-tables under it (e.g. `[skills.<name>.checks]`):
+A repository names the backpacks that provide its skills once, in `[repo]`, and declares each governing skill by its **bare name** under the `[skills]` namespace. A skill that needs declared config owns **exactly one** table there, named for the skill, and may nest sub-tables under it (e.g. `[skills.<name>.checks]`):
 
 ```toml
 [repo]
-harnesses = [
+backpacks = [
   "knowledgeislands/ki-agent-backpack",
 ]
 
@@ -180,7 +180,7 @@ checks.branch-protection = true
 
 `[skills.ki-repo]` carries repository identity and declared facts the auditor checks. `repository` is mandatory and is the canonical HTTPS GitHub home (`https://github.com/<owner>/<repository>`), checked against GitHub's repository identity. `title` and `description` are mandatory: title exactly matches the README H1, while description exactly matches GitHub and package.json where those surfaces exist. `visibility` (`"public"` | `"private"`, matched against GitHub) and `license` (an [SPDX License List](https://spdx.org/licenses/) identifier — default MIT when unset — matched against the live GitHub license, the `LICENSE` file, and `package.json` `"license"`) are independent: a private repo may be MIT, a public repo proprietary. Use [Choose a License](https://choosealicense.com/) as selection guidance; use `"UNLICENSED"` for all-rights-reserved proprietary. `capital` is mandatory and names the repository's territory Capital as a full canonical HTTPS GitHub URL with the same grammar as `repository`; a Capital names itself. [Territory and Capital](#48-territory-and-capital) defines how it is checked.
 
-The third, `supported_runtimes`, is a **repo-wide** fact — the agent runtimes this repo supports. It lives on `[skills.ki-repo]` rather than `[skills.ki-repo-backpack]` because it drives orientation and runtime-bound capabilities across the whole repo, not just the four-part harness; a non-harness KI repo can support runtimes too. Native activation resolves it to each runtime's discovery path (Claude Code → `.claude/`, ChatGPT Codex → `.agents/`; see the runtime feature-coverage matrix in `SDR-KI-HARNESS-002`). The key is required: support is a stable repository capability, never inferred from the directories present at a moment in time. Values must name a recognised runtime (`claude-code`, `claude-desktop`, or `chatgpt-codex`), must be non-empty, and must not repeat — the auditor's `RUNTIMES-1` FAILs otherwise. The retired `codex` identifier is rejected with recovery guidance; it is not a compatibility alias.
+The third, `supported_runtimes`, is a **repo-wide** fact — the agent runtimes this repo supports. It lives on `[skills.ki-repo]` rather than `[skills.ki-repo-backpack]` because it drives orientation and runtime-bound capabilities across the whole repo, not just the four-part backpack; a non-backpack KI repo can support runtimes too. Native activation resolves it to each runtime's discovery path (Claude Code → `.claude/`, ChatGPT Codex → `.agents/`; see the runtime feature-coverage matrix in `SDR-KI-HARNESS-002`). The key is required: support is a stable repository capability, never inferred from the directories present at a moment in time. Values must name a recognised runtime (`claude-code`, `claude-desktop`, or `chatgpt-codex`), must be non-empty, and must not repeat — the auditor's `RUNTIMES-1` FAILs otherwise. The retired `codex` identifier is rejected with recovery guidance; it is not a compatibility alias.
 
 **Every repository declares every runtime** (RUNTIMES-ALL). A Knowledge Islands repository lists all three recognised runtimes and keeps the folders and ignores each needs; a narrower list is an evidenced exception, never the default. The repository records the exception as the declared divergence `all-runtimes = false` in `[skills.ki-repo.checks]`, commented with the evidence for it, and `RUNTIMES-7` warns on a narrower list that records none. A runtime-specific skill is linked only into its own runtime's folder, the `-claude` skills into `.claude/skills/` and their ChatGPT counterparts into `.agents/skills/`, as its `ki-supported-runtimes` declares under `ki-skills`.
 
@@ -193,10 +193,10 @@ Runtime environment coverage follows that declaration rather than being opt-in. 
 
 #### 4.3.2 Resolution
 
-A bare name binds to exactly one provider, resolved against the declared `harnesses` list rather than against whichever harnesses happen to be installed — so a version-controlled file means the same thing on every machine.
+A bare name binds to exactly one provider, resolved against the declared `backpacks` list rather than against whichever backpacks happen to be installed — so a version-controlled file means the same thing on every machine.
 
-- Exactly one declared harness provides the skill → it binds, and its qualified identity is derived rather than written.
-- No declared harness provides it → an error naming the skill and the declared list.
+- Exactly one declared backpack provides the skill → it binds, and its qualified identity is derived rather than written.
+- No declared backpack provides it → an error naming the skill and the declared list.
 - More than one provides it → an error requiring explicit qualification.
 
 Declaring a skill is separate from configuring it. `[skills.ki-trades]` with no keys is a marker; a skill is never declared as a side effect of one of its sub-tables. State the root table explicitly even where TOML would create it implicitly, so a declaration never depends on whether the skill happens to carry configuration.
@@ -205,10 +205,10 @@ Declaring a skill is separate from configuring it. `[skills.ki-trades]` with no 
 
 #### 4.3.3 The out-of-list exception
 
-A skill drawn from a harness outside the declared list keeps a quoted, fully-qualified key, so the exception stays visibly exceptional:
+A skill drawn from a backpack outside the declared list keeps a quoted, fully-qualified key, so the exception stays visibly exceptional:
 
 ```toml
-[skills."otherowner/other-harness:ki-example"]
+[skills."otherowner/other-backpack:ki-example"]
 ```
 
 This is the only place a qualified key appears in the file.

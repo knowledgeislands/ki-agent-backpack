@@ -272,7 +272,7 @@ Declared agent-runtime support and orientation.
   - _Remediation:_ diagnostic — Move shared guidance into root AGENTS.md and Claude-specific guidance into root CLAUDE.md.
 - **RUNTIMES-6 [M] — Vendored skill copies** — A skill declared with mode "vendored" keeps a physical .agents/skills source naming it and, when Claude Code is supported, a relative Claude link to it; mode is "current" or "vendored", and a recorded commit is a full hash. (standard-configuration.md#434-vendored-skills)
   - _Remediation:_ diagnostic — Restore the committed copy and its Claude link, or correct the declared mode or commit, then rerun the audit.
-- **RUNTIMES-7 [M] — Every runtime declared** — The repository declares every recognised runtime, or records a narrower list as the evidenced exception all-runtimes = false. (standard-configuration.md#431-declaring-harnesses-and-skills)
+- **RUNTIMES-7 [M] — Every runtime declared** — The repository declares every recognised runtime, or records a narrower list as the evidenced exception all-runtimes = false. (standard-configuration.md#431-declaring-backpacks-and-skills)
   - _Remediation:_ diagnostic — Add the missing runtimes with their folders, ignores and environment tables, or record the evidenced exception as all-runtimes = false in [skills.ki-repo.checks] with a comment saying why.
 - **RUNTIMES-J1 [J] — Runtime orientation split** — Multi-runtime repositories use a shared AGENTS.md orientation with a thin Claude import unless a justified exception applies. (standard-repository.md)
   - _Evidence scope:_ The shared AGENTS.md and runtime-specific orientation files for every declared runtime.

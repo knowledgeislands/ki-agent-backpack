@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:32:23Z
+ki-revised: 2026-11-18T05:20:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -131,6 +131,8 @@ Advisory sources inform local judgment conventions but are not specifications, m
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 18 November 2026 the TOML standard's and the exemplars' `[repo]` examples were brought to the `backpacks` key, and the knowledge-promotion standard says backpack where it meant the Knowledge Islands bundle, under HARNESS-NAME, from the Cairn summit's change 12, step 1. No outside source refreshed.
 
 An 18 November 2026 in-house review applied DESIGN-INTAKE a, which Kris took on 17 November at about 23:34 GMT, relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/575acd5/work/cairn/cairn.summit/16-design-guild.change.md#71-questions). [The design format](standard-formats-design.md) moves to a new version: [its 2.2](standard-formats-design.md#22-out-of-scope) and [4.6](standard-formats-design.md#46-naming-and-place) say it stops where a team's intake process begins, a contributor's capture under that process being no design document even under `docs/design/`, and what it feeds once digested being written in the format; `HNR Sites` is named as such a capture and stays where it is, and [4.7](standard-formats-design.md#47-validation) leaves captures unchecked as designs. No outside source refreshed.
 

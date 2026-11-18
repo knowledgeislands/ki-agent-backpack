@@ -33,7 +33,7 @@ This skill governs a repo's **configuration and Knowledge Islands compliance** �
 This skill leads the Repository guild: the repository contract and each kind of repository's structure. Its members:
 
 - **`ki-git`** for commits and shared-tree safety, and **`ki-engineering`** for TypeScript and Bun engineering and its toolchain.
-- **`ki-repo-project`** for a Project repository's baseline, and the overlay for each kind: `ki-repo-tools` for a CLI, `ki-repo-mcp` for an MCP server, `ki-repo-packages` for vendored packages, `ki-repo-homebrew-tap` for a tap, `ki-repo-specifications` for a specifications repository, `ki-repo-backpack` for a harness and `ki-repo-dotfiles-chezmoi` for a chezmoi source.
+- **`ki-repo-project`** for a Project repository's baseline, and the overlay for each kind: `ki-repo-tools` for a CLI, `ki-repo-mcp` for an MCP server, `ki-repo-packages` for vendored packages, `ki-repo-homebrew-tap` for a tap, `ki-repo-specifications` for a specifications repository, `ki-repo-backpack` for a backpack and `ki-repo-dotfiles-chezmoi` for a chezmoi source.
 - **`ki-repo-website`** for a website's generator-neutral seam, with `ki-repo-website-content`, `ki-repo-website-app` and `ki-repo-website-cloudflare` for its content, application and hosting.
 - **`ki-repo-kb`** for a knowledge base, with `ki-repo-kb-streams`, `ki-repo-kb-activities`, `ki-repo-kb-live-artifacts` and `ki-repo-kb-principal` for its parts.
 
@@ -91,7 +91,7 @@ Onboard a repo by adding the marker file (and the other root files) so it joins 
 
 ### Mode REFRESH — re-anchor the standard to GitHub's surface
 
-**Precondition:** REFRESH edits this skill's own canonical files, which exist only in `ki-agent-backpack`. Invoked from an installed copy, it stops here and names the harness as where to run it — or, for a pattern recurring across bases, routes it through `ki-repo-kb`'s IMPROVE mode instead.
+**Precondition:** REFRESH edits this skill's own canonical files, which exist only in `ki-agent-backpack`. Invoked from an installed copy, it stops here and names the backpack as where to run it — or, for a pattern recurring across bases, routes it through `ki-repo-kb`'s IMPROVE mode instead.
 
 GitHub's settings surface moves (rulesets vs classic protection, new security toggles, Actions policy). Run on its declared cadence (see `references/sources.md`), or when asked "is the repo standard current".
 

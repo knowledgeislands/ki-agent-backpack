@@ -15,7 +15,7 @@ Curated patterns from the KI repo set that show what a well-configured Knowledge
 
 | Source | URL | What it covers |
 | --- | --- | --- |
-| ki-agent-backpack | [github][harness] | Public repo; all layer-1 files; full `.ki.toml`; rich `CLAUDE.md` |
+| ki-agent-backpack | [github][backpack] | Public repo; all layer-1 files; full `.ki.toml`; rich `CLAUDE.md` |
 | mcp-gsuite | [github][mcp-gsuite] | Public repo; MIT license; standard topic set |
 | mcp-ki-kb-fs | [github][mcp-ki-kb-fs] | Public repo; canonical layer-2/3 settings; `branch-protection` off |
 | GitHub REST API — repo settings | [docs.github.com][repo-settings] | Merge methods, auto-delete-branch, features |
@@ -52,7 +52,7 @@ branch-protection = true   # protect main: PR required, build check, linear hist
 
 ### `CLAUDE.md` with topic-file imports
 
-The harness `CLAUDE.md` is the pattern for all KI repos: a short orientation paragraph, then `@`-imports for per-topic files rather than one monolithic document. Topic files can be updated independently and loaded selectively. The imports section should come early so an agent session loads the topic context before the repo-specific prose. Per the skills rubric (SHAPE-7), every KI repo carries a `CLAUDE.md` — the field-name convention shown here (`@memory-scope.md`, `@workflow.md`) is the global user pattern; repo-level files typically import repo-specific topics (`@toolchain.md`, `@conventions.md`).
+The backpack's `CLAUDE.md` is the pattern for all KI repos: a short orientation paragraph, then `@`-imports for per-topic files rather than one monolithic document. Topic files can be updated independently and loaded selectively. The imports section should come early so an agent session loads the topic context before the repo-specific prose. Per the skills rubric (SHAPE-7), every KI repo carries a `CLAUDE.md` — the field-name convention shown here (`@memory-scope.md`, `@workflow.md`) is the global user pattern; repo-level files typically import repo-specific topics (`@toolchain.md`, `@conventions.md`).
 
 ```markdown
 # CLAUDE.md — my-repo
@@ -98,9 +98,9 @@ The shared orientation lives in AGENTS.md, imported above. The following topic f
 @.claude/conventions.md @.claude/workflow.md
 ```
 
-### Four-part harness layout with coverage declarations
+### Four-part backpack layout with coverage declarations
 
-When a repo carries a four-part agent backpack layout (`skills/`, `subagents/`, `evals/`, `hooks/`), its `.ki.toml` must declare all relevant tables so `ki-repo`'s coverage cascade does not warn on detected-but-undeclared artifacts. MCP servers remain independent repositories and declare `ki-repo-mcp` themselves. The harness repo (`ki-agent-backpack`) is the canonical example — it opts into every applicable governance skill and documents why each table is present.
+When a repo carries a four-part agent backpack layout (`skills/`, `subagents/`, `evals/`, `hooks/`), its `.ki.toml` must declare all relevant tables so `ki-repo`'s coverage cascade does not warn on detected-but-undeclared artifacts. MCP servers remain independent repositories and declare `ki-repo-mcp` themselves. The backpack repo (`ki-agent-backpack`) is the canonical example — it opts into every applicable governance skill and documents why each table is present.
 
 ```toml
 [skills.ki-repo]
@@ -111,7 +111,7 @@ visibility = "private"
 
 [skills.ki-repo-backpack]
 # Declares this repo as a KI agent backpack (the four-part layout compliance marker).
-# No per-harness config keys defined yet — table presence is the declaration.
+# No per-backpack config keys defined yet — table presence is the declaration.
 
 [skills.ki-skills]
 # skills/ is populated; the skills linter runs over it.
@@ -132,7 +132,7 @@ my-repo/
     └── README.md
 ```
 
-[harness]: https://github.com/knowledgeislands/ki-agent-backpack
+[backpack]: https://github.com/knowledgeislands/ki-agent-backpack
 [mcp-gsuite]: https://github.com/knowledgeislands/mcp-gsuite
 [mcp-ki-kb-fs]: https://github.com/knowledgeislands/mcp-ki-kb-fs
 [repo-settings]: https://docs.github.com/en/rest/repos/repos#update-a-repository
