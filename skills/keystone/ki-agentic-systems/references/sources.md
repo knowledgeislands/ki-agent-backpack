@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T05:00:00Z
+ki-revised: 2026-11-18T09:31:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -85,6 +85,7 @@ The vendors' own documentation and the specifications the cards follow, checked 
 | **[M9]** [VS Code, Subagents](https://code.visualstudio.com/docs/agents/subagents) | Subagent: VS Code's subagents and their nesting | 2026-11-12 |
 | **[M10]** [VS Code, Use Agent Skills in VS Code](https://code.visualstudio.com/docs/copilot/customization/agent-skills) | Skill: Agent Skills across Copilot and Codex, their three levels, against custom instructions | 2026-11-12 |
 | **[S1]** [Agent Skills specification](https://agentskills.io/specification) | Skill and the specification cards: a skill's directory, front matter and optional folders; progressive disclosure in three levels; file references one level deep | 2026-11-12 |
+| **[SKOS1]** [W3C, SKOS Reference, semantic relations](https://www.w3.org/TR/skos-reference/#semantic-relations) | The root definition's meanings for `skos:broader`, a direct hierarchical link to a broader concept, and `skos:related`, an associative link, disjoint from the hierarchical ones | 2026-11-18 |
 | **[AG1]** [AGENTS.md](https://agents.md/) | Instruction file card: the open, shared instruction file format, nearest file taking precedence | 2026-11-17 |
 | **[CR1]** [CrewAI, Agents](https://docs.crewai.com/en/concepts/agents) | Role card: an agent's `role`, "the agent's function and expertise within the crew" | 2026-11-17 |
 | **[M11]** [Agent Host Protocol, specification overview](https://microsoft.github.io/agent-host-protocol/specification/overview.html) | Agent host: the process that runs harnesses and owns their sessions, independently of clients | 2026-11-12 |

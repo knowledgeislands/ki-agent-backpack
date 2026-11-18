@@ -49,6 +49,8 @@ A predicate reads from the card that holds it to its target. A vendor card whose
 | `skos:closeMatch` | Means nearly what the target means |
 | `skos:broadMatch` | Narrower than the target, which is broader, as a product is narrower than its term |
 | `skos:relatedMatch` | Only related to the target, as a part of it or something easily mistaken for it |
+| `skos:broader` | The target is a broader concept, by a direct hierarchical link ([SKOS Reference][skos1]) |
+| `skos:related` | An associative link to the target, neither broader than the other ([SKOS Reference][skos1]) |
 | `dcterms:hasPart` | The target is a part of this whole |
 | `dcterms:isPartOf` | This is a part of the target, a whole |
 | `dcterms:conformsTo` | This conforms to the target, such as a specification |
@@ -133,6 +135,7 @@ A predicate reads from the card that holds it to its target. A vendor card whose
 [diagram.agentic-terms-by-example]: ./diagrams/diagram.agentic-terms-by-example.md
 [diagram.agentic-standards]: ./diagrams/diagram.agentic-standards.md
 [spec.agent-skills]: ./specs/agent-skills/spec.agent-skills.md
+[skos1]: https://www.w3.org/TR/skos-reference/#semantic-relations
 
 [system.guild]: ./system/system.guild.md
 [system.rig]: ./system/system.rig.md
