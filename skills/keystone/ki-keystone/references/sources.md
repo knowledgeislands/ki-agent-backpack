@@ -1,5 +1,5 @@
 ---
-ki-document-type: sources@2026-11-15T00:17:25Z
+ki-document-type: sources@2026-11-17T00:28:37Z
 ki-revised: 2026-11-14T16:34:42Z
 ki-refresh: canonical · on-change
 ---
@@ -10,6 +10,9 @@ ki-refresh: canonical · on-change
 
 - [1. Introduction](#1-introduction)
 - [2. Outside sources](#2-outside-sources)
+  - [2.1 Authoritative](#21-authoritative)
+    - [2.1.1 In-house sources](#211-in-house-sources)
+  - [2.2 Advisory](#22-advisory)
 - [3. Decisions](#3-decisions)
 - [4. Last review](#4-last-review)
 
@@ -21,14 +24,26 @@ The sources and decisions behind [the Keystone standard](standard-keystone.md), 
 
 ## 2. Outside sources
 
-Keystone's guild rules have none: Keystone is Knowledge Islands' own, and the industry has no word for a guild of skills, as `ki-agentic-systems`' guild card records. The bootstrap guidance follows these in-house sources, all authoritative:
+Keystone's guild rules have none: Keystone is Knowledge Islands' own, and the industry has no word for a guild of skills, as `ki-agentic-systems`' guild card records. The bootstrap guidance follows in-house sources only.
+
+### 2.1 Authoritative
+
+Every source the bootstrap guidance follows is in-house.
+
+#### 2.1.1 In-house sources
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| **[ADR]** [ADR-KI-HARNESS-012](../../../../docs/decisions/ADR-KI-HARNESS-012-compatible-harness-publication-and-governed-rubric-boundary.md) | backpack payload, capability, and native-rubric ownership | 2026-08-12 |
-| **[HC]** [Compatible harness decision, ADR-KI-HARNESS-012](../../../../docs/decisions/ADR-KI-HARNESS-012-compatible-harness-publication-and-governed-rubric-boundary.md) | backpack identity, capability identity, and activation boundary | 2026-08-12 |
-| **[TK]** installed `ki --help` surfaces | current public grammar, bootstrap, activation, local development, and diagnostics | 2026-08-12 |
-| **[KR]** `ki-repo` skill | `.ki.toml` and declared repository coverage | 2026-08-12 |
+| ADR — [ADR-KI-HARNESS-012](../../../../docs/decisions/ADR-KI-HARNESS-012-compatible-harness-publication-and-governed-rubric-boundary.md) | backpack payload, capability, and native-rubric ownership | 2026-08-12 |
+| HC — [Compatible harness decision, ADR-KI-HARNESS-012](../../../../docs/decisions/ADR-KI-HARNESS-012-compatible-harness-publication-and-governed-rubric-boundary.md) | backpack identity, capability identity, and activation boundary | 2026-08-12 |
+| TK — installed `ki --help` surfaces | current public grammar, bootstrap, activation, local development, and diagnostics | 2026-08-12 |
+| KR — `ki-repo` skill | `.ki.toml` and declared repository coverage | 2026-08-12 |
+
+[Back to contents](#contents)
+
+### 2.2 Advisory
+
+None.
 
 [Back to contents](#contents)
 
@@ -74,15 +89,17 @@ A 2026-10-26 in-house review under `wow-harness-a` applied BOOT-HOME, which Kris
 
 REFRESH last ran **2026-08-12**.
 
-- [ADR] and [HC] confirm that verified installed compatible harnesses are authoritative, runtime links are projections, and repositories never carry an alternative executor.
-- [TK] confirms current `ki bootstrap`, `ki harness`, `ki skill add/remove`, `ki repo skill add/remove`, `ki repo`, `ki dev local set/on/off`, `ki doctor`, and `ki diag` grammar.
-- [KR] confirms that repository coverage remains explicit in `.ki.toml` and separate from user activation.
+- ADR and HC confirm that verified installed compatible harnesses are authoritative, runtime links are projections, and repositories never carry an alternative executor.
+- TK confirms current `ki bootstrap`, `ki harness`, `ki skill add/remove`, `ki repo skill add/remove`, `ki repo`, `ki dev local set/on/off`, `ki doctor`, and `ki diag` grammar.
+- KR confirms that repository coverage remains explicit in `.ki.toml` and separate from user activation.
 - The FND-003 boundary review confirmed that this skill remains guidance-only: no harness-local bootstrap process launch, publisher, synchroniser, generated HELP, or repository executor remains. `tools-ki` owns bootstrap execution, native rubric hosting, reporting, and transactions; its validated external `ConformCommand` and per-agent user-space mutation boundaries remain deliberately external.
-- **Open watch-items:**
-  - Re-check the core user-skill set whenever bootstrap policy changes.
-  - Re-check bare-name ambiguity and qualified capability input when multi-harness activation evolves.
-  - Re-check supported agent discovery and managed link locations when a runtime binding changes.
-  - Re-check acquisition, replacement, and uninstall wording when harness version selection is introduced.
-  - Re-check the machine-readiness checklist when the chezmoi hook registration, the output-style link, the Capital's declared skill set or `ki-coordination`'s openers change, and fold in `ki doctor` once it carries the readiness checks.
+
+**Watching:**
+
+- Re-check the core user-skill set whenever bootstrap policy changes.
+- Re-check bare-name ambiguity and qualified capability input when multi-harness activation evolves.
+- Re-check supported agent discovery and managed link locations when a runtime binding changes.
+- Re-check acquisition, replacement, and uninstall wording when harness version selection is introduced.
+- Re-check the machine-readiness checklist when the chezmoi hook registration, the output-style link, the Capital's declared skill set or `ki-coordination`'s openers change, and fold in `ki doctor` once it carries the readiness checks.
 
 [Back to contents](#contents)

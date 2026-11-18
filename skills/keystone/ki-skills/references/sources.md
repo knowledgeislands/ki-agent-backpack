@@ -1,5 +1,5 @@
 ---
-ki-document-type: sources@2026-11-15T00:17:25Z
+ki-document-type: sources@2026-11-17T00:28:37Z
 ki-revised: 2026-11-17T23:48:00Z
 ki-refresh: external-spec · monthly
 ---
@@ -208,7 +208,8 @@ REFRESH last run **2026-09-26**. It fetched [the documentation index][agentskill
 - **COMMUNITY:** the reviewed pattern guide, Superpowers guidance, and skills.sh registry remain supporting evidence. They introduce no further portable constraint; the soft ~300-line split suggestion remains below our 500-line WARN and is not adopted as a separate cap.
 - **`skills-ref`:** the repository now explicitly labels the reference library demonstration-only and not for production. Keep it as supporting validation evidence; the specification remains the normative baseline.
 - **In-house scan:** the then-current governed skill set passed its skill-quality audit, including `ki-skills` itself. Exact commands and fleet counts are intentionally omitted because both change as the host and skill set evolve.
-- **Open watch-items:** none; no source disagreement requires a standard or rubric change.
+
+**Watching:** none; no source disagreement requires a standard or rubric change.
 
 (What past reviews changed in the standard / rubric / linter is in git.)
 
