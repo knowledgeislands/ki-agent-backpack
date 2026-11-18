@@ -83,6 +83,8 @@ Non-normative.
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Homebrew tap standard](standard-homebrew-tap.md), formerly `standards-homebrew-tap.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format, the tags opening each Source cell, the decision the standard quotes in the Decisions table, and the open watch-items under Watching. SKILL.md, the REFRESH mode, the rubric items and the rubric follow the new name. No rule changed and no outside source was refreshed.
 
 Focused review, **2026-11-17**: the Cookbook's "Add a test to the formula" section re-read. It still calls `foo --version` and `foo --help` bad tests, though better than none, and asks for a test of the tool's basic function on a small input. The standard's `test do` row, the SKILL example, EDUCATE, the AUDIT judgment pass and `TAP-J2`'s judgment question now ask for that, with a `--version` or `--help` assertion as the weak floor, which closes that point of the 2026-11-15 watch. The reference tap's `mgit` formula still asserts on `--version` and `--help`, which `TAP-J2` now reports as weak; changing it is the tap's own work.
