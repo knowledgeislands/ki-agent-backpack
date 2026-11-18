@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T02:12:12Z
+ki-revised: 2026-11-18T02:20:00Z
 ki-status: in force
 ---
 
@@ -73,10 +73,10 @@ The rules, part by part.
 
 ### 4.3 Holding a standing room
 
-1. **Sittings without a time limit.** A standing room may run in sittings, one for each talk or each working day, or as one long sitting. A sitting states no end and has no closing call; the caller adjourns it when its members have stopped work, or when the talk ends.
+1. **Sittings without a time limit.** A standing room runs in sittings, one for each spell of work or each talk. A sitting states no end and has no closing call; the caller adjourns it when its members stop work, as the voice room does, and opens a new one when work resumes. So a member reads as listening only while a sitting is under way ([the meeting standard, 4.9](standard-meeting.md#49-listening-and-check-ins)).
 2. **The roll call** opens each sitting as in any meeting; a member that starts work while a sitting is under way answers it when it starts.
 3. **Members listen while they work,** at the interval the agenda gives each, and not between.
-4. **Messages, check-ins and minutes** keep the meeting standard's shape. Check-ins carry news only ([the meeting standard, 4.9](standard-meeting.md#49-listening-and-check-ins)). A room held as one long sitting keeps that sitting's minutes current, as it does its summary.
+4. **Messages, check-ins and minutes** keep the meeting standard's shape. Check-ins carry news only ([the meeting standard, 4.9](standard-meeting.md#49-listening-and-check-ins)).
 
 [Back to contents](#contents)
 
