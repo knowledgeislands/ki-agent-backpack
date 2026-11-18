@@ -1,16 +1,75 @@
-# D12 standard
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:32:52Z
+ki-status: in force
+---
 
-How D12, the Dodecakrisis, runs: the ten rules, the rules file and its guards, the configuration a declaring repository supplies, and the approval every write needs. The concept, the twelve Ds, their names and why, is the Knowledge Islands D12 card's; this standard holds the rules and how they run, under D12-CANON a) (Kris, 7 November 2026). The [mailbox standard](standards-mailbox.md) binds D12 to a mailbox and the [learning standard](standards-learning.md) improves its rules.
+# D12 standard
 
 ## Contents
 
-1. [The ten rules](#the-ten-rules)
-2. [Configuration](#configuration)
-3. [The rules file](#the-rules-file)
-4. [Writes and approvals](#writes-and-approvals)
-5. [Boundary](#boundary)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 The ten rules](#41-the-ten-rules)
+  - [4.2 Configuration](#42-configuration)
+  - [4.3 The rules file](#43-the-rules-file)
+  - [4.4 Writes and approvals](#44-writes-and-approvals)
 
-## The ten rules
+## 1. Introduction
+
+How D12, the Dodecakrisis, runs: the ten rules, the rules file and its guards, the configuration a declaring repository supplies, and the approval every write needs. The concept, the twelve Ds, their names and why, is the Knowledge Islands D12 card's; this standard holds the rules and how they run, under D12-CANON a) (Kris, 7 November 2026). The [mailbox standard](standard-mailbox.md) binds D12 to a mailbox and the [learning standard](standard-learning.md) improves its rules.
+
+The sources and decisions behind these rules are in [the sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+The sorter's rules and how they run; the concept and the execution belong elsewhere.
+
+### 2.1 In scope
+
+- The ten rules, and the outcomes a rule can name.
+- The configuration a declaring repository supplies.
+- The rules file, its guards, Deposit routes and rules.
+- The conditions every write must meet.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- The D12 card owns the concept: the twelve Ds, their names and why.
+- `mcp-gsuite` and `mcp-m365` own the protected list and its enforcement, and the tools D12 calls.
+- The Inbox's `ki-muninn` owns execution: `ki-muninn d12 sweep`, `ki-muninn d12 learn` and the mail import that reads each Deposit route.
+- `ki-acquire` owns capture, curation and dispatch after Deposit; the evidential owner, such as Legal, owns naming, filing and verifying evidential copies.
+- Scheduling belongs to the scheduler and is approved separately each time.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Outcome** | One of the seven queues or the two exits a rule can name, each with its D number. **Standard:** this one, [4.1](#41-the-ten-rules) |
+| **Queue** | An outcome worked to a conclusion, after which the item goes back through the rules. **Standard:** this one, [4.1](#41-the-ten-rules) |
+| **Exit** | Deposit or Delete, reached only from the sorting rules. **Standard:** this one, [4.1](#41-the-ten-rules) |
+| **Guard** | A query fragment that a rule's query excludes; each mailbox has one evidential guard. **Standard:** this one, [4.3](#43-the-rules-file) |
+| **Deposit route** | Where a deposited item is captured, in what form, to where and for whom. **Standard:** this one, [4.3](#43-the-rules-file) |
+| **Write** | Anything that changes a mailbox, the rules file or the corrections log. **Standard:** this one, [4.4](#44-writes-and-approvals) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+[Back to contents](#contents)
+
+### 4.1 The ten rules
 
 D12 is a sorter. Everything delivered drops into Do; the sorting rules place it in a queue by what it looks like; each queue is worked to a conclusion; a concluded item goes back through the rules, until the rules send it out to Deposit or Delete.
 
@@ -39,7 +98,9 @@ The outcomes a rule can name are the seven queues and the two exits, each with i
 | 10 | Deposit | exit | Kept, with a retention period, through a Deposit route |
 | 11 | Delete | exit | Let go, with the rule as its reason |
 
-## Configuration
+[Back to contents](#contents)
+
+### 4.2 Configuration
 
 The declaring repository's `.ki.toml` holds one `[skills.ki-dodecakrisis]` table with three properties and no others:
 
@@ -58,9 +119,11 @@ corrections = "d12/corrections.jsonl"
 gmail = { provider = "gmail", server = "kb-mcp-gsuite", root = "D12" }
 ```
 
-An empty table declares the skill with no mailbox, and then nothing else is required. Once a mailbox is declared, `rules` and `corrections` are required and both files exist. The protected-label list is never configured here: it belongs to the mail server's per-account configuration, as the [mailbox standard](standards-mailbox.md#protected-labels) sets out.
+An empty table declares the skill with no mailbox, and then nothing else is required. Once a mailbox is declared, `rules` and `corrections` are required and both files exist. The protected-label list is never configured here: it belongs to the mail server's per-account configuration, as the [mailbox standard](standard-mailbox.md#42-protected-labels) sets out.
 
-## The rules file
+[Back to contents](#contents)
+
+### 4.3 The rules file
 
 The rules file is TOML in the declaring repository, holding three arrays of tables: guards, Deposit routes and rules. Every identifier is unique within its array.
 
@@ -130,13 +193,15 @@ filter = "D12 R07 newsletters to Digest"
 
 Rules:
 
-- **Only rules send items out.** Deposit and Delete come only from a rule in this file or a sweep the [mailbox standard](standards-mailbox.md#sweeps) sets; a person working a queue concludes the item and it goes back through the rules.
+- **Only rules send items out.** Deposit and Delete come only from a rule in this file or a sweep the [mailbox standard](standard-mailbox.md#43-sweeps) sets; a person working a queue concludes the item and it goes back through the rules.
 - **Delete only labels.** A Delete rule adds the Delete outcome; the Delete sweep moves it to Trash after its grace period. No rule trashes at once.
 - **Every Delete or Digest rule carries the evidential guard.** Gmail runs every matching filter and Outlook stops at the first, so order never protects anything; the guard does.
 - **A stated rule outranks a learnt one.** Where two rules match, `stated` wins over `learnt`, and both are reported.
 - **Every rule is dry-run with a count before it goes live.** The count is shown with the approval, and the rule goes in once it matches what was expected.
 
-## Writes and approvals
+[Back to contents](#contents)
+
+### 4.4 Writes and approvals
 
 Every mode reads first. A write is anything that changes a mailbox (a label, folder, category, filter, rule or message) or the rules file or corrections log. A write happens only when all of these hold:
 
@@ -146,10 +211,4 @@ Every mode reads first. A write is anything that changes a mailbox (a label, fol
 - **It touches nothing protected.** The run reads the protected list from the server before it starts, never targets a protected label, folder or category, and stops at the first refusal, reporting it. A refusal is never worked around.
 - **It reads headers only.** Rules, sweeps and corrections use senders, subjects, dates, labels and thread membership. No message body is read.
 
-## Boundary
-
-- The D12 card owns the concept: the twelve Ds, their names and why.
-- `mcp-gsuite` and `mcp-m365` own the protected list and its enforcement, and the tools D12 calls.
-- The Inbox's `ki-muninn` owns execution: `ki-muninn d12 sweep`, `ki-muninn d12 learn` and the mail import that reads each Deposit route.
-- `ki-acquire` owns capture, curation and dispatch after Deposit; the evidential owner, such as Legal, owns naming, filing and verifying evidential copies.
-- Scheduling belongs to the scheduler and is approved separately each time.
+[Back to contents](#contents)

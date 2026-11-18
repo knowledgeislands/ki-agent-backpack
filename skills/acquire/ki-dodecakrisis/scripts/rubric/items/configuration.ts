@@ -33,7 +33,7 @@ const fileIssues = (property: string, evidence: FileEvidence<unknown>): string[]
 export const CONFIG = {
   code: 'CONFIG',
   title: 'D12 configuration',
-  standard: 'standards-dodecakrisis.md',
+  standard: 'standard-dodecakrisis.md',
   description:
     'The declaring repository supplies its mailboxes, rules file and corrections log in its own table; the protected-label list is never configured here.',
   selectContext: (context) => context,
@@ -43,7 +43,7 @@ export const CONFIG = {
       title: 'only the three D12 properties are configured',
       description:
         'The `[skills.ki-dodecakrisis]` table holds only `mailboxes`, `rules` and `corrections`; any other key, such as a protected-label list, is reported.',
-      sources: ['standards-dodecakrisis.md#configuration'],
+      sources: ['standard-dodecakrisis.md#42-configuration'],
       mechanical: {
         level: 'WARN',
         remediation: {
@@ -67,7 +67,7 @@ export const CONFIG = {
       title: 'every declared mailbox has a provider, a server and a root',
       description:
         'Each entry under `mailboxes` names its `provider` (`gmail` or `m365`), its `server` and its label or folder `root`, and nothing else.',
-      sources: ['standards-dodecakrisis.md#configuration'],
+      sources: ['standard-dodecakrisis.md#42-configuration'],
       mechanical: {
         level: 'FAIL',
         remediation: DIAGNOSTIC_REMEDIATION,
@@ -88,7 +88,7 @@ export const CONFIG = {
       title: 'the rules file and corrections log resolve',
       description:
         'Once a mailbox is declared, `rules` names a TOML rules file and `corrections` a JSON Lines corrections log, both existing in the repository; a configured file that is missing or does not parse is reported even without a mailbox.',
-      sources: ['standards-dodecakrisis.md#configuration', 'standards-learning.md#the-corrections-log'],
+      sources: ['standard-dodecakrisis.md#42-configuration', 'standard-learning.md#42-the-corrections-log'],
       mechanical: {
         level: 'FAIL',
         remediation: DIAGNOSTIC_REMEDIATION,

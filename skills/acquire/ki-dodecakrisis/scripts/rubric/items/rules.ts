@@ -121,7 +121,7 @@ const filterIssues = ({ rules }: RulesFile) =>
 export const RULES = {
   code: 'RULES',
   title: 'Rules file',
-  standard: 'standards-dodecakrisis.md',
+  standard: 'standard-dodecakrisis.md',
   description:
     'The rules file holds guards, Deposit routes and rules; only rules send items out, Delete and Digest rules carry the evidential guard, and every rule cites its approval.',
   selectContext: (context) => context,
@@ -131,7 +131,7 @@ export const RULES = {
       title: 'every rule is complete and cites its approval',
       description:
         'Each rule has a unique id, a declared mailbox, a query, one of the nine outcomes, a mode (`automatic` or `suggest`), a confidence (`high`, `medium` or `low`), an origin (`stated`, `learnt` or `decision`) and the approval that put it live.',
-      sources: ['standards-dodecakrisis.md#the-rules-file', 'standards-dodecakrisis.md#writes-and-approvals'],
+      sources: ['standard-dodecakrisis.md#43-the-rules-file', 'standard-dodecakrisis.md#44-writes-and-approvals'],
       mechanical: {
         level: 'FAIL',
         remediation: DIAGNOSTIC_REMEDIATION,
@@ -143,7 +143,7 @@ export const RULES = {
       title: 'Delete and Digest rules carry the evidential guard',
       description:
         'Each declared mailbox has exactly one evidential guard, and every rule whose outcome is Delete or Digest lists it, because platform filter order never protects evidential mail.',
-      sources: ['standards-dodecakrisis.md#the-rules-file'],
+      sources: ['standard-dodecakrisis.md#43-the-rules-file'],
       mechanical: {
         level: 'FAIL',
         remediation: DIAGNOSTIC_REMEDIATION,
@@ -155,7 +155,7 @@ export const RULES = {
       title: 'every Deposit goes through a complete route',
       description:
         'Each Deposit route names its mailbox, capture folder, form (`capture` or `eml.txt`), destination and owner, and every rule whose outcome is Deposit names a declared route.',
-      sources: ['standards-dodecakrisis.md#the-rules-file', 'standards-mailbox.md#deposit-routes'],
+      sources: ['standard-dodecakrisis.md#43-the-rules-file', 'standard-mailbox.md#44-deposit-routes'],
       mechanical: {
         level: 'FAIL',
         remediation: DIAGNOSTIC_REMEDIATION,
@@ -167,7 +167,7 @@ export const RULES = {
       title: 'D12 filters carry the D12 prefix',
       description:
         'A platform filter or rule that a D12 rule names begins with `D12`, so it is known to be under D12 management; D12 never changes an unprefixed one.',
-      sources: ['standards-dodecakrisis.md#writes-and-approvals'],
+      sources: ['standard-dodecakrisis.md#44-writes-and-approvals'],
       mechanical: {
         level: 'FAIL',
         remediation: DIAGNOSTIC_REMEDIATION,

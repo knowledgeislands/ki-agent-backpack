@@ -31,7 +31,7 @@ const lineIssues = (line: number, value: unknown, mailboxes: ReadonlySet<string>
 export const LEARN = {
   code: 'LEARN',
   title: 'Learning loop',
-  standard: 'standards-learning.md',
+  standard: 'standard-learning.md',
   description:
     'Corrections are logged from headers only, and a learnt or stated rule goes live only with Kris’s answer or his own words.',
   selectContext: (context) => context,
@@ -41,7 +41,7 @@ export const LEARN = {
       title: 'correction lines carry headers only',
       description:
         'Every line of the corrections log is one JSON object with exactly `date`, `mailbox`, `kind`, `rule`, `sender_domain`, `subject_pattern`, `from` and `to`, so no message body, snippet or full address is kept.',
-      sources: ['standards-learning.md#the-corrections-log'],
+      sources: ['standard-learning.md#42-the-corrections-log'],
       mechanical: {
         level: 'FAIL',
         remediation: DIAGNOSTIC_REMEDIATION,
@@ -66,7 +66,7 @@ export const LEARN = {
       title: 'learnt and stated rules go live only with Kris’s word',
       description:
         'A learnt rule was drafted from three agreeing corrections and went into the rules file only on Kris’s answer to its query; a stated rule is logged in his words as a `D12-RULE` line, was dry-run with its count shown back, and outranks a learnt one.',
-      sources: ['standards-learning.md#drafting-rules', 'standards-learning.md#stated-rules'],
+      sources: ['standard-learning.md#43-drafting-rules', 'standard-learning.md#44-stated-rules'],
       judgment: judgment(
         'Does every `learnt` or `stated` rule cite an approval that is Kris’s answer or his own `D12-RULE` words, with the dry-run count shown before it went live, and did any rule past 5% corrections drop back to suggest?'
       )

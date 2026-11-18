@@ -1,6 +1,6 @@
 # D12 migration
 
-This file holds the temporary adjustments to [the D12 standard](standards-dodecakrisis.md), [the mailbox standard](standards-mailbox.md) and [the learning standard](standards-learning.md), so that they describe only the final state, as Kris set under MIGRATION-OVERLAY on 7 November 2026. Read the standards first; they win wherever the two differ. Delete each line once its condition is met, and this file whole once it is empty, with no edit to the standards.
+This file holds the temporary adjustments to [the D12 standard](standard-dodecakrisis.md), [the mailbox standard](standard-mailbox.md) and [the learning standard](standard-learning.md), so that they describe only the final state, as Kris set under MIGRATION-OVERLAY on 7 November 2026. Read the standards first; they win wherever the two differ. Delete each line once its condition is met, and this file whole once it is empty, with no edit to the standards.
 
 | Adjustment | Until |
 | --- | --- |
