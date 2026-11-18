@@ -5,14 +5,14 @@ export const SELECT: RubricFamily<GitHubIssuesRubricContext, GitHubIssuesRubricC
   code: 'SELECT',
   title: 'GitHub Issues configuration',
   description: 'One declared GitHub Issues repository with matching shared selection.',
-  standard: 'standards-github-issues.md',
+  standard: 'standard-github-issues.md',
   selectContext: (context) => context.selection,
   items: [
     {
       code: 'SELECT-1',
       title: 'explicit GitHub Issues adapter',
       description: 'The repository selects and configures one GitHub Issues namespace.',
-      sources: ['standards-github-issues.md'],
+      sources: ['standard-github-issues.md#41-configuration-and-local-inspection'],
       mechanical: {
         level: 'FAIL',
         remediation: {

@@ -17,18 +17,18 @@ Line-by-line criteria for auditing ki-work-github-issues. Classifications are de
 
 ## SELECT — GitHub Issues configuration
 
-→ [standard](standards-github-issues.md)
+→ [standard](standard-github-issues.md)
 
 One declared GitHub Issues repository with matching shared selection.
 
-- **SELECT-1 [M] — explicit GitHub Issues adapter** — The repository selects and configures one GitHub Issues namespace. (standards-github-issues.md)
+- **SELECT-1 [M] — explicit GitHub Issues adapter** — The repository selects and configures one GitHub Issues namespace. (standard-github-issues.md#41-configuration-and-local-inspection)
   - _Remediation:_ diagnostic — Select github-issues and declare one owner/repository namespace.
 
 ## MAP — GitHub Issues lifecycle mapping
 
-→ [standard](standards-github-issues.md)
+→ [standard](standard-github-issues.md)
 
 Inspectable local lifecycle metadata, conflict owner, and separate relationship meanings.
 
-- **MAP-1 [M] — inspectable GitHub lifecycle mapping** — The local configuration names exact queue, ready, review, and done values, a metadata conflict owner, and distinct dependency and hierarchy mappings; it does not assert remote verification. (standards-github-issues.md)
+- **MAP-1 [M] — inspectable GitHub lifecycle mapping** — The local configuration names exact queue, ready, review, and done values, a metadata conflict owner, and distinct dependency and hierarchy mappings; it does not assert remote verification. (standard-github-issues.md#41-configuration-and-local-inspection)
   - _Remediation:_ diagnostic — Declare the exact metadata mapping and owner locally, then have an authorised future resolver verify it remotely before any process execution.

@@ -5,7 +5,7 @@ export const MAP: RubricFamily<GitHubIssuesRubricContext, GitHubIssuesRubricCont
   code: 'MAP',
   title: 'GitHub Issues lifecycle mapping',
   description: 'Inspectable local lifecycle metadata, conflict owner, and separate relationship meanings.',
-  standard: 'standards-github-issues.md',
+  standard: 'standard-github-issues.md',
   selectContext: (context) => context.mapping,
   items: [
     {
@@ -13,7 +13,7 @@ export const MAP: RubricFamily<GitHubIssuesRubricContext, GitHubIssuesRubricCont
       title: 'inspectable GitHub lifecycle mapping',
       description:
         'The local configuration names exact queue, ready, review, and done values, a metadata conflict owner, and distinct dependency and hierarchy mappings; it does not assert remote verification.',
-      sources: ['standards-github-issues.md'],
+      sources: ['standard-github-issues.md#41-configuration-and-local-inspection'],
       mechanical: {
         level: 'FAIL',
         remediation: {

@@ -20,7 +20,7 @@ This skill configures and explains one GitHub repository's Issues as a future fo
 
 `<owner>/<repository>#<number>` is the **current mutable locator**, not durable cross-transfer identity. GitHub can transfer an open Issue, changing its repository namespace and potentially its number; retain the prior locator as historical alias evidence and re-resolve the current locator before any future operation.
 
-Read [the GitHub Issues adapter standard](references/standards-github-issues.md) before configuring or operating the adapter. Read [the generated rubric](references/rubric.md) for the checkable configuration contract.
+Read [the GitHub Issues adapter standard](references/standard-github-issues.md) before configuring or operating the adapter. Read [the generated rubric](references/rubric.md) for the checkable configuration contract.
 
 Its root declaration is the repository-local selection signal `ki-repo` uses to require the GitHub Issues feature and canonical `package.json` `bugs` URL. Repositories without this declaration keep Issues disabled and omit that package field.
 
