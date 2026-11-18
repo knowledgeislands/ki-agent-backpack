@@ -2,7 +2,7 @@ import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { AssembledToolsContext } from '../contexts/assembled.ts'
 import type { ToolsRubricContext } from '../contexts/tools.ts'
 
-const STANDARD = 'standards-tool-repositories.md'
+const STANDARD = 'standard-tool-repositories.md'
 
 const ASSEMBLE_1: RubricItem<AssembledToolsContext> = {
   code: 'ASSEMBLE-1',

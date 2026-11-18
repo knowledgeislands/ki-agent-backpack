@@ -1,25 +1,80 @@
-# Knowledge Islands tool-repository standard
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:51:39Z
+ki-status: in force
+---
 
-The full, quotable standard behind the `ki-repo-tools` skill. A `tools-*` repo holds **one** standalone command-line tool, distributed by a `curl | bash` installer and a companion Homebrew tap formula. This document governs the **container** and shared public interface conventions language-agnostically. The reference implementations are `tools-mgit` (Bash) and `tools-ki` (TypeScript/Bun). The line-by-line audit items are in [rubric.md](rubric.md); the tracked external specs and in-house references are in [sources.md](sources.md).
+# Knowledge Islands tool-repository standard
 
 ## Contents
 
-- [Scope: container, not contents](#scope-container-not-contents)
-- [Repository layout](#repository-layout)
-- [The executable — `bin/<tool>`](#the-executable--bintool)
-- [Developer delivery guides](#developer-delivery-guides)
-- [Versioning & releases](#versioning--releases)
-- [Change readiness](#change-readiness)
-- [Release readiness](#release-readiness)
-- [The distribution contract](#the-distribution-contract)
-- [Input and output contracts](#input-and-output-contracts)
-- [Capability conditionals](#capability-conditionals)
-- [Shared CLI conventions](#shared-cli-conventions)
-- [Manual authoring](#manual-authoring)
-- [The qualified `ki-repo-tools` marker](#the-qualified-ki-repo-tools-marker)
-- [What other skills own](#what-other-skills-own)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Scope: container, not contents](#41-scope-container-not-contents)
+  - [4.2 Repository layout](#42-repository-layout)
+  - [4.3 The executable — `bin/<tool>`](#43-the-executable--bintool)
+  - [4.4 Developer delivery guides](#44-developer-delivery-guides)
+  - [4.5 Versioning & releases](#45-versioning--releases)
+  - [4.6 Change readiness](#46-change-readiness)
+  - [4.7 Release readiness](#47-release-readiness)
+  - [4.8 The distribution contract](#48-the-distribution-contract)
+  - [4.9 Input and output contracts](#49-input-and-output-contracts)
+  - [4.10 Capability conditionals](#410-capability-conditionals)
+    - [4.10.1 Commit gate](#4101-commit-gate)
+    - [4.10.2 Fatal Bats assertions](#4102-fatal-bats-assertions)
+  - [4.11 Shared CLI conventions](#411-shared-cli-conventions)
+    - [4.11.1 Diagnostic baseline](#4111-diagnostic-baseline)
+    - [4.11.2 Human-readable tables](#4112-human-readable-tables)
+  - [4.12 Manual authoring](#412-manual-authoring)
+  - [4.13 The qualified `ki-repo-tools` marker](#413-the-qualified-ki-repo-tools-marker)
+  - [4.14 What other skills own](#414-what-other-skills-own)
 
-## Scope: container, not contents
+## 1. Introduction
+
+The full, quotable standard behind the `ki-repo-tools` skill. A `tools-*` repo holds **one** standalone command-line tool, distributed by a `curl | bash` installer and a companion Homebrew tap formula. This document governs the **container** and shared public interface conventions language-agnostically. The reference implementations are `tools-mgit` (Bash) and `tools-ki` (TypeScript/Bun). The line-by-line audit items are in [rubric.md](rubric.md); the tracked external specs and in-house references are in [sources.md](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+The container of a `tools-*` repository and the small public interface its tools share.
+
+### 2.1 In scope
+
+- Applicability, the repository layout, the executable and the developer delivery guides.
+- Versioning, releases, change and release readiness, and the distribution contract.
+- Input and output contracts, capability conditionals, the commit gate and Bats assertions.
+- The shared CLI conventions, diagnostics, tables, manual authoring and the `.ki.toml` marker.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- Whether a tool's own operations are correct, well-factored or fast: its author's concern.
+- What other skills own, listed in [4.14](#414-what-other-skills-own).
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Tool repository** | A `tools-*` repository holding one standalone command-line tool, distributed by a `curl \| bash` installer and a companion Homebrew formula. **Standard:** this one, [1](#1-introduction) |
+| **Primary bin** | The `bin/` file whose name matches the repository's `<name>`; the capability checks read its shebang. **Standard:** this one, [4.2](#42-repository-layout) |
+| **Capability conditional** | A check that a repository signal, such as a shell shebang, a `package.json` or a manual page, turns on. **Standard:** this one, [4.10](#410-capability-conditionals) |
+| **Diagnostic baseline** | The common execution context that `diag` and `doctor` report before tool-specific facts. **Standard:** this one, [4.11.1](#4111-diagnostic-baseline) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part, from the container to what other skills own.
+
+### 4.1 Scope: container, not contents
 
 This standard judges the **container** (the repo's shape) and a small shared public interface — it does **not** judge the quality of tool-specific operations. A shell tool must be shellcheck-clean and carry a bats suite; this standard checks those are **wired into CI** and that the suite's assertions can fail, not what they report. Whether a tool's own operations are correct, well-factored, or fast is its author's concern.
 
@@ -27,7 +82,9 @@ Applicability is declaration or structure: `[skills.ki-repo-tools]` in `.ki.toml
 
 One tool per repo. A repo that would ship two distinct tools is two repos.
 
-## Repository layout
+[Back to contents](#contents)
+
+### 4.2 Repository layout
 
 ```text
 tools-<name>/
@@ -47,13 +104,17 @@ tools-<name>/
 - **`bin/` with ≥1 executable file and both developer delivery guides are hard requirements** — their absence is a FAIL. Everything else is expected-but-optional (WARN when absent): a repo can be mid-scaffold.
 - The **primary** bin file is the one whose name matches the repo's `<name>` (a `tools-mgit` repo → `bin/mgit`); the capability checks read its shebang.
 
-## The executable — `bin/<tool>`
+[Back to contents](#contents)
+
+### 4.3 The executable — `bin/<tool>`
 
 - Lives at `bin/<tool>` and carries the **executable bit**. Git tracks the exec bit, so `chmod +x bin/<tool>` is committed once and travels with the repo — a bin file without it is a FAIL (the curl installer and Homebrew formula both rely on it).
 - Answers `--version` (and `-V` where the CLI convention allows), printing the tool name and version. Hosted audit never executes the physical primary executable; a separately authorized isolated diagnostic supplies any runtime evidence.
 - Follows the XDG Base Directory spec for any config/state/cache it writes (`$XDG_CONFIG_HOME`, `$XDG_STATE_HOME`, `$XDG_CACHE_HOME` with the documented `$HOME`-relative fallbacks) rather than scattering dotfiles in `$HOME`.
 
-## Developer delivery guides
+[Back to contents](#contents)
+
+### 4.4 Developer delivery guides
 
 Every tool repository carries physical regular files at `docs/guides/developer/definition-of-done.md` and `docs/guides/developer/releasing.md`. `ki-repo-tools` enforces their presence and safe file type; each guide names this skill's shared readiness checklist and supplies the tool-specific commands, delivery risks, and release mechanism needed to carry it out. Readers can execute the local procedure without guessing command names or destinations; shared policy does not need to be copied into each guide.
 
@@ -61,7 +122,9 @@ Every tool repository carries physical regular files at `docs/guides/developer/d
 
 Keep repository `AGENTS.md` and developer guides as local deltas. Promote recurring tool policy into `ki-repo-tools`, commit practice into `ki-git`, document placement into its authoring skills, and language/toolchain conventions into `ki-engineering`. The standing repository context names those owners and retains only product boundaries, unusual hazards, and local entrypoints. Keep one canonical local verification command list and link to it from other local documents. During a cross-tool review, remove duplicate policy only after its owning skill covers the rule; retain concrete examples and safeguards that depend on the tool's behaviour.
 
-## Versioning & releases
+[Back to contents](#contents)
+
+### 4.5 Versioning & releases
 
 - The tool carries a **version marker** — for example `MGIT_VERSION=0.1.0` in a shell entrypoint or the package metadata of a TS/Bun tool — that `--version` prints. One source of truth; no second copy to drift.
 - Releases are **`vX.Y.Z` git tags**, each with a **GitHub release**. The executable version marker and tag agree at every release. The changelog's shape depends on whether the tool has reached 1.0.
@@ -69,15 +132,21 @@ Keep repository `AGENTS.md` and developer guides as local deltas. Promote recurr
 - From `1.0.0` onward, `CHANGELOG.md` uses [Keep a Changelog](https://keepachangelog.com/) style: an optional `Unreleased` section followed by dated semantic-version entries grouped by `Added`, `Changed`, `Fixed`, and `Removed` as applicable. The first dated entry identifies the latest shipped release and agrees with its version marker and tag. The pre-1.0 baseline may remain as historical orientation, but it is not a substitute for a dated 1.0+ entry.
 - Tags and releases can't be seen from a checkout path — the checker hands this to the judgment pass (RELEASE, ADVISORY).
 
-## Change readiness
+[Back to contents](#contents)
 
-Use [the change-readiness checklist](standards-change-readiness.md) for the common documentation, verification, and review questions on every tool change. The local definition of done supplies the exact tool-specific gates; neither one replaces the other.
+### 4.6 Change readiness
 
-## Release readiness
+Use [the change-readiness checklist](standard-change-readiness.md) for the common documentation, verification, and review questions on every tool change. The local definition of done supplies the exact tool-specific gates; neither one replaces the other.
 
-Use [the release-readiness checklist](standards-release-readiness.md) to turn these requirements into a release-specific review. It orders the candidate's version and compatibility decision, public-surface documentation, applicable validation, and publication handoffs without adding a second release policy or a new repository mode.
+[Back to contents](#contents)
 
-## The distribution contract
+### 4.7 Release readiness
+
+Use [the release-readiness checklist](standard-release-readiness.md) to turn these requirements into a release-specific review. It orders the candidate's version and compatibility decision, public-surface documentation, applicable validation, and publication handoffs without adding a second release policy or a new repository mode.
+
+[Back to contents](#contents)
+
+### 4.8 The distribution contract
 
 Two delivery channels, both required for a shipped tool:
 
@@ -90,26 +159,32 @@ Two delivery channels, both required for a shipped tool:
    - When a physical `man/<tool>.1` exists, honours a matching manual-target override (for example `MGIT_MAN_INSTALL_DIR`), installs the manual with a release, and makes `--link` link the manual source with the local executable.
 2. **A companion Homebrew formula** — `Formula/<name>.rb` in the tap repo (`homebrew-<x>`), installable via `brew tap` + `brew install`. The **tap** and its formula are governed by the sibling `ki-repo-homebrew-tap` skill, not here — this standard only requires that a tap formula exists as the second channel; it does not reproduce the formula rules.
 
-## Input and output contracts
+[Back to contents](#contents)
+
+### 4.9 Input and output contracts
 
 Newly written user-authored configuration has one current, unversioned input shape. Do not emit a schema/version field, or introduce `latest`, `pre-release`, or `0` as a substitute. An absent field means the current shape; a legacy field is accepted only when the whole structure is recognised. Unknown values or ambiguous legacy structures fail clearly. A repair is explicit and previewable, never a side effect of reading or a silent non-interactive prompt.
 
 Generated public output may carry a version identity for its own contract. Before 1.0, identify each such contract as v1 and let consumers tolerate additive fields; there is no estate-wide schema number. Private persisted state is different: retain migration markers needed to recover existing data, and change them only with a deliberate migration and tests. Matching version numbers never make different formats interchangeable.
 
-## Capability conditionals
+[Back to contents](#contents)
+
+### 4.10 Capability conditionals
 
 What the repo _is_ decides which checks apply — the same standard covers a bash tool and a TS tool without forking (mirrors `ki-engineering`'s capability-conditional pattern).
 
 | Capability signal | Requirement it turns on |
 | --- | --- |
-| Primary bin has a `bash`/`sh` shebang (SHELL) | A CI workflow references **shellcheck** (the tool is shellcheck-clean); `tests/` holds a **`*.bats`** suite CI runs (references `bats`), whose `[[ ]]` and `!` assertions end `|| false` (`SHELL-FATAL`, [below](#fatal-bats-assertions)). With or without a `package.json`, a committed `.githooks/pre-commit` runs `shellcheck` and `bash -n` over the staged shell files, `mandoc -T lint` over the staged manual pages, check-only, and no `bats` suite or `ki repo audit`, which run in CI (`SHELL-HOOK`, [below](#commit-gate)). |
+| Primary bin has a `bash`/`sh` shebang (SHELL) | A CI workflow references **shellcheck** (the tool is shellcheck-clean); `tests/` holds a **`*.bats`** suite CI runs (references `bats`), whose `[[ ]]` and `!` assertions end `|| false` (`SHELL-FATAL`, [below](#4102-fatal-bats-assertions)). With or without a `package.json`, a committed `.githooks/pre-commit` runs `shellcheck` and `bash -n` over the staged shell files, `mandoc -T lint` over the staged manual pages, check-only, and no `bats` suite or `ki repo audit`, which run in CI (`SHELL-HOOK`, [below](#4101-commit-gate)). |
 | A `package.json` appears (TS/Bun tool) | The repo defers lint/test to **`ki-engineering`** and MUST also declare `[skills.ki-engineering]` in `.ki.toml`. Shell checks don't apply. |
 | A physical `man/<tool>.1` page appears | CI runs `mandoc -T lint man/<tool>.1`, directly or through the repository's native task runner. The installer publishes it and `--link` links it alongside the executable. |
 | Another language (Python, Go, …) | Defer to that language's own toolchain. The container checks (bin, install.sh, versioning, changelog, CI, tests) still apply. |
 
-There is deliberately **no `ki-shell` skill**: shell is the reference language, and its two tool-specific gates (shellcheck, bats) live here as capability conditionals rather than a separate skill (YAGNI at n=1). If a second shell-specific concern emerges, revisit. `SHELL-HOOK` agrees with that decision rather than superseding it: it is the shell capability's commit-gate content criterion, described under [Commit gate](#commit-gate).
+There is deliberately **no `ki-shell` skill**: shell is the reference language, and its two tool-specific gates (shellcheck, bats) live here as capability conditionals rather than a separate skill (YAGNI at n=1). If a second shell-specific concern emerges, revisit. `SHELL-HOOK` agrees with that decision rather than superseding it: it is the shell capability's commit-gate content criterion, described under [Commit gate](#4101-commit-gate).
 
-### Commit gate
+[Back to contents](#contents)
+
+#### 4.10.1 Commit gate
 
 A tool repository's committed hooks are the `ki-repo` canonical pair for the `ki-repo-tools` shape, published as this skill's worked example under [`assets/githooks/`](../assets/githooks/), one pair with a `package.json` and one without ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)). Without a package, `pre-commit` checks the staged Markdown under `ki-authoring` `MD-hook`, then the shell block: `shellcheck` and `bash -n` over each staged shell file, found by a `.sh` or `.bash` name or a `sh` or `bash` shebang, and `mandoc -T lint` over each staged `man/*.[1-9]` page, all check-only (`SHELL-HOOK`). With a package, the `ki-engineering` content takes the place of the Markdown lines, followed by the same shell block; `SHELL-HOOK` applies in both variants. Neither calls `ki`: the `ki-repo-tools` audit runs in CI, as Kris chose COMMIT-VS-CI a) on 26 October 2026. `commit-msg` runs `ki git check-message "$1"` without a package and Commitlint with one. The `bats` suite, like any test suite, and any `ki repo audit`, conform, repair, `--fix` or `--write` belong to the manual gate and CI, never the commit gate, so `SHELL-HOOK` fails a hook that runs one. `ki-repo` owns whether the hook exists, is bound and matches its canonical text (`HOOK-1`, `HOOK-2`, `HOOK-4`).
 
@@ -131,7 +206,9 @@ check = [
 
 The check's program must be a git-tracked executable regular file whose resolved path stays inside the repository, including through parent-directory symlinks. The audit freezes the current Git index and reads the declaration, checker, artefact and sources from a disposable checkout of its raw blobs, without working-tree attributes or checkout filters, then runs the check there without a shell under a 60-second timeout. The check must work from repository files alone, without untracked dependencies or Git metadata; its hook Git environment is cleared. Unstaged checker or input edits cannot conceal a staged mismatch. Declared inputs must also resolve inside that indexed checkout. A non-zero exit, timeout, unsafe path or unresolved index fails the criterion, and the disposable checkout is removed. Findings cover `.ki.toml`, the checker, the artefact and each listed source, so staging any of them exposes a mismatch to the focused audit. Without an indexed declaration `ASSEMBLE-1` is not applicable.
 
-### Fatal Bats assertions
+[Back to contents](#contents)
+
+#### 4.10.2 Fatal Bats assertions
 
 In a shell tool's Bats suite, every assertion line that starts with `[[` or `!` ends `|| false`:
 
@@ -144,9 +221,11 @@ Under Bash 3.2, the Bash that macOS ships, a failing `[[ ]]` in the middle of a 
 
 `SHELL-FATAL` warns, per `tests/*.bats` suite, on each `[[` or `!` assertion line without a trailing `|| false`. It joins backslash continuations, skips comments, and leaves alone a line that already uses `&&` or `||`, which is a condition rather than an assertion, such as `[[ -n "$SKIP" ]] && skip`. It is part of the Bats gate rather than a second shell-specific concern.
 
-## Shared CLI conventions
+[Back to contents](#contents)
 
-These are Knowledge Islands house style across the standalone tools; they do not prescribe a tool's domain commands. The [command-line conventions](standards-cli-conventions.md) give the Unix and Linux syntax, flag letters, streams, exit statuses, terminal behaviour and directories these rules sit beside; design a new option against them first.
+### 4.11 Shared CLI conventions
+
+These are Knowledge Islands house style across the standalone tools; they do not prescribe a tool's domain commands. The [command-line conventions](standard-cli-conventions.md) give the Unix and Linux syntax, flag letters, streams, exit statuses, terminal behaviour and directories these rules sit beside; design a new option against them first.
 
 - `--help` describes the currently available command surface and completes successfully. Successful commands exit 0; a normal operational error exits 1; invalid syntax the tool itself owns exits 2.
 - Every tool exposes `help [command]`, `completion <shell>`, `diag`, and `doctor` at the root. `help` gives general or command-specific usage; `diag` gives factual, share-safe environment information (with an explicit fuller form when local identities are needed); `doctor` evaluates read-only health and uses an operational failure status for findings. Do not make a wrapper such as `manage` the only route to these common actions.
@@ -157,7 +236,9 @@ These are Knowledge Islands house style across the standalone tools; they do not
 - Syntax the tool itself owns reports `<tool>: error: …`, exits with status 2, and includes usage. Invalid owned syntax takes precedence over `--help`; arguments intentionally passed through to another program remain that program's concern.
 - The active CLI help, a physical manual, and the README's command overview describe the same public surface. A tool may give each a different level of detail, but none may advertise a retired command or omit a shipped user-facing command. Before 1.0, the changelog's consolidated command surface stays aligned with them; from 1.0 onward, dated changelog entries record changes rather than serving as a second command inventory. Each repository keeps an automated inventory or equivalent focused tests comparing its command tree, generated Bash/Zsh completions, and documented routes; cross-tool meaning and reader clarity remain judgment checks.
 
-### Diagnostic baseline
+[Back to contents](#contents)
+
+#### 4.11.1 Diagnostic baseline
 
 `diag` and `doctor` identify the same execution context before adding tool-specific facts or checks. Their human-readable common labels are `Tool`, `Version`, `Installation`, `Platform`, `Architecture`, `Runtime`, and `Configuration`; a tree and a concise line-oriented view may use different layout without changing these meanings. Machine-readable forms, where supported, carry equivalent facts within their own generated contract rather than sharing an estate-wide schema. Preserve existing useful fields when extending a contract.
 
@@ -173,7 +254,9 @@ Default `diag` output is factual and share-safe: no private paths, repository id
 
 Each repository proves this baseline through isolated native tests: default and fuller output, executing-runtime identity, positive and unknown installation provenance, missing and invalid configuration, failure actions, skipped checks and count/verdict consistency. Test private-data redaction with distinctive fixture values, not merely the absence of one developer's path. Hosted repository audit remains static and never executes the tool to claim runtime conformance.
 
-### Human-readable tables
+[Back to contents](#contents)
+
+#### 4.11.2 Human-readable tables
 
 For commands that report a genuine comparison grid, fit columns to the actual terminal width rather than treating a fixed width as the terminal's size. Wrap descriptive prose and preserve complete actionable identifiers. When essential columns cannot fit, use a labelled stacked record instead of silently cutting an identity or losing detail. Keep headers, status vocabulary and spacing consistent across the tool's reports; support a safe text fallback where terminal or character-width evidence is unavailable.
 
@@ -181,7 +264,9 @@ Redirected output is plain and deterministic, without cursor controls or depende
 
 Use isolated native fixtures to prove wide and narrow terminals, long identifiers and prose, empty results, and redirected output. Assert retained values and width/layout invariants in addition to readable snapshots; a fixed-width snapshot alone cannot prove terminal adaptation.
 
-## Manual authoring
+[Back to contents](#contents)
+
+### 4.12 Manual authoring
 
 A physical `man/<tool>.1` is the installed command reference. It stays aligned with the CLI help surface and uses the same command-group vocabulary where the tool has grouped commands.
 
@@ -192,14 +277,20 @@ A physical `man/<tool>.1` is the installed command reference. It stays aligned w
 - Include the user-facing release and local-development installation paths that the tool supports, including where the manual is installed or linked. Identify the canonical completion action, but keep shell-startup ownership with the user's configuration layer rather than prescribing an installer-side mutation.
 - Validate source with `mandoc -T lint man/<tool>.1`. For an authoring or layout change, also inspect the plain rendered form with `mandoc -Tutf8 man/<tool>.1 | col -b`; lint can validate roff syntax but cannot establish readable spacing.
 
-## The qualified `ki-repo-tools` marker
+[Back to contents](#contents)
 
-A `tools-*` repo opts in by declaring `[skills.ki-repo-tools]` in `.ki.toml`. A keyless table retains repository-owned installer files. The optional `profile`, `tool`, `repository`, `env_prefix`, `manual_path`, and profile-specific `public_key_path` keys select a managed projection defined by the [tool shared-code standard](standards-tool-shared-code.md). The optional `assembled` key declares the committed artefacts `ASSEMBLE-1` checks, described under [Commit gate](#commit-gate), and needs no profile. The checker validates down and never reads another skill's table. `ki repo conform --skill ki-repo-tools` may add the keyless marker to an existing parseable configuration, but it never selects a profile.
+### 4.13 The qualified `ki-repo-tools` marker
+
+A `tools-*` repo opts in by declaring `[skills.ki-repo-tools]` in `.ki.toml`. A keyless table retains repository-owned installer files. The optional `profile`, `tool`, `repository`, `env_prefix`, `manual_path`, and profile-specific `public_key_path` keys select a managed projection defined by the [tool shared-code standard](standard-tool-shared-code.md). The optional `assembled` key declares the committed artefacts `ASSEMBLE-1` checks, described under [Commit gate](#4101-commit-gate), and needs no profile. The checker validates down and never reads another skill's table. `ki repo conform --skill ki-repo-tools` may add the keyless marker to an existing parseable configuration, but it never selects a profile.
 
 A language conditional is declared as its **own** table, not a key here: a TS/Bun tool carries both `ki-repo-tools` and `ki-engineering` qualified declarations.
 
-## What other skills own
+[Back to contents](#contents)
+
+### 4.14 What other skills own
 
 - **`ki-repo`** — the local standard files (README, LICENSE, `.gitignore`, `.editorconfig`), GitHub settings (merge policy, branch protection, topics, visibility), and the `.ki.toml` contract itself. `ki-repo`'s coverage cascade detects an undeclared tool (a `bin/<exe>` + `install.sh` with no qualified `ki-repo-tools` declaration) and WARNs, enforcing the one-structure-skill-per-repo invariant.
 - **`ki-repo-homebrew-tap`** — the tap repo, the `Formula/*.rb` shape, and the tap's own test-bot/CI.
 - **`ki-engineering`** — the TS/Bun build/lint/test toolchain, only if the tool grows a `package.json`.
+
+[Back to contents](#contents)

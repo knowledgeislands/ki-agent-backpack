@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { LanguageToolsContext, ToolsRubricContext } from '../contexts/tools.ts'
 
-const STANDARD = 'standards-tool-repositories.md'
+const STANDARD = 'standard-tool-repositories.md'
 
 const LANG_DEFER: RubricItem<LanguageToolsContext> = {
   code: 'LANG-DEFER',

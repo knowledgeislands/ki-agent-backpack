@@ -2,7 +2,7 @@ import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import { supportedToolSharedProfiles, toolSharedProfileParameters } from '../contexts/shared-code.ts'
 import type { ToolsConfigContext, ToolsRubricContext } from '../contexts/tools.ts'
 
-const STANDARD = 'standards-tool-repositories.md'
+const STANDARD = 'standard-tool-repositories.md'
 const TABLE = 'ki-repo-tools'
 
 const CONFIG_1: RubricItem<ToolsConfigContext> = {

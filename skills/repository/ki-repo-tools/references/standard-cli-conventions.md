@@ -1,22 +1,73 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:51:39Z
+ki-status: in force
+---
+
 # Command-line conventions
-
-Design guidance for the public interface of a Knowledge Islands command-line tool, drawn from the common Unix and Linux conventions. It tells a tool author which syntax, flag letters, streams, exit statuses, terminal behaviour and directories users already expect, so that a new option or command fits them first time. The [tool-repository standard](standards-tool-repositories.md#shared-cli-conventions) keeps the house rules this guidance sits beside; where the two meet, the house rule governs. The external sources are listed in [sources.md](sources.md).
-
-This is guidance for design and review, not a mechanical rubric: hosted audit never runs a tool, so conformance is judged by reading its help, manual and tests. An existing departure is reconciled deliberately, through the tool's own record and changelog, rather than by renaming a shipped flag in passing.
 
 ## Contents
 
-- [Syntax](#syntax)
-- [Common options](#common-options)
-- [Symbolic links](#symbolic-links)
-- [Standard streams](#standard-streams)
-- [Exit status](#exit-status)
-- [Terminal, colour and prompts](#terminal-colour-and-prompts)
-- [Configuration, state and cache](#configuration-state-and-cache)
-- [Signals](#signals)
-- [Choosing a new option](#choosing-a-new-option)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Syntax](#41-syntax)
+  - [4.2 Common options](#42-common-options)
+  - [4.3 Symbolic links](#43-symbolic-links)
+  - [4.4 Standard streams](#44-standard-streams)
+  - [4.5 Exit status](#45-exit-status)
+  - [4.6 Terminal, colour and prompts](#46-terminal-colour-and-prompts)
+  - [4.7 Configuration, state and cache](#47-configuration-state-and-cache)
+  - [4.8 Signals](#48-signals)
+  - [4.9 Choosing a new option](#49-choosing-a-new-option)
 
-## Syntax
+## 1. Introduction
+
+Design guidance for the public interface of a Knowledge Islands command-line tool, drawn from the common Unix and Linux conventions. It tells a tool author which syntax, flag letters, streams, exit statuses, terminal behaviour and directories users already expect, so that a new option or command fits them first time. The [tool-repository standard](standard-tool-repositories.md#411-shared-cli-conventions) keeps the house rules this guidance sits beside; where the two meet, the house rule governs. The external sources are listed in [sources.md](sources.md).
+
+This is guidance for design and review, not a mechanical rubric: hosted audit never runs a tool, so conformance is judged by reading its help, manual and tests. An existing departure is reconciled deliberately, through the tool's own record and changelog, rather than by renaming a shipped flag in passing.
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+The public command-line interface of a Knowledge Islands tool, measured against the common Unix and Linux conventions.
+
+### 2.1 In scope
+
+- Option and operand syntax, and the common option letters and names.
+- Symbolic-link options, standard streams and exit status.
+- Terminal behaviour, colour and prompts; configuration, state and cache directories; and signals.
+- How to choose a new option.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- The house rules for every tool: the [shared CLI conventions](standard-tool-repositories.md#411-shared-cli-conventions), which govern where the two meet.
+- A tool's own domain commands.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Short option** | One letter or digit after one hyphen, as `-v`. **Standard:** this one, [4.1](#41-syntax) |
+| **Long option** | A word after two hyphens, as `--verbose`. **Standard:** this one, [4.1](#41-syntax) |
+| **Operand** | An argument that is not an option; everything after `--` is one. **Standard:** this one, [4.1](#41-syntax) |
+| **House rule** | A Knowledge Islands rule in the shared CLI conventions, which governs where it meets this guidance. **Standard:** [the tool-repository standard](standard-tool-repositories.md#411-shared-cli-conventions) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The guidance, part by part.
+
+### 4.1 Syntax
 
 The POSIX Utility Syntax Guidelines and GNU long options together give the shape users type without thinking.
 
@@ -29,7 +80,9 @@ The POSIX Utility Syntax Guidelines and GNU long options together give the shape
 - Do not rely on unique-prefix abbreviation of long options (`--verb` for `--verbose`): it makes adding an option a breaking change. Spell every documented option in full.
 - An option given twice either accumulates, where repetition is meaningful (`-v -v`, a repeatable `--filter`), or the last one wins. Document which.
 
-## Common options
+[Back to contents](#contents)
+
+### 4.2 Common options
 
 These letters and names carry an expected meaning across Unix tools. Give an option one of these names only with this meaning, and do not reuse a letter here for something else. A tool need not offer every option; it offers the ones its commands need.
 
@@ -52,9 +105,11 @@ These letters and names carry an expected meaning across Unix tools. Give an opt
 | `--json` | Print machine-readable JSON on standard output. Use `--format <name>` instead only when a command offers several formats. | `npm ls --json`, `gh pr list --json` |
 | `--color[=when]`, `--no-color` | `always`, `auto` (the default) or `never`. | GNU `ls`, `grep`, `diff` |
 
-Three KI house rules refine this table. A command whose writes need review previews by default and writes only with an explicit option such as `--apply`, as the [shared CLI conventions](standards-tool-repositories.md#shared-cli-conventions) require of `repair`; `--dry-run` remains the opt-in preview for a command that acts by default. Within one tool, the same option has the same name and meaning on every subcommand. And a repeatable selector that narrows the working set by name is the long `--filter <prefix>` with no short letter, as in `ki` and `mgit`, so that `-f` stays free for force or file.
+Three KI house rules refine this table. A command whose writes need review previews by default and writes only with an explicit option such as `--apply`, as the [shared CLI conventions](standard-tool-repositories.md#411-shared-cli-conventions) require of `repair`; `--dry-run` remains the opt-in preview for a command that acts by default. Within one tool, the same option has the same name and meaning on every subcommand. And a repeatable selector that narrows the working set by name is the long `--filter <prefix>` with no short letter, as in `ki` and `mgit`, so that `-f` stays free for force or file.
 
-## Symbolic links
+[Back to contents](#contents)
+
+### 4.3 Symbolic links
 
 POSIX gives one family of letters for whether a command follows symbolic links, and a tool that walks directories uses it rather than inventing another.
 
@@ -63,15 +118,19 @@ POSIX gives one family of letters for whether a command follows symbolic links, 
 - GNU spells the walk options `--no-dereference`, `--dereference` and `--dereference-command-line`; a KI tool may give clearer long names, such as `--physical` and `--follow-symlinks`, provided the short letters keep the POSIX meanings.
 - Detect and stop at link cycles when following links.
 
-## Standard streams
+[Back to contents](#contents)
+
+### 4.4 Standard streams
 
 - Standard output carries the result: the data a user asked for, which another program may read. Its shape stays the same whether or not it is a terminal, apart from colour and width.
 - Standard error carries everything about the run: errors, warnings, progress, prompts and diagnostic logging. A user can redirect standard output to a file or a pipe and still see what is happening.
 - Machine output under `--json` or `-0` is the whole of standard output: no headings, progress, colour or trailing prose. Errors still go to standard error.
-- An error names the tool and says what failed and what to do next: `<tool>: error: <what> (<next step>)`. Syntax errors add usage, under the [shared CLI conventions](standards-tool-repositories.md#shared-cli-conventions).
+- An error names the tool and says what failed and what to do next: `<tool>: error: <what> (<next step>)`. Syntax errors add usage, under the [shared CLI conventions](standard-tool-repositories.md#411-shared-cli-conventions).
 - Help and version, asked for, are results and go to standard output. Usage printed because of a syntax error goes to standard error.
 
-## Exit status
+[Back to contents](#contents)
+
+### 4.5 Exit status
 
 | Status | Meaning |
 | --- | --- |
@@ -83,15 +142,19 @@ POSIX gives one family of letters for whether a command follows symbolic links, 
 
 A tool that passes a command through to another program returns that program's status unchanged where there is one; one that runs a command across many targets documents how it combines their statuses. Use another code only when callers need to tell outcomes apart, and document it in help and the manual. The BSD `sysexits.h` codes are not used.
 
-## Terminal, colour and prompts
+[Back to contents](#contents)
+
+### 4.6 Terminal, colour and prompts
 
 - Colour, cursor movement, progress bars and spinners appear only when the stream they go to is a terminal. Check the stream itself: standard output for coloured results, standard error for progress.
 - When `NO_COLOR` is set to any non-empty value, print no colour unless the user asks for it with `--color=always`. Treat `TERM=dumb` the same. A command-line option overrides the environment.
-- Redirected output is plain and deterministic, under the [human-readable tables](standards-tool-repositories.md#human-readable-tables) rule.
+- Redirected output is plain and deterministic, under the [human-readable tables](standard-tool-repositories.md#4112-human-readable-tables) rule.
 - Prompt only when standard input is a terminal. Without a terminal, never wait for an answer: proceed if the action is safe, or stop with an error naming the option, such as `--yes`, that grants the answer.
 - Never read a secret from a command-line option, where it shows in the process list and shell history; read it from a file, standard input or a secret store.
 
-## Configuration, state and cache
+[Back to contents](#contents)
+
+### 4.7 Configuration, state and cache
 
 A tool keeps its files where the XDG Base Directory Specification says, on macOS as on Linux, rather than in a dotfile in `$HOME` or under `~/Library`.
 
@@ -108,16 +171,22 @@ A tool keeps its files where the XDG Base Directory Specification says, on macOS
 - Settle precedence from the most specific to the least: command-line option, then environment variable, then repository or project configuration, then user configuration, then built-in default.
 - A tool's own environment variables carry its name as a prefix, `<TOOL>_`, as the installer overrides already do.
 
-## Signals
+[Back to contents](#contents)
+
+### 4.8 Signals
 
 - On an interrupt, stop promptly, tidy up what the run created, and exit 130. A second interrupt during clean-up ends at once.
 - When standard output closes early, as in `tool | head`, exit quietly without an error message.
 - Restore the terminal, such as a hidden cursor or a scrolling region, on every exit path.
 
-## Choosing a new option
+[Back to contents](#contents)
 
-1. Look for the meaning in [common options](#common-options) and [symbolic links](#symbolic-links) first; if it is there, use that name and letter.
+### 4.9 Choosing a new option
+
+1. Look for the meaning in [common options](#42-common-options) and [symbolic links](#43-symbolic-links) first; if it is there, use that name and letter.
 2. Give a short letter only to an option people type often. A rare or dangerous option is long only, so that it is spelt out where it is used.
 3. Check the letter against every other subcommand and the global options of the same tool, so that one letter has one meaning throughout.
 4. Name long options with lower-case words joined by hyphens, and prefer a word a user already knows from another tool.
-5. Update help, the completions, the manual and the README in the same change, under the [shared CLI conventions](standards-tool-repositories.md#shared-cli-conventions).
+5. Update help, the completions, the manual and the README in the same change, under the [shared CLI conventions](standard-tool-repositories.md#411-shared-cli-conventions).
+
+[Back to contents](#contents)

@@ -2,7 +2,7 @@ import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric
 import type { ToolSharedCodeContext } from '../contexts/shared-code.ts'
 import type { ToolsRubricContext } from '../contexts/tools.ts'
 
-const STANDARD = 'standards-tool-shared-code.md#managed-delivery-profile-contract'
+const STANDARD = 'standard-tool-shared-code.md#43-managed-delivery-profile-contract'
 
 const SHARED_1: RubricItem<ToolSharedCodeContext> = {
   code: 'SHARED-1',

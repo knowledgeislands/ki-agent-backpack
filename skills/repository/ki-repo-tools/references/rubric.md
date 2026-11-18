@@ -33,84 +33,84 @@ The tracked readable rubric is the exact publication of the structured catalogue
 
 ## TOOL — tool repository
 
-→ [standard](standards-tool-repositories.md)
+→ [standard](standard-tool-repositories.md)
 
 Layout, executable, distribution, versioning, and judgment criteria.
 
-- **TOOL-BIN [M] — Tool executable** — `bin/` exists and holds at least one physical file. (standards-tool-repositories.md)
+- **TOOL-BIN [M] — Tool executable** — `bin/` exists and holds at least one physical file. (standard-tool-repositories.md)
   - _Remediation:_ diagnostic — Correct the evidenced tool-repository issue through the responsible maintainer; hosted conform does not infer tool, release, or documentation semantics.
-- **TOOL-EXEC [M] — Executable bit** — Every physical `bin/<file>` carries the executable bit. (standards-tool-repositories.md)
+- **TOOL-EXEC [M] — Executable bit** — Every physical `bin/<file>` carries the executable bit. (standard-tool-repositories.md)
   - _Remediation:_ automatic
-- **TOOL-SCOPE [J] — One command** — The repository contains genuinely one tool rather than distinct commands. (standards-tool-repositories.md)
+- **TOOL-SCOPE [J] — One command** — The repository contains genuinely one tool rather than distinct commands. (standard-tool-repositories.md)
   - _Evidence scope:_ The target command-line tool repository and the evidence named by this criterion.
   - _Review prompt:_ The repository contains genuinely one tool rather than distinct commands.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tool repository through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TOOL-XDG [J] — XDG storage** — The tool follows the XDG Base Directory specification for config, state, and cache. (standards-tool-repositories.md)
+- **TOOL-XDG [J] — XDG storage** — The tool follows the XDG Base Directory specification for config, state, and cache. (standard-tool-repositories.md)
   - _Evidence scope:_ The target command-line tool repository and the evidence named by this criterion.
   - _Review prompt:_ The tool follows the XDG Base Directory specification for config, state, and cache.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tool repository through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TOOL-SCHEMA [J] — Input and output contracts** — New user-authored configuration omits schema metadata; only recognised legacy shapes are read or explicitly repaired. Generated public contracts each identify v1 before 1.0, while private persisted-state migrations retain their needed markers. (standards-tool-repositories.md)
+- **TOOL-SCHEMA [J] — Input and output contracts** — New user-authored configuration omits schema metadata; only recognised legacy shapes are read or explicitly repaired. Generated public contracts each identify v1 before 1.0, while private persisted-state migrations retain their needed markers. (standard-tool-repositories.md)
   - _Evidence scope:_ The target command-line tool repository and the evidence named by this criterion.
   - _Review prompt:_ New user-authored configuration omits schema metadata; only recognised legacy shapes are read or explicitly repaired. Generated public contracts each identify v1 before 1.0, while private persisted-state migrations retain their needed markers.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tool repository through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TOOL-INSTALL [M] — Installer executable** — `install.sh` is a physical executable file. (standards-tool-repositories.md)
+- **TOOL-INSTALL [M] — Installer executable** — `install.sh` is a physical executable file. (standard-tool-repositories.md)
   - _Remediation:_ automatic
-- **TOOL-INSTALL-QUALITY [J] — Installer quality** — The installer is POSIX-ish, honours overrides, verifies downloads, and is idempotent. (standards-tool-repositories.md)
+- **TOOL-INSTALL-QUALITY [J] — Installer quality** — The installer is POSIX-ish, honours overrides, verifies downloads, and is idempotent. (standard-tool-repositories.md)
   - _Evidence scope:_ The target command-line tool repository and the evidence named by this criterion.
   - _Review prompt:_ The installer is POSIX-ish, honours overrides, verifies downloads, and is idempotent.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tool repository through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TOOL-VERSION [M] — Version flag** — Runtime `--version` execution is an explicit, isolated diagnostic outside this static audit. (standards-tool-repositories.md)
+- **TOOL-VERSION [M] — Version flag** — Runtime `--version` execution is an explicit, isolated diagnostic outside this static audit. (standard-tool-repositories.md)
   - _Remediation:_ diagnostic — Correct the evidenced tool-repository issue through the responsible maintainer; hosted conform does not infer tool, release, or documentation semantics.
-- **TOOL-VERSION-SOURCE [J] — Version source** — The version marker has one source of truth aligned with the latest tag; from 1.0 onward, the first dated changelog entry agrees too. (standards-tool-repositories.md)
+- **TOOL-VERSION-SOURCE [J] — Version source** — The version marker has one source of truth aligned with the latest tag; from 1.0 onward, the first dated changelog entry agrees too. (standard-tool-repositories.md)
   - _Evidence scope:_ The target command-line tool repository and the evidence named by this criterion.
   - _Review prompt:_ The version marker has one source of truth aligned with the latest tag; from 1.0 onward, the first dated changelog entry agrees too.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tool repository through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TOOL-RELEASE-MARKERS [M] — Release marker alignment** — From package version 1.0.0 onward, package.json and the first dated CHANGELOG.md release marker agree. (standards-tool-repositories.md)
+- **TOOL-RELEASE-MARKERS [M] — Release marker alignment** — From package version 1.0.0 onward, package.json and the first dated CHANGELOG.md release marker agree. (standard-tool-repositories.md)
   - _Remediation:_ diagnostic — Correct the evidenced tool-repository issue through the responsible maintainer; hosted conform does not infer tool, release, or documentation semantics.
-- **TOOL-CHANGELOG [M] — Changelog presence** — `CHANGELOG.md` is a physical regular file. (standards-tool-repositories.md)
+- **TOOL-CHANGELOG [M] — Changelog presence** — `CHANGELOG.md` is a physical regular file. (standard-tool-repositories.md)
   - _Remediation:_ diagnostic — Correct the evidenced tool-repository issue through the responsible maintainer; hosted conform does not infer tool, release, or documentation semantics.
-- **TOOL-DEVELOPER-GUIDES [M] — Developer delivery guides** — `docs/guides/developer/definition-of-done.md` and `docs/guides/developer/releasing.md` are physical regular files; their content remains repository-defined. (standards-tool-repositories.md)
+- **TOOL-DEVELOPER-GUIDES [M] — Developer delivery guides** — `docs/guides/developer/definition-of-done.md` and `docs/guides/developer/releasing.md` are physical regular files; their content remains repository-defined. (standard-tool-repositories.md)
   - _Remediation:_ diagnostic — Correct the evidenced tool-repository issue through the responsible maintainer; hosted conform does not infer tool, release, or documentation semantics.
-- **TOOL-GUIDE-ALIGNMENT [J] — Developer guide alignment** — The local definition of done and release guide name the shared readiness checklists and retain executable tool-specific commands, destinations, risks and handoffs. AGENTS.md and guides route common policy to its skill owner rather than duplicate it, and other local documents link to one canonical verification command list. (standards-tool-repositories.md)
+- **TOOL-GUIDE-ALIGNMENT [J] — Developer guide alignment** — The local definition of done and release guide name the shared readiness checklists and retain executable tool-specific commands, destinations, risks and handoffs. AGENTS.md and guides route common policy to its skill owner rather than duplicate it, and other local documents link to one canonical verification command list. (standard-tool-repositories.md)
   - _Evidence scope:_ The target command-line tool repository and the evidence named by this criterion.
   - _Review prompt:_ The local definition of done and release guide name the shared readiness checklists and retain executable tool-specific commands, destinations, risks and handoffs. AGENTS.md and guides route common policy to its skill owner rather than duplicate it, and other local documents link to one canonical verification command list.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tool repository through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TOOL-CHANGELOG-FORMAT [J] — Changelog format** — Before 1.0, the changelog has one consolidated Pre-1.0 command and behaviour baseline, not per-release 0.x entries; from 1.0 onward, it has dated release entries. (standards-tool-repositories.md)
+- **TOOL-CHANGELOG-FORMAT [J] — Changelog format** — Before 1.0, the changelog has one consolidated Pre-1.0 command and behaviour baseline, not per-release 0.x entries; from 1.0 onward, it has dated release entries. (standard-tool-repositories.md)
   - _Evidence scope:_ The target command-line tool repository and the evidence named by this criterion.
   - _Review prompt:_ Before 1.0, the changelog has one consolidated Pre-1.0 command and behaviour baseline, not per-release 0.x entries; from 1.0 onward, it has dated release entries.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tool repository through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TOOL-CLI [J] — Shared CLI conventions** — Root help [command], completion <shell>, share-safe diag, and read-only doctor keep their distinct roles. Diagnostics share factual execution context with proven or unknown installation provenance; doctor reports checked scope, verdict and pass/warn/fail/skipped counts without implying package freshness. Tables adapt to terminals while preserving values and plain redirected output. Owned repair is preview-first with an explicit write path; init and bootstrap appear only where meaningful. Help, completion, manual, README, guides, changelog, errors, and exit status agree, with isolated native tests covering diagnostic redaction, provenance, health counts, table layout and repeatable command relationships. (standards-tool-repositories.md)
+- **TOOL-CLI [J] — Shared CLI conventions** — Root help [command], completion <shell>, share-safe diag, and read-only doctor keep their distinct roles. Diagnostics share factual execution context with proven or unknown installation provenance; doctor reports checked scope, verdict and pass/warn/fail/skipped counts without implying package freshness. Tables adapt to terminals while preserving values and plain redirected output. Owned repair is preview-first with an explicit write path; init and bootstrap appear only where meaningful. Help, completion, manual, README, guides, changelog, errors, and exit status agree, with isolated native tests covering diagnostic redaction, provenance, health counts, table layout and repeatable command relationships. (standard-tool-repositories.md)
   - _Evidence scope:_ The target command-line tool repository and the evidence named by this criterion.
   - _Review prompt:_ Root help [command], completion <shell>, share-safe diag, and read-only doctor keep their distinct roles. Diagnostics share factual execution context with proven or unknown installation provenance; doctor reports checked scope, verdict and pass/warn/fail/skipped counts without implying package freshness. Tables adapt to terminals while preserving values and plain redirected output. Owned repair is preview-first with an explicit write path; init and bootstrap appear only where meaningful. Help, completion, manual, README, guides, changelog, errors, and exit status agree, with isolated native tests covering diagnostic redaction, provenance, health counts, table layout and repeatable command relationships.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tool repository through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TOOL-CI [M] — CI workflow** — At least one physical workflow YAML file is present. (standards-tool-repositories.md)
+- **TOOL-CI [M] — CI workflow** — At least one physical workflow YAML file is present. (standard-tool-repositories.md)
   - _Remediation:_ diagnostic — Correct the evidenced tool-repository issue through the responsible maintainer; hosted conform does not infer tool, release, or documentation semantics.
-- **TOOL-TAP [J] — Companion formula** — A companion Homebrew formula exists in the governed tap. (standards-tool-repositories.md)
+- **TOOL-TAP [J] — Companion formula** — A companion Homebrew formula exists in the governed tap. (standard-tool-repositories.md)
   - _Evidence scope:_ The target command-line tool repository and the evidence named by this criterion.
   - _Review prompt:_ A companion Homebrew formula exists in the governed tap.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tool repository through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TOOL-TESTS [M] — Test directory** — A physical `tests/` or `src/tests/` directory is present. (standards-tool-repositories.md)
+- **TOOL-TESTS [M] — Test directory** — A physical `tests/` or `src/tests/` directory is present. (standard-tool-repositories.md)
   - _Remediation:_ diagnostic — Correct the evidenced tool-repository issue through the responsible maintainer; hosted conform does not infer tool, release, or documentation semantics.
-- **TOOL-ENGINEERING [J] — Engineering declaration** — A package.json-bearing repository declares ki-engineering. (standards-tool-repositories.md)
+- **TOOL-ENGINEERING [J] — Engineering declaration** — A package.json-bearing repository declares ki-engineering. (standard-tool-repositories.md)
   - _Evidence scope:_ The target command-line tool repository and the evidence named by this criterion.
   - _Review prompt:_ A package.json-bearing repository declares ki-engineering.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tool repository through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TOOL-LANGUAGE [J] — Other-language toolchain** — A non-shell, non-JavaScript tool wires its own lint and test toolchain into CI. (standards-tool-repositories.md)
+- **TOOL-LANGUAGE [J] — Other-language toolchain** — A non-shell, non-JavaScript tool wires its own lint and test toolchain into CI. (standard-tool-repositories.md)
   - _Evidence scope:_ The target command-line tool repository and the evidence named by this criterion.
   - _Review prompt:_ A non-shell, non-JavaScript tool wires its own lint and test toolchain into CI.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tool repository through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TOOL-RELEASE-CHECK [J] — Release alignment** — Version markers, tags, and releases agree; a pre-1.0 changelog baseline reflects the current surface, and a 1.0+ dated entry names the release. (standards-tool-repositories.md)
+- **TOOL-RELEASE-CHECK [J] — Release alignment** — Version markers, tags, and releases agree; a pre-1.0 changelog baseline reflects the current surface, and a 1.0+ dated entry names the release. (standard-tool-repositories.md)
   - _Evidence scope:_ The target command-line tool repository and the evidence named by this criterion.
   - _Review prompt:_ Version markers, tags, and releases agree; a pre-1.0 changelog baseline reflects the current surface, and a 1.0+ dated entry names the release.
   - _Outcomes:_ conforming; gap; exclusion
@@ -118,45 +118,45 @@ Layout, executable, distribution, versioning, and judgment criteria.
 
 ## SHELL — shell capabilities
 
-→ [standard](standards-tool-repositories.md)
+→ [standard](standard-tool-repositories.md)
 
 Shell-specific CI and test requirements.
 
-- **SHELL-LINT [M] — Shell lint CI** — Shell entrypoints have a physical CI workflow that references shellcheck. (standards-tool-repositories.md)
+- **SHELL-LINT [M] — Shell lint CI** — Shell entrypoints have a physical CI workflow that references shellcheck. (standard-tool-repositories.md)
   - _Remediation:_ diagnostic — Add or correct the shellcheck CI evidence through the repository’s maintained workflow.
-- **SHELL-TEST [M] — Shell test CI** — Shell entrypoints have a physical Bats suite referenced by CI. (standards-tool-repositories.md)
+- **SHELL-TEST [M] — Shell test CI** — Shell entrypoints have a physical Bats suite referenced by CI. (standard-tool-repositories.md)
   - _Remediation:_ diagnostic — Add or correct the Bats suite and CI evidence through the repository’s maintained test workflow.
-- **SHELL-FATAL [M] — Fatal Bats assertions** — Every `[[ ]]` or `!` assertion in a shell entrypoint repository’s `tests/*.bats` suite ends `|| false`, because under macOS Bash 3.2 such an assertion failing in the middle of a test does not fail it. (standards-tool-repositories.md)
+- **SHELL-FATAL [M] — Fatal Bats assertions** — Every `[[ ]]` or `!` assertion in a shell entrypoint repository’s `tests/*.bats` suite ends `|| false`, because under macOS Bash 3.2 such an assertion failing in the middle of a test does not fail it. (standard-tool-repositories.md)
   - _Remediation:_ diagnostic — Append `|| false` to each reported assertion, then run the suite and correct any latent failure it exposes.
-- **SHELL-HOOK [M] — Shell commit gate** — Where a shell entrypoint repository commits `.githooks/pre-commit`, the hook runs `shellcheck` and `bash -n` over the staged shell files and `mandoc -T lint` over the staged manual pages, all check-only, and runs no `bats` suite, `ki repo audit`, conform, repair, `--fix` or `--write`, which belong to the manual gate and CI. `ki-repo` HOOK-1 owns whether the hook exists and HOOK-4 its canonical text. (standards-tool-repositories.md)
+- **SHELL-HOOK [M] — Shell commit gate** — Where a shell entrypoint repository commits `.githooks/pre-commit`, the hook runs `shellcheck` and `bash -n` over the staged shell files and `mandoc -T lint` over the staged manual pages, all check-only, and runs no `bats` suite, `ki repo audit`, conform, repair, `--fix` or `--write`, which belong to the manual gate and CI. `ki-repo` HOOK-1 owns whether the hook exists and HOOK-4 its canonical text. (standard-tool-repositories.md)
   - _Remediation:_ diagnostic — Copy the canonical pre-commit from the matching `assets/githooks/` package variant, then rerun the audit.
 
 ## LANG — language capabilities
 
-→ [standard](standards-tool-repositories.md)
+→ [standard](standard-tool-repositories.md)
 
 Language toolchain deferral.
 
-- **LANG-DEFER [M] — JavaScript toolchain deferral** — A package.json-bearing tool defers lint and test to ki-engineering. (standards-tool-repositories.md)
+- **LANG-DEFER [M] — JavaScript toolchain deferral** — A package.json-bearing tool defers lint and test to ki-engineering. (standard-tool-repositories.md)
   - _Remediation:_ diagnostic — Route package toolchain concerns to ki-engineering; this tool rubric does not infer language-specific lint or test changes.
 
 ## COMP — completion capabilities
 
-→ [standard](standards-tool-repositories.md)
+→ [standard](standard-tool-repositories.md)
 
 Portable Bash and Zsh completion output, integration, and ownership.
 
-- **COMP-SURFACE [J] — Completion command surface** — The CLI exposes exactly one documented root completion <shell> action; it accepts bash and zsh, prints only the selected definition to standard output, and rejects unsupported shells as owned invalid syntax. (standards-tool-repositories.md)
+- **COMP-SURFACE [J] — Completion command surface** — The CLI exposes exactly one documented root completion <shell> action; it accepts bash and zsh, prints only the selected definition to standard output, and rejects unsupported shells as owned invalid syntax. (standard-tool-repositories.md)
   - _Evidence scope:_ The CLI completion command, its supported shells, output, and invalid-input behaviour.
   - _Review prompt:_ The CLI exposes exactly one documented root completion <shell> action; it accepts bash and zsh, prints only the selected definition to standard output, and rejects unsupported shells as owned invalid syntax.
   - _Outcomes:_ conforming; surface revision required; compatibility decision required
   - _Conforming guidance:_ Revise the documented completion surface and its validation tests, or record the owning compatibility decision before changing command behaviour.
-- **COMP-INTEGRATION [J] — Completion integration** — The Bash definition registers the executable with complete; the Zsh definition is an autoloadable _<tool> artifact with #compdef and compdef registration that does not invoke itself while loading. Tests cover both emitted forms and Zsh registration under compinit. (standards-tool-repositories.md)
+- **COMP-INTEGRATION [J] — Completion integration** — The Bash definition registers the executable with complete; the Zsh definition is an autoloadable _<tool> artifact with #compdef and compdef registration that does not invoke itself while loading. Tests cover both emitted forms and Zsh registration under compinit. (standard-tool-repositories.md)
   - _Evidence scope:_ The emitted Bash and Zsh completion definitions and their integration tests.
   - _Review prompt:_ The Bash definition registers the executable with complete; the Zsh definition is an autoloadable _<tool> artifact with #compdef and compdef registration that does not invoke itself while loading. Tests cover both emitted forms and Zsh registration under compinit.
   - _Outcomes:_ conforming; definition revision required; test evidence required
   - _Conforming guidance:_ Correct the emitted definition and add or update the shell integration evidence without changing user persistence ownership.
-- **COMP-OWNERSHIP [J] — Completion persistence ownership** — The tool does not edit shell startup files or personal completion directories. A shell configuration, package manager, or configuration manager persists the generated artifact and arranges fpath before compinit for Zsh. (standards-tool-repositories.md)
+- **COMP-OWNERSHIP [J] — Completion persistence ownership** — The tool does not edit shell startup files or personal completion directories. A shell configuration, package manager, or configuration manager persists the generated artifact and arranges fpath before compinit for Zsh. (standard-tool-repositories.md)
   - _Evidence scope:_ The tool installer and the shell, package-manager, or configuration-manager persistence boundary.
   - _Review prompt:_ The tool does not edit shell startup files or personal completion directories. A shell configuration, package manager, or configuration manager persists the generated artifact and arranges fpath before compinit for Zsh.
   - _Outcomes:_ conforming; ownership correction required; integration decision required
@@ -164,28 +164,28 @@ Portable Bash and Zsh completion output, integration, and ownership.
 
 ## MAN — manual capabilities
 
-→ [standard](standards-tool-repositories.md)
+→ [standard](standard-tool-repositories.md)
 
 Man-page linting requirements.
 
-- **MAN-LINT [M] — Manual lint CI** — A physical man/<tool>.1 page has CI that runs mandoc -T lint, directly or through the native task runner. (standards-tool-repositories.md)
+- **MAN-LINT [M] — Manual lint CI** — A physical man/<tool>.1 page has CI that runs mandoc -T lint, directly or through the native task runner. (standard-tool-repositories.md)
   - _Remediation:_ diagnostic — Add or correct the mandoc CI gate through the repository’s maintained release workflow.
-- **MAN-INSTALL [J] — Manual distribution** — A shipped physical man page is installed by the release installer and linked with the executable by its --link mode. (standards-tool-repositories.md)
+- **MAN-INSTALL [J] — Manual distribution** — A shipped physical man page is installed by the release installer and linked with the executable by its --link mode. (standard-tool-repositories.md)
   - _Evidence scope:_ The shipped manual page, release installer, and executable link mode.
   - _Review prompt:_ A shipped physical man page is installed by the release installer and linked with the executable by its --link mode.
   - _Outcomes:_ conforming; installer revision required; distribution decision required
   - _Conforming guidance:_ Align the installer and link behaviour with the shipped manual, or record the release-distribution decision that changes the supported path.
-- **MAN-SURFACE [J] — Manual command surface** — A physical manual stays aligned with CLI help and uses the tool’s command-group vocabulary in its SYNOPSIS. (standards-tool-repositories.md)
+- **MAN-SURFACE [J] — Manual command surface** — A physical manual stays aligned with CLI help and uses the tool’s command-group vocabulary in its SYNOPSIS. (standard-tool-repositories.md)
   - _Evidence scope:_ The physical manual, CLI help, and documented command-group vocabulary.
   - _Review prompt:_ A physical manual stays aligned with CLI help and uses the tool’s command-group vocabulary in its SYNOPSIS.
   - _Outcomes:_ conforming; manual revision required; CLI vocabulary decision required
   - _Conforming guidance:_ Revise the manual or CLI help so the SYNOPSIS and command vocabulary agree, or record the governing vocabulary decision.
-- **MAN-GUIDANCE [J] — Manual installation and completion guidance** — A physical manual documents the supported release and local-development installation paths, including manual installation or linking, and identifies the canonical completion action without assigning shell-startup mutation to the tool installer. (standards-tool-repositories.md)
+- **MAN-GUIDANCE [J] — Manual installation and completion guidance** — A physical manual documents the supported release and local-development installation paths, including manual installation or linking, and identifies the canonical completion action without assigning shell-startup mutation to the tool installer. (standard-tool-repositories.md)
   - _Evidence scope:_ The physical manual’s installation and completion guidance.
   - _Review prompt:_ A physical manual documents the supported release and local-development installation paths, including manual installation or linking, and identifies the canonical completion action without assigning shell-startup mutation to the tool installer.
   - _Outcomes:_ conforming; guidance revision required; ownership decision required
   - _Conforming guidance:_ Update the manual’s supported installation and completion guidance while retaining the shell-startup ownership boundary.
-- **MAN-STYLE [M + J] — Manual source and layout** — A physical manual uses portable roff macros, documents each configuration format canonically in FILES, uses a literal \& after each .SH / .SS, uses .PP only before prose, and receives a rendered-spacing inspection after mandoc lint. (standards-tool-repositories.md)
+- **MAN-STYLE [M + J] — Manual source and layout** — A physical manual uses portable roff macros, documents each configuration format canonically in FILES, uses a literal \& after each .SH / .SS, uses .PP only before prose, and receives a rendered-spacing inspection after mandoc lint. (standard-tool-repositories.md)
   - _Remediation:_ automatic
   - _Evidence scope:_ The physical manual source, its roff macros, FILES section, and rendered spacing inspection.
   - _Review prompt:_ A physical manual uses portable roff macros, documents each configuration format canonically in FILES, uses a literal \& after each .SH / .SS, uses .PP only before prose, and receives a rendered-spacing inspection after mandoc lint.
@@ -194,27 +194,27 @@ Man-page linting requirements.
 
 ## CONFIG — configuration
 
-→ [standard](standards-tool-repositories.md)
+→ [standard](standard-tool-repositories.md)
 
 Applicability marker and validate-down keys.
 
-- **CONFIG-1 [M] — Opt-in marker and delivery profile** — A qualified `ki-repo-tools` marker is present and any delivery-profile keys are validated down. (standards-tool-repositories.md)
+- **CONFIG-1 [M] — Opt-in marker and delivery profile** — A qualified `ki-repo-tools` marker is present and any delivery-profile keys are validated down. (standard-tool-repositories.md)
   - _Remediation:_ automatic
 
 ## SHARED — Shared delivery projection
 
-→ [standard](standards-tool-shared-code.md#managed-delivery-profile-contract)
+→ [standard](standard-tool-shared-code.md#43-managed-delivery-profile-contract)
 
 Optional digested installer and release-packaging profiles.
 
-- **SHARED-1 [M] — Declared tool delivery projection** — An optional declared delivery profile renders exact installer and packaging files from digested skill-owned templates while preserving repository-owned release seams. (standards-tool-shared-code.md#managed-delivery-profile-contract)
+- **SHARED-1 [M] — Declared tool delivery projection** — An optional declared delivery profile renders exact installer and packaging files from digested skill-owned templates while preserving repository-owned release seams. (standard-tool-shared-code.md#43-managed-delivery-profile-contract)
   - _Remediation:_ automatic
 
 ## ASSEMBLE — assembled artefacts
 
-→ [standard](standards-tool-repositories.md)
+→ [standard](standard-tool-repositories.md)
 
 Committed artefacts assembled from repository sources.
 
-- **ASSEMBLE-1 [M] — Assembled artefact matches its sources** — Each artefact declared under `[[skills.ki-repo-tools.assembled]]` passes its git-tracked executable check, contained in the repository after resolving symlinks and run without a shell under a 60-second timeout in a disposable checkout of the Git index. The declaration, checker, artefact and sources are read from that same index, so unstaged edits cannot conceal a staged mismatch. Findings cover the declaration, checker, artefact and each source for the focused staged audit. Not applicable where nothing is declared. (standards-tool-repositories.md)
+- **ASSEMBLE-1 [M] — Assembled artefact matches its sources** — Each artefact declared under `[[skills.ki-repo-tools.assembled]]` passes its git-tracked executable check, contained in the repository after resolving symlinks and run without a shell under a 60-second timeout in a disposable checkout of the Git index. The declaration, checker, artefact and sources are read from that same index, so unstaged edits cannot conceal a staged mismatch. Findings cover the declaration, checker, artefact and each source for the focused staged audit. Not applicable where nothing is declared. (standard-tool-repositories.md)
   - _Remediation:_ diagnostic — Reassemble the artefact with the repository’s own command, stage it with its sources, then rerun the audit.

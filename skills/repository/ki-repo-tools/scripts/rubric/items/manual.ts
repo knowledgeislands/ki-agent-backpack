@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { ManualToolsContext, ToolsRubricContext } from '../contexts/tools.ts'
 
-const STANDARD = 'standards-tool-repositories.md'
+const STANDARD = 'standard-tool-repositories.md'
 const one = (outcome: AuditOutcome): readonly AuditOutcome[] => [outcome]
 
 const MAN_LINT: RubricItem<ManualToolsContext> = {
