@@ -119,6 +119,8 @@ None recorded by id. Kris's two decisions behind the rules are quoted in the sta
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the chezmoi dotfiles standard](standard-chezmoi-dotfiles.md), formerly `standards-chezmoi-dotfiles.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format, its four source groups now sub-groups of Authoritative. SKILL.md, the rubric items and the rubric follow the new name and anchors. No rule changed and no outside source was refreshed.
 
 Focused review, **2026-11-17**: the source state attributes page re-read, and the two points the 15 November refresh raised were measured on chezmoi v2.74.1 in a scratch source and destination. The page sets a fixed prefix order for each kind of entry and allows no `executable_` on a directory; `executable_dot_bad/` applied as a literal directory named `executable_dot_bad`, so the standard's old example did not do what it said. `private_` removes group and world permissions, and `dot_bash/private_executable_secrets.tmpl` applied as `~/.bash/secrets` at mode `0700`, not `0600`. The standard's prefix table and example now follow the page, and those two watch points are closed.
