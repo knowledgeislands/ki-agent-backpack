@@ -183,7 +183,7 @@ A theme page lists neither its Projects nor its records, Activities or housekeep
 
 Upkeep and other work that never finishes has no Project. Its records may name a `theme` directly, usually with `purpose: upkeep`, and recurring runs inherit any theme from their template or Activity.
 
-A Project or theme shaped through [`ki-work design`](mode-design.md) links any resulting Decision Record once the design is consolidated. The note never copies the brief, reviews, report or decisions, and never points into a work folder.
+A Project or theme shaped through [`ki-work design`](mode-design.md) links any resulting Decision Record once the design is consolidated. The note never copies the brief, reviews, report or decisions, and never points into a work package.
 
 [Back to contents](#contents)
 
@@ -219,7 +219,7 @@ Rooting decides where a new idea, philosophy or piece of work lives: first its t
 
 ### 4.9 Links point upwards
 
-A work record names its Project or theme, a Project names its theme, and a work file names its Project. No link points down: a Project note names no work record or work folder, and a theme page names no Project or record. `ki` views derive the downward lists from the upward links, so the registry never holds a second copy of membership or status. The Streams checker fails a registry note that names a work-record identifier or carries an `## Update` section; Decision Record identifiers are not work records.
+A work record names its Project or theme, a Project names its theme, and a work file names its Project. No link points down: a Project note names no work record or work package, and a theme page names no Project or record. `ki` views derive the downward lists from the upward links, so the registry never holds a second copy of membership or status. The Streams checker fails a registry note that names a work-record identifier or carries an `## Update` section; Decision Record identifiers are not work records.
 
 [Back to contents](#contents)
 
