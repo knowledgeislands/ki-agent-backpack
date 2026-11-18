@@ -1,26 +1,26 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
-import type { HarnessReviewContext, HarnessRubricContext } from '../contexts/harness.ts'
+import type { BackpackReviewContext, BackpackRubricContext } from '../contexts/backpack.ts'
 
-const STANDARD = ['standard-compatible-harness.md#45-root-orientation'] as const
+const STANDARD = ['standard-compatible-backpack.md#45-root-orientation'] as const
 
-const CLAUDE_1: RubricItem<HarnessReviewContext> = {
+const CLAUDE_1: RubricItem<BackpackReviewContext> = {
   code: 'CLAUDE-1',
-  title: 'Harness introduction',
-  description: 'The root orientation opens by explaining the source harness and naming all four parts.',
+  title: 'Backpack introduction',
+  description: 'The root orientation opens by explaining the source backpack and naming all four parts.',
   sources: STANDARD,
   judgment: {
-    scope: 'The effective root orientation and all five source-harness shelves.',
-    prompt: 'Does the effective root orientation explain the source harness and name all four parts?',
+    scope: 'The effective root orientation and all five source-backpack shelves.',
+    prompt: 'Does the effective root orientation explain the source backpack and name all four parts?',
     outcomes: ['conforming', 'orientation revision', 'not applicable'],
     guidance:
       'Revise the orientation with owner-approved current source facts; do not infer shelf status from an unverified payload.'
   }
 }
 
-const CLAUDE_2: RubricItem<HarnessReviewContext> = {
+const CLAUDE_2: RubricItem<BackpackReviewContext> = {
   code: 'CLAUDE-2',
   title: 'Four-part status',
-  description: 'The root orientation gives a current status for every source-harness part.',
+  description: 'The root orientation gives a current status for every source-backpack part.',
   sources: STANDARD,
   judgment: {
     scope: 'The orientation status table or equivalent and the four physical source shelves.',
@@ -31,21 +31,21 @@ const CLAUDE_2: RubricItem<HarnessReviewContext> = {
   }
 }
 
-const CLAUDE_3: RubricItem<HarnessReviewContext> = {
+const CLAUDE_3: RubricItem<BackpackReviewContext> = {
   code: 'CLAUDE-3',
   title: 'Working conventions',
-  description: 'The root orientation routes working conventions for every source-harness part.',
+  description: 'The root orientation routes working conventions for every source-backpack part.',
   sources: STANDARD,
   judgment: {
-    scope: 'The root orientation and the working guidance or owning-skill route for every source-harness part.',
-    prompt: 'Does each source-harness part have concise working guidance or a route to its governing skill?',
+    scope: 'The root orientation and the working guidance or owning-skill route for every source-backpack part.',
+    prompt: 'Does each source-backpack part have concise working guidance or a route to its governing skill?',
     outcomes: ['conforming', 'orientation revision', 'route to owner'],
     guidance:
       'Add concise routing guidance without duplicating the owning standard or claiming another skill’s authority.'
   }
 }
 
-const CLAUDE_4: RubricItem<HarnessReviewContext> = {
+const CLAUDE_4: RubricItem<BackpackReviewContext> = {
   code: 'CLAUDE-4',
   title: 'Native toolchain commands',
   description: 'The root orientation lists the direct ki commands and repository gates contributors need.',
@@ -61,7 +61,7 @@ const CLAUDE_4: RubricItem<HarnessReviewContext> = {
   }
 }
 
-const CLAUDE_5: RubricItem<HarnessReviewContext> = {
+const CLAUDE_5: RubricItem<BackpackReviewContext> = {
   code: 'CLAUDE-5',
   title: 'Orientation freshness',
   description:
@@ -78,11 +78,11 @@ const CLAUDE_5: RubricItem<HarnessReviewContext> = {
   }
 }
 
-export const CLAUDE: RubricFamily<HarnessRubricContext, HarnessReviewContext> = {
+export const CLAUDE: RubricFamily<BackpackRubricContext, BackpackReviewContext> = {
   code: 'CLAUDE',
   title: 'Root orientation',
-  description: 'Coverage and freshness of the effective source-harness orientation.',
-  standard: 'standard-compatible-harness.md',
+  description: 'Coverage and freshness of the effective source-backpack orientation.',
+  standard: 'standard-compatible-backpack.md',
   selectContext: (context) => context.review,
   items: [CLAUDE_1, CLAUDE_2, CLAUDE_3, CLAUDE_4, CLAUDE_5]
 }

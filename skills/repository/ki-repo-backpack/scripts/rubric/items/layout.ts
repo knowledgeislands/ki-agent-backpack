@@ -1,28 +1,28 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
-import type { HarnessLayoutContext, HarnessRubricContext } from '../contexts/harness.ts'
+import type { BackpackLayoutContext, BackpackRubricContext } from '../contexts/backpack.ts'
 
-const STANDARD = ['standard-compatible-harness.md'] as const
+const STANDARD = ['standard-compatible-backpack.md'] as const
 
-const rootUnavailable = (context: HarnessLayoutContext): readonly AuditOutcome[] | null => {
+const rootUnavailable = (context: BackpackLayoutContext): readonly AuditOutcome[] | null => {
   if (context.repositoryState === 'absent')
-    return [{ status: 'VIOLATION', message: 'The harness root does not exist.', subject: context.repository }]
+    return [{ status: 'VIOLATION', message: 'The backpack root does not exist.', subject: context.repository }]
   if (context.repositoryState === 'unsafe')
     return [
-      { status: 'VIOLATION', message: 'The harness root is not a physical directory.', subject: context.repository }
+      { status: 'VIOLATION', message: 'The backpack root is not a physical directory.', subject: context.repository }
     ]
   return null
 }
 
-const LAY_1: RubricItem<HarnessLayoutContext> = {
+const LAY_1: RubricItem<BackpackLayoutContext> = {
   code: 'LAY-1',
   title: 'Four-part directory layout',
-  description: 'skills/, subagents/, evals/, and hooks/ all exist as physical directories at the source-harness root.',
-  sources: ['standard-compatible-harness.md#43-source-harness-layout'],
+  description: 'skills/, subagents/, evals/, and hooks/ all exist as physical directories at the source-backpack root.',
+  sources: ['standard-compatible-backpack.md#43-source-backpack-layout'],
   mechanical: {
     level: 'FAIL',
     remediation: {
       class: 'diagnostic',
-      guidance: 'Create or repair the missing physical source-harness shelf, then rerun the audit.'
+      guidance: 'Create or repair the missing physical source-backpack shelf, then rerun the audit.'
     },
     audit: {
       phase: 'INSPECT',
@@ -32,19 +32,19 @@ const LAY_1: RubricItem<HarnessLayoutContext> = {
           status: state === 'directory' ? ('PASS' as const) : ('VIOLATION' as const),
           message:
             state === 'directory'
-              ? 'Required source-harness directory is present.'
-              : 'Required source-harness path is absent or not a physical directory.',
+              ? 'Required source-backpack directory is present.'
+              : 'Required source-backpack path is absent or not a physical directory.',
           subject: `${name}/`
         }))
     }
   }
 }
 
-const LAY_2: RubricItem<HarnessLayoutContext> = {
+const LAY_2: RubricItem<BackpackLayoutContext> = {
   code: 'LAY-2',
   title: 'Shelf descriptions',
   description: 'Each four-part source directory contains a physical README.md declaring its purpose and status.',
-  sources: ['standard-compatible-harness.md#43-source-harness-layout'],
+  sources: ['standard-compatible-backpack.md#43-source-backpack-layout'],
   mechanical: {
     level: 'WARN',
     remediation: {
@@ -64,7 +64,7 @@ const LAY_2: RubricItem<HarnessLayoutContext> = {
                 : ('VIOLATION' as const),
           message:
             state !== 'directory'
-              ? 'The source-harness shelf is absent or unsafe.'
+              ? 'The source-backpack shelf is absent or unsafe.'
               : readmeState === 'file'
                 ? 'Required shelf description is present.'
                 : 'The shelf README is absent or not a physical regular file.',
@@ -78,10 +78,10 @@ const rootFileItem = (
   code: string,
   title: string,
   description: string,
-  path: keyof HarnessLayoutContext['rootFiles'],
+  path: keyof BackpackLayoutContext['rootFiles'],
   level: 'FAIL' | 'WARN',
   source: string
-): RubricItem<HarnessLayoutContext> => ({
+): RubricItem<BackpackLayoutContext> => ({
   code,
   title,
   description,
@@ -110,33 +110,33 @@ const rootFileItem = (
 const LAY_3 = rootFileItem(
   'LAY-3',
   'Root Claude orientation',
-  'CLAUDE.md exists as a physical file at the source-harness root.',
+  'CLAUDE.md exists as a physical file at the source-backpack root.',
   'CLAUDE.md',
   'FAIL',
-  'standard-compatible-harness.md#45-root-orientation'
+  'standard-compatible-backpack.md#45-root-orientation'
 )
 
 const LAY_4 = rootFileItem(
   'LAY-4',
   'Root roadmap',
-  'ROADMAP.md exists as a physical file at the source-harness root.',
+  'ROADMAP.md exists as a physical file at the source-backpack root.',
   'ROADMAP.md',
   'WARN',
-  'standard-compatible-harness.md#46-root-roadmap'
+  'standard-compatible-backpack.md#46-root-roadmap'
 )
 
 const LAY_5 = rootFileItem(
   'LAY-5',
   'Root Knowledge Islands configuration',
-  '.ki.toml exists as a physical file at the source-harness root.',
+  '.ki.toml exists as a physical file at the source-backpack root.',
   '.ki.toml',
   'FAIL',
-  'standard-compatible-harness.md#47-harness-declaration'
+  'standard-compatible-backpack.md#47-backpack-declaration'
 )
 
-export const LAY: RubricFamily<HarnessRubricContext, HarnessLayoutContext> = {
+export const LAY: RubricFamily<BackpackRubricContext, BackpackLayoutContext> = {
   code: 'LAY',
-  title: 'Source-harness layout and files',
+  title: 'Source-backpack layout and files',
   description: 'The four-part source container and its required physical root files.',
   standard: STANDARD[0],
   selectContext: (context) => context.layout,

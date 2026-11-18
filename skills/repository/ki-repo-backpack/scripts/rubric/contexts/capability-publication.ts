@@ -175,7 +175,7 @@ export const renderCapabilityCatalogue = (entries: readonly CapabilityEntry[]): 
     CAPABILITY_CATALOGUE_START,
     '## Generated capability catalogue',
     '',
-    `This source harness publishes ${counted(ordered.length, 'skill')}: ${kinds.slice(0, -1).join(', ')} and ${kinds.at(-1)}. The entries below are generated from canonical \`SKILL.md\` frontmatter, grouped by each skill's declared guild; edit the source skill, then run \`ki repo conform --skill ki-repo-backpack\` to republish this section.`,
+    `This source backpack publishes ${counted(ordered.length, 'skill')}: ${kinds.slice(0, -1).join(', ')} and ${kinds.at(-1)}. The entries below are generated from canonical \`SKILL.md\` frontmatter, grouped by each skill's declared guild; edit the source skill, then run \`ki repo conform --skill ki-repo-backpack\` to republish this section.`,
     ''
   ]
 
@@ -254,7 +254,7 @@ export const prepareCapabilityPublication = (
   if (prefix === 'ki' && baseline.join(',') !== 'ki-authoring,ki-keystone,ki-repo')
     issues.push('baseline applicability must contain exactly ki-authoring, ki-keystone and ki-repo')
   if (prefix !== 'ki' && baseline.length > 0)
-    issues.push('baseline applicability is reserved for the ki source harness')
+    issues.push('baseline applicability is reserved for the ki source backpack')
 
   for (const entry of entries) {
     if (entry.kind === 'process' && entry.applicability !== 'invocation-only')

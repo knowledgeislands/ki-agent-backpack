@@ -10,39 +10,39 @@ ki-optional-depends-on: [ki-diagrams]
 ki-shared-dependencies: [ki-skills:rubric, ki-diagrams:diagram-receipts, ki-diagrams:staged-diagram-receipts]
 ki-contributes: [skills/README.md, '.githooks/pre-commit']
 description: >
-  Audit or design a KI-compatible harness that publishes skills, subagents, evals, and hooks as a
+  Audit or design a KI-compatible backpack that publishes skills, subagents, evals, and hooks as a
   verified installed payload. Use for source layout, prefix identity, declarations, or catalogue publication;
   each capability skill owns content quality.
 argument-hint: 'audit [path] | conform [path] | educate <name> | help | refresh'
 ---
 
-# Knowledge Islands compatible harnesses
+# Knowledge Islands compatible backpacks
 
-This skill governs two related shapes: the four-part **source harness** where capabilities are authored together, and the smaller verified **compatible payload** installed from it. MCP servers remain independently released repositories outside that source harness. The installed payload, never a checkout or repository-local executor, is the source used by the `ki` host.
+This skill governs two related shapes: the four-part **source backpack** where capabilities are authored together, and the smaller verified **compatible payload** installed from it. MCP servers remain independently released repositories outside that source backpack. The installed payload, never a checkout or repository-local executor, is the source used by the `ki` host.
 
-The complete contract is in [the compatible harness standard](references/standard-compatible-harness.md). Its structured TypeScript catalogue under `scripts/rubric/items/` is canonical; [the generated rubric](references/rubric.md) is the readable publication. [Sources](references/sources.md) record provenance, and [exemplars](references/exemplars.md) illustrate the source-versus-installed distinction.
+The complete contract is in [the compatible backpack standard](references/standard-compatible-backpack.md). Its structured TypeScript catalogue under `scripts/rubric/items/` is canonical; [the generated rubric](references/rubric.md) is the readable publication. [Sources](references/sources.md) record provenance, and [exemplars](references/exemplars.md) illustrate the source-versus-installed distinction.
 
 ## Operating modes
 
 The universal modes are **AUDIT · CONFORM · EDUCATE · REFRESH**.
 
-### Mode AUDIT — check a source harness and publication boundary
+### Mode AUDIT — check a source backpack and publication boundary
 
-- Run `ki repo audit --skill ki-repo-backpack --repo <path>`. The host executes declared dependencies before the harness delta and reports mechanical results.
+- Run `ki repo audit --skill ki-repo-backpack --repo <path>`. The host executes declared dependencies before the backpack delta and reports mechanical results.
 - Review the generated rubric's judgment criteria, especially capability and payload boundaries. Source layout does not establish a verified payload, local-development selection, activation, resolved capability, component result, or execution; obtain those states from `tools-ki` or report them unavailable.
 - Run separately coverage-detected owning audits where applicable: `ki-engineering` for the development toolchain and `ki-repo` for repository governance. Audit each independent MCP repository with `ki-repo-mcp`.
-- Report sibling findings under their owning skill and harness findings under this skill.
+- Report sibling findings under their owning skill and backpack findings under this skill.
 
-### Mode CONFORM — apply safe harness repairs
+### Mode CONFORM — apply safe backpack repairs
 
 1. Run AUDIT first.
-2. Run `ki repo conform --skill ki-repo-backpack --repo <path>`. If a physical readable `.ki.toml` lacks `[skills.ki-repo-backpack]`, the item requests one append. If the generated capability catalogue in `skills/README.md` is missing or stale, the item requests one exact marker-bounded replacement from validated `SKILL.md` frontmatter. If the harness adopts `ki-diagrams` and a generated skill diagram source, `docs/diagrams/skill-map.architecture.json` or a `docs/diagrams/skill-area-<area>.architecture.json`, is missing or stale, the item requests one rewrite of each derived from the same frontmatter; finalize and re-export their SVGs afterwards as `ki-diagrams` describes. The session coalesces the resulting host proposal.
+2. Run `ki repo conform --skill ki-repo-backpack --repo <path>`. If a physical readable `.ki.toml` lacks `[skills.ki-repo-backpack]`, the item requests one append. If the generated capability catalogue in `skills/README.md` is missing or stale, the item requests one exact marker-bounded replacement from validated `SKILL.md` frontmatter. If the backpack adopts `ki-diagrams` and a generated skill diagram source, `docs/diagrams/skill-map.architecture.json` or a `docs/diagrams/skill-area-<area>.architecture.json`, is missing or stale, the item requests one rewrite of each derived from the same frontmatter; finalize and re-export their SVGs afterwards as `ki-diagrams` describes. The session coalesces the resulting host proposal.
 3. Missing shelves, shelf READMEs, root files, unsafe paths, identity conflicts, and orientation changes remain report-only because their content or replacement intent cannot be inferred safely.
 4. Re-run AUDIT and apply the judgment criteria.
 
-### Mode EDUCATE — explain or design a compatible harness
+### Mode EDUCATE — explain or design a compatible backpack
 
-Run `ki repo educate --skill ki-repo-backpack --repo <path>` to explain the source layout, current installed payload, identity rules, marker, and ownership boundaries. When designing a new harness, use the standard and exemplars to author the four source shelves and root files; installation and runtime activation remain direct `ki` host operations, not skill scripts or package aliases.
+Run `ki repo educate --skill ki-repo-backpack --repo <path>` to explain the source layout, current installed payload, identity rules, marker, and ownership boundaries. When designing a new backpack, use the standard and exemplars to author the four source shelves and root files; installation and runtime activation remain direct `ki` host operations, not skill scripts or package aliases.
 
 ### Mode REFRESH — re-anchor the source and installed contracts
 
@@ -50,7 +50,7 @@ Run `ki repo educate --skill ki-repo-backpack --repo <path>` to explain the sour
 
 1. Read [the source list](references/sources.md) and its review cadence.
 2. Re-check the Agent Skills and agent-definition sources for changes affecting capability source shape.
-3. Reconcile [the compatible harness standard](references/standard-compatible-harness.md) with the repository's current source shelves and the installed-payload contract.
+3. Reconcile [the compatible backpack standard](references/standard-compatible-backpack.md) with the repository's current source shelves and the installed-payload contract.
 4. Update the structured rubric, regenerate it with `ki dev skill rubric ki-repo-backpack --write`, and update source review dates after confirmation.
 
 ### Mode HELP — orient without changing anything
@@ -60,5 +60,5 @@ Invoked as `help`, `-h`, or `?`, explain the skill, invocation, modes, source-ve
 ## Ownership summary
 
 - This skill owns source-container shape, compatible-payload semantics, the `[skills.ki-repo-backpack]` prefix declaration, the safe missing-table marker append, and the generated capability section contributed to `skills/README.md`.
-- `tools-ki` owns harness acquisition, verification, registry state, installation paths, activation links, public commands, and generic rubric execution.
+- `tools-ki` owns backpack acquisition, verification, registry state, installation paths, activation links, public commands, and generic rubric execution.
 - A top-level skill script is not an activation escape hatch. This skill intentionally carries no public command: all governed execution is hosted directly by `ki`.

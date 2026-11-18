@@ -1,5 +1,5 @@
 import { expect, test } from 'bun:test'
-import { createHarnessSession } from '../contexts/harness.ts'
+import { createBackpackSession } from '../contexts/backpack.ts'
 import { RUBRIC } from './publication.ts'
 
 test('the session supplies one focused generated-rubric publication subject', () => {
@@ -9,7 +9,7 @@ test('the session supplies one focused generated-rubric publication subject', ()
     state: 'stale' as const,
     propose: () => undefined
   }
-  const session = createHarnessSession({
+  const session = createBackpackSession({
     mode: 'audit',
     repository: process.cwd(),
     userHome: process.cwd(),

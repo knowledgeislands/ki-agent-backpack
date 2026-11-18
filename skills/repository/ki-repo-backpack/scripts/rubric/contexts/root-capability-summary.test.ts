@@ -12,7 +12,7 @@ test('matching, absent, and stale summaries are classified', () => {
     issues: [],
     observed: expected
   })
-  expect(prepareRootCapabilitySummary('# Harness\n\nSkills are documented below.\n', expected, [])).toEqual({
+  expect(prepareRootCapabilitySummary('# Backpack\n\nSkills are documented below.\n', expected, [])).toEqual({
     state: 'absent',
     issues: []
   })
@@ -65,7 +65,7 @@ test('repair changes only the three numeric tokens', () => {
   expect(draft.merged?.replaceAll(/\d+/g, '#')).toBe(original.replaceAll(/\d+/g, '#'))
 })
 
-test('a knowledge count joins the claim once the harness publishes a knowledge skill', () => {
+test('a knowledge count joins the claim once the backpack publishes a knowledge skill', () => {
   const withKnowledge: CapabilityCounts = { total: 61, governance: 50, process: 10, knowledge: 1 }
   const draft = prepareRootCapabilitySummary(claim(), withKnowledge, [])
   expect(draft.state).toBe('stale')

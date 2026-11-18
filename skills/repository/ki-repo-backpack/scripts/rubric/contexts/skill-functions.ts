@@ -21,7 +21,7 @@ export type FunctionalArea = {
   groups: readonly SkillGroup[]
 }
 
-/** Every functional area, in drawing order; each harness skill appears in at least one. */
+/** Every functional area, in drawing order; each backpack skill appears in at least one. */
 export const FUNCTIONAL_AREAS: readonly FunctionalArea[] = [
   {
     slug: 'fundamentals',

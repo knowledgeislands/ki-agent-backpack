@@ -1,5 +1,5 @@
 /**
- * The harness skill map: a deterministic Archify `architecture` source derived from the
+ * The backpack skill map: a deterministic Archify `architecture` source derived from the
  * `skills/<concern>/<skill>/` layout and canonical `SKILL.md` frontmatter. Each source concern is
  * one region, and the functional areas are overlaid on it: a concern whose skills serve more than one
  * area or group splits into nested regions titled by each skill's home area and group, and every

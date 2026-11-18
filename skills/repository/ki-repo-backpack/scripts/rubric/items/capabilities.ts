@@ -1,25 +1,25 @@
 import { AUTOMATIC_REMEDIATION, type AuditOutcome, type RubricFamily, type RubricItem } from '../../shared/rubric.ts'
 import type {
-  HarnessCapabilityPublicationContext,
-  HarnessReviewContext,
-  HarnessRootCapabilitySummaryContext,
-  HarnessRubricContext,
-  HarnessSkillDiagramContext
-} from '../contexts/harness.ts'
+  BackpackCapabilityPublicationContext,
+  BackpackReviewContext,
+  BackpackRootCapabilitySummaryContext,
+  BackpackRubricContext,
+  BackpackSkillDiagramContext
+} from '../contexts/backpack.ts'
 
-const STANDARD = ['standard-compatible-harness.md#42-capability-publication'] as const
+const STANDARD = ['standard-compatible-backpack.md#42-capability-publication'] as const
 
-type CapabilitiesContext = HarnessReviewContext & {
-  publication: HarnessCapabilityPublicationContext
-  rootSummary: HarnessRootCapabilitySummaryContext
-  skillDiagrams: readonly HarnessSkillDiagramContext[]
+type CapabilitiesContext = BackpackReviewContext & {
+  publication: BackpackCapabilityPublicationContext
+  rootSummary: BackpackRootCapabilitySummaryContext
+  skillDiagrams: readonly BackpackSkillDiagramContext[]
 }
 
 const CAP_1: RubricItem<CapabilitiesContext> = {
   code: 'CAP-1',
   title: 'Capability inventory and boundaries',
   description:
-    'Each populated harness shelf makes its typed capabilities discoverable and routes their content and runtime semantics to the owning kind standard.',
+    'Each populated backpack shelf makes its typed capabilities discoverable and routes their content and runtime semantics to the owning kind standard.',
   sources: STANDARD,
   judgment: {
     scope: 'Every populated source shelf, its compatible payload representation, and the owning kind standards.',
@@ -125,7 +125,7 @@ const CAP_4: RubricItem<CapabilitiesContext> = {
   code: 'CAP-4',
   title: 'Generated skill diagrams are exact',
   description:
-    'A harness that adopts `ki-diagrams` publishes Archify architecture sources derived deterministically from `SKILL.md` frontmatter and the `skills/<concern>/<skill>/` layout. `docs/diagrams/skill-map.architecture.json` draws one region per source concern with the functional areas overlaid, a concern nesting one region per home area and group, with each skill in the shape its `ki-applicability` declares; one `docs/diagrams/skill-area-<area>.architecture.json` per functional area draws the skills of that area in one region with its capability groups nested inside, the outside skills they rely on grouped by home area and group below it and the outside skills that rely on them grouped the same way above it, with solid `ki-depends-on` composition edges and dashed `ki-optional-depends-on` edges; every skill is in at least one area. AUDIT compares each committed source with its rendering, ignoring only the traced revision; CONFORM rewrites it. The SVG beside each follows through the `ki-diagrams` refresh procedure.',
+    'A backpack that adopts `ki-diagrams` publishes Archify architecture sources derived deterministically from `SKILL.md` frontmatter and the `skills/<concern>/<skill>/` layout. `docs/diagrams/skill-map.architecture.json` draws one region per source concern with the functional areas overlaid, a concern nesting one region per home area and group, with each skill in the shape its `ki-applicability` declares; one `docs/diagrams/skill-area-<area>.architecture.json` per functional area draws the skills of that area in one region with its capability groups nested inside, the outside skills they rely on grouped by home area and group below it and the outside skills that rely on them grouped the same way above it, with solid `ki-depends-on` composition edges and dashed `ki-optional-depends-on` edges; every skill is in at least one area. AUDIT compares each committed source with its rendering, ignoring only the traced revision; CONFORM rewrites it. The SVG beside each follows through the `ki-diagrams` refresh procedure.',
   sources: STANDARD,
   mechanical: {
     level: 'FAIL',
@@ -170,11 +170,11 @@ const CAP_4: RubricItem<CapabilitiesContext> = {
   }
 }
 
-export const CAP: RubricFamily<HarnessRubricContext, CapabilitiesContext> = {
+export const CAP: RubricFamily<BackpackRubricContext, CapabilitiesContext> = {
   code: 'CAP',
   title: 'Capability publication',
-  description: 'Typed compatible-harness capability inventory and kind-specific boundaries.',
-  standard: 'standard-compatible-harness.md',
+  description: 'Typed compatible-backpack capability inventory and kind-specific boundaries.',
+  standard: 'standard-compatible-backpack.md',
   selectContext: (context) => ({
     ...context.review,
     publication: context.capabilityPublication,

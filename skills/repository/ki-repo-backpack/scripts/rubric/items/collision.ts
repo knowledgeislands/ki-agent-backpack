@@ -1,14 +1,14 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
-import type { HarnessReviewContext, HarnessRubricContext } from '../contexts/harness.ts'
+import type { BackpackReviewContext, BackpackRubricContext } from '../contexts/backpack.ts'
 
-const COLL_1: RubricItem<HarnessReviewContext> = {
+const COLL_1: RubricItem<BackpackReviewContext> = {
   code: 'COLL-1',
   title: 'Capability boundary',
   description:
     'Declared prerequisites, coverage-selected siblings, and contents-governing off-ramps are complete and distinct.',
-  sources: ['standard-compatible-harness.md#49-ownership-boundaries'],
+  sources: ['standard-compatible-backpack.md#49-ownership-boundaries'],
   judgment: {
-    scope: 'The harness skill frontmatter, description, dependency declarations, and adjacent owning skills.',
+    scope: 'The backpack skill frontmatter, description, dependency declarations, and adjacent owning skills.',
     prompt:
       'Are prerequisite dependencies, coverage-selected siblings, and description off-ramps complete and non-overlapping?',
     outcomes: ['conforming', 'boundary revision', 'route to owner'],
@@ -17,11 +17,11 @@ const COLL_1: RubricItem<HarnessReviewContext> = {
   }
 }
 
-export const COLL: RubricFamily<HarnessRubricContext, HarnessReviewContext> = {
+export const COLL: RubricFamily<BackpackRubricContext, BackpackReviewContext> = {
   code: 'COLL',
   title: 'Capability boundary',
   description: 'Container ownership, host ownership, and sibling off-ramps.',
-  standard: 'standard-compatible-harness.md',
+  standard: 'standard-compatible-backpack.md',
   selectContext: (context) => context.review,
   items: [COLL_1]
 }

@@ -12,61 +12,61 @@ import {
   type CapabilitySource,
   prepareCapabilityPublication
 } from './capability-publication.ts'
-import { type HarnessGateContext, inspectCommitGate } from './commit-gate.ts'
+import { type BackpackGateContext, inspectCommitGate } from './commit-gate.ts'
 import { prepareRootCapabilitySummary, type RootCapabilitySummaryDraft } from './root-capability-summary.ts'
 import { prepareSkillDiagram, SKILL_DIAGRAMS, type SkillDiagramDraft } from './skill-diagrams.ts'
 import { readSkillStats } from './skill-stats.ts'
 
-export const HARNESS_PARTS = ['skills', 'subagents', 'evals', 'hooks'] as const
-export type HarnessPart = (typeof HARNESS_PARTS)[number]
+export const BACKPACK_PARTS = ['skills', 'subagents', 'evals', 'hooks'] as const
+export type BackpackPart = (typeof BACKPACK_PARTS)[number]
 
 type PathState = 'missing' | 'file' | 'directory' | 'unsafe'
 type RepositoryState = 'absent' | 'physical' | 'unsafe'
 
-export type HarnessSkillEntry = {
+export type BackpackSkillEntry = {
   path: string
   directory: string
   declaredName: string | null
 }
 
-export type HarnessLayoutContext = {
+export type BackpackLayoutContext = {
   repository: string
   repositoryState: RepositoryState
   parts: readonly {
-    name: HarnessPart
+    name: BackpackPart
     state: PathState
     readmeState: PathState
   }[]
   rootFiles: Readonly<Record<'CLAUDE.md' | 'ROADMAP.md' | '.ki.toml', PathState>>
 }
 
-export type HarnessConfigContext = {
+export type BackpackConfigContext = {
   repository: string
   repositoryState: RepositoryState
   state: 'missing' | 'physical' | 'unsafe'
-  hasHarnessTable: boolean
+  hasBackpackTable: boolean
   hasRepositoryTable: boolean
   prefix: string | null
-  requestHarnessMarker?: () => void
+  requestBackpackMarker?: () => void
 }
 
-export type HarnessSkillsContext = {
+export type BackpackSkillsContext = {
   repository: string
   repositoryState: RepositoryState
   skillsState: PathState
-  skills: readonly HarnessSkillEntry[]
+  skills: readonly BackpackSkillEntry[]
   unsafePaths: readonly string[]
   prefix: string | null
 }
 
-export type HarnessCapabilityPublicationContext = {
+export type BackpackCapabilityPublicationContext = {
   repository: string
   state: CapabilityPublicationDraft['state']
   issues: readonly string[]
   requestUpdate?: () => void
 }
 
-export type HarnessRootCapabilitySummaryContext = {
+export type BackpackRootCapabilitySummaryContext = {
   repository: string
   state: RootCapabilitySummaryDraft['state']
   issues: readonly string[]
@@ -75,7 +75,7 @@ export type HarnessRootCapabilitySummaryContext = {
   requestUpdate?: () => void
 }
 
-export type HarnessSkillDiagramContext = {
+export type BackpackSkillDiagramContext = {
   repository: string
   path: string
   /** `not-applicable` when the repository does not declare `ki-diagrams`. */
@@ -84,26 +84,26 @@ export type HarnessSkillDiagramContext = {
   requestUpdate?: () => void
 }
 
-export type HarnessReviewContext = {
+export type BackpackReviewContext = {
   repository: string
 }
 
-export type HarnessProvenanceContext = {
+export type BackpackProvenanceContext = {
   repository: string
   payload: readonly AuditOutcome[]
 }
 
-export type HarnessRubricContext = {
+export type BackpackRubricContext = {
   rubric: RubricPublicationContext
-  capabilityPublication: HarnessCapabilityPublicationContext
-  rootCapabilitySummary: HarnessRootCapabilitySummaryContext
-  skillDiagrams: readonly HarnessSkillDiagramContext[]
-  layout: HarnessLayoutContext
-  config: HarnessConfigContext
-  skills: HarnessSkillsContext
-  review: HarnessReviewContext
-  gate: HarnessGateContext
-  provenance: HarnessProvenanceContext
+  capabilityPublication: BackpackCapabilityPublicationContext
+  rootCapabilitySummary: BackpackRootCapabilitySummaryContext
+  skillDiagrams: readonly BackpackSkillDiagramContext[]
+  layout: BackpackLayoutContext
+  config: BackpackConfigContext
+  skills: BackpackSkillsContext
+  review: BackpackReviewContext
+  gate: BackpackGateContext
+  provenance: BackpackProvenanceContext
 }
 
 const pathState = (path: string): PathState => {
@@ -132,12 +132,12 @@ const parseFrontmatterName = (content: string): string | null => {
 const inspectSkills = (
   repository: string,
   state: RepositoryState
-): Pick<HarnessSkillsContext, 'skillsState' | 'skills' | 'unsafePaths'> => {
+): Pick<BackpackSkillsContext, 'skillsState' | 'skills' | 'unsafePaths'> => {
   const root = join(repository, 'skills')
   const skillsState = state === 'physical' ? pathState(root) : 'missing'
   if (skillsState !== 'directory') return { skillsState, skills: [], unsafePaths: [] }
 
-  const skills: HarnessSkillEntry[] = []
+  const skills: BackpackSkillEntry[] = []
   const unsafePaths: string[] = []
   const walk = (directory: string, depth: number): void => {
     if (depth > 8) {
@@ -207,30 +207,30 @@ const headRevision = (repository: string): string | undefined => {
   }
 }
 
-const harnessPrefix = (toml: string | null): string | null => {
+const backpackPrefix = (toml: string | null): string | null => {
   if (toml === null) return null
   try {
     const parsed = Bun.TOML.parse(toml) as { skills?: Record<string, unknown> }
-    const harness = parsed.skills?.['ki-repo-backpack']
-    if (typeof harness !== 'object' || harness === null || Array.isArray(harness)) return null
-    const prefix = (harness as Record<string, unknown>).prefix
+    const backpack = parsed.skills?.['ki-repo-backpack']
+    if (typeof backpack !== 'object' || backpack === null || Array.isArray(backpack)) return null
+    const prefix = (backpack as Record<string, unknown>).prefix
     return typeof prefix === 'string' ? prefix : null
   } catch {
     return null
   }
 }
 
-export const createHarnessSession = ({
+export const createBackpackSession = ({
   mode,
   repository,
   publication
-}: RubricContextOptions): RubricSession<HarnessRubricContext> => {
+}: RubricContextOptions): RubricSession<BackpackRubricContext> => {
   const root = resolve(repository)
   const state = repositoryState(root)
   const configPath = join(root, '.ki.toml')
   const rawConfigState = state === 'physical' ? pathState(configPath) : 'missing'
   let configContent: string | null = null
-  let configState: HarnessConfigContext['state'] =
+  let configState: BackpackConfigContext['state'] =
     rawConfigState === 'missing' ? 'missing' : rawConfigState === 'file' ? 'physical' : 'unsafe'
   if (configState === 'physical') {
     try {
@@ -239,8 +239,8 @@ export const createHarnessSession = ({
       configState = 'unsafe'
     }
   }
-  const hasHarnessTable = configContent !== null && hasTomlTable(configContent, 'ki-repo-backpack')
-  const prefix = harnessPrefix(configContent)
+  const hasBackpackTable = configContent !== null && hasTomlTable(configContent, 'ki-repo-backpack')
+  const prefix = backpackPrefix(configContent)
   let markerRequested = false
   const inspectedSkills = inspectSkills(root, state)
   const capabilitySources: CapabilitySource[] = []
@@ -309,7 +309,7 @@ export const createHarnessSession = ({
       : draft
   })
   const skillDiagramsRequested = new Set<string>()
-  const parts = HARNESS_PARTS.map((name) => {
+  const parts = BACKPACK_PARTS.map((name) => {
     const partState = state === 'physical' ? pathState(join(root, name)) : 'missing'
     return {
       name,
@@ -317,7 +317,7 @@ export const createHarnessSession = ({
       readmeState: partState === 'directory' ? pathState(join(root, name, 'README.md')) : 'missing'
     }
   })
-  const context: HarnessRubricContext = {
+  const context: BackpackRubricContext = {
     rubric: { publication },
     capabilityPublication: {
       repository: root,
@@ -377,12 +377,12 @@ export const createHarnessSession = ({
       repository: root,
       repositoryState: state,
       state: configState,
-      hasHarnessTable,
+      hasBackpackTable,
       hasRepositoryTable: configContent !== null && hasTomlTable(configContent, 'ki-repo'),
       prefix,
-      ...(mode === 'conform' && state === 'physical' && configState === 'physical' && !hasHarnessTable
+      ...(mode === 'conform' && state === 'physical' && configState === 'physical' && !hasBackpackTable
         ? {
-            requestHarnessMarker: () => {
+            requestBackpackMarker: () => {
               markerRequested = true
             }
           }
@@ -402,7 +402,7 @@ export const createHarnessSession = ({
         {
           status: 'NOT_APPLICABLE',
           message:
-            'Source-harness inspection does not establish verified installed payload, development-source selection, runtime activation, declared capability resolution, or execution.',
+            'Source-backpack inspection does not establish verified installed payload, development-source selection, runtime activation, declared capability resolution, or execution.',
           subject: root
         }
       ]

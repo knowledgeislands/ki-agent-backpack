@@ -1,12 +1,12 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
-import type { HarnessGateContext } from '../contexts/commit-gate.ts'
-import type { HarnessRubricContext } from '../contexts/harness.ts'
+import type { BackpackRubricContext } from '../contexts/backpack.ts'
+import type { BackpackGateContext } from '../contexts/commit-gate.ts'
 
-const SOURCE = 'standard-compatible-harness.md'
+const SOURCE = 'standard-compatible-backpack.md'
 
-const GATE_1: RubricItem<HarnessGateContext> = {
+const GATE_1: RubricItem<BackpackGateContext> = {
   code: 'GATE-1',
-  title: 'Check-only harness commit gate',
+  title: 'Check-only backpack commit gate',
   description:
     'Where a committed `.githooks/pre-commit` exists, it runs only fast check-only staged lints: no `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`. The full `ki repo audit` runs in CI. `ki-repo` HOOK-1 owns whether the hook exists and HOOK-4 its canonical text.',
   sources: [SOURCE],
@@ -20,7 +20,7 @@ const GATE_1: RubricItem<HarnessGateContext> = {
   }
 }
 
-const GATE_2: RubricItem<HarnessGateContext> = {
+const GATE_2: RubricItem<BackpackGateContext> = {
   code: 'GATE-2',
   title: 'Staged diagram viewer receipts',
   description:
@@ -37,10 +37,10 @@ const GATE_2: RubricItem<HarnessGateContext> = {
   }
 }
 
-export const GATE: RubricFamily<HarnessRubricContext, HarnessGateContext> = {
+export const GATE: RubricFamily<BackpackRubricContext, BackpackGateContext> = {
   code: 'GATE',
   title: 'Commit gate',
-  description: 'What a harness commit gate runs.',
+  description: 'What a backpack commit gate runs.',
   standard: SOURCE,
   selectContext: (context) => context.gate,
   items: [GATE_1, GATE_2]

@@ -4,7 +4,7 @@ ki-document-type: rubric@2026-11-17T00:55:00Z
 
 <!-- GENERATED FILE: produced by `ki dev skill rubric`. Do not hand-edit; edit scripts/rubric/items/, then rerun `ki dev skill rubric <skill> --write`. -->
 
-# Generated rubric — Knowledge Islands compatible harnesses
+# Generated rubric — Knowledge Islands compatible backpacks
 
 > **Generated publication.** The TypeScript rubric items under `scripts/rubric/items/` are canonical. Edit those definitions, then rerun `ki dev skill rubric ki-repo-backpack --write`.
 
@@ -14,9 +14,9 @@ Line-by-line criteria for auditing ki-repo-backpack. Classifications are derived
 
 - [CAP — Capability publication](#cap--capability-publication)
 - [PAYLOAD — Payload and runtime evidence boundary](#payload--payload-and-runtime-evidence-boundary)
-- [LAY — Source-harness layout and files](#lay--source-harness-layout-and-files)
+- [LAY — Source-backpack layout and files](#lay--source-backpack-layout-and-files)
 - [CLAUDE — Root orientation](#claude--root-orientation)
-- [CONFIG — Harness declaration](#config--harness-declaration)
+- [CONFIG — Backpack declaration](#config--backpack-declaration)
 - [SKILLS — Skill capability identity](#skills--skill-capability-identity)
 - [LONG — Longevity](#long--longevity)
 - [COLL — Capability boundary](#coll--capability-boundary)
@@ -25,144 +25,144 @@ Line-by-line criteria for auditing ki-repo-backpack. Classifications are derived
 
 ## CAP — Capability publication
 
-→ [standard](standard-compatible-harness.md)
+→ [standard](standard-compatible-backpack.md)
 
-Typed compatible-harness capability inventory and kind-specific boundaries.
+Typed compatible-backpack capability inventory and kind-specific boundaries.
 
-- **CAP-1 [J] — Capability inventory and boundaries** — Each populated harness shelf makes its typed capabilities discoverable and routes their content and runtime semantics to the owning kind standard. (standard-compatible-harness.md#42-capability-publication)
+- **CAP-1 [J] — Capability inventory and boundaries** — Each populated backpack shelf makes its typed capabilities discoverable and routes their content and runtime semantics to the owning kind standard. (standard-compatible-backpack.md#42-capability-publication)
   - _Evidence scope:_ Every populated source shelf, its compatible payload representation, and the owning kind standards.
   - _Review prompt:_ Review each populated shelf: are its capabilities discoverable through the compatible payload, and are kind-specific semantics delegated to the appropriate standard?
   - _Outcomes:_ conforming; inventory revision; route to owning standard
   - _Conforming guidance:_ Revise the inventory or route the concern to its owning standard; do not alter a capability’s runtime semantics from this container-level review.
-- **CAP-2 [M] — Generated capability catalogue is exact** — A populated skills shelf publishes one marker-bounded catalogue in `skills/README.md`, derived exactly from canonical skill frontmatter and safely replaceable without changing authored surrounding guidance. (standard-compatible-harness.md#42-capability-publication)
+- **CAP-2 [M] — Generated capability catalogue is exact** — A populated skills shelf publishes one marker-bounded catalogue in `skills/README.md`, derived exactly from canonical skill frontmatter and safely replaceable without changing authored surrounding guidance. (standard-compatible-backpack.md#42-capability-publication)
   - _Remediation:_ automatic
-- **CAP-3 [M] — Authored capability counts are exact** — When root `README.md` carries the recognised numeric Agent Skills summary, its total, governance and process counts, and a knowledge count once a knowledge skill is published, match canonical skill frontmatter; a single complete stale claim is safely repairable without changing surrounding prose. (standard-compatible-harness.md#42-capability-publication)
+- **CAP-3 [M] — Authored capability counts are exact** — When root `README.md` carries the recognised numeric Agent Skills summary, its total, governance and process counts, and a knowledge count once a knowledge skill is published, match canonical skill frontmatter; a single complete stale claim is safely repairable without changing surrounding prose. (standard-compatible-backpack.md#42-capability-publication)
   - _Remediation:_ automatic
-- **CAP-4 [M] — Generated skill diagrams are exact** — A harness that adopts `ki-diagrams` publishes Archify architecture sources derived deterministically from `SKILL.md` frontmatter and the `skills/<concern>/<skill>/` layout. `docs/diagrams/skill-map.architecture.json` draws one region per source concern with the functional areas overlaid, a concern nesting one region per home area and group, with each skill in the shape its `ki-applicability` declares; one `docs/diagrams/skill-area-<area>.architecture.json` per functional area draws the skills of that area in one region with its capability groups nested inside, the outside skills they rely on grouped by home area and group below it and the outside skills that rely on them grouped the same way above it, with solid `ki-depends-on` composition edges and dashed `ki-optional-depends-on` edges; every skill is in at least one area. AUDIT compares each committed source with its rendering, ignoring only the traced revision; CONFORM rewrites it. The SVG beside each follows through the `ki-diagrams` refresh procedure. (standard-compatible-harness.md#42-capability-publication)
+- **CAP-4 [M] — Generated skill diagrams are exact** — A backpack that adopts `ki-diagrams` publishes Archify architecture sources derived deterministically from `SKILL.md` frontmatter and the `skills/<concern>/<skill>/` layout. `docs/diagrams/skill-map.architecture.json` draws one region per source concern with the functional areas overlaid, a concern nesting one region per home area and group, with each skill in the shape its `ki-applicability` declares; one `docs/diagrams/skill-area-<area>.architecture.json` per functional area draws the skills of that area in one region with its capability groups nested inside, the outside skills they rely on grouped by home area and group below it and the outside skills that rely on them grouped the same way above it, with solid `ki-depends-on` composition edges and dashed `ki-optional-depends-on` edges; every skill is in at least one area. AUDIT compares each committed source with its rendering, ignoring only the traced revision; CONFORM rewrites it. The SVG beside each follows through the `ki-diagrams` refresh procedure. (standard-compatible-backpack.md#42-capability-publication)
   - _Remediation:_ automatic
 
 ## PAYLOAD — Payload and runtime evidence boundary
 
-→ [standard](standard-compatible-harness.md)
+→ [standard](standard-compatible-backpack.md)
 
 Host-owned provenance and activation evidence not derived from source layout.
 
-- **PAYLOAD-1 [M] — Installed and runtime evidence remains separate** — A source-harness audit records that verified payload, local-development source, activation, capability resolution, and execution need host evidence. (standard-compatible-harness.md#41-source-and-installed-boundaries)
+- **PAYLOAD-1 [M] — Installed and runtime evidence remains separate** — A source-backpack audit records that verified payload, local-development source, activation, capability resolution, and execution need host evidence. (standard-compatible-backpack.md#41-source-and-installed-boundaries)
   - _Remediation:_ diagnostic — Obtain the required provenance or runtime evidence from tools-ki; do not infer it from a source checkout.
 
-## LAY — Source-harness layout and files
+## LAY — Source-backpack layout and files
 
-→ [standard](standard-compatible-harness.md)
+→ [standard](standard-compatible-backpack.md)
 
 The four-part source container and its required physical root files.
 
-- **LAY-1 [M] — Four-part directory layout** — skills/, subagents/, evals/, and hooks/ all exist as physical directories at the source-harness root. (standard-compatible-harness.md#43-source-harness-layout)
-  - _Remediation:_ diagnostic — Create or repair the missing physical source-harness shelf, then rerun the audit.
-- **LAY-2 [M] — Shelf descriptions** — Each four-part source directory contains a physical README.md declaring its purpose and status. (standard-compatible-harness.md#43-source-harness-layout)
+- **LAY-1 [M] — Four-part directory layout** — skills/, subagents/, evals/, and hooks/ all exist as physical directories at the source-backpack root. (standard-compatible-backpack.md#43-source-backpack-layout)
+  - _Remediation:_ diagnostic — Create or repair the missing physical source-backpack shelf, then rerun the audit.
+- **LAY-2 [M] — Shelf descriptions** — Each four-part source directory contains a physical README.md declaring its purpose and status. (standard-compatible-backpack.md#43-source-backpack-layout)
   - _Remediation:_ diagnostic — Add the missing physical shelf README with its purpose and status, then rerun the audit.
-- **LAY-3 [M] — Root Claude orientation** — CLAUDE.md exists as a physical file at the source-harness root. (standard-compatible-harness.md#45-root-orientation)
+- **LAY-3 [M] — Root Claude orientation** — CLAUDE.md exists as a physical file at the source-backpack root. (standard-compatible-backpack.md#45-root-orientation)
   - _Remediation:_ diagnostic — Create or repair the required physical root file with owner-approved content, then rerun the audit.
-- **LAY-4 [M] — Root roadmap** — ROADMAP.md exists as a physical file at the source-harness root. (standard-compatible-harness.md#46-root-roadmap)
+- **LAY-4 [M] — Root roadmap** — ROADMAP.md exists as a physical file at the source-backpack root. (standard-compatible-backpack.md#46-root-roadmap)
   - _Remediation:_ diagnostic — Create or repair the required physical root file with owner-approved content, then rerun the audit.
-- **LAY-5 [M] — Root Knowledge Islands configuration** — .ki.toml exists as a physical file at the source-harness root. (standard-compatible-harness.md#47-harness-declaration)
+- **LAY-5 [M] — Root Knowledge Islands configuration** — .ki.toml exists as a physical file at the source-backpack root. (standard-compatible-backpack.md#47-backpack-declaration)
   - _Remediation:_ diagnostic — Create or repair the required physical root file with owner-approved content, then rerun the audit.
 
 ## CLAUDE — Root orientation
 
-→ [standard](standard-compatible-harness.md)
+→ [standard](standard-compatible-backpack.md)
 
-Coverage and freshness of the effective source-harness orientation.
+Coverage and freshness of the effective source-backpack orientation.
 
-- **CLAUDE-1 [J] — Harness introduction** — The root orientation opens by explaining the source harness and naming all four parts. (standard-compatible-harness.md#45-root-orientation)
-  - _Evidence scope:_ The effective root orientation and all five source-harness shelves.
-  - _Review prompt:_ Does the effective root orientation explain the source harness and name all four parts?
+- **CLAUDE-1 [J] — Backpack introduction** — The root orientation opens by explaining the source backpack and naming all four parts. (standard-compatible-backpack.md#45-root-orientation)
+  - _Evidence scope:_ The effective root orientation and all five source-backpack shelves.
+  - _Review prompt:_ Does the effective root orientation explain the source backpack and name all four parts?
   - _Outcomes:_ conforming; orientation revision; not applicable
   - _Conforming guidance:_ Revise the orientation with owner-approved current source facts; do not infer shelf status from an unverified payload.
-- **CLAUDE-2 [J] — Four-part status** — The root orientation gives a current status for every source-harness part. (standard-compatible-harness.md#45-root-orientation)
+- **CLAUDE-2 [J] — Four-part status** — The root orientation gives a current status for every source-backpack part. (standard-compatible-backpack.md#45-root-orientation)
   - _Evidence scope:_ The orientation status table or equivalent and the four physical source shelves.
   - _Review prompt:_ Does the orientation status table or equivalent agree with the four actual source shelves?
   - _Outcomes:_ conforming; orientation revision; source evidence required
   - _Conforming guidance:_ Update the orientation only from current source evidence and preserve the distinction between source shelves and installed payload.
-- **CLAUDE-3 [J] — Working conventions** — The root orientation routes working conventions for every source-harness part. (standard-compatible-harness.md#45-root-orientation)
-  - _Evidence scope:_ The root orientation and the working guidance or owning-skill route for every source-harness part.
-  - _Review prompt:_ Does each source-harness part have concise working guidance or a route to its governing skill?
+- **CLAUDE-3 [J] — Working conventions** — The root orientation routes working conventions for every source-backpack part. (standard-compatible-backpack.md#45-root-orientation)
+  - _Evidence scope:_ The root orientation and the working guidance or owning-skill route for every source-backpack part.
+  - _Review prompt:_ Does each source-backpack part have concise working guidance or a route to its governing skill?
   - _Outcomes:_ conforming; orientation revision; route to owner
   - _Conforming guidance:_ Add concise routing guidance without duplicating the owning standard or claiming another skill’s authority.
-- **CLAUDE-4 [J] — Native toolchain commands** — The root orientation lists the direct ki commands and repository gates contributors need. (standard-compatible-harness.md#45-root-orientation)
+- **CLAUDE-4 [J] — Native toolchain commands** — The root orientation lists the direct ki commands and repository gates contributors need. (standard-compatible-backpack.md#45-root-orientation)
   - _Evidence scope:_ The root orientation, documented commands, and the repository’s current direct host and verification interfaces.
   - _Review prompt:_ Are direct ki audit, conform, rubric-publication, test, and TypeScript gates documented without retired package aliases?
   - _Outcomes:_ conforming; orientation revision; tooling clarification required
   - _Conforming guidance:_ Document only verified current commands; route a toolchain or host change to its owning capability rather than inventing an alias.
-- **CLAUDE-5 [J] — Orientation freshness** — Counts, shelf statuses, capability boundaries, and command names in the orientation match the repository. (standard-compatible-harness.md#45-root-orientation)
+- **CLAUDE-5 [J] — Orientation freshness** — Counts, shelf statuses, capability boundaries, and command names in the orientation match the repository. (standard-compatible-backpack.md#45-root-orientation)
   - _Evidence scope:_ All factual orientation claims, current source shelves, compatible payload evidence, and direct host commands.
   - _Review prompt:_ Do orientation claims agree with the current source shelves, compatible payload, and direct host commands?
   - _Outcomes:_ conforming; orientation revision; evidence required
   - _Conforming guidance:_ Correct only evidence-backed claims and leave unresolved host or payload facts for their owning authority.
 
-## CONFIG — Harness declaration
+## CONFIG — Backpack declaration
 
-→ [standard](standard-compatible-harness.md)
+→ [standard](standard-compatible-backpack.md)
 
-Knowledge Islands source-harness governance declarations.
+Knowledge Islands source-backpack governance declarations.
 
-- **CONFIG-1 [M] — Harness declaration** — A physical .ki.toml contains the keyless ki-repo-backpack root table. (standard-compatible-harness.md#47-harness-declaration)
+- **CONFIG-1 [M] — Backpack declaration** — A physical .ki.toml contains the keyless ki-repo-backpack root table. (standard-compatible-backpack.md#47-backpack-declaration)
   - _Remediation:_ automatic
-- **CONFIG-2 [M] — Repository governance declaration** — A physical .ki.toml contains the ki-repo root table. (standard-compatible-harness.md#47-harness-declaration)
+- **CONFIG-2 [M] — Repository governance declaration** — A physical .ki.toml contains the ki-repo root table. (standard-compatible-backpack.md#47-backpack-declaration)
   - _Remediation:_ diagnostic — Declare the ki-repo governance root in the physical configuration, then rerun the audit.
-- **CONFIG-3 [J] — Skill governance declaration** — A source harness with populated skills declares ki-skills. (standard-compatible-harness.md#47-harness-declaration)
-  - _Evidence scope:_ The physical .ki.toml and the source harness skills shelf.
+- **CONFIG-3 [J] — Skill governance declaration** — A source backpack with populated skills declares ki-skills. (standard-compatible-backpack.md#47-backpack-declaration)
+  - _Evidence scope:_ The physical .ki.toml and the source backpack skills shelf.
   - _Review prompt:_ When skills/ is populated, does .ki.toml declare the ki-skills governance root?
   - _Outcomes:_ conforming; configuration revision; not applicable
   - _Conforming guidance:_ Add or correct the declaration only through the repository owner’s configuration decision; do not infer activation scope from shelf contents alone.
-- **CONFIG-4 [M] — Capability prefix declaration** — The ki-repo-backpack table declares one valid capability prefix. (standard-compatible-harness.md#47-harness-declaration)
+- **CONFIG-4 [M] — Capability prefix declaration** — The ki-repo-backpack table declares one valid capability prefix. (standard-compatible-backpack.md#47-backpack-declaration)
   - _Remediation:_ diagnostic — Declare the owner-approved prefix in [skills.ki-repo-backpack], then rerun the audit.
 
 ## SKILLS — Skill capability identity
 
-→ [standard](standard-compatible-harness.md)
+→ [standard](standard-compatible-backpack.md)
 
 Recursive physical skill discovery and identity integrity within the compatible payload.
 
-- **SKILLS-1 [M] — Skill directory and name alignment** — Each discovered physical skill root matches its SKILL.md name frontmatter. (standard-compatible-harness.md#44-skill-capability-identity)
+- **SKILLS-1 [M] — Skill directory and name alignment** — Each discovered physical skill root matches its SKILL.md name frontmatter. (standard-compatible-backpack.md#44-skill-capability-identity)
   - _Remediation:_ diagnostic — Correct the affected skill directory or frontmatter identity, then rerun the audit.
-- **SKILLS-2 [M] — Unique skill names** — No two discovered skill roots share a frontmatter name. (standard-compatible-harness.md#44-skill-capability-identity)
-  - _Remediation:_ diagnostic — Resolve the duplicate published name within the source Harness, then rerun the audit.
-- **SKILLS-3 [M] — Prefix-owned skill names** — Every published skill name begins with the Harness capability prefix. (standard-compatible-harness.md#44-skill-capability-identity)
-  - _Remediation:_ diagnostic — Align the published skill identity with the owner-approved Harness prefix.
+- **SKILLS-2 [M] — Unique skill names** — No two discovered skill roots share a frontmatter name. (standard-compatible-backpack.md#44-skill-capability-identity)
+  - _Remediation:_ diagnostic — Resolve the duplicate published name within the source backpack, then rerun the audit.
+- **SKILLS-3 [M] — Prefix-owned skill names** — Every published skill name begins with the backpack capability prefix. (standard-compatible-backpack.md#44-skill-capability-identity)
+  - _Remediation:_ diagnostic — Align the published skill identity with the owner-approved backpack prefix.
 
 ## LONG — Longevity
 
-→ [standard](standard-compatible-harness.md)
+→ [standard](standard-compatible-backpack.md)
 
-Refresh discipline for the compatible-harness standard.
+Refresh discipline for the compatible-backpack standard.
 
-- **LONG-1 [J] — Refresh path** — The ki-repo-backpack skill carries REFRESH and a dated source review record. (standard-compatible-harness.md)
-  - _Evidence scope:_ The ki-repo-backpack REFRESH procedure, source list, cadence, and current compatible-harness standard.
+- **LONG-1 [J] — Refresh path** — The ki-repo-backpack skill carries REFRESH and a dated source review record. (standard-compatible-backpack.md)
+  - _Evidence scope:_ The ki-repo-backpack REFRESH procedure, source list, cadence, and current compatible-backpack standard.
   - _Review prompt:_ Do the ki-repo-backpack REFRESH procedure and sources.md cadence provide a usable current refresh path?
   - _Outcomes:_ conforming; refresh-path revision; source review required
-  - _Conforming guidance:_ Update the documented refresh path or complete its source review through the canonical harness; do not invent a review result without source evidence.
+  - _Conforming guidance:_ Update the documented refresh path or complete its source review through the canonical backpack; do not invent a review result without source evidence.
 
 ## COLL — Capability boundary
 
-→ [standard](standard-compatible-harness.md)
+→ [standard](standard-compatible-backpack.md)
 
 Container ownership, host ownership, and sibling off-ramps.
 
-- **COLL-1 [J] — Capability boundary** — Declared prerequisites, coverage-selected siblings, and contents-governing off-ramps are complete and distinct. (standard-compatible-harness.md#49-ownership-boundaries)
-  - _Evidence scope:_ The harness skill frontmatter, description, dependency declarations, and adjacent owning skills.
+- **COLL-1 [J] — Capability boundary** — Declared prerequisites, coverage-selected siblings, and contents-governing off-ramps are complete and distinct. (standard-compatible-backpack.md#49-ownership-boundaries)
+  - _Evidence scope:_ The backpack skill frontmatter, description, dependency declarations, and adjacent owning skills.
   - _Review prompt:_ Are prerequisite dependencies, coverage-selected siblings, and description off-ramps complete and non-overlapping?
   - _Outcomes:_ conforming; boundary revision; route to owner
   - _Conforming guidance:_ Clarify the boundary or route the concern to its owner; do not claim another capability’s execution or content semantics.
 
 ## GATE — Commit gate
 
-→ [standard](standard-compatible-harness.md)
+→ [standard](standard-compatible-backpack.md)
 
-What a harness commit gate runs.
+What a backpack commit gate runs.
 
-- **GATE-1 [M] — Check-only harness commit gate** — Where a committed `.githooks/pre-commit` exists, it runs only fast check-only staged lints: no `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`. The full `ki repo audit` runs in CI. `ki-repo` HOOK-1 owns whether the hook exists and HOOK-4 its canonical text. (standard-compatible-harness.md)
+- **GATE-1 [M] — Check-only backpack commit gate** — Where a committed `.githooks/pre-commit` exists, it runs only fast check-only staged lints: no `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`. The full `ki repo audit` runs in CI. `ki-repo` HOOK-1 owns whether the hook exists and HOOK-4 its canonical text. (standard-compatible-backpack.md)
   - _Remediation:_ diagnostic — Copy the canonical pre-commit from `assets/githooks/`, then rerun the audit.
-- **GATE-2 [M] — Staged diagram viewer receipts** — For a staged repository declaring ki-diagrams, every commit_html viewer has a receipt matching the exact staged source and HTML; missing or unsafe staged files and unreadable snapshots fail closed. Unstaged bytes never supply or repair this evidence. (standard-compatible-harness.md)
+- **GATE-2 [M] — Staged diagram viewer receipts** — For a staged repository declaring ki-diagrams, every commit_html viewer has a receipt matching the exact staged source and HTML; missing or unsafe staged files and unreadable snapshots fail closed. Unstaged bytes never supply or repair this evidence. (standard-compatible-backpack.md)
   - _Remediation:_ diagnostic — Rebuild the viewer and receipt, stage their matching source, HTML and receipt, then rerun the focused audit.
 
 ## RUBRIC — Generated rubric publication

@@ -38,7 +38,7 @@ describe('readSkillGraphNodes', () => {
   })
 })
 
-describe('the committed harness skill diagrams', () => {
+describe('the committed backpack skill diagrams', () => {
   const root = resolve(import.meta.dir, '../../../../../..')
   const sources = readdirSync(join(root, 'skills'), { withFileTypes: true })
     .filter((entry) => entry.isDirectory())

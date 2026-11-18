@@ -1,11 +1,11 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
-import type { HarnessConfigContext, HarnessRubricContext } from '../contexts/harness.ts'
+import type { BackpackConfigContext, BackpackRubricContext } from '../contexts/backpack.ts'
 
-const STANDARD = ['standard-compatible-harness.md#47-harness-declaration'] as const
+const STANDARD = ['standard-compatible-backpack.md#47-backpack-declaration'] as const
 
-const CONFIG_1: RubricItem<HarnessConfigContext> = {
+const CONFIG_1: RubricItem<BackpackConfigContext> = {
   code: 'CONFIG-1',
-  title: 'Harness declaration',
+  title: 'Backpack declaration',
   description: 'A physical .ki.toml contains the keyless ki-repo-backpack root table.',
   sources: STANDARD,
   mechanical: {
@@ -13,7 +13,7 @@ const CONFIG_1: RubricItem<HarnessConfigContext> = {
     remediation: { class: 'automatic' },
     audit: {
       phase: 'INSPECT',
-      run: ({ state, hasHarnessTable }) => {
+      run: ({ state, hasBackpackTable }) => {
         if (state === 'missing')
           return [
             {
@@ -31,7 +31,7 @@ const CONFIG_1: RubricItem<HarnessConfigContext> = {
             }
           ]
         return [
-          hasHarnessTable
+          hasBackpackTable
             ? {
                 status: 'PASS',
                 message: 'The [skills.ki-repo-backpack] declaration is present.',
@@ -47,14 +47,14 @@ const CONFIG_1: RubricItem<HarnessConfigContext> = {
     },
     conform: {
       phase: 'PRIMARY',
-      run: ({ requestHarnessMarker }) => {
-        requestHarnessMarker?.()
+      run: ({ requestBackpackMarker }) => {
+        requestBackpackMarker?.()
       }
     }
   }
 }
 
-const CONFIG_2: RubricItem<HarnessConfigContext> = {
+const CONFIG_2: RubricItem<BackpackConfigContext> = {
   code: 'CONFIG-2',
   title: 'Repository governance declaration',
   description: 'A physical .ki.toml contains the ki-repo root table.',
@@ -88,13 +88,13 @@ const CONFIG_2: RubricItem<HarnessConfigContext> = {
   }
 }
 
-const CONFIG_3: RubricItem<HarnessConfigContext> = {
+const CONFIG_3: RubricItem<BackpackConfigContext> = {
   code: 'CONFIG-3',
   title: 'Skill governance declaration',
-  description: 'A source harness with populated skills declares ki-skills.',
+  description: 'A source backpack with populated skills declares ki-skills.',
   sources: STANDARD,
   judgment: {
-    scope: 'The physical .ki.toml and the source harness skills shelf.',
+    scope: 'The physical .ki.toml and the source backpack skills shelf.',
     prompt: 'When skills/ is populated, does .ki.toml declare the ki-skills governance root?',
     outcomes: ['conforming', 'configuration revision', 'not applicable'],
     guidance:
@@ -102,7 +102,7 @@ const CONFIG_3: RubricItem<HarnessConfigContext> = {
   }
 }
 
-const CONFIG_4: RubricItem<HarnessConfigContext> = {
+const CONFIG_4: RubricItem<BackpackConfigContext> = {
   code: 'CONFIG-4',
   title: 'Capability prefix declaration',
   description: 'The ki-repo-backpack table declares one valid capability prefix.',
@@ -115,12 +115,12 @@ const CONFIG_4: RubricItem<HarnessConfigContext> = {
     },
     audit: {
       phase: 'INSPECT',
-      run: ({ state, hasHarnessTable, prefix }) => {
-        if (state !== 'physical' || !hasHarnessTable)
+      run: ({ state, hasBackpackTable, prefix }) => {
+        if (state !== 'physical' || !hasBackpackTable)
           return [
             {
               status: 'NOT_APPLICABLE',
-              message: 'The Harness declaration is absent or unsafe.',
+              message: 'The backpack declaration is absent or unsafe.',
               subject: '.ki.toml'
             }
           ]
@@ -128,7 +128,7 @@ const CONFIG_4: RubricItem<HarnessConfigContext> = {
           prefix !== null && /^[a-z][a-z0-9]*$/.test(prefix)
             ? {
                 status: 'PASS',
-                message: `The Harness declares capability prefix '${prefix}'.`,
+                message: `The backpack declares capability prefix '${prefix}'.`,
                 subject: '.ki.toml'
               }
             : {
@@ -142,11 +142,11 @@ const CONFIG_4: RubricItem<HarnessConfigContext> = {
   }
 }
 
-export const CONFIG: RubricFamily<HarnessRubricContext, HarnessConfigContext> = {
+export const CONFIG: RubricFamily<BackpackRubricContext, BackpackConfigContext> = {
   code: 'CONFIG',
-  title: 'Harness declaration',
-  description: 'Knowledge Islands source-harness governance declarations.',
-  standard: 'standard-compatible-harness.md',
+  title: 'Backpack declaration',
+  description: 'Knowledge Islands source-backpack governance declarations.',
+  standard: 'standard-compatible-backpack.md',
   selectContext: (context) => context.config,
   items: [CONFIG_1, CONFIG_2, CONFIG_3, CONFIG_4]
 }

@@ -1,5 +1,5 @@
 /**
- * The skill nodes every generated harness skill diagram draws: each canonical `SKILL.md` read into its
+ * The skill nodes every generated backpack skill diagram draws: each canonical `SKILL.md` read into its
  * concern, shape and declared relationships, with the shared shape vocabulary and node naming the skill
  * map and the area diagrams both use. Shared-module packaging and coverage detection are not drawn.
  */
@@ -29,7 +29,7 @@ export type SkillGraphOptions = {
   repositoryUrl?: string
   /** The 40-character commit the graph was traced at; omitted when unknown. */
   revision?: string
-  /** The functional areas to draw and overlay; the harness's own table when omitted. */
+  /** The functional areas to draw and overlay; the backpack's own table when omitted. */
   areas?: readonly FunctionalArea[]
 }
 

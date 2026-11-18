@@ -18,13 +18,13 @@ ki-refresh: external-spec · monthly
 
 ## 1. Introduction
 
-The tracked sources behind [the compatible harness standard](standard-compatible-harness.md). Provenance only: the record of _what changed_ lives in git, not a changelog here.
+The tracked sources behind [the compatible backpack standard](standard-compatible-backpack.md). Provenance only: the record of _what changed_ lives in git, not a changelog here.
 
 [Back to contents](#contents)
 
 ## 2. Outside sources
 
-The standard follows the Agent Skills and Claude Code subagent formats the harness serves, and the house's own harness, decision and sibling skills.
+The standard follows the Agent Skills and Claude Code subagent formats the backpack serves, and the house's own backpack, decision and sibling skills.
 
 ### 2.1 Authoritative
 
@@ -34,7 +34,7 @@ The outside specifications, then the in-house sources; a tag the review cites op
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| AS — [Agent Skills specification][as-spec] | The individual `SKILL.md` format the harness serves † | 2026-11-15 |
+| AS — [Agent Skills specification][as-spec] | The individual `SKILL.md` format the backpack serves † | 2026-11-15 |
 | CC — [Claude Code subagent docs][cc-subagents] | The subagent definition format the `subagents/` part serves | 2026-11-15 |
 
 † Including the directory-name = `name:` constraint and the `references/`, `scripts/`, `assets/` layout.
@@ -45,11 +45,11 @@ The outside specifications, then the in-house sources; a tag the review cites op
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| AH — [ki-agent-backpack README][ah-readme] | The KI canonical source-harness implementation § | 2026-11-15 |
+| AH — [ki-agent-backpack README][ah-readme] | The KI canonical source-backpack implementation § | 2026-11-15 |
 | CH — [ADR-KI-HARNESS-012][compatible] | Installed identity, direct payload, capability, host, and activation boundaries | 2026-11-15 |
 | KR — `ki-repo` skill | The `.ki.toml` contract and what makes a KI-governed repository | 2026-11-15 |
 | KS — `ki-skills` skill | The governed-rubric family, session, and host boundary ‡ | 2026-11-15 |
-| KE — `ki-engineering` skill | Development toolchain ownership outside compatible-harness installation semantics | 2026-11-15 |
+| KE — `ki-engineering` skill | Development toolchain ownership outside compatible-backpack installation semantics | 2026-11-15 |
 | BD — Cairn summit change 12, BACKPACK-DEPTH (Kris, 14 November 2026) | This skill's name: `ki-repo-harness` became `ki-repo-backpack`; the harness wording in its standards follows when the backpack words are rolled out | 2026-11-15 |
 
 § Source layout and shelf practice are inferred from this repository; installed-payload policy comes from [CH].
@@ -69,15 +69,17 @@ The owner decisions the standard and this file name by id.
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
-| COMMIT-VS-CI | Option a, which Kris chose, "I think we just need to keep them simple": the harness pre-commit hook runs only check-only staged lints, and the focused harness audit runs in CI. | 2026-10-26 | [compatible harness standard, 4.8](standard-compatible-harness.md#48-commit-gate) | In force |
-| PERSONAL-SPECIAL | Kris's word: the prefix `personal` is reserved for the owner's own personal Harness, which only that owner installs. | 2026-10-29 | [compatible harness standard, 4.7](standard-compatible-harness.md#47-harness-declaration) | In force |
-| BACKPACK-DEPTH | Kris's word, in the Cairn summit's change 12: `ki-repo-harness` became `ki-repo-backpack`, and the harness wording in its standards follows when the backpack words are rolled out. | 2026-11-14 | [compatible harness standard](standard-compatible-harness.md) | In force |
+| COMMIT-VS-CI | Option a, which Kris chose, "I think we just need to keep them simple": the harness pre-commit hook runs only check-only staged lints, and the focused harness audit runs in CI. | 2026-10-26 | [compatible harness standard, 4.8](standard-compatible-backpack.md#48-commit-gate) | In force |
+| PERSONAL-SPECIAL | Kris's word: the prefix `personal` is reserved for the owner's own personal Harness, which only that owner installs. | 2026-10-29 | [compatible harness standard, 4.7](standard-compatible-backpack.md#47-backpack-declaration) | In force |
+| BACKPACK-DEPTH | Kris's word, in the Cairn summit's change 12: `ki-repo-harness` became `ki-repo-backpack`, and the harness wording in its standards follows when the backpack words are rolled out. | 2026-11-14 | [compatible harness standard](standard-compatible-backpack.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
 
-On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the compatible harness standard](standard-compatible-harness.md), formerly `standard-compatible-harness.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format. The rubric's source names follow. No rule changed and no outside source was refreshed.
+On 18 November 2026 the skill's words followed BACKPACK-DEPTH and HARNESS-NAME, from the Cairn summit's change 12, steps 1 and 6, for the Repository guild: the standard is `standard-compatible-backpack.md`, the compatible backpack standard, its sections 4.3 and 4.7 renamed with their anchors; the skill, exemplars, rubric text, audit messages and code say backpack, the rubric and the capability catalogue regenerated, the catalogue saying "This source backpack publishes". Decision identifiers, the `ki:harness:eval` script, quoted decisions and the functional area group drawn in the living diagrams, "Skills and harness", keep their words. No criterion changed and no outside source refreshed.
+
+On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the compatible backpack standard](standard-compatible-backpack.md), formerly `standard-compatible-harness.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format. The rubric's source names follow. No rule changed and no outside source was refreshed.
 
 _REFRESH last run **2026-11-15** (previous: 2026-09-26)._
 

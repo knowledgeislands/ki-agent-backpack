@@ -32,7 +32,7 @@ export const codeBucket = (bytes: number): string =>
 export const statsTag = (stats: SkillStats): string =>
   `R${stats.rules ?? '–'} · C${codeBucket(stats.codeBytes)} · F${stats.references}`
 
-/** Read one snapshot for both direct generation and the existing harness audit/conform path. */
+/** Read one snapshot for both direct generation and the existing backpack audit/conform path. */
 export const readSkillStats = (
   repository: string,
   sources: readonly CapabilitySource[]

@@ -59,7 +59,7 @@ const grid = (diagram: Area): string[][] => {
   )
 }
 
-const OPTIONS = { repositoryUrl: 'https://example.invalid/harness', revision: 'a'.repeat(40), areas: TABLE }
+const OPTIONS = { repositoryUrl: 'https://example.invalid/backpack', revision: 'a'.repeat(40), areas: TABLE }
 const nodes = readSkillGraphNodes(FIXTURE).nodes
 const area = buildSkillArea(CORE)(nodes, OPTIONS) as Area
 

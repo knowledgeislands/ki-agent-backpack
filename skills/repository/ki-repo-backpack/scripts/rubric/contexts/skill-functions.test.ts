@@ -74,7 +74,7 @@ describe('functional areas', () => {
     ])
   })
 
-  test('every harness skill appears in at least one functional area diagram', () => {
+  test('every backpack skill appears in at least one functional area diagram', () => {
     const root = resolve(import.meta.dir, '../../../../../..')
     const sources = readdirSync(join(root, 'skills'), { withFileTypes: true })
       .filter((entry) => entry.isDirectory())

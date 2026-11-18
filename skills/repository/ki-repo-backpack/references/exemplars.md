@@ -2,11 +2,11 @@
 ki-document-type: exemplars@2026-11-17T00:55:00Z
 ---
 
-# Compatible harness exemplars
+# Compatible backpack exemplars
 
-Worked examples for distinguishing the source-harness container from its installed compatible payload. These illustrate the [standard](standard-compatible-harness.md); they do not add requirements.
+Worked examples for distinguishing the source-backpack container from its installed compatible payload. These illustrate the [standard](standard-compatible-backpack.md); they do not add requirements.
 
-## Source-harness layout
+## Source-backpack layout
 
 The four shelves stay visible in source even when a shelf is intentionally empty:
 
@@ -35,7 +35,7 @@ ROADMAP.md
 
 Semantic grouping beneath `skills/` is valid. The capability identity still comes from the leaf directory and its `SKILL.md` name.
 
-MCP servers remain in independently released `mcp-*` repositories and do not occupy a source-harness shelf.
+MCP servers remain in independently released `mcp-*` repositories and do not occupy a source-backpack shelf.
 
 ## Installed compatible payload
 
@@ -48,11 +48,11 @@ The current verified archive publishes only the supported capability-bearing dir
   hooks/
 ```
 
-The installed path supplies harness identity and physical source. Runtime discovery links are separate, host-managed activation state pointing into this verified installation. They never point at an arbitrary source checkout.
+The installed path supplies backpack identity and physical source. Runtime discovery links are separate, host-managed activation state pointing into this verified installation. They never point at an arbitrary source checkout.
 
-## Harness declaration
+## Backpack declaration
 
-A source Harness opts into this standard and declares its capability namespace in the same table:
+A source backpack opts into this standard and declares its capability namespace in the same table:
 
 ```toml
 [skills.ki-repo]

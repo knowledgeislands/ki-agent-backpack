@@ -1,14 +1,14 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
-import type { HarnessRubricContext, HarnessSkillsContext } from '../contexts/harness.ts'
+import type { BackpackRubricContext, BackpackSkillsContext } from '../contexts/backpack.ts'
 
-const STANDARD = ['standard-compatible-harness.md#44-skill-capability-identity'] as const
+const STANDARD = ['standard-compatible-backpack.md#44-skill-capability-identity'] as const
 
-const unavailable = (context: HarnessSkillsContext): readonly AuditOutcome[] | null => {
+const unavailable = (context: BackpackSkillsContext): readonly AuditOutcome[] | null => {
   if (context.repositoryState !== 'physical')
     return [
       {
         status: 'NOT_APPLICABLE',
-        message: 'The source harness is not safely inspectable.',
+        message: 'The source backpack is not safely inspectable.',
         subject: context.repository
       }
     ]
@@ -25,7 +25,7 @@ const unavailable = (context: HarnessSkillsContext): readonly AuditOutcome[] | n
   return null
 }
 
-const SKILLS_1: RubricItem<HarnessSkillsContext> = {
+const SKILLS_1: RubricItem<BackpackSkillsContext> = {
   code: 'SKILLS-1',
   title: 'Skill directory and name alignment',
   description: 'Each discovered physical skill root matches its SKILL.md name frontmatter.',
@@ -66,7 +66,7 @@ const SKILLS_1: RubricItem<HarnessSkillsContext> = {
   }
 }
 
-const SKILLS_2: RubricItem<HarnessSkillsContext> = {
+const SKILLS_2: RubricItem<BackpackSkillsContext> = {
   code: 'SKILLS-2',
   title: 'Unique skill names',
   description: 'No two discovered skill roots share a frontmatter name.',
@@ -75,7 +75,7 @@ const SKILLS_2: RubricItem<HarnessSkillsContext> = {
     level: 'FAIL',
     remediation: {
       class: 'diagnostic',
-      guidance: 'Resolve the duplicate published name within the source Harness, then rerun the audit.'
+      guidance: 'Resolve the duplicate published name within the source backpack, then rerun the audit.'
     },
     audit: {
       phase: 'INSPECT',
@@ -100,16 +100,16 @@ const SKILLS_2: RubricItem<HarnessSkillsContext> = {
   }
 }
 
-const SKILLS_3: RubricItem<HarnessSkillsContext> = {
+const SKILLS_3: RubricItem<BackpackSkillsContext> = {
   code: 'SKILLS-3',
   title: 'Prefix-owned skill names',
-  description: 'Every published skill name begins with the Harness capability prefix.',
+  description: 'Every published skill name begins with the backpack capability prefix.',
   sources: STANDARD,
   mechanical: {
     level: 'FAIL',
     remediation: {
       class: 'diagnostic',
-      guidance: 'Align the published skill identity with the owner-approved Harness prefix.'
+      guidance: 'Align the published skill identity with the owner-approved backpack prefix.'
     },
     audit: {
       phase: 'INSPECT',
@@ -120,7 +120,7 @@ const SKILLS_3: RubricItem<HarnessSkillsContext> = {
           return [
             {
               status: 'NOT_APPLICABLE',
-              message: 'The Harness capability prefix is absent or invalid.',
+              message: 'The backpack capability prefix is absent or invalid.',
               subject: '.ki.toml'
             }
           ]
@@ -145,11 +145,11 @@ const SKILLS_3: RubricItem<HarnessSkillsContext> = {
   }
 }
 
-export const SKILLS: RubricFamily<HarnessRubricContext, HarnessSkillsContext> = {
+export const SKILLS: RubricFamily<BackpackRubricContext, BackpackSkillsContext> = {
   code: 'SKILLS',
   title: 'Skill capability identity',
   description: 'Recursive physical skill discovery and identity integrity within the compatible payload.',
-  standard: 'standard-compatible-harness.md',
+  standard: 'standard-compatible-backpack.md',
   selectContext: (context) => context.skills,
   items: [SKILLS_1, SKILLS_2, SKILLS_3]
 }

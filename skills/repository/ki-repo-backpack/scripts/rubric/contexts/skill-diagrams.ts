@@ -1,5 +1,5 @@
 /**
- * The generated skill diagrams a harness that adopts `ki-diagrams` publishes, and the comparison
+ * The generated skill diagrams a backpack that adopts `ki-diagrams` publishes, and the comparison
  * that keeps each committed source exact against canonical `SKILL.md` frontmatter.
  */
 import type { CapabilitySource } from './capability-publication.ts'

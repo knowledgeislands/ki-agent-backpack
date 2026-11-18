@@ -6,7 +6,7 @@ Knowledge Islands **Agent Skills** live here, one directory per skill. This is t
 
 Each skill is a directory containing a `SKILL.md` (YAML frontmatter — `name` + `description` required — followed by a markdown body), per the [Agent Skills open standard](https://agentskills.io/specification). Longer detail goes in `references/`, executables in `scripts/`, templates in `assets/` — all loaded on demand. The **directory name is the skill's `name`**: lowercase, hyphenated, matching the `name:` frontmatter exactly, since agents discover a skill by `name`, not path.
 
-Skill quality conforms to the **`ki-skills`** standard (a sibling here) — run its AUDIT (`ki repo audit --skill ki-skills`) before shipping. The container these skills sit in — this four-part `skills/` / `subagents/` / `evals/` / `hooks/` backpack — conforms to **`ki-repo-backpack`**. MCP servers remain independently released repositories outside the harness.
+Skill quality conforms to the **`ki-skills`** standard (a sibling here) — run its AUDIT (`ki repo audit --skill ki-skills`) before shipping. The container these skills sit in — this four-part `skills/` / `subagents/` / `evals/` / `hooks/` backpack — conforms to **`ki-repo-backpack`**. MCP servers remain independently released repositories outside the backpack.
 
 ## Adding a skill
 
@@ -19,7 +19,7 @@ Use the website-owned [skills-by-outcome guide](https://knowledgeislands.info/gu
 <!-- ki-repo-backpack:capability-catalogue:start -->
 ## Generated capability catalogue
 
-This source harness publishes 65 skills: 60 governance skills, 4 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
+This source backpack publishes 65 skills: 60 governance skills, 4 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
 
 ### Acquire
 
@@ -436,7 +436,7 @@ Govern KI Git commits and shared-tree safety: Conventional Commits, touched-path
 
 #### `ki-repo-backpack`
 
-Audit or design a KI-compatible harness that publishes skills, subagents, evals, and hooks as a verified installed payload. Use for source layout, prefix identity, declarations, or catalogue publication; each capability skill owns content quality.
+Audit or design a KI-compatible backpack that publishes skills, subagents, evals, and hooks as a verified installed payload. Use for source layout, prefix identity, declarations, or catalogue publication; each capability skill owns content quality.
 
 - **Kind:** Governance
 - **Applicability:** Declaration Only

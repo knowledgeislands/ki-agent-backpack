@@ -4,13 +4,13 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import type { RubricFamily } from '../../shared/rubric.ts'
 import type {
-  HarnessCapabilityPublicationContext,
-  HarnessConfigContext,
-  HarnessReviewContext,
-  HarnessRootCapabilitySummaryContext,
-  HarnessRubricContext,
-  HarnessSkillsContext
-} from '../contexts/harness.ts'
+  BackpackCapabilityPublicationContext,
+  BackpackConfigContext,
+  BackpackReviewContext,
+  BackpackRootCapabilitySummaryContext,
+  BackpackRubricContext,
+  BackpackSkillsContext
+} from '../contexts/backpack.ts'
 import catalogue from './index.ts'
 
 const temporaryDirectories: string[] = []
@@ -29,7 +29,7 @@ const fixture = (): string => {
     mkdirSync(join(repository, part))
     writeFileSync(join(repository, part, 'README.md'), `# ${part}\n`)
   }
-  writeFileSync(join(repository, 'CLAUDE.md'), '# Harness\n')
+  writeFileSync(join(repository, 'CLAUDE.md'), '# Backpack\n')
   writeFileSync(join(repository, 'ROADMAP.md'), '# Roadmap\n')
   writeFileSync(join(repository, '.ki.toml'), '[skills.ki-repo]\n')
   mkdirSync(join(repository, 'skills', 'group', 'example'), { recursive: true })
@@ -57,7 +57,7 @@ const fixture = (): string => {
 
 const configItem = (code = 'CONFIG-1') => {
   const family = catalogue.families.find((candidate) => candidate.code === 'CONFIG') as
-    | RubricFamily<HarnessRubricContext, HarnessConfigContext>
+    | RubricFamily<BackpackRubricContext, BackpackConfigContext>
     | undefined
   const item = family?.items.find((candidate) => candidate.code === code)
   if (!family || !item) throw new Error(`${code} is missing`)
@@ -66,7 +66,7 @@ const configItem = (code = 'CONFIG-1') => {
 
 const capabilityPublicationItem = () => {
   const family = catalogue.families.find((candidate) => candidate.code === 'CAP') as
-    | RubricFamily<HarnessRubricContext, HarnessReviewContext & { publication: HarnessCapabilityPublicationContext }>
+    | RubricFamily<BackpackRubricContext, BackpackReviewContext & { publication: BackpackCapabilityPublicationContext }>
     | undefined
   const item = family?.items.find((candidate) => candidate.code === 'CAP-2')
   if (!family || !item) throw new Error('CAP-2 is missing')
@@ -76,10 +76,10 @@ const capabilityPublicationItem = () => {
 const rootCapabilitySummaryItem = () => {
   const family = catalogue.families.find((candidate) => candidate.code === 'CAP') as
     | RubricFamily<
-        HarnessRubricContext,
-        HarnessReviewContext & {
-          publication: HarnessCapabilityPublicationContext
-          rootSummary: HarnessRootCapabilitySummaryContext
+        BackpackRubricContext,
+        BackpackReviewContext & {
+          publication: BackpackCapabilityPublicationContext
+          rootSummary: BackpackRootCapabilitySummaryContext
         }
       >
     | undefined
@@ -88,7 +88,7 @@ const rootCapabilitySummaryItem = () => {
   return { family, item }
 }
 
-test('the catalogue preserves the current compatible-harness criteria', () => {
+test('the catalogue preserves the current compatible-backpack criteria', () => {
   expect(catalogue.contract).toBe(1)
   expect(catalogue.name).toBe('ki-repo-backpack')
   expect(catalogue.packageScripts).toEqual(['ki:harness:eval'])
@@ -151,7 +151,7 @@ test('each family module exports one complete family', async () => {
 test('the session discovers grouped skills once and coalesces marker requests', () => {
   const repository = fixture()
   const session = catalogue.createSession({ mode: 'conform', repository, userHome: tmpdir(), configuration: {} })
-  const context = session.subjects[0]?.context() as HarnessRubricContext
+  const context = session.subjects[0]?.context() as BackpackRubricContext
   expect(session.subjects[0]?.context()).toBe(context)
   expect(context.skills.skills).toEqual([
     { path: 'skills/group/example', directory: 'example', declaredName: 'example' },
@@ -160,7 +160,7 @@ test('the session discovers grouped skills once and coalesces marker requests', 
     { path: 'skills/group/ki-repo', directory: 'ki-repo', declaredName: 'ki-repo' }
   ])
   const { family, item } = configItem()
-  const config = family.selectContext(context) as HarnessConfigContext
+  const config = family.selectContext(context) as BackpackConfigContext
   expect(item.mechanical?.audit.run(config)[0]?.status).toBe('VIOLATION')
   item.mechanical?.conform?.run(config)
   item.mechanical?.conform?.run(config)
@@ -176,13 +176,13 @@ test('audit is read-only and an existing marker produces no proposal', () => {
   const repository = fixture()
   writeFileSync(join(repository, '.ki.toml'), '[skills.ki-repo]\n\n[skills.ki-repo-backpack]\n')
   const session = catalogue.createSession({ mode: 'audit', repository, userHome: tmpdir(), configuration: {} })
-  const context = session.subjects[0]?.context() as HarnessRubricContext
-  expect(context.config.hasHarnessTable).toBe(true)
-  expect(context.config.requestHarnessMarker).toBeUndefined()
+  const context = session.subjects[0]?.context() as BackpackRubricContext
+  expect(context.config.hasBackpackTable).toBe(true)
+  expect(context.config.requestBackpackMarker).toBeUndefined()
   expect(session.proposal().writes).toEqual([])
 })
 
-test('the Harness declaration requires a valid explicit prefix', () => {
+test('the backpack declaration requires a valid explicit prefix', () => {
   const repository = fixture()
   const { family, item } = configItem('CONFIG-4')
   for (const [prefix, status] of [
@@ -195,18 +195,18 @@ test('the Harness declaration requires a valid explicit prefix', () => {
       `[skills.ki-repo]\n\n[skills.ki-repo-backpack]\n${prefix ? `prefix = "${prefix}"\n` : ''}`
     )
     const session = catalogue.createSession({ mode: 'audit', repository, userHome: tmpdir(), configuration: {} })
-    const context = session.subjects[0]?.context() as HarnessRubricContext
+    const context = session.subjects[0]?.context() as BackpackRubricContext
     expect(item.mechanical?.audit.run(family.selectContext(context))[0]?.status).toBe(status)
   }
 })
 
-test('published skill names use the declared Harness prefix', () => {
+test('published skill names use the declared backpack prefix', () => {
   const repository = fixture()
   writeFileSync(join(repository, '.ki.toml'), '[skills.ki-repo]\n\n[skills.ki-repo-backpack]\nprefix = "ki"\n')
   const session = catalogue.createSession({ mode: 'audit', repository, userHome: tmpdir(), configuration: {} })
-  const context = session.subjects[0]?.context() as HarnessRubricContext
+  const context = session.subjects[0]?.context() as BackpackRubricContext
   const family = catalogue.families.find((candidate) => candidate.code === 'SKILLS') as
-    | RubricFamily<HarnessRubricContext, HarnessSkillsContext>
+    | RubricFamily<BackpackRubricContext, BackpackSkillsContext>
     | undefined
   const item = family?.items.find((candidate) => candidate.code === 'SKILLS-3')
   if (!family || !item) throw new Error('SKILLS-3 is missing')
@@ -218,7 +218,7 @@ test('published skill names use the declared Harness prefix', () => {
 test('a missing catalogue produces an exact finding and one marker-bounded conform write', () => {
   const repository = fixture()
   const session = catalogue.createSession({ mode: 'conform', repository, userHome: tmpdir(), configuration: {} })
-  const context = session.subjects[0]?.context() as HarnessRubricContext
+  const context = session.subjects[0]?.context() as BackpackRubricContext
   const { family, item } = capabilityPublicationItem()
   const capability = family.selectContext(context)
   expect(item.mechanical?.audit.run(capability)).toEqual([
@@ -233,7 +233,7 @@ test('a missing catalogue produces an exact finding and one marker-bounded confo
   expect(proposal?.content).toStartWith('# skills\n\n')
   expect(proposal?.content).toContain('<!-- ki-repo-backpack:capability-catalogue:start -->')
   expect(proposal?.content).toContain(
-    'This source harness publishes 4 skills: 4 governance skills and 0 process skills.'
+    'This source backpack publishes 4 skills: 4 governance skills and 0 process skills.'
   )
   expect(proposal?.content).toContain('<!-- ki-repo-backpack:capability-catalogue:end -->')
 })
@@ -249,19 +249,19 @@ test('a declared non-KI provider can publish without the KI baseline in its sour
     '---\nname: hnr-backend\nki-kind: governance\nki-applicability: declaration-only\nki-depends-on: []\ndescription: Use HNR backend conventions.\n---\n'
   )
   const session = catalogue.createSession({ mode: 'conform', repository, userHome: tmpdir(), configuration: {} })
-  const context = session.subjects[0]?.context() as HarnessRubricContext
+  const context = session.subjects[0]?.context() as BackpackRubricContext
   expect(context.capabilityPublication.state).toBe('missing')
   expect(context.capabilityPublication.issues).toEqual([])
   context.capabilityPublication.requestUpdate?.()
   expect(session.proposal().writes.find((write) => write.path === 'skills/README.md')?.content).toContain(
-    'This source harness publishes 1 skill: 1 governance skill and 0 process skills.'
+    'This source backpack publishes 1 skill: 1 governance skill and 0 process skills.'
   )
 })
 
 test('an absent root capability summary is not applicable', () => {
   const repository = fixture()
   const session = catalogue.createSession({ mode: 'audit', repository, userHome: tmpdir(), configuration: {} })
-  const context = session.subjects[0]?.context() as HarnessRubricContext
+  const context = session.subjects[0]?.context() as BackpackRubricContext
   const { family, item } = rootCapabilitySummaryItem()
   expect(item.mechanical?.audit.run(family.selectContext(context))).toEqual([
     {
@@ -275,10 +275,10 @@ test('an absent root capability summary is not applicable', () => {
 test('one stale complete root capability summary produces one numeric-only conform write', () => {
   const repository = fixture()
   const original =
-    '# Harness\n\n- **Skills** ([`skills/`](skills)) — 9 reusable [Agent Skills](https://agentskills.io/specification): 8 governance skills that hold standards and 7 process skills that drive workflows. Keep this prose.\n'
+    '# Backpack\n\n- **Skills** ([`skills/`](skills)) — 9 reusable [Agent Skills](https://agentskills.io/specification): 8 governance skills that hold standards and 7 process skills that drive workflows. Keep this prose.\n'
   writeFileSync(join(repository, 'README.md'), original)
   const session = catalogue.createSession({ mode: 'conform', repository, userHome: tmpdir(), configuration: {} })
-  const context = session.subjects[0]?.context() as HarnessRubricContext
+  const context = session.subjects[0]?.context() as BackpackRubricContext
   const { family, item } = rootCapabilitySummaryItem()
   expect(item.mechanical?.audit.run(family.selectContext(context))).toEqual([
     {
@@ -305,9 +305,9 @@ test('matching, incomplete, ambiguous, and malformed root summaries do not produ
   ]
   for (const body of cases) {
     const repository = fixture()
-    writeFileSync(join(repository, 'README.md'), `# Harness\n\n${body}\n`)
+    writeFileSync(join(repository, 'README.md'), `# Backpack\n\n${body}\n`)
     const session = catalogue.createSession({ mode: 'conform', repository, userHome: tmpdir(), configuration: {} })
-    const context = session.subjects[0]?.context() as HarnessRubricContext
+    const context = session.subjects[0]?.context() as BackpackRubricContext
     const { family, item } = rootCapabilitySummaryItem()
     item.mechanical?.conform?.run(family.selectContext(context))
     expect(session.proposal().writes.some((write) => write.path === 'README.md')).toBe(false)
@@ -316,11 +316,11 @@ test('matching, incomplete, ambiguous, and malformed root summaries do not produ
   const repository = fixture()
   writeFileSync(
     join(repository, 'README.md'),
-    '# Harness\n\n1 reusable [Agent Skills](https://agentskills.io/specification): 1 governance skills that hold standards and 0 process skills that drive workflows.\n'
+    '# Backpack\n\n1 reusable [Agent Skills](https://agentskills.io/specification): 1 governance skills that hold standards and 0 process skills that drive workflows.\n'
   )
   writeFileSync(join(repository, 'skills', 'group', 'example', 'SKILL.md'), 'not frontmatter\n')
   const session = catalogue.createSession({ mode: 'conform', repository, userHome: tmpdir(), configuration: {} })
-  const context = session.subjects[0]?.context() as HarnessRubricContext
+  const context = session.subjects[0]?.context() as BackpackRubricContext
   const { family, item } = rootCapabilitySummaryItem()
   expect(item.mechanical?.audit.run(family.selectContext(context))).toEqual([
     {
@@ -339,7 +339,7 @@ test('an unsafe root README is diagnostic', () => {
   writeFileSync(external, '# External\n')
   symlinkSync(external, join(repository, 'README.md'))
   const session = catalogue.createSession({ mode: 'conform', repository, userHome: tmpdir(), configuration: {} })
-  const context = session.subjects[0]?.context() as HarnessRubricContext
+  const context = session.subjects[0]?.context() as BackpackRubricContext
   const { family, item } = rootCapabilitySummaryItem()
   expect(item.mechanical?.audit.run(family.selectContext(context))).toEqual([
     {
@@ -355,7 +355,7 @@ test('an unsafe root README is diagnostic', () => {
 test('source conformance does not inherit payload or runtime assurance', () => {
   const repository = fixture()
   const session = catalogue.createSession({ mode: 'audit', repository, userHome: tmpdir(), configuration: {} })
-  const context = session.subjects[0]?.context() as HarnessRubricContext
+  const context = session.subjects[0]?.context() as BackpackRubricContext
   expect(context.provenance.payload).toEqual([
     expect.objectContaining({
       status: 'NOT_APPLICABLE',
@@ -372,9 +372,9 @@ test('conform refuses a symlinked or dangling configuration path', () => {
     if (!dangling) writeFileSync(target, '[skills.ki-repo]\n')
     symlinkSync(target, join(repository, '.ki.toml'))
     const session = catalogue.createSession({ mode: 'conform', repository, userHome: tmpdir(), configuration: {} })
-    const context = session.subjects[0]?.context() as HarnessRubricContext
+    const context = session.subjects[0]?.context() as BackpackRubricContext
     expect(context.config.state).toBe('unsafe')
-    expect(context.config.requestHarnessMarker).toBeUndefined()
+    expect(context.config.requestBackpackMarker).toBeUndefined()
     expect(session.proposal().writes).toEqual([])
   }
 })
@@ -388,7 +388,7 @@ test('layout inspection does not traverse a symlinked shelf', () => {
   symlinkSync(external, join(repository, 'hooks'))
 
   const session = catalogue.createSession({ mode: 'audit', repository, userHome: tmpdir(), configuration: {} })
-  const context = session.subjects[0]?.context() as HarnessRubricContext
+  const context = session.subjects[0]?.context() as BackpackRubricContext
   expect(context.layout.parts.find((part) => part.name === 'hooks')).toEqual({
     name: 'hooks',
     state: 'unsafe',

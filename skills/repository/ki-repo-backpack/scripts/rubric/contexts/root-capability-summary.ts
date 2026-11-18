@@ -11,7 +11,7 @@ const claimSignal = /\d+ reusable \[Agent Skills\]\([^)]+\)/g
 const completeClaim =
   /(?<total>\d+)(?<afterTotal> reusable \[Agent Skills\]\([^)]+\): )(?<governance>\d+)(?<afterGovernance> governance skills that hold standards(?:, | and ))(?<process>\d+)(?<afterProcess> process skills that drive workflows)(?<knowledgeClause> and (?<knowledge>\d+) knowledge skills? that holds? (?:a body|bodies) of knowledge)?/g
 
-/** The knowledge clause the claim carries once the harness publishes a knowledge skill, and never before. */
+/** The knowledge clause the claim carries once the backpack publishes a knowledge skill, and never before. */
 const knowledgeClause = (count: number): string =>
   count === 0
     ? ''

@@ -5,7 +5,7 @@ import { inspectStagedDiagramReceipts } from '../../shared/staged-diagram-receip
 
 const HOOK = '.githooks/pre-commit'
 
-export type HarnessGateContext = {
+export type BackpackGateContext = {
   hook: readonly AuditOutcome[]
   receipts: readonly AuditOutcome[]
 }
@@ -14,8 +14,8 @@ export type HarnessGateContext = {
 const heavy = (line: string): boolean =>
   /\bki repo (?:audit|conform|repair)\b|(?:^|\s)--(?:fix|write)(?=\s|$)|\bquiet_audit\b/.test(line)
 
-/** What a harness commit gate runs; `ki-repo` HOOK-1 owns whether the hook exists and HOOK-4 its canonical text. */
-const inspectHook = (root: string): Pick<HarnessGateContext, 'hook'> => {
+/** What a backpack commit gate runs; `ki-repo` HOOK-1 owns whether the hook exists and HOOK-4 its canonical text. */
+const inspectHook = (root: string): Pick<BackpackGateContext, 'hook'> => {
   const directory = join(root, '.githooks')
   const path = join(root, HOOK)
   if (!existsSync(path)) {
@@ -65,7 +65,7 @@ const inspectHook = (root: string): Pick<HarnessGateContext, 'hook'> => {
 }
 
 /** Receipt bytes are read from the index, independent of working files; in CI the index is the commit. */
-export const inspectCommitGate = (root: string): HarnessGateContext => {
+export const inspectCommitGate = (root: string): BackpackGateContext => {
   const snapshot = inspectStagedDiagramReceipts(root)
   const receipts: AuditOutcome[] = !snapshot.applicable
     ? [{ status: 'NOT_APPLICABLE', message: 'The staged repository does not declare ki-diagrams.' }]

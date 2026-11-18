@@ -1,5 +1,5 @@
 /**
- * The harness functional-area diagrams: one deterministic Archify `architecture` source per functional area,
+ * The backpack functional-area diagrams: one deterministic Archify `architecture` source per functional area,
  * derived from canonical `SKILL.md` frontmatter and the functional-area table. The area's skills sit in one
  * region, its capability groups nested inside it; the outside skills they rely on are grouped by their home area
  * and group below it, and the outside skills that rely on them are grouped the same way above it. Solid edges are
