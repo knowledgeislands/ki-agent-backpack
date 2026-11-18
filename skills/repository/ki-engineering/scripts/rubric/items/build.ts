@@ -17,7 +17,7 @@ const item = (
   code,
   title,
   description,
-  sources: ['standards-engineering.md'],
+  sources: ['standard-engineering.md'],
   mechanical: {
     level,
     ...(overrideLevels ? { overrideLevels } : {}),
@@ -34,7 +34,7 @@ export const BUILD: RubricFamily<EngineeringRubricContext, BuildRubricContext> =
   code: 'BUILD',
   title: 'Compiled builds',
   description: 'The conditional compiled-TypeScript profile and CLI executable bit.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.build,
   items: [
     item(

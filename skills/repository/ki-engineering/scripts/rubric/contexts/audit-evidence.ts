@@ -558,7 +558,7 @@ type Finding = { level: Level; area: string; msg: string; ref?: string; file?: s
 
 // Reference-doc pointers — the substantive standard (cited by every minted code) and
 // the rubric that maps code↔criterion (cited by the judgment/scope handoff).
-const STD = 'references/standards-engineering.md'
+const STD = 'references/standard-engineering.md'
 
 const mechanicalEngineeringCheckIds = new Set([
   'PKG-1',
@@ -1329,7 +1329,7 @@ export const collectAuditEvidence = async (
   )
 
   // ── core: the coverage manifest — package.json is a CLOSED top-level key set ───
-  // Every top-level key must be in the manifest (engineering-standard §1), each mapped
+  // Every top-level key must be in the manifest (engineering-standard §4.5), each mapped
   // to an owning skill. An unknown key is drift: it would be an element no rubric drives.
   // This is the exhaustiveness half that makes "every element is governed" hold by
   // construction — the per-key CONTENT rules live in the owning skill's checker.
@@ -1366,13 +1366,13 @@ export const collectAuditEvidence = async (
     ? add(
         'FAIL',
         'PKG-4',
-        `ungoverned package.json key(s): ${unknownKeys.join(', ')} — every top-level key must be in the coverage manifest (engineering-standard §1) and assigned an owner`,
+        `ungoverned package.json key(s): ${unknownKeys.join(', ')} — every top-level key must be in the coverage manifest (engineering-standard §4.5) and assigned an owner`,
         STD,
         'package.json'
       )
     : add('PASS', 'PKG-4', 'all top-level keys are in the coverage manifest', STD, 'package.json')
 
-  // ── core: lint-staged block + toolchain devDependencies (§1/§5) ───────────────
+  // ── core: lint-staged block + toolchain devDependencies (§4.5/§4.9) ───────────────
   // The lint:* / deps:* / prepare families above invoke a fixed toolchain; assert that
   // toolchain is actually declared, rather than left implied. lint-staged is the
   // pre-commit fan-out — a governed key in the manifest, so it must be present and wired.
@@ -1452,7 +1452,7 @@ export const collectAuditEvidence = async (
     add('NOT_APPLICABLE', 'CI-1', 'no .github/workflows/ci.yml — not applicable', STD)
   }
 
-  // Repo shape — flat vs monorepo (§0). A flat repo is one root TS project (`tsc --noEmit`);
+  // Repo shape — flat vs monorepo (§4.4). A flat repo is one root TS project (`tsc --noEmit`);
   // a monorepo declares its packages in the standard Bun `workspaces` array in package.json
   // (typically ownership globs such as ["packages/*", "apps/*", "examples/*"]), whose per-package tsconfigs can carry incompatible
   // `types`/`lib`, so it is type-checked per package rather than once at the root.
@@ -1573,7 +1573,7 @@ export const collectAuditEvidence = async (
       )
     : add('PASS', 'BUN-2', 'no tracked .mjs files', STD)
 
-  // engineering-standard §2: ki:* scripts are claimed by resolved capabilities,
+  // engineering-standard §4.6: ki:* scripts are claimed by resolved capabilities,
   // self:* scripts name repository ownership directly, and only the six universal
   // lifecycle idioms remain bare. Other bare names require an exact external exclusion.
   const offenders = scriptSurface.namingOffenders
@@ -1581,7 +1581,7 @@ export const collectAuditEvidence = async (
     ? add(
         'FAIL',
         'SCR-1',
-        `ungoverned script name(s): ${offenders.join(', ')} — every script must be a bare lifecycle idiom (${[...BARE_SCRIPT_IDIOMS].join(', ')}), carry the ki: prefix, carry a non-empty self: prefix, or have an exact external exclusion (engineering-standard §2)`,
+        `ungoverned script name(s): ${offenders.join(', ')} — every script must be a bare lifecycle idiom (${[...BARE_SCRIPT_IDIOMS].join(', ')}), carry the ki: prefix, carry a non-empty self: prefix, or have an exact external exclusion (engineering-standard §4.6)`,
         STD,
         'package.json'
       )
@@ -1594,7 +1594,7 @@ export const collectAuditEvidence = async (
       )
 
   // ── core: dependency freshness — leading edge (bun outdated + registry dates) ──
-  // A newer release opens the 14-day adoption window (engineering-standard §1): INFO
+  // A newer release opens the 14-day adoption window (engineering-standard §4.5): INFO
   // while the window is open, FAIL once the next unadopted release is two weeks old.
   // The pinned Bun runtime is graded the same way, as the dependency `bun`, whether or
   // not `bun outdated` runs.
@@ -2034,7 +2034,7 @@ export const collectAuditEvidence = async (
   })()
   const hasEnv = Boolean(envExample) || usesLoadEnv
 
-  // ── core: capability tails + the bare test idiom (§2) ─────────────────────────
+  // ── core: capability tails + the bare test idiom (§4.6) ─────────────────────────
   // A repo with tests exposes the bare `test` idiom (the whole *.test.ts suite), run in CI
   // after `ki repo audit`. Compiled builds remain the separate bare `build` lifecycle command.
   if (hasTests && !scripts.test)
@@ -2288,7 +2288,7 @@ export const collectAuditEvidence = async (
         STD,
         vitestFile
       )
-      // monorepo shape (§0): per-workspace artifacts and test globs are scoped to the owning
+      // monorepo shape (§4.4): per-workspace artifacts and test globs are scoped to the owning
       // workspace dir, never the repo root. Check the vitest reportsDirectory and include globs
       // sit under a declared workspace (mirrors the per-workspace tsc check above).
       if (!workspaces.length) {
@@ -2324,7 +2324,7 @@ export const collectAuditEvidence = async (
           add(
             'FAIL',
             'TEST-4',
-            `monorepo (§0): vitest include glob(s) not under a workspace dir: ${escaped.join(', ')} — scope tests/coverage to the owning workspace (e.g. site/scripts/**/*.test.ts)`,
+            `monorepo (§4.4): vitest include glob(s) not under a workspace dir: ${escaped.join(', ')} — scope tests/coverage to the owning workspace (e.g. site/scripts/**/*.test.ts)`,
             STD,
             vitestFile
           )
@@ -2452,7 +2452,7 @@ export const collectAuditEvidence = async (
   } else {
     add('PASS', 'TOML-1', `${engineeringHeader} table present`, STD, '.ki.toml')
     // validate-down: script_exclusions and dependency_holds are the only direct keys.
-    // Repo shape (flat vs monorepo) is read from package.json `workspaces` (§0), a standard
+    // Repo shape (flat vs monorepo) is read from package.json `workspaces` (§4.4), a standard
     // Bun convention, not a bespoke key here. Any other key directly under the table is drift.
     const body = engineeringTableBody(ki) ?? ''
     const KNOWN = new Set<string>(['script_exclusions', 'dependency_holds'])

@@ -113,7 +113,7 @@ The harness's [actual package manifest](../../../../package.json) uses the same 
 
 This runner-neutral profile does not opt into `test:coverage`, `test:watch`, or the Vitest threshold checks. Its bare `test` entrypoint may use `bun test` to glob its suite; other scripts continue to delegate through `bun run test`.
 
-### Monorepo: ownership roots and workspace-scoped Vitest coverage (§0, §6)
+### Monorepo: ownership roots and workspace-scoped Vitest coverage (§4.4, §4.10)
 
 The root manifest declares only the ownership groups present in that repository. Bun accepts multiple globs, so a mixed library/application/example repository can state its shape directly rather than forcing every role under one generic directory:
 
@@ -143,7 +143,7 @@ export default defineConfig({
 })
 ```
 
-### Canonical `turbo.json` for a website workspace repo (§0)
+### Canonical `turbo.json` for a website workspace repo (§4.4)
 
 The house shape, taken from `5g-emerge-ibc2026`. Every website repository with a `workspaces` array carries this file with only its own package names substituted, so the task graph reads the same everywhere and a drift is visible as a diff rather than as a judgement.
 
@@ -170,7 +170,7 @@ The house shape, taken from `5g-emerge-ibc2026`. Every website repository with a
 }
 ```
 
-Two things make it work, and both live outside this file. Each non-root workspace carries its own `build`, `typecheck` and `test` scripts — the package-local lifecycle surface, not root namespace entries (§2) — so each is a cache unit of its own. The root delegates to the graph rather than chaining workspaces by hand:
+Two things make it work, and both live outside this file. Each non-root workspace carries its own `build`, `typecheck` and `test` scripts — the package-local lifecycle surface, not root namespace entries (§4.6) — so each is a cache unit of its own. The root delegates to the graph rather than chaining workspaces by hand:
 
 ```jsonc
 {

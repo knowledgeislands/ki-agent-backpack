@@ -12,7 +12,7 @@ const item = (
   code,
   title,
   description,
-  sources: ['standards-engineering.md'],
+  sources: ['standard-engineering.md'],
   mechanical: {
     level,
     ...(overrideLevels ? { overrideLevels } : {}),
@@ -29,7 +29,7 @@ export const CI: RubricFamily<EngineeringRubricContext, CiRubricContext> = {
   code: 'CI',
   title: 'Continuous integration',
   description: 'CI installs the declared toolchain and runs canonical repository gates.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.ci,
   items: [
     item(

@@ -5,7 +5,7 @@ export const KNIP: RubricFamily<EngineeringRubricContext, KnipRubricContext> = {
   code: 'KNIP',
   title: 'Knip',
   description: 'The unused-code configuration and gate.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.knip,
   items: [
     {
@@ -13,7 +13,7 @@ export const KNIP: RubricFamily<EngineeringRubricContext, KnipRubricContext> = {
       title: 'Knip configuration exists',
       description:
         '`knip.json` exists with per-repo entry points and ignores; a newly scaffolded configuration immediately reads both committed hooks through the Husky plugin.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         level: 'FAIL',
         remediation: { class: 'automatic' },
@@ -25,7 +25,7 @@ export const KNIP: RubricFamily<EngineeringRubricContext, KnipRubricContext> = {
       code: 'KNIP-2',
       title: 'Knip gate passes',
       description: '`bunx knip` exits clean.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         level: 'FAIL',
         cost: 8,
@@ -50,7 +50,7 @@ export const KNIP: RubricFamily<EngineeringRubricContext, KnipRubricContext> = {
       title: 'Knip entry points cover every package export',
       description:
         'Every target in the `exports` map of `package.json` is reachable from at least one glob in the `entry` list of `knip.json`, mapping the built path back to its source (`./dist/X.js` and `./dist/X.d.ts` map to `src/X.ts`); `./package.json` is exempt. An unreachable published entrypoint is invisible to knip as a public surface, so the KNIP-2 repair deletes genuine public API. Audit only — which entry glob to add is a judgment call, so there is no conform action.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         level: 'FAIL',
         remediation: {
@@ -66,7 +66,7 @@ export const KNIP: RubricFamily<EngineeringRubricContext, KnipRubricContext> = {
       title: 'Knip entry points have real callers',
       description:
         'Authored repository commands and canonical skill scripts remain in Knip scope, and declared entry points are justified by supported invocations rather than their presence in the entry list.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       judgment: {
         scope:
           '`knip.json` entry, project and ignore patterns; package commands, published executables, test-runner configuration, documented skill operations, and native catalogue loaders.',

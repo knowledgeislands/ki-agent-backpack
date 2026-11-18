@@ -43,109 +43,109 @@ The tracked readable rubric is the exact publication of the structured catalogue
 
 ## PKG — Package metadata
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 The shared package metadata and toolchain dependency surface.
 
-- **PKG-1 [M] — Module package type** — `"type": "module"`. (standards-engineering.md)
+- **PKG-1 [M] — Module package type** — `"type": "module"`. (standard-engineering.md)
   - _Remediation:_ automatic
-- **PKG-2 [M] — Bun package-manager pin** — `"packageManager"` starts with `bun@` (pinned patch). (standards-engineering.md)
+- **PKG-2 [M] — Bun package-manager pin** — `"packageManager"` starts with `bun@` (pinned patch). (standard-engineering.md)
   - _Remediation:_ automatic
-- **PKG-3 [M] — Node engine floor** — `"engines.node"` floor is `>= 22`. (standards-engineering.md)
+- **PKG-3 [M] — Node engine floor** — `"engines.node"` floor is `>= 22`. (standard-engineering.md)
   - _Remediation:_ automatic
-- **PKG-4 [M] — Closed package coverage manifest** — Every top-level `package.json` key is in the engineering coverage manifest; an unknown key is drift. This is also the criterion for an unparseable `package.json`. (standards-engineering.md)
+- **PKG-4 [M] — Closed package coverage manifest** — Every top-level `package.json` key is in the engineering coverage manifest; an unknown key is drift. This is also the criterion for an unparseable `package.json`. (standard-engineering.md)
   - _Remediation:_ diagnostic — Correct the package manifest structure or declare the missing ownership before rerunning the audit.
-- **PKG-5 [M] — Toolchain dependencies declared** — The toolchain devDependencies `@biomejs/biome`, Commitlint, `knip`, `rumdl`, `lint-staged`, `syncpack`, and `typescript` are declared rather than implied; `ki-repo` HOOK-5 reports a retired `husky`. (standards-engineering.md)
+- **PKG-5 [M] — Toolchain dependencies declared** — The toolchain devDependencies `@biomejs/biome`, Commitlint, `knip`, `rumdl`, `lint-staged`, `syncpack`, and `typescript` are declared rather than implied; `ki-repo` HOOK-5 reports a retired `husky`. (standard-engineering.md)
   - _Remediation:_ automatic
-- **PKG-6 [M] — Lint-staged fan-out** — `lint-staged` is present and fans out to `biome check` on staged code and `rumdl check` on staged authored Markdown, check-only with no `--write` or `--fix`, calling each tool directly rather than through `bunx`, `npx` or `pnpm dlx`. (standards-engineering.md)
+- **PKG-6 [M] — Lint-staged fan-out** — `lint-staged` is present and fans out to `biome check` on staged code and `rumdl check` on staged authored Markdown, check-only with no `--write` or `--fix`, calling each tool directly rather than through `bunx`, `npx` or `pnpm dlx`. (standard-engineering.md)
   - _Remediation:_ automatic
-- **PKG-7 [M] — Declared toolchain installed** — Every declared `PKG-5` toolchain package resolves under the root `node_modules`, so a hook or script bound to it can load. CONFORM declares packages but never installs them; this criterion carries the pending activation step. (standards-engineering.md)
+- **PKG-7 [M] — Declared toolchain installed** — Every declared `PKG-5` toolchain package resolves under the root `node_modules`, so a hook or script bound to it can load. CONFORM declares packages but never installs them; this criterion carries the pending activation step. (standard-engineering.md)
   - _Remediation:_ diagnostic — Run `bun install` at the repository root, then re-run `ki repo audit --skill ki-engineering`. CONFORM never installs packages.
 
 ## MISE — Toolchain pins
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 The single root Node and Bun toolchain declaration.
 
-- **MISE-1 [M] — Root toolchain pin** — A root `mise.toml` pins both `node` and `bun` under `[tools]`. (standards-engineering.md)
+- **MISE-1 [M] — Root toolchain pin** — A root `mise.toml` pins both `node` and `bun` under `[tools]`. (standard-engineering.md)
   - _Remediation:_ automatic
-- **MISE-2 [M] — Bun pin drift pair** — The `mise.toml` Bun version equals the `packageManager` Bun version. (standards-engineering.md)
+- **MISE-2 [M] — Bun pin drift pair** — The `mise.toml` Bun version equals the `packageManager` Bun version. (standard-engineering.md)
   - _Remediation:_ diagnostic — Align the declared toolchain pins and remove obsolete pin files, then rerun the audit.
-- **MISE-3 [M] — No legacy tool pins** — No legacy `.node-version`, `.nvmrc`, or `.bun-version` file lingers beside `mise.toml`. (standards-engineering.md)
+- **MISE-3 [M] — No legacy tool pins** — No legacy `.node-version`, `.nvmrc`, or `.bun-version` file lingers beside `mise.toml`. (standard-engineering.md)
   - _Remediation:_ diagnostic — Align the declared toolchain pins and remove obsolete pin files, then rerun the audit.
 
 ## CI — Continuous integration
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 CI installs the declared toolchain and runs canonical repository gates.
 
-- **CI-1 [M] — CI installs the declared toolchain** — Where `.github/workflows/ci.yml` exists, it uses `jdx/mise-action`, hardcodes no Bun or Node version, and installs a released `ki` rather than cloning or linking a KI source checkout, reading its release tag from `.github/ki-version`, which an `update-ki-pin.yml` receiver proposes (warning only). (standards-engineering.md)
+- **CI-1 [M] — CI installs the declared toolchain** — Where `.github/workflows/ci.yml` exists, it uses `jdx/mise-action`, hardcodes no Bun or Node version, and installs a released `ki` rather than cloning or linking a KI source checkout, reading its release tag from `.github/ki-version`, which an `update-ki-pin.yml` receiver proposes (warning only). (standard-engineering.md)
   - _Remediation:_ diagnostic — Align the CI workflow with the declared toolchain and canonical repository gates, then rerun the audit.
-- **CI-2 [M] — CI runs the canonical gates** — `ci.yml` runs `ki repo audit --repo .`; it adds `bun run test` after the audit only for tests the audit does not run itself (the audit runs `bun run test:coverage` under a root `vitest.config.*`), and does not route governance through package scripts. (standards-engineering.md)
+- **CI-2 [M] — CI runs the canonical gates** — `ci.yml` runs `ki repo audit --repo .`; it adds `bun run test` after the audit only for tests the audit does not run itself (the audit runs `bun run test:coverage` under a root `vitest.config.*`), and does not route governance through package scripts. (standard-engineering.md)
   - _Remediation:_ diagnostic — Align the CI workflow with the declared toolchain and canonical repository gates, then rerun the audit.
 
 ## SCR — Package scripts
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 The direct CLI boundary, lifecycle idioms, and clean cutover discipline.
 
-- **SCR-1 [M] — KI script naming law** — Every script is a permitted bare lifecycle idiom, a capability-owned `ki:` name, a repository-owned `self:` name with a non-empty suffix, or an exactly excluded external bare name. (standards-engineering.md)
+- **SCR-1 [M] — KI script naming law** — Every script is a permitted bare lifecycle idiom, a capability-owned `ki:` name, a repository-owned `self:` name with a non-empty suffix, or an exactly excluded external bare name. (standard-engineering.md)
   - _Remediation:_ diagnostic — Revise the package scripts to meet the governed script surface, then rerun the audit.
-- **SCR-2 [M] — Repository maintenance stays CLI-owned** — Package scripts do not invoke `ki repo audit`, `ki repo conform`, or `ki repo educate`, whether for the whole repository or a focused skill; repositories invoke the installed CLI directly. (standards-engineering.md)
+- **SCR-2 [M] — Repository maintenance stays CLI-owned** — Package scripts do not invoke `ki repo audit`, `ki repo conform`, or `ki repo educate`, whether for the whole repository or a focused skill; repositories invoke the installed CLI directly. (standard-engineering.md)
   - _Remediation:_ automatic
-- **SCR-3 [M] — Exact script claims cover the governed surface** — Every `ki:` script is claimed by exactly one resolved capability, every `self:` script names repository ownership directly, and exact exclusions cover only externally constrained bare names; `ki:deps:update` is present; retired tool families and aggregate governance aliases are absent. (standards-engineering.md)
+- **SCR-3 [M] — Exact script claims cover the governed surface** — Every `ki:` script is claimed by exactly one resolved capability, every `self:` script names repository ownership directly, and exact exclusions cover only externally constrained bare names; `ki:deps:update` is present; retired tool families and aggregate governance aliases are absent. (standard-engineering.md)
   - _Remediation:_ automatic
-- **SCR-4 [M] — Per-skill wrapper aliases absent** — Package scripts contain no derived `ki:<skill>:<mode>` aliases and no command that invokes `.ki`, `govern.ts`, `educate.ts`, an adapter, or a vendored runtime. (standards-engineering.md)
+- **SCR-4 [M] — Per-skill wrapper aliases absent** — Package scripts contain no derived `ki:<skill>:<mode>` aliases and no command that invokes `.ki`, `govern.ts`, `educate.ts`, an adapter, or a vendored runtime. (standard-engineering.md)
   - _Remediation:_ automatic
-- **SCR-5 [M] — Lifecycle clean and prepare scripts** — `clean` removes `node_modules` (and `dist` where built), and `prepare` is `git config core.hooksPath .githooks`, followed by `&& bun install --frozen-lockfile --cwd tooling/depcruise` where that isolated install root exists; a retired Husky form warns. (standards-engineering.md)
+- **SCR-5 [M] — Lifecycle clean and prepare scripts** — `clean` removes `node_modules` (and `dist` where built), and `prepare` is `git config core.hooksPath .githooks`, followed by `&& bun install --frozen-lockfile --cwd tooling/depcruise` where that isolated install root exists; a retired Husky form warns. (standard-engineering.md)
   - _Remediation:_ automatic
-- **SCR-6 [M] — No test-entrypoint bypass** — Only the bare `test` script may use `bun test`; every other script uses `bun run test` to invoke the governed entrypoint. (standards-engineering.md)
+- **SCR-6 [M] — No test-entrypoint bypass** — Only the bare `test` script may use `bun test`; every other script uses `bun run test` to invoke the governed entrypoint. (standard-engineering.md)
   - _Remediation:_ diagnostic — Revise the package scripts to meet the governed script surface, then rerun the audit.
-- **SCR-7 [M] — Runner-neutral test and build entrypoints** — Test-capable repos expose bare `test`; compiled repos expose bare `build`; repository governance remains outside package scripts. (standards-engineering.md)
+- **SCR-7 [M] — Runner-neutral test and build entrypoints** — Test-capable repos expose bare `test`; compiled repos expose bare `build`; repository governance remains outside package scripts. (standard-engineering.md)
   - _Remediation:_ diagnostic — Revise the package scripts to meet the governed script surface, then rerun the audit.
-- **SCR-8 [J] — Repo-specific scripts retain clear ownership** — Repo-specific scripts beyond the governance surface are valid only when an owning skill publishes their exact claim or they are exactly excluded as user-owned external tooling; they do not shadow a governed entrypoint. (standards-engineering.md)
+- **SCR-8 [J] — Repo-specific scripts retain clear ownership** — Repo-specific scripts beyond the governance surface are valid only when an owning skill publishes their exact claim or they are exactly excluded as user-owned external tooling; they do not shadow a governed entrypoint. (standard-engineering.md)
   - _Evidence scope:_ Every repo-specific script outside the governed lifecycle and `ki:` surface.
   - _Review prompt:_ Do repo-specific scripts have a clear owner and avoid divergent shadows of governed entrypoints?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Assign the script to an owning capability, remove a divergent shadow, record a named Gap, or record an explicit exclusion.
-- **SCR-9 [J] — Clean-end-state cutovers** — Repository-footprint replacements cut directly to the intended contract, remove the superseded implementation, and verify the result without compatibility code that exists only for an intermediate state. (standards-engineering.md)
+- **SCR-9 [J] — Clean-end-state cutovers** — Repository-footprint replacements cut directly to the intended contract, remove the superseded implementation, and verify the result without compatibility code that exists only for an intermediate state. (standard-engineering.md)
   - _Evidence scope:_ Every current or recently completed repository-footprint replacement.
   - _Review prompt:_ Did the cutover reach and verify the correct clean end state without retaining transitional compatibility code?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Complete the clean cutover, record a named Gap with its owner, or record an explicit exclusion.
-- **SCR-10 [M] — Dependency execution is independent of node_modules layout** — Root and safely resolved workspace package scripts contain no hand-written relative path into `node_modules/`; invoke package binaries through `bunx --bun` or resolve module files from the owning module. (standards-engineering.md)
+- **SCR-10 [M] — Dependency execution is independent of node_modules layout** — Root and safely resolved workspace package scripts contain no hand-written relative path into `node_modules/`; invoke package binaries through `bunx --bun` or resolve module files from the owning module. (standard-engineering.md)
   - _Remediation:_ diagnostic — Revise the package scripts to meet the governed script surface, then rerun the audit.
-- **SCR-11 [M] — Common Git hooks are bound** — After its refusal frame, `.githooks/pre-commit` runs lint-staged with `--no-stash` then check-only Syncpack and never `ki repo audit`, conform, repair, `--fix` or `--write`, and `.githooks/commit-msg` validates proposed messages against the `ki-git` Conventional Commit policy; content still in `.husky/` warns until the hooks rollout completes. (standards-engineering.md)
+- **SCR-11 [M] — Common Git hooks are bound** — After its refusal frame, `.githooks/pre-commit` runs lint-staged with `--no-stash` then check-only Syncpack and never `ki repo audit`, conform, repair, `--fix` or `--write`, and `.githooks/commit-msg` validates proposed messages against the `ki-git` Conventional Commit policy; content still in `.husky/` warns until the hooks rollout completes. (standard-engineering.md)
   - _Remediation:_ automatic
 
 ## BUN — Bun and Node runtime boundary
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 Environment loading remains equivalent when built output runs under Node.
 
-- **BUN-1 [J] — Node environment-loading parity** — Where the repo loads `.env`, `loadConfig` (or equivalent) calls `process.loadEnvFile()` in a try/catch for Node parity. (standards-engineering.md)
+- **BUN-1 [J] — Node environment-loading parity** — Where the repo loads `.env`, `loadConfig` (or equivalent) calls `process.loadEnvFile()` in a try/catch for Node parity. (standard-engineering.md)
   - _Evidence scope:_ Every repository configuration loader that reads `.env` files.
   - _Review prompt:_ Where `.env` is loaded, does the loader call `process.loadEnvFile()` safely?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Add the guarded Node parity call, record a named Gap, or record an explicit capability exclusion.
-- **BUN-2 [M] — Authored scripts and configuration are TypeScript-first** — Tracked repository scripts and tool configuration avoid `.mjs`; Bun executes authored TypeScript directly while Node remains the compiled consumer runtime. (standards-engineering.md)
+- **BUN-2 [M] — Authored scripts and configuration are TypeScript-first** — Tracked repository scripts and tool configuration avoid `.mjs`; Bun executes authored TypeScript directly while Node remains the compiled consumer runtime. (standard-engineering.md)
   - _Remediation:_ diagnostic — Rename each tracked `.mjs` source or configuration file to `.ts`, update its callers to use Bun, and verify the consuming tool supports TypeScript.
 
 ## TSC — TypeScript
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 The TypeScript gate and universal strict compiler invariants.
 
-- **TSC-1 [M] — Type-check passes** — `tsc --noEmit` exits clean at the root, or each declared workspace has a clean `tsc --noEmit -p <workspace>/tsconfig.json`. (standards-engineering.md)
+- **TSC-1 [M] — Type-check passes** — `tsc --noEmit` exits clean at the root, or each declared workspace has a clean `tsc --noEmit -p <workspace>/tsconfig.json`. (standard-engineering.md)
   - _Remediation:_ diagnostic — Resolve the reported TypeScript errors in the affected project, then rerun the type-check.
-- **TSC-2 [M] — Universal TypeScript invariants** — `tsconfig.json` exists with strict, NodeNext, noEmit, isolatedModules, esModuleInterop, and skipLibCheck invariants. (standards-engineering.md)
+- **TSC-2 [M] — Universal TypeScript invariants** — `tsconfig.json` exists with strict, NodeNext, noEmit, isolatedModules, esModuleInterop, and skipLibCheck invariants. (standard-engineering.md)
   - _Remediation:_ automatic
-- **TSC-3 [J] — Strictness is not weakened** — No repo loosens `strict` or the `noUnused*` and `noImplicit*` flags. (standards-engineering.md)
+- **TSC-3 [J] — Strictness is not weakened** — No repo loosens `strict` or the `noUnused*` and `noImplicit*` flags. (standard-engineering.md)
   - _Evidence scope:_ The effective root and workspace TypeScript configurations.
   - _Review prompt:_ Does the effective TypeScript configuration preserve the required strictness flags?
   - _Outcomes:_ conforming; gap; exclusion
@@ -153,36 +153,36 @@ The TypeScript gate and universal strict compiler invariants.
 
 ## BIO — Biome
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 The read-only code-quality gate and shared formatter/linter configuration.
 
-- **BIO-1 [M + J] — Biome read-only gate passes** — `bunx @biomejs/biome check` exits clean. (standards-engineering.md)
+- **BIO-1 [M + J] — Biome read-only gate passes** — `bunx @biomejs/biome check` exits clean. (standard-engineering.md)
   - _Remediation:_ guarded — Review the reported Biome findings and apply the appropriate source changes, then rerun the gate.
   - _Evidence scope:_ Every reported Biome finding and its proposed source change.
   - _Review prompt:_ Would the proposed formatting, lint, or unsafe correction preserve the intended behaviour and public surface?
   - _Outcomes:_ apply; manual-fix; exclusion
   - _Conforming guidance:_ Apply only a reviewed safe correction, make the intended manual fix, or record an explicit exclusion.
-- **BIO-2 [M] — Biome shared configuration** — `biome.json` exists and matches the shared formatter, JavaScript formatter, linter, and import-organisation field set. (standards-engineering.md)
+- **BIO-2 [M] — Biome shared configuration** — `biome.json` exists and matches the shared formatter, JavaScript formatter, linter, and import-organisation field set. (standard-engineering.md)
   - _Remediation:_ automatic
 
 ## KNIP — Knip
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 The unused-code configuration and gate.
 
-- **KNIP-1 [M] — Knip configuration exists** — `knip.json` exists with per-repo entry points and ignores; a newly scaffolded configuration immediately reads both committed hooks through the Husky plugin. (standards-engineering.md)
+- **KNIP-1 [M] — Knip configuration exists** — `knip.json` exists with per-repo entry points and ignores; a newly scaffolded configuration immediately reads both committed hooks through the Husky plugin. (standard-engineering.md)
   - _Remediation:_ automatic
-- **KNIP-2 [M + J] — Knip gate passes** — `bunx knip` exits clean. (standards-engineering.md)
+- **KNIP-2 [M + J] — Knip gate passes** — `bunx knip` exits clean. (standard-engineering.md)
   - _Remediation:_ guarded — Review each reported unused symbol or dependency and make the intended source or configuration change, then rerun Knip.
   - _Evidence scope:_ Every unused-code or dependency finding reported by Knip.
   - _Review prompt:_ Is each finding genuinely unused, or does it represent a runtime, generated, or public surface that needs configuration rather than deletion?
   - _Outcomes:_ remove; configure; exclusion
   - _Conforming guidance:_ Remove genuinely unused code, protect a valid surface in configuration, or record an explicit exclusion.
-- **KNIP-3 [M] — Knip entry points cover every package export** — Every target in the `exports` map of `package.json` is reachable from at least one glob in the `entry` list of `knip.json`, mapping the built path back to its source (`./dist/X.js` and `./dist/X.d.ts` map to `src/X.ts`); `./package.json` is exempt. An unreachable published entrypoint is invisible to knip as a public surface, so the KNIP-2 repair deletes genuine public API. Audit only — which entry glob to add is a judgment call, so there is no conform action. (standards-engineering.md)
+- **KNIP-3 [M] — Knip entry points cover every package export** — Every target in the `exports` map of `package.json` is reachable from at least one glob in the `entry` list of `knip.json`, mapping the built path back to its source (`./dist/X.js` and `./dist/X.d.ts` map to `src/X.ts`); `./package.json` is exempt. An unreachable published entrypoint is invisible to knip as a public surface, so the KNIP-2 repair deletes genuine public API. Audit only — which entry glob to add is a judgment call, so there is no conform action. (standard-engineering.md)
   - _Remediation:_ diagnostic — Add the intended source entry glob to `knip.json` so the published export is protected, then rerun the audit.
-- **KNIP-4 [J] — Knip entry points have real callers** — Authored repository commands and canonical skill scripts remain in Knip scope, and declared entry points are justified by supported invocations rather than their presence in the entry list. (standards-engineering.md)
+- **KNIP-4 [J] — Knip entry points have real callers** — Authored repository commands and canonical skill scripts remain in Knip scope, and declared entry points are justified by supported invocations rather than their presence in the entry list. (standard-engineering.md)
   - _Evidence scope:_ `knip.json` entry, project and ignore patterns; package commands, published executables, test-runner configuration, documented skill operations, and native catalogue loaders.
   - _Review prompt:_ Does every declared entry or broad pattern correspond to a real supported caller, can Knip see authored scripts and canonical skill code that might be unused, and do exclusions stop at generated or linked projections?
   - _Outcomes:_ conforming; gap; exception
@@ -190,20 +190,20 @@ The unused-code configuration and gate.
 
 ## SYNC — Dependency synchronisation
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 Declared dependency ranges are canonically ordered and aligned.
 
-- **SYNC-1 [M] — Dependency synchronisation passes** — `bunx syncpack format --check` exits clean. (standards-engineering.md)
+- **SYNC-1 [M] — Dependency synchronisation passes** — `bunx syncpack format --check` exits clean. (standard-engineering.md)
   - _Remediation:_ automatic
 
 ## DEPS — Dependency freshness
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 Available dependency updates are surfaced and deliberately applied.
 
-- **DEPS-1 [M + J] — Dependencies are current** — `bun outdated` reports no available updates and the `packageManager` Bun runtime is the latest release; a newer release opens a 14-day adoption window — informational while open, failing once the next unadopted release is two weeks old — with deliberate holds recorded as `dependency_holds` in `.ki.toml` (the runtime as `bun`). (standards-engineering.md)
+- **DEPS-1 [M + J] — Dependencies are current** — `bun outdated` reports no available updates and the `packageManager` Bun runtime is the latest release; a newer release opens a 14-day adoption window — informational while open, failing once the next unadopted release is two weeks old — with deliberate holds recorded as `dependency_holds` in `.ki.toml` (the runtime as `bun`). (standard-engineering.md)
   - _Remediation:_ guarded — Review each available dependency or Bun runtime update and apply the selected versions deliberately, then rerun the audit.
   - _Evidence scope:_ Every available dependency or Bun runtime update and its release notes, compatibility impact, and lockfile change.
   - _Review prompt:_ Should each available update be adopted now without violating repository compatibility or release commitments?
@@ -212,13 +212,13 @@ Available dependency updates are surfaced and deliberately applied.
 
 ## GEN — Generated surfaces
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 Managed discovery surfaces carry consistent tool exclusions, and generated output agrees with its normaliser.
 
-- **GEN-1 [M] — Managed discovery surfaces share exclusions** — Known generated or managed discovery surfaces have matching Biome, Knip, and Markdown exclusions, and no legacy `.ki` runtime exclusion remains. (standards-engineering.md)
+- **GEN-1 [M] — Managed discovery surfaces share exclusions** — Known generated or managed discovery surfaces have matching Biome, Knip, and Markdown exclusions, and no legacy `.ki` runtime exclusion remains. (standard-engineering.md)
   - _Remediation:_ diagnostic — Align the Engineering-owned Biome and Knip exclusions deliberately, use ki-authoring for its wholly owned `.rumdl.toml`, remove legacy runtime exclusions, then rerun the audit. Knip may call managed-surface ignore entries unused configuration hints; that expected hint does not override the cross-tool GEN-1 contract.
-- **GEN-2 [J] — Generated output matches its normaliser** — Each committed generated path is classified by byte ownership: a repository-owned producer emits its normaliser's fixed point, an externally byte-authoritative copy is excluded with separate drift proof, and an unrepresentable format carries the narrowest recorded exclusion. (standards-engineering.md#5-biomejson--rumdl-config-core)
+- **GEN-2 [J] — Generated output matches its normaliser** — Each committed generated path is classified by byte ownership: a repository-owned producer emits its normaliser's fixed point, an externally byte-authoritative copy is excluded with separate drift proof, and an unrepresentable format carries the narrowest recorded exclusion. (standard-engineering.md#49-biomejson--rumdl-config-core)
   - _Evidence scope:_ Committed generated paths, their producers, and the formatter or linter configuration that includes or excludes them.
   - _Review prompt:_ Is each committed generated path classified as repository-owned, externally byte-authoritative, or unrepresentable by its normaliser; does each repository-owned producer emit its normaliser's fixed point so that regenerating and formatting yields no diff; and does each exclusion name external byte authority or genuine representational incompatibility as its reason?
   - _Outcomes:_ conforming; producer emits non-normal form; exclusion unjustified; classification decision required
@@ -226,29 +226,29 @@ Managed discovery surfaces carry consistent tool exclusions, and generated outpu
 
 ## TURBO — Workspace task graph
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 Turborepo adoption, task correspondence, and cache boundaries for Bun workspaces.
 
-- **TURBO-1 [M] — Task-graph adoption** — A repository declaring workspaces has a readable turbo.json with a non-empty task graph. (standards-engineering.md)
+- **TURBO-1 [M] — Task-graph adoption** — A repository declaring workspaces has a readable turbo.json with a non-empty task graph. (standard-engineering.md)
   - _Remediation:_ diagnostic — Adopt or repair the Turborepo task graph described by the engineering standard, then rerun the audit.
-- **TURBO-2 [M] — Task correspondence** — Every workspace declares the lifecycle scripts it has, build included where it emits output, and configured Turborepo tasks correspond in both directions. (standards-engineering.md)
+- **TURBO-2 [M] — Task correspondence** — Every workspace declares the lifecycle scripts it has, build included where it emits output, and configured Turborepo tasks correspond in both directions. (standard-engineering.md)
   - _Remediation:_ diagnostic — Adopt or repair the Turborepo task graph described by the engineering standard, then rerun the audit.
-- **TURBO-3 [M] — Cache boundaries** — Remote caching is explicit, local state is ignored, workspace packages stay out of root dependencies, and deployable builds hash their whole workspace. (standards-engineering.md)
+- **TURBO-3 [M] — Cache boundaries** — Remote caching is explicit, local state is ignored, workspace packages stay out of root dependencies, and deployable builds hash their whole workspace. (standard-engineering.md)
   - _Remediation:_ diagnostic — Adopt or repair the Turborepo task graph described by the engineering standard, then rerun the audit.
 
 ## DESIGN — Code design
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 Comprehension-first modularity and deliberately restrained abstraction.
 
-- **DESIGN-1 [J] — Comprehension-first design** — Code keeps modules cohesive, makes important policies and ordinary control flow clear, and extracts reuse only for a stable shared concept. (standards-engineering.md#code-design)
+- **DESIGN-1 [J] — Comprehension-first design** — Code keeps modules cohesive, makes important policies and ordinary control flow clear, and extracts reuse only for a stable shared concept. (standard-engineering.md#42-code-design)
   - _Evidence scope:_ Source modules, their imports and callers, public boundaries, and the corresponding contract tests.
   - _Review prompt:_ Do module boundaries match domain concerns and reasons to change; can a maintainer follow ordinary control flow and policy from clear names and interfaces; and does each shared abstraction retain the same meaning, lifecycle, and error semantics for every caller?
   - _Outcomes:_ conforming; gap; exception
   - _Conforming guidance:_ Split a mixed-responsibility module at a domain seam, simplify or name an obscuring abstraction, or retain documented local duplication where it makes the domain clearer.
-- **DESIGN-2 [M + J] — Module boundaries are stated and enforced** — Boundaries the repository relies on — layer direction, logic-free artifact shells, and the seam its tests exercise — are declared as dependency-cruiser rules, cruised over a graph proved to resolve, and covered by a test that proves the checker can still fail. (standards-engineering.md#repo-shapes--flat-vs-monorepo-core)
+- **DESIGN-2 [M + J] — Module boundaries are stated and enforced** — Boundaries the repository relies on — layer direction, logic-free artifact shells, and the seam its tests exercise — are declared as dependency-cruiser rules, cruised over a graph proved to resolve, and covered by a test that proves the checker can still fail. (standard-engineering.md#44-repo-shapes--flat-vs-monorepo-core)
   - _Remediation:_ diagnostic — Restore the contained ruleset and isolated checker, fix graph resolution, or wire a native deliberate-crossing proof through the bare test entrypoint. Unsupported runner or workspace execution needs a bounded proof adapter; choosing or rewriting architecture is not an automatic repair.
   - _Evidence scope:_ Declared module boundaries, selected `.dependency-cruiser.ts` or `.dependency-cruiser.mjs` rules and the roots they cruise, its resolution and transpiler configuration, the script that runs them, and the test that proves the checker still reports violations.
   - _Review prompt:_ Does every boundary the design depends on have a forbidden rule that a violating import would actually trip, does the cruise cover each root those rules name and resolve the imports they match on, and does a test prove the checker fails on a deliberate violation rather than reporting a clean graph it never read?
@@ -257,11 +257,11 @@ Comprehension-first modularity and deliberately restrained abstraction.
 
 ## REVIEW — Change-aware consistency review
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 Advisory evidence for a focused review of accumulated code changes.
 
-- **REVIEW-1 [M + J] — Change-aware consistency review** — Git trailers may identify the newest usable review boundary, but a reviewer decides whether the change since that boundary warrants a focused consistency review. (standards-engineering.md#change-aware-consistency-review)
+- **REVIEW-1 [M + J] — Change-aware consistency review** — Git trailers may identify the newest usable review boundary, but a reviewer decides whether the change since that boundary warrants a focused consistency review. (standard-engineering.md#43-change-aware-consistency-review)
   - _Remediation:_ diagnostic — Treat unavailable trailer evidence as unavailable, not as a freshness signal; inspect the explicit Git range before deciding whether to record a new review.
   - _Evidence scope:_ The newest usable KI-Consistency-Review trailer block, its exclusive-base-to-result Git range, the stated scope, and the affected source, public surfaces, and contract tests.
   - _Review prompt:_ Does the accumulated change since the explicit boundary warrant a focused review; if it does, do module structure, naming, ownership, duplication, and public-surface treatment remain coherent in the examined range and scope?
@@ -270,26 +270,26 @@ Advisory evidence for a focused review of accumulated code changes.
 
 ## TEST — Tests
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 Runner-neutral tests and the conditional Vitest coverage profile.
 
-- **TEST-1 [M] — Test capability and Vitest profile** — Test-capable repos expose bare `test`; a recognised root Vitest config requires the canonical test, coverage, and watch scripts, while no capability is not applicable. (standards-engineering.md)
+- **TEST-1 [M] — Test capability and Vitest profile** — Test-capable repos expose bare `test`; a recognised root Vitest config requires the canonical test, coverage, and watch scripts, while no capability is not applicable. (standard-engineering.md)
   - _Remediation:_ diagnostic — Align the test runner or Vitest coverage configuration with the declared test capability, then rerun the audit.
-- **TEST-2 [M] — Vitest coverage thresholds** — Under the Vitest profile, coverage thresholds are exactly 100% for lines, functions, branches, and statements. (standards-engineering.md)
+- **TEST-2 [M] — Vitest coverage thresholds** — Under the Vitest profile, coverage thresholds are exactly 100% for lines, functions, branches, and statements. (standard-engineering.md)
   - _Remediation:_ diagnostic — Align the test runner or Vitest coverage configuration with the declared test capability, then rerun the audit.
-- **TEST-3 [M] — Vitest test-source exclusion** — Under the Vitest profile, coverage excludes `src/**/*.test.ts`. (standards-engineering.md)
+- **TEST-3 [M] — Vitest test-source exclusion** — Under the Vitest profile, coverage excludes `src/**/*.test.ts`. (standard-engineering.md)
   - _Remediation:_ diagnostic — Align the test runner or Vitest coverage configuration with the declared test capability, then rerun the audit.
-- **TEST-4 [M] — Vitest report output and workspace scoping** — Under the Vitest profile, coverage writes to reports/coverage and monorepos keep reports and test globs inside the owning workspace. (standards-engineering.md)
+- **TEST-4 [M] — Vitest report output and workspace scoping** — Under the Vitest profile, coverage writes to reports/coverage and monorepos keep reports and test globs inside the owning workspace. (standard-engineering.md)
   - _Remediation:_ diagnostic — Align the test runner or Vitest coverage configuration with the declared test capability, then rerun the audit.
-- **TEST-5 [M] — Vitest coverage command passes** — Under the Vitest profile, `bun run test:coverage` exits clean when the companion script exists. (standards-engineering.md)
+- **TEST-5 [M] — Vitest coverage command passes** — Under the Vitest profile, `bun run test:coverage` exits clean when the companion script exists. (standard-engineering.md)
   - _Remediation:_ diagnostic — Align the test runner or Vitest coverage configuration with the declared test capability, then rerun the audit.
-- **TEST-6 [J] — Tests are colocated and genuinely complete** — Under the Vitest profile, tests are colocated with the source they cover and genuinely reach the 100% bar. (standards-engineering.md)
+- **TEST-6 [J] — Tests are colocated and genuinely complete** — Under the Vitest profile, tests are colocated with the source they cover and genuinely reach the 100% bar. (standard-engineering.md)
   - _Evidence scope:_ The Vitest test files, covered source files, and coverage evidence.
   - _Review prompt:_ Are tests colocated with their source and does their coverage evidence substantiate the 100% claim?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Colocate or strengthen the tests, record a named Gap, or record an explicit capability exclusion.
-- **TEST-7 [J] — Coverage follows observable contracts** — Coverage evidence starts from supported observable behaviour: reachable paths are proven through their public boundary, unreachable paths are removed or refactored away, any remaining annotation names its reason at the line, and fault injection stays at a documented interface boundary. (standards-engineering.md#testing-capability-the-repo-ships-tests)
+- **TEST-7 [J] — Coverage follows observable contracts** — Coverage evidence starts from supported observable behaviour: reachable paths are proven through their public boundary, unreachable paths are removed or refactored away, any remaining annotation names its reason at the line, and fault injection stays at a documented interface boundary. (standard-engineering.md#410-testing-capability-the-repo-ships-tests)
   - _Evidence scope:_ The supported public contract, covered implementation paths, tests, and any documented interface-level fault injection.
   - _Review prompt:_ Does each reachable path have evidence through the nearest supported public boundary, with unsupported paths removed or refactored away rather than preserved for coverage; does every `/* v8 ignore */` name a reason no fixture could defeat rather than standing in for a test nobody wrote; and is any fault injection a documented interface failure that cannot be exercised deterministically through that boundary?
   - _Outcomes:_ conforming; gap; exception
@@ -297,35 +297,35 @@ Runner-neutral tests and the conditional Vitest coverage profile.
 
 ## BUILD — Compiled builds
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 The conditional compiled-TypeScript profile and CLI executable bit.
 
-- **BUILD-1 [M] — Compiled-build shape** — `build` is `tsc -p tsconfig.build.json` (optionally with CLI chmod), `files` includes the scoped `dist`, and repos without compiled build are not applicable. (standards-engineering.md)
+- **BUILD-1 [M] — Compiled-build shape** — `build` is `tsc -p tsconfig.build.json` (optionally with CLI chmod), `files` includes the scoped `dist`, and repos without compiled build are not applicable. (standard-engineering.md)
   - _Remediation:_ diagnostic — Align the compiled-build configuration and package surface with the declared build capability, then rerun the audit.
-- **BUILD-2 [M] — Build TypeScript configuration** — `tsconfig.build.json` extends the base with the required emit, declaration, output, import, index-access, and test-exclusion settings. (standards-engineering.md)
+- **BUILD-2 [M] — Build TypeScript configuration** — `tsconfig.build.json` extends the base with the required emit, declaration, output, import, index-access, and test-exclusion settings. (standard-engineering.md)
   - _Remediation:_ diagnostic — Align the compiled-build configuration and package surface with the declared build capability, then rerun the audit.
-- **BUILD-3 [M] — Compiled shared TypeScript base** — Compiled repos set the richer shared TypeScript base: es2024 target, verbatimModuleSyntax, and noUnusedLocals. (standards-engineering.md)
+- **BUILD-3 [M] — Compiled shared TypeScript base** — Compiled repos set the richer shared TypeScript base: es2024 target, verbatimModuleSyntax, and noUnusedLocals. (standard-engineering.md)
   - _Remediation:_ diagnostic — Align the compiled-build configuration and package surface with the declared build capability, then rerun the audit.
-- **BUILD-4 [M] — CLI chmod iff rule** — `build` chmods `dist/cli/cli.js` iff `src/cli/` exists and chmods no other path. (standards-engineering.md)
+- **BUILD-4 [M] — CLI chmod iff rule** — `build` chmods `dist/cli/cli.js` iff `src/cli/` exists and chmods no other path. (standard-engineering.md)
   - _Remediation:_ diagnostic — Align the compiled-build configuration and package surface with the declared build capability, then rerun the audit.
 
 ## ENV — Environment configuration
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 Environment templates, development-mode confinement, and portable paths.
 
-- **ENV-1 [M] — Environment example template** — Environment-capable repos commit an `.env*.example` template; no environment capability is not applicable. (standards-engineering.md)
+- **ENV-1 [M] — Environment example template** — Environment-capable repos commit an `.env*.example` template; no environment capability is not applicable. (standard-engineering.md)
   - _Remediation:_ diagnostic — Add an appropriately redacted environment example template for the declared capability, then rerun the audit.
-- **ENV-2 [M] — Development NODE_ENV confinement** — `NODE_ENV=development` appears only in dev or inspect scripts, never start, build, or test. (standards-engineering.md)
+- **ENV-2 [M] — Development NODE_ENV confinement** — `NODE_ENV=development` appears only in dev or inspect scripts, never start, build, or test. (standard-engineering.md)
   - _Remediation:_ diagnostic — Confine `NODE_ENV=development` to development or inspection scripts, then rerun the audit.
-- **ENV-3 [J] — Real environment files are protected** — Real non-example `.env.*` files are protected by the root `.gitignore` and the loader has the Node parity call. (standards-engineering.md)
+- **ENV-3 [J] — Real environment files are protected** — Real non-example `.env.*` files are protected by the root `.gitignore` and the loader has the Node parity call. (standard-engineering.md)
   - _Evidence scope:_ Real environment files and every loader that reads them.
   - _Review prompt:_ Are real environment files ignored and is the loader Node-parity-safe?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Protect the files and loader, record a named Gap, or record an explicit capability exclusion.
-- **ENV-4 [J] — XDG paths are honoured** — Config, data, cache, and state paths honour the matching `$XDG_*` variable before falling back to the specification default. (standards-engineering.md)
+- **ENV-4 [J] — XDG paths are honoured** — Config, data, cache, and state paths honour the matching `$XDG_*` variable before falling back to the specification default. (standard-engineering.md)
   - _Evidence scope:_ All repository-owned config, data, cache, and state path resolution.
   - _Review prompt:_ Do config, data, cache, and state paths honour the appropriate XDG environment variable?
   - _Outcomes:_ conforming; gap; exclusion
@@ -333,13 +333,13 @@ Environment templates, development-mode confinement, and portable paths.
 
 ## TOML — Engineering configuration
 
-→ [standard](standards-engineering.md)
+→ [standard](standard-engineering.md)
 
 The repository selector and validate-down configuration boundary.
 
-- **TOML-1 [M] — Engineering selector table** — A `[skills.ki-engineering]` table is present. (standards-engineering.md)
+- **TOML-1 [M] — Engineering selector table** — A `[skills.ki-engineering]` table is present. (standard-engineering.md)
   - _Remediation:_ automatic
-- **TOML-2 [M] — Engineering configuration validates down** — Every key under `[skills.ki-engineering]` is known to the checker; an unknown key is drift. (standards-engineering.md)
+- **TOML-2 [M] — Engineering configuration validates down** — Every key under `[skills.ki-engineering]` is known to the checker; an unknown key is drift. (standard-engineering.md)
   - _Remediation:_ diagnostic — Remove or correct the unknown engineering configuration key, then rerun the audit.
-- **TOML-3 [M] — Engineering check records validate** — Every optional `[skills.ki-engineering.checks]` entry names a known mechanical rubric ID and has a boolean value; entries remain diagnostic records, not audit waivers. (standards-engineering.md)
+- **TOML-3 [M] — Engineering check records validate** — Every optional `[skills.ki-engineering.checks]` entry names a known mechanical rubric ID and has a boolean value; entries remain diagnostic records, not audit waivers. (standard-engineering.md)
   - _Remediation:_ diagnostic — Remove or correct the check-record key or value; retain any exception rationale in the repository change record, then rerun the audit.

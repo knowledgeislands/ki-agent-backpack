@@ -18,7 +18,7 @@ const mechanical = (
     guidance?: string
   } = {}
 ): RubricItem<PackageRubricContext> => {
-  const base = { code, title, description, sources: ['standards-engineering.md'] as const }
+  const base = { code, title, description, sources: ['standard-engineering.md'] as const }
   const shared = {
     level,
     ...(options.overrideLevels ? { overrideLevels: options.overrideLevels } : {}),
@@ -56,7 +56,7 @@ export const PACKAGE: RubricFamily<EngineeringRubricContext, PackageRubricContex
   code: 'PKG',
   title: 'Package metadata',
   description: 'The shared package metadata and toolchain dependency surface.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.package,
   items: [
     mechanical('PKG-1', 'Module package type', '`"type": "module"`.', 'WARN', (context) => context.pkg1, {

@@ -5,7 +5,7 @@ export const ENVIRONMENT: RubricFamily<EngineeringRubricContext, EnvironmentRubr
   code: 'ENV',
   title: 'Environment configuration',
   description: 'Environment templates, development-mode confinement, and portable paths.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.environment,
   items: [
     {
@@ -13,7 +13,7 @@ export const ENVIRONMENT: RubricFamily<EngineeringRubricContext, EnvironmentRubr
       title: 'Environment example template',
       description:
         'Environment-capable repos commit an `.env*.example` template; no environment capability is not applicable.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         level: 'WARN',
         remediation: {
@@ -28,7 +28,7 @@ export const ENVIRONMENT: RubricFamily<EngineeringRubricContext, EnvironmentRubr
       code: 'ENV-2',
       title: 'Development NODE_ENV confinement',
       description: '`NODE_ENV=development` appears only in dev or inspect scripts, never start, build, or test.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         level: 'FAIL',
         remediation: {
@@ -43,7 +43,7 @@ export const ENVIRONMENT: RubricFamily<EngineeringRubricContext, EnvironmentRubr
       title: 'Real environment files are protected',
       description:
         'Real non-example `.env.*` files are protected by the root `.gitignore` and the loader has the Node parity call.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       judgment: {
         scope: 'Real environment files and every loader that reads them.',
         prompt: 'Are real environment files ignored and is the loader Node-parity-safe?',
@@ -56,7 +56,7 @@ export const ENVIRONMENT: RubricFamily<EngineeringRubricContext, EnvironmentRubr
       title: 'XDG paths are honoured',
       description:
         'Config, data, cache, and state paths honour the matching `$XDG_*` variable before falling back to the specification default.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       judgment: {
         scope: 'All repository-owned config, data, cache, and state path resolution.',
         prompt: 'Do config, data, cache, and state paths honour the appropriate XDG environment variable?',

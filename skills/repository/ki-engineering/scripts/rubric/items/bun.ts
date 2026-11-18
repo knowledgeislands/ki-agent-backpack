@@ -5,7 +5,7 @@ export const BUN: RubricFamily<EngineeringRubricContext, BunRubricContext> = {
   code: 'BUN',
   title: 'Bun and Node runtime boundary',
   description: 'Environment loading remains equivalent when built output runs under Node.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.bun,
   items: [
     {
@@ -13,7 +13,7 @@ export const BUN: RubricFamily<EngineeringRubricContext, BunRubricContext> = {
       title: 'Node environment-loading parity',
       description:
         'Where the repo loads `.env`, `loadConfig` (or equivalent) calls `process.loadEnvFile()` in a try/catch for Node parity.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       judgment: {
         scope: 'Every repository configuration loader that reads `.env` files.',
         prompt: 'Where `.env` is loaded, does the loader call `process.loadEnvFile()` safely?',
@@ -26,7 +26,7 @@ export const BUN: RubricFamily<EngineeringRubricContext, BunRubricContext> = {
       title: 'Authored scripts and configuration are TypeScript-first',
       description:
         'Tracked repository scripts and tool configuration avoid `.mjs`; Bun executes authored TypeScript directly while Node remains the compiled consumer runtime.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         level: 'FAIL',
         audit: {

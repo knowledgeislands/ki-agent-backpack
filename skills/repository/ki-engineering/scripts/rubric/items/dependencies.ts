@@ -9,7 +9,7 @@ export const DEPENDENCIES: RubricFamily<EngineeringRubricContext, DependenciesRu
   code: 'DEPS',
   title: 'Dependency freshness',
   description: 'Available dependency updates are surfaced and deliberately applied.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.dependencies,
   items: [
     {
@@ -17,7 +17,7 @@ export const DEPENDENCIES: RubricFamily<EngineeringRubricContext, DependenciesRu
       title: 'Dependencies are current',
       description:
         '`bun outdated` reports no available updates and the `packageManager` Bun runtime is the latest release; a newer release opens a 14-day adoption window — informational while open, failing once the next unadopted release is two weeks old — with deliberate holds recorded as `dependency_holds` in `.ki.toml` (the runtime as `bun`).',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         level: 'WARN',
         overrideLevels: ['FAIL'],

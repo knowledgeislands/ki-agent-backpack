@@ -5,7 +5,7 @@ export const TYPESCRIPT: RubricFamily<EngineeringRubricContext, TypescriptRubric
   code: 'TSC',
   title: 'TypeScript',
   description: 'The TypeScript gate and universal strict compiler invariants.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.typescript,
   items: [
     {
@@ -13,7 +13,7 @@ export const TYPESCRIPT: RubricFamily<EngineeringRubricContext, TypescriptRubric
       title: 'Type-check passes',
       description:
         '`tsc --noEmit` exits clean at the root, or each declared workspace has a clean `tsc --noEmit -p <workspace>/tsconfig.json`.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         // Dearer than the gates above it in a workspace repo, where it runs once per project.
         level: 'FAIL',
@@ -30,7 +30,7 @@ export const TYPESCRIPT: RubricFamily<EngineeringRubricContext, TypescriptRubric
       title: 'Universal TypeScript invariants',
       description:
         '`tsconfig.json` exists with strict, NodeNext, noEmit, isolatedModules, esModuleInterop, and skipLibCheck invariants.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         level: 'FAIL',
         remediation: { class: 'automatic' },
@@ -42,7 +42,7 @@ export const TYPESCRIPT: RubricFamily<EngineeringRubricContext, TypescriptRubric
       code: 'TSC-3',
       title: 'Strictness is not weakened',
       description: 'No repo loosens `strict` or the `noUnused*` and `noImplicit*` flags.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       judgment: {
         scope: 'The effective root and workspace TypeScript configurations.',
         prompt: 'Does the effective TypeScript configuration preserve the required strictness flags?',

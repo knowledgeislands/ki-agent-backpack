@@ -5,14 +5,14 @@ export const SYNC: RubricFamily<EngineeringRubricContext, SyncRubricContext> = {
   code: 'SYNC',
   title: 'Dependency synchronisation',
   description: 'Declared dependency ranges are canonically ordered and aligned.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.sync,
   items: [
     {
       code: 'SYNC-1',
       title: 'Dependency synchronisation passes',
       description: '`bunx syncpack format --check` exits clean.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         level: 'FAIL',
         cost: 2,

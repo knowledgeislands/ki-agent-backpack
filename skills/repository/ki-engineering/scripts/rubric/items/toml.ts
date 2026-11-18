@@ -5,14 +5,14 @@ export const TOML: RubricFamily<EngineeringRubricContext, TomlRubricContext> = {
   code: 'TOML',
   title: 'Engineering configuration',
   description: 'The repository selector and validate-down configuration boundary.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.toml,
   items: [
     {
       code: 'TOML-1',
       title: 'Engineering selector table',
       description: 'A `[skills.ki-engineering]` table is present.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         level: 'WARN',
         remediation: { class: 'automatic' },
@@ -24,7 +24,7 @@ export const TOML: RubricFamily<EngineeringRubricContext, TomlRubricContext> = {
       code: 'TOML-2',
       title: 'Engineering configuration validates down',
       description: 'Every key under `[skills.ki-engineering]` is known to the checker; an unknown key is drift.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         level: 'WARN',
         remediation: {
@@ -39,7 +39,7 @@ export const TOML: RubricFamily<EngineeringRubricContext, TomlRubricContext> = {
       title: 'Engineering check records validate',
       description:
         'Every optional `[skills.ki-engineering.checks]` entry names a known mechanical rubric ID and has a boolean value; entries remain diagnostic records, not audit waivers.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         level: 'WARN',
         remediation: {

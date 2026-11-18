@@ -15,7 +15,7 @@ const item = (
   code,
   title,
   description,
-  sources: ['standards-engineering.md'],
+  sources: ['standard-engineering.md'],
   mechanical: {
     level: 'WARN',
     remediation: {
@@ -30,7 +30,7 @@ export const TURBO: RubricFamily<EngineeringRubricContext, TurboRubricContext> =
   code: 'TURBO',
   title: 'Workspace task graph',
   description: 'Turborepo adoption, task correspondence, and cache boundaries for Bun workspaces.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.turbo,
   items: [
     item(

@@ -5,7 +5,7 @@ export const REVIEW: RubricFamily<EngineeringRubricContext, ReviewRubricContext>
   code: 'REVIEW',
   title: 'Change-aware consistency review',
   description: 'Advisory evidence for a focused review of accumulated code changes.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.review,
   items: [
     {
@@ -13,7 +13,7 @@ export const REVIEW: RubricFamily<EngineeringRubricContext, ReviewRubricContext>
       title: 'Change-aware consistency review',
       description:
         'Git trailers may identify the newest usable review boundary, but a reviewer decides whether the change since that boundary warrants a focused consistency review.',
-      sources: ['standards-engineering.md#change-aware-consistency-review'],
+      sources: ['standard-engineering.md#43-change-aware-consistency-review'],
       mechanical: {
         level: 'WARN',
         remediation: {

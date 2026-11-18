@@ -107,7 +107,7 @@ test('the structured catalogue preserves the engineering criteria', async () => 
     .find((family) => family.code === 'TEST')
     ?.items.find((item) => item.code === 'TEST-7')
   expect(observableCoverage?.mechanical).toBeUndefined()
-  expect(observableCoverage?.sources).toEqual(['standards-engineering.md#testing-capability-the-repo-ships-tests'])
+  expect(observableCoverage?.sources).toEqual(['standard-engineering.md#410-testing-capability-the-repo-ships-tests'])
   expect(observableCoverage?.judgment?.prompt).toContain('nearest supported public boundary')
 
   const changeAwareReview = catalogue.families

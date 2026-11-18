@@ -17,7 +17,7 @@ const mechanical = (
   code,
   title,
   description,
-  sources: ['standards-engineering.md'],
+  sources: ['standard-engineering.md'],
   mechanical: {
     level,
     ...(overrideLevels ? { overrideLevels } : {}),
@@ -35,7 +35,7 @@ export const TEST: RubricFamily<EngineeringRubricContext, TestRubricContext> = {
   code: 'TEST',
   title: 'Tests',
   description: 'Runner-neutral tests and the conditional Vitest coverage profile.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.test,
   items: [
     mechanical(
@@ -82,7 +82,7 @@ export const TEST: RubricFamily<EngineeringRubricContext, TestRubricContext> = {
       title: 'Tests are colocated and genuinely complete',
       description:
         'Under the Vitest profile, tests are colocated with the source they cover and genuinely reach the 100% bar.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       judgment: {
         scope: 'The Vitest test files, covered source files, and coverage evidence.',
         prompt: 'Are tests colocated with their source and does their coverage evidence substantiate the 100% claim?',
@@ -95,7 +95,7 @@ export const TEST: RubricFamily<EngineeringRubricContext, TestRubricContext> = {
       title: 'Coverage follows observable contracts',
       description:
         'Coverage evidence starts from supported observable behaviour: reachable paths are proven through their public boundary, unreachable paths are removed or refactored away, any remaining annotation names its reason at the line, and fault injection stays at a documented interface boundary.',
-      sources: ['standards-engineering.md#testing-capability-the-repo-ships-tests'],
+      sources: ['standard-engineering.md#410-testing-capability-the-repo-ships-tests'],
       judgment: {
         scope:
           'The supported public contract, covered implementation paths, tests, and any documented interface-level fault injection.',

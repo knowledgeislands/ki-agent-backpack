@@ -5,14 +5,14 @@ export const BIOME: RubricFamily<EngineeringRubricContext, BiomeRubricContext> =
   code: 'BIO',
   title: 'Biome',
   description: 'The read-only code-quality gate and shared formatter/linter configuration.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.biome,
   items: [
     {
       code: 'BIO-1',
       title: 'Biome read-only gate passes',
       description: '`bunx @biomejs/biome check` exits clean.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         level: 'FAIL',
         cost: 4,
@@ -36,7 +36,7 @@ export const BIOME: RubricFamily<EngineeringRubricContext, BiomeRubricContext> =
       title: 'Biome shared configuration',
       description:
         '`biome.json` exists and matches the shared formatter, JavaScript formatter, linter, and import-organisation field set.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         level: 'FAIL',
         overrideLevels: ['WARN'],

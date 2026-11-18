@@ -5,7 +5,7 @@ export const DESIGN: RubricFamily<EngineeringRubricContext, DesignRubricContext>
   code: 'DESIGN',
   title: 'Code design',
   description: 'Comprehension-first modularity and deliberately restrained abstraction.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.design,
   items: [
     {
@@ -13,7 +13,7 @@ export const DESIGN: RubricFamily<EngineeringRubricContext, DesignRubricContext>
       title: 'Comprehension-first design',
       description:
         'Code keeps modules cohesive, makes important policies and ordinary control flow clear, and extracts reuse only for a stable shared concept.',
-      sources: ['standards-engineering.md#code-design'],
+      sources: ['standard-engineering.md#42-code-design'],
       judgment: {
         scope: 'Source modules, their imports and callers, public boundaries, and the corresponding contract tests.',
         prompt:
@@ -28,7 +28,7 @@ export const DESIGN: RubricFamily<EngineeringRubricContext, DesignRubricContext>
       title: 'Module boundaries are stated and enforced',
       description:
         'Boundaries the repository relies on — layer direction, logic-free artifact shells, and the seam its tests exercise — are declared as dependency-cruiser rules, cruised over a graph proved to resolve, and covered by a test that proves the checker can still fail.',
-      sources: ['standards-engineering.md#repo-shapes--flat-vs-monorepo-core'],
+      sources: ['standard-engineering.md#44-repo-shapes--flat-vs-monorepo-core'],
       mechanical: {
         level: 'FAIL',
         cost: 30,

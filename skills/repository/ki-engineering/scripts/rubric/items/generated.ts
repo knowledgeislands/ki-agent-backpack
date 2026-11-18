@@ -6,7 +6,7 @@ export const GENERATED: RubricFamily<EngineeringRubricContext, GeneratedRubricCo
   title: 'Generated surfaces',
   description:
     'Managed discovery surfaces carry consistent tool exclusions, and generated output agrees with its normaliser.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.generated,
   items: [
     {
@@ -14,7 +14,7 @@ export const GENERATED: RubricFamily<EngineeringRubricContext, GeneratedRubricCo
       title: 'Managed discovery surfaces share exclusions',
       description:
         'Known generated or managed discovery surfaces have matching Biome, Knip, and Markdown exclusions, and no legacy `.ki` runtime exclusion remains.',
-      sources: ['standards-engineering.md'],
+      sources: ['standard-engineering.md'],
       mechanical: {
         level: 'FAIL',
         remediation: {
@@ -30,7 +30,7 @@ export const GENERATED: RubricFamily<EngineeringRubricContext, GeneratedRubricCo
       title: 'Generated output matches its normaliser',
       description:
         "Each committed generated path is classified by byte ownership: a repository-owned producer emits its normaliser's fixed point, an externally byte-authoritative copy is excluded with separate drift proof, and an unrepresentable format carries the narrowest recorded exclusion.",
-      sources: ['standards-engineering.md#5-biomejson--rumdl-config-core'],
+      sources: ['standard-engineering.md#49-biomejson--rumdl-config-core'],
       judgment: {
         scope:
           'Committed generated paths, their producers, and the formatter or linter configuration that includes or excludes them.',

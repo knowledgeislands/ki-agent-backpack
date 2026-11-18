@@ -8,7 +8,7 @@ const item = (
   evidence: (context: MiseRubricContext) => MiseRubricContext['mise1'],
   conform = false
 ): RubricItem<MiseRubricContext> => {
-  const base = { code, title, description, sources: ['standards-engineering.md'] as const }
+  const base = { code, title, description, sources: ['standard-engineering.md'] as const }
   const audit = {
     phase: 'INSPECT' as const,
     run: (context: MiseRubricContext) => auditEvidence(evidence(context), 'WARN')
@@ -40,7 +40,7 @@ export const MISE: RubricFamily<EngineeringRubricContext, MiseRubricContext> = {
   code: 'MISE',
   title: 'Toolchain pins',
   description: 'The single root Node and Bun toolchain declaration.',
-  standard: 'standards-engineering.md',
+  standard: 'standard-engineering.md',
   selectContext: (context) => context.mise,
   items: [
     item(
