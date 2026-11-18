@@ -31,7 +31,7 @@ Every repository with a commit gate mechanically binds this skill's message voca
 
 - `ki-repo` owns repository configuration and GitHub settings, including branch-protection choices.
 - `ki-repo` owns the committed hooks' existence, binding and frame; `ki-engineering` owns the Commitlint content for package-backed repositories; `ki-git` owns the message policy that binding enforces.
-- The harness owns the runtime `hooks/` payload layout; `ki-git` owns the stale-lock guard's portable safety semantics.
+- The backpack owns the runtime `hooks/` payload layout; `ki-git` owns the stale-lock guard's portable safety semantics.
 - `ki-repo-dotfiles-chezmoi` owns runtime-specific Claude Code settings registration after it has selected a compatible payload.
 
 ## Operating modes
@@ -50,7 +50,7 @@ Do not add a compatibility checker or automate commit-message rewriting.
 
 ### Mode EDUCATE
 
-Explain the portable Git boundary and route repository configuration to `ki-repo`, hook payload layout to the harness, and runtime binding to `ki-repo-dotfiles-chezmoi`.
+Explain the portable Git boundary and route repository configuration to `ki-repo`, hook payload layout to the backpack, and runtime binding to `ki-repo-dotfiles-chezmoi`.
 
 EDUCATE creates no repository or user-state artifact.
 
@@ -60,7 +60,7 @@ Explain the policy boundary, the available guidance modes, and the off-ramps abo
 
 ### Mode REFRESH
 
-**Precondition:** REFRESH writes only to this skill's canonical files in `ki-agent-backpack`. Invoked from an installed copy, stop and name the harness as the place to run it.
+**Precondition:** REFRESH writes only to this skill's canonical files in `ki-agent-backpack`. Invoked from an installed copy, stop and name the backpack as the place to run it.
 
 Read [the source list](references/sources.md), re-check the Git and Conventional Commits sources and current Knowledge Islands practice, then propose any change to this skill and its standard.
 

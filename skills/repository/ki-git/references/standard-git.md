@@ -53,7 +53,7 @@ Git and commit practice in every Knowledge Islands repository.
 
 - Each repository's GitHub configuration and branch-protection choice, and the committed hooks' existence, binding and frame: `ki-repo`.
 - The package-backed Commitlint dependencies, hook content and deterministic audit: `ki-engineering`.
-- Hook payload sources under `hooks/`: the harness; runtime-specific Claude Code settings registration: `ki-repo-dotfiles-chezmoi`.
+- Hook payload sources under `hooks/`: the backpack; runtime-specific Claude Code settings registration: `ki-repo-dotfiles-chezmoi`.
 - The durable packet for one high-risk task-specific handoff: `ki-delegation`.
 
 [Back to contents](#contents)
@@ -84,7 +84,7 @@ It governs commit messages, branch-selection guidance, safe working hygiene, the
 
 `ki-repo` owns each repository's GitHub configuration and branch-protection choice.
 
-The harness owns hook payload sources under `hooks/`, and `ki-repo-dotfiles-chezmoi` owns runtime-specific Claude Code settings registration.
+The backpack owns hook payload sources under `hooks/`, and `ki-repo-dotfiles-chezmoi` owns runtime-specific Claude Code settings registration.
 
 Neither owner transfers Git policy or hook-install authority to `ki-git`.
 
@@ -270,7 +270,7 @@ The adjacent run test proves this semantic contract.
 
 ### 4.8 Runtime binding and enforcement
 
-The harness publishes hook payload sources; `ki-repo-dotfiles-chezmoi` may register a selected compatible payload in Claude Code settings.
+The backpack publishes hook payload sources; `ki-repo-dotfiles-chezmoi` may register a selected compatible payload in Claude Code settings.
 
 `ki-git` neither installs hooks nor writes runtime settings.
 

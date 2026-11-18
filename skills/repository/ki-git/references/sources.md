@@ -74,6 +74,8 @@ Kris's decisions behind the rules, each quoted in the standard beside the rule i
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: the backpack owns and publishes the hook payload sources, and REFRESH names the backpack. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Git standard](standard-git.md), formerly `standards-git.md`, was renamed and reshaped to the standard format with its rules unchanged, the old Scope and ownership becoming the first rules section, and this file to the sources format, with the decisions the standard quotes gathered in the Decisions table. SKILL.md and the rubric follow the new name and anchors. No rule changed and no outside source was refreshed.
 
 A 2026-11-06 review under `ki.reg.guilds` applies LINT-BEFORE-PUSH, Kris's words of 6 November 2026, "It's really important that we make sure that things do pass the linting before we push them", proposed by `ki.prj.agora`: the new [checks before committing](standard-git.md#451-checks-before-committing) rule runs the repository's own checks on each file before committing, treats a refused commit as a failure to report and confirms each committed path clean before pushing. `ki-coordination` and `ki-delegation` point to it rather than restating it. This is an in-house policy review; external sources were not re-fetched.
