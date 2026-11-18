@@ -1,30 +1,91 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T03:55:30Z
+ki-status: in force
+---
+
 # Recurring-work template standard
 
 ## Contents
 
-- [Scope](#scope)
-- [Placement and identity](#placement-and-identity)
-- [Stock repository review](#stock-repository-review)
-- [Frontmatter](#frontmatter)
-- [KB recurring-work profile](#kb-recurring-work-profile)
-- [Optional execution environments](#optional-execution-environments)
-- [Due-run procedure](#due-run-procedure)
-- [KB adapter](#kb-adapter)
-- [Retention](#retention)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 What a template is](#41-what-a-template-is)
+  - [4.2 Placement and identity](#42-placement-and-identity)
+  - [4.3 Stock repository review](#43-stock-repository-review)
+  - [4.4 Frontmatter](#44-frontmatter)
+  - [4.5 KB recurring-work profile](#45-kb-recurring-work-profile)
+  - [4.6 Optional execution environments](#46-optional-execution-environments)
+  - [4.7 Due-run procedure](#47-due-run-procedure)
+  - [4.8 KB adapter](#48-kb-adapter)
+  - [4.9 Retention](#49-retention)
 
-## Scope
+## 1. Introduction
+
+What a recurring-work template is and how one is kept: its placement and identity, the stock repository review, its fields in a Project template or a Knowledge Base Activity, and the due-run procedure that spawns, reconciles and retains its runs. The decisions and sources behind it are in the [sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+Durable recurring-work templates and the template side of their runs.
+
+### 2.1 In scope
+
+- What a template is, where it lives and how it is identified.
+- The stock repository review obligation.
+- A Project template's front matter and body, and the KB recurring-work profile.
+- Optional execution environments.
+- The due-run procedure, by calendar and by change volume, and its schedule evaluator.
+- The KB adapter and retention.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- The shared forward-work lifecycle of a run: `ki-work-roadmap`.
+- Spawning and closing a run: `ki-work next` and `ki-work accept`.
+- An Activity's identity, indexing, realisation and location: `ki-repo-kb-activities`.
+- KB record placement under `Streams/Roadmap/`: `ki-repo-kb-streams`.
+- The repository review's checklist, invocation and evidence: `ki-repo` REVIEW.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Template** | A durable recurring-work definition, the source from which `ki-work next` may spawn one due run; not a roadmap item. **Standard:** this one, [4.1](#41-what-a-template-is) |
+| **Due run** | The ordinary roadmap record spawned from a template, carrying the template identifier and its scheduled date. **Standard:** this one, [4.7](#47-due-run-procedure) |
+| **Active run** | The one unfinished run a template's `active-run` links, which prevents another spawn. **Standard:** this one, [4.7](#47-due-run-procedure) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The template first, then its fields, then how its runs are spawned, closed and kept.
+
+### 4.1 What a template is
 
 This standard was published under the skill name `ki-work-housekeeping` until 14 October 2026, when the skill became `ki-work-recurring` under Kris's naming decision for the change-management design ("names change: (c) ki-coordination, ki-work-recurring, ..."), because "housekeeping" reads as cleanup while the skill governs recurring work. Repositories declaring `[skills.ki-work-housekeeping]` in `.ki.toml` rename the table to `[skills.ki-work-recurring]`.
 
 This standard defines durable recurring-work templates. A template is not a roadmap item: it is the source from which `ki-work next` may spawn one due run. The run uses the common forward-work lifecycle and carries the template identifier plus its scheduled date. Partition templates by independently runnable purpose and cost, not by every artifact type.
 
-## Placement and identity
+[Back to contents](#contents)
+
+### 4.2 Placement and identity
 
 Project repositories use one flat template directory, `docs/housekeeping/`, with filenames `<REPO>-HK-<NNN>-<slug>.md`. Knowledge Bases use one canonical Activity note in the collection owned by `ki-repo-kb-activities` (default `Admin/Operations/Activities/`, or its configured `activities_dir`). There is no second KB template in Streams.
 
 Every recurring definition has a stable `id` in `<REPO>-HK-<NNN>` form, unique within its collection. Project filenames repeat that identifier followed by a lowercase kebab-case slug. KB filenames follow the Activity note convention; the same note holds both the adopted behaviour and its recurring-work profile.
 
-## Stock repository review
+[Back to contents](#contents)
+
+### 4.3 Stock repository review
 
 Repository review is a stock recurring obligation for both Projects and Knowledge Bases. Use the [Project template](../assets/repository-review-project.md) or [KB Activity template](../assets/repository-review-activity.md) when adopting it. The master checklist, invocation, assessment output and review-evidence retention remain owned by `ki-repo` REVIEW; do not copy the checklist into the definition or an execution routine.
 
@@ -36,7 +97,9 @@ Each run uses `ki-repo` REVIEW to examine purpose and ecosystem fit, consolidati
 
 The assessment itself is read-only. Admission and approved evidence return are separate bounded lifecycle writes: agree the exact retained output before dispatch, use the normal run record and `ki-repo` review-retention contract, and keep durable conclusions in their owning repository records. Only approved `ki-work accept` closure updates the definition's successful-run fields. An external routine points to this canonical definition and uses the same admission guard as an ad-hoc caller; it is not another checklist or backlog.
 
-## Frontmatter
+[Back to contents](#contents)
+
+### 4.4 Frontmatter
 
 ```yaml
 ---
@@ -81,7 +144,9 @@ The body has non-empty `## Goal`, `## Procedure`, `## Successful-run evidence`, 
 
 AUDIT accepts only safe regular Markdown files below the selected root, without following symbolic links. Project templates admit only the required and optional fields above. A KB Activity keeps its normal Activity and KB metadata; only its nested `housekeeping` mapping has a closed scheduling schema. The audit checks identity, dates, body sections, and linkage. A non-null active-run must resolve to exactly one unfinished roadmap record naming this definition in `housekeeping_template` and carrying a valid `scheduled_for` date. No two definitions may name the same active run.
 
-## KB recurring-work profile
+[Back to contents](#contents)
+
+### 4.5 KB recurring-work profile
 
 An Activity opts into this lifecycle by declaring a `housekeeping` mapping. Declare and activate `ki-work-recurring` alongside `ki-repo-kb-activities`; the latter owns Activity identity, indexing, realization, and the location binding, while this skill owns the recurring profile. An ordinary Activity without the mapping is not a housekeeping template, even if it has a scheduled realization.
 
@@ -110,13 +175,17 @@ housekeeping:
 
 Use the normal Activity body plus the four recurring-work sections above. The example is a manually admitted obligation, not permission to create or activate a schedule. An external scheduler's name and environment remain realization metadata, not the authority for cadence, procedure, or successful-run evidence.
 
-## Optional execution environments
+[Back to contents](#contents)
+
+### 4.6 Optional execution environments
 
 Recurring definitions are repository-owned and remain usable by a person or another execution environment with the declared skills and tooling. A scheduler may trigger evaluation and coordinate a run, but does not own another backlog or successful-run state. Before spawning, every caller re-reads the same definition and uses the same serialised reservation; an existing active run is reused or reported, never duplicated. Schedule activation, repairs, acceptance, and pruning retain their separate authority gates. Capture durable outcomes and learning in their repository-owned destinations rather than only in scheduler history.
 
 Recurring work is self-coordinating. It needs no coordinating session: an occurrence starts by its schedule or by whoever needs it, and rests Snoozing, on hold, between occurrences. The territory's state of play may discuss regular work but does not necessarily dispatch it.
 
-## Due-run procedure
+[Back to contents](#contents)
+
+### 4.7 Due-run procedure
 
 The calendar boundary is `last-run + cadence`; the overdue boundary adds `grace`. Calendar-month arithmetic clamps to the last valid day of the destination month. A template without any successful `last-run` is due immediately: either automatic policy may spawn its initial run, while `manual` still requires confirmation. Do not slide its initial grace window forward on every evaluation.
 
@@ -138,10 +207,16 @@ Only `ki-work accept`, as part of one coherent approved closure and template-rec
 
 Failed, abandoned, or superseded runs do not advance either successful-run field and retain `active-run` until an explicit disposition or replacement. Disposition clears only the link; replacement atomically substitutes a verified linked identity without changing successful-run evidence. This skill owns the template-side state machine; it performs neither process transition.
 
-## KB adapter
+[Back to contents](#contents)
+
+### 4.8 KB adapter
 
 The Activity note is the sole standing definition; a due run becomes a linked item in `Streams/Roadmap/`, with its horizon in frontmatter. The base's canonical-change gate applies to adopted behaviour and profile changes. Approval of a run and its closure must explicitly cover the bounded profile reservation and evidence updates; canonical placement is not permission for arbitrary Admin edits. Preserve stable IDs, active-run links, successful dates, reviewed revisions, and rationale when reconciling retained Streams templates into Activities. Conflicting or duplicate definitions block scheduling pending an owner-approved reconciliation; audits and conform do not move or delete them.
 
-## Retention
+[Back to contents](#contents)
+
+### 4.9 Retention
 
 Completed runs are retained as `done` or `cancelled` records in both adapters until `ki-work accept prune` receives an explicit selection. A template retains date and immutable review evidence, not a dependency on the continued presence of an unpruned run file. Lightweight working-area tidying remains subject to each specialist area's retention policy; recurring review does not confer general deletion authority.
+
+[Back to contents](#contents)

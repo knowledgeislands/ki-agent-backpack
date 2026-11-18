@@ -16,7 +16,7 @@ argument-hint: 'audit <repo> | conform <repo> | educate <repo> | help | refresh'
 
 # Knowledge Islands recurring-work standard
 
-**Kind:** governance. `ki-work-recurring` owns recurring-work templates, not the delivery of a particular run. The shared forward-work lifecycle is owned by `ki-work-roadmap`; `ki-repo-kb-streams` places KB records under `Streams/Roadmap/`. Read [the housekeeping template standard](references/standards-recurring-work.md) before creating or changing a template, [the generated rubric](references/rubric.md) for checkable criteria, and [the sources](references/sources.md) when refreshing this standard.
+**Kind:** governance. `ki-work-recurring` owns recurring-work templates, not the delivery of a particular run. The shared forward-work lifecycle is owned by `ki-work-roadmap`; `ki-repo-kb-streams` places KB records under `Streams/Roadmap/`. Read [the housekeeping template standard](references/standard-recurring-work.md) before creating or changing a template, [the generated rubric](references/rubric.md) for checkable criteria, and [the sources](references/sources.md) when refreshing this standard.
 
 ## Shared model
 
@@ -28,7 +28,7 @@ Project templates live directly below `docs/housekeeping/`. A KB uses an Activit
 
 ## Operating modes
 
-When adopting recurring repository review, use the stock [Project template](assets/repository-review-project.md) or [KB Activity template](assets/repository-review-activity.md), following the standard's [stock-review adoption rules](references/standards-recurring-work.md#stock-repository-review). Both invoke the master `ki-repo` REVIEW checklist; neither activates a schedule.
+When adopting recurring repository review, use the stock [Project template](assets/repository-review-project.md) or [KB Activity template](assets/repository-review-activity.md), following the standard's [stock-review adoption rules](references/standard-recurring-work.md#43-stock-repository-review). Both invoke the master `ki-repo` REVIEW checklist; neither activates a schedule.
 
 Carries the universal **AUDIT · CONFORM · EDUCATE · REFRESH** modes. `help` / `-h` / `?` explains the skill and stops; no recognised mode offers the same explanation and, only interactively, asks for a mode and target.
 
@@ -48,7 +48,7 @@ Run `ki repo educate --skill ki-work-recurring --repo <repo>` to explain the loc
 
 **Precondition:** REFRESH writes only this skill's canonical files in `ki-agent-backpack`. From an installed copy, stop and redirect to that harness.
 
-On the cadence in [the sources](references/sources.md), compare observed template use with [the housekeeping template standard](references/standards-recurring-work.md), the shared `ki-work-roadmap` lifecycle, and the `ki-repo-kb-streams` adapter. Update the source review and explain any normative change in the commit.
+On the cadence in [the sources](references/sources.md), compare observed template use with [the housekeeping template standard](references/standard-recurring-work.md), the shared `ki-work-roadmap` lifecycle, and the `ki-repo-kb-streams` adapter. Update the source review and explain any normative change in the commit.
 
 ## Boundaries
 

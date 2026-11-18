@@ -16,11 +16,11 @@ Line-by-line criteria for auditing ki-work-recurring. Classifications are derive
 
 ## HOUSE — housekeeping templates
 
-→ [standard](standards-recurring-work.md)
+→ [standard](standard-recurring-work.md)
 
 Template placement, identity, lifecycle, calendar and change-volume scheduling, and spawn fields.
 
-- **HOUSE-1 [M] — template contract** — Each recurring definition is a Project template or an opted-in KB Activity with a safe location, unique identity, controlled lifecycle, calendar cadence, optional commit threshold and reviewed revision, and spawn fields; no duplicate Streams template is scheduled. (standards-recurring-work.md)
+- **HOUSE-1 [M] — template contract** — Each recurring definition is a Project template or an opted-in KB Activity with a safe location, unique identity, controlled lifecycle, calendar cadence, optional commit threshold and reviewed revision, and spawn fields; no duplicate Streams template is scheduled. (standard-recurring-work.md)
   - _Remediation:_ diagnostic — Correct the template location, identity, schedule, or spawn fields from the declared housekeeping policy; do not create, prioritize, or mark a run complete automatically.
-- **HOUSE-2 [M] — schedule evidence** — Report calendar and first-parent change-volume eligibility without creating work. Missing or unverifiable reviewed-history evidence remains unknown, never a clean zero. (standards-recurring-work.md#due-run-procedure)
+- **HOUSE-2 [M] — schedule evidence** — Report calendar and first-parent change-volume eligibility without creating work. Missing or unverifiable reviewed-history evidence remains unknown, never a clean zero. (standard-recurring-work.md#47-due-run-procedure)
   - _Remediation:_ diagnostic — Use retained successful-review evidence to establish the full reviewed revision, or restore complete local history through a separately authorised workflow. Do not guess a baseline, fetch, spawn, or record completion during audit.
