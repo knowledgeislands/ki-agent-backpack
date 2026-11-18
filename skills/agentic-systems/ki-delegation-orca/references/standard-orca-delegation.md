@@ -1,103 +1,179 @@
-# Orca delegation standard
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:29:53Z
+ki-status: in force
+---
 
-How a Knowledge Islands coordinator uses Orca orchestration as its launcher. It adapts the portable [background-run standard](../../ki-delegation/references/standards-background-runs.md) to Orca and changes none of it beyond the one named report-homing exception the run packet carries; the coordinating work's own rules stay in the [`ki-coordination` standard](../../../work/ki-coordination/references/standards-coordination.md). The interim rules and trial tests that hold until Orca behaviour is proved sit in [the migration file](standards-orca-delegation-migration.md), which defers to this standard.
+# Orca delegation standard
 
 ## Contents
 
-- [Evidence and status](#evidence-and-status)
-- [When Orca launches](#when-orca-launches)
-- [Start](#start)
-- [Wait](#wait)
-- [Status, steering and stopping](#status-steering-and-stopping)
-- [Receive and close-out](#receive-and-close-out)
-- [Recovery after a coordinator session changes](#recovery-after-a-coordinator-session-changes)
-- [Queueing](#queueing)
-- [Ids, briefs and reports](#ids-briefs-and-reports)
-- [Questions](#questions)
-- [Commits](#commits)
-- [What stays in Knowledge Islands](#what-stays-in-knowledge-islands)
-- [Known gotchas](#known-gotchas)
-- [Runtime binding](#runtime-binding)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Evidence and status](#41-evidence-and-status)
+  - [4.2 When Orca launches](#42-when-orca-launches)
+  - [4.3 Start](#43-start)
+  - [4.4 Wait](#44-wait)
+  - [4.5 Status, steering and stopping](#45-status-steering-and-stopping)
+  - [4.6 Receive and close-out](#46-receive-and-close-out)
+  - [4.7 Recovery after a coordinator session changes](#47-recovery-after-a-coordinator-session-changes)
+  - [4.8 Queueing](#48-queueing)
+  - [4.9 Ids, briefs and reports](#49-ids-briefs-and-reports)
+  - [4.10 Questions](#410-questions)
+  - [4.11 Commits](#411-commits)
+  - [4.12 What stays in Knowledge Islands](#412-what-stays-in-knowledge-islands)
+  - [4.13 Known gotchas](#413-known-gotchas)
+  - [4.14 Runtime binding](#414-runtime-binding)
 
-## Evidence and status
+## 1. Introduction
+
+How a Knowledge Islands coordinator uses Orca orchestration as its launcher. It adapts the portable [background-run standard](../../ki-delegation/references/standards-background-runs.md) to Orca and changes none of it beyond the one named report-homing exception the run packet carries; the coordinating work's own rules stay in the [`ki-coordination` standard](../../../work/ki-coordination/references/standards-coordination.md). The interim rules and trial tests that hold until Orca behaviour is proved sit in [the migration file](standards-orca-delegation-migration.md), which defers to this standard. The sources behind it are in [the sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+Orca orchestration as a Knowledge Islands coordinator's launcher.
+
+### 2.1 In scope
+
+- When Orca launches a run, and how a run is started, waited on, steered, stopped, received and closed out.
+- Recovery after a coordinator session changes, queueing, ids, briefs, reports, questions and commits.
+- What stays in Knowledge Islands, the known gotchas, and which runtimes are proved.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- The portable background-run rules: `ki-delegation`.
+- The coordinating work's own rules: `ki-coordination`.
+- The interim rules and trial tests that hold until Orca behaviour is proved: [the migration file](standards-orca-delegation-migration.md).
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Proved** | Orca behaviour observed in Knowledge Islands use and recorded in the trial log. **Standard:** this one, [4.1](#41-evidence-and-status) |
+| **Decided** | An owner decision held by its owning work or standard. **Standard:** this one, [4.1](#41-evidence-and-status) |
+| **Run** | The Orca orchestration Run a coordinator session creates per package, its objective starting with the work id. **Standard:** this one, [4.3](#43-start) |
+| **Wait verb** | One detached, bounded `orca orchestration check --wait`, re-armed after each wake. **Standard:** this one, [4.4](#44-wait) |
+| **Close-out** | Reusing, retaining or releasing each settled worker. **Standard:** this one, [4.6](#46-receive-and-close-out) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part, each with its ground.
+
+### 4.1 Evidence and status
 
 Kris took ORCA-SKILL-NOW a) on 1 November 2026, "go with what you recommend on the Orca skills now", and named the adapter `ki-delegation-orca` under ORCH-NAME-DISPATCH a) the same day. The draft came from the Orca launcher proposal and the trial log of `ki.prj.orca-evaluation` in Knowledge Islands Principal, on sol with Orca 1.4.244 to 1.4.245. On 7 November 2026 Kris settled its open points in `ki.reg.guilds`: each took its reviewed option a), except RUN-HANDOVER, which took b), a test in the next trial, and ONE-LAUNCHER, which closed with no rule.
 
 Every rule below rests on one of two grounds, named beside it: **proved**, Orca behaviour observed in Knowledge Islands use and recorded in the trial log, or **decided**, an owner decision held by its owning work or standard. A decided rule whose Orca behaviour is not yet exercised says so.
 
-## When Orca launches
+[Back to contents](#contents)
 
-- **Reach.** Orca launches runs only on attended Macs, and only for work packages that opt in by a logged owner decision; on any host without Orca and for any package without an opt-in, a session delegates to its own agent host's subagents. Decided: ORCA-REACH a), 30 October 2026, held in the background-run standard's [Agent hosts](../../ki-delegation/references/standards-background-runs.md#agent-hosts).
+### 4.2 When Orca launches
+
+- **Reach.** Orca launches runs only on attended Macs, and only for work packages that opt in by a logged owner decision; on any host without Orca and for any package without an opt-in, a session delegates to its own agent host's subagents. Decided: ORCA-REACH a), 30 October 2026, held in the background-run standard's [Agent hosts](../../ki-delegation/references/standard-background-runs.md#411-agent-hosts).
 - **Opt-in.** A package opts in by an entry in one of its change documents, as ORCA-OPTIN b) of 30 October 2026 does for `ki.prj.orca-evaluation`: "this Project dispatches all its runs through Orca on attended Macs until Kris revokes it". Each opt-in says what it covers, such as hosts or kinds of run; there is no one-launcher-per-host rule. Decided: ORCA-OPTIN b), and ONE-LAUNCHER closed with no rule on 7 November 2026.
 - **One launcher per unit.** Each dispatched unit has exactly one launcher answerable for it, recorded with the unit at dispatch in the change document it serves. Before dispatching, the coordinator checks both that change document and the live running work, the Orca Run's `worker-list` and any other agent host's view of the session's agents, because two Macs or two sessions could each pass a Git-synced log check before either pushes; a unit already recorded or running is not started again. Decided: ONE-LAUNCHER-UNIT a), 7 November 2026.
 - **Survival.** A run that must outlive its coordinator goes through a launcher whose workers are proved to survive it: the worker keeps working, a fresh session finds it with its progress and result, and it finishes. With `ki agent` removed in `tools-ki` v0.15.0, no agent host is yet proved to carry such a run; Orca's standing is in the migration file. Decided: OUTLIVE a), 7 November 2026.
 
-## Start
+[Back to contents](#contents)
+
+### 4.3 Start
 
 1. **Run.** Create one Run per package per coordinator session with `orca orchestration run-create --objective "<work id> - <purpose>" --json`. The objective starts with the work id because that is how a later session finds the Run. Proved: the new Run of 1 November 2026 and the gotcha "Finding a Run".
 2. **Worker.** Start each run with `orca orchestration worker-start --spec <brief> --task-title <run name> --worktree <worktree> --agent <claude|codex> [--model <id> --effort <level>] --json`. Claude and Codex workers started this way from a chat coordinator ran without permission prompts and nest under the coordinator's row in Orca's Agents list. Proved: TRIAL-SHAPE and four workers on 1 November 2026.
 3. **Ids.** Read the Task and Dispatch ids from `orca orchestration worker-list --run <run id> --json`, not from the start receipt, which nests them. Proved: the gotcha "worker-start's receipt nests the ids".
-4. **Worktree.** A writing run works in its own worktree, Orca's `new-child`, under the background-run standard's [worktree baseline](../../ki-delegation/references/standards-background-runs.md#coordination); a worker commits by pathspec, and workers that touch the same files are chained, never run in parallel. Decided: WORKTREE-OPTOUT a), 30 October 2026; proved: ORCA-DISPATCH-LEARNINGS (2).
+4. **Worktree.** A writing run works in its own worktree, Orca's `new-child`, under the background-run standard's [worktree baseline](../../ki-delegation/references/standard-background-runs.md#47-coordination); a worker commits by pathspec, and workers that touch the same files are chained, never run in parallel. Decided: WORKTREE-OPTOUT a), 30 October 2026; proved: ORCA-DISPATCH-LEARNINGS (2).
 5. **Agent.** Pass the brief's runtime as `--agent` and use Orca's own launch; switch to `orca terminal create` with `worker-start --terminal` only if a worker meets permission prompts or blocked writes. Decided: ORCA-PLACEMENT a), taken in `ki.prj.ways-of-working`.
-6. **Brief as spec.** The spec is the whole rendered brief, with its tier footer, progress protocol and report rule, under the background-run standard's [prompt shape](../../ki-delegation/references/standards-background-runs.md#prompt-shape). The coordinator passes a brief already in the run packet, kept exactly as launched, and checks it first for leftover placeholders, a missing or doubled authority footer, a wrong report path and shell truncation. Passing a brief never adds authority. Proved: the four trial workers of 1 November 2026 ran this way; decided: PROMPT-RENDER a), 7 November 2026.
+6. **Brief as spec.** The spec is the whole rendered brief, with its tier footer, progress protocol and report rule, under the background-run standard's [prompt shape](../../ki-delegation/references/standard-background-runs.md#44-prompt-shape). The coordinator passes a brief already in the run packet, kept exactly as launched, and checks it first for leftover placeholders, a missing or doubled authority footer, a wrong report path and shell truncation. Passing a brief never adds authority. Proved: the four trial workers of 1 November 2026 ran this way; decided: PROMPT-RENDER a), 7 November 2026.
 
-## Wait
+[Back to contents](#contents)
 
-- **The wait verb.** The adapter's `wait` is one detached `orca orchestration check --wait --timeout-ms 300000 --json`, one at a time, re-armed after each wake; it re-invokes a chat coordinator when a delivery arrives, on the runtime proved under [Runtime binding](#runtime-binding). Proved: TRIAL-SHAPE. The contract, one verb per launcher, one bounded waiter, wakes best effort, is decided under WAKE-SESSION a), 30 October 2026, in the background-run standard's [Concurrency](../../ki-delegation/references/standards-background-runs.md#concurrency) section.
+### 4.4 Wait
+
+- **The wait verb.** The adapter's `wait` is one detached `orca orchestration check --wait --timeout-ms 300000 --json`, one at a time, re-armed after each wake; it re-invokes a chat coordinator when a delivery arrives, on the runtime proved under [Runtime binding](#414-runtime-binding). Proved: TRIAL-SHAPE. The contract, one verb per launcher, one bounded waiter, wakes best effort, is decided under WAKE-SESSION a), 30 October 2026, in the background-run standard's [Concurrency](../../ki-delegation/references/standard-background-runs.md#48-concurrency) section.
 - **Batches.** `check` returns the Run's oldest unacknowledged batch whole, and `--types` sets only what wakes it, so heartbeats arrive with or ahead of `worker_done`. Proved: the gotcha "Heartbeats" and `check --help`.
 - **Acknowledgement.** A `worker_done` arrives as an inbox delivery the coordinator acknowledges with `orca orchestration check --ack <deliveryId>` once it has processed every message in the batch. Proved: 1 November 2026. Each heartbeat is also a delivery that Orca prompts the owner about, so heartbeats are acknowledged too. Proved: the gotcha "Heartbeats".
 - **Heartbeat-only batches.** The waiter acknowledges a batch holding only heartbeats itself and waits again, so the owner is not prompted and the coordinator not woken for liveness; the five-minute bound runs from the waiter's first start, not from each re-wait. Any batch holding a `worker_done`, an `escalation`, a `question`, a message of a kind the waiter does not know, or a mix, is left whole for the coordinator. Decided: HEARTBEAT-ACK a), 7 November 2026, taking effect after the supervised trial the migration file names.
-- **Unproved runtimes.** A coordinator on a runtime whose wake is not proved under [Runtime binding](#runtime-binding) does not rely on `check --wait`.
+- **Unproved runtimes.** A coordinator on a runtime whose wake is not proved under [Runtime binding](#414-runtime-binding) does not rely on `check --wait`.
 - **Durable wake.** The headless coordinator pass stays the durable wake, and no Orca automation is a wake. Decided: WAKE-DURABLE a), 30 October 2026.
 
-## Status, steering and stopping
+[Back to contents](#contents)
+
+### 4.5 Status, steering and stopping
 
 - **Status.** Read a worker through `worker-show --dispatch <id>`, `worker-list --run <id>` and `worker-read --dispatch <id>`. `unverifiable` liveness never means dead. Heartbeats are sent turn by turn, so a long step is silent and silence is not a stall. Proved: the gotcha "Heartbeats".
 - **Steering.** Steer a running worker with `orca orchestration send --to dispatch:<id>`, or answer it with `reply`. Proved: ORCA-DISPATCH-LEARNINGS (3).
 - **Stopping.** A background agent stops only when the owner names it and says stop, held in `ki-coordination` from Kris's delegation principle of 13 October 2026. The adapter's stop is `orca orchestration worker-stop --dispatch <id>`, used only on that named word; afterwards the coordinator reports whether the worker stopped and where its partial work stands. Closing or releasing a worker never stands in for stopping it. Decided: STOP-VERB a), 7 November 2026, not yet exercised; its first-use check is in the migration file.
 
-## Receive and close-out
+[Back to contents](#contents)
+
+### 4.6 Receive and close-out
 
 - **Read before redispatch.** `worker_done` reflects the worker's last step, not the run's outcome: read the report and the Git log before any redispatch. Proved: plan069 reported `failed` although its planning succeeded.
-- **Report home.** At receive the coordinator homes the report's outcomes in the change documents they reach, under [Ids, briefs and reports](#ids-briefs-and-reports).
-- **Close-out.** Each settled worker is reused, retained at the owner's explicit request, or released with `orca orchestration worker-release --dispatch <id> --json`, only after an accepted settlement, and no reclaimable worker remains before a mark, a hold or Finished. A chat coordinator on the runtime proved under [Runtime binding](#runtime-binding) can release a worker it started, closing the worker's terminal and keeping its transcript. Decided: ORCA-CLOSE-OUT a) and CLOSEOUT-STRIKE a), held in `ki-coordination`'s [Closing out Orca workers](../../../work/ki-coordination/references/standards-mark.md#closing-out-orca-workers); proved: TRIAL-SHAPE, 1 November 2026.
+- **Report home.** At receive the coordinator homes the report's outcomes in the change documents they reach, under [Ids, briefs and reports](#49-ids-briefs-and-reports).
+- **Close-out.** Each settled worker is reused, retained at the owner's explicit request, or released with `orca orchestration worker-release --dispatch <id> --json`, only after an accepted settlement, and no reclaimable worker remains before a mark, a hold or Finished. A chat coordinator on the runtime proved under [Runtime binding](#414-runtime-binding) can release a worker it started, closing the worker's terminal and keeping its transcript. Decided: ORCA-CLOSE-OUT a) and CLOSEOUT-STRIKE a), held in `ki-coordination`'s [Closing out Orca workers](../../../work/ki-coordination/references/standards-mark.md#closing-out-orca-workers); proved: TRIAL-SHAPE, 1 November 2026.
 
-## Recovery after a coordinator session changes
+[Back to contents](#contents)
+
+### 4.7 Recovery after a coordinator session changes
 
 A Run is bound to the session that made it: a new chat session could not use the previous session's Run ("caller not bound"), and `run-use --takeover-legacy` works only from a live coordinator terminal, not from a chat. Proved: the gotcha "A Run is bound to the session that made it".
 
 A new coordinator session therefore makes a new Run, finds the old one by its objective, which starts with the work id, and settles each worker under the old Run, or names it with what it still owes, without starting any unit a second time. It logs the old Run as retired in the change document it serves only once every worker under it is settled or named unreachable with what it owes. Decided: RUN-RECOVERY a), 7 November 2026; it is what was done on 1 November 2026.
 
-## Queueing
+[Back to contents](#contents)
+
+### 4.8 Queueing
 
 A queued run starts through Orca while its parent chat is live, and otherwise waits for a live session, the route recorded in its receipt. Decided: ORCA-QUEUE a), "Orca first"; its other route, `ki agent`'s dispatcher, went with `ki agent` in `tools-ki` v0.15.0.
 
 Orca never starts a worker when its dependencies finish, so within one session the coordinator paces the queue itself: at the wake that settles a worker, it reads the report, confirms the next worker's dependency succeeded and that nothing conflicts, then starts the next worker, with no more than about three running, a ceiling rather than a target. A finish message alone does not prove a dependency succeeded, and during recovery no worker is started twice. Decided: QUEUE-PACE a), 7 November 2026.
 
-## Ids, briefs and reports
+[Back to contents](#contents)
+
+### 4.9 Ids, briefs and reports
 
 - **Ids.** No Run, Task or Dispatch id is written in a work-package file. Routing lives in a machine-local record keyed by `<repository>/<work id>`, and work between packages goes along the tree under `ki-coordination`'s [Work between packages](../../../work/ki-coordination/references/standards-messages.md#messages-between-work) (MSG-RETIRE); an Orca `send` is only a wake. Decided: ORCA-ROUTING, folded into the Orca sub-agents design in `ki.prj.ways-of-working`.
-- **Brief.** The brief sits in the run packet, `$TMPDIR/ki-agents/<run>/`, while the run is open. Decided: the background-run standard's [run packet](../../ki-delegation/references/standards-background-runs.md#run-packet).
+- **Brief.** The brief sits in the run packet, `$TMPDIR/ki-agents/<run>/`, while the run is open. Decided: the background-run standard's [run packet](../../ki-delegation/references/standard-background-runs.md#43-run-packet).
 - **Report.** The worker writes its report outside every repository, at the path its brief names, and names it in `worker_done`. Proved, then under the KI state root: `ki.prj.orca-evaluation`'s four workers on 1 November 2026.
-- **Report home.** At receive the coordinator homes each outcome of an Orca worker's report in the reporting package's change documents or a record, and its queries in their change documents' Open sections, as the background-run standard's [run packet](../../ki-delegation/references/standards-background-runs.md#run-packet) has the session that started a run do under every agent host; the report itself is not copied into the package. It reads only the report its brief named for that worker and package, never a path just because a message names it. Decided: REPORT-HOME a), 7 November 2026, revisiting Kris's decision of 14 October 2026 for Orca alone; the copy into the package went under OLD-SHAPE-HOMES a, 14 November 2026.
+- **Report home.** At receive the coordinator homes each outcome of an Orca worker's report in the reporting package's change documents or a record, and its queries in their change documents' Open sections, as the background-run standard's [run packet](../../ki-delegation/references/standard-background-runs.md#43-run-packet) has the session that started a run do under every agent host; the report itself is not copied into the package. It reads only the report its brief named for that worker and package, never a path just because a message names it. Decided: REPORT-HOME a), 7 November 2026, revisiting Kris's decision of 14 October 2026 for Orca alone; the copy into the package went under OLD-SHAPE-HOMES a, 14 November 2026.
 
-## Questions
+[Back to contents](#contents)
+
+### 4.10 Questions
 
 Operational questions, those the coordinator can answer, travel by Orca's `ask`; an interrupted ask is resumed by its message id, never duplicated. Proved: plan069 and ORCA-DISPATCH-LEARNINGS (4). An unanswered ask escalates after ten minutes by default; a longer `--timeout-ms`, up to 30 minutes, avoids a duplicate. Proved: the gotcha "Asks time out".
 
 A question only the owner can answer never goes ahead on a timeout, on silence or on a coordinator's reply in the owner's place, and a worker is never left waiting on it indefinitely. Decided: OWNER-ASK a), 7 November 2026. Its route is held open until OF-OWNER-ASK in the Orca fit design is decided; the interim route is in the migration file.
 
-## Commits
+[Back to contents](#contents)
+
+### 4.11 Commits
 
 A worker commits by explicit pathspec, `git commit -- <paths>`, in the product's repository, so a worker sharing a checkout never commits another session's staged files. Proved: ORCA-DISPATCH-LEARNINGS (2). In a hooked repository, lint-staged runs with `--no-stash`, so no backup stash is made, and a worker never runs `git stash`. Decided: HOOK-STASH a), 1 November 2026, in `ki.prj.ways-of-working`.
 
 In an Orca trial, a worker commits its own note by explicit path inside the write window its coordinator grants by ask, under the ordinary rules, and the coordinator pushes at receive. Decided: TRIAL-PUBLISH a), 7 November 2026.
 
-## What stays in Knowledge Islands
+[Back to contents](#contents)
+
+### 4.12 What stays in Knowledge Islands
 
 The work package is the record: definition, state, queries, messages and decisions in Git. Orca's Runs, Tasks, Dispatches and messages are host-local and may be lost; no decision rests on them when each report copies every ask's question, options, answer and message ids and the change document records the outcome. Proved: plan069, checked at its `worker_done`. Orca's state is never hand-edited: a hand edit stopped Orca starting on terra, and it was recovered only with `orca profile state rollback --backup <id>` from Orca's own backups. Proved.
 
-## Known gotchas
+[Back to contents](#contents)
+
+### 4.13 Known gotchas
 
 Each is proved in the trial log.
 
@@ -106,7 +182,9 @@ Each is proved in the trial log.
 - **Row label.** An armed waiter makes the coordinator's row lead with "Monitoring background tasks"; this is deliberate Orca behaviour and no setting changes it.
 - **Question card.** Multi-line text in an `AskUserQuestion` card renders as one paragraph; put context in chat text above the card, as `ki-coordination`'s interactive pass does. Reported upstream as stablyai/orca#36830.
 
-## Runtime binding
+[Back to contents](#contents)
+
+### 4.14 Runtime binding
 
 Orca supervises both agent runtimes the brief may name; Knowledge Islands has proved them unevenly.
 
@@ -114,3 +192,5 @@ Orca supervises both agent runtimes the brief may name; Knowledge Islands has pr
 | --- | --- | --- |
 | Claude Code | Proved: starts and runs without permission prompts, 1 November 2026 | Proved: a detached `check --wait` re-invokes the chat when a delivery arrives, and the chat can release a worker it started, under TRIAL-SHAPE on 1 November 2026 |
 | Codex | Proved: starts and runs without permission prompts, 1 November 2026, and planned a tools-rig record in plan069 | Unproved: whether `check --wait` has a detached form that re-invokes a Codex session is CODEX-WAKE, held in the migration file |
+
+[Back to contents](#contents)
