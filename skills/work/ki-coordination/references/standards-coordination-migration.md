@@ -1,6 +1,6 @@
 # Coordinating-work migration
 
-This file holds temporary adjustments to [the coordinating-work standard](standards-coordination.md), which describes only the final state, under MIGRATION-OVERLAY. Read the standard first; it wins wherever the two differ. Delete each adjustment once its condition is met, and the file whole once it is empty, with no edit to the standard.
+This file holds temporary adjustments to [the coordinating-work standard](standard-coordination.md), which describes only the final state, under MIGRATION-OVERLAY. Read the standard first; it wins wherever the two differ. Delete each adjustment once its condition is met, and the file whole once it is empty, with no edit to the standard.
 
 ## Contents
 
@@ -57,15 +57,15 @@ The model replaced the thread model of 13 to 17 October. Kris agreed it on 18 Oc
 
 ## Queries file in the DISCUSSIONS tolerance window
 
-A work package also holds `queries.md` beside `discussions.md`, `messages.md` and `decisions.md` for the DISCUSSIONS tolerance window. This adjusts the package files [Scope](standards-coordination.md#scope) lists. Delete it once the DISCUSSIONS tolerance window closes.
+A work package also holds `queries.md` beside `discussions.md`, `messages.md` and `decisions.md` for the DISCUSSIONS tolerance window. This adjusts the package files [Scope](standard-coordination.md#41-coordinating-work) lists. Delete it once the DISCUSSIONS tolerance window closes.
 
 ## Old-shape checkpoint states
 
-An old-shape checkpoint's REST reads as Handoff to supervisor or With supervisor, BUSY as With worker, HOLD as On hold, paused, and DONE as Finished. This adjusts the states a coordinator keeps under [States and moves](standards-coordination.md#states-and-moves).
+An old-shape checkpoint's REST reads as Handoff to supervisor or With supervisor, BUSY as With worker, HOLD as On hold, paused, and DONE as Finished. This adjusts the states a coordinator keeps under [States and moves](standard-coordination.md#45-states-and-moves).
 
 ## Banners in past reports
 
-These adjust how a reader takes the banner of a past report under [Banner](standards-coordination.md#banner):
+These adjust how a reader takes the banner of a past report under [Banner](standard-coordination.md#46-banner):
 
 - The block-letter frames retired with the model; a report written before 18 October keeps its frame, a report written before GLYPH-OWNER keeps 🧑 for Kris and 👤 for a target, and anything that reads past reports accepts every one of these.
 - A report written before FOOTER-LAYOUT keeps its bracketed heading, such as `🤖 With worker (draining → ⏸️ On hold)`, and anything that reads past reports accepts it.
@@ -74,115 +74,115 @@ These adjust how a reader takes the banner of a past report under [Banner](stand
 
 ## Rubric tolerance for old work-folder shapes
 
-For the tolerance window the `ki-coordination` native rubric reads `+/_CHECKPOINTS/` and `+/_THREADS/` as before and warns on each, naming its new home, and warns on a theme that resolves only in `Streams/Initiatives/` until 7 November 2026 and fails it from that day. This adjusts the checks under [Mechanical boundary](standards-coordination.md#mechanical-boundary). Delete it once the tolerance window closes.
+For the tolerance window the `ki-coordination` native rubric reads `+/_CHECKPOINTS/` and `+/_THREADS/` as before and warns on each, naming its new home, and warns on a theme that resolves only in `Streams/Initiatives/` until 7 November 2026 and fails it from that day. This adjusts the checks under [Mechanical boundary](standard-coordination.md#49-mechanical-boundary). Delete it once the tolerance window closes.
 
 ## Done, Failed and Needs owner report shape
 
-The [owner report](standards-reporting.md#owner-report) replaces the Done / Failed / Needs \<owner\> report wherever that shape was set. Delete this adjustment once no source sets that shape.
+The [owner report](standard-reporting.md#42-owner-report) replaces the Done / Failed / Needs \<owner\> report wherever that shape was set. Delete this adjustment once no source sets that shape.
 
 ## Pre-14-October owner reports
 
-A report written before 2026-10-14 keeps its earlier heading, and anything that reads past reports accepts it. Before 2026-10-14 a query carried **Summary**, **Need from you** and **Recommendation**; a report written before that day keeps that shape, and anything that reads past reports accepts both. Both adjust the **Heading** and **Queries** parts of the [owner report](standards-reporting.md#owner-report).
+A report written before 2026-10-14 keeps its earlier heading, and anything that reads past reports accepts it. Before 2026-10-14 a query carried **Summary**, **Need from you** and **Recommendation**; a report written before that day keeps that shape, and anything that reads past reports accepts both. Both adjust the **Heading** and **Queries** parts of the [owner report](standard-reporting.md#42-owner-report).
 
 ## Single-paragraph queries before 26 October
 
-A query in a report written before 26 October 2026, when Kris chose FORM-VS-RUMDL a), keeps its single-paragraph shape, and anything that reads past reports accepts both. This adjusts the **Queries** part of the [owner report](standards-reporting.md#owner-report).
+A query in a report written before 26 October 2026, when Kris chose FORM-VS-RUMDL a), keeps its single-paragraph shape, and anything that reads past reports accepts both. This adjusts the **Queries** part of the [owner report](standard-reporting.md#42-owner-report).
 
 ## Handoffs outstanding until done
 
-The windowed Summary replaces the earlier rule that a handoff stayed outstanding until the owner said it was done. This adjusts the **In Progress** part of the [owner report](standards-reporting.md#owner-report).
+The windowed Summary replaces the earlier rule that a handoff stayed outstanding until the owner said it was done. This adjusts the **In Progress** part of the [owner report](standard-reporting.md#42-owner-report).
 
 ## Pre-18-October reply blocks
 
-A report written before 18 October keeps its reply block, and anything that reads past reports accepts it. This adjusts [Answers](standards-reporting.md#answers).
+A report written before 18 October keeps its reply block, and anything that reads past reports accepts it. This adjusts [Answers](standard-reporting.md#421-answers).
 
 ## Older summary words
 
-For the tolerance window the older words stay readable: `recap` is read as `summary`, `recap and mark` as `ki-mark`, and `full summary` or `summary in full` as a `summary since` the work's `ki-created_at`. This adjusts the verbs under [Report forms](standards-report-forms.md#report-forms); delete it when [the tolerance window](#thread-model) closes.
+For the tolerance window the older words stay readable: `recap` is read as `summary`, `recap and mark` as `ki-mark`, and `full summary` or `summary in full` as a `summary since` the work's `ki-created_at`. This adjusts the verbs under [Report forms](standard-report-forms.md#41-coordinator-reply-format); delete it when [the tolerance window](#thread-model) closes.
 
 ## Pre-SUMMARY-MODEL summaries
 
-A report written before SUMMARY-MODEL keeps its Summary, recap or full summary shape, its `## Decided` section and its `Out of scope`, `Waiting on you` and `What I heard` parts, and anything that reads past reports accepts them. This adjusts [The Summary](standards-report-forms.md#the-summary).
+A report written before SUMMARY-MODEL keeps its Summary, recap or full summary shape, its `## Decided` section and its `Out of scope`, `Waiting on you` and `What I heard` parts, and anything that reads past reports accepts them. This adjusts [The Summary](standard-report-forms.md#417-the-summary).
 
-In the report heading's form line, a report written before SUMMARY-MODEL, on 4 November 2026, may read `Recap` or `Full summary`, and one written before REPORT-FORMS-TIDY, on 6 November 2026, a Summary's `· last mark <local time>`; anything that reads past reports accepts them. This adjusts the **Form line** under [Banner detail](standards-report-forms.md#banner-detail).
+In the report heading's form line, a report written before SUMMARY-MODEL, on 4 November 2026, may read `Recap` or `Full summary`, and one written before REPORT-FORMS-TIDY, on 6 November 2026, a Summary's `· last mark <local time>`; anything that reads past reports accepts them. This adjusts the **Form line** under [Banner detail](standard-report-forms.md#42-banner-detail).
 
 ## Older mode and sync lines
 
-These adjust the **Mode lines** under [Banner detail](standards-report-forms.md#banner-detail):
+These adjust the **Mode lines** under [Banner detail](standard-report-forms.md#42-banner-detail):
 
 - A report written between REPORT-FORMS-TIDY and SNOOZE, both on 6 November 2026, may carry `👂 listening · a message releases the hold`, and anything that reads past reports accepts it.
 - A report written before SYNC-LINE-OFF may carry a `🔄 syncing for <host>` or `🔄 not syncing for <host>` line, and anything that reads past reports accepts it.
 - A report written before FOOTER-LAYOUT keeps its one listening line, such as `👂 listening · not the sync thread for terra`, and one written before FOOTER-NOT-LISTENING may carry a `🔇` line on a thread that never listened; anything that reads past reports accepts both.
-- A report written before LISTEN-LINE, on 16 November 2026, may carry `👂 listening` or `🔇 not listening`, and anything that reads past reports accepts it; in a new reply the [footer check](standards-coordination.md#generated-surfaces) warns on it. Delete this line once the output styles in use render `👂 in <meeting>`.
+- A report written before LISTEN-LINE, on 16 November 2026, may carry `👂 listening` or `🔇 not listening`, and anything that reads past reports accepts it; in a new reply the [footer check](standard-coordination.md#47-generated-surfaces) warns on it. Delete this line once the output styles in use render `👂 in <meeting>`.
 
 ## Thread-model re-bootstrap openers
 
-Adjusts [Bootstrap](standards-bootstrap.md#bootstrap). Beside the one-line `Re-bootstrap as <id> under ki-coordination.` opener, the thread-model openers, `Re-bootstrap as the <project> coordination thread under ki-coordination.` and `... as the state-of-play thread ...`, are accepted for the tolerance window and mean the same work. Delete when the [tolerance window](#thread-model) closes.
+Adjusts [Bootstrap](standard-bootstrap.md#41-bootstrap). Beside the one-line `Re-bootstrap as <id> under ki-coordination.` opener, the thread-model openers, `Re-bootstrap as the <project> coordination thread under ki-coordination.` and `... as the state-of-play thread ...`, are accepted for the tolerance window and mean the same work. Delete when the [tolerance window](#thread-model) closes.
 
 ## Legacy records at bootstrap
 
-Adjusts [Bootstrap](standards-bootstrap.md#bootstrap), step 4. Where a work has not yet moved to a work package, the coordinator reads its tolerated legacy record in place of the package's `_index.md` and change documents. Delete when the [tolerance window](#thread-model) closes.
+Adjusts [Bootstrap](standard-bootstrap.md#41-bootstrap), step 4. Where a work has not yet moved to a work package, the coordinator reads its tolerated legacy record in place of the package's `_index.md` and change documents. Delete when the [tolerance window](#thread-model) closes.
 
 ## Old-shape pick-up blocks
 
-Adjusts [Picking work up](standards-bootstrap.md#picking-work-up). An old-shape checkpoint keeps its pick-up block, read as the state table in Picking work up through the mapping in [The work model](standards-coordination.md#the-work-model), until its territory's migration moves it. Delete once every territory's migration has moved its checkpoints.
+Adjusts [Picking work up](standard-bootstrap.md#44-picking-work-up). An old-shape checkpoint keeps its pick-up block, read as the state table in Picking work up through the mapping in [The work model](standard-coordination.md#411-the-work-model), until its territory's migration moves it. Delete once every territory's migration has moved its checkpoints.
 
 ## Old-shape checkpoint types
 
-Adjusts [Levels and forms](standards-opening.md#levels-and-forms). A checkpoint in the old shape declares its type in `role` until it moves: `state-of-play` for territory work, `coordination` for Project work, and `conversational` or no field otherwise. Delete once every old-shape checkpoint has moved.
+Adjusts [Levels and forms](standard-opening.md#41-levels-and-forms). A checkpoint in the old shape declares its type in `role` until it moves: `state-of-play` for territory work, `coordination` for Project work, and `conversational` or no field otherwise. Delete once every old-shape checkpoint has moved.
 
 ## Old-shape checkpoint ids
 
-Adjusts [Work naming](standards-opening.md#work-naming). An old-shape checkpoint's id is read from its stem until it moves: `_state-of-play` gives `<territory>`, `<initiative>.<project>` gives `<territory>.<project>`, and any other stem gives `<territory>.<stem>`. Delete once every old-shape checkpoint has moved.
+Adjusts [Work naming](standard-opening.md#42-work-naming). An old-shape checkpoint's id is read from its stem until it moves: `_state-of-play` gives `<territory>`, `<initiative>.<project>` gives `<territory>.<project>`, and any other stem gives `<territory>.<stem>`. Delete once every old-shape checkpoint has moved.
 
 ## Legacy work ids
 
-Adjusts [Levels and forms](standards-opening.md#levels-and-forms) and [Work naming](standards-opening.md#work-naming). An id whose second segment names a kind, `sop`, `prj`, `reg` or its legacy form `regular`, is read as the node its package's `ki-level` gives, since ids carry no kind (KIND-DROP, NODE-ID): `<territory>.sop.<name>`, `<territory>.prj.<project>`, `<territory>.reg.main`, `<territory>.reg.<topic>`, and legacy `<territory>`, `<territory>.regular`, `<territory>.regular.main` and `<territory>.regular.<topic>` remain readable indefinitely, including existing HNR inputs and the packages still parked in the Cairn store's `work-legacy/`; a package placed in `work/` takes its `<territory>.<slug>` id. This naming transition changes no work level, state, mark, immutable native/run identity or history. Derive old/new resolution from actual valid definitions; two physical definitions for one work are ambiguous, never two independently opened packages. The text sets no deletion condition: the legacy ids are readable indefinitely.
+Adjusts [Levels and forms](standard-opening.md#41-levels-and-forms) and [Work naming](standard-opening.md#42-work-naming). An id whose second segment names a kind, `sop`, `prj`, `reg` or its legacy form `regular`, is read as the node its package's `ki-level` gives, since ids carry no kind (KIND-DROP, NODE-ID): `<territory>.sop.<name>`, `<territory>.prj.<project>`, `<territory>.reg.main`, `<territory>.reg.<topic>`, and legacy `<territory>`, `<territory>.regular`, `<territory>.regular.main` and `<territory>.regular.<topic>` remain readable indefinitely, including existing HNR inputs and the packages still parked in the Cairn store's `work-legacy/`; a package placed in `work/` takes its `<territory>.<slug>` id. This naming transition changes no work level, state, mark, immutable native/run identity or history. Derive old/new resolution from actual valid definitions; two physical definitions for one work are ambiguous, never two independently opened packages. The text sets no deletion condition: the legacy ids are readable indefinitely.
 
 ## Labels without ids
 
-Adjusts [Work naming](standards-opening.md#work-naming), the work name. The label alone, without the id, stays readable as the same work on message lines and openers written before 25 October 2026, through the tolerance window. Delete when the [tolerance window](#thread-model) closes.
+Adjusts [Work naming](standard-opening.md#42-work-naming), the work name. The label alone, without the id, stays readable as the same work on message lines and openers written before 25 October 2026, through the tolerance window. Delete when the [tolerance window](#thread-model) closes.
 
 ## Snoozing hold reason until `ki` accepts `snoozing`
 
-A Snoozing hold's `state.md` front matter sets `hold.reason: more-expected`, the value `ki` reads until it accepts `snoozing`. Delete this adjustment once `ki` accepts `snoozing`. It adjusts the **Parking** item of [Putting work on hold](standards-holds.md#putting-work-on-hold).
+A Snoozing hold's `state.md` front matter sets `hold.reason: more-expected`, the value `ki` reads until it accepts `snoozing`. Delete this adjustment once `ki` accepts `snoozing`. It adjusts the **Parking** item of [Putting work on hold](standard-holds.md#41-putting-work-on-hold).
 
 ## Hold commits from before Snoozing
 
-A hold committed before SNOOZE may read `hold, more expected` in its commit subject, in place of `docs(work): <id> hold, snoozing`. It adjusts the **Parking** item of [Putting work on hold](standards-holds.md#putting-work-on-hold).
+A hold committed before SNOOZE may read `hold, more expected` in its commit subject, in place of `docs(work): <id> hold, snoozing`. It adjusts the **Parking** item of [Putting work on hold](standard-holds.md#41-putting-work-on-hold).
 
 ## Single-file work package shapes
 
 These tolerances keep work that has not yet moved to the work package readable. Each is deleted once no work remains in the single-file shape.
 
-- **Pruning reports:** In the single-file tolerance shape, retain the report until its queries are answered and read back in the log, under `ki-work-package` [Tidying the work folder](../../ki-work-package/references/standard-work-package.md#410-the-tidy). Adjusts the Judgement item of [Pruning the work folder](standards-mark.md#pruning-the-work-folder).
-- **Message queue:** Work still in the single-file shape keeps its `## Messages` section, and an old-shape checkpoint its bold-line messages block, until it moves. Adjusts Place and shape in [Messages between work](standards-messages.md#messages-between-work).
-- **Work status:** `ki work status` reads every single-file work file, as well as every work package, for the tolerance window. Adjusts the Work status row in [Surfaces](standards-messages.md#surfaces).
+- **Pruning reports:** In the single-file tolerance shape, retain the report until its queries are answered and read back in the log, under `ki-work-package` [Tidying the work folder](../../ki-work-package/references/standard-work-package.md#410-the-tidy). Adjusts the Judgement item of [Pruning the work folder](standard-mark.md#43-pruning-the-work-folder).
+- **Message queue:** Work still in the single-file shape keeps its `## Messages` section, and an old-shape checkpoint its bold-line messages block, until it moves. Adjusts Place and shape in [Messages between work](standard-messages.md#messages-between-work).
+- **Work status:** `ki work status` reads every single-file work file, as well as every work package, for the tolerance window. Adjusts the Work status row in [Surfaces](standard-messages.md#44-surfaces).
 
 ## Old thread run folders
 
-A `+/_THREADS/<run>/` folder is checked against its old closed list, `decisions.md` and `<name>.report.md`, for the tolerance window. Adjusts the Flagging item of [Pruning the work folder](standards-mark.md#pruning-the-work-folder).
+A `+/_THREADS/<run>/` folder is checked against its old closed list, `decisions.md` and `<name>.report.md`, for the tolerance window. Adjusts the Flagging item of [Pruning the work folder](standard-mark.md#43-pruning-the-work-folder).
 
 ## Focus and numbered decisions-log entries
 
-A decisions-log entry written while the work declared focus areas keeps its `focus:` opener as history; FOCUS-ROWS retired the opener on 15 November 2026. A log written before the work model keeps its numbers as history. Adjusts [Decisions log](standards-decisions.md#decisions-log).
+A decisions-log entry written while the work declared focus areas keeps its `focus:` opener as history; FOCUS-ROWS retired the opener on 15 November 2026. A log written before the work model keeps its numbers as history. Adjusts [Decisions log](standard-decisions.md#411-decisions-log).
 
 ## The earlier design-note home
 
-The earlier `+/_DESIGN/<subject-slug>/` home for design notes is read for the tolerance window and moves with its territory's migration. Adjusts [Change documents](standards-decisions.md#change-documents).
+The earlier `+/_DESIGN/<subject-slug>/` home for design notes is read for the tolerance window and moves with its territory's migration. Adjusts [Change documents](standard-decisions.md#414-change-documents).
 
 ## Design notes named `.design.md`
 
-An existing `.design.md` design note stays readable as a change document during the rollout and is not renamed; a new one is written as `<slug>.change.md` with its `Base:` and `Touches:` header. Delete this section once no `.design.md` file remains. Adjusts [Change documents](standards-decisions.md#change-documents).
+An existing `.design.md` design note stays readable as a change document during the rollout and is not renamed; a new one is written as `<slug>.change.md` with its `Base:` and `Touches:` header. Delete this section once no `.design.md` file remains. Adjusts [Change documents](standard-decisions.md#414-change-documents).
 
 ## Observatory feedback packages
 
-The owner's consolidated Observatory feedback package, `feedback/<date>-<slug>.md`, written into the folder of the work that produced the document with one `messages.md` line linking it, committed together under the `ki-work-package` [entry points](../../ki-work-package/references/standard-work-package.md#49-writers), is accepted for the tolerance window. Adjusts the Sender item of [Messages between work](standards-messages.md#messages-between-work).
+The owner's consolidated Observatory feedback package, `feedback/<date>-<slug>.md`, written into the folder of the work that produced the document with one `messages.md` line linking it, committed together under the `ki-work-package` [entry points](../../ki-work-package/references/standard-work-package.md#49-writers), is accepted for the tolerance window. Adjusts the Sender item of [Messages between work](standard-messages.md#messages-between-work).
 
 ## Openers that name the re-bootstrap report
 
-An opener whose first step says to give "the full re-bootstrap report", as the openers under [Opening work](standards-opening.md#opening-work) still print them, asks for the Bootstrap, and a past report headed `Re-bootstrap`, `Hold report` or `Finish report`, or carrying a state in its form line, stays readable as the Bootstrap or Stop it was. Delete this adjustment once the openers here name the Bootstrap. It adjusts trigger T2 in [Triggers](standards-report-forms.md#triggers).
+An opener whose first step says to give "the full re-bootstrap report", as the openers under [Opening work](standard-opening.md#43-opening-work) still print them, asks for the Bootstrap, and a past report headed `Re-bootstrap`, `Hold report` or `Finish report`, or carrying a state in its form line, stays readable as the Bootstrap or Stop it was. Delete this adjustment once the openers here name the Bootstrap. It adjusts trigger T2 in [Triggers](standard-report-forms.md#412-triggers).
 
 ## Retired message queues
 
-A package that still holds a `messages.md`, or a legacy record a `## Messages` section, from before the queue retired (MSG-RETIRE) keeps it until its holder, or the root's guardian while none holds it, takes each line still in it along the tree under [Work between packages](standards-messages.md#messages-between-work), records each disposition where it lands and deletes the file in the same commit; nobody adds a line meanwhile. Delete this adjustment once no package or legacy record holds one. It adjusts [Work between packages](standards-messages.md#messages-between-work).
+A package that still holds a `messages.md`, or a legacy record a `## Messages` section, from before the queue retired (MSG-RETIRE) keeps it until its holder, or the root's guardian while none holds it, takes each line still in it along the tree under [Work between packages](standard-messages.md#messages-between-work), records each disposition where it lands and deletes the file in the same commit; nobody adds a line meanwhile. Delete this adjustment once no package or legacy record holds one. It adjusts [Work between packages](standard-messages.md#messages-between-work).

@@ -1,24 +1,90 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T00:36:30Z
+ki-status: in force
+---
+
 # Coordinating-work standard: messages and surfaces
 
-This file holds how work reaches other work now that the message queue has retired, and the surfaces a coordinator reads. It extends [the core](standards-coordination.md).
+## Contents
 
-## Sessions work alone
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Sessions work alone](#41-sessions-work-alone)
+  - [4.2 The Cairn Beacon](#42-the-cairn-beacon)
+  - [4.3 Work between packages](#43-work-between-packages)
+  - [4.4 Surfaces](#44-surfaces)
+
+## 1. Introduction
+
+This file holds how work reaches other work now that the message queue has retired, and the surfaces a coordinator reads. It extends [the core](standard-coordination.md). The decisions behind its rules are in [the sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+How a session works alone, how work reaches other work along the tree now the message queue has retired, and the surfaces a coordinator reads.
+
+### 2.1 In scope
+
+- A session's independence over its package and repositories.
+- The Cairn Beacon, and how sessions on different agent hosts talk until it holds meetings.
+- Work between packages: along the tree, receipt, transfers, method changes, release notices and owner feedback.
+- Urgent work and when a worker is live.
+- The surfaces a coordinator reads and writes.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- Meetings and their messages: `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md).
+- Steer and feedback in a report: [reporting](standard-reporting.md).
+- Cascading work down the tree: `ki-work-package`'s [work-package standard](../../ki-work-package/references/standard-work-package.md).
+- Background runs: `ki-delegation`'s [background-run standard](../../../agentic-systems/ki-delegation/references/standard-background-runs.md).
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Cairn Beacon** | What is to call and manage meetings once the Cairn MCP holds them; until then sessions on different agent hosts talk in a meeting. **Standard:** this one, [4.2](#42-the-cairn-beacon) |
+| **Along the tree** | The one way work reaches another package: up as feedback to the nearest node above both, and down from it as steer. **Standard:** this one, [4.3](#43-work-between-packages) |
+| **Urgent work** | A unit with a stated deadline, or one rolling out a process change other work must follow; it never waits in a package. **Standard:** this one, [4.3](#43-work-between-packages) |
+| **Live** | A worker whose `ki-workers` entry says `status: active`, that is listening, and whose package or Cairn shows activity within the last 30 minutes. **Standard:** this one, [4.3](#43-work-between-packages) |
+| **Surface** | Where a coordinator learns of or reports work: the transcript, the package, work status or a notification. **Standard:** this one, [4.4](#44-surfaces) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 Sessions work alone
 
 A session is independent and autonomous over its work package and the repositories its `repositories:` names. It does its work there with its agent host's own subagents, under the `ki-delegation` [background-run standard](../../../agentic-systems/ki-delegation/references/standard-background-runs.md), and those subagents act across those repositories. It never asks another session to act for it. It contacts another session only when that is essential, and then as a one-way hand-off that nobody waits on: a lesson learned, for example, goes to the guildmaster, who takes it up as scheduled work. A hand-off goes along the tree under [Work between packages](#messages-between-work), a signal that confers no execution authority.
 
-Sources: SESSIONS-ALONE and AGENT-HOST in [the decision register](sources.md#decision-register).
+Sources: SESSIONS-ALONE and AGENT-HOST in [the decision register](sources.md#3-decisions).
 
-## The Cairn Beacon
+[Back to contents](#contents)
+
+### 4.2 The Cairn Beacon
 
 Messages between sessions are gone (MESSAGES-GO): the Cairn store keeps no `messages/`, and the Cairn MCP is being reworked to hold meetings, which the Beacon is to call and manage. Until then sessions on different agent hosts talk in a meeting under `ki-meeting`, and the owner carries anything urgent between them by hand. The [Agent Host Protocol](https://microsoft.github.io/agent-host-protocol/specification/overview.html), AHP, may later carry what polling carries now, for an agent host the `ki-agentic-radar` radar shows supports it. Other ways agent hosts coordinate, such as Orca's orchestration ask and reply, are watched in the radar and never adopted as a channel between sessions.
 
-Sources: AHP-RADAR and MSG-RETIRE in [the decision register](sources.md#decision-register); AHP in [the outside sources](sources.md#outside-sources).
+Sources: AHP-RADAR and MSG-RETIRE in [the decision register](sources.md#3-decisions); AHP in [the outside sources](sources.md#2-outside-sources).
 
 <a id="messages-between-work"></a>
 
-## Work between packages
+[Back to contents](#contents)
 
-The message queue has retired (MSG-HOME, MSG-RETIRE): no package keeps a `messages.md`, no session writes a line into another package, and conversation between sessions goes through their agent host's own messaging or a meeting, under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md), whose [messages](../../ki-meeting/references/standard-meeting.md#48-messages) keep the queue's best parts. Work for another package goes along the tree, under [Steer and feedback](standards-reporting.md#steer-and-feedback), and cascades down it under `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down): delegate down, own it if there is no one below, escalate up.
+### 4.3 Work between packages
+
+The message queue has retired (MSG-HOME, MSG-RETIRE): no package keeps a `messages.md`, no session writes a line into another package, and conversation between sessions goes through their agent host's own messaging or a meeting, under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md), whose [messages](../../ki-meeting/references/standard-meeting.md#48-messages) keep the queue's best parts. Work for another package goes along the tree, under [Steer and feedback](standard-reporting.md#416-steer-and-feedback), and cascades down it under `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down): delegate down, own it if there is no one below, escalate up.
 
 - **Along the tree:** a hand-off, a rollout, a unit to route, a release notice or a method improvement goes up as feedback to the nearest node above both packages, and comes down from it as steer.
   - The receiving package's holder records it, or the root's guardian while no session holds the package: in a change document, its Open section for what needs the owner, or in `_index.md`'s Now or Held.
@@ -31,7 +97,7 @@ The message queue has retired (MSG-HOME, MSG-RETIRE): no package keeps a `messag
   - only the part it judges is not its own goes back up, once and with the reason, after it has done what it can with the rest, and never the whole;
   - otherwise only an escalation goes back up, a decision beyond its remit, along the path the work came down: never for want of a response, and never because the work is hard.
 - **A proposed transfer** of work goes at the bottom of the Summary's Queries, naming the receiving package and asking permission before sending, unless the owner has already authorised that transfer.
-- **Method changes** reach work at its next bootstrap, re-anchoring or update of its state, under [Refreshing this guidance](standards-coordination.md#refreshing-this-guidance): it compares `ki-method_read` with the backpack's latest revision and rereads what changed. No line is sent.
+- **Method changes** reach work at its next bootstrap, re-anchoring or update of its state, under [Refreshing this guidance](standard-coordination.md#482-refreshing-this-guidance): it compares `ki-method_read` with the backpack's latest revision and rereads what changed. No line is sent.
 - **Release notices:** after an authorised release, the releasing coordinator sends each affected package a notice along the tree, naming the released version, the relevant change, compatibility, adoption steps and any reply needed. The receiver owns adoption and any genuinely deferred record. The notice is an obligation only: it grants no release authority, consumer selection, rollout execution or foreign-record creation.
 - **Owner feedback on a document** reaches the work that produced it along the tree: its holder records each point in the change document the point reaches, quoting the owner word for word and naming the owner as speaker, under the `ki-work-package` [Messages](../../ki-work-package/references/standard-work-package.md#48-messages); a package holds no feedback files.
 - **Urgent work:** a unit is urgent only when it carries a stated deadline or rolls out a process change other work must follow; not everything is an escalation. Urgent work never waits in a package:
@@ -40,9 +106,11 @@ The message queue has retired (MSG-HOME, MSG-RETIRE): no package keeps a `messag
 
   A worker is **live** when its `ki-workers` entry in the package's `_index.md` says `status: active`, it is listening, and its package or Cairn shows activity within the last 30 minutes. Listening is read from meetings alone: a session is listening while it is a participant of an open meeting with a sitting under way, the `ki-workers` entry's actor id, `id: actor:<id>`, listed in the meeting's entry file under `ki-participants` with `ki-status: open`, the two matched by id alone (ACTOR-KEY), under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). No `ki-workers` entry or roster file carries `listening`. Cairn reads the register and is not a second source.
 
-Sources: CASCADE-DOWN, MSG-RETIRE, ROUTE-RECEIPT, HANDOFF-AS-MESSAGE, URGENT-CRITERIA, LIVENESS, LISTEN-HOME and FEEDBACK-AS-MESSAGE in [the decision register](sources.md#decision-register); MSG-HOME in `ki-meeting`'s [sources](../../ki-meeting/references/sources.md#3-decisions).
+Sources: CASCADE-DOWN, MSG-RETIRE, ROUTE-RECEIPT, HANDOFF-AS-MESSAGE, URGENT-CRITERIA, LIVENESS, LISTEN-HOME and FEEDBACK-AS-MESSAGE in [the decision register](sources.md#3-decisions); MSG-HOME in `ki-meeting`'s [sources](../../ki-meeting/references/sources.md#3-decisions).
 
-## Surfaces
+[Back to contents](#contents)
+
+### 4.4 Surfaces
 
 A coordinator learns of other work through its own package, `_index.md` and the change documents, which travel through Git; through the meetings it sits in; and from a run through its report and its agent host's notice. Where the agent host can message another live session on the same machine, as Claude Code can and Codex cannot, sessions may talk that way under `ki-meeting`'s [routes](../../ki-meeting/references/standard-meeting.md#46-routes).
 
@@ -57,4 +125,6 @@ A coordinator learns of other work through its own package, `_index.md` and the 
 
 A nudge through an agent host's messaging carries conversation, not work: work reaches a package only along the tree.
 
-Sources: SURFACES-RULE in [the decision register](sources.md#decision-register).
+Sources: SURFACES-RULE in [the decision register](sources.md#3-decisions).
+
+[Back to contents](#contents)

@@ -1,11 +1,11 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { CoordinationRubricContext } from '../contexts/coordination.ts'
 
-const SOURCE = 'standards-coordination.md'
-const REPORTING = 'standards-reporting.md'
-const REPORT_FORMS = 'standards-report-forms.md'
-const QUERIES = 'standards-queries.md'
-const TERRITORY = 'standards-territory.md'
+const SOURCE = 'standard-coordination.md'
+const REPORTING = 'standard-reporting.md'
+const REPORT_FORMS = 'standard-report-forms.md'
+const QUERIES = 'standard-queries.md'
+const TERRITORY = 'standard-territory.md'
 
 const COORD_8: RubricItem<CoordinationRubricContext> = {
   code: 'COORD-8',
@@ -31,7 +31,7 @@ const COORD_4: RubricItem<CoordinationRubricContext> = {
     'A coordinator never does substantive work itself, sends every unit of work to a detached background agent and treats an owner message as steering rather than a stop; each turn makes at most five tool calls with reads limited to the work package, one read of its files counting as one call, the agent host view of its agents, one report and one short file and writes limited to the work package, its change documents included, and a brief, waits only on the agent host notice or a detached background check, keeps a background check armed while work lies with a worker that wakes it only when a run finishes, with no timed bound and no timed update while it waits, with no heartbeat otherwise, keeps one inbox watcher armed only when the owner has asked the thread to listen, or it is a Rig host sync thread, and the work is not draining, On hold or Finished, that silently fetches and fast-forwards and wakes it only on a new meeting message or a finished run, shows the listening line in the banner only while the session is in a meeting, naming the meetings, reads new messages in the meetings it sits in at each wake, important messages first, answers owner messages within one short turn and reports drift in one line; each territory Capital has one main State of play coordinating registered Project packages within its cap, through explicit committed assignment and acknowledged handover of in-flight runs without timeout takeover; the assignment field remains undecided. It acts in one assigned package per turn, keeps the queue and seeds each package and opener, and any secondary State of play names the main as `parent`, the tree beneath it being its register, and routes cross-cutting matters to the main, which stays the front door for the owner; Project work works only its Project, follows the bootstrap, keeps the state in its `_index.md` current and records approvals before launching; a routed line is never rejected whole, only the part not its own returned once to the State of play that routed it.',
   sources: [
     `${SOURCE}#coordinator-responsiveness`,
-    'standards-listening.md#inbox-watch',
+    'standard-listening.md#41-inbox-watch',
     `${TERRITORY}#coordinating-work`
   ],
   judgment: {
@@ -50,10 +50,10 @@ const COORD_5: RubricItem<CoordinationRubricContext> = {
   description:
     "A coordinator parks each passing side topic as a new change document for its area, numbered after the others, holding its dated line, cites and links every record, work file, theme and Project by full identifier and local path, and fast-forward pulls affected clean primary checkouts after background agents push. Commit each complete unit and finished package change by explicit path before its turn ends; sync after each finished change and at least every 15 minutes. Push everything stacked on main, including other sessions' commits, fast-forward only, never forced or with --no-verify, stopping on divergence. Conflict repair belongs to a bounded isolated run that rebases only this work's unpublished commits and stops on other content, uncertain ownership or judgement. High-confidence or reversible work lands on main without waiting for the owner, a pull request only where something major is at stake and destructive work only on the owner's word, and the session that did the work writes its record as it lands, one for each unattended run or batch that lands real work and none for a session spent deciding.",
   sources: [
-    'standards-mark.md#parking-tangents',
+    'standard-mark.md#42-parking-tangents',
     `${REPORTING}#linking-records`,
-    'standards-sync.md#keeping-primary-checkouts-current',
-    'standards-sync.md#landing-then-review'
+    'standard-sync.md#44-keeping-primary-checkouts-current',
+    'standard-sync.md#41-landing-then-review'
   ],
   judgment: {
     scope: 'Coordinator transcripts, status lines, reports, summaries and work files the owner selects for review.',
@@ -73,9 +73,9 @@ const COORD_6: RubricItem<CoordinationRubricContext> = {
   sources: [
     `${SOURCE}#coordinating-practices`,
     `${REPORT_FORMS}#report-forms`,
-    'standards-holds.md#putting-work-on-hold',
-    'standards-mark.md#the-mark',
-    'standards-unattended.md#unattended-windows',
+    'standard-holds.md#41-putting-work-on-hold',
+    'standard-mark.md#41-the-mark',
+    'standard-unattended.md#42-unattended-windows',
     `${QUERIES}#interactive-pass`
   ],
   judgment: {

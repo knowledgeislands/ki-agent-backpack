@@ -8,7 +8,7 @@ const root = resolve(import.meta.dir, '../../../..')
 const promptPath = 'skills/agentic-systems/ki-delegation/assets/run-prompt.md'
 const standardRoot = 'skills/work/ki-coordination/references'
 const standardPaths = readdirSync(join(root, standardRoot))
-  .filter((name) => /^standards-.*\.md$/.test(name))
+  .filter((name) => /^standards?-.*\.md$/.test(name))
   .map((name) => `${standardRoot}/${name}`)
 const read = (path: string): string => readFileSync(join(root, path), 'utf8')
 

@@ -9,7 +9,7 @@ const skillRoot = resolve(import.meta.dir, '..')
 const harnessRoot = resolve(skillRoot, '..', '..', '..')
 const references = join(skillRoot, 'references')
 const referenceFiles = readdirSync(references).filter((name) => name.endsWith('.md'))
-const standardFiles = referenceFiles.filter((name) => /^standards-.*\.md$/.test(name))
+const standardFiles = referenceFiles.filter((name) => /^standards?-.*\.md$/.test(name))
 const read = (path: string): string => readFileSync(path, 'utf8')
 
 /** Lines outside fenced blocks, so example headings and links are not read as the document's own. */
@@ -73,9 +73,9 @@ test('every link to a section of a ki-coordination standard file resolves', () =
   const broken: string[] = []
   for (const path of tracked) {
     const text = read(join(harnessRoot, path))
-    if (!text.includes('standards-')) continue
+    if (!/standards?-/.test(text)) continue
     for (const line of prose(text))
-      for (const match of line.matchAll(/\]\(((?:[^()\s#]*\/)?(standards-[a-z-]+\.md))#([^)\s]+)\)/g)) {
+      for (const match of line.matchAll(/\]\(((?:[^()\s#]*\/)?(standards?-[a-z-]+\.md))#([^)\s]+)\)/g)) {
         const [, target = '', , anchor = ''] = match
         if (target.includes('://')) continue
         const file = resolve(harnessRoot, dirname(path), target)

@@ -615,7 +615,7 @@ test("a coordinating reply's reply block and footer are checked together", () =>
 test("the hook's agreed glyphs are the standard's one table of glyphs", () => {
   const bare = (glyph: string): string => glyph.replace(/\uFE0F/gu, '')
   const standard = readFileSync(
-    resolve(import.meta.dir, '..', '..', 'skills', 'work', 'ki-coordination', 'references', 'standards-coordination.md'),
+    resolve(import.meta.dir, '..', '..', 'skills', 'work', 'ki-coordination', 'references', 'standard-coordination.md'),
     'utf8'
   )
   const lines = (standard.split('**One table of glyphs.**')[1] ?? '').split('\n')

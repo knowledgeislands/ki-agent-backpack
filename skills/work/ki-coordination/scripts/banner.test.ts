@@ -24,13 +24,12 @@ const harnessRoot = resolve(skillRoot, '..', '..', '..')
 const references = resolve(skillRoot, 'references')
 /** The standard's reference files, core first, so an assertion holds wherever its rule lands. */
 const standardFiles = readdirSync(references)
-  .filter((name) => /^standards-.*\.md$/.test(name))
+  .filter((name) => /^standards?-.*\.md$/.test(name))
   .sort(
-    (a, b) =>
-      Number(b === 'standards-coordination.md') - Number(a === 'standards-coordination.md') || a.localeCompare(b)
+    (a, b) => Number(b === 'standard-coordination.md') - Number(a === 'standard-coordination.md') || a.localeCompare(b)
   )
 const readReference = (name: string): string => readFileSync(resolve(references, name), 'utf8')
-const core = readReference('standards-coordination.md')
+const core = readReference('standard-coordination.md')
 /** Joins the reference files so a fenced block never runs on from one file into the next. */
 const FILE_BREAK = '\n<!-- ki-coordination:file -->\n'
 const standard = standardFiles.map(readReference).join(FILE_BREAK)
@@ -319,8 +318,8 @@ test('one table holds every glyph the coordination surfaces use', () => {
     )
   )
   for (const glyph of used) expect([glyph, AGREED.has(glyph) || ROLE_GLYPHS.has(glyph)]).toEqual([glyph, true])
-  for (const name of ['standards-unattended.md', 'standards-territory.md', 'standards-report-forms.md'])
-    expect(readReference(name)).toContain('[table of glyphs](standards-coordination.md#banner)')
+  for (const name of ['standard-unattended.md', 'standard-territory.md', 'standard-report-forms.md'])
+    expect(readReference(name)).toContain('[table of glyphs](standard-coordination.md#46-banner)')
   expect(core).toContain('GLYPH-TABLE')
 })
 
@@ -532,8 +531,8 @@ test('a thread listens only when the owner asks it to, and a Rig host sync threa
 // point of being clean". A thread may hold listening and host sync, each switched on only by express word or an agreed
 // role; host sync repeats each pass until clean and level, stays quiet on quiet passes and implies listening.
 test('a session may hold listening and host sync, and the banner shows only the listening line', () => {
-  expect(standard).toContain('## Session capabilities')
-  expect(standard).toContain('[Session capabilities](standards-listening.md#session-capabilities)')
+  expect(standard).toContain('### 4.2 Session capabilities')
+  expect(standard).toContain('[Session capabilities](standard-listening.md#42-session-capabilities)')
   for (const name of ['THREAD-CAPABILITIES', 'SYNC-UNTIL-CLEAN', 'SYNC-QUIET', 'Host sync implies listening.'])
     expect(standard).toContain(name)
   for (const text of [standard, outputStyle]) {
@@ -656,9 +655,9 @@ test('every banner closes with its work identity and never emits a send or resum
       expect(surface.content).toContain('using the work you report to')
     }
   }
-  expect(standard).toContain('## Putting work on hold')
-  expect(standard).toContain('## Picking work up')
-  expect(standard).toContain('## Pushing beneath other sessions')
+  expect(standard).toContain('### 4.1 Putting work on hold')
+  expect(standard).toContain('### 4.4 Picking work up')
+  expect(standard).toContain('### 4.2 Pushing beneath other sessions')
 })
 
 // Under REPLY-FORMAT, agreed on 7 November 2026, the reply block returns whenever a reply carries a query: one fenced
@@ -676,7 +675,7 @@ test('the standard and the output style carry the reply block and retire the blo
     expect(withoutSources(text)).not.toMatch(/^╭─/m)
     expect(text).not.toContain('- [at rest]')
   }
-  expect(standard).toContain('### Answers')
+  expect(standard).toContain('#### 4.2.1 Answers')
   expect(standard).toContain('Taken as: <the instruction it will act on>')
   expect(standard).toContain(
     'the numbered group headings are ignored, and so is a bracketed confidence after the letter'
@@ -718,7 +717,7 @@ const replyAnswers = (block: string): Record<string, string> =>
   )
 
 test('the reply block groups its queries by priority under numbered headings, each line carrying its confidence', () => {
-  const reporting = readReference('standards-reporting.md')
+  const reporting = readReference('standard-reporting.md')
   const example = /A reply block:\n\n {2}```text\n([\s\S]*?)\n {2}```\n/.exec(reporting)?.[1]?.replaceAll(/^ {2}/gm, '')
   expect(example).toBeDefined()
   const groups = replyGroups(example ?? '')
@@ -738,7 +737,7 @@ test('the reply block groups its queries by priority under numbered headings, ea
     'HANDOFF-OBS': 'a'
   })
 
-  const template = /```text +B6\n([\s\S]*?)\n```\n/.exec(readReference('standards-report-forms.md'))?.[1]
+  const template = /```text +B6\n([\s\S]*?)\n```\n/.exec(readReference('standard-report-forms.md'))?.[1]
   expect(template).toContain("1 · <what the most pressing group is>, can run while you're away")
   expect(template).toContain('<TAG> a (<high, medium or low>): <gloss>')
   expect(template?.split('\n\n')).toHaveLength(2)
@@ -772,7 +771,7 @@ test('a reply block sent back as it stands, or changed, still answers every quer
 // reply id, `**Reply HH:MM**` in UTC from the clock, and every reply asking the owner to decide anything ends with the
 // reply block, a conversational reply included.
 test('every reply opens with its reply id, and every reply asking a decision ends with the reply block', () => {
-  const reporting = readReference('standards-reporting.md')
+  const reporting = readReference('standard-reporting.md')
   expect(reporting).toContain('opens with its id as a bold first line, `**Reply HH:MM**`')
   expect(reporting).toContain('`date -u +%H:%M`, never guessed')
   expect(reporting).toContain(
@@ -782,9 +781,7 @@ test('every reply opens with its reply id, and every reply asking a decision end
   expect(reporting).toContain('and so is a gloss after a colon')
   expect(reporting).not.toContain("A conversational session's report carries none")
   expect(reporting).not.toContain('A question for the owner is one line')
-  expect(readReference('standards-report-forms.md')).toContain(
-    '**Reply id.** Every reply to the owner, in every layout'
-  )
+  expect(readReference('standard-report-forms.md')).toContain('**Reply id.** Every reply to the owner, in every layout')
   for (const text of [core, outputStyle]) {
     expect(text).toContain('opens with its reply id, as Kris set under REPLY-ID on 14 November 2026')
     expect(text).toContain('under REPLY-BLOCK of 14 November 2026 every reply that asks Kris to decide anything')
@@ -822,12 +819,13 @@ test("every coordinating reply ends with the banner, its structure, which its tr
 // Under REPLY-FORMAT its section is `## Summary`, with no time. Under FOCUS-ROWS
 // (15 November 2026) its status table has a row per live change and one catch-all.
 test('the Summary runs its summary, the two-column status table, the queries in full, then the footer', () => {
-  const summary = standard.slice(standard.indexOf('### The Summary'), standard.indexOf('## Coordinating work'))
+  const summaryAt = standard.indexOf('#### 4.1.7 The Summary')
+  const summary = standard.slice(summaryAt, standard.indexOf('### 4.1 Coordinating work', summaryAt))
   const parts = [
     'the Answer where there is one, `## Summary`',
     '`## Status`',
     '`## Findings` while one is open',
-    '`## Queries` with the open queries in full, at most ten under the [query cap](standards-queries.md#query-cap), and the reply block',
+    '`## Queries` with the open queries in full, at most ten under the [query cap](standard-queries.md#42-query-cap), and the reply block',
     'then the footer'
   ]
   const at = parts.map((part) => summary.indexOf(part))
@@ -859,11 +857,11 @@ test('the Summary runs its summary, the two-column status table, the queries in 
 })
 
 test('the core retains all five hard rules and lists every purpose file', () => {
-  for (const name of standardFiles.filter((file) => file !== 'standards-coordination.md'))
+  for (const name of standardFiles.filter((file) => file !== 'standard-coordination.md'))
     expect(core).toContain(`](${name})`)
   const line = core
   expect(line).toContain(
-    'Follow the coordinating-work standard (skills/work/ki-coordination/references/standards-coordination.md) and the Work Process note it cites'
+    'Follow the coordinating-work standard (skills/work/ki-coordination/references/standard-coordination.md) and the Work Process note it cites'
   )
   expect(line).toContain(
     'Hard rules: 1) delegate every unit of work to a detached background agent and stay responsive'
@@ -906,7 +904,7 @@ test('unknown-session hook sources stay short and conditional while the style re
 })
 
 test('the run-report and footer-report sources carry the quiet-tools rule and the reply block', () => {
-  expect(standard).toContain('### Quiet tools')
+  expect(standard).toContain('#### 4.2.2 Quiet tools')
   const quiet = 'run Git with `-q`, never paste gate, audit or Git output, and report each outcome in one line.'
   for (const surface of generate(harnessRoot).filter(({ path }) => path.includes('ki-delegation/assets/'))) {
     expect(surface.content).toContain(quiet)
@@ -923,7 +921,7 @@ test('the hook line, the pointer and the output style confine the coordinator fo
   expect(hook).toContain('Otherwise use its conversational Reply forms')
   expect(hook).toContain('Only if explicitly coordinating, follow Re-anchoring after compaction')
   expect(outputStyle).toContain('This style applies only while the owner explicitly opens or resumes coordination')
-  expect(standard).toContain('## Reply forms')
+  expect(standard).toContain('### 4.1 Reply forms')
 })
 
 test('every generated surface matches what the standard renders, so none is edited by hand', () => {
@@ -1220,7 +1218,7 @@ test("a Full reply's footer carries the roadmap and package lines beneath its co
 // and the status table without the history part; under REPLY-FORMAT, agreed on 7 November 2026, each reply structure
 // has its template, and a Stop folds the hold and finish reports.
 test('each reply structure has one template, and the form line carries no state', () => {
-  const templates = standard.split('### Templates\n')[1]?.split('\n### Verbs\n')[0] ?? ''
+  const templates = standard.split('#### 4.1.5 Templates\n')[1]?.split('\n#### 4.1.6 Verbs\n')[0] ?? ''
   for (const structure of [
     '**Summary**',
     '**Status**',

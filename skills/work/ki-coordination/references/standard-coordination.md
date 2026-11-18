@@ -1,32 +1,114 @@
-# Coordinating-work standard
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T01:24:51Z
+ki-status: in force
+---
 
-This is the core of the coordinating-work standard: the rules every coordinating turn needs. The purpose files under [Reference files](#reference-files) hold the rest, each loaded for its occasion.
+# Coordinating-work standard
 
 ## Contents
 
-- [Scope](#scope)
-  - [The work model](#the-work-model)
-  - [The responsive coordinator](#the-responsive-coordinator)
-  - [Glossary](#glossary)
-- [Reference files](#reference-files)
-- [Coordinator responsiveness](#coordinator-responsiveness)
-- [Coordinating practices](#coordinating-practices)
-- [States and moves](#states-and-moves)
-- [Banner](#banner)
-- [Generated surfaces](#generated-surfaces)
-- [Working rules](#working-rules)
-  - [Committing the work folder](#committing-the-work-folder)
-  - [Refreshing this guidance](#refreshing-this-guidance)
-  - [Recording times](#recording-times)
-- [Mechanical boundary](#mechanical-boundary)
-- [Moved sections](#moved-sections)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Coordinating work](#41-coordinating-work)
+    - [4.1.1 The work model](#411-the-work-model)
+    - [4.1.2 The responsive coordinator](#412-the-responsive-coordinator)
+  - [4.2 Reference files](#42-reference-files)
+  - [4.3 Coordinator responsiveness](#43-coordinator-responsiveness)
+  - [4.4 Coordinating practices](#44-coordinating-practices)
+  - [4.5 States and moves](#45-states-and-moves)
+  - [4.6 Banner](#46-banner)
+  - [4.7 Generated surfaces](#47-generated-surfaces)
+  - [4.8 Working rules](#48-working-rules)
+    - [4.8.1 Committing the work folder](#481-committing-the-work-folder)
+    - [4.8.2 Refreshing this guidance](#482-refreshing-this-guidance)
+    - [4.8.3 Recording times](#483-recording-times)
+  - [4.9 Mechanical boundary](#49-mechanical-boundary)
+  - [4.10 Moved sections](#410-moved-sections)
 
-## Scope
+## 1. Introduction
+
+This is the core of the coordinating-work standard: the rules every coordinating turn needs. The purpose files under [Reference files](#42-reference-files) hold the rest, each loaded for its occasion. The decisions behind its rules are in [the sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+The rules every coordinating turn needs, with the purpose files that hold the rest.
+
+### 2.1 In scope
+
+- What coordinating work is, the work model it keeps to and the responsive coordinator.
+- The purpose files and what each holds.
+- Coordinator responsiveness: the turn budget, the self-check and small fixes.
+- Coordinating practices, and the states and moves.
+- The banner, with its one table of glyphs and the thread line.
+- The generated surfaces and their marked sources.
+- The working rules and the mechanical boundary.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- What each purpose file holds: the files in [4.2](#42-reference-files).
+- The run half of the practice: `ki-delegation`'s [background-run standard](../../../agentic-systems/ki-delegation/references/standard-background-runs.md).
+- The package's shape, its closed list and the work tree: `ki-work-package`'s [work-package standard](../../ki-work-package/references/standard-work-package.md).
+- Meetings: `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md).
+- The model's own words, levels and states: the [Work Process](https://github.com/knowledgeislands/ki-principal/blob/main/Pillars/Philosophy/Model/Processes/Work%20Process/Work%20Process.md) note.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+The Work Process note's Words table owns the model's words: work, work item, theme, work file, logbook, decisions, worker, supervisor, holder, handoff, send, receive, On hold, paused, more expected, which this standard calls Snoozing, release, drain, Finished, the five views, the receive words, the working area and the mark. This standard uses one term for each idea around them:
+
+| Term | Definition |
+| --- | --- |
+| **the owner** | The person the work serves, who supervises it. **Standard:** the Work Process note |
+| **coordinator** | A session working a package as its worker under this standard, explicitly opened. **Standard:** this one |
+| **coordinator session** | A session the owner explicitly opened or resumed as a coordinator under this standard, on a valid package; past records call it a coordinating thread. **Standard:** this one |
+| **session** | A [session](../../../keystone/ki-agentic-systems/knowledge/industry/industry.session.md) in the industry's sense, narrowed here to one seated in one package and able to act in others it stewards. A thread is part of a session, not another word for it; _thread_ also survives in the fixed names "thread line" and "host sync thread". **Standard:** `ki-agentic-systems`; seating `ki-work recap` |
+| **chat** | Not a Knowledge Islands term: a vendor's word, used only when naming a vendor artefact that is imported or cleaned up, such as a session's transcript in Claude Desktop or ChatGPT. OpenAI's [chat](../../../keystone/ki-agentic-systems/knowledge/vendors/openai/openai.chat.md) is a whole session, and VS Code's [chat](../../../keystone/ki-agentic-systems/knowledge/vendors/microsoft/microsoft.chat.md) a part of one. **Standard:** `ki-agentic-systems`; the artefacts `ki-env-housekeeping-claude` and its siblings |
+| **run** | What a coordinator starts on its agent host's own subagents and later receives: a named set of agents, its reports and briefs living in the package of the work it serves. **Standard:** `ki-delegation` |
+| **agent** | A [subagent](../../../keystone/ki-agentic-systems/knowledge/industry/industry.subagent.md) started through the session's agent host under the background-run contract; an in-session subagent is not one, and another session never is. In the industry's sense every one is an [agent](../../../keystone/ki-agentic-systems/knowledge/industry/industry.agent.md); this narrowing is the standard's. **Standard:** `ki-delegation`, the terms `ki-agentic-systems` |
+| **agent host** | An [agent host](../../../keystone/ki-agentic-systems/knowledge/industry/industry.agent-host.md), such as Orca, Claude Desktop, ChatGPT Desktop or ChatGPT Mobile; launcher and session launcher were aliases. A **rig** is the [machine](../../../keystone/ki-agentic-systems/knowledge/industry/industry.machine.md) they run on. **Standard:** `ki-agentic-systems` |
+| **package** | `work/<territory>/<id>/` in the Cairn store: its `_index.md`, its change documents and its sub-packages, always named by file name. **Standard:** `ki-work-package` |
+| **State of play** | A territory's coordinating work, main or secondary. **Standard:** this one |
+| **watcher** | The one detached loop that wakes the coordinator; a **wake** is the watcher exiting on news. **Standard:** this one |
+| **Snoozing** | The hold that waits for a line; **drain** is the activity into any hold. **Standard:** this one |
+| **reply** | One message from the coordinator to the owner in its session. **Standard:** this one |
+| **coordinator reply format** | The blocks and parts of a coordinator reply and the layouts that select them, under [Coordinator reply format](standard-report-forms.md#41-coordinator-reply-format). **Standard:** this one |
+| **trigger, signal** | What a reply meets that sets its reply structure, tried in order, the first met winning; and what a trigger is matched on, a phrase, the state, the time or a move. **Standard:** this one |
+| **layout** | A reply's depth, setting the blocks and parts it carries: Full, Medium, Short or Minimal. **Standard:** this one |
+| **reply structure** | What a reply is, such as Summary, Status, Bootstrap, run report, Stop, Position, Update or Answer, each with one layout. **Standard:** this one |
+| **block, part** | The heading, body and footer blocks of a reply, in order, and the coded parts within them, H1 to H4, B1 to B6 and F1 to F9. **Standard:** this one |
+| **banner** | F2 to F9: the state, counts, items, modes and thread line. **Standard:** this one |
+| **holder** | Who an item is with: 👤 the owner, 🤖 a worker or run, 🧵 another session, 🌐 the outside world. **Standard:** this one |
+| **time** | The owner's local time, as a friendly time naming the day where it is not today, or an ISO 8601 timestamp with its offset where a friendly time does not fit. **Standard:** this one |
+| **thread line** | The closing line of every banner and the session's name, `<role glyph> 🔑 <work-id>`, `<role glyph> <package>@<role>` for a seat without the package's keys, or `🧵 <work-id>` for a session with no role yet, under [Banner](#46-banner); its grammar and the role glyphs are the [role standard](../../ki-work-package/references/standard-roles.md#46-thread-line)'s. **Standard:** `ki-work-package` |
+| **query, tag** | An open decision and its stable mnemonic. **Standard:** this one |
+| **decision** | One entry in a change document: agreed or decided, or an open point in its Open section. **Standard:** this one |
+| **record** | A roadmap work record. **Standard:** `ki-work-roadmap` |
+| **sync** | Fetch, fast-forward pull into a clean checkout, then push fast-forward only. **Standard:** `ki-git` |
+| **opener** | The steering brief that opens a coordinator. **Standard:** this one |
+| **binding** | The machine-local runtime file tying native client sessions to one piece of work, keyed `<repository name>/<work id>`, never committed and never moved between hosts, under the work-package standard's [Work identity and native sessions](../../ki-work-package/references/standard-work-package.md#411-work-identity-and-native-sessions). **Standard:** `ki-work-package` |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 Coordinating work
 
 Coordinating work is how a session, as the owner's worker, holds a package of Knowledge Islands work that has runs of its own: a territory's summit, which is its State of play, or a node or Project beneath it in the work tree. The coordinator dispatches, decides with the owner and reports. This standard owns how a session behaves while coordinating, how it reports and how it keeps itself current.
 
-- **With `ki-delegation`:** this is the coordinator half of the practice whose run half the `ki-delegation` [background-run standard](../../../agentic-systems/ki-delegation/references/standard-background-runs.md) governs: detachment, the run packet, prompt shape, authority tiers, the run side of logging decisions, coordination, concurrency and monitoring. This standard owns the [owner report](standards-reporting.md#owner-report) with its [tags](standards-reporting.md#needs-tags), which every report a background agent or a coordinator gives takes, and the [generated surfaces](#generated-surfaces) that carry it.
-- **With `ki-work-package`:** the work is its package, `work/<territory>/<id>/` in the Cairn store: `_index.md` holds its definition and state, and the change documents beside it carry its decisions and open points. The packages form one tree rooted at `cairn.summit`, and work from other packages reaches this one along it, under [Work between packages](standards-messages.md#messages-between-work). The package's shape, its closed list and tidy rules, and the tree itself are the `ki-work-package` [work-package standard](../../ki-work-package/references/standard-work-package.md)'s. This standard says when the package is tidied, whether an outcome has a durable home, and how a decision is logged and what becomes of it. A batch that lands real work leaves its record in the store's `record/`, under [Landing, then review](standards-sync.md#landing-then-review).
+- **With `ki-delegation`:** this is the coordinator half of the practice whose run half the `ki-delegation` [background-run standard](../../../agentic-systems/ki-delegation/references/standard-background-runs.md) governs: detachment, the run packet, prompt shape, authority tiers, the run side of logging decisions, coordination, concurrency and monitoring. This standard owns the [owner report](standard-reporting.md#42-owner-report) with its [tags](standard-reporting.md#needs-tags), which every report a background agent or a coordinator gives takes, and the [generated surfaces](#47-generated-surfaces) that carry it.
+- **With `ki-work-package`:** the work is its package, `work/<territory>/<id>/` in the Cairn store: `_index.md` holds its definition and state, and the change documents beside it carry its decisions and open points. The packages form one tree rooted at `cairn.summit`, and work from other packages reaches this one along it, under [Work between packages](standard-messages.md#messages-between-work). The package's shape, its closed list and tidy rules, and the tree itself are the `ki-work-package` [work-package standard](../../ki-work-package/references/standard-work-package.md)'s. This standard says when the package is tidied, whether an outcome has a durable home, and how a decision is logged and what becomes of it. A batch that lands real work leaves its record in the store's `record/`, under [Landing, then review](standard-sync.md#41-landing-then-review).
 - **With `ki-meeting`:** sessions talk to each other in a meeting held at a node of the tree, under the `ki-meeting` [meeting standard](../../ki-meeting/references/standard-meeting.md). A meeting's message is a signal and grants no authority, and what a meeting decides goes to a change document.
 
 A repository that runs coordinating work declares `[skills.ki-coordination]` in `.ki.toml`. The declaration enables the hook and output-style binding as checkout capabilities; it does not make an interactive session a coordinator.
@@ -36,13 +118,13 @@ Coordination is an explicitly selected session role on any valid package, whatev
 - A State of play specialises the role across assigned packages.
 - Regular and ad hoc work keep their identity and may stay conversational. Neither a package nor a capability declaration opens a coordinator or requires a permanent one.
 - An owner-approved opener names the exact package by its id, the repository the session works from, its scope and the opening authority; a bounded episode also names its end condition. Ending that episode does not finish or hold the package, move its mark or abandon runs.
-- A session working one bounded matter directly follows [Conversational bounded work](standards-reporting.md#conversational-bounded-work).
+- A session working one bounded matter directly follows [Conversational bounded work](standard-reporting.md#413-conversational-bounded-work).
 
-### The work model
+#### 4.1.1 The work model
 
 The model of work is decided by [GDR-KI-PRINCIPAL-009](https://github.com/knowledgeislands/ki-principal/blob/main/Admin/Governance/Decisions/GDR-KI-PRINCIPAL-009-the-work-model.md) and described once by the [Work Process](https://github.com/knowledgeislands/ki-principal/blob/main/Pillars/Philosophy/Model/Processes/Work%20Process/Work%20Process.md) note in Knowledge Islands Principal: the unit is work; its levels and forms; worker, supervisor and the derived holder; send and receive; the seven states with On hold's two reasons; the receive words; the heartbeat and stuck; Git as the logbook; the decisions life cycle; the banner and its answers; and the Observatory fields. This standard cites the note and restates none of it, and sets what the note leaves to the harness: how a coordinator keeps to the model, the shape of every report, the generated surfaces and the checks. Where the work is kept, a package in the Cairn store's work tree, is `ki-work-package`'s, which governs wherever the note was written before that tree.
 
-### The responsive coordinator
+#### 4.1.2 The responsive coordinator
 
 Every rule in this standard serves one principle: the coordinator stays responsive.
 
@@ -52,7 +134,7 @@ Three rules follow from it, and they are hard:
 2. **Every unit of work goes to a background agent.** A subagent of the session's own agent host, under `ki-delegation`, within the repositories its package names, never another session, surviving anything that happens to the coordinator where its agent host allows. An in-session subagent is not a background agent.
 3. **An owner message never pre-empts work in flight.** It steers: the coordinator folds it into running and queued work and answers within one short turn. A background agent stops only when the owner names it and says stop.
 
-A one-line mechanical fix in the coordinator's own package is bookkeeping, not substantive work, under **Small fixes** in [Coordinator responsiveness](#coordinator-responsiveness). Anything needing judgement, and any file of another work, still goes to a run.
+A one-line mechanical fix in the coordinator's own package is bookkeeping, not substantive work, under **Small fixes** in [Coordinator responsiveness](#43-coordinator-responsiveness). Anything needing judgement, and any file of another work, still goes to a run.
 
 Three layers support the rules:
 
@@ -60,75 +142,44 @@ Three layers support the rules:
 - the runtime hook conditionally points to this standard, without detecting that role;
 - the counted turn budget and self-check bound each turn.
 
-Every opener or brief that starts a session, coordinating or not, carries the same discipline in short: delegate to the agent host's own subagents, stay responsive while they run, and check what they return before posting it, under OPENER-DELEGATE in [Opening work](standards-opening.md#opening-work).
+Every opener or brief that starts a session, coordinating or not, carries the same discipline in short: delegate to the agent host's own subagents, stay responsive while they run, and check what they return before posting it, under OPENER-DELEGATE in [Opening work](standard-opening.md#43-opening-work).
 
 The harness `ki-coordinator` output style keeps the full rules and the owner-report contract; a declaring repository selects it with `outputStyle` in tracked `.claude/settings.json`. The coordinator re-bootstraps on request, after compaction and after a model switch.
 
-Sources: RESPONSIVE-PRINCIPLE, SMALL-FIXES and OPENER-DELEGATE in [the decision register](sources.md#decision-register).
+Sources: RESPONSIVE-PRINCIPLE, SMALL-FIXES and OPENER-DELEGATE in [the decision register](sources.md#3-decisions).
 
-### Glossary
+[Back to contents](#contents)
 
-The Work Process note's Words table owns the model's words: work, work item, theme, work file, logbook, decisions, worker, supervisor, holder, handoff, send, receive, On hold, paused, more expected, which this standard calls Snoozing, release, drain, Finished, the five views, the receive words, the working area and the mark. This standard uses one term for each idea around them:
-
-| Term | Meaning | Owner |
-| --- | --- | --- |
-| the owner | The person the work serves, who supervises it | the Work Process note |
-| coordinator | A session working a package as its worker under this standard, explicitly opened | `ki-coordination` |
-| coordinator session | A session the owner explicitly opened or resumed as a coordinator under this standard, on a valid package; past records call it a coordinating thread | `ki-coordination` |
-| session | A [session](../../../keystone/ki-agentic-systems/knowledge/industry/industry.session.md) in the industry's sense, narrowed here to one seated in one package and able to act in others it stewards. A thread is part of a session, not another word for it; _thread_ also survives in the fixed names "thread line" and "host sync thread" | `ki-agentic-systems`; seating `ki-work recap` |
-| chat | Not a Knowledge Islands term: a vendor's word, used only when naming a vendor artefact that is imported or cleaned up, such as a session's transcript in Claude Desktop or ChatGPT. OpenAI's [chat](../../../keystone/ki-agentic-systems/knowledge/vendors/openai/openai.chat.md) is a whole session, and VS Code's [chat](../../../keystone/ki-agentic-systems/knowledge/vendors/microsoft/microsoft.chat.md) a part of one | `ki-agentic-systems`; the artefacts `ki-env-housekeeping-claude` and its siblings |
-| run | What a coordinator starts on its agent host's own subagents and later receives: a named set of agents, its reports and briefs living in the package of the work it serves | `ki-delegation` |
-| agent | A [subagent](../../../keystone/ki-agentic-systems/knowledge/industry/industry.subagent.md) started through the session's agent host under the background-run contract; an in-session subagent is not one, and another session never is. In the industry's sense every one is an [agent](../../../keystone/ki-agentic-systems/knowledge/industry/industry.agent.md); this narrowing is the standard's | `ki-delegation`, the terms `ki-agentic-systems` |
-| agent host | An [agent host](../../../keystone/ki-agentic-systems/knowledge/industry/industry.agent-host.md), such as Orca, Claude Desktop, ChatGPT Desktop or ChatGPT Mobile; launcher and session launcher were aliases. A **rig** is the [machine](../../../keystone/ki-agentic-systems/knowledge/industry/industry.machine.md) they run on | `ki-agentic-systems` |
-| package | `work/<territory>/<id>/` in the Cairn store: its `_index.md`, its change documents and its sub-packages, always named by file name | `ki-work-package` |
-| State of play | A territory's coordinating work, main or secondary | `ki-coordination` |
-| watcher | The one detached loop that wakes the coordinator; a **wake** is the watcher exiting on news | `ki-coordination` |
-| Snoozing | The hold that waits for a line; **drain** is the activity into any hold | `ki-coordination` |
-| reply | One message from the coordinator to the owner in its session | `ki-coordination` |
-| coordinator reply format | The blocks and parts of a coordinator reply and the layouts that select them, under [Coordinator reply format](standards-report-forms.md#coordinator-reply-format) | `ki-coordination` |
-| trigger, signal | What a reply meets that sets its reply structure, tried in order, the first met winning; and what a trigger is matched on, a phrase, the state, the time or a move | `ki-coordination` |
-| layout | A reply's depth, setting the blocks and parts it carries: Full, Medium, Short or Minimal | `ki-coordination` |
-| reply structure | What a reply is, such as Summary, Status, Bootstrap, run report, Stop, Position, Update or Answer, each with one layout | `ki-coordination` |
-| block, part | The heading, body and footer blocks of a reply, in order, and the coded parts within them, H1 to H4, B1 to B6 and F1 to F9 | `ki-coordination` |
-| banner | F2 to F9: the state, counts, items, modes and thread line | `ki-coordination` |
-| holder | Who an item is with: 👤 the owner, 🤖 a worker or run, 🧵 another session, 🌐 the outside world | `ki-coordination` |
-| time | The owner's local time, as a friendly time naming the day where it is not today, or an ISO 8601 timestamp with its offset where a friendly time does not fit | `ki-coordination` |
-| thread line | The closing line of every banner and the session's name, `<role glyph> 🔑 <work-id>`, `<role glyph> <package>@<role>` for a seat without the package's keys, or `🧵 <work-id>` for a session with no role yet, under [Banner](#banner); its grammar and the role glyphs are the [role standard](../../ki-work-package/references/standard-roles.md#46-thread-line)'s | `ki-work-package` |
-| query, tag | An open decision and its stable mnemonic | `ki-coordination` |
-| decision | One entry in a change document: agreed or decided, or an open point in its Open section | `ki-coordination` |
-| record | A roadmap work record | `ki-work-roadmap` |
-| sync | Fetch, fast-forward pull into a clean checkout, then push fast-forward only | `ki-git` |
-| opener | The steering brief that opens a coordinator | `ki-coordination` |
-| binding | The machine-local runtime file tying native client sessions to one piece of work, keyed `<repository name>/<work id>`, never committed and never moved between hosts, under the work-package standard's [Work identity and native sessions](../../ki-work-package/references/standard-work-package.md#411-work-identity-and-native-sessions) | `ki-work-package` |
-
-## Reference files
+### 4.2 Reference files
 
 | File | Holds |
 | --- | --- |
-| [Reporting](standards-reporting.md) | the reply forms every session uses and the owner report with its queries, answers, tags, quiet tools and links |
-| [Reply format and banner](standards-report-forms.md) | the coordinator reply format: its scope, triggers, structure–part matrix and part content, one template per reply structure, the verbs, the Summary, and the banner detail with its marked examples |
-| [Queries](standards-queries.md) | how queries reach the owner: the interactive and goal-setting passes, blind query review, the defaults query and acceptance bundles |
-| [Holds](standards-holds.md) | draining, the paused hold, Snoozing and release |
-| [Unattended windows](standards-unattended.md) | away grants, unattended windows, scheduled wakes and headless passes |
-| [Listening and host sync](standards-listening.md) | the inbox watch, the two session capabilities and host sync |
-| [Territory work](standards-territory.md) | States of play, Project work under them, assigned packages, the owner queue and the worktree sweep |
-| [Opening and naming](standards-opening.md) | the levels and forms, work naming and the openers |
-| [Bootstrap and re-anchoring](standards-bootstrap.md) | bootstrap, resolving the opener, re-anchoring after compaction, picking work up, red-x recovery and targeted refresh |
-| [Messages and surfaces](standards-messages.md) | work between packages, along the tree, and the surfaces a coordinator reads |
-| [Decisions and change documents](standards-decisions.md) | decisions in change documents, decision classes, their life cycle and change documents |
-| [Mark, tidy and finishing](standards-mark.md) | the mark, parking tangents, pruning the work folder, closing out Orca workers and finishing Project work |
-| [Sync](standards-sync.md) | landing, then review, with the record of each batch, pushing beneath other sessions, the repository level check and keeping primary checkouts current |
-| [Coordinating-work migration](standards-coordination-migration.md) | temporary adjustments to [the coordinating-work standard](standards-coordination.md), which describes only the final state, under MIGRATION-OVERLAY. Read the standard first; it wins wherever the two differ. Delete each adjustment once its condition is met, and the file whole once it is empty, with no edit to the standard |
+| [Reporting](standard-reporting.md) | the reply forms every session uses and the owner report with its queries, answers, tags, quiet tools and links |
+| [Reply format and banner](standard-report-forms.md) | the coordinator reply format: its scope, triggers, structure–part matrix and part content, one template per reply structure, the verbs, the Summary, and the banner detail with its marked examples |
+| [Queries](standard-queries.md) | how queries reach the owner: the interactive and goal-setting passes, blind query review, the defaults query and acceptance bundles |
+| [Holds](standard-holds.md) | draining, the paused hold, Snoozing and release |
+| [Unattended windows](standard-unattended.md) | away grants, unattended windows, scheduled wakes and headless passes |
+| [Listening and host sync](standard-listening.md) | the inbox watch, the two session capabilities and host sync |
+| [Territory work](standard-territory.md) | States of play, Project work under them, assigned packages, the owner queue and the worktree sweep |
+| [Opening and naming](standard-opening.md) | the levels and forms, work naming and the openers |
+| [Bootstrap and re-anchoring](standard-bootstrap.md) | bootstrap, resolving the opener, re-anchoring after compaction, picking work up, red-x recovery and targeted refresh |
+| [Messages and surfaces](standard-messages.md) | work between packages, along the tree, and the surfaces a coordinator reads |
+| [Decisions and change documents](standard-decisions.md) | decisions in change documents, decision classes, their life cycle and change documents |
+| [Mark, tidy and finishing](standard-mark.md) | the mark, parking tangents, pruning the work folder, closing out Orca workers and finishing Project work |
+| [Sync](standard-sync.md) | landing, then review, with the record of each batch, pushing beneath other sessions, the repository level check and keeping primary checkouts current |
+| [Coordinating-work migration](standards-coordination-migration.md) | temporary adjustments to [the coordinating-work standard](standard-coordination.md), which describes only the final state, under MIGRATION-OVERLAY. Read the standard first; it wins wherever the two differ. Delete each adjustment once its condition is met, and the file whole once it is empty, with no edit to the standard |
 | Roles (reserved for Stage C) | The role catalogue and the `ki-role` field, which `ki-work-package` owns in its [roles standard](../../ki-work-package/references/standard-roles.md) |
 
-## Coordinator responsiveness
+[Back to contents](#contents)
+
+### 4.3 Coordinator responsiveness
 
 A coordinator dispatches work, decides with the owner and reports; it hands substantive reasoning, analysis and drafting to background agents rather than doing them in-session. Because the reasoning happens in those agents, a coordinator runs on the lighter model purpose `ki-env-tokenomics` recommends for coordination, and heavier models are kept for the background agents.
 
 The coordinator stays responsive, so the owner never has to remind it to delegate. These rules are hard and checkable from its transcript:
 
 - **Turn budget:** a turn makes at most five tool calls and returns to the owner.
-  - Reads are limited to the package, the agent host's view of its agents, one report and one short file; the four [pick-up files](standards-bootstrap.md#picking-work-up) count as one read.
+  - Reads are limited to the package, the agent host's view of its agents, one report and one short file; the four [pick-up files](standard-bootstrap.md#44-picking-work-up) count as one read.
   - Writes are limited to the package, its change documents included, and a brief.
   - A State of play acts in one assigned package per turn, as its one package read, and rolls up other packages from `ki work status` without multiplying the budget.
   - Anything beyond is a launch. A step goes to a background agent if it reads more than one or two short files, writes or edits more than a line of the package or a decision, runs tests, audits or builds, or would take more than about a minute.
@@ -140,7 +191,7 @@ The coordinator stays responsive, so the owner never has to remind it to delegat
 - **Tool calls:** every tool call is short.
   - Never paste a prompt, brief or other long text inline in a command: write prompt files out of sight, from the `ki-delegation` run-prompt skeleton or as a one-line copy of a prepared file.
   - A lookup needing more than one or two short reads is delegated.
-  - Replies carry no raw tool output: say in plain language what the result means, under [Quiet tools](standards-reporting.md#quiet-tools).
+  - Replies carry no raw tool output: say in plain language what the result means, under [Quiet tools](standard-reporting.md#422-quiet-tools).
   - Never issue a command that may wait for a permission prompt. Put deletion and housekeeping in a bounded run or the existing close operation, and report a denied action instead of waiting unattended.
   - The shapes that trip a runtime-specific check, Claude Code's built-in `rm` safety check under bypass mode, with no Codex counterpart observed yet: an `rm` with a glob, a shell-variable or `$(...)` target, or a target under a workspace directory, alone or inside a compound command or `sh -c`; `git worktree remove`; and a foreground `sleep` of 60 seconds or more.
   - A coordinator removes through a bounded run; a run uses literal absolute paths or leaves removal to the tool that made the thing, under the `ki-delegation` [permission prompts](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#483-permission-prompts) rule.
@@ -149,22 +200,22 @@ The coordinator stays responsive, so the owner never has to remind it to delegat
 - **Cadence:** while work lies with a worker:
   - give timed updates of one or two lines when launching work and when an agent finishes, and none while waiting, each timestamped from the clock in that turn, never from recalled labels;
   - raise a blocking query in a single line the moment it arises, not at the next report;
-  - give a Full reply only where a [trigger](standards-report-forms.md#triggers) sets one: when the last dispatched run finishes, at a send, when the owner asks, or as the gap Summary below;
+  - give a Full reply only where a [trigger](standard-report-forms.md#412-triggers) sets one: when the last dispatched run finishes, at a send, when the owner asks, or as the gap Summary below;
   - say nothing else between owner messages. Every banner closes with its thread line.
-- **Gap Summary:** trigger T1: the first reply after the owner's message arrives `USER_LAST_MESSAGE` minutes, 30 by default, or more after their previous one while queries are with the owner, or after `SINCE_LAST_SUMMARY` minutes, 120 by default, without a Full reply, is a Summary with the open queries in full, at most ten under the [query cap](standards-queries.md#query-cap), its Answer to the owner's message first in the body.
+- **Gap Summary:** trigger T1: the first reply after the owner's message arrives `USER_LAST_MESSAGE` minutes, 30 by default, or more after their previous one while queries are with the owner, or after `SINCE_LAST_SUMMARY` minutes, 120 by default, without a Full reply, is a Summary with the open queries in full, at most ten under the [query cap](standard-queries.md#42-query-cap), its Answer to the owner's message first in the body.
 - **Heartbeat:** runs only while work lies with a worker; a run finishing is itself the wake.
   - While any item lies with a run, keep one watcher armed: a detached loop under the `ki-delegation` [monitoring](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#410-monitoring) rules that spends no model time and exits only when a run in this coordinator's group finishes, with no timed bound, or lets its agent host's notice that one of its agents finished be that wake. On its exit, check the agent through its agent host, handle the finished agent in one timed line and, while runs remain, re-arm it. No timed update while waiting.
-  - Where the coordinator listens, this loop and the [inbox watch](standards-listening.md#inbox-watch) are one loop.
-  - With the supervisor or in handoff there is no heartbeat; only the inbox watch is armed, where the coordinator listens. On hold nothing is armed, except the inbox watch of work [Snoozing](standards-holds.md#putting-work-on-hold).
-  - When the coordinator session has ended or gone quiet while its runs go on, nothing wakes the work: out-of-session runs wait for the owner to send the work back, and the durable wake is a [headless pass](standards-unattended.md#headless-passes).
-  - Session wakes are best effort and promise no unattended service. Pursue the agreed completion-watcher direction first; a durable wake outside the session is a [headless pass](standards-unattended.md#headless-passes); doorbells and extra liveness fields stay deferred. Nothing here says the watcher or the pass job has shipped.
+  - Where the coordinator listens, this loop and the [inbox watch](standard-listening.md#41-inbox-watch) are one loop.
+  - With the supervisor or in handoff there is no heartbeat; only the inbox watch is armed, where the coordinator listens. On hold nothing is armed, except the inbox watch of work [Snoozing](standard-holds.md#41-putting-work-on-hold).
+  - When the coordinator session has ended or gone quiet while its runs go on, nothing wakes the work: out-of-session runs wait for the owner to send the work back, and the durable wake is a [headless pass](standard-unattended.md#43-headless-passes).
+  - Session wakes are best effort and promise no unattended service. Pursue the agreed completion-watcher direction first; a durable wake outside the session is a [headless pass](standard-unattended.md#43-headless-passes); doorbells and extra liveness fields stay deferred. Nothing here says the watcher or the pass job has shipped.
 - **Concurrency:** chain agents that touch the same files, each started only once the one before has finished under [Coordination](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#48-coordination), so no two edit a file at once. Agents working in different repositories run in parallel. About three agents run per piece of coordinating work at once, grouped in their runs; the rest wait in priority order under [Concurrency](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#49-concurrency).
 
-The five hard rules remain authoritative here: Follow the coordinating-work standard (skills/work/ki-coordination/references/standards-coordination.md) and the Work Process note it cites. Hard rules: 1) delegate every unit of work to a detached background agent and stay responsive, answering within one short turn; 2) an owner message never pre-empts work in flight: stop an agent only when the owner names it and says stop; 3) while work lies with a worker, give a timed one-to-two-line update when you launch work and when a run finishes, keeping one background check armed that wakes you only when a run finishes, with no timed bound, and no heartbeat otherwise, while the inbox watcher, the same loop, stays armed only where the owner asked the session to listen, or it is a Rig host sync thread, and the work is not draining, On hold or Finished, unless the owner asked the hold to listen, and wakes you only on a new meeting message or a finished run; 4) give every reply the structure and layout its trigger sets in the ki-coordination reply format, a Summary or Status in full, a Bootstrap or Stop in the owner-report shape, heading block to glyph banner, a Position as the banner, an update or plain answer closing with the short banner too, so every reply closes with its thread line, with a reply block whenever there is a query, a Summary and a Bootstrap restating the open queries in full, at most ten, most critical first, and read each spoken answer back in its change document; every medium- or low-confidence query, and any high-confidence destructive, deletion or publication one, goes to one blind review before it reaches the owner; 5) commit your own work and the work package by explicit path after every finished change; sync after each finished change and at least every 15 minutes under the standing push rule, fast-forward only, never forced or --no-verify, stopping on divergence; take what has reached the work along the tree at bootstrap, each owner message and each wake.
+The five hard rules remain authoritative here: Follow the coordinating-work standard (skills/work/ki-coordination/references/standard-coordination.md) and the Work Process note it cites. Hard rules: 1) delegate every unit of work to a detached background agent and stay responsive, answering within one short turn; 2) an owner message never pre-empts work in flight: stop an agent only when the owner names it and says stop; 3) while work lies with a worker, give a timed one-to-two-line update when you launch work and when a run finishes, keeping one background check armed that wakes you only when a run finishes, with no timed bound, and no heartbeat otherwise, while the inbox watcher, the same loop, stays armed only where the owner asked the session to listen, or it is a Rig host sync thread, and the work is not draining, On hold or Finished, unless the owner asked the hold to listen, and wakes you only on a new meeting message or a finished run; 4) give every reply the structure and layout its trigger sets in the ki-coordination reply format, a Summary or Status in full, a Bootstrap or Stop in the owner-report shape, heading block to glyph banner, a Position as the banner, an update or plain answer closing with the short banner too, so every reply closes with its thread line, with a reply block whenever there is a query, a Summary and a Bootstrap restating the open queries in full, at most ten, most critical first, and read each spoken answer back in its change document; every medium- or low-confidence query, and any high-confidence destructive, deletion or publication one, goes to one blind review before it reaches the owner; 5) commit your own work and the work package by explicit path after every finished change; sync after each finished change and at least every 15 minutes under the standing push rule, fast-forward only, never forced or --no-verify, stopping on divergence; take what has reached the work along the tree at bootstrap, each owner message and each wake.
 
 **The hook.** The harness `hooks/coordinator-reminder/coordinator-reminder.sh` checks checkout capability, not the session's selected work or role.
 
-- On supported owner-message events it emits only a short conditional pointer; after compaction it points explicitly coordinating sessions to [Re-anchoring after compaction](standards-bootstrap.md#re-anchoring-after-compaction).
+- On supported owner-message events it emits only a short conditional pointer; after compaction it points explicitly coordinating sessions to [Re-anchoring after compaction](standard-bootstrap.md#43-re-anchoring-after-compaction).
 - A declaration, cwd, package, run-home binding or session id alone never selects coordination. Unknown selection causes no package enumeration, package reads or method-history scan.
 - Full session-sensitive detection stays deferred; the generic pointer is neither complete silence nor verified role detection.
 - Launched agents, unsupported events, absent capability and malformed or unusable input stay silent and successful.
@@ -172,25 +223,29 @@ The five hard rules remain authoritative here: Follow the coordinating-work stan
 
 **Binding.** Where `[skills.ki-coordination]` is declared, the hook and the output style are bound, a runtime-specific binding under Claude Code: the repository's tracked `.claude/settings.json` selects `"outputStyle": "ki-coordinator"`, and the user's Claude Code settings register `hooks/coordinator-reminder/coordinator-reminder.sh` at `UserPromptSubmit` and `SessionStart`, with the style deployed as `~/.claude/output-styles/ki-coordinator.md`. The style and the hook line are harness-owned and generated from this standard; the user-environment manager, chezmoi, only links the style to the primary checkout and registers the hook. The `ki-coordination` rubric checks that the binding is present.
 
-Sources: SMALL-FIXES, PERM-PROMPTS-SHAPES, UPDATE-CADENCE, QUIET-LISTEN, GAP-SUMMARY, HEARTBEAT, OOS-WAKE, WAKE-SUBSTRATE, CONCURRENCY, HOOK-BINDING, QUERY-CAP and HOOK-ENFORCE in [the decision register](sources.md#decision-register).
+Sources: SMALL-FIXES, PERM-PROMPTS-SHAPES, UPDATE-CADENCE, QUIET-LISTEN, GAP-SUMMARY, HEARTBEAT, OOS-WAKE, WAKE-SUBSTRATE, CONCURRENCY, HOOK-BINDING, QUERY-CAP and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
 
-## Coordinating practices
+[Back to contents](#contents)
 
-Every report a coordinator gives is an [owner report](standards-reporting.md#owner-report), whose sections, queries and banner no output style, proxy shaping block or communication level ever shortens.
+### 4.4 Coordinating practices
 
-- **Heading and banner:** every reply takes the blocks its [reply structure](standards-report-forms.md#structurepart-matrix) sets. Every Full and Medium reply opens with the heading block, its [report heading](standards-report-forms.md#banner-detail) and form line, so each reads cold and several works read side by side, and closes with the [banner](#banner) and its thread line; a Position is the banner alone after an optional line or two, and an update or plain answer closes with the same short banner, so every coordinating reply ends with its thread line, under HOOK-ENFORCE.
+Every report a coordinator gives is an [owner report](standard-reporting.md#42-owner-report), whose sections, queries and banner no output style, proxy shaping block or communication level ever shortens.
+
+- **Heading and banner:** every reply takes the blocks its [reply structure](standard-report-forms.md#413-structurepart-matrix) sets. Every Full and Medium reply opens with the heading block, its [report heading](standard-report-forms.md#42-banner-detail) and form line, so each reads cold and several works read side by side, and closes with the [banner](#46-banner) and its thread line; a Position is the banner alone after an optional line or two, and an update or plain answer closes with the same short banner, so every coordinating reply ends with its thread line, under HOOK-ENFORCE.
 - **Heading levels:** the report heading is the one `#` heading, in the message and a saved file alike. The sections (`Summary`, `Status`, `Done`, `In Progress`, `Findings`, `Queries`) are `##`; each finding, query, topic sub-heading and the banner heading is `###`. No other levels appear.
-- **Self-contained:** no report says "unchanged, see earlier", "as before" or otherwise points back to an earlier one. What is still running and open is restated each time, because the owner reads each report cold and the earlier message may be gone. Every [Summary](standards-report-forms.md#the-summary), the [gap Summary](#coordinator-responsiveness) included, and every [Bootstrap](standards-bootstrap.md#bootstrap) restates the open queries in full, at most ten under the [query cap](standards-queries.md#query-cap), with a line counting the rest.
-- **Sending:** when the work's items are done for now, or it waits on the owner, other work, a scheduled test or an external fix, send: commit the package and sync under [Committing the work folder](#committing-the-work-folder), and give a Summary whose banner names the handoff, ending with the thread line. It is the last message the owner sees until they return.
-- **Hold:** on `pause` or `done for now`, drain under [Putting work on hold](standards-holds.md#putting-work-on-hold) and give the Stop and nothing else.
-- **The state:** every send, receive, mark and hold rewrites `_index.md`'s state fields, Now and Held, under [Picking work up](standards-bootstrap.md#picking-work-up), so the package alone says how the work is picked up. Its definition changes only with the work.
-- **Decisions:** log each owner decision in [the change document it belongs to](standards-decisions.md#decisions-log), and each open point in that change document's Open section, in the turn it arrives and before launching the work it authorises, and verify any later quotation from the transcript file, under that section's two rules. Check each entry against its home at the mark under the [decisions life cycle](standards-decisions.md#decisions-life-cycle). Describe a decision by its words and date, never by a number.
-- **Work from other packages** arrives along the tree as steer or feedback, under [Work between packages](standards-messages.md#messages-between-work). A backend nudge is not visible progress; the [surfaces rule](standards-messages.md#surfaces) says where the owner sees it.
+- **Self-contained:** no report says "unchanged, see earlier", "as before" or otherwise points back to an earlier one. What is still running and open is restated each time, because the owner reads each report cold and the earlier message may be gone. Every [Summary](standard-report-forms.md#417-the-summary), the [gap Summary](#43-coordinator-responsiveness) included, and every [Bootstrap](standard-bootstrap.md#41-bootstrap) restates the open queries in full, at most ten under the [query cap](standard-queries.md#42-query-cap), with a line counting the rest.
+- **Sending:** when the work's items are done for now, or it waits on the owner, other work, a scheduled test or an external fix, send: commit the package and sync under [Committing the work folder](#481-committing-the-work-folder), and give a Summary whose banner names the handoff, ending with the thread line. It is the last message the owner sees until they return.
+- **Hold:** on `pause` or `done for now`, drain under [Putting work on hold](standard-holds.md#41-putting-work-on-hold) and give the Stop and nothing else.
+- **The state:** every send, receive, mark and hold rewrites `_index.md`'s state fields, Now and Held, under [Picking work up](standard-bootstrap.md#44-picking-work-up), so the package alone says how the work is picked up. Its definition changes only with the work.
+- **Decisions:** log each owner decision in [the change document it belongs to](standard-decisions.md#411-decisions-log), and each open point in that change document's Open section, in the turn it arrives and before launching the work it authorises, and verify any later quotation from the transcript file, under that section's two rules. Check each entry against its home at the mark under the [decisions life cycle](standard-decisions.md#413-decisions-life-cycle). Describe a decision by its words and date, never by a number.
+- **Work from other packages** arrives along the tree as steer or feedback, under [Work between packages](standard-messages.md#messages-between-work). A backend nudge is not visible progress; the [surfaces rule](standard-messages.md#44-surfaces) says where the owner sees it.
 - **Claims:** before a brief or a Summary rests on a path, an ownership claim or an instruction's premise, the coordinator, or the run it sends, checks it directly, and reads back in one line any direction it finds ambiguous before acting. Briefs carry each target repository's standing rules by default under the `ki-delegation` [prompt shape](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#45-prompt-shape).
 
-Sources: CLAIM-CHECK and HOOK-ENFORCE in [the decision register](sources.md#decision-register).
+Sources: CLAIM-CHECK and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
 
-## States and moves
+[Back to contents](#contents)
+
+### 4.5 States and moves
 
 The Work Process note's The seven states and Roles sections own the states, the two moves and who may make each. A coordinator keeps to them this way:
 
@@ -203,12 +258,14 @@ The Work Process note's The seven states and Roles sections own the states, the 
   - On hold once agreed and drained;
   - Finished once closed.
 
-  Only the owner's receive and the hold are set, besides the worker's own idle hold under [Putting work on hold](standards-holds.md#putting-work-on-hold); every other state follows from where the items lie. Authorised work waiting for worker capacity stays with the worker; send to the supervisor only for an actual decision or review.
+  Only the owner's receive and the hold are set, besides the worker's own idle hold under [Putting work on hold](standard-holds.md#41-putting-work-on-hold); every other state follows from where the items lie. Authorised work waiting for worker capacity stays with the worker; send to the supervisor only for an actual decision or review.
 - **Receiving:** the owner receives with `with me`, `ack`, `got it` or `seen`, and agrees a hold with `pause` or `done for now`; `resume` and `finish` move work off hold and to Finished. `hold` is not a receive word. A coordinator's own receive is committed with its next send.
 - **Sending:** a send is a commit of the package whose subject carries the move, such as `docs(work): ki.ways-of-working send to owner`, `docs(work): ki.ways-of-working receive by owner` or `docs(work): ki.ways-of-working hold, paused`, under the note's Git is the logbook. Only sends and the owner's receives commit.
 - **A stuck worker** comes back to its supervisor with a blocking query: its send reads `🤖 → 👤 Handoff to supervisor · blocked`. A worker item that has neither moved nor beaten for 10 minutes is stuck; nobody sets stuck.
 
-## Banner
+[Back to contents](#contents)
+
+### 4.6 Banner
 
 A reply shows its state in rich text, under the note's Banner section:
 
@@ -219,18 +276,18 @@ A reply shows its state in rich text, under the note's Banner section:
 
 Every coordinator renders the heading block and banner the same way, whether just bootstrapped or running for days: the examples are the shapes, and a banner that differs from them is wrong.
 
-**When it appears.** The banner is F2 to F9 of the [coordinator reply format](standards-report-forms.md#coordinator-reply-format), and the reply's structure sets whether it appears: every reply closes with it: every Summary, Status, Bootstrap, run report, Stop and Position, and an Update or Answer, the Minimal layout, with the Position's short banner, as Kris set under HOOK-ENFORCE on 18 November 2026: "Yeah, we need the hook enforcing". The [triggers](standards-report-forms.md#triggers) choose the structure, and with it the banner's depth, never a judgement of whether a reply answers where the work stands.
+**When it appears.** The banner is F2 to F9 of the [coordinator reply format](standard-report-forms.md#41-coordinator-reply-format), and the reply's structure sets whether it appears: every reply closes with it: every Summary, Status, Bootstrap, run report, Stop and Position, and an Update or Answer, the Minimal layout, with the Position's short banner, as Kris set under HOOK-ENFORCE on 18 November 2026: "Yeah, we need the hook enforcing". The [triggers](standard-report-forms.md#412-triggers) choose the structure, and with it the banner's depth, never a judgement of whether a reply answers where the work stands.
 
 **Heading for a hold or a handoff.** While the work is With worker but deliberately moving towards a hold or a handoff, the banner says so in one line below the list, F7: `↪️`, what the worker is doing, an arrow and the glyph heading of the target state.
 
-- `↪️ draining → ⏸️ On hold` from `pause` or `done for now` until the drain under [Putting work on hold](standards-holds.md#putting-work-on-hold) lands the hold; `↪️ draining → 💤 Snoozing (on hold)` from `snooze` until the snooze lands;
+- `↪️ draining → ⏸️ On hold` from `pause` or `done for now` until the drain under [Putting work on hold](standard-holds.md#41-putting-work-on-hold) lands the hold; `↪️ draining → 💤 Snoozing (on hold)` from `snooze` until the snooze lands;
 - `↪️ draining → 👤 Handoff to supervisor` for `drain` alone, which stops launching and sends `DRAINED` or `NOT DRAINED` once everything has finished;
 - `↪️ finishing → 👤 Handoff to supervisor` once the coordinator has decided to send and is only letting runs in flight finish;
 - `↪️ finishing → 🎯 Handoff to <target>` likewise before a handoff to other work, a run or a person.
 
 The line stands in the banner only; the banner heading shows the state alone, `🤖 With worker`. It is not a state or a move: the work is With worker until the target lands, and the heading's `at` keeps the last move's time. When the target lands, the line goes and the heading shows the target state. Nothing else changes shape: runs still finishing count and list as `🤖` running, nothing launches from the queue while the line stands, and the target is never a count or an item, so a drain towards a hold reads `🤖 2 running` with its `🤖` items until it reads `⏸️ drained`.
 
-**One table of states.** Every coordinator renders each state from this table. On hold has two forms, paused and Snoozing, each with its own glyph, so a hold that keeps its watcher armed never reads as drained. The counts line writes all five views with their zeros, and the listening line shows only while the session is in a meeting, under **Mode lines** in [Banner detail](standards-report-forms.md#banner-detail).
+**One table of states.** Every coordinator renders each state from this table. On hold has two forms, paused and Snoozing, each with its own glyph, so a hold that keeps its watcher armed never reads as drained. The counts line writes all five views with their zeros, and the listening line shows only while the session is in a meeting, under **Mode lines** in [Banner detail](standard-report-forms.md#42-banner-detail).
 
 | State | Glyph | Banner heading | Counts line | Allowed items | Listening line | Reply structure |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -243,43 +300,43 @@ The line stands in the banner only; the banner heading shows the state alone, `�
 | Snoozing (on hold) | 💤 | `### 💤 Snoozing (on hold) · at <time>`, or `### 💤 Snoozing (on hold) · idle · at <time>` for the worker's own idle hold | `💤 waiting for a message · 🅿️ <n> queries parked` | `🅿️` parked, ``💤 a message arrives, or `resume` `` | `👂 in <meeting>` while in a meeting | Stop |
 | Finished | 🏁 | `### 🏁 Finished · <work label> closed at <time>` | none | `🏁` finished | none | Stop |
 
-The report heading, rendered glyphs, roadmap and package lines, mode lines, restart suggestion and the marked banner examples are in [Banner detail](standards-report-forms.md#banner-detail).
+The report heading, rendered glyphs, roadmap and package lines, mode lines, restart suggestion and the marked banner examples are in [Banner detail](standard-report-forms.md#42-banner-detail).
 
 **State in the banner, housekeeping in the body.** The banner shows only the work's state and who holds each live item.
 
-- In a Medium reply: commits and a recovered session are lines in `## Done`; uncommitted work, unlogged decisions, repositories behind their remote under the [repository level check](standards-sync.md#repository-level-check), and an item with other work, a run or a person, with its holder, are lines in `## In Progress`.
-- In a [Summary](standards-report-forms.md#the-summary) or Status: each is a line of the status table instead, and a commit or recovery goes under `## Summary`.
+- In a Medium reply: commits and a recovered session are lines in `## Done`; uncommitted work, unlogged decisions, repositories behind their remote under the [repository level check](standard-sync.md#43-repository-level-check), and an item with other work, a run or a person, with its holder, are lines in `## In Progress`.
+- In a [Summary](standard-report-forms.md#417-the-summary) or Status: each is a line of the status table instead, and a commit or recovery goes under `## Summary`.
 - A handoff of the work itself already shows in the banner heading.
 
 **Glyph banner.** The reply closes, after `## Queries` and its reply block, with the banner; in a Full reply it is the footer's lines beneath the art. The owner reads it from the bottom up, so it runs top to bottom:
 
 1. F2, one `###` heading, the glyph state alone and `· at <local time>`, the time of the last move;
 2. a blank line, then F3, the counts line, except when the work is Finished;
-3. in a Full reply, a blank line, then F4, the [roadmap line](standards-report-forms.md#banner-detail), and a blank line, then F5, the [package line](standards-report-forms.md#banner-detail);
+3. in a Full reply, a blank line, then F4, the [roadmap line](standard-report-forms.md#42-banner-detail), and a blank line, then F5, the [package line](standard-report-forms.md#42-banner-detail);
 4. a blank line, then F6, the list of items;
 5. a blank line, then F7, the heading-for line, `↪️ draining → <target>` or `↪️ finishing → <target>`, only while heading for a hold or a handoff;
-6. a blank line, then F8, the [listening line](standards-report-forms.md#banner-detail), `👂 in <meeting>`, only while the session is in a meeting;
+6. a blank line, then F8, the [listening line](standard-report-forms.md#42-banner-detail), `👂 in <meeting>`, only while the session is in a meeting;
 7. a blank line, then F9, the thread line, `<role glyph> 🔑 <work-id>`, `<Name> (<role glyph> 🔑 <work-id>)` where the seat's actor is named, or `🧵 <work-id>`, last.
 
 - **Heading:** the glyph state alone, never a target in brackets, and `· at <local time>`. It is the only place the work's state appears.
-- **Counts:** one line of five views, each a glyph, a number and a view, joined by ` · `, zeros written: `🤖 <n> running · ⏳ <n> queued · 👤 <n> with you · ⛔ <n> blocked · 🅿️ <n> parked`; in Project work with records awaiting the owner's acceptance, `· 📥 <n> to accept` last, under the [owner queue](standards-territory.md#owner-queue) cap. On hold the hold line stands in its place.
-- **List:** one Markdown list, each item `- <glyph> <what> · <holder> · at <time>`, opening with its state's agreed glyph from the [table of glyphs](#banner) alone and never a bracketed state word beside it, or, where no agreed glyph names its state, in one of the two fallback forms under **Provisional glyphs and bracketed words**, the time when it took its place, in this order and only where they apply:
+- **Counts:** one line of five views, each a glyph, a number and a view, joined by ` · `, zeros written: `🤖 <n> running · ⏳ <n> queued · 👤 <n> with you · ⛔ <n> blocked · 🅿️ <n> parked`; in Project work with records awaiting the owner's acceptance, `· 📥 <n> to accept` last, under the [owner queue](standard-territory.md#42-owner-queue) cap. On hold the hold line stands in its place.
+- **List:** one Markdown list, each item `- <glyph> <what> · <holder> · at <time>`, opening with its state's agreed glyph from the [table of glyphs](#46-banner) alone and never a bracketed state word beside it, or, where no agreed glyph names its state, in one of the two fallback forms under **Provisional glyphs and bracketed words**, the time when it took its place, in this order and only where they apply:
   - `🤖` running and `⏳` queued for each agent, the holder `run/<name>`, never one item for several agents because they share a run;
   - `👤` with you for each open tag, the holder `owner`, oldest first;
   - `⛔` stuck or blocked with their holder, a stuck item's what saying it is stuck, as in `- ⛔ work-model stuck · run/work-model · at 23:20`;
   - `🅿️` parked for parked queries or tangents;
   - on hold, the release under the hold's own glyph, `⏸️` on a paused hold and `💤` while Snoozing;
-  - `🪟` for an [unattended window](standards-unattended.md#unattended-windows) and `⏰` for a [scheduled wake](standards-unattended.md#away-grants-and-scheduled-wakes);
-  - in a State of play, `🧹` for each finding of its [worktree sweep](standards-territory.md#worktree-sweep), its what opening with `stranded`, `branch` or `stash` and naming no holder.
+  - `🪟` for an [unattended window](standard-unattended.md#42-unattended-windows) and `⏰` for a [scheduled wake](standard-unattended.md#41-away-grants-and-scheduled-wakes);
+  - in a State of play, `🧹` for each finding of its [worktree sweep](standard-territory.md#44-worktree-sweep), its what opening with `stranded`, `branch` or `stash` and naming no holder.
 - The glyphs are the counts line's own, so an item and the view that counts it read alike; a finished item takes `🏁`.
 - The counts and the list say "with you", because they are views by holder; the heading gives the state in role words.
 - Nothing in the banner cites a decision number.
 
-**Push state stays out of reports.** Reports, run reports and banners omit routine push state and other sessions' stacked commits. A push of stacked commits is never a `👤` item, a "with you" count or a query. Where a run's own unit could not be published because its push failed, its `## Done` names the unit and the reason, under [Pushing beneath other sessions](standards-sync.md#pushing-beneath-other-sessions).
+**Push state stays out of reports.** Reports, run reports and banners omit routine push state and other sessions' stacked commits. A push of stacked commits is never a `👤` item, a "with you" count or a query. Where a run's own unit could not be published because its push failed, its `## Done` names the unit and the reason, under [Pushing beneath other sessions](standard-sync.md#42-pushing-beneath-other-sessions).
 
 **A hold lists nothing waiting.** An On hold banner carries no `👤`, `🤖` or `⏳` item, or per-repository status item, such as one reading `committed and pushed in ...`.
 
-- Counts: `⏸️ drained · 🅿️ <n> queries parked` on a paused hold; `💤 waiting for a message · 🅿️ <n> queries parked` while [Snoozing](standards-holds.md#putting-work-on-hold), whose watcher stays armed, so it never says drained.
+- Counts: `⏸️ drained · 🅿️ <n> queries parked` on a paused hold; `💤 waiting for a message · 🅿️ <n> queries parked` while [Snoozing](standard-holds.md#41-putting-work-on-hold), whose watcher stays armed, so it never says drained.
 - Items: only `🅿️` parked and the release under the hold's own glyph, ``⏸️ <release>, or `resume` `` on a paused hold and ``💤 a message arrives, or `resume` `` while Snoozing.
 - Per-repository outcomes stay in the Stop's `## Done`.
 
@@ -289,12 +346,12 @@ The report heading, rendered glyphs, roadmap and package lines, mode lines, rest
 - A seat working in the package without its keys, such as a maker in a meeting, closes with `<role glyph> <package>@<role>`, its seat's id, with no key, under the role standard's [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line); only the keyholder carries 🔑.
 - **Name first.** Where the seat's actor is named, the line puts the name first and the seat's form in brackets: `<Name> (<role glyph> 🔑 <work-id>)`, or `<Name> (<role glyph> <package>@<role>)` without the keys, as in `Kitteth (🪨 🔑 cairn.summit)` and `Eugene (🏛️ 🔑 5ge.summit)`, as Kris took NAME-FIRST a on 17 November 2026: "where we have a named actor that the name should be first and then in brackets it should be effectively what we're currently putting out". The name is the `ki-name` of the actor the seat's `ki-workers` entry points at, in its roster file in the Cairn store, written exactly as it stands there. An unnamed seat, whose actor has no `ki-name` or which no actor holds, keeps the bare form, as `⚖️ 🔑 ki.guilds`; a session with no role, and a run report, keep `🧵 <work-id>`.
 - A run report closes with `🧵 <work-id>` of the work it reports to, without its run name, because a run takes no seat.
-- The opener that starts a session names this line, and the session renames itself to it first, under [Opening work](standards-opening.md#opening-work).
+- The opener that starts a session names this line, and the session renames itself to it first, under [Opening work](standard-opening.md#43-opening-work).
 - It closes every state, handoff, On hold and Finished included. Rich report headings, work labels, banner counts and states are unchanged by it.
-- It replaces all copyable send and resume lines: no banner, handoff or Stop emits either prompt or a paste instruction, beyond the [restart suggestion](standards-report-forms.md#banner-detail) when a trigger holds. The owner gets each opener from [Opening work](standards-opening.md#opening-work), never from a report.
+- It replaces all copyable send and resume lines: no banner, handoff or Stop emits either prompt or a paste instruction, beyond the [restart suggestion](standard-report-forms.md#42-banner-detail) when a trigger holds. The owner gets each opener from [Opening work](standard-opening.md#43-opening-work), never from a report.
 - Reports saved before this change retain their original closing line and remain readable; never rewrite them solely for the new footer.
 
-**One table of glyphs.** Every glyph the coordination surfaces use is in this table, with what it means and where it appears, so it is the one place to look, as Kris set under GLYPH-TABLE on 17 November 2026: "the key thing is to create a single table with all the glyphs that are used." Another file that uses a glyph keeps its own rule and points here. The parts are the [coordinator reply format](standards-report-forms.md#blocks-parts-and-layouts)'s, F2 the banner heading to F9 the thread line, and the status table is [the Summary](standards-report-forms.md#the-summary)'s. Every glyph here is agreed; a glyph joins the table only on Kris's word.
+**One table of glyphs.** Every glyph the coordination surfaces use is in this table, with what it means and where it appears, so it is the one place to look, as Kris set under GLYPH-TABLE on 17 November 2026: "the key thing is to create a single table with all the glyphs that are used." Another file that uses a glyph keeps its own rule and points here. The parts are the [coordinator reply format](standard-report-forms.md#411-blocks-parts-and-layouts)'s, F2 the banner heading to F9 the thread line, and the status table is [the Summary](standard-report-forms.md#417-the-summary)'s. Every glyph here is agreed; a glyph joins the table only on Kris's word.
 
 | Glyph | Means | Where it appears |
 | --- | --- | --- |
@@ -310,9 +367,9 @@ The report heading, rendered glyphs, roadmap and package lines, mode lines, rest
 | `⛔` | Blocked, or stuck | F3, `⛔ <n> blocked`; F6, a blocked or stuck item, a stuck item's what saying it is stuck |
 | `🅿️` | Parked | F3, `🅿️ <n> parked`, and on hold `🅿️ <n> queries parked`; F6, parked queries or tangents |
 | `📥` | Records awaiting the owner's acceptance | F3, last, in Project work, `📥 <n> to accept` |
-| `🪟` | An unattended window | F6, `- 🪟 until <end> · stop the wake`, under [Unattended windows](standards-unattended.md#unattended-windows) |
-| `⏰` | A scheduled wake | F6, a scheduled item, under [Away grants and scheduled wakes](standards-unattended.md#away-grants-and-scheduled-wakes) |
-| `🧹` | A worktree sweep finding | F6 in a State of play, `🧹 stranded`, `🧹 branch` or `🧹 stash`, under [Worktree sweep](standards-territory.md#worktree-sweep) |
+| `🪟` | An unattended window | F6, `- 🪟 until <end> · stop the wake`, under [Unattended windows](standard-unattended.md#42-unattended-windows) |
+| `⏰` | A scheduled wake | F6, a scheduled item, under [Away grants and scheduled wakes](standard-unattended.md#41-away-grants-and-scheduled-wakes) |
+| `🧹` | A worktree sweep finding | F6 in a State of play, `🧹 stranded`, `🧹 branch` or `🧹 stash`, under [Worktree sweep](standard-territory.md#44-worktree-sweep) |
 | `🗺️` | The roadmap's counts | F4, the roadmap line, in a Full reply |
 | `📦` | The package's counts | F5, the package line, in a Full reply |
 | `👂` | In a meeting | F8, the listening line, `👂 in <meeting>` |
@@ -333,9 +390,11 @@ The report heading, rendered glyphs, roadmap and package lines, mode lines, rest
 
 An agreed glyph is never paired with brackets. A provisional glyph stays provisional until Kris agrees it into the table, under GLYPH-REVIEW: each refresh of this skill lists the provisional glyphs and bracketed words seen in reports since the last refresh and proposes which to agree, under [Mode REFRESH](../SKILL.md#mode-refresh).
 
-Sources: BANNER-GLYPH, ITEM-GLYPHS, GLYPH-TABLE, GLYPH-FALLBACK, GLYPH-REVIEW, REPLY-BLOCK, TARGET-GLYPH, GLYPH-OWNER, BANNER-ON-STATE, DRAIN-TARGET, FOOTER-LAYOUT, SNOOZE-STATE, BANNER-TRIM, NO-LINK-MARK, PUSH-STATE-OUT, HOLD-CLEAN, BARE-ID-FOOTER, REPLY-FORMAT, SEAT-LINE, OPENER-NAME, NAME-FIRST and HOOK-ENFORCE in [the decision register](sources.md#decision-register).
+Sources: BANNER-GLYPH, ITEM-GLYPHS, GLYPH-TABLE, GLYPH-FALLBACK, GLYPH-REVIEW, REPLY-BLOCK, TARGET-GLYPH, GLYPH-OWNER, BANNER-ON-STATE, DRAIN-TARGET, FOOTER-LAYOUT, SNOOZE-STATE, BANNER-TRIM, NO-LINK-MARK, PUSH-STATE-OUT, HOLD-CLEAN, BARE-ID-FOOTER, REPLY-FORMAT, SEAT-LINE, OPENER-NAME, NAME-FIRST and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
 
-## Generated surfaces
+[Back to contents](#contents)
+
+### 4.7 Generated surfaces
 
 This section is the one source of the owner-report text the runtime surfaces carry, so a change to the shape is made here once. `ki dev skill generate ki-coordination` renders each surface from it and reports any that differs; `--write` rewrites them from a development-linked harness checkout; and the `ki-coordination` banner test fails when a committed surface is out of step.
 
@@ -346,14 +405,14 @@ This section is the one source of the owner-report text the runtime surfaces car
 | `run-report` | the **Report** paragraph of `ki-delegation`'s [run-prompt skeleton](../../../agentic-systems/ki-delegation/assets/run-prompt.md) |
 | `footer-report` | the report rule of each of `ki-delegation`'s four authority footers |
 | `review-independence` | the **Independence** line of `ki-delegation`'s [run-prompt skeleton](../../../agentic-systems/ki-delegation/assets/run-prompt.md), which every review run's brief keeps, and of `ki-work design`'s [brief template](../../../keystone/ki-work/assets/design/brief.md), which every design reviewer reads |
-| `output-style` | the whole harness `output-styles/ki-coordinator.md`, with `{{heading-example}}`, `{{with-worker-banner}}`, `{{handoff-banner}}`, `{{draining-banner}}`, `{{hold-banner}}` and `{{snoozing-banner}}` replaced by the [Banner](#banner) examples marked with the same names, so each is written once |
+| `output-style` | the whole harness `output-styles/ki-coordinator.md`, with `{{heading-example}}`, `{{with-worker-banner}}`, `{{handoff-banner}}`, `{{draining-banner}}`, `{{hold-banner}}` and `{{snoozing-banner}}` replaced by the [Banner](#46-banner) examples marked with the same names, so each is written once |
 
 Edit the text here, never in a rendered file. A hook source holds no single quote, because the hook assigns it in single quotes.
 
-**Footer check.** The harness `hooks/coordinator-footer/coordinator-footer.sh`, shipped in the installed hook payload beside the reminder hook and registered at the end-of-turn `Stop` event of each runtime the hooks README lists, reads each coordinating reply's footer against the shape [Banner](#banner) and [The Summary](standards-report-forms.md#the-summary) set.
+**Footer check.** The harness `hooks/coordinator-footer/coordinator-footer.sh`, shipped in the installed hook payload beside the reminder hook and registered at the end-of-turn `Stop` event of each runtime the hooks README lists, reads each coordinating reply's footer against the shape [Banner](#46-banner) and [The Summary](standard-report-forms.md#417-the-summary) set.
 
 - **Holds back** a reply, naming what is missing so the session gives it again in full, only where the footer has lost its structure: no banner state heading, or no thread line, `<role glyph> 🔑 <work-id>`, with its actor's name first where the seat has one, or `🧵 <work-id>`, as the last line.
-- **Warns** the owner, naming it so they can confirm it was intended, on anything else unusual: a state heading the [table of states](#banner) does not name, a missing or odd counts line, a listening line in the earlier `👂 listening` or `🔇 not listening` form, a banner item pairing a glyph from the [table of glyphs](#banner) with a bracketed state word, a report heading whose first link is not a package's `_index.md` in the Cairn store or whose `State of play` is a link, under **Report heading** in [Banner detail](standards-report-forms.md#banner-detail), and in a Summary or Status missing art, roadmap line or package line. A provisional glyph with its bracketed word, or the bracketed word alone, passes; the hook holds its own copy of the table's glyphs, which its test holds to the table.
+- **Warns** the owner, naming it so they can confirm it was intended, on anything else unusual: a state heading the [table of states](#46-banner) does not name, a missing or odd counts line, a listening line in the earlier `👂 listening` or `🔇 not listening` form, a banner item pairing a glyph from the [table of glyphs](#46-banner) with a bracketed state word, a report heading whose first link is not a package's `_index.md` in the Cairn store or whose `State of play` is a link, under **Report heading** in [Banner detail](standard-report-forms.md#42-banner-detail), and in a Summary or Status missing art, roadmap line or package line. A provisional glyph with its bracketed word, or the bracketed word alone, passes; the hook holds its own copy of the table's glyphs, which its test holds to the table.
 - **Renders nothing:** its checks read the shape those two sections set, so a change to the footer's parts there changes the hook and its test in the same commit.
 - **Checks** every Summary, Status, Bootstrap and Stop, every reply that opens a banner, and every other reply in a coordinating session, one in a checkout declaring `[skills.ki-coordination]` that has already closed a reply with its thread line in either form, whatever the owner's last message, a wake's Update and a plain Answer included, as Kris set under HOOK-ENFORCE on 18 November 2026: "Yeah, we need the hook enforcing". A conversational session, which has closed no reply with a thread line, is never held to the banner. It cannot tell every trigger a reply met; the banner's depth stays the coordinator's judgement.
 - **Checks the reply block in every session,** coordinating or not: a reply holding a fenced `text` block with `<TAG> <letter>` lines is asking for a decision, and is held back unless the block opens with its `1 ·` group heading, every such line carries `(high)`, `(medium)` or `(low)` after the letter and a `: <gloss>` after that, and each tag appears on one line only, its recommended option's, never offering alternatives, under the owner report's **Reply block** and HOOK-ENFORCE. A reply with no such block is never touched by it, and the banner checks stay coordinating only.
@@ -362,16 +421,16 @@ Edit the text here, never in a rendered file. A hook source holds no single quot
 <!-- ki-coordination:source hook-line -->
 
 ```text
-Only if the owner explicitly opened or resumed coordination, follow ki-coordination (skills/work/ki-coordination/references/standards-coordination.md). Otherwise use its conversational Reply forms. Every reply opens with **Reply HH:MM** (date -u); one asking a decision ends with the reply block.
+Only if the owner explicitly opened or resumed coordination, follow ki-coordination (skills/work/ki-coordination/references/standard-coordination.md). Otherwise use its conversational Reply forms. Every reply opens with **Reply HH:MM** (date -u); one asking a decision ends with the reply block.
 ```
 
 <!-- ki-coordination:source hook-pointer -->
 
 ```text
-Context was compacted. Only if explicitly coordinating, follow Re-anchoring after compaction in ki-coordination (skills/work/ki-coordination/references/standards-bootstrap.md). Otherwise use its conversational Reply forms. Every reply opens with **Reply HH:MM** (date -u); one asking a decision ends with the reply block.
+Context was compacted. Only if explicitly coordinating, follow Re-anchoring after compaction in ki-coordination (skills/work/ki-coordination/references/standard-bootstrap.md). Otherwise use its conversational Reply forms. Every reply opens with **Reply HH:MM** (date -u); one asking a decision ends with the reply block.
 ```
 
-The `run-report` and `footer-report` sources are in [Reporting](standards-reporting.md#report-rule-sources), and the `review-independence` source is in [Queries](standards-queries.md#review-independence-source).
+The `run-report` and `footer-report` sources are in [Reporting](standard-reporting.md#45-report-rule-sources), and the `review-independence` source is in [Queries](standard-queries.md#46-review-independence-source).
 
 <!-- ki-coordination:source output-style -->
 
@@ -466,24 +525,26 @@ After a compaction, before replying, follow the `ki-coordination` standard's re-
 No layout, section, query or banner of a reply is ever shortened by this style, by any proxy shaping block or by a communication level. A communication level governs only the wording inside the Answer, never the layout. Record each owner decision in the change document it belongs to in the turn it arrives, in the owner's words, before launching the work it authorises, and describe a decision by its words and date, never by its number.
 ````
 
-Sources: FOOTER-HOOK, REPLY-ID, REPLY-CHECK, NAME-FIRST, HEADING-FIX and HOOK-ENFORCE in [the decision register](sources.md#decision-register).
+Sources: FOOTER-HOOK, REPLY-ID, REPLY-CHECK, NAME-FIRST, HEADING-FIX and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
 
-## Working rules
+[Back to contents](#contents)
+
+### 4.8 Working rules
 
 These rules apply to every coordinator.
 
-### Committing the work folder
+#### 4.8.1 Committing the work folder
 
 The package `work/<territory>/<id>/` in the Cairn store is tracked, and its knowledge is safe only once it is in Git on a remote.
 
 - **When:** commit and push the package at every send, every owner receive, every mark and hold, and before the work finishes, by explicit path, never with another session's uncommitted changes, each commit's subject carrying the move.
 - **Checks:** every such commit and line first passes the repository's own checks under the `ki-git` [checks before committing](../../../repository/ki-git/references/standard-git.md#451-checks-before-committing) rule.
-- **Cadence:** every session, coordinator or run, commits the package by explicit path after every finished change, before its turn ends; a run commits each step as it goes. It then syncs, `git fetch`, a fast-forward pull into a clean checkout and a push under [Pushing beneath other sessions](standards-sync.md#pushing-beneath-other-sessions), after every finished change and at least every 15 minutes while it works. A pull that cannot fast-forward goes to the conflict run that section sets.
+- **Cadence:** every session, coordinator or run, commits the package by explicit path after every finished change, before its turn ends; a run commits each step as it goes. It then syncs, `git fetch`, a fast-forward pull into a clean checkout and a push under [Pushing beneath other sessions](standard-sync.md#42-pushing-beneath-other-sessions), after every finished change and at least every 15 minutes while it works. A pull that cannot fast-forward goes to the conflict run that section sets.
 - **Report:** say plainly whether the package is committed, in `## Done`, or uncommitted, in `## In Progress`, under BANNER-TRIM. Omit routine push state; report a failed push that prevents publication of the run's own unit, with the unit and the reason.
 
-Sources: COMMIT-WORK-FOLDER and COMMIT-CADENCE in [the decision register](sources.md#decision-register).
+Sources: COMMIT-WORK-FOLDER and COMMIT-CADENCE in [the decision register](sources.md#3-decisions).
 
-### Refreshing this guidance
+#### 4.8.2 Refreshing this guidance
 
 A coordinator re-reads this standard on its own:
 
@@ -493,17 +554,19 @@ A coordinator re-reads this standard on its own:
 
 To detect a change, it compares the latest commit touching `skills/work/ki-coordination`, `skills/work/ki-work-package`, `skills/agentic-systems/ki-delegation` or `output-styles/ki-coordinator.md` in the `ki-agent-backpack` checkout, from `git log -1 --format=%h -- skills/work/ki-coordination skills/work/ki-work-package skills/agentic-systems/ki-delegation output-styles/ki-coordinator.md`, with `ki-method_read` in `_index.md`'s state fields, the revision it last read. One revision vouches for the three skills and the output style. It then follows the current text, sets `ki-method_read`, and, when anything changed, tells the owner in one line what. Setting `ki-method_read` is the confirmation; no acknowledgement line is sent.
 
-This is the selected coordinator's own check. The hook reads no packages or method history, because its payload does not prove session selection and role. A changed delegation contract or output style still needs the coordinator's own revision check and the [targeted refresh](standards-bootstrap.md#targeted-refresh-and-landed-notices); full session-sensitive detection stays deferred.
+This is the selected coordinator's own check. The hook reads no packages or method history, because its payload does not prove session selection and role. A changed delegation contract or output style still needs the coordinator's own revision check and the [targeted refresh](standard-bootstrap.md#46-targeted-refresh-and-landed-notices); full session-sensitive detection stays deferred.
 
-Sources: METHOD-NUDGE and QUIET-HOOK in [the decision register](sources.md#decision-register).
+Sources: METHOD-NUDGE and QUIET-HOOK in [the decision register](sources.md#3-decisions).
 
-### Recording times
+#### 4.8.3 Recording times
 
 Every time a session records, in a report, a log, a message or a record, comes from `date -u` or from Git, never from memory; any other time is marked "about". Taken overnight under TIMES-CLOCK for the owner's review.
 
-Sources: TIMES-CLOCK in [the decision register](sources.md#decision-register).
+Sources: TIMES-CLOCK in [the decision register](sources.md#3-decisions).
 
-## Mechanical boundary
+[Back to contents](#contents)
+
+### 4.9 Mechanical boundary
 
 The native rubric is thin and complements `ki-work-package`'s. It checks only what the repository shows:
 
@@ -512,59 +575,63 @@ The native rubric is thin and complements `ki-work-package`'s. It checks only wh
 
 It cannot judge whether a coordinator kept its turn budget, whether a report took the owner-report shape under its heading and closed with the banner, whether a spoken answer was read back, whether a Summary covered the window since the mark, whether decisions were struck, pointed or kept, or whether the coordinator refreshed this guidance. The COORD judgement items review those from transcripts, reports and packages the owner selects. No item reads report files since COORD-REPORT-CHECKS, which Kris took on 15 November 2026: whether every record identifier is a link, whether a recommended option carries its confidence with no second option recommended, and whether a report opens with its heading are judged under COORD-5 and COORD-6. Nor does any item check where territory work sits or the level a work file declares since COORD-RETIRE, which Kris took on 16 November 2026: no packages remain in a repository's `+/_WORK/`, and `ki-work-package` checks the packages in the Cairn store.
 
-Nor does any item check that Project work resolves in the Capital's `Streams/Projects/` registry, that the active Project work is within the cap of three or four, or that its records awaiting acceptance are within the owner queue, since COORD-REPOINT, which Kris took on 16 November 2026: those checks read `+/_WORK/`, where nothing is left, and no package in the Cairn store is yet at project level. The rules stand where [Territory work](standards-territory.md#territory-work) and the [owner queue](standards-territory.md#owner-queue) state them, the caps applied by the coordinator's judgement; both checks come back in `ki-work-package`'s check, as rules of thumb that warn and never fail, once the first project-level package lands in the store.
+Nor does any item check that Project work resolves in the Capital's `Streams/Projects/` registry, that the active Project work is within the cap of three or four, or that its records awaiting acceptance are within the owner queue, since COORD-REPOINT, which Kris took on 16 November 2026: those checks read `+/_WORK/`, where nothing is left, and no package in the Cairn store is yet at project level. The rules stand where [Territory work](standard-territory.md#411-territory-work) and the [owner queue](standard-territory.md#42-owner-queue) state them, the caps applied by the coordinator's judgement; both checks come back in `ki-work-package`'s check, as rules of thumb that warn and never fail, once the first project-level package lands in the store.
 
-## Moved sections
+[Back to contents](#contents)
+
+### 4.10 Moved sections
 
 Sections that moved out of this file keep an anchor here, so an old link lands on a pointer to the new home.
 
 | Section | Now in |
 | --- | --- |
-| <a id="reply-forms"></a>[Reply forms](standards-reporting.md#reply-forms) | [standards-reporting.md](standards-reporting.md) |
-| <a id="session-kinds"></a>[Session kinds](standards-reporting.md#session-kinds) | [standards-reporting.md](standards-reporting.md) |
-| <a id="units-of-work"></a>[Units of work](standards-reporting.md#units-of-work) | [standards-reporting.md](standards-reporting.md) |
-| <a id="conversational-bounded-work"></a>[Conversational bounded work](standards-reporting.md#conversational-bounded-work) | [standards-reporting.md](standards-reporting.md) |
-| <a id="coordinator-only-machinery"></a>[Coordinator-only machinery](standards-reporting.md#coordinator-only-machinery) | [standards-reporting.md](standards-reporting.md) |
-| <a id="owner-report"></a>[Owner report](standards-reporting.md#owner-report) | [standards-reporting.md](standards-reporting.md) |
-| <a id="answers"></a>[Answers](standards-reporting.md#answers) | [standards-reporting.md](standards-reporting.md) |
-| <a id="quiet-tools"></a>[Quiet tools](standards-reporting.md#quiet-tools) | [standards-reporting.md](standards-reporting.md) |
-| <a id="needs-tags"></a>[Needs tags](standards-reporting.md#needs-tags) | [standards-reporting.md](standards-reporting.md) |
-| <a id="linking-records"></a>[Linking records](standards-reporting.md#linking-records) | [standards-reporting.md](standards-reporting.md) |
-| <a id="report-forms"></a>[Report forms](standards-report-forms.md#report-forms) | [standards-report-forms.md](standards-report-forms.md) |
-| <a id="templates"></a>[Templates](standards-report-forms.md#templates) | [standards-report-forms.md](standards-report-forms.md) |
-| <a id="the-summary"></a>[The Summary](standards-report-forms.md#the-summary) | [standards-report-forms.md](standards-report-forms.md) |
-| <a id="interactive-pass"></a>[Interactive pass](standards-queries.md#interactive-pass) | [standards-queries.md](standards-queries.md) |
-| <a id="goal-setting-pass"></a>[Goal-setting pass](standards-queries.md#goal-setting-pass) | [standards-queries.md](standards-queries.md) |
-| <a id="query-review"></a>[Query review](standards-queries.md#query-review) | [standards-queries.md](standards-queries.md) |
-| <a id="acceptance-bundles"></a>[Acceptance bundles](standards-queries.md#acceptance-bundles) | [standards-queries.md](standards-queries.md) |
-| <a id="putting-work-on-hold"></a>[Putting work on hold](standards-holds.md#putting-work-on-hold) | [standards-holds.md](standards-holds.md) |
-| <a id="unattended-windows"></a>[Unattended windows](standards-unattended.md#unattended-windows) | [standards-unattended.md](standards-unattended.md) |
-| <a id="headless-passes"></a>[Headless passes](standards-unattended.md#headless-passes) | [standards-unattended.md](standards-unattended.md) |
-| <a id="thread-capabilities"></a>[Session capabilities](standards-listening.md#session-capabilities) | [standards-listening.md](standards-listening.md) |
-| <a id="coordinating-work"></a>[Coordinating work](standards-territory.md#coordinating-work) | [standards-territory.md](standards-territory.md) |
-| <a id="territory-work"></a>[Territory work](standards-territory.md#territory-work) | [standards-territory.md](standards-territory.md) |
-| <a id="coordinating-assigned-packages"></a>[Coordinating assigned packages](standards-territory.md#coordinating-assigned-packages) | [standards-territory.md](standards-territory.md) |
-| <a id="secondary-states-of-play"></a>[Secondary States of play](standards-territory.md#secondary-states-of-play) | [standards-territory.md](standards-territory.md) |
-| <a id="worktree-sweep"></a>[Worktree sweep](standards-territory.md#worktree-sweep) | [standards-territory.md](standards-territory.md) |
-| <a id="levels-and-forms"></a>[Levels and forms](standards-opening.md#levels-and-forms) | [standards-opening.md](standards-opening.md) |
-| <a id="work-naming"></a>[Work naming](standards-opening.md#work-naming) | [standards-opening.md](standards-opening.md) |
-| <a id="opening-work"></a>[Opening work](standards-opening.md#opening-work) | [standards-opening.md](standards-opening.md) |
-| <a id="bootstrap"></a>[Bootstrap](standards-bootstrap.md#bootstrap) | [standards-bootstrap.md](standards-bootstrap.md) |
-| <a id="re-anchoring-after-compaction"></a>[Re-anchoring after compaction](standards-bootstrap.md#re-anchoring-after-compaction) | [standards-bootstrap.md](standards-bootstrap.md) |
-| <a id="picking-work-up"></a>[Picking work up](standards-bootstrap.md#picking-work-up) | [standards-bootstrap.md](standards-bootstrap.md) |
-| <a id="recovering-a-session-showing-a-red-x"></a>[Recovering a session showing a red x](standards-bootstrap.md#recovering-a-session-showing-a-red-x) | [standards-bootstrap.md](standards-bootstrap.md) |
-| <a id="messages-between-work"></a>[Work between packages](standards-messages.md#messages-between-work) | [standards-messages.md](standards-messages.md) |
-| <a id="surfaces"></a>[Surfaces](standards-messages.md#surfaces) | [standards-messages.md](standards-messages.md) |
-| <a id="decisions-and-design"></a>[Decisions and design](standards-decisions.md#decisions-and-design) | [standards-decisions.md](standards-decisions.md) |
-| <a id="decisions-log"></a>[Decisions log](standards-decisions.md#decisions-log) | [standards-decisions.md](standards-decisions.md) |
-| <a id="decision-classes"></a>[Decision classes](standards-decisions.md#decision-classes) | [standards-decisions.md](standards-decisions.md) |
-| <a id="decisions-life-cycle"></a>[Decisions life cycle](standards-decisions.md#decisions-life-cycle) | [standards-decisions.md](standards-decisions.md) |
-| <a id="design-notes"></a>[Change documents](standards-decisions.md#change-documents) | [standards-decisions.md](standards-decisions.md) |
-| <a id="the-mark"></a>[The mark](standards-mark.md#the-mark) | [standards-mark.md](standards-mark.md) |
-| <a id="parking-tangents"></a>[Parking tangents](standards-mark.md#parking-tangents) | [standards-mark.md](standards-mark.md) |
-| <a id="pruning-the-work-folder"></a>[Pruning the work folder](standards-mark.md#pruning-the-work-folder) | [standards-mark.md](standards-mark.md) |
-| <a id="closing-out-orca-workers"></a>[Closing out Orca workers](standards-mark.md#closing-out-orca-workers) | [standards-mark.md](standards-mark.md) |
-| <a id="finishing-project-work"></a>[Finishing Project work](standards-mark.md#finishing-project-work) | [standards-mark.md](standards-mark.md) |
-| <a id="pushing-beneath-other-sessions"></a>[Pushing beneath other sessions](standards-sync.md#pushing-beneath-other-sessions) | [standards-sync.md](standards-sync.md) |
-| <a id="repository-level-check"></a>[Repository level check](standards-sync.md#repository-level-check) | [standards-sync.md](standards-sync.md) |
-| <a id="keeping-primary-checkouts-current"></a>[Keeping primary checkouts current](standards-sync.md#keeping-primary-checkouts-current) | [standards-sync.md](standards-sync.md) |
+| <a id="reply-forms"></a>[Reply forms](standard-reporting.md#41-reply-forms) | [standard-reporting.md](standard-reporting.md) |
+| <a id="session-kinds"></a>[Session kinds](standard-reporting.md#411-session-kinds) | [standard-reporting.md](standard-reporting.md) |
+| <a id="units-of-work"></a>[Units of work](standard-reporting.md#412-units-of-work) | [standard-reporting.md](standard-reporting.md) |
+| <a id="conversational-bounded-work"></a>[Conversational bounded work](standard-reporting.md#413-conversational-bounded-work) | [standard-reporting.md](standard-reporting.md) |
+| <a id="coordinator-only-machinery"></a>[Coordinator-only machinery](standard-reporting.md#414-coordinator-only-machinery) | [standard-reporting.md](standard-reporting.md) |
+| <a id="owner-report"></a>[Owner report](standard-reporting.md#42-owner-report) | [standard-reporting.md](standard-reporting.md) |
+| <a id="answers"></a>[Answers](standard-reporting.md#421-answers) | [standard-reporting.md](standard-reporting.md) |
+| <a id="quiet-tools"></a>[Quiet tools](standard-reporting.md#422-quiet-tools) | [standard-reporting.md](standard-reporting.md) |
+| <a id="needs-tags"></a>[Needs tags](standard-reporting.md#needs-tags) | [standard-reporting.md](standard-reporting.md) |
+| <a id="linking-records"></a>[Linking records](standard-reporting.md#44-linking-records) | [standard-reporting.md](standard-reporting.md) |
+| <a id="report-forms"></a>[Report forms](standard-report-forms.md#41-coordinator-reply-format) | [standard-report-forms.md](standard-report-forms.md) |
+| <a id="templates"></a>[Templates](standard-report-forms.md#415-templates) | [standard-report-forms.md](standard-report-forms.md) |
+| <a id="the-summary"></a>[The Summary](standard-report-forms.md#417-the-summary) | [standard-report-forms.md](standard-report-forms.md) |
+| <a id="interactive-pass"></a>[Interactive pass](standard-queries.md#43-interactive-pass) | [standard-queries.md](standard-queries.md) |
+| <a id="goal-setting-pass"></a>[Goal-setting pass](standard-queries.md#44-goal-setting-pass) | [standard-queries.md](standard-queries.md) |
+| <a id="query-review"></a>[Query review](standard-queries.md#45-query-review) | [standard-queries.md](standard-queries.md) |
+| <a id="acceptance-bundles"></a>[Acceptance bundles](standard-queries.md#48-acceptance-bundles) | [standard-queries.md](standard-queries.md) |
+| <a id="putting-work-on-hold"></a>[Putting work on hold](standard-holds.md#41-putting-work-on-hold) | [standard-holds.md](standard-holds.md) |
+| <a id="unattended-windows"></a>[Unattended windows](standard-unattended.md#42-unattended-windows) | [standard-unattended.md](standard-unattended.md) |
+| <a id="headless-passes"></a>[Headless passes](standard-unattended.md#43-headless-passes) | [standard-unattended.md](standard-unattended.md) |
+| <a id="thread-capabilities"></a>[Session capabilities](standard-listening.md#42-session-capabilities) | [standard-listening.md](standard-listening.md) |
+| <a id="coordinating-work"></a>[Coordinating work](standard-territory.md#41-coordinating-work) | [standard-territory.md](standard-territory.md) |
+| <a id="territory-work"></a>[Territory work](standard-territory.md#411-territory-work) | [standard-territory.md](standard-territory.md) |
+| <a id="coordinating-assigned-packages"></a>[Coordinating assigned packages](standard-territory.md#412-coordinating-assigned-packages) | [standard-territory.md](standard-territory.md) |
+| <a id="secondary-states-of-play"></a>[Secondary States of play](standard-territory.md#413-secondary-states-of-play) | [standard-territory.md](standard-territory.md) |
+| <a id="worktree-sweep"></a>[Worktree sweep](standard-territory.md#44-worktree-sweep) | [standard-territory.md](standard-territory.md) |
+| <a id="levels-and-forms"></a>[Levels and forms](standard-opening.md#41-levels-and-forms) | [standard-opening.md](standard-opening.md) |
+| <a id="work-naming"></a>[Work naming](standard-opening.md#42-work-naming) | [standard-opening.md](standard-opening.md) |
+| <a id="opening-work"></a>[Opening work](standard-opening.md#43-opening-work) | [standard-opening.md](standard-opening.md) |
+| <a id="bootstrap"></a>[Bootstrap](standard-bootstrap.md#41-bootstrap) | [standard-bootstrap.md](standard-bootstrap.md) |
+| <a id="re-anchoring-after-compaction"></a>[Re-anchoring after compaction](standard-bootstrap.md#43-re-anchoring-after-compaction) | [standard-bootstrap.md](standard-bootstrap.md) |
+| <a id="picking-work-up"></a>[Picking work up](standard-bootstrap.md#44-picking-work-up) | [standard-bootstrap.md](standard-bootstrap.md) |
+| <a id="recovering-a-session-showing-a-red-x"></a>[Recovering a session showing a red x](standard-bootstrap.md#45-recovering-a-session-showing-a-red-x) | [standard-bootstrap.md](standard-bootstrap.md) |
+| <a id="messages-between-work"></a>[Work between packages](standard-messages.md#messages-between-work) | [standard-messages.md](standard-messages.md) |
+| <a id="surfaces"></a>[Surfaces](standard-messages.md#44-surfaces) | [standard-messages.md](standard-messages.md) |
+| <a id="decisions-and-design"></a>[Decisions and design](standard-decisions.md#41-decisions-and-design) | [standard-decisions.md](standard-decisions.md) |
+| <a id="decisions-log"></a>[Decisions log](standard-decisions.md#411-decisions-log) | [standard-decisions.md](standard-decisions.md) |
+| <a id="decision-classes"></a>[Decision classes](standard-decisions.md#412-decision-classes) | [standard-decisions.md](standard-decisions.md) |
+| <a id="decisions-life-cycle"></a>[Decisions life cycle](standard-decisions.md#413-decisions-life-cycle) | [standard-decisions.md](standard-decisions.md) |
+| <a id="design-notes"></a>[Change documents](standard-decisions.md#414-change-documents) | [standard-decisions.md](standard-decisions.md) |
+| <a id="the-mark"></a>[The mark](standard-mark.md#41-the-mark) | [standard-mark.md](standard-mark.md) |
+| <a id="parking-tangents"></a>[Parking tangents](standard-mark.md#42-parking-tangents) | [standard-mark.md](standard-mark.md) |
+| <a id="pruning-the-work-folder"></a>[Pruning the work folder](standard-mark.md#43-pruning-the-work-folder) | [standard-mark.md](standard-mark.md) |
+| <a id="closing-out-orca-workers"></a>[Closing out Orca workers](standard-mark.md#44-closing-out-orca-workers) | [standard-mark.md](standard-mark.md) |
+| <a id="finishing-project-work"></a>[Finishing Project work](standard-mark.md#45-finishing-project-work) | [standard-mark.md](standard-mark.md) |
+| <a id="pushing-beneath-other-sessions"></a>[Pushing beneath other sessions](standard-sync.md#42-pushing-beneath-other-sessions) | [standard-sync.md](standard-sync.md) |
+| <a id="repository-level-check"></a>[Repository level check](standard-sync.md#43-repository-level-check) | [standard-sync.md](standard-sync.md) |
+| <a id="keeping-primary-checkouts-current"></a>[Keeping primary checkouts current](standard-sync.md#44-keeping-primary-checkouts-current) | [standard-sync.md](standard-sync.md) |
+
+[Back to contents](#contents)

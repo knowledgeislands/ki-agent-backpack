@@ -7,12 +7,12 @@ import { markedBlock } from '../../skills/work/ki-coordination/scripts/generate/
 
 const script = resolve(import.meta.dir, 'coordinator-reminder.sh')
 const line = markedBlock(
-  readFileSync(resolve(import.meta.dir, '../../skills/work/ki-coordination/references/standards-coordination.md'), 'utf8'),
+  readFileSync(resolve(import.meta.dir, '../../skills/work/ki-coordination/references/standard-coordination.md'), 'utf8'),
   'source',
   'hook-line'
 ).body
 const pointer = markedBlock(
-  readFileSync(resolve(import.meta.dir, '../../skills/work/ki-coordination/references/standards-coordination.md'), 'utf8'),
+  readFileSync(resolve(import.meta.dir, '../../skills/work/ki-coordination/references/standard-coordination.md'), 'utf8'),
   'source',
   'hook-pointer'
 ).body

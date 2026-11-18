@@ -1,35 +1,90 @@
-# Coordinating-work standard: reply format and banner
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T01:24:51Z
+ki-status: in force
+---
 
-This file holds the coordinator reply format: its scope, the triggers that set each reply's structure and layout, the blocks and parts each structure carries, what each part holds, one template per structure, the verbs, the Summary's status table and footer, and the banner detail with its marked examples. It extends [the core](standards-coordination.md), which holds the banner layout and the one table of states.
+# Coordinating-work standard: reply format and banner
 
 ## Contents
 
-- [Coordinator reply format](#coordinator-reply-format)
-  - [Blocks, parts and layouts](#blocks-parts-and-layouts)
-  - [Triggers](#triggers)
-  - [Structure–part matrix](#structurepart-matrix)
-  - [Part content](#part-content)
-  - [Templates](#templates)
-  - [Verbs](#verbs)
-  - [The Summary](#the-summary)
-- [Banner detail](#banner-detail)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Coordinator reply format](#41-coordinator-reply-format)
+    - [4.1.1 Blocks, parts and layouts](#411-blocks-parts-and-layouts)
+    - [4.1.2 Triggers](#412-triggers)
+    - [4.1.3 Structure–part matrix](#413-structurepart-matrix)
+    - [4.1.4 Part content](#414-part-content)
+    - [4.1.5 Templates](#415-templates)
+    - [4.1.6 Verbs](#416-verbs)
+    - [4.1.7 The Summary](#417-the-summary)
+  - [4.2 Banner detail](#42-banner-detail)
 
-<a id="report-forms"></a>
+## 1. Introduction
 
-## Coordinator reply format
+This file holds the coordinator reply format: its scope, the triggers that set each reply's structure and layout, the blocks and parts each structure carries, what each part holds, one template per structure, the verbs, the Summary's status table and footer, and the banner detail with its marked examples. It extends [the core](standard-coordination.md), which holds the banner layout and the one table of states. The decisions behind its rules are in [the sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+The coordinator reply format: how every reply in a coordinator session, and a run report, is built and closed with its banner.
+
+### 2.1 In scope
+
+- What the coordinator reply format governs, and what it does not.
+- Blocks, parts and layouts, the reply id and times.
+- The triggers that set each reply's structure, and the structure–part matrix.
+- What each part holds, and one template per structure.
+- The verbs.
+- The Summary, its status table and its footer.
+- The banner detail: the report heading, mode lines, the restart suggestion and the marked banner examples.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- The reply forms of a conversational session and the owner report: [reporting](standard-reporting.md).
+- What each state's banner shows, the table of glyphs and the thread line: [the core](standard-coordination.md).
+- The query cap, the interactive pass and query review: [queries](standard-queries.md).
+- Putting work on hold and release: [holds](standard-holds.md).
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Coordinator reply format** | The format of every reply in a coordinator session, and of a run report a run the coordinator launched writes into the package. **Standard:** this one, [4.1](#41-coordinator-reply-format) |
+| **Reply structure** | What a reply is, such as Summary, Status, Bootstrap, run report, Stop, Position, Update or Answer, each with one layout. **Standard:** this one, [4.1.1](#411-blocks-parts-and-layouts) |
+| **Trigger** | What a reply meets that sets its one reply structure, tried from T1 down, the first met winning; each is matched on a signal, a phrase, the state, the time or a move. **Standard:** this one, [4.1.2](#412-triggers) |
+| **Status table** | The Summary's and Status's full board of live items: one row per change document or sub-package holding one, then a catch-all row, Not in a change yet. **Standard:** this one, [4.1.7](#417-the-summary) |
+| **Report heading** | The heading block: one `#` heading whose one link is the package's `_index.md` in the Cairn store, one bold form line, an optional opening note and one rule. **Standard:** this one, [4.2](#42-banner-detail) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 Coordinator reply format
 
 The **coordinator reply format** governs every reply in a coordinator session: reports, ordinary answers, timed one-line updates and wake lines. It also governs a **run report**, the final report a run the coordinator launched writes into the work package; the run writes it itself, in the Medium layout, and no trigger chooses it.
 
 It does not govern:
 
-- a conversational session, with no coordinating opener, which uses the plain conversational reply and, when a unit of work ends, the owner report without heading block or footer, under [Reply forms](standards-reporting.md#reply-forms);
+- a conversational session, with no coordinating opener, which uses the plain conversational reply and, when a unit of work ends, the owner report without heading block or footer, under [Reply forms](standard-reporting.md#41-reply-forms);
 - a background agent's own replies while it works, which follow its brief; only its final run report is in scope;
-- what each state's banner shows, which the [one table of states](standards-coordination.md#banner) sets;
+- what each state's banner shows, which the [one table of states](standard-coordination.md#46-banner) sets;
 - the **communication level**, quiet, standard or detailed, which never changes the layout and governs only the wording inside B1, the Answer. No Knowledge Islands standard defines the levels; the owner's personal communication preferences set them.
 
-Sources: REPLY-FORMAT in [the decision register](sources.md#decision-register).
+Sources: REPLY-FORMAT in [the decision register](sources.md#3-decisions).
 
-### Blocks, parts and layouts
+#### 4.1.1 Blocks, parts and layouts
 
 A reply is built from up to three **blocks**, always in this order, each left out where none of its parts appear:
 
@@ -39,13 +94,13 @@ A reply is built from up to three **blocks**, always in this order, each left ou
 
 Each block is a run of coded **parts**. Each reply has one **reply structure**, saying what the reply is, such as Summary, Status or Stop, and each structure has one **layout**, its depth: **Full**, **Medium**, **Short** or **Minimal**, deepest to shallowest. The structure decides which parts appear and how each part is shaped; Minimal has no heading block and closes with the short banner, as Short does.
 
-**Reply id.** Every reply to the owner, in every layout, opens with its [reply id](standards-reporting.md#reply-forms), `**Reply HH:MM**`, the UTC time from `date -u +%H:%M` as the reply is written, then a blank line and the first block: in Full and Medium the heading block, so the `#` heading follows the id with no rule between them; in Short the Answer, or the banner where there is none; in Minimal the Answer or the update. The id stands outside the blocks and their parts, and the form line and banner keep their local times. A run report, saved into the package, carries none.
+**Reply id.** Every reply to the owner, in every layout, opens with its [reply id](standard-reporting.md#41-reply-forms), `**Reply HH:MM**`, the UTC time from `date -u +%H:%M` as the reply is written, then a blank line and the first block: in Full and Medium the heading block, so the `#` heading follows the id with no rule between them; in Short the Answer, or the banner where there is none; in Minimal the Answer or the update. The id stands outside the blocks and their parts, and the form line and banner keep their local times. A run report, saved into the package, carries none.
 
-**Time.** Every time is the owner's local time, in one of two forms, each part choosing which in its entry under [Part content](#part-content): a **friendly time**, naming the day where it is not today, as in `10:30 GMT`, `yesterday 18:05 GMT` or `Thu 5 Nov 09:12 GMT`; or a **timestamp**, ISO 8601 with its offset, as in `2026-11-07T10:30+00:00`, the fallback wherever a friendly time does not fit. A part that names no form keeps the form its template shows.
+**Time.** Every time is the owner's local time, in one of two forms, each part choosing which in its entry under [Part content](#414-part-content): a **friendly time**, naming the day where it is not today, as in `10:30 GMT`, `yesterday 18:05 GMT` or `Thu 5 Nov 09:12 GMT`; or a **timestamp**, ISO 8601 with its offset, as in `2026-11-07T10:30+00:00`, the fallback wherever a friendly time does not fit. A part that names no form keeps the form its template shows.
 
-### Triggers
+#### 4.1.2 Triggers
 
-Each **trigger** sets exactly one reply structure, which enables the parts in the [structure–part matrix](#structurepart-matrix); each part then reacts to the structure, the state and the mark under [Part content](#part-content). A reply tries the triggers from T1 down, and the first met wins.
+Each **trigger** sets exactly one reply structure, which enables the parts in the [structure–part matrix](#413-structurepart-matrix); each part then reacts to the structure, the state and the mark under [Part content](#414-part-content). A reply tries the triggers from T1 down, and the first met wins.
 
 | Trigger | Signal | When | Structure |
 | --- | --- | --- | --- |
@@ -56,7 +111,7 @@ Each **trigger** sets exactly one reply structure, which enables the parts in th
 | T5 | Phrase | **Status phrases:**<br>`status` or `mark, status only` | Status |
 | T6 | Phrase, Move or State | **Summary asks and events:**<br>The owner's phrase `mark`, `summary`, `summary since <time>`, `recap` or `full summary`; or the coordinator commits a send of the work to the owner or another target, or the last running or queued run the work dispatched finishes; the latter is met until a reply it wins | Summary |
 | T7 | Move | **Other change of state:**<br>The coordinator commits any other change of state: a receive such as `with me`, a `resume`, the start of a drain | Position |
-| T8 | Move | **Update:**<br>A timed update falls due under the update [cadence](standards-coordination.md#coordinator-responsiveness), or a wake, by timer or inbox | Update |
+| T8 | Move | **Update:**<br>A timed update falls due under the update [cadence](standard-coordination.md#43-coordinator-responsiveness), or a wake, by timer or inbox | Update |
 | T9 | Phrase | **Anything else:**<br>The owner's message, when it meets no other trigger | Answer |
 
 Each trigger is matched on a **signal**, or for T6 on any of three:
@@ -66,15 +121,15 @@ Each trigger is matched on a **signal**, or for T6 on any of three:
 - **Time:** the times of the owner's messages and of the last Full reply.
 - **Move:** something the coordinator commits, or a wake.
 
-**The gaps.** `USER_LAST_MESSAGE` is 30 minutes and `SINCE_LAST_SUMMARY` is 120 minutes by default. They change only when the owner asks in the session; a process such as setting up an [unattended window](standards-unattended.md#unattended-windows) may ask the owner what they should be.
+**The gaps.** `USER_LAST_MESSAGE` is 30 minutes and `SINCE_LAST_SUMMARY` is 120 minutes by default. They change only when the owner asks in the session; a process such as setting up an [unattended window](standard-unattended.md#42-unattended-windows) may ask the owner what they should be.
 
-Two things sit outside the triggers. [The mark](standards-mark.md#the-mark) belongs to the standard: it moves on a hold and on `mark`, `mark only` and `mark, status only`, and shows only in H2 and B2. A run report is written by the run itself, in Medium.
+Two things sit outside the triggers. [The mark](standard-mark.md#41-the-mark) belongs to the standard: it moves on a hold and on `mark`, `mark only` and `mark, status only`, and shows only in H2 and B2. A run report is written by the run itself, in Medium.
 
-Sources: REPLY-FORMAT in [the decision register](sources.md#decision-register).
+Sources: REPLY-FORMAT in [the decision register](sources.md#3-decisions).
 
-### Structure–part matrix
+#### 4.1.3 Structure–part matrix
 
-Which parts each reply structure carries, one column per structure with its layout beneath its name: ● required, ○ optional, on its condition under [Part content](#part-content), and empty where the part is not used.
+Which parts each reply structure carries, one column per structure with its layout beneath its name: ● required, ○ optional, on its condition under [Part content](#414-part-content), and empty where the part is not used.
 
 | Part | Summary<br>_Full_ | Status<br>_Full_ | Bootstrap<br>_Medium_ | Run report<br>_Medium_ | Stop<br>_Medium_ | Position<br>_Short_ | Update<br>_Minimal_ | Answer<br>_Minimal_ |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -101,19 +156,19 @@ Which parts each reply structure carries, one column per structure with its layo
 | **F8** · Listening line | ○ | ○ | ○ |  | ○ | ○ | ○ | ○ |
 | **F9** · Thread line | ● | ● | ● | ● | ● | ● | ● | ● |
 
-● required · ○ optional, on its condition under [Part content](#part-content) · empty: not used.
+● required · ○ optional, on its condition under [Part content](#414-part-content) · empty: not used.
 
 F3 and F4 show always or never by reply structure, never by judgement of whether they apply; F3 leaves Stop only when the work is Finished. F8 shows exactly while the session is in a meeting, whatever the structure. Every structure closes with the banner and its thread line, the Update and the Answer included, as Kris set under HOOK-ENFORCE on 18 November 2026: "Yeah, we need the hook enforcing".
 
-Sources: REPLY-FORMAT, LISTEN-LINE and HOOK-ENFORCE in [the decision register](sources.md#decision-register).
+Sources: REPLY-FORMAT, LISTEN-LINE and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
 
-### Part content
+#### 4.1.4 Part content
 
 Each part: what it carries, when it appears and how the structure, the state and the mark shape it.
 
 **Heading block.**
 
-- **H1 Heading:** which work this is, its name linked to its package's `_index.md` in the Cairn store, under **Report heading** in [Banner detail](#banner-detail): `# <Theme> › [<Project>](<package _index.md>)`, `# [<Territory>](<package _index.md>) › State of play` or `# [<title>](<package _index.md>)`. A run report adds `› <run name>`.
+- **H1 Heading:** which work this is, its name linked to its package's `_index.md` in the Cairn store, under **Report heading** in [Banner detail](#42-banner-detail): `# <Theme> › [<Project>](<package _index.md>)`, `# [<Territory>](<package _index.md>) › State of play` or `# [<title>](<package _index.md>)`. A run report adds `› <run name>`.
 - **H2 Form line:** which reply structure, when it was given and the mark: `**<Structure> at <now> · last mark <mark time>**`, the structure `Summary`, `Status`, `Bootstrap`, `Run report` or `Stop`. The mark time is the mark the reply's window opens at: after `mark`, the mark before the one just struck; otherwise the last mark struck, or the session's start where there is none. A Stop for a hold ends `· mark <the hold's mark>`. Both times are friendly times, so `last mark` names the day where it is not today, as in `last mark yesterday 18:05 GMT`. The work's state is not in H2; it shows only in F2.
 - **H3 Opening note:** context worth putting high up, ahead of the body, such as an outline of the Answer or anything unusual that nothing else shows, in one or two lines; the rest of the Answer stays in B1. Only where the reply has such context.
 - **H4 Rule:** one `---`, with a blank line either side, closing the heading block.
@@ -121,29 +176,29 @@ Each part: what it carries, when it appears and how the structure, the state and
 **Body block.**
 
 - **B1 Answer:** anything the reply says that no other part covers, in its own words and with any normal sections: an answer to the owner's message, an explanation, a short table. It comes first in the body, straight after the heading block, and only where there is such content: a reply to a bare `summary` may have none, its Summary being B2. In Minimal it is the whole reply.
-- **B2 Summary:** what changed since the window opened. In a Summary it is `## Summary`, with no time: one bold headline saying what the window came to, then one line per item that changed, delivered, decided, started, stopped, blocked or newly captured, with material failures, corrections and limitations beside the items they qualify, and commits and a recovered session among them; with nothing changed, one line says so. In every Medium structure it is `## Done`, one completed outcome per line: in a Bootstrap the coordinator's role and where the work stands, ending with the `Rename thread:` line under [Opening work](standards-opening.md#opening-work); in a run report its outcomes with commit identifiers and each check's outcome; in a Stop one line per repository for a hold, or one per close-out step at Finished.
-- **B3 Status:** the full board of live items. In a Summary or Status it is `## Status`, the [status table](#the-summary). In every Medium structure it is `## In Progress`: what is running and what is waiting, each with its owner or dependency, or `Nothing is running`, then `Outstanding - no action requested now`. On hold, Left over comes here: another session's uncommitted file, or `Nothing`.
+- **B2 Summary:** what changed since the window opened. In a Summary it is `## Summary`, with no time: one bold headline saying what the window came to, then one line per item that changed, delivered, decided, started, stopped, blocked or newly captured, with material failures, corrections and limitations beside the items they qualify, and commits and a recovered session among them; with nothing changed, one line says so. In every Medium structure it is `## Done`, one completed outcome per line: in a Bootstrap the coordinator's role and where the work stands, ending with the `Rename thread:` line under [Opening work](standard-opening.md#43-opening-work); in a run report its outcomes with commit identifiers and each check's outcome; in a Stop one line per repository for a hold, or one per close-out step at Finished.
+- **B3 Status:** the full board of live items. In a Summary or Status it is `## Status`, the [status table](#417-the-summary). In every Medium structure it is `## In Progress`: what is running and what is waiting, each with its owner or dependency, or `Nothing is running`, then `Outstanding - no action requested now`. On hold, Left over comes here: another session's uncommitted file, or `Nothing`.
 - **B4 Findings:** `## Findings`, only while a finding the owner asked for is open, under the owner report's **Findings**.
-- **B5 Queries:** `## Queries`, each decision the owner needs to make, in full, under the [owner report](standards-reporting.md#owner-report), at most ten, the most critical first, then one line saying how many more are open and where they are held, under the [query cap](standards-queries.md#query-cap), a proposed work transfer last, or `None.` in a Summary or Status and `No outstanding queries` in a Medium structure. On hold, the parked queries come here instead, one line each, `<TAG> - <one line>`.
+- **B5 Queries:** `## Queries`, each decision the owner needs to make, in full, under the [owner report](standard-reporting.md#42-owner-report), at most ten, the most critical first, then one line saying how many more are open and where they are held, under the [query cap](standard-queries.md#42-query-cap), a proposed work transfer last, or `None.` in a Summary or Status and `No outstanding queries` in a Medium structure. On hold, the parked queries come here instead, one line each, `<TAG> - <one line>`.
 - **B6 Reply block:** the tags, letters and confidences, ready to copy: one fenced `text` block after the last query, holding exactly the text to send back, for the owner to copy, change and send. The queries in B5, the same ten at most and no others, are grouped by priority under numbered headings, the most pressing first, each `<n> · <what the group is>`, adding `, can run while you're away` where the group's work can go ahead while the owner is away, with a blank line between groups; under each heading, one line per query, its tag, the recommended option's letter and that option's confidence in brackets, then a short gloss after a colon, as `<TAG> a (high): what it does`, each tag on one line only and never with an alternative's letter, under the owner report's **Reply block**. It appears whenever the reply asks the owner to decide anything, closing the body before any footer: whenever B5 carries at least one query in full, and after the Answer of a Position, Update or Answer that asks for a decision.
 
 **Footer block.**
 
-- **F1 Art:** the Knowledge Islands drawing, whose scroll says only KNOWLEDGE ISLANDS, under **The footer** in [The Summary](#the-summary). Unless the owner asked for `no art`.
-- **F2 Banner heading:** `### <glyph state> · at <time the work entered this state>`, from the [one table of states](standards-coordination.md#banner). It is the only place the work's state appears.
+- **F1 Art:** the Knowledge Islands drawing, whose scroll says only KNOWLEDGE ISLANDS, under **The footer** in [The Summary](#417-the-summary). Unless the owner asked for `no art`.
+- **F2 Banner heading:** `### <glyph state> · at <time the work entered this state>`, from the [one table of states](standard-coordination.md#46-banner). It is the only place the work's state appears.
 - **F3 Counts line:** `🤖 <n> running · ⏳ <n> queued · 👤 <n> with you · ⛔ <n> blocked · 🅿️ <n> parked`, all five views with zeros written, adding `· 📥 <n> to accept` in Project work with records awaiting the owner's acceptance. The state sets its content on hold: `⏸️ drained · 🅿️ <n> queries parked` on a paused hold, `💤 waiting for a message · 🅿️ <n> queries parked` while Snoozing. Left out only when the work is Finished.
-- **F4 Roadmap line:** `🗺️ roadmap · <n> records · <n> open · <n> done awaiting prune · <n> ideas`, or `🗺️ roadmap · none` where the package's repository has no roadmap, under **Roadmap and package lines** in [Banner detail](#banner-detail).
+- **F4 Roadmap line:** `🗺️ roadmap · <n> records · <n> open · <n> done awaiting prune · <n> ideas`, or `🗺️ roadmap · none` where the package's repository has no roadmap, under **Roadmap and package lines** in [Banner detail](#42-banner-detail).
 - **F5 Package line:** `📦 package · changes <n> · open <n> · held <n> · meetings <n>`, under the same.
-- **F6 Item list:** one line per live item, `- <glyph> <what> · <holder> · at <time>`, opening with its state's agreed glyph alone, never with a bracketed state word, under **Glyph banner** in [the core](standards-coordination.md#banner); where no agreed glyph names its state, a provisional glyph with its state word in brackets, or the bracketed word alone, under **Provisional glyphs and bracketed words** there. Every glyph is in the core's [table of glyphs](standards-coordination.md#banner). It carries no awaiting-ACK items. On hold it lists only `🅿️` parked and the release under the hold's own glyph, `⏸️` or `💤`; Finished lists `🏁`.
-- **F7 Heading-for line:** `↪️ <draining or finishing> → <target>`, only while the work is heading for a hold or a handoff, under **Heading for a hold or a handoff** in [the core](standards-coordination.md#banner).
-- **F8 Listening line:** `👂 in <meeting>` while the session is in a meeting, naming each meeting it is in by its entry file's `meeting` field, two or more joined by `, `, as in `👂 in cairn.wayfinder.designs`, and left off when it is in none. A session is in a meeting while it is a participant of an open meeting with a sitting under way, `status: open` in the meeting's entry file under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). Listening means only this, under LISTEN-LINE; the [inbox watcher](standards-listening.md#inbox-watch) has no line.
-- **F9 Thread line:** `<role glyph> 🔑 <work-id>`, `<role glyph> <package>@<role>` for a seat without the keys, each written `<Name> (<that form>)` where the seat's actor is named, as in `Kitteth (🪨 🔑 cairn.summit)`, or `🧵 <work-id>`, always last, under **Thread line** in [the core](standards-coordination.md#banner).
+- **F6 Item list:** one line per live item, `- <glyph> <what> · <holder> · at <time>`, opening with its state's agreed glyph alone, never with a bracketed state word, under **Glyph banner** in [the core](standard-coordination.md#46-banner); where no agreed glyph names its state, a provisional glyph with its state word in brackets, or the bracketed word alone, under **Provisional glyphs and bracketed words** there. Every glyph is in the core's [table of glyphs](standard-coordination.md#46-banner). It carries no awaiting-ACK items. On hold it lists only `🅿️` parked and the release under the hold's own glyph, `⏸️` or `💤`; Finished lists `🏁`.
+- **F7 Heading-for line:** `↪️ <draining or finishing> → <target>`, only while the work is heading for a hold or a handoff, under **Heading for a hold or a handoff** in [the core](standard-coordination.md#46-banner).
+- **F8 Listening line:** `👂 in <meeting>` while the session is in a meeting, naming each meeting it is in by its entry file's `meeting` field, two or more joined by `, `, as in `👂 in cairn.wayfinder.designs`, and left off when it is in none. A session is in a meeting while it is a participant of an open meeting with a sitting under way, `status: open` in the meeting's entry file under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). Listening means only this, under LISTEN-LINE; the [inbox watcher](standard-listening.md#41-inbox-watch) has no line.
+- **F9 Thread line:** `<role glyph> 🔑 <work-id>`, `<role glyph> <package>@<role>` for a seat without the keys, each written `<Name> (<that form>)` where the seat's actor is named, as in `Kitteth (🪨 🔑 cairn.summit)`, or `🧵 <work-id>`, always last, under **Thread line** in [the core](standard-coordination.md#46-banner).
 
-Sources: REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, LISTEN-LINE, ITEM-GLYPHS, GLYPH-TABLE, GLYPH-FALLBACK, NAME-FIRST, HEADING-FIX and HOOK-ENFORCE in [the decision register](sources.md#decision-register).
+Sources: REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, LISTEN-LINE, ITEM-GLYPHS, GLYPH-TABLE, GLYPH-FALLBACK, NAME-FIRST, HEADING-FIX and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
 
-### Templates
+#### 4.1.5 Templates
 
-Each structure has one complete template. A line in angle brackets says what goes there; a part marked _only when there is some_ is left out otherwise. Each template starts at its first block; in a reply the [reply id](#blocks-parts-and-layouts) stands above it. The [Banner](standards-coordination.md#banner) examples show finished banners.
+Each structure has one complete template. A line in angle brackets says what goes there; a part marked _only when there is some_ is left out otherwise. Each template starts at its first block; in a reply the [reply id](#411-blocks-parts-and-layouts) stands above it. The [Banner](standard-coordination.md#46-banner) examples show finished banners.
 
 **Summary**, Full, with each part's code in the right margin; the codes are not part of a reply:
 
@@ -215,7 +270,7 @@ b) <the alternative>
 
 **Status**, Full: the Summary's template with the form line `**Status at <now> · last mark <mark time>**` and no `## Summary`, so the Answer, where there is one, or `## Status` follows the rule; the same footer.
 
-**Bootstrap**, Medium, under [Bootstrap](standards-bootstrap.md#bootstrap):
+**Bootstrap**, Medium, under [Bootstrap](standard-bootstrap.md#41-bootstrap):
 
 ```text
 # <Theme> › [<Project>](<package _index.md>)
@@ -253,9 +308,9 @@ Rename thread: /rename <thread line>
 <thread line>
 ```
 
-**Run report**, Medium, written by the run under the [owner report](standards-reporting.md#owner-report): the Bootstrap's template with `› <run name>` added to the heading, the form line `**Run report at <now> · last mark <mark time>**`, `## Done` holding its outcomes, commits and checks, no `Rename thread:` line, and a banner of F2, F3, F6 and F9 alone, closing with `🧵 <work-id>` of the work it reports to.
+**Run report**, Medium, written by the run under the [owner report](standard-reporting.md#42-owner-report): the Bootstrap's template with `› <run name>` added to the heading, the form line `**Run report at <now> · last mark <mark time>**`, `## Done` holding its outcomes, commits and checks, no `Rename thread:` line, and a banner of F2, F3, F6 and F9 alone, closing with `🧵 <work-id>` of the work it reports to.
 
-**Stop**, Medium, for a hold, under [Putting work on hold](standards-holds.md#putting-work-on-hold), alone in its message:
+**Stop**, Medium, for a hold, under [Putting work on hold](standard-holds.md#41-putting-work-on-hold), alone in its message:
 
 ```text
 # <Theme> › [<Project>](<package _index.md>)
@@ -299,7 +354,7 @@ Left over: <another session's uncommitted file, or Nothing>
 <thread line>
 ```
 
-**Stop at Finished**, at [Finishing Project work](standards-mark.md#finishing-project-work):
+**Stop at Finished**, at [Finishing Project work](standard-mark.md#45-finishing-project-work):
 
 ```text
 # <Theme> › [<Project>](<package _index.md>)
@@ -345,11 +400,11 @@ No outstanding queries
 <thread line>
 ```
 
-**Update** and **Answer**, Minimal: the Answer, with no heading block, then the banner as the Position carries it, without F1, F4 and F5, as Kris set under HOOK-ENFORCE on 18 November 2026, so every coordinating reply closes with the banner and its thread line. A timed update or wake line is one or two timestamped lines under the [cadence](standards-coordination.md#coordinator-responsiveness), above the banner.
+**Update** and **Answer**, Minimal: the Answer, with no heading block, then the banner as the Position carries it, without F1, F4 and F5, as Kris set under HOOK-ENFORCE on 18 November 2026, so every coordinating reply closes with the banner and its thread line. A timed update or wake line is one or two timestamped lines under the [cadence](standard-coordination.md#43-coordinator-responsiveness), above the banner.
 
-Sources: REPLY-FORMAT, REPORT-FORMS-TIDY and HOOK-ENFORCE in [the decision register](sources.md#decision-register).
+Sources: REPLY-FORMAT, REPORT-FORMS-TIDY and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
 
-### Verbs
+#### 4.1.6 Verbs
 
 The verbs, which the same plain words in chat also do:
 
@@ -365,26 +420,26 @@ The verbs, which the same plain words in chat also do:
 - Adding `no art` to any of them leaves the art out of the footer.
 - Only `mark`, `mark only` and `mark, status only` move the mark, and a hold strikes one; a Summary and a Status never move it.
 - The Status is the Summary without its `## Summary`.
-- `/ki-coordination hold`: drain plus On hold, as `pause` does, under [Putting work on hold](standards-holds.md#putting-work-on-hold), ending in the Stop.
+- `/ki-coordination hold`: drain plus On hold, as `pause` does, under [Putting work on hold](standard-holds.md#41-putting-work-on-hold), ending in the Stop.
 - `/ki-coordination drain`: stop launching while the work stays With worker, let what is running finish, then give a Summary whose `## Summary` carries the drain check's result, `DRAINED`, or `NOT DRAINED` with what remains.
-- `/ki-coordination resume`: release held work under **Release** in [Putting work on hold](standards-holds.md#putting-work-on-hold), as the word `resume` does.
-- `/ki-coordination send`: make the send under [States and moves](standards-coordination.md#states-and-moves): commit and sync the package and give the Summary whose banner names the handoff.
-- `/ki-coordination goals`: walk `_index.md`'s Goals section in a [goal-setting pass](standards-queries.md#goal-setting-pass), as the word `goals` does, closing with a Status.
-- `/ki-coordination receive`: take the owner's receive under [States and moves](standards-coordination.md#states-and-moves), as `with me` does, and commit it with the next send.
-- Every reply that sends is followed by [committing and pushing the package](standards-coordination.md#committing-the-work-folder).
+- `/ki-coordination resume`: release held work under **Release** in [Putting work on hold](standard-holds.md#41-putting-work-on-hold), as the word `resume` does.
+- `/ki-coordination send`: make the send under [States and moves](standard-coordination.md#45-states-and-moves): commit and sync the package and give the Summary whose banner names the handoff.
+- `/ki-coordination goals`: walk `_index.md`'s Goals section in a [goal-setting pass](standard-queries.md#44-goal-setting-pass), as the word `goals` does, closing with a Status.
+- `/ki-coordination receive`: take the owner's receive under [States and moves](standard-coordination.md#45-states-and-moves), as `with me` does, and commit it with the next send.
+- Every reply that sends is followed by [committing and pushing the package](standard-coordination.md#481-committing-the-work-folder).
 
 `ki-work recap` keeps only the ordinary session recap; every summary while coordinating is the Summary.
 
-Sources: SUMMARY-MODEL, SUMMARY-NOW, STATUS-FORM, STATUS-FORM-2, STATUS-FORM-3, MARK-STATUS, MARK-DURABLE, STATUS-DESIGN, HOLD-VERBS, REPORT-FORMS-TIDY, COORD-COMMANDS, GOAL-SETTING, RECAP-OWNER, REPLY-FORMAT and FOCUS-ROWS in [the decision register](sources.md#decision-register).
+Sources: SUMMARY-MODEL, SUMMARY-NOW, STATUS-FORM, STATUS-FORM-2, STATUS-FORM-3, MARK-STATUS, MARK-DURABLE, STATUS-DESIGN, HOLD-VERBS, REPORT-FORMS-TIDY, COORD-COMMANDS, GOAL-SETTING, RECAP-OWNER, REPLY-FORMAT and FOCUS-ROWS in [the decision register](sources.md#3-decisions).
 
-### The Summary
+#### 4.1.7 The Summary
 
-The **Summary** is the coordinator's one summary form, a Full reply. It runs from the last mark, from the session's start where there is none, or from any time the owner names, laid out for about 90 columns unless the owner asks for another width. Where the owner named the window's start, B2's headline names it. It holds, in order, the parts the [structure–part matrix](#structurepart-matrix) gives: the heading block, the Answer where there is one, `## Summary`, `## Status`, `## Findings` while one is open, `## Queries` with the open queries in full, at most ten under the [query cap](standards-queries.md#query-cap), and the reply block, then the footer, the art unless `no art` was asked for, and the banner with its roadmap and package lines and its thread line. The [interactive pass](standards-queries.md#interactive-pass) follows `## Queries`, keeping each query's tag, Context, Query and Options.
+The **Summary** is the coordinator's one summary form, a Full reply. It runs from the last mark, from the session's start where there is none, or from any time the owner names, laid out for about 90 columns unless the owner asks for another width. Where the owner named the window's start, B2's headline names it. It holds, in order, the parts the [structure–part matrix](#413-structurepart-matrix) gives: the heading block, the Answer where there is one, `## Summary`, `## Status`, `## Findings` while one is open, `## Queries` with the open queries in full, at most ten under the [query cap](standard-queries.md#42-query-cap), and the reply block, then the footer, the art unless `no art` was asked for, and the banner with its roadmap and package lines and its thread line. The [interactive pass](standard-queries.md#43-interactive-pass) follows `## Queries`, keeping each query's tag, Context, Query and Options.
 
 **The status table** has two columns, **Change** and **Where it stands**, and one row per change document or sub-package that holds a live item, in the order `_index.md`'s Changes section lists them, then one catch-all row, **Not in a change yet**, for live items no change document holds yet: a run, a Now line or another session's work. It is the full board, not a delta: every live item appears whether or not it changed.
 
 - **Change cell:** line one is the change document's number and slug in bold, as in `**10 skills-review**`, or the sub-package's slug, and the catch-all row's is `**Not in a change yet**`. Under it, at normal size, what the change or sub-package is, a short phrase from its line in `_index.md`'s Changes section. The Change column takes at most a third of the table's width; a longer line is shortened in `_index.md`, never reworded in the Summary.
-- **Where it stands:** a bold headline giving the row's state in a few words, then one line per item, opening with its **holder**, 👤 the owner, 🤖 a worker or run, 🧵 another session or 🌐 the outside world, glyphs the core's [table of glyphs](standards-coordination.md#banner) holds, then what it is and its next step. ⏳ means queued only. The owner's items come last and name their query's tag, so no waiting column is needed. Uncommitted work, unlogged decisions and repositories behind their remote, under the [repository level check](standards-sync.md#repository-level-check), are 🤖 lines in the row of the change they belong to, or the catch-all row.
+- **Where it stands:** a bold headline giving the row's state in a few words, then one line per item, opening with its **holder**, 👤 the owner, 🤖 a worker or run, 🧵 another session or 🌐 the outside world, glyphs the core's [table of glyphs](standard-coordination.md#46-banner) holds, then what it is and its next step. ⏳ means queued only. The owner's items come last and name their query's tag, so no waiting column is needed. Uncommitted work, unlogged decisions and repositories behind their remote, under the [repository level check](standard-sync.md#43-repository-level-check), are 🤖 lines in the row of the change they belong to, or the catch-all row.
 - **No row** is given to a change document or sub-package with nothing live, and the catch-all row is left out when it has no item.
 - **Rendering:** a plain Markdown table with `<br>` between the lines of a cell. The owner wants top-aligned cells, which Markdown cannot ask for; Orca's chat view is asked for them under [PERSONAL-DOTFILES-UE-107 (pruned)](https://github.com/krisb/dotfiles/blob/7f5a625/docs/roadmap/PERSONAL-DOTFILES-UE-107-decide-orca-adoption.md), ORCA-TABLE-ALIGN. Until then cells centre.
 
@@ -399,23 +454,25 @@ The **Summary** is the coordinator's one summary form, a Full reply. It runs fro
 
 **The footer** is the Knowledge Islands art, then the banner. The art shows on every Summary and Status unless the owner added `no art`, and on no other reply. What the art and the footer lines carry is for Knowledge Islands Cairn, `ki.cairn`, to decide, liaising with `ki.summit` as the keeper of this standard. Until Cairn publishes its own, the art is the 88-column Knowledge Islands drawing in the [summary-model design note](https://github.com/krisb/dotfiles/blob/29dc51c/+/_WORK/personal.reg.household-terra/_emerging/summary-model.design.md), its scroll saying only KNOWLEDGE ISLANDS, with no host, state, counts, date or time. The art stays as a visible marker and can go later without touching anything else.
 
-**Sources of a Summary:** the package's change documents; every report received since the mark, from its run packet or, once a [tidy](standards-mark.md#pruning-the-work-folder) has removed the packet, from the change documents and records its outcome reached; the parked tags in the change documents; the agent host's view of its agents; record transitions in the work's scope from the Git history of the roadmap paths; and `git log -- work/<territory>/<id>/` in the Cairn store, the logbook. The mark bounds them all. Where a report can no longer be read and its outcome was not homed, the Summary says what it could not read rather than reconstructing it from memory.
+**Sources of a Summary:** the package's change documents; every report received since the mark, from its run packet or, once a [tidy](standard-mark.md#43-pruning-the-work-folder) has removed the packet, from the change documents and records its outcome reached; the parked tags in the change documents; the agent host's view of its agents; record transitions in the work's scope from the Git history of the roadmap paths; and `git log -- work/<territory>/<id>/` in the Cairn store, the logbook. The mark bounds them all. Where a report can no longer be read and its outcome was not homed, the Summary says what it could not read rather than reconstructing it from memory.
 
-Sources: SUMMARY-MODEL, TABLE-ALIGN, FOOTER-AGORA, FOOTER-COUNTS, REPLY-FORMAT, FOCUS-ROWS and QUERY-CAP in [the decision register](sources.md#decision-register).
+Sources: SUMMARY-MODEL, TABLE-ALIGN, FOOTER-AGORA, FOOTER-COUNTS, REPLY-FORMAT, FOCUS-ROWS and QUERY-CAP in [the decision register](sources.md#3-decisions).
 
-## Banner detail
+[Back to contents](#contents)
 
-**Rendered glyphs.** The emoji stay the written notation in reports, terminals and commits, each with the meaning the core's [table of glyphs](standards-coordination.md#banner) gives it. A rendered surface, such as the Observatory's Work tab, may draw the five glyphs, 🤖, 👤, 🎯, ⏸️ and 🏁, and Snoozing's 💤 once the package carries one, with the matching line glyphs from `@knowledgeislands/icons`, always with the state's words beside them. The words, arrows and banner shape do not change, and the package owns the mapping from state to glyph.
+### 4.2 Banner detail
+
+**Rendered glyphs.** The emoji stay the written notation in reports, terminals and commits, each with the meaning the core's [table of glyphs](standard-coordination.md#46-banner) gives it. A rendered surface, such as the Observatory's Work tab, may draw the five glyphs, 🤖, 👤, 🎯, ⏸️ and 🏁, and Snoozing's 💤 once the package carries one, with the matching line glyphs from `@knowledgeislands/icons`, always with the state's words beside them. The words, arrows and banner shape do not change, and the package owns the mapping from state to glyph.
 
 **Report heading.** The heading block: one `#` heading, one bold form line, an optional opening note and one horizontal rule, then the body. It is plain Markdown, not a fenced block, so the heading can carry links.
 
-- **Heading:** the display names of the work's [title](standards-opening.md#work-naming) after its territory, joined by ` › `, with the work's own name, the last of them, linked to its package's entry file in the Cairn store by absolute local path, `<store>/work/<territory>/<id>/_index.md`. `<store>` is where the rig keeps its clone of the store, as its configuration sets it, the Cairn MCP's `MCP_CAIRN_STORE`, as in `/Users/krisbrown/kis/cairn/ki-cairn-store` on Kris's rigs. Kris tightened this under HEADING-FIX on 17 November 2026, after headings drifted between sessions to a repository's README, a repository folder with `State of play` linked, and `Tower › Personal > Tower`.
+- **Heading:** the display names of the work's [title](standard-opening.md#42-work-naming) after its territory, joined by ` › `, with the work's own name, the last of them, linked to its package's entry file in the Cairn store by absolute local path, `<store>/work/<territory>/<id>/_index.md`. `<store>` is where the rig keeps its clone of the store, as its configuration sets it, the Cairn MCP's `MCP_CAIRN_STORE`, as in `/Users/krisbrown/kis/cairn/ki-cairn-store` on Kris's rigs. Kris tightened this under HEADING-FIX on 17 November 2026, after headings drifted between sessions to a repository's README, a repository folder with `State of play` linked, and `Tower › Personal > Tower`.
   - **One link, to the package.** The heading's first and only link is the package's `_index.md`; it never links a repository, a README, a folder, a theme page or a Project note.
   - **Project work** writes `# <Theme> › [<Project>](<package _index.md>)`: the theme's display name, the `title` its page gives, as plain text, as the work's title keeps it, then the Project's display name in words, not its slug, linked; with no theme, the Project alone. The theme and Project stay named, as in the title, and are reached from `_index.md`'s `ki-theme` and `ki-project`.
   - **A State of play** writes `# [<Territory>](<package _index.md>) › State of play`, the territory's display name linked to its summit's `_index.md` and `State of play` plain text, never a link; a secondary, a node beneath the summit, links its own `_index.md` and ends `› State of play (<node in words>)`.
   - **Regular or ad hoc work**, explicitly coordinated, writes its title once, linked: `# [<title>](<package _index.md>)`, the title's words after the territory, as `# [Inbox](<store>/work/personal/personal.inbox/_index.md)` for `Personal > Inbox`, optionally preceded by its real theme as plain text, `# <Theme> › [<title>](<package _index.md>)`. It never repeats a label, as in `Tower › Personal > Tower`, never mixes ` > ` with ` › `, and never fabricates a Project.
   - No rule stands before the heading, so it is the first line and H1 of every saved report.
-- **Form line:** a blank line, then H2, `**<Structure> at <now> · last mark <mark time>**`, under [Part content](#part-content), with no state.
+- **Form line:** a blank line, then H2, `**<Structure> at <now> · last mark <mark time>**`, under [Part content](#414-part-content), with no state.
 - **Times:** each with its own words.
   - `<Structure> at <time>`: when the reply was given.
   - `last mark <time>`: the mark the reply's window opens at; `mark <time>` in a hold's Stop, the mark struck for the hold.
@@ -456,7 +513,7 @@ A State of play opening a Bootstrap whose last mark was the day before:
 
 **Mode lines.** The listening line, F8, sits below the list and any heading-for line and above the thread line, a blank line before it, in any reply that closes with the banner while the session is in a meeting, and nowhere else.
 
-- `👂 in <meeting>` while the session is in a meeting, naming each meeting it is in by its entry file's `meeting` field, two or more joined by `, `, as in `👂 in cairn.wayfinder.designs`, and left off when it is in none. A session is in a meeting while it is a participant of an open meeting with a sitting under way, `status: open` in the meeting's entry file under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). Listening means only this, as Kris set under LISTEN-LINE a on 16 November 2026: "it should indicate meetings it's in or not. Otherwise should be left off". The [inbox watcher](standards-listening.md#inbox-watch) has no line; the earlier `👂 listening` and `🔇 not listening` are gone, and the `ki-listening_enabled` and `ki-listening_status` fields still record the watcher.
+- `👂 in <meeting>` while the session is in a meeting, naming each meeting it is in by its entry file's `meeting` field, two or more joined by `, `, as in `👂 in cairn.wayfinder.designs`, and left off when it is in none. A session is in a meeting while it is a participant of an open meeting with a sitting under way, `status: open` in the meeting's entry file under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). Listening means only this, as Kris set under LISTEN-LINE a on 16 November 2026: "it should indicate meetings it's in or not. Otherwise should be left off". The [inbox watcher](standard-listening.md#41-inbox-watch) has no line; the earlier `👂 listening` and `🔇 not listening` are gone, and the `ki-listening_enabled` and `ki-listening_status` fields still record the watcher.
 - There is no sync line. A host sync thread on sol, whose seat Hob Sol holds, sitting in one meeting closes:
 
 ```text
@@ -530,10 +587,10 @@ With worker, a Position while draining towards a hold after `pause`, with one ru
 **Restart suggestion.** Suggest restarting a session only when one of three triggers holds, and for nothing else:
 
 - **Identity changed:** the work's id, level, label or run name changed in this session, as when a package moves from `hnr.email-routing` to `personal.email-routing`. The session's name, run and opener no longer match `_index.md`, and only a fresh opener sets all three again.
-- **Repeated compaction:** the session has been compacted twice or more. Each [re-anchoring](standards-bootstrap.md#re-anchoring-after-compaction) rebuilds from a summary of a summary, and a fresh bootstrap from the package is more faithful.
-- **Method moved on:** since the session opened, the method changed its opener, the hook line or the output style, checked under [Refreshing this guidance](standards-coordination.md#refreshing-this-guidance). A session keeps the style and opener it loaded at start; only a fresh session loads the current ones.
+- **Repeated compaction:** the session has been compacted twice or more. Each [re-anchoring](standard-bootstrap.md#43-re-anchoring-after-compaction) rebuilds from a summary of a summary, and a fresh bootstrap from the package is more faithful.
+- **Method moved on:** since the session opened, the method changed its opener, the hook line or the output style, checked under [Refreshing this guidance](standard-coordination.md#482-refreshing-this-guidance). A session keeps the style and opener it loaded at start; only a fresh session loads the current ones.
 
-The suggestion is a single closing item placed directly before F2, the banner's `###` heading, after `## Queries` and its reply block, or after the Answer in a Position, so the banner and thread line stay last. It is one bold line naming the trigger and saying plainly that the session would be better restarted, then the work's opener, filled from its `_index.md` under [Opening work](standards-opening.md#opening-work), in one fenced block:
+The suggestion is a single closing item placed directly before F2, the banner's `###` heading, after `## Queries` and its reply block, or after the Answer in a Position, so the banner and thread line stay last. It is one bold line naming the trigger and saying plainly that the session would be better restarted, then the work's opener, filled from its `_index.md` under [Opening work](standard-opening.md#43-opening-work), in one fenced block:
 
 ````text
 **Restart suggested:** the work moved from hnr.email-routing to personal.email-routing in this session, so its id, label, run name and opener changed; this work would be better restarted in a fresh session with this opener.
@@ -544,12 +601,12 @@ Bootstrap as personal.email-routing regular work under ki-coordination.
 ```
 ````
 
-- It is the second named exception to the rule that a report carries no send, resume or paste line, beside the bootstrap `Rename thread:` line under [Opening work](standards-opening.md#opening-work).
+- It is the second named exception to the rule that a report carries no send, resume or paste line, beside the bootstrap `Rename thread:` line under [Opening work](standard-opening.md#43-opening-work).
 - Never for length, age, a change of state, a hold or a model switch alone.
 - Give it in each reply closing with the banner while the trigger holds; once the owner declines it, not again until a new trigger arises.
 - A Stop, run report or conversational reply never carries it. Picking work up still follows the package, and the owner closes the old session.
 
-Send and receive remain the work model's moves. To pick work up, follow [Picking work up](standards-bootstrap.md#picking-work-up) from the package; the thread line identifies work and is not a restart prompt.
+Send and receive remain the work model's moves. To pick work up, follow [Picking work up](standard-bootstrap.md#44-picking-work-up) from the package; the thread line identifies work and is not a restart prompt.
 
 On hold, closing a Stop:
 
@@ -581,7 +638,7 @@ Snoozing, closing a Stop for a hold that waits for more to come:
 ⚒️ 🔑 ki.ways-of-working
 ```
 
-Finished, closing the Stop at [Finishing Project work](standards-mark.md#finishing-project-work):
+Finished, closing the Stop at [Finishing Project work](standard-mark.md#45-finishing-project-work):
 
 ```markdown
 ### 🏁 Finished · Ways of working closed at 18:00 BST
@@ -591,7 +648,7 @@ Finished, closing the Stop at [Finishing Project work](standards-mark.md#finishi
 ⚒️ 🔑 ki.ways-of-working
 ```
 
-**In an agent's report.** A background agent's run report takes the same heading block and banner, under the [owner report](standards-reporting.md#owner-report): the heading of the work it reports to with `› <run name>` added and the structure `Run report`, so its form line reads `**Run report at <local time> · last mark <local time>**`, the mark being that work's. Its banner gives the run's state and items, `### 🤖 → 👤 Handoff to supervisor · at <time>`, or `### 🤖 → 👤 Handoff to supervisor · blocked · at <time>` where it sends back with a blocking query, closing with the thread line of the work it reports to. Opening a run report:
+**In an agent's report.** A background agent's run report takes the same heading block and banner, under the [owner report](standard-reporting.md#42-owner-report): the heading of the work it reports to with `› <run name>` added and the structure `Run report`, so its form line reads `**Run report at <local time> · last mark <local time>**`, the mark being that work's. Its banner gives the run's state and items, `### 🤖 → 👤 Handoff to supervisor · at <time>`, or `### 🤖 → 👤 Handoff to supervisor · blocked · at <time>` where it sends back with a blocking query, closing with the thread line of the work it reports to. Opening a run report:
 
 ```markdown
 # Model › [Ways of working](/Users/krisbrown/kis/cairn/ki-cairn-store/work/ki/ki.ways-of-working/_index.md) › migrate-phase1
@@ -603,4 +660,6 @@ Finished, closing the Stop at [Finishing Project work](standards-mark.md#finishi
 ## Done
 ```
 
-Sources: BANNER-GLYPHS, RICH-HEADING, REPORT-FORMS-TIDY, SNOOZE-HEADING, FOOTER-COUNTS, LISTEN-STATUS, FOOTER-LAYOUT, FOOTER-CAPABILITY-STATUS-2, FOOTER-NOT-LISTENING, SYNC-LINE-OFF, RESTART-SUGGEST, REPLY-FORMAT, LISTEN-LINE, ITEM-GLYPHS, HEADING-FIX and NAME-FIRST in [the decision register](sources.md#decision-register).
+Sources: BANNER-GLYPHS, RICH-HEADING, REPORT-FORMS-TIDY, SNOOZE-HEADING, FOOTER-COUNTS, LISTEN-STATUS, FOOTER-LAYOUT, FOOTER-CAPABILITY-STATUS-2, FOOTER-NOT-LISTENING, SYNC-LINE-OFF, RESTART-SUGGEST, REPLY-FORMAT, LISTEN-LINE, ITEM-GLYPHS, HEADING-FIX and NAME-FIRST in [the decision register](sources.md#3-decisions).
+
+[Back to contents](#contents)

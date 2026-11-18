@@ -55,7 +55,7 @@ Typed, directional trade routes between registered Knowledge Islands repositorie
 
 ### 2.2 Out of scope
 
-- A handoff or a rollout to other work: `ki-coordination`'s [work between packages](../../ki-coordination/references/standards-messages.md#messages-between-work).
+- A handoff or a rollout to other work: `ki-coordination`'s [work between packages](../../ki-coordination/references/standard-messages.md#messages-between-work).
 - Operating one side of a trade: `ki-trade`'s [trade-operations procedure](../../ki-trade/references/standard-trade-operations.md).
 - The receiver's disposition of a received trade: `ki-work next`.
 - The generic `+` and `-` working areas and the repository's identity and Capital: `ki-repo`.
@@ -86,7 +86,7 @@ The rules, part by part.
 
 > **Trades are on hold.** Submit no new trade. Do the work directly, record it as work in the receiving repository, or send a handoff or rollout along the tree. Existing trades keep the full support described here, so they can still be received, decided and released. The skill's own notice carries the review date, and opening the Trades revamp Project reviews the hold sooner.
 
-This standard governs only the routes the Capital's declared trade policy grants; nothing else between repositories is a trade. A handoff or a rollout goes along the tree under `ki-coordination`'s [work between packages](../../ki-coordination/references/standards-messages.md#messages-between-work), never as a trade or a roadmap record, as Kris set under HANDOFF-AS-MESSAGE on 2026-10-20 and narrowed this skill under TRADES-FATE on 26 October 2026.
+This standard governs only the routes the Capital's declared trade policy grants; nothing else between repositories is a trade. A handoff or a rollout goes along the tree under `ki-coordination`'s [work between packages](../../ki-coordination/references/standard-messages.md#messages-between-work), never as a trade or a roadmap record, as Kris set under HANDOFF-AS-MESSAGE on 2026-10-20 and narrowed this skill under TRADES-FATE on 26 October 2026.
 
 [Back to contents](#contents)
 

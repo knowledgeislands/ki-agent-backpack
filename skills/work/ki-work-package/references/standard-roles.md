@@ -123,7 +123,7 @@ The two architects are two makers because their responsibilities differ, as Kris
 
 The voice is a maker because it speaks for the seat that holds the package and reports to it, as Kris asked on 17 November 2026 for a role glyph for his voice client, "some kind of chatterbox thing": its seat reads `<package>@voice`, such as `cairn.summit@voice`, and the store's `VOICE.md` sets how it works.
 
-Every territory's summit, `<territory>.summit`, is seated by its governor; councillor is kept for any further leader, as Kris took SOP-MAIN-GOVERNOR a) under ROLES-WRITE on 7 November 2026, for the main State of play the summit has replaced. The quartermaster's seat is `ki.tools`, under `ki.summit`, as Kris set under QUARTERMASTER-SOP on 7 November 2026, "the actual quartermaster should be ki.sop.tools, and it should live as a leader", the id becoming `ki.tools` under KIND-DROP on 11 November 2026, when secondary States of play gave way to nodes beneath the summit. The quartermaster is a manager, ranked after the guildmaster, as Kris took QM-TIER a on 17 November 2026: it holds one package, `ki.tools`, kept working and released within the territory, never heads the territory or decides how a tool behaves, and answers to KI's governor, as QM-SEAT named it on 14 November 2026, "a manager across the tools repositories". The guardian's seat is `cairn.summit`, the root of the Cairn store's work tree: Kris took the role as the agoranomos under AGORANOMOS-ROLE on 10 November 2026, and renamed it the guardian, glyph 🪨, under ROOT-ROLE and THREAD-GLYPH a on 11 November 2026. Each role glyph differs from every other and from the banner's state and line glyphs under `ki-coordination`'s [Banner](../../ki-coordination/references/standards-coordination.md#banner).
+Every territory's summit, `<territory>.summit`, is seated by its governor; councillor is kept for any further leader, as Kris took SOP-MAIN-GOVERNOR a) under ROLES-WRITE on 7 November 2026, for the main State of play the summit has replaced. The quartermaster's seat is `ki.tools`, under `ki.summit`, as Kris set under QUARTERMASTER-SOP on 7 November 2026, "the actual quartermaster should be ki.sop.tools, and it should live as a leader", the id becoming `ki.tools` under KIND-DROP on 11 November 2026, when secondary States of play gave way to nodes beneath the summit. The quartermaster is a manager, ranked after the guildmaster, as Kris took QM-TIER a on 17 November 2026: it holds one package, `ki.tools`, kept working and released within the territory, never heads the territory or decides how a tool behaves, and answers to KI's governor, as QM-SEAT named it on 14 November 2026, "a manager across the tools repositories". The guardian's seat is `cairn.summit`, the root of the Cairn store's work tree: Kris took the role as the agoranomos under AGORANOMOS-ROLE on 10 November 2026, and renamed it the guardian, glyph 🪨, under ROOT-ROLE and THREAD-GLYPH a on 11 November 2026. Each role glyph differs from every other and from the banner's state and line glyphs under `ki-coordination`'s [Banner](../../ki-coordination/references/standard-coordination.md#46-banner).
 
 [Back to contents](#contents)
 
@@ -165,7 +165,7 @@ Whether a session is listening is in neither: it is read from meetings alone, a 
 
 ### 4.6 Thread line
 
-The thread line is the one string that names a session's seat. It closes every banner under `ki-coordination`'s [Banner](../../ki-coordination/references/standards-coordination.md#banner), names the session, ends a bootstrap or re-bootstrap report's `Rename thread:` line and signs every message the seat sends:
+The thread line is the one string that names a session's seat. It closes every banner under `ki-coordination`'s [Banner](../../ki-coordination/references/standard-coordination.md#46-banner), names the session, ends a bootstrap or re-bootstrap report's `Rename thread:` line and signs every message the seat sends:
 
 ```text
 thread-line = name " (" seat-line ")"  ; a seat whose actor is named
@@ -196,7 +196,7 @@ The same string appears on each surface:
 | Message sender | `<label> (<thread line>):`, as in `KI > Guilds (⚖️ 🔑 ki.guilds):` for an unnamed seat and `Cairn > SoP (Kitteth (🪨 🔑 cairn.summit)):` for a named one |
 | Run report | `🧵 <work-id>` of the work it reports to |
 
-Every brief or opener that starts a new agent session names the thread line it is to take and tells the session to rename itself to that line as its first act, by its agent host's rename (runtime-specific: `/rename <thread line>` in Claude Code), as Kris took OPENER-NAME a on 14 November 2026. `ki-coordination`'s [Opening work](../../ki-coordination/references/standards-opening.md#opening-work) carries it for openers. A background run starts no session and needs none.
+Every brief or opener that starts a new agent session names the thread line it is to take and tells the session to rename itself to that line as its first act, by its agent host's rename (runtime-specific: `/rename <thread line>` in Claude Code), as Kris took OPENER-NAME a on 14 November 2026. `ki-coordination`'s [Opening work](../../ki-coordination/references/standard-opening.md#43-opening-work) carries it for openers. A background run starts no session and needs none.
 
 [Back to contents](#contents)
 

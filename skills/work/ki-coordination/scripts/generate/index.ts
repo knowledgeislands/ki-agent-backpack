@@ -20,7 +20,7 @@ export type SkillGeneration = {
 }
 
 const REFERENCES = 'skills/work/ki-coordination/references'
-const STANDARD = `${REFERENCES}/standards-*.md`
+const STANDARD = `${REFERENCES}/standard-*.md`
 const HOOK = 'hooks/coordinator-reminder/coordinator-reminder.sh'
 const OUTPUT_STYLE = 'output-styles/ki-coordinator.md'
 const DELEGATION_ASSETS = 'skills/agentic-systems/ki-delegation/assets'
@@ -71,7 +71,7 @@ const shellValue = (name: string, value: string): string => {
 export const generate = (harnessRoot: string): readonly GeneratedSurface[] => {
   const read = (path: string): string => readFileSync(join(harnessRoot, path), 'utf8')
   const standard = readdirSync(join(harnessRoot, REFERENCES))
-    .filter((name) => /^standards-.*\.md$/.test(name))
+    .filter((name) => /^standards?-.*\.md$/.test(name))
     .sort()
     .map((name) => read(`${REFERENCES}/${name}`))
     .join('\n')
