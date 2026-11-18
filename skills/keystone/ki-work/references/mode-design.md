@@ -8,7 +8,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 Runs one design from an owner's proposal to approved decisions and a rollout of ordinary work records.
 
-Read [the design-loop standard](standards-work-design.md) before acting. Start each artefact from its template: [brief](../assets/design/brief.md), [review](../assets/design/review.md), [merged report](../assets/design/report.md) and [decisions](../assets/design/decisions.md). [Source notes](sources.md) record the worked exemplar.
+Read [the design-loop standard](standard-work-design.md) before acting. Start each artefact from its template: [brief](../assets/design/brief.md), [review](../assets/design/review.md), [merged report](../assets/design/report.md) and [decisions](../assets/design/decisions.md). [Source notes](sources.md) record the worked exemplar.
 
 ## When to use it
 
@@ -31,7 +31,7 @@ The loop writes no work record, grants itself no authority and never chooses for
 - `ki-coordination` delivers a frozen wave of independent Ready records under the decisions' authority grant, recorded in its change document; `ki-work accept` closes records under the same grant.
 - `ki-decision-records`, when selected, owns the Decision Record's shape and identity.
 - `ki-delegation`, when selected, supplies the packet for any high-risk reviewer or rollout handoff.
-- The [Project registry standard](standards-project-registry.md) owns the flat Project or theme note, which never points into a package and links any resulting Decision Record.
+- The [Project registry standard](standard-project-registry.md) owns the flat Project or theme note, which never points into a package and links any resulting Decision Record.
 - `ki-work-package` owns the package, its closed list, its tidy rules and its `_index.md`; `ki-coordination` says when the package is tidied and whether an outcome is homed.
 
 ## Invocation

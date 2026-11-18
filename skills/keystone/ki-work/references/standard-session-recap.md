@@ -1,27 +1,74 @@
-# Recap procedure
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T03:43:37Z
+ki-status: in force
+---
 
-_On-demand procedure for `ki-work recap`. The kind, scope, and leg summary live in [`SKILL.md`](mode-recap.md) and are already loaded; this file is the full procedure._
+# Recap procedure
 
 ## Contents
 
-- [Recap procedure](#recap-procedure)
-  - [Contents](#contents)
-  - [1. Run the grounding helper](#1-run-the-grounding-helper)
-  - [2. Summarise](#2-summarise)
-  - [3. Surface what is outstanding](#3-surface-what-is-outstanding)
-  - [4. Harvest the learnings, and route each](#4-harvest-the-learnings-and-route-each)
-  - [5. Discussion coverage](#5-discussion-coverage)
-  - [6. Actions](#6-actions)
-  - [7. Route future-work selection to `ki-work next`](#7-route-future-work-selection-to-ki-work-next)
-  - [8. Preserve the handoff and compact at the boundary](#8-preserve-the-handoff-and-compact-at-the-boundary)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Run the grounding helper](#41-run-the-grounding-helper)
+  - [4.2 Summarise](#42-summarise)
+  - [4.3 Surface what is outstanding](#43-surface-what-is-outstanding)
+  - [4.4 Harvest the learnings, and route each](#44-harvest-the-learnings-and-route-each)
+    - [4.4.1 Route each learning](#441-route-each-learning)
+    - [4.4.2 Per-record review mini recap](#442-per-record-review-mini-recap)
+  - [4.5 Discussion coverage](#45-discussion-coverage)
+  - [4.6 Actions](#46-actions)
+  - [4.7 Route future-work selection to `ki-work next`](#47-route-future-work-selection-to-ki-work-next)
+  - [4.8 Preserve the handoff and compact at the boundary](#48-preserve-the-handoff-and-compact-at-the-boundary)
+  - [4.9 Grounding, coverage and steering](#49-grounding-coverage-and-steering)
 
-**Ground every claim in reality, not memory.** Warm in-session context, compaction summaries, and recalled memory entries are hypotheses about state, not evidence of it — concurrent sessions, background processes, and elapsed time all make them stale. Before the recap asserts a checkable fact — a commit landed, a gate passed, a file contains something, a plan is open — check it now (`git log`, re-run the read-only gate, read the file). What cannot be cheaply re-checked, state as recollection ("as of when it ran"), not as fact.
+## 1. Introduction
 
-**Set the coverage boundary before checking repository state.** Inventory the material topics, decisions, deliveries, and agreed follow-ups in the entire live thread through this invocation, including work before earlier recaps or compaction and work in other repositories. Use the visible conversation and available carry-forward context for discovery; reconcile each claim against current canonical evidence. A repository-matched transcript is advisory and may be a different concurrent session. If part of the thread is unavailable after compaction or transcript selection is uncertain, identify the missing span and ask for the needed context; do not certify whole-thread completion from a partial inventory.
+The on-demand procedure for `ki-work recap`: a recap of a live session, run inside it. The kind, scope, and leg summary live in [the mode](mode-recap.md) and are already loaded; this file is the full procedure. The decisions behind it, and the runtime sources it relies on, are in the [sources file](sources.md).
 
-Treat user messages arriving during work as steering unless they expressly replace or cancel earlier instructions. Before the recap or final handoff, reconcile every visible material message, including decisions made after an earlier summary was drafted. A queued message that could not reasonably have been addressed before the previous response remains live input for the next response; acknowledge and incorporate its still-relevant content rather than treating the intervening summary as closure. Do not infer queue-versus-steer delivery mode solely from timing when the runtime does not expose it. If the message's scope is genuinely ambiguous, state the assumption or ask; do not silently discard either request.
+[Back to contents](#contents)
 
-## 1. Run the grounding helper
+## 2. Scope
+
+How a live session is recapped and handed on.
+
+### 2.1 In scope
+
+- Grounding, the coverage boundary and steering messages.
+- Summarising, surfacing what is outstanding and harvesting learnings.
+- The per-record review mini recap.
+- Discussion coverage and Actions.
+- Routing future-work selection, and the handoff and compaction boundary.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- Future-work selection: [the next-work procedure](standard-next-work.md).
+- Where a learning is placed: `ki-authoring`'s knowledge-promotion standard.
+- Runtime compaction mechanisms: the `ki-env-tokenomics` runtime adapters.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Coverage boundary** | The inventory of material topics, decisions, deliveries and follow-ups in the whole live thread, set before repository state is checked. **Standard:** this one, [4.9](#49-grounding-coverage-and-steering) |
+| **Recorded deferral** | Work captured in a roadmap item or Stream, named with its canonical home and lifecycle state rather than as outstanding. **Standard:** this one, [4.3](#43-surface-what-is-outstanding) |
+| **Carry-forward digest** | The scoped digest of the recapped span preserved before compaction; a carry-forward artefact, not a context reduction. **Standard:** this one, [4.8](#48-preserve-the-handoff-and-compact-at-the-boundary) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+Steps 4.1 to 4.8 run in order; 4.9 holds the rules that apply before and throughout them.
+
+### 4.1 Run the grounding helper
 
 ```bash
 bun skills/keystone/ki-work/scripts/recap-grounding.ts --json --runtime detect
@@ -45,13 +92,17 @@ This emits a `repository` object with `available` or `unavailable` status, the p
 
 The comparison qualifies transcript-derived tool tallies and high-cost suggestions; it never replaces fresh Git checks. A missing, malformed, foreign-repository, unresolvable, or same-commit-dirty marker is `unavailable`, not a guessed result. Local Claude and Codex JSONL is a version-sensitive convenience format; parse failure or no selected transcript is `unavailable`, never transcript completeness. It is a **helper**, not a checker — treat its output as raw signal to combine with warm in-session context, not a verdict.
 
-## 2. Summarise
+[Back to contents](#contents)
+
+### 4.2 Summarise
 
 Using the whole-thread inventory plus each touched repository's `filesTouched` / `diffStat`: state what changed, what was decided, and why — in the order it happened, not a topic reshuffle. Keep it to what a reader picking this up cold would need: no blow-by-blow tool narration. For each material topic, establish whether it was delivered, explicitly declined, superseded, or remains follow-up; do not treat an earlier recap as a terminal boundary.
 
 Omit routine push state and other sessions' stacked commits from the recap, under [`ki-git`](../../../repository/ki-git/references/standards-git.md#commit-publication-and-integration-authority) and `ki-coordination`. If this session's own unit could not be published because its push failed, name the affected unit and reason. Push authority and own-commits-only safeguards are unchanged.
 
-## 3. Surface what is outstanding
+[Back to contents](#contents)
+
+### 4.3 Surface what is outstanding
 
 **Always check whether everything is committed in every touched repository** — even if the session felt "done", verify the working tree for the files this thread touched (staged, unstaged, and untracked) in each one. If any required `repository.status` is `unavailable`, say which Git evidence is unavailable and do not claim clean, committed, or no-actions status for the whole thread. Uncommitted session work is the most common silently-dropped outstanding item. Files dirty from _other_ threads of work are out of scope (per the stay-scoped rule) — note their existence in one line at most, never enumerate or adopt them.
 
@@ -62,7 +113,11 @@ For each substantive follow-up agreed in the thread, identify the owning reposit
 - Work captured in a roadmap item or Stream, whether newly created or routed to an existing record in this or another repository, is a **recorded deferral**. Name its canonical home and current lifecycle state under what happened or deferred work, not under outstanding or Actions. Unchecked Steps, pending review, and future acceptance belong to that record's lifecycle; they do not keep this thread open. Check current Git and verification evidence separately for an unfinished implementation unit in this thread.
 - If this thread agreed to preserve a deferred fix but has not given it a durable home, capture it through `ki-work next` where its owner permits local intake. If capture cannot complete, name the blocker and exact owner route; do not manufacture a record for work merely noticed during the recap or explicitly declined by the user.
 
-## 4. Harvest the learnings, and route each
+[Back to contents](#contents)
+
+### 4.4 Harvest the learnings, and route each
+
+#### 4.4.1 Route each learning
 
 For each dead-end, workaround, or convention discovered this session, load `ki-authoring` and apply its knowledge-promotion convention set — **confirm with the user before writing anywhere durable**.
 
@@ -81,11 +136,15 @@ Use `highCostCandidates` from the grounding helper as a starting list, not the f
 
 For a repository-review checklist candidate, name the concept and the gap it would close, then ask whether to update the canonical `ki-repo` REVIEW reference. Do not edit the checklist merely because the recap identified the candidate; user confirmation still governs the durable learning write. If approved, preserve that reference's broad-to-narrow structure and reconcile any lower-layer copy or pointer.
 
-### Per-record review mini recap
+[Back to contents](#contents)
+
+#### 4.4.2 Per-record review mini recap
 
 When `ki-work accept` requests a record-scoped recap, do not run or imply a full-session recap. Ground only the record's delivered outputs and verification evidence, then record these H3 parts in a roadmap item's `## Review` section or the equivalent proposal review evidence: **Delivered**, **Change Summary**, **Verification**, **Outstanding concerns**, and **Mini recap**. The summary names the material changes and useful primary paths; verification records concrete commands, outcomes, and the checked evidence revision; concerns hold open questions and further review analysis. The mini recap may name a learning and its proposed route, but it must say that the route is unapproved. User closure of the record sets it Done only; it does not approve a guide, rubric, agent, hook, memory, or other durable learning write.
 
-## 5. Discussion coverage
+[Back to contents](#contents)
+
+### 4.5 Discussion coverage
 
 Reconcile every material point in the thread inventory, whether or not a matrix is shown. Add the matrix after the three recap legs and before Actions when the user asks for coverage or multiple materially distinct discussion points would otherwise be difficult to trace. Omit it for a simple single-topic recap. It is a compact reviewer aid: it summarises conclusions already grounded by the preceding legs; it does not mine unavailable transcripts, classify every conversational turn, or establish transcript completeness.
 
@@ -105,7 +164,7 @@ Use only this closed disposition vocabulary:
 - `out-of-scope` — a concern explicitly declined as follow-up or never agreed as work for this thread; note material risk without adopting its work.
 - `decision-needed` — an unresolved user-owned choice.
 
-Reconcile the matrix with [Surface what is outstanding](#3-surface-what-is-outstanding) and [Actions](#6-actions): an agreed follow-up without a verified durable home, regardless of owner, and every `decision-needed` row remains outstanding and has a corresponding final Action. An agreed but unwritten handoff is `deferred`, not `out-of-scope`; an `out-of-scope` row has no Action. Do not turn a captured record into an Action merely because it is actionable later.
+Reconcile the matrix with [Surface what is outstanding](#43-surface-what-is-outstanding) and [Actions](#46-actions): an agreed follow-up without a verified durable home, regardless of owner, and every `decision-needed` row remains outstanding and has a corresponding final Action. An agreed but unwritten handoff is `deferred`, not `out-of-scope`; an `out-of-scope` row has no Action. Do not turn a captured record into an Action merely because it is actionable later.
 
 Apply these scenario checks before presenting the matrix:
 
@@ -118,7 +177,9 @@ Apply these scenario checks before presenting the matrix:
 | Agreed handoff lacks a durable home or a choice remains unresolved | Keep it outstanding and add a reconciled Action. |
 | External concern explicitly declined as follow-up | Mark it `out-of-scope` if material; add no Action for the owner's work. |
 
-## 6. Actions
+[Back to contents](#contents)
+
+### 4.6 Actions
 
 Close the recap with an **Actions** section: a short, concrete, imperative list of only the unfinished work that emerged from this session's steps 3–5 — each item something that could be done right now, with the exact command, file, or artefact named. Do not add generic backlog, peer-repository state, a proposed feature, or a future-work choice merely because it is actionable; those are `ki-work next` concerns, not recap actions. Prefix each item with a short, unique, uppercase hyphenated label that names the work (usually two to four words), so the user can respond in chat by label ("do `COMMIT-DOCS` and `FIX-AUTHORING-AUDIT`") instead of restating the action. Do not use arbitrary sequence labels such as `A1`, `A2`, or `A3`; labels are ephemeral recap handles, not roadmap identifiers. Typical entries:
 
@@ -163,7 +224,9 @@ Use the invocation repository's physical Git root basename, the seven-character 
 
 If the Actions list is empty but any banner condition fails, retain a truthful one-line no-actions state that names the numbered condition which blocked the banner, and any material evidence gap behind it; never render a partial or weakened banner. A bare “none” hides the difference between a finished session and one whose completion check did not pass, and leaves the reader no way to tell that the banner was owed. Do **not** perform checklist Actions unprompted; the exception is `ki-work next`'s already-authorised, bounded Triage capture for an agreed substantive follow-up. Durable learning writes still require step-4 confirmation.
 
-## 7. Route future-work selection to `ki-work next`
+[Back to contents](#contents)
+
+### 4.7 Route future-work selection to `ki-work next`
 
 Future-work selection is separate from recap. Route to `ki-work next` only when the user asks to choose, rank, or defer future work; it is not a Specific action, a standing recap requirement, or an automatic handoff:
 
@@ -180,7 +243,9 @@ Apply these scenario checks when offering it:
 | Work was already deferred or held on the roadmap | Record it as what happened, not outstanding. |
 | Learning route is unapproved | Label it as a proposal; neither recap nor `ki-work next` writes it. |
 
-## 8. Preserve the handoff and compact at the boundary
+[Back to contents](#contents)
+
+### 4.8 Preserve the handoff and compact at the boundary
 
 The end of a recap is a compaction boundary, not a place to measure headroom. Compaction is the default action there — the recap has just recorded the durable outcome, so the span it summarised is the material the next cycle no longer needs. Do not gate the decision on a context-use percentage or a remaining-headroom figure: no runtime adapter is required to expose one, and a threshold that cannot be read is a rule that never fires.
 
@@ -223,3 +288,15 @@ Write a carry-forward digest of the recapped span:
 ```
 
 State plainly that this digest is a **carry-forward artefact**, not a context-window reduction. Runtime- or vendor-specific compaction remains the applicable `ki-env-tokenomics` adapter's boundary; this procedure offers the documented mechanism at the safe recap-to-new-work boundary, with the aim of retaining only the next cycle's scope.
+
+[Back to contents](#contents)
+
+### 4.9 Grounding, coverage and steering
+
+**Ground every claim in reality, not memory.** Warm in-session context, compaction summaries, and recalled memory entries are hypotheses about state, not evidence of it — concurrent sessions, background processes, and elapsed time all make them stale. Before the recap asserts a checkable fact — a commit landed, a gate passed, a file contains something, a plan is open — check it now (`git log`, re-run the read-only gate, read the file). What cannot be cheaply re-checked, state as recollection ("as of when it ran"), not as fact.
+
+**Set the coverage boundary before checking repository state.** Inventory the material topics, decisions, deliveries, and agreed follow-ups in the entire live thread through this invocation, including work before earlier recaps or compaction and work in other repositories. Use the visible conversation and available carry-forward context for discovery; reconcile each claim against current canonical evidence. A repository-matched transcript is advisory and may be a different concurrent session. If part of the thread is unavailable after compaction or transcript selection is uncertain, identify the missing span and ask for the needed context; do not certify whole-thread completion from a partial inventory.
+
+Treat user messages arriving during work as steering unless they expressly replace or cancel earlier instructions. Before the recap or final handoff, reconcile every visible material message, including decisions made after an earlier summary was drafted. A queued message that could not reasonably have been addressed before the previous response remains live input for the next response; acknowledge and incorporate its still-relevant content rather than treating the intervening summary as closure. Do not infer queue-versus-steer delivery mode solely from timing when the runtime does not expose it. If the message's scope is genuinely ambiguous, state the assumption or ask; do not silently discard either request.
+
+[Back to contents](#contents)

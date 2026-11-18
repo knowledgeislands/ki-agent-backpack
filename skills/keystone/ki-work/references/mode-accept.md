@@ -8,7 +8,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 Reviews the required delivery or cancellation evidence, records approved closure, retains terminal records, and prunes explicitly selected terminal records.
 
-Read [the review-closure procedure](standards-acceptance.md) and [the local authority notes](sources.md) before acting.
+Read [the review-closure procedure](standard-acceptance.md) and [the local authority notes](sources.md) before acting.
 
 ## What this subcommand does
 

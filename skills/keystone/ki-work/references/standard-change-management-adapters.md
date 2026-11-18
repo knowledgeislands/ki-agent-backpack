@@ -1,10 +1,63 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T03:43:37Z
+ki-status: in force
+---
+
 # Change-management adapter standard
 
-## Scope
+## Contents
 
-Change management uses one configured adapter per repository. The adapter is the authoritative source of forward-work records; the selector and process skills do not duplicate its queue or synchronise a second tracker.
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Selection](#41-selection)
+  - [4.2 Common adapter boundary](#42-common-adapter-boundary)
+  - [4.3 Abstract record vocabulary](#43-abstract-record-vocabulary)
 
-## Selection
+## 1. Introduction
+
+Change management uses one configured adapter per repository. The adapter is the authoritative source of forward-work records; the selector and process skills do not duplicate its queue or synchronise a second tracker. The decisions behind these rules are in the [sources file](sources.md#3-decisions).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+How a repository selects its one change-management adapter, and what every adapter maps.
+
+### 2.1 In scope
+
+- The adapter declaration and how it resolves.
+- The common boundary between the selector and an adapter.
+- The abstract record vocabulary every adapter maps.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- Each adapter's concrete record identity, storage and lifecycle mapping: its adapter skill.
+- Validation of the repository kind and primary shape: `ki-repo`.
+- The transition still under way: [the adapter migration](standards-change-management-adapters-migration.md).
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Adapter** | The one configured source of a repository's forward-work records: `roadmap`, `kb-streams`, `github-issues` or `linear`. **Standard:** this one, [4.1](#41-selection) |
+| **Abstract record vocabulary** | The lifecycle terms every adapter maps: status, horizon, priority, size, selection order, resolution and classification. **Standard:** this one, [4.3](#43-abstract-record-vocabulary) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 Selection
 
 The repository declares exactly one supported value:
 
@@ -19,13 +72,17 @@ The selected adapter's `[skills.<skill-name>]` table must be declared in the sam
 
 Repository feature selection follows the adapter declaration rather than a parallel toggle. `ki-repo` requires GitHub Issues disabled and no `package.json` `bugs` field for `roadmap`, `kb-streams`, and `linear`; the root `[skills.ki-work-github-issues]` declaration requires Issues enabled and the canonical Issues URL.
 
-## Common adapter boundary
+[Back to contents](#contents)
+
+### 4.2 Common adapter boundary
 
 The selector owns only the abstract lifecycle vocabulary: capture, queue placement, readiness, delivery evidence, review evidence, closure, and an explicitly selected prune path. It does not define status labels or a state machine. Each adapter owns its concrete record identity, storage, local lifecycle/status mapping, and local rules. A process skill may ask the selector to resolve that adapter but never assumes a filesystem path, remote issue API, or KB zone.
 
 Every adapter carries an explicit mapping for record identity, status/lifecycle translation, authority for writes, conflict handling, and closure semantics. Local adapters may use the repository's configured identifier and, where declared, fixed issuing areas; remote adapters retain the remote system's native identity. It is never an implicit alias for another tracker.
 
-## Abstract record vocabulary
+[Back to contents](#contents)
+
+### 4.3 Abstract record vocabulary
 
 Every adapter maps these abstract terms; the [repository-roadmap standard](../../../work/ki-work-roadmap/references/standards-repository-roadmaps.md) and [work-item format](../../../work/ki-work-roadmap/references/standards-work-item-format.md) give their local shape.
 
@@ -37,4 +94,6 @@ Every adapter maps these abstract terms; the [repository-roadmap standard](../..
 - **Resolution** - why cancelled work ended: obsolete, rejected, duplicate, merged, or superseded, with a qualified target record for the last three. Only the owning repository closes its own record.
 - **Classification** - `kind` (deliver, decide, investigate, audit), optional `purpose`, territory-owned `project` or, for projectless work, an optional `theme`, and repository-owned `component`.
 
-Projects and themes are territory registry entries under the [Project registry standard](standards-project-registry.md); an adapter maps them to its native grouping where one exists, such as Linear Projects and Initiatives for themes, and otherwise stores the slugs.
+Projects and themes are territory registry entries under the [Project registry standard](standard-project-registry.md); an adapter maps them to its native grouping where one exists, such as Linear Projects and Initiatives for themes, and otherwise stores the slugs.
+
+[Back to contents](#contents)

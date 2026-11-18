@@ -16,9 +16,9 @@ Line-by-line criteria for auditing ki-work. Classifications are derived from ite
 
 ## SELECT — adapter selection
 
-→ [standard](standards-change-management-adapters.md)
+→ [standard](standard-change-management-adapters.md)
 
 One declared, locally resolvable, applicable forward-work adapter, with no implicit fallback.
 
-- **SELECT-1 [M] — explicit adapter** — The repository selects exactly one supported adapter, declares its owning skill, and uses it for the declared repository kind. (standards-change-management-adapters.md)
+- **SELECT-1 [M] — explicit adapter** — The repository selects exactly one supported adapter, declares its owning skill, and uses it for the declared repository kind. (standard-change-management-adapters.md)
   - _Remediation:_ diagnostic — Declare one supported adapter, its owning skill table, and a compatible repository kind.

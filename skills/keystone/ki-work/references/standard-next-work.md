@@ -1,23 +1,91 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T03:43:37Z
+ki-status: in force
+---
+
 # Next-work procedure
-
-`ki-work next` applies the transition rules of the adapter selected by `ki-work`.
-
-It never treats a recap, handoff, or historic transcript as authority to write.
-
-Its responsibility ends at selecting, promoting, deferring, or spawning due work and handing confirmed immediate work to `ki-work plan` for shaping.
 
 ## Contents
 
-- [1. Ground](#1-ground)
-- [2. Triage inbound handoffs](#2-triage-inbound-handoffs)
-- [3. Review relevance and capture](#3-review-relevance-and-capture)
-- [4. Select candidates](#4-select-candidates)
-- [5. Defer](#5-defer)
-- [6. Compare, rank, and confirm](#6-compare-rank-and-confirm)
-- [7. Spawn due housekeeping work](#7-spawn-due-housekeeping-work)
-- [8. Finish](#8-finish)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Ground](#41-ground)
+  - [4.2 Triage inbound handoffs](#42-triage-inbound-handoffs)
+  - [4.3 Review relevance and capture](#43-review-relevance-and-capture)
+    - [4.3.1 Review relevance](#431-review-relevance)
+    - [4.3.2 Capture substantive prospective work](#432-capture-substantive-prospective-work)
+  - [4.4 Select candidates](#44-select-candidates)
+    - [4.4.1 Non-KB repositories](#441-non-kb-repositories)
+    - [4.4.2 Knowledge Bases](#442-knowledge-bases)
+    - [4.4.3 Roadmap wave screen](#443-roadmap-wave-screen)
+  - [4.5 Defer](#45-defer)
+    - [4.5.1 Defer a record](#451-defer-a-record)
+    - [4.5.2 Hold and release](#452-hold-and-release)
+  - [4.6 Compare, rank, and confirm](#46-compare-rank-and-confirm)
+    - [4.6.1 The change-value profile](#461-the-change-value-profile)
+    - [4.6.2 Worked trade-off](#462-worked-trade-off)
+  - [4.7 Spawn due housekeeping work](#47-spawn-due-housekeeping-work)
+    - [4.7.1 Spawn a due run](#471-spawn-a-due-run)
+    - [4.7.2 Timestamp ownership](#472-timestamp-ownership)
+  - [4.8 Finish](#48-finish)
 
-## 1. Ground
+## 1. Introduction
+
+`ki-work next` applies the transition rules of the adapter selected by `ki-work`.
+
+Its responsibility ends at selecting, promoting, deferring, or spawning due work and handing confirmed immediate work to `ki-work plan` for shaping. The decisions behind these rules are in the [sources file](sources.md#3-decisions).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+How the next work is chosen, captured, deferred or spawned.
+
+### 2.1 In scope
+
+- Grounding in the repository and its selected adapter.
+- Triage of inbound trade handoffs.
+- Relevance review and the capture of substantive prospective work.
+- Candidate selection and the roadmap wave screen.
+- Deferral, hold and release.
+- Comparing, ranking and confirming candidates.
+- Spawning due housekeeping work, and timestamp ownership.
+- Finishing a cycle.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- Readiness: [the readiness procedure](standard-plan-lifecycle.md).
+- Delivery: [the implementation procedure](standard-implementation.md).
+- Closure, cancellation and pruning: [the acceptance procedure](standard-acceptance.md).
+- Record shape, the status and horizon table and identifier reservation: `ki-work-roadmap`.
+- Trade transport and validation: `ki-trades`.
+- Housekeeping eligibility: `ki-work-recurring`.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Capture** | Creating one `status: triage` record with no horizon for substantive prospective work that passes the graduation test, within the capture gate. **Standard:** this one, [4.3.2](#432-capture-substantive-prospective-work) |
+| **Wave** | A confirmed group of distinct records with a safe delivery synergy, delivered frozen once every member is Ready, only within an unattended window's grant. **Standard:** this one, [4.4.3](#443-roadmap-wave-screen) |
+| **Hold** | A record set to `horizon: hold` with a reason, a named condition and, where release cannot be observed, a review date. **Standard:** this one, [4.5.2](#452-hold-and-release) |
+| **Change-value profile** | The dimensions made visible when comparing viable material candidates, never scored. **Standard:** this one, [4.6.1](#461-the-change-value-profile) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The steps run in order. `ki-work next` never treats a recap, handoff, or historic transcript as authority to write.
+
+### 4.1 Ground
 
 When a `ki-work recap` precedes this cycle, require its bounded handoff to be complete before starting a new selection cycle. Treat its digest as orientation only and re-ground every repository fact below.
 
@@ -28,7 +96,9 @@ When a `ki-work recap` precedes this cycle, require its bounded handoff to be co
 5. For `github-issues` or `linear`, stop before reading or writing records: remote process execution is not implemented. Do not fall back to local paths or a compatibility representation.
 6. When the repository declares `ki-trades`, run its audit and inspect validated inbound records after the clean governing-skill audits. Its `README.md` is orientation, not a record.
 
-## 2. Triage inbound handoffs
+[Back to contents](#contents)
+
+### 4.2 Triage inbound handoffs
 
 Present every inbound record that still needs receiver judgment. Use the receiver vocabulary: **unconsidered**, **in progress**, **parked**, **clarify**, **applied**, **adopted**, **retained**, **declined**, or **superseded**. A newly copied record begins `unconsidered`; receipt is a separate delivery fact, not a decision.
 
@@ -51,7 +121,11 @@ Receiver-local standing knowledge intake is not an inbound trade disposition. Wh
 
 `unattended` and `receipt` are itemised observation policies only. They do not activate standing intake, grant automatic transfer or execution authority, or weaken receiver-owned disposition. Any future autonomous transport or application requires a separate explicit authority contract.
 
-## 3. Review relevance and capture
+[Back to contents](#contents)
+
+### 4.3 Review relevance and capture
+
+#### 4.3.1 Review relevance
 
 Run this pass for `--review`, or briefly when grounded evidence shows a material concern.
 
@@ -59,7 +133,9 @@ Identify only evidence-backed proposals: stale or obsolete work, duplicates, cha
 
 Do not change adopted content until the user confirms exact wording and placement. Bounded triage capture follows the exception below.
 
-### Capture substantive prospective work
+[Back to contents](#contents)
+
+#### 4.3.2 Capture substantive prospective work
 
 Any identifier named before publication is provisional. Immediately before allocating, re-read the applicable `_ISSUES.md` scope; if its high-water mark differs from the inspected value or the proposed serial is not exactly one greater, discard the proposed serial and reallocate from the latest value. Then commit the ledger advance on its own, in the repository's designated roadmap writing checkout, before writing the record it reserves. Never treat a plan, recap, approval, warm session context, or an uncommitted working copy as an identifier reservation. The [roadmap standard](../../../work/ki-work-roadmap/references/standards-repository-roadmaps.md#number-reservation) owns that ordering and the write locus it depends on.
 
@@ -69,9 +145,11 @@ Deferred work is the other route into capture, as Kris took HELD-VS-RECORD a) on
 
 Before creating a record, search the selected adapter for an existing owner. Do not capture rhetorical examples, already-resolved observations, or duplicates. If an existing triage record owns the same Goal and Boundary, new decision-useful detail within that boundary may enrich it automatically and must advance its timestamp. If an adopted record owns the concern, report that owner and require confirmation before changing it. Adoption requires explicit human approval and remains here: it sets `status: draft`, a horizon, and `kind`, and may set `purpose`, `project` or `theme`, and `component`, and revisit `priority` and `size`. Cancellation as obsolete, rejected, duplicate, merged, or superseded requires exact human approval and routes to `ki-work accept`, which records `status: cancelled` before any later prune; it is never a direct deletion. Approval alone never bypasses the lifecycle or done-before-prune rules.
 
-## 4. Select candidates
+[Back to contents](#contents)
 
-### Non-KB repositories
+### 4.4 Select candidates
+
+#### 4.4.1 Non-KB repositories
 
 Selection follows one order, as the [work-item format](../../../work/ki-work-roadmap/references/standards-work-item-format.md#priority-and-size) states: adoption, holds and dependencies first, then horizon, then `priority` (`high` a material cost from deferral, `medium` useful planned progress, `low` a discretionary benefit, an absent one reading as `medium`), then `size`, smallest first. Priority never crosses horizons: a `high` record at a later horizon is not selected ahead of earlier work, but prompts a proposal to move its horizon through the steps below.
 
@@ -81,11 +159,15 @@ Selection follows one order, as the [work-item format](../../../work/ki-work-roa
 4. Review triage separately from candidate selection. Present the exact destination horizon, `kind`, and why it satisfies that horizon; adopt only after explicit human confirmation, then re-evaluate at the destination.
 5. Exclude held records from selection. Propose a release only when their named condition changed or their review date has passed.
 
-### Knowledge Bases
+[Back to contents](#contents)
+
+#### 4.4.2 Knowledge Bases
 
 Use the same horizon vocabulary on flat `Streams/Roadmap/` records. A recurring Activity is the standing definition, not a delivery destination; due runs become linked roadmap records at the profile's declared horizon.
 
-### Roadmap wave screen
+[Back to contents](#contents)
+
+#### 4.4.3 Roadmap wave screen
 
 Before selecting one viable non-KB item, compare the whole dependency-ready candidate set for a **safe delivery synergy**. Do not promote a later-horizon item merely to create a wave: every candidate must first satisfy its normal route into immediate work. A group is a wave candidate only when all of the following are true:
 
@@ -102,7 +184,11 @@ Require confirmation of the exact candidate set and order before planning each m
 
 If no group meets every condition, say so briefly and use the ordinary single-item selection path.
 
-## 5. Defer
+[Back to contents](#contents)
+
+### 4.5 Defer
+
+#### 4.5.1 Defer a record
 
 `defer <item> <horizon>` is an explicit user-confirmed move.
 
@@ -110,7 +196,9 @@ Resolve the exact record and identify linked dependencies before proposing it.
 
 A defer changes horizon and keeps status, so the destination must admit that status under the [status and horizon table](../../../work/ki-work-roadmap/references/standards-repository-roadmaps.md#status-and-horizon). Use Soon only for understood but non-immediate draft work and Future only for adopted long-term draft work needing re-scoping. Status `triage` is not a deferral destination: moving adopted work back into intake requires an explicit human disposition.
 
-### Hold and release
+[Back to contents](#contents)
+
+#### 4.5.2 Hold and release
 
 Hold a record when it deliberately stops progressing until a named condition is met. Set `horizon: hold` and a `hold` mapping with `reason` (`waiting-for` an external condition or `parked` for an intentional pause), the named `condition`, and a `review` date where release cannot be observed. Keep status, `baseline_ref`, completed Steps, and review evidence; a review may wait on Hold for an unavailable reviewer. An in-progress hold older than a month should be reconsidered, because a stale baseline turns resuming into a rebase.
 
@@ -120,7 +208,11 @@ Release requires evidence that the condition changed, or a review date that prom
 
 Never silently delete, reopen, or detach a canonical execution record.
 
-## 6. Compare, rank, and confirm
+[Back to contents](#contents)
+
+### 4.6 Compare, rank, and confirm
+
+#### 4.6.1 The change-value profile
 
 Use the **change-value profile** only when comparing viable material candidates or when a human asks for a material engineering-change comparison.
 
@@ -140,7 +232,9 @@ The profile makes these dimensions visible, with short evidence only for the dim
 
 Do not calculate a composite score, store profile metadata on a work item, or imply that the profile chooses work automatically.
 
-### Worked trade-off
+[Back to contents](#contents)
+
+#### 4.6.2 Worked trade-off
 
 Two ready candidates can both be worthwhile: a narrow local repair may have low delivery cost and high reversibility, while a compatibility improvement has higher leverage and reliability but depends on another repository.
 
@@ -160,7 +254,11 @@ It shapes the same item through the stage-detail contract and stops for review b
 
 That handoff does not permit `ki-work next` to infer wave, selection, or implementation authority.
 
-## 7. Spawn due housekeeping work
+[Back to contents](#contents)
+
+### 4.7 Spawn due housekeeping work
+
+#### 4.7.1 Spawn a due run
 
 Use the repository-native definition governed by `ki-work-recurring`: Project template fields are flat and hyphenated; KB Activity schedule fields are snake_case inside `housekeeping`, with `id`, `title`, and `status` at the Activity's top level. Ignore ordinary Activities without a profile and never evaluate retired Activities. Run the focused housekeeping audit before spawning; stop on invalid profiles, ambiguous identities, retained duplicate definitions, or unsafe placement. Every caller, including an external routine, uses this same admission and serialised active-run reservation rather than creating an independent run. KB profile writes also require the base's canonical-change authority.
 
@@ -172,11 +270,15 @@ For each due template, present the exact proposed work record, destination (norm
 
 Never implement a definition directly, spawn a duplicate active run, or leave a due work record in the Activity collection.
 
-### Timestamp ownership
+[Back to contents](#contents)
+
+#### 4.7.2 Timestamp ownership
 
 For a newly captured local record, write one canonical UTC-second instant to both `created_at` and `updated_at`. For any confirmed promotion, deferral, spawned-run linkage, or other semantic work-item mutation, preserve `created_at` and advance `updated_at` to the later of the current UTC second or one second after its observed value. Stop before publication when either timestamp is absent or malformed, or when the source revision changed after inspection. Read-only inventory never advances a timestamp. Remote adapters project provider-native timestamps and do not duplicate them into remote bodies.
 
-## 8. Finish
+[Back to contents](#contents)
+
+### 4.8 Finish
 
 Report each confirmed handoff disposition, synergy decision (including excluded near-matches), files changed, selected work, and audit result.
 
@@ -185,3 +287,5 @@ Identify `done` and `cancelled` records that are eligible for pruning when usefu
 If no work is eligible, identify the missing condition or scoping decision plainly.
 
 End after reporting the confirmed selection, handoff, and audit result. Runtime context management is not a `ki-work next` action or completion condition.
+
+[Back to contents](#contents)

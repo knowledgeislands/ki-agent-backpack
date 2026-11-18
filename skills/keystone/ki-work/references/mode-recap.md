@@ -6,7 +6,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 `ki-work recap` is a subcommand of the Work guild's lead. It was the `ki-recap` process skill until the guild folded it into `ki-work` (PROCESS-SUBCOMMANDS), and keeps that skill's procedure and boundaries.
 
-Recaps a **live** session — warm, in-context, run inside the session itself. Read [the session-recap standard](standards-session-recap.md) for the procedure and [the runtime sources](sources.md) when refreshing runtime claims.
+Recaps a **live** session — warm, in-context, run inside the session itself. Read [the session-recap standard](standard-session-recap.md) for the procedure and [the runtime sources](sources.md) when refreshing runtime claims.
 
 ## What this subcommand does
 

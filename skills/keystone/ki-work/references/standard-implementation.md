@@ -1,10 +1,71 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T03:43:37Z
+ki-status: in force
+---
+
 # Implementation procedure
 
-This is the on-demand procedure for `ki-work implement`.
+## Contents
 
-The kind, boundary, and relationship map live in [the skill](mode-implement.md).
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Preflight](#41-preflight)
+  - [4.2 Start one delivery](#42-start-one-delivery)
+  - [4.3 Execute the approved plan](#43-execute-the-approved-plan)
+  - [4.4 Verify and prepare review](#44-verify-and-prepare-review)
+  - [4.5 Window authority](#45-window-authority)
+  - [4.6 Controlled preflight model](#46-controlled-preflight-model)
 
-## 1. Preflight
+## 1. Introduction
+
+This is the on-demand procedure for `ki-work implement`: delivering one approved Ready record to review. The kind, boundary, and relationship map live in [the mode](mode-implement.md). The decisions behind these rules are in the [sources file](sources.md#3-decisions).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+How one approved record is delivered and brought to review.
+
+### 2.1 In scope
+
+- Preflight before any lifecycle change.
+- Starting one delivery and its immutable baseline.
+- Executing the approved plan, delegation included.
+- Verification and the review packet.
+- An unattended window's authority to start delivery.
+- The controlled preflight model.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- Selection: [the next-work procedure](standard-next-work.md).
+- Readiness: [the readiness procedure](standard-plan-lifecycle.md).
+- Human review, closure and pruning: [the acceptance procedure](standard-acceptance.md).
+- The review packet's schema: `ki-work-roadmap`'s work-item format.
+- Delegation packets and background runs: `ki-delegation`.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Baseline** | The full current `HEAD` commit ID recorded when delivery starts, the immutable starting evidence. **Standard:** this one, [4.2](#42-start-one-delivery) |
+| **Review packet** | The six `###` headings under a roadmap record's `## Review`, in fixed order, that bring delivered work to review. **Standard:** `ki-work-roadmap`'s [work-item format](../../../work/ki-work-roadmap/references/standards-work-item-format.md#awaiting-review) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The steps run in order; 4.5 and 4.6 hold what applies around them.
+
+### 4.1 Preflight
 
 1. Resolve the physical git root and the selected adapter through `ki-work`; never infer an adapter from filesystem shape.
 2. Stop before execution if the adapter is unresolved or remote: remote discovery, authentication, stale-read checks, and every write remain unavailable.
@@ -17,7 +78,9 @@ Stop if any precondition is missing or ambiguous.
 
 Do not select another candidate, promote a horizon, invent plan detail, or treat a recap as approval.
 
-## 2. Start one delivery
+[Back to contents](#contents)
+
+### 4.2 Start one delivery
 
 1. Record the full current `HEAD` commit ID as the immutable baseline.
 2. Transition only the approved item to `in-progress`, moving it to `horizon: now` in the same change if it was at Next. A held ready or in-progress record resumes only after `ki-work next` releases it.
@@ -25,7 +88,9 @@ Do not select another candidate, promote a horizon, invent plan detail, or treat
 
 The baseline describes the starting evidence; it is not a substitute for verification.
 
-## 3. Execute the approved plan
+[Back to contents](#contents)
+
+### 4.3 Execute the approved plan
 
 Follow the checked plan steps in order and preserve its boundary.
 
@@ -43,7 +108,9 @@ Stop rather than infer authority when scope must expand, a decision is escalated
 
 For each local lifecycle or semantic record mutation, preserve `created_at` and advance `updated_at` to the later of the current UTC second or one second after its observed value. Compare the observed source revision immediately before publication and stop on source drift, a absent or malformed timestamps. Verification-only reads do not advance timestamps; remote adapters project provider-native values.
 
-## 4. Verify and prepare review
+[Back to contents](#contents)
+
+### 4.4 Verify and prepare review
 
 Run the item's stated verification after integration and inspect its actual results.
 
@@ -62,12 +129,18 @@ Then stop.
 
 `ki-work accept` owns human review, terminal closure, retention, and explicit pruning.
 
-## Window authority
+[Back to contents](#contents)
+
+### 4.5 Window authority
 
 An unattended window's recorded grant, under `ki-coordination`, may authorise a named record of a frozen wave to enter this procedure only when it expressly grants that delivery.
 
 It never makes a vague plan executable, and it does not make closure automatic unless the grant names closure for that wave, under `ki-work accept`.
 
-## Controlled preflight model
+[Back to contents](#contents)
+
+### 4.6 Controlled preflight model
 
 `scripts/internal/implementation-cycle.ts` exposes a pure no-write preflight model. Its focused fixtures cover selected-adapter resolution, the remote stop, one canonical ready record, immutable baseline, the `ready` → `in-progress` → `awaiting-review` transitions, completed steps, scope and gate stops, delegated-work authority, verification, and the exact acceptance handoff headings. It does not resolve a live adapter, edit a record, run a command, or contact a remote system.
+
+[Back to contents](#contents)

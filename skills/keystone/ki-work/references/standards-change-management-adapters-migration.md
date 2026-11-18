@@ -1,6 +1,6 @@
 # Change-management adapter migration
 
-This file holds the transition [the adapter standard](standards-change-management-adapters.md) leaves out, so that the standard describes only the final state, as Kris set under MIGRATION-OVERLAY on 7 November 2026. The standard wins wherever the two differ. Delete this file whole once every step below has landed.
+This file holds the transition [the adapter standard](standard-change-management-adapters.md) leaves out, so that the standard describes only the final state, as Kris set under MIGRATION-OVERLAY on 7 November 2026. The standard wins wherever the two differ. Delete this file whole once every step below has landed.
 
 Kris took BATCH-RETIRE a) on 7 November 2026: `ki-batch` is retired, and an unattended window's grant in the coordinating package's decisions log is the one authority record for autonomous delivery, under `ki-coordination`. The harness no longer checks or restores a batch scaffold, and its authority footers no longer name `ki-batch`. What remains lies outside the harness:
 

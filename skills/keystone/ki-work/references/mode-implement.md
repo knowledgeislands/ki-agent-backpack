@@ -8,7 +8,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 Delivers one approved, ready work record to an evidence-backed awaiting-review boundary.
 
-Read [the implementation procedure](standards-implementation.md) and [the local authority notes](sources.md) before acting.
+Read [the implementation procedure](standard-implementation.md) and [the local authority notes](sources.md) before acting.
 
 ## What this subcommand does
 

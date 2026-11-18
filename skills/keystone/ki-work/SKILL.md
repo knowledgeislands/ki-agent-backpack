@@ -22,7 +22,7 @@ argument-hint: 'accept <work> | accept prune <record-or-glob>... | audit <repo> 
 
 This skill leads the Work guild: how work is chosen, planned, done, accepted and coordinated. It carries the work lifecycle as six subcommands, each loaded from its own reference only when called, and it selects one configured source of forward work; it never becomes a third tracker. The selected adapter owns record storage, identity allocation, and its local structural rules. The subcommands use the adapter to locate a record, assess readiness, record delivery or review evidence, and apply an explicitly authorised close or prune selection.
 
-Read [the change-management adapter standard](references/standards-change-management-adapters.md) before selecting an adapter or changing shared lifecycle behaviour. Read [the generated rubric](references/rubric.md) for its checkable contract, [the migration file](references/standards-change-management-adapters-migration.md) for the steps of the batch retirement still to land outside the harness, and [the sources](references/sources.md) when refreshing it.
+Read [the change-management adapter standard](references/standard-change-management-adapters.md) before selecting an adapter or changing shared lifecycle behaviour. Read [the generated rubric](references/rubric.md) for its checkable contract, [the migration file](references/standards-change-management-adapters-migration.md) for the steps of the batch retirement still to land outside the harness, and [the sources](references/sources.md) when refreshing it.
 
 ## The lifecycle
 
@@ -51,7 +51,7 @@ Its other members, each with when to use it:
 
 ## Shared model
 
-`[skills.ki-work]` declares exactly one adapter and the matching adapter table is declared beside it. `roadmap` is the default for an ordinary Project repository; `kb-streams` is the default for a Knowledge Base; `github-issues` and `linear` are explicit alternatives. Resolution has no fallback: an absent, unknown, undeclared, or inapplicable declaration stops the process rather than guessing from a directory. This skill owns the abstract lifecycle and classification terms, while the owning adapter retains concrete status mapping, record storage, identity, and structural rules. The [Project registry standard](references/standards-project-registry.md) owns the portable shape of territory Projects and themes.
+`[skills.ki-work]` declares exactly one adapter and the matching adapter table is declared beside it. `roadmap` is the default for an ordinary Project repository; `kb-streams` is the default for a Knowledge Base; `github-issues` and `linear` are explicit alternatives. Resolution has no fallback: an absent, unknown, undeclared, or inapplicable declaration stops the process rather than guessing from a directory. This skill owns the abstract lifecycle and classification terms, while the owning adapter retains concrete status mapping, record storage, identity, and structural rules. The [Project registry standard](references/standard-project-registry.md) owns the portable shape of territory Projects and themes.
 
 The selected adapter also controls the GitHub Issues feature through `ki-repo`: it stays disabled, with no `package.json` `bugs` field, unless the root `[skills.ki-work-github-issues]` table is declared.
 
@@ -99,4 +99,4 @@ Run `ki repo educate --skill ki-work --repo <repo>` to render the adapter contra
 
 **Precondition:** REFRESH writes only this canonical skill under `ki-agent-backpack`. Invoked from an installed copy, stop and redirect to the Harness.
 
-On the cadence in [the sources](references/sources.md), compare supported adapters and the subcommands' use of them with [the adapter standard](references/standards-change-management-adapters.md), and re-check the runtime documentation the recap subcommand relies on. Add a new adapter only with an explicit mapping of its stable reference, lifecycle states, authority boundary, and close/prune semantics; record the normative change in the commit.
+On the cadence in [the sources](references/sources.md), compare supported adapters and the subcommands' use of them with [the adapter standard](references/standard-change-management-adapters.md), and re-check the runtime documentation the recap subcommand relies on. Add a new adapter only with an explicit mapping of its stable reference, lifecycle states, authority boundary, and close/prune semantics; record the normative change in the commit.

@@ -1,10 +1,73 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T03:43:37Z
+ki-status: in force
+---
+
 # Review closure and pruning procedure
 
-This is the on-demand procedure for `ki-work accept`.
+## Contents
 
-The kind, authority boundary, and relationship map live in [the skill](mode-accept.md).
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Resolve the record and closure evidence](#41-resolve-the-record-and-closure-evidence)
+  - [4.2 Obtain closure authority](#42-obtain-closure-authority)
+  - [4.3 Record, retain, and reconcile completion](#43-record-retain-and-reconcile-completion)
+  - [4.4 Prune explicitly selected terminal records](#44-prune-explicitly-selected-terminal-records)
+    - [4.4.1 Select and delete](#441-select-and-delete)
+    - [4.4.2 Cross-repository reference preflight](#442-cross-repository-reference-preflight)
+  - [4.5 Controlled acceptance models](#45-controlled-acceptance-models)
 
-## 1. Resolve the record and closure evidence
+## 1. Introduction
+
+This is the on-demand procedure for `ki-work accept`: closing a reviewed record, cancelling an open one and pruning terminal records. The kind, authority boundary, and relationship map live in [the mode](mode-accept.md). The decisions behind these rules are in the [sources file](sources.md#3-decisions).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+How a record is closed, cancelled and pruned.
+
+### 2.1 In scope
+
+- Resolving the record and its closure evidence.
+- Closure authority: the owner's approval, acceptance bundles and recorded grants.
+- Recording, retaining and reconciling completion, linked housekeeping runs included.
+- Pruning explicitly selected terminal records, and the cross-repository reference preflight.
+- The controlled acceptance models.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- Capture, adoption and selection: [the next-work procedure](standard-next-work.md).
+- Readiness: [the readiness procedure](standard-plan-lifecycle.md).
+- Delivery and the review packet's production: [the implementation procedure](standard-implementation.md).
+- The review packet's schema and the local record lifecycle: `ki-work-roadmap`.
+- Housekeeping anchor validity: `ki-work-recurring`.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Delivery acceptance** | Closing an `awaiting-review` record as `done` against its six-part review packet, with the owner's approval. **Standard:** this one, [4.1](#41-resolve-the-record-and-closure-evidence) |
+| **Cancellation** | Closing an open record as `cancelled` with exactly one `resolution`, approved by a human. **Standard:** this one, [4.1](#41-resolve-the-record-and-closure-evidence) |
+| **Acceptance bundle** | A coordinating work's `awaiting-review` records brought to the owner as one `ACCEPT` query, whose answer approves delivery closure for each listed record not named as an exception. **Standard:** this one, [4.2](#42-obtain-closure-authority) |
+| **Prune** | Deleting explicitly selected `done` or `cancelled` records in a prune-only commit, Git history being the archive. **Standard:** this one, [4.4](#44-prune-explicitly-selected-terminal-records) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The steps run in order.
+
+### 4.1 Resolve the record and closure evidence
 
 1. Resolve the physical Git root and the selected adapter through `ki-work`; never infer an adapter from a filesystem shape.
 2. Stop before reading or writing an operational record when the adapter is unresolved or remote. Remote discovery, stale-read checks, and every mutation remain unavailable.
@@ -16,7 +79,9 @@ The kind, authority boundary, and relationship map live in [the skill](mode-acce
 
 Do not repair missing delivery or review evidence by inference. Return a record to implementation only through an explicit new decision; this procedure does not silently reopen or reshape it.
 
-## 2. Obtain closure authority
+[Back to contents](#contents)
+
+### 4.2 Obtain closure authority
 
 Present the exact canonical record, its six-part delivery review packet or exact proposed cancellation, known concerns, and proposed terminal state.
 
@@ -28,7 +93,9 @@ An acceptance bundle is such a grant. Kris adopted ACCEPT-BUNDLE on 2026-10-20, 
 
 A recorded grant is the other source of delivery closure. An unattended window's grant, quoted in the work's decisions log, approves delivery closure only where it names closure for a frozen wave under `ki-coordination`'s [unattended window](../../../work/ki-coordination/references/standards-unattended.md#unattended-windows) rule, and only for a record of that wave whose membership is unchanged since it was frozen and whose current review packet and evidence are rechecked first. A grant never cancels or prunes a record, and a grant that merely permits planning, delivery, delegation or reporting, or that names a different record, is not closure authority.
 
-## 3. Record, retain, and reconcile completion
+[Back to contents](#contents)
+
+### 4.3 Record, retain, and reconcile completion
 
 Append the terminal closure evidence required by the selected local adapter and set the approved record to `done` or `cancelled` in one coherent change, removing its horizon and any `hold` mapping.
 
@@ -48,9 +115,13 @@ Failed, abandoned, and superseded runs do not advance successful-run evidence an
 
 When recording local acceptance, preserve `created_at` and advance `updated_at` to the later of the current UTC second or one second after its observed value. Compare the observed source revision immediately before publication and stop on source drift, a absent or malformed timestamps. Review and prune-only reads do not advance timestamps; remote adapters project provider-native values.
 
-## 4. Prune explicitly selected terminal records
+[Back to contents](#contents)
+
+### 4.4 Prune explicitly selected terminal records
 
 Pruning a `done` or `cancelled` record is sanctioned cleanup. Git history is the archive: the parent of the prune commit holds each record, and pruned records are not restored.
+
+#### 4.4.1 Select and delete
 
 1. Accept one or more explicit canonical work-record paths or filename globs. Resolve their complete matching set only beneath the selected local adapter root: `docs/roadmap/` for `roadmap` or `Streams/Roadmap/` for `kb-streams`. Reject absolute paths, parent traversal, an empty or incomplete match, symlinks, directories, and files outside the canonical work-record shape. The caller should quote a shell glob so the procedure receives it.
 2. Resolve the full matching set before deleting anything. Confirm every result is a regular canonical record with `status: done` or `status: cancelled`.
@@ -59,7 +130,9 @@ Pruning a `done` or `cancelled` record is sanctioned cleanup. Git history is the
 5. Before deleting anything, apply the cross-repository reference preflight below to every record in the set. Repair orphaning references and statements that depended on the record to stay true in a separate commit ahead of the prune. That keeps the prune-only commit to deletions and preserves inspectable evidence.
 6. Confirm repository history contains every selected record in its terminal state in a commit earlier than the proposed deletion. Delete only the complete resolved regular eligible set, then run the applicable repository gates. Commit the removal of one or more eligible records as a dedicated prune-only commit containing no lifecycle transition or unrelated work. Do not broaden the supplied glob, prune an accepted-but-not-done item, follow a symlink, or delete a record merely because it looks old. Use the standardised message: subject `chore(roadmap): prune <N> done work record(s)`, singular for one record, and a body of one `- <ID>` line per record in identifier order.
 
-### Cross-repository reference preflight
+[Back to contents](#contents)
+
+#### 4.4.2 Cross-repository reference preflight
 
 Search the owning repository and relevant accessible peers identified by the selected registry or territory scope, declared relationships, and known inbound references. Include an identified archived or deregistered peer: removal from discovery does not remove its links. Report the roots searched and any relevant unavailable source; a local-only scan is not evidence that peer references are absent. Do not silently widen access to unrelated repositories or fetch private sources.
 
@@ -69,6 +142,10 @@ Preserve useful references by linking to the appropriate durable current documen
 
 `ki repo roadmap prune` is a separate native non-KB host operation: it sweeps every selected repository's canonical regular `done` roadmap items after validating the complete selected set. It does not approve closure, choose records by inference, delete a non-terminal or retained-trade record, or replace this procedure when an explicit path or glob selection is required. Complete the reference preflight before invoking it; the command does not supply that evidence. By default it commits each repository's deletions itself as one prune-only commit under the standardised message, staging exactly the deleted record paths and running the repository's hooks; it refuses before deleting anything when the repository is not a Git work tree, already has staged changes, or holds an untracked or modified selected record, and a rejected commit restores the deleted records. `--dry-run` makes the same selection and checks and reports the records and planned commit without changing anything. `--no-commit` only deletes the records and skips those Git checks, so confirm each record's committed `done` state and commit the deletions alone under the same message.
 
-## Controlled acceptance models
+[Back to contents](#contents)
+
+### 4.5 Controlled acceptance models
 
 `scripts/internal/acceptance-cycle.ts` and `scripts/internal/prune-selection.ts` expose pure no-write models. Their focused fixtures cover adapter resolution, remote refusal, canonical-root lifecycle evidence, exact review headings, a recorded grant naming a frozen wave's closure, cancellation resolution evidence and human-only authority, a same-repository target or a cross-repository replacement named in plain words with no identifier or link, housekeeping success and non-success dispositions, traversal, symlink, incomplete-set, non-terminal, prior committed-`done`, retained-trade, and eligible selected-prune paths with a prune-only commit boundary and its standardised commit message. The models do not read a live adapter, alter lifecycle state, update a template, delete a file, run a command, or contact an external system.
+
+[Back to contents](#contents)

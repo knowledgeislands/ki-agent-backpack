@@ -8,7 +8,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 Shapes one or more selected Now or Next drafts through Ready.
 
-The class-level standard—horizons, identity, and file shape—is owned by `ki-work-roadmap`; read [the lifecycle procedure](standards-plan-lifecycle.md) for the complete operation.
+The class-level standard—horizons, identity, and file shape—is owned by `ki-work-roadmap`; read [the lifecycle procedure](standard-plan-lifecycle.md) for the complete operation.
 
 ## What this subcommand does
 

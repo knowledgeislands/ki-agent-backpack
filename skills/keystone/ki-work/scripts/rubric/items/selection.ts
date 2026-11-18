@@ -5,7 +5,7 @@ export const SELECT: RubricFamily<ChangeManagementRubricContext, ChangeManagemen
   code: 'SELECT',
   title: 'adapter selection',
   description: 'One declared, locally resolvable, applicable forward-work adapter, with no implicit fallback.',
-  standard: 'standards-change-management-adapters.md',
+  standard: 'standard-change-management-adapters.md',
   selectContext: (context) => context.selection,
   items: [
     {
@@ -13,7 +13,7 @@ export const SELECT: RubricFamily<ChangeManagementRubricContext, ChangeManagemen
       title: 'explicit adapter',
       description:
         'The repository selects exactly one supported adapter, declares its owning skill, and uses it for the declared repository kind.',
-      sources: ['standards-change-management-adapters.md'],
+      sources: ['standard-change-management-adapters.md'],
       mechanical: {
         level: 'FAIL',
         remediation: {
