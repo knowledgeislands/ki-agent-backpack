@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T02:12:12Z
+ki-revised: 2026-11-18T03:40:00Z
 ki-status: in force
 ---
 
@@ -60,7 +60,7 @@ What a meeting is, how it is called, held and closed, and how its participants r
 - Background runs a participant starts: `ki-delegation`.
 - The format of a change document: `ki-authoring`.
 - The store a meeting lives in, its roster and its commit gate: that store's own contract.
-- What a meeting is finally called; "meeting" is the working word.
+- Another name for a meeting: "meeting" stays (MEETING-NAME, Kris, 17 November 2026).
 
 [Back to contents](#contents)
 
@@ -73,6 +73,7 @@ What a meeting is, how it is called, held and closed, and how its participants r
 | **Caller** | The session that calls a meeting, keeps it and closes it, and the only session of its agent host in the room. **Standard:** this one, [4.2](#42-who-calls-keeps-and-owns-a-meeting) |
 | **Chair** | The session that runs a meeting's sittings; the caller, unless the owner starts another session to chair. **Standard:** this one, [4.2](#42-who-calls-keeps-and-owns-a-meeting) |
 | **Participant** | Each session or person taking part, with a role stated in the agenda, such as caller, maker, reviewer, illustrator or owner. **Standard:** this one, [4.5](#45-the-entry-file) |
+| **Layers** | The four parts of how a meeting carries what is said, each of which can change without the others: the transport, the delivery, the waking and the record. **Standard:** this one, [4](#4-rules) |
 | **Route** | How a participant reaches the others: its agent host's own messaging, the meeting folder, or exchange mode. **Standard:** this one, [4.6](#46-routes) |
 | **Exchange mode** | The exception in which the owner carries prompts both ways for a participant that cannot reach the folder. **Standard:** this one, [4.6](#46-routes) |
 | **Sitting** | One period of a meeting, lettered A, B, C and on, with a stated end except in a standing room, opened by a roll call and ended by its minutes. **Standard:** this one, [4.7](#47-sittings-and-the-roll-call) |
@@ -87,6 +88,15 @@ What a meeting is, how it is called, held and closed, and how its participants r
 ## 4. Rules
 
 The rules, part by part.
+
+**Four layers** (MEET-LAYERS, Kris, 17 November 2026). How a meeting carries what is said falls into four layers, each of which can change without the others:
+
+- **the transport,** how a participant reaches the others: its route ([4.6](#46-routes));
+- **the delivery,** how a message comes to a participant's attention: listening and check-ins ([4.9](#49-listening-and-check-ins));
+- **the waking,** how a participant is started or brought back to the room: the opener (WAKE-OPENER, [4.7](#47-sittings-and-the-roll-call));
+- **the record,** what lasts: the meeting folder in Git ([4.4](#44-where-a-meeting-is-kept), [4.12](#412-git-and-private-data)).
+
+So a meeting can change its transport, as when a tool or an agent host's remote messaging takes over from the folder, without changing its record.
 
 ### 4.1 When to meet
 

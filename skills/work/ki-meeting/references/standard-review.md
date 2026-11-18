@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:48:38Z
+ki-revised: 2026-11-18T03:40:00Z
 ki-status: in force
 ---
 
@@ -77,7 +77,7 @@ Beyond what every brief holds, a review's says:
 ### 4.3 Holding a review
 
 1. **Reviewers read independently and do not change** the thing under review, as the [review standard](../../../keystone/ki-authoring/references/standard-review.md#41-who-reviews) sets for every review.
-2. **Where verdicts differ,** the minutes give both and the owner decides.
+2. **Where verdicts differ,** the minutes give both, and the difference goes to the owner as a choice, with its options and a recommendation ([4.14](standard-meeting.md#414-minutes)), rather than to a third reviewing pass (REVIEW-DISAGREE, Kris, 17 November 2026).
 3. **A review closes** when every part has its verdicts, and the caller's closing message names them and the change document they go to.
 
 [Back to contents](#contents)
