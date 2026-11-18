@@ -17,13 +17,13 @@ Line-by-line criteria for auditing ki-env-binding-claude. Classifications are de
 
 ## CLAUDEBIND — Claude binding
 
-→ [standard](standards-claude-binding.md)
+→ [standard](standard-claude-binding.md)
 
 Claude-native JSON definition and unavailable-runtime evidence.
 
-- **CLAUDEBIND-1 [M] — Claude Code and Desktop definition agreement** — Configured Claude JSON surfaces have the complete non-secret source definition for each targeted server. (standards-claude-binding.md)
+- **CLAUDEBIND-1 [M] — Claude Code and Desktop definition agreement** — Configured Claude JSON surfaces have the complete non-secret source definition for each targeted server. (standard-claude-binding.md)
   - _Remediation:_ diagnostic — Reconcile the affected Claude JSON surface with the canonical targeted definitions, then rerun the audit.
-- **CLAUDEBIND-J1 [J] — Web convention is intentional** — claude.ai web use is documented as a convention rather than a local render target. (standards-claude-binding.md)
+- **CLAUDEBIND-J1 [J] — Web convention is intentional** — claude.ai web use is documented as a convention rather than a local render target. (standard-claude-binding.md)
   - _Evidence scope:_ The documented claude.ai web convention and every claimed Claude runtime surface.
   - _Review prompt:_ Is the web convention explicit without claiming a local file or renderer exists?
   - _Outcomes:_ conforming; documentation revision; route to binding owner

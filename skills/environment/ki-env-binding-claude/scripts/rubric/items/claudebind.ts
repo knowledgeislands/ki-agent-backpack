@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import { type ClaudeBindingContext, targetMatches } from '../contexts/claude.ts'
 
-const source = ['standards-claude-binding.md'] as const
+const source = ['standard-claude-binding.md'] as const
 const CLAUDEBIND_1: RubricItem<ClaudeBindingContext> = {
   code: 'CLAUDEBIND-1',
   title: 'Claude Code and Desktop definition agreement',
@@ -76,7 +76,7 @@ export const CLAUDEBIND: RubricFamily<ClaudeBindingContext, ClaudeBindingContext
   code: 'CLAUDEBIND',
   title: 'Claude binding',
   description: 'Claude-native JSON definition and unavailable-runtime evidence.',
-  standard: 'standards-claude-binding.md',
+  standard: 'standard-claude-binding.md',
   selectContext: (context) => context,
   items: [CLAUDEBIND_1, CLAUDEBIND_J1]
 }
