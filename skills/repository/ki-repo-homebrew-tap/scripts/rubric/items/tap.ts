@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem, RubricOutcomes } from '../../shared/rubric.ts'
 import type { HomebrewTapRubricContext, TapContext } from '../contexts/homebrew-tap.ts'
 
-const STANDARD = 'standards-homebrew-tap.md'
+const STANDARD = 'standard-homebrew-tap.md'
 const SOURCE = [STANDARD] as const
 const many = (outcomes: AuditOutcome[]): RubricOutcomes<AuditOutcome> => outcomes as RubricOutcomes<AuditOutcome>
 const DIAGNOSTIC = {

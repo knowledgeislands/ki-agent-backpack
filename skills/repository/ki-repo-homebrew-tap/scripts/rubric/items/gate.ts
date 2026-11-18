@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { HomebrewTapRubricContext } from '../contexts/homebrew-tap.ts'
 
-const SOURCE = 'standards-homebrew-tap.md'
+const SOURCE = 'standard-homebrew-tap.md'
 
 const GATE_1: RubricItem<readonly AuditOutcome[]> = {
   code: 'GATE-1',

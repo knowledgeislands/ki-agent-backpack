@@ -20,7 +20,7 @@ You are helping audit, conform, or scaffold the **Homebrew tap** repo — `homeb
 
 This skill **wraps an external standard.** Homebrew already defines what a valid tap and formula are (the Formula Cookbook, `brew audit`, `brew style`); this skill does not re-invent that. Its hosted audit checks only the tap's **static shape**—the things a tap needs beyond a single valid formula. `brew style` and `brew audit --strict` are explicit, isolated opt-in diagnostics, never hosted-audit execution. A static finding is source-shape evidence, not package-manager validation. Never present a shape preference as a Homebrew "MUST"; when unsure which a rule is, run Mode REFRESH against the Cookbook.
 
-The full, quotable standard lives in [Homebrew tap standard](references/standards-homebrew-tap.md); the line-by-line pass/fail items in [Audit Rubric](references/rubric.md). `ki repo audit` and `ki repo conform` execute the mechanical contract. Read those when you need detail; this file is the operating procedure.
+The full, quotable standard lives in [Homebrew tap standard](references/standard-homebrew-tap.md); the line-by-line pass/fail items in [Audit Rubric](references/rubric.md). `ki repo audit` and `ki repo conform` execute the mechanical contract. Read those when you need detail; this file is the operating procedure.
 
 ## The canonical shape at a glance
 

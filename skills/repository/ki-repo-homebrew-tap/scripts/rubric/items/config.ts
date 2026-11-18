@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { HomebrewTapRubricContext, TapConfigContext } from '../contexts/homebrew-tap.ts'
 
-const STANDARD = 'standards-homebrew-tap.md'
+const STANDARD = 'standard-homebrew-tap.md'
 const SOURCE = [STANDARD] as const
 
 const CONFIG_1: RubricItem<TapConfigContext> = {

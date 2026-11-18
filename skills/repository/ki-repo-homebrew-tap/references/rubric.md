@@ -28,50 +28,50 @@ The tracked readable rubric is the exact publication of the structured catalogue
 
 ## TAP — tap structure
 
-→ [standard](standards-homebrew-tap.md)
+→ [standard](standard-homebrew-tap.md)
 
 Formula layout, static source evidence, and judgment review of tap correctness.
 
-- **TAP-1 [M] — formula directory** — `Formula/` exists and contains at least one Ruby formula. (standards-homebrew-tap.md)
+- **TAP-1 [M] — formula directory** — `Formula/` exists and contains at least one Ruby formula. (standard-homebrew-tap.md)
   - _Remediation:_ diagnostic — Correct the tap formula or release evidence through the responsible maintainer; hosted conform does not infer release or package semantics.
-- **TAP-2 [M] — formula class** — Each formula has a `class <Camel> < Formula` declaration. (standards-homebrew-tap.md)
+- **TAP-2 [M] — formula class** — Each formula has a `class <Camel> < Formula` declaration. (standard-homebrew-tap.md)
   - _Remediation:_ diagnostic — Correct the tap formula or release evidence through the responsible maintainer; hosted conform does not infer release or package semantics.
-- **TAP-3 [M] — formula fields** — Each formula has the required metadata, install method, and test block. (standards-homebrew-tap.md)
+- **TAP-3 [M] — formula fields** — Each formula has the required metadata, install method, and test block. (standard-homebrew-tap.md)
   - _Remediation:_ diagnostic — Correct the tap formula or release evidence through the responsible maintainer; hosted conform does not infer release or package semantics.
-- **TAP-4 [M] — formula description style** — Formula descriptions are no more than 80 characters and do not start with an article. (standards-homebrew-tap.md)
+- **TAP-4 [M] — formula description style** — Formula descriptions are no more than 80 characters and do not start with an article. (standard-homebrew-tap.md)
   - _Remediation:_ diagnostic — Correct the tap formula or release evidence through the responsible maintainer; hosted conform does not infer release or package semantics.
-- **TAP-5 [M] — versioned source URLs** — Formula URLs use a tagged-release tarball rather than a branch or HEAD. (standards-homebrew-tap.md)
+- **TAP-5 [M] — versioned source URLs** — Formula URLs use a tagged-release tarball rather than a branch or HEAD. (standard-homebrew-tap.md)
   - _Remediation:_ diagnostic — Correct the tap formula or release evidence through the responsible maintainer; hosted conform does not infer release or package semantics.
-- **TAP-6 [M] — formula discoverability** — README.md lists every formula by name. (standards-homebrew-tap.md)
+- **TAP-6 [M] — formula discoverability** — README.md lists every formula by name. (standard-homebrew-tap.md)
   - _Remediation:_ diagnostic — Correct the tap formula or release evidence through the responsible maintainer; hosted conform does not infer release or package semantics.
-- **TAP-7 [M] — Homebrew audit** — Homebrew style and strict audit are explicit external diagnostics; this static audit never executes Homebrew. (standards-homebrew-tap.md)
+- **TAP-7 [M] — Homebrew audit** — Homebrew style and strict audit are explicit external diagnostics; this static audit never executes Homebrew. (standard-homebrew-tap.md)
   - _Remediation:_ diagnostic — Correct the tap formula or release evidence through the responsible maintainer; hosted conform does not infer release or package semantics.
-- **TAP-J1 [J] — tap naming** — The repository name follows Homebrew tap naming conventions. (standards-homebrew-tap.md)
+- **TAP-J1 [J] — tap naming** — The repository name follows Homebrew tap naming conventions. (standard-homebrew-tap.md)
   - _Evidence scope:_ The Homebrew tap, its formulae, release evidence, and CI configuration.
   - _Review prompt:_ Does the repository name follow the `homebrew-<name>` convention without an unsafe rename?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tap through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TAP-J2 [J] — meaningful formula test** — Each `test do` block exercises an installed binary rather than a placeholder. (standards-homebrew-tap.md)
+- **TAP-J2 [J] — meaningful formula test** — Each `test do` block exercises an installed binary rather than a placeholder. (standard-homebrew-tap.md)
   - _Evidence scope:_ The Homebrew tap, its formulae, release evidence, and CI configuration.
   - _Review prompt:_ Does each formula test run the installed binary on its basic job with a meaningful assertion, not only `--version` or `--help`?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tap through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TAP-J3 [J] — install correctness** — Each install block installs the artefact the tool actually ships. (standards-homebrew-tap.md)
+- **TAP-J3 [J] — install correctness** — Each install block installs the artefact the tool actually ships. (standard-homebrew-tap.md)
   - _Evidence scope:_ The Homebrew tap, its formulae, release evidence, and CI configuration.
   - _Review prompt:_ Does each `def install` block install the artefact the tool actually ships?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tap through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TAP-J4 [J] — source integrity** — Checksums and release tags correspond to the declared source archive. (standards-homebrew-tap.md)
+- **TAP-J4 [J] — source integrity** — Checksums and release tags correspond to the declared source archive. (standard-homebrew-tap.md)
   - _Evidence scope:_ The Homebrew tap, its formulae, release evidence, and CI configuration.
   - _Review prompt:_ Do each source URL, version, and checksum correspond to the intended release archive?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tap through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TAP-J5 [J] — fresh README entries** — README formula rows have accurate descriptions and source links. (standards-homebrew-tap.md)
+- **TAP-J5 [J] — fresh README entries** — README formula rows have accurate descriptions and source links. (standard-homebrew-tap.md)
   - _Evidence scope:_ The Homebrew tap, its formulae, release evidence, and CI configuration.
   - _Review prompt:_ Are README formula rows complete, current, and accurate?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the tap through its responsible maintainer, record a named gap, or record an explicit justified exclusion.
-- **TAP-J6 [J] — CI Homebrew coverage** — Tap CI runs `brew test-bot` when local Homebrew is unavailable. (standards-homebrew-tap.md)
+- **TAP-J6 [J] — CI Homebrew coverage** — Tap CI runs `brew test-bot` when local Homebrew is unavailable. (standard-homebrew-tap.md)
   - _Evidence scope:_ The Homebrew tap, its formulae, release evidence, and CI configuration.
   - _Review prompt:_ When local Homebrew is unavailable, does CI run the appropriate Homebrew test-bot checks?
   - _Outcomes:_ conforming; gap; exclusion
@@ -79,18 +79,18 @@ Formula layout, static source evidence, and judgment review of tap correctness.
 
 ## CONFIG — configuration
 
-→ [standard](standards-homebrew-tap.md)
+→ [standard](standard-homebrew-tap.md)
 
 The repository declares the keyless Homebrew-tap governance marker.
 
-- **CONFIG-1 [M] — identity marker** — `.ki.toml` contains a keyless `[skills.ki-repo-homebrew-tap]` marker with no unknown keys. (standards-homebrew-tap.md)
+- **CONFIG-1 [M] — identity marker** — `.ki.toml` contains a keyless `[skills.ki-repo-homebrew-tap]` marker with no unknown keys. (standard-homebrew-tap.md)
   - _Remediation:_ diagnostic — Declare the selected standard through the repository configuration owner.
 
 ## GATE — commit gate
 
-→ [standard](standards-homebrew-tap.md)
+→ [standard](standard-homebrew-tap.md)
 
 What a Homebrew tap commit gate runs.
 
-- **GATE-1 [M] — check-only commit gate** — Where a committed `.githooks/pre-commit` exists, it runs `ruby -wc` over the staged Ruby files and otherwise only fast check-only staged lints: no `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`. The full `ki repo audit` runs in CI. `ki-repo` HOOK-1 owns whether the hook exists and HOOK-4 its canonical text. (standards-homebrew-tap.md)
+- **GATE-1 [M] — check-only commit gate** — Where a committed `.githooks/pre-commit` exists, it runs `ruby -wc` over the staged Ruby files and otherwise only fast check-only staged lints: no `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`. The full `ki repo audit` runs in CI. `ki-repo` HOOK-1 owns whether the hook exists and HOOK-4 its canonical text. (standard-homebrew-tap.md)
   - _Remediation:_ diagnostic — Copy the canonical pre-commit from `assets/githooks/`, then rerun the audit.

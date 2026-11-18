@@ -1,21 +1,42 @@
+---
+ki-document-type: sources@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T05:05:00Z
+ki-refresh: external-spec · quarterly
+---
+
 # Sources — where the standard comes from
 
-**Refresh:** external-spec · quarterly
+## Contents
 
-The authoritative Homebrew sources behind the [Homebrew tap standard](standards-homebrew-tap.md) and [Audit Rubric](rubric.md). This skill **wraps an external standard**: Homebrew defines what a valid tap and formula are, and the in-house standard is only the tap-**shape** layer on top. Mode REFRESH reads this file, re-fetches each source, diffs it against the standard, rubric, and structured `scripts/rubric/items/index.ts`, then **bumps the `Last reviewed` dates** and refreshes the `## Last review` block below (what changed is recorded in the commit, not a changelog). This is the skill's memory of where the standard comes from—keep it current.
+- [1. Introduction](#1-introduction)
+- [2. Outside sources](#2-outside-sources)
+  - [2.1 Authoritative](#21-authoritative)
+  - [2.2 Advisory](#22-advisory)
+- [3. Decisions](#3-decisions)
+- [4. Last review](#4-last-review)
+
+## 1. Introduction
+
+The authoritative Homebrew sources behind the [Homebrew tap standard](standard-homebrew-tap.md) and [Audit Rubric](rubric.md). This skill **wraps an external standard**: Homebrew defines what a valid tap and formula are, and the in-house standard is only the tap-**shape** layer on top. Mode REFRESH reads this file, re-fetches each source, diffs it against the standard, rubric, and structured `scripts/rubric/items/index.ts`, then **bumps the `Last reviewed` dates** and refreshes the Last review block below (what changed is recorded in the commit, not a changelog). This is the skill's memory of where the standard comes from—keep it current.
 
 A finding is only **spec-driven** if it traces to the Authoritative table (Homebrew's own rules); everything else is this skill's tap-shape convention and should be labelled as such so it is not mistaken for a Homebrew requirement. The Advisory table below is weaker again: it informs guidance and judgment review, and never produces a mechanical finding.
 
-## Authoritative (Homebrew)
+[Back to contents](#contents)
 
-| Tag      | Source                                       | Governs | Last reviewed |
-| -------- | -------------------------------------------- | ------- | ------------- |
-| COOKBOOK | [Formula Cookbook][cookbook]                 | †       | 2026-11-17    |
-| AUDIT    | [`brew audit` command reference][audit]      | ‡       | 2026-11-15    |
-| STYLE    | [`brew style` / rubocop formula cops][style] | §       | 2026-11-15    |
-| ACCEPT   | [Acceptable Formulae][acceptable]            | ¶       | 2026-11-15    |
-| TAP      | [Taps (third-party repositories)][taps]      | ‖       | 2026-11-15    |
-| TESTBOT  | [BrewTestBot][testbot]                       | ※       | 2026-11-15    |
+## 2. Outside sources
+
+Homebrew's own documentation is authoritative; Standard Readme is advisory.
+
+### 2.1 Authoritative
+
+| Source | Governs | Last reviewed |
+| --- | --- | --- |
+| COOKBOOK — [Formula Cookbook][cookbook] | † | 2026-11-17 |
+| AUDIT — [`brew audit` command reference][audit] | ‡ | 2026-11-15 |
+| STYLE — [`brew style` / rubocop formula cops][style] | § | 2026-11-15 |
+| ACCEPT — [Acceptable Formulae][acceptable] | ¶ | 2026-11-15 |
+| TAP — [Taps (third-party repositories)][taps] | ‖ | 2026-11-15 |
+| TESTBOT — [BrewTestBot][testbot] | ※ | 2026-11-15 |
 
 † The required formula parts (`class < Formula`, `desc`, `homepage`, `url`, `sha256`, `license`, `install`, `test do`) and their idioms—the source of `TAP-2` and `TAP-3`.
 
@@ -29,15 +50,40 @@ A finding is only **spec-driven** if it traces to the Authoritative table (Homeb
 
 ※ The `brew test-bot` CI action a tap MAY run — the backstop when a local audit has no `brew`.
 
-## Advisory (non-normative)
+[cookbook]: https://docs.brew.sh/Formula-Cookbook
+[audit]: https://docs.brew.sh/Manpage#audit-options-formulacask-
+[style]: https://docs.brew.sh/Formula-Cookbook#audit-the-formula
+[acceptable]: https://docs.brew.sh/Acceptable-Formulae
+[taps]: https://docs.brew.sh/Taps
+[testbot]: https://docs.brew.sh/BrewTestBot
 
-| Tag    | Source                        | Governs | Last reviewed |
-| ------ | ----------------------------- | ------- | ------------- |
-| README | [Standard Readme][standardreadme] | ⁂       | 2026-11-15    |
+[Back to contents](#contents)
+
+### 2.2 Advisory
+
+Non-normative.
+
+| Source | Informs | Last reviewed |
+| --- | --- | --- |
+| README — [Standard Readme][standardreadme] | ⁂ | 2026-11-15 |
 
 ⁂ The section set a tap README follows (title, description, Install, Usage, Contributing, License) with the `## Formulae` table as an extra section — advisory shape guidance for EDUCATE, CONFORM, and `TAP-J5` only. It creates no mechanical check: generic README composition is `ki-authoring`'s and README presence is `ki-repo`'s.
 
-## Last review
+[standardreadme]: https://github.com/RichardLitt/standard-readme
+
+[Back to contents](#contents)
+
+## 3. Decisions
+
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| COMMIT-VS-CI a) | The tap's committed `pre-commit` runs only check-only staged lints and the tap audit runs in CI | 2026-10-26 | [4.8](standard-homebrew-tap.md#48-commit-gate) | taken |
+
+[Back to contents](#contents)
+
+## 4. Last review
+
+On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Homebrew tap standard](standard-homebrew-tap.md), formerly `standards-homebrew-tap.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format, the tags opening each Source cell, the decision the standard quotes in the Decisions table, and the open watch-items under Watching. SKILL.md, the REFRESH mode, the rubric items and the rubric follow the new name. No rule changed and no outside source was refreshed.
 
 Focused review, **2026-11-17**: the Cookbook's "Add a test to the formula" section re-read. It still calls `foo --version` and `foo --help` bad tests, though better than none, and asks for a test of the tool's basic function on a small input. The standard's `test do` row, the SKILL example, EDUCATE, the AUDIT judgment pass and `TAP-J2`'s judgment question now ask for that, with a `--version` or `--help` assertion as the weak floor, which closes that point of the 2026-11-15 watch. The reference tap's `mgit` formula still asserts on `--version` and `--help`, which `TAP-J2` now reports as weak; changing it is the tap's own work.
 
@@ -45,17 +91,11 @@ REFRESH last run **2026-11-15**. All seven sources were re-read and confirmed fo
 
 REFRESH last run **2026-07-09** (initial authoring). The standard was written against the live Homebrew documentation as of this date and against the reference tap `knowledgeislands/homebrew-tap` (`Formula/mgit.rb`). No prior review to diff against.
 
-**Open watch-items:**
+**Watching:**
 
 - **Homebrew is a live target.** The Cookbook and `brew audit`/`brew style` cops change without a versioned spec release — hence the `quarterly` cadence rather than `on-change`. Re-diff the required-fields list and the `desc` cops each cycle.
 - **`TAP-4` is a mirror.** The ≤ 80-character and no-leading-article rule is copied from `brew style` so the check runs without invoking `brew`. If that cop changes upstream, update the item in `scripts/rubric/items/tap.ts` or it will disagree with `brew`.
 - **No `head` / `bottle` guidance yet.** The standard covers stable versioned-tarball formulae only; if a KI tool ever ships bottles or a `head` spec, extend the standard and rubric.
 - **Standard Readme is advisory, added 2026-08-28.** It sits outside Homebrew's rules and must stay advisory here: if `ki-authoring` gains its own README convention set (KI-HARNESS-GOV-048), reconcile this entry with it rather than letting the two diverge.
 
-[cookbook]: https://docs.brew.sh/Formula-Cookbook
-[standardreadme]: https://github.com/RichardLitt/standard-readme
-[audit]: https://docs.brew.sh/Manpage#audit-options-formulacask-
-[style]: https://docs.brew.sh/Formula-Cookbook#audit-the-formula
-[acceptable]: https://docs.brew.sh/Acceptable-Formulae
-[taps]: https://docs.brew.sh/Taps
-[testbot]: https://docs.brew.sh/BrewTestBot
+[Back to contents](#contents)
