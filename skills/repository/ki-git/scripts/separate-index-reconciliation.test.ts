@@ -4,7 +4,7 @@ import { mkdtempSync, readFileSync, rmSync, unlinkSync, writeFileSync } from 'no
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 
-// Exercises the "After a separate-index commit" sequence in references/standards-git.md.
+// Exercises the "After a separate-index commit" sequence in references/standard-git.md.
 
 const roots: string[] = []
 

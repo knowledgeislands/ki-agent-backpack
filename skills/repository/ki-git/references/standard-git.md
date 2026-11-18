@@ -1,18 +1,82 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:45:00Z
+ki-status: in force
+---
+
 # Git standard
 
 ## Contents
 
-- [Scope and ownership](#scope-and-ownership)
-- [Commit messages](#commit-messages)
-- [Commit, publication, and integration authority](#commit-publication-and-integration-authority)
-- [Working-copy and review approaches](#working-copy-and-review-approaches)
-- [Safe Git hygiene](#safe-git-hygiene)
-  - [Checks before committing](#checks-before-committing)
-- [Clean-down state](#clean-down-state)
-- [Stale-lock guard](#stale-lock-guard)
-- [Runtime binding and enforcement](#runtime-binding-and-enforcement)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Scope and ownership](#41-scope-and-ownership)
+  - [4.2 Commit messages](#42-commit-messages)
+    - [4.2.1 Commit-message binding](#421-commit-message-binding)
+  - [4.3 Commit, publication, and integration authority](#43-commit-publication-and-integration-authority)
+  - [4.4 Working-copy and review approaches](#44-working-copy-and-review-approaches)
+    - [4.4.1 Local integration write boundary](#441-local-integration-write-boundary)
+    - [4.4.2 Worktree-run self-integration](#442-worktree-run-self-integration)
+    - [4.4.3 Worktree location](#443-worktree-location)
+    - [4.4.4 Finished worktree retirement](#444-finished-worktree-retirement)
+  - [4.5 Safe Git hygiene](#45-safe-git-hygiene)
+    - [4.5.1 Checks before committing](#451-checks-before-committing)
+  - [4.6 Clean-down state](#46-clean-down-state)
+  - [4.7 Stale-lock guard](#47-stale-lock-guard)
+  - [4.8 Runtime binding and enforcement](#48-runtime-binding-and-enforcement)
 
-## Scope and ownership
+## 1. Introduction
+
+The portable Knowledge Islands Git and commit policy: commit messages, commit, publication and integration authority, working-copy and review approaches, safe hygiene in a shared working tree, the clean-down state, the stale-lock guard, and how the policy is bound and enforced. The sources behind it are in [the sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+Git and commit practice in every Knowledge Islands repository.
+
+### 2.1 In scope
+
+- Commit messages and their binding to a commit gate.
+- Commit, publication and integration authority.
+- Working-copy and review approaches, local integration, and linked worktrees from location to retirement.
+- Safe hygiene in a shared working tree, and the checks before committing.
+- The clean-down criteria and the stale-lock guard's semantic contract.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- Each repository's GitHub configuration and branch-protection choice, and the committed hooks' existence, binding and frame: `ki-repo`.
+- The package-backed Commitlint dependencies, hook content and deterministic audit: `ki-engineering`.
+- Hook payload sources under `hooks/`: the harness; runtime-specific Claude Code settings registration: `ki-repo-dotfiles-chezmoi`.
+- The durable packet for one high-risk task-specific handoff: `ki-delegation`.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Working approach** | One of `single-working-copy-on-main`, `single-working-copy-on-branch-with-pr`, `worktrees-with-pr` and `worktrees-with-local-integration`, selected from repository policy, the review boundary and concurrency. **Standard:** this one, [4.4](#44-working-copy-and-review-approaches) |
+| **Worktree-run self-integration** | A background run's standing authority to fast-forward its own linked-worktree branch into the local primary checkout's `main` once its gates pass. **Standard:** this one, [4.4.2](#442-worktree-run-self-integration) |
+| **Touched-path set** | The thread-local set of every file a thread may have changed, a file-level safety boundary. **Standard:** this one, [4.5](#45-safe-git-hygiene) |
+| **Contested path** | A path that was pre-existing, appears in another actor's touched-path set, or holds changes the current thread cannot fully account for. **Standard:** this one, [4.5](#45-safe-git-hygiene) |
+| **Write window** | The short, serialised Git window that uses the shared index or advances shared `HEAD`. **Standard:** this one, [4.5](#45-safe-git-hygiene) |
+| **Clean-down state** | A repository at rest carrying no Git leftovers that someone must later reconstruct, judged by fixed criteria. **Standard:** this one, [4.6](#46-clean-down-state) |
+| **Stale-lock guard** | `hooks/git-lock-check/git-lock-check.sh`, the best-effort recovery guard for locks left by interrupted commands. **Standard:** this one, [4.7](#47-stale-lock-guard) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 Scope and ownership
 
 `ki-git` is the sole owner of portable Knowledge Islands Git and commit policy.
 
@@ -24,7 +88,9 @@ The harness owns hook payload sources under `hooks/`, and `ki-repo-dotfiles-chez
 
 Neither owner transfers Git policy or hook-install authority to `ki-git`.
 
-## Commit messages
+[Back to contents](#contents)
+
+### 4.2 Commit messages
 
 Use Conventional Commit subject lines in the form `type(scope): summary`, or `type: summary` when a scope does not clarify the change.
 
@@ -36,7 +102,9 @@ Choose the narrowest type that describes the committed unit rather than combinin
 
 Historic messages are not rewritten merely to conform to this current convention.
 
-### Commit-message binding
+[Back to contents](#contents)
+
+#### 4.2.1 Commit-message binding
 
 Every Knowledge Islands repository with a commit gate binds the deterministic portion of this policy through a committed `.githooks/commit-msg`, the `ki-repo` canonical hook for its shape: `commitlint --edit "$1"` where a package exists, under the `ki-engineering` contract, and `ki git check-message "$1"` where none does. A shape that declares no hook, such as the chezmoi dotfiles source, relies on its manual gate instead. A gate that cannot run refuses the commit, and the remedy is the install it names, never `--no-verify`. The canonical configuration permits exactly the six types above, requires a lowercase kebab-case scope when present, requires a non-empty subject, and rejects a terminal full stop. Commitlint retains its conventional default treatment of Git-generated merge and revert messages.
 
@@ -44,13 +112,15 @@ The binding does not attempt to decide whether a summary is genuinely imperative
 
 Other skills MAY define a narrowly-scoped trailer block as durable evidence for their own concern. For example, `ki-engineering` owns the `KI-Consistency-Review-*` block for an advisory code-consistency review. That block is portable commit metadata, not a new Git-hygiene policy: `ki-git` neither interprets its engineering outcome nor requires it on ordinary commits.
 
-## Commit, publication, and integration authority
+[Back to contents](#contents)
+
+### 4.3 Commit, publication, and integration authority
 
 A local commit preserves one verified unit of authorised repository work. Ordinary interactive work should commit that unit in the primary checkout once it is verified, rather than leaving it dirty for a later instruction. A repository may withhold that default in its own instructions, but silence is not a withholding: an actor that has finished and verified a unit of requested work already holds the authority to commit it locally, and a repository that wants commits gated says so. A branch or linked-worktree delivery may commit only to its own branch unless separate integration authority has been granted.
 
 A request to change, finish, or commit work does not imply authority to push. Pushing publishes the current ref and can carry commits made by other writers, trigger CI, or deploy. It requires explicit current-user instruction or a standing repository workflow that names the actor and scope.
 
-Merging or fast-forwarding a delivery into the primary branch is a separate integration decision. A worker may prepare and commit a reviewable branch without receiving authority to merge it. Autonomy, assignment, task completion, or ownership of a worktree does not grant push or integration authority; the one standing exception is a background run's [fast-forward of its own worktree branch](#worktree-run-self-integration). Owner reports, run reports and banners omit routine push state under `ki-coordination`; if a run's own unit could not be published because its push failed, the report names the affected unit and reason.
+Merging or fast-forwarding a delivery into the primary branch is a separate integration decision. A worker may prepare and commit a reviewable branch without receiving authority to merge it. Autonomy, assignment, task completion, or ownership of a worktree does not grant push or integration authority; the one standing exception is a background run's [fast-forward of its own worktree branch](#442-worktree-run-self-integration). Owner reports, run reports and banners omit routine push state under `ki-coordination`; if a run's own unit could not be published because its push failed, the report names the affected unit and reason.
 
 An unattended task-branch workflow may grant commit, non-force push of only the recorded task branch, and creation or update of its draft pull request as one bounded standing authority. That grant does not cover the primary branch, tags, releases, deployment, or remote-branch deletion.
 
@@ -58,7 +128,9 @@ Pull-request review, approval, merge, and auto-merge are separate capabilities. 
 
 An authorised integration agent may merge only an eligible delivery within its grant after required evidence passes; it may not bypass protection or widen the grant because a check is unavailable. Use a durable `ki-delegation` packet when one high-risk task-specific handoff needs locked authority and escalation evidence; ordinary standing integration authority belongs in repository policy.
 
-## Working-copy and review approaches
+[Back to contents](#contents)
+
+### 4.4 Working-copy and review approaches
 
 `main` is open by default in Knowledge Islands repositories, and ordinary interactive work uses the repository's primary checkout rather than creating a linked worktree. A repository instruction, explicit user request, or unattended coordination policy may require a branch or worktree boundary.
 
@@ -73,7 +145,9 @@ Do not invent a branch, pull-request, or worktree requirement merely because sev
 
 A repository whose skills, hooks or rubrics run in other repositories' gates, such as the KI Agent Backpack, or whose committed code every session runs, such as `tools-ki`, which builds the `ki` command, takes every edit off its shared primary checkout: in a linked worktree on its own branch, integrated into `main` by fast-forward only once its tests and audit pass, so that the `main` other repositories and sessions load stays green and a half-made edit never breaks `ki` for everyone. Kris agreed GREEN-MAIN as recommended on 2026-10-20, "GREEN-MAIN - agreed as recommended", and took its extension to `tools-ki` with the worktree fixes the same day. The `ki-delegation` [green baseline](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#48-coordination) rule stops the line when that `main` is red.
 
-### Local integration write boundary
+[Back to contents](#contents)
+
+#### 4.4.1 Local integration write boundary
 
 Identify an integration destination by repository, host, designated checkout and branch, not by the branch name alone. For laptop-local operation, successful delivery places the reviewed result in the human's primary checkout on local `main` and in its working files. Verify both; advancing a ref in another clone or publishing a remote ref is a different action. A remote worker's own `main` remains that worker's local branch unless the repository explicitly designates it as the delivery destination.
 
@@ -83,19 +157,25 @@ Before integration, establish exclusive ownership of the repository's short Git 
 
 Verify the proposed combined result against the current destination before advancing it. A clean merge that preserves the reviewed change may use the existing grant; conflict resolution changes the candidate and requires renewed verification and review. Advance only the authorised local destination using the granted merge method, record the resulting commit and integration evidence, then release the write window. Never reset, force-update or stash another actor's state to make a merge proceed.
 
-### Worktree-run self-integration
+[Back to contents](#contents)
 
-A background run that works in a linked worktree holds standing authority to fast-forward its own branch into the local primary checkout's `main` once its gates pass on the rebased range; this is the default `worktrees-with-local-integration` grant for runs, and the run is its own integration owner. Its last step before it reports finished is integrate, verify and dispose: rebase its branch onto local `main` without a fetch, run the repository's gates on the rebased range, take the [write boundary](#local-integration-write-boundary) so that one writer at a time advances the shared checkout, `git merge --ff-only` into `main` there, confirm its commits are reachable from `main`, then remove the worktree and delete the branch with `git branch -d`.
+#### 4.4.2 Worktree-run self-integration
+
+A background run that works in a linked worktree holds standing authority to fast-forward its own branch into the local primary checkout's `main` once its gates pass on the rebased range; this is the default `worktrees-with-local-integration` grant for runs, and the run is its own integration owner. Its last step before it reports finished is integrate, verify and dispose: rebase its branch onto local `main` without a fetch, run the repository's gates on the rebased range, take the [write boundary](#441-local-integration-write-boundary) so that one writer at a time advances the shared checkout, `git merge --ff-only` into `main` there, confirm its commits are reachable from `main`, then remove the worktree and delete the branch with `git branch -d`.
 
 The grant is fast-forward only and local only. It carries no push, no merge commit, no conflict resolution in the primary checkout and no acceptance: independent review of the delivered commits still comes before any work record is accepted. A run that cannot fast-forward cleanly, because of a conflict, a red gate or a write window another writer holds, keeps its worktree and branch and reports it stranded, with the reason, as a blocking query, never as a quiet finish. Kris took WORKTREE-INTEGRATE a) on 2026-10-20, "do whatever that needs to be", whose option read: "Yes, under F1's conditions; a run that cannot fast-forward cleanly keeps its worktree and reports it stranded."
 
-### Worktree location
+[Back to contents](#contents)
+
+#### 4.4.3 Worktree location
 
 A linked worktree lives under one explicit, runtime-owned root outside the repository's primary working tree and outside its Git common directory. The root must not be discoverable as another estate or workspace member, and its repository and task identity must prevent path collisions. Do not use an ad hoc sibling inside a normal workspace tree, a repository-local untracked directory, or a path under `.git` for working files.
 
 The coordinator that creates a worktree owns its location, branch association, and retirement evidence. A portable policy names the containment properties rather than one user's absolute path; an XDG state/data root or a coordinator-owned application-state root is an appropriate implementation.
 
-### Finished worktree retirement
+[Back to contents](#contents)
+
+#### 4.4.4 Finished worktree retirement
 
 A linked worktree is temporary delivery state, not a durable archive. When its delivery finishes, inspect its branch, working-tree status, commits not reachable from the intended integration branch, and any diff against that branch. Then choose one explicit outcome:
 
@@ -104,7 +184,9 @@ A linked worktree is temporary delivery state, not a durable archive. When its d
 
 Do not delete a linked worktree merely because it is old, dirty, or unexpected; those are inspection signals, not evidence that its changes are disposable. Do not leave a finished worktree parked indefinitely after its delivery has integrated or been abandoned. Delete its local branch only after proving the branch tip is reachable from the intended integration branch or that the branches have no remaining diff. An upstream branch lagging behind the local integration branch is not evidence the local delivery remains unmerged. After physical removal, run the repository-safe worktree prune operation and confirm `git worktree list --porcelain` contains only intentionally active worktrees.
 
-## Safe Git hygiene
+[Back to contents](#contents)
+
+### 4.5 Safe Git hygiene
 
 Treat every working tree as potentially shared by other human and agent threads, even when no concurrent actor is currently visible. Inspect `git status --short` and record the current `HEAD` before editing.
 
@@ -142,11 +224,15 @@ Separate pathspecs with `--` whenever a path begins with `-`, because Git parses
 
 This affects every KI-conformant repository, not an unusual corner case: the repo standard scaffolds a top-level `-/` working area (`ki-repo` WORK-1), so any `add`, `restore`, `checkout`, `diff`, `log`, or `rm` naming a path inside it needs the separator.
 
-### Checks before committing
+[Back to contents](#contents)
+
+#### 4.5.1 Checks before committing
 
 Every session and run, a coordinator's own commits and every change it records in another work package included, runs the repository's own checks on each file it is about to commit before committing it, so that the commit hook finds nothing to refuse. For Markdown that is `rumdl fmt` then `rumdl check` on the file; other files take the formatter and linter the repository's hook or `lint-staged` configuration names for them. A refused commit is a failure to report with its cause, never a step to retry around and never a reason for `--no-verify`. Before pushing, confirm with `git status --short -- <path>...` that each committed path is clean, so that no file a refused commit left modified or staged travels unnoticed or blocks the next pull. Kris set this on 6 November 2026, after commits had been made that their hooks then failed: "It's really important that we make sure that things do pass the linting before we push them."
 
-## Clean-down state
+[Back to contents](#contents)
+
+### 4.6 Clean-down state
 
 A repository at rest carries no Git leftovers that someone must later reconstruct. Each criterion below is decided by a named read-only command and a fixed rule, so an executor can report it without judgment; deciding what to do about a finding stays with the repository's owner. The rubric's CLEAN family states the same criteria as mechanical checks over the read-only facts `mgit overview --json` publishes for each repository. The `ki` host composes those facts and runs the checks under `ki repo audit` and `conform`; this skill runs no Git command. A criterion whose facts the host did not supply is unassessed, never passed.
 
@@ -166,7 +252,9 @@ The default branch is the remote's `HEAD` as `git symbolic-ref refs/remotes/orig
 
 Clean-down never destroys work on inference. Deleting a local branch is proposable only once its tip is reachable from the default branch or `git cherry` shows no remaining patch, and uses `git branch -d`, never `-D`. Deleting a remote branch, closing a pull request, dropping a stash, removing a worktree, and deleting an untracked file each require the owner's explicit approval naming that item, and the approval covers only the items it names. A finding in a working tree another thread is using, or on a branch an open pull request uses, is reported and left untouched.
 
-## Stale-lock guard
+[Back to contents](#contents)
+
+### 4.7 Stale-lock guard
 
 `hooks/git-lock-check/git-lock-check.sh` is a best-effort recovery guard for a trusted user account, not a general cleanup command.
 
@@ -178,12 +266,16 @@ The guard recovers locks left by interrupted commands; it never authorises inter
 
 The adjacent run test proves this semantic contract.
 
-## Runtime binding and enforcement
+[Back to contents](#contents)
+
+### 4.8 Runtime binding and enforcement
 
 The harness publishes hook payload sources; `ki-repo-dotfiles-chezmoi` may register a selected compatible payload in Claude Code settings.
 
 `ki-git` neither installs hooks nor writes runtime settings.
 
-The native rubric exposes the commit, branch, hygiene and lock families as **judgment-only** review prompts. A rendered audit therefore leaves them unassessed until a reviewer records an outcome; it must never be interpreted as a Git-state pass. Gather the criterion's focused read-only evidence first: current and pre-edit status, expected `HEAD`, the thread's touched-path set, touched and staged diffs, and any contested paths for hygiene; current branch, worktree, protection, concurrency, and review evidence for the working approach; proposed diff and message for commit shape; and physical-worktree/process/file-type evidence for a lock candidate. The clean-down family is mechanical over the host-supplied `mgit overview` facts, as [Clean-down state](#clean-down-state) sets. The rubric does not execute Git commands or a private wrapper on the reviewer's behalf.
+The native rubric exposes the commit, branch, hygiene and lock families as **judgment-only** review prompts. A rendered audit therefore leaves them unassessed until a reviewer records an outcome; it must never be interpreted as a Git-state pass. Gather the criterion's focused read-only evidence first: current and pre-edit status, expected `HEAD`, the thread's touched-path set, touched and staged diffs, and any contested paths for hygiene; current branch, worktree, protection, concurrency, and review evidence for the working approach; proposed diff and message for commit shape; and physical-worktree/process/file-type evidence for a lock candidate. The clean-down family is mechanical over the host-supplied `mgit overview` facts, as [Clean-down state](#46-clean-down-state) sets. The rubric does not execute Git commands or a private wrapper on the reviewer's behalf.
 
 Package-backed repositories have deterministic local commit-message enforcement through `ki-engineering`; non-package repositories retain the judgment-only contract. Any broader enforcement must remain limited to deterministic rules explicitly added to this standard rather than moving message judgment into a private Git executor.
+
+[Back to contents](#contents)

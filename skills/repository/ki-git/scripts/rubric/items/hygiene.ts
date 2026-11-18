@@ -6,7 +6,7 @@ const HYGIENE_1: RubricItem<GitRubricContext> = {
   title: 'Git working hygiene preserves unrelated state',
   description:
     'Git work preserves a potentially shared working tree through thread-local touched paths, explicit staging, contested-path coordination, and serialized commit windows.',
-  sources: ['standards-git.md'],
+  sources: ['standard-git.md'],
   judgment: {
     scope:
       'The pre-edit and current working tree (`git status --short`), expected `HEAD`, the thread-local touched-path set, touched, staged and actual committed diffs, contested paths, and Git write operations for the selected work.',
@@ -28,7 +28,7 @@ const HYGIENE_2: RubricItem<GitRubricContext> = {
   title: 'amend rewrites only this session’s own unpushed commit',
   description:
     'An amend in a shared working tree happens inside the serialized write window and only after confirming `HEAD` is the committing session’s own unpushed commit; otherwise the change is a new commit.',
-  sources: ['standards-git.md#safe-git-hygiene'],
+  sources: ['standard-git.md#45-safe-git-hygiene'],
   judgment: {
     scope:
       'Each `git commit --amend` or other `HEAD` rewrite, the commit identity this session recorded when it committed, `git rev-parse HEAD` immediately before the rewrite, `git branch -r --contains HEAD`, and the write window held.',
@@ -45,7 +45,7 @@ const HYGIENE_3: RubricItem<GitRubricContext> = {
   title: 'no autostash setting stashes a shared tree',
   description:
     'No `pull.autostash` or `rebase.autoStash` setting of `true` lets a pull or rebase stash another actor’s uncommitted work, which the never-stash rule forbids.',
-  sources: ['standards-git.md#safe-git-hygiene'],
+  sources: ['standard-git.md#45-safe-git-hygiene'],
   judgment: {
     scope:
       'The effective `git config --show-origin --get-all pull.autostash` and `git config --show-origin --get-all rebase.autoStash` values at every configuration level, and the pull commands the workflow uses.',
@@ -61,7 +61,7 @@ export const HYGIENE: RubricFamily<GitRubricContext, GitRubricContext> = {
   code: 'HYGIENE',
   title: 'Git working hygiene',
   description: 'Git operations preserve shared worktree state and recoverability.',
-  standard: 'standards-git.md',
+  standard: 'standard-git.md',
   selectContext: (context) => context,
   items: [HYGIENE_1, HYGIENE_2, HYGIENE_3]
 }

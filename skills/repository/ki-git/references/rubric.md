@@ -30,16 +30,16 @@ The tracked readable rubric is the exact publication of the structured catalogue
 
 ## COMMIT — commit shape
 
-→ [standard](standards-git.md)
+→ [standard](standard-git.md)
 
 Commit messages express one completed unit through the portable convention.
 
-- **COMMIT-1 [J] — commit shape expresses the completed unit** — A commit uses the portable Conventional Commit shape and accurately represents one completed unit of work. (standards-git.md)
+- **COMMIT-1 [J] — commit shape expresses the completed unit** — A commit uses the portable Conventional Commit shape and accurately represents one completed unit of work. (standard-git.md)
   - _Evidence scope:_ Each proposed commit, its `git diff --cached` (or explicit patch) evidence, and its proposed subject line.
   - _Review prompt:_ After inspecting the proposed diff and subject line, assess whether the commit type, optional scope, and imperative summary accurately describe one completed unit, using the established vocabulary without combining unrelated changes.
   - _Outcomes:_ conforming; split required; message revision required
   - _Conforming guidance:_ Split unrelated changes into separately reviewable commits, then revise the Conventional Commit type, scope, or imperative summary to describe the completed unit.
-- **COMMIT-2 [J] — publication and integration retain separate authority** — Commits, task-branch publication, pull-request review, approval, merge, and primary-branch integration use explicit separable authority. (standards-git.md#commit-publication-and-integration-authority)
+- **COMMIT-2 [J] — publication and integration retain separate authority** — Commits, task-branch publication, pull-request review, approval, merge, and primary-branch integration use explicit separable authority. (standard-git.md#43-commit-publication-and-integration-authority)
   - _Evidence scope:_ The requested change, repository instructions, stable actor identity, selected branch or worktree, proposed commit, push target, pull-request action, integration target, required gates, and any explicit or standing authority.
   - _Review prompt:_ Does the actor have independently evidenced authority for each push, review, approval, merge, or auto-merge action, scoped to the named repository, refs, work domain, gates, and lifetime, without inferring it from assignment, autonomy, credentials, or task completion? A local commit of a verified unit on the authorised branch is the ordinary default and needs no separate grant; withholding it requires a repository instruction that says so.
   - _Outcomes:_ conforming; commit authority required; push authority required; review authority required; integration authority required; authority scope incomplete
@@ -47,21 +47,21 @@ Commit messages express one completed unit through the portable convention.
 
 ## BRANCH — working approach
 
-→ [standard](standards-git.md)
+→ [standard](standard-git.md)
 
 Working-copy topology and review flow follow local protection, review, and concurrency needs.
 
-- **BRANCH-1 [J] — working approach matches the delivery boundary** — Primary-checkout, branch-with-PR, worktree-with-PR, and local worktree integration approaches follow repository policy, review needs, concurrency, and unattended isolation. (standards-git.md#working-copy-and-review-approaches, standards-git.md#local-integration-write-boundary)
+- **BRANCH-1 [J] — working approach matches the delivery boundary** — Primary-checkout, branch-with-PR, worktree-with-PR, and local worktree integration approaches follow repository policy, review needs, concurrency, and unattended isolation. (standard-git.md#44-working-copy-and-review-approaches, standard-git.md#441-local-integration-write-boundary)
   - _Evidence scope:_ The selected repository, requested change, current `git branch --show-current` and `git worktree list` evidence, protection policy, concurrency, and review boundary.
   - _Review prompt:_ Does the selected approach satisfy isolation and review needs, and does local worktree integration use an authorised owner and serialised destination write without imposing remote publication?
   - _Outcomes:_ conforming; use single-working-copy-on-main; use single-working-copy-on-branch-with-pr; use worktrees-with-pr; use worktrees-with-local-integration
   - _Conforming guidance:_ Use the primary checkout for ordinary interactive work. Isolate unattended implementation. When delivery is local-only, independently review the candidate and integrate through the authorised serialised write boundary without requiring a push or pull request.
-- **BRANCH-2 [J] — finished worktrees are integrated or disposed** — Finished linked worktrees are inspected, deliberately integrated or disposed, removed, and pruned without losing unmerged work. (standards-git.md)
+- **BRANCH-2 [J] — finished worktrees are integrated or disposed** — Finished linked worktrees are inspected, deliberately integrated or disposed, removed, and pruned without losing unmerged work. (standard-git.md)
   - _Evidence scope:_ Every linked worktree in `git worktree list --porcelain`, its branch, `git status --short`, commits not reachable from the intended integration branch, branch diff, and delivery authority.
   - _Review prompt:_ For each finished linked worktree, is its work deliberately integrated or explicitly disposed before the worktree and any proven-redundant local branch are removed?
   - _Outcomes:_ conforming; integrate worktree; dispose worktree; ownership decision required
   - _Conforming guidance:_ Inspect before removal. Integrate coherent authorised work; dispose only confirmed unwanted work. Delete a branch only after proving reachability or no remaining diff, prune stale metadata, and retain only intentionally active worktrees.
-- **BRANCH-3 [J] — linked worktrees use a safe runtime-owned root** — Linked working files stay outside the primary working tree and Git common directory under a collision-safe runtime-owned root. (standards-git.md#worktree-location)
+- **BRANCH-3 [J] — linked worktrees use a safe runtime-owned root** — Linked working files stay outside the primary working tree and Git common directory under a collision-safe runtime-owned root. (standard-git.md#443-worktree-location)
   - _Evidence scope:_ Every linked worktree path, the repository primary working tree, Git common directory, estate discovery roots, and the runtime that owns creation and retirement.
   - _Review prompt:_ Is each linked worktree contained under an explicit runtime-owned root outside the repository and its Git common directory, excluded from estate discovery, and uniquely keyed to avoid collisions?
   - _Outcomes:_ conforming; relocate worktree root; define runtime ownership; collision risk
@@ -69,21 +69,21 @@ Working-copy topology and review flow follow local protection, review, and concu
 
 ## HYGIENE — Git working hygiene
 
-→ [standard](standards-git.md)
+→ [standard](standard-git.md)
 
 Git operations preserve shared worktree state and recoverability.
 
-- **HYGIENE-1 [J] — Git working hygiene preserves unrelated state** — Git work preserves a potentially shared working tree through thread-local touched paths, explicit staging, contested-path coordination, and serialized commit windows. (standards-git.md)
+- **HYGIENE-1 [J] — Git working hygiene preserves unrelated state** — Git work preserves a potentially shared working tree through thread-local touched paths, explicit staging, contested-path coordination, and serialized commit windows. (standard-git.md)
   - _Evidence scope:_ The pre-edit and current working tree (`git status --short`), expected `HEAD`, the thread-local touched-path set, touched, staged and actual committed diffs, contested paths, and Git write operations for the selected work.
   - _Review prompt:_ After recording the pre-edit state and expected `HEAD`, assess whether the thread tracked every path it may have changed, withheld pre-existing or overlapping paths for coordination, staged only enumerated uncontested paths, preserved unrelated staged and unstaged work, serialised the commit window that advances shared `HEAD`, and inspected actual committed paths after hooks.
   - _Outcomes:_ conforming; state inspection required; staging correction required; operation coordination required
   - _Conforming guidance:_ Maintain a thread-local touched-path set, re-check status, `HEAD`, touched diffs, and staged paths before committing, and use `git add -- <path>...` only for enumerated uncontested paths. Inspect the actual commit after hooks and coordinate recovery of unrelated captured changes before rebuilding a commit this session has not pushed. Never use `git add -A`, `git add .`, `git add -u`, `git commit -a`, `git commit -am`, or broad wildcard pathspecs in a shared tree. Leave contested and unrelated work untouched, and serialize only the shared-index and commit window.
-- **HYGIENE-2 [J] — amend rewrites only this session’s own unpushed commit** — An amend in a shared working tree happens inside the serialized write window and only after confirming `HEAD` is the committing session’s own unpushed commit; otherwise the change is a new commit. (standards-git.md#safe-git-hygiene)
+- **HYGIENE-2 [J] — amend rewrites only this session’s own unpushed commit** — An amend in a shared working tree happens inside the serialized write window and only after confirming `HEAD` is the committing session’s own unpushed commit; otherwise the change is a new commit. (standard-git.md#45-safe-git-hygiene)
   - _Evidence scope:_ Each `git commit --amend` or other `HEAD` rewrite, the commit identity this session recorded when it committed, `git rev-parse HEAD` immediately before the rewrite, `git branch -r --contains HEAD`, and the write window held.
   - _Review prompt:_ Before each amend, did the session hold the serialized write window and confirm that `HEAD` was still its own recorded commit and on no remote branch, making a new commit instead whenever either check failed?
   - _Outcomes:_ conforming; new commit required; rewritten commit recovery required
   - _Conforming guidance:_ Inside the write window, compare `HEAD` with the commit this session recorded and check `git branch -r --contains HEAD`; amend only when both show its own unpushed commit, and otherwise make a new commit. Report a rewritten commit of another actor for its owner to recover rather than rewriting history again.
-- **HYGIENE-3 [J] — no autostash setting stashes a shared tree** — No `pull.autostash` or `rebase.autoStash` setting of `true` lets a pull or rebase stash another actor’s uncommitted work, which the never-stash rule forbids. (standards-git.md#safe-git-hygiene)
+- **HYGIENE-3 [J] — no autostash setting stashes a shared tree** — No `pull.autostash` or `rebase.autoStash` setting of `true` lets a pull or rebase stash another actor’s uncommitted work, which the never-stash rule forbids. (standard-git.md#45-safe-git-hygiene)
   - _Evidence scope:_ The effective `git config --show-origin --get-all pull.autostash` and `git config --show-origin --get-all rebase.autoStash` values at every configuration level, and the pull commands the workflow uses.
   - _Review prompt:_ Is either autostash setting `true` at any configuration level, or does any pull or rebase in a shared working tree run without overriding it?
   - _Outcomes:_ conforming; autostash setting conflicts; pull override required
@@ -91,46 +91,46 @@ Git operations preserve shared worktree state and recoverability.
 
 ## CLEAN — clean-down state
 
-→ [standard](standards-git.md)
+→ [standard](standard-git.md)
 
 A repository at rest carries no Git leftovers, each criterion decided by a fixed rule over the read-only Git facts the host composes from `mgit overview --json`.
 
-- **CLEAN-1 [J] — open pull requests are known and owned** — Every open pull request is listed with its branch, author, draft state, and age, so none lingers unowned. It stays a judgment item while its only evidence is the provider’s network pull-request list, which `mgit overview` does not report and the offline audit cannot read. (standards-git.md#clean-down-state)
+- **CLEAN-1 [J] — open pull requests are known and owned** — Every open pull request is listed with its branch, author, draft state, and age, so none lingers unowned. It stays a judgment item while its only evidence is the provider’s network pull-request list, which `mgit overview` does not report and the offline audit cannot read. (standard-git.md#46-clean-down-state)
   - _Evidence scope:_ The provider’s open pull-request list, such as `gh pr list --state open`, with each pull request’s branch, author, draft state, and creation date.
   - _Review prompt:_ Is there any open pull request? Each one is a finding, reported with its branch, author, draft state, and age, for its owner to merge, update, or close.
   - _Outcomes:_ conforming; open pull request; provider evidence unavailable
   - _Conforming guidance:_ Report each open pull request for its owner to merge, update, or close. Never delete a remote branch, close a pull request, drop a stash, remove a worktree, or delete an untracked file without the owner’s explicit approval naming that item; report a finding in a working tree or branch another thread is using and leave it untouched.
-- **CLEAN-2 [M + J] — merged branches are retired** — No local or remote branch other than the default and the current branch, automation branches included, carries work already in the default branch. Each branch `mgit overview` reports as merged or patch-equivalent is a finding. (standards-git.md#clean-down-state)
+- **CLEAN-2 [M + J] — merged branches are retired** — No local or remote branch other than the default and the current branch, automation branches included, carries work already in the default branch. Each branch `mgit overview` reports as merged or patch-equivalent is a finding. (standard-git.md#46-clean-down-state)
   - _Remediation:_ guarded — Propose `git branch -d` for a proven-merged local branch, never `-D`. Never delete a remote branch, close a pull request, drop a stash, remove a worktree, or delete an untracked file without the owner’s explicit approval naming that item; report a finding in a working tree or branch another thread is using and leave it untouched.
   - _Evidence scope:_ The host-supplied `mgit overview --json` record for this repository, its `obsolete_branches` merged and equivalent reasons and last-fetch age, decided as `git branch --merged <default>`, `git branch -r --merged origin/<default>`, and `git cherry <default> <branch>` decide them, over local and remote-tracking refs including `automation/*`, `dependabot/*`, and `renovate/*`.
   - _Review prompt:_ For each merged branch found, should its owner retire it now, and does an open pull request or another thread still use it?
   - _Outcomes:_ retire; leave in use; owner decision required
   - _Conforming guidance:_ Propose `git branch -d` for a proven-merged local branch, never `-D`. Never delete a remote branch, close a pull request, drop a stash, remove a worktree, or delete an untracked file without the owner’s explicit approval naming that item; report a finding in a working tree or branch another thread is using and leave it untouched.
-- **CLEAN-3 [M + J] — unmerged branches are not stale** — No unmerged local or remote branch, automation branches included, has a tip older than the 30-day stale threshold. Each branch `mgit overview` reports as stale at that threshold is a finding. (standards-git.md#clean-down-state)
+- **CLEAN-3 [M + J] — unmerged branches are not stale** — No unmerged local or remote branch, automation branches included, has a tip older than the 30-day stale threshold. Each branch `mgit overview` reports as stale at that threshold is a finding. (standard-git.md#46-clean-down-state)
   - _Remediation:_ guarded — Report each stale branch for its owner to resume, merge, or abandon; an unmerged branch is never deleted on age alone. Never delete a remote branch, close a pull request, drop a stash, remove a worktree, or delete an untracked file without the owner’s explicit approval naming that item; report a finding in a working tree or branch another thread is using and leave it untouched.
   - _Evidence scope:_ The host-supplied `mgit overview --json` record for this repository, its `stale_days`, its `obsolete_branches` stale reasons with their ages, and its last-fetch age, decided as `git for-each-ref --format='%(refname) %(committerdate:unix)' refs/heads refs/remotes` and the merged set from CLEAN-2 decide them.
   - _Review prompt:_ For each stale branch found, should its owner resume, merge, or abandon it, and does an open pull request use it?
   - _Outcomes:_ resume; merge; abandon with approval; owner decision required
   - _Conforming guidance:_ Report each stale branch for its owner to resume, merge, or abandon; an unmerged branch is never deleted on age alone. Never delete a remote branch, close a pull request, drop a stash, remove a worktree, or delete an untracked file without the owner’s explicit approval naming that item; report a finding in a working tree or branch another thread is using and leave it untouched.
-- **CLEAN-4 [M + J] — local branches are level with upstream** — No local branch is ahead of or behind its upstream, tracks a gone upstream, or holds commits on no remote without an upstream. The checked-out branch’s ahead, behind, and gone state, and each other local branch `mgit overview` reports as gone, are findings; a checked-out branch with no upstream is reported as neutral context because the overview does not show whether it holds unpublished commits. (standards-git.md#clean-down-state)
+- **CLEAN-4 [M + J] — local branches are level with upstream** — No local branch is ahead of or behind its upstream, tracks a gone upstream, or holds commits on no remote without an upstream. The checked-out branch’s ahead, behind, and gone state, and each other local branch `mgit overview` reports as gone, are findings; a checked-out branch with no upstream is reported as neutral context because the overview does not show whether it holds unpublished commits. (standard-git.md#46-clean-down-state)
   - _Remediation:_ guarded — Report each finding for its owner to push, pull, or retire under the repository’s publication authority; levelling never force-pushes, rebases another actor’s commits, or resets shared `main`.
   - _Evidence scope:_ The host-supplied `mgit overview --json` record for this repository, its `upstream` state with ahead and behind counts, its `obsolete_branches` gone reasons, and its last-fetch age, decided as `git for-each-ref --format='%(refname:short) %(upstream:short) %(upstream:track)' refs/heads` and `git log --branches --not --remotes` decide them.
   - _Review prompt:_ For each branch found, should its owner push, pull, or retire it under the repository’s publication authority? Also check any local branch other than the checked-out one for ahead, behind, or unpublished commits, which the overview does not yet report.
   - _Outcomes:_ push; pull; retire; owner decision required
   - _Conforming guidance:_ Report each finding for its owner to push, pull, or retire under the repository’s publication authority; levelling never force-pushes, rebases another actor’s commits, or resets shared `main`.
-- **CLEAN-5 [M + J] — no stash entries remain** — The repository holds no stash entries. A non-zero `mgit overview` stash count is a finding. (standards-git.md#clean-down-state)
+- **CLEAN-5 [M + J] — no stash entries remain** — The repository holds no stash entries. A non-zero `mgit overview` stash count is a finding. (standard-git.md#46-clean-down-state)
   - _Remediation:_ guarded — Report each stash for its owner to apply, commit, or drop. Never delete a remote branch, close a pull request, drop a stash, remove a worktree, or delete an untracked file without the owner’s explicit approval naming that item; report a finding in a working tree or branch another thread is using and leave it untouched.
   - _Evidence scope:_ The host-supplied `mgit overview --json` record for this repository and its `stashes` count, with `git stash list --format='%gd %ct %gs'` for each entry’s age and message.
   - _Review prompt:_ For each stash entry, should its owner apply, commit, or drop it?
   - _Outcomes:_ apply; commit; drop with approval; owner decision required
   - _Conforming guidance:_ Report each stash for its owner to apply, commit, or drop. Never delete a remote branch, close a pull request, drop a stash, remove a worktree, or delete an untracked file without the owner’s explicit approval naming that item; report a finding in a working tree or branch another thread is using and leave it untouched.
-- **CLEAN-6 [M + J] — linked worktrees show no retirement signal** — No linked worktree is prunable, detached, locked without a reason, or on a branch already merged into the default branch. The prunable and detached counts `mgit overview` reports are findings; an unexplained lock and a merged worktree branch remain for review until the overview reports them. (standards-git.md#clean-down-state, standards-git.md#finished-worktree-retirement)
+- **CLEAN-6 [M + J] — linked worktrees show no retirement signal** — No linked worktree is prunable, detached, locked without a reason, or on a branch already merged into the default branch. The prunable and detached counts `mgit overview` reports are findings; an unexplained lock and a merged worktree branch remain for review until the overview reports them. (standard-git.md#46-clean-down-state, standard-git.md#444-finished-worktree-retirement)
   - _Remediation:_ guarded — Route each finding to the BRANCH-2 integrate-or-dispose decision. Never delete a remote branch, close a pull request, drop a stash, remove a worktree, or delete an untracked file without the owner’s explicit approval naming that item; report a finding in a working tree or branch another thread is using and leave it untouched.
   - _Evidence scope:_ The host-supplied `mgit overview --json` record for this repository and its `worktrees` counts, with `git worktree list --porcelain` and the merged set from CLEAN-2 for each worktree’s lock reason and branch.
   - _Review prompt:_ Is any linked worktree locked without a reason or on a branch already merged into the default branch? For each finding, what does the BRANCH-2 retirement judgment decide?
   - _Outcomes:_ integrate; dispose with approval; leave in use; owner decision required
   - _Conforming guidance:_ Route each finding to the BRANCH-2 integrate-or-dispose decision. Never delete a remote branch, close a pull request, drop a stash, remove a worktree, or delete an untracked file without the owner’s explicit approval naming that item; report a finding in a working tree or branch another thread is using and leave it untouched.
-- **CLEAN-7 [M-heuristic + J] — no untracked or staged leftovers at rest** — A working tree no thread is using holds no untracked path that is not ignored and no staged entry. The `mgit overview` untracked and staged counts are heuristic findings: whether a thread is using the working tree is not a Git fact, so that stays a judgment. (standards-git.md#clean-down-state)
+- **CLEAN-7 [M-heuristic + J] — no untracked or staged leftovers at rest** — A working tree no thread is using holds no untracked path that is not ignored and no staged entry. The `mgit overview` untracked and staged counts are heuristic findings: whether a thread is using the working tree is not a Git fact, so that stays a judgment. (standard-git.md#46-clean-down-state)
   - _Remediation:_ guarded — Report each leftover for its owner to commit, ignore, or remove. Never delete a remote branch, close a pull request, drop a stash, remove a worktree, or delete an untracked file without the owner’s explicit approval naming that item; report a finding in a working tree or branch another thread is using and leave it untouched.
   - _Evidence scope:_ The host-supplied `mgit overview --json` record for this repository and its `changes` counts, with `git status --porcelain=v1 --untracked-files=all` and the threads known to be using the working tree.
   - _Review prompt:_ Is any thread using this working tree? If none is, each untracked path and staged entry is a leftover for its owner to commit, ignore, or remove.
@@ -139,11 +139,11 @@ A repository at rest carries no Git leftovers, each criterion decided by a fixed
 
 ## LOCK — stale-lock semantics
 
-→ [standard](standards-git.md)
+→ [standard](standard-git.md)
 
 The stale-lock guard remains bounded recovery rather than general cleanup.
 
-- **LOCK-1 [J] — stale-lock recovery preserves the safety boundary** — Stale-lock recovery follows the guard’s worktree, process, containment, and file-type limits. (standards-git.md)
+- **LOCK-1 [J] — stale-lock recovery preserves the safety boundary** — Stale-lock recovery follows the guard’s worktree, process, containment, and file-type limits. (standard-git.md)
   - _Evidence scope:_ Every stale-lock candidate and its physical-worktree, relevant-process, containment, and regular-file evidence.
   - _Review prompt:_ Assess whether stale-lock recovery remains best-effort: it must not interrupt Git, cross the current physical worktree boundary, remove ambiguous or symlinked candidates, or act when process inspection is inconclusive.
   - _Outcomes:_ conforming; safe removal authorised; leave untouched; investigation required

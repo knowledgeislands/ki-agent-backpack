@@ -6,7 +6,10 @@ const BRANCH_1: RubricItem<GitRubricContext> = {
   title: 'working approach matches the delivery boundary',
   description:
     'Primary-checkout, branch-with-PR, worktree-with-PR, and local worktree integration approaches follow repository policy, review needs, concurrency, and unattended isolation.',
-  sources: ['standards-git.md#working-copy-and-review-approaches', 'standards-git.md#local-integration-write-boundary'],
+  sources: [
+    'standard-git.md#44-working-copy-and-review-approaches',
+    'standard-git.md#441-local-integration-write-boundary'
+  ],
   judgment: {
     scope:
       'The selected repository, requested change, current `git branch --show-current` and `git worktree list` evidence, protection policy, concurrency, and review boundary.',
@@ -29,7 +32,7 @@ const BRANCH_3: RubricItem<GitRubricContext> = {
   title: 'linked worktrees use a safe runtime-owned root',
   description:
     'Linked working files stay outside the primary working tree and Git common directory under a collision-safe runtime-owned root.',
-  sources: ['standards-git.md#worktree-location'],
+  sources: ['standard-git.md#443-worktree-location'],
   judgment: {
     scope:
       'Every linked worktree path, the repository primary working tree, Git common directory, estate discovery roots, and the runtime that owns creation and retirement.',
@@ -46,7 +49,7 @@ const BRANCH_2: RubricItem<GitRubricContext> = {
   title: 'finished worktrees are integrated or disposed',
   description:
     'Finished linked worktrees are inspected, deliberately integrated or disposed, removed, and pruned without losing unmerged work.',
-  sources: ['standards-git.md'],
+  sources: ['standard-git.md'],
   judgment: {
     scope:
       'Every linked worktree in `git worktree list --porcelain`, its branch, `git status --short`, commits not reachable from the intended integration branch, branch diff, and delivery authority.',
@@ -62,7 +65,7 @@ export const BRANCH: RubricFamily<GitRubricContext, GitRubricContext> = {
   code: 'BRANCH',
   title: 'working approach',
   description: 'Working-copy topology and review flow follow local protection, review, and concurrency needs.',
-  standard: 'standards-git.md',
+  standard: 'standard-git.md',
   selectContext: (context) => context,
   items: [BRANCH_1, BRANCH_2, BRANCH_3]
 }

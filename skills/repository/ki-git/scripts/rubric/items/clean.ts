@@ -7,7 +7,7 @@ import {
   STALE_DAYS
 } from '../contexts/git.ts'
 
-const SOURCE = 'standards-git.md#clean-down-state'
+const SOURCE = 'standard-git.md#46-clean-down-state'
 
 const APPROVAL =
   'Never delete a remote branch, close a pull request, drop a stash, remove a worktree, or delete an untracked file without the owner’s explicit approval naming that item; report a finding in a working tree or branch another thread is using and leave it untouched.'
@@ -253,7 +253,7 @@ const CLEAN_6: RubricItem<GitCleanEvidence> = {
   title: 'linked worktrees show no retirement signal',
   description:
     'No linked worktree is prunable, detached, locked without a reason, or on a branch already merged into the default branch. The prunable and detached counts `mgit overview` reports are findings; an unexplained lock and a merged worktree branch remain for review until the overview reports them.',
-  sources: [SOURCE, 'standards-git.md#finished-worktree-retirement'],
+  sources: [SOURCE, 'standard-git.md#444-finished-worktree-retirement'],
   mechanical: {
     level: 'WARN',
     remediation: {
@@ -338,7 +338,7 @@ export const CLEAN: RubricFamily<GitRubricContext, GitCleanEvidence> = {
   title: 'clean-down state',
   description:
     'A repository at rest carries no Git leftovers, each criterion decided by a fixed rule over the read-only Git facts the host composes from `mgit overview --json`.',
-  standard: 'standards-git.md',
+  standard: 'standard-git.md',
   selectContext: (context) => context.clean,
   items: [CLEAN_1, CLEAN_2, CLEAN_3, CLEAN_4, CLEAN_5, CLEAN_6, CLEAN_7]
 }

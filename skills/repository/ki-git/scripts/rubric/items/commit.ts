@@ -6,7 +6,7 @@ const COMMIT_1: RubricItem<GitRubricContext> = {
   title: 'commit shape expresses the completed unit',
   description:
     'A commit uses the portable Conventional Commit shape and accurately represents one completed unit of work.',
-  sources: ['standards-git.md'],
+  sources: ['standard-git.md'],
   judgment: {
     scope: 'Each proposed commit, its `git diff --cached` (or explicit patch) evidence, and its proposed subject line.',
     prompt:
@@ -22,7 +22,7 @@ const COMMIT_2: RubricItem<GitRubricContext> = {
   title: 'publication and integration retain separate authority',
   description:
     'Commits, task-branch publication, pull-request review, approval, merge, and primary-branch integration use explicit separable authority.',
-  sources: ['standards-git.md#commit-publication-and-integration-authority'],
+  sources: ['standard-git.md#43-commit-publication-and-integration-authority'],
   judgment: {
     scope:
       'The requested change, repository instructions, stable actor identity, selected branch or worktree, proposed commit, push target, pull-request action, integration target, required gates, and any explicit or standing authority.',
@@ -45,7 +45,7 @@ export const COMMIT: RubricFamily<GitRubricContext, GitRubricContext> = {
   code: 'COMMIT',
   title: 'commit shape',
   description: 'Commit messages express one completed unit through the portable convention.',
-  standard: 'standards-git.md',
+  standard: 'standard-git.md',
   selectContext: (context) => context,
   items: [COMMIT_1, COMMIT_2]
 }

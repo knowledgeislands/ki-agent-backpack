@@ -5,7 +5,7 @@ const LOCK_1: RubricItem<GitRubricContext> = {
   code: 'LOCK-1',
   title: 'stale-lock recovery preserves the safety boundary',
   description: 'Stale-lock recovery follows the guard’s worktree, process, containment, and file-type limits.',
-  sources: ['standards-git.md'],
+  sources: ['standard-git.md'],
   judgment: {
     scope:
       'Every stale-lock candidate and its physical-worktree, relevant-process, containment, and regular-file evidence.',
@@ -21,7 +21,7 @@ export const LOCK: RubricFamily<GitRubricContext, GitRubricContext> = {
   code: 'LOCK',
   title: 'stale-lock semantics',
   description: 'The stale-lock guard remains bounded recovery rather than general cleanup.',
-  standard: 'standards-git.md',
+  standard: 'standard-git.md',
   selectContext: (context) => context,
   items: [LOCK_1]
 }
