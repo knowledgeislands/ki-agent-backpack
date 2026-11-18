@@ -466,7 +466,7 @@ const stateChecks = (record: ParsedRecord, fields: Readonly<Record<string, unkno
     fields.method_read !== null &&
     (typeof fields.method_read !== 'string' || !REVISION.test(fields.method_read))
   )
-    fail('method_read must be a short harness revision or null')
+    fail('method_read must be a short backpack revision or null')
 }
 
 /**
