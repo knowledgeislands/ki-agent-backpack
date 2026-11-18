@@ -42,6 +42,8 @@ The standard follows Claude Code's MCP configuration documentation.
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Environment guild: REFRESH redirects to the backpack from an installed copy. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Environment guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Claude binding standard](standard-claude-binding.md), formerly `standards-claude-binding.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format. The rubric's source names follow. No rule changed and no outside source was refreshed.
 
 - 2026-08-12 — Claude Code MCP configuration reviewed.
