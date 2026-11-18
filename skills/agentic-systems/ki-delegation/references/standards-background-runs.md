@@ -41,6 +41,8 @@ It complements the [delegation-packet standard](standards-delegation-packets.md)
 
 Process skills still select, authorise, plan and accept work. Subagent role definitions follow `ki-subagents`.
 
+**Direct or run.** Quick, simple work is done directly; longer work is handed to a run. When a request does not say which, the session says which it is doing in one line, "doing this directly" or "handing this to a run", and goes ahead unless redirected; it asks outright only when the choice is costly to undo. Kris took DIRECT-OR-RUN a on 17 November 2026, at about 23:34 GMT, under GUARDIAN-LANDS a. A coordinator keeps to `ki-coordination`'s responsive-coordinator rule, which delegates all but quick checks and bookkeeping.
+
 ## Detachment
 
 Start every background agent in the agent host's background or detached mode where it has one, so that the agent survives an interrupt of the session that started it.
