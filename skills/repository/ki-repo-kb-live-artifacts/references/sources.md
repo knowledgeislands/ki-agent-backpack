@@ -47,6 +47,8 @@ None recorded by id: the standard rests on the in-house sources above.
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Live Artifact standard](standard-live-artifacts.md), formerly `standards-live-artifacts.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format. The rubric's source names follow. No rule changed and no outside source was refreshed.
 
 REFRESH last run **2026-08-12** (internal-model skill — re-checked local source and current internal reality, no web research).

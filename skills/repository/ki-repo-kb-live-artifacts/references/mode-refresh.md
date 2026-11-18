@@ -4,7 +4,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 # Mode REFRESH — keep the artifact model current
 
-**Precondition:** REFRESH edits this skill's own canonical files, which exist only in `ki-agent-backpack`. Invoked from an installed copy, it stops here and names the harness as where to run it — or, for a pattern recurring across bases, routes it through `ki-repo-kb`'s IMPROVE mode instead.
+**Precondition:** REFRESH edits this skill's own canonical files, which exist only in `ki-agent-backpack`. Invoked from an installed copy, it stops here and names the backpack as where to run it — or, for a pattern recurring across bases, routes it through `ki-repo-kb`'s IMPROVE mode instead.
 
 _On-demand procedure for live-artifacts' REFRESH mode. The cadence marker (`canonical · on-change`) is declared in [`sources.md`](sources.md)._
 
