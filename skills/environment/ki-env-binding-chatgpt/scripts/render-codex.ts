@@ -27,7 +27,7 @@ Options:
   --json              Emit findings as JSON.
   -h, --help          Show this help and exit.
 `
-const REF = 'references/standards-codex-binding.md'
+const REF = 'references/standard-codex-binding.md'
 
 type Options = { check: boolean; json: boolean; source?: string; help: boolean; home?: string }
 type Level = 'FAIL' | 'WARN' | 'PASS'

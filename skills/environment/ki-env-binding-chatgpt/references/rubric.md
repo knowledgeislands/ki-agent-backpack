@@ -17,13 +17,13 @@ Line-by-line criteria for auditing ki-env-binding-chatgpt. Classifications are d
 
 ## CODEXBIND — Codex binding
 
-→ [standard](standards-codex-binding.md)
+→ [standard](standard-codex-binding.md)
 
 Codex TOML definition comparison and coordinator-owned activation boundary.
 
-- **CODEXBIND-1 [M] — Codex TOML definition agreement** — A configured Codex target has the complete non-secret source definition for each Codex-targeted server. (standards-codex-binding.md)
+- **CODEXBIND-1 [M] — Codex TOML definition agreement** — A configured Codex target has the complete non-secret source definition for each Codex-targeted server. (standard-codex-binding.md)
   - _Remediation:_ diagnostic — Review the canonical source and run the native Codex renderer after confirming intended client targets; do not overwrite unrelated application configuration.
-- **CODEXBIND-J1 [J] — Hosted activation is coordinator-owned** — Repository selection and hosted Codex activation are explicitly outside this adapter. (standards-codex-binding.md)
+- **CODEXBIND-J1 [J] — Hosted activation is coordinator-owned** — Repository selection and hosted Codex activation are explicitly outside this adapter. (standard-codex-binding.md)
   - _Evidence scope:_ The repository’s declared runtime selection and authorised hosted Codex activation evidence.
   - _Review prompt:_ Has the coordinator declared the adapter and recorded an authorised hosted activation check?
   - _Outcomes:_ conforming; activation unavailable; owner decision required

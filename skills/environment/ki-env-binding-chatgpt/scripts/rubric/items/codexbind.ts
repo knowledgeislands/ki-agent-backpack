@@ -6,7 +6,7 @@ const CODEXBIND_1: RubricItem<CodexBindingContext> = {
   title: 'Codex TOML definition agreement',
   description:
     'A configured Codex target has the complete non-secret source definition for each Codex-targeted server.',
-  sources: ['standards-codex-binding.md'],
+  sources: ['standard-codex-binding.md'],
   mechanical: {
     level: 'WARN',
     remediation: {
@@ -61,7 +61,7 @@ const CODEXBIND_J1: RubricItem<CodexBindingContext> = {
   code: 'CODEXBIND-J1',
   title: 'Hosted activation is coordinator-owned',
   description: 'Repository selection and hosted Codex activation are explicitly outside this adapter.',
-  sources: ['standards-codex-binding.md'],
+  sources: ['standard-codex-binding.md'],
   judgment: {
     scope: 'The repository’s declared runtime selection and authorised hosted Codex activation evidence.',
     prompt: 'Has the coordinator declared the adapter and recorded an authorised hosted activation check?',
@@ -74,7 +74,7 @@ export const CODEXBIND: RubricFamily<CodexBindingContext, CodexBindingContext> =
   code: 'CODEXBIND',
   title: 'Codex binding',
   description: 'Codex TOML definition comparison and coordinator-owned activation boundary.',
-  standard: 'standards-codex-binding.md',
+  standard: 'standard-codex-binding.md',
   selectContext: (context) => context,
   items: [CODEXBIND_1, CODEXBIND_J1]
 }
