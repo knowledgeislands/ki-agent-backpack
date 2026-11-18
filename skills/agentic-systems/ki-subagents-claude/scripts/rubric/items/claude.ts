@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { ClaudeContext, ClaudeDefinition } from '../contexts/agents.ts'
 
-const STANDARD = 'standards-subagent-definitions.md'
+const STANDARD = 'standard-subagent-definitions.md'
 const fields = new Set([
   'name',
   'description',
@@ -51,7 +51,7 @@ const CLAUDE_1: RubricItem<ClaudeContext> = {
   code: 'CLAUDE-1',
   title: 'Markdown and parseable YAML',
   description: 'Each candidate is a physical Markdown file with a parseable mapping frontmatter block.',
-  sources: [`${STANDARD}#source-format`, 'CC'],
+  sources: [`${STANDARD}#41-source-format`, 'CC'],
   mechanical: {
     level: 'FAIL',
     remediation: {
@@ -85,7 +85,7 @@ const CLAUDE_2: RubricItem<ClaudeContext> = {
   title: 'Required Claude fields and name grammar',
   description:
     'Claude source has string name and description fields; its name uses lowercase letters and hyphens only.',
-  sources: [`${STANDARD}#required-fields`, 'CC'],
+  sources: [`${STANDARD}#42-required-fields`, 'CC'],
   mechanical: {
     level: 'FAIL',
     remediation: { class: 'diagnostic', guidance: 'Repair required Claude fields through the payload owner.' },
@@ -119,7 +119,7 @@ const CLAUDE_3: RubricItem<ClaudeContext> = {
   code: 'CLAUDE-3',
   title: 'Supported Claude field set',
   description: 'The source contains only current Claude Code subagent fields.',
-  sources: [`${STANDARD}#supported-fields`, 'CC'],
+  sources: [`${STANDARD}#43-supported-fields`, 'CC'],
   mechanical: {
     level: 'FAIL',
     remediation: {
@@ -150,7 +150,7 @@ const CLAUDE_4: RubricItem<ClaudeContext> = {
   code: 'CLAUDE-4',
   title: 'Native prompt projection present',
   description: 'The Markdown source carries a non-empty body; its semantic quality is owned by the portable parent.',
-  sources: [`${STANDARD}#source-format`],
+  sources: [`${STANDARD}#41-source-format`],
   mechanical: {
     level: 'FAIL',
     remediation: {
@@ -179,7 +179,7 @@ const CLAUDE_5: RubricItem<ClaudeContext> = {
   code: 'CLAUDE-5',
   title: 'Unique source names',
   description: 'Physical Claude source files do not duplicate a declared name.',
-  sources: [`${STANDARD}#source-discovery`],
+  sources: [`${STANDARD}#44-source-discovery-and-host-boundary`],
   mechanical: {
     level: 'FAIL',
     remediation: {
