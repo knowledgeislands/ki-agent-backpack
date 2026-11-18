@@ -33,6 +33,10 @@ This graph holds the concepts the knowledge-graph standard relies on, so the sta
 | `skos:` | SKOS, the default | `http://www.w3.org/2004/02/skos/core#` | `skos:related` |
 | `ki:` | Knowledge Islands, for what SKOS lacks | Not yet published | `ki:applies-to`, `ki:candidate-member-of`, `ki:derived-from`, `ki:enabled-by`, `ki:enables-principle`, `ki:exposed-through`, `ki:has-candidate-member`, `ki:has-member`, `ki:implemented-by`, `ki:implements`, `ki:interpreted-by`, `ki:interprets`, `ki:member-of`, `ki:part-of`, `ki:proposed-capability-of`, `ki:provides-capability`, `ki:provides-interface-for`, `ki:represents`, `ki:requires-semantics`, `ki:respects-principle`, `ki:supports`, `ki:underpinned-by`, `ki:underpins`, `ki:used-by`, `ki:uses-convention`, `ki:uses-principle`, `ki:uses-vocabularies` |
 
+| Predicate | Meaning |
+| --- | --- |
+| `skos:related` | An associative link to the target, neither broader than the other ([SKOS Reference][skos]) |
+
 ## Properties
 
 | Property | Meaning | Values | Required for |
@@ -71,3 +75,4 @@ None: the graph is one flat list, and every id is a plain name.
 [knowledge-graph]: ./knowledge-graph.md
 [semantic-markdown]: ./semantic-markdown.md
 [layered-graphs]: ./layered-graphs.md
+[skos]: https://www.w3.org/TR/skos-reference/#semantic-relations
