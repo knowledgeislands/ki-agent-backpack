@@ -4,7 +4,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 # Mode NEW — author a new activity note
 
-Read the [Activity standard](standards-activities.md) first; this file contains only the NEW procedure.
+Read the [Activity standard](standard-activities.md) first; this file contains only the NEW procedure.
 
 1. Prompt for **Name** (becomes the filename and the `# Heading`).
 2. Prompt for **Realization type** — offer the known list (`slash-command`, `scheduled-task`, `conversational`, `manual`, `workflow`); accept free text for new types.

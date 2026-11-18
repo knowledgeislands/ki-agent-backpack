@@ -4,7 +4,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 # Mode AUDIT — check activity notes
 
-Read the [Activity standard](standards-activities.md) and [rubric](rubric.md) first.
+Read the [Activity standard](standard-activities.md) and [rubric](rubric.md) first.
 
 1. **Run the hosted audit.** Run `ki repo audit --skill ki-repo-kb-activities`. It checks the collection location, index, frontmatter, realization-specific fields, and optional harness resolution. Unknown realizations and external scheduled-task registration remain non-blocking `INFO`.
 2. **Apply judgment.** Review the `[J]` criteria: activity clarity, index quality, retirement rationale, skill documentation, and scheduled-task narrative.

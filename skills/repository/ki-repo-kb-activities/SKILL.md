@@ -22,7 +22,7 @@ You are helping the user author, audit, and manage **Activity notes** in a Knowl
 
 Activity notes live at `Admin/Operations/Activities/<Activity Name>.md` and describe a single named behaviour the base has adopted. They are indexed by `Admin/Operations/Activities/Activities.md`.
 
-Read the [Activity standard](references/standards-activities.md) before authoring, auditing, or conforming a collection. It owns the location and configuration boundary, frontmatter vocabulary, realization-specific fields, index contract, and safe index-conform boundary. [The exemplars](references/exemplars.md) show representative notes.
+Read the [Activity standard](references/standard-activities.md) before authoring, auditing, or conforming a collection. It owns the location and configuration boundary, frontmatter vocabulary, realization-specific fields, index contract, and safe index-conform boundary. [The exemplars](references/exemplars.md) show representative notes.
 
 ## Operating modes
 

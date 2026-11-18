@@ -8,7 +8,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 _On-demand procedure for activities' REFRESH mode. The cadence marker (`canonical · on-change`) is declared in [`sources.md`](sources.md)._
 
-The realization type list and required frontmatter in the [Activity standard](standards-activities.md) are canonical to this skill; they have no external specification. Run REFRESH when the realization model changes — a new environment type is adopted, a field is added, or a realization type is retired.
+The realization type list and required frontmatter in the [Activity standard](standard-activities.md) are canonical to this skill; they have no external specification. Run REFRESH when the realization model changes — a new environment type is adopted, a field is added, or a realization type is retired.
 
 1. **Read [`sources.md`](sources.md)** — the reference implementation (ki-principal Activities/) and adjacent governing skills, each with a `last reviewed` date.
 2. **Re-anchor against reality.** Sample the live bases' activity notes for realization types in actual use. Check whether any new `realization` values appear that should be promoted to the known list, or whether any known type is obsolete.

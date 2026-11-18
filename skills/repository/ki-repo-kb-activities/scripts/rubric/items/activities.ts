@@ -6,7 +6,7 @@ import {
   indexLinkTargets
 } from '../contexts/activities.ts'
 
-const SOURCE = 'standards-activities.md'
+const SOURCE = 'standard-activities.md'
 /** THEME-CLOSE: the first UTC day on which legacy initiative fields fail. */
 const legacyInitiativeOutcome = (
   initiative: string,
@@ -369,7 +369,7 @@ const ACT_F_5: RubricItem<ActivitiesContext> = {
   title: 'activity home and theme',
   description:
     "An active Activity's home is the territory's regular work, or the Project named in `project` when it is that Project's own recurring check. A `theme`, at the top level or in its housekeeping profile, is an optional label and the two agree; the former `initiative` warns until 2026-11-07 and fails from that day.",
-  sources: [`${SOURCE}#home`],
+  sources: [`${SOURCE}#43-home`],
   mechanical: {
     level: 'WARN',
     remediation: {
@@ -583,7 +583,7 @@ const ACT_R_5: RubricItem<ActivitiesContext> = {
   title: 'recurring-work lifecycle owner',
   description:
     'An Activity with a housekeeping mapping requires declared ki-work-recurring; that capability validates its schedule, identity, and run evidence in the same note.',
-  sources: [`${SOURCE}#recurring-work-profile`],
+  sources: [`${SOURCE}#45-recurring-work-profile`],
   mechanical: {
     level: 'FAIL',
     remediation: {
