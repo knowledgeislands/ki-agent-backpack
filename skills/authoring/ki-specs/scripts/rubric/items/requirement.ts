@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem, RubricOutcomes } from '../../shared/rubric.ts'
 import type { SpecRequirementContext, SpecsRubricContext } from '../contexts/specs.ts'
 
-const SOURCE = 'standards-specs.md'
+const SOURCE = 'standard-specs.md'
 const outcomes = (values: readonly AuditOutcome[], pass: string): RubricOutcomes<AuditOutcome> => {
   if (values.length > 0) return values
   return [{ status: 'PASS', message: pass }]

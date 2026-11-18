@@ -35,59 +35,59 @@ The tracked readable rubric is the exact publication of the structured catalogue
 
 ## INDEX — specifications index
 
-→ [standard](standards-specs.md)
+→ [standard](standard-specs.md)
 
 The corpus has a populated registry that maps prefixes to area files.
 
-- **INDEX-1 [M] — docs/specs/index.md exists** — `docs/specs/index.md` exists. Missing is a FAIL — there is no registry to validate against. (standards-specs.md)
+- **INDEX-1 [M] — docs/specs/index.md exists** — `docs/specs/index.md` exists. Missing is a FAIL — there is no registry to validate against. (standard-specs.md)
   - _Remediation:_ diagnostic — Create the Specifications index with an authoritative areas table, then rerun the audit.
-- **INDEX-2 [M] — index.md contains a populated areas table** — `index.md` contains at least one areas table with `Prefix` and `File` columns and at least one row. (standards-specs.md)
+- **INDEX-2 [M] — index.md contains a populated areas table** — `index.md` contains at least one areas table with `Prefix` and `File` columns and at least one row. (standard-specs.md)
   - _Remediation:_ diagnostic — Add a populated Prefix and File areas table to the index, then rerun the audit.
-- **INDEX-3 [M] — each prefix has one registered area-file owner** — A prefix appears in one areas-table file cell only; duplicate registrations are reported rather than silently overwritten. (standards-specs.md)
+- **INDEX-3 [M] — each prefix has one registered area-file owner** — A prefix appears in one areas-table file cell only; duplicate registrations are reported rather than silently overwritten. (standard-specs.md)
   - _Remediation:_ diagnostic — Choose the prefix’s one owning area file and remove the duplicate registration before rerunning the audit.
 
 ## AREA — area registration
 
-→ [standard](standards-specs.md)
+→ [standard](standard-specs.md)
 
 Area-table files and corpus files agree.
 
-- **AREA-1 [M] — every file named in an areas table exists** — Every file named in an areas table exists as a safe physical file. A missing or unsafe file fails closed because the registry cannot establish its corpus. (standards-specs.md)
+- **AREA-1 [M] — every file named in an areas table exists** — Every file named in an areas table exists as a safe physical file. A missing or unsafe file fails closed because the registry cannot establish its corpus. (standard-specs.md)
   - _Remediation:_ diagnostic — Restore the missing safe area file or correct the areas table, then rerun the audit.
-- **AREA-2 [M] — every area file is registered** — Every Markdown file in `docs/specs/`, except `index.md`, is registered under at least one prefix in an areas table. (standards-specs.md)
+- **AREA-2 [M] — every area file is registered** — Every Markdown file in `docs/specs/`, except `index.md`, is registered under at least one prefix in an areas table. (standard-specs.md)
   - _Remediation:_ diagnostic — Add the area file to the appropriate areas table, then rerun the audit.
 
 ## ID — requirement identity
 
-→ [standard](standards-specs.md)
+→ [standard](standard-specs.md)
 
 Requirement headings, prefixes, and append-only IDs form a coherent registry.
 
-- **ID-1 [M] — requirement headings use canonical IDs** — Every level-3 heading outside a `## Gaps …` section matches `### <PREFIX>-NNN — <title>`: uppercase prefix, at least a three-digit serial, and an em-dash separator. (standards-specs.md)
+- **ID-1 [M] — requirement headings use canonical IDs** — Every level-3 heading outside a `## Gaps …` section matches `### <PREFIX>-NNN — <title>`: uppercase prefix, at least a three-digit serial, and an em-dash separator. (standard-specs.md)
   - _Remediation:_ automatic
-- **ID-2 [M] — requirement prefixes are registered to their file** — Each requirement's prefix is registered in an areas table and assigned to its containing file. (standards-specs.md)
+- **ID-2 [M] — requirement prefixes are registered to their file** — Each requirement's prefix is registered in an areas table and assigned to its containing file. (standard-specs.md)
   - _Remediation:_ diagnostic — Register the prefix to its owning file or correct the requirement identifier, then rerun the audit.
-- **ID-3 [M] — requirement IDs are sequential per prefix and unique across the corpus** — Requirement IDs are append-only, sequential within each registered prefix, never reused, and unique across the corpus. A serial listed under a "Retired to the tool" section stays claimed: it is not a gap, and it is never redefined. (standards-specs.md)
+- **ID-3 [M] — requirement IDs are sequential per prefix and unique across the corpus** — Requirement IDs are append-only, sequential within each registered prefix, never reused, and unique across the corpus. A serial listed under a "Retired to the tool" section stays claimed: it is not a gap, and it is never redefined. (standard-specs.md)
   - _Remediation:_ diagnostic — Allocate the next unused serial for the requirement prefix and update the duplicate or gap, then rerun the audit.
 
 ## REQ — normative requirement shape
 
-→ [standard](standards-specs.md)
+→ [standard](standard-specs.md)
 
 Active requirements state normative behaviour.
 
-- **REQ-1 [M] — requirement statements carry a BCP 14 keyword** — The opening statement paragraph of each active requirement contains an uppercase BCP 14 keyword. (standards-specs.md)
+- **REQ-1 [M] — requirement statements carry a BCP 14 keyword** — The opening statement paragraph of each active requirement contains an uppercase BCP 14 keyword. (standard-specs.md)
   - _Remediation:_ diagnostic — Add the intended BCP 14 keyword to the requirement statement, then rerun the audit.
 
 ## VERIFY — verification hooks
 
-→ [standard](standards-specs.md)
+→ [standard](standard-specs.md)
 
 Active requirements carry a verification hook whose quality is reviewed.
 
-- **VERIFY-1 [M] — requirements carry a Verify hook** — Each active requirement has a `_Verify:_` line. (standards-specs.md)
+- **VERIFY-1 [M] — requirements carry a Verify hook** — Each active requirement has a `_Verify:_` line. (standard-specs.md)
   - _Remediation:_ diagnostic — Add a concrete _Verify:_ hook for the requirement, then rerun the audit.
-- **VERIFY-2 [J] — Verify hooks are concrete and checkable** — The `_Verify:_` hook names a concrete built-output assertion, test, or source symbol rather than restating the requirement. (standards-specs.md)
+- **VERIFY-2 [J] — Verify hooks are concrete and checkable** — The `_Verify:_` hook names a concrete built-output assertion, test, or source symbol rather than restating the requirement. (standard-specs.md)
   - _Evidence scope:_ Every active requirement and its _Verify:_ hook in the Specifications corpus.
   - _Review prompt:_ Assess whether each `_Verify:_` hook names a concrete built-output assertion, test, or source symbol rather than restating the requirement.
   - _Outcomes:_ conforming; gap; exclusion
@@ -95,11 +95,11 @@ Active requirements carry a verification hook whose quality is reviewed.
 
 ## BEHAVIOUR — behavioural altitude
 
-→ [standard](standards-specs.md)
+→ [standard](standard-specs.md)
 
 Requirements specify behaviour rather than rationale or procedure.
 
-- **BEHAVIOUR-1 [J] — requirements describe observable behaviour or quality** — A requirement describes a user-observable behaviour or a quality property rather than rationale or procedure. (standards-specs.md)
+- **BEHAVIOUR-1 [J] — requirements describe observable behaviour or quality** — A requirement describes a user-observable behaviour or a quality property rather than rationale or procedure. (standard-specs.md)
   - _Evidence scope:_ Every numbered requirement, its section, and its linked Decision Records or guides.
   - _Review prompt:_ Assess whether each requirement is classified and phrased as user-observable behaviour or a quality property; move reasoning to a Decision Record and operational instruction to a guide.
   - _Outcomes:_ conforming; gap; exclusion
@@ -107,22 +107,22 @@ Requirements specify behaviour rather than rationale or procedure.
 
 ## CONFORMANCE — accepted-contract conformance
 
-→ [standard](standards-specs.md)
+→ [standard](standard-specs.md)
 
 Active requirements declare implementation conformance and conforming claims carry evidence.
 
-- **CONFORMANCE-1 [M] — accepted requirements declare conformance** — Each active requirement declares exactly one `_Conformance:_ conforming | pending | divergent` state. (standards-specs.md)
+- **CONFORMANCE-1 [M] — accepted requirements declare conformance** — Each active requirement declares exactly one `_Conformance:_ conforming | pending | divergent` state. (standard-specs.md)
   - _Remediation:_ diagnostic — Add the truthful conformance state. Do not move an accepted requirement to Gaps merely because implementation is pending or divergent.
-- **CONFORMANCE-2 [M] — conforming requirements carry evidence** — A requirement declared conforming carries an `_Evidence:_` line naming current proof. (standards-specs.md)
+- **CONFORMANCE-2 [M] — conforming requirements carry evidence** — A requirement declared conforming carries an `_Evidence:_` line naming current proof. (standard-specs.md)
   - _Remediation:_ diagnostic — Add current evidence for a conforming requirement, or declare the requirement pending or divergent when proof does not exist.
 
 ## SPLIT — requirement focus
 
-→ [standard](standards-specs.md)
+→ [standard](standard-specs.md)
 
 Independently verifiable behaviours have independent IDs.
 
-- **SPLIT-1 [J] — unrelated behaviours use separate IDs** — Unrelated behaviours have separate IDs so each verifies independently. (standards-specs.md)
+- **SPLIT-1 [J] — unrelated behaviours use separate IDs** — Unrelated behaviours have separate IDs so each verifies independently. (standard-specs.md)
   - _Evidence scope:_ Every numbered requirement and its stated behaviours and verification hooks.
   - _Review prompt:_ Assess whether a requirement bundles unrelated behaviours that should have separate IDs and verification hooks.
   - _Outcomes:_ conforming; gap; exclusion
@@ -130,11 +130,11 @@ Independently verifiable behaviours have independent IDs.
 
 ## DR-LINK — decision traceability
 
-→ [standard](standards-specs.md)
+→ [standard](standard-specs.md)
 
 Governed behaviours preserve their link from why to what.
 
-- **DR-LINK-1 [J] — governed requirements cite their Decision Record** — A requirement that follows from a recorded decision cites that Decision Record. (standards-specs.md)
+- **DR-LINK-1 [J] — governed requirements cite their Decision Record** — A requirement that follows from a recorded decision cites that Decision Record. (standard-specs.md)
   - _Evidence scope:_ Requirements that follow from a recorded Decision Record and their cited links.
   - _Review prompt:_ Assess whether requirements governed by a recorded decision cite it, preserving the audit trail from why to what.
   - _Outcomes:_ conforming; gap; exclusion
@@ -142,11 +142,11 @@ Governed behaviours preserve their link from why to what.
 
 ## AREA-FIT — area fit
 
-→ [standard](standards-specs.md)
+→ [standard](standard-specs.md)
 
 Requirements remain in the area their behaviour belongs to.
 
-- **AREA-FIT-1 [J] — requirements fit their area file** — Each requirement sits in the area file its behaviour belongs to. (standards-specs.md)
+- **AREA-FIT-1 [J] — requirements fit their area file** — Each requirement sits in the area file its behaviour belongs to. (standard-specs.md)
   - _Evidence scope:_ Every numbered requirement and its containing Specifications area file.
   - _Review prompt:_ Assess whether each requirement sits in the area its behaviour belongs to; when behaviour changes area, allocate a new ID rather than moving the old number.
   - _Outcomes:_ conforming; gap; exclusion

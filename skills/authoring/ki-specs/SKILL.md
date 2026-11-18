@@ -17,7 +17,7 @@ argument-hint: 'audit [dir] | conform [dir] | help | educate [dir] | new <area> 
 
 You are applying the **Knowledge Islands Specifications standard** — how accepted behaviour and quality properties are written as a testable, append-only contract. A specification is the **what**. Its conformance state says whether the built system currently meets it; its verification plan and evidence make that claim reviewable. It sits between the **why** (Decision Records, `ki-decision-records`) and the **how** (guides).
 
-Read [Specifications standard](references/standards-specs.md) completely before authoring, auditing, or conforming a corpus. The [rubric](references/rubric.md) publishes its checkable criteria, [exemplars](references/exemplars.md) illustrate representative shapes, and [sources](references/sources.md) records provenance.
+Read [Specifications standard](references/standard-specs.md) completely before authoring, auditing, or conforming a corpus. The [rubric](references/rubric.md) publishes its checkable criteria, [exemplars](references/exemplars.md) illustrate representative shapes, and [sources](references/sources.md) records provenance.
 
 ## What this skill owns
 

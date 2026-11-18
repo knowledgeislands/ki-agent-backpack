@@ -4,7 +4,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 # Mode AUDIT — check Specifications
 
-Read [Specifications standard](standards-specs.md) and [rubric](rubric.md) first.
+Read [Specifications standard](standard-specs.md) and [rubric](rubric.md) first.
 
 1. **Run hosted audit.** Run `ki repo audit --skill ki-specs`. It checks the index, area registration, IDs, normative statements, conformance states, `_Verify:_` plans, and evidence for conforming requirements.
 2. **Apply judgment.** Review feature-area cohesion, user-observable behaviour versus quality-property classification, verification and evidence quality, requirement focus, Decision Record links, and area fit.

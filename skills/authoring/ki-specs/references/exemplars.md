@@ -4,7 +4,7 @@ ki-document-type: exemplars@2026-11-17T00:55:00Z
 
 # Exemplars
 
-These shapes illustrate the [Specifications standard](standards-specs.md) but do not add requirements.
+These shapes illustrate the [Specifications standard](standard-specs.md) but do not add requirements.
 
 ## An `index.md` skeleton
 

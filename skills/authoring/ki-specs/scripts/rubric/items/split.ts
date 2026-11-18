@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { SpecJudgmentContext, SpecsRubricContext } from '../contexts/specs.ts'
 
-const SOURCE = 'standards-specs.md'
+const SOURCE = 'standard-specs.md'
 
 const SPLIT_1: RubricItem<SpecJudgmentContext> = {
   code: 'SPLIT-1',

@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { SpecIndexContext, SpecsRubricContext } from '../contexts/specs.ts'
 
-const SOURCE = 'standards-specs.md'
+const SOURCE = 'standard-specs.md'
 
 const INDEX_1: RubricItem<SpecIndexContext> = {
   code: 'INDEX-1',
