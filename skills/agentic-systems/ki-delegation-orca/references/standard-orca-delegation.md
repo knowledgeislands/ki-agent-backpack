@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:29:53Z
+ki-revised: 2026-11-18T04:38:02Z
 ki-status: in force
 ---
 
@@ -169,7 +169,7 @@ In an Orca trial, a worker commits its own note by explicit path inside the writ
 
 ### 4.12 What stays in Knowledge Islands
 
-The work package is the record: definition, state, queries, messages and decisions in Git. Orca's Runs, Tasks, Dispatches and messages are host-local and may be lost; no decision rests on them when each report copies every ask's question, options, answer and message ids and the change document records the outcome. Proved: plan069, checked at its `worker_done`. Orca's state is never hand-edited: a hand edit stopped Orca starting on terra, and it was recovered only with `orca profile state rollback --backup <id>` from Orca's own backups. Proved.
+The work package is the record: its `_index.md` and its change documents, with their decisions and open points, in Git. Orca's Runs, Tasks, Dispatches and messages are host-local and may be lost; no decision rests on them when each report copies every ask's question, options, answer and message ids and the change document records the outcome. Proved: plan069, checked at its `worker_done`. Orca's state is never hand-edited: a hand edit stopped Orca starting on terra, and it was recovered only with `orca profile state rollback --backup <id>` from Orca's own backups. Proved.
 
 [Back to contents](#contents)
 

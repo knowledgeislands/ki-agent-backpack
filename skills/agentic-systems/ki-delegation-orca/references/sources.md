@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:29:53Z
+ki-revised: 2026-11-18T04:38:02Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -60,6 +60,8 @@ The other answers of 7 November 2026, each option a), are named beside the rules
 [Back to contents](#contents)
 
 ## 4. Last review
+
+Later on 18 November 2026 the same review brought [4.12](standard-orca-delegation.md#412-what-stays-in-knowledge-islands) to the package as `ki-work-package` now shapes it: the record is the package's `_index.md` and its change documents, with their decisions and open points, where it named the old package files' definition, state, queries, messages and decisions. No criterion changed.
 
 On 18 November 2026 the Agentic systems guild's review, from the Cairn summit's change 10, brought the files into the formats: `standards-orca-delegation.md` was renamed `standard-orca-delegation.md` and reshaped, its rules unchanged under numbered sections, and this file took the sources format, with the launcher proposal as advisory. The migration file keeps its name under OVERLAY-NAME and only its links changed. No rule changed and no outside source was refreshed.
 
