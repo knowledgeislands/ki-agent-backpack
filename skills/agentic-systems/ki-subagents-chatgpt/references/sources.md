@@ -63,6 +63,8 @@ None recorded by id: the rules follow the sources above and `ki-subagents`'s por
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Agentic systems guild: REFRESH routes to the backpack, and what the skill called the Harness host is the `ki` host. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Agentic systems guild's review, from the Cairn summit's change 10, brought the files into the formats: `standards-codex-subagents.md` was renamed `standard-codex-subagents.md` and reshaped, its rules unchanged under numbered sections, and this file took the sources format, its Normative and Local boundary tables as authoritative sub-groups. No rule changed and no outside source was refreshed.
 
 On 2026-11-15, the Codex Subagents page was re-read. It still places custom agents in `.codex/agents/` or `~/.codex/agents/`, still requires `name`, `description` and `developer_instructions`, still treats a matching filename as a convention with `name` as the source of truth, and still enables subagents by default. The host inspection also still holds: the KI host's Codex descriptor offers skills only. One change touches the standard and is held for its owner rather than changed here.

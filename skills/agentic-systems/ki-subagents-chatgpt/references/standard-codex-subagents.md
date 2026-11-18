@@ -77,6 +77,6 @@ The supported custom-agent projection keys are `name`, `description`, `developer
 
 ### 4.4 Host boundary
 
-Candidate source conformance does not establish discovery, publication, installation, activation, effective model/profile/MCP configuration, permissions, or execution. The current Harness host publishes Codex skills only and has neither a Codex subagent capability/path nor a generic publisher. Route activation evidence to a future authorised host/runtime owner.
+Candidate source conformance does not establish discovery, publication, installation, activation, effective model/profile/MCP configuration, permissions, or execution. The current `ki` host publishes Codex skills only and has neither a Codex subagent capability/path nor a generic publisher. Route activation evidence to a future authorised host/runtime owner.
 
 [Back to contents](#contents)
