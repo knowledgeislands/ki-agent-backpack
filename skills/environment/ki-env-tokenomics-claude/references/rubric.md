@@ -18,20 +18,20 @@ Line-by-line criteria for auditing ki-env-tokenomics-claude. Classifications are
 
 ## SURF — Claude standing surfaces
 
-→ [standard](standards-claude-tokenomics.md)
+→ [standard](standard-claude-tokenomics.md)
 
 Bounded Claude Code context evidence.
 
-- **CLAUDE-SURF-1 [M] — Selected Claude surfaces are bounded** — Instruction, skill, and MCP evidence comes only from the selected repository and bounded physical user layer; out-of-scope imports FAIL. (standards-claude-tokenomics.md)
+- **CLAUDE-SURF-1 [M] — Selected Claude surfaces are bounded** — Instruction, skill, and MCP evidence comes only from the selected repository and bounded physical user layer; out-of-scope imports FAIL. (standard-claude-tokenomics.md)
   - _Remediation:_ diagnostic — Remove out-of-scope imports from the selected evidence set or explicitly narrow the requested repository and physical user-layer boundary.
 
 ## RUN — Claude unavailable runtime state
 
-→ [standard](standards-claude-tokenomics.md)
+→ [standard](standard-claude-tokenomics.md)
 
 Session facts not inferred from local filesystem observations.
 
-- **CLAUDE-RUN-1 [M] — Effective session state is unavailable** — Effective model, loaded context, active tools, approvals, trust, memory use, and metrics are unavailable without authorised session evidence. (standards-claude-tokenomics.md)
+- **CLAUDE-RUN-1 [M] — Effective session state is unavailable** — Effective model, loaded context, active tools, approvals, trust, memory use, and metrics are unavailable without authorised session evidence. (standard-claude-tokenomics.md)
   - _Remediation:_ diagnostic — Use an explicitly authorised session-evidence owner; do not infer session state from filesystem sources.
 
 ## RUBRIC — Generated rubric publication

@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { ClaudeContext, ClaudeRubricContext } from '../contexts/claude.ts'
 
-const SOURCE = 'standards-claude-tokenomics.md'
+const SOURCE = 'standard-claude-tokenomics.md'
 const RUN_1: RubricItem<ClaudeContext> = {
   code: 'CLAUDE-RUN-1',
   title: 'Effective session state is unavailable',

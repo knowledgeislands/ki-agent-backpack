@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { ClaudeContext, ClaudeRubricContext } from '../contexts/claude.ts'
 
-const SOURCE = 'standards-claude-tokenomics.md'
+const SOURCE = 'standard-claude-tokenomics.md'
 const SURF_1: RubricItem<ClaudeContext> = {
   code: 'CLAUDE-SURF-1',
   title: 'Selected Claude surfaces are bounded',
