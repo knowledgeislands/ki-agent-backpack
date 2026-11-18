@@ -52,6 +52,8 @@ None recorded by id: the rules follow the outside sources above and `ki-env-toke
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Environment guild: REFRESH redirects to the backpack from an installed copy. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Environment guild's review, from the Cairn summit's change 10, brought the standards and this file into `ki-authoring`'s formats: `standards-claude-tokenomics.md` and `standards-model-tier-resolution.md` were renamed `standard-claude-tokenomics.md` and `standard-model-tier-resolution.md` and their rules placed, unchanged, under numbered sections, and this file took the sources format, with the model pages, which feed the advisory model-tier evidence, as advisory. The rubric's source names follow. No rule changed and no outside source was refreshed.
 
 **Model-tier evidence refreshed 2026-09-30.** The Claude Code filesystem sources were not rechecked in this targeted refresh. Project observations remain distinct from user overrides and effective session state, which are unavailable.

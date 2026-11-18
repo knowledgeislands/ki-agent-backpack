@@ -47,7 +47,7 @@ Declare this adapter only for repositories that support Claude Code; it scaffold
 
 → Read [mode-refresh.md](references/mode-refresh.md)
 
-Refresh only in `ki-agent-backpack`; from an installed copy, stop and redirect to the canonical harness.
+Refresh only in `ki-agent-backpack`; from an installed copy, stop and redirect to the canonical backpack.
 
 ### Mode HELP
 
