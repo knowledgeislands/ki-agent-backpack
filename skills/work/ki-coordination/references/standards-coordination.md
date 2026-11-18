@@ -477,7 +477,7 @@ These rules apply to every coordinator.
 The package `work/<territory>/<id>/` in the Cairn store is tracked, and its knowledge is safe only once it is in Git on a remote.
 
 - **When:** commit and push the package at every send, every owner receive, every mark and hold, and before the work finishes, by explicit path, never with another session's uncommitted changes, each commit's subject carrying the move.
-- **Checks:** every such commit and line first passes the repository's own checks under the `ki-git` [checks before committing](../../../repository/ki-git/references/standards-git.md#checks-before-committing) rule.
+- **Checks:** every such commit and line first passes the repository's own checks under the `ki-git` [checks before committing](../../../repository/ki-git/references/standard-git.md#451-checks-before-committing) rule.
 - **Cadence:** every session, coordinator or run, commits the package by explicit path after every finished change, before its turn ends; a run commits each step as it goes. It then syncs, `git fetch`, a fast-forward pull into a clean checkout and a push under [Pushing beneath other sessions](standards-sync.md#pushing-beneath-other-sessions), after every finished change and at least every 15 minutes while it works. A pull that cannot fast-forward goes to the conflict run that section sets.
 - **Report:** say plainly whether the package is committed, in `## Done`, or uncommitted, in `## In Progress`, under BANNER-TRIM. Omit routine push state; report a failed push that prevents publication of the run's own unit, with the unit and the reason.
 

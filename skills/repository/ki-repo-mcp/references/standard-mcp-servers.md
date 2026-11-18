@@ -202,13 +202,13 @@ The Bun-install / Node-run split, the **`bun test` trap**, the `process.loadEnvF
 
 ### 4.9 tsconfig / vitest / biome
 
-`tsconfig.json` (the shared compiled-TS base), `tsconfig.build.json`, and `biome.json` are the **common engineering standard** (`ki-engineering` §4–§7); when the repository selects Vitest by carrying `vitest.config.*`, that common layer also requires 100% coverage on all four metrics. Only under that selected profile does the **MCP delta** add its coverage `exclude` list — beyond the common `src/**/*.test.ts`, an MCP excludes its pure-wiring layers: `src/mcp-server/index.ts`, `src/tools/**/index.ts`, `src/utils/annotations.ts`, plus `src/auth-server/**`, `src/cli/cli.ts`, and pure-data modules (`src/utils/notion-args.ts`) where present.
+`tsconfig.json` (the shared compiled-TS base), `tsconfig.build.json`, and `biome.json` are the **common engineering standard** (`ki-engineering` §4.8–§4.11); when the repository selects Vitest by carrying `vitest.config.*`, that common layer also requires 100% coverage on all four metrics. Only under that selected profile does the **MCP delta** add its coverage `exclude` list — beyond the common `src/**/*.test.ts`, an MCP excludes its pure-wiring layers: `src/mcp-server/index.ts`, `src/tools/**/index.ts`, `src/utils/annotations.ts`, plus `src/auth-server/**`, `src/cli/cli.ts`, and pure-data modules (`src/utils/notion-args.ts`) where present.
 
 [Back to contents](#contents)
 
 ### 4.10 .env.example & env vars
 
-The committed `.env*.example` template (real `.env.*` gitignored) and the `process.loadEnvFile` parity call are the **common engineering standard** (`ki-engineering` §8). The **MCP delta** is the variable prefix + shared block:
+The committed `.env*.example` template (real `.env.*` gitignored) and the `process.loadEnvFile` parity call are the **common engineering standard** (`ki-engineering` §4.12). The **MCP delta** is the variable prefix + shared block:
 
 - Prefix `MCP_<SCREAMING_SNAKE_APPNAME>_*`. Shared block across all repos: `MCP_<APP>_ACCESS_LEVEL` (default `read`), `MCP_<APP>_AUDIT_LOG` (default `writes`), `MCP_<APP>_AUDIT_LOG_PATH` (default `~/.local/state/mcp-<name>/audit.jsonl`), `MCP_<APP>_AUDIT_LOG_MAX_BYTES` (10485760), `MCP_<APP>_AUDIT_LOG_KEEP` (5), plus domain vars (`*_SAFE_ROOTS`, `*_ROOT`, OAuth client id/secret, PAT, …).
 

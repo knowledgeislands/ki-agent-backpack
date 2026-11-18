@@ -38,7 +38,7 @@ Every source the standards follow is in-house.
 | --- | --- | --- |
 | `ROADMAP.md` | Repository-local planning practice, work items, horizons, theme grouping, indexes, and lifecycle | 2026-09-22 |
 | [Change-management adapter standard](../../../keystone/ki-work/references/standard-change-management-adapters.md) | Selector resolution, abstract lifecycle vocabulary, and ownership boundary | 2026-09-22 |
-| [`ki-repo-kb-streams` Streams standard](../../../repository/ki-repo-kb-streams/references/standards-streams-structure.md#roadmap) | KB boundary, placement, and off-ramp | 2026-09-22 |
+| [`ki-repo-kb-streams` Streams standard](../../../repository/ki-repo-kb-streams/references/standard-streams-structure.md#44-roadmap) | KB boundary, placement, and off-ramp | 2026-09-22 |
 
 [Back to contents](#contents)
 

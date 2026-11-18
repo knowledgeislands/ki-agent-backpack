@@ -155,6 +155,6 @@ At each mark the State of play sweeps its territory's repositories for work left
 
 - **Reads:** each repository's linked worktrees, branches not merged into `main`, stashes, and mains ahead of their upstream, through read-only Git.
 - **Shows:** each finding in its banner as `- 🧹 stranded <worktree or branch> · <owning work>`, `🧹 branch` or `🧹 stash`, whatever its age, its glyph from the [table of glyphs](standards-coordination.md#banner). A clean sweep adds nothing, and routine push state is omitted.
-- **Removes nothing:** integrating goes to the owning work; a stash drop, branch deletion or worktree removal goes to the owner by name under the `ki-git` [clean-down](../../../repository/ki-git/references/standards-git.md#clean-down-state) rule. The sweep reports Git state, not age.
+- **Removes nothing:** integrating goes to the owning work; a stash drop, branch deletion or worktree removal goes to the owner by name under the `ki-git` [clean-down](../../../repository/ki-git/references/standard-git.md#46-clean-down-state) rule. The sweep reports Git state, not age.
 
 Sources: STALE-SWEEP and WORKTREE-START in [the decision register](sources.md#decision-register).

@@ -98,7 +98,7 @@ The comparison qualifies transcript-derived tool tallies and high-cost suggestio
 
 Using the whole-thread inventory plus each touched repository's `filesTouched` / `diffStat`: state what changed, what was decided, and why — in the order it happened, not a topic reshuffle. Keep it to what a reader picking this up cold would need: no blow-by-blow tool narration. For each material topic, establish whether it was delivered, explicitly declined, superseded, or remains follow-up; do not treat an earlier recap as a terminal boundary.
 
-Omit routine push state and other sessions' stacked commits from the recap, under [`ki-git`](../../../repository/ki-git/references/standards-git.md#commit-publication-and-integration-authority) and `ki-coordination`. If this session's own unit could not be published because its push failed, name the affected unit and reason. Push authority and own-commits-only safeguards are unchanged.
+Omit routine push state and other sessions' stacked commits from the recap, under [`ki-git`](../../../repository/ki-git/references/standard-git.md#43-commit-publication-and-integration-authority) and `ki-coordination`. If this session's own unit could not be published because its push failed, name the affected unit and reason. Push authority and own-commits-only safeguards are unchanged.
 
 [Back to contents](#contents)
 

@@ -54,7 +54,7 @@ The adapter contract is a backpack-owned boundary; review its sources when addin
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
 | [Repository kind contract](../../../keystone/ki-repo/references/standard-repository.md#42-repository-kind-and-knowledge-base-stores) | The adapters' local sources: the repository kinds an adapter is valid for | On change |
-| [KB Streams placement contract](../../../repository/ki-repo-kb-streams/references/standards-streams-structure.md#roadmap) | The adapters' local sources: where a Knowledge Base keeps its records | On change |
+| [KB Streams placement contract](../../../repository/ki-repo-kb-streams/references/standard-streams-structure.md#44-roadmap) | The adapters' local sources: where a Knowledge Base keeps its records | On change |
 | [Change-management adapter standard](standard-change-management-adapters.md) | `implement` and `accept`: selected-adapter resolution and the remote no-execution boundary | On change |
 | [Repository work-item format](../../../work/ki-work-roadmap/references/standard-work-item-format.md#4136-awaiting-review) | `implement` and `accept`: the roadmap review packet, its six headings, exact order, and producer/consumer semantics | On change |
 | [Repository-roadmap lifecycle](../../../work/ki-work-roadmap/references/standard-repository-roadmaps.md#48-work-item-discipline) | `implement`: the local record lifecycle and `baseline_ref` evidence; `accept`: closure, selected pruning, and completion-observation retention | On change |
