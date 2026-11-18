@@ -95,13 +95,13 @@ The root `ki:site:build` / `ki:site:dev` aliases and local build/dev operations 
 
 ## Credential access
 
-When a run is separately authorised to read Cloudflare credentials, it reads them only through `~/bin/cf-token`. No territory's notes record credential item or token ids, and credential values never enter output or tracked files. Kris adopted the Cloudflare half of RUN-SECRETS on 25 October 2026; this is an access rule, not authority for a credential read or a Cloudflare operation. The background-run [authority limits](../../../agentic-systems/ki-delegation/references/standards-background-runs.md#authority-tiers) still apply.
+When a run is separately authorised to read Cloudflare credentials, it reads them only through `~/bin/cf-token`. No territory's notes record credential item or token ids, and credential values never enter output or tracked files. Kris adopted the Cloudflare half of RUN-SECRETS on 25 October 2026; this is an access rule, not authority for a credential read or a Cloudflare operation. The background-run [authority limits](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#46-authority-tiers) still apply.
 
 ## Zero Trust team naming
 
 Each Cloudflare account's Zero Trust team, which gives the Access login its `<team>.cloudflareaccess.com` domain, is named for that account's own identity in kebab case: the personal account's team is `midnight-ninja` and the 5G Emerge account's is `5g-emerge`. A team never keeps the name of another territory or of a project it once hosted, and carries no stale suffix such as `-io`. The organisation name equals the team domain, as in the Valle Armonia and 5G Emerge accounts, and the login page's text belongs to the account, with no other territory's header or footer. Kris set this on 29 October 2026 when renaming both teams, asking that it be "rolled out uniformly ... following conventions".
 
-A team rename is a change to the Access organisation, which makes it connection-critical under the background-run [connection-critical rule](../../../agentic-systems/ki-delegation/references/standards-background-runs.md#connection-critical-changes):
+A team rename is a change to the Access organisation, which makes it connection-critical under the background-run [connection-critical rule](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#484-connection-critical-changes):
 
 1. **Restore path first.** Save the current team domain, organisation name and login text, and the identity providers' redirect URLs. To undo a rename while the old name is still unclaimed, put those values back on the account's Access organisation.
 2. **Rename, never delete.** Deleting an organisation locks its name permanently; a rename frees the old name for any account to claim. To move a name between two accounts, free it in one and claim it in the other straight away.

@@ -278,7 +278,7 @@ A change outside `stale_when` needs no rebuild: review it, then advance `last_ch
 
 To add a diagram, write its manifest table and README section first, then author the source, finalize, export, and set `last_checked`.
 
-Each working folder `+/diagrams/<slug>/` carries a `mark.toml` sidecar at its root that says who wrote it and when, under the `ki-delegation` background-run standard's [working-area marks](../../../agentic-systems/ki-delegation/references/standards-background-runs.md#working-area-marks), which names its fields in one place. The mark is working-area provenance only: neither Archify's `<slug>.delivery.json` beside the HTML nor the committed `<slug>.receipt.json` carries it, so a rebuild leaves the committed receipt unchanged. The audit warns on a working folder without a well-formed mark.
+Each working folder `+/diagrams/<slug>/` carries a `mark.toml` sidecar at its root that says who wrote it and when, under the `ki-delegation` background-run standard's [working-area marks](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#442-working-area-marks), which names its fields in one place. The mark is working-area provenance only: neither Archify's `<slug>.delivery.json` beside the HTML nor the committed `<slug>.receipt.json` carries it, so a rebuild leaves the committed receipt unchanged. The audit warns on a working folder without a well-formed mark.
 
 [Back to contents](#contents)
 

@@ -144,7 +144,7 @@ A package is its entry file and its change documents. Where it holds more than o
 - **The package's `_index.md` is enough to recover.** It holds the state, what is in hand, what waits and who is working, and links to every change and sub-package, so an agent pointed at it knows where things stand.
 - **There are no other package files:** no `state.md`, `decisions.md`, `discussions.md` or `messages.md`, and no focus folders, run reports, briefs, findings or feedback files. The words focus and theme are not used for sub-packages: theme belongs to roadmaps, and focus suggests what is looked at first.
 - **No empty folders.**
-- **Temporary output** belongs in the run's temporary directory, `$TMPDIR/ki-agents/<run>/<name>/`, outside every repository, under the `ki-delegation` [run packet](../../../agentic-systems/ki-delegation/references/standards-background-runs.md#run-packet); scripts, screenshots, `scratch/` folders and the output of tools never enter a package.
+- **Temporary output** belongs in the run's temporary directory, `$TMPDIR/ki-agents/<run>/<name>/`, outside every repository, under the `ki-delegation` [run packet](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#44-run-packet); scripts, screenshots, `scratch/` folders and the output of tools never enter a package.
 
 [Back to contents](#contents)
 

@@ -4,7 +4,7 @@ This file holds how work reaches other work now that the message queue has retir
 
 ## Sessions work alone
 
-A session is independent and autonomous over its work package and the repositories its `repositories:` names. It does its work there with its agent host's own subagents, under the `ki-delegation` [background-run standard](../../../agentic-systems/ki-delegation/references/standards-background-runs.md), and those subagents act across those repositories. It never asks another session to act for it. It contacts another session only when that is essential, and then as a one-way hand-off that nobody waits on: a lesson learned, for example, goes to the guildmaster, who takes it up as scheduled work. A hand-off goes along the tree under [Work between packages](#messages-between-work), a signal that confers no execution authority.
+A session is independent and autonomous over its work package and the repositories its `repositories:` names. It does its work there with its agent host's own subagents, under the `ki-delegation` [background-run standard](../../../agentic-systems/ki-delegation/references/standard-background-runs.md), and those subagents act across those repositories. It never asks another session to act for it. It contacts another session only when that is essential, and then as a one-way hand-off that nobody waits on: a lesson learned, for example, goes to the guildmaster, who takes it up as scheduled work. A hand-off goes along the tree under [Work between packages](#messages-between-work), a signal that confers no execution authority.
 
 Sources: SESSIONS-ALONE and AGENT-HOST in [the decision register](sources.md#decision-register).
 

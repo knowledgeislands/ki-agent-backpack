@@ -14,7 +14,7 @@ This file holds States of play, Project work under them, assigned packages, the 
 
 ## Coordinating work
 
-Project work coordinates exactly one Project for the owner. It always delegates: it runs its work as background agents on its agent host's own subagents under the `ki-delegation` [background-run standard](../../../agentic-systems/ki-delegation/references/standards-background-runs.md), and keeps its own turns short under [Coordinator responsiveness](standards-coordination.md#coordinator-responsiveness).
+Project work coordinates exactly one Project for the owner. It always delegates: it runs its work as background agents on its agent host's own subagents under the `ki-delegation` [background-run standard](../../../agentic-systems/ki-delegation/references/standard-background-runs.md), and keeps its own turns short under [Coordinator responsiveness](standards-coordination.md#coordinator-responsiveness).
 
 - **Package:** the coordinator picks the work up from `work/<territory>/<territory>.<project>/` in the Cairn store, whose `_index.md` defines the work and holds its current state only, and keeps it current under the work-package standard. `_index.md` names its Project in front matter; the Project note does not link down.
 - **Decisions:** log each owner approval in the change document it belongs to before launching the work it authorises.
@@ -105,7 +105,7 @@ The cascade here is `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/ref
 
 **Runs and hosts.**
 
-- Every run brief separates its reporting package from the product repository. The session that started the run homes the report in that package under the `ki-delegation` [run packet](../../../agentic-systems/ki-delegation/references/standards-background-runs.md#run-packet).
+- Every run brief separates its reporting package from the product repository. The session that started the run homes the report in that package under the `ki-delegation` [run packet](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#44-run-packet).
 - Bootstrap and re-anchoring establish the local machine through the territory's machine inventory.
 - Host requirements restrict only device-dependent execution: any coordinator may acknowledge, plan, ask about or dispatch targeted work. Keep unfulfilled requirements queued and counted, flagging their age when no eligible host has taken them; never infer a takeover.
 - Resolve concrete hosts, categories and unknown or renamed names under the `ki-work-package` [message rule](../../ki-work-package/references/standard-work-package.md#48-messages).

@@ -1,6 +1,6 @@
 # Exchange dynamics migration
 
-This file holds temporary adjustments to [the exchange dynamics standard](standards-exchange-dynamics.md) and [the rendering standard](standards-exchange-dynamics-rendering.md), which describe only the final state, as Kris set under MIGRATION-OVERLAY on 7 November 2026. Read the standards first; they win wherever the two differ. Delete a line once its condition is met, and the file whole once it is empty, with no edit to the standards.
+This file holds temporary adjustments to [the exchange dynamics standard](standard-exchange-dynamics.md) and [the rendering standard](standard-exchange-dynamics-rendering.md), which describe only the final state, as Kris set under MIGRATION-OVERLAY on 7 November 2026. Read the standards first; they win wherever the two differ. Delete a line once its condition is met, and the file whole once it is empty, with no edit to the standards.
 
 | Adjustment | Until |
 | --- | --- |
