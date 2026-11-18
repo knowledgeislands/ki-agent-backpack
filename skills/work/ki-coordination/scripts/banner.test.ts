@@ -20,7 +20,7 @@ import { generate } from './generate/index.ts'
 // are not tracked.
 
 const skillRoot = resolve(import.meta.dir, '..')
-const harnessRoot = resolve(skillRoot, '..', '..', '..')
+const backpackRoot = resolve(skillRoot, '..', '..', '..')
 const references = resolve(skillRoot, 'references')
 /** The standard's reference files, core first, so an assertion holds wherever its rule lands. */
 const standardFiles = readdirSync(references)
@@ -33,8 +33,8 @@ const core = readReference('standard-coordination.md')
 /** Joins the reference files so a fenced block never runs on from one file into the next. */
 const FILE_BREAK = '\n<!-- ki-coordination:file -->\n'
 const standard = standardFiles.map(readReference).join(FILE_BREAK)
-const outputStyle = readFileSync(resolve(harnessRoot, 'output-styles', 'ki-coordinator.md'), 'utf8')
-const hook = readFileSync(resolve(harnessRoot, 'hooks', 'coordinator-reminder', 'coordinator-reminder.sh'), 'utf8')
+const outputStyle = readFileSync(resolve(backpackRoot, 'output-styles', 'ki-coordinator.md'), 'utf8')
+const hook = readFileSync(resolve(backpackRoot, 'hooks', 'coordinator-reminder', 'coordinator-reminder.sh'), 'utf8')
 
 /**
  * The package's entry file in the Cairn store, the one link a report heading carries under HEADING-FIX (Kris, 17
@@ -648,7 +648,7 @@ test('every banner closes with its work identity and never emits a send or resum
     '🧵 Coordination thread · Missing id'
   ])
     expect(invalid).not.toMatch(THREAD_LINE)
-  for (const surface of generate(harnessRoot)) {
+  for (const surface of generate(backpackRoot)) {
     expect(surface.content).not.toMatch(/^(?:Send|Resume) <label>/m)
     if (surface.path.includes('ki-delegation/assets/')) {
       expect(surface.content).toContain('🧵 <work-id>')
@@ -906,7 +906,7 @@ test('unknown-session hook sources stay short and conditional while the style re
 test('the run-report and footer-report sources carry the quiet-tools rule and the reply block', () => {
   expect(standard).toContain('#### 4.2.2 Quiet tools')
   const quiet = 'run Git with `-q`, never paste gate, audit or Git output, and report each outcome in one line.'
-  for (const surface of generate(harnessRoot).filter(({ path }) => path.includes('ki-delegation/assets/'))) {
+  for (const surface of generate(backpackRoot).filter(({ path }) => path.includes('ki-delegation/assets/'))) {
     expect(surface.content).toContain(quiet)
     expect(surface.content).toContain('**Run report at <local time> · last mark <local time>**')
     expect(surface.content).toContain('closing the queries with a reply block')
@@ -925,7 +925,7 @@ test('the hook line, the pointer and the output style confine the coordinator fo
 })
 
 test('every generated surface matches what the standard renders, so none is edited by hand', () => {
-  const surfaces = generate(harnessRoot)
+  const surfaces = generate(backpackRoot)
   for (const tier of ['none', 'push', 'prune', 'release']) {
     const footer = surfaces.find((surface) => surface.path.endsWith(`rules-${tier}.md`))
     expect(footer).toBeDefined()
@@ -941,7 +941,7 @@ test('every generated surface matches what the standard renders, so none is edit
   for (const surface of surfaces)
     expect({
       path: surface.path,
-      content: readFileSync(resolve(harnessRoot, surface.path), 'utf8')
+      content: readFileSync(resolve(backpackRoot, surface.path), 'utf8')
     }).toEqual({
       path: surface.path,
       content: surface.content
@@ -1002,7 +1002,7 @@ test('regular coordination is explicit, capability-checked and uses its real wor
   ])
     expect(invalid).not.toMatch(THREAD_LINE)
   expect(standard).toContain('Reports saved before this change retain their original closing line and remain readable')
-  for (const surface of generate(harnessRoot).filter((surface) =>
+  for (const surface of generate(backpackRoot).filter((surface) =>
     /(?:run-prompt|rules-[^/]+)\.md$/.test(surface.path)
   )) {
     expect(surface.content).toContain('# [<title>](<package _index.md>) › <run name>')

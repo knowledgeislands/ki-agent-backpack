@@ -110,13 +110,13 @@ The owner may compact a long session with the runtime's compaction facility, kee
 
 After any compaction, owner's or runtime's, the coordinator, before answering anything else:
 
-1. re-reads this standard, the harness output style `output-styles/ki-coordinator.md` from disk and its package's `_index.md`, the change documents in hand in full and every change document's Open section, and follows the style file wherever it differs from the loaded style;
+1. re-reads this standard, the backpack's output style `output-styles/ki-coordinator.md` from disk and its package's `_index.md`, the change documents in hand in full and every change document's Open section, and follows the style file wherever it differs from the loaded style;
 2. checks its agents through its agent host, takes the top line of `_index.md`'s Now as its first step, and reads any meeting it sits in, `IMPORTANT` messages first;
 3. confirms in one line that it has re-anchored, then answers with the Bootstrap, heading block to banner.
 
 The style file wins because a session keeps the style it loaded at start through a compaction, so the loaded copy can lag the file on disk; the [compact pointer](standard-coordination.md#47-generated-surfaces) and the style's re-anchoring paragraph say the same.
 
-Re-anchoring moves no mark. The harness hook injects a one-line pointer to this section on a compact session start in Claude Code; a Codex session re-anchors on the owner's next message, where the hook's ordinary line reaches it.
+Re-anchoring moves no mark. The backpack's hook injects a one-line pointer to this section on a compact session start in Claude Code; a Codex session re-anchors on the owner's next message, where the hook's ordinary line reaches it.
 
 Sources: STYLE-STALE in [the decision register](sources.md#3-decisions).
 

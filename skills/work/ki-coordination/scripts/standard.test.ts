@@ -6,7 +6,7 @@ import { dirname, join, relative, resolve } from 'node:path'
 // 2026. These tests keep the set navigable and prove the move lost no hard token of the single-file standard.
 
 const skillRoot = resolve(import.meta.dir, '..')
-const harnessRoot = resolve(skillRoot, '..', '..', '..')
+const backpackRoot = resolve(skillRoot, '..', '..', '..')
 const references = join(skillRoot, 'references')
 const referenceFiles = readdirSync(references).filter((name) => name.endsWith('.md'))
 const standardFiles = referenceFiles.filter((name) => /^standards?-.*\.md$/.test(name))
@@ -65,20 +65,20 @@ test('every standard file over 100 lines opens with a contents list', () => {
 })
 
 test('every link to a section of a ki-coordination standard file resolves', () => {
-  const tracked = Bun.spawnSync(['git', 'ls-files', '*.md'], { cwd: harnessRoot })
+  const tracked = Bun.spawnSync(['git', 'ls-files', '*.md'], { cwd: backpackRoot })
     .stdout.toString()
     .split('\n')
     .filter((path) => path && !path.startsWith('+/') && !path.startsWith('-/'))
   const cache = new Map<string, Set<string>>()
   const broken: string[] = []
   for (const path of tracked) {
-    const text = read(join(harnessRoot, path))
+    const text = read(join(backpackRoot, path))
     if (!/standards?-/.test(text)) continue
     for (const line of prose(text))
       for (const match of line.matchAll(/\]\(((?:[^()\s#]*\/)?(standards?-[a-z-]+\.md))#([^)\s]+)\)/g)) {
         const [, target = '', , anchor = ''] = match
         if (target.includes('://')) continue
-        const file = resolve(harnessRoot, dirname(path), target)
+        const file = resolve(backpackRoot, dirname(path), target)
         if (relative(references, dirname(file)) !== '') continue
         if (!cache.has(file)) cache.set(file, anchors(read(file)))
         if (!cache.get(file)?.has(anchor)) broken.push(`${path} → ${target}#${anchor}`)

@@ -4,7 +4,7 @@
  * `ki-coordinator` output style, the run-prompt skeleton's Report paragraph and each authority footer's report rule, and
  * the review-independence line of the run-prompt skeleton and the `ki-work design` brief template.
  *
- * Boundary: reads the standard's reference files and the current surfaces under the harness root and returns each surface's rendered
+ * Boundary: reads the standard's reference files and the current surfaces under the backpack root and returns each surface's rendered
  * bytes; it never writes. `ki dev skill generate ki-coordination` compares or publishes them, and the banner test checks the
  * committed surfaces against them.
  */
@@ -16,7 +16,7 @@ export type GeneratedSurface = { readonly path: string; readonly content: string
 export type SkillGeneration = {
   readonly contract: 1
   readonly name: string
-  readonly generate: (harnessRoot: string) => readonly GeneratedSurface[]
+  readonly generate: (backpackRoot: string) => readonly GeneratedSurface[]
 }
 
 const REFERENCES = 'skills/work/ki-coordination/references'
@@ -68,9 +68,9 @@ const shellValue = (name: string, value: string): string => {
   return `${name}='${value}'`
 }
 
-export const generate = (harnessRoot: string): readonly GeneratedSurface[] => {
-  const read = (path: string): string => readFileSync(join(harnessRoot, path), 'utf8')
-  const standard = readdirSync(join(harnessRoot, REFERENCES))
+export const generate = (backpackRoot: string): readonly GeneratedSurface[] => {
+  const read = (path: string): string => readFileSync(join(backpackRoot, path), 'utf8')
+  const standard = readdirSync(join(backpackRoot, REFERENCES))
     .filter((name) => /^standards?-.*\.md$/.test(name))
     .sort()
     .map((name) => read(`${REFERENCES}/${name}`))
