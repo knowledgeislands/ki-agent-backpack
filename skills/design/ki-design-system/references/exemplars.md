@@ -4,7 +4,7 @@ ki-document-type: exemplars@2026-11-17T00:55:00Z
 
 # Exemplars
 
-These illustrate [the Design System standard](standards-design-system.md) but do not add requirements.
+These illustrate [the Design System standard](standard-design-system.md) but do not add requirements.
 
 ## The 5G-EMERGE Phase 3 site
 

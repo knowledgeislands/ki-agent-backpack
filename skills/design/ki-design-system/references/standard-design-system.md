@@ -1,42 +1,85 @@
-# Design system standard
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:16:28Z
+ki-status: in force
+---
 
-This standard defines how a Knowledge Islands repository keeps the knowledge behind its user interface: where each kind of design knowledge lives, how a design question moves from a brief to a settled rule, and what keeps those rules true as the interface changes. It governs the method, not the content: a repository's own design guide, decisions and checks say what its interface looks like. The hosted rubric enforces the mechanical criteria; the generated [rubric](rubric.md) publishes every criterion, and [exemplars](exemplars.md) point at a conforming repository. It was established by the 5G-EMERGE Phase 3 calendars page in October 2026.
+# Design system standard
 
 ## Contents
 
-- [Scope and boundary](#scope-and-boundary)
-- [Where design knowledge lives](#where-design-knowledge-lives)
-- [The token source](#the-token-source)
-- [The design guide](#the-design-guide)
-- [The component library](#the-component-library)
-- [Shells and their state](#shells-and-their-state)
-- [Design Specifications](#design-specifications)
-- [Design Decision Records](#design-decision-records)
-- [Design work, from brief to rule](#design-work-from-brief-to-rule)
-- [Checks](#checks)
-- [The floor](#the-floor)
-- [Projections](#projections)
-- [Configuration](#configuration)
-- [Judgment boundary](#judgment-boundary)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Where design knowledge lives](#41-where-design-knowledge-lives)
+  - [4.2 The token source](#42-the-token-source)
+  - [4.3 The design guide](#43-the-design-guide)
+  - [4.4 The component library](#44-the-component-library)
+  - [4.5 Shells and their state](#45-shells-and-their-state)
+  - [4.6 Design Specifications](#46-design-specifications)
+  - [4.7 Design Decision Records](#47-design-decision-records)
+  - [4.8 Design work, from brief to rule](#48-design-work-from-brief-to-rule)
+  - [4.9 Checks](#49-checks)
+  - [4.10 The floor](#410-the-floor)
+  - [4.11 Projections](#411-projections)
+  - [4.12 Configuration](#412-configuration)
+  - [4.13 Judgment boundary](#413-judgment-boundary)
 
-## Scope and boundary
+## 1. Introduction
 
-A design system here is the set of visual and interaction rules one product surface follows: its colours, type, layout, components, how it shows state, and how it behaves for a keyboard, a screen reader or a reader without script. Any repository with a user interface may adopt it: a website, an application or a documentation site. A repository adopts it by declaring `[skills.ki-design-system]` in `.ki.toml`.
+This standard defines how a Knowledge Islands repository keeps the knowledge behind its user interface: where each kind of design knowledge lives, how a design question moves from a brief to a settled rule, and what keeps those rules true as the interface changes. It governs the method, not the content: a repository's own design guide, decisions and checks say what its interface looks like. The hosted rubric enforces the mechanical criteria; the generated [rubric](rubric.md) publishes every criterion, and [exemplars](exemplars.md) point at a conforming repository. It was established by the 5G-EMERGE Phase 3 calendars page in October 2026. The sources behind it are in [the sources file](sources.md).
 
-| Concern                                                         | Owner                  |
-| --------------------------------------------------------------- | ---------------------- |
-| Where design knowledge lives, design work, design checks        | **this skill**         |
-| Visual references and inspiration for a new direction           | `ki-design-inspiration` |
-| The shape of a new Project, Initiative or cross-cutting model   | `ki-work design`       |
-| How tokens are built into an Eleventy and Tailwind site         | `ki-repo-website-content` |
-| How a component library is packaged, shown and shared           | `ki-repo-packages`     |
-| The format of a guide, Specification, Decision Record or record | `ki-guides`, `ki-specs`, `ki-decision-records`, `ki-work-roadmap` |
-| Living diagrams of the system                                   | `ki-diagrams`          |
-| Prose style                                                     | `ki-authoring`         |
+[Back to contents](#contents)
+
+## 2. Scope
+
+How a Knowledge Islands repository keeps the knowledge behind its user interface.
+
+### 2.1 In scope
+
+- A design system: the set of visual and interaction rules one product surface follows, its colours, type, layout, components, how it shows state, and how it behaves for a keyboard, a screen reader or a reader without script.
+- Any repository with a user interface, such as a website, an application or a documentation site, that adopts it by declaring `[skills.ki-design-system]` in `.ki.toml`.
+- Where design knowledge lives, design work and design checks.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- Visual references and inspiration for a new direction: `ki-design-inspiration`.
+- The shape of a new Project, Initiative or cross-cutting model: `ki-work design`.
+- How tokens are built into an Eleventy and Tailwind site: `ki-repo-website-content`.
+- How a component library is packaged, shown and shared: `ki-repo-packages`.
+- The format of a guide, Specification, Decision Record or record: `ki-guides`, `ki-specs`, `ki-decision-records`, `ki-work-roadmap`.
+- Living diagrams of the system: `ki-diagrams`.
+- Prose style: `ki-authoring`.
 
 This standard routes design knowledge into those instruments. It never forks their formats: a design guide is an ordinary guide, a design Specification an ordinary Specification, and a design decision an ordinary Decision Record.
 
-## Where design knowledge lives
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Design system** | The set of visual and interaction rules one product surface follows. **Standard:** this one, [4.1](#41-where-design-knowledge-lives) |
+| **Token source** | The canonical home of every design value, as CSS custom properties. **Standard:** this one, [4.2](#42-the-token-source) |
+| **Design guide** | The ordinary guide holding the rules a maintainer follows to design or change a page. **Standard:** this one, [4.3](#43-the-design-guide) |
+| **Component library** | The set of reusable parts an interface is built from, sorted by atomic design into six levels. **Standard:** this one, [4.4](#44-the-component-library) |
+| **Components document** | The one document per library with a row for each component: its signature, what it owns and does not own, and its hand-offs. **Standard:** this one, [4.4](#44-the-component-library) |
+| **Shell** | One layer of the interface's onion, a template that says what state it owns. **Standard:** this one, [4.5](#45-shells-and-their-state) |
+| **The floor** | The four requirements every adopting design system meets. **Standard:** this one, [4.10](#410-the-floor) |
+| **Projection** | A design tool outside the repository, refreshed from its source and never edited as the source. **Standard:** this one, [4.11](#411-projections) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 Where design knowledge lives
 
 Each kind of design knowledge has one home, so a reader knows where to look and nothing is said twice.
 
@@ -45,14 +88,16 @@ Each kind of design knowledge has one home, so a reader knows where to look and 
 | What is the value?                | The token source, such as `tokens.css`                     | Code                     |
 | How do I build a page?            | The design guide, under `docs/guides/<audience>/`          | `ki-guides`              |
 | What must the interface do?       | Design Specifications, under `docs/specs/`                 | `ki-specs`               |
-| What parts are there, and what does each own? | The components document, one per component library | [The component library](#the-component-library) |
+| What parts are there, and what does each own? | The components document, one per component library | [The component library](#44-the-component-library) |
 | Why is it this way?               | Design Decision Records, under `docs/decisions/`           | `ki-decision-records`    |
 | When will it change?              | Design work records, under `docs/roadmap/`                 | `ki-work-roadmap`        |
 | Is it still true?                 | Checks, in the repository's test and check scripts         | Code                     |
 
 The rule for every home is the same: state a thing once, in its home, and elsewhere name it. A guide names a token rather than repeating its value; a Decision Record states a decision rather than restating the guide's procedure; a check enforces a rule rather than redefining it.
 
-## The token source
+[Back to contents](#contents)
+
+### 4.2 The token source
 
 The token source is the canonical home of every design value: colour, type, spacing, radius, shadow, motion and breakpoints where the platform allows. Every other artefact, including the design guide, names a token and never repeats its value, because a repeated value drifts the first time the token changes. A value the token source does not yet hold may be stated in the guide until it gets a token; colour always has one.
 
@@ -62,7 +107,9 @@ The token source is the canonical home of every design value: colour, type, spac
 - A repository with several token files declares each one. A generated token file is acceptable when its generator is the declared source.
 - The token source is CSS custom properties. The W3C Design Tokens Community Group format (DTCG) is an allowed upstream form where a generator writes the CSS from it, as Tessera's `tokens.json` does; it is not required, and no repository moves to it until a tool needs it (TOKEN-SOURCE).
 
-## The design guide
+[Back to contents](#contents)
+
+### 4.3 The design guide
 
 The design guide is the practical how: the rules a maintainer follows to design or change a page so it looks and behaves like the rest. It is an ordinary guide under `ki-guides`, in the audience folder of the people who build the interface, usually `docs/guides/developer/`, and listed in the collection's `docs/guides/README.md`. A product with several distinct surfaces may keep one guide per surface.
 
@@ -83,7 +130,9 @@ The guide states current rules in the present tense. It holds no history and no 
 
 A section the product does not need may be left out. [The guide skeleton](../assets/design-guide.md) gives the headings without content.
 
-## The component library
+[Back to contents](#contents)
+
+### 4.4 The component library
 
 A **component library** is the set of reusable parts an interface is built from. It is the industry's word, used here in place of "UI kit". A **web component library** is one built as custom elements that any page uses by its tag, as Stoa's `<stoa-header>` and `<stoa-command-bar>` are; how it is packaged, shown in a Storybook and described by its custom elements manifest is `ki-repo-packages`' concern. A library whose parts are functions inside one application, as the Cairn Wayfinder's are, is a component library too.
 
@@ -102,9 +151,11 @@ Kris, 14 November 2026: "that should be in the skill, and we should make use of 
 
 Each library keeps one **components document**, with a table for each level and one row for each component: its **signature**, what it **owns**, what it **does not own**, and its **hand-offs**, the parts it gives work to or takes work from. A signature is the contract later work builds to: names may be added, but not change meaning. The Wayfinder's [component library](https://github.com/knowledgeislands/apps-cairn.local/blob/main/docs/design/ui/wayfinder-components.md) is the model. The repository chooses where the document lives, and the design guide's Components section names it.
 
-The names in the components document are the code's names, and every design board names the same parts at the same levels, as [the design levels](standards-design-levels.md#names) set out. A part that fits no level, or two, is a question for the owner, recorded in the components document until it is answered.
+The names in the components document are the code's names, and every design board names the same parts at the same levels, as [the design levels](standard-design-levels.md#42-names) set out. A part that fits no level, or two, is a question for the owner, recorded in the components document until it is answered.
 
-## Shells and their state
+[Back to contents](#contents)
+
+### 4.5 Shells and their state
 
 An interface is designed from its shells inwards, like an onion, and each shell is designed in its own right. Kris, 13 November 2026: "it should be like an onion, so shells in. So each level could be a different thing, the tab's got its own design." For an application window with tabs, such as the Wayfinder, the shells are:
 
@@ -119,15 +170,19 @@ A website's onion is shallower: the page's chrome, then the page frame, then its
 - **One frame, different contents.** Every tab, or every page, keeps the same parts in the same places. What the frame holds changes, above all its side navigation; where its parts sit does not.
 - **Each shell says what state it owns:** the window, a tab or a page. That decides what survives switching tabs, leaving a page and restarting.
 
-Shells are templates in the component library. On [the annotated board](standards-annotated-board.md#region-codes) they take the `S` codes, numbered from the outside in.
+Shells are templates in the component library. On [the annotated board](standard-annotated-board.md#42-region-codes) they take the `S` codes, numbered from the outside in.
 
-## Design Specifications
+[Back to contents](#contents)
+
+### 4.6 Design Specifications
 
 A design rule becomes a Specification when it is a stable, verifiable behaviour that something outside the guide depends on: a contrast threshold across every theme and mode, a rule that no meaning is carried by colour alone, a rule that a page's content is complete without script, or a keyboard behaviour. Its verification names the check that proves it. A rule that is only a convention for maintainers, such as a spacing step, stays in the guide.
 
 Do not write a speculative design Specification to make the system look complete. Where a guide rule has no Specification and something depends on it, route the gap to `ki-specs`.
 
-## Design Decision Records
+[Back to contents](#contents)
+
+### 4.7 Design Decision Records
 
 A design decision gets a Decision Record when a future maintainer could reasonably undo it without knowing why it was made: how tokens are composed, why a category keeps its colour across themes, why a provisional status is never drawn solid, or why content is rendered at build time.
 
@@ -135,23 +190,27 @@ A design decision gets a Decision Record when a future maintainer could reasonab
 - Use `PDR-` for how the product presents itself to its users: state encodings, density, what is shown first.
 - Before writing one, find the record that already owns the concern and refine it in place. A record states the decision as it stands, without rejected options, history or a link to working material; `ki-decision-records` owns its shape.
 
-## Design work, from brief to rule
+[Back to contents](#contents)
 
-A design question that changes what readers see starts from a review of the interface as built and moves through six stages. Its options are drawn at [three levels](standards-design-levels.md), information architecture, wireframe and mock-up, each agreed before the next is drawn. Each produces something, and only the last two leave anything durable besides the board the review reads from.
+### 4.8 Design work, from brief to rule
 
-0. **Review.** The owner reviews the interface on its [annotated board](standards-annotated-board.md), a projection refreshed from the running interface, and quotes its labelled regions. The findings become the brief.
+A design question that changes what readers see starts from a review of the interface as built and moves through six stages. Its options are drawn at [three levels](standard-design-levels.md), information architecture, wireframe and mock-up, each agreed before the next is drawn. Each produces something, and only the last two leave anything durable besides the board the review reads from.
+
+0. **Review.** The owner reviews the interface on its [annotated board](standard-annotated-board.md), a projection refreshed from the running interface, and quotes its labelled regions. The findings become the brief.
 1. **Brief.** The purpose, the audience and their devices, the real data the design must hold (including its awkward cases: empty, provisional, imprecise), the constraints, what success looks like, and the open questions. The owner writes or approves it.
 2. **Options.** Two or three directions that differ in their trade-offs, not only in style, drawn level by level on the real tokens and the real data, and placed on the board beside the screenshot they answer. Each names what it gains and what it costs against the brief. `ki-design-inspiration` may supply references.
 3. **Decision.** The owner chooses, combines or rejects. The choice and its reasons are recorded in the work record's Discussion.
 4. **Build.** The chosen design is built in the repository against the guide and checks.
 5. **Consolidate.** The outcome moves to its homes: new values to the token source, new rules to the design guide, new stable behaviour to a Specification, a new or changed decision to a Decision Record, and every new checkable rule to a check.
-6. **Retire.** The brief, option boards, rounds, canvases and screenshots are working material. Once consolidated, they are not kept as documents: the work record that summarised them is pruned with the rest of the roadmap, and Git history keeps what was considered. The final boards of the chosen design are not working material: they move, renamed by level, into [its design book](standards-design-levels.md#the-design-book), beside its design document. The annotated board itself stays, because it is a projection rather than working material; its next refresh shows the built design, and the mock-ups leave it.
+6. **Retire.** The brief, option boards, rounds, canvases and screenshots are working material. Once consolidated, they are not kept as documents: the work record that summarised them is pruned with the rest of the roadmap, and Git history keeps what was considered. The final boards of the chosen design are not working material: they move, renamed by level, into [its design book](standard-design-levels.md#45-the-design-book), beside its design document. The annotated board itself stays, because it is a projection rather than working material; its next refresh shows the built design, and the mock-ups leave it.
 
 **Agreed decisions are drawn against the build** (DRAW-BUILD, Kris, 14 November 2026). Once a decision is agreed, its drawing follows the build rather than leading it: the agreed design is built, and any drawing of it after that is drawn against the build and checked with it. Drawings ahead of the build are for open choices only, drawn side by side for the owner. It holds for design work in a meeting or out of one; in the first design meeting, drawings ahead of an agreed build held the build up.
 
 A design question about the shape of a Project or a model that several repositories share follows `ki-work design` instead. A small change that needs no options, such as applying an existing component, goes straight to build and consolidate.
 
-## Checks
+[Back to contents](#contents)
+
+### 4.9 Checks
 
 A design rule that a machine can check has a check, and the guide's merge section names it. Rules that need a person are listed there as review steps. Checks fall into four groups:
 
@@ -162,7 +221,9 @@ A design rule that a machine can check has a check, and the guide's merge sectio
 
 A repository declares the files that hold its design checks. A check that cannot run in the repository's own test or check commands is a review step, not a check.
 
-## The floor
+[Back to contents](#contents)
+
+### 4.10 The floor
 
 Every design system that adopts this standard meets four requirements, whatever it looks like:
 
@@ -171,16 +232,20 @@ Every design system that adopts this standard meets four requirements, whatever 
 3. **Meaning is never carried by colour alone.** Each meaningful colour has a second carrier: a word, a code, a shape or a line style.
 4. **Keyboard parity.** Everything a pointer can do, a keyboard can do, with visible focus.
 
-## Projections
+[Back to contents](#contents)
+
+### 4.11 Projections
 
 A design tool outside the repository is a projection, refreshed from its source and never edited as the source. There are two kinds:
 
 - **Projections of the system** - a design-system artifact, a Figma library or a design canvas of components is refreshed from the token source and the guide.
-- **The annotated board** - an interface with readers keeps an [annotated board](standards-annotated-board.md): screenshots of each view and shell state as built, with labelled regions. Its source is the running interface, and it is refreshed from it whenever the interface's code changes.
+- **The annotated board** - an interface with readers keeps an [annotated board](standard-annotated-board.md): screenshots of each view and shell state as built, with labelled regions. Its source is the running interface, and it is refreshed from it whenever the interface's code changes.
 
 The guide names each projection and where it lives; the projection carries the date and source revision it was last refreshed from, so the guide holds no state that dates. A projection that disagrees with its source, the token source or what the interface draws, is stale, whatever its date.
 
-## Configuration
+[Back to contents](#contents)
+
+### 4.12 Configuration
 
 A repository declares the skill and its locations in `.ki.toml`:
 
@@ -199,6 +264,10 @@ checks = ["apps/site/scripts/check-contrast.ts", "apps/site/tests/calendars.test
 
 All three keys are required, and no other key is recognised.
 
-## Judgment boundary
+[Back to contents](#contents)
+
+### 4.13 Judgment boundary
 
 The checker can prove that the declared files exist, that the guide names its token sources, and that the guide repeats no literal colour value. It cannot prove that knowledge sits in its right home, that the component library sorts its parts by level with one row for each, that each shell owns its state, that the floor holds on every page, that every checkable rule has a check, that working material has been consolidated and retired and a chosen design's final boards kept in its book, or that the annotated board shows the interface as it now draws. Review asks those questions, page by page and rule by rule.
+
+[Back to contents](#contents)

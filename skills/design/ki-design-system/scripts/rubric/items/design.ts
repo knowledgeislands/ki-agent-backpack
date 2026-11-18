@@ -1,17 +1,17 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { DesignRubricContext } from '../contexts/design.ts'
 
-const PLACEMENT = 'standards-design-system.md#where-design-knowledge-lives'
-const TOKENS = 'standards-design-system.md#the-token-source'
-const GUIDE = 'standards-design-system.md#the-design-guide'
-const CHECKS = 'standards-design-system.md#checks'
-const FLOOR = 'standards-design-system.md#the-floor'
-const WORK = 'standards-design-system.md#design-work-from-brief-to-rule'
-const PROJECTIONS = 'standards-design-system.md#projections'
-const CONFIGURATION = 'standards-design-system.md#configuration'
-const COMPONENTS = 'standards-design-system.md#the-component-library'
-const SHELLS = 'standards-design-system.md#shells-and-their-state'
-const LEVELS = 'standards-design-levels.md'
+const PLACEMENT = 'standard-design-system.md#41-where-design-knowledge-lives'
+const TOKENS = 'standard-design-system.md#42-the-token-source'
+const GUIDE = 'standard-design-system.md#43-the-design-guide'
+const CHECKS = 'standard-design-system.md#49-checks'
+const FLOOR = 'standard-design-system.md#410-the-floor'
+const WORK = 'standard-design-system.md#48-design-work-from-brief-to-rule'
+const PROJECTIONS = 'standard-design-system.md#411-projections'
+const CONFIGURATION = 'standard-design-system.md#412-configuration'
+const COMPONENTS = 'standard-design-system.md#44-the-component-library'
+const SHELLS = 'standard-design-system.md#45-shells-and-their-state'
+const LEVELS = 'standard-design-levels.md'
 
 const DSYS_1: RubricItem<DesignRubricContext> = {
   code: 'DSYS-1',

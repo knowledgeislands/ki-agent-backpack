@@ -18,7 +18,7 @@ argument-hint: 'audit [dir] | conform [dir] | help | educate [dir] | refresh'
 
 # Knowledge Islands Design System standard
 
-You are applying the **Knowledge Islands Design System standard** - one way to keep the knowledge behind a user interface: values in the token source, the practical how in a design guide, stable behaviour in Specifications, the why in Decision Records, and checks that keep them true. Read [the Design System standard](references/standards-design-system.md) before establishing, auditing or changing a design system; [the rubric](references/rubric.md) publishes its checkable criteria, [the annotated board](references/standards-annotated-board.md) gives the method for the interface's standing review board, [the design levels](references/standards-design-levels.md) set how a round of design is drawn, [exemplars](references/exemplars.md) point at a conforming repository, and [sources](references/sources.md) records its provenance.
+You are applying the **Knowledge Islands Design System standard** - one way to keep the knowledge behind a user interface: values in the token source, the practical how in a design guide, stable behaviour in Specifications, the why in Decision Records, and checks that keep them true. Read [the Design System standard](references/standard-design-system.md) before establishing, auditing or changing a design system; [the rubric](references/rubric.md) publishes its checkable criteria, [the annotated board](references/standard-annotated-board.md) gives the method for the interface's standing review board, [the design levels](references/standard-design-levels.md) set how a round of design is drawn, [exemplars](references/exemplars.md) point at a conforming repository, and [sources](references/sources.md) records its provenance.
 
 ## What this skill owns
 
@@ -54,6 +54,6 @@ Carries the universal **AUDIT · CONFORM · EDUCATE · REFRESH**. Invoked as `he
 ## Notes
 
 - **Method, not content** - this skill never prescribes how an interface looks. A repository's guide, tokens and decisions do that; the skill says where they live and how they stay true.
-- **Design work** - when a request changes what readers see, follow the stages in [Design work, from brief to rule](references/standards-design-system.md#design-work-from-brief-to-rule): review on the annotated board, then brief, options and an owner's decision come before the build, and consolidation into the guide, Specifications, Decision Records and checks comes after it.
+- **Design work** - when a request changes what readers see, follow the stages in [Design work, from brief to rule](references/standard-design-system.md#48-design-work-from-brief-to-rule): review on the annotated board, then brief, options and an owner's decision come before the build, and consolidation into the guide, Specifications, Decision Records and checks comes after it.
 - **Projections** - a design tool outside the repository, such as a design-system artifact or a canvas, is refreshed from the token source and the guide and is never edited as the source; the annotated board is refreshed from the running interface.
 - The `ki` host owns findings, dry-run publication, reporting, and post-conform verification; judgment aspects are counted as unevaluated rather than emitted as synthetic mechanical findings.

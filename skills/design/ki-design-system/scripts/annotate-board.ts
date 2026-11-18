@@ -11,7 +11,7 @@
  *   bun scripts/annotate-board.ts collector <plan.json>
  *   bun scripts/annotate-board.ts annotate <plan.json> <regions.json> <out-dir> --revision <rev> [--date <YYYY-MM-DD>]
  *
- * The method is in `references/standards-annotated-board.md`. The repository's own browser automation takes each screenshot,
+ * The method is in `references/standard-annotated-board.md`. The repository's own browser automation takes each screenshot,
  * then evaluates the `collector` expression in the same viewport and state and saves the result in a regions file, an
  * object keyed by each plan entry's `shot`. `annotate` then codes each artboard's regions, writes `board.json` with
  * every artboard's size, coded regions and legend, stamped with the source revision and date, and a local preview of
