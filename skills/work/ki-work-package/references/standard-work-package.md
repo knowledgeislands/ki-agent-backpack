@@ -168,7 +168,7 @@ ki-supervisor: owner
 ki-role: warden
 ki-created_at: 2026-10-13T23:50:00Z
 ki-repositories:
-  - apps-observatory.local
+  - ki/apps-observatory.local
 ki-state: with-worker
 ki-since: 2026-10-19T11:25:41Z
 ki-workers:
@@ -193,7 +193,7 @@ Every field takes the `ki-` prefix, as KI defines them all (KI-PREFIX, Kris, 17 
 | `ki-worker`, `ki-supervisor` | required | each a holder |
 | `ki-role` | required | the package's role, one role from [the role catalogue](standard-roles.md#43-role-catalogue); a package without one is warned on under [the role migration file](standards-roles-migration.md) |
 | `ki-created_at` | optional | UTC time the package was created, no later than `ki-since` |
-| `ki-repositories` | required | a list of the repository names the package mainly works in, empty where it works in none |
+| `ki-repositories` | required | a list of the repositories the package mainly works in, each named `<territory folder>/<repository>`, as `ki/apps-cairn.local` or `cairn/ki-cairn-store`, empty where it works in none |
 
 Territory work is the territory's summit, id `<territory>.summit`, its State of play; `summit` is never the second and last segment at another level, and `ki-level: root` belongs to `cairn.summit` alone. A sub-package takes its parent's level, except that one beneath the root or a territory's summit takes `ki-level: regular`, as Kris took SUMMIT-SUB-PACKAGES b on 16 November 2026. The level is the one authority for the kind of work: not the title, a native session name, the folder name, the repository declaration, an output style, a hook line or a cached copy.
 
