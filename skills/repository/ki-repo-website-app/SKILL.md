@@ -22,7 +22,7 @@ Apply this skill to one interactive browser application. The current house imple
 
 Do not add Eleventy around a React SPA merely to satisfy a website standard. Eleventy does not bundle the application JavaScript, so that pairing creates two build systems without a content-collection need. Select `ki-repo-website-content` instead only when Markdown/data page generation is the primary architecture.
 
-Read [the app standard](references/standards-app-site.md), [the generated rubric](references/rubric.md), and [the sources](references/sources.md).
+Read [the app standard](references/standard-app-site.md), [the generated rubric](references/rubric.md), and [the sources](references/sources.md).
 
 ## Operating modes
 

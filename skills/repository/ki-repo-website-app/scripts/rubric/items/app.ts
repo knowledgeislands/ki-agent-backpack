@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { WebsiteAppContext } from '../contexts/website-app.ts'
 
-const SOURCE = 'standards-app-site.md'
+const SOURCE = 'standard-app-site.md'
 const remediation = {
   class: 'diagnostic' as const,
   guidance: 'Align the interactive app with the React/Vite implementation or select the content implementation instead.'
