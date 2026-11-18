@@ -47,6 +47,8 @@ None recorded by id here. The receiver-owned rollout is cited as GOV209-ROLLOUT 
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the principal standard](standard-principal.md), formerly `standards-principal.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format, the acquired scaffold rollout below moving here from its own section. The rubric's source names and anchors follow. No rule changed and no outside source was refreshed.
 
 On 22 October 2026 the overnight blind-review repair preserved the rollout snapshot and stable citation here so it no longer depends on a temporary report, a message queue or a retained roadmap record. It retained the accepted record at done and made no receiver mutation, message-queue change, acceptance or pruning decision. No external source was contacted.
