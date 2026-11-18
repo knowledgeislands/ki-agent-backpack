@@ -157,7 +157,7 @@ export type KiShapeSkillContext = {
   leads: string
   governanceSkill: boolean
   localGovernanceSource: boolean
-  sourceHarnessName?: string
+  sourceBackpackName?: string
   argumentHint: string | undefined
   hintVerbs: readonly string[]
   scriptNames: readonly string[]
@@ -273,7 +273,7 @@ const emptyKiShapeSkill: KiShapeSkillContext = {
   leads: '',
   governanceSkill: false,
   localGovernanceSource: false,
-  sourceHarnessName: undefined,
+  sourceBackpackName: undefined,
   argumentHint: undefined,
   hintVerbs: [],
   scriptNames: [],

@@ -53,7 +53,7 @@ const isLocalGovernanceSource = (directory: string): boolean =>
 const table = (value: unknown): Record<string, unknown> | null =>
   value && typeof value === 'object' && !Array.isArray(value) ? (value as Record<string, unknown>) : null
 
-const sourceHarnessName = (directory: string): string | undefined => {
+const sourceBackpackName = (directory: string): string | undefined => {
   let source: string
   try {
     source = realpathSync(directory)
@@ -69,7 +69,7 @@ const sourceHarnessName = (directory: string): string | undefined => {
       if (skillPath !== 'skills' && !skillPath.startsWith(`skills${sep}`)) return undefined
       try {
         const skills = table(Bun.TOML.parse(readFileSync(configuration, 'utf8')))?.skills
-        const harness = table(table(skills)?.['ki-repo-backpack'])
+        const backpack = table(table(skills)?.['ki-repo-backpack'])
         const identity = table(table(skills)?.['ki-repo'])?.repository
         const match =
           typeof identity === 'string'
@@ -77,7 +77,7 @@ const sourceHarnessName = (directory: string): string | undefined => {
                 identity
               )
             : null
-        return harness && match ? match[1] : undefined
+        return backpack && match ? match[1] : undefined
       } catch {
         return undefined
       }
@@ -388,7 +388,7 @@ const createKiShapeEvidence = (
 
   return {
     ...createKiShapeFrontmatterEvidence({ frontmatter, scriptNames, localGovernanceSource }),
-    ...(localGovernanceSource ? {} : { sourceHarnessName: sourceHarnessName(skillDirectory) }),
+    ...(localGovernanceSource ? {} : { sourceBackpackName: sourceBackpackName(skillDirectory) }),
     rubricCatalogue: existsSync(join(scriptsDirectory, 'rubric', 'items', 'index.ts')),
     referencePaths,
     knowledgePaths,

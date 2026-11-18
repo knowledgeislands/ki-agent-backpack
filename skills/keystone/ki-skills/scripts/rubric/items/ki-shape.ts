@@ -378,7 +378,7 @@ const KI_SHAPE_14: RubricItem<KiShapeRubricContext> = {
   code: 'KI-SHAPE-14',
   title: 'REFRESH states its ownership precondition',
   description:
-    "_REFRESH states its ownership precondition._ REFRESH's write target is normally the skill's own canonical files under `skills/<name>/` in `ki-agent-backpack` — or in a compatible source Harness that declares `ki-repo-backpack` and its canonical repository identity. A governance skill's `### Mode REFRESH` section (or, per REF-5, its `references/mode-refresh.md`) must name that exact source owner as the only place it writes, and instruct the agent to stop and redirect when invoked from an installed copy (to the harness, or — for a pattern recurring across bases — to `ki-repo-kb`'s IMPROVE mode). The one committed repository-local source at `.agents/skills/ki-self/` instead names that local source and stops to promote reusable rules to their shared owner. Missing either half **WARNs**. Process skills (KI-SHAPE-3) are exempt; a skill with no REFRESH section at all is already caught by KI-SHAPE-12.",
+    "_REFRESH states its ownership precondition._ REFRESH's write target is normally the skill's own canonical files under `skills/<name>/` in `ki-agent-backpack` — or in a compatible source backpack that declares `ki-repo-backpack` and its canonical repository identity. A governance skill's `### Mode REFRESH` section (or, per REF-5, its `references/mode-refresh.md`) must name that exact source owner as the only place it writes, and instruct the agent to stop and redirect when invoked from an installed copy (to the backpack, or — for a pattern recurring across bases — to `ki-repo-kb`'s IMPROVE mode). The one committed repository-local source at `.agents/skills/ki-self/` instead names that local source and stops to promote reusable rules to their shared owner. Missing either half **WARNs**. Process skills (KI-SHAPE-3) are exempt; a skill with no REFRESH section at all is already caught by KI-SHAPE-12.",
   sources: ['ADR-KI-HARNESS-SKILLS-001', 'ADR-KI-HARNESS-SKILLS-006'],
   mechanical: {
     level: 'WARN',
@@ -392,7 +392,7 @@ const KI_SHAPE_14: RubricItem<KiShapeRubricContext> = {
       run: ({ skill }) => {
         if (!skill?.governanceSkill || !skill.refreshText)
           return [{ status: 'NOT_APPLICABLE', message: 'the target has no governance REFRESH procedure to inspect' }]
-        const owner = skill.sourceHarnessName ?? 'ki-agent-backpack'
+        const owner = skill.sourceBackpackName ?? 'ki-agent-backpack'
         const ownerPattern = new RegExp(
           `(?:^|[^a-z0-9-])${owner.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?=$|[^a-z0-9-])`,
           'i'
@@ -450,7 +450,7 @@ const KI_SHAPE_15: RubricItem<KiShapeRubricContext> = {
   code: 'KI-SHAPE-15',
   title: 'governance skills expose no legacy runner entrypoints',
   description:
-    '_Direct governance operation shape._ A governance skill exposes its rubric catalogue from `scripts/rubric/items/index.ts`; `ki` resolves and hosts that catalogue from a verified installed Harness or the exact explicitly declared repository-local `.agents/skills/ki-self/` source. `scripts/govern.ts`, `scripts/educate.ts`, `scripts/audit.ts`, and `scripts/conform.ts` are retired, with no compatibility runner or fallback. Process skills are exempt.',
+    '_Direct governance operation shape._ A governance skill exposes its rubric catalogue from `scripts/rubric/items/index.ts`; `ki` resolves and hosts that catalogue from a verified installed backpack or the exact explicitly declared repository-local `.agents/skills/ki-self/` source. `scripts/govern.ts`, `scripts/educate.ts`, `scripts/audit.ts`, and `scripts/conform.ts` are retired, with no compatibility runner or fallback. Process skills are exempt.',
   sources: ['standard-knowledge-islands.md §4.2', 'ADR-KI-HARNESS-007'],
   mechanical: {
     level: 'FAIL',
@@ -781,7 +781,7 @@ const KI_SHAPE_21: RubricItem<KiShapeRubricContext> = {
   code: 'KI-SHAPE-21',
   title: 'body references to sibling skills are declared or routed',
   description:
-    'Every backticked `ki-*` skill name in the `SKILL.md` body resolves to a skill in the same collection, the skill itself, or the source harness, so a rename leaves no dangling reference. A mention preceded by a reliance cue — "composes", "follow", "per", "apply", "according to", "defined by", "as defined in", "consult" — expresses reliance on that skill’s standard and must be declared in `ki-depends-on:` or `ki-optional-depends-on:`. Other mentions are routing or off-ramps and need no declaration.',
+    'Every backticked `ki-*` skill name in the `SKILL.md` body resolves to a skill in the same collection, the skill itself, or the source backpack, so a rename leaves no dangling reference. A mention preceded by a reliance cue — "composes", "follow", "per", "apply", "according to", "defined by", "as defined in", "consult" — expresses reliance on that skill’s standard and must be declared in `ki-depends-on:` or `ki-optional-depends-on:`. Other mentions are routing or off-ramps and need no declaration.',
   sources: ['ADR-KI-HARNESS-SKILLS-006', 'standard-knowledge-islands.md §4.2'],
   mechanical: {
     level: 'WARN',
@@ -805,7 +805,7 @@ const KI_SHAPE_21: RubricItem<KiShapeRubricContext> = {
         const findings: AuditOutcome[] = []
         const reported = new Set<string>()
         for (const mention of skill.skillMentions) {
-          if (mention.name === skill.name || mention.name === skill.sourceHarnessName) continue
+          if (mention.name === skill.name || mention.name === skill.sourceBackpackName) continue
           if (!siblings.has(mention.name)) {
             if (reported.has(`missing:${mention.name}`)) continue
             reported.add(`missing:${mention.name}`)

@@ -57,15 +57,15 @@ const createSkill = (relativeDirectory: string, frontmatter = ''): string => {
   return directory
 }
 
-const sourceSkill = (owner: string, options: { declaresHarness?: boolean; refreshOwner?: string } = {}): string => {
-  const root = mkdtempSync(join(tmpdir(), 'ki-skills-source-harness-'))
+const sourceSkill = (owner: string, options: { declaresBackpack?: boolean; refreshOwner?: string } = {}): string => {
+  const root = mkdtempSync(join(tmpdir(), 'ki-skills-source-backpack-'))
   temporaryDirectories.push(root)
   writeFileSync(
     join(root, '.ki.toml'),
     [
       '[skills.ki-repo]',
       `repository = "https://github.com/example/${owner}"`,
-      ...(options.declaresHarness === false ? [] : ['', '[skills.ki-repo-backpack]', 'prefix = "example"']),
+      ...(options.declaresBackpack === false ? [] : ['', '[skills.ki-repo-backpack]', 'prefix = "example"']),
       ''
     ].join('\n')
   )
@@ -175,13 +175,13 @@ describe('repository-local ki-self source', () => {
   })
 })
 
-describe('compatible Harness refresh ownership', () => {
+describe('compatible backpack refresh ownership', () => {
   test.each(['ki-agent-backpack', 'hnr-agent-backpack'])(
-    'accepts a declared source Harness naming %s as its configured repository identity',
+    'accepts a declared source backpack naming %s as its configured repository identity',
     (owner) => {
       const result = refreshOutcomes(sourceSkill(owner))
 
-      expect(result.skill?.sourceHarnessName).toBe(owner)
+      expect(result.skill?.sourceBackpackName).toBe(owner)
       expect(result.outcomes).toEqual([
         { status: 'PASS', message: `REFRESH states its ${owner} ownership precondition` }
       ])
@@ -189,17 +189,17 @@ describe('compatible Harness refresh ownership', () => {
   )
 
   test('rejects an unconfigured, malformed, or wrongly named compatible source owner', () => {
-    const undeclared = refreshOutcomes(sourceSkill('hnr-agent-backpack', { declaresHarness: false }))
+    const undeclared = refreshOutcomes(sourceSkill('hnr-agent-backpack', { declaresBackpack: false }))
     const malformedDirectory = sourceSkill('hnr-agent-backpack')
     writeFileSync(join(malformedDirectory, '..', '..', '.ki.toml'), '[skills.ki-repo\n')
     const malformed = refreshOutcomes(malformedDirectory)
     const wrongName = refreshOutcomes(sourceSkill('hnr-agent-backpack', { refreshOwner: 'other-agent-backpack' }))
 
-    expect(undeclared.skill?.sourceHarnessName).toBeUndefined()
+    expect(undeclared.skill?.sourceBackpackName).toBeUndefined()
     expect(undeclared.outcomes[0]?.status).toBe('VIOLATION')
-    expect(malformed.skill?.sourceHarnessName).toBeUndefined()
+    expect(malformed.skill?.sourceBackpackName).toBeUndefined()
     expect(malformed.outcomes[0]?.status).toBe('VIOLATION')
-    expect(wrongName.skill?.sourceHarnessName).toBe('hnr-agent-backpack')
+    expect(wrongName.skill?.sourceBackpackName).toBe('hnr-agent-backpack')
     expect(wrongName.outcomes[0]?.status).toBe('VIOLATION')
   })
 
@@ -213,7 +213,7 @@ describe('compatible Harness refresh ownership', () => {
 
     const result = refreshOutcomes(installed)
 
-    expect(result.skill?.sourceHarnessName).toBe('hnr-agent-backpack')
+    expect(result.skill?.sourceBackpackName).toBe('hnr-agent-backpack')
     expect(result.outcomes[0]?.status).toBe('PASS')
   })
 })

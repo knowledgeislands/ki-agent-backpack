@@ -180,6 +180,8 @@ The OpenAI News page is a discovery source, not a normative standard. On each RE
 
 ## 4. Last review
 
+A later in-house review on **2026-11-18** applied HARNESS-NAME's last step in code, scheduled by the Cairn summit's [change 12](https://github.com/krisb/ki-cairn-store/blob/4e581ef/work/cairn/cairn.summit/12-names.change.md#5-steps), step 6, and built under Kris's GUARDIAN-LANDS a: KI-SHAPE-14's text and the direct-operation and sibling-reference items say backpack where they meant the system's harness, the skill context's `sourceHarnessName` becomes `sourceBackpackName`, and the rubric is regenerated. ADR identifiers keep their words. No external source refreshed.
+
 A later in-house review on **2026-11-17** applied RUBRIC-KNOWLEDGE a, which Kris took that night: [the skill shape](standard-knowledge-islands.md#42-skill-shape) now says how the rubric checks a knowledge graph, KI-SHAPE-23 failing a malformed root definition, a card whose id, type or status is wrong, or a relative link that resolves to nothing, and KI-SHAPE-24 warning on a card read in order whose Next section links no card and ends no chain. Both pass on `ki-agentic-systems` and `ki-knowledge-graph`; the broken link in `ki-knowledge-graph`'s `semantic-markdown.md` was fixed earlier that day. No outside source refreshed.
 
 A later in-house review on **2026-11-17** recorded STANDARDS-RENAME, taken by the Cairn summit's guardian, in [the reference vocabulary](standard-knowledge-islands.md), and corrected REF-5's citation (REF-5-SOURCE).

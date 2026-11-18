@@ -54,6 +54,8 @@ Keystone's guild rules have none: Keystone is Knowledge Islands' own, and the in
 
 ## 4. Last review
 
+On 18 November 2026 the guild map's generator says backpack where it said harness, its root parameter `backpackRoot`, as the Cairn summit's [change 12](https://github.com/krisb/ki-cairn-store/blob/4e581ef/work/cairn/cairn.summit/12-names.change.md#5-steps), step 6, scheduled and Kris's GUARDIAN-LANDS a built. No external source refreshed.
+
 On 17 November 2026 Kris took NAME-FIRST a, relayed by the Cairn summit's guardian: the checklist's opener step names a named seat's session with its actor's name first, as `claude --name "Kitteth (🪨 🔑 cairn.summit)"`, an unnamed seat keeping the bare form. No external source refreshed.
 
 On 16 November 2026 Kris took SEAT-AT a, relayed by the Cairn summit's guardian: the checklist's opener step names the keyless thread line `<role glyph> <package>@<role>`, the seat's id, in place of `<role glyph> <work-id>+<role>`, `+` now adding a sub-package's strand under SUMMIT-SUB-PACKAGES. No external source refreshed.
