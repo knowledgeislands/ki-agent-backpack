@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { CodexEvidenceContext, CodexRubricContext } from '../contexts/codex.ts'
 
-const SOURCE = 'standards-codex-tokenomics.md'
+const SOURCE = 'standard-codex-tokenomics.md'
 const NA_1: RubricItem<CodexEvidenceContext> = {
   code: 'CODEX-NA-1',
   title: 'Effective session state is unavailable',

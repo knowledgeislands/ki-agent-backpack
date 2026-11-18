@@ -18,20 +18,20 @@ Line-by-line criteria for auditing ki-env-tokenomics-chatgpt. Classifications ar
 
 ## SURF — Codex standing surfaces
 
-→ [standard](standards-codex-tokenomics.md)
+→ [standard](standard-codex-tokenomics.md)
 
 Bounded documented Codex evidence.
 
-- **CODEX-SURF-1 [M] — Documented Codex surfaces are bounded** — Only directly observed selected-repository Codex configuration, instructions, skills, and custom-agent source structure is reported; user-memory and effective-session state are unavailable, and values that may be secret are not emitted. (standards-codex-tokenomics.md)
+- **CODEX-SURF-1 [M] — Documented Codex surfaces are bounded** — Only directly observed selected-repository Codex configuration, instructions, skills, and custom-agent source structure is reported; user-memory and effective-session state are unavailable, and values that may be secret are not emitted. (standard-codex-tokenomics.md)
   - _Remediation:_ diagnostic — Adjust the selected Codex configuration or document the observed standing surface; hosted conform does not change runtime state.
 
 ## NA — Unavailable Codex runtime state
 
-→ [standard](standards-codex-tokenomics.md)
+→ [standard](standard-codex-tokenomics.md)
 
 Session facts not inferred from filesystem observations.
 
-- **CODEX-NA-1 [M] — Effective session state is unavailable** — Effective model, instructions, active MCP, trust, memory use, transcript, compaction, billing, and tool-schema metrics are unavailable without authorised session evidence. (standards-codex-tokenomics.md)
+- **CODEX-NA-1 [M] — Effective session state is unavailable** — Effective model, instructions, active MCP, trust, memory use, transcript, compaction, billing, and tool-schema metrics are unavailable without authorised session evidence. (standard-codex-tokenomics.md)
   - _Remediation:_ diagnostic — Use an explicitly authorised session-evidence owner; do not infer session state from filesystem sources.
 
 ## RUBRIC — Generated rubric publication

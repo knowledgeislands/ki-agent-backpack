@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { CodexEvidenceContext, CodexRubricContext } from '../contexts/codex.ts'
 
-const SOURCE = 'standards-codex-tokenomics.md'
+const SOURCE = 'standard-codex-tokenomics.md'
 const SURF_1: RubricItem<CodexEvidenceContext> = {
   code: 'CODEX-SURF-1',
   title: 'Documented Codex surfaces are bounded',
