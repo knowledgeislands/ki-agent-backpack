@@ -51,6 +51,6 @@ Explain the adapter, its source-only evidence, host routing, and modes, then sto
 
 ## References
 
-- [Codex source standard](references/standards-codex-subagents.md)
+- [Codex source standard](references/standard-codex-subagents.md)
 - [Rubric](references/rubric.md)
 - [Sources](references/sources.md)

@@ -17,17 +17,17 @@ Line-by-line criteria for auditing ki-subagents-chatgpt. Classifications are der
 
 ## CODEX — Runtime binding — Codex TOML source projection
 
-→ [standard](standards-codex-subagents.md)
+→ [standard](standard-codex-subagents.md)
 
 Native TOML source shape only; no host publication or activation assurance.
 
-- **CODEX-1 [M] — Parseable physical TOML** — Each candidate is a physical TOML file with a parseable root table. (standards-codex-subagents.md#source-format, CODEX)
+- **CODEX-1 [M] — Parseable physical TOML** — Each candidate is a physical TOML file with a parseable root table. (standard-codex-subagents.md#41-source-format, CODEX)
   - _Remediation:_ diagnostic — Repair the candidate source through its owner; do not publish it from this audit.
-- **CODEX-2 [M] — Required Codex fields** — name, description, and developer_instructions are non-empty strings. (standards-codex-subagents.md#required-fields, CODEX)
+- **CODEX-2 [M] — Required Codex fields** — name, description, and developer_instructions are non-empty strings. (standard-codex-subagents.md#42-required-fields, CODEX)
   - _Remediation:_ diagnostic — Add the required Codex fields through the source-payload owner.
-- **CODEX-3 [M] — Supported custom-agent keys** — The root table contains only documented custom-agent projection keys. (standards-codex-subagents.md#supported-keys, CODEX)
+- **CODEX-3 [M] — Supported custom-agent keys** — The root table contains only documented custom-agent projection keys. (standard-codex-subagents.md#43-supported-keys, CODEX)
   - _Remediation:_ diagnostic — Remove or route an unsupported key through the source-payload owner.
-- **CODEX-4 [M] — Unique source names** — Candidate source definitions do not duplicate a declared name. (standards-codex-subagents.md#source-format)
+- **CODEX-4 [M] — Unique source names** — Candidate source definitions do not duplicate a declared name. (standard-codex-subagents.md#41-source-format)
   - _Remediation:_ diagnostic — Resolve the duplicate through the source-payload owner.
 
 ## RUBRIC — Generated rubric publication

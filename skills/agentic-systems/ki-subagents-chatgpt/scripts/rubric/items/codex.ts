@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { CodexContext, CodexDefinition } from '../contexts/agents.ts'
 
-const STANDARD = 'standards-codex-subagents.md'
+const STANDARD = 'standard-codex-subagents.md'
 const fields = new Set([
   'name',
   'description',
@@ -47,7 +47,7 @@ const CODEX_1: RubricItem<CodexContext> = {
   code: 'CODEX-1',
   title: 'Parseable physical TOML',
   description: 'Each candidate is a physical TOML file with a parseable root table.',
-  sources: [`${STANDARD}#source-format`, 'CODEX'],
+  sources: [`${STANDARD}#41-source-format`, 'CODEX'],
   mechanical: {
     level: 'FAIL',
     remediation: {
@@ -77,7 +77,7 @@ const CODEX_2: RubricItem<CodexContext> = {
   code: 'CODEX-2',
   title: 'Required Codex fields',
   description: 'name, description, and developer_instructions are non-empty strings.',
-  sources: [`${STANDARD}#required-fields`, 'CODEX'],
+  sources: [`${STANDARD}#42-required-fields`, 'CODEX'],
   mechanical: {
     level: 'FAIL',
     remediation: { class: 'diagnostic', guidance: 'Add the required Codex fields through the source-payload owner.' },
@@ -108,7 +108,7 @@ const CODEX_3: RubricItem<CodexContext> = {
   code: 'CODEX-3',
   title: 'Supported custom-agent keys',
   description: 'The root table contains only documented custom-agent projection keys.',
-  sources: [`${STANDARD}#supported-keys`, 'CODEX'],
+  sources: [`${STANDARD}#43-supported-keys`, 'CODEX'],
   mechanical: {
     level: 'FAIL',
     remediation: {
@@ -139,7 +139,7 @@ const CODEX_4: RubricItem<CodexContext> = {
   code: 'CODEX-4',
   title: 'Unique source names',
   description: 'Candidate source definitions do not duplicate a declared name.',
-  sources: [`${STANDARD}#source-format`],
+  sources: [`${STANDARD}#41-source-format`],
   mechanical: {
     level: 'FAIL',
     remediation: { class: 'diagnostic', guidance: 'Resolve the duplicate through the source-payload owner.' },
