@@ -26,17 +26,17 @@ Line-by-line criteria for auditing ki-repo-dotfiles-chezmoi. Classifications are
 
 ## CHEZMOI — Chezmoi repository shape
 
-→ [standard](standards-chezmoi-dotfiles.md)
+→ [standard](standard-chezmoi-dotfiles.md)
 
 Required repository-shape files and template support.
 
-- **CHEZMOI-0 [M] — Repository declaration** — Only a physical `[skills.ki-repo-dotfiles-chezmoi]` declaration selects this optional standard; detected chezmoi shape is coverage evidence for ki-repo. (standards-chezmoi-dotfiles.md)
+- **CHEZMOI-0 [M] — Repository declaration** — Only a physical `[skills.ki-repo-dotfiles-chezmoi]` declaration selects this optional standard; detected chezmoi shape is coverage evidence for ki-repo. (standard-chezmoi-dotfiles.md)
   - _Remediation:_ diagnostic — Declare the selected standard through the repository configuration owner.
-- **CHEZMOI-1 [M] — Managed ignore file** — A physical `.chezmoiignore` exists at the repository root. (standards-chezmoi-dotfiles.md)
+- **CHEZMOI-1 [M] — Managed ignore file** — A physical `.chezmoiignore` exists at the repository root. (standard-chezmoi-dotfiles.md)
   - _Remediation:_ automatic
-- **CHEZMOI-2 [M] — Template support directory** — When `*.tmpl` files exist, a physical `.chezmoidata/` or `.chezmoitemplates/` also exists. (standards-chezmoi-dotfiles.md)
+- **CHEZMOI-2 [M] — Template support directory** — When `*.tmpl` files exist, a physical `.chezmoidata/` or `.chezmoitemplates/` also exists. (standard-chezmoi-dotfiles.md)
   - _Remediation:_ diagnostic — Add the appropriate physical template-support directory after confirming which data or template responsibility the repository needs.
-- **CHEZMOI-J1 [J] — Chezmoiignore negation intent** — A `.chezmoiignore` negation is deliberate and documented rather than accidentally broad. (standards-chezmoi-dotfiles.md)
+- **CHEZMOI-J1 [J] — Chezmoiignore negation intent** — A `.chezmoiignore` negation is deliberate and documented rather than accidentally broad. (standard-chezmoi-dotfiles.md)
   - _Evidence scope:_ Every `.chezmoiignore` negation and the broad ignore it overrides.
   - _Review prompt:_ Are `.chezmoiignore` negations deliberate, documented exceptions to broad ignores?
   - _Outcomes:_ conforming; documentation required; negation revision required
@@ -44,33 +44,33 @@ Required repository-shape files and template support.
 
 ## BIN — Bin source naming
 
-→ [standard](standards-chezmoi-dotfiles.md)
+→ [standard](standard-chezmoi-dotfiles.md)
 
 Chezmoi source-attribute naming for direct bin files.
 
-- **BIN-1 [M] — Bin source-attribute prefix** — Every direct physical file in `bin/` carries a recognised chezmoi source-attribute prefix. (standards-chezmoi-dotfiles.md)
+- **BIN-1 [M] — Bin source-attribute prefix** — Every direct physical file in `bin/` carries a recognised chezmoi source-attribute prefix. (standard-chezmoi-dotfiles.md)
   - _Remediation:_ diagnostic — Choose and apply the recognised source-attribute prefix that expresses the file’s intended chezmoi behaviour.
 
 ## GIT — Git hygiene
 
-→ [standard](standards-chezmoi-dotfiles.md)
+→ [standard](standard-chezmoi-dotfiles.md)
 
 Stray lock files that block Git operations, and what the commit gate runs.
 
-- **GIT-1 [M] — Git lock hygiene** — No stray physical `.git/*.lock` files remain in the repository. (standards-chezmoi-dotfiles.md)
+- **GIT-1 [M] — Git lock hygiene** — No stray physical `.git/*.lock` files remain in the repository. (standard-chezmoi-dotfiles.md)
   - _Remediation:_ diagnostic — Inspect the lock’s owning process and repository boundary, then use the governed stale-lock recovery procedure; do not remove it blindly.
-- **GIT-2 [M] — No commit gate** — The source declares no commit gate: no `.githooks/` path is committed and no `core.hooksPath` is bound. Its gate is the manual one its `AGENTS.md` names, and `ki-repo` HOOK-1 to HOOK-4 are not applicable. (standards-chezmoi-dotfiles.md)
+- **GIT-2 [M] — No commit gate** — The source declares no commit gate: no `.githooks/` path is committed and no `core.hooksPath` is bound. Its gate is the manual one its `AGENTS.md` names, and `ki-repo` HOOK-1 to HOOK-4 are not applicable. (standard-chezmoi-dotfiles.md)
   - _Remediation:_ diagnostic — Remove `.githooks/`, run `git config --unset core.hooksPath`, and keep the check commands in the AGENTS.md manual gate.
 
 ## HEADER — Script headers
 
-→ [standard](standards-chezmoi-dotfiles.md)
+→ [standard](standard-chezmoi-dotfiles.md)
 
 The plain-English header comment each script opens with.
 
-- **HEADER-1 [M] — Script header present** — Every script in scope opens, after its shebang, with a header comment carrying a `<name> - <purpose>` first line, a description, and `Runs:` and `Created:` lines. (standards-chezmoi-dotfiles.md#script-headers)
+- **HEADER-1 [M] — Script header present** — Every script in scope opens, after its shebang, with a header comment carrying a `<name> - <purpose>` first line, a description, and `Runs:` and `Created:` lines. (standard-chezmoi-dotfiles.md#44-script-headers)
   - _Remediation:_ diagnostic — Add the missing header parts in plain English, taking the Created line from the commit that first added the file; change nothing but comments.
-- **HEADER-J1 [J] — Script header in plain English** — Each header explains in plain English what the script is for, why it matters and what it touches; Runs names what actually runs it and Created matches the Git history. (standards-chezmoi-dotfiles.md#script-headers)
+- **HEADER-J1 [J] — Script header in plain English** — Each header explains in plain English what the script is for, why it matters and what it touches; Runs names what actually runs it and Created matches the Git history. (standard-chezmoi-dotfiles.md#44-script-headers)
   - _Evidence scope:_ Every script header in scope, with the callers and the first-adding commit of each script.
   - _Review prompt:_ Could a non-technical reader learn from each header the goal, why it matters and what it changes; does Runs name the real caller, and does Created match the commit that first added the file without a guessed work or decision?
   - _Outcomes:_ conforming; header revision required; history evidence required
@@ -78,16 +78,16 @@ The plain-English header comment each script opens with.
 
 ## PATTERN — App-mutated configuration
 
-→ [standard](standards-chezmoi-dotfiles.md)
+→ [standard](standard-chezmoi-dotfiles.md)
 
 Judgment criteria for Pattern A, Pattern B, and Pattern C selection.
 
-- **PATTERN-J1 [J] — App-mutated config pattern choice** — Pattern A, Pattern B, or Pattern C is chosen correctly for each app-mutated configuration file. (standards-chezmoi-dotfiles.md)
+- **PATTERN-J1 [J] — App-mutated config pattern choice** — Pattern A, Pattern B, or Pattern C is chosen correctly for each app-mutated configuration file. (standard-chezmoi-dotfiles.md)
   - _Evidence scope:_ Each app-mutated configuration file and its selected Pattern A, B, or C ownership model.
   - _Review prompt:_ For each app-mutated configuration file, does the selected pattern match its template ownership, required native lifecycle visibility, and app-owned scope?
   - _Outcomes:_ conforming; pattern revision required; ownership decision required
   - _Conforming guidance:_ Select the pattern that matches the file’s template ownership, native lifecycle visibility, and app-owned scope, then document the ownership boundary.
-- **PATTERN-J2 [J] — Native fragment-binding boundary** — Every Pattern C binding declares its ownership, removal, and adoption boundaries without importing secrets or undeclared application state. (standards-chezmoi-dotfiles.md)
+- **PATTERN-J2 [J] — Native fragment-binding boundary** — Every Pattern C binding declares its ownership, removal, and adoption boundaries without importing secrets or undeclared application state. (standard-chezmoi-dotfiles.md)
   - _Evidence scope:_ Every Pattern C native fragment binding and its canonical source, target, selector, and lifecycle policy.
   - _Review prompt:_ Does every native fragment binding state its canonical source, target, selector, ownership and removal policy, and explicit safe-adoption boundary?
   - _Outcomes:_ conforming; binding declaration required; adoption boundary revision required
@@ -95,11 +95,11 @@ Judgment criteria for Pattern A, Pattern B, and Pattern C selection.
 
 ## CONFIG — Configuration editing
 
-→ [standard](standards-chezmoi-dotfiles.md)
+→ [standard](standard-chezmoi-dotfiles.md)
 
 Judgment criteria for format-preserving Pattern A and Pattern C editors.
 
-- **CONFIG-J1 [J] — Format-preserving editor selection** — Every Pattern A or Pattern C writer uses an appropriate format-preserving edit API with safe absent-file and invalid-input behaviour. (standards-chezmoi-dotfiles.md)
+- **CONFIG-J1 [J] — Format-preserving editor selection** — Every Pattern A or Pattern C writer uses an appropriate format-preserving edit API with safe absent-file and invalid-input behaviour. (standard-chezmoi-dotfiles.md)
   - _Evidence scope:_ Every Pattern A or Pattern C writer and the files it edits.
   - _Review prompt:_ Do Pattern A and Pattern C writers use a format-appropriate edit API, define absent-file and path behaviour, fail closed, and demonstrate syntax preservation and idempotence?
   - _Outcomes:_ conforming; writer revision required; test evidence required
@@ -107,11 +107,11 @@ Judgment criteria for format-preserving Pattern A and Pattern C editors.
 
 ## LAYER — Instruction layering
 
-→ [standard](standards-chezmoi-dotfiles.md)
+→ [standard](standard-chezmoi-dotfiles.md)
 
 Judgment criteria for skill, repository, user, and memory guidance.
 
-- **LAYER-J1 [J] — Agent-instruction layering** — Reusable doctrine belongs in skills; repository and personal guidance use their own layers. (standards-chezmoi-dotfiles.md)
+- **LAYER-J1 [J] — Agent-instruction layering** — Reusable doctrine belongs in skills; repository and personal guidance use their own layers. (standard-chezmoi-dotfiles.md)
   - _Evidence scope:_ Managed agent guidance, its reusable-skill or repository or personal audience, and available portability evidence.
   - _Review prompt:_ Is reusable doctrine owned by a skill, shared repository guidance in root AGENTS.md, and personal runtime guidance free of hidden skill prerequisites?
   - _Outcomes:_ conforming; relocation required; scope decision required
@@ -119,11 +119,11 @@ Judgment criteria for skill, repository, user, and memory guidance.
 
 ## SHELL — Shell paths and completions
 
-→ [standard](standards-chezmoi-dotfiles.md)
+→ [standard](standard-chezmoi-dotfiles.md)
 
 Judgment criteria for executable, manual, and completion-path handling.
 
-- **SHELL-J1 [J] — Shell paths and completions** — Shell paths are intentional, idempotent, and optional-tool-safe; tracked completions are regenerated from their owning CLIs. (standards-chezmoi-dotfiles.md)
+- **SHELL-J1 [J] — Shell paths and completions** — Shell paths are intentional, idempotent, and optional-tool-safe; tracked completions are regenerated from their owning CLIs. (standard-chezmoi-dotfiles.md)
   - _Evidence scope:_ Every PATH, MANPATH, completion-path entry, optional integration, and tracked completion.
   - _Review prompt:_ Are PATH, MANPATH, and completion search-path entries idempotent and ordered as documented; are optional integrations guarded; and do tracked completions come from repeatable upstream CLI generators?
   - _Outcomes:_ conforming; shell configuration revision required; generator evidence required
@@ -131,11 +131,11 @@ Judgment criteria for executable, manual, and completion-path handling.
 
 ## ETIQ — Audit etiquette
 
-→ [standard](standards-chezmoi-dotfiles.md)
+→ [standard](standard-chezmoi-dotfiles.md)
 
 Judgment criteria for reporting before change.
 
-- **ETIQ-J1 [J] — Audit etiquette** — Audits report a file, concise problem, and options before any change is applied. (standards-chezmoi-dotfiles.md)
+- **ETIQ-J1 [J] — Audit etiquette** — Audits report a file, concise problem, and options before any change is applied. (standard-chezmoi-dotfiles.md)
   - _Evidence scope:_ Each audit finding and any subsequent proposed or applied change.
   - _Review prompt:_ Were findings reported with a file, concise problem statement, and options before a change was applied?
   - _Outcomes:_ conforming; reporting correction required; change deferral required
@@ -143,11 +143,11 @@ Judgment criteria for reporting before change.
 
 ## SYNC — Standard synchronisation
 
-→ [standard](standards-chezmoi-dotfiles.md)
+→ [standard](standard-chezmoi-dotfiles.md)
 
 Judgment criteria for keeping the standard and implementation aligned.
 
-- **SYNC-1 [J] — Standard and rubric synchronisation** — The standard, structured rubric, and mechanical behaviour remain aligned when the standard changes. (standards-chezmoi-dotfiles.md)
+- **SYNC-1 [J] — Standard and rubric synchronisation** — The standard, structured rubric, and mechanical behaviour remain aligned when the standard changes. (standard-chezmoi-dotfiles.md)
   - _Evidence scope:_ The chezmoi standard, structured rubric items, generated publication, tests, and mechanical behaviour.
   - _Review prompt:_ Do the standard, structured rubric items, and mechanical behaviour still agree?
   - _Outcomes:_ conforming; synchronisation required; standard review required

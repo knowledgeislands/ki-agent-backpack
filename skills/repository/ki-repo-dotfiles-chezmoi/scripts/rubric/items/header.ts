@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { ChezmoiRubricContext, HeaderContext } from '../contexts/chezmoi.ts'
 
-const SOURCE = 'standards-chezmoi-dotfiles.md#script-headers'
+const SOURCE = 'standard-chezmoi-dotfiles.md#44-script-headers'
 
 const HEADER_1: RubricItem<HeaderContext> = {
   code: 'HEADER-1',
@@ -55,7 +55,7 @@ export const HEADER: RubricFamily<ChezmoiRubricContext, HeaderContext> = {
   code: 'HEADER',
   title: 'Script headers',
   description: 'The plain-English header comment each script opens with.',
-  standard: 'standards-chezmoi-dotfiles.md',
+  standard: 'standard-chezmoi-dotfiles.md',
   selectContext: (context) => context.header,
   items: [HEADER_1, HEADER_J1]
 }

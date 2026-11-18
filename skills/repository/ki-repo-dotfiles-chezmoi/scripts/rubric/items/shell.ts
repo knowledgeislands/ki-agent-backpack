@@ -6,7 +6,7 @@ const SHELL_J1: RubricItem<ReviewContext> = {
   title: 'Shell paths and completions',
   description:
     'Shell paths are intentional, idempotent, and optional-tool-safe; tracked completions are regenerated from their owning CLIs.',
-  sources: ['standards-chezmoi-dotfiles.md'],
+  sources: ['standard-chezmoi-dotfiles.md'],
   judgment: {
     scope: 'Every PATH, MANPATH, completion-path entry, optional integration, and tracked completion.',
     prompt:
@@ -21,7 +21,7 @@ export const SHELL: RubricFamily<ChezmoiRubricContext, ReviewContext> = {
   code: 'SHELL',
   title: 'Shell paths and completions',
   description: 'Judgment criteria for executable, manual, and completion-path handling.',
-  standard: 'standards-chezmoi-dotfiles.md',
+  standard: 'standard-chezmoi-dotfiles.md',
   selectContext: (context) => context.review,
   items: [SHELL_J1]
 }

@@ -6,7 +6,7 @@ const CONFIG_J1: RubricItem<ReviewContext> = {
   title: 'Format-preserving editor selection',
   description:
     'Every Pattern A or Pattern C writer uses an appropriate format-preserving edit API with safe absent-file and invalid-input behaviour.',
-  sources: ['standards-chezmoi-dotfiles.md'],
+  sources: ['standard-chezmoi-dotfiles.md'],
   judgment: {
     scope: 'Every Pattern A or Pattern C writer and the files it edits.',
     prompt:
@@ -21,7 +21,7 @@ export const CONFIG: RubricFamily<ChezmoiRubricContext, ReviewContext> = {
   code: 'CONFIG',
   title: 'Configuration editing',
   description: 'Judgment criteria for format-preserving Pattern A and Pattern C editors.',
-  standard: 'standards-chezmoi-dotfiles.md',
+  standard: 'standard-chezmoi-dotfiles.md',
   selectContext: (context) => context.review,
   items: [CONFIG_J1]
 }

@@ -5,7 +5,7 @@ const GIT_1: RubricItem<GitContext> = {
   code: 'GIT-1',
   title: 'Git lock hygiene',
   description: 'No stray physical `.git/*.lock` files remain in the repository.',
-  sources: ['standards-chezmoi-dotfiles.md'],
+  sources: ['standard-chezmoi-dotfiles.md'],
   mechanical: {
     level: 'FAIL',
     remediation: {
@@ -37,7 +37,7 @@ const GIT_2: RubricItem<GitContext> = {
   title: 'No commit gate',
   description:
     'The source declares no commit gate: no `.githooks/` path is committed and no `core.hooksPath` is bound. Its gate is the manual one its `AGENTS.md` names, and `ki-repo` HOOK-1 to HOOK-4 are not applicable.',
-  sources: ['standards-chezmoi-dotfiles.md'],
+  sources: ['standard-chezmoi-dotfiles.md'],
   mechanical: {
     level: 'FAIL',
     remediation: {
@@ -82,7 +82,7 @@ export const GIT: RubricFamily<ChezmoiRubricContext, GitContext> = {
   code: 'GIT',
   title: 'Git hygiene',
   description: 'Stray lock files that block Git operations, and what the commit gate runs.',
-  standard: 'standards-chezmoi-dotfiles.md',
+  standard: 'standard-chezmoi-dotfiles.md',
   selectContext: (context) => context.git,
   items: [GIT_1, GIT_2]
 }

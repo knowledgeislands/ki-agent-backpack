@@ -1,8 +1,26 @@
+---
+ki-document-type: sources@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:55:00Z
+ki-refresh: external-spec · quarterly
+---
+
 # Sources — where the chezmoi dotfiles standard comes from
 
-**Refresh:** external-spec · quarterly
+## Contents
 
-The authoritative sources behind [the standard](standards-chezmoi-dotfiles.md), [the generated rubric](rubric.md), and its structured [rubric catalogue](../scripts/rubric/items/index.ts). Mode REFRESH reads this file, re-fetches each source, diffs it against the standard and catalogue, then **bumps the `last reviewed` dates** and refreshes the `## Last review` block below (what changed is recorded in the commit, not a changelog).
+- [1. Introduction](#1-introduction)
+- [2. Outside sources](#2-outside-sources)
+  - [2.1 Authoritative](#21-authoritative)
+    - [2.1.1 chezmoi.io](#211-chezmoiio)
+    - [2.1.2 Format tooling](#212-format-tooling)
+    - [2.1.3 House convention](#213-house-convention)
+    - [2.1.4 Direct observation](#214-direct-observation)
+- [3. Decisions](#3-decisions)
+- [4. Last review](#4-last-review)
+
+## 1. Introduction
+
+The authoritative sources behind [the standard](standard-chezmoi-dotfiles.md), [the generated rubric](rubric.md), and its structured [rubric catalogue](../scripts/rubric/items/index.ts). Mode REFRESH reads this file, re-fetches each source, diffs it against the standard and catalogue, then **bumps the `last reviewed` dates** and refreshes the Last review block below (what changed is recorded in the commit, not a changelog).
 
 Three different kinds of claim live in this standard, and they carry different confidence:
 
@@ -10,7 +28,17 @@ Three different kinds of claim live in this standard, and they carry different c
 - **House-convention claims** (the shell-loader pattern, the bin/env dispatcher pattern, the Pattern A/B decision rule, the editor-selection and verification policy, the single-source multi-target templating pattern, the agent-instruction layering split, the audit-reporting etiquette) are derived from a **single anonymized case-study repo** (n=1, initially audited 2026-07-12, with the config-editing case reviewed 2026-07-14) — not a corpus the way `ki-repo`'s repo standard was derived from ten `knowledgeislands`-org repos. Treat every `[J]` criterion in the rubric as provisional until more repos have been audited against this skill and the pattern is confirmed to generalize.
 - **Directly observed claims** (that `chezmoi apply` replaces a target rather than editing it in place) rest on a single measurement against one chezmoi version on one platform, because the behavior is undocumented. They are load-bearing for diagnosis, not for correctness, and REFRESH must re-measure them rather than re-fetch a page.
 
-## Authoritative (chezmoi.io)
+[Back to contents](#contents)
+
+## 2. Outside sources
+
+The standard follows chezmoi's own documentation and the selected format editors' documentation; its house conventions rest on one case-study repository and its measured claims on direct observation.
+
+### 2.1 Authoritative
+
+The tool documentation first, then the in-house case study and measurements, each with the confidence the Introduction gives it.
+
+#### 2.1.1 chezmoi.io
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
@@ -22,7 +50,17 @@ Three different kinds of claim live in this standard, and they carry different c
 | [CLI: `chezmoi status` / `managed` / `unmanaged`][status] | drift-checking commands | 2026-11-15 |
 | [CLI: `source-path` / `target-path`][source-path] | resolving between source and target paths | 2026-11-15 |
 
-## Authoritative (format tooling)
+[attributes]: https://www.chezmoi.io/reference/source-state-attributes/
+[chezmoiignore]: https://www.chezmoi.io/reference/special-files/chezmoiignore/
+[scripts]: https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/
+[templating]: https://www.chezmoi.io/user-guide/templating/
+[doctor]: https://www.chezmoi.io/reference/commands/doctor/
+[status]: https://www.chezmoi.io/reference/commands/status/
+[source-path]: https://www.chezmoi.io/reference/commands/source-path/
+
+[Back to contents](#contents)
+
+#### 2.1.2 Format tooling
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
@@ -32,7 +70,17 @@ Three different kinds of claim live in this standard, and they carry different c
 | [Microsoft `jsonc-parser` utilities][jsonc-parser] | localized path edits, missing-property creation, and applying text edits | 2026-11-15 |
 | [uv: running a script with dependencies][uv-script-dependencies] | `uv run --with` and `--no-project` dependency execution | 2026-11-15 |
 
-## House convention (n=1 case study — not chezmoi.io-sourced)
+[tomlkit]: https://github.com/python-poetry/tomlkit
+[ruamel-round-trip]: https://yaml.dev/doc/ruamel.yaml/detail/#Round_trip_including_comments
+[ruamel-indentation]: https://yaml.dev/doc/ruamel.yaml/detail/#Inconsistently_indented_YAML
+[jsonc-parser]: https://github.com/microsoft/node-jsonc-parser#utilities
+[uv-script-dependencies]: https://docs.astral.sh/uv/guides/scripts/#running-a-script-with-dependencies
+
+[Back to contents](#contents)
+
+#### 2.1.3 House convention
+
+The n=1 case study, not chezmoi.io-sourced.
 
 | Source                                                          | Governs                   | Last reviewed |
 | --------------------------------------------------------------- | ------------------------- | ------------- |
@@ -46,7 +94,11 @@ Three different kinds of claim live in this standard, and they carry different c
 
 ‖ The five-part header Kris agreed on 30 October 2026 and asked on 7 November 2026 to adopt into this skill; HEADER-1 found every one of the source's 44 scripts in scope carrying it on 7 November 2026.
 
-## Direct observation (measured, not documented)
+[Back to contents](#contents)
+
+#### 2.1.4 Direct observation
+
+Measured, not documented.
 
 | Source                                                    | Governs                      | Last reviewed |
 | --------------------------------------------------------- | ---------------------------- | ------------- |
@@ -57,7 +109,17 @@ Three different kinds of claim live in this standard, and they carry different c
 
 ¶ Reading an application's own configuration surface — setting names, help text, and the defaults block — out of its shipped executable when vendor documentation does not cover it. Derived from one case (a Rust/`gpui` application on macOS, n=1); the technique's yield depends on the binary retaining readable strings and symbols, so treat a stripped or heavily optimized binary as a negative result rather than evidence the setting does not exist.
 
-## Last review
+[Back to contents](#contents)
+
+## 3. Decisions
+
+None recorded by id. Kris's two decisions behind the rules are quoted in the standard beside the rules they set: the five-part [script header](standard-chezmoi-dotfiles.md#44-script-headers) he agreed on 30 October 2026 and asked on 7 November 2026 to adopt into this skill, and the source's having no commit gate, set on 20 October 2026, under the [Git boundary](standard-chezmoi-dotfiles.md#410-git-boundary) and ADR-KI-HARNESS-SKILLS-017.
+
+[Back to contents](#contents)
+
+## 4. Last review
+
+On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the chezmoi dotfiles standard](standard-chezmoi-dotfiles.md), formerly `standards-chezmoi-dotfiles.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format, its four source groups now sub-groups of Authoritative. SKILL.md, the rubric items and the rubric follow the new name and anchors. No rule changed and no outside source was refreshed.
 
 Focused review, **2026-11-17**: the source state attributes page re-read, and the two points the 15 November refresh raised were measured on chezmoi v2.74.1 in a scratch source and destination. The page sets a fixed prefix order for each kind of entry and allows no `executable_` on a directory; `executable_dot_bad/` applied as a literal directory named `executable_dot_bad`, so the standard's old example did not do what it said. `private_` removes group and world permissions, and `dot_bash/private_executable_secrets.tmpl` applied as `~/.bash/secrets` at mode `0700`, not `0600`. The standard's prefix table and example now follow the page, and those two watch points are closed.
 
@@ -74,15 +136,6 @@ Focused format-editor promotion, **2026-07-16** — the surgical config-editing 
 - **Format-tooling sources**: TOMLKit, ruamel.yaml, Microsoft `jsonc-parser`, and uv documentation fetched and reviewed 2026-07-16. The standard records documented preservation behavior and explicit limits rather than promising universal byte identity.
 - **House-convention source**: the same single case study, explicitly not treated as a corpus. Its TOML fixture demonstrated a byte-stable no-op round trip and missing-key creation for that file and tool version; those observations became verification requirements, not universal tool guarantees. A version-specific `dasel` limitation and the time-sensitive claim that JSON5 lacks mature tooling were deliberately not promoted. Re-confirm every `[J]` criterion once a second and third chezmoi repo have been audited against this skill; narrow or retire anything that proves case-specific.
 
-[attributes]: https://www.chezmoi.io/reference/source-state-attributes/
-[chezmoiignore]: https://www.chezmoi.io/reference/special-files/chezmoiignore/
-[scripts]: https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/
-[templating]: https://www.chezmoi.io/user-guide/templating/
-[doctor]: https://www.chezmoi.io/reference/commands/doctor/
-[status]: https://www.chezmoi.io/reference/commands/status/
-[source-path]: https://www.chezmoi.io/reference/commands/source-path/
-[tomlkit]: https://github.com/python-poetry/tomlkit
-[ruamel-round-trip]: https://yaml.dev/doc/ruamel.yaml/detail/#Round_trip_including_comments
-[ruamel-indentation]: https://yaml.dev/doc/ruamel.yaml/detail/#Inconsistently_indented_YAML
-[jsonc-parser]: https://github.com/microsoft/node-jsonc-parser#utilities
-[uv-script-dependencies]: https://docs.astral.sh/uv/guides/scripts/#running-a-script-with-dependencies
+**Watching:** a second and third chezmoi repository audited against this skill, to confirm or narrow every `[J]` criterion, and the measured claims on another platform or a materially newer chezmoi.
+
+[Back to contents](#contents)

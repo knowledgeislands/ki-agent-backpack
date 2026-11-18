@@ -5,7 +5,7 @@ const BIN_1: RubricItem<BinContext> = {
   code: 'BIN-1',
   title: 'Bin source-attribute prefix',
   description: 'Every direct physical file in `bin/` carries a recognised chezmoi source-attribute prefix.',
-  sources: ['standards-chezmoi-dotfiles.md'],
+  sources: ['standard-chezmoi-dotfiles.md'],
   mechanical: {
     level: 'WARN',
     remediation: {
@@ -52,7 +52,7 @@ export const BIN: RubricFamily<ChezmoiRubricContext, BinContext> = {
   code: 'BIN',
   title: 'Bin source naming',
   description: 'Chezmoi source-attribute naming for direct bin files.',
-  standard: 'standards-chezmoi-dotfiles.md',
+  standard: 'standard-chezmoi-dotfiles.md',
   selectContext: (context) => context.bin,
   items: [BIN_1]
 }

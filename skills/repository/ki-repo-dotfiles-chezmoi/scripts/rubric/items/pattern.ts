@@ -5,7 +5,7 @@ const PATTERN_J1: RubricItem<ReviewContext> = {
   code: 'PATTERN-J1',
   title: 'App-mutated config pattern choice',
   description: 'Pattern A, Pattern B, or Pattern C is chosen correctly for each app-mutated configuration file.',
-  sources: ['standards-chezmoi-dotfiles.md'],
+  sources: ['standard-chezmoi-dotfiles.md'],
   judgment: {
     scope: 'Each app-mutated configuration file and its selected Pattern A, B, or C ownership model.',
     prompt:
@@ -21,7 +21,7 @@ const PATTERN_J2: RubricItem<ReviewContext> = {
   title: 'Native fragment-binding boundary',
   description:
     'Every Pattern C binding declares its ownership, removal, and adoption boundaries without importing secrets or undeclared application state.',
-  sources: ['standards-chezmoi-dotfiles.md'],
+  sources: ['standard-chezmoi-dotfiles.md'],
   judgment: {
     scope: 'Every Pattern C native fragment binding and its canonical source, target, selector, and lifecycle policy.',
     prompt:
@@ -36,7 +36,7 @@ export const PATTERN: RubricFamily<ChezmoiRubricContext, ReviewContext> = {
   code: 'PATTERN',
   title: 'App-mutated configuration',
   description: 'Judgment criteria for Pattern A, Pattern B, and Pattern C selection.',
-  standard: 'standards-chezmoi-dotfiles.md',
+  standard: 'standard-chezmoi-dotfiles.md',
   selectContext: (context) => context.review,
   items: [PATTERN_J1, PATTERN_J2]
 }

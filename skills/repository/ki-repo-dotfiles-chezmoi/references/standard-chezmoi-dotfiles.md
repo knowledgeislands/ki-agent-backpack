@@ -1,25 +1,80 @@
-# Chezmoi dotfiles-management standard
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:55:00Z
+ki-status: in force
+---
 
-The rationale behind [the generated rubric](rubric.md) and its structured catalogue. Grounded in chezmoi's own documented behavior plus one anonymized real-repo case study — see [sources](sources.md) for provenance and the honesty note on what's tool behavior versus house convention.
+# Chezmoi dotfiles-management standard
 
 ## Contents
 
-- [Repo layout & naming](#repo-layout--naming)
-- [Edit discipline](#edit-discipline)
-- [Shell configuration: loader, not rc](#shell-configuration-loader-not-rc)
-  - [Paths and completions](#paths-and-completions)
-- [Script headers](#script-headers)
-- [bin/ dispatcher pattern](#bin-dispatcher-pattern)
-- [App-mutated config handling](#app-mutated-config-handling)
-  - [Native fragment-binding contract](#native-fragment-binding-contract)
-  - [Selecting a surgical config editor](#selecting-a-surgical-config-editor)
-- [Single-source, multi-target config templating](#single-source-multi-target-config-templating)
-- [Agent-instruction layering](#agent-instruction-layering)
-- [OS/tooling gotchas](#ostooling-gotchas)
-- [Git boundary](#git-boundary)
-- [Repo-shape expectations](#repo-shape-expectations-additive-to-generic-repo-standard-checks)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Repo layout & naming](#41-repo-layout--naming)
+  - [4.2 Edit discipline](#42-edit-discipline)
+  - [4.3 Shell configuration: loader, not rc](#43-shell-configuration-loader-not-rc)
+    - [4.3.1 Paths and completions](#431-paths-and-completions)
+  - [4.4 Script headers](#44-script-headers)
+  - [4.5 bin/ dispatcher pattern](#45-bin-dispatcher-pattern)
+  - [4.6 App-mutated config handling](#46-app-mutated-config-handling)
+    - [4.6.1 Native fragment-binding contract](#461-native-fragment-binding-contract)
+    - [4.6.2 Selecting a surgical config editor](#462-selecting-a-surgical-config-editor)
+  - [4.7 Single-source, multi-target config templating](#47-single-source-multi-target-config-templating)
+  - [4.8 Agent-instruction layering](#48-agent-instruction-layering)
+  - [4.9 OS/tooling gotchas](#49-ostooling-gotchas)
+  - [4.10 Git boundary](#410-git-boundary)
+  - [4.11 Repo-shape expectations](#411-repo-shape-expectations-additive-to-generic-repo-standard-checks)
 
-## Repo layout & naming
+## 1. Introduction
+
+The rationale behind [the generated rubric](rubric.md) and its structured catalogue. Grounded in chezmoi's own documented behavior plus one anonymized real-repo case study — see [sources](sources.md) for provenance and the honesty note on what's tool behavior versus house convention.
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+House conventions for structuring and operating a chezmoi source-state repository, on top of what chezmoi itself already enforces.
+
+### 2.1 In scope
+
+- Source layout and naming, edit discipline, and the shell loader with its paths and completions.
+- Script headers and the `bin/` dispatcher pattern.
+- App-mutated configuration: the three patterns, native fragment binding, and surgical editor selection.
+- Single-source, multi-target templating and agent-instruction layering.
+- OS and tooling gotchas, the Git boundary, and the repo-shape expectations.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- Portable Git and commit policy, including safe lock recovery: `ki-git`.
+- Generic repository file-presence checks and the commit-gate hooks: `ki-repo`.
+- Where reusable doctrine and personal guidance belong: `ki-authoring`'s knowledge-promotion standard.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Source prefix** | A chezmoi source-attribute prefix, such as `dot_`, `executable_` or `private_`, that maps a source name to its `$HOME` target. **Standard:** this one, [4.1](#41-repo-layout--naming) |
+| **Shell loader** | A thin shell rc loop that sources every file under shared config directories. **Standard:** this one, [4.3](#43-shell-configuration-loader-not-rc) |
+| **Script header** | The five-part comment that opens every script in the source. **Standard:** this one, [4.4](#44-script-headers) |
+| **App-mutated config** | A config file partly hand-authored and partly rewritten by the application at runtime. **Standard:** this one, [4.6](#46-app-mutated-config-handling) |
+| **Pattern A, B, C** | The surgical patch, the full template with reverse-merge, and the native fragment binding for app-mutated config. **Standard:** this one, [4.6](#46-app-mutated-config-handling) |
+| **Surgical editor** | A format-preserving editor that changes the intended values while preserving unrelated concrete syntax. **Standard:** this one, [4.6.2](#462-selecting-a-surgical-config-editor) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 Repo layout & naming
 
 chezmoi maps source-tree names to `$HOME` targets through prefixes that combine:
 
@@ -38,7 +93,9 @@ Prefixes combine in the fixed order chezmoi's source state attributes page sets 
 
 **`.chezmoiignore` negation-through-ignored-parents**: unlike strict `.gitignore` semantics, a `!`-negation line in `.chezmoiignore` matches through a broadly ignored parent directory without needing an intermediate un-ignore of that parent — `dir/*/*` then `!dir/*/specific-file` un-ignores `specific-file` under any immediate child of `dir/`, with no `!dir/*/` line needed in between.
 
-## Edit discipline
+[Back to contents](#contents)
+
+### 4.2 Edit discipline
 
 **Edit the source, never the rendered target.** A hand-edit to a file under `$HOME` is silently clobbered by the next `chezmoi apply` — there is no warning, the source of truth always wins. Resolve between the two with `chezmoi source-path <target>` (find the source file behind a `$HOME` path) and `chezmoi target-path <source>` (find where a source file renders to).
 
@@ -48,7 +105,9 @@ Prefixes combine in the fixed order chezmoi's source state attributes page sets 
 
 **A successful apply is not a loaded config.** `chezmoi apply` writes a target by replacing it, not by editing it in place — the target's inode changes, measured directly on chezmoi v2.72.0 and again on v2.74.1. An application that watches its config file for changes may be watching the old inode, so it can keep running on the pre-apply configuration indefinitely with no error anywhere: chezmoi reports success, `chezmoi diff` is empty, and the file on disk is correct. This is most visible in long-running GUI applications that hot-reload their own config. When an apply appears to have had no effect, check the target's content before re-diagnosing the source, then force the application to re-read it — open its config file in the application and save it (a real write on the current inode, which the watcher will see), or restart the application. Note also that settings which govern the state a UI element is _created_ in will not retroactively change elements already on screen.
 
-## Shell configuration: loader, not rc
+[Back to contents](#contents)
+
+### 4.3 Shell configuration: loader, not rc
 
 Shell rc files (`.zshrc`, `.bashrc`, etc.) should be thin loops that `source` every file under one or more shared config directories, rather than accumulating configuration inline:
 
@@ -58,13 +117,17 @@ for f in ~/.allsh/* ~/.shellname/*; do source "$f"; done
 
 New configuration becomes a new file dropped into the right directory — never an append to the rc itself. A numeric load-order prefix on each file's name (e.g. `00_` earliest — PATH/completion setup, `50_` mid — tool activation, `90_` late — per-tool completions/aliases, `99_` last — prompt) makes load order explicit and greppable; pick a prefix matching when the snippet needs to run, and name the rest of the filename after what it does.
 
-### Paths and completions
+[Back to contents](#contents)
+
+#### 4.3.1 Paths and completions
 
 Treat `PATH`, `MANPATH`, and shell completion search paths as ordered, user-visible interfaces rather than incidental environment variables. Make every contribution idempotent, document the repository's intended precedence, and guard optional tools and package managers so a fresh machine or an uninstalled integration still starts a shell successfully. Keep manual-page precedence compatible with executable precedence wherever a tool supplies its own manuals.
 
 Generate a tracked CLI completion from that CLI's supported completion command, such as `<tool> completion <shell>`, instead of maintaining a hand-written copy. Keep the generator in the source tree, make regeneration repeatable, and condition both generation and shell loading on the required tool or completion file being available. Exact tool choices and precedence belong in the consuming repository's local guidance, not in this standard.
 
-## Script headers
+[Back to contents](#contents)
+
+### 4.4 Script headers
 
 Every script in the source opens with a header comment that tells a reader what the script is for, why it matters, how it is called, what runs it and when it was made, so that anyone can learn all about it from the file alone. Kris agreed this shape on 30 October 2026 and asked that the descriptions be "non-technical, so they should explain why it's important as well and what the goal of it is ... it should also be in plain English"; on 7 November 2026 he asked for the standard to be adopted into this skill.
 
@@ -93,11 +156,15 @@ A good existing explanation is kept, never shortened: where it opens technically
 
 The rule covers every file chezmoi installs as executable (an `executable_` source name, `.tmpl` sources included), every `run_` script, and every other script file (`.sh`, `.zsh`, `.bash`, `.mjs`, `.js`, `.ts`, `.py`). It excludes tests and shell start-up fragments sourced by a loader (under `.zprofile.d/` and `.zsh/`), which the loader's own comments describe. The repository's always-loaded guidance states the rule, and its own script audit checks it.
 
-## bin/ dispatcher pattern
+[Back to contents](#contents)
+
+### 4.5 bin/ dispatcher pattern
 
 A single bootstrap entrypoint accepts an action (`install | update | cleanup | backup`) plus an optional list of subsystem names, loops over the requested (or default) subsystems, and calls each subsystem's own script with that action. Each subsystem script is a **no-op for actions that don't apply to it** — the dispatcher never needs to know which subsystems care about which actions. This is a registry-of-independent-installers shape: adding a new subsystem means adding one new script and one line in the dispatcher's subsystem list, never touching the dispatch logic itself.
 
-## App-mutated config handling
+[Back to contents](#contents)
+
+### 4.6 App-mutated config handling
 
 Some config files are partly hand-authored, partly rewritten by the application itself at runtime (a JSON preferences file an app resaves on every launch, for example). Three named patterns handle this, chosen by an ownership decision rather than by tool convenience.
 
@@ -111,7 +178,9 @@ Some config files are partly hand-authored, partly rewritten by the application 
 
 Switching a file between patterns requires an explicit source and target migration. Do not leave a whole-file template, reverse merge, post-apply patch, and `modify_` binding competing for the same target.
 
-### Native fragment-binding contract
+[Back to contents](#contents)
+
+#### 4.6.1 Native fragment-binding contract
 
 A Pattern C binding declares its canonical source, target, format-aware selector, applicability filter when multiple clients share the data, ownership policy, removal behaviour, and whether live state may be adopted.
 
@@ -121,7 +190,9 @@ Adoption is separate from `chezmoi re-add`: it selects one declared binding, pre
 
 The transformer defines absent-file, malformed-input, and unsupported-syntax behaviour before it writes. It parses before and after editing, fails without truncating the input, and preserves undeclared content and concrete syntax to the degree the selected editor supports. A source script may itself be templated to receive canonical data; that does not make the application target a `.tmpl` file.
 
-### Selecting a surgical config editor
+[Back to contents](#contents)
+
+#### 4.6.2 Selecting a surgical config editor
 
 A Pattern A or Pattern C write is surgical only when it changes the intended values while preserving unrelated concrete syntax as far as the format and editor support: comments, key order, quoting, indentation, line endings, and final-newline state should not churn merely because the file was parsed and written. Minimal textual churn, not semantic equivalence alone, is the selection criterion.
 
@@ -139,11 +210,15 @@ Python editors may run in an on-demand isolated environment via `uv run --with <
 
 Every Pattern A or Pattern C writer defines what happens when the file, parent object, or target key is absent; parses before and after the edit; fails without truncating the original on invalid input; and has representative fixtures proving that the intended value changes, unrelated syntax remains stable, and a second identical run produces no diff. Pattern C evidence also proves that its declared fragments are the only changed ownership boundary. Include the format features actually present in the live file rather than relying on a toy fixture. Filesystem replacement, symlink, permissions, ownership, secret-redaction, and concurrent-app-write policy remain part of the implementation's safety review even when the editor itself is format-preserving.
 
-## Single-source, multi-target config templating
+[Back to contents](#contents)
+
+### 4.7 Single-source, multi-target config templating
 
 When several distinct targets (client apps, environments, hosts) each need their own rendering of essentially the same list of items, keep **one** structured data file (e.g. a `.chezmoidata/*.yaml`) as the single source of truth, and a **shared** Go-template partial (under `.chezmoitemplates/`) that renders each item into its per-target fragment, filtered by which item applies to which target (e.g. a `targets:` field on each entry). This is a general "N-item source → M rendered targets via one shared partial" shape — invoke the same partial from every place a target's config gets assembled, including a Pattern A script, Pattern B template, or Pattern C `modify_` source, so the rendering logic never forks between call sites.
 
-## Agent-instruction layering
+[Back to contents](#contents)
+
+### 4.8 Agent-instruction layering
 
 First route reusable rules and procedures to their owning skill, as `ki-authoring`'s knowledge-promotion standard requires. Neither a chezmoi source file nor a rendered personal instruction file is the authority for portable skill doctrine. Then choose the appropriate agent-instruction layer:
 
@@ -154,12 +229,16 @@ First route reusable rules and procedures to their owning skill, as `ki-authorin
 
 To review managed personal instructions section by section and verify affected skills without them, use the classification method in `ki-authoring`'s knowledge-promotion standard. If user-level evidence is unavailable, report that limit rather than claiming portability was proven. This placement check complements `ki-skills`' KI-SHAPE-10; it does not replace the skill-quality audit.
 
-## OS/tooling gotchas
+[Back to contents](#contents)
+
+### 4.9 OS/tooling gotchas
 
 - **macOS case-insensitive filesystems.** APFS and HFS+ are case-insensitive by default: two paths differing only in letter case resolve to the _same inode_. Before treating two differently-cased "files" (often left behind by a rename that only changed case) as distinct, verify with `stat -f "%i" path1 path2` — matching inode numbers mean it's one file under two names, and deleting one deletes both.
 - **macOS `sed` and non-ASCII characters.** Set `export LC_ALL=C` before running `sed` on text that may contain box-drawing or other non-ASCII characters (`├`, `└`, `│`) — macOS's `sed` raises `illegal byte sequence` without it.
 
-## Git boundary
+[Back to contents](#contents)
+
+### 4.10 Git boundary
 
 `ki-git` owns portable Git and commit policy, including safe lock recovery.
 
@@ -169,9 +248,13 @@ Its existing local physical-lock observation is scoped evidence for a chezmoi re
 
 The chezmoi source declares no commit gate (`GIT-2`): it commits no `.githooks/` path and binds no `core.hooksPath`, so `ki-repo` `HOOK-1` to `HOOK-4` are not applicable to it. Kris Brown set this on 20 October 2026: the dotfiles repository should have no hook. Its gate is the manual one its `AGENTS.md` names, the source's tests and focused audit, which a session runs before it commits ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)).
 
-## Repo-shape expectations (additive to generic repo-standard checks)
+[Back to contents](#contents)
+
+### 4.11 Repo-shape expectations (additive to generic repo-standard checks)
 
 This is _additive_ to a generic repo standard's file-presence checks (README/LICENSE/.gitignore etc.), not a restatement of them:
 
 - `.chezmoiignore` is expected to exist as a physical regular file in any chezmoi source repository. CONFORM may create it only when the path is absent; it never replaces an existing file or unsafe path.
 - `.chezmoidata/` and/or `.chezmoitemplates/` are expected to exist as physical directories whenever the tree contains any physical `.tmpl` files.
+
+[Back to contents](#contents)

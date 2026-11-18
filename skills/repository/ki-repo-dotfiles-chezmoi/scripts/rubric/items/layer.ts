@@ -5,7 +5,7 @@ const LAYER_J1: RubricItem<ReviewContext> = {
   code: 'LAYER-J1',
   title: 'Agent-instruction layering',
   description: 'Reusable doctrine belongs in skills; repository and personal guidance use their own layers.',
-  sources: ['standards-chezmoi-dotfiles.md'],
+  sources: ['standard-chezmoi-dotfiles.md'],
   judgment: {
     scope:
       'Managed agent guidance, its reusable-skill or repository or personal audience, and available portability evidence.',
@@ -21,7 +21,7 @@ export const LAYER: RubricFamily<ChezmoiRubricContext, ReviewContext> = {
   code: 'LAYER',
   title: 'Instruction layering',
   description: 'Judgment criteria for skill, repository, user, and memory guidance.',
-  standard: 'standards-chezmoi-dotfiles.md',
+  standard: 'standard-chezmoi-dotfiles.md',
   selectContext: (context) => context.review,
   items: [LAYER_J1]
 }

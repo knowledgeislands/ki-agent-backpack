@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { ChezmoiRubricContext, ChezmoiShapeContext } from '../contexts/chezmoi.ts'
 
-const STANDARD = ['standards-chezmoi-dotfiles.md'] as const
+const STANDARD = ['standard-chezmoi-dotfiles.md'] as const
 
 const CHEZMOI_0: RubricItem<ChezmoiShapeContext> = {
   code: 'CHEZMOI-0',
@@ -146,7 +146,7 @@ export const CHEZMOI: RubricFamily<ChezmoiRubricContext, ChezmoiShapeContext> = 
   code: 'CHEZMOI',
   title: 'Chezmoi repository shape',
   description: 'Required repository-shape files and template support.',
-  standard: 'standards-chezmoi-dotfiles.md',
+  standard: 'standard-chezmoi-dotfiles.md',
   selectContext: (context) => context.shape,
   items: [CHEZMOI_0, CHEZMOI_1, CHEZMOI_2, CHEZMOI_J1]
 }
