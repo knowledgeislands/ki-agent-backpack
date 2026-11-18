@@ -1,18 +1,86 @@
-# Sources
+---
+ki-document-type: sources@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T03:39:59Z
+ki-refresh: canonical · on-change
+---
 
-**Refresh:** canonical · on-change
+# Sources — where the acquisition standards come from
 
-Review additionally alongside material changes to the common capture contract.
+## Contents
 
-- [Knowledge Islands Acquisition Process](https://github.com/knowledgeislands/ki-principal/blob/main/Pillars/Philosophy/Model/Processes/Acquisition%20Process/Acquisition%20Process.md) owns the durable lifecycle and rationale.
-- The `ki-acquire-chatgpt` and `ki-acquire-granola` standards own provider fidelity, capability limits and separately authorised mutations.
-- Acquire's README, AGENTS.md and CAPTURE.md, its intake work `personal.reg.assistant-terra`, formerly `personal.reg.acquire-intake`, and that package's design note `design/acquire-structure.md` publish Kris's decisions of 30 October to 1 November 2026 on the port and staging model, the `captured/`, `context/` and `curated/<territory>/<island>/` layout, incremental curation, front-matter card origins, cross-territory copies, meetings as sources, lean captures, held historical captures and future ideas. Acquire's own text is the authority for them for now (ACQ020-OWNER), and Acquire intake is the primary source for the acquisition structure (ACQUIRE-STRUCTURE-SOURCE).
-- tools-ki commit `26c754f3` removed the Granola ledger, and its acquisition specification records the capture as the only record under ACQUIRE-019.
-- tools-ki commit `4faf9724` removed `ki acquire` on 5 November 2026; the Inbox's `ki-muninn` README in krisb/inbox now owns executable Granola and ChatGPT acquisition.
+- [1. Introduction](#1-introduction)
+- [2. Outside sources](#2-outside-sources)
+  - [2.1 Authoritative](#21-authoritative)
+  - [2.2 Advisory](#22-advisory)
+- [3. Decisions](#3-decisions)
+- [4. Last review](#4-last-review)
 
-## Last review
+## 1. Introduction
 
-On 14 November 2026, under PROCESS-SUBCOMMANDS and RENAME-NOW in the Cairn summit's change 25 (now 14), the `ki-pulse` process skill folded into this skill as the PULSE mode: its body became [the pulse reference](mode-pulse.md) and its standard [the Pulse standard](standards-pulse.md), unchanged in substance, and this skill now leads the Acquire guild. No external source was refreshed.
+The sources and decisions behind [the common acquisition standard](standard-acquisition.md), [the agent-session acquisition standard](standard-agent-session-acquisition.md), [the Pulse standard](standard-pulse.md) and the generated [rubric](rubric.md). The skill is canonical: review it alongside material changes to the common capture contract. Mode REFRESH reads this file, compares the durable acquisition model and actual capture practice with the standards, and records what it checked in [Last review](#4-last-review). The `ki-acquire-chatgpt` and `ki-acquire-granola` standards own provider fidelity, capability limits and separately authorised mutations, and are reviewed with their own skills.
+
+[Back to contents](#contents)
+
+## 2. Outside sources
+
+The Knowledge Islands model and the in-house repositories whose published text the standards follow.
+
+### 2.1 Authoritative
+
+| Source | Governs | Last reviewed |
+| --- | --- | --- |
+| ACQ-PROCESS — [Knowledge Islands Acquisition Process](https://github.com/knowledgeislands/ki-principal/blob/main/Pillars/Philosophy/Model/Processes/Acquisition%20Process/Acquisition%20Process.md) | The durable lifecycle of acquisition and its rationale | Not recorded |
+| ACQUIRE — Acquire's README, AGENTS.md and CAPTURE.md, its intake work `personal.reg.assistant-terra`, formerly `personal.reg.acquire-intake`, and that package's design note `design/acquire-structure.md` | Kris's decisions of 30 October to 1 November 2026 on the port and staging model: the `captured/`, `context/` and `curated/<territory>/<island>/` layout, incremental curation, front-matter card origins, cross-territory copies, meetings as sources, lean captures, held historical captures and future ideas. Acquire's own text is the authority for them for now (ACQ020-OWNER), and Acquire intake is the primary source for the acquisition structure (ACQUIRE-STRUCTURE-SOURCE) | 2026-11-01 |
+| MUNINN — The Inbox's `ki-muninn` README, in krisb/inbox | Executable Granola and ChatGPT acquisition, outside the backpack | 2026-11-05 |
+
+[Back to contents](#contents)
+
+### 2.2 Advisory
+
+| Source | Informs | Last reviewed |
+| --- | --- | --- |
+| TOOLS-KI — tools-ki commit `26c754f3`, and its acquisition specification under ACQUIRE-019 | The Granola ledger's removal, and the capture as the only record | Not recorded |
+| TOOLS-KI-ACQUIRE — tools-ki commit `4faf9724` | `ki acquire` removed from tools-ki on 5 November 2026, its acquisition moving to `ki-muninn` | 2026-11-05 |
+
+[Back to contents](#contents)
+
+## 3. Decisions
+
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| ACQUIRE-019 | The capture package is the only record of what was acquired: no ledger, checkpoint, journal or intake receipt, and dispatch is a Git move into each island's `+/_ACQUIRED/` with no dispatch ledger or return route; recorded in tools-ki's acquisition specification. | Not recorded | [4.1](standard-acquisition.md#41-the-capture-package), [4.7](standard-acquisition.md#47-dispatch-and-authority) | In force |
+| CAPTURE-LEAN | A short note goes in the capture's README rather than a separate verbatim text file, and committed originals take Git's hashes as their checksum, with no `original.txt` or `SHA256SUMS`; Kris, in Acquire. | 2026-10-31 | [4.4](standard-acquisition.md#44-preservation-and-originals) | In force |
+| ACQ020-MODEL | A port is a capture point and may also be a knowledge-capture staging area, where captured meaning is curated into cards before it is reconciled into the owning repositories' graphs, and Acquire is for now a holding area with dispatch on hold; Kris, in Acquire, taken together. | 2026-10-31 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| ACQ020-KNOWLEDGE | A port is a capture point and may also be a knowledge-capture staging area, where captured meaning is curated into cards before it is reconciled into the owning repositories' graphs, and Acquire is for now a holding area with dispatch on hold; Kris, in Acquire, taken together. | 2026-10-31 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| GOAL-HOLDING-AREA | A port is a capture point and may also be a knowledge-capture staging area, where captured meaning is curated into cards before it is reconciled into the owning repositories' graphs, and Acquire is for now a holding area with dispatch on hold; Kris, in Acquire, taken together. | 2026-10-31 | [4.6](standard-acquisition.md#46-staging-and-curation), [4.7](standard-acquisition.md#47-dispatch-and-authority) | In force |
+| ACQ020-RETIRE | Curation is incremental: each curated item is deleted from its capture in the commit that curates it, a dropped item in its own commit, and an empty capture is deleted; Kris, in Acquire. | 2026-10-31 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| CARDS-NO-SOURCE-LINKS | A card never links to a capture, because the capture is transient; Kris, in Acquire. | 2026-10-31 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| ACQ020-PROVENANCE | A card has no origin section in its body; where its origin would help a later check, its front matter gives it in one plain `origin:` line, otherwise it has none; Kris, in Acquire, taken together. | 2026-10-31 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| CARDS-ORIGIN | A card has no origin section in its body; where its origin would help a later check, its front matter gives it in one plain `origin:` line, otherwise it has none; Kris, in Acquire, taken together. | 2026-10-31 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| ORIGIN-FRONTMATTER | A card has no origin section in its body; where its origin would help a later check, its front matter gives it in one plain `origin:` line, otherwise it has none; Kris, in Acquire, taken together. | 2026-10-31 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| CROSS-TERRITORY-COPIES | A card defines a concept once within a territory, and the same card may also sit in another territory where it applies; Kris, in Acquire. | 2026-10-31 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| ACQ020-HISTORY | Captures older than 31 October 2026 are held and worked back one day at a time, newest first, without bulk moves; Kris, in Acquire. | 2026-10-31 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| ACQ020-FUTURE | A future idea curated from a capture goes into the graph as a future concept, kept distinct from what is being done now, and not onto a roadmap; only an idea being enacted now becomes work; Kris, in Acquire, taken together. | 2026-10-31 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| IDEAS-IN-GRAPH | A future idea curated from a capture goes into the graph as a future concept, kept distinct from what is being done now, and not onto a roadmap; only an idea being enacted now becomes work; Kris, in Acquire, taken together. | 2026-10-31 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| ACQUIRE-STRUCTURE-ALIGN | Acquire has `captured/`, `context/`, `curated/` and `actions/`; `context/<territory>/` is a routing graph joined by typed links, and nothing under `captured/` links into `context/`; Kris, in Acquire. | 2026-11-01 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| RESTRUCTURE | The staging area is `curated/<territory>/<island>/`, one island being one repository, each following its island's own shape; Kris, in Acquire, with ISLAND-SHAPE-AND-MEETINGS and SCAFFOLD. | 2026-11-01 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| SCAFFOLD | Every territory principal has a scaffolded skeleton of its zones, each with a README saying what lands there; other islands get folders only when needed; Kris, in Acquire, with RESTRUCTURE and ISLAND-SHAPE-AND-MEETINGS. | 2026-11-01 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| ISLAND-SHAPE-AND-MEETINGS | A staged file's path follows its island's zones; a meeting's decisions and concepts are curated into cards, its attendance and actions staged under `Calendar/` and its work under `Streams/`: "if you bring in a meeting and there's some decisions made or some concepts, then there's no reason why they can't be pointers into the durable knowledge. The thing that's changed or stays in calendars is who attended, what the actions were". | 2026-11-01 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| MEETINGS-PROVENANCE | A meeting is a source, not a node in the graph: "in reality meetings are not that useful to keep. They're more things that help with the provenance of certain information, but they're not part of the knowledge graph". | 2026-11-01 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| HOLDING-SCOPE-CARDS | Cards mature in the staging graph with no rush to migrate, moving into the islands once they conform or earlier when a card's home is plainly decided, and the backlog is played in reverse date order: "I've got no wish to rush migrating knowledge out of the repository", and "keeping knowledge in the graph here right now whilst we're trying to play through the backlog ... in reverse chronological order, you can see where things have been superseded much more easily." | 2026-11-01 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| ACQUIRE-HELD-RENAME | Held material awaiting incorporation is in a top-level `_held/`, renamed from `_review` on 1 November and moved out of `captured/` on 2 November, which the port's store mirrors. | 2026-11-02 | [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| STORE-RENAME | The assistant's OneDrive store is renamed from `sources-acquire` to `sources-assistant`. | 2026-11-02 | [4.6](standard-acquisition.md#46-staging-and-curation) | Superseded by INBOX-RENAME |
+| ATER-027 | `ki acquire` leaves tools-ki and acquisition moves to the assistant's `ki-muninn`, which reads `[muninn.<source>]` settings; the common method stays here; at Kris's word, from `personal.reg.assistant-terra`. | 2026-11-05 | [4.2](standard-agent-session-acquisition.md#42-source-and-capture) | In force |
+| INBOX-RENAME | The assistant repository becomes the Inbox: `krisb/assistant` is now `krisb/inbox`, and its store `sources-inbox`: "Do full rename to inbox now and coordinate that". | 2026-11-06 | [4.2](standard-agent-session-acquisition.md#42-source-and-capture), [4.6](standard-acquisition.md#46-staging-and-curation) | In force |
+| PROCESS-SUBCOMMANDS | The `ki-pulse` process skill folds into this skill as its PULSE mode, its standard becoming the Pulse standard unchanged in substance, in the Cairn summit's change 25 (now 14). | 2026-11-14 | [the Pulse standard](standard-pulse.md) | In force |
+
+[Back to contents](#contents)
+
+## 4. Last review
+
+On 18 November 2026 the Keystone guild's review, in the Cairn summit's change 10, brought the skill's files into `ki-authoring`'s formats: the three plural standards were renamed `standard-acquisition.md`, `standard-agent-session-acquisition.md` and `standard-pulse.md` and given the standard format's sections, their rules moved unchanged under numbered subsections, and this file took the sources format, its decisions gathered from the dated reviews below into [Decisions](#3-decisions). No rule changed; the curation questions held for the Acquire guild's review, CURATION-OWNER and ACQUIRE-SPLIT, were left as they stand. No outside source was refreshed.
+
+On 14 November 2026, under PROCESS-SUBCOMMANDS and RENAME-NOW in the Cairn summit's change 25 (now 14), the `ki-pulse` process skill folded into this skill as the PULSE mode: its body became [the pulse reference](mode-pulse.md) and its standard [the Pulse standard](standard-pulse.md), unchanged in substance, and this skill now leads the Acquire guild. No external source was refreshed.
 
 On 6 November 2026, under INBOX-RENAME from `personal.reg.inbox-terra`, at Kris's word ("Do full rename to inbox now and coordinate that"), the assistant repository became the Inbox: `krisb/assistant` is now `krisb/inbox`, its packages `personal.reg.inbox-terra` and `personal.reg.inbox-sol`, and its store `sources-inbox`. Live wording here follows; older lines below keep the names they had.
 
@@ -31,3 +99,5 @@ On 1 November 2026, under HOLDING-SCOPE-CARDS in Ways of working, Kris confirmed
 On 31 October 2026, under CAPTURE-SKILL in Ways of working, the contract was brought into line with Kris's Acquire decisions of 30 and 31 October: a port may also be a knowledge-graph staging area, and Acquire is for now a holding area with dispatch on hold (ACQ020-MODEL, ACQ020-KNOWLEDGE, GOAL-HOLDING-AREA); curation is incremental, deleting each curated or dropped item from its capture and each empty capture (ACQ020-RETIRE); captures are transient and cards carry plain-words origins with no capture links (CARDS-NO-SOURCE-LINKS, ACQ020-PROVENANCE); older captures are worked back one day at a time (ACQ020-HISTORY); captures are lean; and future ideas become future concepts in the graph (ACQ020-FUTURE, IDEAS-IN-GRAPH). Rubric item ACQUIRE-6 was added. The decisions were read as relayed in Ways of working's messages, because Acquire's published text did not yet carry them.
 
 Before that, on 20 October 2026, the contract was cut to the owner's simplified acquisition model: no ledger, checkpoint, journal or intake receipt; the capture package is the only record; dispatch is a Git move into each island's `+/_ACQUIRED/`, with no dispatch ledger or return route. Faithful preservation, honest coverage, exact required originals and separate authority for provider mutation were kept. No external provider capability was refreshed.
+
+[Back to contents](#contents)

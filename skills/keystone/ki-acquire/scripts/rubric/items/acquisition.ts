@@ -4,7 +4,7 @@ import type { AcquisitionContext } from '../contexts/acquisition.ts'
 export const ACQUIRE = {
   code: 'ACQUIRE',
   title: 'Faithful common acquisition',
-  standard: 'standards-acquisition.md',
+  standard: 'standard-acquisition.md',
   description:
     'Policy judgments require source and destination evidence; mechanical success does not establish fidelity.',
   selectContext: (context) => context,
@@ -14,7 +14,7 @@ export const ACQUIRE = {
       title: 'scope and coverage are explicit',
       description:
         'The authorised scope, provenance and chronology distinguish supplied text, a bounded digest and a complete source export.',
-      sources: ['standards-acquisition.md#scope-and-coverage'],
+      sources: ['standard-acquisition.md#42-scope-and-coverage'],
       judgment: judgment(
         'Does the evidence establish the authorised source scope and coverage without inventing dates or weakening source-specific completeness?'
       )
@@ -24,7 +24,7 @@ export const ACQUIRE = {
       title: 'existing captures are found before writing',
       description:
         'An existing capture of the same source identity is found first; unchanged retries are no-ops and unknown or conflicting routes remain visible.',
-      sources: ['standards-acquisition.md#identity-and-routing'],
+      sources: ['standard-acquisition.md#43-identity-and-routing'],
       judgment: judgment(
         'Was an existing capture of the source identity sought before writing, with changed scope linked or refreshed deliberately and unresolved routing left visible?'
       )
@@ -34,7 +34,7 @@ export const ACQUIRE = {
       title: 'promised material and originals are preserved',
       description:
         'The selected source contract governs fidelity, exact required originals, retained versions and explicit omissions.',
-      sources: ['standards-acquisition.md#preservation-and-originals'],
+      sources: ['standard-acquisition.md#44-preservation-and-originals'],
       judgment: judgment(
         'Do source and asset evidence prove the promised coverage and required original bytes, with gaps still visible?'
       )
@@ -44,7 +44,7 @@ export const ACQUIRE = {
       title: 'completion follows destination verification',
       description:
         'Reports distinguish offered, received, committed and remotely verified material rather than overstating success.',
-      sources: ['standards-acquisition.md#verification-and-reporting'],
+      sources: ['standard-acquisition.md#45-verification-and-reporting'],
       judgment: judgment(
         'Was the agreed destination read back and compared, and does the report match the actual verified scope and remaining gaps?'
       )
@@ -55,9 +55,9 @@ export const ACQUIRE = {
       description:
         'No ledger, checkpoint or receipt accompanies the capture. Dispatch is a Git move into the receiver’s +/_ACQUIRED/. Receiver triage annotates the package with evidenced dispositions and gaps while preserving source material; provider mutation, reconciliation, source deletion and history compaction each require separate authority.',
       sources: [
-        'standards-acquisition.md#scope',
-        'standards-acquisition.md#dispatch-and-authority',
-        'standards-acquisition.md#receiver-local-triage'
+        'standard-acquisition.md#41-the-capture-package',
+        'standard-acquisition.md#47-dispatch-and-authority',
+        'standard-acquisition.md#48-receiver-local-triage'
       ],
       judgment: judgment(
         'Is the capture package the only acquisition record, does each complete received session carry an evidenced local disposition with gaps visible, and did every dispatch, reconciliation, provider mutation or destructive operation stay within its own authority?'
@@ -68,7 +68,7 @@ export const ACQUIRE = {
       title: 'curation is incremental and cards stand alone',
       description:
         'Each curated item leaves its capture in the commit that curates it, each dropped item in its own considered-and-dropped commit, and an empty capture is deleted. Cards never link to a capture and carry no origin section in their body, giving an origin only as one plain front-matter line where it helps a later check; a meeting is a source, not a card; future ideas become future concepts, not roadmap work; a holding port dispatches nothing.',
-      sources: ['standards-acquisition.md#staging-and-curation', 'standards-acquisition.md#dispatch-and-authority'],
+      sources: ['standard-acquisition.md#46-staging-and-curation', 'standard-acquisition.md#47-dispatch-and-authority'],
       judgment: judgment(
         'Does every curation commit remove exactly the items it curated or dropped, are empty captures gone, does every card avoid capture links and body origin sections, keeping any origin to one plain front-matter line, are meetings curated as sources rather than cards, and has no capture been dispatched from a port declared a holding area?'
       )

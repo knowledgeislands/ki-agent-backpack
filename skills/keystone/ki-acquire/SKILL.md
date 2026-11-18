@@ -18,13 +18,13 @@ argument-hint: 'audit <repo> | conform <repo> | educate <repo> | help | pulse ca
 
 # Knowledge acquisition
 
-Read [the common acquisition standard](references/standards-acquisition.md), then the receiving repository's capture entry point and only the applicable source route. Keep capture simple: establish scope, find any existing capture, route, preserve, verify and report. Where the port stages knowledge, curate incrementally: each curated or dropped item leaves its capture in its own commit, a card never links to a capture and gives its origin in one front-matter line only where that helps a later check, and a meeting is a source rather than a card.
+Read [the common acquisition standard](references/standard-acquisition.md), then the receiving repository's capture entry point and only the applicable source route. Keep capture simple: establish scope, find any existing capture, route, preserve, verify and report. Where the port stages knowledge, curate incrementally: each curated or dropped item leaves its capture in its own commit, a card never links to a capture and gives its origin in one front-matter line only where that helps a later check, and a meeting is a source rather than a card.
 
 This skill owns the common capture contract; provider skills add source completeness and capability rules. Repository guides supply local paths, publication authority and environment steps. Knowledge Islands owns the durable lifecycle and rationale. Executable importers live outside the backpack: the Inbox's muninn (krisb/inbox, `packages/ki-muninn/`) runs the acquisition the `ki-acquire-granola` and `ki-acquire-chatgpt` provider skills govern, which `ki acquire` in tools-ki ran until 5 November 2026, and will run as `ki muninn` once tools-ki's `ki-<name>` extension mechanism, KI-TOOL-KI-CLI-176, lands. The [generated rubric](references/rubric.md) holds the review criteria. This skill accepts no repository configuration properties.
 
 This skill leads the Acquire guild, which brings knowledge in from outside. Its members: `ki-acquire-chatgpt` and `ki-acquire-granola` for each provider's capture contract, `ki-dodecakrisis` for sorting a mailbox before Deposit, and `ki-exchange-dynamics` for analysing a captured conversation or meeting. The PULSE mode below discovers and triages current signals.
 
-For owner-selected Claude or Codex full-session capture, read [the agent-session acquisition guidance](references/standards-agent-session-acquisition.md). It owns exception-based session import; `ki-env-housekeeping-claude` and `ki-env-housekeeping-chatgpt` retain inventory, memory and cleanup.
+For owner-selected Claude or Codex full-session capture, read [the agent-session acquisition guidance](references/standard-agent-session-acquisition.md). It owns exception-based session import; `ki-env-housekeeping-claude` and `ki-env-housekeeping-chatgpt` retain inventory, memory and cleanup.
 
 ## Operating modes
 
@@ -44,7 +44,7 @@ Explain the common workflow and the repository's capture entry point, and route 
 
 ### Mode PULSE
 
-`pulse capture <url-or-source> [reason]`, `pulse scan <interest-or-query> [sources]` or `pulse triage [current-signals]` runs one bounded, on-demand pulse and keeps no standing state. Read [the pulse reference](references/mode-pulse.md) and follow it; it loads [the Pulse standard](references/standards-pulse.md). `ki-agentic-radar` and `ki-model-radar` own durable landscape posture.
+`pulse capture <url-or-source> [reason]`, `pulse scan <interest-or-query> [sources]` or `pulse triage [current-signals]` runs one bounded, on-demand pulse and keeps no standing state. Read [the pulse reference](references/mode-pulse.md) and follow it; it loads [the Pulse standard](references/standard-pulse.md). `ki-agentic-radar` and `ki-model-radar` own durable landscape posture.
 
 ### Mode REFRESH
 

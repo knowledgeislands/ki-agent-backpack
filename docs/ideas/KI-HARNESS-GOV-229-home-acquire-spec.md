@@ -31,7 +31,7 @@ This is step 6b of the [Portable specifications plan](/Users/krisbrown/workspace
 The [home plan](/Users/krisbrown/workspaces/knowledge-islands/ki-principal/+/_WORK/ki.portable-specifications/design/home-plan.md#6b-home-acquire-ki-acquire) sets the change:
 
 - Add `references/standards-acquire-spec.md` from the approved `acquire` text through the plan's homing transform: an attribution line, unlinked names for the sibling specifications, and a `## Contents` list.
-- Add one paragraph to [`SKILL.md`](../../skills/keystone/ki-acquire/SKILL.md) after the one on the common capture contract, pointing to the specification and leaving the [common acquisition standard](../../skills/keystone/ki-acquire/references/standards-acquisition.md) and provider skills as the house contract; `description` does not change.
+- Add one paragraph to [`SKILL.md`](../../skills/keystone/ki-acquire/SKILL.md) after the one on the common capture contract, pointing to the specification and leaving the [common acquisition standard](../../skills/keystone/ki-acquire/references/standard-acquisition.md) and provider skills as the house contract; `description` does not change.
 - Add provenance bullets to `references/sources.md`, with the provider front-matter mapping recorded in its Last review paragraph rather than in the standard.
 - Add the `SPEC` rubric family with the judgment-only criterion SPEC-1, as a subject in the acquisition context, using the description text the home plan fixes so that the three owning skills agree, and regenerate `references/rubric.md`.
 

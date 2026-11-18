@@ -4,7 +4,7 @@ import type { AcquisitionContext } from '../contexts/acquisition.ts'
 export const CONFIG = {
   code: 'CONFIG',
   title: 'Common acquisition configuration',
-  standard: 'standards-acquisition.md',
+  standard: 'standard-acquisition.md',
   description:
     'The common contract takes local conventions from repository guidance and accepts no configuration keys.',
   selectContext: (context) => context,
@@ -14,7 +14,7 @@ export const CONFIG = {
       title: 'common acquisition has no configuration properties',
       description:
         'Unexpected keys in the common skill table are visible rather than silently accepted as provider settings.',
-      sources: ['standards-acquisition.md#scope'],
+      sources: ['standard-acquisition.md#41-the-capture-package'],
       mechanical: {
         level: 'WARN',
         remediation: {
