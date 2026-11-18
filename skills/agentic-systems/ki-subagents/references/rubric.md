@@ -18,21 +18,21 @@ Line-by-line criteria for auditing ki-subagents. Classifications are derived fro
 
 ## PORTABLE — Portable role semantics
 
-→ [standard](standards-portable-subagents.md)
+→ [standard](standard-portable-subagents.md)
 
 Runtime-neutral identity, instructions, lane, grounding, hand-offs, orchestration, and outcome evidence.
 
-- **PORTABLE-1 [J] — Selection and identity** — The role has stable identity and concrete selection cues without a runtime claim. (standards-portable-subagents.md#required-semantic-evidence)
+- **PORTABLE-1 [J] — Selection and identity** — The role has stable identity and concrete selection cues without a runtime claim. (standard-portable-subagents.md#42-required-semantic-evidence)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ The role has a stable identity and concrete selection cues without describing a native serialization.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-- **PORTABLE-2 [J] — Bounded instructions** — Instructions state lane, grounding, and hand-offs. (standards-portable-subagents.md#required-semantic-evidence)
+- **PORTABLE-2 [J] — Bounded instructions** — Instructions state lane, grounding, and hand-offs. (standard-portable-subagents.md#42-required-semantic-evidence)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ Core instructions bound the lane, require grounding before action, and name explicit hand-offs.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-- **PORTABLE-3 [J] — Orchestration and outcome** — Orchestration is bounded and continued selection has outcome evidence. (standards-portable-subagents.md#required-semantic-evidence)
+- **PORTABLE-3 [J] — Orchestration and outcome** — Orchestration is bounded and continued selection has outcome evidence. (standard-portable-subagents.md#42-required-semantic-evidence)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ Orchestration intent is bounded and representative outcome evidence justifies selecting the role.
   - _Outcomes:_ conforming; gap; exclusion
@@ -40,11 +40,11 @@ Runtime-neutral identity, instructions, lane, grounding, hand-offs, orchestratio
 
 ## HOST — Host/runtime boundary
 
-→ [standard](standards-portable-subagents.md)
+→ [standard](standard-portable-subagents.md)
 
 No source-only false assurance.
 
-- **HOST-1 [J] — No false runtime assurance** — Source evidence is not activation or execution evidence. (standards-portable-subagents.md#boundary)
+- **HOST-1 [J] — No false runtime assurance** — Source evidence is not activation or execution evidence. (standard-portable-subagents.md#44-boundary)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ The role and adapters do not report source conformance as installation, publication, activation, effective settings, or execution.
   - _Outcomes:_ conforming; gap; exclusion

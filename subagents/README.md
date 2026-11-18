@@ -4,7 +4,7 @@ Knowledge Islands agent definitions live here, grouped by domain. Each is a **Cl
 
 ## Convention
 
-Each agent is a Markdown file with YAML frontmatter followed by a system-prompt body, per the [Claude Code subagents spec](https://code.claude.com/docs/en/sub-agents). The **record fields** are `name`, `description`, and the body; `name` must be unique across the whole tree. Every other frontmatter key - `model`, `tools`, `disallowedTools`, `permissionMode`, `color` and the rest - is a **projection field** owned by `ki-subagents-claude`, not part of the role. The partition is defined in `ki-subagents` under [Record and projections](../skills/agentic-systems/ki-subagents/references/standards-portable-subagents.md#record-and-projections).
+Each agent is a Markdown file with YAML frontmatter followed by a system-prompt body, per the [Claude Code subagents spec](https://code.claude.com/docs/en/sub-agents). The **record fields** are `name`, `description`, and the body; `name` must be unique across the whole tree. Every other frontmatter key - `model`, `tools`, `disallowedTools`, `permissionMode`, `color` and the rest - is a **projection field** owned by `ki-subagents-claude`, not part of the role. The partition is defined in `ki-subagents` under [Record and projections](../skills/agentic-systems/ki-subagents/references/standard-portable-subagents.md#43-record-and-projections).
 
 The governing skill for what makes a good agent definition is **`ki-subagents`** (under [skills/](../skills)) — the agents twin of `ki-skills`. Run its AUDIT mode over any agent, or the whole set, before shipping.
 
