@@ -48,6 +48,8 @@ None recorded by id: the rules follow the outside sources above and the shared r
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Environment guild: REFRESH redirects to the backpack from an installed copy. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Environment guild's review, from the Cairn summit's change 10, brought the standards and this file into `ki-authoring`'s formats: `standards-codex-memory.md` and `standards-codex-state.md` were renamed `standard-codex-memory.md` and `standard-codex-state.md` and their rules placed, unchanged, under numbered sections, and this file took the sources format. The rubric's source anchors follow. No rule changed and no outside source was refreshed.
 
 On 6 November 2026, under INBOX-RENAME from `personal.reg.inbox-terra`, at Kris's word ("Do full rename to inbox now and coordinate that"), the assistant repository became the Inbox: `krisb/assistant` is now `krisb/inbox`, its packages `personal.reg.inbox-terra` and `personal.reg.inbox-sol`, and its store `sources-inbox`. Live wording here follows; older lines below keep the names they had.
