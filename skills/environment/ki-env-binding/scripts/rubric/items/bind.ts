@@ -6,7 +6,7 @@ const BIND_1: RubricItem<BindingRubricContext> = {
   title: 'mcporter agrees with source definitions',
   description:
     'An explicitly selected mcporter target has the complete non-secret definitions for each mcporter-targeted server, including header names, literal header values, URL OAuth markers, and lifecycle; secret-derived header values are checked only for non-empty presence.',
-  sources: ['standards-cross-surface-binding.md'],
+  sources: ['standard-cross-surface-binding.md'],
   mechanical: {
     level: 'WARN',
     remediation: {
@@ -65,7 +65,7 @@ const BIND_2: RubricItem<BindingRubricContext> = {
   title: 'Single MCP source is valid',
   description:
     'The resolved canonical source is a physical file with a closed, portable server schema; auth is URL-only and accepts only oauth.',
-  sources: ['standards-cross-surface-binding.md'],
+  sources: ['standard-cross-surface-binding.md'],
   mechanical: {
     level: 'FAIL',
     remediation: {
@@ -107,7 +107,7 @@ const BIND_J1: RubricItem<BindingRubricContext> = {
   code: 'BIND-J1',
   title: 'Client targeting is right for use',
   description: 'The clients set reflects intended, least-surprising client availability.',
-  sources: ['standards-cross-surface-binding.md'],
+  sources: ['standard-cross-surface-binding.md'],
   judgment: {
     scope: 'Every canonical MCP server and its intended client availability.',
     prompt: 'Does each server target the clients that need it, without exposing it on clients that do not?',
@@ -121,7 +121,7 @@ const BIND_J2: RubricItem<BindingRubricContext> = {
   title: 'Host bridge is the local MCP route',
   description:
     "Host-bound runtimes reach KI MCP servers through their own host's mcporter bridge, and cloud-session connectors are not treated as local gaps.",
-  sources: ['standards-cross-surface-binding.md#host-surface-selection'],
+  sources: ['standard-cross-surface-binding.md#44-host-surface-selection'],
   judgment: {
     scope: 'Every host-bound runtime that claims KI MCP access, its bridge route, and any reported connector gap.',
     prompt:
@@ -135,7 +135,7 @@ export const BIND: RubricFamily<BindingRubricContext, BindingRubricContext> = {
   code: 'BIND',
   title: 'Canonical MCP binding',
   description: 'Portable source validity, client targeting, and non-secret mcporter definition evidence.',
-  standard: 'standards-cross-surface-binding.md',
+  standard: 'standard-cross-surface-binding.md',
   selectContext: (context) => context,
   items: [BIND_1, BIND_2, BIND_J1, BIND_J2]
 }
