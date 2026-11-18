@@ -22,7 +22,7 @@ The two composed layers:
 - **`ki-env-binding`** owns the portable canonical source and mcporter evidence; runtime adapters own their native client surfaces.
 - **`ki-repo-dotfiles-chezmoi`** is the house standard for any chezmoi source repo — naming prefixes, templating, `chezmoi apply`, surgical-patch reverse-merge — with no knowledge of MCP.
 
-This skill's **delta** is the render contract that ties them together — the `mcp-servers-json` template, its source-data wiring, and the `chezmoi apply` that generates the surfaces `ki-env-binding` audits. That contract belongs to neither sibling: `ki-env-binding` owns no renderer, and `ki-repo-dotfiles-chezmoi` covers only generic dotfile templating. The full model is in [the standard](references/standards-chezmoi-mcp-rendering.md); the checkable criteria are in [the generated rubric](references/rubric.md); provenance is in [the sources list](references/sources.md).
+This skill's **delta** is the render contract that ties them together — the `mcp-servers-json` template, its source-data wiring, and the `chezmoi apply` that generates the surfaces `ki-env-binding` audits. That contract belongs to neither sibling: `ki-env-binding` owns no renderer, and `ki-repo-dotfiles-chezmoi` covers only generic dotfile templating. The full model is in [the standard](references/standard-chezmoi-mcp-rendering.md); the checkable criteria are in [the generated rubric](references/rubric.md); provenance is in [the sources list](references/sources.md).
 
 ## Operating modes
 

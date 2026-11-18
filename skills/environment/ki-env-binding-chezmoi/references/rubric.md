@@ -17,26 +17,26 @@ Line-by-line criteria for auditing ki-env-binding-chezmoi. Classifications are d
 
 ## BINDCHEZ — Chezmoi binding render path
 
-→ [standard](standards-chezmoi-mcp-rendering.md)
+→ [standard](standard-chezmoi-mcp-rendering.md)
 
 The renderer-specific delta connecting MCP source data, a chezmoi partial, and rendered surface targets.
 
-- **BINDCHEZ-1 [M] — Chezmoi source repository is inspectable** — The explicitly targeted chezmoi source repository is a physical directory that can supply render evidence. (standards-chezmoi-mcp-rendering.md)
+- **BINDCHEZ-1 [M] — Chezmoi source repository is inspectable** — The explicitly targeted chezmoi source repository is a physical directory that can supply render evidence. (standard-chezmoi-mcp-rendering.md)
   - _Remediation:_ diagnostic — Select a safe chezmoi source repository or remove unsafe evidence before re-running the audit.
-- **BINDCHEZ-2 [M] — Render state is distinct from source structure** — Structure evidence does not claim a rendered target, applied state, activation, or runtime health. (standards-chezmoi-mcp-rendering.md)
+- **BINDCHEZ-2 [M] — Render state is distinct from source structure** — Structure evidence does not claim a rendered target, applied state, activation, or runtime health. (standard-chezmoi-mcp-rendering.md)
   - _Remediation:_ diagnostic — Use authorised, secret-safe renderer evidence for render parity; configuration structure alone cannot prove it.
-- **BINDCHEZ-3 [M] — MCP source data is present** — The chezmoi repository carries MCP source data through either supported, explicitly chosen render pattern. (standards-chezmoi-mcp-rendering.md)
+- **BINDCHEZ-3 [M] — MCP source data is present** — The chezmoi repository carries MCP source data through either supported, explicitly chosen render pattern. (standard-chezmoi-mcp-rendering.md)
   - _Remediation:_ diagnostic — Add or correct the explicitly chosen MCP data pattern through the repository owner.
-- **BINDCHEZ-4 [M] — Render template is present** — An mcp-servers-json render template partial exists in the chezmoi source repository. (standards-chezmoi-mcp-rendering.md)
+- **BINDCHEZ-4 [M] — Render template is present** — An mcp-servers-json render template partial exists in the chezmoi source repository. (standard-chezmoi-mcp-rendering.md)
   - _Remediation:_ diagnostic — Add or correct the render partial through the repository owner.
-- **BINDCHEZ-5 [M] — Render template is wired** — At least one surface target template references the mcp-servers-json partial. (standards-chezmoi-mcp-rendering.md)
+- **BINDCHEZ-5 [M] — Render template is wired** — At least one surface target template references the mcp-servers-json partial. (standard-chezmoi-mcp-rendering.md)
   - _Remediation:_ diagnostic — Wire the render partial into an intended surface target through the repository owner.
-- **BINDCHEZ-6 [J] — Render parity** — A previewed chezmoi apply reproduces the surfaces that ki-env-binding audits. (standards-chezmoi-mcp-rendering.md)
+- **BINDCHEZ-6 [J] — Render parity** — A previewed chezmoi apply reproduces the surfaces that ki-env-binding audits. (standard-chezmoi-mcp-rendering.md)
   - _Evidence scope:_ The reviewed chezmoi preview and the intended renderer-neutral surface state.
   - _Review prompt:_ Does a reviewed chezmoi diff reproduce exactly the intended renderer-neutral surface state?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the source data or templates through the responsible owner, record a named gap, or record an explicit justified exclusion.
-- **BINDCHEZ-7 [J] — Contract coherence** — The render standard, structured rubric, provenance, and sibling ownership boundaries remain coherent. (standards-chezmoi-mcp-rendering.md)
+- **BINDCHEZ-7 [J] — Contract coherence** — The render standard, structured rubric, provenance, and sibling ownership boundaries remain coherent. (standard-chezmoi-mcp-rendering.md)
   - _Evidence scope:_ The render standard, structured rubric, source list, and sibling composition instructions.
   - _Review prompt:_ Do the standard, rubric, sources, and composition instructions describe the same render contract without duplicating sibling policy?
   - _Outcomes:_ conforming; gap; exclusion

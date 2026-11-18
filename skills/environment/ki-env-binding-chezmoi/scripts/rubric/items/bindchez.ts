@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { BindingChezMoiContext } from '../contexts/binding-chezmoi.ts'
 
-const STANDARD = ['standards-chezmoi-mcp-rendering.md'] as const
+const STANDARD = ['standard-chezmoi-mcp-rendering.md'] as const
 
 const BINDCHEZ_1: RubricItem<BindingChezMoiContext> = {
   code: 'BINDCHEZ-1',
@@ -200,7 +200,7 @@ export const BINDCHEZ: RubricFamily<BindingChezMoiContext, BindingChezMoiContext
   title: 'Chezmoi binding render path',
   description:
     'The renderer-specific delta connecting MCP source data, a chezmoi partial, and rendered surface targets.',
-  standard: 'standards-chezmoi-mcp-rendering.md',
+  standard: 'standard-chezmoi-mcp-rendering.md',
   selectContext: (context) => context,
   items: [BINDCHEZ_1, BINDCHEZ_2, BINDCHEZ_3, BINDCHEZ_4, BINDCHEZ_5, BINDCHEZ_6, BINDCHEZ_7]
 }
