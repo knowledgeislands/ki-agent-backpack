@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: REVISED
+ki-revised: 2026-11-18T04:34:14Z
 ki-status: in force
 ---
 

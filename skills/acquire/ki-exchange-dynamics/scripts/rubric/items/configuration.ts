@@ -4,7 +4,7 @@ import type { ExchangeDynamicsContext } from '../contexts/exchange-dynamics.ts'
 export const CONFIG = {
   code: 'CONFIG',
   title: 'Exchange dynamics configuration',
-  standard: 'standards-exchange-dynamics.md',
+  standard: 'standard-exchange-dynamics.md',
   description: 'The method finds analyses by their file name and accepts no configuration keys of its own.',
   selectContext: (context) => context,
   items: [
@@ -13,7 +13,7 @@ export const CONFIG = {
       title: 'the exchange dynamics method has no configuration properties',
       description:
         'Unexpected keys in the skill table are visible rather than silently accepted as settings the method does not read.',
-      sources: ['standards-exchange-dynamics.md#the-analysis-contract'],
+      sources: ['standard-exchange-dynamics.md#44-the-analysis-contract'],
       mechanical: {
         level: 'WARN',
         remediation: {
