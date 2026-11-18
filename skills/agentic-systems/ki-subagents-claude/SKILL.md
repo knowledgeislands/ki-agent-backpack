@@ -19,7 +19,7 @@ argument-hint: 'audit <agent-or-dir> | conform <agent> | help | educate <descrip
 
 `ki-subagents` owns the portable semantic contract, and `ki-agentic-systems` what a subagent is, with Anthropic's own sense on its [subagent card](../../keystone/ki-agentic-systems/knowledge/vendors/anthropic/anthropic.subagent.md). This adapter owns only its Claude Code Markdown/YAML projection: YAML parsing, native fields, and source discovery. Read the [Claude projection standard](references/standard-subagent-definitions.md) and generated [rubric](references/rubric.md) after reading the parent contract.
 
-The Harness currently preserves candidate Claude source files under `subagents/`, but the host does not publish them to `.claude/agents` or consume its advertised `subagents` path. A clean audit therefore proves only a repository-owned source payload. Installation, selection precedence, activation, effective permissions, and execution are unavailable without a host and authorised runtime evidence path.
+The backpack currently preserves candidate Claude source files under `subagents/`, but the host does not publish them to `.claude/agents` or consume its advertised `subagents` path. A clean audit therefore proves only a repository-owned source payload. Installation, selection precedence, activation, effective permissions, and execution are unavailable without a host and authorised runtime evidence path.
 
 ## Operating modes
 
@@ -35,11 +35,11 @@ Run AUDIT first. Correct only the source definition through its responsible auth
 
 ### Mode EDUCATE — write a new agent
 
-Use `ki-subagents` to establish the semantic definition first. Then author the Markdown/YAML source form only when a Harness source payload is intended. Do not claim that writing it installs or activates a Claude agent.
+Use `ki-subagents` to establish the semantic definition first. Then author the Markdown/YAML source form only when a backpack source payload is intended. Do not claim that writing it installs or activates a Claude agent.
 
 ### Mode REFRESH — re-anchor best practice
 
-**Precondition:** REFRESH edits this skill's own canonical files, which exist only in `ki-agent-backpack`. Invoked from an installed copy, it stops here and names the harness as where to run it — or, for a pattern recurring across bases, routes it through `ki-repo-kb`'s IMPROVE mode instead.
+**Precondition:** REFRESH edits this skill's own canonical files, which exist only in `ki-agent-backpack`. Invoked from an installed copy, it stops here and names the backpack as where to run it — or, for a pattern recurring across bases, routes it through `ki-repo-kb`'s IMPROVE mode instead.
 
 Keep only Claude Code source-format claims current. The portable parent and Codex adapter own their own sources.
 

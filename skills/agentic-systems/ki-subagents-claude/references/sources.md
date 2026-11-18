@@ -61,6 +61,8 @@ None recorded by id: the rules follow the sources above and `ki-subagents`'s por
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Agentic systems guild: the backpack preserves the candidate source files, REFRESH names the backpack, and what the standard called the Harness host is the `ki` host. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Agentic systems guild's review, from the Cairn summit's change 10, brought the files into the formats: `standards-subagent-definitions.md` was renamed `standard-subagent-definitions.md` and reshaped, its rules unchanged under numbered sections, and this file took the sources format, its Normative and Local boundary tables as authoritative sub-groups. The rubric's discovery item now cites the section's full anchor. No rule changed and no outside source was refreshed.
 
 On 2026-11-15, the Claude Code subagents page was re-read. It still documents subagents as Markdown files with YAML frontmatter, still requires only `name` and `description`, still makes `name` the identity rather than the filename, and still separates the source definition from what happens at run time. The host inspection also still holds: the KI host advertises a Claude subagent path, but nothing consumes it. Two changes touch the standard and are held for its owner rather than changed here; the page also says Claude Code silently ignores fields it does not recognise.

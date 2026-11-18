@@ -77,6 +77,6 @@ Current Claude Code supports `name`, `description`, `tools`, `disallowedTools`, 
 
 ### 4.4 Source discovery and host boundary
 
-Within the candidate source tree, declared names must be unique. This is source-payload evidence only. The Harness host advertises Claude subagent path metadata but has no generic publisher that consumes it, so publication, installation, activation, effective settings, and execution are all unavailable. A future authorised host integration must supply those claims and evidence.
+Within the candidate source tree, declared names must be unique. This is source-payload evidence only. The `ki` host advertises Claude subagent path metadata but has no generic publisher that consumes it, so publication, installation, activation, effective settings, and execution are all unavailable. A future authorised host integration must supply those claims and evidence.
 
 [Back to contents](#contents)
