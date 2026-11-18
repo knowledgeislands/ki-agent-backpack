@@ -31,7 +31,7 @@ MCP is a protocol of JSON-RPC 2.0 messages between three roles: an [MCP host][sp
 
 The current revision is 2026-07-28 ([MCP7]). It made MCP stateless: the `initialize` handshake and the protocol-level session of revisions up to 2025-11-25 are gone, and every request carries its own protocol version and capabilities ([MCP8]). MCP has no session in this graph's sense.
 
-An [agent harness][industry.agent-harness] uses MCP to reach its tools; the [tool][industry.tool] card, a proposal, rests on it. The [Agent Client Protocol][spec.acp] works beside it.
+An [agent harness][industry.agent-harness] uses MCP to reach its tools; the [tool][industry.tool] card rests on it. The [Agent Client Protocol][spec.acp] works beside it.
 
 [spec.mcp.host]: ./spec.mcp.host.md
 [spec.mcp.client]: ./spec.mcp.client.md

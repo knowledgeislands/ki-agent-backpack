@@ -2,10 +2,10 @@
 id: industry.instruction-file
 title: Instruction file
 type: term
-status: proposal
+status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 12, 4.5, drafted for the owner's review in the order change 22 set, after the tool and before the plugin (17 November 2026)
+origin: Cairn summit change 12, 4.5, drafted for the owner's review (17 November 2026) and agreed as written, CARDS-AGREE a (17 November 2026); read after the tool
 links:
   industry.agent-harness:
     predicate: skos:related

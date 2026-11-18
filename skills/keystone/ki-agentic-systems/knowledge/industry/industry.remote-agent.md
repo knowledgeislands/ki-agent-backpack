@@ -27,10 +27,10 @@ No Knowledge Islands system offers or reaches a remote agent today; a session on
 
 ## Next
 
-A [plugin][industry.plugin] is an installable bundle that extends an agent harness with skills and more.
+A [tool][industry.tool] is a function an agent can call to act or fetch something beyond the model.
 
 [industry.agent]: ./industry.agent.md
 [industry.subagent]: ./industry.subagent.md
 [spec.a2a.remote-agent]: ../specs/a2a/spec.a2a.remote-agent.md
 [industry.cross-session-messaging]: ./industry.cross-session-messaging.md
-[industry.plugin]: ./industry.plugin.md
+[industry.tool]: ./industry.tool.md

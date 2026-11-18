@@ -52,14 +52,11 @@ Read them in order:
 12. [Cross-session messaging](knowledge/industry/industry.cross-session-messaging.md): one session sending another a plain-text message; a peer is the session at the other end.
 13. [Agent team](knowledge/industry/industry.agent-team.md): several sessions on one piece of work, a team lead and teammates messaging each other.
 14. [Remote agent](knowledge/industry/industry.remote-agent.md): an agent in another system, reached over a protocol and opaque to the agent that asks it.
-15. [Plugin](knowledge/industry/industry.plugin.md): an installable bundle of skills and more that extends an agent harness.
+15. [Tool](knowledge/industry/industry.tool.md): a function an agent can call to act or fetch something beyond the model, run for it by the harness, the application or a server.
+16. [Instruction file](knowledge/industry/industry.instruction-file.md): a plain-text file a harness loads into sessions as standing instructions, such as `AGENTS.md`, `CLAUDE.md` or `GEMINI.md`.
+17. [Plugin](knowledge/industry/industry.plugin.md): an installable bundle of skills and more that extends an agent harness.
 
 [Channel](knowledge/industry/industry.channel.md) is agreed too: something outside a session pushing events into it while it runs. Its place in the reading order is still to settle.
-
-Proposals, drafted for the owner's decision from the Cairn summit's change 12 and not yet agreed, their place in the order after the remote agent and before the plugin:
-
-- [Tool](knowledge/industry/industry.tool.md): a function an agent can call to act or fetch something beyond the model, run for it by the harness, the application or a server.
-- [Instruction file](knowledge/industry/industry.instruction-file.md): a plain-text file a harness loads into sessions as standing instructions, such as `AGENTS.md`, `CLAUDE.md` or `GEMINI.md`.
 
 Pending, not yet defined here: integration, under a card for the ways into a session with channel and cross-session messaging.
 
