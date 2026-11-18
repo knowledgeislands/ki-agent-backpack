@@ -2049,7 +2049,7 @@ export const collectAuditEvidence = async (
 
   // ── capability: tests ─────────────────────────────────────────────────────────
   // Vitest is the recommended runner and the ONLY one the coverage rules below apply to,
-  // but it is not mandated: a repo may run its self-tests another way (the harness runs
+  // but it is not mandated: a repo may run its self-tests another way (the backpack runs
   // standalone *.test.ts checker scripts via the bare `test` idiom). The vitest key-shape +
   // 100%-coverage checks fire only when a vitest.config.* is actually present.
   if (vitestFile) {

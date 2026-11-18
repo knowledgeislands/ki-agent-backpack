@@ -79,7 +79,7 @@ Run `ki repo educate --skill ki-engineering` to inspect the complete criterion c
 
 ### Mode REFRESH — re-anchor the toolchain pins to their sources
 
-**Precondition:** REFRESH edits this skill's own canonical files, which exist only in `ki-agent-backpack`. Invoked from an installed copy, it stops here and names the harness as where to run it — or, for a pattern recurring across bases, routes it through `ki-repo-kb`'s IMPROVE mode instead.
+**Precondition:** REFRESH edits this skill's own canonical files, which exist only in `ki-agent-backpack`. Invoked from an installed copy, it stops here and names the backpack as where to run it — or, for a pattern recurring across bases, routes it through `ki-repo-kb`'s IMPROVE mode instead.
 
 The standard pins volatile versions (Bun, Node, Biome, TypeScript, vitest, syncpack, rumdl, dependency-cruiser). Run on its declared cadence (see `references/sources.md`), or when asked "are the engineering standards current".
 

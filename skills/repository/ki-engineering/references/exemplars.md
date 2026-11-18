@@ -19,7 +19,7 @@ For the full upstream pin list and in-house sources, see [sources.md](sources.md
 | --- | --- | --- |
 | mcp-gsuite | [github][mcp-gsuite] | Canonical flat-repo compiled-TS profile with env config |
 | mcp-ki-kb-fs | [github][mcp-ki-kb-fs] | Canonical flat-repo compiled-TS profile, no CLI binary |
-| ki-agent-backpack | [github][harness] | Scripts-only profile; runner-neutral standalone self-tests |
+| ki-agent-backpack | [github][backpack] | Scripts-only profile; runner-neutral standalone self-tests |
 | Biome configuration reference | [biomejs.dev][biome-config] | The schema the `$schema` pin tracks |
 | TypeScript compiler options | [typescriptlang.org][ts-tsconfig] | The invariants and the compiled-TS profile options |
 
@@ -101,7 +101,7 @@ Repository-local operations make their ownership visible with the `self:` prefix
 
 The three Vitest scripts above apply only when the repository carries `vitest.config.*`. A runner-neutral repository supplies only its appropriate bare `test` script; it does not restore aggregate or scoped governance-script aliases.
 
-The harness's [actual package manifest](../../../../package.json) uses the same bare idiom without a Vitest configuration; the complete entry delegates discovery and execution to Bun without recreating retired bootstrap or governance runners. An abbreviated shape:
+The backpack's [actual package manifest](../../../../package.json) uses the same bare idiom without a Vitest configuration; the complete entry delegates discovery and execution to Bun without recreating retired bootstrap or governance runners. An abbreviated shape:
 
 ```jsonc
 {
@@ -311,6 +311,6 @@ The table is a conformance marker — its presence declares "the engineering sta
 
 [mcp-gsuite]: https://github.com/knowledgeislands/mcp-gsuite
 [mcp-ki-kb-fs]: https://github.com/knowledgeislands/mcp-ki-kb-fs
-[harness]: https://github.com/knowledgeislands/ki-agent-backpack
+[backpack]: https://github.com/knowledgeislands/ki-agent-backpack
 [biome-config]: https://biomejs.dev/reference/configuration/
 [ts-tsconfig]: https://www.typescriptlang.org/tsconfig
