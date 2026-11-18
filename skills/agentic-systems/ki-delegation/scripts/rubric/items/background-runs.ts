@@ -5,7 +5,7 @@ export const RUN: RubricFamily<DelegationRubricContext, DelegationRubricContext[
   code: 'RUN',
   title: 'background runs',
   description: 'Shipped authority footers and the quality of background-run prompts and reports.',
-  standard: 'standards-background-runs.md',
+  standard: 'standard-background-runs.md',
   selectContext: (context) => context.footers,
   items: [
     {
@@ -13,7 +13,7 @@ export const RUN: RubricFamily<DelegationRubricContext, DelegationRubricContext[
       title: 'authority footers grant exactly their tier and grants lift only their own ban',
       description:
         'Each shipped authority footer exists, carries the shared prohibitions, the confidential rule and the external-posting rule among them, with its ban on a brief granting a post and its precedence over the body of the brief, includes every grant of its tier and below, and grants nothing above it; each shipped grant section exists, is approved, lifts exactly its own ban, keeps its limits and carries no tier grant, the machine grant keeping its ban on installing new software and its judgement check before a dotfile edit, which direct approval of the described diff by Kris satisfies.',
-      sources: ['standards-background-runs.md'],
+      sources: ['standard-background-runs.md'],
       mechanical: {
         level: 'FAIL',
         remediation: {
@@ -29,7 +29,7 @@ export const RUN: RubricFamily<DelegationRubricContext, DelegationRubricContext[
       title: 'run prompts are cold-agent ready and authority-bounded',
       description:
         "A background-run prompt cites the owner decision that authorises it in the owner's words and date, has numbered steps, a verification step, a landing step and a report path, forbids background subagents and ending while waiting, and ends with the lowest sufficient authority footer.",
-      sources: ['standards-background-runs.md'],
+      sources: ['standard-background-runs.md'],
       judgment: {
         scope: 'Background-run prompts, decisions logs and run reports the delegating owner selects for review.',
         prompt:
@@ -44,7 +44,7 @@ export const RUN: RubricFamily<DelegationRubricContext, DelegationRubricContext[
       title: 'run records are tracked and consolidated',
       description:
         "A run's brief and agent reports live in its run packet, `$TMPDIR/ki-agents/<run>/`, outside every repository, the brief until its report is received; each owner decision is logged in the change document it belongs to, in the package of the work that launched the run, before the work it authorises launches, and the package is committed at each send; in-force decisions are consolidated into a Decision Record, skill or the package rather than living only in the agent host's runtime or a run packet; the session homes each report's outcomes in the change documents they reach or in a record, and its queries in their change documents' Open sections, before removing the packet by literal path, while Git history holds the rest; and a prompt or record describes a decision by the owner's words and date, never by its number.",
-      sources: ['standards-background-runs.md'],
+      sources: ['standard-background-runs.md'],
       judgment: {
         scope: 'Work folders, decisions logs and run prompts the owner selects for review.',
         prompt:
@@ -80,7 +80,7 @@ export const RUN: RubricFamily<DelegationRubricContext, DelegationRubricContext[
       title: "a run's working-area files carry the mark",
       description:
         'Every file a run, coordinating work or an interactive session writes into a `+/` working area carries the working-area mark, `work`, then `run` and `agent` or `session`, then `written_at`, in front matter for Markdown and in a `mark.toml` sidecar at the root of a folder of non-Markdown output, and no mark goes into a committed receipt or report.',
-      sources: ['standards-background-runs.md#working-area-marks'],
+      sources: ['standard-background-runs.md#442-working-area-marks'],
       judgment: {
         scope: "The `+/` working areas a run or session wrote into, selected by the owner or the run's report.",
         prompt:

@@ -1,6 +1,6 @@
 # Authority grant: fetch
 
-A brief appends this file from the `## Grant: fetch` heading, after the tier footer. See the [background-run standard](../references/standards-background-runs.md#authority-tiers).
+A brief appends this file from the `## Grant: fetch` heading, after the tier footer. See the [background-run standard](../references/standard-background-runs.md#46-authority-tiers).
 
 ## Grant: fetch
 

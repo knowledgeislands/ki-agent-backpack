@@ -5,7 +5,7 @@ export const PACKET: RubricFamily<DelegationRubricContext, DelegationRubricConte
   code: 'PACKET',
   title: 'delegation packets',
   description: 'Opted-in durable delegation-packet structure and governance quality.',
-  standard: 'standards-delegation-packets.md',
+  standard: 'standard-delegation-packets.md',
   selectContext: (context) => context.packets,
   items: [
     {
@@ -13,7 +13,7 @@ export const PACKET: RubricFamily<DelegationRubricContext, DelegationRubricConte
       title: 'durable packet structure and governance quality',
       description:
         'An opted-in durable delegation packet in either roadmap adapter has the exact brief structure; its worker scope, authority, isolation, escalation, return contract, and verification gates are fit for the high-risk handoff.',
-      sources: ['standards-delegation-packets.md'],
+      sources: ['standard-delegation-packets.md'],
       mechanical: {
         level: 'FAIL',
         remediation: {
