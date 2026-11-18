@@ -66,6 +66,8 @@ None recorded by id: the rules follow the outside sources above and the shared r
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Environment guild: REFRESH names the backpack as where to run it. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Environment guild's review, from the Cairn summit's change 10, brought the standards and this file into `ki-authoring`'s formats: `standards-auto-memory.md` and `standards-claude-state.md` were renamed `standard-auto-memory.md` and `standard-claude-state.md` and their rules placed, unchanged, under numbered sections, and this file took the sources format, its notes becoming this review and its watch list. The rubric's source names follow. No rule changed and no outside source was refreshed.
 
 At the earlier reviews, dated in the tables above: Claude Code enables auto-memory by default. `autoMemoryEnabled: false` disables it; project and project-local settings can override user settings. `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1` disables it, while `=0` forces it on. Managed settings and session overrides require separate runtime evidence. Headroom rendered output and native Claude memory are distinct.
