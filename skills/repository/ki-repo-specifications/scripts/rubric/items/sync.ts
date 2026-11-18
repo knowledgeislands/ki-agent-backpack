@@ -5,7 +5,7 @@ const SYNC_1: RubricItem<SpecificationsContext> = {
   code: 'SYNC-1',
   title: 'Knowledge-chain synchronisation',
   description: 'The standard, rubric, catalogue, tests, and source review agree.',
-  sources: ['standards-specifications.md'],
+  sources: ['standard-specifications.md'],
   judgment: {
     scope:
       'The standard, structured catalogue, generated rubric, focused tests, and source-review record for this skill.',
@@ -20,7 +20,7 @@ export const SYNC: RubricFamily<SpecificationsContext, SpecificationsContext> = 
   code: 'SYNC',
   title: 'Standard synchronisation',
   description: 'Alignment across the knowledge chain.',
-  standard: 'standards-specifications.md',
+  standard: 'standard-specifications.md',
   selectContext: (context: SpecificationsContext) => context,
   items: [SYNC_1]
 }

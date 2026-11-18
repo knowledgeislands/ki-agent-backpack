@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { SpecificationsContext } from '../contexts/specifications.ts'
 
-const SOURCE = ['standards-specifications.md'] as const
+const SOURCE = ['standard-specifications.md'] as const
 
 const SPEC_1: RubricItem<SpecificationsContext> = {
   code: 'SPEC-1',
@@ -154,7 +154,7 @@ export const SPEC: RubricFamily<SpecificationsContext, SpecificationsContext> = 
   code: 'SPEC',
   title: 'Repository structure',
   description: 'Repository identity and stable top-level seams.',
-  standard: 'standards-specifications.md',
+  standard: 'standard-specifications.md',
   selectContext: (context: SpecificationsContext) => context,
   items: [SPEC_1, SPEC_2, SPEC_3, SPEC_J1, SPEC_J2]
 }

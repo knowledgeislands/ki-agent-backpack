@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { SpecificationsContext } from '../contexts/specifications.ts'
 
-const SOURCE = 'standards-specifications.md'
+const SOURCE = 'standard-specifications.md'
 
 const GATE_1: RubricItem<readonly AuditOutcome[]> = {
   code: 'GATE-1',

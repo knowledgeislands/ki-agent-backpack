@@ -28,22 +28,22 @@ The tracked readable rubric is the exact publication of the structured catalogue
 
 ## SPEC — Repository structure
 
-→ [standard](standards-specifications.md)
+→ [standard](standard-specifications.md)
 
 Repository identity and stable top-level seams.
 
-- **SPEC-1 [M] — Repository identity marker** — `.ki.toml` declares a keyless `[skills.ki-repo-specifications]` table. Unknown keys WARN because the marker has no options yet. (standards-specifications.md)
+- **SPEC-1 [M] — Repository identity marker** — `.ki.toml` declares a keyless `[skills.ki-repo-specifications]` table. Unknown keys WARN because the marker has no options yet. (standard-specifications.md)
   - _Remediation:_ diagnostic — Declare the selected standard through the repository configuration owner.
-- **SPEC-2 [M] — Authority areas** — `proposals/`, `specifications/`, and `schemas/` exist as directories. Their absence FAILs. (standards-specifications.md)
+- **SPEC-2 [M] — Authority areas** — `proposals/`, `specifications/`, and `schemas/` exist as directories. Their absence FAILs. (standard-specifications.md)
   - _Remediation:_ diagnostic — Create the missing authority area only after confirming that the repository is intended to carry this specification responsibility.
-- **SPEC-3 [M] — Supporting areas** — `templates/`, `examples/`, `docs/`, and `tooling/` exist as directories. Their absence WARNs. (standards-specifications.md)
+- **SPEC-3 [M] — Supporting areas** — `templates/`, `examples/`, `docs/`, and `tooling/` exist as directories. Their absence WARNs. (standard-specifications.md)
   - _Remediation:_ diagnostic — Create the missing supporting area when its documented responsibility applies, or record why the repository intentionally omits it.
-- **SPEC-J1 [J] — Minimal floor** — Every asserted structure has proved stable enough to govern; this audit observes only the current source tree. (standards-specifications.md)
+- **SPEC-J1 [J] — Minimal floor** — Every asserted structure has proved stable enough to govern; this audit observes only the current source tree. (standard-specifications.md)
   - _Evidence scope:_ Each asserted repository structure and the evidence of its sustained use.
   - _Review prompt:_ Has every asserted structure proved stable enough to govern across time?
   - _Outcomes:_ conforming; reduce the floor; stability evidence required
   - _Conforming guidance:_ Remove speculative structure from the governed floor, or record sustained evidence separately; a clean structural audit is not longitudinal evidence.
-- **SPEC-J2 [J] — Authority boundary** — The skill checks repository shape without claiming canonical ownership of normative specification meaning. (standards-specifications.md)
+- **SPEC-J2 [J] — Authority boundary** — The skill checks repository shape without claiming canonical ownership of normative specification meaning. (standard-specifications.md)
   - _Evidence scope:_ The skill guidance, rubric criteria, and any proposed repository changes.
   - _Review prompt:_ Does the skill preserve the authority boundary around normative specification meaning?
   - _Outcomes:_ conforming; boundary correction required; authority decision required
@@ -51,11 +51,11 @@ Repository identity and stable top-level seams.
 
 ## SYNC — Standard synchronisation
 
-→ [standard](standards-specifications.md)
+→ [standard](standard-specifications.md)
 
 Alignment across the knowledge chain.
 
-- **SYNC-1 [J] — Knowledge-chain synchronisation** — The standard, rubric, catalogue, tests, and source review agree. (standards-specifications.md)
+- **SYNC-1 [J] — Knowledge-chain synchronisation** — The standard, rubric, catalogue, tests, and source review agree. (standard-specifications.md)
   - _Evidence scope:_ The standard, structured catalogue, generated rubric, focused tests, and source-review record for this skill.
   - _Review prompt:_ Do the standard, rubric, catalogue, tests, and source review agree?
   - _Outcomes:_ conforming; synchronisation required; source review required
@@ -63,9 +63,9 @@ Alignment across the knowledge chain.
 
 ## GATE — commit gate
 
-→ [standard](standards-specifications.md)
+→ [standard](standard-specifications.md)
 
 What a Specifications repository commit gate runs.
 
-- **GATE-1 [M] — check-only commit gate** — Where a committed `.githooks/pre-commit` exists, it runs only fast check-only staged lints: no `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`. The full `ki repo audit` runs in CI. `ki-repo` HOOK-1 owns whether the hook exists and HOOK-4 its canonical text. (standards-specifications.md)
+- **GATE-1 [M] — check-only commit gate** — Where a committed `.githooks/pre-commit` exists, it runs only fast check-only staged lints: no `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`. The full `ki repo audit` runs in CI. `ki-repo` HOOK-1 owns whether the hook exists and HOOK-4 its canonical text. (standard-specifications.md)
   - _Remediation:_ diagnostic — Copy the canonical pre-commit from `assets/githooks/`, then rerun the audit.

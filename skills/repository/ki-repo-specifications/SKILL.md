@@ -22,7 +22,7 @@ This is a governance skill. It deliberately governs repository structure without
 
 The current floor is deliberately sparse. Detailed KIP/KIS content rules, numbering, lifecycle, conformance semantics, and publication formats remain canonical in the Specifications repository itself and should be promoted into this skill only after they prove stable and reusable.
 
-Read [the standard](references/standards-specifications.md) for the current floor, [the rubric](references/rubric.md) for checkable criteria, and [the source list](references/sources.md) when refreshing it. The `ki` CLI runs the mechanical checker.
+Read [the standard](references/standard-specifications.md) for the current floor, [the rubric](references/rubric.md) for checkable criteria, and [the source list](references/sources.md) when refreshing it. The `ki` CLI runs the mechanical checker.
 
 ## Canonical shape
 

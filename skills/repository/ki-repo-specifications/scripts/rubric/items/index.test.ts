@@ -31,7 +31,7 @@ test('the structured catalogue preserves the specifications structural floor', (
     'SYNC-1',
     'GATE-1'
   ])
-  expect(items.every((item) => item.sources.includes('standards-specifications.md'))).toBe(true)
+  expect(items.every((item) => item.sources.includes('standard-specifications.md'))).toBe(true)
 })
 
 test('criteria declare complete v1 remediation and review metadata', () => {
