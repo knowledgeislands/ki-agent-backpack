@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { HousekeepingRubricContext, HousekeepingSelectionContext } from '../contexts/housekeeping.ts'
 
-const SOURCE = 'standards-auto-memory.md'
+const SOURCE = 'standard-auto-memory.md'
 
 const SELECT_1: RubricItem<HousekeepingSelectionContext> = {
   code: 'SELECT-1',

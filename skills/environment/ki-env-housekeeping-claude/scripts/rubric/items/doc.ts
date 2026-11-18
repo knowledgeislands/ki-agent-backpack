@@ -1,7 +1,7 @@
 import { judgment, type RubricFamily, type RubricItem } from '../../shared/rubric.ts'
 import type { HousekeepingDocContext, HousekeepingRubricContext } from '../contexts/housekeeping.ts'
 
-const SOURCE = 'standards-auto-memory.md'
+const SOURCE = 'standard-auto-memory.md'
 
 const DOC_1: RubricItem<HousekeepingDocContext> = {
   code: 'DOC-1',

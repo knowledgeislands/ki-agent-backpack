@@ -1,8 +1,64 @@
-# The Claude housekeeping standard — hygiene of accumulated Claude state
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:17:46Z
+ki-status: in force
+---
 
-What this skill governs, why, and how it splits work with the `mcp-housekeeping-claude` MCP server. The line-by-line checkable criteria are in [rubric.md](rubric.md); the memory area's file format is in [the auto-memory standard](standards-auto-memory.md).
+# Claude-state standard
 
-## 1. The domain
+## Contents
+
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 The domain](#41-the-domain)
+  - [4.2 The areas](#42-the-areas)
+  - [4.3 The skill and server pairing](#43-the-skill-and-server-pairing)
+
+## 1. Introduction
+
+The Claude housekeeping standard, on the hygiene of accumulated Claude state: what this skill governs, why, and how it splits work with the `mcp-housekeeping-claude` MCP server. The line-by-line checkable criteria are in [rubric.md](rubric.md); the memory area's file format is in [the auto-memory standard](standard-auto-memory.md). It is the Claude delta to the rules every agent host shares in `ki-env-housekeeping`. The sources behind it are in [the sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+The state Claude surfaces leave on a machine, outside any repository's tree.
+
+### 2.1 In scope
+
+- Claude Desktop and Cowork sessions, Claude Code, and VSCode chat sessions.
+- Their sessions, artifacts and outputs, backups, plugins, project cache, native auto-memory and Headroom output.
+- The split between this skill and the `mcp-housekeeping-claude` server.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- **Not** a Knowledge Islands base's own memory cascade — a KB's root `Admin/MEMORY.md` indexing its Pillars is KB content read at session start (`ki-repo-kb`'s MEM-2), not machine state.
+- **Not** the token cost of the standing-context surface — that is `ki-env-tokenomics`, which measures what the loaded surface costs per turn rather than the hygiene of what accumulates on disk.
+- **Not** the MCP server's own code quality — that is `ki-repo-mcp`, which audits `mcp-housekeeping-claude` as server code.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Accumulated state** | What a Claude surface leaves on the machine and lets build up: sessions, artifacts, backups, plugins, caches and auto-memory. **Standard:** this one, [4.1](#41-the-domain) |
+| **Mechanical arm** | What checks an area: the paired server's tools, or the skill's structured rubric. **Standard:** this one, [4.2](#42-the-areas) |
+| **Source payload** | The `mcp-housekeeping-claude` source checkout and its declared tools, which prove neither registration, access nor an executed audit. **Standard:** this one, [4.3](#43-the-skill-and-server-pairing) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 The domain
 
 Every Claude surface leaves state on the machine, and it accumulates: sessions pile up, artifacts and uploads are never garbage-collected, backups multiply, plugins and project caches go stale, and per-project auto-memory drifts from the code it describes. None of this is the repo's concern — it lives outside any repo tree — so no repo-structure skill governs it. This skill does: it owns the **standard** for what healthy accumulated state looks like, and the **judgment** to decide when state is obsolete, orphaned, or oversized.
 
@@ -12,7 +68,9 @@ The state spans three surfaces on macOS:
 - **Claude Code** — `~/.claude/` (projects, memory, plugins, cache, debug).
 - **VSCode chat sessions** — `workspaceStorage/<id>/chatSessions/`.
 
-## 2. The areas
+[Back to contents](#contents)
+
+### 4.2 The areas
 
 | Area                    | Coverage                                                        | Mechanical arm       |
 | ----------------------- | --------------------------------------------------------------- | -------------------- |
@@ -24,7 +82,9 @@ The state spans three surfaces on macOS:
 | **Native auto-memory**  | Selected local `memory/*.md` and `MEMORY.md` evidence           | Structured KI rubric |
 | **Headroom output**     | Rendered `headroom:learn` block, when present                   | Structured KI rubric |
 
-## 3. The skill↔server pairing
+[Back to contents](#contents)
+
+### 4.3 The skill and server pairing
 
 The mechanical arm is split by area, on one principle: **the skill is the standard and the judgment; the server is the tools.**
 
@@ -34,8 +94,4 @@ The mechanical arm is split by area, on one principle: **the skill is the standa
 
 The server is governed as an MCP server by `ki-repo-mcp`; this skill is its standard-and-judgment counterpart. Neither owns the other: the server ships tools with no opinion on when to use them; the skill holds the opinion and no tools beyond the memory checker.
 
-## 4. Boundaries
-
-- **Not** a Knowledge Islands base's own memory cascade — a KB's root `Admin/MEMORY.md` indexing its Pillars is KB content read at session start (`ki-repo-kb`'s MEM-2), not machine state.
-- **Not** the token cost of the standing-context surface — that is `ki-env-tokenomics`, which measures what the loaded surface costs per turn rather than the hygiene of what accumulates on disk.
-- **Not** the MCP server's own code quality — that is `ki-repo-mcp`, which audits `mcp-housekeeping-claude` as server code.
+[Back to contents](#contents)

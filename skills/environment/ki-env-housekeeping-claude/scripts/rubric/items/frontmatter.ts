@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { HousekeepingFrontmatterContext, HousekeepingRubricContext } from '../contexts/housekeeping.ts'
 
-const SOURCE = 'standards-auto-memory.md'
+const SOURCE = 'standard-auto-memory.md'
 
 const FM_1: RubricItem<HousekeepingFrontmatterContext> = {
   code: 'FM-1',

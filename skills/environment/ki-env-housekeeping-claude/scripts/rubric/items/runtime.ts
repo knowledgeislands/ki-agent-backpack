@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { HousekeepingRubricContext, HousekeepingRuntimeContext } from '../contexts/housekeeping.ts'
 
-const SOURCE = 'standards-claude-state.md'
+const SOURCE = 'standard-claude-state.md'
 
 const RUNTIME_1: RubricItem<HousekeepingRuntimeContext> = {
   code: 'RUNTIME-1',

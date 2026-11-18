@@ -1,17 +1,68 @@
-# The auto-memory standard
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:17:46Z
+ki-status: in force
+---
 
-_A bounded local-format standard for `ki-env-housekeeping-claude`. Native Claude settings establish the memory location; Headroom-rendered output is separate evidence and does not establish native selection or loading. Recorded source decisions and dates are tracked in [sources.md](sources.md)._
+# Auto-memory standard
 
 ## Contents
 
-- [Layout](#layout)
-- [Repair boundary](#repair-boundary)
-- [`MEMORY.md`](#memorymd)
-- [Repairing a regenerated cross-repo learned pattern](#repairing-a-regenerated-cross-repo-learned-pattern)
-- [`memory/*.md` frontmatter](#memorymd-frontmatter)
-- [What does not belong in a memory](#what-does-not-belong-in-a-memory)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Layout](#41-layout)
+  - [4.2 Repair boundary](#42-repair-boundary)
+  - [4.3 `MEMORY.md`](#43-memorymd)
+  - [4.4 Repairing a regenerated cross-repo learned pattern](#44-repairing-a-regenerated-cross-repo-learned-pattern)
+  - [4.5 `memory/*.md` frontmatter](#45-memorymd-frontmatter)
+  - [4.6 What does not belong in a memory](#46-what-does-not-belong-in-a-memory)
 
-## Layout
+## 1. Introduction
+
+A bounded local-format standard for `ki-env-housekeeping-claude`. Native Claude settings establish the memory location; Headroom-rendered output is separate evidence and does not establish native selection or loading. It is the Claude delta to the native-memory policy every agent host shares in `ki-env-housekeeping`. The sources behind it are in [the sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+Claude Code's native auto-memory for one selected repository.
+
+### 2.1 In scope
+
+- The memory directory's layout and its selection.
+- The repair boundary and the effective memory setting.
+- The `MEMORY.md` index and its Headroom-managed block.
+- `memory/*.md` frontmatter and what belongs in a memory.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- Claude state other than auto-memory: [the Claude-state standard](standard-claude-state.md).
+- A Knowledge Islands base's own `Admin/MEMORY.md`: `ki-repo-kb`.
+- The rules every agent host shares: `ki-env-housekeeping`.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Selected memory directory** | Claude's default `.claude/projects/<selected-repository-slug>/memory`, or a contained `autoMemoryDirectory` override. **Standard:** this one, [4.2](#42-repair-boundary) |
+| **Memory index** | `MEMORY.md`, an index of one line per memory file, not a memory. **Standard:** this one, [4.3](#43-memorymd) |
+| **Headroom-managed block** | The `headroom:learn` block a Headroom learn sweep renders into `MEMORY.md`. **Standard:** this one, [4.3](#43-memorymd) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 Layout
 
 ```text
 ~/.claude/projects/<slug>/memory/
@@ -22,7 +73,9 @@ _A bounded local-format standard for `ki-env-housekeeping-claude`. Native Claude
 
 `<slug>` is the repo's absolute path with every `/` replaced by `-` (the same convention Claude Code uses for its project transcript directories).
 
-## Repair boundary
+[Back to contents](#contents)
+
+### 4.2 Repair boundary
 
 KI policy keeps agent-local auto-memory off by default. Set `autoMemoryEnabled: false` in reviewed user settings; chezmoi is one optional way to manage that runtime setting, not a prerequisite for this skill. For a deliberate one-project opt-in, set `autoMemoryEnabled: true` in that repository's `.claude/settings.local.json`; a reviewed shared `.claude/settings.json` also scopes the opt-in to that project. Project-local settings outrank shared project settings, which outrank user settings. Managed settings and session `--settings` can outrank all three; confirm the effective setting with Claude Code `/status` when either applies. `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1` disables memory even for an opted-in project, while `=0` forces it on despite `autoMemoryEnabled: false`. A shell environment override takes precedence over a settings `env` value. Do not use `=0` as a global opt-in.
 
@@ -38,7 +91,9 @@ Creating a missing index, renaming memory files, removing dangling entries, dedu
 
 Neither disabling memory nor CONFORM creates an empty `MEMORY.md` or deletes existing memories. In transition, inspect existing notes and route durable value through reviewed repository guidance or KB intake and approval. Keep the source files until that reconciliation is approved and safely completed; only then change `auto_memory` to `"disabled"`. For omitted policy with no memory directory, explicitly declare `"disabled"` after checking the selected location. Under omitted or disabled policy, an existing selected directory warrants review even if empty: decide whether to opt in explicitly or reconcile and retire it through a separate approved action. The KB's tracked `Admin/MEMORY.md` is a repository index, not Claude auto-memory, and remains in place.
 
-## `MEMORY.md`
+[Back to contents](#contents)
+
+### 4.3 `MEMORY.md`
 
 An index, not a memory: one line per memory file, in this exact shape —
 
@@ -62,7 +117,9 @@ An index, not a memory: one line per memory file, in this exact shape —
 
   If present, both markers must appear, in order, with the generated date line between them. The renderer may use either Markdown emphasis marker (`_` or `*`) for that line.
 
-## Repairing a regenerated cross-repo learned pattern
+[Back to contents](#contents)
+
+### 4.4 Repairing a regenerated cross-repo learned pattern
 
 The rendered block proves only that text exists in `MEMORY.md`; it does not prove a Headroom installation, version, database, configured sweep, or executed command. When separately authorized runtime evidence identifies a stale source record, edit or clear neither the rendered block nor an unverified database blindly: the next learn sweep can render it again. Use the recorded Headroom procedure only after independently confirming the selected database and runtime authority:
 
@@ -82,7 +139,9 @@ The rendered block proves only that text exists in `MEMORY.md`; it does not prov
 
 Use `--force` only after the preceding `show`; omitting it keeps Headroom's interactive confirmation. Repeat `memory show` and the scoped `memory list` query against the same explicit database to confirm the ID is absent, then use `ki-env-housekeeping-claude` CONFORM to clear the already-rendered stale line. After the next configured learn sweep writes its output, rerun `ki-env-housekeeping-claude` AUDIT and require IDX-6 not to recur. If that sweep is invoked manually with `headroom learn`, include `--project <repo> --apply` and confirm its target first — `headroom learn` without `--apply` is a dry run. Re-learning in the correct repository may be appropriate when the pattern itself is useful there, but it does not substitute for deleting a globally scoped stale source that keeps leaking elsewhere.
 
-## `memory/*.md` frontmatter
+[Back to contents](#contents)
+
+### 4.5 `memory/*.md` frontmatter
 
 ```yaml
 ---
@@ -104,6 +163,10 @@ metadata:
 
 The checker parses this frontmatter as YAML and fails malformed mappings instead of silently skipping them.
 
-## What does not belong in a memory
+[Back to contents](#contents)
+
+### 4.6 What does not belong in a memory
 
 Per the auto-memory doctrine: code patterns/conventions/architecture/file paths (derivable from the repo), git history, debugging recipes, anything already in a `CLAUDE.md`, and ephemeral in-progress task state. Content that turns out to belong in a `CLAUDE.md` should be **promoted there and the memory deleted** — not left to duplicate it indefinitely.
+
+[Back to contents](#contents)

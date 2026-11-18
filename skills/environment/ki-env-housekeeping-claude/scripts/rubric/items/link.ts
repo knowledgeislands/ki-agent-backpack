@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { HousekeepingLinkContext, HousekeepingRubricContext } from '../contexts/housekeeping.ts'
 
-const SOURCE = 'standards-auto-memory.md'
+const SOURCE = 'standard-auto-memory.md'
 
 const LINK_1: RubricItem<HousekeepingLinkContext> = {
   code: 'LINK-1',
