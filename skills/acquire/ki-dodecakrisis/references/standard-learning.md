@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:32:52Z
+ki-revised: 2026-11-18T04:32:59Z
 ki-status: in force
 ---
 
@@ -109,6 +109,6 @@ The corrections log is a JSON Lines file in the declaring repository, at the con
 
 ### 4.4 Stated rules
 
-Kris may state a rule in plain words, such as "mail from the parish goes to Digest". The rule is logged as a `D12-RULE` decision line in his words in the coordinating work's decisions log, given a rule id, dry-run against the live mailbox and its count shown back. His statement is the approval: it goes into the rules file with `origin = "stated"` and that line as its `approval` once the count matches what he expects. A stated rule outranks a learnt one.
+Kris may state a rule in plain words, such as "mail from the parish goes to Digest". The rule is logged as a `D12-RULE` decision line in his words in the coordinating work's change document, given a rule id, dry-run against the live mailbox and its count shown back. His statement is the approval: it goes into the rules file with `origin = "stated"` and that line as its `approval` once the count matches what he expects. A stated rule outranks a learnt one.
 
 [Back to contents](#contents)
