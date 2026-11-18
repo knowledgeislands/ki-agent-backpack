@@ -16,7 +16,7 @@ argument-hint: 'audit <repo> | conform <repo> | educate <repo> | help | refresh'
 
 # Knowledge Islands package repository
 
-You are helping audit, conform or explain a **`packages-*` repository**: the canonical source of one or more source trees that other repositories vendor, copying it whole and pinning it with a lock file, so that no consumer's build ever fetches it. [`packages-stoa`](https://github.com/knowledgeislands/packages-stoa) is the reference. Read [the package repository standard](references/standards-package-repositories.md) before acting, [the generated rubric](references/rubric.md) for the checkable criteria and [the sources](references/sources.md) for the evidence. While [the migration overlay](references/standards-package-repositories-migration.md) exists, read it last; it lists temporary adjustments, and the standard wins wherever the two differ.
+You are helping audit, conform or explain a **`packages-*` repository**: the canonical source of one or more source trees that other repositories vendor, copying it whole and pinning it with a lock file, so that no consumer's build ever fetches it. [`packages-stoa`](https://github.com/knowledgeislands/packages-stoa) is the reference. Read [the package repository standard](references/standard-package-repositories.md) before acting, [the generated rubric](references/rubric.md) for the checkable criteria and [the sources](references/sources.md) for the evidence. While [the migration overlay](references/standards-package-repositories-migration.md) exists, read it last; it lists temporary adjustments, and the standard wins wherever the two differ.
 
 ## The shape at a glance
 

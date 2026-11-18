@@ -1,6 +1,6 @@
 # Package repository migration
 
-This file holds the temporary adjustments to [the package repository standard](standards-package-repositories.md), which describes only the final state, as Kris set under MIGRATION-OVERLAY on 7 November 2026. Read the standard first; it wins wherever the two differ. Delete each line once its condition is met, and the file whole once it is empty, with no edit to the standard.
+This file holds the temporary adjustments to [the package repository standard](standard-package-repositories.md), which describes only the final state, as Kris set under MIGRATION-OVERLAY on 7 November 2026. Read the standard first; it wins wherever the two differ. Delete each line once its condition is met, and the file whole once it is empty, with no edit to the standard.
 
 | Adjustment | Until |
 | --- | --- |

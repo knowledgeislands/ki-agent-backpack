@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { PackagesContext } from '../contexts/packages.ts'
 
-const SOURCE = 'standards-package-repositories.md#declaration'
+const SOURCE = 'standard-package-repositories.md#413-declaration'
 
 const CONFIG_1: RubricItem<PackagesContext> = {
   code: 'CONFIG-1',
@@ -70,7 +70,7 @@ export const CONFIG: RubricFamily<PackagesContext, PackagesContext> = {
   code: 'CONFIG',
   title: 'Package declaration',
   description: 'The overlay declaration that names the vendored packages.',
-  standard: 'standards-package-repositories.md',
+  standard: 'standard-package-repositories.md',
   selectContext: (context) => context,
   items: [CONFIG_1, CONFIG_2]
 }
