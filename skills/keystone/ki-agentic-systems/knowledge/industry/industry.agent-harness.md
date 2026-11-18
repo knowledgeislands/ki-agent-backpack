@@ -23,6 +23,8 @@ Vendor text often writes "harness" for the harness and the agent together; read 
 
 A territory's bundle of skills, subagents, evals and hooks, such as the `ki-agent-backpack` repository, is not an agent harness: it runs no loop and calls no model. Under INDUSTRY-FIRST it has its own name, a [backpack][system.backpack] (HARNESS-NAME); never call it a harness.
 
+Knowledge Islands names an agent harness by one of six values: `claude-code`; `codex`; `gemini`; `claude-chat`, Claude's own chat loop in Claude Desktop or claude.ai, Cowork included; `claude-design`; and `chatgpt`, ChatGPT's own loop, voice included. The Cairn store's roster records each agent [actor][system.actor]'s agent harness as `ki-harness`, beside the application it runs in as `ki-host` (PRESENCE-FIELDS a), so one harness keeps one value wherever it runs.
+
 ## Next
 
 The [agent][industry.agent] is a model working through an agent harness.
@@ -30,3 +32,4 @@ The [agent][industry.agent] is a model working through an agent harness.
 [industry.model]: ./industry.model.md
 [industry.agent]: ./industry.agent.md
 [system.backpack]: ../system/system.backpack.md
+[system.actor]: ../system/system.actor.md

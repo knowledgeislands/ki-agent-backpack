@@ -29,6 +29,8 @@ The leaders have no formal word: Anthropic's "surface" covers agent host and cli
 
 On terra, Orca's runtime lives inside the Orca app; `orca serve` runs the same runtime headless, as on sol.
 
+Knowledge Islands names an agent host by one of six values: `orca`; `claude-desktop`; `chatgpt-desktop`; `chatgpt-voice`, the ChatGPT app in voice mode; `terminal`, a harness run by itself; and `ide`, an editor extension. The Cairn store's roster records each agent [actor][system.actor]'s agent host as `ki-host`, beside its agent harness as `ki-harness` (PRESENCE-FIELDS a), so the two are never folded into one: Claude Code inside Orca is `orca` with `claude-code`, and Claude Code alone in a terminal is `terminal` with `claude-code`.
+
 ## Next
 
 A [client][industry.client] is a window onto a session an agent host owns.
@@ -37,5 +39,6 @@ A [client][industry.client] is a window onto a session an agent host owns.
 [industry.environment]: ./industry.environment.md
 [industry.agent-harness]: ./industry.agent-harness.md
 [industry.client]: ./industry.client.md
+[system.actor]: ../system/system.actor.md
 [M11]: https://microsoft.github.io/agent-host-protocol/specification/overview.html
 [M12]: https://microsoft.github.io/agent-host-protocol/guide/implementations.html
