@@ -5,7 +5,7 @@ export const MAP: RubricFamily<LinearRubricContext, LinearRubricContext['mapping
   code: 'MAP',
   title: 'Linear lifecycle mapping',
   description: 'Inspectable local workflow metadata, conflict owner, and separate relationship meanings.',
-  standard: 'standards-linear.md',
+  standard: 'standard-linear.md',
   selectContext: (context) => context.mapping,
   items: [
     {
@@ -13,7 +13,7 @@ export const MAP: RubricFamily<LinearRubricContext, LinearRubricContext['mapping
       title: 'inspectable Linear lifecycle mapping',
       description:
         'The local configuration names exact queue, ready, review, and done values, a metadata conflict owner, and distinct dependency and hierarchy mappings; it does not assert remote verification.',
-      sources: ['standards-linear.md'],
+      sources: ['standard-linear.md#41-configuration-and-local-inspection'],
       mechanical: {
         level: 'FAIL',
         remediation: {

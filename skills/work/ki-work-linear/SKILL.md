@@ -20,7 +20,7 @@ This skill configures and explains one Linear team's Issues as a future forward-
 
 `ENG-123` is a **current team-scoped locator**, not durable cross-team identity. A team move creates a new identifier and URL; retain the old locator as historical alias evidence and re-resolve the current locator, team, workflow mapping, and affected fields before any future operation. No UUID persistence claim is made without official evidence.
 
-Read [the Linear adapter standard](references/standards-linear.md) before configuring or operating the adapter. Read [the generated rubric](references/rubric.md) for its checkable configuration contract.
+Read [the Linear adapter standard](references/standard-linear.md) before configuring or operating the adapter. Read [the generated rubric](references/rubric.md) for its checkable configuration contract.
 
 ## Operating modes
 

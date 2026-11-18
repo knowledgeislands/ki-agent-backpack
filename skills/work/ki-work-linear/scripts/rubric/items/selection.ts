@@ -5,14 +5,14 @@ export const SELECT: RubricFamily<LinearRubricContext, LinearRubricContext['sele
   code: 'SELECT',
   title: 'Linear configuration',
   description: 'One declared Linear team with matching shared selection.',
-  standard: 'standards-linear.md',
+  standard: 'standard-linear.md',
   selectContext: (context) => context.selection,
   items: [
     {
       code: 'SELECT-1',
       title: 'explicit Linear adapter',
       description: 'The repository selects and configures one Linear team.',
-      sources: ['standards-linear.md'],
+      sources: ['standard-linear.md#41-configuration-and-local-inspection'],
       mechanical: {
         level: 'FAIL',
         remediation: {
