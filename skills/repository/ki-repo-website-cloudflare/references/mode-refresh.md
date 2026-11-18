@@ -6,7 +6,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 Refresh this skill's Cloudflare-facing facts and house convention.
 
-**Precondition:** run only against the canonical `ki-agent-backpack` source. An installed copy stops and names the harness as the editing home.
+**Precondition:** run only against the canonical `ki-agent-backpack` source. An installed copy stops and names the backpack as the editing home.
 
 1. Read [the source list](sources.md), including its cadence, review dates, and open watch-items.
 2. Re-fetch each authoritative source and compare it with the [Cloudflare hosting standard](standard-cloudflare-hosting.md), structured catalogue, and [worked exemplars](exemplars.md). Recheck Workers Static Assets, Workers Builds command fields, workers.dev URL syntax, custom-domain dashboard navigation, compatibility-date guidance, and Wrangler major version.

@@ -71,6 +71,8 @@ The Zero Trust team naming that Kris set on 29 October 2026 is quoted in the sta
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Cloudflare hosting standard](standard-cloudflare-hosting.md), formerly `standards-cloudflare-hosting.md`, was renamed and reshaped to the standard format with its rules unchanged, the overlay's site-selection paragraph becoming its first rules section, and this file to the sources format, with the review's open watch items gathered under Watching and RUN-SECRETS in the Decisions table. The section numbers and anchors in the rubric, the exemplars and the modes follow. No rule changed and no outside source was refreshed.
 
 An in-house policy review on **25 October 2026** read back the Ways of working owner decisions. The Ways of working decisions log entries of 24 and 25 October 2026, read back as taken, govern this change. Coordination carries the report, command, publication and unattended-window decisions; delegation carries the authority, conflict-run and Cloudflare credential boundaries; Cloudflare hosting carries the matching credential-access rule. This is an in-house policy review, with no provider operation or external-source refresh.
