@@ -6,7 +6,7 @@ const PAYLOAD_1: RubricItem<HarnessProvenanceContext> = {
   title: 'Installed and runtime evidence remains separate',
   description:
     'A source-harness audit records that verified payload, local-development source, activation, capability resolution, and execution need host evidence.',
-  sources: ['standards-compatible-harness.md#source-and-installed-boundaries'],
+  sources: ['standard-compatible-harness.md#41-source-and-installed-boundaries'],
   mechanical: {
     level: 'WARN',
     remediation: {
@@ -22,7 +22,7 @@ export const PAYLOAD: RubricFamily<HarnessRubricContext, HarnessProvenanceContex
   code: 'PAYLOAD',
   title: 'Payload and runtime evidence boundary',
   description: 'Host-owned provenance and activation evidence not derived from source layout.',
-  standard: 'standards-compatible-harness.md',
+  standard: 'standard-compatible-harness.md',
   selectContext: (context) => context.provenance,
   items: [PAYLOAD_1]
 }

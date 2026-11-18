@@ -2,7 +2,7 @@ import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { HarnessGateContext } from '../contexts/commit-gate.ts'
 import type { HarnessRubricContext } from '../contexts/harness.ts'
 
-const SOURCE = 'standards-compatible-harness.md'
+const SOURCE = 'standard-compatible-harness.md'
 
 const GATE_1: RubricItem<HarnessGateContext> = {
   code: 'GATE-1',

@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { HarnessReviewContext, HarnessRubricContext } from '../contexts/harness.ts'
 
-const STANDARD = ['standards-compatible-harness.md#root-orientation'] as const
+const STANDARD = ['standard-compatible-harness.md#45-root-orientation'] as const
 
 const CLAUDE_1: RubricItem<HarnessReviewContext> = {
   code: 'CLAUDE-1',
@@ -82,7 +82,7 @@ export const CLAUDE: RubricFamily<HarnessRubricContext, HarnessReviewContext> = 
   code: 'CLAUDE',
   title: 'Root orientation',
   description: 'Coverage and freshness of the effective source-harness orientation.',
-  standard: 'standards-compatible-harness.md',
+  standard: 'standard-compatible-harness.md',
   selectContext: (context) => context.review,
   items: [CLAUDE_1, CLAUDE_2, CLAUDE_3, CLAUDE_4, CLAUDE_5]
 }

@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { HarnessLayoutContext, HarnessRubricContext } from '../contexts/harness.ts'
 
-const STANDARD = ['standards-compatible-harness.md'] as const
+const STANDARD = ['standard-compatible-harness.md'] as const
 
 const rootUnavailable = (context: HarnessLayoutContext): readonly AuditOutcome[] | null => {
   if (context.repositoryState === 'absent')
@@ -17,7 +17,7 @@ const LAY_1: RubricItem<HarnessLayoutContext> = {
   code: 'LAY-1',
   title: 'Four-part directory layout',
   description: 'skills/, subagents/, evals/, and hooks/ all exist as physical directories at the source-harness root.',
-  sources: ['standards-compatible-harness.md#source-harness-layout'],
+  sources: ['standard-compatible-harness.md#43-source-harness-layout'],
   mechanical: {
     level: 'FAIL',
     remediation: {
@@ -44,7 +44,7 @@ const LAY_2: RubricItem<HarnessLayoutContext> = {
   code: 'LAY-2',
   title: 'Shelf descriptions',
   description: 'Each four-part source directory contains a physical README.md declaring its purpose and status.',
-  sources: ['standards-compatible-harness.md#source-harness-layout'],
+  sources: ['standard-compatible-harness.md#43-source-harness-layout'],
   mechanical: {
     level: 'WARN',
     remediation: {
@@ -113,7 +113,7 @@ const LAY_3 = rootFileItem(
   'CLAUDE.md exists as a physical file at the source-harness root.',
   'CLAUDE.md',
   'FAIL',
-  'standards-compatible-harness.md#root-orientation'
+  'standard-compatible-harness.md#45-root-orientation'
 )
 
 const LAY_4 = rootFileItem(
@@ -122,7 +122,7 @@ const LAY_4 = rootFileItem(
   'ROADMAP.md exists as a physical file at the source-harness root.',
   'ROADMAP.md',
   'WARN',
-  'standards-compatible-harness.md#root-roadmap'
+  'standard-compatible-harness.md#46-root-roadmap'
 )
 
 const LAY_5 = rootFileItem(
@@ -131,7 +131,7 @@ const LAY_5 = rootFileItem(
   '.ki.toml exists as a physical file at the source-harness root.',
   '.ki.toml',
   'FAIL',
-  'standards-compatible-harness.md#harness-declaration'
+  'standard-compatible-harness.md#47-harness-declaration'
 )
 
 export const LAY: RubricFamily<HarnessRubricContext, HarnessLayoutContext> = {

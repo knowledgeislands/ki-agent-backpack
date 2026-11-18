@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { HarnessConfigContext, HarnessRubricContext } from '../contexts/harness.ts'
 
-const STANDARD = ['standards-compatible-harness.md#harness-declaration'] as const
+const STANDARD = ['standard-compatible-harness.md#47-harness-declaration'] as const
 
 const CONFIG_1: RubricItem<HarnessConfigContext> = {
   code: 'CONFIG-1',
@@ -146,7 +146,7 @@ export const CONFIG: RubricFamily<HarnessRubricContext, HarnessConfigContext> = 
   code: 'CONFIG',
   title: 'Harness declaration',
   description: 'Knowledge Islands source-harness governance declarations.',
-  standard: 'standards-compatible-harness.md',
+  standard: 'standard-compatible-harness.md',
   selectContext: (context) => context.config,
   items: [CONFIG_1, CONFIG_2, CONFIG_3, CONFIG_4]
 }

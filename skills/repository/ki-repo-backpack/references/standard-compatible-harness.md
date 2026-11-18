@@ -1,22 +1,78 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:55:00Z
+ki-status: in force
+---
+
 # Compatible harness standard
+
+## Contents
+
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Source and installed boundaries](#41-source-and-installed-boundaries)
+  - [4.2 Capability publication](#42-capability-publication)
+    - [4.2.1 Generated skill diagrams](#421-generated-skill-diagrams)
+  - [4.3 Source-harness layout](#43-source-harness-layout)
+  - [4.4 Skill capability identity](#44-skill-capability-identity)
+  - [4.5 Root orientation](#45-root-orientation)
+  - [4.6 Root roadmap](#46-root-roadmap)
+  - [4.7 Harness declaration](#47-harness-declaration)
+  - [4.8 Commit gate](#48-commit-gate)
+  - [4.9 Ownership boundaries](#49-ownership-boundaries)
+
+## 1. Introduction
 
 The normative reference for a Knowledge Islands source harness and the verified compatible payload installed from it.
 
 The [generated rubric](rubric.md) is the checkable publication of this standard. The [sources](sources.md) record its provenance, and the [exemplars](exemplars.md) show representative source and installed shapes.
 
-## Contents
+[Back to contents](#contents)
 
-- [Source and installed boundaries](#source-and-installed-boundaries)
-- [Capability publication](#capability-publication)
-- [Source-harness layout](#source-harness-layout)
-- [Skill capability identity](#skill-capability-identity)
-- [Root orientation](#root-orientation)
-- [Root roadmap](#root-roadmap)
-- [Harness declaration](#harness-declaration)
-- [Commit gate](#commit-gate)
-- [Ownership boundaries](#ownership-boundaries)
+## 2. Scope
 
-## Source and installed boundaries
+A Knowledge Islands source harness, the container its skills, subagents, evals and hooks share, and the compatible payload installed from it.
+
+### 2.1 In scope
+
+- The source and installed boundaries, and what a source-harness audit can prove.
+- Capability publication: applicability, the generated capability catalogue, the generated skill diagrams and the authored skill counts.
+- The source-harness layout, skill capability identity, root orientation and root roadmap.
+- The Harness declaration and its capability prefix, and the harness commit gate.
+- The ownership boundaries between this standard and the skills it selects.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- Skill quality and frontmatter semantics: `ki-skills`; agent definition quality: `ki-subagents`.
+- Roadmap content: `ki-work-roadmap`; the engineering toolchain and package scripts: `ki-engineering`.
+- The repository declaration, GitHub settings and whether the commit hooks exist: `ki-repo`.
+- Harness install, activation and CLI runtime: the `ki` host, `tools-ki`.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Source harness** | One versioned repository that co-locates the four agentic shelves, `skills/`, `subagents/`, `evals/` and `hooks/`. **Standard:** this one, [4.1](#41-source-and-installed-boundaries) |
+| **Compatible installed harness** | A verified regular-file payload acquired and registered by the `ki` host, the operation source. **Standard:** this one, [4.1](#41-source-and-installed-boundaries) |
+| **Capability catalogue** | The generated, marker-bounded list of a populated skills shelf in `skills/README.md`, derived from canonical `SKILL.md` frontmatter. **Standard:** this one, [4.2](#42-capability-publication) |
+| **Functional area** | The skills that serve one function, drawn in one generated skill-area diagram. **Standard:** this one, [4.2.1](#421-generated-skill-diagrams) |
+| **Capability prefix** | The stable lowercase alphanumeric prefix a Harness declares in `[skills.ki-repo-backpack]`, which every skill name it publishes begins with. **Standard:** this one, [4.7](#47-harness-declaration) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 Source and installed boundaries
 
 A **source harness** is one versioned repository that co-locates four agentic shelves:
 
@@ -39,7 +95,9 @@ A source-harness audit proves only physical source layout and source capability 
 
 The source repository therefore defines capability semantics and carries their source files. The `ki` host owns acquisition evidence, installation layout, registry state, runtime activation links, repository activation, public CLI grammar, generic rubric execution, reporting, transactions, migration, and support diagnostics.
 
-## Capability publication
+[Back to contents](#contents)
+
+### 4.2 Capability publication
 
 The collection pass requires every skill to carry a valid `ki-applicability` classification and publishes that classification for each capability. Every process and every knowledge skill is invocation-only, governance capabilities cannot be invocation-only, and `ki-repo` is the sole detector owner. For the source harness declaring `prefix = "ki"`, the complete baseline is exactly `ki-repo`, `ki-authoring` and `ki-keystone`; its non-empty `ki-detects` registry must resolve every target and agree bidirectionally with all skills classified as detected. Other provider prefixes do not own baseline skills and are not required to republish the KI baseline or detector registry. Missing or contradictory applicability metadata makes publication unsafe rather than silently omitting a capability.
 
@@ -57,7 +115,9 @@ AUDIT compares the marker-bounded bytes with the deterministic rendering. Missin
 
 That split has a verification consequence worth stating. Editing a `SKILL.md` description is authoring against `ki-skills`, and an author who audits with `ki-skills` alone gets a clean pass over a catalogue their edit has just staled, because no skill-scoped gate but this one reads `skills/README.md`. A frontmatter change is therefore complete only when `ki repo conform --skill ki-repo-backpack` has regenerated the catalogue and, where the skill diagrams apply, their sources, or a whole-repository `ki repo audit` has confirmed CAP-2 and CAP-4 still pass.
 
-### Generated skill diagrams
+[Back to contents](#contents)
+
+#### 4.2.1 Generated skill diagrams
 
 A harness that adopts `ki-diagrams` also publishes a set of living Archify diagrams, each derived deterministically from canonical `SKILL.md` frontmatter: the skill map and one diagram per functional area. Each labels a skill by its full name, `ki-` prefix included, and draws its shape as one of five node types: governance that is `baseline`, `detected` or `declaration-only`, `invocation-only` processes, and knowledge skills, which are invocation-only but drawn by their kind. The sublabel and legend use plain words for the five: always on, automatic, opt-in, command and knowledge.
 
@@ -73,7 +133,9 @@ AUDIT compares each committed source with its deterministic rendering, ignoring 
 
 The root `README.md` does not have to repeat a numeric skill summary. When it uses the recognised complete claim — total Agent Skills followed by governance and process counts, and a knowledge count once the harness publishes a knowledge skill — AUDIT compares those values with the same canonical frontmatter inventory. CONFORM replaces only those numeric tokens, adding or dropping the knowledge clause as the count requires, when exactly one complete claim is present and stale, preserving its links and surrounding authored prose. An absent claim is not applicable; incomplete or multiple numeric claims, unreadable source evidence, and malformed canonical frontmatter remain diagnostic because a safe replacement cannot be inferred.
 
-## Source-harness layout
+[Back to contents](#contents)
+
+### 4.3 Source-harness layout
 
 Every source harness has all four directories at its physical repository root, each with a physical `README.md` explaining its purpose and status:
 
@@ -90,7 +152,9 @@ The source root also contains physical `CLAUDE.md`, `ROADMAP.md`, and `.ki.toml`
 
 The source harness may have a `package.json` for its own development and verification. `ki:harness:eval` is this standard's exact source-harness evaluation claim: it runs `bun evals/harness.ts` and is neither an installation, activation, nor governance entry point. Other package-script ownership and complete-set validation belong to `ki-engineering`.
 
-## Skill capability identity
+[Back to contents](#contents)
+
+### 4.4 Skill capability identity
 
 Every discovered skill root beneath `skills/` contains `SKILL.md`, and its directory name exactly matches the `name:` frontmatter.
 
@@ -100,7 +164,9 @@ No two discovered skill roots in one source harness share a frontmatter name. Th
 
 Every discovered skill name begins with the declared Harness prefix followed by `-`. A Harness declaring `prefix = "ki"` therefore publishes `ki-*` skills; one declaring `prefix = "hnr"` publishes `hnr-*` skills. The host refuses a second installed Harness claiming an existing prefix rather than asking repositories to qualify one of two competing providers.
 
-## Root orientation
+[Back to contents](#contents)
+
+### 4.5 Root orientation
 
 The source-harness `CLAUDE.md` is its runtime-bound orientation. It:
 
@@ -112,11 +178,15 @@ The source-harness `CLAUDE.md` is its runtime-bound orientation. It:
 
 It must not present removed package aliases, repository-vendored runners, or checkout-dependent linkers as the public contract.
 
-## Root roadmap
+[Back to contents](#contents)
+
+### 4.6 Root roadmap
 
 A source harness carries `ROADMAP.md` as its open-work register. The `ki-work-roadmap` skill owns roadmap profiles, horizon vocabulary, generated projections, and content discipline; this standard checks only the root file's physical presence.
 
-## Harness declaration
+[Back to contents](#contents)
+
+### 4.7 Harness declaration
 
 The source root carries `.ki.toml` with `[skills.ki-repo-backpack]` declaring the Harness's stable lowercase alphanumeric capability prefix. It also declares `[skills.ki-repo]`, and a populated skills shelf declares `[skills.ki-skills]`.
 
@@ -139,11 +209,15 @@ If a physical readable `.ki.toml` exists without `[skills.ki-repo-backpack]`, CO
 
 CONFORM does not invent a prefix, create a missing configuration, or replace or follow a symlink, directory, dangling link, special file, or unreadable path. The session coalesces repeated marker requests into one host-published proposal, but a newly appended keyless marker remains a failing declaration until the owner supplies its prefix. The host owns dry-run, transaction validation, atomic publication, rollback, and post-write re-audit.
 
-## Commit gate
+[Back to contents](#contents)
+
+### 4.8 Commit gate
 
 A source harness's committed `.githooks/pre-commit` is the canonical hook `ki-repo` composes for the harness shape, published with its `commit-msg` as worked examples under [`assets/githooks/`](../assets/githooks/), one pair with a `package.json` and one without; copy them exactly, since `ki-repo` HOOK-4 compares each hook byte for byte. It runs only check-only staged lints, `lint-staged` and the Syncpack check with a package and staged `rumdl check` without, and never `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write` (`GATE-1`); the focused harness audit runs in CI, where it refuses a commit that breaks the harness's own container contract, as Kris chose COMMIT-VS-CI a) on 26 October 2026: "I think we just need to keep them simple". The whole-project type check and `ki-skills` audit remain manual and CI gates. The focused harness audit also enforces `GATE-2`: when the `.ki.toml` in the index declares `ki-diagrams`, it reads the manifest, sources, viewers and receipts directly from index blobs and checks the shared receipt contract; in CI the index is the commit under test. A stale source or viewer, changed or missing receipt, missing required source or viewer, malformed manifest, unsafe file or unreadable snapshot fails closed. Findings name staged diagram paths so the host's staged-path verdict filter cannot discard a receipt failure. A matching index snapshot passes even when unstaged working files differ. The host's `--staged` option scopes verdict paths, not evaluation bytes; `GATE-2` therefore gathers index evidence explicitly rather than treating working files as the snapshot. `ki-diagrams` owns the shared receipt reader; `ki-repo-backpack` materialises its declared shared modules and owns this audit integration. Without a committed hook `GATE-1` is not applicable; `ki-repo` owns whether the hook exists, is bound and refuses when a tool it needs is missing ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)). `GATE-1` reports as a warning until the hooks rollout completes.
 
-## Ownership boundaries
+[Back to contents](#contents)
+
+### 4.9 Ownership boundaries
 
 This standard governs the source container and compatible-payload boundary. Content and runtime semantics remain with their specific owners:
 
@@ -158,3 +232,5 @@ This standard governs the source container and compatible-payload boundary. Cont
 | Harness install, activation, and CLI runtime | `tools-ki`       |
 
 Selecting `ki-repo-backpack` also selects its declared prerequisites: `ki-skills`, `ki-subagents`, `ki-decision-records`, and `ki-work-roadmap`. Coverage selects `ki-repo-mcp`, `ki-engineering`, and `ki-repo` separately when their concerns apply. This standard adds only the container and publication delta defined here.
+
+[Back to contents](#contents)

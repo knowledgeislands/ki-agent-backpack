@@ -7,7 +7,7 @@ import type {
   HarnessSkillDiagramContext
 } from '../contexts/harness.ts'
 
-const STANDARD = ['standards-compatible-harness.md#capability-publication'] as const
+const STANDARD = ['standard-compatible-harness.md#42-capability-publication'] as const
 
 type CapabilitiesContext = HarnessReviewContext & {
   publication: HarnessCapabilityPublicationContext
@@ -174,7 +174,7 @@ export const CAP: RubricFamily<HarnessRubricContext, CapabilitiesContext> = {
   code: 'CAP',
   title: 'Capability publication',
   description: 'Typed compatible-harness capability inventory and kind-specific boundaries.',
-  standard: 'standards-compatible-harness.md',
+  standard: 'standard-compatible-harness.md',
   selectContext: (context) => ({
     ...context.review,
     publication: context.capabilityPublication,

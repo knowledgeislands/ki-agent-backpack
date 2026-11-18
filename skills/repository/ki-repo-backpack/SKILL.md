@@ -20,7 +20,7 @@ argument-hint: 'audit [path] | conform [path] | educate <name> | help | refresh'
 
 This skill governs two related shapes: the four-part **source harness** where capabilities are authored together, and the smaller verified **compatible payload** installed from it. MCP servers remain independently released repositories outside that source harness. The installed payload, never a checkout or repository-local executor, is the source used by the `ki` host.
 
-The complete contract is in [the compatible harness standard](references/standards-compatible-harness.md). Its structured TypeScript catalogue under `scripts/rubric/items/` is canonical; [the generated rubric](references/rubric.md) is the readable publication. [Sources](references/sources.md) record provenance, and [exemplars](references/exemplars.md) illustrate the source-versus-installed distinction.
+The complete contract is in [the compatible harness standard](references/standard-compatible-harness.md). Its structured TypeScript catalogue under `scripts/rubric/items/` is canonical; [the generated rubric](references/rubric.md) is the readable publication. [Sources](references/sources.md) record provenance, and [exemplars](references/exemplars.md) illustrate the source-versus-installed distinction.
 
 ## Operating modes
 
@@ -50,7 +50,7 @@ Run `ki repo educate --skill ki-repo-backpack --repo <path>` to explain the sour
 
 1. Read [the source list](references/sources.md) and its review cadence.
 2. Re-check the Agent Skills and agent-definition sources for changes affecting capability source shape.
-3. Reconcile [the compatible harness standard](references/standards-compatible-harness.md) with the repository's current source shelves and the installed-payload contract.
+3. Reconcile [the compatible harness standard](references/standard-compatible-harness.md) with the repository's current source shelves and the installed-payload contract.
 4. Update the structured rubric, regenerate it with `ki dev skill rubric ki-repo-backpack --write`, and update source review dates after confirmation.
 
 ### Mode HELP — orient without changing anything

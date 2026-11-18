@@ -4,7 +4,7 @@ ki-document-type: exemplars@2026-11-17T00:55:00Z
 
 # Compatible harness exemplars
 
-Worked examples for distinguishing the source-harness container from its installed compatible payload. These illustrate the [standard](standards-compatible-harness.md); they do not add requirements.
+Worked examples for distinguishing the source-harness container from its installed compatible payload. These illustrate the [standard](standard-compatible-harness.md); they do not add requirements.
 
 ## Source-harness layout
 

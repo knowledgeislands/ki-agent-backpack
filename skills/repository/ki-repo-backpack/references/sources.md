@@ -1,34 +1,83 @@
+---
+ki-document-type: sources@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:55:00Z
+ki-refresh: external-spec · monthly
+---
+
 # Sources — ki-repo-backpack
 
-**Refresh:** external-spec · monthly
+## Contents
 
-The tracked sources behind [the compatible harness standard](standards-compatible-harness.md). Provenance only: the record of _what changed_ lives in git, not a changelog here.
+- [1. Introduction](#1-introduction)
+- [2. Outside sources](#2-outside-sources)
+  - [2.1 Authoritative](#21-authoritative)
+    - [2.1.1 External specifications](#211-external-specifications)
+    - [2.1.2 In-house](#212-in-house)
+- [3. Decisions](#3-decisions)
+- [4. Last review](#4-last-review)
 
-## Authoritative
+## 1. Introduction
 
-| Tag | Source | Governs | Last reviewed |
-| --- | --- | --- | --- |
-| [AS] | [Agent Skills specification][as-spec] | The individual `SKILL.md` format the harness serves † | 2026-11-15 |
-| [CC] | [Claude Code subagent docs][cc-subagents] | The subagent definition format the `subagents/` part serves | 2026-11-15 |
+The tracked sources behind [the compatible harness standard](standard-compatible-harness.md). Provenance only: the record of _what changed_ lives in git, not a changelog here.
+
+[Back to contents](#contents)
+
+## 2. Outside sources
+
+The standard follows the Agent Skills and Claude Code subagent formats the harness serves, and the house's own harness, decision and sibling skills.
+
+### 2.1 Authoritative
+
+The outside specifications, then the in-house sources; a tag the review cites opens the Source cell.
+
+#### 2.1.1 External specifications
+
+| Source | Governs | Last reviewed |
+| --- | --- | --- |
+| AS — [Agent Skills specification][as-spec] | The individual `SKILL.md` format the harness serves † | 2026-11-15 |
+| CC — [Claude Code subagent docs][cc-subagents] | The subagent definition format the `subagents/` part serves | 2026-11-15 |
 
 † Including the directory-name = `name:` constraint and the `references/`, `scripts/`, `assets/` layout.
 
-## In-house
+[Back to contents](#contents)
 
-| Tag | Source | Governs | Last reviewed |
-| --- | --- | --- | --- |
-| [AH] | [ki-agent-backpack README][ah-readme] | The KI canonical source-harness implementation § | 2026-11-15 |
-| [CH] | [ADR-KI-HARNESS-012][compatible] | Installed identity, direct payload, capability, host, and activation boundaries | 2026-11-15 |
-| [KR] | `ki-repo` skill | The `.ki.toml` contract and what makes a KI-governed repository | 2026-11-15 |
-| [KS] | `ki-skills` skill | The governed-rubric family, session, and host boundary ‡ | 2026-11-15 |
-| [KE] | `ki-engineering` skill | Development toolchain ownership outside compatible-harness installation semantics | 2026-11-15 |
-| [BD] | Cairn summit change 12, BACKPACK-DEPTH (Kris, 14 November 2026) | This skill's name: `ki-repo-harness` became `ki-repo-backpack`; the harness wording in its standards follows when the backpack words are rolled out | 2026-11-15 |
+#### 2.1.2 In-house
+
+| Source | Governs | Last reviewed |
+| --- | --- | --- |
+| AH — [ki-agent-backpack README][ah-readme] | The KI canonical source-harness implementation § | 2026-11-15 |
+| CH — [ADR-KI-HARNESS-012][compatible] | Installed identity, direct payload, capability, host, and activation boundaries | 2026-11-15 |
+| KR — `ki-repo` skill | The `.ki.toml` contract and what makes a KI-governed repository | 2026-11-15 |
+| KS — `ki-skills` skill | The governed-rubric family, session, and host boundary ‡ | 2026-11-15 |
+| KE — `ki-engineering` skill | Development toolchain ownership outside compatible-harness installation semantics | 2026-11-15 |
+| BD — Cairn summit change 12, BACKPACK-DEPTH (Kris, 14 November 2026) | This skill's name: `ki-repo-harness` became `ki-repo-backpack`; the harness wording in its standards follows when the backpack words are rolled out | 2026-11-15 |
 
 § Source layout and shelf practice are inferred from this repository; installed-payload policy comes from [CH].
 
 ‡ Catalogue shape, context/session ownership, generated publication, and direct host execution.
 
-## Last review
+[as-spec]: https://agentskills.io/specification
+[cc-subagents]: https://code.claude.com/docs/en/sub-agents
+[ah-readme]: ../../../../README.md
+[compatible]: ../../../../docs/decisions/ADR-KI-HARNESS-012-compatible-harness-publication-and-governed-rubric-boundary.md
+
+[Back to contents](#contents)
+
+## 3. Decisions
+
+The owner decisions the standard and this file name by id.
+
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| COMMIT-VS-CI | Option a, which Kris chose, "I think we just need to keep them simple": the harness pre-commit hook runs only check-only staged lints, and the focused harness audit runs in CI. | 2026-10-26 | [compatible harness standard, 4.8](standard-compatible-harness.md#48-commit-gate) | In force |
+| PERSONAL-SPECIAL | Kris's word: the prefix `personal` is reserved for the owner's own personal Harness, which only that owner installs. | 2026-10-29 | [compatible harness standard, 4.7](standard-compatible-harness.md#47-harness-declaration) | In force |
+| BACKPACK-DEPTH | Kris's word, in the Cairn summit's change 12: `ki-repo-harness` became `ki-repo-backpack`, and the harness wording in its standards follows when the backpack words are rolled out. | 2026-11-14 | [compatible harness standard](standard-compatible-harness.md) | In force |
+
+[Back to contents](#contents)
+
+## 4. Last review
+
+On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the compatible harness standard](standard-compatible-harness.md), formerly `standard-compatible-harness.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format. The rubric's source names follow. No rule changed and no outside source was refreshed.
 
 _REFRESH last run **2026-11-15** (previous: 2026-09-26)._
 
@@ -67,7 +116,4 @@ _REFRESH last run **2026-09-26** (previous: 2026-08-12)._
 - Codex subagent discovery is now documented under `.codex/agents/`, but the compatible harness has no publication path for it; dispositioned on 2026-10-06: the runtime capability is recorded, publication remains host-owned and unavailable, and this repository declines a Codex projection.
 - [CH] — Monitor host support for eval capabilities. Evals remain a source shelf until a compatible-payload contract lands; MCP servers remain independent repositories.
 
-[as-spec]: https://agentskills.io/specification
-[cc-subagents]: https://code.claude.com/docs/en/sub-agents
-[ah-readme]: ../../../../README.md
-[compatible]: ../../../../docs/decisions/ADR-KI-HARNESS-012-compatible-harness-publication-and-governed-rubric-boundary.md
+[Back to contents](#contents)

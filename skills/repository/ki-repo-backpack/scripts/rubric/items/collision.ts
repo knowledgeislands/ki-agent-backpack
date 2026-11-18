@@ -6,7 +6,7 @@ const COLL_1: RubricItem<HarnessReviewContext> = {
   title: 'Capability boundary',
   description:
     'Declared prerequisites, coverage-selected siblings, and contents-governing off-ramps are complete and distinct.',
-  sources: ['standards-compatible-harness.md#ownership-boundaries'],
+  sources: ['standard-compatible-harness.md#49-ownership-boundaries'],
   judgment: {
     scope: 'The harness skill frontmatter, description, dependency declarations, and adjacent owning skills.',
     prompt:
@@ -21,7 +21,7 @@ export const COLL: RubricFamily<HarnessRubricContext, HarnessReviewContext> = {
   code: 'COLL',
   title: 'Capability boundary',
   description: 'Container ownership, host ownership, and sibling off-ramps.',
-  standard: 'standards-compatible-harness.md',
+  standard: 'standard-compatible-harness.md',
   selectContext: (context) => context.review,
   items: [COLL_1]
 }

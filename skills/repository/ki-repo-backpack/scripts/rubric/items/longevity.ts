@@ -5,7 +5,7 @@ const LONG_1: RubricItem<HarnessReviewContext> = {
   code: 'LONG-1',
   title: 'Refresh path',
   description: 'The ki-repo-backpack skill carries REFRESH and a dated source review record.',
-  sources: ['standards-compatible-harness.md'],
+  sources: ['standard-compatible-harness.md'],
   judgment: {
     scope: 'The ki-repo-backpack REFRESH procedure, source list, cadence, and current compatible-harness standard.',
     prompt: 'Do the ki-repo-backpack REFRESH procedure and sources.md cadence provide a usable current refresh path?',
@@ -19,7 +19,7 @@ export const LONG: RubricFamily<HarnessRubricContext, HarnessReviewContext> = {
   code: 'LONG',
   title: 'Longevity',
   description: 'Refresh discipline for the compatible-harness standard.',
-  standard: 'standards-compatible-harness.md',
+  standard: 'standard-compatible-harness.md',
   selectContext: (context) => context.review,
   items: [LONG_1]
 }

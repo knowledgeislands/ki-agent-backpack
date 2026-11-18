@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { HarnessRubricContext, HarnessSkillsContext } from '../contexts/harness.ts'
 
-const STANDARD = ['standards-compatible-harness.md#skill-capability-identity'] as const
+const STANDARD = ['standard-compatible-harness.md#44-skill-capability-identity'] as const
 
 const unavailable = (context: HarnessSkillsContext): readonly AuditOutcome[] | null => {
   if (context.repositoryState !== 'physical')
@@ -149,7 +149,7 @@ export const SKILLS: RubricFamily<HarnessRubricContext, HarnessSkillsContext> = 
   code: 'SKILLS',
   title: 'Skill capability identity',
   description: 'Recursive physical skill discovery and identity integrity within the compatible payload.',
-  standard: 'standards-compatible-harness.md',
+  standard: 'standard-compatible-harness.md',
   selectContext: (context) => context.skills,
   items: [SKILLS_1, SKILLS_2, SKILLS_3]
 }
