@@ -1,22 +1,86 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:07:10Z
+ki-status: in force
+---
+
 # Decision Records standard
 
 ## Contents
 
-- [Naming convention](#naming-convention)
-- [Prefix table](#prefix-table)
-- [Placement](#placement)
-- [Self-contained collection](#self-contained-collection)
-- [Frontmatter](#frontmatter)
-- [Sections](#sections)
-- [Templates](#templates)
-- [Collection root](#collection-root)
-- [Index](#index)
-- [Dependency graph](#dependency-graph)
-- [Writing guidance](#writing-guidance)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Naming convention](#41-naming-convention)
+  - [4.2 Prefix table](#42-prefix-table)
+  - [4.3 Placement](#43-placement)
+  - [4.4 Self-contained collection](#44-self-contained-collection)
+  - [4.5 Frontmatter](#45-frontmatter)
+  - [4.6 Sections](#46-sections)
+    - [4.6.1 Title (heading)](#461-title-heading)
+    - [4.6.2 Frontmatter (before the heading)](#462-frontmatter-before-the-heading)
+    - [4.6.3 `## Context`](#463--context)
+    - [4.6.4 `## Decision`](#464--decision)
+    - [4.6.5 `## Consequences`](#465--consequences)
+    - [4.6.6 `## References` (optional)](#466--references-optional)
+  - [4.7 Templates](#47-templates)
+    - [4.7.1 Universal template](#471-universal-template)
+  - [4.8 Collection root](#48-collection-root)
+  - [4.9 Index](#49-index)
+  - [4.10 Dependency graph](#410-dependency-graph)
+  - [4.11 Writing guidance](#411-writing-guidance)
 
-The normative standard behind [the generated rubric](rubric.md). Grounded in Michael Nygard's original 2011 ADR format (see [the source list](sources.md)) with house additions: decision-specific metadata, type-specific prefixes, and `## References`. Unified from the former `ki-adrs` and `ki-kdrs` instruments. A DR is a concise, self-contained **living present-state record**: it states the decision as it stands now and is edited in place, without historical narrative, a supersession chain, or changelog (see [Writing guidance](#writing-guidance)). Mode REFRESH re-reads the sources and proposes diffs here.
+## 1. Introduction
 
-## Naming convention
+The normative standard behind [the generated rubric](rubric.md). Grounded in Michael Nygard's original 2011 ADR format (see [the source list](sources.md)) with house additions: decision-specific metadata, type-specific prefixes, and `## References`. Unified from the former `ki-adrs` and `ki-kdrs` instruments. A DR is a concise, self-contained **living present-state record**: it states the decision as it stands now and is edited in place, without historical narrative, a supersession chain, or changelog (see [Writing guidance](#411-writing-guidance)). Mode REFRESH re-reads the sources and proposes diffs here.
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+How Decision Records are named, placed, written, indexed and linked in any Knowledge Islands repository.
+
+### 2.1 In scope
+
+- A record's name, prefix and scope, and the nine decision types.
+- Where the collection lives, and its being self-contained.
+- A record's front matter, sections and template.
+- The collection's root record, its index and its dependency graph.
+- How a record is written and kept.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- What is required of a system: Specifications, `ki-specs`.
+- How to do something: guides, `ki-guides`.
+- A repository's `repo_code` and documentation topology: `ki-repo`.
+- Working material a design loop keeps beside its Project or Initiative.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Decision Record (DR)** | A concise, self-contained living present-state record of one decision, edited in place. **Standard:** this one, [1](#1-introduction) |
+| **DR code** | A record's prefix, scope and serial together, as `GDR-KI-PRINCIPAL-001`: its globally unique identifier. **Standard:** this one, [4.1](#41-naming-convention) |
+| **Prefix** | One of nine type-specific prefixes, encoding `decision_type`. **Standard:** this one, [4.2](#42-prefix-table) |
+| **Scope** | The repository's `repo_code`, optionally followed by a sub-domain segment. **Standard:** this one, [4.1](#41-naming-convention) |
+| **Collection** | The decisions directory: its records and their index, and nothing else. **Standard:** this one, [4.4](#44-self-contained-collection) |
+| **Reveal order** | The index's curated build narrative, roots before dependents. **Standard:** this one, [4.9](#49-index) |
+| **Dependency graph** | The directed acyclic graph the records' `decision_depends_on` edges form. **Standard:** this one, [4.10](#410-dependency-graph) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 Naming convention
 
 ```text
 <ID>-slugify(<title>).md
@@ -27,7 +91,9 @@ The normative standard behind [the generated rubric](rubric.md). Grounded in Mic
 - **`<SCOPE>`** is the repository's `[skills.ki-repo].repo_code` (e.g. `KI-PRINCIPAL`), one or more uppercase alphanumeric segments separated by `-`. There is no separate Decision Record scope setting: `.ki.toml` never declares `[skills.ki-decision-records].scope`, and AUDIT fails one that does (ROOT-2). A scope segment matches `[A-Z0-9]*[A-Z][A-Z0-9]*`: it may lead with a digit, so a repository whose `repo_code` does (e.g. `5GE-P2`) uses that code unchanged as its scope, and it must carry at least one letter, because a digit-only segment could not be told apart from `NNN`. A sub-domain segment may follow the code for sub-domain decisions (e.g. `KI-HARNESS-AGENTS`). Every record's scope equals `repo_code` or begins with `<repo_code>-`, with no exception: a decision owned by another repository is cited by its canonical URL, never copied under that repository's scope, and AUDIT fails any other scope, naming the expected one (ROOT-3).
 - **`NNN`** is a zero-padded decimal serial (≥ 3 digits). Serials in each prefix+scope series **start at `001` and are contiguous** — no gaps, whatever the cause. Decision Records are living documents: refine, merge or supersede an existing record in place so every key decision stays visible, rather than adding a record beside it, which keeps removals rare. Numbering is **per prefix within the `<SCOPE>` namespace** — `GDR-KI-PRINCIPAL-001` and `SDR-KI-PRINCIPAL-001` may share the integer `001` because they carry different prefixes, and each prefix runs its own unbroken `001…NNN` sequence. The full DR code (prefix + scope + serial) is the globally unique identifier. A pending DR not yet assigned a real serial uses the literal string `XXX` in place of `NNN` (e.g. `GDR-KI-PRINCIPAL-XXX-pending-decision.md`); it is renamed to the next available per-prefix serial once it is numbered. When a record really is **removed** — merged into another or retired — or **reclassified** to a different prefix (e.g. an ADR that is really a governance decision becomes a GDR, taking the next serial in its new series), its old serial is **not** left vacant: the remaining records in the old series renumber to close the gap, and every citation of the moved and shifted codes — index, `decision_depends_on`, prose, roadmap records and peer repositories — is swept in the same change. Git history and commit messages that mention the old codes are accepted staleness. Examples: `GDR-KI-PRINCIPAL-001-adopting-decision-records.md`, `SDR-KI-PRINCIPAL-001-knowledge-islands-strategy.md`, `ADR-KI-HARNESS-001-repository-structure-the-five-part-bundle.md`.
 
-## Prefix table
+[Back to contents](#contents)
+
+### 4.2 Prefix table
 
 Each type maps to a fixed prefix and a house reference URL. Required decision-specific metadata duplicates the canonical values encoded by the H1 prefix (FAIL check). The URL is identifier metadata, not evidence that a public type page is available or authoritative. Whether that prefix actually fits the decision is a human judgement, not a value the checker can derive.
 
@@ -45,7 +111,9 @@ Each type maps to a fixed prefix and a house reference URL. Required decision-sp
 
 Each `decision_type_url` expands from `https://knowledgeislands.info/specifications/decision-records/{prefix-lowercase}`. These house reference URLs are not a claim that public type pages are currently published; publishing or verifying them is an external-site owner concern. `ADR-` aligns with the established ADR ecosystem (Nygard, adr.github.io). `KDR-` reclaims the former Knowledge Decision Records prefix with a precise `knowledge` scope.
 
-## Placement
+[Back to contents](#contents)
+
+### 4.3 Placement
 
 | Repo type          | Default decisions directory   | Index file     | Frontmatter          |
 | ------------------ | ----------------------------- | -------------- | -------------------- |
@@ -54,7 +122,9 @@ Each `decision_type_url` expands from `https://knowledgeislands.info/specificati
 
 The repo type is declared in `.ki.toml` under `[skills.ki-decision-records]` (or inferred from `[skills.ki-repo-kb]` presence). The checker auto-detects the decisions directory (`docs/decisions/` then `Admin/Governance/Decisions/`) and picks the matching index file by mode; pass an explicit path to override.
 
-## Self-contained collection
+[Back to contents](#contents)
+
+### 4.4 Self-contained collection
 
 The decisions directory holds Decision Records and their index, and nothing else: no `references/` or other subdirectory, and no supporting file of any kind. A subdirectory or a non-record file in the collection is a finding (mechanical - FILENAME-4).
 
@@ -62,7 +132,9 @@ A record MUST read completely without following any link. It states the decision
 
 A record links only to sibling Decision Records and to external URLs. A relative link or wikilink from a record to any other file - a supporting file, a note, a guide or a work record - is a finding (mechanical - BODY-11). Cross-repository provenance uses a canonical source reference: an external URL to the source at a known revision, such as a pinned GitHub blob URL.
 
-## Frontmatter
+[Back to contents](#contents)
+
+### 4.5 Frontmatter
 
 Every Decision Record begins with YAML frontmatter. `id`, `title`, `date`, `status`, `decision_type`, and `decision_type_url` are required in every repository. Generic `type` and `type_url` are reserved for generic note metadata and are prohibited here. This keeps the decision classification explicit without creating a competing generic type taxonomy.
 
@@ -87,13 +159,15 @@ decision_type_url: https://knowledgeislands.info/specifications/decision-records
 - `decision_type_url` exactly matches the house reference URL in the table above.
 - Choose the prefix by what the decision is actually about. If the filename and metadata disagree, a human resolves whether the canonical ID or the metadata is wrong; CONFORM never chooses by overwriting either side.
 - CONFORM may make only source-preserving scalar metadata repairs on a parseable, regular, non-symlink record whose filename is already canonical: remove generic `type`; rename a canonical legacy `type_url` when `decision_type_url` is absent; and add missing canonical decision-type fields derived from the existing prefix. It refuses malformed, ambiguous, conflicting, or non-canonical sources.
-- `decision_depends_on` is an optional YAML list of full DR codes that this decision logically depends on (e.g. `["GDR-KI-PRINCIPAL-001"]`). Cross-scope (cross-repo) references are permitted. Those edges form one directed acyclic graph across the whole collection, and body prose cites only backward, both under [Dependency graph](#dependency-graph). Omit the field when there are no dependencies.
+- `decision_depends_on` is an optional YAML list of full DR codes that this decision logically depends on (e.g. `["GDR-KI-PRINCIPAL-001"]`). Cross-scope (cross-repo) references are permitted. Those edges form one directed acyclic graph across the whole collection, and body prose cites only backward, both under [Dependency graph](#410-dependency-graph). Omit the field when there are no dependencies.
 
-## Sections
+[Back to contents](#contents)
+
+### 4.6 Sections
 
 Every DR has exactly these sections, in this order:
 
-### 1. Title (heading)
+#### 4.6.1 Title (heading)
 
 ```markdown
 # <PREFIX>-<SCOPE>-NNN: <Short noun phrase>
@@ -101,23 +175,33 @@ Every DR has exactly these sections, in this order:
 
 The title is a short noun phrase — not a question, not a full sentence. The heading reproduces the full DR ID so a reader can identify the record from the heading alone.
 
-### 2. Frontmatter (before the heading)
+[Back to contents](#contents)
+
+#### 4.6.2 Frontmatter (before the heading)
 
 The required frontmatter carries the ID, title, date, maintenance status, and decision-specific classification. There is deliberately **no bold `Date`, `Status`, or `Mutability` line**: a DR is kept true by **editing it in place**. A change of direction edits the live record; historical wording is removed so the record reads as if written today.
 
-### 3. `## Context`
+[Back to contents](#contents)
+
+#### 4.6.3 `## Context`
 
 The forces at play — structural, operational, relational, temporal — that made a decision necessary. Value-neutral: state facts, not advocacy. Avoid "we need to" or "the problem is"; prefer "the island currently..." or "two approaches exist...". One to three paragraphs.
 
-### 4. `## Decision`
+[Back to contents](#contents)
+
+#### 4.6.4 `## Decision`
 
 The team's response to those forces. One paragraph or a short bulleted list. Active voice: "This island adopts..." or "We will...". Not rationale — just what was decided. Rationale belongs in Context and Consequences.
 
-### 5. `## Consequences`
+[Back to contents](#contents)
+
+#### 4.6.5 `## Consequences`
 
 The resulting context after the decision is applied — positive outcomes, trade-offs, and neutral follow-on constraints. Consequences from one DR frequently become the Context of the next.
 
-### 6. `## References` (optional)
+[Back to contents](#contents)
+
+#### 4.6.6 `## References` (optional)
 
 ```markdown
 ## References
@@ -127,9 +211,11 @@ The resulting context after the decision is applied — positive outcomes, trade
 
 The `## References` section is a list of **followable links only**, of exactly two kinds: **sibling DRs in the same decisions set** (backward in the reading-order layering — the foundations a decision builds on) and **external URLs** (a tool's homepage, a spec, a source). It is not a place for prose or for named internal artefacts. Skills, guides, feature definitions, workflows, KB notes, and the standards a decision grounds in are **named in the body**, where the reader meets them — never listed here — so the record stays self-contained and nothing depends on chasing a link that rots. External links are supplementary: the record must read completely without following them. Omit the section entirely when a record has no such links.
 
-## Templates
+[Back to contents](#contents)
 
-### Universal template
+### 4.7 Templates
+
+#### 4.7.1 Universal template
 
 ```markdown
 ---
@@ -160,7 +246,9 @@ decision_type_url: https://knowledgeislands.info/specifications/decision-records
 - [Source title](https://example.org/source) -- why cited.
 ```
 
-## Collection root
+[Back to contents](#contents)
+
+### 4.8 Collection root
 
 Every collection begins by adopting the instrument itself: **`GDR-<SCOPE>-001: Adopting Decision Records`** is the first indexed record. A compound title that contains the adoption — e.g. "Adopt decision records and documentation instruments" — satisfies the rule, for a collection whose founding decision covers more than the instrument:
 
@@ -170,7 +258,9 @@ Every collection begins by adopting the instrument itself: **`GDR-<SCOPE>-001: A
 
 The rule is unconditional: an established collection whose first record does not adopt the instrument is non-compliant, and is brought into line by retitling (or writing) its root record — not by renumbering or repositioning the rest.
 
-## Index
+[Back to contents](#contents)
+
+### 4.9 Index
 
 The index file — `Decisions.md` in a KB, `README.md` in a code repo (GitHub renders it as the folder landing) — must carry an **ordered list**, one item per DR, each item linking the record by its ID. A list, not a table: a table earns its overhead only for tabular data or comparison across columns, and an index is neither — it is a single ordered sequence, so a list carries it with less markup. Order the items by **reveal order** — a curated **build narrative**: the records read as if written from scratch, before anything was created, each building on the ones before it, so a concept is introduced at its record and later records may name it explicitly. Weave the sub-scopes into this one sequence where they belong rather than grouping them apart. The order is authorial — a record's dependence on earlier ones is often stated in prose, not only in the `decision_depends_on` field, so the sequence is not mechanically derived. Two constraints hold: roots precede dependents across the whole set (judgment — INDEX-6), and **within any one prefix the serials ascend in reveal order** — a `PREFIX-NNN` never appears before a lower-numbered `PREFIX-MMM`. If the build narrative wants a record earlier than its serial allows, that is a drafting issue fixed by renumbering the affected records and sweeping their citations, not by placing it out of sequence (mechanical — INDEX-8):
 
@@ -183,7 +273,9 @@ Each item links the record by its ID and gives a short gloss of what it decides.
 
 CONFORM may append a missing entry or restore a link target only for a recognised, regular, non-symlink record whose canonical filename is deterministically known. It preserves existing entry order, numbering markers, and unrelated index prose; stale links, duplicates, ordering, unordered links, and entries for non-canonical records remain human review.
 
-## Dependency graph
+[Back to contents](#contents)
+
+### 4.10 Dependency graph
 
 `decision_depends_on` states which records a decision rests on. Taken together those edges form one directed graph over the whole collection, and it MUST be acyclic. This is a property of the collection rather than of any one record, so it is checked across every prefix at once: the ascending-serial rule constrains order only within a single prefix, and in a mature collection most dependency edges cross prefixes, where nothing else constrains them at all.
 
@@ -197,7 +289,9 @@ CONFORM may append a missing entry or restore a link target only for a recognise
 
 Reclassifying a record — changing its prefix because it turned out to be about product rather than architecture, say — moves every edge it carries from inside one prefix to across two, so that is the moment the graph most needs rechecking. Renumbering a series moves the field's codes along with every other citation of the shifted records, in the same change.
 
-## Writing guidance
+[Back to contents](#contents)
+
+### 4.11 Writing guidance
 
 - **Length**: one to two pages (roughly 200-500 words of body). A DR is a decision record, not a design document.
 - **Voice**: active, present tense. "This island adopts X" not "X was adopted".
@@ -209,3 +303,5 @@ Reclassifying a record — changing its prefix because it turned out to be about
 - **Chaining**: the Consequences of one DR become the Context of the next. Write each as if handing off to a future author.
 - **Language**: follow the island's language convention (British English for KI islands).
 - **Prefix choice**: if you are uncertain which `decision_type` fits, prefer the broader category. A governance DR is about how the island is run; an architecture DR is about how it is structured.
+
+[Back to contents](#contents)

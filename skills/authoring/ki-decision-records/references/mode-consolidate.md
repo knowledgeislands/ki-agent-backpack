@@ -4,7 +4,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 # Mode CONSOLIDATE - bring the collection back to "what is"
 
-_On-demand and recurring procedure for decision-records' CONSOLIDATE mode. The present-state, self-contained-collection and writing rules live in [the Decision Records standard](standards-decision-records.md); this file is the procedure only._
+_On-demand and recurring procedure for decision-records' CONSOLIDATE mode. The present-state, self-contained-collection and writing rules live in [the Decision Records standard](standard-decision-records.md); this file is the procedure only._
 
 CONSOLIDATE keeps a whole collection true to the living-record principle after decisions have drifted, accumulated history or spread across overlapping records. It runs on demand and as part of every regular repository review: `ki-repo` REVIEW performs the assessment steps read-only, and the rewrite steps run under the owner's approval of the resulting disposition. It is distinct from REFRESH, which re-anchors this skill's standard to its sources.
 

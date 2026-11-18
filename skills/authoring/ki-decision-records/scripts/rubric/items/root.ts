@@ -4,7 +4,7 @@ import type { DecisionRecordsRubricContext, RootRubricContext } from '../context
 
 const FIRST_RECORD = new RegExp(`^GDR-${SCOPE}-001$`)
 
-const SOURCE = 'standards-decision-records.md'
+const SOURCE = 'standard-decision-records.md'
 const ADOPTION_TITLE = 'Adopting Decision Records'
 const ADOPTION_PATTERN = /adopt(?:ing|s)? decision records/i
 

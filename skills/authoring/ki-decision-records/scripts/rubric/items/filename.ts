@@ -1,7 +1,7 @@
 import type { AuditOutcome, RubricFamily, RubricItem, RubricOutcomes } from '../../shared/rubric.ts'
 import type { DecisionRecordsRubricContext, FilenameRubricContext } from '../contexts/decision-records.ts'
 
-const SOURCE = 'standards-decision-records.md'
+const SOURCE = 'standard-decision-records.md'
 
 const outcomes = (values: AuditOutcome[], passMessage: string): RubricOutcomes<AuditOutcome> =>
   (values.length > 0 ? values : [{ status: 'PASS', message: passMessage }]) as RubricOutcomes<AuditOutcome>

@@ -6,7 +6,7 @@ const TYPE_FIT_1: RubricItem<RecordsRubricContext> = {
   title: 'Semantic decision classification',
   description:
     'The filename prefix accurately categorises the decision itself; the body makes the type obvious. A mismatch is resolved with a human by choosing the correct canonical record ID or metadata, never by mechanically overwriting either side.',
-  sources: ['standards-decision-records.md'],
+  sources: ['standard-decision-records.md'],
   judgment: {
     scope: 'The filename prefix, metadata, and body of every active decision record.',
     prompt:
@@ -21,7 +21,7 @@ export const TYPE_FIT: RubricFamily<DecisionRecordsRubricContext, RecordsRubricC
   code: 'TYPE-FIT',
   title: 'decision classification',
   description: 'Semantic alignment between a decision and its canonical prefix.',
-  standard: 'standards-decision-records.md',
+  standard: 'standard-decision-records.md',
   selectContext: (context) => context.typeFit,
   items: [TYPE_FIT_1]
 }

@@ -32,58 +32,58 @@ The tracked readable rubric is the exact publication of the structured catalogue
 
 ## FILENAME — file and naming checks
 
-→ [standard](standards-decision-records.md)
+→ [standard](standard-decision-records.md)
 
 Canonical decision-record filenames and serial namespaces.
 
-- **FILENAME-0 [M] — Every decision-directory Markdown file has a canonical record heading** — Every Markdown file other than the collection index under the selected decisions directory has a parseable `# <PREFIX>-<SCOPE>-NNN: <title>` heading. Files that do not expose an identity are reported rather than silently skipped. (standards-decision-records.md)
+- **FILENAME-0 [M] — Every decision-directory Markdown file has a canonical record heading** — Every Markdown file other than the collection index under the selected decisions directory has a parseable `# <PREFIX>-<SCOPE>-NNN: <title>` heading. Files that do not expose an identity are reported rather than silently skipped. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Move supporting material outside the decisions directory or add the canonical Decision Record heading before rerunning the audit.
-- **FILENAME-1 [M] — Canonical decision-record filename** — Filename is `<ID>-<title-slug>.md`: the canonical uppercase record ID, a dash, then the title lowercased with each non-alphanumeric run replaced by one dash and leading or trailing dashes removed. (standards-decision-records.md)
+- **FILENAME-1 [M] — Canonical decision-record filename** — Filename is `<ID>-<title-slug>.md`: the canonical uppercase record ID, a dash, then the title lowercased with each non-alphanumeric run replaced by one dash and leading or trailing dashes removed. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Rename the record to its canonical ID and title slug, then update every affected citation.
-- **FILENAME-2 [M] — Unique serial within prefix and scope** — NNN is unique per prefix within its `<SCOPE>` namespace; two files may share the same integer if they carry different prefixes; no two files share the same prefix+scope+serial combination. `XXX` files are exempt from uniqueness. (standards-decision-records.md)
+- **FILENAME-2 [M] — Unique serial within prefix and scope** — NNN is unique per prefix within its `<SCOPE>` namespace; two files may share the same integer if they carry different prefixes; no two files share the same prefix+scope+serial combination. `XXX` files are exempt from uniqueness. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Choose the canonical record identity, then rename or retire the duplicate and update affected citations.
-- **FILENAME-4 [M] — Self-contained collection** — The decisions directory holds only Decision Records and their index: no `references/` or other subdirectory and no supporting file. Working material lives beside the Project or Initiative it serves and is deleted once consolidated. (standards-decision-records.md)
+- **FILENAME-4 [M] — Self-contained collection** — The decisions directory holds only Decision Records and their index: no `references/` or other subdirectory and no supporting file. Working material lives beside the Project or Initiative it serves and is deleted once consolidated. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Consolidate what the record needs into its own words, move live working material beside its Project or Initiative, and delete the rest.
-- **FILENAME-5 [M] — Contiguous serial series** — Within each prefix+scope series the serials start at `001` and are contiguous. A gap left by a removed or reclassified record is closed by renumbering the series and sweeping every citation of the shifted codes in the same change. `XXX` pending files are exempt. (standards-decision-records.md)
+- **FILENAME-5 [M] — Contiguous serial series** — Within each prefix+scope series the serials start at `001` and are contiguous. A gap left by a removed or reclassified record is closed by renumbering the series and sweeping every citation of the shifted codes in the same change. `XXX` pending files are exempt. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Renumber the series contiguously from 001 and update every citation of each shifted record ID.
 
 ## ROOT — collection-root checks
 
-→ [standard](standards-decision-records.md)
+→ [standard](standard-decision-records.md)
 
 The first Decision Record in every collection adopts the instrument itself, and every record is scoped to the repository code.
 
-- **ROOT-1 [M] — Every collection begins by adopting the instrument** — Every collection begins its index with `GDR-<SCOPE>-001` whose title contains "Adopting Decision Records" (a compound title such as "Adopt decision records and documentation instruments" satisfies it). (standards-decision-records.md)
+- **ROOT-1 [M] — Every collection begins by adopting the instrument** — Every collection begins its index with `GDR-<SCOPE>-001` whose title contains "Adopting Decision Records" (a compound title such as "Adopt decision records and documentation instruments" satisfies it). (standard-decision-records.md)
   - _Remediation:_ diagnostic — Create or retitle the collection root with a human review of its record identity and contents.
-- **ROOT-2 [M] — The scope is the repository code** — The `<SCOPE>` comes from the repository's `[skills.ki-repo].repo_code`, so `.ki.toml` declares no `[skills.ki-decision-records].scope`. (standards-decision-records.md)
+- **ROOT-2 [M] — The scope is the repository code** — The `<SCOPE>` comes from the repository's `[skills.ki-repo].repo_code`, so `.ki.toml` declares no `[skills.ki-decision-records].scope`. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Remove `scope` from `[skills.ki-decision-records]` in `.ki.toml`. The scope is always `[skills.ki-repo].repo_code`; where existing records use another scope, rename them with a human review.
-- **ROOT-3 [M] — Every record scope belongs to the repository** — Every Decision Record identifier's `<SCOPE>` equals the repository's `[skills.ki-repo].repo_code` or begins with `<repo_code>-` for a sub-domain. There is no exception, including for a record mirrored from another repository. (standards-decision-records.md)
+- **ROOT-3 [M] — Every record scope belongs to the repository** — Every Decision Record identifier's `<SCOPE>` equals the repository's `[skills.ki-repo].repo_code` or begins with `<repo_code>-` for a sub-domain. There is no exception, including for a record mirrored from another repository. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Rename the record under the repository code (`<PREFIX>-<repo_code>-NNN`, or `<PREFIX>-<repo_code>-<SUB>-NNN` for a sub-domain), renumber it into that series, and update its index entry and every citation. A record owned by another repository is cited by its canonical URL rather than copied.
 
 ## FM — frontmatter checks
 
-→ [standard](standards-decision-records.md)
+→ [standard](standard-decision-records.md)
 
 Required universal decision metadata.
 
-- **FM-0 [M] — Decision-record frontmatter** — YAML frontmatter block is present on every decision record. (standards-decision-records.md)
+- **FM-0 [M] — Decision-record frontmatter** — YAML frontmatter block is present on every decision record. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Add canonical YAML frontmatter using the record body and filename as evidence.
-- **FM-3 [M] — No generic type metadata** — Generic `type` and `type_url` fields are absent from a decision record. (standards-decision-records.md)
+- **FM-3 [M] — No generic type metadata** — Generic `type` and `type_url` fields are absent from a decision record. (standard-decision-records.md)
   - _Remediation:_ automatic
-- **FM-4 [M] — Decision type metadata** — `decision_type` and `decision_type_url` fields are present. (standards-decision-records.md)
+- **FM-4 [M] — Decision type metadata** — `decision_type` and `decision_type_url` fields are present. (standard-decision-records.md)
   - _Remediation:_ automatic
-- **FM-5 [M] — Prefix and decision type alignment** — `decision_type` and `decision_type_url` exactly match the canonical values encoded by the filename prefix. This does not prove that the prefix is the right semantic classification. (standards-decision-records.md)
+- **FM-5 [M] — Prefix and decision type alignment** — `decision_type` and `decision_type_url` exactly match the canonical values encoded by the filename prefix. This does not prove that the prefix is the right semantic classification. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Align decision-type metadata with the canonical filename prefix after confirming the record classification.
-- **FM-6 [M] — Core decision metadata** — `id`, `title`, `date`, and `status` are present; ID and title compose the H1 and date uses YYYY-MM-DD. (standards-decision-records.md)
+- **FM-6 [M] — Core decision metadata** — `id`, `title`, `date`, and `status` are present; ID and title compose the H1 and date uses YYYY-MM-DD. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Complete the required metadata from the canonical H1, filename, and record type.
 
 ## TYPE-FIT — decision classification
 
-→ [standard](standards-decision-records.md)
+→ [standard](standard-decision-records.md)
 
 Semantic alignment between a decision and its canonical prefix.
 
-- **TYPE-FIT-1 [J] — Semantic decision classification** — The filename prefix accurately categorises the decision itself; the body makes the type obvious. A mismatch is resolved with a human by choosing the correct canonical record ID or metadata, never by mechanically overwriting either side. (standards-decision-records.md)
+- **TYPE-FIT-1 [J] — Semantic decision classification** — The filename prefix accurately categorises the decision itself; the body makes the type obvious. A mismatch is resolved with a human by choosing the correct canonical record ID or metadata, never by mechanically overwriting either side. (standard-decision-records.md)
   - _Evidence scope:_ The filename prefix, metadata, and body of every active decision record.
   - _Review prompt:_ Assess whether the filename prefix accurately categorises the decision itself without a stretch fit and whether the body makes the type obvious. Resolve a mismatch with a human, never by mechanically overwriting either side.
   - _Outcomes:_ conforming; gap; exclusion
@@ -91,89 +91,89 @@ Semantic alignment between a decision and its canonical prefix.
 
 ## BODY — body structure checks
 
-→ [standard](standards-decision-records.md)
+→ [standard](standard-decision-records.md)
 
 Present-state decision-record structure and writing quality.
 
-- **BODY-1 [M] — Canonical heading** — Heading matches `# <PREFIX>-<SCOPE>-NNN: <title>`; the ID prefix is present and matches the filename. (standards-decision-records.md)
+- **BODY-1 [M] — Canonical heading** — Heading matches `# <PREFIX>-<SCOPE>-NNN: <title>`; the ID prefix is present and matches the filename. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Align the H1 identifier with the filename and retain the established record identity.
-- **BODY-3 [M] — No legacy date line** — A decision record does not carry a legacy bold `**Date:**` line; its date belongs in frontmatter. (standards-decision-records.md)
+- **BODY-3 [M] — No legacy date line** — A decision record does not carry a legacy bold `**Date:**` line; its date belongs in frontmatter. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Remove the legacy date line after confirming that canonical frontmatter carries the date.
-- **BODY-4 [M] — Required decision sections** — `## Context`, `## Decision`, and `## Consequences` sections are all present. (standards-decision-records.md)
+- **BODY-4 [M] — Required decision sections** — `## Context`, `## Decision`, and `## Consequences` sections are all present. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Add the missing canonical section with substantive decision-record content.
-- **BODY-5 [J] — Value-neutral context** — Context is value-neutral forces, not advocacy ("the island currently…" not "we need to…"). (standards-decision-records.md)
+- **BODY-5 [J] — Value-neutral context** — Context is value-neutral forces, not advocacy ("the island currently…" not "we need to…"). (standard-decision-records.md)
   - _Evidence scope:_ The Context section of every active decision record.
   - _Review prompt:_ Assess whether Context states value-neutral forces rather than advocacy.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the context to describe observed forces, record a named Gap, or record an explicit exclusion.
-- **BODY-6 [J] — Active-voice decision** — Decision is in active voice ("This island adopts…" or "We will…"). (standards-decision-records.md)
+- **BODY-6 [J] — Active-voice decision** — Decision is in active voice ("This island adopts…" or "We will…"). (standard-decision-records.md)
   - _Evidence scope:_ The Decision section of every active decision record.
   - _Review prompt:_ Assess whether Decision uses active voice.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Rewrite the decision in active voice, record a named Gap, or record an explicit exclusion.
-- **BODY-7 [J] — Substantive sections** — Each section has real, non-placeholder substance. (standards-decision-records.md)
+- **BODY-7 [J] — Substantive sections** — Each section has real, non-placeholder substance. (standard-decision-records.md)
   - _Evidence scope:_ Every required section in every active decision record.
   - _Review prompt:_ Assess whether every required section contains real, non-placeholder substance.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Add substantive content, record a named Gap, or record an explicit exclusion.
-- **BODY-8 [J] — Focused length** — Length is one to two pages, roughly 200–500 body words. (standards-decision-records.md)
+- **BODY-8 [J] — Focused length** — Length is one to two pages, roughly 200–500 body words. (standard-decision-records.md)
   - _Evidence scope:_ The body of every active decision record.
   - _Review prompt:_ Assess whether the body is a focused one to two pages, roughly 200–500 words.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Tighten or expand the body while preserving the decision, record a named Gap, or record an explicit exclusion.
-- **BODY-9 [J] — Noun-phrase title** — Title is a short noun phrase, not a question or full sentence. (standards-decision-records.md)
+- **BODY-9 [J] — Noun-phrase title** — Title is a short noun phrase, not a question or full sentence. (standard-decision-records.md)
   - _Evidence scope:_ The H1 title of every active decision record.
   - _Review prompt:_ Assess whether the title is a short noun phrase rather than a question or full sentence.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Rewrite the title as a concise noun phrase, record a named Gap, or record an explicit exclusion.
-- **BODY-10 [J] — Present-state record** — The record is concise, self-contained, and written as now, without historic, superseding, rejected-alternative, or forward-looking narration. Such content belongs in the ROADMAP or a KB stream, not in a present-state record. (standards-decision-records.md)
+- **BODY-10 [J] — Present-state record** — The record is concise, self-contained, and written as now, without historic, superseding, rejected-alternative, or forward-looking narration. Such content belongs in the ROADMAP or a KB stream, not in a present-state record. (standard-decision-records.md)
   - _Evidence scope:_ The narrative body of every active decision record.
   - _Review prompt:_ Assess whether the record is concise and self-contained, stating the present decision without historic, superseding, rejected-alternative, options-considered, forward-looking, parked, or not-yet-started narration.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Move lifecycle narration to its appropriate record, revise to present state, record a named Gap, or record an explicit exclusion.
-- **BODY-11 [M] — Links only to sibling records** — A record links only to sibling Decision Records and to external URLs. A relative link or wikilink to any other file - a supporting file, note, guide or work record - is a finding. Cross-repository provenance uses a canonical source reference: an external URL at a known revision. (standards-decision-records.md)
+- **BODY-11 [M] — Links only to sibling records** — A record links only to sibling Decision Records and to external URLs. A relative link or wikilink to any other file - a supporting file, note, guide or work record - is a finding. Cross-repository provenance uses a canonical source reference: an external URL at a known revision. (standard-decision-records.md)
   - _Remediation:_ diagnostic — State what the record needs in its own words and name the note or skill it grounds in; keep only links to sibling records and canonical external sources.
-- **BODY-12 [M] — No history or alternatives sections** — A record states what is, not what was: no section titled for history, changelog, amendments, supersession, alternatives or options considered. (standards-decision-records.md)
+- **BODY-12 [M] — No history or alternatives sections** — A record states what is, not what was: no section titled for history, changelog, amendments, supersession, alternatives or options considered. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Consolidate the current decision and remove the section; state any constraint that still matters as part of the present Context.
 
 ## INDEX — index checks
 
-→ [standard](standards-decision-records.md)
+→ [standard](standard-decision-records.md)
 
 Complete, current, and readable decision-record indexes.
 
-- **INDEX-1 [M] — Decision index exists** — The index file exists (`Decisions.md` in a KB, `README.md` in a code repository). (standards-decision-records.md)
+- **INDEX-1 [M] — Decision index exists** — The index file exists (`Decisions.md` in a KB, `README.md` in a code repository). (standard-decision-records.md)
   - _Remediation:_ diagnostic — Create the canonical decision index for this repository or Knowledge Base.
-- **INDEX-2 [M] — Exactly one index entry per record** — Every decision-record file has exactly one entry in the index list, linked by ID. (standards-decision-records.md)
+- **INDEX-2 [M] — Exactly one index entry per record** — Every decision-record file has exactly one entry in the index list, linked by ID. (standard-decision-records.md)
   - _Remediation:_ automatic
-- **INDEX-3 [M] — No stale index entries** — No index entry references a decision-record file that does not exist. (standards-decision-records.md)
+- **INDEX-3 [M] — No stale index entries** — No index entry references a decision-record file that does not exist. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Remove or correct each stale index entry after confirming the record history.
-- **INDEX-4 [M] — Index links resolve to their named record** — Every ordered Decision Record index entry links its displayed record ID to that record’s canonical filename, and decision links are not hidden in unordered bullets or other prose. (standards-decision-records.md)
+- **INDEX-4 [M] — Index links resolve to their named record** — Every ordered Decision Record index entry links its displayed record ID to that record’s canonical filename, and decision links are not hidden in unordered bullets or other prose. (standard-decision-records.md)
   - _Remediation:_ automatic
-- **INDEX-6 [J] — Reveal order** — Entries are in a sensible reveal order: a from-scratch build narrative with roots first, then dependents, weaving sub-scopes in. (standards-decision-records.md)
+- **INDEX-6 [J] — Reveal order** — Entries are in a sensible reveal order: a from-scratch build narrative with roots first, then dependents, weaving sub-scopes in. (standard-decision-records.md)
   - _Evidence scope:_ The ordered entries of the active decision index.
   - _Review prompt:_ Assess whether index entries form a sensible from-scratch reveal order with roots before dependents.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Reorder the index to improve the reading path, record a named Gap, or record an explicit exclusion.
-- **INDEX-7 [J] — Index gloss alignment** — An entry's gloss matches the decision record's heading title, excluding the ID prefix. (standards-decision-records.md)
+- **INDEX-7 [J] — Index gloss alignment** — An entry's gloss matches the decision record's heading title, excluding the ID prefix. (standard-decision-records.md)
   - _Evidence scope:_ Every active decision-index entry and its linked record heading.
   - _Review prompt:_ Compare every index gloss with its decision record's heading title, excluding the ID prefix.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Align the gloss with its record heading, record a named Gap, or record an explicit exclusion.
-- **INDEX-8 [M] — Ascending serial reveal order** — Within each prefix, serials ascend in reveal order; a higher serial never precedes a lower serial. A violation is fixed by renumbering rather than reordering out of sequence. (standards-decision-records.md)
+- **INDEX-8 [M] — Ascending serial reveal order** — Within each prefix, serials ascend in reveal order; a higher serial never precedes a lower serial. A violation is fixed by renumbering rather than reordering out of sequence. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Renumber the affected records and citations rather than reordering serials out of sequence.
 
 ## DEPENDS — dependency-graph checks
 
-→ [standard](standards-decision-records.md)
+→ [standard](standard-decision-records.md)
 
 Declared decision dependencies resolve, stay acyclic, precede their dependents, and prose points backward.
 
-- **DEPENDS-1 [M] — Every dependency in a local scope resolves to a record** — Each `decision_depends_on` entry is a canonical `<PREFIX>-<SCOPE>-NNN` code, and each entry whose scope this collection owns names a record the collection holds. Cross-scope (cross-repo) targets are permitted and are not resolved here. (standards-decision-records.md)
+- **DEPENDS-1 [M] — Every dependency in a local scope resolves to a record** — Each `decision_depends_on` entry is a canonical `<PREFIX>-<SCOPE>-NNN` code, and each entry whose scope this collection owns names a record the collection holds. Cross-scope (cross-repo) targets are permitted and are not resolved here. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Correct the dependency to the record it means, or remove it where the target was retired; a renumbered series sweeps this field with every other citation.
-- **DEPENDS-2 [M] — The dependency graph is acyclic** — Taken across every prefix at once, `decision_depends_on` forms a directed acyclic graph: no record depends on itself, directly or through a chain. A cycle asserts that each record in it must be read before the others, which no reading order satisfies. (standards-decision-records.md)
+- **DEPENDS-2 [M] — The dependency graph is acyclic** — Taken across every prefix at once, `decision_depends_on` forms a directed acyclic graph: no record depends on itself, directly or through a chain. A cycle asserts that each record in it must be read before the others, which no reading order satisfies. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Drop the edge that is a cross-reference rather than a dependency, or merge records that genuinely cannot be reconsidered independently into the one that owns the concern.
-- **DEPENDS-3 [M] — A dependency precedes its dependent in the index** — Where both records appear in the index's ordered list, a declared dependency appears before the record that depends on it, so reading top to bottom never asks for a decision on trust. Ascending serials give this within one prefix; a cross-prefix edge is constrained by nothing else. (standards-decision-records.md)
+- **DEPENDS-3 [M] — A dependency precedes its dependent in the index** — Where both records appear in the index's ordered list, a declared dependency appears before the record that depends on it, so reading top to bottom never asks for a decision on trust. Ascending serials give this within one prefix; a cross-prefix edge is constrained by nothing else. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Move the dependent later in the reveal order, or correct the field where the edge itself is the error rather than the placement.
-- **DEPENDS-4 [M] — Body prose cites only backward** — A record names lower-numbered records of its own prefix and scope, never a higher-numbered one. Where a later record extends, narrows, or settles something, the later record says so, so an earlier record never needs editing when something downstream lands. (standards-decision-records.md)
+- **DEPENDS-4 [M] — Body prose cites only backward** — A record names lower-numbered records of its own prefix and scope, never a higher-numbered one. Where a later record extends, narrows, or settles something, the later record says so, so an earlier record never needs editing when something downstream lands. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Remove the forward reference and let the later record state the relationship, which it already declares as a dependency.
