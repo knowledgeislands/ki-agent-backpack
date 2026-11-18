@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { LiveArtifactsRubricContext, LiveArtifactsStructureContext } from '../contexts/live-artifacts.ts'
 
-const SOURCE = 'standards-live-artifacts.md'
+const SOURCE = 'standard-live-artifacts.md'
 
 const LA_S_1: RubricItem<LiveArtifactsStructureContext> = {
   code: 'LA-S-1',

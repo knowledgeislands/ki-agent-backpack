@@ -17,7 +17,7 @@ argument-hint: 'audit | conform | help | educate | new <name> | refresh'
 
 You are helping the user author, audit, and manage **Live Artifacts** in a Knowledge Islands base. A Live Artifact is a named, intentional operational document that reflects the current state of the island — a dashboard, status board, queue, or tracker. Unlike notes in `Pillars/`, live artifacts are **intentionally mutable**: they are updated in place as the island's state changes.
 
-The normative model lives in [the Live Artifact standard](references/standards-live-artifacts.md), with concrete shapes in [the exemplars](references/exemplars.md). The checkable publication lives in [the rubric](references/rubric.md).
+The normative model lives in [the Live Artifact standard](references/standard-live-artifacts.md), with concrete shapes in [the exemplars](references/exemplars.md). The checkable publication lives in [the rubric](references/rubric.md).
 
 ## The Live Artifact model
 
