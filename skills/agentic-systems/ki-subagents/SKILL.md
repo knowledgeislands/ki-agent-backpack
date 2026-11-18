@@ -42,7 +42,7 @@ Explain the portable semantic boundary and its adapter off-ramps without authori
 
 ### Mode REFRESH
 
-**Precondition:** REFRESH writes only in the canonical `ki-agent-backpack` source checkout. From an installed copy, stop and route the source refresh to that Harness.
+**Precondition:** REFRESH writes only in the canonical `ki-agent-backpack` source checkout. From an installed copy, stop and route the source refresh to that backpack.
 
 Refresh this role contract from local decisions and recorded outcome evidence. Runtime specifications belong only to adapter source lists.
 

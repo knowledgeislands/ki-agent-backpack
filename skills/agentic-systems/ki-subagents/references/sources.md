@@ -48,6 +48,8 @@ None.
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Agentic systems guild: REFRESH routes to the backpack, and what the standard called the Harness host is the `ki` host. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Agentic systems guild's review, from the Cairn summit's change 10, brought the files into the formats: `standards-portable-subagents.md` was renamed `standard-portable-subagents.md` and reshaped, its rules unchanged under numbered sections, and this file took the sources format, with the local authorities as decisions. No rule changed and no outside source was refreshed.
 
 Last reviewed 2026-08-12 against SDR-KI-HARNESS-002 and this repository's Round 25 approved delegation packet, which set the parent/adapters split and the host-unavailable boundary.

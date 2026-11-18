@@ -88,6 +88,6 @@ Any other projection with the same `name` corresponds to the primary and never e
 
 ### 4.4 Boundary
 
-Claude Code Markdown/YAML and its fields are owned by `ki-subagents-claude`. Codex standalone TOML and its fields are owned by `ki-subagents-chatgpt`. Installation, publication, activation, effective settings, and runtime execution are host/runtime questions. The current Harness host implements no generic subagent publisher, so neither adapter may claim them.
+Claude Code Markdown/YAML and its fields are owned by `ki-subagents-claude`. Codex standalone TOML and its fields are owned by `ki-subagents-chatgpt`. Installation, publication, activation, effective settings, and runtime execution are host/runtime questions. The current `ki` host implements no generic subagent publisher, so neither adapter may claim them.
 
 [Back to contents](#contents)
