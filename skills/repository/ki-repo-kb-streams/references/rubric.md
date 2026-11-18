@@ -28,52 +28,52 @@ The tracked readable rubric is the exact publication of the structured catalogue
 
 ## STREAM — Streams structure
 
-→ [standard](standards-streams-structure.md)
+→ [standard](standard-streams-structure.md)
 
 Operational-area layout, legacy migration, and adapter routing.
 
-- **STREAM-1 [M] — operational areas** — Streams contains the Roadmap operational area and no design folder; recurring definitions belong in Activities, with Trades reserved for later explicit adoption. (standards-streams-structure.md)
+- **STREAM-1 [M] — operational areas** — Streams contains the Roadmap operational area and no design folder; recurring definitions belong in Activities, with Trades reserved for later explicit adoption. (standard-streams-structure.md)
   - _Remediation:_ diagnostic — Establish Roadmap; move any design folder into a change document in the package of its work, work/<territory>/<id>/; reconcile any Housekeeping definitions into configured Activities only with owner approval, preserving linked-run evidence.
-- **STREAM-2 [M] — legacy state folders** — Legacy state and Focus folders, Streams/Initiatives/ and Project folder notes are migration inputs, not target Streams structure. (standards-streams-structure.md)
+- **STREAM-2 [M] — legacy state folders** — Legacy state and Focus folders, Streams/Initiatives/ and Project folder notes are migration inputs, not target Streams structure. (standard-streams-structure.md)
   - _Remediation:_ diagnostic — Classify each retained legacy record before removing or replacing a legacy navigation folder; move each Initiative to a theme page and each Project folder note to a flat note.
-- **STREAM-4 [J] — adapter-owned records** — Roadmap records follow their owning adapter; recurring definitions are Activity notes rather than a generic Streams record model. (standards-streams-structure.md)
+- **STREAM-4 [J] — adapter-owned records** — Roadmap records follow their owning adapter; recurring definitions are Activity notes rather than a generic Streams record model. (standard-streams-structure.md)
   - _Evidence scope:_ Roadmap records and any recurring definitions still awaiting reconciliation out of Streams.
   - _Review prompt:_ Does each roadmap record follow its adapter, with recurring obligations routed to the configured Activity collection?
   - _Outcomes:_ conforming; adapter migration required; classification decision required
   - _Conforming guidance:_ Route the record to the correct area and apply its owning adapter’s format; record any unresolved classification decision.
-- **STREAM-5 [J] — legacy migration disposition** — Each retained legacy Stream has a deliberate roadmap, recurring Activity, canonical-knowledge, or prune disposition. (standards-streams-structure.md)
+- **STREAM-5 [J] — legacy migration disposition** — Each retained legacy Stream has a deliberate roadmap, recurring Activity, canonical-knowledge, or prune disposition. (standard-streams-structure.md)
   - _Evidence scope:_ Sampled legacy Streams records and their owner-approved migration decisions.
   - _Review prompt:_ Does each sampled legacy record have an appropriate explicit disposition?
   - _Outcomes:_ conforming; migration required; owner decision required
   - _Conforming guidance:_ Record the owner-approved destination before moving, retaining, or pruning the legacy record; never infer it from the former path.
-- **STREAM-6 [M] — unique roadmap identity** — Every Streams/Roadmap record carries an identifier no other record in the base shares. (standards-streams-structure.md)
+- **STREAM-6 [M] — unique roadmap identity** — Every Streams/Roadmap record carries an identifier no other record in the base shares. (standard-streams-structure.md)
   - _Remediation:_ diagnostic — Keep the canonical holder of the identifier; reallocate the other record from _ISSUES.md with a committed ledger advance and update its references. Never reuse a pruned serial.
-- **STREAM-7 [M] — roadmap record frontmatter** — Every Streams/Roadmap record other than _ISSUES.md and the Roadmap.md index note begins with parseable frontmatter whose id matches its filename identifier, and no ready record is size xl. (standards-streams-structure.md)
+- **STREAM-7 [M] — roadmap record frontmatter** — Every Streams/Roadmap record other than _ISSUES.md and the Roadmap.md index note begins with parseable frontmatter whose id matches its filename identifier, and no ready record is size xl. (standard-streams-structure.md)
   - _Remediation:_ diagnostic — Give the record canonical frontmatter in the roadmap adapter's work-item format with an id matching its filename, split a ready size xl record before Ready, or move a non-record out of Streams/Roadmap/. Full record format remains the roadmap adapter's audit.
-- **STREAM-8 [M] — counts-only issue ledger** — Streams/Roadmap/_ISSUES.md is the roadmap adapter's canonical issue ledger: its header and its last_id or area counters, and nothing else. (standards-streams-structure.md)
+- **STREAM-8 [M] — counts-only issue ledger** — Streams/Roadmap/_ISSUES.md is the roadmap adapter's canonical issue ledger: its header and its last_id or area counters, and nothing else. (standard-streams-structure.md)
   - _Remediation:_ diagnostic — Rewrite the ledger in the roadmap adapter's canonical form from its current high-water marks, never lowering one. Move any migration history or other prose to Git history or a Decision Record.
-- **STREAM-9 [M] — upward-only registry notes** — Project notes and theme pages under Streams/Projects/ and Streams/Themes/, and any legacy Initiative notes, name no work records and carry no dated ## Update section; records link upwards to their Project or theme. (standards-streams-structure.md)
+- **STREAM-9 [M] — upward-only registry notes** — Project notes and theme pages under Streams/Projects/ and Streams/Themes/, and any legacy Initiative notes, name no work records and carry no dated ## Update section; records link upwards to their Project or theme. (standard-streams-structure.md)
   - _Remediation:_ diagnostic — Remove record lists, record links and status narrative from the note, keeping any idea or context in ## Notes. Records carry their own project or theme, and ki views list them.
-- **STREAM-10 [M] — Project close-out assessment** — A Capital's active or paused Project with no open record in any locally registered checkout, or a completed or cancelled Project, carries a ### Close-out assessment in its ## Notes before its lead closes it. (standards-streams-structure.md#project-close-out)
+- **STREAM-10 [M] — Project close-out assessment** — A Capital's active or paused Project with no open record in any locally registered checkout, or a completed or cancelled Project, carries a ### Close-out assessment in its ## Notes before its lead closes it. (standard-streams-structure.md#42-project-close-out)
   - _Remediation:_ diagnostic — Assess what was delivered against the Project's Outcome and whether follow-up or remedial work is needed, capture that work as triage records in the owning repositories, and write the assessment in ## Notes; the lead then decides whether to close the Project.
-- **STREAM-11 [M] — idea-stage Projects** — A Capital's idea-stage Project, planned with a decision as its outcome, is named by no open record, and there is at most one per theme and three across the territory. (standards-streams-structure.md#idea-stage-projects)
+- **STREAM-11 [M] — idea-stage Projects** — A Capital's idea-stage Project, planned with a decision as its outcome, is named by no open record, and there is at most one per theme and three across the territory. (standard-streams-structure.md#43-idea-stage-projects)
   - _Remediation:_ diagnostic — Graduate an idea-stage Project to active with a delivery Outcome before records name it; over a cap, graduate or fold an idea-stage Project, or have its lead lift the cap.
-- **STREAM-12 [M] — known and required record fields** — Every Streams/Roadmap record's frontmatter carries its required size, an open record also its assignee, and only fields the roadmap adapter's work-item format or the knowledge base's universal note fields define. (standards-streams-structure.md#roadmap)
+- **STREAM-12 [M] — known and required record fields** — Every Streams/Roadmap record's frontmatter carries its required size, an open record also its assignee, and only fields the roadmap adapter's work-item format or the knowledge base's universal note fields define. (standard-streams-structure.md#44-roadmap)
   - _Remediation:_ diagnostic — Remove the unknown field, or move its content into the record body, and give a record without size one of s, m, l or xl by judgement, and name the holder of an open record without an assignee. A field the work-item format should carry is a change to the roadmap adapter's standard.
-- **STREAM-13 [M] — roadmap area titles** — Roadmap issuing areas follow the shared ROAD-6 code-to-title check. Existing non-conforming declarations warn during migration. (standards-streams-structure.md#roadmap)
+- **STREAM-13 [M] — roadmap area titles** — Roadmap issuing areas follow the shared ROAD-6 code-to-title check. Existing non-conforming declarations warn during migration. (standard-streams-structure.md#44-roadmap)
   - _Remediation:_ diagnostic — Map each fixed issuing-area code to a short capitalised noun phrase in ki-work-roadmap areas; the owner approves the titles.
-- **STREAM-14 [M] — declared roadmap issuing areas** — Each roadmap record uses the configured repository code and, when present, a declared fixed issuing area, using the local roadmap adapter identity check. Existing mismatches warn during migration. (standards-streams-structure.md#roadmap)
+- **STREAM-14 [M] — declared roadmap issuing areas** — Each roadmap record uses the configured repository code and, when present, a declared fixed issuing area, using the local roadmap adapter identity check. Existing mismatches warn during migration. (standard-streams-structure.md#44-roadmap)
   - _Remediation:_ diagnostic — Confirm the repository issuing namespaces and declare each retained area under ki-work-roadmap areas; preserve issued identifiers and ledger high-water marks.
 
 ## GATE — always-loaded gate
 
-→ [standard](standards-enactment-process.md)
+→ [standard](standard-enactment-process.md)
 
 The canonical-change gate anchor.
 
-- **GATE-1 [M] — always-loaded change-management gate** — A base with governed work anchors its canonical-change routing in root CLAUDE.md or AGENTS.md. (standards-enactment-process.md)
+- **GATE-1 [M] — always-loaded change-management gate** — A base with governed work anchors its canonical-change routing in root CLAUDE.md or AGENTS.md. (standard-enactment-process.md)
   - _Remediation:_ diagnostic — Add the appropriate canonical change-management anchor only after confirming the base carries governed work and the always-loaded instruction surface.
-- **GATE-2 [J] — imperative gate directive** — The anchor is imperative and routes canonical changes through the relevant adapter. (standards-enactment-process.md)
+- **GATE-2 [J] — imperative gate directive** — The anchor is imperative and routes canonical changes through the relevant adapter. (standard-enactment-process.md)
   - _Evidence scope:_ The always-loaded gate anchor and its stated exceptions.
   - _Review prompt:_ Is the anchor a genuine imperative directive with the appropriate exemptions?
   - _Outcomes:_ conforming; directive revision required; exception decision required
@@ -81,13 +81,13 @@ The canonical-change gate anchor.
 
 ## CONFIG — Streams configuration
 
-→ [standard](standards-streams-structure.md)
+→ [standard](standard-streams-structure.md)
 
 The skill-owned ki-repo-kb-streams table.
 
-- **CONFIG-0 [M] — parseable Streams configuration** — The shared configuration file parses before Streams bindings are used. (standards-streams-structure.md)
+- **CONFIG-0 [M] — parseable Streams configuration** — The shared configuration file parses before Streams bindings are used. (standard-streams-structure.md)
   - _Remediation:_ diagnostic — Correct the TOML syntax before relying on Streams configuration.
-- **CONFIG-1 [M] — known Streams configuration** — Only documented Streams container bindings are recognised under ki-repo-kb-streams. (standards-streams-structure.md)
+- **CONFIG-1 [M] — known Streams configuration** — Only documented Streams container bindings are recognised under ki-repo-kb-streams. (standard-streams-structure.md)
   - _Remediation:_ diagnostic — Remove or document unsupported configuration keys after confirming the Streams behaviour they were intended to express.
-- **CONFIG-2 [M] — contained process note binding** — When process_note is declared, it resolves to a regular file beneath the base without symlink traversal. (standards-streams-structure.md)
+- **CONFIG-2 [M] — contained process note binding** — When process_note is declared, it resolves to a regular file beneath the base without symlink traversal. (standard-streams-structure.md)
   - _Remediation:_ diagnostic — Correct or remove the process_note binding; do not follow a link or substitute a local authority note.

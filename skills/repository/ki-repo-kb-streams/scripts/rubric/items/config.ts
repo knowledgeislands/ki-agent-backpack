@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import { auditEvidence, type ConfigRubricContext, type StreamsRubricContext } from '../contexts/streams.ts'
 
-const SOURCE = 'standards-streams-structure.md'
+const SOURCE = 'standard-streams-structure.md'
 
 const CONFIG_1: RubricItem<ConfigRubricContext> = {
   code: 'CONFIG-1',

@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import { auditEvidence, type GateRubricContext, type StreamsRubricContext } from '../contexts/streams.ts'
 
-const SOURCE = 'standards-enactment-process.md'
+const SOURCE = 'standard-enactment-process.md'
 
 const GATE_1: RubricItem<GateRubricContext> = {
   code: 'GATE-1',

@@ -21,7 +21,7 @@ The governing change-management skills own the records and lifecycle inside thos
 
 The companion `ki-repo-kb` skill owns the five-zone model and note CRUD / routing, and **delegates the inside of `Streams/` here**; load it for anything outside this zone. This skill carries the structure and process as fixed knowledge; only a couple of store-level **bindings** come from the host base.
 
-The full detail lives in the references (progressive disclosure): the structure in [the Streams structure standard](references/standards-streams-structure.md), the shared lifecycle boundary in [the Enactment Process standard](references/standards-enactment-process.md), and worked shapes in [the exemplars](references/exemplars.md). The line-by-line checkable items live in [the rubric](references/rubric.md); `ki repo audit --skill ki-repo-kb-streams` runs their mechanical evidence and `ki repo conform --skill ki-repo-kb-streams` applies its safe declared repairs.
+The full detail lives in the references (progressive disclosure): the structure in [the Streams structure standard](references/standard-streams-structure.md), the shared lifecycle boundary in [the Enactment Process standard](references/standard-enactment-process.md), and worked shapes in [the exemplars](references/exemplars.md). The line-by-line checkable items live in [the rubric](references/rubric.md); `ki repo audit --skill ki-repo-kb-streams` runs their mechanical evidence and `ki repo conform --skill ki-repo-kb-streams` applies its safe declared repairs.
 
 ## The Streams zone at a glance
 

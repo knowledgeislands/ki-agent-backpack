@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import { auditEvidence, type StreamRubricContext, type StreamsRubricContext } from '../contexts/streams.ts'
 
-const SOURCE = 'standards-streams-structure.md'
+const SOURCE = 'standard-streams-structure.md'
 
 const STREAM_1: RubricItem<StreamRubricContext> = {
   code: 'STREAM-1',
@@ -141,7 +141,7 @@ const STREAM_10: RubricItem<StreamRubricContext> = {
   title: 'Project close-out assessment',
   description:
     "A Capital's active or paused Project with no open record in any locally registered checkout, or a completed or cancelled Project, carries a ### Close-out assessment in its ## Notes before its lead closes it.",
-  sources: [`${SOURCE}#project-close-out`],
+  sources: [`${SOURCE}#42-project-close-out`],
   mechanical: {
     level: 'WARN',
     remediation: {
@@ -158,7 +158,7 @@ const STREAM_11: RubricItem<StreamRubricContext> = {
   title: 'idea-stage Projects',
   description:
     "A Capital's idea-stage Project, planned with a decision as its outcome, is named by no open record, and there is at most one per theme and three across the territory.",
-  sources: [`${SOURCE}#idea-stage-projects`],
+  sources: [`${SOURCE}#43-idea-stage-projects`],
   mechanical: {
     level: 'WARN',
     remediation: {
@@ -175,7 +175,7 @@ const STREAM_12: RubricItem<StreamRubricContext> = {
   title: 'known and required record fields',
   description:
     "Every Streams/Roadmap record's frontmatter carries its required size, an open record also its assignee, and only fields the roadmap adapter's work-item format or the knowledge base's universal note fields define.",
-  sources: [`${SOURCE}#roadmap`],
+  sources: [`${SOURCE}#44-roadmap`],
   mechanical: {
     level: 'WARN',
     remediation: {
@@ -193,7 +193,7 @@ const STREAM_13: RubricItem<StreamRubricContext> = {
   title: 'roadmap area titles',
   description:
     'Roadmap issuing areas follow the shared ROAD-6 code-to-title check. Existing non-conforming declarations warn during migration.',
-  sources: [`${SOURCE}#roadmap`],
+  sources: [`${SOURCE}#44-roadmap`],
   mechanical: {
     level: 'WARN',
     remediation: {
@@ -210,7 +210,7 @@ const STREAM_14: RubricItem<StreamRubricContext> = {
   title: 'declared roadmap issuing areas',
   description:
     'Each roadmap record uses the configured repository code and, when present, a declared fixed issuing area, using the local roadmap adapter identity check. Existing mismatches warn during migration.',
-  sources: [`${SOURCE}#roadmap`],
+  sources: [`${SOURCE}#44-roadmap`],
   mechanical: {
     level: 'WARN',
     remediation: {
