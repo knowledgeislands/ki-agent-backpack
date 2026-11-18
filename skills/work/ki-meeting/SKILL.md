@@ -41,7 +41,7 @@ Use a meeting when sessions that cannot reach each other through their own agent
 - `ki-authoring` owns the format of the change documents that hold a meeting's decisions.
 - The store's own contract owns its `meetings/` folder, who keeps it, its roster and its commit gate.
 
-A repository that cannot work without this skill, such as the Cairn store, carries a committed copy of it, recording the harness commit it came from; that copy is the version that counts there.
+A repository that cannot work without this skill, such as the Cairn store, carries a committed copy of it, recording the backpack commit it came from; that copy is the version that counts there.
 
 ## Invocation
 
