@@ -30,9 +30,9 @@ The floor follows one specification, and the house's own documentation standards
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
 | WCAG — [WCAG 2.2](https://www.w3.org/TR/WCAG22/) | The floor: 1.4.1 Use of Color, 1.4.3 and 1.4.11 contrast, 2.1.1 Keyboard, 2.4.7 Focus Visible | 2026-10-11 |
-| [The Guides standard](../../../authoring/ki-guides/references/standards-guides.md) | The design guide's home and form | 2026-10-11 |
-| [The Specifications standard](../../../authoring/ki-specs/references/standards-specs.md) | When a design rule becomes a Specification | 2026-10-11 |
-| [The Decision Records standard](../../../authoring/ki-decision-records/references/standards-decision-records.md) | Prefix choice and the living-record rule for design decisions | 2026-10-11 |
+| [The Guides standard](../../../authoring/ki-guides/references/standard-guides.md) | The design guide's home and form | 2026-10-11 |
+| [The Specifications standard](../../../authoring/ki-specs/references/standard-specs.md) | When a design rule becomes a Specification | 2026-10-11 |
+| [The Decision Records standard](../../../authoring/ki-decision-records/references/standard-decision-records.md) | Prefix choice and the living-record rule for design decisions | 2026-10-11 |
 | [The design-loop standard](../../../keystone/ki-work/references/standard-work-design.md) | The boundary with shape-level design, and temporary artefacts | 2026-10-11 |
 | [The design format](../../../keystone/ki-authoring/references/standard-formats-design.md) | The design document a design book belongs to, and how its boards and images are shown | 2026-11-17 |
 
