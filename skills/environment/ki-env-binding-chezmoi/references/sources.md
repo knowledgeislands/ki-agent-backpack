@@ -59,6 +59,8 @@ The house's own skills and source, then chezmoi's documentation.
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Environment guild: REFRESH names the backpack as where to run it. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Environment guild's review, from the Cairn summit's change 10, brought the files into the formats: [the chezmoi MCP rendering standard](standard-chezmoi-mcp-rendering.md), formerly `standards-chezmoi-mcp-rendering.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format. The rubric's source names follow. No rule changed and no outside source was refreshed.
 
 **REFRESH, 2026-10-19** — Quarterly date-bump. Re-checked ki-env-binding (canonical · on-change, contract stable since 2026-08-12), ki-repo-dotfiles-chezmoi (external-spec · quarterly), and the chezmoi docs (chezmoi 2.71 and 2.72 released; no changes to `.chezmoitemplates` partial semantics, `.chezmoidata` wiring, or `chezmoi apply` behavior). No render-contract drift found.
