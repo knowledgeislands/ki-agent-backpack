@@ -1,20 +1,92 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T04:35:57Z
+ki-status: in force
+---
+
 # Agentic radar standard
 
-This standard defines the portable evidence and lifecycle contract for reviewing agentic protocols, interface formats, organisations, architectural patterns, research claims, and vendor terminology. It keeps observation, maturity, implementation, interoperability, and Knowledge Islands stance separate so visibility does not silently become adoption.
+## Contents
 
-## Authority boundary
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 Authority boundary](#41-authority-boundary)
+  - [4.2 Snapshot schema](#42-snapshot-schema)
+    - [4.2.1 The root](#421-the-root)
+    - [4.2.2 Subjects](#422-subjects)
+  - [4.3 Evidence](#43-evidence)
+  - [4.4 Evidence and movement review](#44-evidence-and-movement-review)
+  - [4.5 Structural distinctions](#45-structural-distinctions)
+  - [4.6 Dates and refresh](#46-dates-and-refresh)
+
+## 1. Introduction
+
+This standard defines the portable evidence and lifecycle contract for reviewing agentic protocols, interface formats, organisations, architectural patterns, research claims, and vendor terminology. It keeps observation, maturity, implementation, interoperability, and Knowledge Islands stance separate so visibility does not silently become adoption. The sources behind it are in [the sources file](sources.md).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+The agentic radar's committed snapshot and its review.
+
+### 2.1 In scope
+
+- The `radar.toml` snapshot's schema: subjects and evidence.
+- How evidence supports maturity, implementation, interoperability, stance and movement.
+- The structural distinctions the radar keeps, and dates and refresh.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- Bounded discovery: `ki-acquire pulse`; capability-specific policy: each capability's REFRESH mode.
+- What a subject is: its card in `ki-agentic-systems`.
+- Durable choices: Decision Records; downstream work: `ki-work next`.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Snapshot** | The committed `radar.toml`, the radar's reviewed local state. **Standard:** this one, [4.1](#41-authority-boundary) |
+| **Subject** | A protocol, interface format, organisation, incubation, architecture pattern, research claim or vendor term under review. **Standard:** this one, [4.2.2](#422-subjects) |
+| **KI stance** | A subject's house ring: `adopt`, `trial`, `assess` or `hold`. **Standard:** this one, [4.2.2](#422-subjects) |
+| **Evidence record** | A reviewed source with its evidence class and source role. **Standard:** this one, [4.3](#43-evidence) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 Authority boundary
 
 The committed `radar.toml` snapshot is reviewed local state. External sources support individual claims but do not override local judgment. `ki-acquire pulse` owns bounded discovery, capability REFRESH modes own capability-specific policy, Decision Records own durable choices, and `ki-work next` owns downstream work.
 
 AUDIT is read-only. CONFORM may regenerate only the derived rubric publication. Every authored radar correction is diagnostic or guarded because changing a record can alter classification, maturity, stance, movement, or ownership.
 
-## Snapshot schema
+[Back to contents](#contents)
+
+### 4.2 Snapshot schema
+
+The root, then the subject records.
+
+[Back to contents](#contents)
+
+#### 4.2.1 The root
 
 The root contains `schema = 1`, one `reviewed_on` date, a `[subjects]` map, and an `[evidence]` map. Dates are real, non-future `YYYY-MM-DD` calendar dates. Stable identities are lower-case hyphenated strings and each record repeats its map identity in `id`.
 
 An intentionally empty snapshot is valid while evidence is being assembled. Empty state communicates that no classification has yet been accepted; it must not be populated from memory or inference.
 
-### Subjects
+[Back to contents](#contents)
+
+#### 4.2.2 Subjects
 
 Every subject records `id`, `display_name`, `subject_kind`, `stewardship`, `specification_maturity`, `implementation_state`, `interoperability_state`, `ki_stance`, `movement`, `owner`, `uncertainty`, `return_trigger`, `reviewed_on`, `evidence`, and `counter_evidence`, and may record `card`.
 
@@ -36,7 +108,9 @@ An `architecture-pattern`, `research-claim`, or `vendor-term` uses `not-applicab
 
 An inward movement cannot accompany Hold. An outward movement cannot accompany Adopt. Adopt or Trial requires local-evaluation evidence for a concrete Knowledge Islands use case. Mechanical consistency never decides whether movement is wise.
 
-## Evidence
+[Back to contents](#contents)
+
+### 4.3 Evidence
 
 Every evidence record carries `id`, `title`, `url`, `evidence_class`, `source_role`, `reviewed_on`, and `notes`.
 
@@ -59,7 +133,9 @@ A vendor claim cannot be primary evidence. Discovery evidence cannot directly su
 
 Every evidence and counter-evidence identity resolves exactly once. Lists contain no duplicates, and one record cannot appear in both lists for the same subject.
 
-## Evidence and movement review
+[Back to contents](#contents)
+
+### 4.4 Evidence and movement review
 
 Consequential claims require evidence applicable to the precise subject and claim:
 
@@ -72,7 +148,9 @@ Consequential claims require evidence applicable to the precise subject and clai
 
 Provider claims alone cannot justify inward movement. Trial or Adopt requires local evidence. Material uncertainty and counter-evidence remain visible even when stance moves inward.
 
-## Structural distinctions
+[Back to contents](#contents)
+
+### 4.5 Structural distinctions
 
 The radar keeps recurring structures distinct without turning them into formal standards:
 
@@ -84,8 +162,12 @@ The radar keeps recurring structures distinct without turning them into formal s
 
 One system may contain several structures. Classification names the aspect being evaluated rather than collapsing them under the word “graph”.
 
-## Dates and refresh
+[Back to contents](#contents)
+
+### 4.6 Dates and refresh
 
 The snapshot and every record carry a review date. Reviews older than 9 days warn: the seven-day cadence has elapsed plus two days of operational grace, without invalidating historical evidence. REFRESH runs weekly or when a recorded return trigger fires, including a new specification version, governance transfer, independent implementation, conformance result, interoperability demonstration, material operational adoption, deprecation, or locally relevant use case.
 
 REFRESH is bounded to current subjects and explicit return triggers. It creates no standing inbox and routes material consequences through the owning process.
+
+[Back to contents](#contents)

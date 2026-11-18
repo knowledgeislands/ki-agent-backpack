@@ -17,7 +17,7 @@ argument-hint: "audit | conform | educate | help | refresh"
 
 This governance skill maintains a portable, reviewable snapshot of agentic subjects without turning observation into adoption.
 
-Read [the agentic-radar standard](references/standards-agentic-radar.md) before assessing or changing the snapshot. [The generated rubric](references/rubric.md) publishes its criteria, [the radar snapshot](references/radar.toml) holds structured state, and [the tracked sources](references/sources.md) govern refresh inputs.
+Read [the agentic-radar standard](references/standard-agentic-radar.md) before assessing or changing the snapshot. [The generated rubric](references/rubric.md) publishes its criteria, [the radar snapshot](references/radar.toml) holds structured state, and [the tracked sources](references/sources.md) govern refresh inputs.
 
 What each subject is belongs to `ki-agentic-systems`, whose card the subject names in its `card` field, such as the [Model Context Protocol](../../keystone/ki-agentic-systems/knowledge/specs/mcp/spec.mcp.md); the radar never defines it again. The radar does not choose an agent architecture, install integrations, mutate runtime configuration, or treat a protocol version, standards-body incubation, package count, or vendor claim as interoperability proof. `ki-model-radar` owns models and routes, `ki-acquire pulse` owns public-signal discovery, capability REFRESH modes own capability-specific policy, and `ki-work next` owns downstream work capture.
 
@@ -43,7 +43,7 @@ Explain the subject kinds, evidence classes, maturity and implementation dimensi
 
 REFRESH applies only to this skill's canonical files in `ki-agent-backpack`. From an installed copy, stop and redirect to the harness.
 
-Read [the tracked sources](references/sources.md), perform a bounded current-evidence review, and reconcile proposed changes against [the standard](references/standards-agentic-radar.md). Preserve uncertainty and counter-evidence. Provider claims alone cannot move a subject inward; Adopt or Trial requires a concrete Knowledge Islands use case and local evidence.
+Read [the tracked sources](references/sources.md), perform a bounded current-evidence review, and reconcile proposed changes against [the standard](references/standard-agentic-radar.md). Preserve uncertainty and counter-evidence. Provider claims alone cannot move a subject inward; Adopt or Trial requires a concrete Knowledge Islands use case and local evidence.
 
 Route material consequences to the owning capability REFRESH mode, a Decision Record, or `ki-work next`. Never mutate a consumer directly from REFRESH.
 

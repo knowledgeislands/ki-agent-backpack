@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { AgenticRadarRubricContext, RadarOutcomeContext } from '../contexts/radar.ts'
 
-const SOURCE = 'standards-agentic-radar.md#snapshot-schema'
+const SOURCE = 'standard-agentic-radar.md#42-snapshot-schema'
 
 const SCHEMA_1: RubricItem<RadarOutcomeContext> = {
   code: 'SCHEMA-1',

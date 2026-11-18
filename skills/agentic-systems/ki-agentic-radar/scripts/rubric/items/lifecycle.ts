@@ -1,14 +1,14 @@
 import { judgment, type RubricFamily, type RubricItem } from '../../shared/rubric.ts'
 import type { AgenticRadarRubricContext, RadarOutcomeContext } from '../contexts/radar.ts'
 
-const SOURCE = 'standards-agentic-radar.md#dates-and-refresh'
+const SOURCE = 'standard-agentic-radar.md#46-dates-and-refresh'
 
 const LIFECYCLE_1: RubricItem<RadarOutcomeContext> = {
   code: 'LIFECYCLE-1',
   title: 'dates, stances, and movements are coherent',
   description:
     'Review dates are real non-future ISO calendar dates and warn after 9 days; stance and movement use closed vocabularies; inward movement cannot accompany Hold, outward movement cannot accompany Adopt, and Trial or Adopt requires local-evaluation evidence.',
-  sources: [SOURCE, 'standards-agentic-radar.md#subjects'],
+  sources: [SOURCE, 'standard-agentic-radar.md#422-subjects'],
   mechanical: {
     level: 'FAIL',
     overrideLevels: ['WARN'],

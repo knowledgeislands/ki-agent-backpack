@@ -1,7 +1,7 @@
 import { judgment, type RubricFamily, type RubricItem } from '../../shared/rubric.ts'
 import type { AgenticRadarRubricContext, RadarOutcomeContext } from '../contexts/radar.ts'
 
-const SOURCE = 'standards-agentic-radar.md#evidence'
+const SOURCE = 'standard-agentic-radar.md#43-evidence'
 
 const EVIDENCE_1: RubricItem<RadarOutcomeContext> = {
   code: 'EVIDENCE-1',
@@ -25,7 +25,7 @@ const EVIDENCE_2: RubricItem<RadarOutcomeContext> = {
   title: 'evidence is applicable and proportionate',
   description:
     'Consequential claims use evidence applicable to the precise subject and claim, distinguish steward from independent evidence, retain uncertainty and counter-evidence, and do not infer interoperability or adoption from package count or vendor assertion.',
-  sources: ['standards-agentic-radar.md#evidence-and-movement-review'],
+  sources: ['standard-agentic-radar.md#44-evidence-and-movement-review'],
   judgment: judgment(
     'Does each consequential classification or movement have sufficiently applicable and independent evidence, with uncertainty and material counter-evidence preserved?'
   )
