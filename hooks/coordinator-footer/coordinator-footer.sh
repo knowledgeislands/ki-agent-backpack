@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Stop: hold a coordinating reply back only when its footer has lost its structure,
 # and warn on anything else unusual. A Summary or a Status, a Bootstrap or a Stop,
-# a reply that already opens a banner, and a reply to an owner's mark, state word
-# or Position phrase must close with a banner: a ### state heading and the thread
+# a reply that already opens a banner, and every other reply in a coordinating session,
+# one in a checkout declaring [skills.ki-coordination] that has already closed a reply
+# with its thread line, must close with a banner (HOOK-ENFORCE): a ### state heading and the thread
 # line, last: <role glyph> 🔑 <work-id>, <role glyph> <package>@<role> for a seat
 # without the package's keys (SEAT-LINE, SEAT-AT), or 🧵 <work-id> for a session with
 # no role yet, either seat form written <Name> (<form>) where the seat's actor is named
@@ -19,9 +20,10 @@
 # bracketed word alone (GLYPH-FALLBACK).
 # In every session, coordinating or not, a reply that asks the owner to decide, a
 # fenced text block holding <TAG> <letter> lines, is held back unless the block opens
-# with a `1 · ` group heading and every such line reads <TAG> <letter> (high|medium|low),
-# with an optional `: <gloss>` (REPLY-CHECK). Otherwise quiet for conversational
-# replies; never blocks twice in a row, only warning then; fails open on unusable input.
+# with a `1 · ` group heading and every such line reads <TAG> <letter> (high|medium|low)
+# (REPLY-CHECK) followed by `: <gloss>`, each tag on one line only, the recommended
+# option's (HOOK-ENFORCE). Otherwise quiet for conversational replies; never blocks
+# twice in a row, only warning then; fails open on unusable input.
 set -u
 
 command -v jq >/dev/null 2>&1 || exit 0
@@ -59,7 +61,8 @@ fi
 # The reply block, in every session: read only where the reply has a fenced text block.
 # A top-level ```text or ~~~text block holding a <TAG> <letter> line, the tag two or more
 # capitals, digits and hyphens, the letter followed by the line's end, a space or a
-# colon, is a decision request; anything else in a fence is passed over.
+# colon, is a decision request; anything else in a fence is passed over. Each line needs
+# its confidence and its gloss, and a tag given twice in one block offers alternatives.
 blockfix=
 case $reply in
   *'```text'* | *'~~~text'*)
@@ -71,6 +74,11 @@ case $reply in
         return length(t) > 1 && t ~ /[A-Z]/
       }
       function closed() { if (text && tags && first !~ /^1 · ./) unheaded = 1 }
+      function listed(list, n,   i, out) {
+        out = list[1]
+        for (i = 2; i <= n; i++) out = out ", " list[i]
+        return out
+      }
       {
         line = $0
         sub(/\r$/, "", line)
@@ -79,7 +87,7 @@ case $reply in
             fence = substr(line, RSTART, RLENGTH)
             sub(/^ */, "", fence)
             mark = substr(fence, 1, 1); width = length(fence)
-            open = 1; text = trim(substr(line, RSTART + RLENGTH)) == "text"; first = ""; tags = 0
+            open = 1; text = trim(substr(line, RSTART + RLENGTH)) == "text"; first = ""; tags = 0; split("", seen)
           }
           next
         }
@@ -94,18 +102,23 @@ case $reply in
         if (first == "") first = s
         if (!tagline(s)) next
         tags = 1
-        if (s !~ /^[^ ]+ [a-z] \((high|medium|low)\)(: .+)?$/ && bad < 5) list[++bad] = substr(s, 1, index(s, " ") + 1)
+        tag = substr(s, 1, index(s, " ") - 1)
+        # One line per tag: a second line for the same tag offers an alternative (HOOK-ENFORCE).
+        if (tag in seen) { if (!(tag in twice) && dup < 5) { twice[tag] = 1; dups[++dup] = tag } }
+        else seen[tag] = 1
+        if (s !~ /^[^ ]+ [a-z] \((high|medium|low)\)/) { if (bad < 5) list[++bad] = substr(s, 1, index(s, " ") + 1) }
+        else if (s !~ /^[^ ]+ [a-z] \((high|medium|low)\): [^ ]/ && bare < 5) glossless[++bare] = substr(s, 1, index(s, " ") + 1)
       }
       END {
         if (open) closed()
         n = 0
         if (unheaded) part[++n] = "does not open with its first group heading, 1 · <what the group is>"
-        if (bad) {
-          out = list[1]
-          for (i = 2; i <= bad; i++) out = out ", " list[i]
-          part[++n] = "has " (bad > 1 ? "lines" : "a line") " without (high), (medium) or (low) after the letter: " out
-        }
-        if (n) print part[1] (n > 1 ? " and " part[2] : "")
+        if (bad) part[++n] = "has " (bad > 1 ? "lines" : "a line") " without (high), (medium) or (low) after the letter: " listed(list, bad)
+        if (bare) part[++n] = "has " (bare > 1 ? "lines" : "a line") " without : <gloss> after the confidence: " listed(glossless, bare)
+        if (dup) part[++n] = "gives " (dup > 1 ? "tags" : "a tag") " more than once, offering alternatives: " listed(dups, dup)
+        out = ""
+        for (i = 1; i <= n; i++) out = out (i > 1 ? (i == n ? " and " : ", ") : "") part[i]
+        if (n) print out
       }') || blockfix=
     ;;
 esac
@@ -139,23 +152,15 @@ footer() {
     END { if (other) print "banner" }')
 
   if [ -z "$form" ]; then
-    # No footer form of its own: only an owner's mark, state word or Position phrase, in a session
-    # that has already closed a reply with a thread line in either form, asks for
-    # the banner.
+    # No footer form of its own: every reply in a coordinating session, a checkout declaring
+    # [skills.ki-coordination] whose session has already closed a reply with a thread line in
+    # either form, asks for the banner, whatever the owner's last prompt (HOOK-ENFORCE).
     [ -n "$transcript" ] && [ -d "$cwd" ] || return 0
     capable() { [ -f "$1/.ki.toml" ] && grep -Eq '^\[skills\.ki-coordination\]' "$1/.ki.toml" 2>/dev/null; }
     if ! capable "$cwd"; then
       top=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null) || return 0
       capable "$top" || return 0
     fi
-    prompt=$(owner_prompt) || return 0
-    prompt=${prompt% no art}
-    case "$prompt" in
-      mark | 'mark only' | 'mark, status only' | 'mark status only' | summary | 'summary since '* | recap | 'recap and mark' | 'full summary' | 'summary in full' | status | \
-      'where are we' | 'where does it stand' | "what's the state" | \
-        pause | 'done for now' | snooze | drain | hold | resume | finish | send | receive | 'with me' | ack | 'got it' | seen) ;;
-      *) return 0 ;;
-    esac
     recent | LC_ALL=C grep -F '"type":"assistant"' | LC_ALL=C grep -Eq '(\\n|")([A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \()?((🧵|[^ -~"\\]+ 🔑) [A-Za-z0-9][A-Za-z0-9._+-]*|[^ -~"\\]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)*)\)?(\\n|")' || return 0
     form=banner
   fi
@@ -256,7 +261,7 @@ footer() {
 }
 footer
 
-shape="under ki-coordination's owner report, a reply block opens with a 1 · <what the group is> heading and each line reads <TAG> <letter> (high), (medium) or (low), an optional : <gloss> after it"
+shape="under ki-coordination's owner report, a reply block opens with a 1 · <what the group is> heading and gives each tag one line, its recommended option only, reading <TAG> <letter> (high), (medium) or (low): <gloss>"
 blockwarn=
 # Already continuing because of a Stop hook: warn, never block again.
 if [ "$active" = true ]; then

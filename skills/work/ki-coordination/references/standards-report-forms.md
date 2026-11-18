@@ -37,7 +37,7 @@ A reply is built from up to three **blocks**, always in this order, each left ou
 - **Body block**, B1 to B6: what the reply says, what happened and what the owner needs to decide. B1, the Answer, holds whatever the reply says that no other part covers; the parts after it are the report's own.
 - **Footer block**, F1 to F9: where the work stands and whose move it is, read from the bottom up. Its **banner** is F2 to F9.
 
-Each block is a run of coded **parts**. Each reply has one **reply structure**, saying what the reply is, such as Summary, Status or Stop, and each structure has one **layout**, its depth: **Full**, **Medium**, **Short** or **Minimal**, deepest to shallowest. The structure decides which parts appear and how each part is shaped; Minimal has no footer.
+Each block is a run of coded **parts**. Each reply has one **reply structure**, saying what the reply is, such as Summary, Status or Stop, and each structure has one **layout**, its depth: **Full**, **Medium**, **Short** or **Minimal**, deepest to shallowest. The structure decides which parts appear and how each part is shaped; Minimal has no heading block and closes with the short banner, as Short does.
 
 **Reply id.** Every reply to the owner, in every layout, opens with its [reply id](standards-reporting.md#reply-forms), `**Reply HH:MM**`, the UTC time from `date -u +%H:%M` as the reply is written, then a blank line and the first block: in Full and Medium the heading block, so the `#` heading follows the id with no rule between them; in Short the Answer, or the banner where there is none; in Minimal the Answer or the update. The id stands outside the blocks and their parts, and the form line and banner keep their local times. A run report, saved into the package, carries none.
 
@@ -92,20 +92,20 @@ Which parts each reply structure carries, one column per structure with its layo
 | **B6** · Reply block | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ |
 | **Footer block** |  |  |  |  |  |  |  |  |
 | **F1** · Art | ○ | ○ |  |  |  |  |  |  |
-| **F2** · Banner heading | ● | ● | ● | ● | ● | ● |  |  |
-| **F3** · Counts line | ● | ● | ● | ● | ○ | ● |  |  |
+| **F2** · Banner heading | ● | ● | ● | ● | ● | ● | ● | ● |
+| **F3** · Counts line | ● | ● | ● | ● | ○ | ● | ● | ● |
 | **F4** · Roadmap line | ● | ● |  |  |  |  |  |  |
 | **F5** · Package line | ● | ● |  |  |  |  |  |  |
-| **F6** · Item list | ● | ● | ● | ● | ● | ● |  |  |
-| **F7** · Heading-for line | ○ | ○ | ○ |  | ○ | ○ |  |  |
-| **F8** · Listening line | ○ | ○ | ○ |  | ○ | ○ |  |  |
-| **F9** · Thread line | ● | ● | ● | ● | ● | ● |  |  |
+| **F6** · Item list | ● | ● | ● | ● | ● | ● | ● | ● |
+| **F7** · Heading-for line | ○ | ○ | ○ |  | ○ | ○ | ○ | ○ |
+| **F8** · Listening line | ○ | ○ | ○ |  | ○ | ○ | ○ | ○ |
+| **F9** · Thread line | ● | ● | ● | ● | ● | ● | ● | ● |
 
 ● required · ○ optional, on its condition under [Part content](#part-content) · empty: not used.
 
-F3 and F4 show always or never by reply structure, never by judgement of whether they apply; F3 leaves Stop only when the work is Finished. F8 shows exactly while the session is in a meeting, whatever the structure.
+F3 and F4 show always or never by reply structure, never by judgement of whether they apply; F3 leaves Stop only when the work is Finished. F8 shows exactly while the session is in a meeting, whatever the structure. Every structure closes with the banner and its thread line, the Update and the Answer included, as Kris set under HOOK-ENFORCE on 18 November 2026: "Yeah, we need the hook enforcing".
 
-Sources: REPLY-FORMAT and LISTEN-LINE in [the decision register](sources.md#decision-register).
+Sources: REPLY-FORMAT, LISTEN-LINE and HOOK-ENFORCE in [the decision register](sources.md#decision-register).
 
 ### Part content
 
@@ -125,7 +125,7 @@ Each part: what it carries, when it appears and how the structure, the state and
 - **B3 Status:** the full board of live items. In a Summary or Status it is `## Status`, the [status table](#the-summary). In every Medium structure it is `## In Progress`: what is running and what is waiting, each with its owner or dependency, or `Nothing is running`, then `Outstanding - no action requested now`. On hold, Left over comes here: another session's uncommitted file, or `Nothing`.
 - **B4 Findings:** `## Findings`, only while a finding the owner asked for is open, under the owner report's **Findings**.
 - **B5 Queries:** `## Queries`, each decision the owner needs to make, in full, under the [owner report](standards-reporting.md#owner-report), at most ten, the most critical first, then one line saying how many more are open and where they are held, under the [query cap](standards-queries.md#query-cap), a proposed work transfer last, or `None.` in a Summary or Status and `No outstanding queries` in a Medium structure. On hold, the parked queries come here instead, one line each, `<TAG> - <one line>`.
-- **B6 Reply block:** the tags, letters and confidences, ready to copy: one fenced `text` block after the last query, holding exactly the text to send back, for the owner to copy, change and send. The queries in B5, the same ten at most and no others, are grouped by priority under numbered headings, the most pressing first, each `<n> · <what the group is>`, adding `, can run while you're away` where the group's work can go ahead while the owner is away, with a blank line between groups; under each heading, one line per query, its tag, the recommended option's letter and that option's confidence in brackets, as `<TAG> a (high)`, an optional gloss after a colon, under the owner report's **Reply block**. It appears whenever the reply asks the owner to decide anything, closing the body before any footer: whenever B5 carries at least one query in full, and after the Answer of a Position, Update or Answer that asks for a decision.
+- **B6 Reply block:** the tags, letters and confidences, ready to copy: one fenced `text` block after the last query, holding exactly the text to send back, for the owner to copy, change and send. The queries in B5, the same ten at most and no others, are grouped by priority under numbered headings, the most pressing first, each `<n> · <what the group is>`, adding `, can run while you're away` where the group's work can go ahead while the owner is away, with a blank line between groups; under each heading, one line per query, its tag, the recommended option's letter and that option's confidence in brackets, then a short gloss after a colon, as `<TAG> a (high): what it does`, each tag on one line only and never with an alternative's letter, under the owner report's **Reply block**. It appears whenever the reply asks the owner to decide anything, closing the body before any footer: whenever B5 carries at least one query in full, and after the Answer of a Position, Update or Answer that asks for a decision.
 
 **Footer block.**
 
@@ -139,7 +139,7 @@ Each part: what it carries, when it appears and how the structure, the state and
 - **F8 Listening line:** `👂 in <meeting>` while the session is in a meeting, naming each meeting it is in by its entry file's `meeting` field, two or more joined by `, `, as in `👂 in cairn.wayfinder.designs`, and left off when it is in none. A session is in a meeting while it is a participant of an open meeting with a sitting under way, `status: open` in the meeting's entry file under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). Listening means only this, under LISTEN-LINE; the [inbox watcher](standards-listening.md#inbox-watch) has no line.
 - **F9 Thread line:** `<role glyph> 🔑 <work-id>`, `<role glyph> <package>@<role>` for a seat without the keys, each written `<Name> (<that form>)` where the seat's actor is named, as in `Kitteth (🪨 🔑 cairn.summit)`, or `🧵 <work-id>`, always last, under **Thread line** in [the core](standards-coordination.md#banner).
 
-Sources: REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, LISTEN-LINE, ITEM-GLYPHS, GLYPH-TABLE, GLYPH-FALLBACK, NAME-FIRST and HEADING-FIX in [the decision register](sources.md#decision-register).
+Sources: REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, LISTEN-LINE, ITEM-GLYPHS, GLYPH-TABLE, GLYPH-FALLBACK, NAME-FIRST, HEADING-FIX and HOOK-ENFORCE in [the decision register](sources.md#decision-register).
 
 ### Templates
 
@@ -188,10 +188,10 @@ b) <the alternative>
 
 ```text                                                                       B6
 1 · <what the most pressing group is>, can run while you're away
-<TAG> a (<high, medium or low>)
+<TAG> a (<high, medium or low>): <gloss>
 
 2 · <what the next group is>
-<TAG> a (<high, medium or low>)
+<TAG> a (<high, medium or low>): <gloss>
 ```
 
 <Knowledge Islands art; scroll: KNOWLEDGE ISLANDS>                            F1
@@ -345,9 +345,9 @@ No outstanding queries
 <thread line>
 ```
 
-**Update** and **Answer**, Minimal: the Answer alone, with no heading block and no footer. A timed update or wake line is one or two timestamped lines under the [cadence](standards-coordination.md#coordinator-responsiveness).
+**Update** and **Answer**, Minimal: the Answer, with no heading block, then the banner as the Position carries it, without F1, F4 and F5, as Kris set under HOOK-ENFORCE on 18 November 2026, so every coordinating reply closes with the banner and its thread line. A timed update or wake line is one or two timestamped lines under the [cadence](standards-coordination.md#coordinator-responsiveness), above the banner.
 
-Sources: REPLY-FORMAT and REPORT-FORMS-TIDY in [the decision register](sources.md#decision-register).
+Sources: REPLY-FORMAT, REPORT-FORMS-TIDY and HOOK-ENFORCE in [the decision register](sources.md#decision-register).
 
 ### Verbs
 

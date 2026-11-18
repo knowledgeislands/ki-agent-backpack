@@ -727,7 +727,10 @@ test('the reply block groups its queries by priority under numbered headings, ea
     'Window design',
     'Outside Cairn'
   ])
-  for (const line of groups.flatMap(({ lines }) => lines)) expect(line).toMatch(/ a \((?:high|medium|low)\)$/)
+  // Under HOOK-ENFORCE each line carries its gloss, and each tag stands once, its recommended option only.
+  const lines = groups.flatMap(({ lines }) => lines)
+  for (const line of lines) expect(line).toMatch(/^\S+ a \((?:high|medium|low)\): \S/)
+  expect(new Set(lines.map((line) => line.split(' ')[0])).size).toBe(lines.length)
   expect(replyAnswers(example ?? '')).toEqual({
     'WINDOW-BUILD': 'a',
     'ROADMAP-ATL003': 'a',
@@ -737,7 +740,7 @@ test('the reply block groups its queries by priority under numbered headings, ea
 
   const template = /```text +B6\n([\s\S]*?)\n```\n/.exec(readReference('standards-report-forms.md'))?.[1]
   expect(template).toContain("1 · <what the most pressing group is>, can run while you're away")
-  expect(template).toContain('<TAG> a (<high, medium or low>)')
+  expect(template).toContain('<TAG> a (<high, medium or low>): <gloss>')
   expect(template?.split('\n\n')).toHaveLength(2)
 })
 
@@ -792,13 +795,20 @@ test('every reply opens with its reply id, and every reply asking a decision end
     )
 })
 
-test("a reply's structure, which its trigger chooses, sets whether it ends with the banner", () => {
+// Kris, about 01:15 GMT on 18 November 2026, under HOOK-ENFORCE a: "Yeah, we need the hook enforcing". Every
+// coordinating reply closes with the banner and its thread line; the trigger sets only its depth.
+test("every coordinating reply ends with the banner, its structure, which its trigger chooses, setting the banner's depth", () => {
   expect(standard).toContain('**When it appears.**')
   expect(standard).toContain(
-    'every Summary, Status, Bootstrap, run report, Stop and Position closes with it, and an Update or Answer, the Minimal layout, has none'
+    "every reply closes with it: every Summary, Status, Bootstrap, run report, Stop and Position, and an Update or Answer, the Minimal layout, with the Position's short banner"
   )
   expect(standard).toContain('never a judgement of whether a reply answers where the work stands')
-  expect(outputStyle).toContain('The trigger, not judgement, sets whether a reply carries the banner')
+  expect(standard).not.toContain('an Update or Answer, the Minimal layout, has none')
+  expect(standard).not.toContain('Minimal has no footer')
+  expect(outputStyle).toContain(
+    'Every reply closes with the banner, as Kris set under HOOK-ENFORCE on 18 November 2026, and the trigger, not judgement, sets its depth'
+  )
+  expect(outputStyle).not.toContain('an Update or Answer has none')
   for (const text of [standard, outputStyle])
     expect(text).not.toContain(
       "moves the mark, changes the work's state or answers where the work stands ends with the banner"
@@ -865,7 +875,7 @@ test('the core retains all five hard rules and lists every purpose file', () => 
     '3) while work lies with a worker, give a timed one-to-two-line update when you launch work and when a run finishes, keeping one background check armed that wakes you only when a run finishes, with no timed bound, and no heartbeat otherwise'
   )
   expect(line).toContain(
-    '4) give every reply the structure and layout its trigger sets in the ki-coordination reply format, a Summary or Status in full, a Bootstrap or Stop in the owner-report shape, heading block to glyph banner, a Position as the banner, an update or plain answer with no footer'
+    '4) give every reply the structure and layout its trigger sets in the ki-coordination reply format, a Summary or Status in full, a Bootstrap or Stop in the owner-report shape, heading block to glyph banner, a Position as the banner, an update or plain answer closing with the short banner too, so every reply closes with its thread line'
   )
   expect(line).toContain('with a reply block whenever there is a query')
   expect(line).toContain(

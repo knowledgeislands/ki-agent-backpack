@@ -160,20 +160,20 @@ The label is written `Outstanding - no action requested now` and the query headi
   - **Cap:** a reply or report puts at most ten queries to the owner, the most critical first, then one line saying how many more are open and where they are held, as in `A further 7 are held in the package's change documents.`, under the [query cap](standards-queries.md#query-cap). The reply block carries the same ten and no others.
   - **Reply block:** every reply or report that asks the owner to decide anything closes with the reply block, ready for the owner to copy, change and send, whatever its form: a coordinator's reply, a run report and a conversational session's report after their queries, and a conversational reply after its prose. It is one fenced `text` block holding exactly the text to send back, with nothing to strip out. A reply that asks nothing carries none.
     - **Groups:** the queries are grouped by priority under numbered headings, the most pressing first, each heading `<n> · <what the group is>`, adding `, can run while you're away` where the group's work can go ahead while the owner is away, with a blank line between groups. The block opens with its `1 ·` heading, even where there is one group.
-    - **Lines:** under its heading, one line per query, its tag, the recommended option's letter and that option's confidence in brackets, as `<TAG> a (high)`, `(medium)` or `(low)`, with an optional short gloss after a colon, as `<TAG> a (high): what it does`.
+    - **Lines:** under its heading, one line per query, its tag, the recommended option's letter and that option's confidence in brackets, as `<TAG> a (high)`, `(medium)` or `(low)`, then a short gloss after a colon, as `<TAG> a (high): what it does`. Each tag appears once, carrying only the recommended option: the block never offers alternatives, which stay in the query's **Options**. The Stop hook holds back a line without its confidence or gloss and a tag given twice (HOOK-ENFORCE).
 
   A reply block:
 
   ```text
   1 · Baseline build, can run while you're away
-  WINDOW-BUILD a (high)
-  ROADMAP-ATL003 a (high)
+  WINDOW-BUILD a (high): build the window baseline
+  ROADMAP-ATL003 a (high): close the record
 
   2 · Window design
-  CON-PROFILE a (medium)
+  CON-PROFILE a (medium): one profile per rig
 
   3 · Outside Cairn
-  HANDOFF-OBS a (high)
+  HANDOFF-OBS a (high): hand the finding to Obsidian's owner
   ```
 
   A query and its options:
@@ -203,7 +203,7 @@ The label is written `Outstanding - no action requested now` and the query headi
   - No level hides a failure, a required decision or a material risk.
   - In a coordinator session the level never changes the layout and governs only the wording inside B1, the Answer, under the [coordinator reply format](standards-report-forms.md#coordinator-reply-format).
 
-Sources: REPORT-SOURCE, OWNER-REPORT-FORMAT, REPORT-HEADINGS, REPLY-BLOCK, REPLY-ID, HOLD-QUERIES, SUMMARY-WINDOW, FINDINGS-SECTION, QUERY-SHAPE, FORM-VS-RUMDL, CONFIDENCE-STANDARD, REVIEW-LIFT, ACCEPT-BY-CRITERIA, CONFIDENCE-CHECK, REVIEW-CHECK, NO-EXTERNAL-POSTING, PLAIN-ENGLISH, REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP and COORD-REPORT-CHECKS in [the decision register](sources.md#decision-register).
+Sources: REPORT-SOURCE, OWNER-REPORT-FORMAT, REPORT-HEADINGS, REPLY-BLOCK, REPLY-ID, HOLD-QUERIES, SUMMARY-WINDOW, FINDINGS-SECTION, QUERY-SHAPE, FORM-VS-RUMDL, CONFIDENCE-STANDARD, REVIEW-LIFT, ACCEPT-BY-CRITERIA, CONFIDENCE-CHECK, REVIEW-CHECK, NO-EXTERNAL-POSTING, PLAIN-ENGLISH, REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, COORD-REPORT-CHECKS and HOOK-ENFORCE in [the decision register](sources.md#decision-register).
 
 ### Answers
 

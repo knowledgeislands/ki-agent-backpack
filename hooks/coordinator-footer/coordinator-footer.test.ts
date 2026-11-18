@@ -290,6 +290,8 @@ test('a reply that opens a banner but leaves it unfinished is held back', () => 
   expect(run(stop(`Launched the run.\n\n${thread}`, plain)).reason).toContain("the banner's ### state heading")
 })
 
+// Kris, about 01:15 GMT on 18 November 2026, under HOOK-ENFORCE a: "Yeah, we need the hook enforcing". Every reply in a
+// coordinating session closes with the banner and its thread line, not only the reply to an owner's mark or state word.
 test("an owner's mark or state word in a coordinating session needs the banner", () => {
   for (const word of ['mark', 'Mark.', 'mark only', 'mark, status only', 'pause', 'done for now', 'snooze', 'with me', 'status', 'summary since 14:00', 'where are we', "what's the state"]) {
     const outcome = run(stop('Mark struck at 21:10.', coordinated(word)))
@@ -307,11 +309,23 @@ test('the same words are quiet in a conversational session or an ordinary checko
   expect(run(stop('Mark noted.', coordinated('mark'), ordinary))).toEqual(silent)
 })
 
-test('a plain answer, a wake and a meta line in a coordinating session stay quiet', () => {
-  expect(run(stop('The run is still going.', coordinated('how is the run doing?')))).toEqual(silent)
-  expect(run(stop('21:10 GMT - footer-hook finished.', coordinated('<task-notification>\n<task-id>b1</task-id>\nmark</task-notification>')))).toEqual(silent)
+test('every reply in a coordinating session needs the banner, a plain answer, a wake and a meta line included', () => {
+  const lacks = "This reply's banner lacks the banner's ### state heading and the thread line, <role glyph> 🔑 <work-id> or 🧵 <work-id>, last, "
+  expect(run(stop('The run is still going.', coordinated('how is the run doing?'))).reason).toStartWith(lacks)
+  expect(run(stop('21:10 GMT - footer-hook finished.', coordinated('<task-notification>\n<task-id>b1</task-id>\nmark</task-notification>'))).reason).toStartWith(lacks)
   const metaLast = transcript([{ owner: 'Open ki.prj.demo', reply: rebootstrap(shortBanner) }, { owner: 'what next?' }, { owner: 'mark', meta: true }])
-  expect(run(stop('Next is the review.', metaLast))).toEqual(silent)
+  expect(run(stop('Next is the review.', metaLast)).reason).toStartWith(lacks)
+  // An Answer or an Update closing with the short banner passes, as a Position does.
+  expect(run(stop(`The run is still going.\n\n${shortBanner}`, coordinated('how is the run doing?')))).toEqual(silent)
+  expect(run(stop(`21:10 GMT - footer-hook finished.\n\n${shortBanner}`, coordinated('<task-notification>\n<task-id>b1</task-id>\n</task-notification>')))).toEqual(silent)
+  // A thread line that is not last still holds the reply back.
+  expect(run(stop(`${shortBanner}\n\nAnything else?`, coordinated('how is the run doing?'))).reason).toContain('the thread line as the very last line')
+})
+
+test('a session that has closed no reply with a thread line stays conversational, even in a coordinating checkout', () => {
+  const chat = transcript([{ owner: 'What does the hook check?', reply: 'The footer.' }, { owner: 'And the reply block?' }])
+  expect(run(stop('That too.', chat))).toEqual(silent)
+  expect(run(stop('That too.', chat, roadless))).toEqual(silent)
 })
 
 test('a banner quoted in a code fence is not a footer', () => {
@@ -484,27 +498,35 @@ test("an owner's mark word engages after an earlier key-form reply, and a conver
 
 // Kris, 14 November 2026, under REPLY-CHECK: in every session, coordinating or not, a reply asking the owner to decide,
 // a fenced `text` block holding `<TAG> <letter>` lines, needs the block to open with a `1 · ` group heading and every
-// such line to carry `(high)`, `(medium)` or `(low)` after the letter, an optional `: <gloss>` after it.
+// such line to carry `(high)`, `(medium)` or `(low)` after the letter. Under HOOK-ENFORCE a, 18 November 2026, each
+// line needs its `: <gloss>` too, and each tag takes one line only, the recommended option's, never alternatives.
 const replyId = '**Reply 13:27**'
 const decision = (...block: string[]): string =>
   [replyId, 'Two things need your word: whether to push now, and whether to keep the old hook.', ['```text', ...block, '```'].join('\n')].join('\n\n')
 const shape =
-  "under ki-coordination's owner report, a reply block opens with a 1 · <what the group is> heading and each line reads <TAG> <letter> (high), (medium) or (low), an optional : <gloss> after it"
+  "under ki-coordination's owner report, a reply block opens with a 1 · <what the group is> heading and gives each tag one line, its recommended option only, reading <TAG> <letter> (high), (medium) or (low): <gloss>"
 const conversation = transcript([{ owner: 'Should we push?' }])
 
 test('a conversational reply with a well-formed reply block passes, glosses and all', () => {
-  const block = decision("1 · Landing, can run while you're away", 'PUSH a (high)', 'HOOK-KEEP b (low): keep the old hook', '', '2 · Later', '04-RULE2 a (medium)')
+  const block = decision(
+    "1 · Landing, can run while you're away",
+    'PUSH a (high): push now',
+    'HOOK-KEEP b (low): keep the old hook',
+    '',
+    '2 · Later',
+    '04-RULE2 a (medium): the second rule'
+  )
   expect(run(stop(block, conversation, ordinary))).toEqual(silent)
   expect(run(stop(block, conversation))).toEqual(silent)
   expect(run(stop(block, join(root, 'gone.jsonl'), join(root, 'missing')))).toEqual(silent)
 })
 
 test('a reply block without its first group heading is held back in any session', () => {
-  const outcome = run(stop(decision('PUSH a (high)'), conversation, ordinary))
+  const outcome = run(stop(decision('PUSH a (high): push now'), conversation, ordinary))
   expect(outcome.reason).toBe(
     `This reply's reply block does not open with its first group heading, 1 · <what the group is>; ${shape}. Give the reply again in full with the reply block put right, since the last text is what the owner reads.`
   )
-  expect(run(stop(decision('2 · Later', 'PUSH a (high)'), conversation, ordinary)).reason).toContain('does not open with its first group heading')
+  expect(run(stop(decision('2 · Later', 'PUSH a (high): push now'), conversation, ordinary)).reason).toContain('does not open with its first group heading')
 })
 
 test('a reply block line without its confidence is held back, naming the line', () => {
@@ -514,6 +536,35 @@ test('a reply block line without its confidence is held back, naming the line', 
   const outcome = run(stop(decision('PUSH a', 'HOOK-KEEP b (certain)', 'GLOSS c: no confidence'), conversation, ordinary))
   expect(outcome.reason).toStartWith(
     "This reply's reply block does not open with its first group heading, 1 · <what the group is> and has lines without (high), (medium) or (low) after the letter: PUSH a, HOOK-KEEP b, GLOSS c; "
+  )
+})
+
+test('a reply block line without its gloss is held back, naming the line', () => {
+  expect(run(stop(decision('1 · Now', 'PUSH a (high)'), conversation, ordinary)).reason).toBe(
+    `This reply's reply block has a line without : <gloss> after the confidence: PUSH a; ${shape}. Give the reply again in full with the reply block put right, since the last text is what the owner reads.`
+  )
+  for (const line of ['PUSH a (high):', 'PUSH a (high): ', 'PUSH a (high) push now', 'PUSH a (high):push now'])
+    expect(run(stop(decision('1 · Now', line), conversation, ordinary)).reason).toContain('without : <gloss> after the confidence: PUSH a')
+  // A line without its confidence is named for that alone.
+  expect(run(stop(decision('1 · Now', 'PUSH a'), conversation, ordinary)).reason).not.toContain('<gloss> after the confidence')
+})
+
+test('a tag given more than once, offering alternatives, is held back, naming the tag', () => {
+  expect(run(stop(decision('1 · Now', 'PUSH a (high): push now', 'PUSH b (low): wait for review'), conversation, ordinary)).reason).toBe(
+    `This reply's reply block gives a tag more than once, offering alternatives: PUSH; ${shape}. Give the reply again in full with the reply block put right, since the last text is what the owner reads.`
+  )
+  // Across groups too, and each tag is named once however often it repeats.
+  expect(
+    run(stop(decision('1 · Now', 'PUSH a (high): push now', 'KEEP a (high): keep it', '', '2 · Later', 'PUSH b (low): wait', 'KEEP b (low): drop it', 'PUSH c (low): never'), conversation, ordinary)).reason
+  ).toStartWith("This reply's reply block gives tags more than once, offering alternatives: PUSH, KEEP; ")
+  // A tag may stand once in each of two separate blocks.
+  const twoBlocks = [decision('1 · Now', 'PUSH a (high): push now'), '```text\n1 · Again\nPUSH a (high): push now\n```'].join('\n\n')
+  expect(run(stop(twoBlocks, conversation, ordinary))).toEqual(silent)
+})
+
+test('every fault in a reply block is named together', () => {
+  expect(run(stop(decision('PUSH a', 'KEEP a (high)', 'KEEP b (low): drop it'), conversation, ordinary)).reason).toStartWith(
+    "This reply's reply block does not open with its first group heading, 1 · <what the group is>, has a line without (high), (medium) or (low) after the letter: PUSH a, has a line without : <gloss> after the confidence: KEEP a and gives a tag more than once, offering alternatives: KEEP; "
   )
 })
 
@@ -530,8 +581,8 @@ test('text blocks that ask nothing stay quiet', () => {
 })
 
 test('a reply block left unclosed at the end of the reply is still read', () => {
-  expect(run(stop(`${replyId}\n\n\`\`\`text\n1 · Now\nPUSH a (high)`, conversation, ordinary))).toEqual(silent)
-  expect(run(stop(`${replyId}\n\n\`\`\`text\nPUSH a (high)`, conversation, ordinary)).reason).toContain('does not open with its first group heading')
+  expect(run(stop(`${replyId}\n\n\`\`\`text\n1 · Now\nPUSH a (high): push now`, conversation, ordinary))).toEqual(silent)
+  expect(run(stop(`${replyId}\n\n\`\`\`text\nPUSH a (high): push now`, conversation, ordinary)).reason).toContain('does not open with its first group heading')
 })
 
 test('a reply block is never held back twice in a row, only warned', () => {
@@ -543,8 +594,8 @@ test('a reply block is never held back twice in a row, only warned', () => {
 
 test("a coordinating reply's reply block and footer are checked together", () => {
   const withBlock = (block: string): string => fullSummary.replace('None.', `### PUSH - Push now\n\n${block}`)
-  expect(run(stop(`${replyId}\n\n${withBlock('```text\n1 · Now\nPUSH a (high)\n```')}`, plain))).toEqual(silent)
-  expect(run(stop(withBlock('```text\nPUSH a (high)\n```'), plain)).reason).toStartWith(
+  expect(run(stop(`${replyId}\n\n${withBlock('```text\n1 · Now\nPUSH a (high): push now\n```')}`, plain))).toEqual(silent)
+  expect(run(stop(withBlock('```text\nPUSH a (high): push now\n```'), plain)).reason).toStartWith(
     "This reply's reply block does not open with its first group heading, 1 · <what the group is>; "
   )
   const both = run(stop(summaryBody.replace('None.', '```text\n1 · Now\nPUSH a\n```'), plain))
