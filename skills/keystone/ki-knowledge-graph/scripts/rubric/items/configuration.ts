@@ -4,7 +4,7 @@ import type { KnowledgeGraphContext } from '../contexts/knowledge-graph.ts'
 export const CONFIG = {
   code: 'CONFIG',
   title: 'Knowledge-graph configuration',
-  standard: 'standards-knowledge-graph.md',
+  standard: 'standard-knowledge-graph.md',
   description:
     'The method takes its layout from the knowledge base that declares it and accepts no configuration keys of its own.',
   selectContext: (context) => context,
@@ -14,7 +14,7 @@ export const CONFIG = {
       title: 'the knowledge-graph method has no configuration properties',
       description:
         'Unexpected keys in the skill table are visible rather than silently accepted as staging-layout settings, which belong to the knowledge base’s own structure.',
-      sources: ['standards-knowledge-graph.md#the-staging-graph'],
+      sources: ['standard-knowledge-graph.md#473-the-staging-graph'],
       mechanical: {
         level: 'WARN',
         remediation: {

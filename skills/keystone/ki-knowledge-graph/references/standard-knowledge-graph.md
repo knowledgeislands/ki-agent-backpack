@@ -1,21 +1,89 @@
+---
+ki-document-type: standard@2026-11-17T00:28:37Z
+ki-revised: 2026-11-18T03:47:26Z
+ki-status: in force
+---
+
 # Knowledge-graph standard
-
-A knowledge graph is cards about things, joined by typed links, kept in a repository. It serves any use: a skill's body of knowledge, an island's settled knowledge, or material being curated from captures. Curation is one use, and the relationships geared to it are some of the graph's, not its limit (KG-GENERAL, Kris, 12 November 2026). This standard sets what every graph shares: its root definition, its cards and links, its subgraphs and how graphs layer; it then sets the curation method for the graphs that are built from captures.
-
-The standard holds the method, and a graph keeps the things that are, under SKILLS-OVER-GRAPH (Kris, 7 November 2026). The concepts the standard relies on, such as Semantic Markdown, layered graphs and progressive disclosure, are cards in the skill's own graph, which [its root definition](../knowledge/_graph.md) opens; the standard follows those cards rather than restating them (KG-SELF).
 
 ## Contents
 
-1. [The graph](#the-graph)
-2. [The root definition](#the-root-definition)
-3. [Cards](#cards)
-4. [Links](#links)
-5. [Subgraphs](#subgraphs)
-6. [Layered graphs and shadow nodes](#layered-graphs-and-shadow-nodes)
-7. [Curation](#curation)
-8. [Boundary](#boundary)
+- [1. Introduction](#1-introduction)
+- [2. Scope](#2-scope)
+  - [2.1 In scope](#21-in-scope)
+  - [2.2 Out of scope](#22-out-of-scope)
+- [3. Terms and definitions](#3-terms-and-definitions)
+- [4. Rules](#4-rules)
+  - [4.1 The graph](#41-the-graph)
+  - [4.2 The root definition](#42-the-root-definition)
+  - [4.3 Cards](#43-cards)
+  - [4.4 Links](#44-links)
+  - [4.5 Subgraphs](#45-subgraphs)
+  - [4.6 Layered graphs and shadow nodes](#46-layered-graphs-and-shadow-nodes)
+  - [4.7 Curation](#47-curation)
+    - [4.7.1 The funnel](#471-the-funnel)
+    - [4.7.2 Transactional curation](#472-transactional-curation)
+    - [4.7.3 The staging graph](#473-the-staging-graph)
+    - [4.7.4 Tending](#474-tending)
+    - [4.7.5 Dispatch](#475-dispatch)
 
-## The graph
+## 1. Introduction
+
+A knowledge graph is cards about things, joined by typed links, kept in a repository. It serves any use: a skill's body of knowledge, an island's settled knowledge, or material being curated from captures. Curation is one use, and the relationships geared to it are some of the graph's, not its limit (KG-GENERAL, Kris, 12 November 2026). This standard sets what every graph shares: its root definition, its cards and links, its subgraphs and how graphs layer; it then sets the curation method for the graphs that are built from captures.
+
+The standard holds the method, and a graph keeps the things that are, under SKILLS-OVER-GRAPH (Kris, 7 November 2026). The concepts the standard relies on, such as Semantic Markdown, layered graphs and progressive disclosure, are cards in the skill's own graph, which [its root definition](../knowledge/_graph.md) opens; the standard follows those cards rather than restating them (KG-SELF). The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+
+[Back to contents](#contents)
+
+## 2. Scope
+
+What every knowledge graph shares, and the curation method for the graphs built from captures.
+
+### 2.1 In scope
+
+- A graph's root folder, its root definition, and the identity and naming of its cards.
+- Cards, typed and navigational links, and subgraphs.
+- Layered graphs, attachment points and the shadow node life cycle.
+- Curation: the funnel, transactional curation, the staging graph, tending and dispatch.
+
+[Back to contents](#contents)
+
+### 2.2 Out of scope
+
+- Sorting before Deposit, and the Deposit routes: the `ki-dodecakrisis` skill.
+- Faithful capture, coverage, originals, provider rules and the capture package: the `ki-acquire` skill and its provider skills.
+- Folders, zones and zone aliases of any knowledge base, the staging base's included: the `ki-repo-kb` skill.
+- How a skill holds a graph, and the knowledge kind of skill: the `ki-skills` skill.
+- Prose style of a card: the `ki-authoring` skill.
+- A receiving island's disposition of what it was sent: the `ki-work next` skill.
+- Rules for evidential material: the future legal evidential skill.
+- Running imports and repository-local checks: the repository that runs them.
+
+[Back to contents](#contents)
+
+## 3. Terms and definitions
+
+| Term | Definition |
+| --- | --- |
+| **Knowledge graph** | Cards about things, joined by typed links, kept in a repository, in one root folder. **Standard:** this one, [4.1](#41-the-graph) |
+| **Root definition** | The card `_graph.md` in a graph's root folder, of card type `graph`, which declares the graph's card types, link vocabulary, properties, constraints, subgraphs, and extent and limitations. **Standard:** this one, [4.2](#42-the-root-definition) |
+| **Card** | One Semantic Markdown file: one coherent, addressable knowledge resource about one thing, named `<id>.md`. **Standard:** this one, [4.3](#43-cards) |
+| **Typed link** | A front-matter `links` entry pairing a reference label with a predicate from a vocabulary the root definition declares, where an explicit semantic assertion is meant. **Standard:** this one, [4.4](#44-links) |
+| **Navigational link** | A link without a `links` entry, never given an invented predicate. **Standard:** this one, [4.4](#44-links) |
+| **Subgraph** | A part of a graph with its own subject, declared in the root definition, whose cards' ids carry its prefix. **Standard:** this one, [4.5](#45-subgraphs) |
+| **Attachment point** | A card a graph declares fully confident will not move, which other graphs may pin to. **Standard:** this one, [4.6](#46-layered-graphs-and-shadow-nodes) |
+| **Shadow node** | A read-only pointer in a lower graph to an attachment point above, recording the card it shadows, where that card lives and when it was last checked. **Standard:** this one, [4.6](#46-layered-graphs-and-shadow-nodes) |
+| **Curation** | The use of a graph that turns deposited and captured material into cards, from Deposit to dispatch. **Standard:** this one, [4.7](#47-curation) |
+| **Staging graph** | The graph where curated knowledge is staged before it is settled, mirroring each receiving island. **Standard:** this one, [4.7.3](#473-the-staging-graph) |
+| **Dispatch** | A Git move of a package of settled cards from the staging graph into the receiving island's `+/_ACQUIRED/`. **Standard:** this one, [4.7.5](#475-dispatch) |
+
+[Back to contents](#contents)
+
+## 4. Rules
+
+The rules, part by part.
+
+### 4.1 The graph
 
 Each knowledge graph sits in one root folder, which holds its root definition and its cards. A skill that holds a graph keeps it in `knowledge/` at the skill's top level, outside `references/`, and that folder is the graph's root (KNOWLEDGE-FOLDER).
 
@@ -27,7 +95,7 @@ Each knowledge graph sits in one root folder, which holds its root definition an
 
 [Back to contents](#contents)
 
-## The root definition
+### 4.2 The root definition
 
 A graph defines itself at its root (KG-ROOT). The root definition is the card `_graph.md` in the root folder, of card type `graph` (ROOT-FORM). It is the one card whose file is not named from its id: its file is always `_graph.md`, and its `id` names the graph.
 
@@ -46,7 +114,7 @@ A section may say "None" but is never left out. The root definition holds declar
 
 [Back to contents](#contents)
 
-## Cards
+### 4.3 Cards
 
 A card is one Semantic Markdown file: one coherent, addressable knowledge resource about one thing.
 
@@ -65,7 +133,7 @@ A card is one Semantic Markdown file: one coherent, addressable knowledge resour
 
 [Back to contents](#contents)
 
-## Links
+### 4.4 Links
 
 - **Typed links.** A front-matter `links` map pairs a reference label with a predicate where an explicit semantic assertion is meant. Each predicate is drawn from a vocabulary the root definition declares: SKOS by default, as `skos:related`, `skos:broader`, `skos:exactMatch` or `skos:closeMatch`, and `ki:` only for a relationship no declared vocabulary has.
 - **Navigational links.** A link without an entry stays navigational and is never given an invented predicate.
@@ -75,7 +143,7 @@ A card is one Semantic Markdown file: one coherent, addressable knowledge resour
 
 [Back to contents](#contents)
 
-## Subgraphs
+### 4.5 Subgraphs
 
 A subgraph is a part of a graph with its own subject, declared in the root definition, and its cards' ids carry its prefix (KG-SUBGRAPHS).
 
@@ -86,7 +154,7 @@ A subgraph is a part of a graph with its own subject, declared in the root defin
 
 [Back to contents](#contents)
 
-## Layered graphs and shadow nodes
+### 4.6 Layered graphs and shadow nodes
 
 Each repository keeps its own knowledge graph, and graphs join in layers rather than by copying. The canonical graph sits above; a graph still forming sits below, holding what is still being captured and curated and pointing up for what is settled. Each island keeps authority over its own cards.
 
@@ -104,11 +172,13 @@ Shadow nodes have a life cycle:
 
 [Back to contents](#contents)
 
-## Curation
+### 4.7 Curation
 
 Curation is the use of a graph that turns deposited and captured material into cards: the funnel from Deposit to dispatch, curating one item at a time, the staging graph, tending and dispatch to the island that owns the knowledge. A graph built another way, such as a skill's body of knowledge settled by decision, uses the rest of this standard without this section, though tending applies to every graph.
 
-### The funnel
+[Back to contents](#contents)
+
+#### 4.7.1 The funnel
 
 The knowledge capture funnel takes in what it is given without losing the detail that matters. It starts at Deposit: material is sorted first by D12, and only what D12 deposits enters the funnel; what is delegated or deleted there leaves without entering it. The funnel then has three stages, each with its owner:
 
@@ -122,7 +192,9 @@ Each capture is filed under one primary territory, but its knowledge may go to s
 
 **Pace.** Each day the newest material is curated first, so the funnel keeps up with what arrives. With spare capacity, curation takes one more day back from the newest day not yet done, one day at a time, with a report after each, so the cost is seen before it carries on. Capture is never held back while curation waits. Material held awaiting incorporation is worked back the same way, newest first, without bulk moves to classify it.
 
-### Transactional curation
+[Back to contents](#contents)
+
+#### 4.7.2 Transactional curation
 
 Curation is judgement-led and incremental: knowledge is curated in small, verifiable increments, never by waiting for a whole capture. A part of a capture is a paragraph or a list item.
 
@@ -135,7 +207,9 @@ Curation is judgement-led and incremental: knowledge is curated in small, verifi
 
 Curation keeps what is durable and leaves the rest in the capture: the positions, proposals and commitments, and which organisation holds each, rather than who attended, for how long, people's titles or the tactics of the moment. Responsibilities are recorded against organisations, not people. The commit pairing a card change with its strike-through is the audit trail while the work stays in the staging repository; Git history does not travel with knowledge across repositories.
 
-### The staging graph
+[Back to contents](#contents)
+
+#### 4.7.3 The staging graph
 
 Curated knowledge is staged before it is settled. In the staging graph, cards, ids and structure may change as the graph is shaped: cards may be renamed, merged or split. A card moves to its receiving island only once its structure has settled, and from then on its id stays stable.
 
@@ -143,27 +217,18 @@ The staging graph mirrors each receiving island, so a staged card's place says w
 
 Routing cards that say where material belongs may link into captures and staged cards, but nothing in a capture links into the routing cards: the links run one way only.
 
-### Tending
+[Back to contents](#contents)
+
+#### 4.7.4 Tending
 
 Tending checks over time that a graph stays coherent, meaningfully connected, free of duplicates, qualified where it should be, and reachable through progressive disclosure: a reader or agent meets a coherent summary before deeper detail. Tending merges duplicate definitions, splits cards that hold more than one thing or are linked to in part, renames while ids can still change, finds cards no link reaches, and prunes untended shadow nodes under the life cycle above. Measures of a graph's reach, duplication and comprehension are future work for the tools that would compute them, not part of this standard.
 
-### Dispatch
+[Back to contents](#contents)
+
+#### 4.7.5 Dispatch
 
 Dispatch is a Git move of each package, a single capture's cards or a chosen roll-up, from the staging graph into the receiving island's `+/_ACQUIRED/`, as its own folder. Delivery is acceptance: the receiver's commit and the staging repository's removal commit are the only record, with no dispatch ledger or return route, and a misdelivery is handled case by case. The receiving island then triages what it received under its own authority. Each dispatched card leaves a shadow node in the staging graph. A graph declared a holding area dispatches nothing while the declaration stands.
 
 Evidential material kept word for word travels as it is and is never edited. Curation authority does not grant dispatch, receiver reconciliation, source deletion or history compaction; each needs its own grant, and history is never rewritten to hide a failure.
 
 [Back to contents](#contents)
-
-## Boundary
-
-| Matter | Owner |
-| --- | --- |
-| Sorting before Deposit, and the Deposit routes | The `ki-dodecakrisis` skill |
-| Faithful capture, coverage, originals, provider rules and the capture package | The `ki-acquire` skill and its provider skills |
-| Folders, zones and zone aliases of any knowledge base, the staging base's included | The `ki-repo-kb` skill |
-| How a skill holds a graph, and the knowledge kind of skill | The `ki-skills` skill |
-| Prose style of a card | The `ki-authoring` skill |
-| A receiving island's disposition of what it was sent | The `ki-work next` skill |
-| Rules for evidential material | The future legal evidential skill |
-| Running imports and repository-local checks | The repository that runs them |
