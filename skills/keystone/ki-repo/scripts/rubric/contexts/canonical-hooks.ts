@@ -157,6 +157,6 @@ export const hookOwner = (shape: RepositoryShape): string | null => SHAPE_HOOKS[
 
 export const HOOK_VARIANTS: readonly HookVariant[] = ['package', 'no-package']
 
-/** Where a shape skill publishes one canonical hook, relative to the harness root. */
+/** Where a shape skill publishes one canonical hook, relative to the backpack root. */
 export const hookAsset = (owner: string, variant: HookVariant, hook: HookName): string =>
   `skills/repository/${owner}/assets/githooks/${variant}/${hook}`

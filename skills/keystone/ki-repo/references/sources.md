@@ -83,6 +83,8 @@ The decisions the standards cite by id, oldest first; each standard keeps citing
 
 ## 4. Last review
 
+Later still on 18 November 2026 the skill's code followed HARNESS-NAME, from the Cairn summit's change 12, step 6, for the Keystone guild: the generator's root parameter is `backpackRoot`, the canonical hooks say the backpack root, and the configuration tests' `[repo]` examples use the `backpacks` key. No criterion changed and no outside source refreshed.
+
 Later on 18 November 2026 the Keystone guild's review, from the Cairn summit's change 10, brought [the REVIEW procedure](mode-review.md)'s last old-package line into line with COVERAGE-SIGNAL: the checklist no longer asks a repository's review to tidy every `+/_WORK/<id>/` package, but asks that none is left in the repository, a package being tidied in the Cairn store by its own work and a leftover reported under COV-1. No criterion changed and no outside source was refreshed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME and BACKPACK-DEPTH, from the Cairn summit's change 12, step 1, for the Keystone guild: where it meant the Knowledge Islands bundle it now says backpack, and the configuration standard's `[repo]` list is `backpacks`, the key the `ki` tool already reads, its sections 4.3 and 4.3.1 renamed with their anchors and the rubric regenerated. The test harness in the review checklist and the decision identifiers keep their words. No outside source refreshed.

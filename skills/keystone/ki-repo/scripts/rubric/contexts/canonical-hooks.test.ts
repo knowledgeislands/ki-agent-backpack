@@ -6,7 +6,7 @@ import { canonicalHooks, HOOK_VARIANTS, SHAPE_HOOKS } from './canonical-hooks.ts
 import { inspectFrame } from './hooks.ts'
 import type { RepositoryShape } from './shapes.ts'
 
-const HARNESS = resolve(import.meta.dir, '../../../../../..')
+const BACKPACK = resolve(import.meta.dir, '../../../../../..')
 const SHAPES = Object.keys(SHAPE_HOOKS) as RepositoryShape[]
 
 test('every canonical hook passes the frame: refusal before its first command, every tool tested, no bypass', () => {
@@ -43,8 +43,8 @@ test('only the dotfiles shape declares no hook, and message validation follows p
 })
 
 test('each shape skill publishes its canonical hooks as committed assets', () => {
-  for (const surface of generate(HARNESS)) {
-    const path = join(HARNESS, surface.path)
+  for (const surface of generate(BACKPACK)) {
+    const path = join(BACKPACK, surface.path)
     expect(existsSync(path), surface.path).toBe(true)
     expect(readFileSync(path, 'utf8'), surface.path).toBe(surface.content)
   }

@@ -21,12 +21,12 @@ export type GeneratedSurface = { readonly path: string; readonly content: string
 export type SkillGeneration = {
   readonly contract: 1
   readonly name: string
-  readonly generate: (harnessRoot: string) => readonly GeneratedSurface[]
+  readonly generate: (backpackRoot: string) => readonly GeneratedSurface[]
 }
 
 const HOOK_NAMES: readonly HookName[] = ['pre-commit', 'commit-msg']
 
-export const generate = (_harnessRoot: string): readonly GeneratedSurface[] =>
+export const generate = (_backpackRoot: string): readonly GeneratedSurface[] =>
   (Object.keys(SHAPE_HOOKS) as RepositoryShape[]).flatMap((shape) => {
     const owner = hookOwner(shape)
     if (!owner) return []

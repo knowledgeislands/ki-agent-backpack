@@ -16,7 +16,7 @@ const banner = (
 describe('configuration presentation', () => {
   test('permits a compact foundation without banners', () => {
     const result = inspectConfigurationPresentation(`${header}[repo]
-harnesses = ["example/harness"]
+backpacks = ["example/backpack"]
 
 [skills.ki-repo]
 
@@ -30,7 +30,7 @@ harnesses = ["example/harness"]
 
   test('accepts canonical banners and contiguous owner blocks in a substantial file', () => {
     const result = inspectConfigurationPresentation(`${header}${banner('Foundation')}[repo]
-harnesses = ["example/harness"]
+backpacks = ["example/backpack"]
 
 [skills.ki-repo]
 
@@ -133,8 +133,8 @@ describe('configuration layout', () => {
     expect(
       inspectConfigurationLayout(`${header}${banner('Foundation')}
 [repo]
-harnesses = [
-  "example/harness",
+backpacks = [
+  "example/backpack",
 ]
 
 # Owner comment
@@ -150,7 +150,7 @@ ${banner('Relationships')}
 
   test('reports blank-line, array and ordering faults', () => {
     const issues = inspectConfigurationLayout(`${header}[repo]
-harnesses = ["a", "b"]
+backpacks = ["a", "b"]
 [skills.ki-repo]
 list = [
   "a", "b",
