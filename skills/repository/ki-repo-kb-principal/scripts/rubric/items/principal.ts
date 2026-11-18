@@ -1,7 +1,7 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { PrincipalContext } from '../contexts/principal.ts'
 
-const SOURCE = 'standards-principal.md'
+const SOURCE = 'standard-principal.md'
 
 const PRINCIPAL_1: RubricItem<PrincipalContext> = {
   code: 'PRINCIPAL-1',
@@ -66,7 +66,7 @@ const PRINCIPAL_3: RubricItem<PrincipalContext> = {
   title: 'territorial declarations agree',
   description:
     'Charter and Known Lands agree on the territory, its one Capital, canonical repository identities, and governed membership; registry location, repository selection, company binding, or a passing audit does not appoint a principal or grant exchange rights.',
-  sources: [`${SOURCE}#territorial-declaration`],
+  sources: [`${SOURCE}#43-territorial-declaration`],
   judgment: {
     scope: 'The Charter, internal Known Lands inventory, and their cited authority declarations.',
     prompt:
@@ -81,7 +81,7 @@ const PRINCIPAL_4: RubricItem<PrincipalContext> = {
   title: 'internal inventory and external signposting are distinct',
   description:
     'Known Lands separates governed internal membership from external signposting, uses canonical repository identities and authority references, and leaves local locations in the registry; receiver-owned public adoption needs no reciprocal public consumer list.',
-  sources: [`${SOURCE}#known-lands-relationships`],
+  sources: [`${SOURCE}#44-known-lands-relationships`],
   judgment: {
     scope: 'Known Lands entries and any declarations of external knowledge consumption or adoption.',
     prompt:
@@ -96,7 +96,7 @@ const PRINCIPAL_5: RubricItem<PrincipalContext> = {
   title: 'acquired-packet scaffold is exact',
   description:
     'While the principal overlay is declared, +/_ACQUIRED/README.md matches its owned template byte for byte. Missing or drifted regular scaffolds are restored without touching packets; unsafe ancestors or leaves fail without a write proposal.',
-  sources: [`${SOURCE}#acquired-packet-scaffold`],
+  sources: [`${SOURCE}#42-acquired-packet-scaffold`],
   mechanical: {
     level: 'FAIL',
     remediation: { class: 'automatic' },

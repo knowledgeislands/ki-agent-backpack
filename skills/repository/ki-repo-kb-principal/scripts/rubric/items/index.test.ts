@@ -23,7 +23,7 @@ test('the principal catalogue has the expected native contract', () => {
     expect(item.judgment?.scope).toBeTruthy()
     expect(item.judgment?.prompt).toBeTruthy()
     expect(item.judgment?.outcomes).toContain('owner decision required')
-    expect(item.sources[0]).toStartWith('standards-principal.md#')
+    expect(item.sources[0]).toStartWith('standard-principal.md#')
   }
   for (const family of catalogue.families) {
     for (const item of family.items) {
