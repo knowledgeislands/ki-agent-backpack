@@ -55,6 +55,8 @@ None recorded by id: the nine-prefix taxonomy, `decision_type_url`, and living-r
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Authoring guild: REFRESH names the backpack as where to run it; the exemplar ADR keeps its words. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Authoring guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Decision Records standard](standard-decision-records.md), formerly `standard-decision-records.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format. The rubric's source names follow. No rule changed and no outside source was refreshed.
 
 REFRESH last run **2026-08-12**.
