@@ -9,6 +9,7 @@ This file holds States of play, Project work under them, assigned packages, the 
   - [Coordinating assigned packages](#coordinating-assigned-packages)
   - [Secondary States of play](#secondary-states-of-play)
 - [Owner queue](#owner-queue)
+- [Long-standing requests](#long-standing-requests)
 - [Worktree sweep](#worktree-sweep)
 
 ## Coordinating work
@@ -78,7 +79,7 @@ Sources: CASCADE-DOWN, SOP-ACTS-FOR-IDLE, WORK-ROUTING, STEWARD-HOME, FIRST-STEP
 
 ### Coordinating assigned packages
 
-The cascade here is `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down): a package passed down to a steward stays with it, and the steward sends up only an escalation, a decision beyond its remit, never the package's work for want of a response or because it is hard.
+The cascade here is `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down): a package passed down to a steward stays with it, and the steward sends up only an escalation, a decision beyond its remit, never the package's work for want of a response or because it is hard; a request left with the owner for more than 24 hours is flagged to the guardian under [Long-standing requests](#long-standing-requests), the work staying with the steward.
 
 **Tending.** The acknowledged steward tends a package's disposition, queues and tidy independently of any active coordinator. The parent State of play reconciles assigned regular umbrellas, children and declared member homes through `ki-parent`, the tree beneath it being its register, and the home reference at opening, bootstrap, approved moves and ordinary tending.
 
@@ -123,7 +124,7 @@ A secondary State of play is a node beneath its territory's summit that splits o
 - **Register:** the tree beneath a node, read from `ki-parent`, is its register: the summit's is all the territory's work, the work beneath its nodes included, and a node's the work beneath it. Work with no package yet belongs on the roadmap, as Kris set under COVERS-REGISTER a on 16 November 2026.
 - **Opening:** the owner opens a node with the [secondary opener](standards-opening.md#opening-work), and takes every opener for the territory from [Opening work](standards-opening.md#opening-work).
 
-Sources: CASCADE-DOWN, SECONDARY-SOP, OLD-SHAPE-HOMES, COVERS-REGISTER and NODE-ID in [the decision register](sources.md#decision-register).
+Sources: CASCADE-DOWN, SECONDARY-SOP, OLD-SHAPE-HOMES, COVERS-REGISTER, NODE-ID and STALE-AGE in [the decision register](sources.md#decision-register).
 
 ## Owner queue
 
@@ -134,6 +135,18 @@ Each piece of Project work is capped at eight records awaiting acceptance and at
 - No rubric item warns over either cap since COORD-REPOINT (Kris, 16 November 2026); the coordinator keeps both by judgement, under [Pruning the work folder](standards-mark.md#pruning-the-work-folder), until the check returns in `ki-work-package` as a warning.
 
 Sources: OWNER-QUEUE in [the decision register](sources.md#decision-register).
+
+## Long-standing requests
+
+A request or query a package's keyholder has left with the owner for more than 24 hours, unanswered, is long-standing, and the keyholder flags it up to the guardian, the keyholder of the root, `cairn.summit`, as Kris set under STALE-AGE on 18 November 2026: "if there's things that are outstanding for more than let's call it 24 hours, then we need to flag it up somehow". It completes ESCALATE-STALE, set the same night: "If they have long-standing requests which are unanswered … we need to let them bubble them up to you, but not so much the requests directly, but in order to sort of push me down towards dealing with some of those. I don't want everything to come up from underneath … Unless you think it's critical for me to deal with it."
+
+- **The clock:** runs from when the request reached the owner. A period the owner has set in that package, such as telling it to sleep or snooze for a while, stops the clock until the period ends.
+- **What goes up:** the flag only, naming the request, its package and how long it has waited, never the request itself to be answered from above. The keyholder does not pass every request up, only the long-standing ones.
+- **What the guardian does:** it uses the flags to steer the owner towards dealing with them, in its Summary, rather than passing each one on, and brings one straight to the owner only when it judges it critical.
+- **The work stays down:** the request and the work it holds up stay with the keyholder, which keeps the query open in its change document and carries on with what it can. A flag escalates a stale request, not the work, so it is no hand-back under `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down): delegate down, own it where there is no one beneath, escalate up.
+- **The guardian's own:** a request the guardian itself has left with the owner needs no flag; its Summary already puts it to the owner.
+
+Sources: STALE-AGE and CASCADE-DOWN in [the decision register](sources.md#decision-register).
 
 ## Worktree sweep
 
