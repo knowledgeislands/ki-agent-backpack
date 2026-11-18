@@ -4,7 +4,7 @@ import type { ChatGPTRubricContext } from '../contexts/chatgpt.ts'
 export const RETIRE = {
   code: 'RETIRE',
   title: 'ChatGPT source retirement',
-  standard: 'standards-chatgpt-acquisition.md',
+  standard: 'standard-chatgpt-acquisition.md',
   description: 'Separate release authority and current evidence.',
   selectContext: (context) => context,
   items: [
@@ -13,7 +13,7 @@ export const RETIRE = {
       title: 'retirement is separately authorised',
       description:
         'Acquisition remains read-only; archiving or deleting a conversation needs a separate current decision, a verified capture at a named Git revision, and immediate human approval.',
-      sources: ['standards-chatgpt-acquisition.md#source-retirement'],
+      sources: ['standard-chatgpt-acquisition.md#45-source-retirement'],
       judgment: judgment(
         'Does proposed retirement refuse stale or incomplete evidence and stop for explicit human approval?'
       )
