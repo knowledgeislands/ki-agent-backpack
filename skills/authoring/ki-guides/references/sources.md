@@ -53,6 +53,8 @@ None recorded by id: the standard rests on GDR-KI-HARNESS-004 and the documentat
 
 ## 4. Last review
 
+On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Authoring guild: REFRESH names the backpack as where to run it. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the Authoring guild's review, from the Cairn summit's change 10, brought the standard and this file into `ki-authoring`'s formats: the standard was renamed `standard-guides.md`, from `standards-guides.md`, and reshaped to the standard format with its rules unchanged, and this file took the sources format. The rubric's source anchors follow. No rule changed and no outside source was refreshed.
 
 On 12 August 2026 a review confirmed the documentation map and GDR-004 remain the house authority. It replaced obsolete Feature Definition references with Specifications and narrowed the `docs/logs/` claim: path presence alone cannot establish that an operational area is a generic archive. `docs/spec/` and `docs/developer/` remain retired parallel roots.
