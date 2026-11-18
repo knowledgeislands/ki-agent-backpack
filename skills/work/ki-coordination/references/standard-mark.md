@@ -16,7 +16,7 @@ ki-status: in force
 - [4. Rules](#4-rules)
   - [4.1 The mark](#41-the-mark)
   - [4.2 Parking tangents](#42-parking-tangents)
-  - [4.3 Pruning the work folder](#43-pruning-the-work-folder)
+  - [4.3 Pruning the package](#43-pruning-the-package)
   - [4.4 Closing out Orca workers](#44-closing-out-orca-workers)
   - [4.5 Finishing Project work](#45-finishing-project-work)
 
@@ -73,7 +73,7 @@ The mark is only a timestamp, `ki-mark: <UTC timestamp>` in `_index.md`'s state 
 - **Work at the mark,** in order:
   1. run the [repository level check](standard-sync.md#43-repository-level-check) before reporting the mark;
   2. work the [decisions life cycle](standard-decisions.md#413-decisions-life-cycle);
-  3. [prune the package](#43-pruning-the-work-folder) and review its change documents;
+  3. [prune the package](#43-pruning-the-package) and review its change documents;
   4. [close out Orca workers](#44-closing-out-orca-workers);
   5. refresh its own presence in the Cairn store's roster, its actor entry's `ki-host`, `ki-rig` and `ki-last_seen`, as at [bootstrap](standard-bootstrap.md#41-bootstrap), touching no other actor's entry;
   6. commit the package and its roster entry and confirm in one line.
@@ -98,9 +98,9 @@ Sources: HELD-VS-RECORD and OLD-SHAPE-HOMES in [the decision register](sources.m
 
 [Back to contents](#contents)
 
-### 4.3 Pruning the work folder
+### 4.3 Pruning the package
 
-At every send and every mark, prune your own package, so `work/<territory>/<id>/` shows only what is still open and Git holds the rest. The `ki-work-package` [Tidying the work folder](../../ki-work-package/references/standard-work-package.md#410-the-tidy) rules, over its [closed list](../../ki-work-package/references/standard-work-package.md#43-the-shape), set what goes, what stays, how and who; `_index.md`, the live change documents and the sub-packages always stay. This standard sets the timing and the judgement.
+At every send and every mark, prune your own package, so `work/<territory>/<id>/` shows only what is still open and Git holds the rest. The `ki-work-package` [tidy](../../ki-work-package/references/standard-work-package.md#410-the-tidy) rules, over its [closed list](../../ki-work-package/references/standard-work-package.md#43-the-shape), set what goes, what stays, how and who; `_index.md`, the live change documents and the sub-packages always stay. This standard sets the timing and the judgement.
 
 - **Judgement:** whether a report's outcome, or every point of a feedback package, has a durable home in a record, a change document or a commit. A report and its brief live in the run's packet, `$TMPDIR/ki-agents/<run>/`, never in the package, under the `ki-delegation` [run packet](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#44-run-packet). A packet is eligible for removal once its report's outcome is homed and every query has been copied in full into the change documents' Open sections; the queries need not be answered yet. Keep a packet whose outcome has no durable home, without homing it in haste. A later [Summary](standard-report-forms.md#417-the-summary) reads a removed report's outcome where it was homed.
 - **Change documents:** at each mark, review the change documents in the package and its sub-packages, a `.design.md` design note among them. Delete each one that has graduated under the `ki-work design` [artefact home](../../../keystone/ki-work/references/standard-work-design.md#41-artefact-home), or that the package records as superseded; keep drafts, documents under review and any in doubt. The mark prompts a review, never an automatic deletion. Beyond graduation, a change document goes only when every outcome it carried is homed, the owner's words and any grant included, and every link into it has been rewritten first. A diagram's source and its renders go together.

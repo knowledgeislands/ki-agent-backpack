@@ -81,7 +81,7 @@ The owner's words are whole only on the turn they arrive: a context-compressing 
 - **Log in the turn it arrives:** write the decision in the same turn as the message carrying it, before doing anything else with the message.
 - **Verify later quotations from the file:** check any later quotation of the owner's words, in an entry, brief, record or report, against the session transcript file read with the runtime's file-read tool, which the proxy protects. Never quote from recall or from shell output such as `cat` or `grep`, which it does not protect.
 
-Write each entry by hand, and commit and push the change document under [Committing the work folder](standard-coordination.md#481-committing-the-work-folder).
+Write each entry by hand, and commit and push the change document under [Committing the package](standard-coordination.md#481-committing-the-package).
 
 - A change document's entries are the work's working record until the change closes, not a Decision Record. Each entry is classed under [decision classes](#412-decision-classes) and homed under the [life cycle](#413-decisions-life-cycle), so nothing durable lives only in the package.
 - The run side, that the session logs the owner's decisions and no background agent does, is the `ki-delegation` [decisions log](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#47-decisions-log)'s.
@@ -129,7 +129,7 @@ The work's change documents are its one record of decisions for as long as each 
 
 - The `ki-work design` [artefact home](../../../keystone/ki-work/references/standard-work-design.md#41-artefact-home) owns a change document's life cycle, draft, under review, graduated or deleted, its graduation, and the rule that nothing cites a deleted document.
 - The `ki-work-package` [closed list](../../ki-work-package/references/standard-work-package.md#43-the-shape) sets what a package and its sub-packages may hold: `_index.md`, change documents and sub-packages.
-- This standard reviews the change documents at each mark, under [Pruning the work folder](standard-mark.md#43-pruning-the-work-folder), and resolves them before Project work finishes.
+- This standard reviews the change documents at each mark, under [Pruning the package](standard-mark.md#43-pruning-the-package), and resolves them before Project work finishes.
 
 Sources: DESIGN-RETENTION, DOC-TYPES and STD-BASE in [the decision register](sources.md#3-decisions).
 

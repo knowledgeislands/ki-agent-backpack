@@ -112,7 +112,7 @@ Its duties:
   - Within one piece, about three background agents run at once and the rest wait in the run queue, under [Coordinator responsiveness](standard-coordination.md#43-coordinator-responsiveness).
 - **Acceptance first:** at bootstrap and resume, its first call on the owner, before any other query, is the territory's records awaiting acceptance, as one bundle per work under [Acceptance bundles](standard-queries.md#48-acceptance-bundles).
 - **Seeding:** before Project work opens, the State of play creates or reconciles its package and gives the owner its [opener](standard-opening.md#43-opening-work), so the session opens with one message. A new package is seeded by its parent node's keyholder, usually the guardian, or by any session the owner points at it on the owner's word, under the `ki-work-package` [writers](../../ki-work-package/references/standard-work-package.md#49-writers): `_index.md` on hold, the first step as the top line of its Now, and a first change document only if there is a change to carry. Others ask the keyholder in a meeting or a conversation. A dormant, registered Project's package is seeded with `hold.reason: paused` and `hold.release: when Kris opens this Project work`; seeding neither opens nor releases the work, as Kris set under FIRST-STEP-HOME a on 15 November 2026.
-- **Flags:** at its own mark, it names as steer recorded in each owning work's package every package the `ki-work-package` rubric's [FOLDER](../../ki-work-package/references/rubric.md) items flag, under [Pruning the work folder](standard-mark.md#43-pruning-the-work-folder).
+- **Flags:** at its own mark, it names as steer recorded in each owning work's package every package the `ki-work-package` rubric's [FOLDER](../../ki-work-package/references/rubric.md) items flag, under [Pruning the package](standard-mark.md#43-pruning-the-package).
   - It never names a finished work's package so: it closes that package itself under the `ki-work-package` [close-out](../../ki-work-package/references/standard-work-package.md#410-the-tidy), putting the query in the Open section of its own change document for that close-out if a check fails.
   - It never prunes another package otherwise.
   - At the same mark it runs the [worktree sweep](#44-worktree-sweep) and reports only what it finds.
@@ -191,7 +191,7 @@ Each piece of Project work is capped at eight records awaiting acceptance and at
 
 - Over either cap, launch no new build or planning run until the owner catches up; acceptance fixes and work that clears the backlog stay allowed.
 - Bring acceptance as one bundle per work under [Acceptance bundles](standard-queries.md#48-acceptance-bundles); the banner's counts line shows the records waiting, under [Banner](standard-coordination.md#46-banner).
-- No rubric item warns over either cap since COORD-REPOINT (Kris, 16 November 2026); the coordinator keeps both by judgement, under [Pruning the work folder](standard-mark.md#43-pruning-the-work-folder), until the check returns in `ki-work-package` as a warning.
+- No rubric item warns over either cap since COORD-REPOINT (Kris, 16 November 2026); the coordinator keeps both by judgement, under [Pruning the package](standard-mark.md#43-pruning-the-package), until the check returns in `ki-work-package` as a warning.
 
 Sources: OWNER-QUEUE in [the decision register](sources.md#3-decisions).
 

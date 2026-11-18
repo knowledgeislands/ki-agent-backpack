@@ -42,7 +42,7 @@ How work lands and is reviewed, how sessions push beneath one another, and how t
 
 - The record's shape: `ki-authoring`'s [record format](../../../keystone/ki-authoring/references/standard-formats-record.md).
 - Commit and coordination rules for background runs: `ki-delegation`'s [background-run standard](../../../agentic-systems/ki-delegation/references/standard-background-runs.md).
-- Committing the work folder and the turn budget: [the core](standard-coordination.md).
+- Committing the package and the turn budget: [the core](standard-coordination.md).
 - The open host-move questions: [the sources file](sources.md).
 
 [Back to contents](#contents)

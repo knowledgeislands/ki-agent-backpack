@@ -426,7 +426,7 @@ The verbs, which the same plain words in chat also do:
 - `/ki-coordination send`: make the send under [States and moves](standard-coordination.md#45-states-and-moves): commit and sync the package and give the Summary whose banner names the handoff.
 - `/ki-coordination goals`: walk `_index.md`'s Goals section in a [goal-setting pass](standard-queries.md#44-goal-setting-pass), as the word `goals` does, closing with a Status.
 - `/ki-coordination receive`: take the owner's receive under [States and moves](standard-coordination.md#45-states-and-moves), as `with me` does, and commit it with the next send.
-- Every reply that sends is followed by [committing and pushing the package](standard-coordination.md#481-committing-the-work-folder).
+- Every reply that sends is followed by [committing and pushing the package](standard-coordination.md#481-committing-the-package).
 
 `ki-work recap` keeps only the ordinary session recap; every summary while coordinating is the Summary.
 
@@ -454,7 +454,7 @@ The **Summary** is the coordinator's one summary form, a Full reply. It runs fro
 
 **The footer** is the Knowledge Islands art, then the banner. The art shows on every Summary and Status unless the owner added `no art`, and on no other reply. What the art and the footer lines carry is for Knowledge Islands Cairn, `ki.cairn`, to decide, liaising with `ki.summit` as the keeper of this standard. Until Cairn publishes its own, the art is the 88-column Knowledge Islands drawing in the [summary-model design note](https://github.com/krisb/dotfiles/blob/29dc51c/+/_WORK/personal.reg.household-terra/_emerging/summary-model.design.md), its scroll saying only KNOWLEDGE ISLANDS, with no host, state, counts, date or time. The art stays as a visible marker and can go later without touching anything else.
 
-**Sources of a Summary:** the package's change documents; every report received since the mark, from its run packet or, once a [tidy](standard-mark.md#43-pruning-the-work-folder) has removed the packet, from the change documents and records its outcome reached; the parked tags in the change documents; the agent host's view of its agents; record transitions in the work's scope from the Git history of the roadmap paths; and `git log -- work/<territory>/<id>/` in the Cairn store, the logbook. The mark bounds them all. Where a report can no longer be read and its outcome was not homed, the Summary says what it could not read rather than reconstructing it from memory.
+**Sources of a Summary:** the package's change documents; every report received since the mark, from its run packet or, once a [tidy](standard-mark.md#43-pruning-the-package) has removed the packet, from the change documents and records its outcome reached; the parked tags in the change documents; the agent host's view of its agents; record transitions in the work's scope from the Git history of the roadmap paths; and `git log -- work/<territory>/<id>/` in the Cairn store, the logbook. The mark bounds them all. Where a report can no longer be read and its outcome was not homed, the Summary says what it could not read rather than reconstructing it from memory.
 
 Sources: SUMMARY-MODEL, TABLE-ALIGN, FOOTER-AGORA, FOOTER-COUNTS, REPLY-FORMAT, FOCUS-ROWS and QUERY-CAP in [the decision register](sources.md#3-decisions).
 
@@ -540,7 +540,7 @@ With worker, closing a Summary while runs are out:
 - 🤖 work-model · run/work-model · at 23:20
 - 🤖 tools-burndown fix · work/ki.tools-burndown · at 23:05
 - 👤 WORK-HOME · owner · at 22:58
-- ⛔ work folder commit · repo/ki-principal · at 22:40
+- ⛔ package commit · repo/ki-cairn-store · at 22:40
 
 ⚒️ 🔑 ki.ways-of-working
 ```
@@ -643,7 +643,7 @@ Finished, closing the Stop at [Finishing Project work](standard-mark.md#45-finis
 ```markdown
 ### 🏁 Finished · Ways of working closed at 18:00 BST
 
-- 🏁 14 work items accepted, decisions homed, work folder pruned
+- 🏁 14 work items accepted, decisions homed, package pruned
 
 ⚒️ 🔑 ki.ways-of-working
 ```

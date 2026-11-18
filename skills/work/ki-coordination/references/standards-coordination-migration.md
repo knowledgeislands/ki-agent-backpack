@@ -155,13 +155,13 @@ A hold committed before SNOOZE may read `hold, more expected` in its commit subj
 
 These tolerances keep work that has not yet moved to the work package readable. Each is deleted once no work remains in the single-file shape.
 
-- **Pruning reports:** In the single-file tolerance shape, retain the report until its queries are answered and read back in the log, under `ki-work-package` [Tidying the work folder](../../ki-work-package/references/standard-work-package.md#410-the-tidy). Adjusts the Judgement item of [Pruning the work folder](standard-mark.md#43-pruning-the-work-folder).
+- **Pruning reports:** In the single-file tolerance shape, retain the report until its queries are answered and read back in the log, under `ki-work-package` [Tidying the work folder](../../ki-work-package/references/standard-work-package.md#410-the-tidy). Adjusts the Judgement item of [Pruning the work folder](standard-mark.md#43-pruning-the-package).
 - **Message queue:** Work still in the single-file shape keeps its `## Messages` section, and an old-shape checkpoint its bold-line messages block, until it moves. Adjusts Place and shape in [Messages between work](standard-messages.md#messages-between-work).
 - **Work status:** `ki work status` reads every single-file work file, as well as every work package, for the tolerance window. Adjusts the Work status row in [Surfaces](standard-messages.md#44-surfaces).
 
 ## Old thread run folders
 
-A `+/_THREADS/<run>/` folder is checked against its old closed list, `decisions.md` and `<name>.report.md`, for the tolerance window. Adjusts the Flagging item of [Pruning the work folder](standard-mark.md#43-pruning-the-work-folder).
+A `+/_THREADS/<run>/` folder is checked against its old closed list, `decisions.md` and `<name>.report.md`, for the tolerance window. Adjusts the Flagging item of [Pruning the work folder](standard-mark.md#43-pruning-the-package).
 
 ## Focus and numbered decisions-log entries
 
