@@ -35,7 +35,7 @@ Explain the native TOML merge boundary without creating a second source.
 
 ### Mode REFRESH
 
-Refresh only in `ki-agent-backpack` when Codex CLI MCP commands or TOML representation change. From an installed copy, stop and redirect to the canonical harness.
+Refresh only in `ki-agent-backpack` when Codex CLI MCP commands or TOML representation change. From an installed copy, stop and redirect to the canonical backpack.
 
 ### Mode HELP
 
