@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:55:00Z
+ki-revised: 2026-11-19T07:30:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -72,10 +72,13 @@ The owner decisions the standard and this file name by id.
 | COMMIT-VS-CI | Option a, which Kris chose, "I think we just need to keep them simple": the harness pre-commit hook runs only check-only staged lints, and the focused harness audit runs in CI. | 2026-10-26 | [compatible harness standard, 4.8](standard-compatible-backpack.md#48-commit-gate) | In force |
 | PERSONAL-SPECIAL | Kris's word: the prefix `personal` is reserved for the owner's own personal Harness, which only that owner installs. | 2026-10-29 | [compatible harness standard, 4.7](standard-compatible-backpack.md#47-backpack-declaration) | In force |
 | BACKPACK-DEPTH | Kris's word, in the Cairn summit's change 12: `ki-repo-harness` became `ki-repo-backpack`, and the harness wording in its standards follows when the backpack words are rolled out. | 2026-11-14 | [compatible harness standard](standard-compatible-backpack.md) | In force |
+| BACKPACK-ROOT-WORDS | The backpack's own files outside its skills say backpack where they meant the bundle, in one pass under this skill: the root `README.md`, `CLAUDE.md` and `AGENTS.md`, `hooks/README.md` and the developer guides, the guide renamed `local-backpack-development.md` with its links; `ki:harness:eval`, `evals/harness.ts`, installed paths under `harnesses/`, decision identifiers, quotations and "eval harness" in the industry's sense keep their words. `ki-coordination`'s two example banners and its output style follow after the run then editing it. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a, from the summit's change 12, option a, under HARNESS-NAME. Reversible; Kris can overturn it. | 2026-11-19 | [Compatible backpack standard](standard-compatible-backpack.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 19 November 2026 BACKPACK-ROOT-WORDS, recorded under [Decisions](#3-decisions), brought the backpack's own root files, `hooks/README.md` and developer guides to the backpack word, the local development guide renamed. No criterion changed and no outside source refreshed.
 
 On 18 November 2026 the skill's words followed BACKPACK-DEPTH and HARNESS-NAME, from the Cairn summit's change 12, steps 1 and 6, for the Repository guild: the standard is `standard-compatible-backpack.md`, the compatible backpack standard, its sections 4.3 and 4.7 renamed with their anchors; the skill, exemplars, rubric text, audit messages and code say backpack, the rubric and the capability catalogue regenerated, the catalogue saying "This source backpack publishes". Decision identifiers, the `ki:harness:eval` script, quoted decisions and the functional area group drawn in the living diagrams, "Skills and harness", keep their words. No criterion changed and no outside source refreshed.
 

@@ -29,6 +29,6 @@ The `ki-skills` skill and its cited decisions own the dependency, optional-augme
 ki repo audit --skill ki-skills             # current proven skill-quality audit
 ki repo conform --skill ki-skills --dry-run # validate and report safe proposals
 ki dev skill rubric ki-skills               # verify generated rubric publication
-bun run test                                # harness source tests
+bun run test                                # backpack source tests
 bunx tsc --noEmit                           # TypeScript gate
 ```

@@ -2,21 +2,21 @@
 
 Knowledge Islands **agent runtime hooks**.
 
-This directory is where the harness's hook scripts consolidate — the `PreToolUse`, `PostToolUse`, `Stop`, `SessionStart`, `PreCompact`, and similar handlers a consuming repo (or the personal `~/.claude/` environment) wires into a `settings.json`. The current surface has four concerns: the `plan-stamp.sh` / `plan-sync.sh` Plan Mode lifecycle pair, the `git-lock-check.sh` stale-lock guard, the `coordinator-reminder.sh` responsive-coordinator reminder and the `coordinator-footer.sh` footer check.
+This directory is where the backpack's hook scripts consolidate — the `PreToolUse`, `PostToolUse`, `Stop`, `SessionStart`, `PreCompact`, and similar handlers a consuming repo (or the personal `~/.claude/` environment) wires into a `settings.json`. The current surface has four concerns: the `plan-stamp.sh` / `plan-sync.sh` Plan Mode lifecycle pair, the `git-lock-check.sh` stale-lock guard, the `coordinator-reminder.sh` responsive-coordinator reminder and the `coordinator-footer.sh` footer check.
 
 ## How hooks are expected to work
 
 A hook reaches a runtime in three parts, each with one owner, as Kris set on 6 November 2026: "I think that's the 3 aspects of how it works".
 
-1. **Harness.** The harness ships each hook as `hooks/<hook>/<hook>.sh` and lists it in the [payload table](#payload) below, with its runtime, event, matcher and timeout.
-2. **`ki`.** `ki` installs the payload to `~/.local/share/ki/harnesses/<org>/<harness>/hooks/`. For each registered harness, `ki doctor` reports each hook that is missing, unregistered in Claude Code or Codex, or lacking its current Codex trusted hash, and `ki repair` registers the missing ones. Where a dotfiles manager owns the settings, both report "managed by chezmoi, run chezmoi apply" instead of writing them.
+1. **Backpack.** The backpack ships each hook as `hooks/<hook>/<hook>.sh` and lists it in the [payload table](#payload) below, with its runtime, event, matcher and timeout.
+2. **`ki`.** `ki` installs the payload to `~/.local/share/ki/harnesses/<org>/<harness>/hooks/`. For each registered backpack, `ki doctor` reports each hook that is missing, unregistered in Claude Code or Codex, or lacking its current Codex trusted hash, and `ki repair` registers the missing ones. Where a dotfiles manager owns the settings, both report "managed by chezmoi, run chezmoi apply" instead of writing them.
 3. **User-environment manager.** The user-environment manager, such as chezmoi, registers each hook from the installed path, never from a checkout.
 
-Part 2 is the expected behaviour, not shipped behaviour. Its `ki` implementation is tracked with tools-ki through `ki.summit`'s tooling audit. Today `ki doctor` checks only that each harness is installed, and `ki repair` repairs only skill links and legacy configuration metadata; neither inspects or registers runtime hooks.
+Part 2 is the expected behaviour, not shipped behaviour. Its `ki` implementation is tracked with tools-ki through `ki.summit`'s tooling audit. Today `ki doctor` checks only that each backpack is installed, and `ki repair` repairs only skill links and legacy configuration metadata; neither inspects or registers runtime hooks.
 
 ## Payload
 
-`ki` installs every hook below with the harness, under `<installed harness>/hooks/`, which on a Mac is `~/.local/share/ki/harnesses/knowledgeislands/ki-agent-backpack/hooks/`. A user-environment manager registers each from that installed path, never from a source checkout; `payload.test.ts` keeps this table and the shipped executables in step.
+`ki` installs every hook below with the backpack, under `<installed backpack>/hooks/`, which on a Mac is `~/.local/share/ki/harnesses/knowledgeislands/ki-agent-backpack/hooks/`. A user-environment manager registers each from that installed path, never from a source checkout; `payload.test.ts` keeps this table and the shipped executables in step.
 
 Each hook has its own folder, `hooks/<hook>/`, holding its script `<hook>.sh` and its test `<hook>.test.ts`. The table gives each script's path under `hooks/`. `git-hooks/` holds no runtime hook: it carries the tests of the repository's own `.githooks/` `commit-msg` and `pre-commit` and of the stub a linked worktree runs in their place.
 
@@ -47,9 +47,9 @@ The lock guard is best-effort recovery in a trusted user account. It rechecks ca
 Two ownership boundaries apply, and they deliberately diverge:
 
 - **Repository-facing declarations** — a consuming skill may declare and audit that it needs a hook capability, but it does not write the user's global Claude settings.
-- **Harness payload and runtime binding** — the verified compatible-harness payload installed by `ki` carries these hook sources. A user-environment manager owns any executable deployment and Claude Code registration derived from them. `ki bootstrap`, skill activation, and repository operations never write `.claude/settings.json` or mutate unrelated user hook state.
+- **Backpack payload and runtime binding** — the verified compatible-backpack payload installed by `ki` carries these hook sources. A user-environment manager owns any executable deployment and Claude Code registration derived from them. `ki bootstrap`, skill activation, and repository operations never write `.claude/settings.json` or mutate unrelated user hook state.
 
-On a chezmoi-managed machine, `ki-repo-dotfiles-chezmoi` validates the selected payload and renders the matching Claude Code registrations. That binding is deliberately outside CLI harness installation and repository governance. Plan-file lifecycle is tied to personal `~/.claude/plans/` state; the lock guard applies across every worktree, so both remain home-directory capabilities rather than project-local hook installation.
+On a chezmoi-managed machine, `ki-repo-dotfiles-chezmoi` validates the selected payload and renders the matching Claude Code registrations. That binding is deliberately outside CLI backpack installation and repository governance. Plan-file lifecycle is tied to personal `~/.claude/plans/` state; the lock guard applies across every worktree, so both remain home-directory capabilities rather than project-local hook installation.
 
 The bundle layout remains governed by `ki-repo-backpack`; `ki-work plan` owns the Plan Mode lifecycle semantics; and `ki-git` owns the portable stale-lock guard contract. `ki-repo-dotfiles-chezmoi` retains runtime-specific Claude Code registration. No hook is an ungoverned policy surface.
 

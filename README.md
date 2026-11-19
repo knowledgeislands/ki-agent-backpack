@@ -24,7 +24,7 @@ brew install knowledgeislands/tap/ki
 ki bootstrap
 ```
 
-`ki bootstrap` configures detected agent runtimes, installs the verified canonical backpack, and activates the core user skills. Repository governance remains explicit through `.ki.toml`, `ki repo skill`, and the native `ki repo` operations. [Install and get started](https://knowledgeislands.info/guidance/using-ki/getting-started/) covers the complete flow; [Use skills](https://knowledgeislands.info/guidance/using-ki/using-skills/) explains how to work with the resulting skills. Backpack contributors should see [local harness development](docs/guides/developer/local-harness-development.md).
+`ki bootstrap` configures detected agent runtimes, installs the verified canonical backpack, and activates the core user skills. Repository governance remains explicit through `.ki.toml`, `ki repo skill`, and the native `ki repo` operations. [Install and get started](https://knowledgeislands.info/guidance/using-ki/getting-started/) covers the complete flow; [Use skills](https://knowledgeislands.info/guidance/using-ki/using-skills/) explains how to work with the resulting skills. Backpack contributors should see [local backpack development](docs/guides/developer/local-backpack-development.md).
 
 ## Documentation
 
@@ -36,7 +36,7 @@ ki bootstrap
 - [Onboarding reference](https://knowledgeislands.info/guidance/using-ki/onboarding/) — the detailed installed-backpack, activation, and native-governance boundaries.
 - [Command-line interface](https://knowledgeislands.info/guidance/using-ki/command-line-interface/) — the current end-user `ki` command surface and scope boundaries.
 - [Optional tools](https://knowledgeislands.info/guidance/using-ki/recommended-tools/) — optional user and system tools: chezmoi, headroom-ai, Codex skill discovery, mcporter, and claude.ai connectors.
-- [Local harness development](docs/guides/developer/local-harness-development.md) — use a local checkout as the active canonical backpack.
+- [Local backpack development](docs/guides/developer/local-backpack-development.md) — use a local checkout as the active canonical backpack.
 - [Prompting guides](https://knowledgeislands.info/guidance/prompting/) — how to prompt the models we run, with one source-backed guide per model.
 
 The public website guidance is self-contained. For how it relates to the decisions, specifications, roadmap items, and skill code underneath it — and to the Knowledge Islands concept — see [docs/docs.md](docs/docs.md).

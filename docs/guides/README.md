@@ -1,9 +1,9 @@
 # Guides
 
-Practical instructions for using, operating, contributing to, and maintaining the harness. Decisions explain why, Specifications explain what, and these guides explain how.
+Practical instructions for using, operating, contributing to, and maintaining the backpack. Decisions explain why, Specifications explain what, and these guides explain how.
 
 ## Guide areas
 
 - [Choose a skill by outcome](https://knowledgeislands.info/guidance/skills/by-outcome/) — route an intended result to the smallest useful capability or delivery journey without first knowing a skill name.
-- [User guides](user/README.md) — running the harness's process skills, starting with [a design loop](user/work-design.md): shape a Project, Initiative or cross-cutting model with `/ki-work design start <subject>` before any work record exists, and hand the rollout to `ki-work next`, `ki-work plan` and `ki-work implement`.
-- [Developer guides](developer/README.md) — lightweight contributor workflows for local harness development and testing.
+- [User guides](user/README.md) — running the backpack's process skills, starting with [a design loop](user/work-design.md): shape a Project, Initiative or cross-cutting model with `/ki-work design start <subject>` before any work record exists, and hand the rollout to `ki-work next`, `ki-work plan` and `ki-work implement`.
+- [Developer guides](developer/README.md) — lightweight contributor workflows for local backpack development and testing.
