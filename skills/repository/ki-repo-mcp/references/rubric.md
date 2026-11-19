@@ -90,11 +90,11 @@ The shared access, annotation, and audit-log utilities are present.
 
 ## SHARED — Shared-code projection
 
-→ [standard](standard-mcp-shared-code.md#45-managed-profile-contract)
+→ [standard](standard-mcp-shared-code.md#41-managed-profile-contract)
 
 Optional skill-owned vendored MCP utilities and explicit repository-owned seams.
 
-- **SHARED-1 [M] — Declared shared-code projection** — An optional declared MCP shared-code profile agrees byte-for-byte with its skill-owned manifest while local extension files remain outside the managed set. (standard-mcp-shared-code.md#45-managed-profile-contract)
+- **SHARED-1 [M] — Declared shared-code projection** — An optional declared MCP shared-code profile agrees byte-for-byte with its skill-owned manifest while local extension files remain outside the managed set. (standard-mcp-shared-code.md#41-managed-profile-contract)
   - _Remediation:_ automatic
 
 ## TEST — Test wiring

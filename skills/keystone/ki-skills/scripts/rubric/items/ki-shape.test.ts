@@ -17,6 +17,7 @@ describe('KI-SHAPE-6', () => {
             'standards-model-radar.md',
             'standard-formats-change.md',
             'migration-roles.md',
+            'report-20260924-mcp-shared-code-inventory.md',
             'notes.md'
           ]
         }

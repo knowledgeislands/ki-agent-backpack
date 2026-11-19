@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T06:40:00Z
+ki-revised: 2026-11-19T07:00:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -103,10 +103,13 @@ The decisions the standard cites by id, oldest first; the standard keeps citing 
 | MCP-BASIS | Every server that declares `[skills.ki-repo-mcp]` counts towards the majority basis: all seven, including `mcp-housekeeping-chatgpt` and `mcp-acquire-whatsapp`. Taken at high confidence on the evidence, on the same basis. | 2026-11-17 | [In-house evidence](#213-in-house-the-workspace-convention) | In force |
 | TOOL-EXCEPTION | A repository may keep tool names outside `<app>_<resource>_<action>` by declaring them in `[skills.ki-repo-mcp]` as `tool-name-exceptions`, the reason in a comment above the key, as `ki-repo` takes a declared narrower runtime list (`all-runtimes = false`, RUNTIMES-7); `TOOL-1` reports them as declared and flags a listed name no tool registers. Taken at high confidence by the Cairn summit's guardian on Kris's word to take high-confidence calls, once `mcp-cairn`'s warden kept its bare names `who`, `since` and `presence` through the messaging retirement (`8fa0ce5`). | 2026-11-17 | [Scope](standard-mcp-servers.md#2-scope), [Tool naming](standard-mcp-servers.md#43-tool-naming) | In force |
 | MCP-SURFACES | Where a server is turned on belongs to the Environment guild's binding skills: the cross-surface enablement standard's rules not already in `ki-env-binding` or `ki-env-binding-claude` moved there after a line-by-line check, and the claude.ai connector control standard moved whole into `ki-env-binding-claude` with its four sources; this skill keeps only what an MCP repository ships, with a pointer. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a, from the summit's change 10. Reversible; Kris can overturn it. | 2026-11-19 | [Scope](standard-mcp-servers.md#2-scope) | In force |
+| MCP-INVENTORY | The 24 September 2026 inventory of shared utility code, its conclusions, exact-copy clusters and repository matrix, a dated finding, moved out of the shared-code standard into the [inventory report](report-20260924-mcp-shared-code-inventory.md) beside it; the standard keeps the managed profile contract and migration sequence, which read whole without the matrix, and points at the report. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a, from the summit's change 10. Reversible; Kris can overturn it. | 2026-11-19 | [MCP shared-code standard](standard-mcp-shared-code.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 19 November 2026 MCP-INVENTORY, recorded under [Decisions](#3-decisions), moved the shared-code standard's 24 September inventory, sections 4.1 to 4.4, into a [dated report](report-20260924-mcp-shared-code-inventory.md); the managed profile contract and migration sequence are now 4.1 and 4.2, the rubric's link following. No criterion changed and no outside source refreshed.
 
 On 19 November 2026 MCP-SURFACES, recorded under [Decisions](#3-decisions), moved the two surface standards to the Environment guild: `standard-cross-surface-enablement.md` is gone, what it held beyond `ki-env-binding` and `ki-env-binding-claude` now in them, and `standard-claude-ai-connectors.md` is `ki-env-binding-claude`'s, its four sources with it, so this file no longer lists them. `SKILL.md` and the server standard point there. No criterion changed and no outside source refreshed.
 
