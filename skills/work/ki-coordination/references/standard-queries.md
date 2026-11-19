@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T00:18:51Z
+ki-revised: 2026-11-19T04:40:00Z
 ki-status: in force
 ---
 
@@ -16,6 +16,7 @@ ki-status: in force
 - [4. Rules](#4-rules)
   - [4.1 Questions](#41-questions)
   - [4.2 Query cap](#42-query-cap)
+    - [4.2.1 Query re-check](#421-query-re-check)
   - [4.3 Interactive pass](#43-interactive-pass)
   - [4.4 Goal-setting pass](#44-goal-setting-pass)
   - [4.5 Query review](#45-query-review)
@@ -35,7 +36,7 @@ How queries reach the owner, and how many one reply puts to them.
 
 ### 2.1 In scope
 
-- Where queries reach the owner, and the query cap.
+- Where queries reach the owner, the query cap and the query re-check.
 - The interactive pass: its two replies, the read-back, the real example, the discussion options and the plain fallback.
 - The goal-setting pass.
 - Blind query review and the marked review-independence source.
@@ -56,6 +57,7 @@ How queries reach the owner, and how many one reply puts to them.
 | Term | Definition |
 | --- | --- |
 | **Query cap** | At most three queries in one reply, the most critical first, then one line saying how many more are open and where they are held. **Standard:** this one, [4.2](#42-query-cap) |
+| **Query re-check** | The run that, while more than ten queries are open, checks every one against where things stand before any is put to the owner, dropping, merging, re-rating and ranking them. **Standard:** this one, [4.2.1](#421-query-re-check) |
 | **Interactive pass** | Taking the open queries one decision at a time, in two replies per query: the context in chat, then a short question card, or plain chat alone where the runtime has no card. **Standard:** this one, [4.3](#43-interactive-pass) |
 | **Discussion options** | The two options closing every query in a pass, Talk it through now and Come back at the end, so the owner can defer without typing. **Standard:** this one, [4.3](#43-interactive-pass) |
 | **Query review** | One masked, blind review run a query goes to before it reaches the owner when it is medium or low confidence, or high with a destructive recommended course. **Standard:** this one, [4.5](#45-query-review) |
@@ -84,6 +86,19 @@ A reply puts at most three queries to the owner, so each reply stays short enoug
 - **Where it does not:** the queries file and the change documents keep every open query in their Open sections.
 
 Sources: QUERY-CAP and QUERY-CAP-3 in [the decision register](sources.md#3-decisions).
+
+[Back to contents](#contents)
+
+#### 4.2.1 Query re-check
+
+While more than ten queries are open with the owner, a run re-checks every one against where things stand before any is put to the owner, so no query asks about something that has since moved on, as Kris set under QUERY-RECHECK on 19 November 2026: "at the point where there is a significant number of queries, perhaps over 10, then the queries need to be reviewed, especially before we start interacting to make sure that they're still valid, because we don't want to start asking queries … which may contradict things which have significantly moved on since the point at which the query was initially captured."
+
+- **When:** before a reply, a Summary, a Bootstrap or an [interactive pass](#43-interactive-pass) puts any query to the owner, while more than ten are open across the package's change documents.
+- **Who:** a background run under `ki-delegation`, since the coordinator does no substantive work itself, reading the change documents, the record and the repositories as they now stand.
+- **What it does:** it drops each query that is settled, done or not the owner's, the last sent to its holder; merges queries that overlap into one; re-rates each remaining query's confidence; and ranks the rest by the [query cap](#42-query-cap)'s order. It writes the result into the change documents' Open sections, and only then does the cap choose which three a reply shows.
+- **Beside the cap and the review:** the cap sets how many one reply shows and the re-check which are still worth asking. A query the re-check rates medium or low, or high with a destructive recommended course, still goes to its [query review](#45-query-review) before it reaches the owner.
+
+Sources: QUERY-RECHECK in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 

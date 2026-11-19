@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:26:38Z
+ki-revised: 2026-11-19T04:40:00Z
 ki-status: in force
 ---
 
@@ -68,9 +68,11 @@ The rules, part by part.
 
 A logged, unrevoked owner decision authorises its stated scope across sessions. Ask again only for a new decision, an explicit later gate or a changed boundary. A relay is not approval, and narrower repository gates still apply.
 
+A grant is not such a decision. A grant the owner gives within a session, such as "you can accept anything with a high confidence", covers only that session's work within its remit and lapses with the session, unless the owner says it stands; and every push that publishes comes back to the owner each time, whatever grant is in force. Kris set this under ACCEPT-REACH on 19 November 2026: "Sometimes I might say that within a given session of working, it's not a standing statement, I believe. So it should always be caveated within a certain remit." A decision on a stated scope, logged and unrevoked, still stands across sessions; a blanket grant does not.
+
 The coordinator logs every owner decision in the turn it arrives, in the owner's words, in the change document it belongs to, under the [rules below](#411-decisions-log). A record, report or banner describes a decision by its words and date, never by a number.
 
-Sources: DECISION-NO-NUMBER in [the decision register](sources.md#3-decisions).
+Sources: DECISION-NO-NUMBER and ACCEPT-REACH in [the decision register](sources.md#3-decisions).
 
 #### 4.1.1 Decisions log
 
@@ -111,7 +113,7 @@ An entry stays in its change document while the change is open; when the change 
 
 - **homed** when a standard, skill, note, record, Decision Record or commit wholly carries it; it needs nothing more, and goes with its change document;
 - **pointed** when it still governs live work whose home is elsewhere: the tag, the owner's date and a link carry it, and when the change closes they move to the home of the live work it governs;
-- **kept** otherwise, and its change document stays open. A standing grant not yet revoked, such as an Orca opt-in or a listening request, is kept. A standalone entry with no Decision Record yet is kept, and `_index.md`'s Held carries it as `homeless: <TAG>`, so the Summary shows it, until a Decision Record takes it.
+- **kept** otherwise, and its change document stays open. A standing grant not yet revoked, such as an Orca opt-in or a listening request, is kept; a grant scoped to its session is not standing and is not kept once the session ends. A standalone entry with no Decision Record yet is kept, and `_index.md`'s Held carries it as `homeless: <TAG>`, so the Summary shows it, until a Decision Record takes it.
 
 Who homes each class:
 
