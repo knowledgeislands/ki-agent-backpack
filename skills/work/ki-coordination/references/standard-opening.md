@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T23:40:27Z
+ki-revised: 2026-11-19T03:23:08Z
 ki-status: in force
 ---
 
@@ -73,7 +73,7 @@ The Work Process note's Levels and forms of work table sets the three levels, th
 | `_index.md` | `work/<territory>/<territory>.summit/_index.md` in the Cairn store, and `work/<territory>/<id>/_index.md` for each node beneath it | `work/<territory>/<territory>.<project>/_index.md` in the Cairn store | `work/<territory>/<id>/_index.md`, one package per ad hoc piece |
 | Coordinates | Assigned packages: priorities, the queue and cross-cutting decisions; a node beneath the summit, only the part the summit splits off to it; executes nothing | One Project's work items and runs when explicitly opened | Its own work, conversationally or through explicitly opened coordination |
 | Governed by | This standard | This standard while coordinating | Activity notes, `ki-work-recurring` and declared skills; this standard while coordinating |
-| Report forms | The coordinator forms, the report heading reading `› State of play` | The coordinator forms while coordinating, under the Project's heading | The coordinator forms while coordinating, under the work's title linked to its `_index.md`; otherwise the conversational reply forms |
+| Report forms | The coordinator forms, under the package's name, as `KI › summit` | The coordinator forms while coordinating, under the package's name | The coordinator forms while coordinating, under the package's name; otherwise the conversational reply forms |
 
 `_index.md` declares the level in its `ki-level` field under the work-package standard: `territory`, `regular` or `project`, ad hoc work taking `regular`. The id names no kind, so the level is read from the `ki-level` field, never from the id, and a package changing kind keeps its id (KIND-DROP, Kris, 11 November 2026):
 
@@ -122,7 +122,7 @@ A member-repository Project session is a seat for its Capital package, not autho
 
 - **Territory:** the territory's name where it is one word, `Personal`, `Legal` or `Techmedix`, otherwise its alias in capitals, `KI`, `HNR`, `ER`, `VA` or `SI`.
 - **Theme and Project:** the `title` fields of the theme page and the Project note as they stand, such as `Model` and `Ways of working`. A title follows a registry change at `_index.md`'s next update; the id does not.
-- **State of play:** `SoP` in the title and `State of play` in full in the report heading.
+- **State of play:** `SoP` in the title; the report heading names the package, as `KI › summit`.
 - **Node:** a node's slug in words, in sentence case, unless the owner names it otherwise, as `KI > Tools` for `ki.tools`.
 - **Label:** the title, plus a `(<host>)` suffix, after a space, only when the work is limited to that machine. The id, slug and title never carry a host.
 - **Work name:** the label followed by the id in brackets, `<label> (<id>)`, as in `KI > Model > Ways of working (ki.ways-of-working)` and `KI > SoP (ki.summit)`.
@@ -131,7 +131,7 @@ A member-repository Project session is a seat for its Capital package, not autho
 
 - The work name names the work in replies and reports, as the sender of [steer or feedback](standard-messages.md#messages-between-work), in a handoff and in the opener's `Label:` line.
 - A native session takes its seat's [thread line](../../ki-work-package/references/standard-roles.md#46-thread-line) instead: `<role glyph> 🔑 <work-id>`, the glyph of its one role from the [role catalogue](../../ki-work-package/references/standard-roles.md#43-role-catalogue), with 🔑 marking the keyholder, the session holding the package's keys; `<role glyph> <package>@<role>`, with no key, the seat's id, for a seat working in the package without its keys, such as a maker in a meeting; or `🧵 <work-id>` while it has no role. Where the seat's actor is named, its `ki-name` in the Cairn store's roster, the name comes first and the form above in brackets, as in `Kitteth (🪨 🔑 cairn.summit)` and `Eugene (🏛️ 🔑 5ge.summit)`, under NAME-FIRST; an unnamed seat keeps the bare form. The launch name, the `Rename thread:` line, every report's [thread line](standard-coordination.md#46-banner) and the sender of every line the seat writes agree. A line's sender is the label with the thread line in brackets, as in `KI > Tools (⚒️ 🔑 ki.tools):` for an unnamed seat and `Cairn > SoP (Kitteth (🪨 🔑 cairn.summit)):` for a named one. The work id stays last, so the name still names the work.
-- The label stays in the opener. The [report heading](standard-report-forms.md#42-banner-detail) uses the title's display names without the territory, joined by ` › `, the work's own name linked to its package's `_index.md` in the Cairn store and nothing else linked, under HEADING-FIX.
+- The label stays in the opener. The [report heading](standard-report-forms.md#42-banner-detail) is the package's name, the territory's display name then the rest of the work id's parts, joined by ` › ` and linked whole to its `_index.md` in the Cairn store, as `# [KI › tools](<store>/work/ki/ki.tools/_index.md)`, under HEADING-PACKAGE.
 
 | Work | Id | Title | Old shape |
 | --- | --- | --- | --- |
@@ -142,7 +142,7 @@ A member-repository Project session is a seat for its Capital package, not autho
 | Tools burndown | `ki.tools-burndown` | `KI > Foundations > Tools burndown` | `platform-foundations.tools-burndown.md`, `ki.prj.tools-burndown` |
 | Registry removal | `ki.registry-removal` | `KI > Registry removal` | a conversational session, `ki.regular.registry-removal`, `ki.reg.registry-removal` |
 
-Sources: NAMING-MODEL, SUB-PACKAGE, TITLE-THEME, LABEL-HOST, WORK-LABEL, STAGE-C-ROLES, RENAME-NAME, SEAT-LINE, SUMMIT-SUB-PACKAGES, SEAT-AT, NODE-ID, NAME-FIRST and HEADING-FIX in [the decision register](sources.md#3-decisions).
+Sources: NAMING-MODEL, SUB-PACKAGE, TITLE-THEME, LABEL-HOST, WORK-LABEL, STAGE-C-ROLES, RENAME-NAME, SEAT-LINE, SUMMIT-SUB-PACKAGES, SEAT-AT, NODE-ID, NAME-FIRST, HEADING-FIX and HEADING-PACKAGE in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 

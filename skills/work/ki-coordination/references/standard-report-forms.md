@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T01:24:51Z
+ki-revised: 2026-11-19T03:23:08Z
 ki-status: in force
 ---
 
@@ -63,7 +63,7 @@ The coordinator reply format: how every reply in a coordinator session, and a ru
 | **Reply structure** | What a reply is, such as Summary, Status, Bootstrap, run report, Stop, Position, Update or Answer, each with one layout. **Standard:** this one, [4.1.1](#411-blocks-parts-and-layouts) |
 | **Trigger** | What a reply meets that sets its one reply structure, tried from T1 down, the first met winning; each is matched on a signal, a phrase, the state, the time or a move. **Standard:** this one, [4.1.2](#412-triggers) |
 | **Status table** | The Summary's and Status's full board of live items: one row per change document or sub-package holding one, then a catch-all row, Not in a change yet. **Standard:** this one, [4.1.7](#417-the-summary) |
-| **Report heading** | The heading block: one `#` heading whose one link is the package's `_index.md` in the Cairn store, one bold form line, an optional opening note and one rule. **Standard:** this one, [4.2](#42-banner-detail) |
+| **Report heading** | The heading block: one `#` heading, the package's name linked whole to its `_index.md` in the Cairn store, one bold form line, an optional opening note and one rule. **Standard:** this one, [4.2](#42-banner-detail) |
 
 [Back to contents](#contents)
 
@@ -168,7 +168,7 @@ Each part: what it carries, when it appears and how the structure, the state and
 
 **Heading block.**
 
-- **H1 Heading:** which work this is, its name linked to its package's `_index.md` in the Cairn store, under **Report heading** in [Banner detail](#42-banner-detail): `# <Theme> › [<Project>](<package _index.md>)`, `# [<Territory>](<package _index.md>) › State of play` or `# [<title>](<package _index.md>)`. A run report adds `› <run name>`.
+- **H1 Heading:** which package this is, its name linked whole to its `_index.md` in the Cairn store, under **Report heading** in [Banner detail](#42-banner-detail): `# [<Territory> › <rest of the id>](<package _index.md>)`, as `# [Cairn › summit](<package _index.md>)`. A run report adds `› <run name>` after the link.
 - **H2 Form line:** which reply structure, when it was given and the mark: `**<Structure> at <now> · last mark <mark time>**`, the structure `Summary`, `Status`, `Bootstrap`, `Run report` or `Stop`. The mark time is the mark the reply's window opens at: after `mark`, the mark before the one just struck; otherwise the last mark struck, or the session's start where there is none. A Stop for a hold ends `· mark <the hold's mark>`. Both times are friendly times, so `last mark` names the day where it is not today, as in `last mark yesterday 18:05 GMT`. The work's state is not in H2; it shows only in F2.
 - **H3 Opening note:** context worth putting high up, ahead of the body, such as an outline of the Answer or anything unusual that nothing else shows, in one or two lines; the rest of the Answer stays in B1. Only where the reply has such context.
 - **H4 Rule:** one `---`, with a blank line either side, closing the heading block.
@@ -194,7 +194,7 @@ Each part: what it carries, when it appears and how the structure, the state and
 - **F8 Listening line:** `👂 in <meeting>` while the session is in a meeting, naming each meeting it is in by its entry file's `meeting` field, two or more joined by `, `, as in `👂 in cairn.wayfinder.designs`, and left off when it is in none. A session is in a meeting while it is a participant of an open meeting with a sitting under way, `status: open` in the meeting's entry file under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). Listening means only this, under LISTEN-LINE; the [inbox watcher](standard-listening.md#41-inbox-watch) has no line.
 - **F9 Thread line:** `<role glyph> 🔑 <work-id>`, `<role glyph> <package>@<role>` for a seat without the keys, each written `<Name> (<that form>)` where the seat's actor is named, as in `Kitteth (🪨 🔑 cairn.summit)`, or `🧵 <work-id>`, always last, under **Thread line** in [the core](standard-coordination.md#46-banner).
 
-Sources: REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, LISTEN-LINE, ITEM-GLYPHS, GLYPH-TABLE, GLYPH-FALLBACK, NAME-FIRST, HEADING-FIX and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
+Sources: REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, LISTEN-LINE, ITEM-GLYPHS, GLYPH-TABLE, GLYPH-FALLBACK, NAME-FIRST, HEADING-FIX, HEADING-PACKAGE and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
 
 #### 4.1.5 Templates
 
@@ -203,7 +203,7 @@ Each structure has one complete template. A line in angle brackets says what goe
 **Summary**, Full, with each part's code in the right margin; the codes are not part of a reply:
 
 ````text
-# <Theme> › [<Project>](<package _index.md>)                                 H1
+# [<Territory> › <rest of the id>](<package _index.md>)                      H1
 
 **Summary at <now> · last mark <mark time>**                                 H2
 
@@ -273,7 +273,7 @@ b) <the alternative>
 **Bootstrap**, Medium, under [Bootstrap](standard-bootstrap.md#41-bootstrap):
 
 ```text
-# <Theme> › [<Project>](<package _index.md>)
+# [<Territory> › <rest of the id>](<package _index.md>)
 
 **Bootstrap at <now> · last mark <mark time>**
 
@@ -313,7 +313,7 @@ Rename thread: /rename <thread line>
 **Stop**, Medium, for a hold, under [Putting work on hold](standard-holds.md#41-putting-work-on-hold), alone in its message:
 
 ```text
-# <Theme> › [<Project>](<package _index.md>)
+# [<Territory> › <rest of the id>](<package _index.md>)
 
 **Stop at <now> · mark <the hold's mark>**
 
@@ -357,7 +357,7 @@ Left over: <another session's uncommitted file, or Nothing>
 **Stop at Finished**, at [Finishing Project work](standard-mark.md#45-finishing-project-work):
 
 ```text
-# <Theme> › [<Project>](<package _index.md>)
+# [<Territory> › <rest of the id>](<package _index.md>)
 
 **Stop at <now> · last mark <mark time>**
 
@@ -466,11 +466,9 @@ Sources: SUMMARY-MODEL, TABLE-ALIGN, FOOTER-AGORA, FOOTER-COUNTS, REPLY-FORMAT, 
 
 **Report heading.** The heading block: one `#` heading, one bold form line, an optional opening note and one horizontal rule, then the body. It is plain Markdown, not a fenced block, so the heading can carry links.
 
-- **Heading:** the display names of the work's [title](standard-opening.md#42-work-naming) after its territory, joined by ` › `, with the work's own name, the last of them, linked to its package's entry file in the Cairn store by absolute local path, `<store>/work/<territory>/<id>/_index.md`. `<store>` is where the rig keeps its clone of the store, as its configuration sets it, the Cairn MCP's `MCP_CAIRN_STORE`, as in `/Users/krisbrown/kis/cairn/ki-cairn-store` on Kris's rigs. Kris tightened this under HEADING-FIX on 17 November 2026, after headings drifted between sessions to a repository's README, a repository folder with `State of play` linked, and `Tower › Personal > Tower`.
-  - **One link, to the package.** The heading's first and only link is the package's `_index.md`; it never links a repository, a README, a folder, a theme page or a Project note.
-  - **Project work** writes `# <Theme> › [<Project>](<package _index.md>)`: the theme's display name, the `title` its page gives, as plain text, as the work's title keeps it, then the Project's display name in words, not its slug, linked; with no theme, the Project alone. The theme and Project stay named, as in the title, and are reached from `_index.md`'s `ki-theme` and `ki-project`.
-  - **A State of play** writes `# [<Territory>](<package _index.md>) › State of play`, the territory's display name linked to its summit's `_index.md` and `State of play` plain text, never a link; a secondary, a node beneath the summit, links its own `_index.md` and ends `› State of play (<node in words>)`.
-  - **Regular or ad hoc work**, explicitly coordinated, writes its title once, linked: `# [<title>](<package _index.md>)`, the title's words after the territory, as `# [Inbox](<store>/work/personal/personal.inbox/_index.md)` for `Personal > Inbox`, optionally preceded by its real theme as plain text, `# <Theme> › [<title>](<package _index.md>)`. It never repeats a label, as in `Tower › Personal > Tower`, never mixes ` > ` with ` › `, and never fabricates a Project.
+- **Heading:** the package's name, linked whole: the territory's display name under [Work naming](standard-opening.md#42-work-naming), then the rest of the work id's dot-separated parts as they stand, joined by ` › `, the whole text one link to the package's entry file in the Cairn store by absolute local path, `<store>/work/<territory>/<id>/_index.md`. So `cairn.summit` is `# [Cairn › summit](/Users/krisbrown/kis/cairn/ki-cairn-store/work/cairn/cairn.summit/_index.md)` and `personal.tower` is `# [Personal › tower](<store>/work/personal/personal.tower/_index.md)`. `<store>` is where the rig keeps its clone of the store, as its configuration sets it, the Cairn MCP's `MCP_CAIRN_STORE`, as in `/Users/krisbrown/kis/cairn/ki-cairn-store` on Kris's rigs. Kris set this under HEADING-PACKAGE on 19 November 2026, the package being the work a session is in and the State of play gone; it replaces HEADING-FIX's forms, territory work's `› State of play`, Project work's `<Theme> › [<Project>]` and regular work's `[<title>]`.
+  - **One link, the whole heading.** Nothing stands outside the link, and the link is the package's `_index.md`; it never links a repository, a README, a folder, a theme page or a Project note, as HEADING-FIX set.
+  - **Every level alike.** A summit, a node, a Project and regular or ad hoc work take the same form; the heading adds no theme, title or `State of play`, and never mixes ` > ` with ` › `.
   - No rule stands before the heading, so it is the first line and H1 of every saved report.
 - **Form line:** a blank line, then H2, `**<Structure> at <now> · last mark <mark time>**`, under [Part content](#414-part-content), with no state.
 - **Times:** each with its own words.
@@ -484,7 +482,7 @@ Opening a Summary:
 <!-- ki-coordination:block heading-example -->
 
 ```markdown
-# Model › [Ways of working](/Users/krisbrown/kis/cairn/ki-cairn-store/work/ki/ki.ways-of-working/_index.md)
+# [KI › ways-of-working](/Users/krisbrown/kis/cairn/ki-cairn-store/work/ki/ki.ways-of-working/_index.md)
 
 **Summary at 23:52 BST · last mark 22:34 BST**
 
@@ -493,10 +491,10 @@ Opening a Summary:
 ## Summary
 ```
 
-A State of play opening a Bootstrap whose last mark was the day before:
+A summit opening a Bootstrap whose last mark was the day before:
 
 ```markdown
-# [<Territory>](<store>/work/<territory>/<territory>.summit/_index.md) › State of play
+# [<Territory> › summit](<store>/work/<territory>/<territory>.summit/_index.md)
 
 **Bootstrap at 09:13 BST · last mark yesterday 18:05 BST**
 
@@ -648,10 +646,10 @@ Finished, closing the Stop at [Finishing Project work](standard-mark.md#45-finis
 ⚒️ 🔑 ki.ways-of-working
 ```
 
-**In an agent's report.** A background agent's run report takes the same heading block and banner, under the [owner report](standard-reporting.md#42-owner-report): the heading of the work it reports to with `› <run name>` added and the structure `Run report`, so its form line reads `**Run report at <local time> · last mark <local time>**`, the mark being that work's. Its banner gives the run's state and items, `### 🤖 → 👤 Handoff to supervisor · at <time>`, or `### 🤖 → 👤 Handoff to supervisor · blocked · at <time>` where it sends back with a blocking query, closing with the thread line of the work it reports to. Opening a run report:
+**In an agent's report.** A background agent's run report takes the same heading block and banner, under the [owner report](standard-reporting.md#42-owner-report): the heading of the work it reports to with `› <run name>` added after the link and the structure `Run report`, so its form line reads `**Run report at <local time> · last mark <local time>**`, the mark being that work's. Its banner gives the run's state and items, `### 🤖 → 👤 Handoff to supervisor · at <time>`, or `### 🤖 → 👤 Handoff to supervisor · blocked · at <time>` where it sends back with a blocking query, closing with the thread line of the work it reports to. Opening a run report:
 
 ```markdown
-# Model › [Ways of working](/Users/krisbrown/kis/cairn/ki-cairn-store/work/ki/ki.ways-of-working/_index.md) › migrate-phase1
+# [KI › ways-of-working](/Users/krisbrown/kis/cairn/ki-cairn-store/work/ki/ki.ways-of-working/_index.md) › migrate-phase1
 
 **Run report at 20:40 BST · last mark 14:54 BST**
 
@@ -660,6 +658,6 @@ Finished, closing the Stop at [Finishing Project work](standard-mark.md#45-finis
 ## Done
 ```
 
-Sources: BANNER-GLYPHS, RICH-HEADING, REPORT-FORMS-TIDY, SNOOZE-HEADING, FOOTER-COUNTS, LISTEN-STATUS, FOOTER-LAYOUT, FOOTER-CAPABILITY-STATUS-2, FOOTER-NOT-LISTENING, SYNC-LINE-OFF, RESTART-SUGGEST, REPLY-FORMAT, LISTEN-LINE, ITEM-GLYPHS, HEADING-FIX and NAME-FIRST in [the decision register](sources.md#3-decisions).
+Sources: BANNER-GLYPHS, RICH-HEADING, REPORT-FORMS-TIDY, SNOOZE-HEADING, FOOTER-COUNTS, LISTEN-STATUS, FOOTER-LAYOUT, FOOTER-CAPABILITY-STATUS-2, FOOTER-NOT-LISTENING, SYNC-LINE-OFF, RESTART-SUGGEST, REPLY-FORMAT, LISTEN-LINE, ITEM-GLYPHS, HEADING-FIX, HEADING-PACKAGE and NAME-FIRST in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)

@@ -38,12 +38,13 @@ const hook = readFileSync(resolve(backpackRoot, 'hooks', 'coordinator-reminder',
 
 /**
  * The package's entry file in the Cairn store, the one link a report heading carries under HEADING-FIX (Kris, 17
- * November 2026): never a repository, README or theme page.
+ * November 2026): never a repository, README or theme page. HEADING-PACKAGE (Kris, 19 November 2026) links the whole
+ * heading, the package's name, to it.
  */
 const PACKAGE_INDEX = '/Users/krisbrown/kis/cairn/ki-cairn-store/work/ki/ki.ways-of-working/_index.md'
 /** The report heading opening a Summary, as the standard and the output style draw it. */
 const HEADING_EXAMPLE = [
-  `# Model › [Ways of working](${PACKAGE_INDEX})`,
+  `# [KI › ways-of-working](${PACKAGE_INDEX})`,
   '',
   '**Summary at 23:52 BST · last mark 22:34 BST**',
   '',
@@ -52,12 +53,10 @@ const HEADING_EXAMPLE = [
   '## Summary'
 ].join('\n')
 /**
- * The `#` heading under HEADING-FIX: an optional plain theme and ` › `, the work's name linked to its package's
- * `_index.md` by absolute path, and for a run report ` › <run name>`.
+ * The `#` heading under HEADING-PACKAGE: the package's name, its territory then the rest of its id joined by ` › `,
+ * linked whole to its `_index.md` by absolute path or `<store>`, and for a run report ` › <run name>` after the link.
  */
-const HEADING_LINE = /^# (?:[^[\]()]+ › )?\[[^\]]+\]\(\/[^)]+\/_index\.md\)( › [a-z0-9-]+)?$/
-/** Territory work's heading: the territory linked to its package's `_index.md`, then a plain ` › State of play`. */
-const STATE_OF_PLAY_LINE = /^# \[[^\]]+\]\([^)]+\) › State of play$/
+const HEADING_LINE = /^# \[[^\]›]+(?: › [^\]›]+)+\]\((?:\/|<store>\/)[^)]+\/_index\.md\)( › [a-z0-9-]+)?$/
 /** A glyph state: a settled holder's glyph alone, or an arrow in a handoff state, with an optional reason; never a target in brackets. */
 const GLYPH_STATE = `(?:🤖 With worker|👤 With supervisor|🤖 → 👤 Handoff to supervisor(?: · blocked)?|👤 → 🤖 Handoff to worker|→ 🎯 Handoff to [^·*]+|⏸️ On hold(?: · paused until [^·*]+)?|💤 Snoozing \\(on hold\\)|🏁 Finished)`
 /** A friendly time: the local time and zone, naming the day where it is not today. */
@@ -205,7 +204,7 @@ const banners = (text: string): string[][] =>
 const expectReportHeading = (lines: string[] | undefined): void => {
   expect(lines).toBeDefined()
   if (!lines) return
-  expect(lines[0]?.match(HEADING_LINE) ?? lines[0]?.match(STATE_OF_PLAY_LINE)).not.toBeNull()
+  expect(lines[0]).toMatch(HEADING_LINE)
   expect(lines[1]).toBe('')
   expect(lines[2]).toMatch(FORM_LINE)
   expect(lines[3]).toBe('')
@@ -360,11 +359,11 @@ test('the standard carries the report heading linking only the package, the form
   const [summary, territory, runReport] = found
   expect(summary?.join('\n')).toBe(HEADING_EXAMPLE)
   expectReportHeading(summary)
-  expect(territory?.[0]).toBe('# [<Territory>](<store>/work/<territory>/<territory>.summit/_index.md) › State of play')
+  expect(territory?.[0]).toBe('# [<Territory> › summit](<store>/work/<territory>/<territory>.summit/_index.md)')
   expect(territory?.[2]).toBe('**Bootstrap at 09:13 BST · last mark yesterday 18:05 BST**')
   expect(territory?.[6]).toBe('## Done')
   expectReportHeading(territory)
-  expect(runReport?.[0]).toBe(`# Model › [Ways of working](${PACKAGE_INDEX}) › migrate-phase1`)
+  expect(runReport?.[0]).toBe(`# [KI › ways-of-working](${PACKAGE_INDEX}) › migrate-phase1`)
   expect(runReport?.[2]).toBe('**Run report at 20:40 BST · last mark 14:54 BST**')
   expectReportHeading(runReport)
 })
@@ -382,14 +381,14 @@ test('the form line names the reply structure, the local time and the last mark,
   for (const retired of ['Recap', 'Full summary', 'Re-bootstrap', 'Finish report', 'Position', 'Update'])
     expect(`**${retired} at 09:05 GMT · last mark 08:54 GMT**`).not.toMatch(FORM_LINE)
   expect('**Summary at 2026-10-14T17:03:02Z · last mark 14:54 BST**').not.toMatch(FORM_LINE)
-  expect('# [Ways of working](/a/b.md)').not.toMatch(HEADING_LINE)
-  expect('# [Inbox](/s/work/personal/personal.inbox/_index.md)').toMatch(HEADING_LINE)
-  expect('# [Model](/a/model.md) › [Ways of working](/s/work/ki/ki.ways-of-working/_index.md)').not.toMatch(
-    HEADING_LINE
-  )
+  expect('# [Cairn › summit](/s/work/cairn/cairn.summit/_index.md)').toMatch(HEADING_LINE)
+  expect('# [Personal › rig › sol](/s/work/personal/personal.rig.sol/_index.md)').toMatch(HEADING_LINE)
+  expect('# [KI › ways-of-working › x](/a/b.md)').not.toMatch(HEADING_LINE)
+  expect('# [Inbox](/s/work/personal/personal.inbox/_index.md)').not.toMatch(HEADING_LINE)
+  expect('# Model › [Ways of working](/s/work/ki/ki.ways-of-working/_index.md)').not.toMatch(HEADING_LINE)
+  expect('# [Cairn](/s/work/cairn/cairn.summit/_index.md) › State of play').not.toMatch(HEADING_LINE)
   expect('# [ki-agent-backpack](/Users/krisbrown/kis/ki/ki-agent-backpack)').not.toMatch(HEADING_LINE)
-  expect('# [Tools](/a/README.md)').not.toMatch(HEADING_LINE)
-  expect('# [KI Capital](/a/b.md) › State of play').toMatch(STATE_OF_PLAY_LINE)
+  expect('# [KI › tools](/a/README.md)').not.toMatch(HEADING_LINE)
 })
 
 test('the glyph banner shows a settled holder alone and an arrow only in a handoff state', () => {
@@ -966,7 +965,7 @@ test('regular coordination is explicit, capability-checked and uses its real wor
   expect(standard).toContain("Acquire's already-approved intake exception remains usable")
   expect(standard).toContain('Ending that episode does not finish or hold the package, move its mark or abandon runs')
   expect(standard).toContain('Bootstrap as <id> regular work under ki-coordination.')
-  expect(standard).toContain('never fabricates a Project')
+  expect(standard).toContain('A summit, a node, a Project and regular or ad hoc work take the same form')
   expect(outputStyle).toContain('including regular or ad hoc work without a coordinating opener')
   for (const id of [
     'ki.sop.main',
@@ -1013,7 +1012,8 @@ test('regular coordination is explicit, capability-checked and uses its real wor
 
 // Kris, relayed by the Cairn summit's guardian on 17 November 2026 under NAME-FIRST a: "where we have a named actor
 // that the name should be first and then in brackets it should be effectively what we're currently putting out", and
-// under HEADING-FIX a: a report heading links its package's `_index.md` in the Cairn store and nothing else.
+// under HEADING-FIX a: a report heading links its package's `_index.md` in the Cairn store and nothing else, which
+// HEADING-PACKAGE (19 November 2026) makes the whole heading, the package's name.
 test('a named seat puts its name first and its form in brackets, an unnamed seat keeps the bare form', () => {
   for (const named of [
     'Kitteth (🪨 🔑 cairn.summit)',
@@ -1037,6 +1037,7 @@ test('a named seat puts its name first and its form in brackets, an unnamed seat
     expect(text).toContain('Kitteth (🪨 🔑 cairn.summit)')
     expect(text).toContain('NAME-FIRST')
     expect(text).toContain('HEADING-FIX')
+    expect(text).toContain('HEADING-PACKAGE')
   }
 })
 

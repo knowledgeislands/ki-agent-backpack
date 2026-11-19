@@ -57,7 +57,7 @@ const items = '- 👤 FOOTER-HOOK · owner · at 21:10'
 const listening = '👂 in cairn.wayfinder.designs'
 const thread = '🧵 ki.prj.demo'
 const summaryBody = [
-  '# [Demo](/tmp/store/work/ki/ki.demo/_index.md)',
+  '# [KI › demo](/tmp/store/work/ki/ki.demo/_index.md)',
   '',
   '**Summary at 21:10 GMT · last mark 20:00 GMT**',
   '',
@@ -76,7 +76,7 @@ const summaryBody = [
 const summary = (...footer: string[]): string => [summaryBody, ...footer].join('\n\n')
 const fullSummary = summary(art, heading, counts, roadmap, pkg, items, listening, thread)
 const rebootstrap = (...banner: string[]): string =>
-  ['# [Demo](/tmp/store/work/ki/ki.demo/_index.md)', '', '**Bootstrap at 21:10 GMT · last mark 20:00 GMT**', '', '---', '', '## Done', '', 'Coordinator for ki.prj.demo.', ...banner].join('\n\n')
+  ['# [KI › demo](/tmp/store/work/ki/ki.demo/_index.md)', '', '**Bootstrap at 21:10 GMT · last mark 20:00 GMT**', '', '---', '', '## Done', '', 'Coordinator for ki.prj.demo.', ...banner].join('\n\n')
 const shortBanner = [heading, counts, items, listening, thread].join('\n\n')
 
 interface Turn {
@@ -515,31 +515,36 @@ test('an unnamed seat, an unresolvable seat and an unconfigured store pass a bar
 })
 
 // Kris, about 23:15 GMT on 17 November 2026, under HEADING-FIX a: the report heading links only its package's
-// `_index.md` in the Cairn store, by absolute path, never a repository, README or theme note, and `State of play` is
-// plain text. The hook warns, never blocks, on a heading that drifts.
-test('a report heading that links anything but its package entry file, or links State of play, passes with a warning', () => {
+// `_index.md` in the Cairn store, by absolute path, never a repository, README or theme note; and about 03:25 GMT on
+// 19 November 2026, under HEADING-PACKAGE: the whole heading is that one link, the package's name, as
+// `Cairn › summit`, so `State of play`, a theme or a title outside the link drifts. The hook warns, never blocks.
+test('a report heading that is not one link to its package entry file passes with a warning', () => {
   const headed = (h1: string): string => rebootstrap(heading, counts, items, listening, keyThread).replace(/^# .*$/m, h1)
   for (const good of [
-    '# [Demo](/Users/krisbrown/kis/cairn/ki-cairn-store/work/ki/ki.demo/_index.md)',
-    '# Model › [Ways of working](/Users/krisbrown/kis/cairn/ki-cairn-store/work/ki/ki.ways-of-working/_index.md)',
-    '# [Personal](/Users/krisbrown/kis/cairn/ki-cairn-store/work/personal/personal.summit/_index.md) › State of play',
-    '# [Inbox](/s/work/personal/personal.inbox/_index.md) › migrate-phase1'
+    '# [Cairn › summit](/Users/krisbrown/kis/cairn/ki-cairn-store/work/cairn/cairn.summit/_index.md)',
+    '# [KI › ways-of-working](/Users/krisbrown/kis/cairn/ki-cairn-store/work/ki/ki.ways-of-working/_index.md)',
+    '# [Personal › rig › sol](/s/work/personal/personal.rig.sol/_index.md)',
+    '# [Personal › inbox](/s/work/personal/personal.inbox/_index.md) › migrate-phase1'
   ])
     expect(run(stop(headed(good), plain))).toEqual(silent)
   for (const [bad, warning] of [
-    ['# [Tower](/Users/krisbrown/kis/personal/apps-ninja.midnight.tower/README.md)', 'whose first link is not its package'],
-    ['# [Tower](/Users/krisbrown/kis/personal/apps-ninja.midnight.tower) › [State of play](/x/y)', 'whose first link is not its package'],
-    ['# [Personal](/s/work/personal/personal.summit/_index.md) › [State of play](/s/work/personal/personal.summit/_index.md)', 'with State of play linked'],
-    ['# [Model](/p/Streams/Themes/model.md) › [Ways of working](/s/work/ki/ki.ways-of-working/_index.md)', 'whose first link is not its package'],
+    ['# [Personal › tower](/Users/krisbrown/kis/personal/apps-ninja.midnight.tower/README.md)', 'whose link is not its package'],
+    ['# [Personal](/s/work/personal/personal.summit/_index.md) › State of play', 'not one link covering its whole text'],
+    ['# Model › [Ways of working](/s/work/ki/ki.ways-of-working/_index.md)', 'not one link covering its whole text'],
+    ['# [Inbox](/s/work/personal/personal.inbox/_index.md)', 'not one link covering its whole text'],
+    ['# [Model](/p/Streams/Themes/model.md) › [Ways of working](/s/work/ki/ki.ways-of-working/_index.md)', 'whose link is not its package'],
     ['# Tower › Personal > Tower', 'links no package'],
-    ['# [Demo](work/ki/ki.demo/_index.md)', 'whose first link is not its package']
+    ['# [KI › demo](work/ki/ki.demo/_index.md)', 'whose link is not its package']
   ]) {
     const outcome = run(stop(headed(bad ?? ''), plain))
     expect(outcome.reason).toBeUndefined()
     expect(outcome.warning).toContain(warning ?? '')
   }
+  expect(run(stop(headed('# [Personal](/s/work/personal/personal.summit/_index.md) › State of play'), plain)).warning).not.toContain(
+    'State of play'
+  )
   // A heading inside a fence is quoted, not the reply's own.
-  const quoted = headed('# [Demo](/s/work/ki/ki.demo/_index.md)').replace(
+  const quoted = headed('# [KI › demo](/s/work/ki/ki.demo/_index.md)').replace(
     'Coordinator for ki.prj.demo.',
     'Coordinator for ki.prj.demo.\n\n```markdown\n# [Tower](/x/README.md)\n```'
   )

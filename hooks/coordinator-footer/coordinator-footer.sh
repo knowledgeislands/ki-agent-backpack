@@ -14,8 +14,9 @@
 # <meeting> or no line at all, ⭐, 🔧 or 🧵 in the role glyph's place, and in a
 # Summary or Status missing art, roadmap or package line pass with a warning, so the owner can confirm the form was intended. The
 # hook holds no copy of the role catalogue, which ki-work-package owns.
-# A report heading whose first link is not a package's _index.md in the Cairn store, or
-# that links none, or whose State of play is a link, warns too (HEADING-FIX).
+# A report heading that is not one link covering its whole text, the package's name as
+# <Territory> › <rest of the id> (HEADING-PACKAGE), a run report's › <run name> aside, or
+# whose link is not a package's _index.md in the Cairn store (HEADING-FIX), warns too.
 # A banner item pairing an agreed glyph with a bracketed state word warns too: an item
 # takes an agreed glyph alone, a provisional glyph with its word in brackets, or the
 # bracketed word alone (GLYPH-FALLBACK).
@@ -313,12 +314,15 @@ footer() {
       if (heading && !finished && !counts) warn[++w] = "no counts line beneath the state heading"
       if (heading && counts && odd) warn[++w] = "a counts line opening with none of the counts glyphs"
       if (heading && oldlisten) warn[++w] = "a listening line in the earlier 👂 listening or 🔇 not listening form, which LISTEN-LINE replaces with 👂 in <meeting>, or no line in no meeting"
-      # The heading links only the package _index.md in the Cairn store, State of play plain (HEADING-FIX).
+      # The whole heading is one link, the package name, to its _index.md in the Cairn store
+      # (HEADING-PACKAGE, HEADING-FIX); a run report adds › <run name> after it.
       if (h1) {
         target = match(h1, /\]\([^)]*\)/) ? substr(h1, RSTART + 2, RLENGTH - 3) : ""
-        if (target == "") warn[++w] = "a report heading that links no package, where HEADING-FIX links the work\047s name to its package\047s _index.md in the Cairn store"
-        else if (target !~ /^\/.*\/work\/[a-z0-9-]+\/[^\/]+\/_index[.]md$/) warn[++w] = "a report heading whose first link is not its package\047s _index.md in the Cairn store, which HEADING-FIX sets, never a repository, README or theme page"
-        if (h1 ~ /State of play[^()]*\]\(/) warn[++w] = "a report heading with State of play linked, which HEADING-FIX keeps as plain text"
+        if (target == "") warn[++w] = "a report heading that links no package, where HEADING-PACKAGE links the whole heading to its package\047s _index.md in the Cairn store"
+        else {
+          if (h1 !~ /^# \[[^\]]* › [^\]]*\]\([^)]+\)( › [a-z0-9-]+)?[ \t]*$/) warn[++w] = "a report heading that is not one link covering its whole text, where HEADING-PACKAGE writes # [<Territory> › <rest of the id>](<package _index.md>)"
+          if (target !~ /^\/.*\/work\/[a-z0-9-]+\/[^\/]+\/_index[.]md$/) warn[++w] = "a report heading whose link is not its package\047s _index.md in the Cairn store, which HEADING-FIX sets, never a repository, README or theme page"
+        }
       }
       if (paired) warn[++w] = "a banner item pairing an agreed glyph with a bracketed state word, where GLYPH-FALLBACK sets the agreed glyph alone, keeping brackets for a provisional glyph or a word alone"
       if (long && art && (!art_at || (heading && art_at > heading))) warn[++w] = "no Knowledge Islands art above the banner"
