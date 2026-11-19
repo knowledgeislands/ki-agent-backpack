@@ -470,8 +470,9 @@ const stateChecks = (record: ParsedRecord, fields: Readonly<Record<string, unkno
 }
 
 /**
- * The thread capability fields: each `_enabled` a boolean, absent reading false; each `_status` `on` or `off`, present
- * exactly when its capability is enabled; and a syncing thread is always a listening thread.
+ * The thread capability fields, whose meaning `ki-coordination` owns: each `_enabled` a boolean, absent reading false;
+ * each `_status` `on` or `off`, required while its capability is enabled, optional otherwise and `on` only while it is
+ * enabled; and a syncing thread is always a listening thread.
  */
 const capabilityChecks = (
   record: ParsedRecord,
@@ -486,8 +487,10 @@ const capabilityChecks = (
     const status = `${capability}_status`
     if (`${capability}_enabled` in fields && typeof enabled !== 'boolean')
       fail(`${capability}_enabled must be true or false`)
-    if (enabled === true ? !CAPABILITY_STATUSES.includes(fields[status]) : status in fields)
-      fail(`${status} is on or off while ${capability}_enabled is true, and absent otherwise`)
+    if (status in fields ? !CAPABILITY_STATUSES.includes(fields[status]) : enabled === true)
+      fail(`${status} is on or off, and required while ${capability}_enabled is true`)
+    else if (fields[status] === 'on' && enabled !== true)
+      fail(`${status} is on only while ${capability}_enabled is true`)
   }
   if (fields.syncing_enabled === true && fields.listening_enabled !== true)
     fail('syncing_enabled true requires listening_enabled true: a syncing thread is always a listening thread')

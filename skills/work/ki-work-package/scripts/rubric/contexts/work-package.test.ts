@@ -340,7 +340,15 @@ describe('RECORD-2 schema', () => {
       },
       'hold carries reason'
     ],
-    ['a status without its capability', { fields: ['listening_status: on'] }, 'listening_status is on or off'],
+    ['a status on without its capability', { fields: ['listening_status: on'] }, 'listening_status is on only while'],
+
+    ['a status outside on and off', { fields: ['listening_status: armed'] }, 'listening_status is on or off'],
+
+    [
+      'an enabled capability with no status',
+      { fields: ['listening_enabled: true'] },
+      'required while listening_enabled'
+    ],
     [
       'syncing without listening',
       {
@@ -380,6 +388,17 @@ describe('RECORD-2 schema', () => {
 
   test('a list of full record ids passes (RECORD-LINKS)', () => {
     const outcomes = run(RECORD, 'RECORD-2', context(store({ fields: ['records:\n  - KI-HARNESS-GOV-152'] })))
+    expect(statuses(outcomes)).toEqual(['PASS'])
+  })
+
+  test('the four capability fields, off and not enabled, pass as ki-coordination records them', () => {
+    const fields = [
+      'listening_enabled: false',
+      'listening_status: off',
+      'syncing_enabled: false',
+      'syncing_status: off'
+    ]
+    const outcomes = run(RECORD, 'RECORD-2', context(store({ fields })))
     expect(statuses(outcomes)).toEqual(['PASS'])
   })
 
