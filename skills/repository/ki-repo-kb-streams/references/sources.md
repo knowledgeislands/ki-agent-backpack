@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:48:06Z
+ki-revised: 2026-11-19T07:05:00Z
 ki-refresh: canonical · on-change
 ---
 
@@ -62,6 +62,8 @@ None recorded by id: the model is canonical to this skill.
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 19 November 2026 the skill's words were brought to IDEAS-INBOX, which Kris took on 17 November 2026 in the Cairn summit's change 42 and `ki-work-roadmap` already carries: `Streams/Roadmap/` keeps no `_IDEAS.md`, and an existing one is read as not a record until its entries move to the Inbox. SKILL.md and [the Streams structure standard](standard-streams-structure.md#44-roadmap) no longer offer it; the audit still skips one not yet retired. No criterion changed and no outside source was refreshed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
 

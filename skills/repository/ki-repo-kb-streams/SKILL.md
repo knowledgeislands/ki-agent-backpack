@@ -27,7 +27,7 @@ The full detail lives in the references (progressive disclosure): the structure 
 
 ```text
 Streams/
-  Roadmap/       # flat roadmap work records, its _ISSUES.md ledger, and optional _IDEAS.md
+  Roadmap/       # flat roadmap work records and its _ISSUES.md ledger
   Projects/      # the territory Project registry, in a Capital only
   Themes/        # the territory theme pages, in a Capital only
   Trades/        # reserved for a future KB trade placement, if adopted
