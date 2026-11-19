@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:58:00Z
+ki-revised: 2026-11-19T05:54:00Z
 ki-status: in force
 ---
 
@@ -71,7 +71,7 @@ The collection, frontmatter, home, realization, recurring-work profile and judgm
 
 The default collection is `Admin/Operations/Activities/`. One note named `<Activity Name>.md` describes one behaviour, and `Activities.md` indexes the collection.
 
-A base may declare a different relative collection path with `activities_dir` under `[skills.ki-repo-kb-activities]`. The path must remain beneath the base and must not traverse a symbolic link. The optional `harness` key names a harness root, absolute or relative to the base, used only to resolve declared skill names at `skills/<name>/SKILL.md`. These are the only recognized keys; AUDIT warns on unknown keys and leaves every sibling configuration table untouched.
+A base may declare a different relative collection path with `activities_dir` under `[skills.ki-repo-kb-activities]`. The path must remain beneath the base and must not traverse a symbolic link. The optional `backpack` key names a backpack root, absolute or relative to the base, used only to resolve declared skill names at `skills/<name>/SKILL.md`. `harness` is its old name: AUDIT still reads it when `backpack` is absent and warns that it should be renamed (ACTIVITIES-HARNESS-KEY). These are the only recognized keys; AUDIT warns on unknown keys and leaves every sibling configuration table untouched.
 
 When activity notes exist, `Activities.md` lists every note. A repository-standard Obsidian wikilink, with or without an alias, or a Markdown link satisfies index coverage; link-shaped text inside a fenced code block does not. CONFORM may safely create a missing index or append missing entries to a regular index file. It must not create the collection directory, replace a non-regular index entry, follow a symbolic link, or write directly; it prepares one proposal for the host.
 
@@ -115,7 +115,7 @@ The known realization values are:
 
 Additional values are allowed. AUDIT reports them as `INFO` so a new execution environment can be documented without first changing this skill.
 
-A `slash-command` activity declares `skill: <skill-name>`. When a harness is configured, AUDIT verifies `skills/<skill-name>/SKILL.md` exists beneath it.
+A `slash-command` activity declares `skill: <skill-name>`. When a backpack is configured, AUDIT verifies `skills/<skill-name>/SKILL.md` exists beneath it.
 
 A `scheduled-task` activity declares `schedule_name` and may declare a free-text `schedule_env`. AUDIT can check that the name is present but cannot verify external registration, so it reports the registration check as `INFO`.
 

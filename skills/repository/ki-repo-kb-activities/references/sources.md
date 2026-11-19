@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:58:00Z
+ki-revised: 2026-11-19T05:54:00Z
 ki-refresh: canonical · on-change
 ---
 
@@ -41,11 +41,17 @@ The in-house sources the standard is checked against.
 
 ## 3. Decisions
 
-None recorded by id here. The standard cites Kris's THEME-CLOSE decision of 25 October 2026 in [its Home rules](standard-activities.md#43-home).
+The standard also cites Kris's THEME-CLOSE decision of 25 October 2026 in [its Home rules](standard-activities.md#43-home).
+
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| ACTIVITIES-HARNESS-KEY | The configuration key that names the backpack root is `backpack`; `harness` is read as its old name while `backpack` is absent, and ACT-S-3 warns it should be renamed. No base declared the key when it landed, so there was nothing to sweep. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a, from the summit's change 12, option a, under HARNESS-NAME. Reversible; Kris can overturn it. | 2026-11-19 | [Activity standard, 4.1](standard-activities.md#41-collection) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 19 November 2026 ACTIVITIES-HARNESS-KEY, recorded under [Decisions](#3-decisions), renamed the `harness` configuration key to `backpack`, reading the old name with an ACT-S-3 warning; ACT-R-2's words follow. No outside source refreshed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH names and checks the backpack, and the skill's dependency line names the backpack's bundle layout; the `harness` configuration key and its checks keep their words. No criterion changed and no outside source refreshed.
 

@@ -38,8 +38,8 @@ Activity note structure, frontmatter, realization-specific declarations, and saf
   - _Conforming guidance:_ Revise the index ordering or descriptions so a reader can understand and navigate the active activity set; record a structure decision for a material reorganisation.
 - **ACT-S-2 [M] — activity collection location** — The configured activity collection resolves safely beneath an existing base. (standard-activities.md)
   - _Remediation:_ diagnostic — Correct activities_dir so it resolves safely beneath the selected base, or repair the unsafe collection entry without following links.
-- **ACT-S-3 [M] — known Activity configuration** — Only activities_dir and harness are recognized under [skills.ki-repo-kb-activities]. (standard-activities.md)
-  - _Remediation:_ diagnostic — Remove or document unsupported configuration keys after confirming the activity collection contract they were intended to express.
+- **ACT-S-3 [M] — known Activity configuration** — Only activities_dir and backpack are recognized under [skills.ki-repo-kb-activities]; harness is read as backpack's old name and warned. (standard-activities.md)
+  - _Remediation:_ diagnostic — Rename harness to backpack, and remove or document other unsupported configuration keys after confirming the activity collection contract they were intended to express.
 - **ACT-F-1 [M] — activity status** — Frontmatter-bearing activity notes declare `status` as `active`, `paused`, or `retired`. (standard-activities.md)
   - _Remediation:_ diagnostic — Add a valid activity status that reflects the activity’s actual lifecycle state.
 - **ACT-F-2 [M] — activity realization** — Frontmatter-bearing activity notes declare a `realization`. (standard-activities.md)
@@ -52,8 +52,8 @@ Activity note structure, frontmatter, realization-specific declarations, and saf
   - _Remediation:_ diagnostic — Rename `initiative` to the optional `theme`, agreed with the Activity owner; name `project` only for a Project's own recurring check.
 - **ACT-R-1 [M] — slash-command skill field** — A `slash-command` activity declares its `skill` field. (standard-activities.md)
   - _Remediation:_ diagnostic — Declare the owning SKILL.md for the slash-command activity after confirming the command’s intended capability.
-- **ACT-R-2 [M] — slash-command skill resolution** — A declared slash-command skill resolves when a harness path is supplied. (standard-activities.md)
-  - _Remediation:_ diagnostic — Correct the declared skill or configure the intended harness path; do not infer a substitute capability automatically.
+- **ACT-R-2 [M] — slash-command skill resolution** — A declared slash-command skill resolves when a backpack path is supplied. (standard-activities.md)
+  - _Remediation:_ diagnostic — Correct the declared skill or configure the intended backpack path; do not infer a substitute capability automatically.
 - **ACT-R-3 [M] — scheduled-task name** — A `scheduled-task` activity declares its `schedule_name`. (standard-activities.md)
   - _Remediation:_ diagnostic — Declare the external scheduler’s actual task name for the scheduled activity.
 - **ACT-R-4 [M] — scheduled-task registration** — Scheduled-task registrations are surfaced for verification in their external environment. (standard-activities.md)

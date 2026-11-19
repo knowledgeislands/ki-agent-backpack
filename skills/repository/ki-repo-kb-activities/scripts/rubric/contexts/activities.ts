@@ -45,7 +45,7 @@ export type ActivitiesContext = {
     readonly housekeepingDeclared: boolean
   }
   readonly notes: readonly ActivityNote[]
-  readonly harness?: {
+  readonly backpack?: {
     readonly path: string
     readonly hasSkill: (name: string) => boolean
   }
@@ -217,8 +217,9 @@ export const createActivitiesSession = ({
           }
         })
     : []
-  const harnessPath = configuredString(configuration, 'harness')
-  const harness = harnessPath ? resolve(root, harnessPath) : undefined
+  // `harness` is the key's old name (ACTIVITIES-HARNESS-KEY): read when `backpack` is absent, warned by ACT-S-3.
+  const backpackPath = configuredString(configuration, 'backpack') ?? configuredString(configuration, 'harness')
+  const backpack = backpackPath ? resolve(root, backpackPath) : undefined
   const original = indexExists ? indexContent : undefined
   let indexDraft = original
 
@@ -240,12 +241,12 @@ export const createActivitiesSession = ({
       },
       configuration: { keys: Object.keys(configuration), housekeepingDeclared: housekeepingDeclared(root) },
       notes,
-      ...(harness
+      ...(backpack
         ? {
-            harness: {
-              path: harness,
+            backpack: {
+              path: backpack,
               hasSkill: (name: string) =>
-                /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(name) && isFile(join(harness, 'skills', name, 'SKILL.md'))
+                /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(name) && isFile(join(backpack, 'skills', name, 'SKILL.md'))
             }
           }
         : {}),

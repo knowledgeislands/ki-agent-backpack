@@ -166,27 +166,38 @@ const ACT_S_2: RubricItem<ActivitiesContext> = {
 const ACT_S_3: RubricItem<ActivitiesContext> = {
   code: 'ACT-S-3',
   title: 'known Activity configuration',
-  description: 'Only activities_dir and harness are recognized under [skills.ki-repo-kb-activities].',
+  description:
+    "Only activities_dir and backpack are recognized under [skills.ki-repo-kb-activities]; harness is read as backpack's old name and warned.",
   sources: [SOURCE],
   mechanical: {
     level: 'WARN',
     remediation: {
       class: 'diagnostic',
       guidance:
-        'Remove or document unsupported configuration keys after confirming the activity collection contract they were intended to express.'
+        'Rename harness to backpack, and remove or document other unsupported configuration keys after confirming the activity collection contract they were intended to express.'
     },
     audit: {
       phase: 'INSPECT',
       run: (context) => {
-        const unknown = context.configuration.keys.filter((key) => !['activities_dir', 'harness'].includes(key))
-        return unknown.length
-          ? [
-              {
-                status: 'VIOLATION',
-                message: `unrecognized [skills.ki-repo-kb-activities] key(s): ${unknown.join(', ')}`,
-                subject: '.ki.toml'
-              }
-            ]
+        const keys = context.configuration.keys
+        const unknown = keys.filter((key) => !['activities_dir', 'backpack', 'harness'].includes(key))
+        const findings: { status: 'VIOLATION'; message: string; subject: string }[] = []
+        if (unknown.length)
+          findings.push({
+            status: 'VIOLATION',
+            message: `unrecognized [skills.ki-repo-kb-activities] key(s): ${unknown.join(', ')}`,
+            subject: '.ki.toml'
+          })
+        if (keys.includes('harness'))
+          findings.push({
+            status: 'VIOLATION',
+            message: keys.includes('backpack')
+              ? '[skills.ki-repo-kb-activities] declares both backpack and its old name harness; remove harness'
+              : '[skills.ki-repo-kb-activities] key harness is the old name of backpack; rename it to backpack',
+            subject: '.ki.toml'
+          })
+        return findings.length
+          ? findings
           : [
               {
                 status: 'PASS',
@@ -460,14 +471,14 @@ const ACT_R_1: RubricItem<ActivitiesContext> = {
 const ACT_R_2: RubricItem<ActivitiesContext> = {
   code: 'ACT-R-2',
   title: 'slash-command skill resolution',
-  description: 'A declared slash-command skill resolves when a harness path is supplied.',
+  description: 'A declared slash-command skill resolves when a backpack path is supplied.',
   sources: [SOURCE],
   mechanical: {
     level: 'WARN',
     remediation: {
       class: 'diagnostic',
       guidance:
-        'Correct the declared skill or configure the intended harness path; do not infer a substitute capability automatically.'
+        'Correct the declared skill or configure the intended backpack path; do not infer a substitute capability automatically.'
     },
     audit: {
       phase: 'INSPECT',
@@ -478,25 +489,25 @@ const ACT_R_2: RubricItem<ActivitiesContext> = {
           (note) => note.frontmatter?.realization === 'slash-command' && note.frontmatter.skill
         )
         if (notes.length === 0) return [{ status: 'NOT_APPLICABLE', message: 'no declared slash-command skills found' }]
-        if (!context.harness)
+        if (!context.backpack)
           return oneOrMore(
             notes.map((note) => ({
               status: 'INFO' as const,
-              message: `skill '${note.frontmatter?.skill}' declared but no harness path is configured under [skills.ki-repo-kb-activities]`,
+              message: `skill '${note.frontmatter?.skill}' declared but no backpack path is configured under [skills.ki-repo-kb-activities]`,
               subject: note.relative
             }))
           )
         return oneOrMore(
           notes.map((note) =>
-            context.harness?.hasSkill(note.frontmatter?.skill ?? '')
+            context.backpack?.hasSkill(note.frontmatter?.skill ?? '')
               ? {
                   status: 'PASS' as const,
-                  message: `skill '${note.frontmatter?.skill}' exists in the harness`,
+                  message: `skill '${note.frontmatter?.skill}' exists in the backpack`,
                   subject: note.relative
                 }
               : {
                   status: 'VIOLATION' as const,
-                  message: `skill '${note.frontmatter?.skill}' is absent from the harness`,
+                  message: `skill '${note.frontmatter?.skill}' is absent from the backpack`,
                   subject: note.relative
                 }
           )

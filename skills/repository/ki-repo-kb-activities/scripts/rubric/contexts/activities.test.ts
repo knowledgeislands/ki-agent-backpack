@@ -262,3 +262,34 @@ test('legacy initiative fields warn before THEME-CLOSE and fail on the cutover d
     setSystemTime()
   }
 })
+
+test('the backpack key resolves skills, and harness is read as its old name with a warning', () => {
+  const repository = activityBase()
+  const backpack = temporaryDirectory('ki-repo-kb-activities-backpack-')
+  mkdirSync(join(backpack, 'skills', 'ki-briefing'), { recursive: true })
+  writeFileSync(join(backpack, 'skills', 'ki-briefing', 'SKILL.md'), '# ki-briefing\n')
+  writeFileSync(
+    join(repository, 'Admin', 'Operations', 'Activities', 'Briefing Command.md'),
+    ['---', 'status: active', 'realization: slash-command', 'skill: ki-briefing', '---', '# Briefing Command', ''].join(
+      '\n'
+    )
+  )
+  const item = (code: string) => {
+    const criterion = ACT.items.find((candidate) => candidate.code === code)?.mechanical
+    if (!criterion) throw new Error(`Missing ${code}`)
+    return criterion
+  }
+  const run = (code: string, configuration: Readonly<Record<string, unknown>>) =>
+    item(code).audit.run(activityContext(createActivitiesSession(options(repository, 'audit', configuration))))
+
+  expect(run('ACT-R-2', { backpack }).map((finding) => finding.status)).toEqual(['PASS'])
+  expect(run('ACT-S-3', { backpack }).map((finding) => finding.status)).toEqual(['PASS'])
+
+  expect(run('ACT-R-2', { harness: backpack }).map((finding) => finding.status)).toEqual(['PASS'])
+  const legacy = run('ACT-S-3', { harness: backpack })
+  expect(legacy.map((finding) => finding.status)).toEqual(['VIOLATION'])
+  expect(legacy[0]?.message).toContain('rename it to backpack')
+
+  expect(run('ACT-S-3', { backpack, harness: backpack })[0]?.message).toContain('remove harness')
+  expect(run('ACT-S-3', { backpack, other: 'x' }).map((finding) => finding.status)).toEqual(['VIOLATION'])
+})
