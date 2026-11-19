@@ -22,6 +22,7 @@ This file holds the tolerance for the forms [the role standard](standard-roles.m
 | A sub-package's id in the earlier `<parent id>.<slug>` form | `<parent id>+<slug>`, the folder unchanged (SUMMIT-SUB-PACKAGES) | RECORD-1 warns |
 | A package's id naming its kind, `<territory>.sop.<name>`, `<territory>.prj.<project>` or `<territory>.reg.<slug>`, or the legacy `regular` | `<territory>.<slug>`, its kind its `ki-level`, the package renamed with its folder when it is next placed (NODE-ID) | RECORD-1 warns |
 | `covers` in `_index.md` | Dropped: the tree beneath a node, read from `ki-parent`, is its register (COVERS-REGISTER) | RECORD-2 warns |
+| `ki-theme` in `_index.md` | Dropped: a theme stays on records, and a Project's theme comes from its Project note (THEME-DROP) | RECORD-2 warns |
 | An `_index.md` field written without the `ki-` prefix, as `id`, `state` or `workers` | The same field with it, as `ki-id`, `ki-state` or `ki-workers`, the keys inside a `ki-workers` entry or a `ki-hold` keeping their names (KI-PREFIX) | RECORD-2 reads it as its `ki-` name and warns |
 | ⭐ or 🔧 in a glyph run, as in `🦉⭐ 🔑 personal.reg.inbox-terra` | The role glyph alone; neither is a role, and ⭐ and 🔧 leave the thread line under MARKS-RETIRE | The footer hook warns |
 | `🧵 🔑 <work-id>` | `🧵 <work-id>`, or the role glyph's key form once the seat has a role | The footer hook warns |

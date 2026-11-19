@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:53:00Z
+ki-revised: 2026-11-19T05:27:00Z
 ki-status: in force
 ---
 
@@ -158,7 +158,6 @@ ki-id: ki.observatory
 ki-parent: ki.summit
 ki-level: project
 ki-project: observatory
-ki-theme: model
 ki-description: >-
   Builds and runs the local Observatory in apps-observatory.local, the territory's read-only view of work, runs
   and diagrams. Takes Observatory features, its design system and `ki work status` consumers. Not for timelines
@@ -187,7 +186,6 @@ Every field takes the `ki-` prefix, as KI defines them all (KI-PREFIX, Kris, 17 
 | `ki-level` | required | `root`, on `cairn.summit` alone, `territory`, `regular` or `project`; a sub-package's is its parent's, or `regular` beneath the root or a summit |
 | `ki-label` | optional | title with an inventory host or category requirement suffix; never a session seat |
 | `ki-project` | required at `project` level, else absent | the Project note's slug, the node's own slug in its id |
-| `ki-theme` | optional | a theme page's slug, or `null` |
 | `ki-parent` | required below the root, absent on the root | `cairn.summit` on a territory's summit, else a node of the same territory, or a sub-package's parent package |
 | `ki-description` | required | the routing description, at most 500 characters |
 | `ki-worker`, `ki-supervisor` | required | each a holder |

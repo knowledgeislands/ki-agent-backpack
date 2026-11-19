@@ -61,7 +61,6 @@ const DEFINITION_FIELDS: readonly string[] = [
   ...DEFINITION_REQUIRED,
   'label',
   'project',
-  'theme',
   'parent',
   'role',
   'created_at',
@@ -88,9 +87,11 @@ const STATE_FIELDS: readonly string[] = [
 const ENTRY_FIELDS: ReadonlySet<string> = new Set([...DEFINITION_FIELDS, ...STATE_FIELDS])
 /**
  * Entry fields the work package standard has dropped, tolerated and warned on under the role migration file: `covers`,
- * whose register is now the tree beneath each node, read from `parent` (COVERS-REGISTER, Kris, 16 November 2026).
+ * whose register is now the tree beneath each node, read from `parent` (COVERS-REGISTER, Kris, 16 November 2026), and
+ * `theme`, which stays on records while a Project's theme comes from its Project note (THEME-DROP, Kris, 19 November
+ * 2026).
  */
-const ENTRY_RETIRED_FIELDS: ReadonlySet<string> = new Set(['covers'])
+const ENTRY_RETIRED_FIELDS: ReadonlySet<string> = new Set(['covers', 'theme'])
 const ENTRY_REQUIRED: readonly string[] = [...DEFINITION_REQUIRED, ...STATE_REQUIRED]
 /** The body of `_index.md`: the id H1, then these sections, with an optional `## Values` after Scope. */
 const BODY_BEFORE_VALUES = ['Goals', 'Scope'] as const
@@ -359,7 +360,7 @@ const subPackageFailures = (
 /** A full record id, as `KI-HARNESS-GOV-152`, found by its prefix through the ki registry (RECORD-LINKS a). */
 const RECORD_ID = workIdentifier()
 
-/** The definition fields: level, label, project, theme, placement, holders, created_at, repositories and records. */
+/** The definition fields: level, label, project, placement, holders, created_at, repositories and records. */
 const definitionChecks = (
   item: Package,
   fields: Readonly<Record<string, unknown>>,
@@ -407,8 +408,6 @@ const definitionChecks = (
     fail(evidence.schema, 'label must be a non-empty single-line string')
   if (fields.level === 'project' ? !SLUG.test(String(fields.project ?? '')) : 'project' in fields)
     fail(evidence.schema, 'project names the Project slug at project level and is absent otherwise')
-  if (fields.theme !== undefined && fields.theme !== null && !SLUG.test(String(fields.theme)))
-    fail(evidence.schema, 'theme must be a theme slug or null')
   const placement = folder.parent
     ? subPackageFailures(folder, fields, parentFields)
     : placementFailures(String(fields.id ?? ''), fields)

@@ -538,6 +538,7 @@ describe('RECORD-2 schema', () => {
     ['the old tier enablers', { fields: ['workers:\n  - role: warden\n    tier: enablers'] }],
     ['a worker listening', { fields: ['workers:\n  - role: warden\n    tier: managers\n    listening: off'] }],
     ['a leftover covers', { fields: ['covers: []'] }],
+    ['a leftover theme', { fields: ['theme: model'] }],
     ['a worker name', { fields: ['workers:\n  - name: Wayland\n    role: warden\n    tier: managers'] }],
     ['a worker actor', { fields: ['workers:\n  - actor: wayland\n    role: warden\n    tier: managers'] }],
     [
