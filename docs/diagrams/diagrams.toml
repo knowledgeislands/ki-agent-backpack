@@ -8,7 +8,7 @@ audience = "Skill authors, reviewers and newcomers orienting themselves in the c
 traced = ["skills/*/*/SKILL.md"]
 stale_when = "a skill is added, moved between concerns, renamed or removed, its ki-kind or ki-applicability changes, or the functional-area table changes"
 regenerate = "Run `bun skills/repository/ki-repo-backpack/scripts/skill-graph.ts --write` to derive the source from the skills layout and SKILL.md frontmatter, then run `bun run self:diagrams:html --svg skill-map` to finalize it at showcase quality, commit its HTML and re-export the SVG. Do not hand-draw it."
-last_checked = "80fde15b648d3a93ab4a0a16c46e4c0dcab05a1a"
+last_checked = "5c84a14389ddf44770f86b471871c488a095f780"
 commit_html = true
 
 [skill-area-fundamentals]
@@ -18,7 +18,7 @@ audience = "Skill authors and reviewers deciding where a new or changed skill si
 traced = ["skills/*/*/SKILL.md"]
 stale_when = "a skill joins or leaves the Fundamentals functional area, or one of its skills is moved, renamed or removed, its ki-applicability changes, or a ki-depends-on or ki-optional-depends-on declaration to or from one of its skills changes"
 regenerate = "Run `bun skills/repository/ki-repo-backpack/scripts/skill-graph.ts --write` to derive the source from the skills layout, SKILL.md frontmatter and the functional-area table, then run `bun run self:diagrams:html --svg skill-area-fundamentals` to finalize it at showcase quality, commit its HTML and re-export the SVG. Do not hand-draw it."
-last_checked = "5c04e11b91f27e792483a9df1c5c8e866712c632"
+last_checked = "5c84a14389ddf44770f86b471871c488a095f780"
 commit_html = true
 
 [skill-area-records-and-code]
@@ -28,7 +28,7 @@ audience = "Skill authors and reviewers deciding where a new or changed skill si
 traced = ["skills/*/*/SKILL.md"]
 stale_when = "a skill joins or leaves the Records and code functional area, or one of its skills is moved, renamed or removed, its ki-applicability changes, or a ki-depends-on or ki-optional-depends-on declaration to or from one of its skills changes"
 regenerate = "Run `bun skills/repository/ki-repo-backpack/scripts/skill-graph.ts --write` to derive the source from the skills layout, SKILL.md frontmatter and the functional-area table, then run `bun run self:diagrams:html --svg skill-area-records-and-code` to finalize it at showcase quality, commit its HTML and re-export the SVG. Do not hand-draw it."
-last_checked = "8f4005240c3002a64af17add4bc8e878fd7e2ccd"
+last_checked = "163ce9f2a041a7c22cc7676ed2ad9e201a9316c4"
 commit_html = true
 
 [skill-area-coordination]
@@ -48,7 +48,7 @@ audience = "Skill authors and reviewers deciding where a new or changed skill si
 traced = ["skills/*/*/SKILL.md"]
 stale_when = "a skill joins or leaves the Work and delivery functional area, or one of its skills is moved, renamed or removed, its ki-applicability changes, or a ki-depends-on or ki-optional-depends-on declaration to or from one of its skills changes"
 regenerate = "Run `bun skills/repository/ki-repo-backpack/scripts/skill-graph.ts --write` to derive the source from the skills layout, SKILL.md frontmatter and the functional-area table, then run `bun run self:diagrams:html --svg skill-area-work-and-delivery` to finalize it at showcase quality, commit its HTML and re-export the SVG. Do not hand-draw it."
-last_checked = "8f4005240c3002a64af17add4bc8e878fd7e2ccd"
+last_checked = "5c84a14389ddf44770f86b471871c488a095f780"
 commit_html = true
 
 [skill-area-repository-types]
@@ -68,7 +68,7 @@ audience = "Skill authors and reviewers deciding where a new or changed skill si
 traced = ["skills/*/*/SKILL.md"]
 stale_when = "a skill joins or leaves the Agentic systems functional area, or one of its skills is moved, renamed or removed, its ki-applicability changes, or a ki-depends-on or ki-optional-depends-on declaration to or from one of its skills changes"
 regenerate = "Run `bun skills/repository/ki-repo-backpack/scripts/skill-graph.ts --write` to derive the source from the skills layout, SKILL.md frontmatter and the functional-area table, then run `bun run self:diagrams:html --svg skill-area-agentic-systems` to finalize it at showcase quality, commit its HTML and re-export the SVG. Do not hand-draw it."
-last_checked = "940341c56fb8ee94c902f53a9ca80bd8dfd01eb1"
+last_checked = "5c84a14389ddf44770f86b471871c488a095f780"
 commit_html = true
 
 [skill-area-environment]
@@ -128,15 +128,15 @@ audience = "Anyone learning the ki-agentic-systems vocabulary, and sessions chec
 traced = ["skills/keystone/ki-agentic-systems/knowledge/industry/industry.environment.md", "skills/keystone/ki-agentic-systems/knowledge/industry/industry.machine.md", "skills/keystone/ki-agentic-systems/knowledge/industry/industry.agent-host.md", "skills/keystone/ki-agentic-systems/knowledge/industry/industry.agent.md", "skills/keystone/ki-agentic-systems/knowledge/industry/industry.session.md", "skills/keystone/ki-agentic-systems/knowledge/industry/industry.subagent.md", "skills/keystone/ki-agentic-systems/knowledge/industry/industry.client.md", "skills/keystone/ki-agentic-systems/knowledge/vendors/orca/orca.runtime.md", "skills/keystone/ki-agentic-systems/knowledge/vendors/orca/orca.app.md"]
 stale_when = "an industry card from agent to client changes its definition or examples, or Orca's runtime or app changes how it hosts or pairs"
 regenerate = "Re-read the ki-agentic-systems cards traced here and draw an instance diagram: three environments as regions (terra local, sol remote, a cloud environment with no identifiable machine), in each an agent host running a Claude Code or Codex agent that runs a session, the primary session spawning subagent threads and messaging a peer session, and clients (the Orca app, a phone) viewing the agent hosts; keep the cards' words and mark illustrative instances as such. Then run `bun run self:diagrams:html --svg agentic-terms-by-example` to finalize it at showcase quality, commit its HTML and re-export the SVG."
-last_checked = "a026fecbe018407c3c26673dd57c63786aee10bb"
+last_checked = "5c84a14389ddf44770f86b471871c488a095f780"
 commit_html = true
 
 [agentic-standards]
 type = "architecture"
-question = "Which pair does each open agentic standard connect, MCP, ACP, AHP and A2A, and where do channels within and between agentic systems, and integrations, sit?"
+question = "Which pair does each open agentic standard connect, MCP, ACP, AHP and A2A, and how else does something reach a running session: a channel, or a peer by cross-session messaging?"
 audience = "Anyone learning the ki-agentic-systems vocabulary, and the sessions settling its channel and specification cards"
-traced = ["skills/keystone/ki-agentic-systems/knowledge/industry/industry.agent-host.md", "skills/keystone/ki-agentic-systems/knowledge/industry/industry.client.md", "skills/keystone/ki-agentic-systems/knowledge/industry/industry.agent.md", "skills/keystone/ki-agentic-systems/knowledge/industry/industry.subagent.md"]
-stale_when = "a specification card for MCP, ACP, AHP or A2A is written or changed, or CARD-CHANNEL or AGENT-KINDS is settled"
-regenerate = "Re-read the ki-agentic-systems cards and the specification cards once written, and draw two agentic systems as regions: in system A, clients reaching an agent host over AHP, the agent host running an agent that calls an MCP server, Zed driving an agent over ACP, and a peer session reached by cross-session messaging; the agent reaching a remote agent in system B over A2A; the Cairn store as a polled shared store between them; and a Telegram integration pushing through a channel plugin. Mark the channel and agent-kind content provisional until its cards are settled. Then run `bun run self:diagrams:html --svg agentic-standards` to finalize it at showcase quality, commit its HTML and re-export the SVG."
-last_checked = "a026fecbe018407c3c26673dd57c63786aee10bb"
+traced = ["skills/keystone/ki-agentic-systems/knowledge/industry/industry.agent-host.md", "skills/keystone/ki-agentic-systems/knowledge/industry/industry.client.md", "skills/keystone/ki-agentic-systems/knowledge/industry/industry.agent.md", "skills/keystone/ki-agentic-systems/knowledge/industry/industry.subagent.md", "skills/keystone/ki-agentic-systems/knowledge/industry/industry.channel.md", "skills/keystone/ki-agentic-systems/knowledge/industry/industry.cross-session-messaging.md", "skills/keystone/ki-agentic-systems/knowledge/industry/industry.remote-agent.md", "skills/keystone/ki-agentic-systems/knowledge/specs/mcp/spec.mcp.md", "skills/keystone/ki-agentic-systems/knowledge/specs/acp/spec.acp.md", "skills/keystone/ki-agentic-systems/knowledge/specs/ahp/spec.ahp.md", "skills/keystone/ki-agentic-systems/knowledge/specs/a2a/spec.a2a.md"]
+stale_when = "a specification card for MCP, ACP, AHP or A2A changes, its version included, or the agent host, client, subagent, channel, cross-session messaging or remote agent card changes its definition, or the integration card is written"
+regenerate = "Re-read the ki-agentic-systems cards traced here and draw two agentic systems as regions, in the cards' words: in system A, two clients reaching an agent host over AHP, the agent host running an agent that calls an MCP server, Zed driving an agent it launches over ACP, the agent sending a peer session a cross-session message, a channel, an MCP server, pushing a Telegram event into the running peer session, and the Cairn store, which the sessions write and read and which pushes nothing; and the agent reaching a remote agent in system B over A2A, its own agents hidden. Give each standard's version as its card does, keep AHP's channels apart from the channel card's sense, and leave integration undrawn until its card is written. Then run `bun run self:diagrams:html --svg agentic-standards` to finalize it at showcase quality, commit its HTML and re-export the SVG."
+last_checked = "5c84a14389ddf44770f86b471871c488a095f780"
 commit_html = true

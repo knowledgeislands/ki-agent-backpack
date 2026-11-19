@@ -1106,7 +1106,7 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         </g>
         <g data-graph-role="automatic-crossover" style="--step:6">
           <path data-graph-role="automatic-crossover-underlay" d="M 845 104 L 845 150" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="sess-summit" data-edge-to="sess-ki" data-edge-label="peer messages" data-edge-key="6" data-edge-id="peer-messages" data-composition-points="845,104;845,150" data-composition-crossover="halo" data-composition-independent="true" d="M 845 104 L 845 150" class="a-dashed" data-animate="edge" style="--step: 6;" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+          <path data-edge-from="sess-summit" data-edge-to="sess-ki" data-edge-label="cross-session message" data-edge-key="6" data-edge-id="peer-messages" data-composition-points="845,104;845,150" data-composition-crossover="halo" data-composition-independent="true" d="M 845 104 L 845 150" class="a-dashed" data-animate="edge" style="--step: 6;" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:7">
           <path data-graph-role="automatic-crossover-underlay" d="M 450 292 L 520 292" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
@@ -1378,9 +1378,9 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
           <rect x="710" y="162" width="30" height="14" rx="3" class="c-mask"/>
           <text x="725" y="172" class="t-edge-default" font-size="8" text-anchor="middle">runs</text>
         </g>
-        <g data-edge-from="sess-summit" data-edge-to="sess-ki" data-edge-label="peer messages" data-edge-key="6" data-edge-id="peer-messages">
-          <rect x="766.5999999999999" y="120" width="72.4" height="14" rx="3" class="c-mask"/>
-          <text x="802.8" y="130" class="t-edge-dashed" font-size="8" text-anchor="middle">peer messages</text>
+        <g data-edge-from="sess-summit" data-edge-to="sess-ki" data-edge-label="cross-session message" data-edge-key="6" data-edge-id="peer-messages">
+          <rect x="728.2" y="120" width="110.8" height="14" rx="3" class="c-mask"/>
+          <text x="783.6" y="130" class="t-edge-dashed" font-size="8" text-anchor="middle">cross-session message</text>
         </g>
         <g data-edge-from="cli" data-edge-to="cc-agent3" data-edge-label="runs" data-edge-key="7" data-edge-id="cli-runs-agent">
           <rect x="470" y="272" width="30" height="14" rx="3" class="c-mask"/>

@@ -91,7 +91,7 @@ Knowledge Islands' own words, in the `system/` subgraph, each mapped onto the in
 
 ### Diagrams
 
-Resource cards (`diagram.`) point to diagrams of the terms, kept with the backpack's living diagrams: [agentic terms by example](knowledge/diagrams/diagram.agentic-terms-by-example.md), an instance diagram from machine to client, and [agentic standards and channels](knowledge/diagrams/diagram.agentic-standards.md), a proposal until the channel card is settled.
+Resource cards (`diagram.`) point to diagrams of the terms, kept with the backpack's living diagrams: [agentic terms by example](knowledge/diagrams/diagram.agentic-terms-by-example.md), an instance diagram from machine to client, and [agentic standards and channels](knowledge/diagrams/diagram.agentic-standards.md), what each open standard connects and the other ways into a running session.
 
 ## Adding a card
 

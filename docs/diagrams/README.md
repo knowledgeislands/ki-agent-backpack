@@ -64,6 +64,6 @@ How do the agentic terms nest in practice? This instance diagram follows the `ki
 
 [![Agentic terms by example](agentic-terms-by-example.svg)](agentic-terms-by-example.html)
 
-Which pair does each open standard connect? MCP joins an agent to its tools, ACP one client to one agent, AHP many clients to one agent host, and A2A an agent to an opaque remote agent in another agentic system. The channels and agent kinds it also draws are provisional until their cards are settled.
+Which pair does each open standard connect? MCP joins an agent to its tools, ACP an editor to the agent it launches, AHP many clients to one agent host, and A2A an agent to an opaque remote agent in another agentic system. It also draws, in the industry's words, the other ways into a running session: a channel, an MCP server pushing outside events in, and cross-session messaging between peer sessions; the Cairn store, which sessions read, is neither.
 
 [![Agentic standards and channels](agentic-standards.svg)](agentic-standards.html)

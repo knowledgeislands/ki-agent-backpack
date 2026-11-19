@@ -4,13 +4,13 @@
   "type": "architecture",
   "source": {
     "file": "agentic-standards.architecture.json",
-    "sha256": "80a42e8a8c1ffd88f53764f859b3cbced7678102c7a41164892a0b430c4d0f25",
-    "bytes": 6535
+    "sha256": "0edaeeb3a5ebab461ff52b1c58ef31bb9bf90eaa07d480171c7db3afa8896f1d",
+    "bytes": 7193
   },
   "html": {
     "file": "agentic-standards.html",
-    "sha256": "1eeb4af0ef115bf0c4c4f5cb322498ab200e8b407647ceccad5fd41695a3c4c0",
-    "bytes": 854203
+    "sha256": "065e2861253a4840dae55c1d476cdeec5ec765285ced96936c94b7256d8c4977",
+    "bytes": 856325
   },
   "renderer": {
     "name": "archify",

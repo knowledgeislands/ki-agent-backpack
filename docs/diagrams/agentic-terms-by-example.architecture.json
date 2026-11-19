@@ -342,7 +342,7 @@
       "id": "peer-messages",
       "from": "sess-summit",
       "to": "sess-ki",
-      "label": "peer messages",
+      "label": "cross-session message",
       "variant": "dashed"
     },
     {
@@ -419,6 +419,7 @@
       "dot": "amber",
       "title": "Reading it",
       "items": [
+        "A peer is the session at the other end of a cross-session message, not another kind of agent",
         "One client can view several hosts: the Orca app sees terra and sol",
         "One program can be host and client: Orca.app, claude in a terminal",
         "The phone can also reach claude in a terminal by Remote Control",

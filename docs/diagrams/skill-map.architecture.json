@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "03898f0d2164ff50dc36d71087343833d45c8f9e"
+      "revision": "5c84a14389ddf44770f86b471871c488a095f780"
     },
     "legend": {
       "mode": "auto",
@@ -1280,7 +1280,7 @@
     },
     {
       "kind": "region",
-      "label": "Fundamentals · Skills and harness",
+      "label": "Fundamentals · Skills and backpack",
       "wraps": [
         "ki-skills"
       ],
@@ -1348,7 +1348,7 @@
     },
     {
       "kind": "region",
-      "label": "Fundamentals · Skills and harness",
+      "label": "Fundamentals · Skills and backpack",
       "wraps": [
         "ki-repo-backpack"
       ],

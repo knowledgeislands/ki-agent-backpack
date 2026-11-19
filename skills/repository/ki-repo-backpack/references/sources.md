@@ -79,6 +79,8 @@ The owner decisions the standard and this file name by id.
 
 On 18 November 2026 the skill's words followed BACKPACK-DEPTH and HARNESS-NAME, from the Cairn summit's change 12, steps 1 and 6, for the Repository guild: the standard is `standard-compatible-backpack.md`, the compatible backpack standard, its sections 4.3 and 4.7 renamed with their anchors; the skill, exemplars, rubric text, audit messages and code say backpack, the rubric and the capability catalogue regenerated, the catalogue saying "This source backpack publishes". Decision identifiers, the `ki:harness:eval` script, quoted decisions and the functional area group drawn in the living diagrams, "Skills and harness", keep their words. No criterion changed and no outside source refreshed.
 
+On 19 November 2026 that group followed too, under DIAGRAM-GROUP-WORD a, from the same change's step 5: the Fundamentals group is "Skills and backpack", and the skill map and the four functional-area diagrams that draw it were regenerated and re-exported with the living diagrams' redraw.
+
 On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the compatible backpack standard](standard-compatible-backpack.md), formerly `standard-compatible-harness.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format. The rubric's source names follow. No rule changed and no outside source was refreshed.
 
 _REFRESH last run **2026-11-15** (previous: 2026-09-26)._

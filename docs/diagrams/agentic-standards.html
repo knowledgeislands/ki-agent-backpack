@@ -5250,7 +5250,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <rect width="100%" height="100%" fill="url(#grid)" />
 
         <!-- Boundaries (behind everything) -->
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="region" data-composition-frame-id="0" data-composition-frame-label="Agentic system A" x="10" y="10" width="710" height="504" rx="12" class="c-region" stroke-width="1"/>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="region" data-composition-frame-id="0" data-composition-frame-label="Agentic system A" x="10" y="10" width="950" height="504" rx="12" class="c-region" stroke-width="1"/>
 
         <rect data-graph-role="structural-frame" data-composition-frame-kind="region" data-composition-frame-id="1" data-composition-frame-label="Agentic system B" x="970" y="140" width="230" height="244" rx="12" class="c-region" stroke-width="1"/>
 
@@ -5272,32 +5272,36 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <path data-edge-from="agent" data-edge-to="mcp" data-edge-label="MCP" data-edge-key="3" data-edge-id="mcp-call" data-composition-points="605,170;605,104" data-composition-crossover="halo" data-composition-independent="true" d="M 605 170 L 605 104" class="a-emphasis" data-animate="edge" style="--step:3" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:4">
-          <path data-graph-role="automatic-crossover-underlay" d="M 690 202 L 1000 202" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="agent" data-edge-to="remote" data-edge-label="A2A: task, message" data-edge-key="4" data-edge-id="a2a" data-composition-points="690,202;1000,202" data-composition-crossover="halo" data-composition-independent="true" d="M 690 202 L 1000 202" class="a-emphasis" data-animate="edge" style="--step:4" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 621.1 170 L 621.1 154 Q 621.1 146 629.1 146 L 968 146 Q 976 146 976 154 L 976 194 Q 976 202 984 202 L 1000 202" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="agent" data-edge-to="remote" data-edge-label="A2A: message, task" data-edge-key="4" data-edge-id="a2a" data-composition-points="621.1,170;621.1,146;976,146;976,202;1000,202" data-composition-crossover="halo" data-composition-independent="true" d="M 621.1 170 L 621.1 154 Q 621.1 146 629.1 146 L 968 146 Q 976 146 976 154 L 976 194 Q 976 202 984 202 L 1000 202" class="a-emphasis" data-animate="edge" style="--step:4" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:5">
-          <path data-graph-role="automatic-crossover-underlay" d="M 605 234 L 605 300" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="agent" data-edge-to="peer" data-edge-label="peer messages" data-edge-key="5" data-edge-id="peer-messages" data-composition-points="605,234;605,300" data-composition-crossover="halo" data-composition-independent="true" d="M 605 234 L 605 300" class="a-dashed" data-animate="edge" style="--step:5" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 1085 234 L 1085 300" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="remote" data-edge-to="agent-b" data-edge-label="delegates" data-edge-key="5" data-edge-id="remote-hidden" data-composition-points="1085,234;1085,300" data-composition-crossover="halo" data-composition-independent="true" d="M 1085 234 L 1085 300" class="a-dashed" data-animate="edge" style="--step:5" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:6">
-          <path data-graph-role="automatic-crossover-underlay" d="M 690 325 L 760 325" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="peer" data-edge-to="store" data-edge-label="commit" data-edge-key="6" data-edge-id="commit" data-composition-points="690,325;760,325" data-composition-crossover="halo" data-composition-independent="true" d="M 690 325 L 760 325" class="a-dashed" data-animate="edge" style="--step:6" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 605 234 L 605 300" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="agent" data-edge-to="peer" data-edge-label="cross-session message" data-edge-key="6" data-edge-id="cross-session" data-composition-points="605,234;605,300" data-composition-crossover="halo" data-composition-independent="true" d="M 605 234 L 605 300" class="a-dashed" data-animate="edge" style="--step:6" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:7">
-          <path data-graph-role="automatic-crossover-underlay" d="M 1000 332 L 930 332" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="agent-b" data-edge-to="store" data-edge-label="poll" data-edge-key="7" data-edge-id="poll" data-composition-points="1000,332;930,332" data-composition-crossover="halo" data-composition-independent="true" d="M 1000 332 L 930 332" class="a-dashed" data-animate="edge" style="--step:7" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 690 325 L 760 325" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="peer" data-edge-to="store" data-edge-label="writes" data-edge-key="7" data-edge-id="write" data-composition-points="690,325;760,325" data-composition-crossover="halo" data-composition-independent="true" d="M 690 325 L 760 325" class="a-dashed" data-animate="edge" style="--step:7" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:8">
-          <path data-graph-role="automatic-crossover-underlay" d="M 210 462 L 280 462" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="zed" data-edge-to="acp-agent" data-edge-label="ACP" data-edge-key="8" data-edge-id="acp" data-composition-points="210,462;280,462" data-composition-crossover="halo" data-composition-independent="true" d="M 210 462 L 280 462" class="a-emphasis" data-animate="edge" style="--step:8" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 690 210.05 L 837 210.05 Q 845 210.05 845 218.05 L 845 300" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="agent" data-edge-to="store" data-edge-label="reads" data-edge-key="8" data-edge-id="read" data-composition-points="690,210.05;845,210.05;845,300" data-composition-crossover="halo" data-composition-independent="true" d="M 690 210.05 L 837 210.05 Q 845 210.05 845 218.05 L 845 300" class="a-dashed" data-animate="edge" style="--step:8" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:9">
-          <path data-graph-role="automatic-crossover-underlay" d="M 1000 462 L 930 462" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="telegram" data-edge-to="plugin" data-edge-label="message" data-edge-key="9" data-edge-id="telegram-message" data-composition-points="1000,462;930,462" data-composition-crossover="halo" data-composition-independent="true" d="M 1000 462 L 930 462" class="a-default" data-animate="edge" style="--step:9" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <path data-graph-role="automatic-crossover-underlay" d="M 210 462 L 280 462" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="zed" data-edge-to="acp-agent" data-edge-label="ACP" data-edge-key="9" data-edge-id="acp" data-composition-points="210,462;280,462" data-composition-crossover="halo" data-composition-independent="true" d="M 210 462 L 280 462" class="a-emphasis" data-animate="edge" style="--step:9" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:10">
+          <path data-graph-role="automatic-crossover-underlay" d="M 1000 462 L 930 462" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="telegram" data-edge-to="channel" data-edge-label="event" data-edge-key="10" data-edge-id="telegram-event" data-composition-points="1000,462;930,462" data-composition-crossover="halo" data-composition-independent="true" d="M 1000 462 L 930 462" class="a-default" data-animate="edge" style="--step:10" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:11">
           <path data-graph-role="automatic-crossover-underlay" d="M 760 446 L 682 446 Q 674 446 674 438 L 674 364" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="plugin" data-edge-to="peer" data-edge-label="push" data-edge-key="10" data-edge-id="push" data-composition-points="760,446;674,446;674,364" data-composition-crossover="halo" data-composition-independent="true" d="M 760 446 L 682 446 Q 674 446 674 438 L 674 364" class="a-default" data-animate="edge" style="--step:10" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <path data-edge-from="channel" data-edge-to="peer" data-edge-label="pushes" data-edge-key="11" data-edge-id="push" data-composition-points="760,446;674,446;674,364" data-composition-crossover="halo" data-composition-independent="true" d="M 760 446 L 682 446 Q 674 446 674 438 L 674 364" class="a-default" data-animate="edge" style="--step:11" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         </g>
 
         <!-- Components -->
@@ -5315,8 +5319,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text data-detail="context" x="605" y="86" class="t-muted" font-size="9" text-anchor="middle">tools, resources, prompts</text>
         </g>
 
-        <g id="node-client1" data-node-id="client1" data-node-label="Client" tabindex="0" role="button" aria-label="Focus Client, Orca app, VS Code, Agentic system A" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="Orca app, VS Code" data-node-context="Agentic system A">
-          <title>Client · Orca app, VS Code · Agentic system A</title>
+        <g id="node-client1" data-node-id="client1" data-node-label="Client" tabindex="0" role="button" aria-label="Focus Client, VS Code, a web app, Agentic system A" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="VS Code, a web app" data-node-context="Agentic system A">
+          <title>Client · VS Code, a web app · Agentic system A</title>
           <rect x="40" y="170" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="40" y="170" width="170" height="64" rx="8" class="c-frontend" data-animate="node" style="--step:0" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(46 176) scale(0.6875)">
@@ -5326,44 +5330,56 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
             <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="125" y="200" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Client</text>
-        <text data-detail="context" x="125" y="216" class="t-muted" font-size="9" text-anchor="middle">Orca app, VS Code</text>
+        <text data-detail="context" x="125" y="216" class="t-muted" font-size="9" text-anchor="middle">VS Code, a web app</text>
         </g>
 
-        <g id="node-host" data-node-id="host" data-node-label="Agent host" tabindex="0" role="button" aria-label="Focus Agent host, Orca runtime, Agent Host, Agentic system A" aria-pressed="false" data-node-kind="backend" data-node-sublabel="Orca runtime, Agent Host" data-node-context="Agentic system A">
-          <title>Agent host · Orca runtime, Agent Host · Agentic system A</title>
+        <g id="node-host" data-node-id="host" data-node-label="Agent host" tabindex="0" role="button" aria-label="Focus Agent host, e.g. VS Code Agent Host, Agentic system A" aria-pressed="false" data-node-kind="backend" data-node-sublabel="e.g. VS Code Agent Host" data-node-context="Agentic system A">
+          <title>Agent host · e.g. VS Code Agent Host · Agentic system A</title>
           <rect x="280" y="170" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="280" y="170" width="170" height="64" rx="8" class="c-backend" data-animate="node" style="--step:1" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(286 176) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="365" y="200" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Agent host</text>
-        <text data-detail="context" x="365" y="216" class="t-muted" font-size="9" text-anchor="middle">Orca runtime, Agent Host</text>
+        <text data-detail="context" x="365" y="216" class="t-muted" font-size="9" text-anchor="middle">e.g. VS Code Agent Host</text>
         </g>
 
-        <g id="node-agent" data-node-id="agent" data-node-label="Agent" tabindex="0" role="button" aria-label="Focus Agent, its session, e.g. Claude Code, Agentic system A" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="its session, e.g. Claude Code" data-node-context="Agentic system A">
-          <title>Agent · its session, e.g. Claude Code · Agentic system A</title>
+        <g id="node-agent" data-node-id="agent" data-node-label="Agent" tabindex="0" role="button" aria-label="Focus Agent, its session, a harness wrapped, Agentic system A" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="its session, a harness wrapped" data-node-context="Agentic system A">
+          <title>Agent · its session, a harness wrapped · Agentic system A</title>
           <rect x="520" y="170" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="520" y="170" width="170" height="64" rx="8" class="c-cloud" data-animate="node" style="--step:3" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(526 176) scale(0.6875)">
             <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="605" y="200" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Agent</text>
-        <text data-detail="context" x="605" y="216" class="t-muted" font-size="9" text-anchor="middle">its session, e.g. Claude Code</text>
+        <text data-detail="context" x="605" y="216" class="t-muted" font-size="9" text-anchor="middle">its session, a harness wrapped</text>
         </g>
 
-        <g id="node-remote" data-node-id="remote" data-node-label="Remote agent" tabindex="0" role="button" aria-label="Focus Remote agent, opaque, has an Agent Card, Agentic system B" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="opaque, has an Agent Card" data-node-context="Agentic system B">
-          <title>Remote agent · opaque, has an Agent Card · Agentic system B</title>
+        <g id="node-store" data-node-id="store" data-node-label="Cairn store" tabindex="0" role="button" aria-label="Focus Cairn store, meeting messages, read, Agentic system A" aria-pressed="false" data-node-kind="database" data-node-sublabel="meeting messages, read" data-node-context="Agentic system A">
+          <title>Cairn store · meeting messages, read · Agentic system A</title>
+          <rect x="760" y="300" width="170" height="64" rx="8" class="c-mask"/>
+          <rect x="760" y="300" width="170" height="64" rx="8" class="c-database" data-animate="node" style="--step:8" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(766 306) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="845" y="330" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Cairn store</text>
+        <text data-detail="context" x="845" y="346" class="t-muted" font-size="9" text-anchor="middle">meeting messages, read</text>
+        </g>
+
+        <g id="node-remote" data-node-id="remote" data-node-label="Remote agent" tabindex="0" role="button" aria-label="Focus Remote agent, A2A server, has an Agent Card, Agentic system B" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="A2A server, has an Agent Card" data-node-context="Agentic system B">
+          <title>Remote agent · A2A server, has an Agent Card · Agentic system B</title>
           <rect x="1000" y="170" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="1000" y="170" width="170" height="64" rx="8" class="c-cloud" data-animate="node" style="--step:5" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(1006 176) scale(0.6875)">
             <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="1085" y="200" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Remote agent</text>
-        <text data-detail="context" x="1085" y="216" class="t-muted" font-size="9" text-anchor="middle">opaque, has an Agent Card</text>
+        <text data-detail="context" x="1085" y="216" class="t-muted" font-size="9" text-anchor="middle">A2A server, has an Agent Card</text>
         </g>
 
-        <g id="node-client2" data-node-id="client2" data-node-label="Second client" tabindex="0" role="button" aria-label="Focus Second client, phone, another window, Agentic system A" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="phone, another window" data-node-context="Agentic system A">
-          <title>Second client · phone, another window · Agentic system A</title>
+        <g id="node-client2" data-node-id="client2" data-node-label="Second client" tabindex="0" role="button" aria-label="Focus Second client, a CLI, another window, Agentic system A" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="a CLI, another window" data-node-context="Agentic system A">
+          <title>Second client · a CLI, another window · Agentic system A</title>
           <rect x="40" y="300" width="170" height="64" rx="8" class="c-mask"/>
           <rect x="40" y="300" width="170" height="64" rx="8" class="c-frontend" data-animate="node" style="--step:1" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(46 306) scale(0.6875)">
@@ -5373,92 +5389,80 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
             <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="125" y="330" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Second client</text>
-        <text data-detail="context" x="125" y="346" class="t-muted" font-size="9" text-anchor="middle">phone, another window</text>
+        <text data-detail="context" x="125" y="346" class="t-muted" font-size="9" text-anchor="middle">a CLI, another window</text>
         </g>
 
-        <g id="node-peer" data-node-id="peer" data-node-label="Peer session" tabindex="0" role="button" aria-label="Focus Peer session, another session, same host, Agentic system A" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="another session, same host" data-node-context="Agentic system A">
-          <title>Peer session · another session, same host · Agentic system A</title>
+        <g id="node-peer" data-node-id="peer" data-node-label="Peer session" tabindex="0" role="button" aria-label="Focus Peer session, another session, same system, Agentic system A" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="another session, same system" data-node-context="Agentic system A">
+          <title>Peer session · another session, same system · Agentic system A</title>
           <rect x="520" y="300" width="170" height="64" rx="8" class="c-mask"/>
-          <rect x="520" y="300" width="170" height="64" rx="8" class="c-cloud" data-animate="node" style="--step:6" stroke-width="1.5"/>
+          <rect x="520" y="300" width="170" height="64" rx="8" class="c-cloud" data-animate="node" style="--step:7" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(526 306) scale(0.6875)">
             <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="605" y="330" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Peer session</text>
-        <text data-detail="context" x="605" y="346" class="t-muted" font-size="9" text-anchor="middle">another session, same host</text>
+        <text data-detail="context" x="605" y="346" class="t-muted" font-size="9" text-anchor="middle">another session, same system</text>
         </g>
 
-        <g id="node-store" data-node-id="store" data-node-label="Cairn store" tabindex="0" role="button" aria-label="Focus Cairn store, durable, Git-backed, Architecture component" aria-pressed="false" data-node-kind="database" data-node-sublabel="durable, Git-backed" data-node-context="Architecture component">
-          <title>Cairn store · durable, Git-backed · Architecture component</title>
-          <rect x="760" y="300" width="170" height="64" rx="8" class="c-mask"/>
-          <rect x="760" y="300" width="170" height="64" rx="8" class="c-database" data-animate="node" style="--step:7" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(766 306) scale(0.6875)">
-            <ellipse cx="8" cy="4" rx="5" ry="2"/>
-            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
-          </g>
-          <text data-node-label="" data-detail-anchor="" x="845" y="330" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Cairn store</text>
-        <text data-detail="context" x="845" y="346" class="t-muted" font-size="9" text-anchor="middle">durable, Git-backed</text>
-        </g>
-
-        <g id="node-agent-b" data-node-id="agent-b" data-node-label="Agent" tabindex="0" role="button" aria-label="Focus Agent, in system B, Agentic system B" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="in system B" data-node-context="Agentic system B">
-          <title>Agent · in system B · Agentic system B</title>
+        <g id="node-agent-b" data-node-id="agent-b" data-node-label="Its own agents" tabindex="0" role="button" aria-label="Focus Its own agents, hidden from the client, Agentic system B" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="hidden from the client" data-node-context="Agentic system B">
+          <title>Its own agents · hidden from the client · Agentic system B</title>
           <rect x="1000" y="300" width="170" height="64" rx="8" class="c-mask"/>
-          <rect x="1000" y="300" width="170" height="64" rx="8" class="c-cloud" data-animate="node" style="--step:7" stroke-width="1.5"/>
+          <rect x="1000" y="300" width="170" height="64" rx="8" class="c-cloud" data-animate="node" style="--step:6" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(1006 306) scale(0.6875)">
             <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="1085" y="330" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Agent</text>
-        <text data-detail="context" x="1085" y="346" class="t-muted" font-size="9" text-anchor="middle">in system B</text>
+          <text data-node-label="" data-detail-anchor="" x="1085" y="330" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Its own agents</text>
+        <text data-detail="context" x="1085" y="346" class="t-muted" font-size="9" text-anchor="middle">hidden from the client</text>
         </g>
 
-        <g id="node-zed" data-node-id="zed" data-node-label="Zed editor" tabindex="0" role="button" aria-label="Focus Zed editor, client, Agentic system A" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="client" data-node-context="Agentic system A">
-          <title>Zed editor · client · Agentic system A</title>
+        <g id="node-zed" data-node-id="zed" data-node-label="Zed" tabindex="0" role="button" aria-label="Focus Zed, ACP client, Agentic system A" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="ACP client" data-node-context="Agentic system A">
+          <title>Zed · ACP client · Agentic system A</title>
           <rect x="40" y="430" width="170" height="64" rx="8" class="c-mask"/>
-          <rect x="40" y="430" width="170" height="64" rx="8" class="c-frontend" data-animate="node" style="--step:8" stroke-width="1.5"/>
+          <rect x="40" y="430" width="170" height="64" rx="8" class="c-frontend" data-animate="node" style="--step:9" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(46 436) scale(0.6875)">
             <rect x="2" y="3" width="12" height="10" rx="2"/>
             <path d="M2 6.5h12"/>
             <circle cx="4.1" cy="4.8" r=".7" class="sigil-fill"/>
             <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="125" y="460" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Zed editor</text>
-        <text data-detail="context" x="125" y="476" class="t-muted" font-size="9" text-anchor="middle">client</text>
+          <text data-node-label="" data-detail-anchor="" x="125" y="460" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Zed</text>
+        <text data-detail="context" x="125" y="476" class="t-muted" font-size="9" text-anchor="middle">ACP client</text>
         </g>
 
-        <g id="node-acp-agent" data-node-id="acp-agent" data-node-label="Agent" tabindex="0" role="button" aria-label="Focus Agent, run by the editor, Agentic system A" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="run by the editor" data-node-context="Agentic system A">
-          <title>Agent · run by the editor · Agentic system A</title>
+        <g id="node-acp-agent" data-node-id="acp-agent" data-node-label="Agent" tabindex="0" role="button" aria-label="Focus Agent, launched by the editor, stdio, Agentic system A" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="launched by the editor, stdio" data-node-context="Agentic system A">
+          <title>Agent · launched by the editor, stdio · Agentic system A</title>
           <rect x="280" y="430" width="170" height="64" rx="8" class="c-mask"/>
-          <rect x="280" y="430" width="170" height="64" rx="8" class="c-cloud" data-animate="node" style="--step:9" stroke-width="1.5"/>
+          <rect x="280" y="430" width="170" height="64" rx="8" class="c-cloud" data-animate="node" style="--step:10" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(286 436) scale(0.6875)">
             <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="365" y="460" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Agent</text>
-        <text data-detail="context" x="365" y="476" class="t-muted" font-size="9" text-anchor="middle">run by the editor</text>
+        <text data-detail="context" x="365" y="476" class="t-muted" font-size="9" text-anchor="middle">launched by the editor, stdio</text>
         </g>
 
-        <g id="node-plugin" data-node-id="plugin" data-node-label="Channel plugin" tabindex="0" role="button" aria-label="Focus Channel plugin, an MCP server, Architecture component" aria-pressed="false" data-node-kind="messagebus" data-node-sublabel="an MCP server" data-node-context="Architecture component">
-          <title>Channel plugin · an MCP server · Architecture component</title>
+        <g id="node-channel" data-node-id="channel" data-node-label="Channel" tabindex="0" role="button" aria-label="Focus Channel, an MCP server that pushes, Agentic system A" aria-pressed="false" data-node-kind="messagebus" data-node-sublabel="an MCP server that pushes" data-node-context="Agentic system A">
+          <title>Channel · an MCP server that pushes · Agentic system A</title>
           <rect x="760" y="430" width="170" height="64" rx="8" class="c-mask"/>
-          <rect x="760" y="430" width="170" height="64" rx="8" class="c-messagebus" data-animate="node" style="--step:10" stroke-width="1.5"/>
+          <rect x="760" y="430" width="170" height="64" rx="8" class="c-messagebus" data-animate="node" style="--step:11" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="messagebus" class="semantic-sigil s-messagebus" transform="translate(766 436) scale(0.6875)">
             <path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"/>
             <circle cx="5" cy="4.5" r="1" class="sigil-fill"/>
             <circle cx="10.5" cy="8" r="1" class="sigil-fill"/>
             <circle cx="7" cy="11.5" r="1" class="sigil-fill"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="845" y="460" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Channel plugin</text>
-        <text data-detail="context" x="845" y="476" class="t-muted" font-size="9" text-anchor="middle">an MCP server</text>
+          <text data-node-label="" data-detail-anchor="" x="845" y="460" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Channel</text>
+        <text data-detail="context" x="845" y="476" class="t-muted" font-size="9" text-anchor="middle">an MCP server that pushes</text>
         </g>
 
-        <g id="node-telegram" data-node-id="telegram" data-node-label="Telegram" tabindex="0" role="button" aria-label="Focus Telegram, one bot per session, Architecture component" aria-pressed="false" data-node-kind="external" data-node-sublabel="one bot per session" data-node-context="Architecture component">
-          <title>Telegram · one bot per session · Architecture component</title>
+        <g id="node-telegram" data-node-id="telegram" data-node-label="Telegram" tabindex="0" role="button" aria-label="Focus Telegram, outside events, Architecture component" aria-pressed="false" data-node-kind="external" data-node-sublabel="outside events" data-node-context="Architecture component">
+          <title>Telegram · outside events · Architecture component</title>
           <rect x="1000" y="430" width="170" height="64" rx="8" class="c-mask"/>
-          <rect x="1000" y="430" width="170" height="64" rx="8" class="c-external" data-animate="node" style="--step:9" stroke-width="1.5"/>
+          <rect x="1000" y="430" width="170" height="64" rx="8" class="c-external" data-animate="node" style="--step:10" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(1006 436) scale(0.6875)">
             <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
             <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="1085" y="460" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Telegram</text>
-        <text data-detail="context" x="1085" y="476" class="t-muted" font-size="9" text-anchor="middle">one bot per session</text>
+        <text data-detail="context" x="1085" y="476" class="t-muted" font-size="9" text-anchor="middle">outside events</text>
         </g>
 
         <!-- Connection labels -->
@@ -5475,36 +5479,40 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <text x="485" y="192" class="t-edge-default" font-size="8" text-anchor="middle">runs</text>
         </g>
         <g data-detail="context" data-edge-from="agent" data-edge-to="mcp" data-edge-label="MCP" data-edge-key="3" data-edge-id="mcp-call">
-          <rect x="590" y="150" width="30" height="14" rx="3" class="c-mask"/>
-          <text x="605" y="160" class="t-edge-emphasis" font-size="8" text-anchor="middle">MCP</text>
+          <rect x="569" y="130" width="30" height="14" rx="3" class="c-mask"/>
+          <text x="584" y="140" class="t-edge-emphasis" font-size="8" text-anchor="middle">MCP</text>
         </g>
-        <g data-detail="context" data-edge-from="agent" data-edge-to="remote" data-edge-label="A2A: task, message" data-edge-key="4" data-edge-id="a2a">
-          <rect x="796.8" y="182" width="96.39999999999999" height="14" rx="3" class="c-mask"/>
-          <text x="845" y="192" class="t-edge-emphasis" font-size="8" text-anchor="middle">A2A: task, message</text>
+        <g data-detail="context" data-edge-from="agent" data-edge-to="remote" data-edge-label="A2A: message, task" data-edge-key="4" data-edge-id="a2a">
+          <rect x="750.3499999999999" y="126" width="96.39999999999999" height="14" rx="3" class="c-mask"/>
+          <text x="798.55" y="136" class="t-edge-emphasis" font-size="8" text-anchor="middle">A2A: message, task</text>
         </g>
-        <g data-detail="context" data-edge-from="agent" data-edge-to="peer" data-edge-label="peer messages" data-edge-key="5" data-edge-id="peer-messages">
-          <rect x="526.5999999999999" y="260" width="72.4" height="14" rx="3" class="c-mask"/>
-          <text x="562.8" y="270" class="t-edge-dashed" font-size="8" text-anchor="middle">peer messages</text>
+        <g data-detail="context" data-edge-from="remote" data-edge-to="agent-b" data-edge-label="delegates" data-edge-key="5" data-edge-id="remote-hidden">
+          <rect x="1025.8000000000002" y="260" width="53.199999999999996" height="14" rx="3" class="c-mask"/>
+          <text x="1052.4" y="270" class="t-edge-dashed" font-size="8" text-anchor="middle">delegates</text>
         </g>
-        <g data-detail="context" data-edge-from="peer" data-edge-to="store" data-edge-label="commit" data-edge-key="6" data-edge-id="commit">
+        <g data-detail="context" data-edge-from="agent" data-edge-to="peer" data-edge-label="cross-session message" data-edge-key="6" data-edge-id="cross-session">
+          <rect x="488.20000000000005" y="260" width="110.8" height="14" rx="3" class="c-mask"/>
+          <text x="543.6" y="270" class="t-edge-dashed" font-size="8" text-anchor="middle">cross-session message</text>
+        </g>
+        <g data-detail="context" data-edge-from="peer" data-edge-to="store" data-edge-label="writes" data-edge-key="7" data-edge-id="write">
           <rect x="705.6" y="305" width="38.8" height="14" rx="3" class="c-mask"/>
-          <text x="725" y="315" class="t-edge-dashed" font-size="8" text-anchor="middle">commit</text>
+          <text x="725" y="315" class="t-edge-dashed" font-size="8" text-anchor="middle">writes</text>
         </g>
-        <g data-detail="context" data-edge-from="agent-b" data-edge-to="store" data-edge-label="poll" data-edge-key="7" data-edge-id="poll">
-          <rect x="950" y="312" width="30" height="14" rx="3" class="c-mask"/>
-          <text x="965" y="322" class="t-edge-dashed" font-size="8" text-anchor="middle">poll</text>
+        <g data-detail="context" data-edge-from="agent" data-edge-to="store" data-edge-label="reads" data-edge-key="8" data-edge-id="read">
+          <rect x="828" y="235.025" width="34" height="14" rx="3" class="c-mask"/>
+          <text x="845" y="245.025" class="t-edge-dashed" font-size="8" text-anchor="middle">reads</text>
         </g>
-        <g data-detail="context" data-edge-from="zed" data-edge-to="acp-agent" data-edge-label="ACP" data-edge-key="8" data-edge-id="acp">
+        <g data-detail="context" data-edge-from="zed" data-edge-to="acp-agent" data-edge-label="ACP" data-edge-key="9" data-edge-id="acp">
           <rect x="230" y="442" width="30" height="14" rx="3" class="c-mask"/>
           <text x="245" y="452" class="t-edge-emphasis" font-size="8" text-anchor="middle">ACP</text>
         </g>
-        <g data-detail="context" data-edge-from="telegram" data-edge-to="plugin" data-edge-label="message" data-edge-key="9" data-edge-id="telegram-message">
-          <rect x="943.2" y="442" width="43.6" height="14" rx="3" class="c-mask"/>
-          <text x="965" y="452" class="t-edge-default" font-size="8" text-anchor="middle">message</text>
+        <g data-detail="context" data-edge-from="telegram" data-edge-to="channel" data-edge-label="event" data-edge-key="10" data-edge-id="telegram-event">
+          <rect x="948" y="442" width="34" height="14" rx="3" class="c-mask"/>
+          <text x="965" y="452" class="t-edge-default" font-size="8" text-anchor="middle">event</text>
         </g>
-        <g data-detail="context" data-edge-from="plugin" data-edge-to="peer" data-edge-label="push" data-edge-key="10" data-edge-id="push">
-          <rect x="659" y="385" width="30" height="14" rx="3" class="c-mask"/>
-          <text x="674" y="395" class="t-edge-default" font-size="8" text-anchor="middle">push</text>
+        <g data-detail="context" data-edge-from="channel" data-edge-to="peer" data-edge-label="pushes" data-edge-key="11" data-edge-id="push">
+          <rect x="654.6" y="385" width="38.8" height="14" rx="3" class="c-mask"/>
+          <text x="674" y="395" class="t-edge-default" font-size="8" text-anchor="middle">pushes</text>
         </g>
 
         <!-- Boundary labels (foreground masks keep routes out of titles) -->
@@ -5514,8 +5522,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         </g>
 
         <g data-graph-role="structural-frame-label" data-composition-frame-id="1" data-composition-frame-kind="region" data-composition-frame-label="Agentic system B">
-          <rect data-graph-role="structural-frame-label-mask" x="974" y="150" width="96.39999999999999" height="16" rx="3" class="c-mask"/>
-          <text data-boundary-label="" x="978" y="163" class="t-cloud" font-size="9" font-weight="600">Agentic system B</text>
+          <rect data-graph-role="structural-frame-label-mask" x="984" y="150" width="96.39999999999999" height="16" rx="3" class="c-mask"/>
+          <text data-boundary-label="" x="988" y="163" class="t-cloud" font-size="9" font-weight="600">Agentic system B</text>
         </g>
 
         <!-- Legend -->
@@ -5537,13 +5545,13 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
             <rect x="410" y="557" width="16" height="10" rx="2.5" class="c-cloud" stroke-width="1"/>
             <text x="432" y="566" class="t-muted" font-size="10" font-weight="500">Agent</text>
           </g>
-          <g data-legend-semantic-kind="messagebus" data-legend-kind="messagebus" data-legend-label="MCP server or plugin" data-legend-x="506" data-legend-baseline="566" data-legend-width="167">
+          <g data-legend-semantic-kind="messagebus" data-legend-kind="messagebus" data-legend-label="MCP server or channel" data-legend-x="506" data-legend-baseline="566" data-legend-width="174">
             <rect x="506" y="557" width="16" height="10" rx="2.5" class="c-messagebus" stroke-width="1"/>
-            <text x="528" y="566" class="t-muted" font-size="10" font-weight="500">MCP server or plugin</text>
+            <text x="528" y="566" class="t-muted" font-size="10" font-weight="500">MCP server or channel</text>
           </g>
-          <g data-legend-semantic-kind="external" data-legend-kind="external" data-legend-label="Outside service" data-legend-x="695" data-legend-baseline="566" data-legend-width="136">
-            <rect x="695" y="557" width="16" height="10" rx="2.5" class="c-external" stroke-width="1"/>
-            <text x="717" y="566" class="t-muted" font-size="10" font-weight="500">Outside service</text>
+          <g data-legend-semantic-kind="external" data-legend-kind="external" data-legend-label="Outside service" data-legend-x="702" data-legend-baseline="566" data-legend-width="136">
+            <rect x="702" y="557" width="16" height="10" rx="2.5" class="c-external" stroke-width="1"/>
+            <text x="724" y="566" class="t-muted" font-size="10" font-weight="500">Outside service</text>
           </g>
         </g>
       </svg>
@@ -5729,34 +5737,46 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <h3>The standards</h3>
         </div>
         <ul>
-          <li>MCP: an agent to its tools and data</li>
-          <li>ACP: one client to one agent (Zed, JetBrains)</li>
-          <li>AHP: many clients to one agent host, sharing its sessions; it builds on ACP</li>
-          <li>A2A: an agent to an opaque remote agent in another system, found by its Agent Card</li>
+          <li>MCP: an agent to its tools and data (revision 2026-07-28)</li>
+          <li>ACP: an editor drives an agent over stdio (release of 18 November 2026)</li>
+          <li>AHP: many clients share an agent host&#39;s sessions; it sits above ACP (1.1.0)</li>
+          <li>A2A: an agent to an opaque remote agent, found by its Agent Card (1.0.1)</li>
         </ul>
       </div>
 
       <div class="card">
         <div class="card-header">
           <div class="card-dot amber"></div>
-          <h3>Channels (provisional, CARD-CHANNEL)</h3>
+          <h3>Ways into a running session</h3>
         </div>
         <ul>
-          <li>Intra-system: peer messages between sessions, Orca&#39;s worker mail</li>
-          <li>Inter-system: AHP and A2A, and our Cairn store, which is polled</li>
-          <li>An integration joins two closed systems through a shared point, as the Telegram plugin does</li>
+          <li>Channel: an MCP server pushing outside events into a running session, as Telegram&#39;s does</li>
+          <li>Cross-session messaging: one session&#39;s plain-text message to a peer</li>
+          <li>Integration, not drawn: starts a new session from outside; its card is pending</li>
+          <li>AHP&#39;s channels are another sense: a subscription to one resource&#39;s state</li>
         </ul>
       </div>
 
       <div class="card">
         <div class="card-header">
           <div class="card-dot violet"></div>
-          <h3>Agent kinds (provisional, AGENT-KINDS)</h3>
+          <h3>Agent kinds</h3>
         </div>
         <ul>
-          <li>Subagent: inside a session, subordinate to its agent</li>
+          <li>Subagent: inside a session, in a thread of its own, under its agent</li>
           <li>Peer: another session in the same system, reached by cross-session messaging</li>
-          <li>Remote agent: an agent in another system, opaque</li>
+          <li>Remote agent: an agent in another system, opaque, reached over A2A</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot emerald"></div>
+          <h3>Our conventions</h3>
+        </div>
+        <ul>
+          <li>Sessions meet in the Cairn store, each message a file they read; nothing is pushed, so it is not a channel</li>
+          <li>A session on another rig is a peer in the same system, not a remote agent</li>
         </ul>
       </div>
     </div>

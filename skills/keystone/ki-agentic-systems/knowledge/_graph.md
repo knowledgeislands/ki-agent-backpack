@@ -96,7 +96,7 @@ A predicate reads from the card that holds it to its target. The same rule maps 
 | Google | `google.` | Google's own words | [Gemini][google.gemini], [model][google.model], [agent harness][google.agent-harness], [agent][google.agent], [conversation][google.conversation], [session][google.session], [subagent][google.subagent], [remote subagent][google.remote-subagent], [skill][google.skill] | `vendors/google/` |
 | Orca | `orca.` | Orca's own words | [Orca runtime][orca.runtime], [Orca app][orca.app] | `vendors/orca/` |
 | Zed Industries | `zed.` | Zed Industries' own words | [Zed][zed.zed] | `vendors/zed/` |
-| Diagrams | `diagram.` | Diagrams of the terms, as resources | [agentic terms by example][diagram.agentic-terms-by-example], [agentic standards and channels][diagram.agentic-standards] (proposal) | `diagrams/` |
+| Diagrams | `diagram.` | Diagrams of the terms, as resources | [agentic terms by example][diagram.agentic-terms-by-example], [agentic standards and channels][diagram.agentic-standards] | `diagrams/` |
 | Microsoft | `microsoft.` | Microsoft's and GitHub's own words | [Copilot][microsoft.copilot], [model][microsoft.model], [agent harness][microsoft.agent-harness], [agent][microsoft.agent], [agent session][microsoft.agent-session], [chat][microsoft.chat], [subagent][microsoft.subagent], [agent skill][microsoft.agent-skill] | `vendors/microsoft/` |
 | System | `system.` | Knowledge Islands' own words, each mapped onto the industry's | [guild][system.guild], [rig][system.rig], [actor][system.actor], [work package][system.work-package], [backpack][system.backpack], [role][system.role], [seat][system.seat] | `system/` |
 
