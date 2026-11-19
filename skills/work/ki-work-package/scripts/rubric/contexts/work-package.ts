@@ -97,6 +97,8 @@ const ENTRY_REQUIRED: readonly string[] = [...DEFINITION_REQUIRED, ...STATE_REQU
 const BODY_BEFORE_VALUES = ['Goals', 'Scope'] as const
 const VALUES_HEADING = 'Values'
 const BODY_AFTER_VALUES = ['Now', 'Held', 'Changes'] as const
+/** Scope's Signposts line (SIGNPOSTS, Kris, 19 November 2026), plain or bold; its absence warns. */
+const SIGNPOSTS_LINE = /^\s*(?:\*\*)?Signposts:?(?:\*\*)?:?\s/m
 /**
  * The role standard, whose Role catalogue table is the one home of each role's tier and glyph (STAGE-C-ROLES, Kris, 7
  * November 2026). The checker reads it at audit time and holds no copy.
@@ -671,6 +673,14 @@ const packageEvidence = (
   for (const heading of [...BODY_BEFORE_VALUES, ...BODY_AFTER_VALUES])
     if (sections.has(heading) && (sections.get(heading)?.trim().length ?? 0) === 0)
       fail(`${heading} must say something, if only None`)
+  const scope = sections.get('Scope')
+  if (scope !== undefined && scope.trim().length > 0 && !SIGNPOSTS_LINE.test(scope))
+    evidence.schema.push({
+      status: 'VIOLATION',
+      level: 'WARN',
+      message: `tolerance: ${ENTRY_FILE}'s Scope names no Signposts; write "Signposts: the standard's defaults." where the package adds none`,
+      subject: entry.path
+    })
   const values = sections.get(VALUES_HEADING)
   if (values !== undefined && nonEmptyLines(values) !== 1)
     fail('Values is one line, linking the shared values and adding any of the work its own')

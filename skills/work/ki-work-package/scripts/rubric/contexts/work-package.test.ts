@@ -83,6 +83,8 @@ const entry = ({ id, fields = [], drop = [], body, changes = ['10-pilot.change.m
         '',
         'In: the pilot. Out: everything else. Works mainly in ki-agent-backpack and may change others.',
         '',
+        "Signposts: the standard's defaults.",
+        '',
         '## Now',
         '',
         '- The pilot runs.',
@@ -166,6 +168,24 @@ describe('a store in the standard shape', () => {
       root,
       'work/ki/ki.pilot/_index.md',
       entry({ id: 'ki.pilot' }).replace('## Now', '## Values\n\nThe shared values.\n\n## Now')
+    )
+    expect(statuses(run(RECORD, 'RECORD-2', context(root)))).toEqual(['PASS'])
+  })
+
+  test('a Scope with no Signposts line is warned on, never failed', () => {
+    const root = store()
+    write(
+      root,
+      'work/ki/ki.pilot/_index.md',
+      entry({ id: 'ki.pilot' }).replace("Signposts: the standard's defaults.\n\n", '')
+    )
+    const outcomes = run(RECORD, 'RECORD-2', context(root))
+    expect(statuses(outcomes)).toEqual(['WARN'])
+    expect(messages(outcomes)).toContain('names no Signposts')
+    write(
+      root,
+      'work/ki/ki.pilot/_index.md',
+      entry({ id: 'ki.pilot' }).replace("Signposts: the standard's defaults.", '**Signposts:** the defaults, and one.')
     )
     expect(statuses(run(RECORD, 'RECORD-2', context(root)))).toEqual(['PASS'])
   })

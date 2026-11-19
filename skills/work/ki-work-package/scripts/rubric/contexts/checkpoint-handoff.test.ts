@@ -48,6 +48,8 @@ test('fresh agent can reconstruct a portable hand-off without transcript or runt
         '',
         'In: the proof. Out: provider choice. Works mainly in ki-agent-backpack and may change others.',
         '',
+        "Signposts: the standard's defaults.",
+        '',
         '## Now',
         '',
         `- Repository ${repository} is at immutable baseline ${'a'.repeat(40)}; return the result after \`bun test\`.`,

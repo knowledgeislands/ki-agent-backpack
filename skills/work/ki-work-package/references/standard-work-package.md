@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T05:51:35Z
+ki-revised: 2026-11-19T06:02:00Z
 ki-status: in force
 ---
 
@@ -77,6 +77,7 @@ What a work package holds, where it lives, and how it is kept.
 | **Sub-package** | One strand of a package's work, with the same shape as a package. **Standard:** this one, [4.7](#47-sub-packages) |
 | **Change document** | A proposal to change standards or how work is done, with its design outline and a planning section. **Standard:** `ki-authoring`'s [change format](../../../keystone/ki-authoring/references/standard-formats-change.md) |
 | **The tidy** | The pass that brings a package to the shape and keeps only what is current. **Standard:** this one, [4.10](#410-the-tidy) |
+| **Signposts** | The last part of a package's Scope: the triggers that send a matter beyond the node, each saying what comes up, to whom and how, on top of the defaults every package inherits. **Standard:** this one, [4.4](#signposts) |
 | **Holder** | Who the work lies with: `owner`, `agent`, `run/<name>`, `work/<id>`, `person/<handle>` or `repo/<name>`. **Standard:** this one, [4.5](#45-the-state) |
 | **Keyholder** | The session holding a package's keys, the seat that may write its package. **Standard:** [the role standard](standard-roles.md#44-marks) |
 
@@ -217,12 +218,30 @@ The body has exactly this heading sequence, with an optional one-line `## Values
 ```
 
 - **Goals** - the node's **direction**: the standing goals of the work, stable across its waves, as few as it needs. For Project work the first line links the Project note's `outcome` and never restates it; for regular work it links the Activity note; for territory work, the Charter. Links point upward: the package names its Project, and the Project note never links down.
-- **Scope** - the node's **remit**: `In:` and `Out:` lines, In naming what the work may decide and do, and Out what goes up or belongs to which other work, by id, and a line saying the package works mainly in the repositories `repositories:` names and may still change others. This is what State of play reads when two descriptions both match.
+- **Scope** - the node's **remit**: `In:` and `Out:` lines, In naming what the work may decide and do, and Out what goes up or belongs to which other work, by id, a line saying the package works mainly in the repositories `repositories:` names and may still change others, and its [Signposts](#signposts). This is what State of play reads when two descriptions both match.
 - **Values** - optional: one line linking the shared values in the Work Process note and adding any the work holds itself, as Kris chose VALUES-HOME a) on 7 November 2026: "Write them once in the Work Process note under an Enactment record, and give each `work.md` an optional one-line `## Values` section linking them and adding any of its own."
 - **Now** and **Held** - the state's body, under [4.5](#45-the-state).
 - **Changes** - a link to every change document and every sub-package, one list item each, saying in a line what it is and where it stands.
 
 Each section says something, if only `None`. Nothing else belongs in the entry file: no history, evidence or discussion. Direction and remit need no section of their own (REMIT-IN-INDEX): a node's way of working is part of its remit, changed by the node where the change reaches only it and its children, and proposed up the tree where it reaches wider, as Kris took on 11 November 2026 in the Cairn summit's [change 00](https://github.com/krisb/ki-cairn-store/blob/fa651a2c309ff338acf15b533d84820809fd5c7e/work/cairn/cairn.summit/00-authority-tree.change.md).
+
+<a id="signposts"></a>
+
+**Signposts say where a matter goes when it is not the node's own** (SIGNPOSTS, Kris, 19 November 2026): a leader that meets something with wider reach does not take it straight to a skill or a guild's lead, because "there's probably wider implications by it coming up. Therefore it's important that effectively it gets escalated to you, who can then delegate it back down." Scope ends with a `Signposts:` line, then a short list of triggers, each saying what comes up, to whom and how. Every package inherits the defaults below and lists only what it adds; a package that adds nothing writes `Signposts: the standard's defaults.`
+
+```markdown
+Signposts: the standard's defaults, and:
+
+- **A skill and what the Cairn shows disagree** - to ki.summit's keyholder, as feedback, for the guardian.
+```
+
+The defaults follow [CASCADE-DOWN](#cascade-down): a matter goes up the path the work came down and comes back down from the node that can see all it touches, and the owner may still talk to any node directly.
+
+- **Wider reach goes up, never sideways.** A matter that reaches beyond the node and the nodes beneath it, such as a skill, a standard, the work model or anything crossing packages, goes to the parent's keyholder, as feedback through the agent host's messaging or a meeting under `ki-coordination`'s [Steer and feedback](../../ki-coordination/references/standard-reporting.md#416-steer-and-feedback). Where the parent has no one seated, its keyholder is the one above it, under [Writers](#49-writers). Each node settles what reaches only its own subtree and passes the rest up, node by node. A skill, a standard and the work model reach every territory, so they reach the guardian, the keyholder of `cairn.summit`. A node never takes such a matter straight to a guild, its lead skill or another leader, even one that is running.
+- **The guardian sends it back down.** It delegates the matter down the tree to the node that owns it: for a skill or a standard, the guild that `ki-keystone`'s [guild map](../../../keystone/ki-keystone/SKILL.md#the-guild-map) names, through that guild's package; otherwise the leader whose Scope covers it. Where that node has no one seated, the nearest seated node above it owns the work.
+- **The owner's word given at a node.** When the owner gives a leader a decision directly that changes a standard, a skill or the work model, the leader records it in the owner's words in a change document of its own package and sends it up, as above, to land. It does not change the skill or the standard itself.
+- **A long-standing request** left with the owner is flagged up a level at a time, under `ki-coordination`'s [Long-standing requests](../../ki-coordination/references/standard-territory.md#43-long-standing-requests).
+- **The work stays down.** Only the matter goes up. The node keeps doing what its remit covers, and a signpost grants no authority to the node it points at.
 
 [Back to contents](#contents)
 
