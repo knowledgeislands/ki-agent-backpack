@@ -82,7 +82,7 @@ Knowledge Islands' own words, in the `system/` subgraph, each mapped onto the in
 - [Role](knowledge/system/system.role.md): a job within a tier, from the role catalogue, the part of a seat after its `@`; close to agent frameworks' role.
 - [Seat](knowledge/system/system.seat.md): the place for one role in one work package, `<package>@<role>`, held by an actor and kept when the actor changes.
 
-One analogy card sits beside them, a proposal: [the civic model, by analogy](knowledge/system/system.civic-map.md), the work model set beside the agora and forum, satrapies, edicts and memorials, the Royal Road's couriers and the tabularium, each with where it holds and where it breaks (CIVIC-MAP, NAMING-RULE).
+One analogy card sits beside them, agreed on 19 November 2026 (CIVIC-AGREE): [the civic model, by analogy](knowledge/system/system.civic-map.md), the work model set beside the agora and forum, satrapies, edicts and memorials, the Royal Road's couriers and the tabularium, each with where it holds and where it breaks (CIVIC-MAP, NAMING-RULE, CIVIC-AGREE).
 
 ### Vendor subgraphs
 

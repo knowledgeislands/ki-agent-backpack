@@ -2,10 +2,10 @@
 id: system.civic-map
 title: The civic model, by analogy
 type: analogy
-status: proposal
+status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, CIVIC-MAP under NAMING-RULE a (11 November 2026), and change 12, CIVIC-MAP a (17 November 2026), one analogy card once the system cards were agreed; prytany and synedrion withdrawn
+origin: Cairn summit change 22, CIVIC-MAP under NAMING-RULE a (11 November 2026), and change 12, CIVIC-MAP a (17 November 2026), one analogy card once the system cards were agreed; prytany and synedrion withdrawn; written as a proposal and agreed as written, CIVIC-AGREE a (19 November 2026)
 links:
   system.work-package:
     predicate: skos:related
