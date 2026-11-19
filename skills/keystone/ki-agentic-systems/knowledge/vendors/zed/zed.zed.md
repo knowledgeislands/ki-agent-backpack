@@ -14,8 +14,9 @@ links:
 
 # Zed (Zed Industries)
 
-Zed is an editor that acts as a [client][industry.client] to agents through the Agent Client Protocol, which Zed Industries and JetBrains jointly govern ([governance][ACP6]; `spec.acp`, a proposal); it lists the agents it can drive, among them Claude Agent through an adapter ([Z1]).
+Zed is an editor that acts as a [client][industry.client] to agents through the [Agent Client Protocol][spec.acp], which Zed Industries and JetBrains jointly govern ([governance][ACP6]); it lists the agents it can drive, among them Claude Agent through an adapter ([Z1]).
 
 [industry.client]: ../../industry/industry.client.md
+[spec.acp]: ../../specs/acp/spec.acp.md
 [Z1]: https://agentclientprotocol.com/get-started/agents
 [ACP6]: https://agentclientprotocol.com/community/governance

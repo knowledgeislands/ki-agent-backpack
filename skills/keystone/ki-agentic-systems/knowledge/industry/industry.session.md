@@ -11,6 +11,10 @@ links:
     predicate: ki:run-of
   industry.agent-harness:
     predicate: ki:run-by
+  spec.acp.session:
+    predicate: skos:closeMatch
+  spec.ahp.session:
+    predicate: skos:closeMatch
 ---
 
 # Session
@@ -23,8 +27,8 @@ A session is also made of **threads**. The agent's own line of work is its **pri
 
 ## Specifications
 
-- **Agent Client Protocol (ACP):** its session. Pending: the ACP specification card, `spec.acp`.
-- **Agent Host Protocol (AHP):** its session and the chats inside it. Pending: the AHP specification card, `spec.ahp`.
+- **Agent Client Protocol (ACP):** its [session][spec.acp.session], a close match.
+- **Agent Host Protocol (AHP):** its [session and the chats inside it][spec.ahp.session]. Only a chat spawned by a tool call is a thread in this card's sense, a subagent's; a chat the user makes, a fork or a side chat is a conversation of its own, nearer an ACP session.
 
 ## Our conventions
 
@@ -37,3 +41,5 @@ A [subagent][industry.subagent] is an agent started by another agent to do part 
 [industry.agent]: ./industry.agent.md
 [industry.agent-harness]: ./industry.agent-harness.md
 [industry.subagent]: ./industry.subagent.md
+[spec.acp.session]: ../specs/acp/spec.acp.session.md
+[spec.ahp.session]: ../specs/ahp/spec.ahp.session.md

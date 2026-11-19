@@ -17,7 +17,7 @@ links:
 
 A plugin lets a whole working setup for an agent harness be installed, and shared, in one step, rather than gathered a piece at a time.
 
-A plugin is an installable bundle that extends an [agent harness][industry.agent-harness]. It holds [skills][industry.skill] and often hooks, subagent definitions and MCP servers (`spec.mcp`, pending), packaged, installed, enabled and shared as one unit, usually from a catalogue called a marketplace. It is the way skills are distributed, not a skill itself.
+A plugin is an installable bundle that extends an [agent harness][industry.agent-harness]. It holds [skills][industry.skill] and often hooks, subagent definitions and [MCP servers][spec.mcp.server], packaged, installed, enabled and shared as one unit, usually from a catalogue called a marketplace. It is the way skills are distributed, not a skill itself.
 
 ## Our conventions
 
@@ -29,4 +29,5 @@ The industry's terms in reading order end here. The channel's place in the order
 
 [industry.agent-harness]: ./industry.agent-harness.md
 [industry.skill]: ./industry.skill.md
+[spec.mcp.server]: ../specs/mcp/spec.mcp.server.md
 [system.backpack]: ../system/system.backpack.md

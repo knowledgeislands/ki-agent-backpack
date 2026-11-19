@@ -2,10 +2,10 @@
 id: spec.mcp.transports
 title: Transports, in the Model Context Protocol
 type: specification
-status: proposal
+status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, SPEC-CARDS, drafted as a proposal for the owner's review (12 November 2026)
+origin: Cairn summit change 22, SPEC-CARDS, drafted as a proposal for the owner's review (12 November 2026), corrected from the blind review of 18 November 2026 and agreed, SPEC-AGREE a (19 November 2026)
 links:
   spec.mcp:
     predicate: dcterms:isPartOf
@@ -24,7 +24,7 @@ A transport says only how messages are framed and delivered, how request metadat
 1. **stdio:** the [MCP client][spec.mcp.client] launches the [MCP server][spec.mcp.server] as a subprocess and they exchange newline-delimited JSON-RPC over its standard input and output ([MCP5]).
 2. **Streamable HTTP:** the server runs as an independent process with a single endpoint; each message is an HTTP POST, answered with one JSON object or a stream of Server-Sent Events for that request ([MCP6]).
 
-Clients and servers may add custom transports that keep the same messages. Since 2026-07-28, Streamable HTTP carries no session id; the older HTTP+SSE transport of 2024-11-05 is deprecated ([MCP6]).
+Clients and servers may add custom transports that keep the same messages. Streamable HTTP replaced the HTTP+SSE transport of 2024-11-05 in revision 2025-03-26, which deprecated it; revision 2026-07-28 marks it Deprecated under MCP's feature lifecycle, and removes Streamable HTTP's session id ([MCP6], [MCP8]).
 
 [spec.mcp]: ./spec.mcp.md
 [spec.mcp.client]: ./spec.mcp.client.md
@@ -32,3 +32,4 @@ Clients and servers may add custom transports that keep the same messages. Since
 [MCP4]: https://modelcontextprotocol.io/specification/2026-07-28/basic/transports
 [MCP5]: https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio
 [MCP6]: https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http
+[MCP8]: https://modelcontextprotocol.io/specification/2026-07-28/changelog

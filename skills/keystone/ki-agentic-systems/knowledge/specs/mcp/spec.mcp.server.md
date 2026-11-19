@@ -2,10 +2,10 @@
 id: spec.mcp.server
 title: MCP server, in the Model Context Protocol
 type: specification
-status: proposal
+status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, SPEC-CARDS, drafted as a proposal for the owner's review (12 November 2026)
+origin: Cairn summit change 22, SPEC-CARDS, drafted as a proposal for the owner's review (12 November 2026), corrected from the blind review of 18 November 2026 and agreed, SPEC-AGREE a (19 November 2026)
 links:
   spec.mcp:
     predicate: dcterms:isPartOf
@@ -25,7 +25,7 @@ MCP defines servers as "services that provide context and capabilities" ([MCP1])
 2. **Prompts:** templated messages the user selects, often as slash commands ([MCP10]).
 3. **[Tools][spec.mcp.tools]:** functions the model can call.
 
-A server should be easy to build and to combine with others. It never reads the whole conversation or sees into another server; where it needs input from the user or the model, it asks for it in its reply ([MCP2]).
+A server should be easy to build and to combine with others. It never reads the whole conversation or sees into another server; where it needs input from the user, it asks for it in its reply, by elicitation ([MCP2], [MCP8]). Sampling, by which a server asked for the model's help, is deprecated in the 2026-07-28 revision ([MCP8]).
 
 [spec.mcp]: ./spec.mcp.md
 [spec.mcp.client]: ./spec.mcp.client.md
@@ -34,3 +34,4 @@ A server should be easy to build and to combine with others. It never reads the 
 [MCP9]: https://modelcontextprotocol.io/specification/2026-07-28/server/resources
 [MCP10]: https://modelcontextprotocol.io/specification/2026-07-28/server/prompts
 [MCP1]: https://modelcontextprotocol.io/specification/2026-07-28
+[MCP8]: https://modelcontextprotocol.io/specification/2026-07-28/changelog

@@ -2,10 +2,10 @@
 id: spec.ahp.client
 title: Client, in the Agent Host Protocol
 type: specification
-status: proposal
+status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, SPEC-CARDS, drafted as a proposal for the owner's review (12 November 2026)
+origin: Cairn summit change 22, SPEC-CARDS, drafted as a proposal for the owner's review (12 November 2026), corrected from the blind review of 18 November 2026 and agreed against AHP 1.1.0, SPEC-AHP a (19 November 2026)
 links:
   spec.ahp:
     predicate: dcterms:isPartOf
@@ -19,7 +19,7 @@ An AHP client lets a person see and drive sessions an agent host owns, from seve
 
 A client connects to an [agent host][spec.ahp.agent-host], agrees a protocol version, and subscribes to the [channels][spec.ahp.channels] it wants to follow, receiving a snapshot of each and then every change in order. It sends commands and dispatches actions, applying its own at once and reconciling when the agent host echoes them back among other clients' ([what is AHP][M8]). After a dropped connection it reconnects and replays what it missed.
 
-Any number of clients may share one session. Any of them may approve a tool call or cancel a turn, and the agent host accepts the first ([AHP and ACP][AHP1]).
+Any number of clients may share one session. Any of them may cancel a running turn, and any may approve a pending tool call, where the first approval wins and later ones are rejected ([AHP and ACP][AHP1]).
 
 AHP names IDEs, web apps and CLIs as clients ([what is AHP][M8]); VS Code, AHPX and ahpc are among them, with official client libraries in Rust, TypeScript, Kotlin, Swift and Go ([implementations][M12]).
 

@@ -13,13 +13,15 @@ links:
     predicate: skos:related
   industry.environment:
     predicate: skos:related
+  spec.ahp.agent-host:
+    predicate: skos:exactMatch
 ---
 
 # Agent host
 
 An agent host lets [sessions][industry.session] outlive, and be shared across, the windows used to see them.
 
-An agent host is the application or process, running in an [environment][industry.environment], that runs [agent harnesses][industry.agent-harness] and owns their sessions, independently of the clients that display them. The definition is the Agent Host Protocol's (`spec.ahp`, pending) ([M11]).
+An agent host is the application or process, running in an [environment][industry.environment], that runs [agent harnesses][industry.agent-harness] and owns their sessions, independently of the clients that display them. The definition is the [Agent Host Protocol's agent host][spec.ahp.agent-host] (AGENT-HOST-CITE): AHP calls it "a portable, standalone sessions server" ([what is AHP][M8]), and the harness is what "the host wraps" ([MCP servers][AHP8]).
 
 Examples: Orca, Claude Desktop, the ChatGPT desktop app, the Antigravity app and VS Code's Agent Host ([M12]). A harness run by itself, such as Claude Code or Codex in a terminal, is its own agent host and client in one process.
 
@@ -40,5 +42,7 @@ A [client][industry.client] is a window onto a session an agent host owns.
 [industry.agent-harness]: ./industry.agent-harness.md
 [industry.client]: ./industry.client.md
 [system.actor]: ../system/system.actor.md
-[M11]: https://microsoft.github.io/agent-host-protocol/specification/overview.html
+[spec.ahp.agent-host]: ../specs/ahp/spec.ahp.agent-host.md
+[M8]: https://microsoft.github.io/agent-host-protocol/guide/what-is-ahp.html
+[AHP8]: https://microsoft.github.io/agent-host-protocol/guide/mcp.html
 [M12]: https://microsoft.github.io/agent-host-protocol/guide/implementations.html

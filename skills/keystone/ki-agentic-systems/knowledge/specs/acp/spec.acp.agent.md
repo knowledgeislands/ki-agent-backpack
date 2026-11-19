@@ -2,10 +2,10 @@
 id: spec.acp.agent
 title: ACP agent, in the Agent Client Protocol
 type: specification
-status: proposal
+status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, SPEC-CARDS, drafted as a proposal for the owner's review (12 November 2026)
+origin: Cairn summit change 22, SPEC-CARDS, drafted as a proposal for the owner's review (12 November 2026), corrected from the blind review of 18 November 2026 and agreed, SPEC-AGREE a (19 November 2026)
 links:
   spec.acp:
     predicate: dcterms:isPartOf
@@ -19,7 +19,7 @@ links:
 
 # ACP agent, in the Agent Client Protocol
 
-An ACP agent is a coding agent that can serve any editor speaking ACP, without an integration for each one. It is part of the [Agent Client Protocol][spec.acp] ([ACP1]).
+An ACP agent lets one coding agent work in every editor that speaks ACP, without an integration for each. It is part of the [Agent Client Protocol][spec.acp] ([ACP1]).
 
 ACP defines agents as "programs that use generative AI to autonomously modify code", which usually run as subprocesses of the [ACP client][spec.acp.client]. An agent negotiates the protocol version, creates and keeps [ACP sessions][spec.acp.session], runs each prompt and streams its progress back, and asks the client's permission before a tool call ([ACP2]). Most ACP agents are also MCP clients ([ACP5]).
 

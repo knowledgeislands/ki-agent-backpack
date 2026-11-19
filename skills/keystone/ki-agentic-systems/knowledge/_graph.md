@@ -41,7 +41,7 @@ This graph gives every Knowledge Islands session the same words for agentic syst
 | `dcterms:` | Dublin Core terms, where SKOS has no term for a whole and its parts, for conformance, or for what a resource is about | `http://purl.org/dc/terms/` | `dcterms:hasPart`, `dcterms:isPartOf`, `dcterms:conformsTo`, `dcterms:subject` |
 | `ki:` | Knowledge Islands, for what neither has | Not yet published | `ki:runs`, `ki:run-of`, `ki:run-by`, `ki:extends` |
 
-A predicate reads from the card that holds it to its target. A vendor card whose word means the industry's term exactly uses `skos:exactMatch`, nearly `skos:closeMatch`; one whose word is narrower than the term, as a product is, uses `skos:broadMatch`, saying the target is broader; and one whose word is only related, as a part of the thing or something easily mistaken for it, uses `skos:relatedMatch`.
+A predicate reads from the card that holds it to its target. The same rule maps a vendor card and a specification card onto the industry's terms (SPEC-MAP-RULE): a card whose word means the industry's term exactly uses `skos:exactMatch`, nearly `skos:closeMatch`; one whose word is narrower than the term, as a product is, uses `skos:broadMatch`, saying the target is broader; and one whose word is only related, as a part of the thing or something easily mistaken for it, uses `skos:relatedMatch`.
 
 | Predicate | Meaning |
 | --- | --- |
@@ -82,7 +82,7 @@ A predicate reads from the card that holds it to its target. A vendor card whose
 - **In order** (CARD-ORDER): each term card uses only words defined on the cards before it, and ends by linking the next.
 - **Senses are links** (KG-SUBGRAPHS): a term card never lists vendors' words; each vendor card links to the term it matches, once for each sense of its word.
 - **Never a bare "host"** (HOST-SENSES): write agent host for the application or process that runs harnesses and owns their sessions, and machine for the computer.
-- **"Task" is no term here** (CARD-SESSION): it means a session, delegated work and scheduled work by vendor and surface, so it appears only as a vendor's word.
+- **"Task" is no term here** (CARD-SESSION, TASK-WORD-SPEC): it means a session, delegated work and scheduled work by vendor and surface, so it appears only as a vendor's or a specification's own word, as A2A's task is.
 - **Specifications are cited, not restated** (SPEC-CARDS): a term card links the specification card it rests on, or names the pending card's id until it is written; each part of a specification that a card links to is a card of its own (KG-GRAIN).
 
 ## Subgraphs
@@ -90,7 +90,7 @@ A predicate reads from the card that holds it to its target. A vendor card whose
 | Subgraph | Id prefix | Subject | Cards | Folder |
 | --- | --- | --- | --- | --- |
 | Industry | `industry.` | The industry's terms, in reading order | [model][industry.model], [agent harness][industry.agent-harness], [agent][industry.agent], [agentic system][industry.agentic-system], [session][industry.session], [subagent][industry.subagent], [skill][industry.skill], [environment][industry.environment], [machine][industry.machine], [agent host][industry.agent-host], [client][industry.client], [cross-session messaging][industry.cross-session-messaging], [agent team][industry.agent-team], [remote agent][industry.remote-agent], [tool][industry.tool], [instruction file][industry.instruction-file], [plugin][industry.plugin]; and [channel][industry.channel], agreed, its place in the order still to settle | `industry/` |
-| Specifications | `spec.` | The specifications the terms rest on | [Agent Skills][spec.agent-skills], with [progressive disclosure][spec.agent-skills.progressive-disclosure] | `specs/`, a folder for each specification, as `specs/mcp/` |
+| Specifications | `spec.` | The specifications the terms rest on | [Agent Skills][spec.agent-skills], with [progressive disclosure][spec.agent-skills.progressive-disclosure]; [MCP][spec.mcp], with its [host][spec.mcp.host], [client][spec.mcp.client], [server][spec.mcp.server], [tools][spec.mcp.tools] and [transports][spec.mcp.transports]; [ACP][spec.acp], with its [client][spec.acp.client], [agent][spec.acp.agent] and [session][spec.acp.session]; [AHP][spec.ahp], with its [agent host][spec.ahp.agent-host], [client][spec.ahp.client], [session and chat][spec.ahp.session] and [channels][spec.ahp.channels]; and [A2A][spec.a2a], with its [client][spec.a2a.client], [remote agent][spec.a2a.remote-agent], [Agent Card][spec.a2a.agent-card] and [task][spec.a2a.task] | `specs/`, a folder for each specification, as `specs/mcp/` |
 | Anthropic | `anthropic.` | Anthropic's own words | [Claude][anthropic.claude], [Claude Code][anthropic.claude-code], [model][anthropic.model], [agentic harness][anthropic.agentic-harness], [agentic coding tool][anthropic.agentic-coding-tool], [session][anthropic.session], [conversation][anthropic.conversation], [subagent][anthropic.subagent], [agent team][anthropic.agent-team], [skill][anthropic.skill] | `vendors/anthropic/` |
 | OpenAI | `openai.` | OpenAI's own words | [Codex][openai.codex], [ChatGPT][openai.chatgpt], [model][openai.model], [harness][openai.harness], [agent][openai.agent], [task][openai.task], [chat][openai.chat], [thread][openai.thread], [subagent][openai.subagent], [skill][openai.skill], [plugin][openai.plugin] | `vendors/openai/` |
 | Google | `google.` | Google's own words | [Gemini][google.gemini], [model][google.model], [agent harness][google.agent-harness], [agent][google.agent], [conversation][google.conversation], [session][google.session], [subagent][google.subagent], [remote subagent][google.remote-subagent], [skill][google.skill] | `vendors/google/` |
@@ -102,13 +102,12 @@ A predicate reads from the card that holds it to its target. A vendor card whose
 
 ## Extent and limitations
 
-- **What it covers:** seventeen terms in reading order, from the model to the plugin, the agentic system read after the agent as the umbrella the rest build up (CARD-ORDER), and the channel; the Agent Skills specification; the four leading vendors' words for those terms as their documentation used them on 12 November 2026; Orca's and Zed Industries' words; two diagrams; and seven of the system's own words, guild, rig, actor, work package, backpack, role and seat. Other vendors are added where they matter (VENDORS).
+- **What it covers:** seventeen terms in reading order, from the model to the plugin, the agentic system read after the agent as the umbrella the rest build up (CARD-ORDER), and the channel; the specifications the terms rest on, Agent Skills, MCP, ACP, AHP and A2A, MCP at its revision of 28 July 2026, ACP at its release of 18 November 2026, AHP at 1.1.0 and A2A at 1.0.1; the four leading vendors' words for those terms as their documentation used them on 12 November 2026; Orca's and Zed Industries' words; two diagrams; and seven of the system's own words, guild, rig, actor, work package, backpack, role and seat. Other vendors are added where they matter (VENDORS).
 - **Where the cards sit:** the root folder is the skill's `knowledge/` folder, which holds this root definition and a folder for each subgraph, as the table above names, and nothing but the graph (KNOWLEDGE-FOLDER, GRAPH-FOLDERS). A card's folder is never part of its identity, so links in front matter are keyed by id alone.
 - **Beside the graph:** the skill's `references/` folder holds [the sources](../references/sources.md), with every vendor source and the date it was last checked, and the decisions behind the cards; it is not a card.
 - **Refreshed monthly** (TERMS-REFRESH): the vendor cards' examples date quickly, as products are renamed, merged and closed.
 - **Pending terms:** the system's own terms sit in the `system/` subgraph (TERMS-SOURCE), after guild; the channel's place in the reading order waits on CARD-ORDER. A vendor card that would link to one gains that link when the card is agreed.
 - **Resources outside the graph's folder:** a `resource` card points to its diagram in the backpack's `docs/diagrams/`, where the living-diagram manifest keeps its question, sources, staleness trigger and regeneration prompt; the card holds what it shows, not the image (DIAGRAM-RESOURCE).
-- **Pending specifications:** `spec.mcp`, the Model Context Protocol; `spec.acp`, the Agent Client Protocol; `spec.ahp`, the Agent Host Protocol; and `spec.a2a`, Agent2Agent.
 - **Due a vocabulary review:** the `ki:` predicates, until the `ki:` namespace is published.
 
 [industry.model]: ./industry/industry.model.md
@@ -135,6 +134,26 @@ A predicate reads from the card that holds it to its target. A vendor card whose
 [diagram.agentic-terms-by-example]: ./diagrams/diagram.agentic-terms-by-example.md
 [diagram.agentic-standards]: ./diagrams/diagram.agentic-standards.md
 [spec.agent-skills]: ./specs/agent-skills/spec.agent-skills.md
+[spec.mcp]: ./specs/mcp/spec.mcp.md
+[spec.mcp.host]: ./specs/mcp/spec.mcp.host.md
+[spec.mcp.client]: ./specs/mcp/spec.mcp.client.md
+[spec.mcp.server]: ./specs/mcp/spec.mcp.server.md
+[spec.mcp.tools]: ./specs/mcp/spec.mcp.tools.md
+[spec.mcp.transports]: ./specs/mcp/spec.mcp.transports.md
+[spec.acp]: ./specs/acp/spec.acp.md
+[spec.acp.client]: ./specs/acp/spec.acp.client.md
+[spec.acp.agent]: ./specs/acp/spec.acp.agent.md
+[spec.acp.session]: ./specs/acp/spec.acp.session.md
+[spec.ahp]: ./specs/ahp/spec.ahp.md
+[spec.ahp.agent-host]: ./specs/ahp/spec.ahp.agent-host.md
+[spec.ahp.client]: ./specs/ahp/spec.ahp.client.md
+[spec.ahp.session]: ./specs/ahp/spec.ahp.session.md
+[spec.ahp.channels]: ./specs/ahp/spec.ahp.channels.md
+[spec.a2a]: ./specs/a2a/spec.a2a.md
+[spec.a2a.client]: ./specs/a2a/spec.a2a.client.md
+[spec.a2a.remote-agent]: ./specs/a2a/spec.a2a.remote-agent.md
+[spec.a2a.agent-card]: ./specs/a2a/spec.a2a.agent-card.md
+[spec.a2a.task]: ./specs/a2a/spec.a2a.task.md
 [skos1]: https://www.w3.org/TR/skos-reference/#semantic-relations
 
 [system.guild]: ./system/system.guild.md

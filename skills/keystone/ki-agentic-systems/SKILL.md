@@ -62,10 +62,9 @@ Pending, not yet defined here: integration, under a card for the ways into a ses
 
 ### Specification cards
 
+All agreed, the last four on 19 November 2026 (SPEC-AGREE, SPEC-AHP), AHP's against its version 1.1.0:
+
 - [The Agent Skills specification](knowledge/specs/agent-skills/spec.agent-skills.md), with its part [progressive disclosure](knowledge/specs/agent-skills/spec.agent-skills.progressive-disclosure.md).
-
-Proposals, drafted for the owner's decision in the Cairn summit's change 22 and not yet agreed, so no agreed card links them yet, except the remote agent card's link to A2A's remote agent, which NAMES-REMOTE keeps, and the channel card's links to MCP and to AHP's channels:
-
 - [The Model Context Protocol](knowledge/specs/mcp/spec.mcp.md), with its parts [MCP host](knowledge/specs/mcp/spec.mcp.host.md), [MCP client](knowledge/specs/mcp/spec.mcp.client.md), [MCP server](knowledge/specs/mcp/spec.mcp.server.md), [tools](knowledge/specs/mcp/spec.mcp.tools.md) and [transports](knowledge/specs/mcp/spec.mcp.transports.md).
 - [The Agent Client Protocol](knowledge/specs/acp/spec.acp.md), with its [client](knowledge/specs/acp/spec.acp.client.md), [agent](knowledge/specs/acp/spec.acp.agent.md) and [session](knowledge/specs/acp/spec.acp.session.md).
 - [The Agent Host Protocol](knowledge/specs/ahp/spec.ahp.md), with its [agent host](knowledge/specs/ahp/spec.ahp.agent-host.md), [client](knowledge/specs/ahp/spec.ahp.client.md), [session](knowledge/specs/ahp/spec.ahp.session.md) and [channels](knowledge/specs/ahp/spec.ahp.channels.md).
