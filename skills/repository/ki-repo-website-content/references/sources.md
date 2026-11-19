@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:49:45Z
+ki-revised: 2026-11-19T06:30:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -52,11 +52,15 @@ The standard is self-contained; it is the source of truth for house style. Any c
 
 ## 3. Decisions
 
-None recorded by id: the standard rests on the upstream tools and the in-house convention above.
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| SITE-ROADMAP | A content site is not required to carry `ROADMAP.md`: WEB-7 and the skill's `ki-requires: [ROADMAP.md]` are dropped, its number not reused, and the forward-work tracker is left to `ki-work`'s choice, since no rule in the standard backed the check. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a, from the summit's change 10. Reversible; Kris can overturn it. | 2026-11-19 | [Eleventy site standard](standard-eleventy-site.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 19 November 2026 SITE-ROADMAP dropped WEB-7, the check that a content site carries `ROADMAP.md`, and the skill's `ki-requires` of it; the rubric was regenerated. No outside source was refreshed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
 

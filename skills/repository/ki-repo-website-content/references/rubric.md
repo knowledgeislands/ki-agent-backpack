@@ -48,8 +48,6 @@ The static-site stack, workspace layout, generated output, and sustainable opera
   - _Conforming guidance:_ Revise the affected website surface to meet the standard, or record the owning design decision before accepting a deliberate exception.
 - **WEB-6 [M] — Site-root configuration** — One Eleventy configuration lives at the site root selected by `[skills.ki-repo-website].site-root`. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
-- **WEB-7 [M] — Roadmap** — `ROADMAP.md` is present. (standard-eleventy-site.md)
-  - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
 - **WEB-8 [M] — Workspace declaration** — The root package manifest declares a workspace covering the selected site root. (standard-eleventy-site.md)
   - _Remediation:_ diagnostic — Inspect the affected website surface and apply the standard through a reviewable, site-owned change.
 - **WEB-9 [M] — Source layout** — `src/` has `_data/`, `_includes/layouts/`, `_includes/partials/`, and `assets/css/`. (standard-eleventy-site.md)

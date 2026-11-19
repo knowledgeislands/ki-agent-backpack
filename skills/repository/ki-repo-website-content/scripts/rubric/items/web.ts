@@ -209,14 +209,6 @@ const WEB_6 = mechanical(
   }
 )
 
-const WEB_7 = mechanical(
-  'WEB-7',
-  'Roadmap',
-  '`ROADMAP.md` is present.',
-  'WARN',
-  (context) => inactive(context) ?? one(context.has('ROADMAP.md'), 'ROADMAP.md present', 'no ROADMAP.md', 'ROADMAP.md')
-)
-
 const WEB_8 = mechanical(
   'WEB-8',
   'Workspace declaration',
@@ -662,7 +654,6 @@ export const WEB: RubricFamily<WebsiteContext, WebsiteContext> = {
     WEB_4,
     WEB_5,
     WEB_6,
-    WEB_7,
     WEB_8,
     WEB_9,
     WEB_10,
