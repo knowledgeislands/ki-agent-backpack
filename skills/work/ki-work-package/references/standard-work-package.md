@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T07:20:00Z
+ki-revised: 2026-11-19T05:51:35Z
 ki-status: in force
 ---
 
@@ -261,6 +261,7 @@ History stays out, as Kris answered STATE-HISTORY: the recap since the mark read
 
 - **Change documents carry the work.** Each is `NN-<slug>.change.md`, under `ki-authoring`'s [change format](../../../keystone/ki-authoring/references/standard-formats-change.md), its slug lower-case kebab case.
 - **They are numbered** in tens by group, in the order they are taken, with gaps for new ones.
+- **They are named by name, not number.** The number is only a change document's priority; its name is the slug after the number, in sentence case. Wherever one is mentioned, in a file or a reply, it is called by that name, with its number in brackets after it if at all, as "Case website (70)", never "change 70" or "70" alone, and a link to it takes the same text, as `[Case website (70)](70-case-website.change.md)`. Replies follow `ki-coordination`'s [Links and wording](../../ki-coordination/references/standard-reporting.md#43-links-and-wording).
 - **Decisions live in the change document they belong to.** When the change closes, each goes to its durable home, a standard, `AGENTS.md` or a record, and the change is deleted. Review and graduation are `ki-work design`'s.
 - **Open points live in a change document's Open section,** in full, and nothing already answered stays there.
 
