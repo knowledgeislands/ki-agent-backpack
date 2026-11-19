@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T04:40:00Z
+ki-revised: 2026-11-19T05:16:00Z
 ki-status: in force
 ---
 
@@ -68,7 +68,7 @@ The rules, part by part.
 
 A logged, unrevoked owner decision authorises its stated scope across sessions. Ask again only for a new decision, an explicit later gate or a changed boundary. A relay is not approval, and narrower repository gates still apply.
 
-A grant is not such a decision. A grant the owner gives within a session, such as "you can accept anything with a high confidence", covers only that session's work within its remit and lapses with the session, unless the owner says it stands; and every push that publishes comes back to the owner each time, whatever grant is in force. Kris set this under ACCEPT-REACH on 19 November 2026: "Sometimes I might say that within a given session of working, it's not a standing statement, I believe. So it should always be caveated within a certain remit." A decision on a stated scope, logged and unrevoked, still stands across sessions; a blanket grant does not.
+A grant is not such a decision. A grant the owner gives within a session, such as "you can accept anything with a high confidence", covers only that session's work within its remit and lapses with the session, unless the owner says it stands; and each push that publishes needs the owner's word each time, whatever grant is in force, as the standing rules for Stoa and the live sites already require. Kris set this under ACCEPT-REACH on 19 November 2026: "Sometimes I might say that within a given session of working, it's not a standing statement, I believe. So it should always be caveated within a certain remit." A decision on a stated scope, logged and unrevoked, still stands across sessions; a blanket grant does not.
 
 The coordinator logs every owner decision in the turn it arrives, in the owner's words, in the change document it belongs to, under the [rules below](#411-decisions-log). A record, report or banner describes a decision by its words and date, never by a number.
 

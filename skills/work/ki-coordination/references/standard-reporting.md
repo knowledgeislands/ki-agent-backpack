@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T01:24:51Z
+ki-revised: 2026-11-19T05:16:00Z
 ki-status: in force
 ---
 
@@ -209,7 +209,7 @@ The label is written `Outstanding - no action requested now` and the query headi
   b) <an alternative>
   ```
 
-  - **Parts:** **Context** gives enough to decide without reading anything else, including the matter's significance and current state. **Query** is the question in one sentence. **Options** is the lettered list, `a)`, `b)` and so on, with no bullet before a letter.
+  - **Parts:** **Context** gives enough to decide without reading anything else, including the matter's significance and current state; where the matter has several parts, it may take the bold lead-ins of the interactive pass's [Where things stand](standard-queries.md#where-things-stand), such as why it comes to the owner and what an answer unblocks. **Query** is the question in one sentence. **Options** is the lettered list, `a)`, `b)` and so on, with no bullet before a letter.
   - **Paragraphs:** the three parts are separate paragraphs with a blank line between them, and each option is its own paragraph with a blank line between options, so the query passes `rumdl check` under the house `.rumdl.toml`, whose MD013 reflow would otherwise join lazily continued lines.
   - **Recommendation:** option a) is always the recommendation and carries `(recommended, confidence <level> - <reason>)` before its text, the level `high`, `medium` or `low` and the reason one line, as in `a) (recommended, confidence high - the patch is already on main) push it`. Only option a) carries a confidence.
   - **Confidence:** reflects how reversible the course is and how much of what it rests on the session verified directly, rather than took from another agent's report. A course that destroys, deletes or publishes and rests on claims not verified directly is never `high`. Consistency with an earlier decision is not a reason and earns no level: an option a) whose only reason is an earlier decision is capped at `medium`.
@@ -262,7 +262,7 @@ The label is written `Outstanding - no action requested now` and the query headi
   - No level hides a failure, a required decision or a material risk.
   - In a coordinator session the level never changes the layout and governs only the wording inside B1, the Answer, under the [coordinator reply format](standard-report-forms.md#41-coordinator-reply-format).
 
-Sources: REPORT-SOURCE, OWNER-REPORT-FORMAT, REPORT-HEADINGS, REPLY-BLOCK, REPLY-ID, HOLD-QUERIES, SUMMARY-WINDOW, FINDINGS-SECTION, QUERY-SHAPE, FORM-VS-RUMDL, CONFIDENCE-STANDARD, REVIEW-LIFT, ACCEPT-BY-CRITERIA, CONFIDENCE-CHECK, REVIEW-CHECK, NO-EXTERNAL-POSTING, PLAIN-ENGLISH, REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, QUERY-CAP-3, COORD-REPORT-CHECKS and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
+Sources: REPORT-SOURCE, OWNER-REPORT-FORMAT, REPORT-HEADINGS, REPLY-BLOCK, REPLY-ID, HOLD-QUERIES, SUMMARY-WINDOW, FINDINGS-SECTION, QUERY-SHAPE, QUERY-LEAD-INS, FORM-VS-RUMDL, CONFIDENCE-STANDARD, REVIEW-LIFT, ACCEPT-BY-CRITERIA, CONFIDENCE-CHECK, REVIEW-CHECK, NO-EXTERNAL-POSTING, PLAIN-ENGLISH, REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, QUERY-CAP-3, COORD-REPORT-CHECKS and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
 
 #### 4.2.1 Answers
 
