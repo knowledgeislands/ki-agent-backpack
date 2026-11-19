@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T03:23:08Z
+ki-revised: 2026-11-19T03:31:25Z
 ki-status: in force
 ---
 
@@ -184,7 +184,7 @@ Each part: what it carries, when it appears and how the structure, the state and
 
 **Footer block.**
 
-- **F1 Art:** the Knowledge Islands drawing, whose scroll says only KNOWLEDGE ISLANDS, under **The footer** in [The Summary](#417-the-summary). Unless the owner asked for `no art`.
+- **F1 Art:** the Knowledge Islands drawing, whose scroll's title is KNOWLEDGE ISLANDS with four lines beneath it, each centred in the 54-character space between the scroll's `|` marks with any odd space to the right: the host and state in capitals, as `SOL  ·  WITH YOU`, or `ALL CLEAR` when nothing waits, a blank line, the counts in words, and the day, date and local time, under **The footer** in [The Summary](#417-the-summary); `ki work banner` (KI-TOOL-KI-CLI-182 in `tools-ki`) renders it. Unless the owner asked for `no art`.
 - **F2 Banner heading:** `### <glyph state> · at <time the work entered this state>`, from the [one table of states](standard-coordination.md#46-banner). It is the only place the work's state appears.
 - **F3 Counts line:** `🤖 <n> running · ⏳ <n> queued · 👤 <n> with you · ⛔ <n> blocked · 🅿️ <n> parked`, all five views with zeros written, adding `· 📥 <n> to accept` in Project work with records awaiting the owner's acceptance. The state sets its content on hold: `⏸️ drained · 🅿️ <n> queries parked` on a paused hold, `💤 waiting for a message · 🅿️ <n> queries parked` while Snoozing. Left out only when the work is Finished.
 - **F4 Roadmap line:** `🗺️ roadmap · <n> records · <n> open · <n> done awaiting prune · <n> ideas`, or `🗺️ roadmap · none` where the package's repository has no roadmap, under **Roadmap and package lines** in [Banner detail](#42-banner-detail).
@@ -249,7 +249,7 @@ b) <the alternative>
 <TAG> a (<high, medium or low>): <gloss>
 ```
 
-<Knowledge Islands art; scroll: KNOWLEDGE ISLANDS>                            F1
+<Knowledge Islands art; scroll: KNOWLEDGE ISLANDS, then four lines>            F1
 
 ### <glyph state> · at <time the work entered this state>                    F2
 
@@ -452,7 +452,7 @@ The **Summary** is the coordinator's one summary form, a Full reply. It runs fro
 | **Not in a change yet**<br>Runs, Now lines and other sessions' work | **Waiting outside**<br>🌐 Orca top-aligned table cells; next: Orca's answer |
 ```
 
-**The footer** is the Knowledge Islands art, then the banner. The art shows on every Summary and Status unless the owner added `no art`, and on no other reply. What the art and the footer lines carry is for Knowledge Islands Cairn, `ki.cairn`, to decide, liaising with `ki.summit` as the keeper of this standard. Until Cairn publishes its own, the art is the 88-column Knowledge Islands drawing in the [summary-model design note](https://github.com/krisb/dotfiles/blob/29dc51c/+/_WORK/personal.reg.household-terra/_emerging/summary-model.design.md), its scroll saying only KNOWLEDGE ISLANDS, with no host, state, counts, date or time. The art stays as a visible marker and can go later without touching anything else.
+**The footer** is the Knowledge Islands art, then the banner. The art shows on every Summary and Status unless the owner added `no art`, and on no other reply. What the art and the footer lines carry is for Knowledge Islands Cairn, `ki.cairn`, to decide, liaising with `ki.summit` as the keeper of this standard. Until Cairn publishes its own, the art is the 88-column Knowledge Islands drawing in the [summary-model design note](https://github.com/krisb/dotfiles/blob/29dc51c/+/_WORK/personal.reg.household-terra/_emerging/summary-model.design.md), its scroll's title KNOWLEDGE ISLANDS, and beneath it four lines, each centred in the 54-character space between the scroll's `|` marks with any odd space to the right: the host and state in capitals, as `SOL  ·  WITH YOU`, or `ALL CLEAR` when nothing waits, a blank line, the counts in words, and the day, date and local time; `ki work banner` (KI-TOOL-KI-CLI-182 in `tools-ki`) renders it. The art stays as a visible marker and can go later without touching anything else.
 
 **Sources of a Summary:** the package's change documents; every report received since the mark, from its run packet or, once a [tidy](standard-mark.md#43-pruning-the-package) has removed the packet, from the change documents and records its outcome reached; the parked tags in the change documents; the agent host's view of its agents; record transitions in the work's scope from the Git history of the roadmap paths; and `git log -- work/<territory>/<id>/` in the Cairn store, the logbook. The mark bounds them all. Where a report can no longer be read and its outcome was not homed, the Summary says what it could not read rather than reconstructing it from memory.
 
