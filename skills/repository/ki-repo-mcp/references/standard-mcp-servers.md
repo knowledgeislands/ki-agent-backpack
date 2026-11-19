@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:50:00Z
+ki-revised: 2026-11-19T06:40:00Z
 ki-status: in force
 ---
 
@@ -53,7 +53,7 @@ The standard applies only when a repository declares `[skills.ki-repo-mcp]` in `
 - Repository settings and the presence of the universal root documents: `ki-repo`.
 - Optional vendored utility profiles: the [MCP shared-code standard](standard-mcp-shared-code.md).
 - Versioned source-release evidence and the installer hand-off: the [MCP source-distribution standard](standard-mcp-distribution.md).
-- Enabling servers across client surfaces: the [cross-surface enablement standard](standard-cross-surface-enablement.md).
+- Enabling servers across client surfaces, including claude.ai connectors: the Environment guild's `ki-env-binding` and `ki-env-binding-claude` (MCP-SURFACES).
 
 [Back to contents](#contents)
 

@@ -19,6 +19,8 @@ argument-hint: 'audit [project] | conform [project] | help | educate [project] |
 
 This runtime adapter composes `ki-env-binding` and owns the Claude-specific delta: Claude Code and Desktop JSON definition comparison and the intentionally non-rendered claude.ai web convention. Source projection, registration, installation, activation, and runtime health are reported separately. Knowledge Islands maintains no Cowork plugin projection (`ADR-KI-HARNESS-015`).
 
+The rules are in the [Claude binding standard](references/standard-claude-binding.md), with the order the surfaces are enabled in, and the levers that govern claude.ai connectors, manual or admin-side and report-only, in the [claude.ai connector control standard](references/standard-claude-ai-connectors.md) (MCP-SURFACES).
+
 ## Operating modes
 
 ### Mode AUDIT

@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:50:00Z
+ki-revised: 2026-11-19T06:40:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -16,13 +16,12 @@ ki-refresh: external-spec · monthly
     - [2.1.3 In-house (the workspace convention)](#213-in-house-the-workspace-convention)
   - [2.2 Advisory](#22-advisory)
     - [2.2.1 Community](#221-community)
-    - [2.2.2 claude.ai connector documentation](#222-claudeai-connector-documentation)
 - [3. Decisions](#3-decisions)
 - [4. Last review](#4-last-review)
 
 ## 1. Introduction
 
-The authoritative and community sources behind the [Workspace MCP Standard](standard-mcp-servers.md), the [MCP shared-code standard](standard-mcp-shared-code.md), the [MCP source-distribution standard](standard-mcp-distribution.md), the [cross-surface enablement standard](standard-cross-surface-enablement.md), the [claude.ai connector control standard](standard-claude-ai-connectors.md) and the [Audit Rubric](rubric.md). Mode REFRESH reads this file, re-fetches each source, diffs it against the standards, rubric, and [`scripts/rubric/items/index.ts`](../scripts/rubric/items/index.ts), then **bumps the `last reviewed` dates** and refreshes the [Last review](#4-last-review) block below (what changed is recorded in the commit, not a changelog). This is the skill's memory of where the standard comes from—keep it current.
+The authoritative and community sources behind the [Workspace MCP Standard](standard-mcp-servers.md), the [MCP shared-code standard](standard-mcp-shared-code.md), the [MCP source-distribution standard](standard-mcp-distribution.md) and the [Audit Rubric](rubric.md). Mode REFRESH reads this file, re-fetches each source, diffs it against the standards, rubric, and [`scripts/rubric/items/index.ts`](../scripts/rubric/items/index.ts), then **bumps the `last reviewed` dates** and refreshes the [Last review](#4-last-review) block below (what changed is recorded in the commit, not a changelog). This is the skill's memory of where the standard comes from—keep it current.
 
 Two layers feed the standard: the **official MCP specification** (what every conformant server must do) and the **in-house workspace convention** (the opinionated shape the seven sibling repos share on top of the spec). A finding is only "spec-driven" if it traces to the Authoritative table; everything else is house style and should be labelled as such so it is not mistaken for a protocol requirement.
 
@@ -30,7 +29,7 @@ Two layers feed the standard: the **official MCP specification** (what every con
 
 ## 2. Outside sources
 
-The official MCP specification and the source-distribution references govern, with the in-house workspace convention for house style; the community sources and the claude.ai connector documentation inform judgement.
+The official MCP specification and the source-distribution references govern, with the in-house workspace convention for house style; the community sources inform judgement.
 
 ### 2.1 Authoritative
 
@@ -82,7 +81,7 @@ The standard is defined as the **majority shape** across the seven sibling repos
 
 ### 2.2 Advisory
 
-The community sources, then the vendor documentation behind the claude.ai connector standard.
+The community sources.
 
 #### 2.2.1 Community
 
@@ -90,19 +89,6 @@ The community sources, then the vendor documentation behind the claude.ai connec
 | --- | --- | --- |
 | COMMUNITY — [Tool Annotations as Risk Vocabulary (MCP blog)][annotations] | What the `*Hint` annotations can and can't do — anchors the annotation-driven gate | 2026-10-18 |
 | REGISTRY — [GitHub MCP Registry][github-mcp] | MCP server discovery and integration examples; catalogue entries are discovery evidence, not protocol requirements | 2026-10-18 |
-
-[Back to contents](#contents)
-
-#### 2.2.2 claude.ai connector documentation
-
-Moved here from the [claude.ai connector control standard](standard-claude-ai-connectors.md)'s own Sources list on 18 November 2026; the date is when that standard was written from them.
-
-| Source | Informs | Last reviewed |
-| --- | --- | --- |
-| [Use connectors to extend Claude's capabilities](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities) | Per-conversation toggles, per-tool permission modes and account connectors | 2026-07-03 |
-| [Get started with custom connectors using remote MCP](https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp) | Custom remote-MCP connectors and their OAuth client settings | 2026-07-03 |
-| [Authorize MCP connectors for your entire organization](https://support.claude.com/en/articles/15537633-authorize-mcp-connectors-for-your-entire-organization) | Organization connectors, admin policies and Enterprise-managed auth | 2026-07-03 |
-| [Control MCP server access for your organization (Claude Code)](https://code.claude.com/docs/en/managed-mcp) | `managed-mcp.json`, `allowedMcpServers` / `deniedMcpServers` and the claude.ai connector settings in Claude Code | 2026-07-03 |
 
 [Back to contents](#contents)
 
@@ -116,14 +102,17 @@ The decisions the standard cites by id, oldest first; the standard keeps citing 
 | WA-DEFAULTS | `mcp-acquire-whatsapp`'s `destructive` access-level default and `off` audit-log default are an accepted exception under its ADR-KI-MCP-WA-005: a `read` default would unregister its six spool tools, and a log on by default would keep a record of who Kris talks to. Taken at high confidence on the evidence, on the same basis. | 2026-11-17 | [Access-level gate](standard-mcp-servers.md#44-access-level-gate-annotation-driven) | In force |
 | MCP-BASIS | Every server that declares `[skills.ki-repo-mcp]` counts towards the majority basis: all seven, including `mcp-housekeeping-chatgpt` and `mcp-acquire-whatsapp`. Taken at high confidence on the evidence, on the same basis. | 2026-11-17 | [In-house evidence](#213-in-house-the-workspace-convention) | In force |
 | TOOL-EXCEPTION | A repository may keep tool names outside `<app>_<resource>_<action>` by declaring them in `[skills.ki-repo-mcp]` as `tool-name-exceptions`, the reason in a comment above the key, as `ki-repo` takes a declared narrower runtime list (`all-runtimes = false`, RUNTIMES-7); `TOOL-1` reports them as declared and flags a listed name no tool registers. Taken at high confidence by the Cairn summit's guardian on Kris's word to take high-confidence calls, once `mcp-cairn`'s warden kept its bare names `who`, `since` and `presence` through the messaging retirement (`8fa0ce5`). | 2026-11-17 | [Scope](standard-mcp-servers.md#2-scope), [Tool naming](standard-mcp-servers.md#43-tool-naming) | In force |
+| MCP-SURFACES | Where a server is turned on belongs to the Environment guild's binding skills: the cross-surface enablement standard's rules not already in `ki-env-binding` or `ki-env-binding-claude` moved there after a line-by-line check, and the claude.ai connector control standard moved whole into `ki-env-binding-claude` with its four sources; this skill keeps only what an MCP repository ships, with a pointer. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a, from the summit's change 10. Reversible; Kris can overturn it. | 2026-11-19 | [Scope](standard-mcp-servers.md#2-scope) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
 
+On 19 November 2026 MCP-SURFACES, recorded under [Decisions](#3-decisions), moved the two surface standards to the Environment guild: `standard-cross-surface-enablement.md` is gone, what it held beyond `ki-env-binding` and `ki-env-binding-claude` now in them, and `standard-claude-ai-connectors.md` is `ki-env-binding-claude`'s, its four sources with it, so this file no longer lists them. `SKILL.md` and the server standard point there. No criterion changed and no outside source refreshed.
+
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
 
-On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: `standards-mcp-servers.md`, `standards-mcp-shared-code.md`, `standards-mcp-distribution.md`, `standards-cross-surface-enablement.md` and `standards-claude-ai-connectors.md` were renamed [`standard-mcp-servers.md`](standard-mcp-servers.md), [`standard-mcp-shared-code.md`](standard-mcp-shared-code.md), [`standard-mcp-distribution.md`](standard-mcp-distribution.md), [`standard-cross-surface-enablement.md`](standard-cross-surface-enablement.md) and [`standard-claude-ai-connectors.md`](standard-claude-ai-connectors.md) and reshaped to the standard format with their rules unchanged, and this file to the sources format. The server standard's Applicability now opens its Scope and its sections 1 to 14 are Rules 4.1 to 4.14, its cross-references following; the connector standard's own Sources list moved here as advisory sources. The rubric's source names, SKILL.md and the mode files follow. No rule changed and no outside source was refreshed.
+On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: `standards-mcp-servers.md`, `standards-mcp-shared-code.md`, `standards-mcp-distribution.md`, `standards-cross-surface-enablement.md` and `standards-claude-ai-connectors.md` were renamed [`standard-mcp-servers.md`](standard-mcp-servers.md), [`standard-mcp-shared-code.md`](standard-mcp-shared-code.md), [`standard-mcp-distribution.md`](standard-mcp-distribution.md), `standard-cross-surface-enablement.md` and `standard-claude-ai-connectors.md` and reshaped to the standard format with their rules unchanged, and this file to the sources format. The server standard's Applicability now opens its Scope and its sections 1 to 14 are Rules 4.1 to 4.14, its cross-references following; the connector standard's own Sources list moved here as advisory sources. The rubric's source names, SKILL.md and the mode files follow. No rule changed and no outside source was refreshed.
 
 On 17 November 2026 an in-house review applied TOOL-EXCEPTION, recorded under [Decisions](#3-decisions) and carried from the Cairn summit's change 15: `[skills.ki-repo-mcp]` accepts `tool-name-exceptions`, `KI-CONFIG` validates it, and `TOOL-1` no longer warns for a declared name. `mcp-cairn`, which has declared `[skills.ki-repo-mcp]` since MCP-TRIM, declares its three bare names. No outside source refreshed.
 

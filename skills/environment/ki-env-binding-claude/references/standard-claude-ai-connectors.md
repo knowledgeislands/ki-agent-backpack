@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:50:00Z
+ki-revised: 2026-11-19T06:40:00Z
 ki-status: in force
 ---
 
@@ -28,7 +28,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-How MCP connectors added through **claude.ai** are governed—the levers, where each one persists, and how they interact with Claude Code. This is the claude.ai leg of the [cross-surface enablement standard](standard-cross-surface-enablement.md); it settles that standard's manual-only verdict for this surface. The vendor documentation it rests on is in [the sources file](sources.md).
+How MCP connectors added through **claude.ai** are governed—the levers, where each one persists, and how they interact with Claude Code. This is the claude.ai leg of the [Claude binding standard](standard-claude-binding.md#43-claudeai-web); it settles that standard's manual-only verdict for this surface. The vendor documentation it rests on is in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -46,8 +46,8 @@ The levers that control MCP connectors added through claude.ai, and how they rea
 
 ### 2.2 Out of scope
 
-- File-editable surfaces and the canonical source: the [cross-surface enablement standard](standard-cross-surface-enablement.md) and `ki-env-binding`.
-- Any conform action: every lever here is manual or admin-side, and report-only from `ki-repo-mcp`.
+- File-editable surfaces: the [Claude binding standard](standard-claude-binding.md); the canonical source: `ki-env-binding`.
+- Any conform action: every lever here is manual or admin-side, and report-only.
 
 [Back to contents](#contents)
 
@@ -121,7 +121,7 @@ The strong levers are admin-side:
 
 ### 4.7 How claude.ai connectors surface in Claude Code
 
-This is the leg that matters most for the harness: Claude Code carries its own admin-controlled MCP governance, and claude.ai connectors fall under it. Everything here is written to on-disk managed settings, so it outlives any session and **cannot be overridden by user or project settings**.
+This is the leg that matters most for the backpack: Claude Code carries its own admin-controlled MCP governance, and claude.ai connectors fall under it. Everything here is written to on-disk managed settings, so it outlives any session and **cannot be overridden by user or project settings**.
 
 [Back to contents](#contents)
 

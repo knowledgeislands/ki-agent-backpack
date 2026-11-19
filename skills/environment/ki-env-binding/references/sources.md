@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:16:03Z
+ki-revised: 2026-11-19T06:40:00Z
 ki-refresh: canonical · on-change
 ---
 
@@ -49,11 +49,15 @@ The house's canonical source, then the outside specifications.
 
 ## 3. Decisions
 
-None recorded by id: the standard rests on the canonical source and the outside specifications above.
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| MCP-SURFACES | Where a KI MCP server is turned on belongs to the Environment guild's binding skills, not `ki-repo-mcp`: what `ki-repo-mcp`'s cross-surface enablement standard held beyond `ki-env-binding` and `ki-env-binding-claude` moved into them after a line-by-line check, its claude.ai connector control standard moved whole into `ki-env-binding-claude` with its sources, and `ki-repo-mcp` keeps only what an MCP repository ships, with a pointer. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a, from the summit's change 10. Reversible; Kris can overturn it. | 2026-11-19 | [Edits flow through the source](standard-cross-surface-binding.md#43-edits-flow-through-the-source) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 19 November 2026 MCP-SURFACES, recorded under [Decisions](#3-decisions), brought in from `ki-repo-mcp`'s retired cross-surface enablement standard the two portable rules this one lacked: a surface never becomes a second authored registry, fan-out is a binding concern, and an unportable server is reported, never silently dropped. No outside source refreshed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Environment guild: REFRESH redirects to the backpack from an installed copy. No criterion changed and no outside source refreshed.
 

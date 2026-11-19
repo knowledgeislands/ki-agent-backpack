@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:15:00Z
+ki-revised: 2026-11-19T06:40:00Z
 ki-status: in force
 ---
 
@@ -75,7 +75,7 @@ Every entry has a unique non-empty `name`, a non-empty unique `clients:` list, a
 
 ### 4.3 Edits flow through the source
 
-Edits flow through the canonical source and its selected renderer or adapter. Never hand-edit a rendered target as a substitute for changing its source.
+Edits flow through the canonical source and its selected renderer or adapter. Never hand-edit a rendered target as a substitute for changing its source. A surface never becomes a second authored server registry, and fanning the source out to the surfaces is a binding concern, never a new MCP server or registry. A server that cannot be carried to a targeted surface is reported, never silently omitted, rewritten or exposed.
 
 [Back to contents](#contents)
 

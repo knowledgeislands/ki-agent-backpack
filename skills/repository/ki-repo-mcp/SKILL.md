@@ -89,14 +89,9 @@ Every governance skill carries the universal four **AUDIT · CONFORM · EDUCATE 
 
 The Bun-install / Node-run split, the **`bun test` trap**, and the `process.loadEnvFile()` parity call are the **common engineering standard**—`ki-engineering` owns and checks them through `ki repo audit --skill ki-engineering`. The one MCP-relevant consequence to keep in mind: `NODE_ENV=development` is set only by the `ki:server:mcp:dev` / `:inspect` scripts, so in production `.env.*` is ignored and config must come from the MCP client's `env` block.
 
-## Runtime binding — MCP operating surfaces
+## Where a server is turned on
 
-Server-code governance and surface operation are separate. Two standards remain here because they capture MCP-specific runtime semantics that the server standard must route to, while `ki-env-binding` owns actual cross-surface agreement and safe file-backed binding:
-
-- [Cross-surface MCP enablement](references/standard-cross-surface-enablement.md) defines the canonical source, per-surface control boundary, Cowork sandbox constraint, and binding sequence.
-- [claude.ai connector control](references/standard-claude-ai-connectors.md) defines the manual account, organization, and managed Claude Code policy layers for connectors with no local conform surface.
-
-Both are report-only from ki-repo-mcp. Client registration, web/admin changes, remote deployment, generated clients, and repository-defined commands are never hidden conform operations.
+Turning a server on in a client is not this skill's: the canonical MCP source, each client surface, the order surfaces are enabled in and claude.ai connector control belong to the Environment guild's `ki-env-binding` and `ki-env-binding-claude` (MCP-SURFACES). This skill keeps only what an MCP repository ships. Client registration, web or admin changes, remote deployment, generated clients and repository-defined commands are never hidden conform operations here.
 
 ## Notes
 
