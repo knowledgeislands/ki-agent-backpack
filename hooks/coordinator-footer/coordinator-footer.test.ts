@@ -351,6 +351,27 @@ test('a session that has closed no reply with a thread line stays conversational
   expect(run(stop('That too.', chat, roadless))).toEqual(silent)
 })
 
+// Kris, 19 November 2026: a peer's thread line, in a SendMessage to it or the message it sent back, is not the
+// session's own; only a reply of the session's own closing with a thread line makes it a coordinating one.
+test("a peer's thread line in a message to or from it never makes the session a coordinating one", () => {
+  const kitteth = 'Kitteth (🪨 🔑 cairn.summit)'
+  const path = join(root, 'cross-talk.jsonl')
+  const entries = [
+    { type: 'user', message: { role: 'user', content: 'Tell Kitteth the shots moved.' } },
+    { type: 'assistant', message: { role: 'assistant', content: [{ type: 'tool_use', name: 'SendMessage', input: { to: kitteth, message: `Moved.\n\n${kitteth}` } }] } },
+    { type: 'user', message: { role: 'user', content: [{ type: 'tool_result', content: `Sent to ${kitteth}` }] } },
+    { type: 'user', isMeta: true, origin: { kind: 'peer', name: kitteth }, message: { role: 'user', content: `<cross-session-message from-name="${kitteth}">\nThanks.\n\n${kitteth}\n</cross-session-message>` } },
+    { type: 'progress', data: { message: { type: 'assistant', message: { role: 'assistant', content: [{ type: 'text', text: `Done.\n\n${kitteth}` }] } } } },
+    { type: 'assistant', isSidechain: true, message: { role: 'assistant', content: [{ type: 'text', text: `Done.\n\n${kitteth}` }] } },
+    { type: 'assistant', message: { role: 'assistant', content: [{ type: 'text', text: `Kitteth wrote:\n\n${kitteth}\n\nNoted.` }] } }
+  ]
+  writeFileSync(path, `${entries.map((entry) => JSON.stringify(entry)).join('\n')}\n`)
+  expect(run(stop('Sent.', path))).toEqual(silent)
+  const own = { type: 'assistant', message: { role: 'assistant', content: [{ type: 'text', text: rebootstrap(shortBanner) }] } }
+  writeFileSync(path, `${[own, ...entries].map((entry) => JSON.stringify(entry)).join('\n')}\n`)
+  expect(run(stop('Sent.', path)).reason).toContain('the thread line')
+})
+
 test('a banner quoted in a code fence is not a footer', () => {
   const quoted = ['The banner looks like this:', '```markdown', '## Summary', heading, thread, '```', 'Shall I adopt it?'].join('\n\n')
   expect(run(stop(quoted, plain))).toEqual(silent)

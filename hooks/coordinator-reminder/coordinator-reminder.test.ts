@@ -211,6 +211,39 @@ test('an unnamed, unknown or unresolvable seat gets the line alone', () => {
   expect(run(session('🪨 🔑 cairn.summit')).context).toBe(line)
 })
 
+// Kris, 19 November 2026: Wayland's session was told to close with Kitteth's line, read from the SendMessage it had
+// addressed to Kitteth and the message Kitteth sent back. Only the session's own replies name its seat.
+seat('ki.cairn', 'steward', 'actor:wayland')
+mkdirSync(join(store, 'roster', 'actors', 'wayland'), { recursive: true })
+writeFileSync(join(store, 'roster', 'actors', 'wayland', '_index.md'), '---\nki-id: actor:wayland\nki-name: Wayland\n---\n')
+const wayland = `${line} Close every banner with your seat's named thread line: Wayland (⚒️ 🔑 ki.cairn).`
+const kitteth = 'Kitteth (🪨 🔑 cairn.summit)'
+const peer = `Another Claude session sent a message:\n<cross-session-message from="uds:/tmp/cc-socks/1.sock" from-name="${kitteth}">\n${kitteth}, 03:20 GMT. Noted.\n\nSession: 🪨 🔑 cairn.summit.\n\n${kitteth}\n</cross-session-message>`
+const crossTalk = (own: boolean, prompt = 'mark'): string => {
+  const path = join(root, `cross-talk-${own}.jsonl`)
+  const text = (body: string): object => ({ type: 'assistant', message: { role: 'assistant', content: [{ type: 'text', text: body }] } })
+  const lines = [
+    ...(own ? [text('Mark struck.\n\n### 🤖 With worker\n\nWayland (⚒️ 🔑 ki.cairn)')] : []),
+    { type: 'assistant', message: { role: 'assistant', content: [{ type: 'tool_use', name: 'SendMessage', input: { to: kitteth, message: `Wayland (⚒️ 🔑 ki.cairn), 03:16 GMT. Done.\n\n${kitteth}` } }] } },
+    { type: 'user', message: { role: 'user', content: [{ type: 'tool_result', content: `Sent to ${kitteth}\n${kitteth}` }] } },
+    { type: 'user', isMeta: true, origin: { kind: 'peer', name: kitteth, body: `${kitteth}, 03:20 GMT.\n${kitteth}` }, message: { role: 'user', content: peer } },
+    // A subagent's reply nested in another entry, and a reply quoting the peer's line without closing on it.
+    { type: 'progress', data: { message: { type: 'assistant', message: { role: 'assistant', content: [{ type: 'text', text: `Done.\n\n${kitteth}` }] } } } },
+    { type: 'assistant', isSidechain: true, message: { role: 'assistant', content: [{ type: 'text', text: `Done.\n\n${kitteth}` }] } },
+    text(`Kitteth wrote:\n\n${kitteth}\n\nNoted.`)
+  ]
+  writeFileSync(path, `${lines.map((entry) => JSON.stringify(entry)).join('\n')}\n`)
+  return JSON.stringify({ ...JSON.parse(claudePrompt(coordinating, prompt)), transcript_path: path })
+}
+
+test("a peer's line in a message to or from it never names the session's seat", () => {
+  expect(run(crossTalk(true), named).context).toBe(wayland)
+  expect(run(crossTalk(true, peer), named).context).toBe(wayland)
+  expect(run(crossTalk(false), named).context).toBe(line)
+  expect(run(crossTalk(false, peer), named).context).toBe(line)
+  expect(run(crossTalk(false, `<task-notification>\nSession: 🪨 🔑 cairn.summit.\n</task-notification>`), named).context).toBe(line)
+})
+
 test('the seat-name resolver is the same in both coordinator hooks', () => {
   const copy = (path: string): string => {
     const text = readFileSync(resolve(import.meta.dir, path), 'utf8')

@@ -136,6 +136,74 @@ owner_prompt() {
       | ascii_downcase | gsub("\\s+"; " ") | sub("^ "; "") | sub(" $"; "") | sub("[.!]+$"; "")' 2>/dev/null
 }
 
+# >>> seat-name: the same in both coordinator hooks, which coordinator-reminder.test.ts holds alike.
+# A thread line's named form, <Name> (<seat form>), from the ki-name of the actor its seat's ki-workers
+# entry points at (NAME-FIRST): the entry holding the package's ki-role for the keyholder, its role for
+# a keyless seat. Reads only the Cairn store that Cairn's config.toml names; prints nothing where the
+# seat is unnamed, ambiguous or anything is unresolved.
+seat_named() {
+  local inner=$1 id role conf store actors actor name names=
+  local named_re='^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \((.*)\)$'
+  local name_re='^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)*$'
+  local key_re='^[^ ]+ 🔑 ([a-z0-9][a-z0-9.+-]*)$'
+  local seat_re='^[^ ]+ ([a-z0-9-]+(\.[a-z0-9-]+)+(\+[a-z0-9-]+)*)@([a-z]+(-[a-z]+)*)$'
+  [[ $inner =~ $named_re ]] && inner=${BASH_REMATCH[2]}
+  if [[ $inner =~ $key_re ]]; then
+    id=${BASH_REMATCH[1]} role=
+  elif [[ $inner =~ $seat_re ]]; then
+    id=${BASH_REMATCH[1]} role=${BASH_REMATCH[4]}
+  else
+    return 0
+  fi
+  conf=${XDG_CONFIG_HOME:-}
+  case $conf in /*) ;; *) conf=${HOME:-}/.config ;; esac
+  store=$(sed -n '/^\[store\]/,/^\[/s/^path[[:space:]]*=[[:space:]]*"\([^"]*\)".*/\1/p' "$conf/cairn/config.toml" 2>/dev/null | head -n 1)
+  case $store in \~/*) store=${HOME:-}/${store#\~/} ;; esac
+  case $store in /*) ;; *) return 0 ;; esac
+  set -- "$store"/work/*/"$id"/_index.md
+  [ $# -eq 1 ] && [ -f "$1" ] || return 0
+  actors=$(awk -v want="$role" '
+    function val(s) { sub(/^[^:]*:[ \t]*/, "", s); gsub(/["\047]/, "", s); sub(/[ \t]+$/, "", s); return s }
+    function field(s) { sub(/^[ \t]+/, "", s); if (s ~ /^id:/) ids[n] = val(s); else if (s ~ /^role:/) roles[n] = val(s) }
+    { sub(/\r$/, "") }
+    NR == 1 { if ($0 != "---") exit; next }
+    /^---[ \t]*$/ { exit }
+    /^[^ \t-]/ { inw = $0 ~ /^(ki-)?workers:/; if ($0 ~ /^(ki-)?role:/) lead = val($0); next }
+    inw && /^[ \t]*- / { n++; s = $0; sub(/^[ \t]*- /, "", s); field(s); next }
+    inw && /^[ \t]+[a-z_]+:/ { field($0) }
+    END {
+      if (want == "") want = lead
+      for (i = 1; want != "" && i <= n; i++) if (roles[i] == want && ids[i] ~ /^actor:[a-z0-9][a-z0-9-]*$/) print substr(ids[i], 7)
+    }' "$1" 2>/dev/null) || return 0
+  for actor in $actors; do
+    name=$(awk '
+      { sub(/\r$/, "") }
+      NR == 1 { if ($0 != "---") exit; next }
+      /^---[ \t]*$/ { exit }
+      /^ki-name:/ { sub(/^ki-name:[ \t]*/, ""); gsub(/["\047]/, ""); sub(/[ \t]+$/, ""); print; exit }' "$store/roster/actors/$actor/_index.md" 2>/dev/null)
+    [[ $name =~ $name_re ]] || continue
+    [ -z "$names" ] || [ "$names" = "$name" ] || return 0
+    names=$name
+  done
+  [ -z "$names" ] || printf '%s (%s)\n' "$names" "$inner"
+}
+
+# The thread line the session's own last reply closed with, from Claude Code transcript lines on
+# standard input: the last line of the last text of the session's own assistant messages that ends
+# with one. Tool calls such as a SendMessage to a peer, a peer's message, tool results, notifications
+# and a subagent's replies never count, so another seat's line is never read as the session's own.
+own_thread() {
+  local inner='((🧵|[^ -~]+ 🔑) [A-Za-z0-9][A-Za-z0-9._+-]*|[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)*)'
+  LC_ALL=C grep -F '"type":"assistant"' |
+    jq -rR --arg re "^([A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \\($inner\\)|$inner)\$" '
+      fromjson? | select(type == "object" and .type == "assistant" and .isSidechain != true)
+      | .message.content
+      | if type == "string" then . elif type == "array" then (map(select(type == "object" and .type == "text") | .text | strings) | join("\n")) else empty end
+      | sub("\\s+$"; "") | split("\n") | last // empty | sub("\\s+$"; "") | select(test($re))' 2>/dev/null |
+    tail -n 1
+}
+# <<< seat-name
+
 # The footer, for coordinating replies only: sets form, then missing, the structural parts whose
 # loss holds the reply back, and unusual, the parts that only warn.
 form=
@@ -162,7 +230,7 @@ footer() {
       top=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null) || return 0
       capable "$top" || return 0
     fi
-    recent | LC_ALL=C grep -F '"type":"assistant"' | LC_ALL=C grep -Eq '(\\n|")([A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \()?((🧵|[^ -~"\\]+ 🔑) [A-Za-z0-9][A-Za-z0-9._+-]*|[^ -~"\\]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)*)\)?(\\n|")' || return 0
+    [ -n "$(recent | own_thread)" ] || return 0
     form=banner
   fi
 
@@ -261,59 +329,6 @@ footer() {
   IFS=$'\x1f' read -r missing unusual <<<"$found"
 }
 footer
-
-# >>> seat-name: the same in both coordinator hooks, which coordinator-reminder.test.ts holds alike.
-# A thread line's named form, <Name> (<seat form>), from the ki-name of the actor its seat's ki-workers
-# entry points at (NAME-FIRST): the entry holding the package's ki-role for the keyholder, its role for
-# a keyless seat. Reads only the Cairn store that Cairn's config.toml names; prints nothing where the
-# seat is unnamed, ambiguous or anything is unresolved.
-seat_named() {
-  local inner=$1 id role conf store actors actor name names=
-  local named_re='^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \((.*)\)$'
-  local name_re='^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)*$'
-  local key_re='^[^ ]+ 🔑 ([a-z0-9][a-z0-9.+-]*)$'
-  local seat_re='^[^ ]+ ([a-z0-9-]+(\.[a-z0-9-]+)+(\+[a-z0-9-]+)*)@([a-z]+(-[a-z]+)*)$'
-  [[ $inner =~ $named_re ]] && inner=${BASH_REMATCH[2]}
-  if [[ $inner =~ $key_re ]]; then
-    id=${BASH_REMATCH[1]} role=
-  elif [[ $inner =~ $seat_re ]]; then
-    id=${BASH_REMATCH[1]} role=${BASH_REMATCH[4]}
-  else
-    return 0
-  fi
-  conf=${XDG_CONFIG_HOME:-}
-  case $conf in /*) ;; *) conf=${HOME:-}/.config ;; esac
-  store=$(sed -n '/^\[store\]/,/^\[/s/^path[[:space:]]*=[[:space:]]*"\([^"]*\)".*/\1/p' "$conf/cairn/config.toml" 2>/dev/null | head -n 1)
-  case $store in \~/*) store=${HOME:-}/${store#\~/} ;; esac
-  case $store in /*) ;; *) return 0 ;; esac
-  set -- "$store"/work/*/"$id"/_index.md
-  [ $# -eq 1 ] && [ -f "$1" ] || return 0
-  actors=$(awk -v want="$role" '
-    function val(s) { sub(/^[^:]*:[ \t]*/, "", s); gsub(/["\047]/, "", s); sub(/[ \t]+$/, "", s); return s }
-    function field(s) { sub(/^[ \t]+/, "", s); if (s ~ /^id:/) ids[n] = val(s); else if (s ~ /^role:/) roles[n] = val(s) }
-    { sub(/\r$/, "") }
-    NR == 1 { if ($0 != "---") exit; next }
-    /^---[ \t]*$/ { exit }
-    /^[^ \t-]/ { inw = $0 ~ /^(ki-)?workers:/; if ($0 ~ /^(ki-)?role:/) lead = val($0); next }
-    inw && /^[ \t]*- / { n++; s = $0; sub(/^[ \t]*- /, "", s); field(s); next }
-    inw && /^[ \t]+[a-z_]+:/ { field($0) }
-    END {
-      if (want == "") want = lead
-      for (i = 1; want != "" && i <= n; i++) if (roles[i] == want && ids[i] ~ /^actor:[a-z0-9][a-z0-9-]*$/) print substr(ids[i], 7)
-    }' "$1" 2>/dev/null) || return 0
-  for actor in $actors; do
-    name=$(awk '
-      { sub(/\r$/, "") }
-      NR == 1 { if ($0 != "---") exit; next }
-      /^---[ \t]*$/ { exit }
-      /^ki-name:/ { sub(/^ki-name:[ \t]*/, ""); gsub(/["\047]/, ""); sub(/[ \t]+$/, ""); print; exit }' "$store/roster/actors/$actor/_index.md" 2>/dev/null)
-    [[ $name =~ $name_re ]] || continue
-    [ -z "$names" ] || [ "$names" = "$name" ] || return 0
-    names=$name
-  done
-  [ -z "$names" ] || printf '%s (%s)\n' "$names" "$inner"
-}
-# <<< seat-name
 
 # A bare seat line, last, whose actor is named is held back with the named line (NAME-FIRST).
 if [ -n "$form" ] && [ -z "$missing" ]; then

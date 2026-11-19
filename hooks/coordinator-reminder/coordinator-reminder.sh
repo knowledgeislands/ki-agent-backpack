@@ -94,21 +94,38 @@ seat_named() {
   done
   [ -z "$names" ] || printf '%s (%s)\n' "$names" "$inner"
 }
+
+# The thread line the session's own last reply closed with, from Claude Code transcript lines on
+# standard input: the last line of the last text of the session's own assistant messages that ends
+# with one. Tool calls such as a SendMessage to a peer, a peer's message, tool results, notifications
+# and a subagent's replies never count, so another seat's line is never read as the session's own.
+own_thread() {
+  local inner='((🧵|[^ -~]+ 🔑) [A-Za-z0-9][A-Za-z0-9._+-]*|[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)*)'
+  LC_ALL=C grep -F '"type":"assistant"' |
+    jq -rR --arg re "^([A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \\($inner\\)|$inner)\$" '
+      fromjson? | select(type == "object" and .type == "assistant" and .isSidechain != true)
+      | .message.content
+      | if type == "string" then . elif type == "array" then (map(select(type == "object" and .type == "text") | .text | strings) | join("\n")) else empty end
+      | sub("\\s+$"; "") | split("\n") | last // empty | sub("\\s+$"; "") | select(test($re))' 2>/dev/null |
+    tail -n 1
+}
 # <<< seat-name
 
-# The session's seat, read only once it is known: the opener's Session: line in this prompt,
-# else the last thread line an earlier reply closed with, from the transcript's last 8 MiB.
-seat=$(printf '%s' "$input" | jq -r '.prompt | strings' 2>/dev/null | sed -n 's/^Session: //p' | tail -n 1)
+# The session's seat, read only once it is known: the opener's Session: line in this prompt, where
+# the prompt is the owner's own and not a peer's message or a notification, else the thread line
+# the session's own last reply closed with, from the transcript's last 8 MiB.
+prompt=$(printf '%s' "$input" | jq -r '.prompt | strings' 2>/dev/null)
+case $prompt in
+  *'<cross-session-message'* | *'<task-notification'* | *'-notification>'* | *'<system-reminder'*) seat= ;;
+  *) seat=$(printf '%s\n' "$prompt" | sed -n 's/^Session: //p' | tail -n 1) ;;
+esac
 seat=${seat%%. Your first act*}
 seat=${seat%.}
 transcript=$(printf '%s' "$input" | jq -r '.transcript_path | strings' 2>/dev/null)
 if [ -z "$seat" ] && [ -f "$transcript" ]; then
   size=$(wc -c <"$transcript" 2>/dev/null) || size=0
   blocks=$((size / 1048576))
-  seat=$(dd if="$transcript" bs=1048576 skip=$((blocks > 8 ? blocks - 8 : 0)) 2>/dev/null |
-    LC_ALL=C grep -F '"type":"assistant"' |
-    LC_ALL=C grep -oE '(\\n|")([A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \()?((🧵|[^ -~"\\]+ 🔑) [A-Za-z0-9][A-Za-z0-9._+-]*|[^ -~"\\]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)*)\)?(\\n|")' |
-    tail -n 1 | sed -e 's/^\\n//' -e 's/^"//' -e 's/\\n$//' -e 's/"$//')
+  seat=$(dd if="$transcript" bs=1048576 skip=$((blocks > 8 ? blocks - 8 : 0)) 2>/dev/null | own_thread)
 fi
 if [ -n "$seat" ]; then
   named=$(seat_named "$seat")
