@@ -305,7 +305,7 @@ Audit non-secret Claude Code repository evidence—instructions, rules, settings
 
 #### `ki-acquire`
 
-Lead the Acquire guild and govern source-independent knowledge capture and curation: supplied scope, honest coverage, faithful lean preservation, verified destinations, incremental curation into a staging knowledge graph, with the transient capture package as the only record. Use for common acquisition or curation rules, and for `pulse`: capture a submitted link, scan bounded public sources for what changed, or triage signals. ki-acquire-chatgpt and ki-acquire-granola own their provider contracts.
+Lead the Acquire guild and govern source-independent knowledge capture: supplied scope, honest coverage, faithful lean preservation, verified destinations and staging in a port, with the transient capture package as the only record. Use for common acquisition rules, and for `pulse`: capture a submitted link, scan bounded public sources for what changed, or triage signals. ki-acquire-chatgpt and ki-acquire-granola own their provider contracts; the Inbox owns curation and dispatch.
 
 - **Kind:** Governance
 - **Leads:** Acquire

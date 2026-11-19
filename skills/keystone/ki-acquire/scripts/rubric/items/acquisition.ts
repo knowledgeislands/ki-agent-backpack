@@ -53,24 +53,14 @@ export const ACQUIRE = {
       code: 'ACQUIRE-5',
       title: 'the capture is the record and authority stays separate',
       description:
-        'No ledger, checkpoint or receipt accompanies the capture. Dispatch is a Git move into the receiver’s +/_ACQUIRED/. Receiver triage annotates the package with evidenced dispositions and gaps while preserving source material; provider mutation, reconciliation, source deletion and history compaction each require separate authority.',
+        'No ledger, checkpoint or receipt accompanies the capture. Receiver triage annotates the package with evidenced dispositions and gaps while preserving source material; provider mutation, reconciliation, source deletion and history compaction each require separate authority.',
       sources: [
         'standard-acquisition.md#41-the-capture-package',
-        'standard-acquisition.md#47-dispatch-and-authority',
+        'standard-acquisition.md#47-authority',
         'standard-acquisition.md#48-receiver-local-triage'
       ],
       judgment: judgment(
-        'Is the capture package the only acquisition record, does each complete received session carry an evidenced local disposition with gaps visible, and did every dispatch, reconciliation, provider mutation or destructive operation stay within its own authority?'
-      )
-    },
-    {
-      code: 'ACQUIRE-6',
-      title: 'curation is incremental and cards stand alone',
-      description:
-        'Each curated item leaves its capture in the commit that curates it, each dropped item in its own considered-and-dropped commit, and an empty capture is deleted. Cards never link to a capture and carry no origin section in their body, giving an origin only as one plain front-matter line where it helps a later check; a meeting is a source, not a card; future ideas become future concepts, not roadmap work; a holding port dispatches nothing.',
-      sources: ['standard-acquisition.md#46-staging-and-curation', 'standard-acquisition.md#47-dispatch-and-authority'],
-      judgment: judgment(
-        'Does every curation commit remove exactly the items it curated or dropped, are empty captures gone, does every card avoid capture links and body origin sections, keeping any origin to one plain front-matter line, are meetings curated as sources rather than cards, and has no capture been dispatched from a port declared a holding area?'
+        'Is the capture package the only acquisition record, does each complete received session carry an evidenced local disposition with gaps visible, and did every reconciliation, provider mutation or destructive operation stay within its own authority?'
       )
     }
   ]

@@ -8,17 +8,17 @@ ki-leads: acquire
 ki-depends-on: []
 ki-shared-dependencies: [ki-skills:rubric]
 description: >
-  Lead the Acquire guild and govern source-independent knowledge capture and curation: supplied scope, honest
-  coverage, faithful lean preservation, verified destinations, incremental curation into a staging knowledge graph,
-  with the transient capture package as the only record. Use for common acquisition or curation rules, and for
-  `pulse`: capture a submitted link, scan bounded public sources for what changed, or triage signals.
-  ki-acquire-chatgpt and ki-acquire-granola own their provider contracts.
+  Lead the Acquire guild and govern source-independent knowledge capture: supplied scope, honest coverage, faithful
+  lean preservation, verified destinations and staging in a port, with the transient capture package as the only
+  record. Use for common acquisition rules, and for `pulse`: capture a submitted link, scan bounded public sources for
+  what changed, or triage signals. ki-acquire-chatgpt and ki-acquire-granola own their provider contracts; the Inbox
+  owns curation and dispatch.
 argument-hint: 'audit <repo> | conform <repo> | educate <repo> | help | pulse capture <source> | pulse scan <query> | pulse triage | refresh'
 ---
 
 # Knowledge acquisition
 
-Read [the common acquisition standard](references/standard-acquisition.md), then the receiving repository's capture entry point and only the applicable source route. Keep capture simple: establish scope, find any existing capture, route, preserve, verify and report. Where the port stages knowledge, curate incrementally: each curated or dropped item leaves its capture in its own commit, a card never links to a capture and gives its origin in one front-matter line only where that helps a later check, and a meeting is a source rather than a card.
+Read [the common acquisition standard](references/standard-acquisition.md), then the receiving repository's capture entry point and only the applicable source route. Keep capture simple: establish scope, find any existing capture, route, preserve, verify and report. Curating captures into cards, and dispatch, belong to the Inbox (personal.inbox), under CURATION-HOME, 19 November 2026.
 
 This skill owns the common capture contract; provider skills add source completeness and capability rules. Repository guides supply local paths, publication authority and environment steps. Knowledge Islands owns the durable lifecycle and rationale. Executable importers live outside the backpack: the Inbox's muninn (krisb/inbox, `packages/ki-muninn/`) runs the acquisition the `ki-acquire-granola` and `ki-acquire-chatgpt` provider skills govern, which `ki acquire` in tools-ki ran until 5 November 2026, and will run as `ki muninn` once tools-ki's `ki-<name>` extension mechanism, KI-TOOL-KI-CLI-176, lands. The [generated rubric](references/rubric.md) holds the review criteria. This skill accepts no repository configuration properties.
 

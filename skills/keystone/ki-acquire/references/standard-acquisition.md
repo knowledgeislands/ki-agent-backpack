@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:39:59Z
+ki-revised: 2026-11-19T05:50:00Z
 ki-status: in force
 ---
 
@@ -20,25 +20,25 @@ ki-status: in force
   - [4.4 Preservation and originals](#44-preservation-and-originals)
   - [4.5 Verification and reporting](#45-verification-and-reporting)
   - [4.6 Staging and curation](#46-staging-and-curation)
-  - [4.7 Dispatch and authority](#47-dispatch-and-authority)
+  - [4.7 Authority](#47-authority)
   - [4.8 Receiver-local triage](#48-receiver-local-triage)
 
 ## 1. Introduction
 
-How knowledge is brought in from outside, whatever its source: what a capture holds, how it is preserved and verified, how a port stages and curates it, and how it is dispatched and triaged by its receiver. Provider skills add each source's own completeness and capability rules. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+How knowledge is brought in from outside, whatever its source: what a capture holds, how it is preserved and verified, how a port stages it, and how its receiver triages it. Curating captures into cards, and dispatch, belong to the Inbox (personal.inbox), under CURATION-HOME. Provider skills add each source's own completeness and capability rules. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
 ## 2. Scope
 
-The source-independent contract for capture and curation.
+The source-independent contract for capture.
 
 ### 2.1 In scope
 
 - The capture package as the only record of what was acquired.
 - Scope, coverage, identity and routing of a capture.
 - Preservation of material and originals, and verification before completion is claimed.
-- Staging and incremental curation in a port, and dispatch to the receiver.
+- Staging in a port.
 - The receiver's own triage of what it received.
 
 [Back to contents](#contents)
@@ -51,6 +51,7 @@ The source-independent contract for capture and curation.
 - A Knowledge Base's packet intake handling: `ki-repo-kb`.
 - Local paths, publication authority and environment steps: the receiving repository's guides.
 - The durable lifecycle and its rationale: Knowledge Islands' Acquisition Process, named in the sources file.
+- Curating captures into cards, its pace, and dispatch: the Inbox (personal.inbox), under CURATION-HOME, 19 November 2026.
 
 [Back to contents](#contents)
 
@@ -62,8 +63,8 @@ The source-independent contract for capture and curation.
 | **Coverage** | What a capture holds of its source: supplied text, a URL reference, a bounded digest, a partial source or a complete export. **Standard:** this one, [4.2](#42-scope-and-coverage) |
 | **Port** | A capture point, which may also be a knowledge-capture staging area. **Standard:** this one, [4.6](#46-staging-and-curation) |
 | **Staging area** | A port's area where captured meaning is curated into knowledge cards before it is reconciled into the owning repositories' canonical graphs. **Standard:** this one, [4.6](#46-staging-and-curation) |
-| **Holding area** | A port declared to keep what it stages for now, dispatching nothing while the declaration stands. **Standard:** this one, [4.6](#46-staging-and-curation) and [4.7](#47-dispatch-and-authority) |
-| **Dispatch** | Moving a package from the capture area into the receiving island's `+/_ACQUIRED/`; delivery is acceptance. **Standard:** this one, [4.7](#47-dispatch-and-authority) |
+| **Holding area** | A port declared to keep what it stages for now, dispatching nothing while the declaration stands. **Standard:** this one, [4.6](#46-staging-and-curation) |
+| **Dispatch** | Moving a package from the capture area into the receiving island's `+/_ACQUIRED/`; delivery is acceptance. **Owner:** the Inbox (personal.inbox), under CURATION-HOME |
 | **Disposition** | The receiver's evidenced verdict on a received session: harvested, retained as source evidence, routed onward, or no residual knowledge. **Standard:** this one, [4.8](#48-receiver-local-triage) |
 
 [Back to contents](#contents)
@@ -116,19 +117,15 @@ Acquire has four top-level folders: `captured/` holds faithful captures, `contex
 
 Acquire's staging area is `curated/<territory>/<island>/`, one island being one repository. Under each island the layout follows that island's own shape: for a principal, its own zone and folder names, such as `Pillars/`, `Resources/`, `Streams/` and `Calendar/`, so a staged file's path says where it would land. Every territory principal has a scaffolded skeleton of its zones, each with a README saying what lands there, and other islands get folders only when needed (RESTRUCTURE, ISLAND-SHAPE-AND-MEETINGS, SCAFFOLD, 1 November 2026). Its cards form a maturing knowledge graph, the realisation of semantic Markdown, much like Zettelkasten index cards. Cards are tended and matured there with no rush to move them. They migrate into the islands later, once they conform to the standards being built, or earlier when a card is plainly an addition to existing knowledge and its home is decided. The backlog is played in reverse date order, which shows where one card supersedes another (HOLDING-SCOPE-CARDS, 1 November 2026). The port's own entry points must still work without its staged content, and no curated file ever stands in for an uncurated capture.
 
-Human judgement anchors curation, which is incremental (ACQ020-RETIRE). Delete each curated item from its capture in the same commit that curates it into the graph. Delete an item judged not worth keeping in its own commit, saying it was considered and dropped. Delete a capture once it is empty. Git history keeps every deleted byte. This deletion inside the port is curation, not source retirement: it leaves the provider untouched and needs no further grant.
-
-A card never links to a capture, because the capture is transient (CARDS-NO-SOURCE-LINKS). A card has no origin section in its body. Where its origin would help someone check it later, such as a named document or titled conversation the body does not already cite, its front matter gives it in one plain line as `origin:`, such as "Discussed with Kris in conversation on 31 October 2026"; otherwise it has none (ACQ020-PROVENANCE, CARDS-ORIGIN, ORIGIN-FRONTMATTER, 31 October 2026).
-
-A meeting is a source, not a node in the graph. Kris set this in Acquire on 1 November 2026: "in reality meetings are not that useful to keep. They're more things that help with the provenance of certain information, but they're not part of the knowledge graph" (MEETINGS-PROVENANCE), refined the same night: "if you bring in a meeting and there's some decisions made or some concepts, then there's no reason why they can't be pointers into the durable knowledge. The thing that's changed or stays in calendars is who attended, what the actions were" (ISLAND-SHAPE-AND-MEETINGS). A meeting's decisions and concepts are curated into cards, its record of who attended and what the actions were is staged under the island's `Calendar/`, and its work under `Streams/`. The meeting may be named as a card's `origin:` where that adds value, and its capture then retires like any other. A future idea curated from a capture goes into the graph as a future concept, kept distinct from what is being done now, and not onto a roadmap; only an idea being enacted now becomes work (ACQ020-FUTURE, IDEAS-IN-GRAPH).
+Curating captures into cards, and dispatch, belong to the Inbox (personal.inbox), under CURATION-HOME, 19 November 2026.
 
 A port may hold material awaiting incorporation, worked back one day at a time, newest first, without bulk moves to classify it. Acquire holds captures whose territory is not yet settled, and for now every capture older than 31 October 2026, in the top-level `_held/`, and works them back that way, with dispatch on hold (ACQ020-HISTORY); the `sources-inbox` store mirrors it. Acquire renamed the folder from `_review` on 1 November 2026, because holding means material awaiting incorporation while review now means comments, findings and proposed changes, and on 2 November moved it out of `captured/` to the top level (ACQUIRE-HELD-RENAME).
 
 [Back to contents](#contents)
 
-### 4.7 Dispatch and authority
+### 4.7 Authority
 
-Dispatch moves each package from the capture area into the receiving island's `+/_ACQUIRED/`, as its own folder holding a single capture or a chosen roll-up. Delivery is acceptance: the receiver's commit, with the port's removal commit, is the only record. Keep no dispatch ledger or return route, and handle misdeliveries case by case. A port declared a holding area dispatches nothing while the declaration stands; Acquire's dispatch is on hold for now.
+Curating captures into cards, and dispatch, belong to the Inbox (personal.inbox), under CURATION-HOME, 19 November 2026.
 
 Capture authority does not grant provider mutation, receiver reconciliation, source deletion or history compaction; each needs its own grant. Do not reset or rewrite history to hide a verification failure.
 
