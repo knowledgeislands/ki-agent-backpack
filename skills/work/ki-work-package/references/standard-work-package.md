@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T05:27:00Z
+ki-revised: 2026-11-19T07:20:00Z
 ki-status: in force
 ---
 
@@ -292,26 +292,24 @@ Every writer is named, and every other party only reads. This standing contract 
 1. **One owner sets the shape and the tidy rules:** this standard sets the closed list, what each writer may write and how a deletion is made.
 2. **Every other writer is named** with its permitted kinds, in the table below.
 3. **Only the package's own work deletes.** Runs, other work and tools never delete there.
-4. **A check backs each writer mechanically,** through the [rubric](rubric.md); the judgement whether an outcome has a durable home stays with the work's own steward under `ki-coordination`.
+4. **A check backs each writer mechanically,** through the [rubric](rubric.md); the judgement whether an outcome has a durable home stays with the package's keyholder under `ki-coordination`.
 
 | Writer | Writes | Never |
 | --- | --- | --- |
 | The package's keyholder† | `_index.md`, its change documents and sub-packages, and tidy deletions | Another package |
 | A background run, design runs and `ki-work design` included | A change document in the package its brief names | Any other kind, its report included |
 
-† The keyholder is the work's own steward, and includes its explicitly assigned State of play. Other work and State of play write nothing in a package: they ask its keyholder in a meeting or a conversation.
+† The keyholder is the actor seated at the package, as its `ki-workers` name it. A package with no seat is held by its parent node's keyholder under [CASCADE-DOWN](#cascade-down), who writes in it as its keyholder until a seat is taken. Every other party writes nothing in a package: it asks the keyholder in a meeting or a conversation.
 
 A new package is seeded by its parent node's keyholder, usually the guardian, or by any session the owner points at it on the owner's word, which holds the new package's keys while it seeds it: it writes `_index.md` on hold, with the package's first step as the top line of its Now, and a first change document only if there is a change to carry. Whatever must be done first on pick-up stays the top line of Now, as Kris set under FIRST-STEP-HOME a on 15 November 2026.
 
-The `ki-description` in `_index.md` is written at seeding by whoever seeds the package, and afterwards by the work's steward; State of play proposes a change to it to the keyholder. Readers, such as `ki work status`, the Observatory and the rubrics, change nothing; a change of shape names them as consumers.
+The `ki-description` in `_index.md` is written at seeding by whoever seeds the package, and afterwards by its keyholder; anyone else proposes a change to it to the keyholder. Readers, such as `ki work status`, the Observatory and the rubrics, change nothing; a change of shape names them as consumers.
 
-A Project package has one explicitly assigned coordinating work, either its covering State of play or its own Project coordination work. The assignment is committed when the package is created or adopted and names work, never a host, session or `self`. It is distinct from the holder derived from state, worker and supervisor: assignment neither receives work nor releases a hold. Where the assignment is recorded is not yet set (STEWARD-FIELD); this rule adds no field, changes no holder field and does not select a storage encoding.
+A seat changes hands by acknowledged handover. The old seat reconciles its runs in flight, queued launches and pending writes, stops launching for the package and commits the change to `ki-workers` in one coherent write; the new seat acknowledges before it acts and takes supervision of the reconciled runs. A closed or quiet session, a missing binding or an old last-seen time transfers nothing; there is no timeout takeover. Uncertain ownership is reported. A node acting for a package whose session is idle, under `ki-coordination`'s [acting for idle work](../../ki-coordination/references/standard-territory.md#411-territory-work), takes over nothing.
 
-Opening or closing a dedicated Project thread requires an acknowledged handover. The old steward reconciles runs in flight, queued launches and pending writes, stops launching for the package and commits the assignment change in one coherent write. The new steward acknowledges before acting and takes supervision of the reconciled runs. A closed or quiet session, missing binding or old heartbeat transfers nothing; there is no timeout takeover. Uncertain ownership is reported. A State of play acting for a package with no active session, under `ki-coordination`'s [acting for idle work](../../ki-coordination/references/standard-territory.md#411-territory-work), takes over nothing.
+A package is created in the state its actual move supports; an absent package never implies `with-worker`.
 
-An assigned State of play is the package's own steward for every writer's purpose, including the state, change documents and tidying. Work assigned elsewhere receives only messages. Creation is limited to a registered Project within the territory's active-package cap, in the state its actual move supports; an absent package never implies `with-worker`.
-
-A run brief names its reporting package separately from the product repository; the package's steward receives the result. A classification change reconciles running work and report destinations before rerouting anything.
+A run brief names its reporting package separately from the product repository; the package's keyholder receives the result. A classification change reconciles running work and report destinations before rerouting anything.
 
 [Back to contents](#contents)
 
