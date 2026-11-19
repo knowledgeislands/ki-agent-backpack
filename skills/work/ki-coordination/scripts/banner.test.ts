@@ -792,18 +792,25 @@ test('every reply opens with its reply id, and every reply asking a decision end
 })
 
 // Kris, about 01:15 GMT on 18 November 2026, under HOOK-ENFORCE a: "Yeah, we need the hook enforcing". Every
-// coordinating reply closes with the banner and its thread line; the trigger sets only its depth.
-test("every coordinating reply ends with the banner, its structure, which its trigger chooses, setting the banner's depth", () => {
+// coordinating reply closes with its thread line; the trigger sets only the footer's depth. Under MINIMAL-FOOTER, about
+// 03:29 GMT on 19 November 2026, an Update or Answer closes with the one-line footer, the short banner only on change.
+test("every coordinating reply ends with its thread line, its structure, which its trigger chooses, setting the footer's depth", () => {
   expect(standard).toContain('**When it appears.**')
+  expect(standard).toContain('every Summary, Status, Bootstrap, run report, Stop and Position closes with it')
   expect(standard).toContain(
-    "every reply closes with it: every Summary, Status, Bootstrap, run report, Stop and Position, and an Update or Answer, the Minimal layout, with the Position's short banner"
+    "An Update or Answer, the Minimal layout, closes instead with the **one-line footer**, the banner heading's glyph state without its time, then ` · ` and the thread line"
   )
+  expect(standard).toContain(
+    "gives the Position's short banner only where the state, the counts or the items have changed since the session's previous reply"
+  )
+  expect(standard).toContain('<glyph state> · <thread line>')
   expect(standard).toContain('never a judgement of whether a reply answers where the work stands')
   expect(standard).not.toContain('an Update or Answer, the Minimal layout, has none')
   expect(standard).not.toContain('Minimal has no footer')
   expect(outputStyle).toContain(
-    'Every reply closes with the banner, as Kris set under HOOK-ENFORCE on 18 November 2026, and the trigger, not judgement, sets its depth'
+    "Every reply closes with its thread line, as Kris set under HOOK-ENFORCE on 18 November 2026, and the trigger, not judgement, sets the footer's depth"
   )
+  expect(outputStyle).toContain('an Update or Answer with the one-line footer, `<glyph state> · <thread line>`')
   expect(outputStyle).not.toContain('an Update or Answer has none')
   for (const text of [standard, outputStyle])
     expect(text).not.toContain(
@@ -872,7 +879,7 @@ test('the core retains all five hard rules and lists every purpose file', () => 
     '3) while work lies with a worker, give a timed one-to-two-line update when you launch work and when a run finishes, keeping one background check armed that wakes you only when a run finishes, with no timed bound, and no heartbeat otherwise'
   )
   expect(line).toContain(
-    '4) give every reply the structure and layout its trigger sets in the ki-coordination reply format, a Summary or Status in full, a Bootstrap or Stop in the owner-report shape, heading block to glyph banner, a Position as the banner, an update or plain answer closing with the short banner too, so every reply closes with its thread line'
+    '4) give every reply the structure and layout its trigger sets in the ki-coordination reply format, a Summary or Status in full, a Bootstrap or Stop in the owner-report shape, heading block to glyph banner, a Position as the banner, an update or plain answer closing with the one-line footer, its state and thread line, or the short banner where the state, counts or items have changed, so every reply closes with its thread line'
   )
   expect(line).toContain('with a reply block whenever there is a query')
   expect(line).toContain(

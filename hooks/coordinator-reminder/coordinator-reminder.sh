@@ -97,8 +97,10 @@ seat_named() {
 
 # The thread line the session's own last reply closed with, from Claude Code transcript lines on
 # standard input: the last line of the last text of the session's own assistant messages that ends
-# with one. Tool calls such as a SendMessage to a peer, a peer's message, tool results, notifications
-# and a subagent's replies never count, so another seat's line is never read as the session's own.
+# with one, alone or after the state in a one-line footer, <glyph state> · <thread line>, which gives
+# the thread line after its last ` · ` (MINIMAL-FOOTER). Tool calls such as a SendMessage to a peer,
+# a peer's message, tool results, notifications and a subagent's replies never count, so another
+# seat's line is never read as the session's own.
 own_thread() {
   local inner='((🧵|[^ -~]+ 🔑) [A-Za-z0-9][A-Za-z0-9._+-]*|[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)*)'
   LC_ALL=C grep -F '"type":"assistant"' |
@@ -106,7 +108,9 @@ own_thread() {
       fromjson? | select(type == "object" and .type == "assistant" and .isSidechain != true)
       | .message.content
       | if type == "string" then . elif type == "array" then (map(select(type == "object" and .type == "text") | .text | strings) | join("\n")) else empty end
-      | sub("\\s+$"; "") | split("\n") | last // empty | sub("\\s+$"; "") | select(test($re))' 2>/dev/null |
+      | sub("\\s+$"; "") | split("\n") | last // empty | sub("\\s+$"; "")
+      | if test("^[^ -~].*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished).* · .") then sub("^.* · "; "") else . end
+      | select(test($re))' 2>/dev/null |
     tail -n 1
 }
 # <<< seat-name
@@ -129,7 +133,7 @@ if [ -z "$seat" ] && [ -f "$transcript" ]; then
 fi
 if [ -n "$seat" ]; then
   named=$(seat_named "$seat")
-  [ -z "$named" ] || context="$context Close every banner with your seat's named thread line: $named."
+  [ -z "$named" ] || context="$context Close every banner or one-line footer with your seat's named thread line: $named."
 fi
 
 jq -cn --arg event "$event" --arg line "$context" \

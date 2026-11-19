@@ -345,6 +345,56 @@ test('every reply in a coordinating session needs the banner, a plain answer, a 
   expect(run(stop(`${shortBanner}\n\nAnything else?`, coordinated('how is the run doing?'))).reason).toContain('the thread line as the very last line')
 })
 
+// Kris, about 03:29 GMT on 19 November 2026, under MINIMAL-FOOTER a: "I thought we had a minimal reply where you could
+// effectively just say what the reply time was and then maybe a one or two liner. So you don't need to … repeat a lot of
+// the footer-based information every time". An Update or Answer may close with one line, its state then its thread
+// line, refining HOOK-ENFORCE: the thread line inside it is held to the same checks, and a reply with none is held back.
+test('an Update or Answer closing with the one-line footer passes, its thread line checked as a banner\'s', () => {
+  const asked = coordinated('how is the run doing?')
+  for (const footer of [
+    '🤖 With worker · 🧵 ki.prj.demo',
+    '👤 With supervisor · ⚒️ 🔑 ki.prj.demo',
+    '💤 Snoozing (on hold) · 🧵 ki.prj.demo',
+    '🤖 → 👤 Handoff to supervisor · 📐 ki.cairn@information-architect',
+    '🤖 With worker · Kitteth (🪨 🔑 cairn.summit)',
+    '👤 With supervisor · Wayland (⚒️ 🔑 ki.cairn)'
+  ]) {
+    expect(run(stop(`The run is still going.\n\n${footer}`, asked))).toEqual(silent)
+    expect(run(stop(`21:10 GMT - footer-hook finished.\n\n${footer}`, coordinated('<task-notification>\n<task-id>b1</task-id>\n</task-notification>')))).toEqual(silent)
+  }
+  // A session whose replies have closed only with the one-line footer is still a coordinating one.
+  const oneLiners = transcript([{ owner: 'Open ki.prj.demo', reply: 'Started.\n\n🤖 With worker · 🧵 ki.prj.demo' }, { owner: 'and now?' }])
+  expect(run(stop('Still going.', oneLiners)).reason).toStartWith("This reply's banner lacks the banner's ### state heading and the thread line, ")
+})
+
+test('a bare reply with no footer is still held back, and told of the one-line footer', () => {
+  const outcome = run(stop('The run is still going.', coordinated('how is the run doing?')))
+  expect(outcome.reason).toStartWith("This reply's banner lacks the banner's ### state heading and the thread line, <role glyph> 🔑 <work-id> or 🧵 <work-id>, last, ")
+  expect(outcome.reason).toContain('An Update or Answer may close instead with the one-line footer, <glyph state> · <thread line>, as 🤖 With worker · 🧵 <work-id>')
+  // A one-line footer that is not last, or whose thread line is not one, closes nothing.
+  for (const reply of ['Still going.\n\n🤖 With worker · 🧵 ki.prj.demo\n\nAnything else?', 'Still going.\n\n🤖 With worker · ki.prj.demo', 'Still going.\n\nWith worker · 🧵 ki.prj.demo'])
+    expect(run(stop(reply, coordinated('how is the run doing?'))).reason).toContain('the thread line')
+  // A report with a heading block or form line still needs its banner.
+  expect(run(stop(rebootstrap('🤖 With worker · 🧵 ki.prj.demo'), plain)).reason).toContain("the banner's ### state heading")
+  expect(run(stop(summary(art, '🤖 With worker · 🧵 ki.prj.demo'), plain)).reason).toContain("the banner's ### state heading")
+  // In a reply with a heading block, the hint is not given.
+  expect(run(stop(rebootstrap('🤖 With worker · 🧵 ki.prj.demo'), plain)).reason).not.toContain('one-line footer')
+})
+
+test('a named seat closing a one-line footer with its bare thread line is still held back', () => {
+  const env = { XDG_CONFIG_HOME: configured }
+  const asked = coordinated('how is the run doing?')
+  expect(run(stop('Still going.\n\n🤖 With worker · 🪨 🔑 cairn.summit', asked), env).reason).toStartWith(
+    "This reply's banner lacks the thread line in its named form, Kitteth (🪨 🔑 cairn.summit), since the seat's actor is named (NAME-FIRST), under ki-coordination's Banner section. Give the reply again in full with it, "
+  )
+  expect(run(stop('Still going.\n\n👤 With supervisor · 📐 ki.cairn@information-architect', asked), env).reason).toContain('Quire (📐 ki.cairn@information-architect)')
+  expect(run(stop('Still going.\n\n🤖 With worker · Kitteth (🪨 🔑 cairn.summit)', asked), env)).toEqual(silent)
+  expect(run(stop('Still going.\n\n🤖 With worker · ⚖️ 🔑 ki.guilds', asked), env)).toEqual(silent)
+  // The thread line's own warnings still apply inside the one-line footer.
+  expect(run(stop('Still going.\n\n🤖 With worker · 📐 ki.cairn+architect', asked)).warning).toContain('a seat line in the earlier <work-id>+<role> form')
+  expect(run(stop('Still going.\n\n🤖 With worker · 🧵 cairn.summit', asked))).toEqual(silent)
+})
+
 test('a session that has closed no reply with a thread line stays conversational, even in a coordinating checkout', () => {
   const chat = transcript([{ owner: 'What does the hook check?', reply: 'The footer.' }, { owner: 'And the reply block?' }])
   expect(run(stop('That too.', chat))).toEqual(silent)
@@ -416,6 +466,8 @@ test('a missing jq fails open', () => {
 
 test('the system Bash runs the same checks', () => {
   expect(run(stop(fullSummary, plain), {}, '/bin/bash')).toEqual(silent)
+  expect(run(stop('Still going.\n\n🤖 With worker · 🧵 ki.prj.demo', coordinated('and now?')), {}, '/bin/bash')).toEqual(silent)
+  expect(run(stop('Still going.\n\n🤖 With worker · 🪨 🔑 cairn.summit', coordinated('and now?')), { XDG_CONFIG_HOME: configured }, '/bin/bash').reason).toContain('Kitteth (🪨 🔑 cairn.summit)')
   expect(run(stop('Mark struck.', coordinated('mark')), {}, '/bin/bash').reason).toContain('the thread line, <role glyph> 🔑 <work-id> or 🧵 <work-id>')
   expect(run(stop(summary(heading, counts, roadmap, pkg, items, listening, thread), plain), {}, '/bin/bash').warning).toContain('no Knowledge Islands art')
 })

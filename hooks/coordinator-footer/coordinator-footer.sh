@@ -20,6 +20,9 @@
 # A banner item pairing an agreed glyph with a bracketed state word warns too: an item
 # takes an agreed glyph alone, a provisional glyph with its word in brackets, or the
 # bracketed word alone (GLYPH-FALLBACK).
+# A reply with no heading block and no form line, an Update or an Answer, may close instead with
+# the one-line footer, <glyph state> · <thread line>, as 🤖 With worker · 🧵 <work-id>, its thread
+# line read as the banner's (MINIMAL-FOOTER); whether the short banner was due is not checked.
 # In every session, coordinating or not, a reply that asks the owner to decide, a
 # fenced text block holding <TAG> <letter> lines, is held back unless the block opens
 # with a `1 · ` group heading and every such line reads <TAG> <letter> (high|medium|low)
@@ -191,8 +194,10 @@ seat_named() {
 
 # The thread line the session's own last reply closed with, from Claude Code transcript lines on
 # standard input: the last line of the last text of the session's own assistant messages that ends
-# with one. Tool calls such as a SendMessage to a peer, a peer's message, tool results, notifications
-# and a subagent's replies never count, so another seat's line is never read as the session's own.
+# with one, alone or after the state in a one-line footer, <glyph state> · <thread line>, which gives
+# the thread line after its last ` · ` (MINIMAL-FOOTER). Tool calls such as a SendMessage to a peer,
+# a peer's message, tool results, notifications and a subagent's replies never count, so another
+# seat's line is never read as the session's own.
 own_thread() {
   local inner='((🧵|[^ -~]+ 🔑) [A-Za-z0-9][A-Za-z0-9._+-]*|[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)*)'
   LC_ALL=C grep -F '"type":"assistant"' |
@@ -200,16 +205,21 @@ own_thread() {
       fromjson? | select(type == "object" and .type == "assistant" and .isSidechain != true)
       | .message.content
       | if type == "string" then . elif type == "array" then (map(select(type == "object" and .type == "text") | .text | strings) | join("\n")) else empty end
-      | sub("\\s+$"; "") | split("\n") | last // empty | sub("\\s+$"; "") | select(test($re))' 2>/dev/null |
+      | sub("\\s+$"; "") | split("\n") | last // empty | sub("\\s+$"; "")
+      | if test("^[^ -~].*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished).* · .") then sub("^.* · "; "") else . end
+      | select(test($re))' 2>/dev/null |
     tail -n 1
 }
 # <<< seat-name
 
 # The footer, for coordinating replies only: sets form, then missing, the structural parts whose
-# loss holds the reply back, and unusual, the parts that only warn.
+# loss holds the reply back, unusual, the parts that only warn, closing, the closing thread line
+# read alone, and minimal, set where the reply has no heading block, form line or Summary.
 form=
 missing=
 unusual=
+closing=
+minimal=
 # Every glyph of ki-coordination's one table of glyphs (GLYPH-TABLE), retired ones included;
 # coordinator-footer.test.ts holds this copy to the table.
 agreed='🤖 👤 🎯 ⏸️ 💤 🏁 → ↪️ ⏳ ⛔ 🅿️ 📥 🪟 ⏰ 🧹 🗺️ 📦 👂 🧵 🔑 🌐 🔇 🔄 🧑 ⭐ 🔧'
@@ -218,7 +228,7 @@ footer() {
     /^(```|~~~)/ { fence = !fence; next }
     fence { next }
     /^## Summary$/ || /^## Summary since / || /^\*\*(.* · )?(Summary|Status) at / { print "summary"; exit }
-    /^\*\*(.* · )?(Bootstrap|Stop|Re-bootstrap|Hold report|Finish report) at / || /^### .*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished)/ || /^(🧵|[^ -~]+ 🔑) [^ ]+ *$/ || /^[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)* *$/ || /^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \(([^ -~]+ 🔑 [^ ]+|[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)*)\) *$/ { other = 1 }
+    /^\*\*(.* · )?(Bootstrap|Stop|Re-bootstrap|Hold report|Finish report) at / || /^### .*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished)/ || /^[^ -~].*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished).* · ([A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \()?(🧵 [^ ]+|[^ -~]+ 🔑 [^ ]+|[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)*)\)? *$/ || /^(🧵|[^ -~]+ 🔑) [^ ]+ *$/ || /^[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)* *$/ || /^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \(([^ -~]+ 🔑 [^ ]+|[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)*)\) *$/ { other = 1 }
     END { if (other) print "banner" }')
 
   if [ -z "$form" ]; then
@@ -251,7 +261,7 @@ footer() {
   # Two lists, separated by a unit separator: the structural parts whose loss holds the
   # reply back, then the unusual parts that only warn.
   found=$(printf '%s\n' "$reply" | LC_ALL=C awk -v long="$([ "$form" = summary ] && echo 1 || echo 0)" -v art="$art" -v roadmap="$roadmap" \
-    -v agreed="$agreed" -v vs="$(printf '\357\270\217')" '
+    -v agreed="$agreed" -v vs="$(printf '\357\270\217')" -v sep=' · ' '
     function join(list, n,   i, out) {
       out = ""
       for (i = 1; i <= n; i++) out = out (i > 1 ? (i == n ? " and " : ", ") : "") list[i]
@@ -269,13 +279,21 @@ footer() {
       last = NR
       # The report heading: the first # line, read for its links (HEADING-FIX).
       if (!h1 && $0 ~ /^# /) h1 = $0
+      if ($0 ~ /^\*\*(.* · )?(Summary|Status|Bootstrap|Stop|Re-bootstrap|Hold report|Finish report|Run report) at /) formline = 1
+      # An Update or Answer may close with the one-line footer, <glyph state> · <thread line>, read for the
+      # thread line after its last ` · ` (MINIMAL-FOOTER).
+      line = $0
+      one = line ~ /^[^ -~].*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished).* · ./
+      if (one) while ((p = index(line, sep)) > 0) line = substr(line, p + length(sep))
       # A named seat writes <Name> (<seat form>); the form inside the brackets is read as the bare line (NAME-FIRST).
-      inner = $0
-      named = $0 ~ /^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \(.*\) *$/
+      inner = line
+      named = line ~ /^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \(.*\) *$/
       if (named) { sub(/^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \(/, "", inner); sub(/\) *$/, "", inner) }
       key = inner ~ /^[^ -~]+ 🔑 [^ ]+ *$/
       keyless = inner ~ /^[^ -~]+ [a-z0-9-]+([.][a-z0-9-]+)+([+][a-z0-9-]+)*[@+][a-z]+(-[a-z]+)* *$/
-      is_thread = key || keyless || (!named && $0 ~ /^🧵 [^ ]+ *$/)
+      is_thread = key || keyless || (!named && line ~ /^🧵 [^ ]+ *$/)
+      # The one-line footer closes only a reply with no heading block, form line or state heading above it.
+      if (one && (h1 || formline || long || (heading && known))) is_thread = 0
       # A state heading opens with its glyph or names a state; a query or finding heading opens with its tag.
       state = $0 ~ /^### .*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished)/
       if (state || $0 ~ /^### [^ -~]/) { heading = NR; known = state; finished = index($0, "Finished") > 0; counts_seen = 0; counts = 0; odd = 0; road = 0; pack = 0; oldlisten = 0; next }
@@ -296,6 +314,9 @@ footer() {
       }
       if (is_thread) {
         thread = NR
+        oneline = one
+        closing = line
+        sub(/[ \t]+$/, "", closing)
         glyphs = key ? substr(inner, 1, index(inner, " 🔑") - 1) : keyless ? substr(inner, 1, index(inner, " ") - 1) : ""
         marks = index(glyphs, "⭐") || index(glyphs, "🔧")
         spun = index(glyphs, "🧵") > 0
@@ -304,7 +325,7 @@ footer() {
     }
     END {
       b = 0; w = 0
-      if (!heading) block[++b] = "the banner\047s ### state heading"
+      if (!heading && !(oneline && thread == last)) block[++b] = "the banner\047s ### state heading"
       if (!thread) block[++b] = "the thread line, <role glyph> 🔑 <work-id> or 🧵 <work-id>, last"
       else if (thread != last) block[++b] = "the thread line as the very last line"
       if (thread && marks) warn[++w] = "⭐ or 🔧 beside the role glyph, which the role standard retires"
@@ -328,15 +349,15 @@ footer() {
       if (long && art && (!art_at || (heading && art_at > heading))) warn[++w] = "no Knowledge Islands art above the banner"
       if (long && roadmap && !road) warn[++w] = "no 🗺️ roadmap line"
       if (long && !pack) warn[++w] = "no 📦 package line"
-      printf "%s\037%s\n", join(block, b), join(warn, w)
+      printf "%s\037%s\037%s\037%s\n", join(block, b), join(warn, w), closing, (h1 || formline || long) ? "" : "minimal"
     }')
-  IFS=$'\x1f' read -r missing unusual <<<"$found"
+  IFS=$'\x1f' read -r missing unusual closing minimal <<<"$found"
 }
 footer
 
 # A bare seat line, last, whose actor is named is held back with the named line (NAME-FIRST).
-if [ -n "$form" ] && [ -z "$missing" ]; then
-  closing=$(printf '%s\n' "$reply" | sed -e 's/[[:space:]]*$//' | grep -v '^$' | tail -n 1)
+# The thread line is read alone, from a banner's last line or after a one-line footer's state.
+if [ -n "$form" ] && [ -z "$missing" ] && [ -n "$closing" ]; then
   named=$(seat_named "$closing")
   case $named in
     *" ($closing)") missing="the thread line in its named form, $named, since the seat's actor is named (NAME-FIRST)" ;;
@@ -363,7 +384,11 @@ if [ -n "$missing$blockfix" ]; then
   if [ -n "$missing" ]; then
     reason="This $what lacks $missing, under ki-coordination's Banner section."
     fix='with them'
-    case $missing in 'the thread line in its named form'*) fix='with it' ;; esac
+    case $missing in
+      'the thread line in its named form'*) fix='with it' ;;
+      # An Update or Answer may close with the one-line footer instead (MINIMAL-FOOTER).
+      *) [ -z "$minimal" ] || reason="$reason An Update or Answer may close instead with the one-line footer, <glyph state> · <thread line>, as 🤖 With worker · 🧵 <work-id>, giving the short banner where its state, counts or items have changed (MINIMAL-FOOTER)." ;;
+    esac
   fi
   [ -z "$blockfix" ] || reason="${reason:+$reason }This reply's reply block $blockfix; $shape."
   note=

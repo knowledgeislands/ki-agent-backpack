@@ -186,7 +186,7 @@ test.each(['null', '[]', '42', '"text"', '{"hook_event_name":{}}', '{"hook_event
 // Kris, 19 November 2026: a seat should close with its named thread line the first time, before the Stop hook holds a
 // bare one back. Once the session's seat is known, from its opener's Session: line or an earlier reply's thread line,
 // the reminder names the line where the Cairn store names the seat's actor, and otherwise says nothing more.
-const told = `${line} Close every banner with your seat's named thread line: Kitteth (🪨 🔑 cairn.summit).`
+const told = `${line} Close every banner or one-line footer with your seat's named thread line: Kitteth (🪨 🔑 cairn.summit).`
 const session = (thread: string): string =>
   claudePrompt(coordinating, `Open cairn.summit.\nSession: ${thread}. Your first act is to rename this session to it with your agent host's rename.`)
 const replied = (thread: string): string => {
@@ -201,6 +201,11 @@ test("a known seat whose actor the store names is told its named thread line", (
   expect(run(session('Kitteth (🪨 🔑 cairn.summit)'), named).context).toBe(told)
   expect(run(replied('🪨 🔑 cairn.summit'), named).context).toBe(told)
   expect(run(replied('Kitteth (🪨 🔑 cairn.summit)'), named).context).toBe(told)
+  // A reply closing with the one-line footer gives its seat from the thread line after the state (MINIMAL-FOOTER).
+  const path = join(root, 'replied-one-line.jsonl')
+  const reply = { type: 'assistant', message: { role: 'assistant', content: [{ type: 'text', text: 'Still going.\n\n🤖 With worker · 🪨 🔑 cairn.summit' }] } }
+  writeFileSync(path, `${JSON.stringify(reply)}\n`)
+  expect(run(JSON.stringify({ ...JSON.parse(claudePrompt(coordinating, 'and now?')), transcript_path: path }), named).context).toBe(told)
 })
 
 test('an unnamed, unknown or unresolvable seat gets the line alone', () => {
@@ -216,7 +221,7 @@ test('an unnamed, unknown or unresolvable seat gets the line alone', () => {
 seat('ki.cairn', 'steward', 'actor:wayland')
 mkdirSync(join(store, 'roster', 'actors', 'wayland'), { recursive: true })
 writeFileSync(join(store, 'roster', 'actors', 'wayland', '_index.md'), '---\nki-id: actor:wayland\nki-name: Wayland\n---\n')
-const wayland = `${line} Close every banner with your seat's named thread line: Wayland (⚒️ 🔑 ki.cairn).`
+const wayland = `${line} Close every banner or one-line footer with your seat's named thread line: Wayland (⚒️ 🔑 ki.cairn).`
 const kitteth = 'Kitteth (🪨 🔑 cairn.summit)'
 const peer = `Another Claude session sent a message:\n<cross-session-message from="uds:/tmp/cc-socks/1.sock" from-name="${kitteth}">\n${kitteth}, 03:20 GMT. Noted.\n\nSession: 🪨 🔑 cairn.summit.\n\n${kitteth}\n</cross-session-message>`
 const crossTalk = (own: boolean, prompt = 'mark'): string => {

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T03:31:25Z
+ki-revised: 2026-11-19T03:36:01Z
 ki-status: in force
 ---
 
@@ -92,9 +92,9 @@ A reply is built from up to three **blocks**, always in this order, each left ou
 - **Body block**, B1 to B6: what the reply says, what happened and what the owner needs to decide. B1, the Answer, holds whatever the reply says that no other part covers; the parts after it are the report's own.
 - **Footer block**, F1 to F9: where the work stands and whose move it is, read from the bottom up. Its **banner** is F2 to F9.
 
-Each block is a run of coded **parts**. Each reply has one **reply structure**, saying what the reply is, such as Summary, Status or Stop, and each structure has one **layout**, its depth: **Full**, **Medium**, **Short** or **Minimal**, deepest to shallowest. The structure decides which parts appear and how each part is shaped; Minimal has no heading block and closes with the short banner, as Short does.
+Each block is a run of coded **parts**. Each reply has one **reply structure**, saying what the reply is, such as Summary, Status or Stop, and each structure has one **layout**, its depth: **Full**, **Medium**, **Short** or **Minimal**, deepest to shallowest. The structure decides which parts appear and how each part is shaped; Minimal has no heading block and closes with the one-line footer, giving the short banner, as Short does, only where the state, the counts or the items have changed since the session's previous reply.
 
-**Reply id.** Every reply to the owner, in every layout, opens with its [reply id](standard-reporting.md#41-reply-forms), `**Reply HH:MM**`, the UTC time from `date -u +%H:%M` as the reply is written, then a blank line and the first block: in Full and Medium the heading block, so the `#` heading follows the id with no rule between them; in Short the Answer, or the banner where there is none; in Minimal the Answer or the update. The id stands outside the blocks and their parts, and the form line and banner keep their local times. A run report, saved into the package, carries none.
+**Reply id.** Every reply to the owner, in every layout, opens with its [reply id](standard-reporting.md#41-reply-forms), `**Reply HH:MM**`, the UTC time from `date -u +%H:%M` as the reply is written, then a blank line and the first block: in Full and Medium the heading block, so the `#` heading follows the id with no rule between them; in Short the Answer, or the banner where there is none; in Minimal the Answer or the update, then the one-line footer. The id stands outside the blocks and their parts, and the form line and banner keep their local times. A run report, saved into the package, carries none.
 
 **Time.** Every time is the owner's local time, in one of two forms, each part choosing which in its entry under [Part content](#414-part-content): a **friendly time**, naming the day where it is not today, as in `10:30 GMT`, `yesterday 18:05 GMT` or `Thu 5 Nov 09:12 GMT`; or a **timestamp**, ISO 8601 with its offset, as in `2026-11-07T10:30+00:00`, the fallback wherever a friendly time does not fit. A part that names no form keeps the form its template shows.
 
@@ -148,19 +148,19 @@ Which parts each reply structure carries, one column per structure with its layo
 | **Footer block** |  |  |  |  |  |  |  |  |
 | **F1** · Art | ○ | ○ |  |  |  |  |  |  |
 | **F2** · Banner heading | ● | ● | ● | ● | ● | ● | ● | ● |
-| **F3** · Counts line | ● | ● | ● | ● | ○ | ● | ● | ● |
+| **F3** · Counts line | ● | ● | ● | ● | ○ | ● | ○ | ○ |
 | **F4** · Roadmap line | ● | ● |  |  |  |  |  |  |
 | **F5** · Package line | ● | ● |  |  |  |  |  |  |
-| **F6** · Item list | ● | ● | ● | ● | ● | ● | ● | ● |
+| **F6** · Item list | ● | ● | ● | ● | ● | ● | ○ | ○ |
 | **F7** · Heading-for line | ○ | ○ | ○ |  | ○ | ○ | ○ | ○ |
 | **F8** · Listening line | ○ | ○ | ○ |  | ○ | ○ | ○ | ○ |
 | **F9** · Thread line | ● | ● | ● | ● | ● | ● | ● | ● |
 
 ● required · ○ optional, on its condition under [Part content](#414-part-content) · empty: not used.
 
-F3 and F4 show always or never by reply structure, never by judgement of whether they apply; F3 leaves Stop only when the work is Finished. F8 shows exactly while the session is in a meeting, whatever the structure. Every structure closes with the banner and its thread line, the Update and the Answer included, as Kris set under HOOK-ENFORCE on 18 November 2026: "Yeah, we need the hook enforcing".
+F3 and F4 show always or never by reply structure, never by judgement of whether they apply; F3 leaves Stop only when the work is Finished. F8 shows exactly while the session is in a meeting, whatever the structure. Every structure closes with its thread line, as Kris set under HOOK-ENFORCE on 18 November 2026: "Yeah, we need the hook enforcing". The Update and the Answer close with the **one-line footer**, F2's glyph state and F9 on one line, and give the short banner, F2, F3, F6 to F9, only where the state, the counts or the items have changed since the session's previous reply, as Kris set under MINIMAL-FOOTER on 19 November 2026; every other structure closes with its banner.
 
-Sources: REPLY-FORMAT, LISTEN-LINE and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
+Sources: REPLY-FORMAT, LISTEN-LINE, HOOK-ENFORCE and MINIMAL-FOOTER in [the decision register](sources.md#3-decisions).
 
 #### 4.1.4 Part content
 
@@ -185,16 +185,16 @@ Each part: what it carries, when it appears and how the structure, the state and
 **Footer block.**
 
 - **F1 Art:** the Knowledge Islands drawing, whose scroll's title is KNOWLEDGE ISLANDS with four lines beneath it, each centred in the 54-character space between the scroll's `|` marks with any odd space to the right: the host and state in capitals, as `SOL  ·  WITH YOU`, or `ALL CLEAR` when nothing waits, a blank line, the counts in words, and the day, date and local time, under **The footer** in [The Summary](#417-the-summary); `ki work banner` (KI-TOOL-KI-CLI-182 in `tools-ki`) renders it. Unless the owner asked for `no art`.
-- **F2 Banner heading:** `### <glyph state> · at <time the work entered this state>`, from the [one table of states](standard-coordination.md#46-banner). It is the only place the work's state appears.
+- **F2 Banner heading:** `### <glyph state> · at <time the work entered this state>`, from the [one table of states](standard-coordination.md#46-banner). It is the only place the work's state appears, with the one-line footer, which carries its glyph state without the time.
 - **F3 Counts line:** `🤖 <n> running · ⏳ <n> queued · 👤 <n> with you · ⛔ <n> blocked · 🅿️ <n> parked`, all five views with zeros written, adding `· 📥 <n> to accept` in Project work with records awaiting the owner's acceptance. The state sets its content on hold: `⏸️ drained · 🅿️ <n> queries parked` on a paused hold, `💤 waiting for a message · 🅿️ <n> queries parked` while Snoozing. Left out only when the work is Finished.
 - **F4 Roadmap line:** `🗺️ roadmap · <n> records · <n> open · <n> done awaiting prune · <n> ideas`, or `🗺️ roadmap · none` where the package's repository has no roadmap, under **Roadmap and package lines** in [Banner detail](#42-banner-detail).
 - **F5 Package line:** `📦 package · changes <n> · open <n> · held <n> · meetings <n>`, under the same.
 - **F6 Item list:** one line per live item, `- <glyph> <what> · <holder> · at <time>`, opening with its state's agreed glyph alone, never with a bracketed state word, under **Glyph banner** in [the core](standard-coordination.md#46-banner); where no agreed glyph names its state, a provisional glyph with its state word in brackets, or the bracketed word alone, under **Provisional glyphs and bracketed words** there. Every glyph is in the core's [table of glyphs](standard-coordination.md#46-banner). It carries no awaiting-ACK items. On hold it lists only `🅿️` parked and the release under the hold's own glyph, `⏸️` or `💤`; Finished lists `🏁`.
 - **F7 Heading-for line:** `↪️ <draining or finishing> → <target>`, only while the work is heading for a hold or a handoff, under **Heading for a hold or a handoff** in [the core](standard-coordination.md#46-banner).
 - **F8 Listening line:** `👂 in <meeting>` while the session is in a meeting, naming each meeting it is in by its entry file's `meeting` field, two or more joined by `, `, as in `👂 in cairn.wayfinder.designs`, and left off when it is in none. A session is in a meeting while it is a participant of an open meeting with a sitting under way, `status: open` in the meeting's entry file under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). Listening means only this, under LISTEN-LINE; the [inbox watcher](standard-listening.md#41-inbox-watch) has no line.
-- **F9 Thread line:** `<role glyph> 🔑 <work-id>`, `<role glyph> <package>@<role>` for a seat without the keys, each written `<Name> (<that form>)` where the seat's actor is named, as in `Kitteth (🪨 🔑 cairn.summit)`, or `🧵 <work-id>`, always last, under **Thread line** in [the core](standard-coordination.md#46-banner).
+- **F9 Thread line:** `<role glyph> 🔑 <work-id>`, `<role glyph> <package>@<role>` for a seat without the keys, each written `<Name> (<that form>)` where the seat's actor is named, as in `Kitteth (🪨 🔑 cairn.summit)`, or `🧵 <work-id>`, always last, under **Thread line** in [the core](standard-coordination.md#46-banner). In the one-line footer it follows the glyph state after ` · `.
 
-Sources: REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, LISTEN-LINE, ITEM-GLYPHS, GLYPH-TABLE, GLYPH-FALLBACK, NAME-FIRST, HEADING-FIX, HEADING-PACKAGE and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
+Sources: REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, LISTEN-LINE, ITEM-GLYPHS, GLYPH-TABLE, GLYPH-FALLBACK, NAME-FIRST, HEADING-FIX, HEADING-PACKAGE, HOOK-ENFORCE and MINIMAL-FOOTER in [the decision register](sources.md#3-decisions).
 
 #### 4.1.5 Templates
 
@@ -400,9 +400,17 @@ No outstanding queries
 <thread line>
 ```
 
-**Update** and **Answer**, Minimal: the Answer, with no heading block, then the banner as the Position carries it, without F1, F4 and F5, as Kris set under HOOK-ENFORCE on 18 November 2026, so every coordinating reply closes with the banner and its thread line. A timed update or wake line is one or two timestamped lines under the [cadence](standard-coordination.md#43-coordinator-responsiveness), above the banner.
+**Update** and **Answer**, Minimal: the Answer, with no heading block, then the **one-line footer**: the banner heading's glyph state without its time, then ` · ` and the thread line, as Kris set under MINIMAL-FOOTER on 19 November 2026: "I thought we had a minimal reply where you could effectively just say what the reply time was and then maybe a one or two liner. So you don't need to … repeat a lot of the footer-based information every time". Where the state, the counts or the items have changed since the session's previous reply, it gives the banner as the Position carries it instead, without F1, F4 and F5. Either way the reply closes with its thread line, as HOOK-ENFORCE of 18 November 2026 set. A timed update or wake line is one or two timestamped lines under the [cadence](standard-coordination.md#43-coordinator-responsiveness), above the footer:
 
-Sources: REPLY-FORMAT, REPORT-FORMS-TIDY and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
+```text
+<the Answer, or one or two timestamped lines for an update>
+
+<glyph state> · <thread line>
+```
+
+As `🤖 With worker · Kitteth (🪨 🔑 cairn.summit)`, `👤 With supervisor · Wayland (⚒️ 🔑 ki.cairn)`, or `💤 Snoozing (on hold) · 🧵 <work-id>` for a session with no role yet, each other state written as its banner heading writes it.
+
+Sources: REPLY-FORMAT, REPORT-FORMS-TIDY, HOOK-ENFORCE and MINIMAL-FOOTER in [the decision register](sources.md#3-decisions).
 
 #### 4.1.6 Verbs
 
