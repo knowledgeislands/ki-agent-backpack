@@ -153,14 +153,14 @@ Which parts each reply structure carries, one column per structure with its layo
 | **F5** · Package line | ● | ● |  |  |  |  |  |  |
 | **F6** · Item list | ● | ● | ● | ● | ● | ● | ○ | ○ |
 | **F7** · Heading-for line | ○ | ○ | ○ |  | ○ | ○ | ○ | ○ |
-| **F8** · Listening line | ○ | ○ | ○ |  | ○ | ○ | ○ | ○ |
+| **F8** · Meeting line | ○ | ○ | ○ |  | ○ | ○ | ○ | ○ |
 | **F9** · Thread line | ● | ● | ● | ● | ● | ● | ● | ● |
 
 ● required · ○ optional, on its condition under [Part content](#414-part-content) · empty: not used.
 
 F3 and F4 show always or never by reply structure, never by judgement of whether they apply; F3 leaves Stop only when the work is Finished. F8 shows exactly while the session is in a meeting, whatever the structure. Every structure closes with its thread line, as Kris set under HOOK-ENFORCE on 18 November 2026: "Yeah, we need the hook enforcing". The Update and the Answer close with the **one-line footer**, F2's glyph state and F9 on one line, and give the short banner, F2, F3, F6 to F9, only where the state, the counts or the items have changed since the session's previous reply, as Kris set under MINIMAL-FOOTER on 19 November 2026; every other structure closes with its banner.
 
-Sources: REPLY-FORMAT, LISTEN-LINE, HOOK-ENFORCE, MINIMAL-FOOTER and FINDINGS-KEEP in [the decision register](sources.md#3-decisions).
+Sources: REPLY-FORMAT, LISTEN-LINE, FOOTER-DELEGATES, HOOK-ENFORCE, MINIMAL-FOOTER and FINDINGS-KEEP in [the decision register](sources.md#3-decisions).
 
 #### 4.1.4 Part content
 
@@ -191,10 +191,10 @@ Each part: what it carries, when it appears and how the structure, the state and
 - **F5 Package line:** `📦 package · changes <n> · open <n> · held <n> · meetings <n>`, under the same.
 - **F6 Item list:** one line per live item, `- <glyph> <what> · <holder> · at <time>`, with one `👤` line per query B5 shows and one line for the rest of those with the owner, as `- 👤 7 more held in the change documents · owner`, opening with its state's agreed glyph alone, never with a bracketed state word, under **Glyph banner** in [the core](standard-coordination.md#46-banner); where no agreed glyph names its state, a provisional glyph with its state word in brackets, or the bracketed word alone, under **Provisional glyphs and bracketed words** there. Every glyph is in the core's [table of glyphs](standard-coordination.md#46-banner). It carries no awaiting-ACK items. On hold it lists only `🅿️` parked and the release under the hold's own glyph, `⏸️` or `💤`; Finished lists `🏁`.
 - **F7 Heading-for line:** `↪️ <draining or finishing> → <target>`, only while the work is heading for a hold or a handoff, under **Heading for a hold or a handoff** in [the core](standard-coordination.md#46-banner).
-- **F8 Listening line:** `👂 in <meeting>` while the session is in a meeting, naming each meeting it is in by its entry file's `meeting` field, two or more joined by `, `, as in `👂 in cairn.wayfinder.designs`, and left off when it is in none. A session is in a meeting while it is a participant of an open meeting with a sitting under way, `status: open` in the meeting's entry file under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). Listening means only this, under LISTEN-LINE; the [inbox watcher](standard-listening.md#41-inbox-watch) has no line.
+- **F8 Meeting line:** `🤝 in <meeting> · with <names>` while the session is in a meeting, naming each meeting it is in by its folder's name, the id its entry file's `ki-id` carries after `meeting:`, and, after `· with`, who the session works with there: the other participants under the entry file's `ki-participants`, each by the name its roster file gives, or its seat's id where it has none, joined by `, `, as in `🤝 in cairn.wayfinder.designs · with Quire, Limner`. The owner, who is at every meeting, is not named, and with no other participant the `· with <names>` part is left off. Two or more meetings are joined by `, `, each with its own list, as in `🤝 in cairn.summit.voice · with Kitteth, cairn.wayfinder.designs · with Quire, Limner`. A session is in a meeting while it is a participant of an open meeting with a sitting under way, `ki-status: open` in the meeting's entry file under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). In no meeting the line is left off and nothing shows in its place, under LISTEN-LINE and FOOTER-DELEGATES; the [inbox watcher](standard-listening.md#41-inbox-watch) has no line.
 - **F9 Thread line:** `<role glyph> 🔑 <work-id>`, `<role glyph> <package>@<role>` for a seat without the keys, each written `<Name> (<that form>)` where the seat's actor is named, as in `Kitteth (🪨 🔑 cairn.summit)`, or `🧵 <work-id>`, always last, under **Thread line** in [the core](standard-coordination.md#46-banner). In the one-line footer it follows the glyph state after ` · `.
 
-Sources: REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, QUERY-CAP-3, QUERY-COUNT, LISTEN-LINE, ITEM-GLYPHS, GLYPH-TABLE, GLYPH-FALLBACK, NAME-FIRST, HEADING-FIX, HEADING-PACKAGE, HOOK-ENFORCE, MINIMAL-FOOTER and FINDINGS-KEEP in [the decision register](sources.md#3-decisions).
+Sources: REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, QUERY-CAP-3, QUERY-COUNT, LISTEN-LINE, FOOTER-DELEGATES, ITEM-GLYPHS, GLYPH-TABLE, GLYPH-FALLBACK, NAME-FIRST, HEADING-FIX, HEADING-PACKAGE, HOOK-ENFORCE, MINIMAL-FOOTER and FINDINGS-KEEP in [the decision register](sources.md#3-decisions).
 
 #### 4.1.5 Templates
 
@@ -263,7 +263,7 @@ b) <the alternative>
 
 ↪️ <draining or finishing> → <target>                                        F7
 
-<👂 in <meeting>; only while in a meeting>                                   F8
+<🤝 in <meeting> · with <names>; only while in a meeting>                     F8
 
 <thread line>                                                                F9
 ````
@@ -303,7 +303,7 @@ Rename thread: /rename <thread line>
 
 - <glyph> <what> · <holder> · at <time>
 
-<👂 in <meeting>; only while in a meeting>
+<🤝 in <meeting> · with <names>; only while in a meeting>
 
 <thread line>
 ```
@@ -395,7 +395,7 @@ No outstanding queries
 
 <↪️ heading-for line; only when there is one>
 
-<👂 in <meeting>; only while in a meeting>
+<🤝 in <meeting> · with <names>; only while in a meeting>
 
 <thread line>
 ```
@@ -519,13 +519,13 @@ A summit opening a Bootstrap whose last mark was the day before:
 - **Package line:** `📦 package · changes <n> · open <n> · held <n> · meetings <n>`, from the package, as Kris let it be aligned under OLD-SHAPE-HOMES a on 14 November 2026: "you can align whatever you need to align [for] the footer message counts": changes counts its change documents, its sub-packages' included, open the open queries across their Open sections, held the items under `_index.md`'s `## Held`, and meetings the open meetings in the Cairn store's `meetings/` that the work sits in.
 - Both are counted afresh for each Full reply and write their zeros; they are counts, never items. Medium and Short replies carry neither.
 
-**Mode lines.** The listening line, F8, sits below the list and any heading-for line and above the thread line, a blank line before it, in any reply that closes with the banner while the session is in a meeting, and nowhere else.
+**Mode lines.** The meeting line, F8, sits below the list and any heading-for line and above the thread line, a blank line before it, in any reply that closes with the banner while the session is in a meeting, and nowhere else.
 
-- `👂 in <meeting>` while the session is in a meeting, naming each meeting it is in by its entry file's `meeting` field, two or more joined by `, `, as in `👂 in cairn.wayfinder.designs`, and left off when it is in none. A session is in a meeting while it is a participant of an open meeting with a sitting under way, `status: open` in the meeting's entry file under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). Listening means only this, as Kris set under LISTEN-LINE a on 16 November 2026: "it should indicate meetings it's in or not. Otherwise should be left off". The [inbox watcher](standard-listening.md#41-inbox-watch) has no line; the earlier `👂 listening` and `🔇 not listening` are gone, and the `ki-listening_enabled` and `ki-listening_status` fields still record the watcher.
+- `🤝 in <meeting> · with <names>` while the session is in a meeting, naming each meeting it is in by its folder's name and, after `· with`, the other participants it works with there by their roster names, or a seat's id where it has none, as in `🤝 in cairn.wayfinder.designs · with Quire, Limner`, two or more meetings joined by `, `, each with its own list; the owner is not named, and with no other participant the `· with <names>` part is left off. A session is in a meeting while it is a participant of an open meeting with a sitting under way, `ki-status: open` in the meeting's entry file under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). It is a meeting line, not a listening line, as Kris set under FOOTER-DELEGATES on 19 November 2026, refining LISTEN-LINE: "whether or not we change the listening glyph now to something of our meeting in some way or other … And the idea that then something shows that it's not listening doesn't really make any sense either". In no meeting the line is left off and nothing stands in its place. The [inbox watcher](standard-listening.md#41-inbox-watch) has no line; the earlier `👂 listening`, `🔇 not listening` and `👂 in <meeting>` are gone, and the `ki-listening_enabled` and `ki-listening_status` fields still record the watcher.
 - There is no sync line. A host sync thread on sol, whose seat Hob Sol holds, sitting in one meeting closes:
 
 ```text
-👂 in cairn.summit.voice
+🤝 in cairn.summit.voice · with Kitteth
 
 Hob Sol (🏠 🔑 personal.rig.sol)
 ```
@@ -570,7 +570,7 @@ Handoff to supervisor, closing a Summary that sends the work to the owner:
 - 👤 WORK-HOME · owner · at 22:58
 - 🅿️ 1
 
-👂 in cairn.wayfinder.designs
+🤝 in cairn.wayfinder.designs · with Quire, Limner
 
 ⚒️ 🔑 ki.ways-of-working
 ```

@@ -9,9 +9,9 @@
 # no role yet, either seat form written <Name> (<form>) where the seat's actor is named
 # (NAME-FIRST): a bare seat line whose actor the Cairn store names is held back with the
 # named line, and an unnamed or unresolved seat passes. A seat line in the earlier
-# <work-id>+<role> form, an unrecognised state heading, a missing or odd counts line, a listening line in the earlier
-# 👂 listening or 🔇 not listening form, which LISTEN-LINE replaces with 👂 in
-# <meeting> or no line at all, ⭐, 🔧 or 🧵 in the role glyph's place, and in a
+# <work-id>+<role> form, an unrecognised state heading, a missing or odd counts line, a meeting line in an earlier
+# form, 👂 listening, 🔇 not listening or 👂 in <meeting>, which FOOTER-DELEGATES replaces with 🤝 in
+# <meeting> · with <names> or no line at all, ⭐, 🔧 or 🧵 in the role glyph's place, and in a
 # Summary or Status missing art, roadmap or package line pass with a warning, so the owner can confirm the form was intended. The
 # hook holds no copy of the role catalogue, which ki-work-package owns.
 # A report heading that is not one link covering its whole text, the package's name as
@@ -222,7 +222,7 @@ closing=
 minimal=
 # Every glyph of ki-coordination's one table of glyphs (GLYPH-TABLE), retired ones included;
 # coordinator-footer.test.ts holds this copy to the table.
-agreed='🤖 👤 🎯 ⏸️ 💤 🏁 → ↪️ ⏳ ⛔ 🅿️ 📥 🪟 ⏰ 🧹 🗺️ 📦 👂 🧵 🔑 🌐 🔇 🔄 🧑 ⭐ 🔧'
+agreed='🤖 👤 🎯 ⏸️ 💤 🏁 → ↪️ ⏳ ⛔ 🅿️ 📥 🪟 ⏰ 🧹 🗺️ 📦 🤝 🧵 🔑 🌐 👂 🔇 🔄 🧑 ⭐ 🔧'
 footer() {
   form=$(printf '%s\n' "$reply" | LC_ALL=C awk '
     /^(```|~~~)/ { fence = !fence; next }
@@ -299,12 +299,13 @@ footer() {
       if (state || $0 ~ /^### [^ -~]/) { heading = NR; known = state; finished = index($0, "Finished") > 0; counts_seen = 0; counts = 0; odd = 0; road = 0; pack = 0; oldlisten = 0; next }
       if (heading && !counts_seen) {
         counts_seen = 1
-        if (!is_thread && $0 !~ /^(- |🧵|🗺|📦|👂|🔇|↪)/) { counts = 1; odd = $0 !~ /^(🤖|👤|⛔|🅿|⏸|💤|📥|🎯|⏳)/ }
+        if (!is_thread && $0 !~ /^(- |🧵|🗺|📦|🤝|👂|🔇|↪)/) { counts = 1; odd = $0 !~ /^(🤖|👤|⛔|🅿|⏸|💤|📥|🎯|⏳)/ }
       }
       if (heading && $0 ~ /^🗺/ && index($0, "roadmap")) road = 1
       if (heading && $0 ~ /^📦/ && index($0, "package")) pack = 1
-      # The listening line names the meetings the session is in, and is left off in none (LISTEN-LINE).
-      if (heading && $0 ~ /^(👂 listening|🔇 not listening)/) oldlisten = 1
+      # The meeting line names the meetings the session is in and who it works with there, and is left off in
+      # none (LISTEN-LINE, FOOTER-DELEGATES); an earlier listening line warns.
+      if (heading && $0 ~ /^(👂 listening|🔇 not listening|👂 in )/) oldlisten = 1
       # An agreed glyph stands alone; only a provisional glyph carries its word in brackets (GLYPH-FALLBACK).
       if (heading && $0 ~ /^- [^ -~]+ \[/) {
         g = substr($0, 3)
@@ -334,7 +335,7 @@ footer() {
       if (heading && !known) warn[++w] = "a state heading the table of states does not name"
       if (heading && !finished && !counts) warn[++w] = "no counts line beneath the state heading"
       if (heading && counts && odd) warn[++w] = "a counts line opening with none of the counts glyphs"
-      if (heading && oldlisten) warn[++w] = "a listening line in the earlier 👂 listening or 🔇 not listening form, which LISTEN-LINE replaces with 👂 in <meeting>, or no line in no meeting"
+      if (heading && oldlisten) warn[++w] = "a meeting line in an earlier form, 👂 listening, 🔇 not listening or 👂 in <meeting>, which FOOTER-DELEGATES replaces with 🤝 in <meeting> · with <names>, or no line in no meeting"
       # The whole heading is one link, the package name, to its _index.md in the Cairn store
       # (HEADING-PACKAGE, HEADING-FIX); a run report adds › <run name> after it.
       if (h1) {

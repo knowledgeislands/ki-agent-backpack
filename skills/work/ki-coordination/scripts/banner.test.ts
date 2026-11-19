@@ -164,8 +164,16 @@ const HEADING_FOR_LINE =
 /** The counts line of a live state: all five views, zeros written, and the records awaiting acceptance where any are. */
 const COUNTS_LINE =
   /^🤖 \d+ running · ⏳ \d+ queued · 👤 \d+ with you · ⛔ \d+ blocked · 🅿️ \d+ parked(?: · 📥 \d+ to accept)?$/u
-/** The listening line under LISTEN-LINE: the meetings the session is in, by their ids, joined by `, `. */
-const MEETING_LINE = /^👂 in [a-z0-9-]+(?:\.[a-z0-9-]+)*(?:, [a-z0-9-]+(?:\.[a-z0-9-]+)*)*$/u
+/** A meeting's id in the meeting line: its folder's name. */
+const MEETING_ID = '[a-z0-9-]+(?:\\.[a-z0-9-]+)*'
+/** A participant in the meeting line: its roster name, or its seat's id where it has none. */
+const PARTICIPANT = '(?:\\p{Lu}[\\p{L}-]*(?: \\p{Lu}[\\p{L}-]*)*|[a-z0-9-]+(?:\\.[a-z0-9-]+)*@[a-z-]+)'
+/** One meeting in the meeting line, with who the session works with there where it has company. */
+const ONE_MEETING = `${MEETING_ID}(?: · with ${PARTICIPANT}(?:, ${PARTICIPANT})*)?`
+/** The meeting line under FOOTER-DELEGATES: each meeting the session is in, with its own list, joined by `, `. */
+const MEETING_LINE = new RegExp(`^🤝 in ${ONE_MEETING}(?:, ${ONE_MEETING})*$`, 'u')
+/** The listening line under LISTEN-LINE, before FOOTER-DELEGATES, read only in past reports. */
+const LISTEN_MEETING_LINE = /^👂 in [a-z0-9-]+(?:\.[a-z0-9-]+)*(?:, [a-z0-9-]+(?:\.[a-z0-9-]+)*)*$/u
 /** The listening line while the inbox watcher was armed, before LISTEN-LINE, read only in past reports. */
 const LISTEN_LINE = /^👂 listening$/u
 /** The listening line REPORT-FORMS-TIDY gave a hold waiting for a message, which SNOOZE replaced with plain listening. */
@@ -217,8 +225,8 @@ const expectReportHeading = (lines: string[] | undefined): void => {
 /**
  * A banner, top to bottom under FOOTER-LAYOUT and REPLY-FORMAT: the heading, a blank line, a counts line where live, a
  * blank line, then in a Full reply's footer under FOOTER-COUNTS the roadmap line and the package line, each followed by a
- * blank line, the items, then each closing line after a blank line: the heading-for line where one stands, the listening
- * line while the session is in a meeting and never at Finished (LISTEN-LINE), and the thread line last.
+ * blank line, the items, then each closing line after a blank line: the heading-for line where one stands, the meeting
+ * line while the session is in a meeting and never at Finished (LISTEN-LINE, FOOTER-DELEGATES), and the thread line last.
  */
 const expectBanner = (lines: string[]): void => {
   expect(lines[0]).toMatch(BANNER_HEADING)
@@ -304,7 +312,7 @@ test('one table holds every glyph the coordination surfaces use', () => {
   expect([...ITEM_GLYPHS].sort()).toEqual(
     ['🤖', '⏳', '👤', '⛔', '🅿️', '⏸️', '💤', '🪟', '⏰', '🏁', '🧹'].map(bare).sort()
   )
-  for (const glyph of ['→', '↪️', '🎯', '📥', '🗺️', '📦', '👂', '🧵', '🔑', '🌐'].map(bare))
+  for (const glyph of ['→', '↪️', '🎯', '📥', '🗺️', '📦', '🤝', '🧵', '🔑', '🌐'].map(bare))
     expect(AGREED).toContain(glyph)
   expect(ROLE_GLYPHS.size).toBeGreaterThan(10)
   expect(
@@ -438,18 +446,27 @@ test('With worker names the hold or handoff it is heading for in its own line be
 })
 
 // Kris, 16 November 2026, under LISTEN-LINE: "it should indicate meetings it's in or not. Otherwise should be left off".
-// Listening means only whether a session is in a meeting, so the listening line names the meetings it is in and is left
-// off in none; the inbox watcher keeps its status fields and has no line. Kris removed the sync line under SYNC-LINE-OFF,
-// about 18:00 GMT on 4 November 2026: "remove the sync mode line from the banner entirely", as Cairn keeps machines in
-// sync.
-test('the listening line names the meetings the session is in, is left off in none, and there is no sync line', () => {
-  expect('👂 in cairn.wayfinder.designs').toMatch(MEETING_LINE)
-  expect('👂 in cairn.summit.voice, cairn.wayfinder.designs').toMatch(MEETING_LINE)
+// Kris, 19 November 2026, under FOOTER-DELEGATES: "whether or not we change the listening glyph now to something of our
+// meeting in some way or other … And the idea that then something shows that it's not listening doesn't really make any
+// sense either". So the meeting line names each meeting the session is in, with who it works with there, under a
+// meeting glyph, and is left off in none; the inbox watcher keeps its status fields and has no line. Kris removed the
+// sync line under SYNC-LINE-OFF, about 18:00 GMT on 4 November 2026: "remove the sync mode line from the banner
+// entirely", as Cairn keeps machines in sync.
+test('the meeting line names the meetings the session is in and who it works with there, is left off in none, and there is no sync line', () => {
+  expect('🤝 in cairn.wayfinder.designs · with Quire, Limner').toMatch(MEETING_LINE)
+  expect('🤝 in cairn.summit.voice · with Kitteth, cairn.wayfinder.designs · with Quire, Limner').toMatch(MEETING_LINE)
+  expect('🤝 in cairn.wayfinder.designs · with Hob Sol, ki.cairn@information-architect').toMatch(MEETING_LINE)
+  expect('🤝 in cairn.summit.voice').toMatch(MEETING_LINE)
+  expect('👂 in cairn.wayfinder.designs').toMatch(LISTEN_MEETING_LINE)
   for (const line of [
     '👂 listening',
     '🔇 not listening',
-    '👂 in',
-    '👂 in cairn.summit.voice,cairn.wayfinder.designs',
+    '👂 in cairn.wayfinder.designs',
+    '🤝 in',
+    '🤝 not in a meeting',
+    '🤝 in cairn.wayfinder.designs · with',
+    '🤝 in cairn.wayfinder.designs · Quire, Limner',
+    '🤝 in cairn.summit.voice,cairn.wayfinder.designs',
     '🧵 ki.sop.main'
   ])
     expect(line).not.toMatch(MEETING_LINE)
@@ -465,9 +482,19 @@ test('the listening line names the meetings the session is in, is left off in no
   ]
   expectBanner(banner([]))
   expectBanner(banner(['↪️ draining → ⏸️ On hold']))
-  expectBanner(banner(['👂 in cairn.summit.voice']))
-  expectBanner(banner(['↪️ draining → ⏸️ On hold', '👂 in cairn.summit.voice, cairn.wayfinder.designs']))
-  for (const closing of [['👂 listening'], ['🔇 not listening'], ['👂 in cairn.summit.voice', '🔄 syncing for sol']])
+  expectBanner(banner(['🤝 in cairn.summit.voice · with Kitteth']))
+  expectBanner(
+    banner([
+      '↪️ draining → ⏸️ On hold',
+      '🤝 in cairn.summit.voice · with Kitteth, cairn.wayfinder.designs · with Quire, Limner'
+    ])
+  )
+  for (const closing of [
+    ['👂 listening'],
+    ['🔇 not listening'],
+    ['👂 in cairn.summit.voice'],
+    ['🤝 in cairn.summit.voice · with Kitteth', '🔄 syncing for sol']
+  ])
     expect(() => expectBanner(banner(closing))).toThrow()
   expect(() =>
     expectBanner([
@@ -475,26 +502,35 @@ test('the listening line names the meetings the session is in, is left off in no
       '',
       '- 🏁 3 work items accepted',
       '',
-      '👂 in cairn.summit.voice',
+      '🤝 in cairn.summit.voice · with Kitteth',
       '',
       '🧵 ki.prj.demo'
     ])
   ).toThrow()
   for (const lines of banners(standard)) {
     expect(lines.some((line) => SYNC_LINE.test(line))).toBe(false)
-    expect(lines.some((line) => LISTEN_LINE.test(line) || LISTEN_OFF_LINE.test(line))).toBe(false)
+    expect(
+      lines.some((line) => LISTEN_LINE.test(line) || LISTEN_OFF_LINE.test(line) || LISTEN_MEETING_LINE.test(line))
+    ).toBe(false)
   }
   const [withWorker, handoff, draining, hold, snoozing] = banners(standard)
-  expect(handoff?.at(-3)).toBe('👂 in cairn.wayfinder.designs')
+  expect(handoff?.at(-3)).toBe('🤝 in cairn.wayfinder.designs · with Quire, Limner')
   for (const lines of [withWorker, draining, hold, snoozing])
-    expect(lines?.some((line) => line.startsWith('👂'))).toBe(false)
+    expect(lines?.some((line) => line.startsWith('🤝') || line.startsWith('👂'))).toBe(false)
   expect(standard).toContain('**Mode lines.**')
-  for (const name of ['LISTEN-LINE', 'LISTEN-STATUS', 'FOOTER-CAPABILITY-STATUS-2', 'SYNC-LINE-OFF'])
+  for (const name of [
+    'LISTEN-LINE',
+    'FOOTER-DELEGATES',
+    'LISTEN-STATUS',
+    'FOOTER-CAPABILITY-STATUS-2',
+    'SYNC-LINE-OFF'
+  ])
     expect(standard).toContain(name)
   expect(standard).toContain('- **Inbox watch:**')
   for (const text of [standard, outputStyle]) {
-    expect(text).toContain('`👂 in <meeting>`')
-    expect(text).toContain('as in `👂 in cairn.wayfinder.designs`')
+    expect(text).toContain('`🤝 in <meeting> · with <names>`')
+    expect(text).toContain('as in `🤝 in cairn.wayfinder.designs · with Quire, Limner`')
+    expect(text).toContain('nothing shows in its place')
     expect(text).toContain('a sitting under way')
     expect(withoutSources(text)).not.toMatch(/^🔄 /mu)
     for (const field of ['listening_enabled', 'listening_status', 'syncing_enabled', 'syncing_status'])
@@ -504,10 +540,11 @@ test('the listening line names the meetings the session is in, is left off in no
     expect(text).toContain('the inbox watcher')
   }
   expect(outputStyle).not.toContain('`👂 listening`')
+  expect(outputStyle).not.toContain('`👂 in <meeting>`')
   expect(outputStyle).not.toContain('`🔇 not listening`')
   for (const text of [standard, outputStyle])
     expect(text).toContain(
-      'after a blank line following its listening line, or its list or heading-for line where it has none, with exactly one plain Markdown thread line'
+      'after a blank line following its meeting line, or its list or heading-for line where it has none, with exactly one plain Markdown thread line'
     )
 })
 
@@ -529,7 +566,7 @@ test('a thread listens only when the owner asks it to, and a Rig host sync threa
 // Kris, 31 October 2026, under THREAD-CAPABILITIES and SYNC-UNTIL-CLEAN: "a resync doesn't finish until it's got to a
 // point of being clean". A thread may hold listening and host sync, each switched on only by express word or an agreed
 // role; host sync repeats each pass until clean and level, stays quiet on quiet passes and implies listening.
-test('a session may hold listening and host sync, and the banner shows only the listening line', () => {
+test('a session may hold listening and host sync, and the banner shows only the meeting line', () => {
   expect(standard).toContain('### 4.2 Session capabilities')
   expect(standard).toContain('[Session capabilities](standard-listening.md#42-session-capabilities)')
   for (const name of ['THREAD-CAPABILITIES', 'SYNC-UNTIL-CLEAN', 'SYNC-QUIET', 'Host sync implies listening.'])
@@ -1152,7 +1189,7 @@ test('the banner lists no `[awaiting ACK]` item', () => {
     '',
     '- 👤 WORK-HOME · owner · at 22:58',
     '',
-    '👂 in cairn.summit.voice',
+    '🤝 in cairn.summit.voice · with Kitteth',
     '',
     '🧵 ki.sop.main'
   ]
@@ -1192,7 +1229,7 @@ test("a Full reply's footer carries the roadmap and package lines beneath its co
       '',
       '- 👤 WORK-HOME · owner · at 22:58',
       '',
-      '👂 in cairn.summit.voice',
+      '🤝 in cairn.summit.voice · with Kitteth',
       '',
       '🧵 ki.sop.main'
     ])
@@ -1272,7 +1309,7 @@ test('Snoozing has its own glyph, keeps its watcher, is never drained, and one t
   expect(snoozing?.[0]).toBe('### 💤 Snoozing (on hold) · at 23:58 GMT')
   expect(snoozing?.[2]).toBe('💤 waiting for a message · 🅿️ 2 queries parked')
   expect(snoozing).toContain('- 💤 a message arrives, or `resume`')
-  expect(snoozing?.some((line) => line.startsWith('👂'))).toBe(false)
+  expect(snoozing?.some((line) => line.startsWith('🤝'))).toBe(false)
   expect(snoozing?.some((line) => line.includes('drained'))).toBe(false)
   expect(snoozing?.filter((line) => line.startsWith('- ')).every((line) => /^- (?:🅿️|💤) /u.test(line))).toBe(true)
   expect('**Stop at 23:58 GMT · mark 23:55 GMT**').toMatch(FORM_LINE)
@@ -1281,7 +1318,7 @@ test('Snoozing has its own glyph, keeps its watcher, is never drained, and one t
   expect('↪️ draining → 💤 Snoozing (on hold)').toMatch(HEADING_FOR_LINE)
   const table = standard.split('**One table of states.**')[1]?.split('\n\n**')[0] ?? ''
   expect(table).toContain(
-    '| State | Glyph | Banner heading | Counts line | Allowed items | Listening line | Reply structure |'
+    '| State | Glyph | Banner heading | Counts line | Allowed items | Meeting line | Reply structure |'
   )
   for (const state of [
     'With worker',

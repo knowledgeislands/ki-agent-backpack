@@ -54,7 +54,7 @@ const counts = '🤖 0 running · ⏳ 0 queued · 👤 1 with you · ⛔ 0 block
 const roadmap = '🗺️ roadmap · 6 records · 3 open · 2 done awaiting prune · 1 idea'
 const pkg = '📦 package · changes 3 · open 2 · held 0 · meetings 1'
 const items = '- 👤 FOOTER-HOOK · owner · at 21:10'
-const listening = '👂 in cairn.wayfinder.designs'
+const listening = '🤝 in cairn.wayfinder.designs · with Quire, Limner'
 const thread = '🧵 ki.prj.demo'
 const summaryBody = [
   '# [KI › demo](/tmp/store/work/ki/ki.demo/_index.md)',
@@ -297,14 +297,17 @@ test('a Stop and a Finished banner pass in their own shapes', () => {
   expect(run(stop(hold.replace('**Stop at', '**⏸️ On hold · Hold report at'), plain))).toEqual(silent)
 })
 
-// LISTEN-LINE, Kris, 16 November 2026: the listening line names the meetings the session is in and is left off in
-// none, so a banner without it passes quietly and the earlier on-or-off line warns.
-test('the listening line is optional, and its earlier on-or-off form warns', () => {
+// LISTEN-LINE, Kris, 16 November 2026, and FOOTER-DELEGATES, 19 November 2026: the meeting line names the meetings the
+// session is in and who it works with there, and is left off in none, so a banner without it passes quietly, and an
+// earlier listening line warns.
+test('the meeting line is optional, and an earlier listening form warns', () => {
   expect(run(stop(rebootstrap(heading, counts, items, thread), plain))).toEqual(silent)
-  expect(run(stop(rebootstrap(heading, counts, items, '👂 in cairn.summit.voice, cairn.wayfinder.designs', thread), plain))).toEqual(silent)
-  for (const old of ['👂 listening', '🔇 not listening'])
+  expect(
+    run(stop(rebootstrap(heading, counts, items, '🤝 in cairn.summit.voice · with Kitteth, cairn.wayfinder.designs · with Quire, Limner', thread), plain))
+  ).toEqual(silent)
+  for (const old of ['👂 listening', '🔇 not listening', '👂 in cairn.wayfinder.designs'])
     expect(run(stop(rebootstrap(heading, counts, items, old, thread), plain)).warning).toStartWith(
-      "Footer check: this reply's banner has a listening line in the earlier 👂 listening or 🔇 not listening form, which LISTEN-LINE replaces with 👂 in <meeting>, or no line in no meeting. "
+      "Footer check: this reply's banner has a meeting line in an earlier form, 👂 listening, 🔇 not listening or 👂 in <meeting>, which FOOTER-DELEGATES replaces with 🤝 in <meeting> · with <names>, or no line in no meeting. "
     )
 })
 
