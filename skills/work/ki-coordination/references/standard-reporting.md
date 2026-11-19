@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T05:55:00Z
+ki-revised: 2026-11-19T05:51:35Z
 ki-status: in force
 ---
 
@@ -292,6 +292,7 @@ Each outstanding query carries a short mnemonic tag, such as `BOT-1`, `CSWAP` or
 ### 4.3 Links and wording
 
 - **Links:** every record a report names is linked by its full identifier under [Linking records](#44-linking-records), and every link opens where the owner reads, under [Where the owner reads](#441-where-the-owner-reads).
+- **Change documents:** a change document is named by its name, the slug after its number in sentence case, with its number in brackets after it if at all, as "Case website (70)" or "Site ia (96)", never "change 70" or "70" alone: the number is only its priority. A link to one takes the same text. `ki-work-package`'s [change documents](../../ki-work-package/references/standard-work-package.md#46-change-documents) set the same for files.
 - **Wording:** plain language; "background agents" for the worker processes and "runs" for their groups, never "helpers". When the owner must paste a message into another session, give it in a code block ready to copy.
 
 [Back to contents](#contents)
