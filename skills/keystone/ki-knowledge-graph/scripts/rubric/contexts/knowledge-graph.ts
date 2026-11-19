@@ -19,7 +19,6 @@ export const createKnowledgeGraphSession = ({
       { families: ['CARD'], context: () => context },
       { families: ['CURATE'], context: () => context },
       { families: ['GRAPH'], context: () => context },
-      { families: ['DISPATCH'], context: () => context },
       { families: ['RUBRIC'], context: () => context }
     ],
     proposal: () => ({ writes: [] })

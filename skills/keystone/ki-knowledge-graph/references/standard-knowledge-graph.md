@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:47:26Z
+ki-revised: 2026-11-19T05:50:00Z
 ki-status: in force
 ---
 
@@ -20,16 +20,13 @@ ki-status: in force
   - [4.4 Links](#44-links)
   - [4.5 Subgraphs](#45-subgraphs)
   - [4.6 Layered graphs and shadow nodes](#46-layered-graphs-and-shadow-nodes)
-  - [4.7 Curation](#47-curation)
-    - [4.7.1 The funnel](#471-the-funnel)
-    - [4.7.2 Transactional curation](#472-transactional-curation)
-    - [4.7.3 The staging graph](#473-the-staging-graph)
-    - [4.7.4 Tending](#474-tending)
-    - [4.7.5 Dispatch](#475-dispatch)
+  - [4.7 Staging and tending](#47-staging-and-tending)
+    - [4.7.1 The staging graph](#471-the-staging-graph)
+    - [4.7.2 Tending](#472-tending)
 
 ## 1. Introduction
 
-A knowledge graph is cards about things, joined by typed links, kept in a repository. It serves any use: a skill's body of knowledge, an island's settled knowledge, or material being curated from captures. Curation is one use, and the relationships geared to it are some of the graph's, not its limit (KG-GENERAL, Kris, 12 November 2026). This standard sets what every graph shares: its root definition, its cards and links, its subgraphs and how graphs layer; it then sets the curation method for the graphs that are built from captures.
+A knowledge graph is cards about things, joined by typed links, kept in a repository. It serves any use: a skill's body of knowledge, an island's settled knowledge, or material being curated from captures. Curation is one use, and the relationships geared to it are some of the graph's, not its limit (KG-GENERAL, Kris, 12 November 2026). This standard sets what every graph shares: its root definition, its cards and links, its subgraphs and how graphs layer; it then sets how a graph built from captures is staged, and how every graph is tended. Curating captures into cards, and dispatch, belong to the Inbox (personal.inbox), under CURATION-HOME, 19 November 2026.
 
 The standard holds the method, and a graph keeps the things that are, under SKILLS-OVER-GRAPH (Kris, 7 November 2026). The concepts the standard relies on, such as Semantic Markdown, layered graphs and progressive disclosure, are cards in the skill's own graph, which [its root definition](../knowledge/_graph.md) opens; the standard follows those cards rather than restating them (KG-SELF). The decisions behind these rules are in [the sources file](sources.md#3-decisions).
 
@@ -37,20 +34,21 @@ The standard holds the method, and a graph keeps the things that are, under SKIL
 
 ## 2. Scope
 
-What every knowledge graph shares, and the curation method for the graphs built from captures.
+What every knowledge graph shares, and the staging and tending of graphs.
 
 ### 2.1 In scope
 
 - A graph's root folder, its root definition, and the identity and naming of its cards.
 - Cards, typed and navigational links, and subgraphs.
 - Layered graphs, attachment points and the shadow node life cycle.
-- Curation: the funnel, transactional curation, the staging graph, tending and dispatch.
+- The staging graph, what a curated card keeps, and tending.
 
 [Back to contents](#contents)
 
 ### 2.2 Out of scope
 
 - Sorting before Deposit, and the Deposit routes: the `ki-dodecakrisis` skill.
+- Curating captures into cards, its pace, and dispatch: the Inbox (personal.inbox), under CURATION-HOME, 19 November 2026.
 - Faithful capture, coverage, originals, provider rules and the capture package: the `ki-acquire` skill and its provider skills.
 - Folders, zones and zone aliases of any knowledge base, the staging base's included: the `ki-repo-kb` skill.
 - How a skill holds a graph, and the knowledge kind of skill: the `ki-skills` skill.
@@ -73,9 +71,9 @@ What every knowledge graph shares, and the curation method for the graphs built 
 | **Subgraph** | A part of a graph with its own subject, declared in the root definition, whose cards' ids carry its prefix. **Standard:** this one, [4.5](#45-subgraphs) |
 | **Attachment point** | A card a graph declares fully confident will not move, which other graphs may pin to. **Standard:** this one, [4.6](#46-layered-graphs-and-shadow-nodes) |
 | **Shadow node** | A read-only pointer in a lower graph to an attachment point above, recording the card it shadows, where that card lives and when it was last checked. **Standard:** this one, [4.6](#46-layered-graphs-and-shadow-nodes) |
-| **Curation** | The use of a graph that turns deposited and captured material into cards, from Deposit to dispatch. **Standard:** this one, [4.7](#47-curation) |
-| **Staging graph** | The graph where curated knowledge is staged before it is settled, mirroring each receiving island. **Standard:** this one, [4.7.3](#473-the-staging-graph) |
-| **Dispatch** | A Git move of a package of settled cards from the staging graph into the receiving island's `+/_ACQUIRED/`. **Standard:** this one, [4.7.5](#475-dispatch) |
+| **Curation** | The use of a graph that turns deposited and captured material into cards, from Deposit to dispatch. **Owner:** the Inbox (personal.inbox), under CURATION-HOME; what a curated card keeps is this standard's, [4.7](#47-staging-and-tending) |
+| **Staging graph** | The graph where curated knowledge is staged before it is settled, mirroring each receiving island. **Standard:** this one, [4.7.1](#471-the-staging-graph) |
+| **Dispatch** | A Git move of a package of settled cards from the staging graph into the receiving island's `+/_ACQUIRED/`. **Owner:** the Inbox (personal.inbox), under CURATION-HOME |
 
 [Back to contents](#contents)
 
@@ -125,11 +123,9 @@ A card is one Semantic Markdown file: one coherent, addressable knowledge resour
 - **The thing, not the card.** A card describes the thing it is named after, and its type is the thing's type, not "document".
 - **Purpose first.** Where a graph's root definition asks for it, a card says first what the thing achieves, then what it is and how it is built.
 - **Origin.** A card has no origin section in its body. Where its origin would help someone check it later, its front matter gives it in one plain `origin:` line; otherwise it has none.
-- **No links into captures.** A card never links to a capture, because the capture is transient; what the card needs in order to be checked travels in the card.
-- **Meetings are sources.** A meeting's decisions and concepts become cards; the meeting itself is not a card and may be named as an `origin:`.
 - **Future ideas.** An idea for later becomes a card with `status: future-concept`, not roadmap work; only an idea being acted on now becomes work.
 - **Sensitivity.** A card may carry `sensitive: true` with `sensitivity: <reason>`, weighed whenever the card would be used outside its own island; most cards carry neither.
-- **Method stays out.** A card says what a thing is. How to curate, tend or dispatch is this skill's, and a card that holds such method links to the skill instead.
+- **Method stays out.** A card says what a thing is. How to tend is this skill's, and how to curate or dispatch is the Inbox's; a card that holds such method links to its owner instead.
 
 [Back to contents](#contents)
 
@@ -172,44 +168,15 @@ Shadow nodes have a life cycle:
 
 [Back to contents](#contents)
 
-### 4.7 Curation
+### 4.7 Staging and tending
 
-Curation is the use of a graph that turns deposited and captured material into cards: the funnel from Deposit to dispatch, curating one item at a time, the staging graph, tending and dispatch to the island that owns the knowledge. A graph built another way, such as a skill's body of knowledge settled by decision, uses the rest of this standard without this section, though tending applies to every graph.
+A graph built from captures is staged before it settles, and every graph is tended. Curating captures into cards, and dispatch, belong to the Inbox (personal.inbox), under CURATION-HOME, 19 November 2026.
 
-[Back to contents](#contents)
-
-#### 4.7.1 The funnel
-
-The knowledge capture funnel takes in what it is given without losing the detail that matters. It starts at Deposit: material is sorted first by D12, and only what D12 deposits enters the funnel; what is delegated or deleted there leaves without entering it. The funnel then has three stages, each with its owner:
-
-| Stage | What happens | Owner |
-| --- | --- | --- |
-| Capture | Material comes in faithfully, with its source, date, scope and originals, without deciding what it means | The `ki-acquire` skill and its provider skills |
-| Curate | Durable knowledge is drawn out of each capture, one item at a time, into cards in a staging graph, and tended there | This standard |
-| Dispatch | Settled cards move to the island that owns them | This standard, with the receiving island's own triage |
-
-Each capture is filed under one primary territory, but its knowledge may go to several territories as it is curated, wherever the context fits.
-
-**Pace.** Each day the newest material is curated first, so the funnel keeps up with what arrives. With spare capacity, curation takes one more day back from the newest day not yet done, one day at a time, with a report after each, so the cost is seen before it carries on. Capture is never held back while curation waits. Material held awaiting incorporation is worked back the same way, newest first, without bulk moves to classify it.
+What a card curated from a capture keeps is durable: the positions, proposals and commitments, and which organisation holds each, rather than who attended, for how long, people's titles or the tactics of the moment, which stay in the capture. Responsibilities are recorded against organisations, not people.
 
 [Back to contents](#contents)
 
-#### 4.7.2 Transactional curation
-
-Curation is judgement-led and incremental: knowledge is curated in small, verifiable increments, never by waiting for a whole capture. A part of a capture is a paragraph or a list item.
-
-1. **Take one bounded item** from one capture, and look for an existing authoritative card, in the layer above first and then in this graph.
-2. **Distil, qualify, relate and integrate** it, keeping decisions, hypotheses and open questions distinct.
-3. **Verify** its meaning, internal links, predicates and any `origin:` line.
-4. **Commit together** the card change and the item's strike-through in its capture: the whole part struck, its original text kept inside the strike, followed on the next line by a note naming every destination.
-5. **Drop deliberately.** A part not worth keeping, or too detailed, is struck in its own "considered and dropped" commit, with a note giving the reason.
-6. **Delete the capture** only once every part in it is struck. A part several areas need stays unstruck, its note naming what is done and what is pending, until the last area is done. A capture holding a part marked capture-only is never deleted.
-
-Curation keeps what is durable and leaves the rest in the capture: the positions, proposals and commitments, and which organisation holds each, rather than who attended, for how long, people's titles or the tactics of the moment. Responsibilities are recorded against organisations, not people. The commit pairing a card change with its strike-through is the audit trail while the work stays in the staging repository; Git history does not travel with knowledge across repositories.
-
-[Back to contents](#contents)
-
-#### 4.7.3 The staging graph
+#### 4.7.1 The staging graph
 
 Curated knowledge is staged before it is settled. In the staging graph, cards, ids and structure may change as the graph is shaped: cards may be renamed, merged or split. A card moves to its receiving island only once its structure has settled, and from then on its id stays stable.
 
@@ -219,16 +186,8 @@ Routing cards that say where material belongs may link into captures and staged 
 
 [Back to contents](#contents)
 
-#### 4.7.4 Tending
+#### 4.7.2 Tending
 
-Tending checks over time that a graph stays coherent, meaningfully connected, free of duplicates, qualified where it should be, and reachable through progressive disclosure: a reader or agent meets a coherent summary before deeper detail. Tending merges duplicate definitions, splits cards that hold more than one thing or are linked to in part, renames while ids can still change, finds cards no link reaches, and prunes untended shadow nodes under the life cycle above. Measures of a graph's reach, duplication and comprehension are future work for the tools that would compute them, not part of this standard.
-
-[Back to contents](#contents)
-
-#### 4.7.5 Dispatch
-
-Dispatch is a Git move of each package, a single capture's cards or a chosen roll-up, from the staging graph into the receiving island's `+/_ACQUIRED/`, as its own folder. Delivery is acceptance: the receiver's commit and the staging repository's removal commit are the only record, with no dispatch ledger or return route, and a misdelivery is handled case by case. The receiving island then triages what it received under its own authority. Each dispatched card leaves a shadow node in the staging graph. A graph declared a holding area dispatches nothing while the declaration stands.
-
-Evidential material kept word for word travels as it is and is never edited. Curation authority does not grant dispatch, receiver reconciliation, source deletion or history compaction; each needs its own grant, and history is never rewritten to hide a failure.
+Tending checks over time that a graph stays coherent, meaningfully connected, free of duplicates, qualified where it should be, and reachable through progressive disclosure: a reader or agent meets a coherent summary before deeper detail. Tending merges duplicate definitions, splits cards that hold more than one thing or are linked to in part, renames while ids can still change, finds cards no link reaches, and prunes untended shadow nodes under the life cycle above. Git history is the record of that restructuring. Measures of a graph's reach, duplication and comprehension are future work for the tools that would compute them, not part of this standard.
 
 [Back to contents](#contents)

@@ -37,7 +37,7 @@ test('an empty table is valid and every family has a subject carrying the host p
     publication
   })
   const families = session.subjects.flatMap(({ families }) => families)
-  expect(families).toEqual(['CONFIG', 'CARD', 'CURATE', 'GRAPH', 'DISPATCH', 'RUBRIC'])
+  expect(families).toEqual(['CONFIG', 'CARD', 'CURATE', 'GRAPH', 'RUBRIC'])
   const configuration = session.subjects.find(({ families }) => families.includes('CONFIG'))
   if (!configuration) throw new Error('Missing configuration subject')
   expect(CONFIG.items[0].mechanical.audit.run(configuration.context())[0]?.status).toBe('PASS')

@@ -4,7 +4,7 @@ ki-document-type: rubric@2026-11-17T00:55:00Z
 
 <!-- GENERATED FILE: produced by `ki dev skill rubric`. Do not hand-edit; edit scripts/rubric/items/, then rerun `ki dev skill rubric <skill> --write`. -->
 
-# Generated rubric — Knowledge graphs: root definition, cards, links, curation and dispatch
+# Generated rubric — Knowledge graphs: root definition, cards, links, staging and tending
 
 > **Generated publication.** The TypeScript rubric items under `scripts/rubric/items/` are canonical. Edit those definitions, then rerun `ki dev skill rubric ki-knowledge-graph --write`.
 
@@ -14,9 +14,8 @@ Line-by-line criteria for auditing ki-knowledge-graph. Classifications are deriv
 
 - [CONFIG — Knowledge-graph configuration](#config--knowledge-graph-configuration)
 - [CARD — Semantic Markdown cards](#card--semantic-markdown-cards)
-- [CURATE — Transactional curation](#curate--transactional-curation)
+- [CURATE — What curated cards keep](#curate--what-curated-cards-keep)
 - [GRAPH — Root definition, subgraphs, layers and tending](#graph--root-definition-subgraphs-layers-and-tending)
-- [DISPATCH — Dispatch and authority](#dispatch--dispatch-and-authority)
 - [RUBRIC — Generated rubric publication](#rubric--generated-rubric-publication)
 
 ## CONFIG — Knowledge-graph configuration
@@ -25,7 +24,7 @@ Line-by-line criteria for auditing ki-knowledge-graph. Classifications are deriv
 
 The method takes its layout from the knowledge base that declares it and accepts no configuration keys of its own.
 
-- **CONFIG-1 [M] — the knowledge-graph method has no configuration properties** — Unexpected keys in the skill table are visible rather than silently accepted as staging-layout settings, which belong to the knowledge base’s own structure. (standard-knowledge-graph.md#473-the-staging-graph)
+- **CONFIG-1 [M] — the knowledge-graph method has no configuration properties** — Unexpected keys in the skill table are visible rather than silently accepted as staging-layout settings, which belong to the knowledge base’s own structure. (standard-knowledge-graph.md#471-the-staging-graph)
   - _Remediation:_ diagnostic — Remove unsupported keys; declare the staging layout in the knowledge base’s own structure.
 
 ## CARD — Semantic Markdown cards
@@ -44,14 +43,14 @@ Cards are judged on supplied card evidence; each says what one thing is, in the 
   - _Review prompt:_ Does every predicate express an intended assertion from a declared vocabulary, using ki: only where SKOS and the other declared vocabularies lack the term, with no invented predicate on a navigational link?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-- **CARD-3 [J] — one authoritative definition per concept within a graph** — Other cards give short context and link to the defining card rather than repeat it, and no card is made for every noun. (standard-knowledge-graph.md#43-cards, standard-knowledge-graph.md#474-tending)
+- **CARD-3 [J] — one authoritative definition per concept within a graph** — Other cards give short context and link to the defining card rather than repeat it, and no card is made for every noun. (standard-knowledge-graph.md#43-cards, standard-knowledge-graph.md#472-tending)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ Is each concept defined once within its graph, with other cards linking to that definition, and does every card earn its place?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-- **CARD-4 [J] — cards stand alone and keep method out** — No card links to a capture or has a body origin section; any origin is one plain front-matter line; meetings are sources, future ideas are future concepts, and method links to the skill rather than being restated. (standard-knowledge-graph.md#43-cards)
+- **CARD-4 [J] — cards stand alone and keep method out** — No card has a body origin section; any origin is one plain front-matter line; future ideas are future concepts, and method links to its owner rather than being restated. (standard-knowledge-graph.md#43-cards)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
-  - _Review prompt:_ Does every card avoid capture links and body origin sections, treat meetings as sources and future ideas as future concepts, and leave curation, tending and dispatch method to the skill?
+  - _Review prompt:_ Does every card avoid body origin sections, treat future ideas as future concepts, and leave tending, curation and dispatch method to its owner?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
 - **CARD-5 [J] — a card is named by its readable id** — A card file is `<id>.md`, its id is short and readable, never a UUID, carries its subgraph before a dot where the graph has subgraphs, and is unique in the graph; its folder is never part of its identity, and where the graph has folders the card sits in its subgraph’s folder. (standard-knowledge-graph.md#41-the-graph)
@@ -65,30 +64,15 @@ Cards are judged on supplied card evidence; each says what one thing is, in the 
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
 
-## CURATE — Transactional curation
+## CURATE — What curated cards keep
 
 → [standard](standard-knowledge-graph.md)
 
-Curation is judged on the captures and the commits that worked them; a mechanical pass does not prove faithful curation.
+What a card curated from a capture keeps is judged on the cards and the captures they came from; curating itself is the Inbox’s, under CURATION-HOME.
 
-- **CURATE-1 [J] — each curation commit pairs the card change with its strike-through** — One bounded item per commit: the card change and the whole part struck in its capture, original text kept inside the strike and a note naming every destination; a dropped part has its own considered-and-dropped commit with a reason. (standard-knowledge-graph.md#472-transactional-curation)
+- **CURATE-4 [J] — curation keeps what is durable** — Positions, proposals and commitments are kept with the organisation holding each, and the moment’s detail stays in the capture. (standard-knowledge-graph.md#47-staging-and-tending)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
-  - _Review prompt:_ Does each curation commit carry one item’s card change together with its strike-through and destination note, and each dropped part its own commit and reason?
-  - _Outcomes:_ conforming; gap; exclusion
-  - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-- **CURATE-2 [J] — every destination named in a strike note exists** — A struck part names its destinations, each of which resolves to a card; a part several areas need stays unstruck with its done and pending areas named. (standard-knowledge-graph.md#472-transactional-curation)
-  - _Evidence scope:_ The target skill and the evidence named by this criterion.
-  - _Review prompt:_ Does every strike note name destinations that exist, and does every partly curated part stay unstruck with what is done and pending?
-  - _Outcomes:_ conforming; gap; exclusion
-  - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-- **CURATE-3 [J] — captures are deleted only when wholly struck** — No capture is deleted while it holds an unstruck part, and a capture holding a part marked capture-only is never deleted. (standard-knowledge-graph.md#472-transactional-curation)
-  - _Evidence scope:_ The target skill and the evidence named by this criterion.
-  - _Review prompt:_ Was every deleted capture wholly struck, with no capture deleted that held a capture-only part?
-  - _Outcomes:_ conforming; gap; exclusion
-  - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-- **CURATE-4 [J] — curation keeps what is durable at the agreed pace** — Positions, proposals and commitments are kept with the organisation holding each, the moment’s detail stays in the capture, and curation takes today first, then one day back at a time with a report after each. (standard-knowledge-graph.md#471-the-funnel, standard-knowledge-graph.md#472-transactional-curation)
-  - _Evidence scope:_ The target skill and the evidence named by this criterion.
-  - _Review prompt:_ Did curation keep durable positions and commitments against organisations, leave ephemeral detail in the capture, and follow the today-first, one-day-back pace with reports?
+  - _Review prompt:_ Did curation keep durable positions and commitments against organisations, and leave ephemeral detail in the capture?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
 
@@ -98,7 +82,7 @@ Curation is judged on the captures and the commits that worked them; a mechanica
 
 A graph’s root definition, subgraphs, staging and layers are judged on supplied evidence; folder and zone structure is the knowledge base’s own.
 
-- **GRAPH-1 [J] — routing links run one way** — Routing cards may link into captures and staged cards, but nothing in a capture links into the routing cards. (standard-knowledge-graph.md#473-the-staging-graph)
+- **GRAPH-1 [J] — routing links run one way** — Routing cards may link into captures and staged cards, but nothing in a capture links into the routing cards. (standard-knowledge-graph.md#471-the-staging-graph)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ Does any capture link into a routing card?
   - _Outcomes:_ conforming; gap; exclusion
@@ -113,7 +97,7 @@ A graph’s root definition, subgraphs, staging and layers are judged on supplie
   - _Review prompt:_ For each new card, was the layer above checked first, and does no new card duplicate an attachment point or settled card above?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-- **GRAPH-4 [J] — pruning keeps each area’s touch point** — Shadow nodes are pruned only in untended areas after a few rounds of use, and every live area keeps its one shadow at its touch point. (standard-knowledge-graph.md#46-layered-graphs-and-shadow-nodes, standard-knowledge-graph.md#474-tending)
+- **GRAPH-4 [J] — pruning keeps each area’s touch point** — Shadow nodes are pruned only in untended areas after a few rounds of use, and every live area keeps its one shadow at its touch point. (standard-knowledge-graph.md#46-layered-graphs-and-shadow-nodes, standard-knowledge-graph.md#472-tending)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ Were pruned shadows in untended areas only, and does every live area keep one shadow node where it touches the layer above?
   - _Outcomes:_ conforming; gap; exclusion
@@ -126,23 +110,6 @@ A graph’s root definition, subgraphs, staging and layers are judged on supplie
 - **GRAPH-6 [J] — outside usage is a subgraph linked to the graph’s terms** — Where parties use their own words for a term, each party’s words are cards in its own subgraph linked to the term with mapping predicates, one link per sense, and comparisons are read from those links rather than listed in prose. (standard-knowledge-graph.md#45-subgraphs)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ Are synonyms, senses and comparisons expressed as links between subgraph cards rather than as lists in a card’s prose?
-  - _Outcomes:_ conforming; gap; exclusion
-  - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-
-## DISPATCH — Dispatch and authority
-
-→ [standard](standard-knowledge-graph.md)
-
-Dispatch is judged on the moves and the approvals they cite.
-
-- **DISPATCH-1 [J] — dispatch is an approved Git move that leaves a shadow** — Each package moves by Git into the receiving island’s +/_ACQUIRED/ as its own folder, under an approval naming it, with no ledger, and each dispatched card leaves a shadow node behind. (standard-knowledge-graph.md#475-dispatch, standard-knowledge-graph.md#46-layered-graphs-and-shadow-nodes)
-  - _Evidence scope:_ The target skill and the evidence named by this criterion.
-  - _Review prompt:_ Was every dispatch a Git move into the receiver’s +/_ACQUIRED/ under an approval naming the package, with no ledger, leaving a shadow node for each card?
-  - _Outcomes:_ conforming; gap; exclusion
-  - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-- **DISPATCH-2 [J] — holding areas dispatch nothing and authority stays separate** — No package leaves a graph declared a holding area, and receiver reconciliation, source deletion and history compaction each had their own grant. (standard-knowledge-graph.md#475-dispatch)
-  - _Evidence scope:_ The target skill and the evidence named by this criterion.
-  - _Review prompt:_ Did nothing leave a declared holding area, and did every reconciliation, deletion or history change rest on its own grant?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
 

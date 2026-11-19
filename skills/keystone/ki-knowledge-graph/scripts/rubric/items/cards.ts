@@ -33,7 +33,7 @@ export const CARD = {
       title: 'one authoritative definition per concept within a graph',
       description:
         'Other cards give short context and link to the defining card rather than repeat it, and no card is made for every noun.',
-      sources: ['standard-knowledge-graph.md#43-cards', 'standard-knowledge-graph.md#474-tending'],
+      sources: ['standard-knowledge-graph.md#43-cards', 'standard-knowledge-graph.md#472-tending'],
       judgment: judgment(
         'Is each concept defined once within its graph, with other cards linking to that definition, and does every card earn its place?'
       )
@@ -42,10 +42,10 @@ export const CARD = {
       code: 'CARD-4',
       title: 'cards stand alone and keep method out',
       description:
-        'No card links to a capture or has a body origin section; any origin is one plain front-matter line; meetings are sources, future ideas are future concepts, and method links to the skill rather than being restated.',
+        'No card has a body origin section; any origin is one plain front-matter line; future ideas are future concepts, and method links to its owner rather than being restated.',
       sources: ['standard-knowledge-graph.md#43-cards'],
       judgment: judgment(
-        'Does every card avoid capture links and body origin sections, treat meetings as sources and future ideas as future concepts, and leave curation, tending and dispatch method to the skill?'
+        'Does every card avoid body origin sections, treat future ideas as future concepts, and leave tending, curation and dispatch method to its owner?'
       )
     },
     {

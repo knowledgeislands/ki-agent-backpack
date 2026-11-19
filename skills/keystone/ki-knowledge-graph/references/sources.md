@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:47:26Z
+ki-revised: 2026-11-19T05:50:00Z
 ki-refresh: canonical · on-change
 ---
 
@@ -45,7 +45,7 @@ Two sub-groups: the outside specification, and the in-house sources.
 | --- | --- | --- |
 | GRAPH — The skill's own graph, [opened by its root definition](../knowledge/_graph.md): the 22 knowledge-graph cards the Inbox curated under the Principal's Pillars | The concepts the standard relies on: Semantic Markdown (the card format, typed links, status and sensitivity), the knowledge graph (progressive enrichment, addressing, relationships as knowledge), layered graphs (attachment points, shadow nodes and Kris's 7 November shadow-node life cycle of lift, prune, touch point, look up before you grow, and regrow), contextual atomicity, semantic sovereignty and permeability, progressive disclosure and territories and islands | 2026-11-12 |
 | TENDING — The knowledge-tending cards in the Inbox's staging graph, under `ki-principal/Pillars/knowledge-tending/` | The funnel (Kris's name of 3 November 2026, starting at Deposit since 6 November, with its pace), knowledge curation (curation quality and staging before stability, 2 and 3 November) and transactional curation (the struck-through capture) | 2026-11-07 |
-| ACQUIRE — The `ki-acquire` standard's "Staging and curation" and "Dispatch and authority" sections, now [4.6](../../ki-acquire/references/standard-acquisition.md#46-staging-and-curation) and [4.7](../../ki-acquire/references/standard-acquisition.md#47-dispatch-and-authority) of its common acquisition standard | Kris's Acquire decisions of 30 October to 1 November 2026 on cards, origins, meetings, future ideas, held material and dispatch by Git move, which this standard restates for curation; ACQUIRE-SPLIT decides which text keeps them | 2026-11-07 |
+| ACQUIRE — The `ki-acquire` standard's "Staging and curation" section, [4.6](../../ki-acquire/references/standard-acquisition.md#46-staging-and-curation) of its common acquisition standard; its curation and dispatch rules moved to the Inbox's `docs/guides/curation.md` and `docs/guides/operator/dispatch.md` under CURATION-HOME on 19 November 2026 | Kris's Acquire decisions of 30 October to 1 November 2026 on cards, origins, future ideas and held material, which this standard restates for cards and staging | 2026-11-19 |
 
 [Back to contents](#contents)
 
@@ -64,7 +64,7 @@ None.
 | HARNESS-SCOPE | Option a, Kris, in `ki.reg.guilds`: the skill sits in the acquire group. | Not recorded | The skill's placement | Superseded by GRAPH-KEYSTONE |
 | MIGRATION-OVERLAY | Kris, in `ki.reg.guilds`: the standard describes only the final state, and temporary adjustments sit in a migration overlay, deleted line by line as each condition is met. | 2026-11-07 | [The migration overlay](migration-knowledge-graph.md) | In force |
 | GRAPH-KEYSTONE | Kris, in the Cairn summit's change 22, knowledge skills: the skill moves into the Keystone guild beside `ki-agentic-systems`, because skills and knowledge are built on its card format; its placement no longer waits on GUILD-NAME. Its design note `skills/d12-kg.design.md`, section 2, is the skill's design. | 2026-11-12 | The skill's placement | In force |
-| KG-GENERAL | Kris, in the Cairn summit's change 06, knowledge graph: the graph serves any use, curation being one. | 2026-11-12 | [1](standard-knowledge-graph.md#1-introduction), [4.7](standard-knowledge-graph.md#47-curation) | In force |
+| KG-GENERAL | Kris, in the Cairn summit's change 06, knowledge graph: the graph serves any use, curation being one. | 2026-11-12 | [1](standard-knowledge-graph.md#1-introduction), [4.7](standard-knowledge-graph.md#47-staging-and-tending) | In force |
 | KG-ROOT | Kris, in change 06: a graph defines itself in a `_graph.md` card of type graph, taken with ROOT-FORM a. | 2026-11-12 | [4.2](standard-knowledge-graph.md#42-the-root-definition) | In force |
 | ROOT-FORM | Option a, Kris, in change 06: a graph defines itself in a `_graph.md` card of type graph, taken with KG-ROOT. | 2026-11-12 | [4.2](standard-knowledge-graph.md#42-the-root-definition) | In force |
 | KG-SELF | Kris, in change 06: the standard's own concepts are cards in this skill's own graph, taken with KG-HOME a. | 2026-11-12 | [1](standard-knowledge-graph.md#1-introduction) | In force |
@@ -76,10 +76,17 @@ None.
 | KG-GRAIN | Kris, in change 06: no links into part of a card. | 2026-11-12 | [4.4](standard-knowledge-graph.md#44-links) | In force |
 | KNOWLEDGE-FOLDER | Kris's word, relayed by the Cairn summit's guardian: a skill that holds a knowledge graph keeps it in `knowledge/` at the skill's top level, with the root definition `_graph.md` at its root; only the graph's cards go there, and everything else useful in the skill, its standards, sources, rubric, proposals and migration standards, stays in `references/`, so `knowledge/` is its own area outside `references/`. | 2026-11-12 | [4.1](standard-knowledge-graph.md#41-the-graph), GRAPH-5, the skill's own graph | In force |
 | GRAPH-FOLDERS | Kris's word, relayed by the Cairn summit's guardian, option a: inside `knowledge/` there is one folder for each subgraph, and files keep their id names, as `knowledge/industry/industry.session.md`; ids and front-matter `links:`, keyed by id, do not change, and only path-based Markdown links follow a card. | 2026-11-12 | [4.1](standard-knowledge-graph.md#41-the-graph), [4.2](standard-knowledge-graph.md#42-the-root-definition), CARD-5 | In force |
+| CURATION-HOME | Kris, in the Cairn summit's change 20, learnings: this skill is about the graph's structure only, and acquisition's curation belongs to the Inbox project, personal.inbox, led by Wicket. The Inbox holds capture-to-card curation, its pace, no links into captures and meetings as sources in `docs/guides/curation.md`, and dispatch in `docs/guides/operator/dispatch.md` (krisb/inbox `8f5bcda6`). With it neither standard keeps them, so the overlap the overlay's ACQUIRE-SPLIT row held is gone. | 2026-11-19 | [2.2](standard-knowledge-graph.md#22-out-of-scope), [4.7](standard-knowledge-graph.md#47-staging-and-tending), the migration overlay's ACQUIRE-SPLIT row removed | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 19 November 2026, under CURATION-HOME, curating captures into cards and dispatch left this skill for the Inbox: the standard lost the funnel and its pace, transactional curation, dispatch, and the card rules on links into captures and meetings as sources, leaving a pointer to the Inbox; 4.7 became Staging and tending, with the staging graph and tending renumbered 4.7.1 and 4.7.2, what a curated card keeps moved into 4.7's opening, and tending now names Git history as the record of restructuring. The rubric lost CURATE-1 to CURATE-3, the pace clause of CURATE-4 and the DISPATCH family, whose rules left with dispatch; the modes CURATE and DISPATCH went, and the migration overlay's ACQUIRE-SPLIT row was removed. Tending, the card format and the staging graph are unchanged. No outside source was refreshed.
+
+**Watching:**
+
+- STAGING-HOME, still open with Kris: the staging profile in `ki-repo-kb`, and the overlay's remaining row until it is answered.
 
 On 18 November 2026 the Keystone guild's review in the Cairn summit's skills review brought the standard and this file into `ki-authoring`'s formats: the standard is renamed `standard-knowledge-graph.md` and given the standard format's sections, its rules held word for word under numbered subsections and its Boundary table now its Out of scope; this file takes the sources format, the decisions it and the standard already named gathered into the Decisions table. The migration overlay keeps its name for now. No rule changed, and no outside source was refreshed.
 

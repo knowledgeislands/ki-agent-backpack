@@ -14,7 +14,7 @@ export const GRAPH = {
       title: 'routing links run one way',
       description:
         'Routing cards may link into captures and staged cards, but nothing in a capture links into the routing cards.',
-      sources: ['standard-knowledge-graph.md#473-the-staging-graph'],
+      sources: ['standard-knowledge-graph.md#471-the-staging-graph'],
       judgment: judgment('Does any capture link into a routing card?')
     },
     {
@@ -44,7 +44,7 @@ export const GRAPH = {
         'Shadow nodes are pruned only in untended areas after a few rounds of use, and every live area keeps its one shadow at its touch point.',
       sources: [
         'standard-knowledge-graph.md#46-layered-graphs-and-shadow-nodes',
-        'standard-knowledge-graph.md#474-tending'
+        'standard-knowledge-graph.md#472-tending'
       ],
       judgment: judgment(
         'Were pruned shadows in untended areas only, and does every live area keep one shadow node where it touches the layer above?'

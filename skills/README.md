@@ -371,11 +371,11 @@ Lead the Keystone guild, the guild of guilds: the guild map of every KI skill by
 
 #### `ki-knowledge-graph`
 
-Govern knowledge graphs: Semantic Markdown cards named by readable ids, a `_graph.md` root definition, typed links with SKOS by default, subgraphs, layered graphs with shadow nodes, and curating captured material through a staging graph to dispatch. Use to define a graph, curate, tend or dispatch knowledge; `ki-acquire` owns capture, `ki-dodecakrisis` sorting and `ki-repo-kb` knowledge-base structure.
+Govern knowledge graphs: Semantic Markdown cards named by readable ids, a `_graph.md` root definition, typed links with SKOS by default, subgraphs, layered graphs with shadow nodes, staging graphs and tending. Use to define or tend a graph; `ki-acquire` owns capture, the Inbox curation and dispatch, `ki-dodecakrisis` sorting and `ki-repo-kb` knowledge-base structure.
 
 - **Kind:** Governance
 - **Applicability:** Declaration Only
-- **Arguments:** `audit <repo> | conform <repo> | educate <repo> | curate <capture> | tend <area> | dispatch <package> | help | refresh`
+- **Arguments:** `audit <repo> | conform <repo> | educate <repo> | tend <area> | help | refresh`
 - **Dependencies:** None
 - **Runtime:** Portable
 
