@@ -82,6 +82,8 @@ Knowledge Islands' own words, in the `system/` subgraph, each mapped onto the in
 - [Role](knowledge/system/system.role.md): a job within a tier, from the role catalogue, the part of a seat after its `@`; close to agent frameworks' role.
 - [Seat](knowledge/system/system.seat.md): the place for one role in one work package, `<package>@<role>`, held by an actor and kept when the actor changes.
 
+One analogy card sits beside them, a proposal: [the civic model, by analogy](knowledge/system/system.civic-map.md), the work model set beside the agora and forum, satrapies, edicts and memorials, the Royal Road's couriers and the tabularium, each with where it holds and where it breaks (CIVIC-MAP, NAMING-RULE).
+
 ### Vendor subgraphs
 
 - **Anthropic** (`anthropic.`) and **OpenAI** (`openai.`): their names [Claude](knowledge/vendors/anthropic/anthropic.claude.md), [Claude Code](knowledge/vendors/anthropic/anthropic.claude-code.md), [Codex](knowledge/vendors/openai/openai.codex.md) and [ChatGPT](knowledge/vendors/openai/openai.chatgpt.md), each used in more than one sense, and their words for each term, from Anthropic's [model](knowledge/vendors/anthropic/anthropic.model.md) to its [skill](knowledge/vendors/anthropic/anthropic.skill.md), and OpenAI's [task](knowledge/vendors/openai/openai.task.md), [chat](knowledge/vendors/openai/openai.chat.md) and [thread](knowledge/vendors/openai/openai.thread.md) for a session and its parts.
