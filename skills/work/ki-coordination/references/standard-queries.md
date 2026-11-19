@@ -55,7 +55,7 @@ How queries reach the owner, and how many one reply puts to them.
 
 | Term | Definition |
 | --- | --- |
-| **Query cap** | At most ten queries in one reply, the most critical first, then one line saying how many more are open and where they are held. **Standard:** this one, [4.2](#42-query-cap) |
+| **Query cap** | At most three queries in one reply, the most critical first, then one line saying how many more are open and where they are held. **Standard:** this one, [4.2](#42-query-cap) |
 | **Interactive pass** | Taking the open queries one decision at a time, in two replies per query: the context in chat, then a short question card, or plain chat alone where the runtime has no card. **Standard:** this one, [4.3](#43-interactive-pass) |
 | **Discussion options** | The two options closing every query in a pass, Talk it through now and Come back at the end, so the owner can defer without typing. **Standard:** this one, [4.3](#43-interactive-pass) |
 | **Query review** | One masked, blind review run a query goes to before it reaches the owner when it is medium or low confidence, or high with a destructive recommended course. **Standard:** this one, [4.5](#45-query-review) |
@@ -75,15 +75,15 @@ Queries reach the owner in the Summary by default. After a Summary that lists op
 
 ### 4.2 Query cap
 
-A reply puts at most ten queries to the owner, so each reply keeps its context to a sensible size, as Kris set under QUERY-CAP on 18 November 2026.
+A reply puts at most three queries to the owner, so each reply stays short enough to deal with, as Kris set under QUERY-CAP-3 on 19 November 2026: "You give me a big long list of them again. So that's really difficult for me to deal with … up to two or three". It narrows the ten QUERY-CAP set on 18 November 2026.
 
-- **Which ten:** the most critical first: a query whose due date is close, or that blocks other work or another territory. Within the same criticality, the highest confidence first.
+- **Which three:** the most critical first: a query whose due date is close, or that blocks other work or another territory. Within the same criticality, the highest confidence first.
 - **The rest:** where more are open, one line after the last query says how many more there are and where they are held, as in `A further 7 are held in the package's change documents.`
-- **Reply block:** it carries the same ten queries and no others.
-- **Where it applies:** to what one reply shows, in `## Queries` and the reply block: the Summary, the Status, the Bootstrap, a run report and every other form that carries queries in full. A Summary or Bootstrap that restates the open queries shows the top ten in full and the further-queries line.
+- **Reply block:** it carries the same three queries and no others.
+- **Where it applies:** to what one reply shows, in `## Queries` and the reply block: the Summary, the Status, the Bootstrap, a run report and every other form that carries queries in full. A Summary or Bootstrap that restates the open queries shows the top three in full and the further-queries line.
 - **Where it does not:** the queries file and the change documents keep every open query in their Open sections.
 
-Sources: QUERY-CAP in [the decision register](sources.md#3-decisions).
+Sources: QUERY-CAP and QUERY-CAP-3 in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
