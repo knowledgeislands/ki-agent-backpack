@@ -6,12 +6,13 @@ component: work
 priority: medium
 size: s
 assignee: work/cairn.summit
-status: triage
+status: cancelled
+resolution: superseded
 blocks: []
 blocked_by: []
 baseline_ref: null
 created_at: 2026-11-19T06:04:00Z
-updated_at: 2026-11-19T06:04:00Z
+updated_at: 2026-11-19T06:20:00Z
 ---
 
 # Three links in chat
@@ -33,6 +34,10 @@ It sits beside CHANGE-NAMES, landed in `ki-coordination`'s reporting standard, L
 ## Boundary
 
 How links are written in chat replies and reports only. It does not change links inside files, which stay relative within their repository under `ki-authoring`, or the Wayfinder's routes.
+
+## Cancelled
+
+Cancelled on 19 November 2026 by the Cairn summit's guardian, on Kris's word: LINKS-THREE was already settled. Kris took LINKS-CAIRN and LINKS-ICONS together as LINKS-STANDARD on 19 November 2026, at about 05:32 GMT, recorded in the Cairn summit's change Learnings (20) under Decided, "Taken 19 November, about 05:32 GMT": a link directs Kris to the right way to see a thing from where he reads, the most sensible choice of links rather than strictly one, with a `cairn://` link into the Cairn Wayfinder first for a Cairn-level thing, then its local file and GitHub links on one line. It landed in `ki-coordination`'s reporting standard, Where the owner reads, at commit `3273f75d4`, and Kris's personal "Links in chat" rule was applied with chezmoi at about 05:57 GMT (LINKS-APPLY a). Nothing is left outstanding.
 
 ## Discussion
 

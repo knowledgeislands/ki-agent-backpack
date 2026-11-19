@@ -11,7 +11,7 @@ blocks: []
 blocked_by: []
 baseline_ref: null
 created_at: 2026-11-19T06:04:00Z
-updated_at: 2026-11-19T06:04:00Z
+updated_at: 2026-11-19T06:20:00Z
 ---
 
 # Last naming pass
@@ -33,7 +33,6 @@ Still open from the same change:
 
 - **WORKER-STATES.** NAMES (13 November 2026) has title and worker go as words for who a session is. Worker is also the work model's holder word: `ki-coordination`'s states With worker and Handoff to worker, the package's `ki-worker` field and the 🤖 holder, which the backpack pass left alone. Options: a) keep worker as the work model's state word, NAMES meaning only the roster and seat word; b) rename the states and `ki-worker` too, with a migration like the role migration. The guardian recommended a), medium, rising to high on Kris's word that NAMES meant who a session is, not where work lies.
 - **The fields renamed** (Names (12), step 4, taken by Kris on 17 November 2026, about 23:34 GMT, to build as scheduled). With title and worker gone, the roster's `titles:` field and the packages' `workers:` field needed new names. The roster's field has gone with ROSTER-SPLIT; the packages' field is still `ki-workers` in `ki-work-package`'s standard and every `_index.md` in the store. Its new name waits on WORKER-STATES.
-- **`ki-coordination`'s two example banners and its output style** still say "the harness migration" in the On hold example (`references/standard-report-forms.md` and `output-styles/ki-coordinator.md`), queued under BACKPACK-ROOT-WORDS until the run then editing that skill was done.
 
 Deferred by Kris in the same change, to come back to in this pass if wanted:
 
