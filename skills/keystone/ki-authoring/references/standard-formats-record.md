@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T03:06:19Z
+ki-revised: 2026-11-19T07:10:00Z
 ki-status: in force
 ---
 
@@ -121,6 +121,7 @@ These are the [review standard](standard-review.md)'s two outcomes for a record,
 3. **Goals and what changed only:** a record asks the owner for nothing, and an entry ends at the fact. What comes next belongs in the change documents' open points or the roadmaps.
 4. **One record for each batch that lands,** not one a day; a session spent deciding writes none, since its decisions are in the change documents.
 5. **Or the review's shape:** a record of a single batch may instead take a consolidated review's shape, as in [4.4](#44-a-consolidated-review), its opening line saying what the batch was for in place of the records it replaces.
+6. **The records are the change log:** for the work a keeper of records tracks, as the Cairn store does, its batch records, through their What changed, are the change log, read where the owner reads the records, as the Wayfinder's Updates page shows them; no package, meeting or store keeps a change log of its own. A code repository's `CHANGELOG.md` stays the release log of what that repository ships, and a record that lands such a release links to its entry rather than repeating it (CHANGELOG-RECORDS).
 
 [Back to contents](#contents)
 
