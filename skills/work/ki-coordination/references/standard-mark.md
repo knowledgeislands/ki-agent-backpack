@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T00:18:51Z
+ki-revised: 2026-11-19T06:38:00Z
 ki-status: in force
 ---
 
@@ -69,7 +69,7 @@ The rules, part by part.
 The mark is only a timestamp, `ki-mark: <UTC timestamp>` in `_index.md`'s state fields, and the default start of the next [Summary](standard-report-forms.md#417-the-summary). Each package has one mark; a new mark replaces it, and Git keeps the earlier ones. The mark bounds the logbook, record transitions, background-agent reports and the change documents' entries, which carry their own timestamps.
 
 - **Who moves it:** only the owner, with `mark`, `mark only` or `mark, status only`, and a hold. A Summary or a Status never moves it.
-- **What follows it:** `mark` gives the Summary since the previous mark in the same reply, with the open queries in full, at most three under the [query cap](standard-queries.md#42-query-cap), and so does the mark that closes a query set. `mark only` gives the Position, the banner after a line or two, `mark, status only` gives the [Status](standard-report-forms.md#41-coordinator-reply-format), and a hold's mark gives the [Stop](standard-holds.md#41-putting-work-on-hold).
+- **What follows it:** `mark` gives the Summary since the previous mark in the same reply, with the open queries in full, at most three under the [query cap](standard-queries.md#42-query-cap), or only their count where its summary runs long, under **Summary first** in [The Summary](standard-report-forms.md#417-the-summary), and so does the mark that closes a query set. `mark only` gives the Position, the banner after a line or two, `mark, status only` gives the [Status](standard-report-forms.md#41-coordinator-reply-format), and a hold's mark gives the [Stop](standard-holds.md#41-putting-work-on-hold).
 - **Work at the mark,** in order:
   1. run the [repository level check](standard-sync.md#43-repository-level-check) before reporting the mark;
   2. work the [decisions life cycle](standard-decisions.md#413-decisions-life-cycle);

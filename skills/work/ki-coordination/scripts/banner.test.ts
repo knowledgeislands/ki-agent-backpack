@@ -899,6 +899,22 @@ test('the Summary runs its summary, the two-column status table, the queries in 
   expect(outputStyle).not.toContain('What I heard')
 })
 
+// SUMMARY-FIRST, taken by Kris on 19 November 2026 at about 06:33 GMT: a long
+// summary is read and discussed before its queries, which it only counts.
+test('a Summary whose summary runs long gives only the count of its queries, then offers the pass', () => {
+  const summaryAt = standard.indexOf('#### 4.1.7 The Summary')
+  const summary = standard.slice(summaryAt, standard.indexOf('### 4.2 Banner detail', summaryAt))
+  expect(summary).toContain('**Summary first.**')
+  expect(summary).toContain('runs past ten lines or has any sub-heading')
+  expect(summary).toContain('only the count of open queries and where they are held')
+  expect(summary).toContain('no query in full and no reply block')
+  expect(summary).toContain('inline one by one or the [interactive pass]')
+  expect(summary).toContain('SUMMARY-FIRST')
+  expect(outputStyle).toContain('under SUMMARY-FIRST on 19 November 2026')
+  expect(outputStyle).toContain('only their count and where they are held, with no reply block')
+  expect(readReference('sources.md')).toContain('| SUMMARY-FIRST |')
+})
+
 test('the core retains all five hard rules and lists every purpose file', () => {
   for (const name of standardFiles.filter((file) => file !== 'standard-coordination.md'))
     expect(core).toContain(`](${name})`)

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T05:16:00Z
+ki-revised: 2026-11-19T06:38:00Z
 ki-status: in force
 ---
 
@@ -71,7 +71,7 @@ The rules, part by part.
 
 ### 4.1 Questions
 
-Queries reach the owner in the Summary by default. After a Summary that lists open queries, or on the owner's request, use the [interactive pass](#43-interactive-pass): one decision per turn, its context in chat Markdown, then a short question card, or plain chat Markdown alone where the runtime has no card.
+Queries reach the owner in the Summary by default, except that a Summary whose summary runs long gives only their count until the owner has taken stock, under **Summary first** in [The Summary](standard-report-forms.md#417-the-summary). After a Summary that lists open queries, or on the owner's request, use the [interactive pass](#43-interactive-pass): one decision per turn, its context in chat Markdown, then a short question card, or plain chat Markdown alone where the runtime has no card.
 
 [Back to contents](#contents)
 
@@ -82,10 +82,10 @@ A reply puts at most three queries to the owner, so each reply stays short enoug
 - **Which three:** the most critical first: a query whose due date is close, or that blocks other work or another territory. Within the same criticality, the highest confidence first.
 - **The rest:** where more are open, one line after the last query says how many more there are and where they are held, as in `A further 7 are held in the package's change documents.`
 - **Reply block:** it carries the same three queries and no others.
-- **Where it applies:** to what one reply shows, in `## Queries` and the reply block: the Summary, the Status, the Bootstrap, a run report and every other form that carries queries in full. A Summary or Bootstrap that restates the open queries shows the top three in full and the further-queries line.
+- **Where it applies:** to what one reply shows, in `## Queries` and the reply block: the Summary, the Status, the Bootstrap, a run report and every other form that carries queries in full. A Summary or Bootstrap that restates the open queries shows the top three in full and the further-queries line; a Summary under **Summary first** in [The Summary](standard-report-forms.md#417-the-summary) shows only their count until the owner has taken stock.
 - **Where it does not:** the queries file and the change documents keep every open query in their Open sections.
 
-Sources: QUERY-CAP and QUERY-CAP-3 in [the decision register](sources.md#3-decisions).
+Sources: QUERY-CAP, QUERY-CAP-3 and SUMMARY-FIRST in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -104,7 +104,7 @@ Sources: QUERY-RECHECK in [the decision register](sources.md#3-decisions).
 
 ### 4.3 Interactive pass
 
-After a Summary that lists open queries, or on the owner's request, the coordinator takes the open queries in an interactive pass; either one alone starts it. The pass after the Summary that closes a pass asks only the queries that pass did not. The pass never batches: one decision at a time, two replies per query, so the owner sends nothing between questions.
+After a Summary that lists open queries, or on the owner's request, the coordinator takes the open queries in an interactive pass; either one alone starts it. After a Summary that gave only the count of its queries, under **Summary first** in [The Summary](standard-report-forms.md#417-the-summary), the reply after the owner has taken stock offers the pass, inline one by one or interactively with context, and the pass starts on the owner's word. The pass after the Summary that closes a pass asks only the queries that pass did not. The pass never batches: one decision at a time, two replies per query, so the owner sends nothing between questions.
 
 1. **First reply.** Start a short background timer, about 5 seconds, such as a background `sleep 5` whose completion wakes the coordinator. End the reply with its last text: the [read-back](#the-read-back) of the previous answer, if any, then the next query's context as ordinary Markdown:
 
@@ -174,7 +174,7 @@ A quick first run through the set thus decides what it can. While a query is tal
 - The total is the number of open queries when the pass starts. When an answer raises a new query, add it to the total and say so. A query deferred to the end keeps its number when it is taken again.
 - Nothing is shortened because it is asked interactively, and each query keeps its [tag](standard-reporting.md#needs-tags).
 
-Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET-MARK, CARD-LOOP, CARD-PATTERN, CARD-READBACK, CARD-DISCUSS, CONTEXT-EXAMPLE and QUERY-LEAD-INS in [the decision register](sources.md#3-decisions).
+Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET-MARK, CARD-LOOP, CARD-PATTERN, CARD-READBACK, CARD-DISCUSS, CONTEXT-EXAMPLE, QUERY-LEAD-INS and SUMMARY-FIRST in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
