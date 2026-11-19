@@ -3,7 +3,7 @@
 
 [skill-map]
 type = "architecture"
-question = "What skills does the harness hold, in which source concern does each live, which functional areas does each serve, and what shape is each?"
+question = "What skills does the backpack hold, in which source concern does each live, which functional areas does each serve, and what shape is each?"
 audience = "Skill authors, reviewers and newcomers orienting themselves in the collection"
 traced = ["skills/*/*/SKILL.md"]
 stale_when = "a skill is added, moved between concerns, renamed or removed, its ki-kind or ki-applicability changes, or the functional-area table changes"
