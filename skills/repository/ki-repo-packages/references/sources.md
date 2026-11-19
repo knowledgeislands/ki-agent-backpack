@@ -17,7 +17,7 @@ ki-refresh: canonical · on-change
 
 ## 1. Introduction
 
-The sources behind [the package repository standard](standard-package-repositories.md), [the migration overlay](standards-package-repositories-migration.md) and [the generated rubric](rubric.md).
+The sources behind [the package repository standard](standard-package-repositories.md), [the migration overlay](migration-package-repositories.md) and [the generated rubric](rubric.md).
 
 Review alongside a change to `packages-stoa`'s vendoring tools, release rule or sync paragraph, to `ki-repo-tools`' release-on-demand policy, to `ki-engineering`'s script names or TypeScript rules, or when a second package repository appears.
 
@@ -50,7 +50,7 @@ Kris's decisions behind the rules, each with where it was taken or recorded.
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
 | REPO-SHAPE-PACKAGES | Kris's words of 7 November 2026 in ki.sop.main, routed to the harness work package `ki.reg.guilds`: "I think they're probably pretty similar to tools. It probably does mean that we should have a skill for whatever structure this thing might have. It seems like it's a new repo shape really, doesn't it?" They asked for this skill. | 2026-11-07 | [the standard](standard-package-repositories.md) | taken |
-| MIGRATION-OVERLAY | Held by the harness work package `ki.reg.guilds`, with the away-window grant under which this skill was written; it shapes [the migration overlay](standards-package-repositories-migration.md) | 2026-11-07 | [the migration overlay](standards-package-repositories-migration.md) | taken |
+| MIGRATION-OVERLAY | Held by the harness work package `ki.reg.guilds`, with the away-window grant under which this skill was written; it shapes [the migration overlay](migration-package-repositories.md) | 2026-11-07 | [the migration overlay](migration-package-repositories.md) | taken |
 | STOA-NO-CONSUMERS | Kris's words of 1 November 2026, sent to the Stoa work by HNR's sites State of play with its addendum: "There should be no reference out of Knowledge Islands to other territories", and consumers are found by "patterns that it knows about that would identify that it's been used" | 2026-11-01 | [4.8](standard-package-repositories.md#48-consumers) | taken |
 | STORYBOOK-APP | Recorded in the Cairn summit's change 14, the guilds change, in Kris's Cairn store: every package repository has `apps/storybook/`, built to static files, in place of `apps/workbench/`, chosen over Ladle, Histoire, React Cosmos and Pattern Lab, with Fluent UI's `apps/public-docsite-v9` as the model | 2026-11-14 | [4.4](standard-package-repositories.md#44-the-storybook) | taken |
 | ELEMENTS-MANIFEST | Recorded in the Cairn summit's change 14: each web component package publishes `custom-elements.json` from the Custom Elements Manifest analyser, as Spectrum Web Components and Shoelace do | 2026-11-14 | [4.5](standard-package-repositories.md#45-the-custom-elements-manifest) | taken |

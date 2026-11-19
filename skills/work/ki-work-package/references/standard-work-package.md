@@ -189,7 +189,7 @@ Every field takes the `ki-` prefix, as KI defines them all (KI-PREFIX, Kris, 17 
 | `ki-parent` | required below the root, absent on the root | `cairn.summit` on a territory's summit, else a node of the same territory, or a sub-package's parent package |
 | `ki-description` | required | the routing description, at most 500 characters |
 | `ki-worker`, `ki-supervisor` | required | each a holder |
-| `ki-role` | required | the package's role, one role from [the role catalogue](standard-roles.md#43-role-catalogue); a package without one is warned on under [the role migration file](standards-roles-migration.md) |
+| `ki-role` | required | the package's role, one role from [the role catalogue](standard-roles.md#43-role-catalogue); a package without one is warned on under [the role migration file](migration-roles.md) |
 | `ki-created_at` | optional | UTC time the package was created, no later than `ki-since` |
 | `ki-repositories` | required | a list of the repositories the package mainly works in, each named `<territory folder>/<repository>`, as `ki/apps-cairn.local` or `cairn/ki-cairn-store`, empty where it works in none |
 | `ki-records` | optional | a list of the records the package works, each by its full record id, as `KI-HARNESS-GOV-152`, never a short one; each links to its record by the id's prefix through the ki registry, and the record's state is never copied |
@@ -270,7 +270,7 @@ History stays out, as Kris answered STATE-HISTORY: the recap since the mark read
 
 A sub-package is one strand of a package's work: a package in miniature, with its own `_index.md` and one or more change documents, in a folder of the package named by a lower-case kebab slug. A package with one strand needs none.
 
-- **Identity:** its id is `<parent id>+<slug>`, as `hnr.summit+website` in `work/hnr/hnr.summit/website/`, under `ki-coordination`'s [Work naming](../../ki-coordination/references/standard-opening.md#42-work-naming): `.` builds a package's name and `+` adds a strand. Its folder is the slug, and its `ki-id` and H1 agree with the parent's id and that slug. The earlier `<parent id>.<slug>` is read under [the role migration file](standards-roles-migration.md).
+- **Identity:** its id is `<parent id>+<slug>`, as `hnr.summit+website` in `work/hnr/hnr.summit/website/`, under `ki-coordination`'s [Work naming](../../ki-coordination/references/standard-opening.md#42-work-naming): `.` builds a package's name and `+` adds a strand. Its folder is the slug, and its `ki-id` and H1 agree with the parent's id and that slug. The earlier `<parent id>.<slug>` is read under [the role migration file](migration-roles.md).
 - **Form:** the package's shape, its `ki-level` the parent's, except under the root or a territory's summit, where a sub-package takes `ki-level: regular`, the one exception, as Kris took SUMMIT-SUB-PACKAGES b on 16 November 2026. Its `ki-parent` names the parent package, so it sits in the tree beneath its parent.
 - **Sub-package or node:** a strand the parent's own seat works is a sub-package; a strand that needs a seat of its own is a node of its own beneath, `<territory>.<slug>`, with its own package. Most territories run their work through the summit's package, with sub-packages where a strand needs its own.
 - **Links:** the parent's Changes section links it.

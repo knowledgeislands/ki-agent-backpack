@@ -19,7 +19,7 @@ ki-refresh: canonical · on-change
 
 ## 1. Introduction
 
-The sources and decisions behind [the knowledge-graph standard](standard-knowledge-graph.md), its [migration overlay](standards-knowledge-graph-migration.md) and the generated [rubric](rubric.md). The skill is canonical: review it alongside a change to a knowledge-graph or knowledge-tending card, to a graph's root definition, to the `ki-acquire` curation text, or to the staging-base structure in `ki-repo-kb`. Mode REFRESH reads this file, compares the standard with the sources and decisions below, and records what it checked in [Last review](#4-last-review).
+The sources and decisions behind [the knowledge-graph standard](standard-knowledge-graph.md), its [migration overlay](migration-knowledge-graph.md) and the generated [rubric](rubric.md). The skill is canonical: review it alongside a change to a knowledge-graph or knowledge-tending card, to a graph's root definition, to the `ki-acquire` curation text, or to the staging-base structure in `ki-repo-kb`. Mode REFRESH reads this file, compares the standard with the sources and decisions below, and records what it checked in [Last review](#4-last-review).
 
 [Back to contents](#contents)
 
@@ -62,7 +62,7 @@ None.
 | SKILLS-OVER-GRAPH | Option a, Kris, in the backpack work package `ki.reg.guilds`: method in skills, the graph keeps "things that are"; with Kris's word the same day that "the knowledge graph in itself is its own skill", not part of `ki-repo-kb`. | 2026-11-07 | [1](standard-knowledge-graph.md#1-introduction) | In force |
 | KG-NAME | Option a, Kris, in `ki.reg.guilds`: the skill is named `ki-knowledge-graph`. | Not recorded | The skill | In force |
 | HARNESS-SCOPE | Option a, Kris, in `ki.reg.guilds`: the skill sits in the acquire group. | Not recorded | The skill's placement | Superseded by GRAPH-KEYSTONE |
-| MIGRATION-OVERLAY | Kris, in `ki.reg.guilds`: the standard describes only the final state, and temporary adjustments sit in a migration overlay, deleted line by line as each condition is met. | 2026-11-07 | [The migration overlay](standards-knowledge-graph-migration.md) | In force |
+| MIGRATION-OVERLAY | Kris, in `ki.reg.guilds`: the standard describes only the final state, and temporary adjustments sit in a migration overlay, deleted line by line as each condition is met. | 2026-11-07 | [The migration overlay](migration-knowledge-graph.md) | In force |
 | GRAPH-KEYSTONE | Kris, in the Cairn summit's change 22, knowledge skills: the skill moves into the Keystone guild beside `ki-agentic-systems`, because skills and knowledge are built on its card format; its placement no longer waits on GUILD-NAME. Its design note `skills/d12-kg.design.md`, section 2, is the skill's design. | 2026-11-12 | The skill's placement | In force |
 | KG-GENERAL | Kris, in the Cairn summit's change 06, knowledge graph: the graph serves any use, curation being one. | 2026-11-12 | [1](standard-knowledge-graph.md#1-introduction), [4.7](standard-knowledge-graph.md#47-curation) | In force |
 | KG-ROOT | Kris, in change 06: a graph defines itself in a `_graph.md` card of type graph, taken with ROOT-FORM a. | 2026-11-12 | [4.2](standard-knowledge-graph.md#42-the-root-definition) | In force |

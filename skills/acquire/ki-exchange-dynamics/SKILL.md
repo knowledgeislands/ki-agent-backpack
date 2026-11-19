@@ -16,7 +16,7 @@ argument-hint: 'audit <repo> | conform <repo> | educate <repo> | analyse <exchan
 
 # Exchange dynamics
 
-Read [the exchange dynamics standard](references/standard-exchange-dynamics.md) first: the method, the four layers, the safeguards, the analysis contract, the workflow and privacy. Read [the rendering standard](references/standard-exchange-dynamics-rendering.md) before drawing anything. While [the migration overlay](references/standards-exchange-dynamics-migration.md) exists, read it last; it lists temporary adjustments, and the standards win wherever they differ.
+Read [the exchange dynamics standard](references/standard-exchange-dynamics.md) first: the method, the four layers, the safeguards, the analysis contract, the workflow and privacy. Read [the rendering standard](references/standard-exchange-dynamics-rendering.md) before drawing anything. While [the migration overlay](references/migration-exchange-dynamics.md) exists, read it last; it lists temporary adjustments, and the standards win wherever they differ.
 
 The principle is **analyse once, render many ways**: one analysis, checked against [the schema](assets/eda-analysis.schema.json), is the only thing any rendering reads. Capture of the exchange itself is the `ki-acquire` skill's and its provider skills', and diagrams of systems are the `ki-diagrams` skill's. Drawing goes through the `archify` and `dataviz` renderers, which add no analysis. The invented [allotment example](assets/examples/allotment-tool-shed/design-decisions.md) shows a complete analysis beside its transcript. The [generated rubric](references/rubric.md) holds the review criteria. This skill accepts no repository configuration properties.
 

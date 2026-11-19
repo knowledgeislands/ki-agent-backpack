@@ -12,7 +12,13 @@ describe('KI-SHAPE-6', () => {
       createKiShapeContext({
         skill: {
           knowledgeIslandsSkill: true,
-          referencePaths: ['radar.toml', 'standards-model-radar.md', 'standard-formats-change.md', 'notes.md']
+          referencePaths: [
+            'radar.toml',
+            'standards-model-radar.md',
+            'standard-formats-change.md',
+            'migration-roles.md',
+            'notes.md'
+          ]
         }
       })
     )

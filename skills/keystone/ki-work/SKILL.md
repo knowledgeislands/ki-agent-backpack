@@ -22,7 +22,7 @@ argument-hint: 'accept <work> | accept prune <record-or-glob>... | audit <repo> 
 
 This skill leads the Work guild: how work is chosen, planned, done, accepted and coordinated. It carries the work lifecycle as six subcommands, each loaded from its own reference only when called, and it selects one configured source of forward work; it never becomes a third tracker. The selected adapter owns record storage, identity allocation, and its local structural rules. The subcommands use the adapter to locate a record, assess readiness, record delivery or review evidence, and apply an explicitly authorised close or prune selection.
 
-Read [the change-management adapter standard](references/standard-change-management-adapters.md) before selecting an adapter or changing shared lifecycle behaviour. Read [the generated rubric](references/rubric.md) for its checkable contract, [the migration file](references/standards-change-management-adapters-migration.md) for the steps of the batch retirement still to land outside the harness, and [the sources](references/sources.md) when refreshing it.
+Read [the change-management adapter standard](references/standard-change-management-adapters.md) before selecting an adapter or changing shared lifecycle behaviour. Read [the generated rubric](references/rubric.md) for its checkable contract, [the migration file](references/migration-change-management-adapters.md) for the steps of the batch retirement still to land outside the harness, and [the sources](references/sources.md) when refreshing it.
 
 ## The lifecycle
 

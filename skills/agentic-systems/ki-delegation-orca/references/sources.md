@@ -17,7 +17,7 @@ ki-refresh: external-spec · monthly
 
 ## 1. Introduction
 
-The sources behind [the Orca delegation standard](standard-orca-delegation.md) and [its migration file](standards-orca-delegation-migration.md).
+The sources behind [the Orca delegation standard](standard-orca-delegation.md) and [its migration file](migration-orca-delegation.md).
 
 [Back to contents](#contents)
 
@@ -51,9 +51,9 @@ Kris's decisions behind the adapter as a whole; each rule names its own ground b
 | --- | --- | --- | --- | --- |
 | ORCA-SKILL-NOW a) | Write the Orca skills now | 2026-11-01 | [4.1](standard-orca-delegation.md#41-evidence-and-status) | taken |
 | ORCH-NAME-DISPATCH a) | Name the adapter `ki-delegation-orca` | 2026-11-01 | [4.1](standard-orca-delegation.md#41-evidence-and-status) | taken |
-| MIGRATION-OVERLAY | Interim rules and the next trial's tests live in the migration file, so the standard describes only the final state | 2026-11-07 | [the migration file](standards-orca-delegation-migration.md) | taken |
+| MIGRATION-OVERLAY | Interim rules and the next trial's tests live in the migration file, so the standard describes only the final state | 2026-11-07 | [the migration file](migration-orca-delegation.md) | taken |
 | ONE-LAUNCHER | Closed with no rule | 2026-11-07 | [4.2](standard-orca-delegation.md#42-when-orca-launches) | closed |
-| RUN-HANDOVER b) | Test `run-use` handover in the next trial | 2026-11-07 | [the migration file](standards-orca-delegation-migration.md) | taken |
+| RUN-HANDOVER b) | Test `run-use` handover in the next trial | 2026-11-07 | [the migration file](migration-orca-delegation.md) | taken |
 
 The other answers of 7 November 2026, each option a), are named beside the rules they back: ORCA-SKILL-KIND, CLOSEOUT-STRIKE, ONE-LAUNCHER-UNIT, OUTLIVE, PROMPT-RENDER, HEARTBEAT-ACK, STOP-VERB, QUEUE-PACE, REPORT-HOME, WORKER-SURVIVAL, DELIVERY-REPLAY, OWNER-ASK, ADAPTER-MERGE, TRIAL-ASK, TRIAL-PRACTICE, RUN-RECOVERY and TRIAL-PUBLISH.
 

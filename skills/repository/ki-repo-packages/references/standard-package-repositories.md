@@ -30,7 +30,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-A **package repository** is the canonical source of one or more source trees that other repositories copy whole into themselves and build from: they **vendor** them. It ships no binary, installer, formula or registry package, and no consumer's build ever fetches it. [`packages-stoa`](https://github.com/knowledgeislands/packages-stoa), the source of the Stoa units the Knowledge Islands sites share, is the reference repository. A package of custom elements that any page uses by its tag, as Stoa's `<stoa-header>` and `<stoa-command-bar>` are, is a **web component library**: `ki-design-system` owns how a component library is designed, and this standard how it is packaged and shared. The [generated rubric](rubric.md) holds the checkable criteria and [the sources](sources.md) the evidence. While [the migration overlay](standards-package-repositories-migration.md) exists, it lists the temporary adjustments to this final-state standard.
+A **package repository** is the canonical source of one or more source trees that other repositories copy whole into themselves and build from: they **vendor** them. It ships no binary, installer, formula or registry package, and no consumer's build ever fetches it. [`packages-stoa`](https://github.com/knowledgeislands/packages-stoa), the source of the Stoa units the Knowledge Islands sites share, is the reference repository. A package of custom elements that any page uses by its tag, as Stoa's `<stoa-header>` and `<stoa-command-bar>` are, is a **web component library**: `ki-design-system` owns how a component library is designed, and this standard how it is packaged and shared. The [generated rubric](rubric.md) holds the checkable criteria and [the sources](sources.md) the evidence. While [the migration overlay](migration-package-repositories.md) exists, it lists the temporary adjustments to this final-state standard.
 
 [Back to contents](#contents)
 
@@ -53,7 +53,7 @@ A **package repository** is the canonical source of one or more source trees tha
 - When to release: the release-on-demand policy `ki-repo-tools` owns.
 - The toolchain, scripts and tests: `ki-engineering`.
 - The general Project baseline and commit gate: `ki-repo-project`; the universal files: `ki-repo`.
-- Temporary adjustments while repositories migrate: [the migration overlay](standards-package-repositories-migration.md).
+- Temporary adjustments while repositories migrate: [the migration overlay](migration-package-repositories.md).
 
 [Back to contents](#contents)
 

@@ -40,7 +40,7 @@ How a repository selects its one change-management adapter, and what every adapt
 
 - Each adapter's concrete record identity, storage and lifecycle mapping: its adapter skill.
 - Validation of the repository kind and primary shape: `ki-repo`.
-- The transition still under way: [the adapter migration](standards-change-management-adapters-migration.md).
+- The transition still under way: [the adapter migration](migration-change-management-adapters.md).
 
 [Back to contents](#contents)
 

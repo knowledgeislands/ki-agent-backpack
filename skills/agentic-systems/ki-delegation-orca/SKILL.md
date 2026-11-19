@@ -23,7 +23,7 @@ It stays a process skill, as Kris took ORCA-SKILL-KIND a) on 7 November 2026, re
 
 Orca's own `orchestration` and `orca-cli` skills own command mechanics, flags and receipts. This skill names the commands Knowledge Islands relies on and the rules it lays over them, and nothing in it is an Orca setting.
 
-Read [the Orca delegation standard](references/standard-orca-delegation.md) before launching an Orca worker, then [its migration file](references/standards-orca-delegation-migration.md) for the interim rules and trial tests that still apply. Read [the source record](references/sources.md) only when refreshing Orca-facing claims.
+Read [the Orca delegation standard](references/standard-orca-delegation.md) before launching an Orca worker, then [its migration file](references/migration-orca-delegation.md) for the interim rules and trial tests that still apply. Read [the source record](references/sources.md) only when refreshing Orca-facing claims.
 
 ## Procedure
 

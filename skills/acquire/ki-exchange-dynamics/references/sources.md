@@ -17,7 +17,7 @@ ki-refresh: canonical · on-change
 
 ## 1. Introduction
 
-The sources and decisions behind [the exchange dynamics standard](standard-exchange-dynamics.md), [the rendering standard](standard-exchange-dynamics-rendering.md) and the generated [rubric](rubric.md). [The migration overlay](standards-exchange-dynamics-migration.md) holds what is not yet in place.
+The sources and decisions behind [the exchange dynamics standard](standard-exchange-dynamics.md), [the rendering standard](standard-exchange-dynamics-rendering.md) and the generated [rubric](rubric.md). [The migration overlay](migration-exchange-dynamics.md) holds what is not yet in place.
 
 Review alongside a change to the method's source note, to the `archify` or `dataviz` renderers' explainer, chart or palette behaviour, or to the `ki-acquire` capture contract the method reads from.
 

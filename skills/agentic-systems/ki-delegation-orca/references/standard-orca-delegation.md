@@ -31,7 +31,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-How a Knowledge Islands coordinator uses Orca orchestration as its launcher. It adapts the portable [background-run standard](../../ki-delegation/references/standard-background-runs.md) to Orca and changes none of it beyond the one named report-homing exception the run packet carries; the coordinating work's own rules stay in the [`ki-coordination` standard](../../../work/ki-coordination/references/standard-coordination.md). The interim rules and trial tests that hold until Orca behaviour is proved sit in [the migration file](standards-orca-delegation-migration.md), which defers to this standard. The sources behind it are in [the sources file](sources.md).
+How a Knowledge Islands coordinator uses Orca orchestration as its launcher. It adapts the portable [background-run standard](../../ki-delegation/references/standard-background-runs.md) to Orca and changes none of it beyond the one named report-homing exception the run packet carries; the coordinating work's own rules stay in the [`ki-coordination` standard](../../../work/ki-coordination/references/standard-coordination.md). The interim rules and trial tests that hold until Orca behaviour is proved sit in [the migration file](migration-orca-delegation.md), which defers to this standard. The sources behind it are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -51,7 +51,7 @@ Orca orchestration as a Knowledge Islands coordinator's launcher.
 
 - The portable background-run rules: `ki-delegation`.
 - The coordinating work's own rules: `ki-coordination`.
-- The interim rules and trial tests that hold until Orca behaviour is proved: [the migration file](standards-orca-delegation-migration.md).
+- The interim rules and trial tests that hold until Orca behaviour is proved: [the migration file](migration-orca-delegation.md).
 
 [Back to contents](#contents)
 

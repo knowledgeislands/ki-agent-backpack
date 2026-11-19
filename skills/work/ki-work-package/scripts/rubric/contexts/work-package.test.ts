@@ -293,7 +293,7 @@ describe('RECORD-1 identity', () => {
     write(root, 'work/ki/ki.pilot/viewer/10-pilot.change.md', '# Viewer\n')
     const outcomes = run(RECORD, 'RECORD-1', context(root))
     expect(statuses(outcomes)).toEqual(['WARN'])
-    expect(messages(outcomes)).toContain('standards-roles-migration.md')
+    expect(messages(outcomes)).toContain('migration-roles.md')
     expect(statuses(run(RECORD, 'RECORD-2', context(root)))).toEqual(['PASS'])
   })
 
@@ -559,7 +559,7 @@ describe('RECORD-2 schema', () => {
     test(`${name} warns under the role migration file`, () => {
       const outcomes = run(RECORD, 'RECORD-2', context(store(change)))
       expect(statuses(outcomes)).toEqual(['WARN'])
-      expect(messages(outcomes)).toContain('standards-roles-migration.md')
+      expect(messages(outcomes)).toContain('migration-roles.md')
     })
 
   test("a worker binding with its actor's typed id passes", () => {

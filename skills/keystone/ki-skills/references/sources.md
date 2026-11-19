@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T23:48:00Z
+ki-revised: 2026-11-19T06:50:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -175,10 +175,13 @@ The OpenAI News page is a discovery source, not a normative standard. On each RE
 | STANDARDS-RENAME | Taken by the Cairn summit's guardian, 17 November 2026, about 04:03 GMT, under Kris's direction to take high-confidence calls, from the summit's change 11, gap 1: the plural `standards-<topic>.md` files, 108 across about 50 skills on 14 November, are renamed guild by guild in each guild's review, and the allowance is removed after the last; nothing is renamed ahead of the reviews. Reversible; Kris can overturn it. | 2026-11-17 | [Reference vocabulary](standard-knowledge-islands.md) | In force |
 | REF-5-SOURCE | In-house correction, 17 November 2026, from the Cairn summit's change 11, gap 2: REF-5 cited "SPEC §8", which traced to this skill's July standard, whose section 8 was Progressive disclosure, not to the Agent Skills specification that SPEC labels; it now cites that section's home, [`standard-agent-skills.md` §4.4.2](standard-agent-skills.md#442-progressive-disclosure), where the mode-router shape is set. | 2026-11-17 | [rubric](rubric.md) | In force |
 | RUBRIC-KNOWLEDGE | Kris's word, 17 November 2026, about 23:34 GMT, under GUARDIAN-LANDS a, relayed by the Cairn summit's guardian from the summit's [change 11](https://github.com/krisb/ki-cairn-store/blob/c17433e/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided): option a, the rubric checks a knowledge graph: its root definition, each card's id against its file name, its type and its status, and its links; the check that each card read in order links the next only warns, and exempts the last card of a chain. | 2026-11-17 | [Skill shape](standard-knowledge-islands.md#42-skill-shape), KI-SHAPE-23, KI-SHAPE-24 | In force |
+| OVERLAY-NAME | Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a and Kris's DO-THEN-CHECK, from the summit's [change 10](https://github.com/krisb/ki-cairn-store/blob/fe029b50/work/cairn/cairn.summit/10-skills-review.change.md#71-questions), option a: a migration overlay is its own class in the reference vocabulary, `migration-<topic>.md`, on the prefix pattern `mode-` uses, with no format of its own beyond the overlay rule, so it need not become a standard when the plural allowance goes; the eight overlays are renamed, `ki-coordination`'s after the run then editing it. Reversible; Kris can overturn it. | 2026-11-19 | [Reference vocabulary](standard-knowledge-islands.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+A later in-house review on **2026-11-19** applied OVERLAY-NAME, taken by the Cairn summit's guardian: [the reference vocabulary](standard-knowledge-islands.md) and KI-SHAPE-6 admit `migration-<topic>.md`, and seven of the eight `standards-<topic>-migration.md` overlays are renamed to it, `ki-coordination`'s to follow. The rubric is regenerated.
 
 A later in-house review on **2026-11-18** applied HARNESS-NAME's last step in code, scheduled by the Cairn summit's [change 12](https://github.com/krisb/ki-cairn-store/blob/4e581ef/work/cairn/cairn.summit/12-names.change.md#5-steps), step 6, and built under Kris's GUARDIAN-LANDS a: KI-SHAPE-14's text and the direct-operation and sibling-reference items say backpack where they meant the system's harness, the skill context's `sourceHarnessName` becomes `sourceBackpackName`, and the rubric is regenerated. ADR identifiers keep their words. No external source refreshed.
 

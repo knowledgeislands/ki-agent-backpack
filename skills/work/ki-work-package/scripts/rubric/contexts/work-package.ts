@@ -102,7 +102,7 @@ const BODY_AFTER_VALUES = ['Now', 'Held', 'Changes'] as const
  * November 2026). The checker reads it at audit time and holds no copy.
  */
 const ROLE_STANDARD = fileURLToPath(new URL('../../../references/standard-roles.md', import.meta.url))
-const ROLE_MIGRATION = 'standards-roles-migration.md'
+const ROLE_MIGRATION = 'migration-roles.md'
 const TIERS: readonly string[] = ['leaders', 'managers', 'makers']
 /**
  * The closed keys of a `workers` entry, its binding under the role standard (ROSTER-SPLIT a, 14 November 2026), and

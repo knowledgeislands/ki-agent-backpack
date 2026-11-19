@@ -17,7 +17,7 @@ ki-refresh: canonical · on-change
 
 ## 1. Introduction
 
-The sources and decisions behind [the D12 standard](standard-dodecakrisis.md), [the mailbox standard](standard-mailbox.md), [the learning standard](standard-learning.md) and the generated [rubric](rubric.md). [The migration overlay](standards-dodecakrisis-migration.md) holds what the servers and `ki-muninn` do not yet support.
+The sources and decisions behind [the D12 standard](standard-dodecakrisis.md), [the mailbox standard](standard-mailbox.md), [the learning standard](standard-learning.md) and the generated [rubric](rubric.md). [The migration overlay](migration-dodecakrisis.md) holds what the servers and `ki-muninn` do not yet support.
 
 Review alongside a change to the D12 card, to either mail server's protected-label or filter tools, or to `ki-muninn`'s D12 runner.
 
