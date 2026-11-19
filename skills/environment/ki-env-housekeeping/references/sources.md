@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-16T23:50:00Z
+ki-revised: 2026-11-19T07:10:00Z
 ki-refresh: canonical · on-change
 ---
 
@@ -31,10 +31,13 @@ None of its own. Each agent host's documentation is a source of its runtime skil
 | --- | --- | --- | --- | --- |
 | HOUSEKEEPING-LEAD | The owner's decision, in the Cairn summit's change 14, option a: a new `ki-env-housekeeping` holds the rules its Claude and ChatGPT skills share, as the binding and tokenomics leads do for theirs. | 2026-11-14 | [4.1](standard-housekeeping.md#41-native-memory-policy) to [4.4](standard-housekeeping.md#44-bounded-evidence-and-authority) | In force |
 | PROMOTION-ONE | Where durable learning goes is `ki-authoring`'s placement ladder, the one table of where knowledge is placed, and this standard points at it instead of repeating its homes. Kris's word, 16 November, about 23:30 GMT, relayed by the Cairn summit's guardian from the summit's [change 11](https://github.com/krisb/ki-cairn-store/blob/4bc5285/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided). | 2026-11-16 | [4.2](standard-housekeeping.md#42-durable-learning) | In force |
+| MEMORY-ONCE | The native-memory policy is stated once, in this standard: each runtime memory standard keeps only its host's delta, where the host keeps memory, how the policy is applied there and what it checks, and points here. A line-by-line check of the Claude and Codex restatements carried the generic points they held that this one lacked into it: an invalid value fails as an unset one does, `disabled` is the ordinary state, the policy records a reviewed decision rather than a host default, and `enabled` is never a remediation inferred from existing notes; nothing host-specific was lost. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a, from the summit's change 10. Reversible; Kris can overturn it. | 2026-11-19 | [Native memory policy](standard-housekeeping.md#41-native-memory-policy) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 19 November 2026 MEMORY-ONCE, recorded under [Decisions](#3-decisions), made [4.1](standard-housekeeping.md#41-native-memory-policy) the one statement of the native-memory policy, and the Claude and Codex memory standards now point at it. No outside source refreshed.
 
 On 18 November 2026 the Environment guild's review, from the Cairn summit's change 10, moved the standard and this file to the current version of `ki-authoring`'s formats; both were already in shape. No rule changed and no outside source was refreshed.
 

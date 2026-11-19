@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:17:46Z
+ki-revised: 2026-11-19T07:10:00Z
 ki-refresh: external-spec · 180d
 ---
 
@@ -65,6 +65,8 @@ None recorded by id: the rules follow the outside sources above and the shared r
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 19 November 2026 MEMORY-ONCE, taken in `ki-env-housekeeping`, cut [the auto-memory standard](standard-auto-memory.md#42-repair-boundary)'s restatement of the native-memory policy to this host's delta, pointing at the lead's 4.1; nothing host-specific was lost. No criterion changed and no outside source refreshed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Environment guild: REFRESH names the backpack as where to run it. No criterion changed and no outside source refreshed.
 

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-16T23:50:00Z
+ki-revised: 2026-11-19T07:10:00Z
 ki-status: in force
 ---
 
@@ -62,7 +62,7 @@ The rules, part by part.
 
 ### 4.1 Native memory policy
 
-Every repository that declares a runtime housekeeping skill sets its native-memory policy explicitly, `auto_memory = "disabled" | "transition" | "enabled"`, in that skill's table. An unset policy fails; `transition` warns until the repository's existing notes are reviewed and routed, then becomes `disabled`; and `enabled` needs the owner's express approval and a project-scoped opt-in in the host. The policy is Knowledge Islands' own value, separate from any setting the host keeps. Rubric **HOUSE-1** reviews it.
+Every repository that declares a runtime housekeeping skill sets its native-memory policy explicitly, `auto_memory = "disabled" | "transition" | "enabled"`, in that skill's table, recording a reviewed decision rather than relying on a host's default. An unset or invalid policy fails. `disabled` is the ordinary state; `transition` is temporary and warns until the repository's existing notes are reviewed and routed, then becomes `disabled`; and `enabled` is an exception, never a remediation inferred from existing notes, and needs the owner's express approval and a project-scoped opt-in in the host. The policy is Knowledge Islands' own value, separate from any setting the host keeps. Each runtime skill states only its host's delta: where the host keeps memory, how the policy is applied there and what it checks (MEMORY-ONCE). Rubric **HOUSE-1** reviews it.
 
 [Back to contents](#contents)
 

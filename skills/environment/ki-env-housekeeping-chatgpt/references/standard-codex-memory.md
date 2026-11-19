@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:17:46Z
+ki-revised: 2026-11-19T07:10:00Z
 ki-status: in force
 ---
 
@@ -67,11 +67,11 @@ Codex local memory is generated state, not the durable Knowledge Islands record.
 
 ### 4.2 Repository policy
 
-Every repository declaring `ki-env-housekeeping-chatgpt` sets `auto_memory = "disabled" | "transition" | "enabled"` in its skill table. An unset or invalid value is a **FAIL**, even though local Codex memory is off by default. The declaration records a reviewed repository decision rather than relying on a vendor default.
+A repository declaring `ki-env-housekeeping-chatgpt` sets `auto_memory` in its skill table under the lead's [native-memory policy](../../ki-env-housekeeping/references/standard-housekeeping.md#41-native-memory-policy). For Codex:
 
-- `disabled` is the ordinary resolved state. A selected store with files still warns for reconciliation; do not delete or rewrite them automatically.
-- `transition` is temporary and always warns. Inspect existing files, route durable value to reviewed repository guidance or KB notes, and then explicitly declare `disabled`.
-- `enabled` requires express human approval and a project-scoped Codex setting. It is an exception, not a remediation inferred from existing files.
+- An unset or invalid value is a **FAIL** even though local Codex memory is off by default.
+- Under `disabled`, a selected store with files still warns for reconciliation, [4.4](#44-reconciliation); do not delete or rewrite them automatically.
+- `enabled` needs a project-scoped Codex setting, [4.3](#43-runtime-settings).
 
 The shared Codex home store cannot establish which repository owns a memory file. An enabled project setting controls behaviour for that trusted project but does not prove file isolation. Do not present global store contents as this repository's knowledge.
 
