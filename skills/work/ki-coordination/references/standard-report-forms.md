@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T04:40:00Z
+ki-revised: 2026-11-19T05:25:00Z
 ki-status: in force
 ---
 
@@ -142,7 +142,7 @@ Which parts each reply structure carries, one column per structure with its layo
 | **B1** · Answer | ○ | ○ | ○ | ○ | ○ | ○ | ● | ● |
 | **B2** · Summary | ● |  | ● | ● | ● |  |  |  |
 | **B3** · Status | ● | ● | ● | ● | ● |  |  |  |
-| **B4** · Findings | ○ | ○ | ○ | ○ | ○ |  |  |  |
+| **B4** · Findings | ○ | ○ | ○ | ○ | ○ |  | ○ | ○ |
 | **B5** · Queries | ● | ● | ● | ● | ● |  |  |  |
 | **B6** · Reply block | ○ | ○ | ○ | ○ | ○ | ○ | ○ | ○ |
 | **Footer block** |  |  |  |  |  |  |  |  |
@@ -160,7 +160,7 @@ Which parts each reply structure carries, one column per structure with its layo
 
 F3 and F4 show always or never by reply structure, never by judgement of whether they apply; F3 leaves Stop only when the work is Finished. F8 shows exactly while the session is in a meeting, whatever the structure. Every structure closes with its thread line, as Kris set under HOOK-ENFORCE on 18 November 2026: "Yeah, we need the hook enforcing". The Update and the Answer close with the **one-line footer**, F2's glyph state and F9 on one line, and give the short banner, F2, F3, F6 to F9, only where the state, the counts or the items have changed since the session's previous reply, as Kris set under MINIMAL-FOOTER on 19 November 2026; every other structure closes with its banner.
 
-Sources: REPLY-FORMAT, LISTEN-LINE, HOOK-ENFORCE and MINIMAL-FOOTER in [the decision register](sources.md#3-decisions).
+Sources: REPLY-FORMAT, LISTEN-LINE, HOOK-ENFORCE, MINIMAL-FOOTER and FINDINGS-KEEP in [the decision register](sources.md#3-decisions).
 
 #### 4.1.4 Part content
 
@@ -178,7 +178,7 @@ Each part: what it carries, when it appears and how the structure, the state and
 - **B1 Answer:** anything the reply says that no other part covers, in its own words and with any normal sections: an answer to the owner's message, an explanation, a short table. It comes first in the body, straight after the heading block, and only where there is such content: a reply to a bare `summary` may have none, its Summary being B2. In Minimal it is the whole reply.
 - **B2 Summary:** what changed since the window opened. In a Summary it is `## Summary`, with no time: one bold headline saying what the window came to, then one line per item that changed, delivered, decided, started, stopped, blocked or newly captured, with material failures, corrections and limitations beside the items they qualify, and commits and a recovered session among them; with nothing changed, one line says so. In every Medium structure it is `## Done`, one completed outcome per line: in a Bootstrap the coordinator's role and where the work stands, ending with the `Rename thread:` line under [Opening work](standard-opening.md#43-opening-work); in a run report its outcomes with commit identifiers and each check's outcome; in a Stop one line per repository for a hold, or one per close-out step at Finished.
 - **B3 Status:** the full board of live items. In a Summary or Status it is `## Status`, the [status table](#417-the-summary). In every Medium structure it is `## In Progress`: what is running and what is waiting, each with its owner or dependency, or `Nothing is running`, then `Outstanding - no action requested now`. On hold, Left over comes here: another session's uncommitted file, or `Nothing`.
-- **B4 Findings:** `## Findings`, only while a finding the owner asked for is open, under the owner report's **Findings**.
+- **B4 Findings:** `## Findings`, only while a finding the owner asked for is open, each given in full the first time and in one line after, until the owner acknowledges it, under the owner report's **Findings**. In an Update or Answer it is one line closing the Answer instead, counting the findings still open and naming their tags, as `Findings open: 1, THEME-FIELD.`
 - **B5 Queries:** `## Queries`, each decision the owner needs to make, in full, under the [owner report](standard-reporting.md#42-owner-report), at most three, the most critical first, then one line saying how many more are open and where they are held, under the [query cap](standard-queries.md#42-query-cap), a proposed work transfer last, or `None.` in a Summary or Status and `No outstanding queries` in a Medium structure. On hold, the parked queries come here instead, one line each, `<TAG> - <one line>`.
 - **B6 Reply block:** the tags, letters and confidences, ready to copy: one fenced `text` block after the last query, holding exactly the text to send back, for the owner to copy, change and send. The queries in B5, the same three at most and no others, are grouped by priority under numbered headings, the most pressing first, each `<n> · <what the group is>`, adding `, can run while you're away` where the group's work can go ahead while the owner is away, with a blank line between groups; under each heading, one line per query, its tag, the recommended option's letter and that option's confidence in brackets, then a short gloss after a colon, as `<TAG> a (high): what it does`, each tag on one line only and never with an alternative's letter, under the owner report's **Reply block**. It appears whenever the reply asks the owner to decide anything, closing the body before any footer: whenever B5 carries at least one query in full, and after the Answer of a Position, Update or Answer that asks for a decision.
 
@@ -194,7 +194,7 @@ Each part: what it carries, when it appears and how the structure, the state and
 - **F8 Listening line:** `👂 in <meeting>` while the session is in a meeting, naming each meeting it is in by its entry file's `meeting` field, two or more joined by `, `, as in `👂 in cairn.wayfinder.designs`, and left off when it is in none. A session is in a meeting while it is a participant of an open meeting with a sitting under way, `status: open` in the meeting's entry file under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). Listening means only this, under LISTEN-LINE; the [inbox watcher](standard-listening.md#41-inbox-watch) has no line.
 - **F9 Thread line:** `<role glyph> 🔑 <work-id>`, `<role glyph> <package>@<role>` for a seat without the keys, each written `<Name> (<that form>)` where the seat's actor is named, as in `Kitteth (🪨 🔑 cairn.summit)`, or `🧵 <work-id>`, always last, under **Thread line** in [the core](standard-coordination.md#46-banner). In the one-line footer it follows the glyph state after ` · `.
 
-Sources: REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, QUERY-CAP-3, QUERY-COUNT, LISTEN-LINE, ITEM-GLYPHS, GLYPH-TABLE, GLYPH-FALLBACK, NAME-FIRST, HEADING-FIX, HEADING-PACKAGE, HOOK-ENFORCE and MINIMAL-FOOTER in [the decision register](sources.md#3-decisions).
+Sources: REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, QUERY-CAP-3, QUERY-COUNT, LISTEN-LINE, ITEM-GLYPHS, GLYPH-TABLE, GLYPH-FALLBACK, NAME-FIRST, HEADING-FIX, HEADING-PACKAGE, HOOK-ENFORCE, MINIMAL-FOOTER and FINDINGS-KEEP in [the decision register](sources.md#3-decisions).
 
 #### 4.1.5 Templates
 
@@ -291,7 +291,7 @@ Rename thread: /rename <thread line>
 
 ## Findings
 
-<each open finding in full; only when there is some>
+<each open finding: in full the first time, then one line, tag · answer in brief · first given in Reply HH:MM; only when there is some>
 
 ## Queries
 
@@ -405,12 +405,14 @@ No outstanding queries
 ```text
 <the Answer, or one or two timestamped lines for an update>
 
+Findings open: <n>, <TAG>, <TAG>.   (only while a finding is open)
+
 <glyph state> · <thread line>
 ```
 
 As `🤖 With worker · Kitteth (🪨 🔑 cairn.summit)`, `👤 With supervisor · Wayland (⚒️ 🔑 ki.cairn)`, or `💤 Snoozing (on hold) · 🧵 <work-id>` for a session with no role yet, each other state written as its banner heading writes it.
 
-Sources: REPLY-FORMAT, REPORT-FORMS-TIDY, HOOK-ENFORCE and MINIMAL-FOOTER in [the decision register](sources.md#3-decisions).
+Sources: REPLY-FORMAT, REPORT-FORMS-TIDY, HOOK-ENFORCE, MINIMAL-FOOTER and FINDINGS-KEEP in [the decision register](sources.md#3-decisions).
 
 #### 4.1.6 Verbs
 
