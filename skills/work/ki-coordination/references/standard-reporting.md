@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T05:25:00Z
+ki-revised: 2026-11-19T05:55:00Z
 ki-status: in force
 ---
 
@@ -27,6 +27,7 @@ ki-status: in force
     - [4.2.3 Tags](#423-tags)
   - [4.3 Links and wording](#43-links-and-wording)
   - [4.4 Linking records](#44-linking-records)
+    - [4.4.1 Where the owner reads](#441-where-the-owner-reads)
   - [4.5 Report rule sources](#45-report-rule-sources)
 
 ## 1. Introduction
@@ -46,7 +47,7 @@ The reply forms every session uses, and the owner report with its queries, answe
 - Weighing what to do, and steer and feedback along the tree.
 - The owner report: its heading, sections, findings, queries and levels.
 - Answers, quiet tools and tags.
-- Links, wording and linking records.
+- Links, wording and linking records, and which links to give for where the owner reads.
 - The marked sources of the run-report and footer-report rules.
 
 [Back to contents](#contents)
@@ -290,7 +291,7 @@ Each outstanding query carries a short mnemonic tag, such as `BOT-1`, `CSWAP` or
 
 ### 4.3 Links and wording
 
-- **Links:** every record a report names is linked by its full identifier to its local file under [Linking records](#44-linking-records).
+- **Links:** every record a report names is linked by its full identifier under [Linking records](#44-linking-records), and every link opens where the owner reads, under [Where the owner reads](#441-where-the-owner-reads).
 - **Wording:** plain language; "background agents" for the worker processes and "runs" for their groups, never "helpers". When the owner must paste a message into another session, give it in a code block ready to copy.
 
 [Back to contents](#contents)
@@ -299,13 +300,43 @@ Each outstanding query carries a short mnemonic tag, such as `BOT-1`, `CSWAP` or
 
 Whenever a session or report mentions a roadmap or work record, a package file, a theme, a Project, a decision, a receipt or an evidence artefact, it cites the full identifier, such as `KI-HARNESS-GOV-144` rather than `GOV-144`, because area codes repeat across repositories, and uses it as the link text.
 
-- **Target:** link each to its local file by absolute path, so it opens in the owner's editor, resolving the repository through the KI registry (`ki registry`) where available. Use the verified canonical remote URL only when there is no local copy. A query heading links to its record where one exists.
+- **Target:** link each where the owner reads, under [Where the owner reads](#441-where-the-owner-reads): on the Mac holding it, its local file by absolute path, so it opens in the owner's editor, resolving the repository through the KI registry (`ki registry`) where available; elsewhere, or where there is no local copy, its verified canonical remote URL. A query heading links to its record where one exists.
 - **Never invented:** when a target cannot be resolved, the text says so.
 - **Pruned records:** a pruned record has no local file, so it is linked as `[<FULL-ID> (pruned)](https://github.com/<owner>/<repo>/blob/<last revision>/<path>)`. The link text is always the full identifier followed by `(pruned)`, and the last revision is the last commit in which the file existed, usually the parent of the prune commit. A live record keeps its local-file link; a pruned record is never pointed at the Project note that carries it, nor left as a bare identifier.
 - **Scope:** status lines, reports, recaps and package files alike, a background agent's report included.
 - **No file check:** no rubric item reads reports for links any more, under COORD-REPORT-CHECKS; COORD-5 reviews linking as judgement. That every record identifier in a record is a link is the record's owner's rule: the Cairn store's contract and its [change 20](https://github.com/krisb/ki-cairn-store/blob/7fb6be3/work/cairn/cairn.summit/20-learnings.change.md#42-the-record).
 
 Sources: LINK-FORM and COORD-REPORT-CHECKS in [the decision register](sources.md#3-decisions).
+
+#### 4.4.1 Where the owner reads
+
+A link directs the owner to the right way to see the thing from where they are reading the reply. Give the most sensible choice of links, not strictly one, and never a link that will not open there. The agent host usually says where that is.
+
+- **On a Mac, sol or terra,** in Orca, Claude Code or Claude Desktop: `cairn://` links open the Cairn Wayfinder, which registers the scheme on both Macs; a local path opens where the host runs on the Mac holding the file; `https://` links open.
+- **On the phone, or in a remote or cloud session:** only `https://` links open. Give a pushed file's GitHub link on `main`, and name a file that is not pushed as such, with the machine it is on. Never a `cairn://` link or a local path alone.
+- **In an app's own sign-in,** such as Claude Desktop or Claude Design: a link to that app's own artifact or page opens; never one that needs another sign-in, such as a claude.ai artifact made from another app's session.
+- **Unsure where:** give the set for the thing, each link labelled, so whichever opens serves.
+
+Which links to give for each kind of thing:
+
+- **A Cairn-level thing,** a work package or its change document, a meeting or its file, a record or an actor in the Cairn store: one link takes the owner into the Cairn Wayfinder, given first, as `cairn://package/<work id>`, `cairn://package/<work id>/changes/<file>`, `cairn://meeting/<meeting>/<folder>/<file>`, `cairn://record/<record id>` or `cairn://actor/<actor id>`, by the route forms in Cairn's [chat-links guide](https://github.com/knowledgeislands/apps-cairn.local/blob/main/docs/guides/sessions/chat-links.md). Beside it go the file's own links, its local path on the Mac and its GitHub link where the owner may be elsewhere. On the phone the GitHub link stands alone.
+- **A file in a repository:** its local path on the Mac holding it; its GitHub link on `main` once pushed, where the owner may be elsewhere or where it is shared.
+- **A roadmap or work record:** by its full identifier, under [Linking records](#44-linking-records).
+- **A page or artifact in an app:** that app's own link, only where the owner reads in that app's sign-in.
+
+**More than one link.** Where a thing has more than one sensible view, such as the Wayfinder to look around, the file to edit and GitHub from elsewhere, give them on one line: the thing's name links to the main view and short links follow it, compact words or icons, each of which opens where the owner reads. For a change document read on sol:
+
+```markdown
+[cairn.summit change 20](cairn://package/cairn.summit/changes/20-learnings.change.md) · [file](/Users/<user>/kis/cairn/ki-cairn-store/work/cairn/cairn.summit/20-learnings.change.md) · [GitHub](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/20-learnings.change.md)
+```
+
+The same read on the phone gives only `[cairn.summit change 20](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/20-learnings.change.md)`.
+
+- **Link text** names the thing, its full identifier or title, never "here", "link" or a bare address, and the same target keeps the same text.
+- **Never invented:** a link whose target cannot be resolved, or that would not open where the owner reads, is left out and the text says so.
+- **In files** this rule does not apply: a relative link stays within its repository's root, as `ki-authoring` sets.
+
+Sources: LINKS-STANDARD in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
