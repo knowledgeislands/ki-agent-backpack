@@ -120,7 +120,7 @@ This skill leads the Agentic systems guild: its words, and agents at work. It sa
 ## Boundaries
 
 - **This skill says what a thing is.**
-- **`ki-knowledge-graph`** owns the card format, root definitions, subgraphs and link vocabularies, and how cards are curated and tended; it sits beside this skill in the Keystone guild.
+- **`ki-knowledge-graph`** owns the card format, root definitions, subgraphs and link vocabularies, and how a graph is staged and tended; curating captures into cards belongs to the Inbox. It sits beside this skill in the Keystone guild.
 - **`ki-skills`** owns the knowledge kind and how a skill holds its graph.
 
 ## Operating modes
