@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T05:25:00Z
+ki-revised: 2026-11-19T06:10:00Z
 ki-status: in force
 ---
 
@@ -122,7 +122,7 @@ Coordination is an explicitly selected session role on any valid package, whatev
 
 #### 4.1.1 The work model
 
-The model of work is decided by [GDR-KI-PRINCIPAL-009](https://github.com/knowledgeislands/ki-principal/blob/main/Admin/Governance/Decisions/GDR-KI-PRINCIPAL-009-the-work-model.md) and described once by the [Work Process](https://github.com/knowledgeislands/ki-principal/blob/main/Pillars/Philosophy/Model/Processes/Work%20Process/Work%20Process.md) note in Knowledge Islands Principal: the unit is work; its levels and forms; worker, supervisor and the derived holder; send and receive; the seven states with On hold's two reasons; the receive words; the heartbeat and stuck; Git as the logbook; the decisions life cycle; the banner and its answers; and the Observatory fields. This standard cites the note and restates none of it, and sets what the note leaves to the harness: how a coordinator keeps to the model, the shape of every report, the generated surfaces and the checks. Where the work is kept, a package in the Cairn store's work tree, is `ki-work-package`'s, which governs wherever the note was written before that tree.
+The model of work is decided by [GDR-KI-PRINCIPAL-009](https://github.com/knowledgeislands/ki-principal/blob/main/Admin/Governance/Decisions/GDR-KI-PRINCIPAL-009-the-work-model.md) and described once by the [Work Process](https://github.com/knowledgeislands/ki-principal/blob/main/Pillars/Philosophy/Model/Processes/Work%20Process/Work%20Process.md) note in Knowledge Islands Principal: the unit is work; its levels and forms; worker, supervisor and the derived holder; send and receive; the seven states with On hold's two reasons; the receive words; the heartbeat and stuck; Git as the logbook; the decisions life cycle; the banner and its answers; and the Observatory fields. This standard cites the note and restates none of it, and sets what the note leaves to the backpack: how a coordinator keeps to the model, the shape of every report, the generated surfaces and the checks. Where the work is kept, a package in the Cairn store's work tree, is `ki-work-package`'s, which governs wherever the note was written before that tree.
 
 #### 4.1.2 The responsive coordinator
 
@@ -167,7 +167,7 @@ Sources: RESPONSIVE-PRINCIPLE, SMALL-FIXES and OPENER-DELEGATE in [the decision 
 | [Decisions and change documents](standard-decisions.md) | decisions in change documents, decision classes, their life cycle and change documents |
 | [Mark, tidy and finishing](standard-mark.md) | the mark, parking tangents, pruning the package, closing out Orca workers and finishing Project work |
 | [Sync](standard-sync.md) | landing, then review, with the record of each batch, pushing beneath other sessions, the repository level check and keeping primary checkouts current |
-| [Coordinating-work migration](standards-coordination-migration.md) | temporary adjustments to [the coordinating-work standard](standard-coordination.md), which describes only the final state, under MIGRATION-OVERLAY. Read the standard first; it wins wherever the two differ. Delete each adjustment once its condition is met, and the file whole once it is empty, with no edit to the standard |
+| [Coordinating-work migration](migration-coordination.md) | temporary adjustments to [the coordinating-work standard](standard-coordination.md), which describes only the final state, under MIGRATION-OVERLAY. Read the standard first; it wins wherever the two differ. Delete each adjustment once its condition is met, and the file whole once it is empty, with no edit to the standard |
 | Roles (reserved for Stage C) | The role catalogue and the `ki-role` field, which `ki-work-package` owns in its [roles standard](../../ki-work-package/references/standard-roles.md) |
 
 [Back to contents](#contents)
@@ -221,7 +221,7 @@ The five hard rules remain authoritative here: Follow the coordinating-work stan
 - Launched agents, unsupported events, absent capability and malformed or unusable input stay silent and successful.
 - The user-environment manager registers the hook; it adds no runtime marker or store.
 
-**Binding.** Where `[skills.ki-coordination]` is declared, the hook and the output style are bound, a runtime-specific binding under Claude Code: the repository's tracked `.claude/settings.json` selects `"outputStyle": "ki-coordinator"`, and the user's Claude Code settings register `hooks/coordinator-reminder/coordinator-reminder.sh` at `UserPromptSubmit` and `SessionStart`, with the style deployed as `~/.claude/output-styles/ki-coordinator.md`. The style and the hook line are harness-owned and generated from this standard; the user-environment manager, chezmoi, only links the style to the primary checkout and registers the hook. The `ki-coordination` rubric checks that the binding is present.
+**Binding.** Where `[skills.ki-coordination]` is declared, the hook and the output style are bound, a runtime-specific binding under Claude Code: the repository's tracked `.claude/settings.json` selects `"outputStyle": "ki-coordinator"`, and the user's Claude Code settings register `hooks/coordinator-reminder/coordinator-reminder.sh` at `UserPromptSubmit` and `SessionStart`, with the style deployed as `~/.claude/output-styles/ki-coordinator.md`. The style and the hook line are backpack-owned and generated from this standard; the user-environment manager, chezmoi, only links the style to the primary checkout and registers the hook. The `ki-coordination` rubric checks that the binding is present.
 
 Sources: SMALL-FIXES, PERM-PROMPTS-SHAPES, UPDATE-CADENCE, QUIET-LISTEN, GAP-SUMMARY, HEARTBEAT, OOS-WAKE, WAKE-SUBSTRATE, CONCURRENCY, HOOK-BINDING, QUERY-CAP, QUERY-CAP-3 and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
 
@@ -377,8 +377,8 @@ The report heading, rendered glyphs, roadmap and package lines, mode lines, rest
 | `🔑` | The keyholder, the session holding the package's keys | F9, `<role glyph> 🔑 <work-id>` |
 | Role glyph | The seat's one role | F9, before `🔑` or the seat's id; each role's glyph is in `ki-work-package`'s [role catalogue](../../ki-work-package/references/standard-roles.md#43-role-catalogue) and is not copied here |
 | `🌐` | The outside world | A status-table line waiting outside |
-| `👂` | Retired: listening, and then in a meeting | Only in reports saved before FOOTER-DELEGATES, under [the migration file](standards-coordination-migration.md); the footer check warns on it |
-| `🔇` | Retired: not listening | Only in reports saved before LISTEN-LINE, under [the migration file](standards-coordination-migration.md); the footer check warns on it |
+| `👂` | Retired: listening, and then in a meeting | Only in reports saved before FOOTER-DELEGATES, under [the migration file](migration-coordination.md); the footer check warns on it |
+| `🔇` | Retired: not listening | Only in reports saved before LISTEN-LINE, under [the migration file](migration-coordination.md); the footer check warns on it |
 | `🔄` | Retired: the sync line | Only in reports saved before SYNC-LINE-OFF |
 | `🧑` | Retired: Kris, before GLYPH-OWNER | Only in reports saved before GLYPH-OWNER |
 | `⭐` `🔧` | Retired: marks beside a role glyph | Only in older thread lines; the footer check warns on them |
@@ -406,7 +406,7 @@ This section is the one source of the owner-report text the runtime surfaces car
 | `run-report` | the **Report** paragraph of `ki-delegation`'s [run-prompt skeleton](../../../agentic-systems/ki-delegation/assets/run-prompt.md) |
 | `footer-report` | the report rule of each of `ki-delegation`'s four authority footers |
 | `review-independence` | the **Independence** line of `ki-delegation`'s [run-prompt skeleton](../../../agentic-systems/ki-delegation/assets/run-prompt.md), which every review run's brief keeps, and of `ki-work design`'s [brief template](../../../keystone/ki-work/assets/design/brief.md), which every design reviewer reads |
-| `output-style` | the whole harness `output-styles/ki-coordinator.md`, with `{{heading-example}}`, `{{with-worker-banner}}`, `{{handoff-banner}}`, `{{draining-banner}}`, `{{hold-banner}}` and `{{snoozing-banner}}` replaced by the [Banner](#46-banner) examples marked with the same names, so each is written once |
+| `output-style` | the whole backpack's `output-styles/ki-coordinator.md`, with `{{heading-example}}`, `{{with-worker-banner}}`, `{{handoff-banner}}`, `{{draining-banner}}`, `{{hold-banner}}` and `{{snoozing-banner}}` replaced by the [Banner](#46-banner) examples marked with the same names, so each is written once |
 
 Edit the text here, never in a rendered file. A hook source holds no single quote, because the hook assigns it in single quotes.
 

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T01:29:31Z
+ki-revised: 2026-11-19T06:10:00Z
 ki-status: in force
 ---
 
@@ -144,13 +144,12 @@ The cascade here is `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/ref
 - The Capital's prose home reference is discovery, never a second package, state or inbox.
 - Reader compatibility is a prerequisite to automated member-home discovery; the local advisory hook neither scans the estate nor guarantees runtime injection.
 
-**Stewardship.** A State of play may steward an assigned package of any level only by the explicit committed assignment and acknowledged handover of the `ki-work-package` [stewardship rule](../../ki-work-package/references/standard-work-package.md#49-writers).
+**Stewardship.** A package's steward is its keyholder, the actor seated at it as its `ki-workers` name it, under the `ki-work-package` [writers rule](../../ki-work-package/references/standard-work-package.md#49-writers). A package with no seat is held by its parent node's keyholder under CASCADE-DOWN, who writes in it as its keyholder until a seat is taken.
 
-- Its field stays the marked STEWARD-FIELD placeholder; add no field and do not reinterpret `ki-worker`.
-- The old steward stops launches and reconciles runs in flight, queued launches and pending writes; the new steward acknowledges and takes their supervision before acting.
-- No absent session, missing binding, quiet session or timeout transfers stewardship. Assignment never changes the holder or releases On hold work.
-- An assigned State of play may use the package's own entry points, tidying included. It may create or adopt a package only for a registered Project within the cap, with a state the actual move justifies. A package it seeds for dormant work stays On hold.
-- A package assigned elsewhere receives only lines. A territory hold drains assigned Project packages first and asks any independent steward to drain its own; it never writes another steward's package.
+- A seat changes hands only by acknowledged handover: the old seat stops launches and reconciles runs in flight, queued launches and pending writes, and commits the change to `ki-workers` in one write; the new seat acknowledges and takes their supervision before acting.
+- No absent session, missing binding, quiet session or timeout transfers a seat. A handover never changes the holder, which `ki-worker` names, or releases On hold work.
+- The keyholder may use the package's own entry points, tidying included. A package it creates or adopts takes the state its actual move supports; an absent package never implies With worker. A package it seeds for dormant work stays On hold.
+- A package held elsewhere receives only lines. A territory hold drains the packages the summit holds first and asks every other keyholder to drain its own; it never writes another keyholder's package.
 
 **One Summary across packages.** A territory Summary reports across the packages it stewards, naming the package on every item.
 

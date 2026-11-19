@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T05:51:35Z
+ki-revised: 2026-11-19T06:10:00Z
 ki-status: in force
 ---
 
@@ -28,6 +28,7 @@ ki-status: in force
   - [4.3 Links and wording](#43-links-and-wording)
   - [4.4 Linking records](#44-linking-records)
     - [4.4.1 Where the owner reads](#441-where-the-owner-reads)
+    - [4.4.2 Runtime binding](#442-runtime-binding)
   - [4.5 Report rule sources](#45-report-rule-sources)
 
 ## 1. Introduction
@@ -241,15 +242,15 @@ The label is written `Outstanding - no action requested now` and the query headi
   ```markdown
   ### LINK-GUARD - where the link guard should live
 
-  **Context:** The hook line already names the linking rule, and KI-HARNESS-GOV-188 carries the harness half; the link printer is a `ki` change, so each half has a different home.
+  **Context:** The hook line already names the linking rule, and KI-HARNESS-GOV-188 carries the backpack half; the link printer is a `ki` change, so each half has a different home.
 
-  **Query:** Should the link guard be split across its homes, or held in the harness until the printer lands?
+  **Query:** Should the link guard be split across its homes, or held in the backpack until the printer lands?
 
   **Options:**
 
-  a) (recommended, confidence high - each half's home is already settled) split it: hook line and KI-HARNESS-GOV-188 in the harness, the printer in KI-TOOL-KI-CLI-127
+  a) (recommended, confidence high - each half's home is already settled) split it: hook line and KI-HARNESS-GOV-188 in the backpack, the printer in KI-TOOL-KI-CLI-127
 
-  b) hold the whole guard in the harness until the printer lands
+  b) hold the whole guard in the backpack until the printer lands
   ```
 
 - **Posting outside:** a recommendation to post anything in the owner's name outside the owner's own repositories and services, an issue, comment, reaction, pull request, discussion, review or message on another owner's repository or service such as an upstream issue tracker, is a query, never an action. Its **Context** or option carries the exact text proposed and where it would go, and nothing is posted until the owner answers that query; a broader grant, an earlier answer or a recommended option never stands in for it. `ki-delegation` owns the ban under its [external-posting rule](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#46-authority-tiers).
@@ -313,9 +314,9 @@ Sources: LINK-FORM and COORD-REPORT-CHECKS in [the decision register](sources.md
 
 A link directs the owner to the right way to see the thing from where they are reading the reply. Give the most sensible choice of links, not strictly one, and never a link that will not open there. The agent host usually says where that is.
 
-- **On a Mac, sol or terra,** in Orca, Claude Code or Claude Desktop: `cairn://` links open the Cairn Wayfinder, which registers the scheme on both Macs; a local path opens where the host runs on the Mac holding the file; `https://` links open.
+- **On a Mac, sol or terra,** in an agent host running there, as [Runtime binding](#442-runtime-binding) names them: `cairn://` links open the Cairn Wayfinder, which registers the scheme on both Macs; a local path opens where the host runs on the Mac holding the file; `https://` links open.
 - **On the phone, or in a remote or cloud session:** only `https://` links open. Give a pushed file's GitHub link on `main`, and name a file that is not pushed as such, with the machine it is on. Never a `cairn://` link or a local path alone.
-- **In an app's own sign-in,** such as Claude Desktop or Claude Design: a link to that app's own artifact or page opens; never one that needs another sign-in, such as a claude.ai artifact made from another app's session.
+- **In an app's own sign-in,** a desktop or web app the owner is signed into: a link to that app's own artifact or page opens; never one that needs another sign-in, such as an artifact made from another app's session.
 - **Unsure where:** give the set for the thing, each link labelled, so whichever opens serves.
 
 Which links to give for each kind of thing:
@@ -336,6 +337,12 @@ The same read on the phone gives only `[cairn.summit change 20](https://github.c
 - **Link text** names the thing, its full identifier or title, never "here", "link" or a bare address, and the same target keeps the same text.
 - **Never invented:** a link whose target cannot be resolved, or that would not open where the owner reads, is left out and the text says so.
 - **In files** this rule does not apply: a relative link stays within its repository's root, as `ki-authoring` sets.
+
+Sources: LINKS-STANDARD in [the decision register](sources.md#3-decisions).
+
+#### 4.4.2 Runtime binding
+
+Under the Claude runtimes, the agent hosts on a Mac are Orca, Claude Code and Claude Desktop, and the apps with their own sign-in are Claude Desktop and Claude Design; a claude.ai artifact made from another app's session needs another sign-in, so it is never given. Another runtime names its own hosts and apps here.
 
 Sources: LINKS-STANDARD in [the decision register](sources.md#3-decisions).
 

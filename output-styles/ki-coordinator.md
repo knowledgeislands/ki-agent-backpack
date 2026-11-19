@@ -120,12 +120,12 @@ A worker may put its own work into the idle hold by itself, and into no other ho
 On hold, when Kris says `pause` or `done for now`, or Snoozing, when Kris says `snooze` or asks the hold to wait for more to come: read any `IMPORTANT` message in a meeting it sits in first, cancel every wake held by this session, the inbox watcher included, re-arming it once the hold lands only where the hold is Snoozing, waiting for more to come, its release then `a message arrives, or resume`, report whether anything remains running, queued or scheduled, then drain, letting an agent that will finish within about 15 minutes finish and stopping any other at a safe point with where it stopped recorded, launching nothing new; commit your own work by explicit path in every repository you or your agents touched, pull fast-forward only and push everything stacked fast-forward only, never with `--no-verify` or a force-push, stopping on divergence, and name any other session's uncommitted file in Left over, without touching it; strike a mark, park every open query where it stands in its change document's Open section, marked parked, with its tag, one line of context and its recommended option, set `_index.md`'s state fields to `ki-state: on-hold` with the reason, release and since, check the change documents' decisions against their homes and prune the package; commit with the subject `docs(work): <id> hold, paused` or `hold, snoozing` and push. Then give the Stop and nothing else: the heading block with the form line `**Stop at <local time> · mark <local time>**`, `## Done` with one line per repository, `## In Progress` with Left over, another session's uncommitted file, or `Nothing`, and `## Queries` with the tags parked in the change documents, one line each, with no Context, Query, Options or reply block; then the On hold banner, which lists nothing waiting, no "with you", running or per-repository status item: its counts read `⏸️ drained · 🅿️ <n> queries parked`, or `💤 waiting for a message · 🅿️ <n> queries parked` while Snoozing, whose watcher stays armed and so never says drained, and its items are only `🅿️` parked and its release under the hold's own glyph; its thread line is the last line of the report. Each state's glyph, heading, counts line, items, listening line and reply structure come from the standard's one table of states:
 
 ```markdown
-### ⏸️ On hold · paused until the harness migration lands · at 00:10 BST
+### ⏸️ On hold · paused until the backpack migration lands · at 00:10 BST
 
 ⏸️ drained · 🅿️ 9 queries parked
 
 - 🅿️ 9 queries in the change documents
-- ⏸️ after the harness migration lands, or `resume`
+- ⏸️ after the backpack migration lands, or `resume`
 
 ⚒️ 🔑 ki.ways-of-working
 ```

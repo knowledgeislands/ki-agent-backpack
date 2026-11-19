@@ -9,7 +9,7 @@ const skillRoot = resolve(import.meta.dir, '..')
 const backpackRoot = resolve(skillRoot, '..', '..', '..')
 const references = join(skillRoot, 'references')
 const referenceFiles = readdirSync(references).filter((name) => name.endsWith('.md'))
-const standardFiles = referenceFiles.filter((name) => /^standards?-.*\.md$/.test(name))
+const standardFiles = referenceFiles.filter((name) => /^(?:standards?|migration)-.*\.md$/.test(name))
 const read = (path: string): string => readFileSync(path, 'utf8')
 
 /** Lines outside fenced blocks, so example headings and links are not read as the document's own. */

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T05:25:00Z
+ki-revised: 2026-11-19T06:10:00Z
 ki-status: in force
 ---
 
@@ -621,12 +621,12 @@ On hold, closing a Stop:
 <!-- ki-coordination:block hold-banner -->
 
 ```markdown
-### ⏸️ On hold · paused until the harness migration lands · at 00:10 BST
+### ⏸️ On hold · paused until the backpack migration lands · at 00:10 BST
 
 ⏸️ drained · 🅿️ 9 queries parked
 
 - 🅿️ 9 queries in the change documents
-- ⏸️ after the harness migration lands, or `resume`
+- ⏸️ after the backpack migration lands, or `resume`
 
 ⚒️ 🔑 ki.ways-of-working
 ```

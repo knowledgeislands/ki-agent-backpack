@@ -24,7 +24,7 @@ const backpackRoot = resolve(skillRoot, '..', '..', '..')
 const references = resolve(skillRoot, 'references')
 /** The standard's reference files, core first, so an assertion holds wherever its rule lands. */
 const standardFiles = readdirSync(references)
-  .filter((name) => /^standards?-.*\.md$/.test(name))
+  .filter((name) => /^(?:standards?|migration)-.*\.md$/.test(name))
   .sort(
     (a, b) => Number(b === 'standard-coordination.md') - Number(a === 'standard-coordination.md') || a.localeCompare(b)
   )
@@ -279,7 +279,7 @@ test('each holder line opens with its state glyph alone, never a bracketed state
     '- 🤖 work-model · run/work-model · at 23:20',
     '- ⛔ work-model stuck · run/work-model · at 23:20',
     '- 🅿️ 2 queries in the change documents',
-    '- ⏸️ after the harness migration lands, or `resume`',
+    '- ⏸️ after the backpack migration lands, or `resume`',
     '- 💤 a message arrives, or `resume`',
     '- 🏁 14 work items accepted',
     '- 🧹 stranded run/work-model · ki.ways-of-working',
@@ -606,8 +606,8 @@ test('the standard carries the With worker, handoff, draining, On hold, Snoozing
   expect(handoff).toContain('- 🅿️ 1')
   expect(found.flat().some((line) => BODY_ITEM.test(line))).toBe(false)
   expect(handoff?.some((line) => line.startsWith('- 🤖'))).toBe(false)
-  expect(hold?.[0]).toBe('### ⏸️ On hold · paused until the harness migration lands · at 00:10 BST')
-  expect(hold).toContain('- ⏸️ after the harness migration lands, or `resume`')
+  expect(hold?.[0]).toBe('### ⏸️ On hold · paused until the backpack migration lands · at 00:10 BST')
+  expect(hold).toContain('- ⏸️ after the backpack migration lands, or `resume`')
   expect(hold?.[2]).toBe('⏸️ drained · 🅿️ 9 queries parked')
   expect(hold?.filter((line) => line.startsWith('- ')).every((line) => /^- (?:🅿️|⏸️) /u.test(line))).toBe(true)
 })
