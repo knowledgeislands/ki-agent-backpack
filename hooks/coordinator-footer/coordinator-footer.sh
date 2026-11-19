@@ -7,8 +7,9 @@
 # line, last: <role glyph> 🔑 <work-id>, <role glyph> <package>@<role> for a seat
 # without the package's keys (SEAT-LINE, SEAT-AT), or 🧵 <work-id> for a session with
 # no role yet, either seat form written <Name> (<form>) where the seat's actor is named
-# (NAME-FIRST). A seat line in the earlier <work-id>+<role> form, an unrecognised
-# state heading, a missing or odd counts line, a listening line in the earlier
+# (NAME-FIRST): a bare seat line whose actor the Cairn store names is held back with the
+# named line, and an unnamed or unresolved seat passes. A seat line in the earlier
+# <work-id>+<role> form, an unrecognised state heading, a missing or odd counts line, a listening line in the earlier
 # 👂 listening or 🔇 not listening form, which LISTEN-LINE replaces with 👂 in
 # <meeting> or no line at all, ⭐, 🔧 or 🧵 in the role glyph's place, and in a
 # Summary or Status missing art, roadmap or package line pass with a warning, so the owner can confirm the form was intended. The
@@ -261,6 +262,68 @@ footer() {
 }
 footer
 
+# >>> seat-name: the same in both coordinator hooks, which coordinator-reminder.test.ts holds alike.
+# A thread line's named form, <Name> (<seat form>), from the ki-name of the actor its seat's ki-workers
+# entry points at (NAME-FIRST): the entry holding the package's ki-role for the keyholder, its role for
+# a keyless seat. Reads only the Cairn store that Cairn's config.toml names; prints nothing where the
+# seat is unnamed, ambiguous or anything is unresolved.
+seat_named() {
+  local inner=$1 id role conf store actors actor name names=
+  local named_re='^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \((.*)\)$'
+  local name_re='^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)*$'
+  local key_re='^[^ ]+ 🔑 ([a-z0-9][a-z0-9.+-]*)$'
+  local seat_re='^[^ ]+ ([a-z0-9-]+(\.[a-z0-9-]+)+(\+[a-z0-9-]+)*)@([a-z]+(-[a-z]+)*)$'
+  [[ $inner =~ $named_re ]] && inner=${BASH_REMATCH[2]}
+  if [[ $inner =~ $key_re ]]; then
+    id=${BASH_REMATCH[1]} role=
+  elif [[ $inner =~ $seat_re ]]; then
+    id=${BASH_REMATCH[1]} role=${BASH_REMATCH[4]}
+  else
+    return 0
+  fi
+  conf=${XDG_CONFIG_HOME:-}
+  case $conf in /*) ;; *) conf=${HOME:-}/.config ;; esac
+  store=$(sed -n '/^\[store\]/,/^\[/s/^path[[:space:]]*=[[:space:]]*"\([^"]*\)".*/\1/p' "$conf/cairn/config.toml" 2>/dev/null | head -n 1)
+  case $store in \~/*) store=${HOME:-}/${store#\~/} ;; esac
+  case $store in /*) ;; *) return 0 ;; esac
+  set -- "$store"/work/*/"$id"/_index.md
+  [ $# -eq 1 ] && [ -f "$1" ] || return 0
+  actors=$(awk -v want="$role" '
+    function val(s) { sub(/^[^:]*:[ \t]*/, "", s); gsub(/["\047]/, "", s); sub(/[ \t]+$/, "", s); return s }
+    function field(s) { sub(/^[ \t]+/, "", s); if (s ~ /^id:/) ids[n] = val(s); else if (s ~ /^role:/) roles[n] = val(s) }
+    { sub(/\r$/, "") }
+    NR == 1 { if ($0 != "---") exit; next }
+    /^---[ \t]*$/ { exit }
+    /^[^ \t-]/ { inw = $0 ~ /^(ki-)?workers:/; if ($0 ~ /^(ki-)?role:/) lead = val($0); next }
+    inw && /^[ \t]*- / { n++; s = $0; sub(/^[ \t]*- /, "", s); field(s); next }
+    inw && /^[ \t]+[a-z_]+:/ { field($0) }
+    END {
+      if (want == "") want = lead
+      for (i = 1; want != "" && i <= n; i++) if (roles[i] == want && ids[i] ~ /^actor:[a-z0-9][a-z0-9-]*$/) print substr(ids[i], 7)
+    }' "$1" 2>/dev/null) || return 0
+  for actor in $actors; do
+    name=$(awk '
+      { sub(/\r$/, "") }
+      NR == 1 { if ($0 != "---") exit; next }
+      /^---[ \t]*$/ { exit }
+      /^ki-name:/ { sub(/^ki-name:[ \t]*/, ""); gsub(/["\047]/, ""); sub(/[ \t]+$/, ""); print; exit }' "$store/roster/actors/$actor/_index.md" 2>/dev/null)
+    [[ $name =~ $name_re ]] || continue
+    [ -z "$names" ] || [ "$names" = "$name" ] || return 0
+    names=$name
+  done
+  [ -z "$names" ] || printf '%s (%s)\n' "$names" "$inner"
+}
+# <<< seat-name
+
+# A bare seat line, last, whose actor is named is held back with the named line (NAME-FIRST).
+if [ -n "$form" ] && [ -z "$missing" ]; then
+  closing=$(printf '%s\n' "$reply" | sed -e 's/[[:space:]]*$//' | grep -v '^$' | tail -n 1)
+  named=$(seat_named "$closing")
+  case $named in
+    *" ($closing)") missing="the thread line in its named form, $named, since the seat's actor is named (NAME-FIRST)" ;;
+  esac
+fi
+
 shape="under ki-coordination's owner report, a reply block opens with a 1 · <what the group is> heading and gives each tag one line, its recommended option only, reading <TAG> <letter> (high), (medium) or (low): <gloss>"
 blockwarn=
 # Already continuing because of a Stop hook: warn, never block again.
@@ -281,6 +344,7 @@ if [ -n "$missing$blockfix" ]; then
   if [ -n "$missing" ]; then
     reason="This $what lacks $missing, under ki-coordination's Banner section."
     fix='with them'
+    case $missing in 'the thread line in its named form'*) fix='with it' ;; esac
   fi
   [ -z "$blockfix" ] || reason="${reason:+$reason }This reply's reply block $blockfix; $shape."
   note=

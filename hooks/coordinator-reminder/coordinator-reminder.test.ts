@@ -29,6 +29,23 @@ mkdirSync(join(undeclared, '+', '_CHECKPOINTS'), { recursive: true })
 writeFileSync(join(undeclared, '.ki.toml'), '[skills.ki-repo]\nrepository = "undeclared"\n\n[skills.ki-work-package]\n')
 spawnSync('git', ['init', '--quiet'], { cwd: undeclared })
 mkdirSync(ordinary, { recursive: true })
+// A Cairn store under the home, and Cairn's config.toml naming it as `~/store` (NAME-FIRST).
+const unconfigured = join(root, 'unconfigured')
+const configured = join(root, 'config')
+const store = join(root, 'store')
+mkdirSync(join(configured, 'cairn'), { recursive: true })
+writeFileSync(join(configured, 'cairn', 'config.toml'), '[store]\npath = "~/store"\n')
+const seat = (id: string, role: string, worker: string): void => {
+  mkdirSync(join(store, 'work', 'cairn', id), { recursive: true })
+  writeFileSync(join(store, 'work', 'cairn', id, '_index.md'), `---\nki-id: ${id}\nki-role: ${role}\nki-workers:\n  - id: ${worker}\n    role: ${role}\n---\n`)
+}
+seat('cairn.summit', 'guardian', 'actor:kitteth')
+seat('cairn.guilds', 'steward', 'actor:moss')
+mkdirSync(join(store, 'roster', 'actors', 'kitteth'), { recursive: true })
+writeFileSync(join(store, 'roster', 'actors', 'kitteth', '_index.md'), '---\nki-id: actor:kitteth\nki-name: Kitteth\n---\n')
+mkdirSync(join(store, 'roster', 'actors', 'moss'), { recursive: true })
+writeFileSync(join(store, 'roster', 'actors', 'moss', '_index.md'), '---\nki-id: actor:moss\n---\n')
+const named = { XDG_CONFIG_HOME: configured, HOME: root }
 
 process.on('exit', () => rmSync(root, { recursive: true, force: true }))
 
@@ -40,7 +57,8 @@ interface Outcome {
 }
 
 const run = (input: string, extraEnv: Record<string, string> = {}, hook = script): Outcome => {
-  const env: Record<string, string> = { ...(process.env as Record<string, string>), ...extraEnv }
+  // No Cairn config by default, so the real store never names a test's seat.
+  const env: Record<string, string> = { ...(process.env as Record<string, string>), XDG_CONFIG_HOME: unconfigured, ...extraEnv }
   // The suite may itself run inside Claude Code; the runtime split is driven per test.
   delete env.CLAUDECODE
   Object.assign(env, extraEnv)
@@ -163,4 +181,42 @@ test.each([0, 1, 6])('unknown selection ignores %s stale packages and reads no p
 
 test.each(['null', '[]', '42', '"text"', '{"hook_event_name":{}}', '{"hook_event_name":"UserPromptSubmit","cwd":{}}'])('unusable payload %s stays silent', (input) => {
   expect(run(input)).toEqual({ status: 0, stdout: '' })
+})
+
+// Kris, 19 November 2026: a seat should close with its named thread line the first time, before the Stop hook holds a
+// bare one back. Once the session's seat is known, from its opener's Session: line or an earlier reply's thread line,
+// the reminder names the line where the Cairn store names the seat's actor, and otherwise says nothing more.
+const told = `${line} Close every banner with your seat's named thread line: Kitteth (🪨 🔑 cairn.summit).`
+const session = (thread: string): string =>
+  claudePrompt(coordinating, `Open cairn.summit.\nSession: ${thread}. Your first act is to rename this session to it with your agent host's rename.`)
+const replied = (thread: string): string => {
+  const path = join(root, `replied-${thread.length}.jsonl`)
+  const reply = { type: 'assistant', message: { role: 'assistant', content: [{ type: 'text', text: `Mark struck.\n\n### 🤖 With worker\n\n${thread}` }] } }
+  writeFileSync(path, `${JSON.stringify(reply)}\n`)
+  return JSON.stringify({ ...JSON.parse(claudePrompt(coordinating, 'mark')), transcript_path: path })
+}
+
+test("a known seat whose actor the store names is told its named thread line", () => {
+  expect(run(session('🪨 🔑 cairn.summit'), named).context).toBe(told)
+  expect(run(session('Kitteth (🪨 🔑 cairn.summit)'), named).context).toBe(told)
+  expect(run(replied('🪨 🔑 cairn.summit'), named).context).toBe(told)
+  expect(run(replied('Kitteth (🪨 🔑 cairn.summit)'), named).context).toBe(told)
+})
+
+test('an unnamed, unknown or unresolvable seat gets the line alone', () => {
+  expect(run(session('⚖️ 🔑 cairn.guilds'), named).context).toBe(line)
+  expect(run(session('🏛️ 🔑 5ge.summit'), named).context).toBe(line)
+  expect(run(session('🧵 cairn.summit'), named).context).toBe(line)
+  expect(run(claudePrompt(coordinating), named).context).toBe(line)
+  expect(run(session('🪨 🔑 cairn.summit')).context).toBe(line)
+})
+
+test('the seat-name resolver is the same in both coordinator hooks', () => {
+  const copy = (path: string): string => {
+    const text = readFileSync(resolve(import.meta.dir, path), 'utf8')
+    return text.slice(text.indexOf('# >>> seat-name'), text.indexOf('# <<< seat-name'))
+  }
+  const here = copy('coordinator-reminder.sh')
+  expect(here).toContain('seat_named()')
+  expect(copy('../coordinator-footer/coordinator-footer.sh')).toBe(here)
 })

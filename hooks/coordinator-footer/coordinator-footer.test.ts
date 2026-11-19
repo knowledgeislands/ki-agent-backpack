@@ -16,6 +16,28 @@ for (const checkout of [coordinating, roadless]) {
   spawnSync('git', ['init', '--quiet'], { cwd: checkout })
 }
 mkdirSync(join(coordinating, 'docs', 'roadmap'), { recursive: true })
+// A Cairn store and Cairn's config.toml naming it, from which the hook reads a seat's actor (NAME-FIRST).
+const unconfigured = join(root, 'unconfigured')
+const configured = join(root, 'config')
+const store = join(root, 'store')
+mkdirSync(join(configured, 'cairn'), { recursive: true })
+writeFileSync(join(configured, 'cairn', 'config.toml'), `[rig]\nname = "sol"\n\n[store]\npath = "${store}"\n\n[app]\npath = "elsewhere"\n`)
+const seat = (territory: string, id: string, role: string, workers: readonly (readonly [string, string])[]): void => {
+  mkdirSync(join(store, 'work', territory, id), { recursive: true })
+  const entries = workers.map(([worker, held]) => `  - id: ${worker}\n    role: ${held}\n    tier: leaders\n    status: active\n`).join('')
+  writeFileSync(join(store, 'work', territory, id, '_index.md'), `---\nki-id: ${id}\nki-role: ${role}\nki-workers:\n${entries}---\n\n# ${id}\n`)
+}
+const actor = (id: string, name?: string): void => {
+  mkdirSync(join(store, 'roster', 'actors', id), { recursive: true })
+  writeFileSync(join(store, 'roster', 'actors', id, '_index.md'), `---\nki-id: actor:${id}\n${name ? `ki-name: ${name}\n` : ''}ki-kind: agent\n---\n`)
+}
+seat('cairn', 'cairn.summit', 'guardian', [['actor:kitteth', 'guardian'], ['actor:natter', 'voice']])
+seat('ki', 'ki.guilds', 'steward', [['actor:moss', 'steward']])
+seat('ki', 'ki.cairn', 'lead', [['actor:quire', 'information-architect']])
+actor('kitteth', 'Kitteth')
+actor('natter', 'Natter')
+actor('moss')
+actor('quire', '"Quire"')
 mkdirSync(ordinary, { recursive: true })
 
 process.on('exit', () => rmSync(root, { recursive: true, force: true }))
@@ -105,7 +127,8 @@ interface Outcome {
 }
 
 const run = (input: string, extraEnv: Record<string, string> = {}, shell = 'bash'): Outcome => {
-  const env: Record<string, string> = { ...(process.env as Record<string, string>) }
+  // No Cairn config by default, so the real store never names a test's seat.
+  const env: Record<string, string> = { ...(process.env as Record<string, string>), XDG_CONFIG_HOME: unconfigured }
   Object.assign(env, extraEnv)
   const result = spawnSync(shell, [script], { input, encoding: 'utf8', env, cwd: ordinary })
   const stdout = result.stdout ?? ''
@@ -438,6 +461,36 @@ test('a named seat thread line passes, keyholder or keyless, and is read as the 
     { owner: 'mark' }
   ])
   expect(run(stop('Mark struck.', named)).reason).toContain('the thread line, <role glyph> 🔑 <work-id>')
+})
+
+// Kris, 19 November 2026, asking why `🪨 🔑 cairn.summit` passed where Kitteth holds the seat: the hook reads the
+// seat's actor from the Cairn store that Cairn's config.toml names, and holds back a bare line it can name. An unnamed
+// seat, a package or store it cannot find, and a named line pass, so a lookup never blocks.
+test('a bare seat line whose actor the store names is held back with the named line', () => {
+  const env = { XDG_CONFIG_HOME: configured }
+  const bare = run(stop(rebootstrap(heading, counts, items, listening, '🪨 🔑 cairn.summit'), plain), env)
+  expect(bare.reason).toStartWith(
+    "This reply's banner lacks the thread line in its named form, Kitteth (🪨 🔑 cairn.summit), since the seat's actor is named (NAME-FIRST), under ki-coordination's Banner section. Give the reply again in full with it, "
+  )
+  expect(run(stop(summary(art, heading, counts, roadmap, pkg, items, listening, '📐 ki.cairn@information-architect'), plain), env).reason).toContain(
+    'Quire (📐 ki.cairn@information-architect)'
+  )
+  expect(run(stop(rebootstrap(heading, counts, items, listening, 'Kitteth (🪨 🔑 cairn.summit)'), plain), env)).toEqual(silent)
+  expect(run(stop(rebootstrap(heading, counts, items, listening, 'Quire (📐 ki.cairn@information-architect)'), plain), env)).toEqual(silent)
+  // Never twice in a row: the second pass only warns.
+  expect(run(stop(rebootstrap(heading, counts, items, listening, '🪨 🔑 cairn.summit'), plain, coordinating, { stop_hook_active: true }), env).warning).toContain(
+    'Kitteth (🪨 🔑 cairn.summit)'
+  )
+})
+
+test('an unnamed seat, an unresolvable seat and an unconfigured store pass a bare line', () => {
+  const env = { XDG_CONFIG_HOME: configured }
+  expect(run(stop(rebootstrap(heading, counts, items, listening, '⚖️ 🔑 ki.guilds'), plain), env)).toEqual(silent)
+  expect(run(stop(rebootstrap(heading, counts, items, listening, '🏛️ 🔑 5ge.summit'), plain), env)).toEqual(silent)
+  expect(run(stop(rebootstrap(heading, counts, items, listening, '🎨 ki.cairn@illustrator'), plain), env)).toEqual(silent)
+  expect(run(stop(rebootstrap(heading, counts, items, listening, thread), plain), env)).toEqual(silent)
+  expect(run(stop(rebootstrap(heading, counts, items, listening, '🪨 🔑 cairn.summit'), plain))).toEqual(silent)
+  expect(run(stop(rebootstrap(heading, counts, items, listening, '🪨 🔑 cairn.summit'), plain), { XDG_CONFIG_HOME: 'relative', HOME: unconfigured })).toEqual(silent)
 })
 
 // Kris, about 23:15 GMT on 17 November 2026, under HEADING-FIX a: the report heading links only its package's
