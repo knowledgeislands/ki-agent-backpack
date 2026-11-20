@@ -145,17 +145,19 @@ A package records its role and its live seats in its entry file, `_index.md`, as
 | Field | File | Value |
 | --- | --- | --- |
 | `ki-role` | `_index.md` | The package's role: one catalogue role. Every package names one |
-| `ki-workers` | `_index.md` | A list of the package's live seats, each a mapping with the keys below; absent or empty when no seat is live |
+| `ki-workers` | `_index.md` | A list of the package's seats, live or vacant, each a mapping with the keys below; absent or empty when it has no seat |
 
 | `ki-workers` key | Requirement | Value |
 | --- | --- | --- |
 | `role` | required | One catalogue role |
 | `tier` | required | The catalogue tier of that role: `leaders`, `managers` or `makers` |
 | `id` | optional | The typed id of the actor holding the seat, `actor:<id>`, naming its roster file, as `actor:wayland`, or `actor:<package>@<role>` for an actor with no name; absent while no actor holds it (SEAT-VACANT a) |
-| `since` | optional | UTC time the seat took the package up |
-| `status` | optional | `active` or `idle` |
+| `since` | optional | UTC time the seat took the package up; absent on a vacant seat |
+| `status` | optional | `active`, `idle` or `vacant` |
 
 An entry is the seat's binding and carries nothing else. It points at its actor by typed id and never copies the actor's name or anything else of it, as Kris set under ACTOR-KEY a on 16 November 2026. Presence, where and how the actor runs, its host, rig and last seen, is the actor's roster file's in the Cairn store, never the entry's, and a reader takes each from its home, as the Cairn summit's guardian took ROSTER-SPLIT a under Kris's word on 14 November 2026.
+
+A vacant seat is one set up but not yet allocated: `status: vacant` with its `role` and `tier`, and no `id` or `since`, so the roster shows the seat unfilled, as Kris took SEATS-VACANT a on 20 November 2026. Until someone is seated, the package's parent node holds its work along the package's Signposts, as it holds a package with no seat under [CASCADE-DOWN](standard-work-package.md#cascade-down). Seating it adds `id`, `since` and an `active` status.
 
 The roster is the list of actors, agent or person, one roster file each. A roster file opens with the actor's `ki-id`, `actor:<id>`, then `ki-document-type: actor`, an optional human `ki-name` that is never a copy of the id, and `ki-kind`, `agent` or `person`, then its presence, `ki-host`, `ki-rig` and `ki-last_seen`, under ACTOR-KEY a, each field taking the `ki-` prefix under KI-PREFIX a. It holds no titles: who sits where is read from the tree's `ki-workers` entries, each naming its actor's id. An actor with no name, such as a maker in a meeting, still has a roster file: it takes its seat's id, `<package>@<role>`, as `actor:ki.cairn@information-architect` in `roster/ki.cairn@information-architect.md`, under SEAT-AT a, and that file holds its host and rig.
 

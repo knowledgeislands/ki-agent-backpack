@@ -129,7 +129,8 @@ const WORKER_RETIRED_FIELDS: ReadonlySet<string> = new Set([
 const ACTOR_ID = new RegExp(`^actor:(?:${KEBAB}(?:\\.${KEBAB})*(?:\\+${KEBAB})*@${KEBAB}|[a-z0-9][a-z0-9.-]*)$`)
 /** A seat's id in the form SEAT-AT replaces, `<work id>+<role>`, read as `<work id>@<role>` and warned on. */
 const LEGACY_SEAT_ID = new RegExp(`^actor:${KEBAB}(?:\\.${KEBAB})*\\+${KEBAB}$`)
-const WORKER_STATUSES: readonly unknown[] = ['active', 'idle']
+/** A seat's status; a vacant seat is set up but not yet allocated (SEATS-VACANT a, Kris, 20 November 2026). */
+const WORKER_STATUSES: readonly unknown[] = ['active', 'idle', 'vacant']
 /**
  * Old role and tier words read under the role migration file, each warned on; `architect`, split into two makers under
  * ARCHITECT-SPLIT a (16 November 2026), is read as the information architect it was defined as.
@@ -598,7 +599,10 @@ const workersChecks = (
     if (!resolved || !TIERS.includes(resolved)) fail(`${at} tier must be one of ${TIERS.join(', ')}`)
     else if (expected && resolved !== expected) fail(`${at} tier must be ${expected}, the catalogue tier of ${role}`)
     if ('since' in entry && !validTimestamp(entry.since)) fail(`${at} since must be a UTC RFC 3339 timestamp`)
-    if ('status' in entry && !WORKER_STATUSES.includes(entry.status)) fail(`${at} status must be active or idle`)
+    if ('status' in entry && !WORKER_STATUSES.includes(entry.status))
+      fail(`${at} status must be active, idle or vacant`)
+    if (entry.status === 'vacant' && ('id' in entry || 'since' in entry))
+      fail(`${at} is a vacant seat and carries no id or since (SEATS-VACANT a)`)
     if ('id' in entry && typeof entry.id === 'string' && LEGACY_SEAT_ID.test(entry.id))
       warn(`${at} id ${entry.id} is a seat's id in the earlier <work id>+<role> form, read as <package>@<role>`)
     else if ('id' in entry && (typeof entry.id !== 'string' || !ACTOR_ID.test(entry.id)))

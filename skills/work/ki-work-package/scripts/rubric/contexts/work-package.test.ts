@@ -597,6 +597,20 @@ describe('RECORD-2 schema', () => {
     }
   })
 
+  test('a vacant seat with its role and tier passes (SEATS-VACANT a)', () => {
+    const binding = 'workers:\n  - role: guildmaster\n    tier: managers\n    status: vacant'
+    expect(statuses(run(RECORD, 'RECORD-2', context(store({ fields: [binding] }))))).toEqual(['PASS'])
+  })
+
+  test('a vacant seat with an id or since fails', () => {
+    for (const extra of ['id: actor:wayland', 'since: 2026-11-20T13:11:00Z']) {
+      const binding = `workers:\n  - role: guildmaster\n    tier: managers\n    status: vacant\n    ${extra}`
+      expect(messages(run(RECORD, 'RECORD-2', context(store({ fields: [binding] }))))).toContain(
+        'is a vacant seat and carries no id or since'
+      )
+    }
+  })
+
   test('a worker id that is not a typed actor id fails', () => {
     const binding = 'workers:\n  - id: wayland\n    role: warden\n    tier: managers'
     expect(messages(run(RECORD, 'RECORD-2', context(store({ fields: [binding] }))))).toContain(
