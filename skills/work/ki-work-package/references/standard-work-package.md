@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-20T13:18:31Z
+ki-revised: 2026-11-20T15:30:00Z
 ki-status: in force
 ---
 
@@ -237,7 +237,7 @@ Signposts: the standard's defaults, and:
 
 The defaults follow [CASCADE-DOWN](#cascade-down): a matter goes up the path the work came down and comes back down from the node that can see all it touches, and the owner may still talk to any node directly.
 
-- **Wider reach goes up, never sideways.** A matter that reaches beyond the node and the nodes beneath it, such as a skill, a standard, the work model or anything crossing packages, goes to the parent's keyholder, as feedback through the agent host's messaging or a meeting under `ki-coordination`'s [Steer and feedback](../../ki-coordination/references/standard-reporting.md#416-steer-and-feedback). Where the parent has no one seated, its keyholder is the one above it, under [Writers](#49-writers). Each node settles what reaches only its own subtree and passes the rest up, node by node. A skill, a standard and the work model reach every territory, so they reach the guardian, the keyholder of `cairn.summit`. A node never takes such a matter straight to a guild, its lead skill or another leader, even one that is running.
+- **Wider reach goes up, never sideways.** A matter that reaches beyond the node and the nodes beneath it, such as a skill, a standard, the work model or anything crossing packages, goes to the parent's keyholder, as feedback by Orca mail between sessions in Orca, otherwise through the agent host's messaging or a meeting, under `ki-coordination`'s [Steer and feedback](../../ki-coordination/references/standard-reporting.md#416-steer-and-feedback). Where the parent has no one seated, its keyholder is the one above it, under [Writers](#49-writers). Each node settles what reaches only its own subtree and passes the rest up, node by node. A skill, a standard and the work model reach every territory, so they reach the guardian, the keyholder of `cairn.summit`. A node never takes such a matter straight to a guild, its lead skill or another leader, even one that is running.
 - **The guardian sends it back down.** It delegates the matter down the tree to the node that owns it: for a skill or a standard, the guild that `ki-keystone`'s [guild map](../../../keystone/ki-keystone/SKILL.md#the-guild-map) names, through that guild's package; otherwise the leader whose Scope covers it. Where that node has no one seated, the nearest seated node above it owns the work.
 - **The owner's word given at a node.** When the owner gives a leader a decision directly that changes a standard, a skill or the work model, the leader records it in the owner's words in a change document of its own package and sends it up, as above, to land. It does not change the skill or the standard itself.
 - **A long-standing request** left with the owner is flagged up a level at a time, under `ki-coordination`'s [Long-standing requests](../../ki-coordination/references/standard-territory.md#43-long-standing-requests).

@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-20T13:18:31Z
+ki-revised: 2026-11-20T15:30:00Z
 ki-refresh: canonical · on-change
 ---
 
@@ -105,6 +105,8 @@ The phase 1 work package format change, agreed by Kris on 9 November 2026, gives
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 20 November 2026 [Signposts](standard-work-package.md#signposts) was brought to ORCA-FIRST, which Kris took that day in the Cairn summit's change 50 and `ki-coordination` holds: feedback up the tree goes by Orca mail between sessions in Orca, and otherwise through the agent host's messaging or a meeting. No criterion changed and no external source refreshed.
 
 On 20 November 2026 SEATS-VACANT a, recorded under Decisions, was applied: [the role fields](standard-roles.md#45-role-fields) admit `status: vacant`, a seat with its `role` and `tier` and no `id` or `since`, and say the parent node holds its work along the package's Signposts until someone is seated; [the state](standard-work-package.md#45-the-state), [CASCADE-DOWN](standard-work-package.md#cascade-down) and [the writers](standard-work-package.md#49-writers) follow. RECORD-2 accepts the status and fails a vacant seat carrying an `id` or `since`; the rubric was regenerated. No external source refreshed.
 
