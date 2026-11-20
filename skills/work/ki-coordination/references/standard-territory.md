@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T07:02:00Z
+ki-revised: 2026-11-20T12:37:46Z
 ki-status: in force
 ---
 
@@ -157,7 +157,7 @@ The cascade here is `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/ref
 - Each package keeps its own state, `ki-since`, mark and beat. A territory mark never moves Project marks, and an acknowledgement moves only the work it clearly names.
 - Keep a decision spanning Projects once, at the territory home, and link it, rather than copying it as several grants.
 
-**Roll call.** When the owner asks for a roll call, the coordinator asks every actor beneath it what it is working on now and what waits on whom, each by the nearest route that reaches it (ROLL-CALL-SCOPE). A session on the coordinator's own agent host is asked in its own thread. An actor on another host, such as a desktop or voice companion, is called through a meeting room it sits in, under `ki-meeting`'s [routes](../../ki-meeting/references/standard-meeting.md#46-routes). One that neither reaches is reported absent, not waited for.
+**Roll call.** When the owner asks for a roll call, the coordinator asks every actor beneath it what it is working on now and what waits on whom, each by the nearest route that reaches it (ROLL-CALL-SCOPE). A session on the coordinator's own agent host is asked in its own thread, and one whose Orca tab has gone idle is woken under [Waking an idle Orca tab](standard-messages.md#45-waking-an-idle-orca-tab) (ORCA-WAKE). An actor on another host, such as a desktop or voice companion, is called through a meeting room it sits in, under `ki-meeting`'s [routes](../../ki-meeting/references/standard-meeting.md#46-routes). One that neither reaches is reported absent, not waited for.
 
 **Records.** A record's `project` resolves through the registry to its package and grants no authority. Selection into `now` neither opens Project work nor grants execution. The steward adds the next-step link from the routed line at its next wake; records keep the owning repository's holds, readiness and acceptance. Project-less work goes first to its existing regular or ad hoc owner, and to the State of play's routing queue only if unresolved. Reclassification reconciles running work and report destinations first.
 
@@ -182,7 +182,7 @@ A secondary State of play is a node beneath its territory's summit that splits o
 - **Register:** the tree beneath a node, read from `ki-parent`, is its register: the summit's is all the territory's work, the work beneath its nodes included, and a node's the work beneath it. Work with no package yet belongs on the roadmap, as Kris set under COVERS-REGISTER a on 16 November 2026.
 - **Opening:** the owner opens a node with the [secondary opener](standard-opening.md#43-opening-work), and takes every opener for the territory from [Opening work](standard-opening.md#43-opening-work).
 
-Sources: CASCADE-DOWN, SECONDARY-SOP, OLD-SHAPE-HOMES, COVERS-REGISTER, NODE-ID, STALE-AGE and ROLL-CALL-SCOPE in [the decision register](sources.md#3-decisions).
+Sources: CASCADE-DOWN, SECONDARY-SOP, OLD-SHAPE-HOMES, COVERS-REGISTER, NODE-ID, STALE-AGE, ROLL-CALL-SCOPE and ORCA-WAKE in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 

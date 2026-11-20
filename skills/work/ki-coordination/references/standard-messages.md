@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T00:36:30Z
+ki-revised: 2026-11-20T12:37:46Z
 ki-status: in force
 ---
 
@@ -18,6 +18,7 @@ ki-status: in force
   - [4.2 The Cairn Beacon](#42-the-cairn-beacon)
   - [4.3 Work between packages](#43-work-between-packages)
   - [4.4 Surfaces](#44-surfaces)
+  - [4.5 Waking an idle Orca tab](#45-waking-an-idle-orca-tab)
 
 ## 1. Introduction
 
@@ -36,6 +37,7 @@ How a session works alone, how work reaches other work along the tree now the me
 - Work between packages: along the tree, receipt, transfers, method changes, release notices and owner feedback.
 - Urgent work and when a worker is live.
 - The surfaces a coordinator reads and writes.
+- Waking an idle Orca tab for a roll call or a held message.
 
 [Back to contents](#contents)
 
@@ -74,9 +76,9 @@ Sources: SESSIONS-ALONE and AGENT-HOST in [the decision register](sources.md#3-d
 
 ### 4.2 The Cairn Beacon
 
-Messages between sessions are gone (MESSAGES-GO): the Cairn store keeps no `messages/`, and the Cairn MCP is being reworked to hold meetings, which the Beacon is to call and manage. Until then sessions on different agent hosts talk in a meeting under `ki-meeting`, and the owner carries anything urgent between them by hand. The [Agent Host Protocol](https://microsoft.github.io/agent-host-protocol/specification/overview.html), AHP, may later carry what polling carries now, for an agent host the `ki-agentic-radar` radar shows supports it. Other ways agent hosts coordinate, such as Orca's orchestration ask and reply, are watched in the radar and never adopted as a channel between sessions.
+Messages between sessions are gone (MESSAGES-GO): the Cairn store keeps no `messages/`, and the Cairn MCP is being reworked to hold meetings, which the Beacon is to call and manage. Until then sessions on different agent hosts talk in a meeting under `ki-meeting`, and the owner carries anything urgent between them by hand. The [Agent Host Protocol](https://microsoft.github.io/agent-host-protocol/specification/overview.html), AHP, may later carry what polling carries now, for an agent host the `ki-agentic-radar` radar shows supports it. Other ways agent hosts coordinate, such as Orca's orchestration ask and reply, are watched in the radar and never adopted as a channel between sessions, save the one wake [Waking an idle Orca tab](#45-waking-an-idle-orca-tab) sets.
 
-Sources: AHP-RADAR and MSG-RETIRE in [the decision register](sources.md#3-decisions); AHP in [the outside sources](sources.md#2-outside-sources).
+Sources: AHP-RADAR, MSG-RETIRE and ORCA-WAKE in [the decision register](sources.md#3-decisions); AHP in [the outside sources](sources.md#2-outside-sources).
 
 <a id="messages-between-work"></a>
 
@@ -126,5 +128,19 @@ A coordinator learns of other work through its own package, `_index.md` and the 
 A nudge through an agent host's messaging carries conversation, not work: work reaches a package only along the tree.
 
 Sources: SURFACES-RULE in [the decision register](sources.md#3-decisions).
+
+[Back to contents](#contents)
+
+### 4.5 Waking an idle Orca tab
+
+An Orca chat tab that has gone idle has no running agent process, so the agent host's own messaging cannot reach it and its list of agents does not show it. Kris took ORCA-WAKE a on 20 November 2026: the guardian wakes idle Orca tabs for roll calls and held messages.
+
+1. **Find the tab.** Read its chat session id from `orca agent list --json`, matching the chat by its title or thread line.
+2. **Send.** Run `orca orchestration send --to orca_session_id:<id> --subject <subject> --body <text>`. For a chat on another Mac whose Orca is paired, add `--on <host>`; no SSH is involved.
+3. **What arrives.** The message lands in the existing chat as agent mail, marked as from another session and not as the owner's typing, and that conversation carries on. The receiver may answer with `orca orchestration reply` or its agent host's own messaging.
+
+**Limits.** Never message an agent with `orca terminal send`, never start a new session to reach it, and never use `claude --resume`. Each wake costs the woken session the tokens to re-read its package, so the guardian wakes a tab only for a roll call or a held message, and any other coordinator only on the owner's word. A wake carries conversation, not work, under [Surfaces](#44-surfaces).
+
+Sources: ORCA-WAKE in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
