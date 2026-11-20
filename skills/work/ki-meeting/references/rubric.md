@@ -70,7 +70,7 @@ A meeting is worth calling, kept in the standard folder, reached by the first ro
   - _Review prompt:_ Is every decision the meeting led to held in a change document, with every choice left to the owner carried there with its recommendation?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
-- **MEETING-9 [J] — the caller's last message closes the meeting** — The meeting closes only by the caller's last message, naming each outcome and the change document that holds it; listening then ends, the work that landed gets its record, its messages are pruned once the minutes carry the outcomes, and the folder is removed once the owner has reviewed that record. (standard-meeting.md#415-closing)
+- **MEETING-9 [J] — the caller's last message closes the meeting** — The meeting closes only by the caller's last message, naming each outcome and the change document that holds it; listening then ends, the work that landed gets its record, its messages are pruned once the minutes carry the outcomes, and the folder is removed once the owner has reviewed the record of the work that landed. (standard-meeting.md#415-closing)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ Was the meeting closed by a message naming each outcome and its change document, with listening ended and the record written?
   - _Outcomes:_ conforming; gap; exclusion

@@ -93,7 +93,7 @@ const MEETING_9: RubricItem<MeetingContext> = {
   code: 'MEETING-9',
   title: "the caller's last message closes the meeting",
   description:
-    "The meeting closes only by the caller's last message, naming each outcome and the change document that holds it; listening then ends, the work that landed gets its record, its messages are pruned once the minutes carry the outcomes, and the folder is removed once the owner has reviewed that record.",
+    "The meeting closes only by the caller's last message, naming each outcome and the change document that holds it; listening then ends, the work that landed gets its record, its messages are pruned once the minutes carry the outcomes, and the folder is removed once the owner has reviewed the record of the work that landed.",
   sources: ['standard-meeting.md#415-closing'],
   judgment: judgment(
     'Was the meeting closed by a message naming each outcome and its change document, with listening ended and the record written?'

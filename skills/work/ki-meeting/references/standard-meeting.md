@@ -75,7 +75,7 @@ What a meeting is, how it is called, held and closed, and how its participants r
 | --- | --- |
 | **Meeting** | A room at one node of the work tree that named participants attend for a while, with a purpose, a type and an end. **Standard:** this one, [4.1](#41-when-to-meet) |
 | **Owner** | The person whose work it is; owns every meeting, and whose word decides. **Standard:** this one, [4.2](#42-who-calls-keeps-and-owns-a-meeting) |
-| **Caller** | The session that calls a meeting, keeps it and closes it, and the only session of its agent host in the room. **Standard:** this one, [4.2](#42-who-calls-keeps-and-owns-a-meeting) |
+| **Caller** | The session that calls a meeting, keeps it and closes it, and the only session in Orca in the room. **Standard:** this one, [4.2](#42-who-calls-keeps-and-owns-a-meeting) |
 | **Chair** | The session that runs a meeting's sittings; the caller, unless the owner starts another session to chair. **Standard:** this one, [4.2](#42-who-calls-keeps-and-owns-a-meeting) |
 | **Participant** | Each session or person taking part, with a role stated in the agenda, such as caller, maker, reviewer, illustrator or owner. **Standard:** this one, [4.5](#45-the-entry-file) |
 | **Layers** | The four parts of how a meeting carries what is said, each of which can change without the others: the transport, the delivery, the waking and the record. **Standard:** this one, [4](#4-rules) |
@@ -265,7 +265,7 @@ The old message queue's best parts come into meetings here (MSG-HOME, Kris, 15 N
 2. **A host without a lasting shell** listens by scheduled wake-ups instead, and otherwise re-reads `messages/` when the owner prompts it and before each new piece of work.
 3. **The agenda states** each participant's interval, the longest a message waits for it, and when its listening ends.
 4. **Sessions outside the room** do not watch it.
-5. **Check-ins.** While work is running, as in a workshop's round, every 15 minutes the caller posts `<caller> → all: check-in` in the folder, a `heartbeat`, and sends each participant outside the room a short note by Orca mail; each replies with what is done, what it is doing and what blocks it, or "nothing". A participant that wrote in the last 15 minutes may skip it. Between rounds, with no work running, the caller sends a check-in only when there is news, since an empty one wakes every participant for nothing (CHECKIN-QUIET, Kris, 16 November 2026).
+5. **Check-ins.** While work is running, as in a workshop's round, every 15 minutes the caller posts a check-in in the folder, a message with `ki-type: heartbeat` and `ki-to: all`, and sends each participant outside the room a short note by Orca mail; each replies with what is done, what it is doing and what blocks it, or "nothing". A participant that wrote in the last 15 minutes may skip it. Between rounds, with no work running, the caller sends a check-in only when there is news, since an empty one wakes every participant for nothing (CHECKIN-QUIET, Kris, 16 November 2026).
 6. **At each wake** (MSG-HOME, Kris, 15 November 2026). Each time a participant wakes or is prompted, it reads the messages new since it last read, important ones first and then in the order of their times ([4.8](#48-messages)), and acts on them without stopping work already running.
 
 [Back to contents](#contents)
@@ -324,7 +324,7 @@ Kris, 14 November 2026 (MEET-BUSY):
 2. **Listening ends.** The caller's watcher stops, and with `ki-status` no longer `open` in the entry file no participant reads as listening.
 3. **Work that landed** during the meeting gets its record, as the store's own rule for records sets.
 4. **Its messages go** once the minutes carry each outcome, as [4.17](#417-pruning) sets.
-5. **The folder is removed** from the tree once the owner has reviewed that record, and Git history keeps it.
+5. **The folder is removed** from the tree once the owner has reviewed the record of the work that landed, and Git history keeps it.
 
 [Back to contents](#contents)
 
@@ -333,11 +333,11 @@ Kris, 14 November 2026 (MEET-BUSY):
 How the rules above fall on the agent hosts in use when the standard was written. The rules stand without them.
 
 - **Orca mail:** `orca orchestration send`, `reply`, `check` and `inbox`, for every session in Orca, Claude Code or Codex, running or idle, on one rig or across the bridge with `--on <host>` (ROOMS-CHANNEL, ORCA-FIRST). The caller is a session in Orca; other sessions in Orca stay out of the room and reach it by Orca mail. Orca's own guide says to send another agent a message with Orca mail, never by typing into its terminal, and to prefer a session's own subagents for work within one session.
-- **Agent host messaging:** Claude Code's SendMessage reaches only running Claude Code sessions on one Mac, so it is used only for a session outside Orca.
+- **Agent host messaging:** Claude Code's SendMessage reaches only running Claude Code sessions on one Mac; under ORCA-FIRST it is used only for a session outside Orca.
 - **In the room on the file system:** Claude Design in Claude Desktop, and an illustrator in the ChatGPT desktop app's Codex, each reading and writing the folder directly and committing its own files.
 - **Through a connector:** ChatGPT's voice mode, which cannot reach the file system, through its own GitHub connector.
 - **Between machines:** Claude Code's Remote Control was the remote messaging to try, between a session on sol and one on terra (CROSS-RIG-TRY). It does not reach the sessions in use, which run Claude Code as their harness inside Orca as their host, since Remote Control comes only with Claude Code's own interface (Kris, 18 November 2026), so rigs reached each other through a standing room (MEET-STANDING). Orca mail across the bridge between the paired Orca hosts now carries it (ROOMS-CHANNEL), as Hob Sol and Hob Terra used it on 20 November 2026, and the housekeepers' standing room closed.
-- **Seats outside Orca,** which keep a room: the voice client in ChatGPT's voice mode; on 20 November 2026 also a Claude Design session and a Claude chat in Claude Desktop, and an illustrator in the ChatGPT desktop app's Codex, until each is seated in Orca (ORCA-HOME).
+- **Seats outside Orca,** which keep a room: the voice client in ChatGPT's voice mode; on 20 November 2026 also a Claude Design session and a Claude chat in Claude Desktop, and an illustrator in the ChatGPT desktop app's Codex, while each stays outside Orca (ORCA-HOME).
 - **Sharing outputs:** Claude Design shares its boards as its own artifacts, which is what the owner expects there, and in a meeting puts them in the output folder too; the illustrator works in its own app and puts what it makes in the output folder, and does not send the owner to GitHub.
 - **Without Git:** Claude Design works in a sandboxed shell that cannot delete Git's lock files and has no checkout or push of its own, so it is a participant without Git, and the chair commits its files.
 - **Listening:** the caller runs a shell watcher on the folder; Claude Desktop, which cannot keep a shell loop open between turns, listens by scheduled wake-ups. In the first sitting the caller checked every 30 seconds and Claude Design every two minutes until a set time.
@@ -350,7 +350,7 @@ A room keeps its messages only while they are needed (ROOM-PRUNE, Kris, 20 Novem
 
 1. **At each adjournment,** once the minutes carry each outcome and a transcript linking each message at its last commit ([4.14](#414-minutes)), the caller deletes that sitting's messages in the same commit.
 2. **At the close,** likewise, the caller deletes the room's remaining messages once the minutes carry the outcomes ([4.15](#415-closing)).
-3. **In a sitting that runs on,** as a standing room's or a long workshop's does, the caller deletes, at each roll call and each check-in with news, the messages more than 24 hours old that have been answered or acknowledged, by a message whose `ki-answers` names them.
+3. **In a sitting that runs on,** as a standing room's or a long workshop's does, the caller deletes, at each roll call and each check-in with news, the messages more than 24 hours old that have been answered or acknowledged, by a message whose `ki-answers` names them; the sitting's transcript still lists each at its last commit when the sitting adjourns.
 4. **Never pruned:** the entry file, with its summary, open asks and minutes; a message carrying an ask not yet answered; a message carrying the owner's words, a voice client's above all, until they are recorded in a change document; the current brief and outputs, which are what a room is for (ROOMS-OPTIONAL); and Git history, which is never rewritten.
 5. **A link to a pruned message** points to its file at a commit, so it still opens.
 

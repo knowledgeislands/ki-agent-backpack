@@ -33,7 +33,7 @@ How a session works alone, how work reaches other work along the tree now the me
 ### 2.1 In scope
 
 - A session's independence over its package and repositories.
-- Orca mail as the channel between sessions, the order of routes, and the Cairn Beacon.
+- Orca mail as the channel between sessions in Orca, the order of routes, and the Cairn Beacon.
 - Work between packages: along the tree, receipt, transfers, method changes, release notices and owner feedback.
 - Urgent work and when a worker is live.
 - The surfaces a coordinator reads and writes.
@@ -79,7 +79,7 @@ Sources: SESSIONS-ALONE and AGENT-HOST in [the decision register](sources.md#3-d
 
 ### 4.2 Orca mail and the Cairn Beacon
 
-Orca mail is the channel between sessions (ROOMS-CHANNEL, ORCA-FIRST). Every session running in Orca reaches another with `orca orchestration send`, and answers with `reply`, running or idle, on the same Mac or across the bridge between the paired Orca hosts with `--on <host>`; each receiver keeps its own state in its own work package. The routes, in order:
+Orca mail is the channel between sessions in Orca (ROOMS-CHANNEL, ORCA-FIRST). Every session running in Orca reaches another with `orca orchestration send`, and answers with `reply`, running or idle, on the same Mac or across the bridge between the paired Orca hosts with `--on <host>`; each receiver keeps its own state in its own work package. The routes, in order:
 
 1. **Subagents, within a session.** Work inside one session goes to its agent host's own subagents, under [Sessions work alone](#41-sessions-work-alone).
 2. **Orca mail, between sessions in Orca,** on the same Mac and across the bridge, waking an idle one as [Waking an idle Orca tab](#45-waking-an-idle-orca-tab) sets. Never type into another agent's terminal, and if mail is refused, never fall back to `orca terminal send`.
@@ -151,7 +151,7 @@ An Orca chat tab that has gone idle has no running agent process, so the agent h
 2. **Send.** Run `orca orchestration send --to orca_session_id:<id> --subject <subject> --body <text>`. For a chat on another Mac whose Orca is paired, add `--on <host>`; no SSH is involved.
 3. **What arrives.** The message lands in the existing chat as agent mail, marked as from another session and not as the owner's typing, and that conversation carries on. The receiver answers with `orca orchestration reply`, which keeps the thread and goes back across the bridge by itself.
 
-**Limits.** Never message an agent with `orca terminal send`, never start a new session to reach it, and never use `claude --resume`. Each wake costs the woken session the tokens to re-read its package, so a session mails only the sessions it works with, and only when it has something for them (WAKE-LIMIT, which replaces ORCA-WAKE's limit to the guardian's roll calls and held messages and to other coordinators on the owner's word). A wake carries conversation, not work, under [Surfaces](#44-surfaces).
+**Limits.** Never message an agent with `orca terminal send`, never start a new session to reach it, and never use `claude --resume`. Any session may mail, and so wake, the sessions it works with (WAKE-LIMIT, which replaces ORCA-WAKE's limit to the guardian's roll calls and held messages and to other coordinators on the owner's word). Each wake costs the woken session the tokens to re-read its package, so a session mails another only when it has something for it. A wake carries conversation, not work, under [Surfaces](#44-surfaces).
 
 Sources: ORCA-WAKE and WAKE-LIMIT in [the decision register](sources.md#3-decisions).
 

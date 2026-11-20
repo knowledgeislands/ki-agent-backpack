@@ -28,7 +28,7 @@ A meeting is optional (ROOMS-OPTIONAL). Seats run in Orca wherever they can (ORC
 ## Contract
 
 - **Routes, the first that works:** Orca mail; the agent host's own messaging, only for a session outside Orca; a meeting folder, reached on the file system or through the participant's own connector to the repository's host; exchange mode, the owner carrying prompts both ways, only as the exception.
-- **One caller** calls, keeps and closes the meeting, and is the only session of its agent host in the room; the owner owns it, and the owner's word decides.
+- **One caller** calls, keeps and closes the meeting, and is the only session in Orca in the room; the owner owns it, and the owner's word decides.
 - **The folder** is `meetings/<node id>/<date>-<slug>/` in the store that holds the work tree, today the Cairn store: `_index.md` (summary, brief, agenda, boundaries, open asks, minutes), `messages/`, `brief/`, an output folder named for the work, and `notes/`; a standing room needs no `brief/` or output folder.
 - **Sittings,** A, B, C and on, each with a stated end and a closing call before it, except in a standing room, opened by a roll call, kept by listening and 15-minute check-ins while work runs, and adjourned with minutes and a resume note.
 - **Messages** are one file each, opening with a front matter block of Orca mail's fields, of which only from, to and subject are required, and never edited (MSG-FORM); a sitting's messages go when it adjourns or the room closes, and in a sitting that runs on, those answered or acknowledged more than 24 hours ago go too (ROOM-PRUNE).
