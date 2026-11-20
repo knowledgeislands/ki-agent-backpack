@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T07:02:00Z
+ki-revised: 2026-11-20T15:10:00Z
 ki-status: in force
 ---
 
@@ -165,8 +165,8 @@ Work packages form one tree, and coordination between them runs along it, as Kri
 - **Steer goes down,** carrying direction and remit. A node gives remit down from its own, never wider.
 - **Feedback comes up.** It reflects only the view from the node and its immediate parent: it informs the decision above and never overrides it.
 - **Messaging between packages is this cycle,** and nothing else: no sideways traffic. A decision above comes down as fresh steer, so the node below goes on without asking again.
-- **Conversation is not traffic.** Sessions may still talk across the tree, in a meeting or through their agent host's own messaging on one host, under `ki-meeting`'s [routes](../../ki-meeting/references/standard-meeting.md#46-routes); that conversation carries no authority, and an outcome reaches a package only through the session that holds it.
-- **Peers stay out of the owner's replies** (QUIET-PEERS): another session's acknowledgements and minor progress, whether they arrive in a meeting, through the agent host's messaging or along the tree, are background, and stay out of a session's replies to the owner. The owner hears from a session about its peers only where they disagree, or where one of them needs the owner.
+- **Conversation is not traffic.** Sessions may still talk across the tree, by Orca mail, in a meeting, or through their agent host's own messaging outside Orca, under `ki-meeting`'s [routes](../../ki-meeting/references/standard-meeting.md#46-routes) (ORCA-FIRST); that conversation carries no authority, and an outcome reaches a package only through the session that holds it.
+- **Peers stay out of the owner's replies** (QUIET-PEERS): another session's acknowledgements and minor progress, whether they arrive in a meeting, by Orca mail, through the agent host's messaging or along the tree, are background, and stay out of a session's replies to the owner. The owner hears from a session about its peers only where they disagree, or where one of them needs the owner.
 - **A decision is made at the lowest node whose remit covers everything it reaches,** its children included (DECISION-HEIGHT). A finding in one branch that reaches another goes up to the nearest node above both, which steers back down. That node weighs it under [Weighing what to do](#415-weighing-what-to-do).
 - **The owner acts wherever a decision is needed** (HUMAN-ANYWHERE): a question whose reach stays inside one part of the tree is put to the owner at that node, and goes up only if it reaches wider or is getting nowhere there.
 

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T03:48:44Z
+ki-revised: 2026-11-20T15:10:00Z
 ki-status: in force
 ---
 
@@ -69,7 +69,7 @@ The rules, part by part.
   - Every couple of minutes it fetches and fast-forwards local `main` silently and compares the `messages/` folder of each meeting the session sits in with the one it started from, reading no content.
   - It exits only on news: a new message in such a meeting, a run in this coordinator's group finishing, or a pull that cannot fast-forward, which needs a resolve.
   - It has no timed bound while idle, so a quiet period brings no wake, no tool calls and no chat line.
-  - Polling is the baseline. AHP may later replace the polling, and only the polling, for an agent host the `ki-agentic-radar` radar shows supports it, under [The Cairn Beacon](standard-messages.md#42-the-cairn-beacon).
+  - Polling is the baseline. AHP may later replace the polling, and only the polling, for an agent host the `ki-agentic-radar` radar shows supports it, under [Orca mail and the Cairn Beacon](standard-messages.md#42-orca-mail-and-the-cairn-beacon).
 - **At a wake:** speak only about what landed. On a new message, act on it under `ki-meeting`'s [messages](../../ki-meeting/references/standard-meeting.md#48-messages), commit, re-arm and tell the owner in one timed line what was done. On a finished run, receive it in one timed line and re-arm.
 - **One loop:** a coordinator never holds more than one loop. After a compaction or a recovery it checks whether one is armed before arming another.
 - **Session-bound:** the watcher lives and dies with the session. It is a session wake, not a scheduled agent, and promises nothing once the session closes. A runtime with no proven way for the watcher's exit to wake the session checks the inbox only at owner messages and run events, with `ki-listening_status: off`.
