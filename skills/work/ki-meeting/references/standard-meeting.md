@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:40:00Z
+ki-revised: 2026-11-20T15:10:00Z
 ki-status: in force
 ---
 
@@ -30,12 +30,15 @@ ki-status: in force
   - [4.14 Minutes](#414-minutes)
   - [4.15 Closing](#415-closing)
   - [4.16 Runtime binding](#416-runtime-binding)
+  - [4.17 Pruning](#417-pruning)
 
 ## 1. Introduction
 
 A meeting is a room at one node of the work tree, where named participants come together for a while, with a purpose and an express remit, to make, review or look back on something, and then go back to working alone. It is held by hand today, in a folder of plain files that every participant reaches by its own route; a tool may later hold the same shape. The owner, the person whose work it is, owns every meeting, and the meeting holds the conversation, never the decision. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
 
 Ten points taken overnight on 14 November 2026 under the owner's remit for high-confidence work were confirmed by the owner as a whole the same day, as was SHARE-OUTPUTS, from the Cairn summit's change 15; [the sources file](sources.md#3-decisions) lists them.
+
+On 20 November 2026 the owner made rooms optional, now that sessions in Orca reach each other by Orca mail: seats run in Orca wherever they can, a room is set up mainly to reach a seat outside Orca and otherwise to share outputs or resources, a room's message opens with Orca mail's fields, and a room's messages are pruned (ROOMS-OPTIONAL, ROOMS-CHANNEL, ORCA-FIRST, ORCA-HOME, MSG-FORM and ROOM-PRUNE).
 
 [Back to contents](#contents)
 
@@ -45,11 +48,12 @@ What a meeting is, how it is called, held and closed, and how its participants r
 
 ### 2.1 In scope
 
-- When a meeting is the right channel, and who calls, keeps and owns one.
+- When a meeting is worth calling, rooms being optional, and who calls, keeps and owns one.
 - The four types of meeting and what each produces, with a standard of its own for each.
 - The meeting folder, its entry file and its messages.
 - Routes, sittings, roll calls, listening and check-ins.
 - How work, Git, private data and decisions are handled in a meeting, and its minutes and close.
+- Pruning a room's messages.
 
 [Back to contents](#contents)
 
@@ -60,6 +64,7 @@ What a meeting is, how it is called, held and closed, and how its participants r
 - Background runs a participant starts: `ki-delegation`.
 - The format of a change document: `ki-authoring`.
 - The store a meeting lives in, its roster and its commit gate: that store's own contract.
+- Orca mail between sessions, and waking a session with it: `ki-coordination`'s [messages standard](../../ki-coordination/references/standard-messages.md#42-orca-mail-and-the-cairn-beacon).
 - Another name for a meeting: "meeting" stays (MEETING-NAME, Kris, 17 November 2026).
 
 [Back to contents](#contents)
@@ -74,14 +79,17 @@ What a meeting is, how it is called, held and closed, and how its participants r
 | **Chair** | The session that runs a meeting's sittings; the caller, unless the owner starts another session to chair. **Standard:** this one, [4.2](#42-who-calls-keeps-and-owns-a-meeting) |
 | **Participant** | Each session or person taking part, with a role stated in the agenda, such as caller, maker, reviewer, illustrator or owner. **Standard:** this one, [4.5](#45-the-entry-file) |
 | **Layers** | The four parts of how a meeting carries what is said, each of which can change without the others: the transport, the delivery, the waking and the record. **Standard:** this one, [4](#4-rules) |
-| **Route** | How a participant reaches the others: its agent host's own messaging, the meeting folder, or exchange mode. **Standard:** this one, [4.6](#46-routes) |
+| **Orca mail** | Orca's mail between agent sessions, `orca orchestration send`, `reply`, `check` and `inbox`, reaching any session in Orca, running or idle, on the same Mac or across the bridge. **Standard:** `ki-coordination`'s [messages standard](../../ki-coordination/references/standard-messages.md#42-orca-mail-and-the-cairn-beacon) |
+| **The bridge** | Orca mail between two paired Orca hosts on different Macs, sent with `--on <host>`. **Standard:** this one, [4.6](#46-routes) |
+| **Route** | How a participant reaches the others: Orca mail, its agent host's own messaging outside Orca, the meeting folder, or exchange mode. **Standard:** this one, [4.6](#46-routes) |
 | **Exchange mode** | The exception in which the owner carries prompts both ways for a participant that cannot reach the folder. **Standard:** this one, [4.6](#46-routes) |
 | **Sitting** | One period of a meeting, lettered A, B, C and on, with a stated end except in a standing room, opened by a roll call and ended by its minutes. **Standard:** this one, [4.7](#47-sittings-and-the-roll-call) |
 | **Closing call** | The chair's message, 15 minutes before a sitting's stated end, that asks what each participant will finish by then. **Standard:** this one, [4.7](#47-sittings-and-the-roll-call) |
 | **Roll call** | Each participant's answer at a sitting's start: its clock, its role and the sitting's goal in its own words. **Standard:** this one, [4.7](#47-sittings-and-the-roll-call) |
-| **Message** | One file in the meeting's `messages/`, never edited once written. **Standard:** this one, [4.8](#48-messages) |
+| **Message** | One file in the meeting's `messages/`, opening with a front matter block of Orca mail's fields, never edited once written. **Standard:** this one, [4.8](#48-messages) |
 | **Open ask** | Something a message asks of a named participant, tracked in the entry file until answered. **Standard:** this one, [4.8](#48-messages) |
 | **Minutes** | A sitting's record in the entry file: what was done, decisions, other business, actions, choices left to the owner and the transcript. **Standard:** this one, [4.14](#414-minutes) |
+| **Pruning** | Deleting from the working tree a room's messages whose outcomes have a home elsewhere; Git history keeps them. **Standard:** this one, [4.17](#417-pruning) |
 
 [Back to contents](#contents)
 
@@ -96,14 +104,15 @@ The rules, part by part.
 - **the waking,** how a participant is started or brought back to the room: the opener (WAKE-OPENER, [4.7](#47-sittings-and-the-roll-call));
 - **the record,** what lasts: the meeting folder in Git ([4.4](#44-where-a-meeting-is-kept), [4.12](#412-git-and-private-data)).
 
-So a meeting can change its transport, as when a tool or an agent host's remote messaging takes over from the folder, without changing its record.
+So a meeting can change its transport, as when a tool or Orca mail takes over from the folder, without changing its record.
 
 ### 4.1 When to meet
 
-1. **The first route that works.** Sessions on the same agent host talk through its own messaging, and need no meeting for it ([4.6](#46-routes)).
-2. **Otherwise, a meeting.** Sessions that cannot reach each other that way are brought together in a meeting, for a time and with an express remit to discuss its matters. Addressed messages between work are gone; a meeting takes their place, and nothing is said between sessions across hosts outside one.
-3. **A meeting sits at one node** of the work tree, has a type, a purpose and its participants, and ends. Question, answer and information are messages inside it; the opening carries the brief, joining replaces an acknowledgement, and the close ends it.
-4. **Each session goes back to working alone** when the meeting ends. A meeting grants no authority beyond what the owner gives in it or in the owner's own sessions.
+1. **Direct first** (ROOMS-CHANNEL and ORCA-FIRST, Kris, 20 November 2026). Every session running in Orca reaches another by Orca mail, running or idle, on the same Mac and across the bridge to the other, under `ki-coordination`'s [messages standard](../../ki-coordination/references/standard-messages.md#42-orca-mail-and-the-cairn-beacon). An agent host's own messaging is used only for a session outside Orca ([4.16](#416-runtime-binding)), and work within one session goes to its own subagents. Each receiver keeps its own state in its own work package.
+2. **Seats run in Orca wherever they can** (ORCA-HOME, Kris, 20 November 2026), so that Orca mail reaches them.
+3. **A room is optional** (ROOMS-OPTIONAL, Kris, 20 November 2026). Since each session keeps its own state, a room is never needed to hold it. A meeting is set up mainly to reach a seat outside Orca, such as a voice client, and otherwise when there is a benefit: to share outputs or resources, such as boards, designs or a brief, or to work together in a sitting. A room that is only a route closes once its members can mail each other.
+4. **A meeting sits at one node** of the work tree, has a type, a purpose and its participants, and ends. Question, answer and information are messages inside it; the opening carries the brief, joining replaces an acknowledgement, and the close ends it.
+5. **Each session goes back to working alone** when the meeting ends. A meeting grants no authority beyond what the owner gives in it or in the owner's own sessions. Addressed messages in the store are gone (MESSAGES-GO); a direct message carries conversation, not work, which goes along the tree, and every decision goes to its change document.
 
 [Back to contents](#contents)
 
@@ -111,9 +120,9 @@ So a meeting can change its transport, as when a tool or an agent host's remote 
 
 1. **Who calls.** The session holding the node, or one above it; at the root, the root's guardian. A session below the node asks up.
 2. **The owner owns the meeting.** The owner's word decides. A participant that disagrees says so in a message, and does not change course on its own.
-3. **One caller in the room.** The caller is the only session of its agent host that listens in the room. A session on another agent host, one the caller's host messaging cannot reach, such as a desktop design session, sits in the room with it and is treated almost as a subagent. Other sessions on the caller's host stay out and talk to the caller through their host's messaging; the caller brings them what the room needs and carries their answers back.
+3. **One caller in the room.** The caller is the only session in Orca that listens in the room. A seat outside Orca, one Orca mail cannot reach, such as a desktop design session or a voice client, sits in the room with it and is treated almost as a subagent. Other sessions in Orca stay out and talk to the caller by Orca mail; the caller brings them what the room needs and carries their answers back.
 4. **The caller keeps it.** It makes the folder, writes and keeps the entry file, opens and adjourns each sitting, keeps the open asks and the minutes, and closes the meeting.
-5. **A chair who need not hold the package** (MEET-CHAIR, Kris, 14 November 2026). The caller chairs the meeting. The chair need not hold the work package the meeting serves; the owner may start a session to chair it. The entry file names the owning package and its change document; the package's holder takes part from outside the room through its host's messaging, or in it. The chair puts each outcome and each choice left to the owner in the minutes and sends them to the holder, who records them in its change documents, since only the session bound to a package changes it; while no session holds the package, the root's guardian does.
+5. **A chair who need not hold the package** (MEET-CHAIR, Kris, 14 November 2026). The caller chairs the meeting. The chair need not hold the work package the meeting serves; the owner may start a session to chair it. The entry file names the owning package and its change document; the package's holder takes part from outside the room by Orca mail, or in it. The chair puts each outcome and each choice left to the owner in the minutes and sends them to the holder, who records them in its change documents, since only the session bound to a package changes it; while no session holds the package, the root's guardian does.
 
 [Back to contents](#contents)
 
@@ -126,7 +135,7 @@ Each meeting is of one type, named in its entry file, which says what the meetin
 | **Workshop** | Makes something together, such as designs | The thing made, in the output folder, each part final or with its choices listed | [Workshop](standard-workshop.md) |
 | **Review** | Assesses something already made | A verdict on each part | [Review](standard-review.md) |
 | **Retrospective** | Looks back at a meeting or a run of work | What to keep and what to change, each sent to the change document that owns that way of working | [Retrospective](standard-retrospective.md) |
-| **Standing room** | Runs while its members work, as a route between sessions that cannot message each other or a standing conversation, and closes only on the owner's word | Messages and minutes; its decisions go to change documents | [Standing room](standard-standing-room.md) |
+| **Standing room** | Runs while its members work, as a standing conversation with a seat outside Orca, such as a voice client, and closes only on the owner's word | Messages and minutes; its decisions go to change documents | [Standing room](standard-standing-room.md) |
 
 A meeting runs by this standard and by its type's.
 
@@ -166,13 +175,13 @@ ki-opened: 2026-11-13T22:29Z            # when this sitting opened, from date -u
 ki-closed:                              # when this sitting was adjourned or the meeting closed
 ki-participants:                        # those who answered this sitting's roll call
   - id: actor:wayland                   # the participant's actor id, naming its roster file
-    route: folder                       # host | folder | exchange, as 4.6 numbers them
+    route: folder                       # orca | host | folder | exchange, as 4.6 numbers them
   - id: actor:ki.cairn@information-architect
     route: folder
 ---
 ```
 
-Every field the block holds is one KI defines, so each takes the `ki-` prefix (KI-PREFIX, Kris, 17 November 2026), under the [format format](../../../keystone/ki-authoring/references/standard-formats-format.md#42-front-matter); a participant's own keys, nested inside `ki-participants`, keep their names, and a reader takes a field written without the prefix under its `ki-` name until the meetings are swept. Every resource passes ids, never copies (ACTOR-KEY, Kris, 16 November 2026): the block opens with the meeting's own `ki-id`, `meeting:<folder's name>`, then `ki-document-type`, the kind of document, an optional human `ki-name` and `ki-kind`, and every reference in it is a typed id. The `ki-chair` field (CHAIR-FIELD, Kris, 14 November 2026) names the chair by its actor id. A participant carries only its `id` and its `route`: its name, host and rig are its roster file's, and the role it takes is the agenda's. Every seat in a meeting has a roster file in the store; an actor with no name takes its seat's id, `<package>@<role>`, as `actor:ki.cairn@information-architect` in `roster/ki.cairn@information-architect.md` (SEAT-AT, Kris, 16 November 2026), and that file holds its host and rig. A tool reads this block and the message file names ([4.8](#48-messages)), and nothing else in the folder. The owner is not listed; the owner is at every meeting. Then, in order:
+Every field the block holds is one KI defines, so each takes the `ki-` prefix (KI-PREFIX, Kris, 17 November 2026), under the [format format](../../../keystone/ki-authoring/references/standard-formats-format.md#42-front-matter); a participant's own keys, nested inside `ki-participants`, keep their names, and a reader takes a field written without the prefix under its `ki-` name until the meetings are swept. Every resource passes ids, never copies (ACTOR-KEY, Kris, 16 November 2026): the block opens with the meeting's own `ki-id`, `meeting:<folder's name>`, then `ki-document-type`, the kind of document, an optional human `ki-name` and `ki-kind`, and every reference in it is a typed id. The `ki-chair` field (CHAIR-FIELD, Kris, 14 November 2026) names the chair by its actor id. A participant carries only its `id` and its `route`: its name, host and rig are its roster file's, and the role it takes is the agenda's. Every seat in a meeting has a roster file in the store; an actor with no name takes its seat's id, `<package>@<role>`, as `actor:ki.cairn@information-architect` in `roster/ki.cairn@information-architect.md` (SEAT-AT, Kris, 16 November 2026), and that file holds its host and rig. A tool reads this block, the message file names and each message's own block ([4.8](#48-messages)), and nothing else in the folder; a message written before MSG-FORM has no block, and a tool reads only its name. The owner is not listed; the owner is at every meeting. Then, in order:
 
 1. **Summary,** kept current: where the meeting stands, the decisions it has led to, and what comes next.
 2. **Brief:** why the meeting exists, what it should produce, the change document that will hold its decisions, and what participants work from.
@@ -185,13 +194,14 @@ Every field the block holds is one KI defines, so each takes the `ki-` prefix (K
 
 ### 4.6 Routes
 
-How participants reach each other, three levels, the first that works:
+How participants reach each other, four levels, the first that works (ORCA-FIRST, Kris, 20 November 2026):
 
-1. **The agent host's own messaging.** Agents on the same agent host talk through it; no meeting is needed for that.
-2. **A meeting folder.** Otherwise they are brought together in a meeting. Each participant must reach the repository that holds the folder, by whatever route its runtime gives. Most reach it on the file system, where each sees what another writes at once, and still commits, pulls and pushes. One that cannot reaches it through its own connector to the repository's host, such as a GitHub connector. The agenda gives each participant's route.
-3. **Exchange mode, the exception.** Only when an agent is too limited to reach the repository at all, or the owner chooses to manage the exchange in person, does the owner carry prompts both ways. The caller writes each prompt as a message ending in one block to paste; the owner pastes it across and brings the answer back; the caller files the answer as that participant's message, marked as carried by the owner, such as "carried by Kris".
+1. **Orca mail.** Every session in Orca reaches another by Orca mail, running or idle, on the same Mac or across the bridge to the other, with no meeting needed for it, under `ki-coordination`'s [messages standard](../../ki-coordination/references/standard-messages.md#42-orca-mail-and-the-cairn-beacon). Never type into another agent's terminal.
+2. **The agent host's own messaging,** only for a session outside Orca that its own host can reach ([4.16](#416-runtime-binding)).
+3. **A meeting folder.** Otherwise, chiefly for a seat outside Orca, they are brought together in a meeting. Each participant must reach the repository that holds the folder, by whatever route its runtime gives. Most reach it on the file system, where each sees what another writes at once, and still commits, pulls and pushes. One that cannot reaches it through its own connector to the repository's host, such as a GitHub connector. The agenda gives each participant's route.
+4. **Exchange mode, the exception.** Only when an agent is too limited to reach the repository at all, or the owner chooses to manage the exchange in person, does the owner carry prompts both ways. The caller writes each prompt as a message ending in one block to paste; the owner pastes it across and brings the answer back; the caller files the answer as that participant's message, marked as carried by the owner, such as "carried by Kris".
 
-**Between machines** (CROSS-RIG-TRY, Kris, 14 November 2026, and MEET-STANDING, 18 November 2026). Sessions on different machines meet in a meeting folder. The agent host's own remote messaging was tried between a session on each machine and does not reach the sessions in use, so a route between machines that lasts is a [standing room](standard-standing-room.md); [4.16](#416-runtime-binding) names what was tried.
+**Between machines** (ROOMS-CHANNEL, Kris, 20 November 2026). Sessions on different machines reach each other by Orca mail across the bridge between the paired Orca hosts, sent with `--on <host>`, with replies coming back to the sender's own mailbox; no room is needed for it. This replaces the standing room as the route between rigs, which CROSS-RIG-TRY and MEET-STANDING had set when an agent host's own remote messaging did not reach sessions hosted in Orca ([4.16](#416-runtime-binding)).
 
 [Back to contents](#contents)
 
@@ -212,7 +222,27 @@ How participants reach each other, three levels, the first that works:
 
 1. **One file per message** in `messages/`, never edited once written.
 2. **Named** `<YYYYMMDD>T<HHMM>Z-<actor id>-<subject>.md` from `date -u`, so the folder lists in order and two messages in one minute stay distinct. `<actor id>` is the sender's actor id, the `<id>` of the `actor:<id>` its entry under `ki-participants` carries ([4.5](#45-the-entry-file)), exactly, as in `20261116T1342Z-wayland-boards-committed.md` or `20261116T1400Z-ki.cairn@information-architect-levels-ready.md`, since tools match who posted when to its participant from the name alone (MSG-FROM, Kris, 16 November 2026); a message the owner carries keeps the actor id of the participant it is from. Messages posted before MSG-FROM keep their names, which carry the sender's role.
-3. **Each opens** with who it is from, who it is for, and the message it answers, if any; then what changed, in plain words; the files it points to, by their path in the folder; and a closing `Asks:` naming who must do what.
+3. **Each opens with a front matter block of Orca mail's fields** (MSG-FORM, Kris, 20 November 2026), so that what a session says by Orca mail it says the same way in a room. The fields use Orca's words, each with the `ki-` prefix:
+
+   ```yaml
+   ---
+   ki-document-type: message
+   ki-from: actor:hob-sol              # required: the sender's actor id, as in the file's name
+   ki-to: [actor:hob-terra]            # required: a list of actor ids, or all
+   ki-subject: "Cairn install on terra" # required; a reply's is "Re: <subject>"
+   ki-type: question                   # status, the default | question | handoff | escalation | heartbeat | decision_gate
+   ki-priority: normal                 # normal, the default | high | urgent
+   ki-answers: 20261119T1012Z-hob-terra-cairn-install-blocked.md # the message it answers; none by default
+   ki-thread: 20261119T1012Z-hob-terra-cairn-install-blocked.md  # the thread's first message; by default the parent's thread, or this file
+   ki-files: []                        # the files it points to, by their path in the folder; none by default
+   ---
+   ```
+
+   - **Only `ki-from`, `ki-to` and `ki-subject` are required;** a field left out takes its default.
+   - **Types** are Orca's: a `heartbeat` is a check-in, and a `decision_gate` is a choice left to the owner, which still goes to a change document. Orca's `dispatch`, `worker_done` and `merge_ready` belong to its worker runs and are not used in a room.
+   - **Status comes from the replies,** since a message is never edited: a `question`, `handoff` or `escalation` is open until a message whose `ki-answers` names it. Read and delivered stay out of the file: a message is delivered once its commit is pushed, and each participant reads what is new since its last read ([4.9](#49-listening-and-check-ins)).
+   - **Then the body:** a title line, `# <subject>`; what changed, in plain words; and a closing `Asks:` naming who must do what.
+   - **Messages written before MSG-FORM** keep their opening, who it is from, who it is for and what it answers, until they are pruned ([4.17](#417-pruning)).
 4. **Open asks.** The caller keeps them in the entry file and ticks each off when it is answered, so nothing asked is lost.
 5. **Against crossing** (TRIAL-LESSONS, Kris, 14 November 2026). A participant that needs the others to wait posts a one-line "hold"; each board or other piece of output is rendered once per review pass; and new messages are read in the order of their times.
 6. **A correction names what it corrects** (TRIAL-LESSONS, Kris, 14 November 2026): the message it corrects, by its file name.
@@ -220,12 +250,12 @@ How participants reach each other, three levels, the first that works:
 
 The old message queue's best parts come into meetings here (MSG-HOME, Kris, 15 November 2026: "take [the] best bits from [the queue] and bring it into the meeting standards on messaging"):
 
-8. **Important first.** A message that must be taken before the others says so with `IMPORTANT` on its first line, and is kept for what changes how the others work, such as a stop, a redirect or a change of method. Each participant takes important messages first, one at a time in the order of their times and never grouped, then the rest in order.
-9. **Urgent is earned.** A message is urgent only when it carries a stated deadline or a change of method the others must follow; not everything is an escalation. Its sender writes `URGENT` on its first line, which also makes it important, and wakes its recipient by the recipient's route at once ([4.6](#46-routes)) rather than waiting for its next listen; where the recipient has not answered within its interval ([4.9](#49-listening-and-check-ins)), the chair tells the owner.
-10. **The answer is the receipt.** No message is acknowledged on its own: a participant shows it has taken a message by answering it, naming the message it answers (item 3), and the caller ticks the ask off. Joining a sitting acknowledges its opening ([4.1](#41-when-to-meet)).
+8. **Important first.** A message that must be taken before the others carries `ki-priority: high`, in place of the `IMPORTANT` first line used before MSG-FORM, and is kept for what changes how the others work, such as a stop, a redirect or a change of method. Each participant takes important messages first, one at a time in the order of their times and never grouped, then the rest in order.
+9. **Urgent is earned.** A message is urgent only when it carries a stated deadline or a change of method the others must follow; not everything is an escalation. Its sender sets `ki-priority: urgent`, in place of the `URGENT` first line used before MSG-FORM, which also makes it important, and wakes its recipient at once by Orca mail, or by the recipient's route where it is outside Orca ([4.6](#46-routes)), rather than waiting for its next listen; where the recipient has not answered within its interval ([4.9](#49-listening-and-check-ins)), the chair tells the owner.
+10. **The answer is the receipt.** No message is acknowledged on its own: a participant shows it has taken a message by answering it, naming the message it answers in `ki-answers` (item 3), and the caller ticks the ask off. Joining a sitting acknowledges its opening ([4.1](#41-when-to-meet)).
 11. **Taking an ask.** An ask grants no authority, and a participant never refuses one whole. It does what its remit in the meeting covers; the part only the owner can decide becomes a choice left to the owner with its recommendation ([4.14](#414-minutes)); and only the part it judges is not its own goes back, once and with the reason, after it has done the rest.
-12. **A change of method.** When a standard the meeting runs by changes during it, the chair posts one important message pointing to the standard at its revision, never restating it, and each participant reads it before its next piece of work and says so in its next message.
-13. **A message is its file.** For a participant in the room, a message counts once its file is in `messages/`: a nudge through an agent host's messaging names that file, and a sender that only nudged has not sent. An answer given only through a backend is not progress until it is on a surface the owner reads.
+12. **A change of method.** When a standard the meeting runs by changes during it, the chair posts one message with `ki-priority: high` pointing to the standard at its revision, never restating it, and each participant reads it before its next piece of work and says so in its next message.
+13. **A message is its file.** For a participant in the room, a message counts once its file is in `messages/`: a nudge by Orca mail, or through an agent host's messaging outside Orca, names that file, and a sender that only nudged has not sent. An answer given only through a backend is not progress until it is on a surface the owner reads.
 
 [Back to contents](#contents)
 
@@ -235,7 +265,7 @@ The old message queue's best parts come into meetings here (MSG-HOME, Kris, 15 N
 2. **A host without a lasting shell** listens by scheduled wake-ups instead, and otherwise re-reads `messages/` when the owner prompts it and before each new piece of work.
 3. **The agenda states** each participant's interval, the longest a message waits for it, and when its listening ends.
 4. **Sessions outside the room** do not watch it.
-5. **Check-ins.** While work is running, as in a workshop's round, every 15 minutes the caller posts `<caller> → all: check-in` in the folder and sends each participant outside the room a short note by its host's messaging; each replies with what is done, what it is doing and what blocks it, or "nothing". A participant that wrote in the last 15 minutes may skip it. Between rounds, with no work running, the caller sends a check-in only when there is news, since an empty one wakes every participant for nothing (CHECKIN-QUIET, Kris, 16 November 2026).
+5. **Check-ins.** While work is running, as in a workshop's round, every 15 minutes the caller posts `<caller> → all: check-in` in the folder, a `heartbeat`, and sends each participant outside the room a short note by Orca mail; each replies with what is done, what it is doing and what blocks it, or "nothing". A participant that wrote in the last 15 minutes may skip it. Between rounds, with no work running, the caller sends a check-in only when there is news, since an empty one wakes every participant for nothing (CHECKIN-QUIET, Kris, 16 November 2026).
 6. **At each wake** (MSG-HOME, Kris, 15 November 2026). Each time a participant wakes or is prompted, it reads the messages new since it last read, important ones first and then in the order of their times ([4.8](#48-messages)), and acts on them without stopping work already running.
 
 [Back to contents](#contents)
@@ -282,7 +312,7 @@ Kris, 14 November 2026 (MEET-BUSY):
    - the actions, each with its owner;
    - the choices left to the owner, each with its recommendation;
    - the resume note, after an adjournment;
-   - the transcript: the sitting's messages in order, a line each linking to its file.
+   - the transcript: the sitting's messages in order, a line each linking to its file at its last commit, since the sitting's messages are then pruned ([4.17](#417-pruning)).
 2. **Choices left to the owner.** Whoever did the work lists them, each with its recommendation, and the caller carries them into the change document's open questions, which feeds the owner's next report.
 3. **Choices go to the owner whole** (CHOICES-WHOLE, Kris, 14 November 2026). Each choice carries its context, its options and a recommendation with its confidence, in the message itself.
 
@@ -293,7 +323,8 @@ Kris, 14 November 2026 (MEET-BUSY):
 1. **The caller's last message closes the meeting,** naming each outcome and the change document that now holds it. Nothing closes by itself, and a standing room closes only on the owner's word. The close restates each choice and recommendation it carries, and never refers back to an earlier message for them (CHOICES-WHOLE, Kris, 14 November 2026).
 2. **Listening ends.** The caller's watcher stops, and with `ki-status` no longer `open` in the entry file no participant reads as listening.
 3. **Work that landed** during the meeting gets its record, as the store's own rule for records sets.
-4. **The folder is removed** from the tree once the owner has reviewed that record, and Git history keeps it.
+4. **Its messages go** once the minutes carry each outcome, as [4.17](#417-pruning) sets.
+5. **The folder is removed** from the tree once the owner has reviewed that record, and Git history keeps it.
 
 [Back to contents](#contents)
 
@@ -301,12 +332,26 @@ Kris, 14 November 2026 (MEET-BUSY):
 
 How the rules above fall on the agent hosts in use when the standard was written. The rules stand without them.
 
-- **Agent host messaging:** Orca's messages between its sessions, for Claude Code sessions on one rig. The caller is a Claude Code session; other Claude Code sessions stay out of the room and reach it over Orca.
+- **Orca mail:** `orca orchestration send`, `reply`, `check` and `inbox`, for every session in Orca, Claude Code or Codex, running or idle, on one rig or across the bridge with `--on <host>` (ROOMS-CHANNEL, ORCA-FIRST). The caller is a session in Orca; other sessions in Orca stay out of the room and reach it by Orca mail. Orca's own guide says to send another agent a message with Orca mail, never by typing into its terminal, and to prefer a session's own subagents for work within one session.
+- **Agent host messaging:** Claude Code's SendMessage reaches only running Claude Code sessions on one Mac, so it is used only for a session outside Orca.
 - **In the room on the file system:** Claude Design in Claude Desktop, and an illustrator in the ChatGPT desktop app's Codex, each reading and writing the folder directly and committing its own files.
 - **Through a connector:** ChatGPT's voice mode, which cannot reach the file system, through its own GitHub connector.
-- **Between machines:** Claude Code's Remote Control was the remote messaging to try, between a session on sol and one on terra (CROSS-RIG-TRY). It does not reach the sessions in use, which run Claude Code as their harness inside Orca as their host, since Remote Control comes only with Claude Code's own interface (Kris, 18 November 2026); so rigs reach each other through a standing room (MEET-STANDING).
+- **Between machines:** Claude Code's Remote Control was the remote messaging to try, between a session on sol and one on terra (CROSS-RIG-TRY). It does not reach the sessions in use, which run Claude Code as their harness inside Orca as their host, since Remote Control comes only with Claude Code's own interface (Kris, 18 November 2026), so rigs reached each other through a standing room (MEET-STANDING). Orca mail across the bridge between the paired Orca hosts now carries it (ROOMS-CHANNEL), as Hob Sol and Hob Terra used it on 20 November 2026, and the housekeepers' standing room closed.
+- **Seats outside Orca,** which keep a room: the voice client in ChatGPT's voice mode; on 20 November 2026 also a Claude Design session and a Claude chat in Claude Desktop, and an illustrator in the ChatGPT desktop app's Codex, until each is seated in Orca (ORCA-HOME).
 - **Sharing outputs:** Claude Design shares its boards as its own artifacts, which is what the owner expects there, and in a meeting puts them in the output folder too; the illustrator works in its own app and puts what it makes in the output folder, and does not send the owner to GitHub.
 - **Without Git:** Claude Design works in a sandboxed shell that cannot delete Git's lock files and has no checkout or push of its own, so it is a participant without Git, and the chair commits its files.
 - **Listening:** the caller runs a shell watcher on the folder; Claude Desktop, which cannot keep a shell loop open between turns, listens by scheduled wake-ups. In the first sitting the caller checked every 30 seconds and Claude Design every two minutes until a set time.
+
+[Back to contents](#contents)
+
+### 4.17 Pruning
+
+A room keeps its messages only while they are needed (ROOM-PRUNE, Kris, 20 November 2026: "I suspect with messages we only need them 24h tbh, especially if they are acknowledged"). Each room's caller prunes it; Git history keeps every message.
+
+1. **At each adjournment,** once the minutes carry each outcome and a transcript linking each message at its last commit ([4.14](#414-minutes)), the caller deletes that sitting's messages in the same commit.
+2. **At the close,** likewise, the caller deletes the room's remaining messages once the minutes carry the outcomes ([4.15](#415-closing)).
+3. **In a sitting that runs on,** as a standing room's or a long workshop's does, the caller deletes, at each roll call and each check-in with news, the messages more than 24 hours old that have been answered or acknowledged, by a message whose `ki-answers` names them.
+4. **Never pruned:** the entry file, with its summary, open asks and minutes; a message carrying an ask not yet answered; a message carrying the owner's words, a voice client's above all, until they are recorded in a change document; the current brief and outputs, which are what a room is for (ROOMS-OPTIONAL); and Git history, which is never rewritten.
+5. **A link to a pruned message** points to its file at a commit, so it still opens.
 
 [Back to contents](#contents)

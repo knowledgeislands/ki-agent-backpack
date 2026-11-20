@@ -3,12 +3,12 @@ import type { MeetingContext } from '../contexts/meeting.ts'
 
 const MEETING_1: RubricItem<MeetingContext> = {
   code: 'MEETING-1',
-  title: 'a meeting is the right channel and is called from the right node',
+  title: 'a meeting is worth calling and is called from the right node',
   description:
-    "A meeting is held only where sessions cannot reach each other through their own agent host's messaging, sits at one node of the work tree with a type, a purpose and its participants, and is called by the session holding that node or one above it.",
+    'A meeting is optional: it is held mainly to reach a seat outside Orca, and otherwise to share outputs or resources or to work together in a sitting, never only as a route between sessions that reach each other by Orca mail; it sits at one node of the work tree with a type, a purpose and its participants, and is called by the session holding that node or one above it.',
   sources: ['standard-meeting.md#41-when-to-meet', 'standard-meeting.md#42-who-calls-keeps-and-owns-a-meeting'],
   judgment: judgment(
-    'Was a meeting the first route that works, and was it called at one node by the session holding it or one above it?'
+    'Did the meeting serve a seat outside Orca, shared outputs or resources, or a working sitting, rather than stand in for Orca mail, and was it called at one node by the session holding it or one above it?'
   )
 }
 
@@ -27,7 +27,7 @@ const MEETING_3: RubricItem<MeetingContext> = {
   code: 'MEETING-3',
   title: 'each participant reaches the room by the first route that works',
   description:
-    "Each participant's route is stated in the agenda and is the first of the three that works: the agent host's own messaging, the meeting folder, or exchange mode only as the exception.",
+    "Each participant's route is stated in the agenda and is the first of the four that works: Orca mail, the agent host's own messaging only for a session outside Orca, the meeting folder, or exchange mode only as the exception.",
   sources: ['standard-meeting.md#46-routes'],
   judgment: judgment(
     "Is each participant's route stated, and is exchange mode used only where no other route reaches the folder?"
@@ -49,10 +49,10 @@ const MEETING_5: RubricItem<MeetingContext> = {
   code: 'MEETING-5',
   title: 'messages are one immutable, clock-named file each',
   description:
-    "Each message is one file in `messages/`, never edited once written, named from `date -u` with its sender's actor id, and opens with who it is from, who it is for and what it answers, closing with its asks; the caller keeps the open asks in the entry file until each is answered.",
-  sources: ['standard-meeting.md#48-messages'],
+    "Each message is one file in `messages/`, never edited once written, named from `date -u` with its sender's actor id, and opens with a front matter block of Orca mail's fields, at least from, to and subject, closing with its asks; the caller keeps the open asks in the entry file until each is answered, and prunes messages at adjournment, at close and, in a sitting that runs on, once answered or acknowledged and more than 24 hours old.",
+  sources: ['standard-meeting.md#48-messages', 'standard-meeting.md#417-pruning'],
   judgment: judgment(
-    "Is every message a single unedited file, named from the clock and its sender's actor id, saying whom it is from and for, what it answers and what it asks?"
+    "Is every message a single unedited file, named from the clock and its sender's actor id, opening with its front matter block and saying what it asks, and were messages pruned as the standard sets?"
   )
 }
 
@@ -93,7 +93,7 @@ const MEETING_9: RubricItem<MeetingContext> = {
   code: 'MEETING-9',
   title: "the caller's last message closes the meeting",
   description:
-    "The meeting closes only by the caller's last message, naming each outcome and the change document that holds it; listening then ends, the work that landed gets its record, and the folder is removed once the owner has reviewed that record.",
+    "The meeting closes only by the caller's last message, naming each outcome and the change document that holds it; listening then ends, the work that landed gets its record, its messages are pruned once the minutes carry the outcomes, and the folder is removed once the owner has reviewed that record.",
   sources: ['standard-meeting.md#415-closing'],
   judgment: judgment(
     'Was the meeting closed by a message naming each outcome and its change document, with listening ended and the record written?'
@@ -104,7 +104,7 @@ export const MEETING: RubricFamily<MeetingContext, MeetingContext> = {
   code: 'MEETING',
   title: 'Meeting conduct',
   description:
-    'A meeting is the right channel, kept in the standard folder, reached by the first route that works, held in sittings with roll calls, clock-named messages, listening and check-ins, careful with Git and private data, and closed with its decisions in change documents.',
+    'A meeting is worth calling, kept in the standard folder, reached by the first route that works, held in sittings with roll calls, clock-named messages, listening and check-ins, careful with Git and private data, pruned of its messages, and closed with its decisions in change documents.',
   standard: 'standard-meeting.md',
   selectContext: (context) => context,
   items: [MEETING_1, MEETING_2, MEETING_3, MEETING_4, MEETING_5, MEETING_6, MEETING_7, MEETING_8, MEETING_9]
