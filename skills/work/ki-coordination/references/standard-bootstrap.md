@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T00:18:51Z
+ki-revised: 2026-11-20T15:30:00Z
 ki-status: in force
 ---
 
@@ -111,7 +111,7 @@ The owner may compact a long session with the runtime's compaction facility, kee
 After any compaction, owner's or runtime's, the coordinator, before answering anything else:
 
 1. re-reads this standard, the backpack's output style `output-styles/ki-coordinator.md` from disk and its package's `_index.md`, the change documents in hand in full and every change document's Open section, and follows the style file wherever it differs from the loaded style;
-2. checks its agents through its agent host, takes the top line of `_index.md`'s Now as its first step, and reads any meeting it sits in, `IMPORTANT` messages first;
+2. checks its agents through its agent host, takes the top line of `_index.md`'s Now as its first step, and reads any meeting it sits in, messages with `ki-priority: high` first, or with an `IMPORTANT` first line where older;
 3. confirms in one line that it has re-anchored, then answers with the Bootstrap, heading block to banner.
 
 The style file wins because a session keeps the style it loaded at start through a compaction, so the loaded copy can lag the file on disk; the [compact pointer](standard-coordination.md#47-generated-surfaces) and the style's re-anchoring paragraph say the same.

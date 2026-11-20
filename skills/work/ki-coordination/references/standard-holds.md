@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T09:40:19Z
+ki-revised: 2026-11-20T15:30:00Z
 ki-status: in force
 ---
 
@@ -69,7 +69,7 @@ On hold is the Work Process note's state, with its two reasons: paused, and more
 - A hold serves a move between hosts, closes work for a period or rests it between waves. It never says which host the work comes back up on.
 - A conversational session's ad hoc work goes On hold through an update of the state in its `_index.md`, with no Stop.
 
-**First steps.** Read any `IMPORTANT` message in a meeting the session sits in first, cancel every wake this session holds, the watcher included, and report whether anything is still running, queued or scheduled. Work going Snoozing re-arms the watcher once the snooze lands.
+**First steps.** Read first any message with `ki-priority: high`, or an older one with an `IMPORTANT` first line, in a meeting the session sits in, cancel every wake this session holds, the watcher included, and report whether anything is still running, queued or scheduled. Work going Snoozing re-arms the watcher once the snooze lands.
 
 **The drain**, in order:
 

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-20T15:10:00Z
+ki-revised: 2026-11-20T15:30:00Z
 ki-status: in force
 ---
 
@@ -116,9 +116,9 @@ The message queue has retired (MSG-HOME, MSG-RETIRE): no package keeps a `messag
 - **Owner feedback on a document** reaches the work that produced it along the tree: its holder records each point in the change document the point reaches, quoting the owner word for word and naming the owner as speaker, under the `ki-work-package` [Messages](../../ki-work-package/references/standard-work-package.md#48-messages); a package holds no feedback files.
 - **Urgent work:** a unit is urgent only when it carries a stated deadline or rolls out a process change other work must follow; not everything is an escalation. Urgent work never waits in a package:
   1. The sender tells the owner at once, and reaches the owning work's holder by Orca mail, or, where it is outside Orca, through its agent host's messaging or a meeting they both sit in.
-  2. Only where no one is live and the unit lies within the sender's own authority, the sender does it through a detached run and tells the owner, naming the run and its commits. Outside the sender's authority it goes to the owner as a blocking query.
+  2. Only where no one is live, nor reachable by Orca mail, which wakes an idle session in Orca, and the unit lies within the sender's own authority, the sender does it through a detached run and tells the owner, naming the run and its commits. Outside the sender's authority it goes to the owner as a blocking query.
 
-  A worker is **live** when its `ki-workers` entry in the package's `_index.md` says `status: active`, it is listening, and its package or Cairn shows activity within the last 30 minutes. Listening is read from meetings alone: a session is listening while it is a participant of an open meeting with a sitting under way, the `ki-workers` entry's actor id, `id: actor:<id>`, listed in the meeting's entry file under `ki-participants` with `ki-status: open`, the two matched by id alone (ACTOR-KEY), under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). No `ki-workers` entry or roster file carries `listening`. Cairn reads the register and is not a second source.
+  A worker is **live** when its `ki-workers` entry in the package's `_index.md` says `status: active`, it is listening, and its package or Cairn shows activity within the last 30 minutes. Listening is read from meetings alone: a session is listening while it is a participant of an open meeting with a sitting under way, the `ki-workers` entry's actor id, `id: actor:<id>`, listed in the meeting's entry file under `ki-participants` with `ki-status: open`, the two matched by id alone (ACTOR-KEY), under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). No `ki-workers` entry or roster file carries `listening`. Cairn reads the register and is not a second source. A holder in Orca need not be live to be reached: Orca mail wakes it (ORCA-FIRST, WAKE-LIMIT), so step 2 waits until mail has gone unanswered or been refused.
 
 Sources: CASCADE-DOWN, MSG-RETIRE, ROUTE-RECEIPT, HANDOFF-AS-MESSAGE, URGENT-CRITERIA, LIVENESS, LISTEN-HOME and FEEDBACK-AS-MESSAGE in [the decision register](sources.md#3-decisions); MSG-HOME in `ki-meeting`'s [sources](../../ki-meeting/references/sources.md#3-decisions).
 
