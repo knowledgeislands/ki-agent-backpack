@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:35:57Z
+ki-revised: 2026-11-20T15:30:00Z
 ki-refresh: external-spec · weekly
 ---
 
@@ -68,7 +68,7 @@ Each group was re-fetched in the latest weekly review.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| Orca orchestration | the [first implementation](https://github.com/stablyai/orca/pull/1188), merged on 28 April 2026, supplies reference-implementation evidence; the [orchestration documentation](https://orca.dev/docs/cli/orchestration) describes the experimental coordinator, workers, ask and reply, and gates. It is watched as a way agent hosts coordinate and never adopted as a channel between Agora sessions. | 2026-11-15 |
+| Orca orchestration | the [first implementation](https://github.com/stablyai/orca/pull/1188), merged on 28 April 2026, supplies reference-implementation evidence; the [orchestration documentation](https://orca.dev/docs/cli/orchestration) describes the experimental coordinator, workers, ask and reply, and gates. It is watched as a way agent hosts coordinate; since ROOMS-CHANNEL and ORCA-FIRST, 20 November 2026, its mail is the channel between Cairn sessions in Orca. | 2026-11-15 |
 | Gas City | the [open-source orchestrator](https://github.com/gastownhall/gascity) supplies reference-implementation evidence; the [software-factory guide](https://gascity.com/guide/ai-software-factory/) describes Beads-backed durable work, configured coding workflows, routing, retries, and review gates. | 2026-11-15 |
 
 These sources establish two implemented coordination tools and their primary abstractions. They do not establish comparative fitness, cross-tool interoperability, or a Knowledge Islands adoption decision.
@@ -119,6 +119,7 @@ The review log records outcomes, newest first; source freshness is tracked in ea
 
 | Review | Outcome | Date |
 | --- | --- | --- |
+| Change 50 alignment | The Orca orchestration entry, in `radar.toml` and its source row, brought to ROOMS-CHANNEL and ORCA-FIRST, which Kris took on 20 November 2026 in the Cairn summit's change 50: its mail is the channel between Cairn sessions in Orca, and the rest is still watched. Stance and evidence unchanged; no source refreshed. | 2026-11-20 |
 | Agentic systems guild review | From the Cairn summit's change 10: `standards-agentic-radar.md` renamed `standard-agentic-radar.md` and reshaped, its rules unchanged under numbered sections; this file took the sources format, each source group's bullets becoming table rows with their reviewed date, the review log newest first, AHP-RADAR as a decision and the open watch items under Watching. No rule changed and no outside source was refreshed. | 2026-11-18 |
 | Weekly review | Every source re-read. ACP's latest stable schema is now v1.32.0 (2026-11-14): of the releases since v1.25.0 only v1.30.0 (2026-11-09) stabilises anything, the client system prompt, and v2 has reached alpha 16; the release records are added and the subject's assessment is unchanged. AHP released spec v1.1.0 (2026-11-12), which promotes no channel and adds an experimental TCP channel, with a 1.2.0 draft published; pi-ahp and ahpd now state 1.0.0 support and the implementation catalogue lists more independent clients and hosts, which fires the 1.0 host-adoption return trigger and is held for the owner. Orca, Claude Desktop, ChatGPT Desktop and ChatGPT Mobile still name no AHP support. Orca's documentation moved to orca.dev and its orchestration panel is temporarily unavailable; VS Code's nested `AGENTS.md` caveat moved to its custom instructions reference; Cloudflare's page now documents MCP servers only. RDF 1.2 Concepts is a Candidate Recommendation draft of 2026-11-13, so RDF 1.1 stays the cited Recommendation. MCP, A2A, AGENTS.md, W3C, Gas City, Obscura and the other structural sources unchanged; no stance or movement changed. | 2026-11-15 |
 | AHP adoption signal | AHP-RADAR: AHP adoption is tracked per agent host. Orca, Claude Desktop, ChatGPT Desktop and ChatGPT Mobile each show no AHP support, recorded as dated counter-evidence on the AHP subject; Orca orchestration added as a new assessment subject, watched and never adopted as a channel between Agora sessions. Other subjects not refreshed. | 2026-11-10 |
