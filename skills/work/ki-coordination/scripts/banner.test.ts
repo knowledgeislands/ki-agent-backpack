@@ -1043,7 +1043,7 @@ test('regular coordination is explicit, capability-checked and uses its real wor
   for (const seat of [
     '📐 ki.cairn@information-architect',
     '🏗️ ki.cairn@technical-architect',
-    '🎨 ki.cairn@illustrator',
+    '🎨 ki.cairn@graphic-designer',
     '🦜 cairn.summit@voice',
     '🐝 ki.ways-of-working@journeyman',
     '📐 hnr.summit+website@information-architect'

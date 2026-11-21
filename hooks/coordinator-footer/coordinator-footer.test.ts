@@ -492,7 +492,7 @@ test('a key-form Summary and banner pass, in the session name form of the role s
 // `+<slug>` for a sub-package; the earlier `<work-id>+<role>` passes with a warning.
 test('a keyless seat thread line passes as the thread line', () => {
   expect(run(stop(rebootstrap(heading, counts, items, listening, '📐 ki.cairn@information-architect'), plain))).toEqual(silent)
-  expect(run(stop(summary(art, heading, counts, roadmap, pkg, items, listening, '🎨 ki.cairn@illustrator'), plain))).toEqual(silent)
+  expect(run(stop(summary(art, heading, counts, roadmap, pkg, items, listening, '🎨 ki.cairn@graphic-designer'), plain))).toEqual(silent)
   expect(run(stop(rebootstrap(heading, counts, items, listening, '🏗️ hnr.summit+website@technical-architect'), plain))).toEqual(silent)
   expect(run(stop(`${rebootstrap(heading, counts, items, listening, '📐 ki.cairn@information-architect')}\n\nAnything else?`, plain)).reason).toContain(
     'the thread line as the very last line'
@@ -563,7 +563,7 @@ test('an unnamed seat, an unresolvable seat and an unconfigured store pass a bar
   const env = { XDG_CONFIG_HOME: configured }
   expect(run(stop(rebootstrap(heading, counts, items, listening, '⚖️ 🔑 ki.guilds'), plain), env)).toEqual(silent)
   expect(run(stop(rebootstrap(heading, counts, items, listening, '🏛️ 🔑 5ge.summit'), plain), env)).toEqual(silent)
-  expect(run(stop(rebootstrap(heading, counts, items, listening, '🎨 ki.cairn@illustrator'), plain), env)).toEqual(silent)
+  expect(run(stop(rebootstrap(heading, counts, items, listening, '🎨 ki.cairn@graphic-designer'), plain), env)).toEqual(silent)
   expect(run(stop(rebootstrap(heading, counts, items, listening, thread), plain), env)).toEqual(silent)
   expect(run(stop(rebootstrap(heading, counts, items, listening, '🪨 🔑 cairn.summit'), plain))).toEqual(silent)
   expect(run(stop(rebootstrap(heading, counts, items, listening, '🪨 🔑 cairn.summit'), plain), { XDG_CONFIG_HOME: 'relative', HOME: unconfigured })).toEqual(silent)
