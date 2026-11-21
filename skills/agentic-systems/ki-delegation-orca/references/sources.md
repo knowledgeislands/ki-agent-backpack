@@ -54,12 +54,15 @@ Kris's decisions behind the adapter as a whole; each rule names its own ground b
 | MIGRATION-OVERLAY | Interim rules and the next trial's tests live in the migration file, so the standard describes only the final state | 2026-11-07 | [the migration file](migration-orca-delegation.md) | taken |
 | ONE-LAUNCHER | Closed with no rule | 2026-11-07 | [4.2](standard-orca-delegation.md#42-when-orca-launches) | closed |
 | RUN-HANDOVER b) | Test `run-use` handover in the next trial | 2026-11-07 | [the migration file](migration-orca-delegation.md) | taken |
+| WIP-PACKAGE a | "Should each package work on one piece at a time, plus one review of it, as a trial? → Yes, one at a time", by Orca item card, relayed by the Cairn summit's guardian from its [change 90](https://github.com/krisb/ki-cairn-store/blob/fdf11947/work/cairn/cairn.summit/90-ways-of-working.change.md#44-decided): QUEUE-PACE's ceiling of about three running becomes one unit in flight per work package, plus at most its independent review, as a trial | 2026-11-21 | [4.8](standard-orca-delegation.md#48-queueing) | taken, as a trial |
 
 The other answers of 7 November 2026, each option a), are named beside the rules they back: ORCA-SKILL-KIND, CLOSEOUT-STRIKE, ONE-LAUNCHER-UNIT, OUTLIVE, PROMPT-RENDER, HEARTBEAT-ACK, STOP-VERB, QUEUE-PACE, REPORT-HOME, WORKER-SURVIVAL, DELIVERY-REPLAY, OWNER-ASK, ADAPTER-MERGE, TRIAL-ASK, TRIAL-PRACTICE, RUN-RECOVERY and TRIAL-PUBLISH.
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 21 November 2026 an in-house review applies WIP-PACKAGE a, which Kris took that day at about 18:54 GMT, relayed by the Cairn summit's guardian from its [change 90](https://github.com/krisb/ki-cairn-store/blob/fdf11947/work/cairn/cairn.summit/90-ways-of-working.change.md#44-decided): the coordinator's pacing of Orca workers keeps one unit in flight per work package, plus at most its independent review, in place of QUEUE-PACE's ceiling of about three, as `ki-coordination` sets it. This is an in-house decision review; no external source was refreshed.
 
 Later on 18 November 2026 the same review brought [4.12](standard-orca-delegation.md#412-what-stays-in-knowledge-islands) to the package as `ki-work-package` now shapes it: the record is the package's `_index.md` and its change documents, with their decisions and open points, where it named the old package files' definition, state, queries, messages and decisions. No criterion changed.
 

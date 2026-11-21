@@ -60,7 +60,7 @@ Coordinating a territory's work: Project work, the State of play and its seconda
 | **State of play** | A territory's summit, `<territory>.summit`, the coordination of its coordinations: it does project management and executes nothing. Unqualified, it means the summit. **Standard:** this one, [4.1.1](#411-territory-work) |
 | **Secondary State of play** | A node beneath its territory's summit, `ki-level: regular`, that splits off part of the summit's authority and works under the summit's rules. **Standard:** this one, [4.1.3](#413-secondary-states-of-play) |
 | **Acting for idle work** | The State of play taking what reaches a seated package whose session is not listening; it launches no run, changes none of the package's state and transfers nothing. **Standard:** this one, [4.1.1](#411-territory-work) |
-| **Cap** | At most three or four active Project packages in a territory at once; On hold and Finished do not count, and exceeding it needs the owner's agreement beforehand. **Standard:** this one, [4.1.1](#411-territory-work) |
+| **Cap** | As a trial, at most three active packages of any size in a territory at once, Project or regular, plus the summit, a package waiting on the owner counting as active; On hold and Finished do not count, and exceeding it needs the owner's agreement beforehand. **Standard:** this one, [4.1.1](#411-territory-work) |
 | **Long-standing request** | A request or query a package's keyholder has left with the owner for more than 24 hours, unanswered, which the keyholder flags up the tree towards the guardian. **Standard:** this one, [4.3](#43-long-standing-requests) |
 
 [Back to contents](#contents)
@@ -106,10 +106,12 @@ Its duties:
   - Acting for is not stewardship and transfers nothing under [Coordinating assigned packages](#412-coordinating-assigned-packages). A package whose home is absent, stale or ambiguous is surfaced, not acted for.
   - A node acts for the packages beneath it, the summit for the rest.
   - When the package's own session opens, it finds the dispositions in its files and Git, and the State of play stops acting for it.
-- **Cap:** at most three or four Project packages are active at once, however many sessions act on them; On hold and Finished do not count.
+- **Cap:** as a trial, at most three packages of any size are active in a territory at once, Project or regular, plus the summit, however many sessions act on them, as Kris took WIP-TERRITORY a on 21 November 2026: "Cap each territory at three active packages of any size, counting work waiting on you, as a trial? → Yes, three".
+  - A package waiting on the owner counts as active; On hold and Finished do not count. A secondary State of play and ad hoc work count too, each named in the count.
+  - Nothing is closed or held automatically to meet the cap. Where a territory is over it, the owner chooses which package to drain or hold, one at a time.
   - Exceeding the cap needs the owner's explicit agreement beforehand; the coordinator cannot raise it alone. Until then, queue the next piece.
   - Keep the ordered queue in the summit's change documents, each piece with its title and opener, and show in the summit's `_index.md` what is active, in Now, and what waits, in Held, as Kris set under OLD-SHAPE-HOMES a on 14 November 2026: "The queue is similar, so basically now it all orientates around the change .md files." Open the next queued piece when an active one goes on hold or finishes.
-  - Within one piece, about three background agents run at once and the rest wait in the run queue, under [Coordinator responsiveness](standard-coordination.md#43-coordinator-responsiveness).
+  - Within one package, one unit is in flight at a time, plus at most its independent review, under [Coordinator responsiveness](standard-coordination.md#43-coordinator-responsiveness).
 - **Acceptance first:** at bootstrap and resume, its first call on the owner, before any other query, is the territory's records awaiting acceptance, as one bundle per work under [Acceptance bundles](standard-queries.md#48-acceptance-bundles).
 - **Seeding:** before Project work opens, the State of play creates or reconciles its package and gives the owner its [opener](standard-opening.md#43-opening-work), so the session opens with one message. A new package is seeded by its parent node's keyholder, usually the guardian, or by any session the owner points at it on the owner's word, under the `ki-work-package` [writers](../../ki-work-package/references/standard-work-package.md#49-writers): `_index.md` on hold, the first step as the top line of its Now, and a first change document only if there is a change to carry. Others ask the keyholder in a meeting or a conversation. A dormant, registered Project's package is seeded with `hold.reason: paused` and `hold.release: when Kris opens this Project work`; seeding neither opens nor releases the work, as Kris set under FIRST-STEP-HOME a on 15 November 2026.
 - **Flags:** at its own mark, it names as steer recorded in each owning work's package every package the `ki-work-package` rubric's [FOLDER](../../ki-work-package/references/rubric.md) items flag, under [Pruning the package](standard-mark.md#43-pruning-the-package).
@@ -132,7 +134,7 @@ Its duties:
 - When Ways of working finishes, the State of play's `_index.md` description gains method stewardship and its Scope says where method changes go. It keeps a method backlog, dispatches each accepted small improvement as small regular work or into the Project it most affects, with a design review for a change of shape. A significant change revives Ways of working, or a more targeted Project under the Model theme.
 - Lasting method authority stays in the skills and Decision Records, and the State of play still executes nothing.
 
-Sources: CASCADE-DOWN, SOP-ACTS-FOR-IDLE, WORK-ROUTING, STEWARD-HOME, FIRST-STEP-HOME and SECONDARY-SOP in [the decision register](sources.md#3-decisions).
+Sources: CASCADE-DOWN, SOP-ACTS-FOR-IDLE, WORK-ROUTING, STEWARD-HOME, FIRST-STEP-HOME, SECONDARY-SOP and WIP-TERRITORY in [the decision register](sources.md#3-decisions).
 
 #### 4.1.2 Coordinating assigned packages
 

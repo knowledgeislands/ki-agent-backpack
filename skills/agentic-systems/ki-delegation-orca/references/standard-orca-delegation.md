@@ -138,7 +138,7 @@ A new coordinator session therefore makes a new Run, finds the old one by its ob
 
 A queued run starts through Orca while its parent chat is live, and otherwise waits for a live session, the route recorded in its receipt. Decided: ORCA-QUEUE a), "Orca first"; its other route, `ki agent`'s dispatcher, went with `ki agent` in `tools-ki` v0.15.0.
 
-Orca never starts a worker when its dependencies finish, so within one session the coordinator paces the queue itself: at the wake that settles a worker, it reads the report, confirms the next worker's dependency succeeded and that nothing conflicts, then starts the next worker, with no more than about three running, a ceiling rather than a target. A finish message alone does not prove a dependency succeeded, and during recovery no worker is started twice. Decided: QUEUE-PACE a), 7 November 2026.
+Orca never starts a worker when its dependencies finish, so within one session the coordinator paces the queue itself: at the wake that settles a worker, it reads the report, confirms the next worker's dependency succeeded and that nothing conflicts, then starts the next worker, with no more than one unit in flight per work package, plus at most its independent review, under `ki-coordination`'s trial of WIP-PACKAGE a, 21 November 2026, in [Coordinator responsiveness](../../../work/ki-coordination/references/standard-coordination.md#43-coordinator-responsiveness). A finish message alone does not prove a dependency succeeded, and during recovery no worker is started twice. Decided: QUEUE-PACE a), 7 November 2026, and WIP-PACKAGE a, 21 November 2026.
 
 [Back to contents](#contents)
 

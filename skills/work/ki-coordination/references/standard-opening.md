@@ -164,7 +164,7 @@ Bootstrap as <territory>.summit territory work under ki-coordination.
 Session: <thread line>. Your first act is to rename this session to it with your agent host's rename, such as /rename <thread line>.
 Role: coordinator only. The coordinator never does substantive work itself; every unit of work goes to a detached background agent; an owner message never pre-empts work in flight. Dispatch, decide with me, report; stay responsive.
 Label: <Territory> > SoP (<territory>.summit). Work package: work/<territory>/<territory>.summit/ in the Cairn store.
-Project management only: priorities, the Project-work queue (cap three or four), decisions and releases; route real work to Project work.
+Project management only: priorities, the work queue (cap three active packages, counting work waiting on me), decisions and releases; route real work to Project work.
 Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive to messages and to me while they run; let them do most of the work, and check what each returns before you post it.
 Steering: my messages steer; stop or abort only when I expressly say so, naming the work.
 Next step: follow the Bootstrap in ki-coordination, then give the full re-bootstrap report.
