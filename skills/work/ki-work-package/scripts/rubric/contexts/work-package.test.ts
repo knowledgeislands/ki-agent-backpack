@@ -652,6 +652,30 @@ describe('RECORD-2 schema', () => {
     }
   })
 
+  test('an actor named in more than one seat across the store warns (ONE-TITLE)', () => {
+    const binding = 'workers:\n  - id: actor:lupin\n    role: warden\n    tier: managers'
+    const root = store({ fields: [binding] })
+    write(
+      root,
+      'work/ki/ki.summit/_index.md',
+      MAIN.replace('ki-state:', 'ki-workers:\n  - id: actor:lupin\n    role: governor\n    tier: leaders\nki-state:')
+    )
+    const outcomes = run(RECORD, 'RECORD-2', context(root))
+    expect(statuses(outcomes)).toEqual(['WARN', 'WARN'])
+    expect(messages(outcomes)).toContain('actor:lupin holds 2 seats, at ki.pilot, ki.summit')
+  })
+
+  test('an acting place, a vacant seat under the carrying node, passes (ONE-TITLE)', () => {
+    const vacant = 'workers:\n  - role: warden\n    tier: managers\n    status: vacant'
+    const root = store({ fields: [vacant] })
+    write(
+      root,
+      'work/ki/ki.summit/_index.md',
+      MAIN.replace('ki-state:', 'ki-workers:\n  - id: actor:lupin\n    role: governor\n    tier: leaders\nki-state:')
+    )
+    expect(statuses(run(RECORD, 'RECORD-2', context(root)))).toEqual(['PASS'])
+  })
+
   test('a worker id that is not a typed actor id fails', () => {
     const binding = 'workers:\n  - id: wayland\n    role: warden\n    tier: managers'
     expect(messages(run(RECORD, 'RECORD-2', context(store({ fields: [binding] }))))).toContain(

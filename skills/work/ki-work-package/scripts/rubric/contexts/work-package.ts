@@ -785,6 +785,36 @@ const relationshipEvidence = (packages: readonly Package[], evidence: Evidence):
       seen.add(next)
     }
   }
+  oneSeatEvidence(packages, evidence)
+}
+
+/**
+ * An actor holds exactly one seat, and so one title, across the store's packages (ONE-TITLE, Kris, 21 November 2026):
+ * a package a node carries is an acting place, written as a vacant seat under its `ki-parent`, never a second seat.
+ * Warned on under the role migration file while live packages are brought into line.
+ */
+const oneSeatEvidence = (packages: readonly Package[], evidence: Evidence): void => {
+  const seats = new Map<string, Package[]>()
+  for (const item of packages) {
+    const workers = item.entry.fields?.workers
+    if (!Array.isArray(workers)) continue
+    for (const value of workers) {
+      const actor = table(value)?.id
+      if (typeof actor !== 'string' || !ACTOR_ID.test(actor)) continue
+      seats.set(actor, [...(seats.get(actor) ?? []), item])
+    }
+  }
+  for (const [actor, held] of seats) {
+    if (held.length < 2) continue
+    const where = held.map((item) => item.folder.expectedId).join(', ')
+    for (const item of held)
+      evidence.schema.push(
+        warning(
+          item.entry,
+          `${actor} holds ${held.length} seats, at ${where}; an actor holds one seat (ONE-TITLE), and a package another node carries keeps its seat vacant, its ki-parent naming the carrier`
+        )
+      )
+  }
 }
 
 /** Each earlier copy of packages left in a retired working area, listed for its owner and never deleted by the audit. */
