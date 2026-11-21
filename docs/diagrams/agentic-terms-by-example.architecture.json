@@ -238,7 +238,7 @@
       "id": "web-agent",
       "type": "cloud",
       "label": "Claude Code agent",
-      "sublabel": "in a cloud sandbox",
+      "sublabel": "in a vendor sandbox",
       "pos": [
         520,
         580
@@ -266,7 +266,7 @@
   "boundaries": [
     {
       "kind": "region",
-      "label": "terra: machine, local environment",
+      "label": "terra: machine",
       "wraps": [
         "orca-app",
         "orca-host",
@@ -282,7 +282,7 @@
     },
     {
       "kind": "region",
-      "label": "sol: machine, remote environment",
+      "label": "sol: machine",
       "wraps": [
         "sol-host",
         "codex-agent",
@@ -291,7 +291,7 @@
     },
     {
       "kind": "region",
-      "label": "Cloud environment: no identifiable machine",
+      "label": "cloud: vendor sandbox, no identifiable machine",
       "wraps": [
         "web-host",
         "web-agent",
@@ -401,7 +401,9 @@
       "dot": "cyan",
       "title": "How the terms nest",
       "items": [
-        "A machine gives an environment: terra is local, sol is remote, and a cloud environment has no machine you can name",
+        "Sessions run on a machine: terra and sol run theirs directly, and the cloud row runs in a vendor sandbox on machines you cannot name",
+        "An environment is named only where isolation applies; neither local nor remote is recorded",
+        "The roster shows machine, then environment unless none, then agent host: sol · orca",
         "An agent host runs harnesses and owns their sessions; clients come and go",
         "An agent is a model working through a harness; a session is one run of it",
         "Subagent threads sit inside the session, subordinate to its agent"
@@ -420,7 +422,7 @@
       "title": "Reading it",
       "items": [
         "A peer is the session at the other end of a cross-session message, not another kind of agent",
-        "One client can view several hosts: the Orca app sees terra and sol",
+        "One client can view several hosts: the Orca app sees the agent hosts on terra and sol",
         "One program can be host and client: Orca.app, claude in a terminal",
         "The phone can also reach claude in a terminal by Remote Control",
         "Skills load into any session by progressive disclosure, so they are not drawn",

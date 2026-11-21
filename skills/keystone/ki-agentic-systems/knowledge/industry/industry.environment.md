@@ -5,7 +5,7 @@ type: term
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, ENVIRONMENT a) (12 November 2026), revised by ki.summit change 21, EXEC-ENV a) and EXEC-ENV-VALUES (21 November 2026)
+origin: Cairn summit change 22, ENVIRONMENT a) (12 November 2026), revised by ki.summit change 21, EXEC-ENV a), EXEC-ENV-VALUES and EXEC-ENV-NAMES a) (21 November 2026)
 links:
   industry.machine:
     predicate: dcterms:isPartOf
@@ -25,7 +25,16 @@ Its location is where it runs: a [machine][industry.machine], physical or virtua
 
 ## Our conventions
 
-The machine, the execution environment and the agent host are recorded apart, each a field of its own that can be filtered on by itself, never folded into one compound value (EXEC-ENV-VALUES): the Cairn store's roster records an agent [actor's][system.actor] machine as `ki-rig`, its execution environment as `ki-environment` and its agent host as `ki-host`. A compact display may show them together, while the stored values stay separate. The values `ki-environment` takes are still to settle.
+The machine, the execution environment and the agent host are recorded apart, each a field of its own that can be filtered on by itself, never folded into one compound value (EXEC-ENV-VALUES): the Cairn store's roster records an agent [actor's][system.actor] machine as `ki-rig`, its execution environment as `ki-environment` and its agent host as `ki-host`. A compact display may show them together, while the stored values stay separate.
+
+`ki-environment` records isolation only, one of four values (EXEC-ENV-NAMES):
+
+- `none`: checked, and running directly on the machine within what its configuration allows;
+- `harness-sandbox`: the agent harness's own sandbox;
+- `container`: a container;
+- `vendor-sandbox`: a sandbox the vendor provides, as for a cloud session.
+
+`null` means unknown, never `none`. Location stays in `ki-rig`: the machine's name, a virtual machine counting as a machine, or `cloud` for a vendor's machines that cannot be identified. "Remote" is not stored, since it depends on where one looks from. The compact display shows the machine, then the environment unless it is `none`, then the agent host, as `sol · orca` or `sol · container · orca`.
 
 Orca's own "environment", a paired remote Orca runtime, is not an execution environment; [its card][orca.environment] relates it to this one.
 

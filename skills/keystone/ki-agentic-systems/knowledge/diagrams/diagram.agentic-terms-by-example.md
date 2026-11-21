@@ -5,7 +5,7 @@ type: resource
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, DIAGRAM-RESOURCE (12 November 2026)
+origin: Cairn summit change 22, DIAGRAM-RESOURCE (12 November 2026), redrawn under ki.summit change 21, EXEC-ENV-NAMES a) (21 November 2026)
 links:
   industry.machine:
     predicate: dcterms:subject
@@ -25,7 +25,7 @@ links:
 
 # Agentic terms by example
 
-An instance diagram that shows how the terms nest, with real examples: [machines][industry.machine] give [environments][industry.environment], local, remote and cloud; [agent hosts][industry.agent-host] run [agents][industry.agent]; each agent runs a [session][industry.session], with [subagent][industry.subagent] threads inside it; and [clients][industry.client] view the agent hosts.
+An instance diagram that shows how the terms nest, with real examples: sessions run on [machines][industry.machine], or in a vendor's cloud on machines that cannot be identified, with an [execution environment][industry.environment] named only where isolation applies, as the cloud row's vendor sandbox; [agent hosts][industry.agent-host] run [agents][industry.agent]; each agent runs a [session][industry.session], with [subagent][industry.subagent] threads inside it; and [clients][industry.client] view the agent hosts.
 
 - **Figure:** [agentic-terms-by-example.svg][svg], with the [interactive viewer][html].
 - **Source and regeneration:** [its Archify source][src] and its table in the backpack's [diagram manifest][manifest], which holds the question it answers, what it is traced from, when it goes stale and how to regenerate it.

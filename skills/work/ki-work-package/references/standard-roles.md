@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-20T13:18:31Z
+ki-revised: 2026-11-21T15:08:16Z
 ki-status: in force
 ---
 
@@ -163,7 +163,20 @@ An entry is the seat's binding and carries nothing else. It points at its actor 
 
 A vacant seat is one set up but not yet allocated: `status: vacant` with its `role` and `tier`, and no `id` or `since`, so the roster shows the seat unfilled, as Kris took SEATS-VACANT a on 20 November 2026. Until someone is seated, the package's parent node holds its work along the package's Signposts, as it holds a package with no seat under [CASCADE-DOWN](standard-work-package.md#cascade-down). Seating it adds `id`, `since` and an `active` status.
 
-The roster is the list of actors, agent or person, one roster file each. A roster file opens with the actor's `ki-id`, `actor:<id>`, then `ki-document-type: actor`, an optional human `ki-name` that is never a copy of the id, and `ki-kind`, `agent` or `person`, then its presence, `ki-host`, `ki-rig` and `ki-last_seen`, under ACTOR-KEY a, each field taking the `ki-` prefix under KI-PREFIX a. It holds no titles: who sits where is read from the tree's `ki-workers` entries, each naming its actor's id. An actor with no name, such as a maker in a meeting, still has a roster file: it takes its seat's id, `<package>@<role>`, as `actor:ki.cairn@information-architect` in `roster/ki.cairn@information-architect.md`, under SEAT-AT a, and that file holds its host and rig.
+The roster is the list of actors, agent or person, one roster file each. A roster file opens with the actor's `ki-id`, `actor:<id>`, then `ki-document-type: actor`, an optional human `ki-name` that is never a copy of the id, and `ki-kind`, `agent` or `person`, then its presence, under ACTOR-KEY a, each field taking the `ki-` prefix under KI-PREFIX a. It holds no titles: who sits where is read from the tree's `ki-workers` entries, each naming its actor's id. An actor with no name, such as a maker in a meeting, still has a roster file: it takes its seat's id, `<package>@<role>`, as `actor:ki.cairn@information-architect` in `roster/ki.cairn@information-architect.md`, under SEAT-AT a, and that file holds its host and rig.
+
+An agent actor's presence is six fields, each holding one plain value so that each can be filtered on by itself, never folded into a compound value, as Kris set under EXEC-ENV-VALUES on 21 November 2026. Each is `null` where it is not known:
+
+| Field | Holds |
+| --- | --- |
+| `ki-host` | Its [agent host](../../../keystone/ki-agentic-systems/knowledge/industry/industry.agent-host.md#our-conventions), the application or process that owns its sessions, such as `orca` or `chatgpt-voice` |
+| `ki-harness` | Its [agent harness](../../../keystone/ki-agentic-systems/knowledge/industry/industry.agent-harness.md#our-conventions), the engine that runs the loop, such as `claude-code` or `codex` |
+| `ki-rig` | Where it runs: the machine's name, a virtual machine counting as a machine, such as `sol`, or `cloud` for a vendor's machines that cannot be identified |
+| `ki-environment` | Its [execution environment](../../../keystone/ki-agentic-systems/knowledge/industry/industry.environment.md#our-conventions)'s isolation only: `none`, checked and running directly on the rig within what its configuration allows; `harness-sandbox`, the agent harness's own sandbox; `container`; or `vendor-sandbox`, a sandbox the vendor provides |
+| `ki-model` | The model id its latest session runs, exactly as its harness records it, such as `claude-opus-5-5` |
+| `ki-last_seen` | UTC time it was last seen, with milliseconds |
+
+Location stays in `ki-rig` and isolation in `ki-environment`; "remote" is not stored, since it depends on where one looks from, and `null` in `ki-environment` means unknown, never `none`, as Kris answered EXEC-ENV-NAMES a on 21 November 2026. The compact display shows the machine, then the environment unless it is `none`, then the agent host, joined by ` · `, as `sol · orca` or `sol · container · orca`; the stored values stay separate.
 
 Whether a session is listening is in neither: it is read from meetings alone, a session listening while it is a participant of an open meeting with a sitting under way, under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file), as Kris set under LISTEN-HOME a on 16 November 2026. The seat's thread line is never stored: it is derived from its role's glyph and the work id, with its role for a seat without the keys and its actor's name in front where the actor is named, as the [thread line](#46-thread-line) sets out. An entry carries no session address or vendor session id, under the work-package standard's [prohibited payloads](standard-work-package.md#416-prohibited-payloads-and-claims), as Kris answered WORKERS-URI on 7 November 2026: "Drop it". A reader that needs to find a seat's live session, such as Cairn, reads the uncommitted machine-local thread binding `~/.local/state/ki/threads/<repository>/<slug>.json`, never the package. The `ki-work-package` rubric's RECORD-2 checks every value against this catalogue, reading the table in [4.3](#43-role-catalogue) at audit time, so the checker holds no copy of it.
 
