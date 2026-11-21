@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-20T15:30:00Z
+ki-revised: 2026-11-21T22:45:00Z
 ki-status: in force
 ---
 
@@ -282,6 +282,14 @@ ki-raised:
 - **Workers** - the live seats, one entry each; a seat that has ended leaves the list.
 
 History stays out, as Kris answered STATE-HISTORY: the recap since the mark reads the package's Git log, so nothing needs a dated log in Now or Held. Evidence, such as commit identifiers, test counts and artefact hashes, lives in the run report and the commit; the state may link one, not copy it.
+
+**An actor's state and its package's** (STANDDOWN-SCOPE a, 20 November 2026). An actor's state, on its roster entry, and its package's state, its hold with `release` and `ki-since`, are independent, each recorded in its own place, though often aligned. A return time on the roster and one in a hold's `release` can drift apart.
+
+- **While an actor is paused,** a request for it goes into its package, a change as a change document and a short request as a message, never to the actor.
+- **What cannot wait:** the guardian tells the owner about anything that cannot wait for the return, because of a deadline or because the pilot group is blocked, and the owner brings the actor back early or moves the item to a working seat.
+- **Meanwhile** the guardian acknowledges and answers for the paused package but takes none of its work forward.
+
+Standing an actor down and bringing it back are `ki-coordination`'s [holds](../../ki-coordination/references/standard-holds.md#42-standing-a-seat-down).
 
 [Back to contents](#contents)
 
