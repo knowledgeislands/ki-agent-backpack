@@ -45,8 +45,8 @@ Read them in order:
 5. [Session](knowledge/industry/industry.session.md): one run of an agent, a conversation with its own context, id and folder, made of turns and of threads.
 6. [Subagent](knowledge/industry/industry.subagent.md): an agent subordinate to another, started by it to do part of its work in a thread of its own, returning its result to it.
 7. [Skill](knowledge/industry/industry.skill.md): a common way to extend any agent harness with knowledge and procedures, loaded by progressive disclosure.
-8. [Environment](knowledge/industry/industry.environment.md): where an agent's work runs, a whole machine or a container or sandbox inside one; local, remote or cloud.
-9. [Machine](knowledge/industry/industry.machine.md): the computer, physical or virtual, that environments run on.
+8. [Execution environment](knowledge/industry/industry.environment.md): the bounded place where a session's tool calls run, the files, processes, network and credentials they reach, with a location and an isolation; environment for short.
+9. [Machine](knowledge/industry/industry.machine.md): the computer, physical or virtual, that execution environments run on.
 10. [Agent host](knowledge/industry/industry.agent-host.md): the application or process that runs agent harnesses and owns their sessions, independently of clients.
 11. [Client](knowledge/industry/industry.client.md): a window onto a session an agent host owns.
 12. [Cross-session messaging](knowledge/industry/industry.cross-session-messaging.md): one session sending another a plain-text message; a peer is the session at the other end.
@@ -89,7 +89,7 @@ One analogy card sits beside them, agreed on 19 November 2026 (CIVIC-AGREE): [th
 - **Anthropic** (`anthropic.`) and **OpenAI** (`openai.`): their names [Claude](knowledge/vendors/anthropic/anthropic.claude.md), [Claude Code](knowledge/vendors/anthropic/anthropic.claude-code.md), [Codex](knowledge/vendors/openai/openai.codex.md) and [ChatGPT](knowledge/vendors/openai/openai.chatgpt.md), each used in more than one sense, and their words for each term, from Anthropic's [model](knowledge/vendors/anthropic/anthropic.model.md) to its [skill](knowledge/vendors/anthropic/anthropic.skill.md), and OpenAI's [task](knowledge/vendors/openai/openai.task.md), [chat](knowledge/vendors/openai/openai.chat.md) and [thread](knowledge/vendors/openai/openai.thread.md) for a session and its parts.
 - **Google** (`google.`): [Gemini](knowledge/vendors/google/google.gemini.md), and its words, among them [conversation](knowledge/vendors/google/google.conversation.md) and [session](knowledge/vendors/google/google.session.md).
 - **Microsoft** (`microsoft.`): [Copilot](knowledge/vendors/microsoft/microsoft.copilot.md), and its and GitHub's words, among them [agent harness](knowledge/vendors/microsoft/microsoft.agent-harness.md) and [agent session](knowledge/vendors/microsoft/microsoft.agent-session.md).
-- **Orca** (`orca.`) and **Zed Industries** (`zed.`): Orca's [runtime](knowledge/vendors/orca/orca.runtime.md), an agent host, and its [app](knowledge/vendors/orca/orca.app.md), client and agent host in one; and [Zed](knowledge/vendors/zed/zed.zed.md), a client through ACP.
+- **Orca** (`orca.`) and **Zed Industries** (`zed.`): Orca's [runtime](knowledge/vendors/orca/orca.runtime.md), an agent host, and its [app](knowledge/vendors/orca/orca.app.md), client and agent host in one, with its [environment](knowledge/vendors/orca/orca.environment.md), a paired remote runtime, only related to an execution environment; and [Zed](knowledge/vendors/zed/zed.zed.md), a client through ACP.
 
 ### Diagrams
 

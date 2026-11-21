@@ -29,7 +29,7 @@ Every skill in the KI backpack's `skills/` folder is a skill in this sense. The 
 
 ## Next
 
-An [environment][industry.environment] is where an agent's work runs.
+An [execution environment][industry.environment] is the bounded place where a session's tool calls run.
 
 [industry.agent-harness]: ./industry.agent-harness.md
 [spec.agent-skills.progressive-disclosure]: ../specs/agent-skills/spec.agent-skills.progressive-disclosure.md
