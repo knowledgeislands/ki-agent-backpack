@@ -81,10 +81,18 @@ const STATE_FIELDS: readonly string[] = [
   'beat',
   'mark',
   'method_read',
+  'raised',
   'workers',
   ...CAPABILITY_FIELDS
 ]
 const ENTRY_FIELDS: ReadonlySet<string> = new Set([...DEFINITION_FIELDS, ...STATE_FIELDS])
+/**
+ * The raised-interrupt field, `raised`: a list of entries, each only a query's tag and the UTC time it was raised, carried
+ * by a guardian's package alone for now and absent when nothing is raised (RAISED-FORM a, Kris, 21 November 2026).
+ */
+const RAISED_KEYS: readonly string[] = ['tag', 'since']
+const RAISED_ROLE = 'guardian'
+const QUERY_TAG = /^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*$/
 /**
  * Entry fields the work package standard has dropped, tolerated and warned on under the role migration file: `covers`,
  * whose register is now the tree beneath each node, read from `parent` (COVERS-REGISTER, Kris, 16 November 2026), and
@@ -436,7 +444,7 @@ const definitionChecks = (
     fail(evidence.schema, 'records must be a list of full record ids, as KI-HARNESS-GOV-152')
 }
 
-/** The state fields: state, target, hold, blocking, the move times and method_read. */
+/** The state fields: state, target, hold, blocking, the move times, method_read and raised. */
 const stateChecks = (record: ParsedRecord, fields: Readonly<Record<string, unknown>>, evidence: Evidence): void => {
   const fail = (message: string): void => {
     evidence.schema.push({ status: 'VIOLATION', message, subject: record.path })
@@ -473,6 +481,25 @@ const stateChecks = (record: ParsedRecord, fields: Readonly<Record<string, unkno
     (typeof fields.method_read !== 'string' || !REVISION.test(fields.method_read))
   )
     fail('method_read must be a short backpack revision or null')
+  if ('raised' in fields) {
+    const raised = fields.raised
+    if (
+      !Array.isArray(raised) ||
+      raised.length === 0 ||
+      raised.some((entry) => {
+        const raise = table(entry)
+        return (
+          !raise ||
+          Object.keys(raise).some((key) => !RAISED_KEYS.includes(key)) ||
+          typeof raise.tag !== 'string' ||
+          !QUERY_TAG.test(raise.tag) ||
+          !validTimestamp(raise.since)
+        )
+      })
+    )
+      fail('raised is a list of entries, each only a query tag and its UTC since, and is absent when nothing is raised')
+    if (fields.role !== RAISED_ROLE) fail(`raised is carried only by a ${RAISED_ROLE}'s package`)
+  }
 }
 
 /**

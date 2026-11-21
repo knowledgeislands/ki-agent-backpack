@@ -377,6 +377,29 @@ describe('RECORD-2 schema', () => {
       'a syncing thread is always a listening thread'
     ],
     ['a bad method_read', { fields: ['method_read: latest'] }, 'method_read must be'],
+    [
+      'a raised entry with more than a tag and since',
+      {
+        drop: ['role'],
+        fields: ['role: guardian', 'raised:\n  - tag: QUIET-INTERRUPT\n    since: 2026-11-21T17:00:00Z\n    note: x']
+      },
+      'raised is a list of entries'
+    ],
+    [
+      'a raised entry with a bad since',
+      { drop: ['role'], fields: ['role: guardian', 'raised:\n  - tag: QUIET-INTERRUPT\n    since: later'] },
+      'raised is a list of entries'
+    ],
+    [
+      'an empty raised list',
+      { drop: ['role'], fields: ['role: guardian', 'raised: []'] },
+      'absent when nothing is raised'
+    ],
+    [
+      'raised on a package that is not a guardian',
+      { fields: ['raised:\n  - tag: QUIET-INTERRUPT\n    since: 2026-11-21T17:00:00Z'] },
+      "raised is carried only by a guardian's package"
+    ],
     ['a project field below project level', { fields: ['project: pilot'] }, 'project names the Project slug'],
     ['a non-catalogue role', { drop: ['role'], fields: ['role: wizard'] }, 'role must be one catalogue role'],
     [
@@ -408,6 +431,15 @@ describe('RECORD-2 schema', () => {
 
   test('a list of full record ids passes (RECORD-LINKS)', () => {
     const outcomes = run(RECORD, 'RECORD-2', context(store({ fields: ['records:\n  - KI-HARNESS-GOV-152'] })))
+    expect(statuses(outcomes)).toEqual(['PASS'])
+  })
+
+  test("a guardian's raised list of tags and times passes (RAISED-FORM)", () => {
+    const fields = [
+      'role: guardian',
+      'raised:\n  - tag: QUIET-INTERRUPT\n    since: 2026-11-21T17:00:00Z\n  - tag: RAISED-FORM\n    since: 2026-11-21T17:05:00Z'
+    ]
+    const outcomes = run(RECORD, 'RECORD-2', context(store({ drop: ['role'], fields })))
     expect(statuses(outcomes)).toEqual(['PASS'])
   })
 
