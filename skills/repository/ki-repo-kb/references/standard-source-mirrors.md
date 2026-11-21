@@ -53,6 +53,7 @@ Notes that mirror or derive from source-store files, in a base declaring the `so
 
 | Term | Definition |
 | --- | --- |
+| **Sources store** | Material kept as it came: originals, binaries, caches, exports and verbatim text such as `.eml.txt`, bound locally as `sources-<territory code>/<repository>/` or `sources-<purpose>/`. **Standard:** [repository standard](../../../keystone/ki-repo/references/standard-repository.md#421-kind-and-stores) |
 | **Mirror** | A note that stands in for exactly one source file, declared by `mirrors`, `mirror_type` and `mirror_sha256`. **Standard:** this one, [4.2](#42-mirrors-and-source-provenance) |
 | **Source provenance** | A note's record of the source it was produced from, by `source_path` and `source_sha256`. **Standard:** this one, [4.2](#42-mirrors-and-source-provenance) |
 | **`mirror_content`** | Derived response metadata labelling a note `null`, `extract`, `pointer` or `unknown`. **Standard:** this one, [4.5](#45-derived-search-label-schema) |

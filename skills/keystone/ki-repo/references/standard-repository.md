@@ -159,6 +159,8 @@ The repository kind and its stores, and the shapes a Project composes.
 
 A Knowledge Base declares its roles with `store_roles`. `notes` is required and names the selected repository itself; `sources` and `legacy` are optional external roles. Roles are stable identities only, never filesystem paths, URLs, or local bindings. User-local tooling chooses and validates physical bindings separately, so an external store is not silently made a KI repository.
 
+A sources store holds material kept as it came: originals, binaries, caches, exports and verbatim text such as `.eml.txt`. Its local binding conventionally follows `sources-<territory code>/<repository>/` for a territory's repository and `sources-<purpose>/` for a store kept for one purpose, under the user's synced store root.
+
 ```toml
 [skills.ki-repo]
 repo_type = "kb"
