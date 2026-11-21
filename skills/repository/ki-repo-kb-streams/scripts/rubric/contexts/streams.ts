@@ -475,7 +475,7 @@ const WORK_RECORD_REFERENCE = /(?<![\w-])(?!(?:[SPADXOGRK]DR)-)[A-Z][A-Z0-9]*(?:
 const UPDATE_SECTION = /^##\s+Update\b/m
 
 // A `ki-work design` design folder holds temporary artefacts, not registry notes. Under the work model it lives in the
-// work folder, so one anywhere under Streams/ fails, and its notes are not also checked as registry notes.
+// work package, so one anywhere under Streams/ fails, and its notes are not also checked as registry notes.
 const DESIGN_FOLDER = /(?:^|[\\/])design[\\/]/
 
 const designFolders = (path: string): string[] =>

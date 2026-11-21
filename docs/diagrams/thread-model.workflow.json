@@ -153,7 +153,7 @@
         {
           "path": "skills/change-management/ki-coordination/references/standards-coordination.md",
           "line": 877,
-          "label": "committing the work folder"
+          "label": "committing the work package"
         },
         {
           "path": "skills/governance/ki-work-package/SKILL.md",
@@ -333,7 +333,7 @@
         {
           "path": "skills/change-management/ki-coordination/references/standards-coordination.md",
           "line": 881,
-          "label": "pruning the work folder"
+          "label": "pruning the work package"
         }
       ],
       "width": 160
@@ -464,15 +464,15 @@
       "items": [
         "ki-coordination: how coordinating work behaves, its Summary, marks and finishing.",
         "ki-delegation: the run packet, prompt shape, authority footers, run queue and reporting.",
-        "ki-work-package, ki-git and the ki-work family: the work folder, the agent's commits and the record's lifecycle."
+        "ki-work-package, ki-git and the ki-work family: the work package, the agent's commits and the record's lifecycle."
       ]
     },
     {
       "dot": "slate",
       "title": "Marks and close",
       "items": [
-        "At a mark the coordinator homes each logged decision under its life cycle and prunes the work folder.",
-        "On finish it homes what remains, sets the state finished, deletes the work folder and closes the runs."
+        "At a mark the coordinator homes each logged decision under its life cycle and prunes the work package.",
+        "On finish it homes what remains, sets the state finished, deletes the work package and closes the runs."
       ]
     }
   ]

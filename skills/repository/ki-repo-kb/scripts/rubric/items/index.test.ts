@@ -419,7 +419,7 @@ test('adapter and protocol records delegate note-type metadata to their owning s
   ])
 })
 
-test('package files left under the work folder are out of place, pointing to the Cairn store', () => {
+test('package files left under the retired +/_WORK/ area are out of place, pointing to the Cairn store', () => {
   const repository = createBase()
   const records = [
     '+/_WORK/ki.ways-of-working/_index.md',
@@ -439,7 +439,7 @@ test('package files left under the work folder are out of place, pointing to the
   for (const relativePath of records) expect(finding?.message).toContain(relativePath)
 })
 
-test('other files in a work folder keep the note-type metadata check', () => {
+test('other files under the retired +/_WORK/ area keep the note-type metadata check', () => {
   const repository = createBase()
   const path = join(repository, '+/_WORK/ki.ways-of-working/sweep.report.md')
   mkdirSync(dirname(path), { recursive: true })

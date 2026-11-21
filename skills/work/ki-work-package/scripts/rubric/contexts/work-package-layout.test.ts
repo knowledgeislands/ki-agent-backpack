@@ -3,7 +3,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import type { AuditOutcome } from '../../shared/rubric.ts'
-import { folderOutcomes, packageStray, sectionText, unlinkedChanges, workLayout } from './work-folder.ts'
+import { folderOutcomes, packageStray, sectionText, unlinkedChanges, workLayout } from './work-package-layout.ts'
 
 const roots: string[] = []
 
@@ -12,7 +12,7 @@ afterEach(() => {
 })
 
 const fixture = (): string => {
-  const root = mkdtempSync(join(tmpdir(), 'ki-work-folder-'))
+  const root = mkdtempSync(join(tmpdir(), 'ki-work-package-'))
   roots.push(root)
   return root
 }

@@ -8,7 +8,7 @@ This file holds temporary adjustments to [the coordinating-work standard](standa
 - [Queries file in the DISCUSSIONS tolerance window](#queries-file-in-the-discussions-tolerance-window)
 - [Old-shape checkpoint states](#old-shape-checkpoint-states)
 - [Banners in past reports](#banners-in-past-reports)
-- [Rubric tolerance for old work-folder shapes](#rubric-tolerance-for-old-work-folder-shapes)
+- [Rubric tolerance for old work-package shapes](#rubric-tolerance-for-old-work-package-shapes)
 - [Done, Failed and Needs owner report shape](#done-failed-and-needs-owner-report-shape)
 - [Pre-14-October owner reports](#pre-14-october-owner-reports)
 - [Single-paragraph queries before 26 October](#single-paragraph-queries-before-26-october)
@@ -46,7 +46,7 @@ The model replaced the thread model of 13 to 17 October. Kris agreed it on 18 Oc
 | conversational thread with a checkpoint | ad hoc work, `+/_WORK/<territory>.regular.<slug>/`, under regular work |
 | recurring work homed in an Initiative | regular work, `<territory>.regular`, self-coordinating |
 | Initiative, `Streams/Initiatives/`, `initiative:` | theme, `Streams/Themes/<theme>.md`, an optional `theme:` |
-| thread folder `+/_THREADS/<run>/` | the work folder `+/_WORK/<id>/` |
+| thread folder `+/_THREADS/<run>/` | the work package `+/_WORK/<id>/` |
 | checkpoint, pick-up block, moves | the work package: `_index.md` for the definition, `state.md` for the state; Git as the logbook |
 | REST, BUSY, HOLD and DONE frames; resume line | the glyph banner and its closing thread line |
 | the copyable stacked reply block | none; the owner answers in speech |
@@ -72,7 +72,7 @@ These adjust how a reader takes the banner of a past report under [Banner](stand
 - A report written before SNOOZE, on 6 November 2026, may read `⏸️ On hold · more expected` or a banner heading ending `· since <time>`, and anything that reads past reports accepts them.
 - A report written before BANNER-TRIM keeps its `[handoff]`, `[committed]`, `[uncommitted]`, `[recovered]`, `[unlogged]` and `[behind]` items, and anything that reads past reports accepts them.
 
-## Rubric tolerance for old work-folder shapes
+## Rubric tolerance for old work-package shapes
 
 For the tolerance window the `ki-coordination` native rubric reads `+/_CHECKPOINTS/` and `+/_THREADS/` as before and warns on each, naming its new home, and warns on a theme that resolves only in `Streams/Initiatives/` until 7 November 2026 and fails it from that day. This adjusts the checks under [Mechanical boundary](standard-coordination.md#49-mechanical-boundary). Delete it once the tolerance window closes.
 
@@ -158,13 +158,13 @@ A hold committed before SNOOZE may read `hold, more expected` in its commit subj
 
 These tolerances keep work that has not yet moved to the work package readable. Each is deleted once no work remains in the single-file shape.
 
-- **Pruning reports:** In the single-file tolerance shape, retain the report until its queries are answered and read back in the log, under `ki-work-package` [Tidying the work folder](../../ki-work-package/references/standard-work-package.md#410-the-tidy). Adjusts the Judgement item of [Pruning the work folder](standard-mark.md#43-pruning-the-package).
+- **Pruning reports:** In the single-file tolerance shape, retain the report until its queries are answered and read back in the log, under `ki-work-package` [Tidying the work package](../../ki-work-package/references/standard-work-package.md#410-the-tidy). Adjusts the Judgement item of [Pruning the work package](standard-mark.md#43-pruning-the-package).
 - **Message queue:** Work still in the single-file shape keeps its `## Messages` section, and an old-shape checkpoint its bold-line messages block, until it moves. Adjusts Place and shape in [Messages between work](standard-messages.md#messages-between-work).
 - **Work status:** `ki work status` reads every single-file work file, as well as every work package, for the tolerance window. Adjusts the Work status row in [Surfaces](standard-messages.md#44-surfaces).
 
 ## Old thread run folders
 
-A `+/_THREADS/<run>/` folder is checked against its old closed list, `decisions.md` and `<name>.report.md`, for the tolerance window. Adjusts the Flagging item of [Pruning the work folder](standard-mark.md#43-pruning-the-package).
+A `+/_THREADS/<run>/` folder is checked against its old closed list, `decisions.md` and `<name>.report.md`, for the tolerance window. Adjusts the Flagging item of [Pruning the work package](standard-mark.md#43-pruning-the-package).
 
 ## Focus and numbered decisions-log entries
 

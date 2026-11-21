@@ -21,7 +21,7 @@ import {
   type PackageFolder,
   WORK_DIRECTORY,
   workLayout
-} from './work-folder.ts'
+} from './work-package-layout.ts'
 
 const WORK_LEVELS: readonly unknown[] = ['root', 'territory', 'regular', 'project']
 const WORK_STATES: readonly unknown[] = [

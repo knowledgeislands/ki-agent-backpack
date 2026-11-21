@@ -1,6 +1,6 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
-import type { FolderOutcomes } from '../contexts/work-folder.ts'
 import type { WorkPackageRubricContext } from '../contexts/work-package.ts'
+import type { FolderOutcomes } from '../contexts/work-package-layout.ts'
 
 const SOURCE = 'standard-work-package.md'
 const TIDY = `${SOURCE}#410-the-tidy`
