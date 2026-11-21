@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-20T15:30:00Z
+ki-revised: 2026-11-21T22:45:00Z
 ki-status: in force
 ---
 
@@ -36,6 +36,7 @@ How a session works alone, how work reaches other work along the tree now the me
 - Orca mail as the channel between sessions in Orca, the order of routes, and the Cairn Beacon.
 - Work between packages: along the tree, receipt, transfers, method changes, release notices and owner feedback.
 - Urgent work and when a worker is live.
+- Quiet news: what interrupts the owner from a background-only, stood-down or paused actor.
 - The surfaces a coordinator reads and writes.
 - Waking an idle Orca tab by Orca mail.
 
@@ -120,7 +121,13 @@ The message queue has retired (MSG-HOME, MSG-RETIRE): no package keeps a `messag
 
   A worker is **live** when its `ki-workers` entry in the package's `_index.md` says `status: active`, it is listening, and its package or Cairn shows activity within the last 30 minutes. Listening is read from meetings alone: a session is listening while it is a participant of an open meeting with a sitting under way, the `ki-workers` entry's actor id, `id: actor:<id>`, listed in the meeting's entry file under `ki-participants` with `ki-status: open`, the two matched by id alone (ACTOR-KEY), under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). No `ki-workers` entry or roster file carries `listening`. Cairn reads the register and is not a second source. A holder in Orca need not be live to be reached: Orca mail wakes it (ORCA-FIRST, WAKE-LIMIT), so step 2 waits until mail has gone unanswered or been refused.
 
-Sources: CASCADE-DOWN, MSG-RETIRE, ROUTE-RECEIPT, HANDOFF-AS-MESSAGE, URGENT-CRITERIA, LIVENESS, LISTEN-HOME and FEEDBACK-AS-MESSAGE in [the decision register](sources.md#3-decisions); MSG-HOME in `ki-meeting`'s [sources](../../ki-meeting/references/sources.md#3-decisions).
+- **Quiet news** (QUIET-INTERRUPT a, 20 November 2026): news from a background-only, stood-down or paused actor, under [holds, 4.2](standard-holds.md#42-standing-a-seat-down), reaches the owner only through the guardian, batched into one message; such a seat never interrupts the owner directly.
+  - Only four things interrupt: a deadline at risk within the next working day; work blocked on a decision only the owner can make, where the block stops the pilot group; a security or credential exposure; and a failure that loses work or data.
+  - Destructive or outward-facing work interrupts only when a deadline is tied to it.
+  - Routine news waits for the next catch-up, given when the owner asks or at the next Summary.
+  - What counts as at risk is the guardian's judgement.
+
+Sources: CASCADE-DOWN, MSG-RETIRE, ROUTE-RECEIPT, HANDOFF-AS-MESSAGE, URGENT-CRITERIA, LIVENESS, LISTEN-HOME, FEEDBACK-AS-MESSAGE and QUIET-INTERRUPT in [the decision register](sources.md#3-decisions); MSG-HOME in `ki-meeting`'s [sources](../../ki-meeting/references/sources.md#3-decisions).
 
 [Back to contents](#contents)
 
