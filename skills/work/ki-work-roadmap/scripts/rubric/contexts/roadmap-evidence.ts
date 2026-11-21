@@ -823,6 +823,9 @@ const parseItem = (repository: string, name: string, configuration?: RoadmapConf
     add('FAIL', 'ITEM-2', 'size must be s, m, l or xl', FORMAT, display)
   else if (size === 'xl' && status === 'ready')
     add('FAIL', 'ITEM-2', 'a ready record must not be size xl; split it before Ready', FORMAT, display)
+  // XL work is split before adoption (GATES-SIZE-XL a, 2026-11-21); an adopted draft warns until it is split.
+  else if (size === 'xl' && status === 'draft')
+    add('WARN', 'ITEM-2', 'an adopted record must not be size xl; split it before adoption', FORMAT, display)
   if (!('assignee' in parsed.values) || parsed.values.assignee === null) {
     if (!status || !TERMINAL_STATUSES.has(status))
       assigneeWindow(

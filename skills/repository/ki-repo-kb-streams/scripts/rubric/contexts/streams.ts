@@ -206,6 +206,7 @@ type RoadmapRecord = {
   sizeless?: boolean
   unassigned?: boolean
   oversized?: boolean
+  adoptedOversized?: boolean
 }
 
 // A closed record never needs a retrospective size or assignee.
@@ -233,7 +234,9 @@ const roadmapRecord = (root: string, path: string, name: string): RoadmapRecord 
     ...((typeof fields.assignee === 'string' && fields.assignee.trim()) || CLOSED_STATUSES.has(String(fields.status))
       ? {}
       : { unassigned: true }),
-    ...(fields.size === 'xl' && fields.status === 'ready' ? { oversized: true } : {})
+    ...(fields.size === 'xl' && fields.status === 'ready' ? { oversized: true } : {}),
+    // XL work is split before adoption (GATES-SIZE-XL a, 2026-11-21): an adopted draft warns until it is split.
+    ...(fields.size === 'xl' && fields.status === 'draft' ? { adoptedOversized: true } : {})
   }
   const id = typeof raw === 'string' ? raw.trim() : ''
   if (!id) return { path: display, defect: 'has no frontmatter id', ...unknown }
@@ -380,7 +383,8 @@ const roadmapFieldEvidence = (
   const unknown = records.filter((record) => record.unknown?.length)
   const sizeless = records.filter((record) => record.sizeless)
   const unassigned = records.filter((record) => record.unassigned)
-  if (unknown.length === 0 && sizeless.length === 0 && unassigned.length === 0)
+  const adoptedOversized = records.filter((record) => record.adoptedOversized)
+  if (unknown.length === 0 && sizeless.length === 0 && unassigned.length === 0 && adoptedOversized.length === 0)
     return [
       {
         level: 'PASS',
@@ -403,6 +407,11 @@ const roadmapFieldEvidence = (
     ...unassigned.map((record) => ({
       level: 'WARN' as const,
       message: `Roadmap record ${record.path} has no assignee; name its holder, such as owner or work/<id>.`,
+      subject: record.path
+    })),
+    ...adoptedOversized.map((record) => ({
+      level: 'WARN' as const,
+      message: `Roadmap record ${record.path} is adopted at size xl; split it, as XL work is split before adoption.`,
       subject: record.path
     }))
   ]

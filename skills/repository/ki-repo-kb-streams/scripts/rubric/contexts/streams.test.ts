@@ -432,6 +432,23 @@ describe('ki-repo-kb-streams session', () => {
     })
   })
 
+  test('warns on an adopted draft of size xl, which is split before adoption (GATES-SIZE-XL a)', () => {
+    const root = targetFixture()
+    const roadmap = join(root, 'Streams', 'Roadmap')
+    writeFileSync(
+      join(roadmap, 'KB-OPS-001-known.md'),
+      '---\nid: KB-OPS-001\ntitle: Known\nsize: xl\nassignee: owner\nhorizon: next\nstatus: draft\n---\n'
+    )
+    const subject = join('Streams', 'Roadmap', 'KB-OPS-001-known.md')
+    expect(STREAM.selectContext(rootContext(createStreamsSession(options(root, 'audit')))).roadmapFields).toEqual([
+      {
+        level: 'WARN',
+        message: `Roadmap record ${subject} is adopted at size xl; split it, as XL work is split before adoption.`,
+        subject
+      }
+    ])
+  })
+
   test("mirrors the roadmap adapter's current record fields", () => {
     const source = readFileSync(
       join(import.meta.dir, '../../../../../work/ki-work-roadmap/scripts/rubric/contexts/roadmap-evidence.ts'),

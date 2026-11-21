@@ -23,6 +23,7 @@ ki-status: in force
     - [4.4.1 Non-KB repositories](#441-non-kb-repositories)
     - [4.4.2 Knowledge Bases](#442-knowledge-bases)
     - [4.4.3 Roadmap wave screen](#443-roadmap-wave-screen)
+    - [4.4.4 The two gates](#444-the-two-gates)
   - [4.5 Defer](#45-defer)
     - [4.5.1 Defer a record](#451-defer-a-record)
     - [4.5.2 Hold and release](#452-hold-and-release)
@@ -75,6 +76,8 @@ How the next work is chosen, captured, deferred or spawned.
 | Term | Definition |
 | --- | --- |
 | **Capture** | Creating one `status: triage` record with no horizon for substantive prospective work that passes the graduation test, within the capture gate. **Standard:** this one, [4.3.2](#432-capture-substantive-prospective-work) |
+| **Adoption gate** | The check work passes to go onto a roadmap: the owner's yes, a home, a known next step, not `xl`, at `now` or `next`. **Standard:** this one, [4.4.4](#444-the-two-gates) |
+| **Start gate** | The check upcoming work passes to become active: Ready, nothing it needs missing, and room in its package and territory. **Standard:** this one, [4.4.4](#444-the-two-gates) |
 | **Wave** | A confirmed group of distinct records with a safe delivery synergy, delivered frozen once every member is Ready, only within an unattended window's grant. **Standard:** this one, [4.4.3](#443-roadmap-wave-screen) |
 | **Hold** | A record set to `horizon: hold` with a reason, a named condition and, where release cannot be observed, a review date. **Standard:** this one, [4.5.2](#452-hold-and-release) |
 | **Change-value profile** | The dimensions made visible when comparing viable material candidates, never scored. **Standard:** this one, [4.6.1](#461-the-change-value-profile) |
@@ -143,7 +146,7 @@ During the current interaction, capture a distinct prospective outcome, concern,
 
 Deferred work is the other route into capture, as Kris took HELD-VS-RECORD a) on 7 November 2026. Deliverable work that the run or session producing it did not deliver, and that outlives that session, becomes an unadopted triage record in its home repository, captured there through `ki-work next`; a background run still only names it in its report, and the coordinator of the work that owns that repository captures it at receive. A work package's `## Held` list keeps only items waiting on a named decision or event, never deferred deliverable work.
 
-Before creating a record, search the selected adapter for an existing owner. Do not capture rhetorical examples, already-resolved observations, or duplicates. If an existing triage record owns the same Goal and Boundary, new decision-useful detail within that boundary may enrich it automatically and must advance its timestamp. If an adopted record owns the concern, report that owner and require confirmation before changing it. Adoption requires explicit human approval and remains here: it sets `status: draft`, a horizon, and `kind`, and may set `purpose`, `project` or `theme`, and `component`, and revisit `priority` and `size`. Cancellation as obsolete, rejected, duplicate, merged, or superseded requires exact human approval and routes to `ki-work accept`, which records `status: cancelled` before any later prune; it is never a direct deletion. Approval alone never bypasses the lifecycle or done-before-prune rules.
+Before creating a record, search the selected adapter for an existing owner. Do not capture rhetorical examples, already-resolved observations, or duplicates. If an existing triage record owns the same Goal and Boundary, new decision-useful detail within that boundary may enrich it automatically and must advance its timestamp. If an adopted record owns the concern, report that owner and require confirmation before changing it. Adoption requires explicit human approval and the [adoption gate](#444-the-two-gates), and remains here: it sets `status: draft`, `horizon: now` or `next`, and `kind`, and may set `purpose`, `project` or `theme`, and `component`, and revisit `priority` and `size`. Cancellation as obsolete, rejected, duplicate, merged, or superseded requires exact human approval and routes to `ki-work accept`, which records `status: cancelled` before any later prune; it is never a direct deletion. Approval alone never bypasses the lifecycle or done-before-prune rules.
 
 [Back to contents](#contents)
 
@@ -154,9 +157,9 @@ Before creating a record, search the selected adapter for an existing owner. Do 
 Selection follows one order, as the [work-item format](../../../work/ki-work-roadmap/references/standard-work-item-format.md#43-priority-and-size) states: adoption, holds and dependencies first, then horizon, then `priority` (`high` a material cost from deferral, `medium` useful planned progress, `low` a discretionary benefit, an absent one reading as `medium`), then `size`, smallest first. Priority never crosses horizons: a `high` record at a later horizon is not selected ahead of earlier work, but prompts a proposal to move its horizon through the steps below.
 
 1. Gather dependency-ready `now` and `next` records, ordered within each horizon by `priority` and then by `size`, smallest first. Reuse their canonical record; if several are independently ready, recommend a small ranked set only when each retains its own lifecycle and the user confirms the set and order.
-2. Only when none is eligible, assess `soon` records against the Next entry rule. After confirmation, change horizon to `next`, run the adapter audit, then re-evaluate it at the destination.
-3. Only when Soon has no viable record, assess adopted Future work. Move directly to Next only when the full Next rule is met and Soon adds no value; otherwise move to Soon once the intended outcome and boundary are known. Re-evaluate after every confirmed move.
-4. Review triage separately from candidate selection. Present the exact destination horizon, `kind`, and why it satisfies that horizon; adopt only after explicit human confirmation, then re-evaluate at the destination.
+2. Only when none is eligible, review the existing `soon` and then `future` records, one at a time, under the roadmap standard's **Upcoming only** in [Status and horizon](../../../work/ki-work-roadmap/references/standard-repository-roadmaps.md#43-status-and-horizon): propose moving a record that meets the Next entry rule to `next`, and otherwise its leaving the roadmap, its idea placed where it now waits. After confirmation, make the move, run the adapter audit, and re-evaluate at the destination. No record moves to `soon` or `future`.
+3. Review a held `draft` the same way when it comes up: it leaves the roadmap with its release condition. A held `ready`, `in-progress` or `awaiting-review` record stays.
+4. Review triage separately from candidate selection. Present the exact destination horizon, `now` or `next`, the `kind`, and how the record passes the [adoption gate](#444-the-two-gates); adopt only after explicit human confirmation, then re-evaluate at the destination.
 5. Exclude held records from selection. Propose a release only when their named condition changed or their review date has passed.
 
 [Back to contents](#contents)
@@ -186,6 +189,30 @@ If no group meets every condition, say so briefly and use the ordinary single-it
 
 [Back to contents](#contents)
 
+#### 4.4.4 The two gates
+
+Work passes two gates, one when it is adopted and one when it starts, as Kris took GATES a on 21 November 2026: "Adopt two checkpoints (when an idea is adopted, when work starts), leaving size rules aside? → Yes, both checkpoints". `ki-work next` applies both, and checks each afresh whenever its answer may have changed.
+
+The **adoption gate**, from an idea or a triage record to upcoming work, passes when:
+
+1. the owner says yes, by explicit approval;
+2. the work has a home: the repository whose code it changes, under [Records and work packages](../../../work/ki-work-roadmap/references/standard-repository-roadmaps.md#49-records-and-work-packages), and its Project or theme where one is known;
+3. its next step is known, a bounded investigation whose purpose is to settle an open question counting as a known next step;
+4. it is not `size: xl`, which is split before adoption under the work-item format's [priority and size](../../../work/ki-work-roadmap/references/standard-work-item-format.md#43-priority-and-size); and
+5. it goes on at `now` or `next`, under the roadmap standard's **Upcoming only** in [Status and horizon](../../../work/ki-work-roadmap/references/standard-repository-roadmaps.md#43-status-and-horizon).
+
+The adoption gate admits `s`, `m` and `l` alike and has no small-only test, as Kris took GATES-SIZE-SMALL a on 21 November 2026 ("Yes, drop it"): the size rules stand, and one unit in flight per package keeps the work small. It checks for no room either: upcoming records have no cap, as Kris set the same day, "lets scrap the caps until its an issue".
+
+The **start gate**, from upcoming work to active work, passes when:
+
+1. the record is `ready`, approved for implementation under [the readiness procedure](standard-plan-lifecycle.md);
+2. nothing it needs is missing: every `blocked_by` record is done, and it is not held; and
+3. there is room, where the work runs in a work package: the package has no other unit in flight, beyond at most that unit's own independent review, and the package is within its territory's cap of three active packages, both trials `ki-coordination` sets in [Coordinator responsiveness](../../../work/ki-coordination/references/standard-coordination.md#43-coordinator-responsiveness) and [Territory work](../../../work/ki-coordination/references/standard-territory.md#411-territory-work).
+
+`ki-work implement` starts delivery only on a record that passes the start gate.
+
+[Back to contents](#contents)
+
 ### 4.5 Defer
 
 #### 4.5.1 Defer a record
@@ -194,13 +221,13 @@ If no group meets every condition, say so briefly and use the ordinary single-it
 
 Resolve the exact record and identify linked dependencies before proposing it.
 
-A defer changes horizon and keeps status, so the destination must admit that status under the [status and horizon table](../../../work/ki-work-roadmap/references/standard-repository-roadmaps.md#43-status-and-horizon). Use Soon only for understood but non-immediate draft work and Future only for adopted long-term draft work needing re-scoping. Status `triage` is not a deferral destination: moving adopted work back into intake requires an explicit human disposition.
+A defer changes horizon and keeps status, so the destination must admit that status under the [status and horizon table](../../../work/ki-work-roadmap/references/standard-repository-roadmaps.md#43-status-and-horizon). A defer moves a record only between `now` and `next`: no record moves to `soon` or `future` under the roadmap standard's **Upcoming only**, and work no longer upcoming leaves the roadmap instead, or goes on hold if it is already `ready`, `in-progress` or `awaiting-review`. Status `triage` is not a deferral destination: moving adopted work back into intake requires an explicit human disposition.
 
 [Back to contents](#contents)
 
 #### 4.5.2 Hold and release
 
-Hold a record when it deliberately stops progressing until a named condition is met. Set `horizon: hold` and a `hold` mapping with `reason` (`waiting-for` an external condition or `parked` for an intentional pause), the named `condition`, and a `review` date where release cannot be observed. Keep status, `baseline_ref`, completed Steps, and review evidence; a review may wait on Hold for an unavailable reviewer. An in-progress hold older than a month should be reconsidered, because a stale baseline turns resuming into a rebase.
+Hold a `ready`, `in-progress` or `awaiting-review` record when it deliberately stops progressing until a named condition is met; a draft that must wait leaves the roadmap with its release condition instead, under the roadmap standard's **Upcoming only**. Set `horizon: hold` and a `hold` mapping with `reason` (`waiting-for` an external condition or `parked` for an intentional pause), the named `condition`, and a `review` date where release cannot be observed. Keep status, `baseline_ref`, completed Steps, and review evidence; a review may wait on Hold for an unavailable reviewer. An in-progress hold older than a month should be reconsidered, because a stale baseline turns resuming into a rebase.
 
 When the condition is observation of one or more trades, list them in `hold.trades: [TRD-…]` and state in prose whether the item awaits receipt, a terminal receiver decision, or completion of linked receiver-local work. Do not add trade identities to `blocks` or `blocked_by`: those arrays remain local work-item dependencies.
 
@@ -242,7 +269,7 @@ Present those facts directly, choose only after the human confirms the order, an
 
 Before a selection, adoption, promotion, or deferral write, show selected items, any proposed wave and its order, exact frontmatter or wording changes, and dependency effects. The bounded triage capture rule above is the sole no-prior-confirmation exception.
 
-When an owner answer is needed, use the runtime's structured ask-user-questions interface if available. Put the item's current state, proposed change, consequence, and canonical record link in the question; use a clickable link only where that interface supports one, and otherwise place the link in adjacent prose. Offer the evidence-backed recommendation as the first selectable response with its reason in the option description where supported. For example, recommend moving a dependency-ready Soon item to Next when its scope is actionable, while offering to keep it in Soon. If evidence does not support a recommendation, say so. A preselected response is not an answer or approval. Use the same content in a concise prose question when no structured interface is available.
+When an owner answer is needed, use the runtime's structured ask-user-questions interface if available. Put the item's current state, proposed change, consequence, and canonical record link in the question; use a clickable link only where that interface supports one, and otherwise place the link in adjacent prose. Offer the evidence-backed recommendation as the first selectable response with its reason in the option description where supported. For example, recommend moving a dependency-ready Soon item to Next when its scope is actionable, while offering to let it leave the roadmap as an idea. If evidence does not support a recommendation, say so. A preselected response is not an answer or approval. Use the same content in a concise prose question when no structured interface is available.
 
 Require explicit confirmation, then run the applicable adapter audit.
 

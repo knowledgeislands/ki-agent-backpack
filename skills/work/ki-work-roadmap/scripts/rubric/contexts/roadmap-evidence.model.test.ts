@@ -122,7 +122,7 @@ test('an adopted open record without kind warns during the migration window', ()
 test('priority and size take their vocabularies; a missing size warns and a missing priority passes', () => {
   const sized = (fields: string) =>
     createRepository(`kind: deliver\nhorizon: future\nstatus: draft\nbaseline_ref: null\n${fields}`, '')
-  const clean = sized('priority: high\nsize: xl')
+  const clean = sized('priority: high\nsize: l')
   expect(failures(clean)).toEqual([])
   expect(warnings(clean)).toEqual([])
   expect(warnings(sized('size: s'))).toEqual([])
@@ -230,6 +230,14 @@ test('a closed record needs no size and a ready record must not be xl', () => {
   ).toContainEqual(
     expect.objectContaining({ area: 'ITEM-2', msg: 'a ready record must not be size xl; split it before Ready' })
   )
+})
+
+test('an adopted draft record must not be xl and warns until it is split (GATES-SIZE-XL a)', () => {
+  const draft = createRepository('kind: deliver\nsize: xl\nhorizon: future\nstatus: draft\nbaseline_ref: null', '')
+  expect(warnings(draft)).toContain('an adopted record must not be size xl; split it before adoption')
+  expect(failures(draft)).toEqual([])
+  const triage = createRepository('size: xl\nstatus: triage\nbaseline_ref: null', '')
+  expect(warnings(triage)).not.toContain('an adopted record must not be size xl; split it before adoption')
 })
 
 test('a theme named beside a project warns during the migration window, registry or not', () => {

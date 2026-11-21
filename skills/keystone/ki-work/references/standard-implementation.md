@@ -70,7 +70,7 @@ The steps run in order; 4.5 and 4.6 hold what applies around them.
 1. Resolve the physical git root and the selected adapter through `ki-work`; never infer an adapter from filesystem shape.
 2. Stop before execution if the adapter is unresolved or remote: remote discovery, authentication, stale-read checks, and every write remain unavailable.
 3. Resolve exactly one canonical record through the selected local adapter. For the roadmap adapter, it is one regular work-item file under `docs/roadmap/` or `Streams/Roadmap/`.
-4. Confirm that the item is `ready`, is explicitly approved for implementation, has satisfied dependencies, and contains a bounded plan with stated verification.
+4. Confirm that the item is `ready`, is explicitly approved for implementation, has satisfied dependencies, contains a bounded plan with stated verification, and passes `ki-work next`'s [start gate](standard-next-work.md#444-the-two-gates).
 5. Confirm the repository's applicable read-only gates are clean before changing lifecycle state.
 6. Read the item boundary, locked decisions, escalation points, delegation instruction, and stop conditions.
 

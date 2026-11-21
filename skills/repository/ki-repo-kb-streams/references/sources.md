@@ -63,6 +63,8 @@ None recorded by id: the model is canonical to this skill.
 
 ## 4. Last review
 
+On 21 November 2026 the checker was brought to GATES-SIZE-XL a, which Kris took that day at about 19:02 GMT by Orca item card, "Yes, split before adoption", relayed by the Cairn summit's guardian from its [change 90](https://github.com/krisb/ki-cairn-store/blob/fdf11947/work/cairn/cairn.summit/90-ways-of-working.change.md#44-decided); `ki-work-roadmap`'s [priority and size](../../../work/ki-work-roadmap/references/standard-work-item-format.md#43-priority-and-size) carries the rule and its decision row. STREAM-12 now warns on an adopted `draft` record of size `xl`, as the roadmap adapter's ITEM-2 does, beside STREAM-7's failure on a ready one. This is an in-house decision review; no external source was refreshed.
+
 On 19 November 2026 the skill's words were brought to IDEAS-INBOX, which Kris took on 17 November 2026 in the Cairn summit's change 42 and `ki-work-roadmap` already carries: `Streams/Roadmap/` keeps no `_IDEAS.md`, and an existing one is read as not a record until its entries move to the Inbox. SKILL.md and [the Streams structure standard](standard-streams-structure.md#44-roadmap) no longer offer it; the audit still skips one not yet retired. No criterion changed and no outside source was refreshed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.

@@ -166,8 +166,8 @@ Every adopted, open record carries exactly one `horizon`. In selection order:
 
 1. `now` - receiving current delivery attention; plans permitted.
 2. `next` - the next bounded work to prepare or begin; plans permitted.
-3. `soon` - understood but not yet started.
-4. `future` - adopted long-term work that still needs re-scoping before it becomes actionable.
+3. `soon` - understood but not yet started; it takes no new record, under **Upcoming only** below.
+4. `future` - adopted long-term work that still needs re-scoping before it becomes actionable; it takes no new record either.
 5. `hold` - deliberately not progressing until a named release condition is met.
 
 The horizon rule is one line: `horizon` is present if and only if the record is adopted and open. Triage, done, and cancelled records omit the field rather than carrying `null`.
@@ -175,12 +175,20 @@ The horizon rule is one line: `horizon` is present if and only if the record is 
 | Status | Allowed horizon |
 | --- | --- |
 | `triage` | none |
-| `draft` | `now`, `next`, `soon`, `future`, `hold` |
+| `draft` | `now`, `next`; `soon`, `future` and `hold` only until the record's next review, under **Upcoming only** below |
 | `ready` | `now`, `next`, `hold` |
 | `in-progress`, `awaiting-review` | `now`, `hold` |
 | `done`, `cancelled` | none; kept as history |
 
-Starting implementation moves the record to Now in the same change, so Now holds work in flight and Next holds work prepared to follow. Views may report the Now count as a signal; there is no cap.
+Starting implementation moves the record to Now in the same change, so Now holds work in flight and Next holds work prepared to follow. Views may report the Now and Next counts as signals; there is no cap on upcoming records, as Kris set on 2026-11-21 in dropping the three proposed caps, per repository, for work awaiting review and per territory: "lets scrap the caps until its an issue".
+
+**Upcoming only.** A roadmap holds work ready to build, under [Records and work packages](#49-records-and-work-packages), so new work goes onto it only at `now` or `next`, as Kris took ROADMAP-UPCOMING-NEW a on 2026-11-21 ("Yes, now or next only"), applying ROADMAP-PACKAGE a. No record enters `soon` or `future`, whether by adoption, defer or release, and adoption passes `ki-work next`'s [adoption gate](../../../keystone/ki-work/references/standard-next-work.md#444-the-two-gates). The records already off those horizons are settled one at a time, never by a sweep:
+
+- **Soon and Future:** an existing `soon` or `future` record leaves its horizon when it next comes up for review, as Kris took ROADMAP-UPCOMING-EXISTING a the same day ("Yes, one at a time"). It moves to `next` where it meets the Next entry rule, and otherwise leaves the roadmap: it is cancelled under `ki-work accept`, its `## Cancelled` naming where its idea now waits, in its Project note, its theme page or the Inbox under [Ideas and graduation](#46-ideas-and-graduation), or as an outstanding item in its owning package.
+- **Held planned work stays:** a held record that is `ready`, `in-progress` or `awaiting-review` stays on the roadmap with its plan and review evidence, so work already done is not lost, as Kris took ROADMAP-UPCOMING-HELD-PLANNED a ("Yes, it stays").
+- **Held drafts leave:** a held `draft` leaves the roadmap the same way as other unready work when it next comes up for review, taking its release condition with it to where its idea now waits, as Kris took ROADMAP-UPCOMING-HELD-DRAFT a ("Yes, drafts leave"). A draft that must wait therefore leaves the roadmap rather than going on hold.
+
+The checker still admits `soon`, `future` and a held draft, so no existing record fails while it waits for its review.
 
 Hold replaces the former Waiting for and Parked horizons. The record's `hold` mapping gives its `reason`: `waiting-for` an external condition, or `parked` as an intentional pause. A held record keeps its status, `baseline_ref`, completed Steps, and review evidence, so a review may also wait on Hold for an unavailable reviewer. The checker warns on an in-progress hold whose `updated_at` is more than 31 days old, because a stale baseline turns resuming into a rebase.
 
@@ -204,10 +212,10 @@ Moves are authored, judgment-led decisions. CONFORM never chooses a move; it onl
 
 | Move | Rule | Owner |
 | --- | --- | --- |
-| Adopt | `triage` -> `draft`, setting a horizon and `kind`, with explicit human approval | `ki-work next` |
-| Defer | change horizon and keep status | `ki-work next` |
-| Hold | horizon -> `hold` with a reason, a named release condition, and a review date where release cannot be observed; status, `baseline_ref`, completed Steps, and review evidence are kept | `ki-work next` |
-| Release | evidence that the hold condition changed; choose a horizon afresh and revalidate scope and dependencies | `ki-work next` |
+| Adopt | `triage` -> `draft` at `now` or `next`, setting `kind`, with explicit human approval through the adoption gate | `ki-work next` |
+| Defer | move between `now` and `next` and keep status | `ki-work next` |
+| Hold | a `ready`, `in-progress` or `awaiting-review` record's horizon -> `hold` with a reason, a named release condition, and a review date where release cannot be observed; status, `baseline_ref`, completed Steps, and review evidence are kept | `ki-work next` |
+| Release | evidence that the hold condition changed; choose `now` or `next` afresh and revalidate scope and dependencies | `ki-work next` |
 | Replan | `ready` -> `draft`; replanning in-progress work keeps its baseline and delivered evidence and replaces only the remaining plan, under renewed approval | `ki-work plan` |
 | Start | `ready` -> `in-progress`, moving the record to Now in the same change | `ki-work implement` |
 | Accept | `awaiting-review` -> `done`, removing the horizon in the closure change | `ki-work accept` |
@@ -217,11 +225,9 @@ Moves are authored, judgment-led decisions. CONFORM never chooses a move; it onl
 
 A defer keeps status, so its destination must admit that status: ready work moves only among Now, Next, and Hold, and in-progress or awaiting-review work leaves Now only for Hold. Moving lifecycle work to an earlier horizon than the table admits is a replan or a cancellation, not a defer.
 
-- **Future -> Soon** requires enough scope to state the intended outcome and boundary.
-- **Future -> Next** is permitted when one review establishes the Future minimum plus actionable scope, understood dependencies, and readiness to start; state why Soon adds no useful shaping stage and re-evaluate at Next.
-- **Soon -> Next** requires actionable scope, understood dependencies, and readiness to start.
+- **Soon or Future -> Next**, at the record's review, requires actionable scope, understood dependencies, and readiness to start; a record that does not meet it leaves the roadmap under **Upcoming only** in [Status and horizon](#43-status-and-horizon).
 - **Hold -> another horizon** is a release. It requires evidence that the named condition changed, or a review date that prompts a fresh decision, and the destination is chosen afresh rather than restored.
-- A move back to **Soon**, **Future**, or **Hold** must preserve honest wording and any linked item lifecycle state.
+- A move to **Hold** must preserve honest wording and any linked item lifecycle state.
 
 `now` and `next` are the only horizons in which an item may be shaped into an execution-ready plan or enter implementation.
 
@@ -231,7 +237,7 @@ An immediate item may remain `status: draft` while `ki-work plan` shapes it.
 
 It becomes `status: ready` only after its execution detail and verification are reviewable, its dependencies are satisfied, and the user approves it for implementation. A held ready or in-progress record keeps its plan and resumes only after release.
 
-When no immediate work is eligible, `ki-work next` evaluates Now and Next first, then Soon, then Future. Held records are excluded from selection until released. Triage review is a separate intake activity and never makes a record selection-eligible without explicit adoption.
+When no immediate work is eligible, `ki-work next` evaluates Now and Next first, then reviews the existing Soon and then Future records one at a time under **Upcoming only**. Held records are excluded from selection until released. Triage review is a separate intake activity and never makes a record selection-eligible without explicit adoption.
 
 Every confirmed move is re-evaluated at its destination.
 
