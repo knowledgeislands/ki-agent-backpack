@@ -134,14 +134,16 @@ const WORKER_STATUSES: readonly unknown[] = ['active', 'idle', 'vacant']
 /**
  * Old role and tier words read under the role migration file, each warned on; `architect`, split into two makers under
  * ARCHITECT-SPLIT a (16 November 2026), is read as the information architect it was defined as, and `illustrator`,
- * renamed under ILLUSTRATOR-RENAME (21 November 2026), as the graphic designer.
+ * renamed under ILLUSTRATOR-RENAME (21 November 2026), as the graphic designer; `gatekeeper`, renamed under
+ * GATEKEEPER-RENAME (21 November 2026), is read as the harbourmaster.
  */
 const ROLE_ALIASES: Readonly<Record<string, string>> = {
-  assistant: 'gatekeeper',
+  assistant: 'harbourmaster',
   keeper: 'warden',
   steward: 'warden',
   architect: 'information-architect',
-  illustrator: 'graphic-designer'
+  illustrator: 'graphic-designer',
+  gatekeeper: 'harbourmaster'
 }
 const TIER_ALIASES: Readonly<Record<string, string>> = { enablers: 'managers', doers: 'makers' }
 const REVISION = /^[0-9a-f]{7,40}$/

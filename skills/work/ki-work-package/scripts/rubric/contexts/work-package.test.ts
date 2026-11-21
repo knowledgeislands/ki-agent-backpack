@@ -577,6 +577,11 @@ describe('RECORD-2 schema', () => {
     [
       'an illustrator seat',
       { fields: ['workers:\n  - id: actor:ki.cairn@illustrator\n    role: illustrator\n    tier: makers'] }
+    ],
+    ['the renamed role gatekeeper', { drop: ['role'], fields: ['role: gatekeeper'] }],
+    [
+      'a gatekeeper seat',
+      { fields: ['workers:\n  - id: actor:ki.cairn@gatekeeper\n    role: gatekeeper\n    tier: managers'] }
     ]
   ]
   for (const [name, change] of tolerated)
@@ -686,7 +691,7 @@ test('the role catalogue is read from the role standard', () => {
     'guildmaster',
     'quartermaster',
     'librarian',
-    'gatekeeper',
+    'harbourmaster',
     'housekeeper',
     'warden',
     'voice',
@@ -711,6 +716,8 @@ test('the role catalogue is read from the role standard', () => {
   expect(catalogue.get('technical-architect')).toEqual({ tier: 'makers', rank: 2, glyph: '🏗️' })
   expect(catalogue.get('voice')).toEqual({ tier: 'makers', rank: 1, glyph: '🦜' })
   expect(catalogue.get('graphic-designer')).toEqual({ tier: 'makers', rank: 4, glyph: '🎨' })
+  expect(catalogue.get('harbourmaster')).toEqual({ tier: 'managers', rank: 4, glyph: '🦉' })
   expect(catalogue.has('architect')).toBe(false)
   expect(catalogue.has('illustrator')).toBe(false)
+  expect(catalogue.has('gatekeeper')).toBe(false)
 })

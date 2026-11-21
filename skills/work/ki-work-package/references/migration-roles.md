@@ -6,11 +6,12 @@ This file holds the tolerance for the forms [the role standard](standard-roles.m
 | --- | --- | --- |
 | `🧵 <work-id>` closing a session whose package names a role | The same session; it moves to `<role glyph> 🔑 <work-id>` at its next bootstrap | The footer hook passes it; reports are judged by `ki-coordination` |
 | `_index.md` without `ki-role` | The package's role not yet declared | RECORD-2 warns |
-| `ki-role: assistant` | gatekeeper | RECORD-2 warns |
+| `ki-role: assistant` | harbourmaster | RECORD-2 warns |
 | `ki-role: keeper` | warden | RECORD-2 warns |
 | `ki-role: steward` | warden | RECORD-2 warns |
 | `ki-role: architect` in `_index.md`, or `role: architect` in a `ki-workers` entry | information-architect, the information architecture it was defined as; a seat doing technical architecture moves to technical-architect (ARCHITECT-SPLIT) | RECORD-2 warns; no checker reads the role in a seat's id or thread line, such as `📐 ki.cairn@architect`, which a reader takes the same way |
 | `ki-role: illustrator` in `_index.md`, or `role: illustrator` in a `ki-workers` entry | graphic-designer, the same maker renamed (ILLUSTRATOR-RENAME) | RECORD-2 warns; no checker reads the role in a seat's id or thread line, such as `🎨 ki.cairn@illustrator`, which a reader takes the same way |
+| `ki-role: gatekeeper` in `_index.md`, or `role: gatekeeper` in a `ki-workers` entry | harbourmaster, the same manager renamed (GATEKEEPER-RENAME) | RECORD-2 warns; no checker reads the role in a seat's id or thread line, such as `🦉 ki.cairn@gatekeeper`, which a reader takes the same way |
 | `tier: enablers` | managers | RECORD-2 warns |
 | `tier: doers` | makers | RECORD-2 warns |
 | `uri` or `designation` in a `ki-workers` entry | Dropped: a session address stays out of the package | RECORD-2 warns |
