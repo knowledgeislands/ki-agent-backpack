@@ -14,7 +14,7 @@ describe('KI-SHAPE-6', () => {
           knowledgeIslandsSkill: true,
           referencePaths: [
             'radar.toml',
-            'standards-model-radar.md',
+            'standard-model-radar.md',
             'standard-formats-change.md',
             'migration-roles.md',
             'report-20260924-mcp-shared-code-inventory.md',
@@ -28,6 +28,23 @@ describe('KI-SHAPE-6', () => {
     expect(findings[0]).toMatchObject({
       status: 'VIOLATION',
       subject: 'references/notes.md'
+    })
+  })
+
+  test('rejects the retired plural standards- reference name', () => {
+    const findings = referenceVocabulary.mechanical?.audit.run(
+      createKiShapeContext({
+        skill: {
+          knowledgeIslandsSkill: true,
+          referencePaths: ['standards-model-radar.md']
+        }
+      })
+    )
+
+    expect(findings).toHaveLength(1)
+    expect(findings[0]).toMatchObject({
+      status: 'VIOLATION',
+      subject: 'references/standards-model-radar.md'
     })
   })
 

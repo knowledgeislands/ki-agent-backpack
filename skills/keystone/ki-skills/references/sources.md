@@ -182,6 +182,8 @@ The OpenAI News page is a discovery source, not a normative standard. On each RE
 
 ## 4. Last review
 
+A later in-house review on **2026-11-21** closed STANDARDS-RENAME: with no plural `standards-<topic>.md` file left in any backpack, [the reference vocabulary](standard-knowledge-islands.md) and KI-SHAPE-6 no longer accept one. The rubric is regenerated. No outside source refreshed.
+
 A later in-house review on **2026-11-19** applied MCP-INVENTORY, taken by the Cairn summit's guardian: [the reference vocabulary](standard-knowledge-islands.md) and KI-SHAPE-6 admit a dated `report-<YYYYMMDD>-<topic>.md`, first used by `ki-repo-mcp`'s shared-code inventory. The rubric is regenerated.
 
 A later in-house review on **2026-11-19** applied OVERLAY-NAME, taken by the Cairn summit's guardian: [the reference vocabulary](standard-knowledge-islands.md) and KI-SHAPE-6 admit `migration-<topic>.md`, and seven of the eight `standards-<topic>-migration.md` overlays are renamed to it, `ki-coordination`'s to follow. The rubric is regenerated.
