@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-20T13:20:00Z
+ki-revised: 2026-11-21T14:10:00Z
 ki-status: in force
 ---
 
@@ -124,6 +124,8 @@ A short status line may open the Introduction where it helps a reader, but the f
 10. **Scope and Gaps do not repeat each other.** Out of scope sets the boundary and may link to a gap; Gaps holds the detail.
 11. **Questions are weighed.** Questions in 7.1 are numbered. Each carries, one line after its recommendation, `Benefit: high · Cascade: contained · Confidence: high (reason) · Waits on: none`; below high confidence, the line adds what would settle it. Each step says what it waits on, if anything, and a step waiting on an unsettled one is not put forward. Benefit and waits on between them say what comes first, so there is no separate priority. An older change takes the line when it is next worked on.
 12. **Steps are the change's plan.** They are a numbered list in the order taken, each saying what is done, where, and what it waits on; there is no separate plan document, and a change's Steps and a Ready work record's steps are the two places a plan is kept. Each step carries a GitHub task checkbox straight after its number, `1. [x]` once carried out and `1. [ ]` until then. A ticked step names when it was done and its proof, as "(13:14 GMT, `9b6d36c6`)", with the date where it is not plain; an open step may name what it waits on, such as a query tag, and a step begun but not finished says so with its date, as "Begun 14 November".
+13. **The Introduction carries the context, once.** It says why the change matters and links to fuller context, such as the work, record or discussion behind it; Scope then bounds it, and nothing else in the document says it again. An older change takes this up when it is next worked on.
+14. **Questions and gaps inherit that context.** Each question's Context and each gap adds only the facts it needs to stand alone, such as addresses, revisions, current values and links, so it can be discussed without a round trip; it never restates why the change matters. An older change takes this up when it is next worked on.
 
 [Back to contents](#contents)
 
