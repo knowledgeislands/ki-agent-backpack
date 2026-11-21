@@ -75,14 +75,14 @@ The mark is only a timestamp, `ki-mark: <UTC timestamp>` in `_index.md`'s state 
   2. work the [decisions life cycle](standard-decisions.md#413-decisions-life-cycle);
   3. [prune the package](#43-pruning-the-package) and review its change documents;
   4. [close out Orca workers](#44-closing-out-orca-workers);
-  5. refresh its own presence in the Cairn store's roster, its actor entry's `ki-host`, `ki-rig` and `ki-last_seen`, as at [bootstrap](standard-bootstrap.md#41-bootstrap), touching no other actor's entry;
+  5. refresh its own presence in the Cairn store's roster, each of its actor entry's presence fields that the [role fields, 4.5](../../ki-work-package/references/standard-roles.md#45-role-fields) list and that it can observe, `ki-environment` only once it has checked its isolation and otherwise `null`, never inventing a value, as at [bootstrap](standard-bootstrap.md#41-bootstrap), touching no other actor's entry;
   6. commit the package and its roster entry and confirm in one line.
 - **Open items carry forward:** a mark resets only the window of `## Summary`. Open and parked queries in the change documents, open records in the work's scope, running and queued background agents and parked tangents stay on the status table and in `## Queries`; a mark never drops, closes or hides them.
 - **History:** comes from Git and run reports, never from the state. `git log -- work/<territory>/<id>/_index.md` in the Cairn store shows what the work is and its moves. The state holds no dated log, commit runs or test counts; it may link one report or commit instead of copying it, and the `ki-work-package` rubric's history check warns otherwise.
 - **No mark yet:** the Summary runs from the session's start, or from `_index.md`'s `ki-created_at` where that is unknown, and the first `mark` strikes the first mark.
 - **Not a recap:** a Summary covers the package since the mark, and `ki-work recap` covers one session at a lower level; they share no form or procedure.
 
-Sources: SUMMARY-MODEL, DECISION-NO-NUMBER, MARK-THEN-SUMMARY, STATE-HISTORY, ROSTER-SELF, QUERY-CAP and QUERY-CAP-3 in [the decision register](sources.md#3-decisions).
+Sources: SUMMARY-MODEL, DECISION-NO-NUMBER, MARK-THEN-SUMMARY, STATE-HISTORY, ROSTER-SELF, EXEC-ENV-NAMES, QUERY-CAP and QUERY-CAP-3 in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
