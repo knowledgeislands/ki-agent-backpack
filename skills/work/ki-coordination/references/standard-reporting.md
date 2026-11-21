@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-20T15:10:00Z
+ki-revised: 2026-11-21T16:26:00Z
 ki-status: in force
 ---
 
@@ -269,9 +269,9 @@ Sources: REPORT-SOURCE, OWNER-REPORT-FORMAT, REPORT-HEADINGS, REPLY-BLOCK, REPLY
 
 #### 4.2.1 Answers
 
-Every reply asking the owner to decide anything, in any form, ends with the reply block under the owner report's **Reply block**; no reply carries a `No reply needed.` line. The owner answers by sending the block as it stands or changed, or in speech, naming a query by its tag or answering in order, and may answer with an option's bare letter. In a block sent back, the worker reads each `<TAG> <letter>` line as that query's answer: the numbered group headings are ignored, and so is a bracketed confidence after the letter, which may be kept, changed or left out, and so is a gloss after a colon, so a block sent back as it stands is an answer taking every recommendation. The worker reads each answer back as taken in its change document, in the turn it arrives, `Taken as: <the instruction it will act on>`, and asks one line where an answer is unclear, never acting on a guess. A suggested course is not approval: nothing is acted on until the owner answers.
+Every reply asking the owner to decide anything, in any form, ends with the reply block under the owner report's **Reply block**; no reply carries a `No reply needed.` line. The owner answers by sending the block as it stands or changed, or in speech, naming a query by its tag or answering in order, and may answer with an option's bare letter. In a block sent back, the worker reads each `<TAG> <letter>` line as that query's answer: the numbered group headings are ignored, and so is a bracketed confidence after the letter, which may be kept, changed or left out, and so is a gloss after a colon, so a block sent back as it stands is an answer taking every recommendation. The worker reads each answer back as taken in its change document, in the turn it arrives, `Taken as: <the instruction it will act on>`, and asks one line where an answer is unclear, never acting on a guess. An answer the owner gives in his own words, in speech, in chat or relayed by another session, rather than by sending back the reply block, is also played back in the next reply, one line per tag, `<TAG> <letter> - confirmed in conversation`, as Kris set under CONFIRM-PLAYBACK on 21 November 2026; a reply block sent back needs no playback beyond its read-back, and an answer too unclear to play back is still asked about in one line instead. A suggested course is not approval: nothing is acted on until the owner answers.
 
-Sources: REPLY-BLOCK, REPLY-FORMAT and REPLY-GROUPS in [the decision register](sources.md#3-decisions).
+Sources: REPLY-BLOCK, REPLY-FORMAT, REPLY-GROUPS and CONFIRM-PLAYBACK in [the decision register](sources.md#3-decisions).
 
 #### 4.2.2 Quiet tools
 
