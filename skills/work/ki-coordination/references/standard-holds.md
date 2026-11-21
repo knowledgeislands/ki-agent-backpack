@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-21T22:45:00Z
+ki-revised: 2026-11-21T23:01:56Z
 ki-status: in force
 ---
 
@@ -131,8 +131,8 @@ A hold rests a package; a stand-down rests the actor seated at it. The two are i
 - **The roster mark** is `ki-presence: stood-down`, with `ki-presence_until` and `ki-presence_said` for a timed return, as the Cairn store's roster holds under STANDDOWN-FIELD a. An indefinite stand-down means no fixed return; it says nothing about how much the work matters.
 - **The guardian is never stood down** (Kris, 20 November 2026): the root's coordinator stays the owner's main conduit. When a stood-down seat's package has a deadline coming up, the guardian tells the owner, who decides whether the seat comes back.
 - **Focus mode** (Kris, 20 November 2026): a pilot group keeps working, today Cairn, Personal and Knowledge Islands, and changes are tried there before they spread; every other seat takes a break. The group is not fixed.
-- **Background only** (QUIET-FORM c, adjusted, 20 November 2026): the quiet form short of a stand-down. The seat does its agreed work first, then any high-confidence, low-hanging fruit, and the owner does not hear from it for a while; its news reaches the owner only as **Quiet news** in [Work between packages](standard-messages.md#43-work-between-packages) sets. Whether it is working or waiting shows as before, and the background-only instruction shows beside that in a field of its own, since `ki-presence` stays for stood-down alone. That field's name is pending: the Cairn summit has not yet chosen it.
+- **Background only** (QUIET-FORM c, adjusted, 20 November 2026): the quiet form short of a stand-down. The seat does its agreed work first, then any high-confidence, low-hanging fruit, and the owner does not hear from it for a while; its news reaches the owner only as **Quiet news** in [Work between packages](standard-messages.md#43-work-between-packages) sets. Whether it is working or waiting shows as before, and the background-only instruction shows beside that in a field of its own, `ki-attention: background-only`, since `ki-presence` stays for stood-down alone (QUIET-FIELD a, Kris, 21 November 2026, about 23:00 GMT). A timed instruction adds `ki-attention_until`, an ISO instant with its zone, and `ki-attention_said`, the owner's own words. The field is left out when it is not set and never holds a `normal` value; its lasting home is the Cairn store's roster.
 
-Sources: STAND-DOWN-GO, STANDDOWN-RETURN and QUIET-FORM in [the decision register](sources.md#3-decisions); the guardian and focus mode are Kris's words of 20 November 2026 at 16:26 and 16:28 GMT, recorded in the Cairn summit's [change 50, 4.9](https://github.com/krisb/ki-cairn-store/blob/49bee15a/work/cairn/cairn.summit/50-rooms.change.md#49-timed-and-indefinite-stand-downs).
+Sources: STAND-DOWN-GO, STANDDOWN-RETURN, QUIET-FORM and QUIET-FIELD in [the decision register](sources.md#3-decisions); the guardian and focus mode are Kris's words of 20 November 2026 at 16:26 and 16:28 GMT, recorded in the Cairn summit's [change 50, 4.9](https://github.com/krisb/ki-cairn-store/blob/49bee15a/work/cairn/cairn.summit/50-rooms.change.md#49-timed-and-indefinite-stand-downs).
 
 [Back to contents](#contents)
