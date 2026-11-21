@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-20T15:10:00Z
+ki-revised: 2026-11-21T22:45:00Z
 ki-status: in force
 ---
 
@@ -264,9 +264,16 @@ The old message queue's best parts come into meetings here (MSG-HOME, Kris, 15 N
 1. **The caller listens** while the meeting is open, watching the whole folder and waking when anything in it changes, since a participant can write a note or a brief without a message. Whether a session is listening is read from the meeting alone (LISTEN-HOME, Kris, 16 November 2026): a session is listening while it is a participant of an open meeting with a sitting under way, listed under `ki-participants` in the entry file with `ki-status: open` ([4.5](#45-the-entry-file)). No presence entry, such as the Cairn store's roster, carries `listening`.
 2. **A host without a lasting shell** listens by scheduled wake-ups instead, and otherwise re-reads `messages/` when the owner prompts it and before each new piece of work.
 3. **The agenda states** each participant's interval, the longest a message waits for it, and when its listening ends.
-4. **Sessions outside the room** do not watch it.
-5. **Check-ins.** While work is running, as in a workshop's round, every 15 minutes the caller posts a check-in in the folder, a message with `ki-type: heartbeat` and `ki-to: all`, and sends each participant outside the room a short note by Orca mail; each replies with what is done, what it is doing and what blocks it, or "nothing". A participant that wrote in the last 15 minutes may skip it. Between rounds, with no work running, the caller sends a check-in only when there is news, since an empty one wakes every participant for nothing (CHECKIN-QUIET, Kris, 16 November 2026).
-6. **At each wake** (MSG-HOME, Kris, 15 November 2026). Each time a participant wakes or is prompted, it reads the messages new since it last read, important ones first and then in the order of their times ([4.8](#48-messages)), and acts on them without stopping work already running.
+4. **The caller's checks back off** (LISTEN-BACKOFF a, 20 November 2026). While the exchange is active or the caller's work for the room is running, the caller checks every 15 seconds. Each check that finds nothing doubles the gap, 15 seconds, 30 seconds, then 1, 2 and 4 minutes, then a hold at 5 minutes, and any new message resets it to 15 seconds.
+   - The room is quiet only when no one has posted and none of the caller's work for it is in flight.
+   - A task likely to take more than about 2 minutes gets a short "working on it" note in the room.
+   - After 60 minutes of quiet the caller stops checking and posts one closing note. The sitting and the room stay open, and anything posted meanwhile waits for the next start.
+   - "listen", "voice" or a new sitting restarts listening.
+   - "End the sitting" adjourns the sitting with minutes ([4.14](#414-minutes)), which is distinct from checks stopping.
+5. **Voice cues** (the guardian's working rule, adopted at Kris's request, 20 November 2026). In a sitting with a voice client, within a minute of each answer from the owner the caller posts a one-line "on it" to the room, and posts "done" when the work lands.
+6. **Sessions outside the room** do not watch it.
+7. **Check-ins.** While work is running, as in a workshop's round, every 15 minutes the caller posts a check-in in the folder, a message with `ki-type: heartbeat` and `ki-to: all`, and sends each participant outside the room a short note by Orca mail; each replies with what is done, what it is doing and what blocks it, or "nothing". A participant that wrote in the last 15 minutes may skip it. Between rounds, with no work running, the caller sends a check-in only when there is news, since an empty one wakes every participant for nothing (CHECKIN-QUIET, Kris, 16 November 2026).
+8. **At each wake** (MSG-HOME, Kris, 15 November 2026). Each time a participant wakes or is prompted, it reads the messages new since it last read, important ones first and then in the order of their times ([4.8](#48-messages)), and acts on them without stopping work already running.
 
 [Back to contents](#contents)
 
@@ -315,6 +322,7 @@ Kris, 14 November 2026 (MEET-BUSY):
    - the transcript: the sitting's messages in order, a line each linking to its file at its last commit, since the sitting's messages are then pruned ([4.17](#417-pruning)).
 2. **Choices left to the owner.** Whoever did the work lists them, each with its recommendation, and the caller carries them into the change document's open questions, which feeds the owner's next report.
 3. **Choices go to the owner whole** (CHOICES-WHOLE, Kris, 14 November 2026). Each choice carries its context, its options and a recommendation with its confidence, in the message itself.
+4. **A short pointer at a pause** (MSG-SIMPLIFY a, 20 November 2026). When a sitting pauses, the room needs only a short pointer to the change it fed, since the change, not the room's messages, carries the decisions and outcomes.
 
 [Back to contents](#contents)
 
