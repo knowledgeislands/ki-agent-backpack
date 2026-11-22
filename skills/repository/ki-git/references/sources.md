@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T16:15:00Z
+ki-revised: 2026-11-22T17:40:00Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -74,6 +74,8 @@ Kris's decisions behind the rules, each quoted in the standard beside the rule i
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the third SKILLS-LEARNING batch added two pitfalls: in [safe Git hygiene](standard-git.md#45-safe-git-hygiene), a commit refused by its message check leaves what was added before it staged, so check each commit landed before the next; and in [the local integration write boundary](standard-git.md#441-local-integration-write-boundary), typecheck again after resolving a merge conflict. No criterion changed and no external source refreshed.
 
 On 22 November 2026 the second SKILLS-LEARNING batch added three pitfalls: in [commit messages](standard-git.md#42-commit-messages), read an earlier commit's diff before planning on its message; in [safe Git hygiene](standard-git.md#45-safe-git-hygiene), `git commit --only` takes no untracked file until it is added, and a commit rejected by its hook leaves nothing committed, so wait for the verdict. No rule changed and no outside source was refreshed.
 

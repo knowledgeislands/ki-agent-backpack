@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T09:00:00Z
+ki-revised: 2026-11-22T17:40:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -121,6 +121,8 @@ The owner decisions the standard names by id. The standard's other decisions are
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the third SKILLS-LEARNING batch added a pitfall to [repo shapes](standard-engineering.md#44-repo-shapes--flat-vs-monorepo-core): run the tests uncached before trusting a pass that decides anything, and typecheck again after resolving a merge conflict. No criterion changed and no external source refreshed.
 
 On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, added one Knip pitfall the Cairn designer met overnight to [Knip entrypoint provenance](standard-engineering.md#49-biomejson--rumdl-config-core): a script with no caller in the repository, such as a drawing script, lives in its author's home. No rule changed and no outside source was refreshed.
 
