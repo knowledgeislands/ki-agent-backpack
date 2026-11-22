@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T06:38:00Z
+ki-revised: 2026-11-22T08:32:00Z
 ki-status: in force
 ---
 
@@ -62,7 +62,7 @@ The coordinator reply format: how every reply in a coordinator session, and a ru
 | **Coordinator reply format** | The format of every reply in a coordinator session, and of a run report a run the coordinator launched writes into the package. **Standard:** this one, [4.1](#41-coordinator-reply-format) |
 | **Reply structure** | What a reply is, such as Summary, Status, Bootstrap, run report, Stop, Position, Update or Answer, each with one layout. **Standard:** this one, [4.1.1](#411-blocks-parts-and-layouts) |
 | **Trigger** | What a reply meets that sets its one reply structure, tried from T1 down, the first met winning; each is matched on a signal, a phrase, the state, the time or a move. **Standard:** this one, [4.1.2](#412-triggers) |
-| **Status table** | The Summary's and Status's full board of live items: one row per change document or sub-package holding one, then a catch-all row, Not in a change yet. **Standard:** this one, [4.1.7](#417-the-summary) |
+| **Status table** | The Summary's and Status's full board of live items: one row per change document or sub-package holding one, then a catch-all row, Other live work. **Standard:** this one, [4.1.7](#417-the-summary) |
 | **Report heading** | The heading block: one `#` heading, the package's name linked whole to its `_index.md` in the Cairn store, one bold form line, an optional opening note and one rule. **Standard:** this one, [4.2](#42-banner-detail) |
 
 [Back to contents](#contents)
@@ -453,9 +453,9 @@ The **Summary** is the coordinator's one summary form, a Full reply. It runs fro
 - **Then:** once the owner has taken stock, agreeing where things stand or asking for the queries, the next reply offers the pass, the queries inline one by one or the [interactive pass](standard-queries.md#43-interactive-pass) with context, and the queries come in full then, at most three under the [query cap](standard-queries.md#42-query-cap), with their reply block.
 - **Otherwise:** a Summary whose `## Summary` is ten lines or fewer with no sub-heading gives its queries in full, as above.
 
-**The status table** has two columns, **Change** and **Where it stands**, and one row per change document or sub-package that holds a live item, in the order `_index.md`'s Changes section lists them, then one catch-all row, **Not in a change yet**, for live items no change document holds yet: a run, a Now line or another session's work. It is the full board, not a delta: every live item appears whether or not it changed.
+**The status table** has two columns, **Change** and **Where it stands**, and one row per change document or sub-package that holds a live item, in the order `_index.md`'s Changes section lists them, then one catch-all row, **Other live work**, for live items no change document holds: other bots' work, runs, and the owner's own tasks. It is the full board, not a delta: every live item appears whether or not it changed.
 
-- **Change cell:** line one is the change document's number and slug in bold, as in `**10 skills-review**`, or the sub-package's slug, and the catch-all row's is `**Not in a change yet**`. Under it, at normal size, what the change or sub-package is, a short phrase from its line in `_index.md`'s Changes section. The Change column takes at most a third of the table's width; a longer line is shortened in `_index.md`, never reworded in the Summary.
+- **Change cell:** line one is the change document's number and slug in bold, as in `**10 skills-review**`, or the sub-package's slug, and the catch-all row's is `**Other live work**`. Under it, at normal size, what the change or sub-package is, a short phrase from its line in `_index.md`'s Changes section, and for the catch-all row the gloss `Live items no change document holds: other bots' work, runs, and your own tasks`. The Change column takes at most a third of the table's width; a longer line is shortened in `_index.md`, never reworded in the Summary.
 - **Where it stands:** a bold headline giving the row's state in a few words, then one line per item, opening with its **holder**, 👤 the owner, 🤖 a worker or run, 🧵 another session or 🌐 the outside world, glyphs the core's [table of glyphs](standard-coordination.md#46-banner) holds, then what it is and its next step. ⏳ means queued only. The owner's items come last and name their query's tag, so no waiting column is needed. Uncommitted work, unlogged decisions and repositories behind their remote, under the [repository level check](standard-sync.md#43-repository-level-check), are 🤖 lines in the row of the change they belong to, or the catch-all row.
 - **No row** is given to a change document or sub-package with nothing live, and the catch-all row is left out when it has no item.
 - **Rendering:** a plain Markdown table with `<br>` between the lines of a cell. The owner wants top-aligned cells, which Markdown cannot ask for; Orca's chat view is asked for them under [PERSONAL-DOTFILES-UE-107 (pruned)](https://github.com/krisb/dotfiles/blob/7f5a625/docs/roadmap/PERSONAL-DOTFILES-UE-107-decide-orca-adoption.md), ORCA-TABLE-ALIGN. Until then cells centre.
@@ -466,14 +466,14 @@ The **Summary** is the coordinator's one summary form, a Full reply. It runs fro
 | Change | Where it stands |
 | --- | --- |
 | **10 reporting**<br>Status-led reports every session can read cold | **Landing in the standard**<br>🤖 summary-model writes the Summary into ki-coordination; next: checks<br>👤 STATUS-WIDTH: whether 90 columns suits every surface |
-| **Not in a change yet**<br>Runs, Now lines and other sessions' work | **Waiting outside**<br>🌐 Orca top-aligned table cells; next: Orca's answer |
+| **Other live work**<br>Live items no change document holds: other bots' work, runs, and your own tasks | **Waiting outside**<br>🌐 Orca top-aligned table cells; next: Orca's answer |
 ```
 
 **The footer** is the Knowledge Islands art, then the banner. The art shows on every Summary and Status unless the owner added `no art`, and on no other reply. What the art and the footer lines carry is for Knowledge Islands Cairn, `ki.cairn`, to decide, liaising with `ki.summit` as the keeper of this standard. Until Cairn publishes its own, the art is the 88-column Knowledge Islands drawing in the [summary-model design note](https://github.com/krisb/dotfiles/blob/29dc51c/+/_WORK/personal.reg.household-terra/_emerging/summary-model.design.md), its scroll's title KNOWLEDGE ISLANDS, and beneath it four lines, each centred in the 54-character space between the scroll's `|` marks with any odd space to the right: the host and state in capitals, as `SOL  ·  WITH YOU`, or `ALL CLEAR` when nothing waits, a blank line, the counts in words, and the day, date and local time; `ki work banner` (KI-TOOL-KI-CLI-182 in `tools-ki`) renders it. The art stays as a visible marker and can go later without touching anything else.
 
 **Sources of a Summary:** the package's change documents; every report received since the mark, from its run packet or, once a [tidy](standard-mark.md#43-pruning-the-package) has removed the packet, from the change documents and records its outcome reached; the parked tags in the change documents; the agent host's view of its agents; record transitions in the work's scope from the Git history of the roadmap paths; and `git log -- work/<territory>/<id>/` in the Cairn store, the logbook. The mark bounds them all. Where a report can no longer be read and its outcome was not homed, the Summary says what it could not read rather than reconstructing it from memory.
 
-Sources: SUMMARY-MODEL, SUMMARY-FIRST, TABLE-ALIGN, FOOTER-AGORA, FOOTER-COUNTS, REPLY-FORMAT, FOCUS-ROWS, QUERY-CAP and QUERY-CAP-3 in [the decision register](sources.md#3-decisions).
+Sources: SUMMARY-MODEL, SUMMARY-FIRST, TABLE-ALIGN, FOOTER-AGORA, FOOTER-COUNTS, REPLY-FORMAT, FOCUS-ROWS, OTHER-LIVE-WORK, QUERY-CAP and QUERY-CAP-3 in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 

@@ -882,7 +882,12 @@ test('the Summary runs its summary, the two-column status table, the queries in 
   expect(summary).toContain('⏳ means queued only')
   expect(summary).not.toContain('⏳ the outside world')
   expect(outputStyle).toContain('🌐 the outside world')
-  expect(summary).toContain('**Not in a change yet**')
+  // OTHER-LIVE-WORK (22 November 2026) renames the catch-all row and glosses it like every other row.
+  expect(summary).toContain('**Other live work**')
+  expect(summary).toContain("Live items no change document holds: other bots' work, runs, and your own tasks")
+  expect(summary).not.toContain('Not in a change yet')
+  expect(outputStyle).toContain('`**Other live work**`')
+  expect(outputStyle).not.toContain('Not in a change yet')
   expect(summary).not.toContain('**\\_emerging**')
   expect(outputStyle).toContain("in the order `_index.md`'s Changes lists them")
   expect(summary).toContain('FOOTER-AGORA')
