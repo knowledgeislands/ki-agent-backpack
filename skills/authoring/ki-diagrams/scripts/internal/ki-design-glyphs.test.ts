@@ -4,14 +4,18 @@ import { existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { KI_DESIGN_ICONS_PATH, KI_DESIGN_REVISION, KI_DESIGN_SYMBOLS_PATH, KI_GLYPHS } from './ki-design-glyphs.ts'
 
-/** The `ki-design` checkout beside this repository's primary checkout, or `KI_DESIGN_ROOT` where it lives elsewhere. */
+/**
+ * The `packages-tessera` checkout, once `ki-design`, beside this repository's primary checkout, or `TESSERA_CHECKOUT`
+ * or `KI_DESIGN_ROOT` where it lives elsewhere.
+ */
 const kiDesignRoot = (): string | undefined => {
+  if (process.env.TESSERA_CHECKOUT) return process.env.TESSERA_CHECKOUT
   if (process.env.KI_DESIGN_ROOT) return process.env.KI_DESIGN_ROOT
   const common = execFileSync('git', ['rev-parse', '--path-format=absolute', '--git-common-dir'], {
     cwd: import.meta.dir,
     encoding: 'utf8'
   }).trim()
-  const sibling = join(dirname(dirname(common)), 'ki-design')
+  const sibling = join(dirname(dirname(common)), 'packages-tessera')
   return existsSync(join(sibling, '.git')) ? sibling : undefined
 }
 

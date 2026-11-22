@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "source": "../packages-tessera",
+  "package": "tessera-tokens",
+  "release": "0.3.0",
+  "revision": "987921dbb08b78a8aa8e479430192d2109e5cb97",
+  "vendored": "2026-11-22",
+  "files": {
+    "README.md": "6ae8cd9316f41b63f2046a19b61901878756e71dfc8af62cd46a000b8d2e657c",
+    "package.json": "a6bbd9d61336c3a4722ef706fc5cb793fa7e0f894229fa836d196c35bc63b7ce",
+    "src/build.ts": "f841c8643d5551fed64170b7a433a7797a4898fc8bc7f12bbe41b3f3e0309a82",
+    "src/colour.ts": "965dfa82c7a921ed55688e604b37da07853ebe1853515a14bbbdb3c164977f79",
+    "src/contrast.test.ts": "085703a888c3bf07e77e40c0f1693183ae11d3cf81175a7a84c66ae784b3af77",
+    "src/contrast.ts": "80a10163f42346115dac772ac6c8cc722985d110c0280e539ec0ab4fe61b50f5",
+    "src/css.test.ts": "97149b3b501993a4a289f451d7121eb4b5c02182f6b7d1e69cee7f9989334e3a",
+    "src/css.ts": "e3158384759a1204d95bc5963c258856178ad0e6d065247dfc3b436613ac6d74",
+    "src/index.ts": "abe7bb15abb188b7153bac68ceac991be394fc791d4c363d8cdb2af7e3975fe4",
+    "src/tokens.ts": "3671e5a4e5568363eda8db0f56ac0e8f9bc750dcf3987dcfe55547cd750fc1b3",
+    "tokens.json": "e24cfb951ef86dd45ed2b459169af22b2c894db122fb09b8250dbc9bf8b6ff30",
+    "tooling/lock.ts": "5b3bae7a28ea24d53c5e356c055a61857f7067c3dc18a1094446920f13c75bc7",
+    "tooling/tessera.ts": "29161c6bb5d3e82597b03c987a0888dadae3e826c134a0944379233e4a7846c4",
+    "tooling/tooling.test.ts": "e280b2bd6561fa736d6762a8b50a334f577c19dcb79d2872f35ca12b2f8f2832",
+    "tsconfig.json": "0e75088f9b96f3ba6e8bf6744029061ee882bf3003bbbbe3de339396a18e6c10"
+  },
+  "deferred": []
+}

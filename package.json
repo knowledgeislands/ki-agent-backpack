@@ -50,7 +50,12 @@
     "ki:harness:eval": "bun evals/harness.ts",
     "prepare": "git config core.hooksPath .githooks",
     "self:diagrams:html": "bun skills/authoring/ki-diagrams/scripts/build-html.ts",
-    "test": "bun test --isolate --max-concurrency=1 ./skills ./hooks ./evals"
+    "self:tessera-tokens:defer": "bun packages/tessera-tokens/tooling/tessera.ts defer",
+    "self:tessera-tokens:diff": "bun packages/tessera-tokens/tooling/tessera.ts diff",
+    "self:tessera-tokens:drift": "bun packages/tessera-tokens/tooling/tessera.ts drift",
+    "self:tessera-tokens:sync": "bun packages/tessera-tokens/tooling/tessera.ts sync",
+    "self:tessera-tokens:verify": "bun packages/tessera-tokens/tooling/tessera.ts verify",
+    "test": "bun run self:tessera-tokens:verify && bun test --isolate --max-concurrency=1 ./skills ./hooks ./evals"
   },
   "type": "module"
 }

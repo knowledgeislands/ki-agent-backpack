@@ -9,7 +9,11 @@
  * grid, so the exporter scales the group by 16/24 when it swaps the body in, and the group's own stroke applies.
  */
 
-export { KI_DESIGN_REVISION } from './ki-design-tokens.ts'
+/**
+ * The `ki-design` commit the glyphs were copied from. `ki-design` is now `packages-tessera`, whose history keeps this
+ * commit; the glyphs move to its vendored `tessera-icons` and `tessera-symbols` when those are taken.
+ */
+export const KI_DESIGN_REVISION = 'cbcc1ace5febcf5c604d661b1f23f406a34ea4d2'
 
 /** The directory of the glyph files and the symbol library, relative to the `ki-design` repository root. */
 export const KI_DESIGN_ICONS_PATH = 'packages/icons/svg'

@@ -20,6 +20,12 @@ The `ki-skills` skill and its cited decisions own the dependency, optional-augme
 - **Git** → use `ki-git` for portable commit and hygiene policy, which also sets this repository's linked-worktree edits. This repository's local delta is a solo direct-to-`main` workflow with no PR gate, under PRFLOW, which Kris chose on 2026-10-09 and reconfirmed the next day: "background agents keep pushing directly to harness main through the admin bypass, after tests and audit". Kris confirmed on 2026-10-25 that this file is its durable home. Its check-only pre-commit hook and CI audit follow `ki-repo-backpack`'s commit gate. The type check and the `ki-skills` audit belong to the verification below; the focused `ki-diagrams` audit and CI also check working-file receipts.
 - **Verification** → run `bun run test`, `bunx tsc --noEmit`, and the relevant focused `ki repo audit --skill <skill>` sequentially. Record fleet findings separately from failures in the contract under change. A declared audit or hook that cannot run is unknown, not a pass: stop and report the activation step it needs rather than committing with `--no-verify`. In a linked worktree, audit under the `ki-delegation` [worktree audit](skills/agentic-ecosystems/ki-delegation/references/standard-background-runs.md#48-coordination) recipe.
 
+## Vendored Tessera tokens
+
+`ki-diagrams` paints its KI-theme exports from Tessera's tokens, vendored under `ki-repo-packages`' vendoring contract (AUTHORING-FIXES a, 22 November 2026). Its token module carries the values, since an installed skill has no `packages/` folder, and its drift test holds them level with the vendored copy.
+
+> Each `packages/tessera*/` folder is a vendored copy of one package of `packages-tessera`, at the release in its `<package>-lock.json`. Never edit one here. Change it upstream first, in `packages-tessera` where your brief allows or by asking its owner, then re-vendor with `bun run self:<package>:sync`. `self:<package>:verify` fails the build on any local edit; `self:<package>:drift` shows what upstream has changed since, to accept with `sync` or reject with `defer`.
+
 ## Toolchain
 
 [Bun](https://bun.sh) is the install and development runtime; `ki` is the repository-governance executor.

@@ -16,7 +16,7 @@ import {
   wantsHelp
 } from './export-svg.ts'
 import { KI_GLYPHS } from './internal/ki-design-glyphs.ts'
-import { KI_DESIGN_TOKENS } from './internal/ki-design-tokens.ts'
+import { TESSERA_TOKENS } from './internal/tessera-tokens.ts'
 
 const CANONICAL = { format: 'svg', canonical: 'true' } as const
 
@@ -56,10 +56,10 @@ test('each static form flattens under its theme, palette and font stack', () => 
   const day = flatteningFor('ki')
   const night = flatteningFor('ki-night')
   expect([day.theme, night.theme]).toEqual(['light', 'dark'])
-  expect(day.variables['--bg']).toBe(KI_DESIGN_TOKENS['color.role.light.paper'])
-  expect(day.variables['--text']).toBe(KI_DESIGN_TOKENS['color.role.light.ink'])
-  expect(night.variables['--bg']).toBe(KI_DESIGN_TOKENS['color.role.night.paper'])
-  expect(night.variables['--text']).toBe(KI_DESIGN_TOKENS['color.role.night.ink'])
+  expect(day.variables['--bg']).toBe(TESSERA_TOKENS['color.role.light.paper'])
+  expect(day.variables['--text']).toBe(TESSERA_TOKENS['color.role.light.ink'])
+  expect(night.variables['--bg']).toBe(TESSERA_TOKENS['color.role.night.paper'])
+  expect(night.variables['--text']).toBe(TESSERA_TOKENS['color.role.night.ink'])
   expect(Object.values(day.variables).every((value) => /^#[0-9a-f]{6}$/.test(value))).toBe(true)
   expect(day.font).toBe('ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace')
 })

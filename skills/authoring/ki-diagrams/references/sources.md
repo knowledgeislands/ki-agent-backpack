@@ -81,10 +81,13 @@ These sources were added on 2026-10-31 for the [tool preference order](standard-
 | DIAGRAM-TOOLS | Kris's words of 29 October 2026: the diagram tools are ranked for each kind of diagram in a preference order, built only from his stated likes, with the SaaS tools as inspiration only and infoschematics as KI's own tool to grow. | 2026-10-29 | [4.2](standard-diagrams.md#42-tool-preference-by-diagram-kind) | In force |
 | DIAGRAM-AGREED | The work state machine Kris agreed on 29 October 2026, drawn by sketching in Mermaid and beautifying in Archify. | 2026-10-29 | [4.2.2](standard-diagrams.md#422-sketch-then-beautify) | In force |
 | DOCS-LANDING-GITHUB | "_index.md only", Kris on the question card in Loreward's Home Chat at 19:57 GMT, recorded in ki.summit's change 23 · Decision: option b), not the recommended a): a docs folder's page is `_index.md` alone, with no `README.md` pointer beside it, even though the folder then shows no page on GitHub, under `ki-authoring`'s docs folder pages. | 2026-11-22 | [4.5](standard-diagrams.md#45-the-manifest), DIAG-1 | In force |
+| AUTHORING-FIXES | Option a: the skill is kept and fixed. The `ki` and `ki-night` SVG forms take their paint from Tessera's `tessera-tokens`, vendored at the backpack's root under `ki-repo-packages`' lock-and-sync contract with its lock and drift check, in place of the retired `knowledgeislands/ki-design` copy. Kris, 22 November 2026, about 20:14 GMT, the Authoring guild's sitting in Kitteth's Home Chat, card: "Keep all, fix", recorded in the Cairn summit's change 10, 4.3. | 2026-11-22 | [the forms](standard-diagrams.md#441-the-forms) | In force; the glyphs still come from the `ki-design` revision they were drawn from |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 AUTHORING-FIXES a was applied by Loreward: the token module became `scripts/internal/tessera-tokens.ts`, checked against the vendored `packages/tessera-tokens/tokens.json` at the release `tessera-tokens-lock.json` holds, and the standard names Tessera where it named `ki-design`. The glyph copy keeps its `ki-design` revision until Tessera's icon packages are vendored. No criterion changed and no outside source was refreshed.
 
 On 22 November 2026 DOCS-LANDING-GITHUB, recorded under Decisions, was applied by Loreward's run from the Knowledge Islands summit's change 23: the reader-facing index is `docs/diagrams/_index.md`, the template in `assets/` is renamed to match, and DIAG-1 warns on an earlier `README.md` alone or one beside it. No outside source was refreshed.
 

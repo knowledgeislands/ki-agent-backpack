@@ -23,7 +23,7 @@
  * rather than written.
  *
  * `--form` chooses what is written. `dual`, the default, is the viewer's file as it is. The static forms, `light`
- * under Archify's light theme, `ki` under the `ki-design` day palette and `ki-night` under its night palette, flatten
+ * under Archify's light theme, `ki` under the Tessera day palette and `ki-night` under its night palette, flatten
  * that same canonical file in Chrome: every computed fill, stroke, opacity and text style is written as a plain
  * attribute, colours as hex, the font becomes a system monospace stack, and the stylesheet, custom properties, font
  * data and animation are dropped, so any previewer, `rsvg-convert` included, renders it as the viewer shows it. The
@@ -37,7 +37,7 @@ import { dirname, join, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { Chrome, findChrome, NO_CHROME } from './internal/chrome.ts'
 import { KI_GLYPH_GRID, kiGlyphBodies } from './internal/ki-design-glyphs.ts'
-import { kiMonoStack, kiThemeVariables } from './internal/ki-design-tokens.ts'
+import { kiMonoStack, kiThemeVariables } from './internal/tessera-tokens.ts'
 
 const USAGE = 'usage: bun scripts/export-svg.ts [--form dual|light|ki|ki-night] <input.html> <output.svg>'
 
@@ -311,7 +311,7 @@ const HELP = `${USAGE}
 
 Export the dual-theme SVG of a finalized Archify diagram through the viewer's own Export > SVG action.
 --form light, ki or ki-night flattens that export into a static SVG under Archify's light theme or the
-ki-design day or night palette, with no stylesheet, custom properties or embedded fonts; the ki forms also draw
+Tessera day or night palette, with no stylesheet, custom properties or embedded fonts; the ki forms also draw
 node icons a KI symbol carries with its glyph. dual is the default.
 Needs a system Google Chrome or Chromium, the browser Archify's own browser gate drives; set ARCHIFY_CHROME to
 choose the executable. Verified against Archify ${VERIFIED_ARCHIFY}.`
