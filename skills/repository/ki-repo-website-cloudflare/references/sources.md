@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T09:20:00Z
+ki-revised: 2026-11-22T18:17:16Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -34,18 +34,18 @@ Cloudflare's documentation, then the in-house seam.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| ASSETS — [Workers Static Assets][assets] | `assets`, assets-only Workers, and SPA fallback | 2026-10-04 |
-| BUILDS — [Workers Builds configuration][builds] | Build command, deploy command, Preview command, and optional root directory | 2026-10-18 |
-| BRANCHES — [Workers Builds build branches][branches] | Production branch and Enable Preview Builds under Branch control | 2026-10-18 |
-| BUILDS-API — [Workers Builds API reference][builds-api] | Production and preview triggers, branch filters, trigger variables, user-scoped token | 2026-10-18 |
-| BEST — [Workers best practices][best] | Workers Static Assets as the target for new projects | 2026-10-04 |
-| WRANGLER — [Wrangler configuration][wrangler] | Worker identity, routes, assets, observability, `workers_dev`, and `preview_urls` | 2026-10-18 |
-| DOMAIN — [Workers Custom Domains][domains] | Dashboard path and `custom_domain` routes | 2026-10-04 |
-| DEV — [workers.dev][workers-dev] | `<name>.<account-subdomain>.workers.dev` URL syntax; disabling it leaves Version URLs on | 2026-10-18 |
-| VERSIONS — [Version URLs][version-urls] | Version and alias URL syntax, the `preview_urls` default, and alias limits | 2026-10-18 |
-| PREVIEWS — [Worker Previews][previews] | The separate `wrangler preview` model and its one-way switch | 2026-10-18 |
-| ACCESS — [Cloudflare Access for Workers][access] · [Access application paths][access-paths] | Preview protection, rule precedence, and partial-wildcard hostnames | 2026-10-18 |
-| DNS — [Partial setup][dns-partial] · [Subdomain setup][dns-subdomain] | Plan gating for off-Cloudflare zone setups | 2026-10-04 |
+| ASSETS — [Workers Static Assets][assets] | `assets`, assets-only Workers, and SPA fallback | 2026-11-22 |
+| BUILDS — [Workers Builds configuration][builds] | Build command, deploy command, Preview command, and optional root directory | 2026-11-22 |
+| BRANCHES — [Workers Builds build branches][branches] | Production branch and Enable Preview Builds under Branch control | 2026-11-22 |
+| BUILDS-API — [Workers Builds API reference][builds-api] | Production and preview triggers, branch filters, trigger variables, user-scoped token | 2026-11-22 |
+| BEST — [Workers best practices][best] | Workers Static Assets as the target for new projects | 2026-11-22 |
+| WRANGLER — [Wrangler configuration][wrangler] | Worker identity, routes, assets, observability, `workers_dev`, and `preview_urls` | 2026-11-22 |
+| DOMAIN — [Workers Custom Domains][domains] | Dashboard path and `custom_domain` routes | 2026-11-22 |
+| DEV — [workers.dev][workers-dev] | `<name>.<account-subdomain>.workers.dev` URL syntax; disabling it leaves Version URLs on | 2026-11-22 |
+| VERSIONS — [Version URLs][version-urls] | Version and alias URL syntax, the `preview_urls` default, and alias limits | 2026-11-22 |
+| PREVIEWS — [Worker Previews][previews] | The separate `wrangler preview` model and its one-way switch | 2026-11-22 |
+| ACCESS — [Cloudflare Access for Workers][access] · [Access application paths][access-paths] | Preview protection, rule precedence, and partial-wildcard hostnames | 2026-11-22 |
+| DNS — [Partial setup][dns-partial] · [Subdomain setup][dns-subdomain] | Plan gating for off-Cloudflare zone setups | 2026-11-22 |
 
 The dashboard navigation name **Workers & Pages** remains correct in operator instructions even though Pages is not the deployment target for new projects.
 
@@ -55,7 +55,7 @@ The dashboard navigation name **Workers & Pages** remains correct in operator in
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| BUILD — `ki-repo-website` | The generator-neutral `dist/` seam this adapter consumes | 2026-10-04 |
+| BUILD — `ki-repo-website` | The generator-neutral `dist/` seam this adapter consumes | 2026-11-22 |
 
 [Back to contents](#contents)
 
@@ -72,6 +72,13 @@ The Zero Trust team naming that Kris set on 29 October 2026 is quoted in the sta
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 REFRESH re-read every outside source and the BUILD seam, answering the backpack audit's LONG-3 warning that the monthly cadence was overdue; every page was reachable, VERSIONS through a redirect to `/workers/versions-and-deployments/version-urls/`. The canonical deployed site was not inspected. No rule, default or protection changed: two findings that would change one went to Kris as queries, and the wording the standard can absorb was proposed, not written.
+
+- Confirmed: Workers is the target for new projects ("If you are starting a new project, use Workers instead of Pages"), and a static site needs only `assets.directory`, with no Worker script; the deploy command still defaults to `npx wrangler deploy`, with no deploy-directory field; the Branch control labels, the custom-domain dashboard path and `custom_domain` routes, and that a deleted custom domain leaves its certificate; the workers.dev and Version URL syntax, and that disabling `workers.dev` leaves Version URLs on; `preview_urls` follows `workers_dev` when no setting exists; hostname Access applies before Worker-level and account-level Access, and a subdomain wildcard matches one label; partial setup needs Business or Enterprise and subdomain setup Enterprise; the Builds API still takes only a user-scoped token. Wrangler is on major version 4, at `4.166.0`, and `observability.enabled` defaults to true for new Workers.
+- Changed, for a query: the Builds API reference no longer documents triggers. It documents one build configuration per Worker, `GET` and `PATCH /accounts/{account_id}/builds/workers/{worker_tag}`, whose `previews_enabled` and `previews_base_config` also govern a Worker still on legacy branch builds, so the trigger calls the [branch-previews](standard-cloudflare-hosting.md#49-branch-previews-behind-access) restore path makes, `DELETE` included, now rest only on the live run of 18 October 2026.
+- Changed, for a query: Worker Previews have matured. New Workers and new Workers Builds projects default to them, with Preview command `npx wrangler preview`; they need Wrangler `4.135.0` or later, take their own settings from a `previews` block, can serve on a custom domain, and are limited to 100 a Worker on Free and 500 on paid plans. Access gained the `preview_worker` and `all_preview_workers` destinations, which protect a Worker's previews without a hostname application. Setting the Preview command to `npx wrangler versions upload` is still documented and still yields Version URLs.
+- New detail: `assets.base_path`, an optional prefix for serving assets from a subdirectory; Version URLs and their aliases stop working when version retention deletes the version, and an alias does not keep its version; `preview_urls` now names both Version URLs and workers.dev Preview URLs; account-owned tokens for Workers Builds are announced as coming.
 
 On 22 November 2026 BUILDS-ONLY and SIGNIN-PRIVATE, which Kris decided that night and morning (the `personal.summit` package's change 40), landed: [CI/CD](standard-cloudflare-hosting.md#46-cicd) keeps no GitHub Actions deploy workflow, not even as a fallback, and [team naming](standard-cloudflare-hosting.md#48-zero-trust-team-naming) gives an account hosting several sites a neutral "Private" sign-in, while a dedicated account keeps its own name. The exemplars and EDUCATE follow. No outside source was refreshed.
 
@@ -101,7 +108,8 @@ REFRESH last ran in full on **2026-10-04**; all eight pages were reachable. Curr
 
 - Watch: Wrangler remains on major version 4, and Cloudflare now defaults `observability.enabled` to true for new Workers; the explicit declaration stays required.
 - Watch the Pages-to-Workers direction and dashboard information architecture during each monthly refresh.
-- Carried from [KI-HARNESS-GOV-208](https://github.com/knowledgeislands/ki-agent-backpack/blob/87da1b26/docs/roadmap/KI-HARNESS-GOV-208-branch-previews-behind-access.md): at each monthly refresh, check whether the Builds API reference now documents the trigger `DELETE` call the restore path relies on, and whether Worker Previews have matured enough for the house to decide on adopting them in place of Version URLs; raise that decision with Kris when they have.
+- Carried from [KI-HARNESS-GOV-208](https://github.com/knowledgeislands/ki-agent-backpack/blob/87da1b26/docs/roadmap/KI-HARNESS-GOV-208-branch-previews-behind-access.md): on 22 November 2026 the Builds API reference documented no trigger call at all, and Worker Previews had matured, so both went to Kris as queries; until he answers, check at each monthly refresh whether the build-configuration calls cover the restore path and whether new Workers can still default to Version URLs.
+- Watch for account-owned tokens for Workers Builds, which would change the user-minter step under [credential access](standard-cloudflare-hosting.md#47-credential-access).
 
 [Back to contents](#contents)
 
