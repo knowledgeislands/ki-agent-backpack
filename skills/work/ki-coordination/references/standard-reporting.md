@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T04:32:00Z
+ki-revised: 2026-11-22T07:18:00Z
 ki-status: in force
 ---
 
@@ -329,9 +329,11 @@ Which links to give for each kind of thing:
 
 **Everything a reply names.** On a Mac, in an agent host running there, as [Runtime binding](#442-runtime-binding) names them, every reply links each Cairn-store thing it names into the Wayfinder: a package, a change document, its section, step, Agreed row or open question, a tag or work record, a store record, a meeting, an actor, a territory and a repository. A table links each row. The routes are the catalogue in Cairn's [routing design, 2.6](https://github.com/knowledgeislands/apps-cairn.local/blob/main/docs/design/design-system/routing.design.md#26-deep-links-and-their-clickable-twin).
 
-- **Clickable form:** give each route as `http://localhost:1677/open/<route>`, the twin of `cairn://<route>`, since Orca shows a `cairn://` link as plain text; as `http://localhost:1677/open/package/ki.cairn/tag/MESSAGES-GO`.
+- **Clickable form:** give each route as `http://localhost:1677/open/<route>`, the twin of `cairn://<route>`; as `http://localhost:1677/open/package/ki.cairn/tag/MESSAGES-GO`. Never put a raw `cairn://` link in Orca chat text, which shows it as plain text that does not open.
+- **Copyable command:** a reply may also give `open "cairn://<route>"` in a fenced block by its footer, so the owner can paste it into a terminal on the Mac.
 - **Prompts:** a prompt goes as a fenced block, ready to copy, and also as a Wayfinder link, which opens it with Copy. A prompt kept in a change document, under a `### PROMPT-<NAME>: …` heading, takes the kept form, `cairn://prompt/<package>/<change file>/<PROMPT-NAME>`; only a short prompt that is not sensitive, up to about 6 KB, travels in the link itself, as `cairn://prompt?text=…`, encoded whole.
 - **Sensitive matter:** a family, legal or otherwise sensitive prompt only ever takes the kept form, never `?text=`, since a prompt in a link lands in browser history, the host's log and link previews.
+- **Show me:** when the owner says "show me" or "open it", a session in an agent host on the Mac where the Wayfinder runs opens the Wayfinder at the thing in question itself, with `open cairn://<route>`, by any route in the catalogue; it never opens one unprompted. A session on another host, or one the owner reads on the phone, gives the link instead.
 - **On the phone,** only `https://` links open, so the GitHub links stay.
 - **Gaps:** an unknown route opens the nearest page, with a notice. A bot's Orca item and a meeting's deeply nested files have no route yet, so they are linked as before.
 
@@ -347,7 +349,7 @@ The same read on the phone gives only `[cairn.summit change 20](https://github.c
 - **Never invented:** a link whose target cannot be resolved, or that would not open where the owner reads, is left out and the text says so.
 - **In files** this rule does not apply: a relative link stays within its repository's root, as `ki-authoring` sets.
 
-Sources: LINKS-STANDARD and WAYFINDER-COMPANION in [the decision register](sources.md#3-decisions).
+Sources: LINKS-STANDARD, WAYFINDER-COMPANION and WAYFINDER-DRIVE in [the decision register](sources.md#3-decisions).
 
 #### 4.4.2 Runtime binding
 
