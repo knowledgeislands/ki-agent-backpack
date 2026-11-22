@@ -1,9 +1,11 @@
-import { existsSync, lstatSync, readFileSync } from 'node:fs'
+import { existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs'
 import { basename, isAbsolute, join, relative, resolve } from 'node:path'
 import type { RubricContextOptions, RubricPublicationContext, RubricSession } from '../../shared/rubric.ts'
 
 const KEYS = ['tokens', 'guide', 'checks'] as const
 const GUIDES_DIRECTORY = 'docs/guides'
+/** The design system folder, found by its path: no `.ki.toml` key declares it (DESIGN-FOLDER). */
+export const DESIGN_SYSTEM_DIRECTORY = 'docs/design/design-system'
 
 /**
  * Literal colour values a design guide must not repeat: a hex colour, or a colour
@@ -46,16 +48,27 @@ export type DesignGuideContext = {
   readonly literalColours: readonly LiteralColour[]
 }
 
+export type DesignFolderContext = {
+  /** Whether `docs/design/design-system/` is a directory inside the repository. */
+  readonly exists: boolean
+  /** Why each view's copy under the folder's `projections/` falls short; empty when every index names its account. */
+  readonly projectionIssues: readonly string[]
+}
+
 export type DesignRubricContext = {
   readonly rubric: RubricPublicationContext
   readonly declaration: DesignDeclarationContext
   readonly files: DesignFilesContext
   readonly guide: DesignGuideContext
+  readonly folder: DesignFolderContext
   readonly judgment: Record<never, never>
 }
 
 const isFile = (path: string): boolean =>
   existsSync(path) && !lstatSync(path).isSymbolicLink() && lstatSync(path).isFile()
+
+const isDirectory = (path: string): boolean =>
+  existsSync(path) && !lstatSync(path).isSymbolicLink() && lstatSync(path).isDirectory()
 
 const inside = (root: string, path: string): boolean => {
   const output = relative(root, resolve(root, path))
@@ -120,6 +133,31 @@ const guideIssues = (root: string, guide: string | undefined): string[] => {
   return issues
 }
 
+/** Each view's copy under `projections/<name>/` must hold an `index.json` naming its publishing account. */
+const projectionIssues = (root: string): string[] => {
+  const projections = join(root, DESIGN_SYSTEM_DIRECTORY, 'projections')
+  if (!isDirectory(projections)) return []
+  const issues: string[] = []
+  for (const name of readdirSync(projections).sort()) {
+    if (!isDirectory(join(projections, name))) continue
+    const path = `${DESIGN_SYSTEM_DIRECTORY}/projections/${name}/index.json`
+    if (!isFile(join(root, path))) {
+      issues.push(`${path} is missing`)
+      continue
+    }
+    let index: unknown
+    try {
+      index = JSON.parse(readFileSync(join(root, path), 'utf8'))
+    } catch {
+      issues.push(`${path} is not valid JSON`)
+      continue
+    }
+    const account = index !== null && typeof index === 'object' ? (index as Record<string, unknown>).account : undefined
+    if (typeof account !== 'string' || account.trim() === '') issues.push(`${path} does not name its account`)
+  }
+  return issues
+}
+
 export const createDesignSession = ({
   repository,
   configuration,
@@ -145,6 +183,10 @@ export const createDesignSession = ({
     guide: {
       unnamedTokens: guideExists ? declaration.tokens.filter((path) => !names(path)) : [],
       literalColours: guideExists ? literalColours(content) : []
+    },
+    folder: {
+      exists: isDirectory(join(root, DESIGN_SYSTEM_DIRECTORY)),
+      projectionIssues: projectionIssues(root)
     },
     judgment: {}
   }

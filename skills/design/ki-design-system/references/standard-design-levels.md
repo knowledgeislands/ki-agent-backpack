@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:16:28Z
+ki-revised: 2026-11-22T00:40:00Z
 ki-status: in force
 ---
 
@@ -107,10 +107,10 @@ Whoever draws may be able to check only the markup, not the picture: an agent th
 
 ### 4.5 The design book
 
-A visual design's document and its final boards together make its **design book** (DESIGN-RENDER, Kris, 17 November 2026). The document is a design document in `ki-authoring`'s [design format](../../../keystone/ki-authoring/references/standard-formats-design.md), under `docs/design/`; its final boards are the chosen option at each level, kept beside it once the design is agreed, so the design can be walked and reviewed board by board.
+A visual design's document and its final boards together make its **design book** (DESIGN-RENDER, Kris, 17 November 2026). The document is a design document in `ki-authoring`'s [design format](../../../keystone/ki-authoring/references/standard-formats-design.md), kept in the repository's [design system folder](standard-design-system.md#411-the-design-system-folder), `docs/design/design-system/` (DESIGN-SYSTEM-HOMES); its final boards are the chosen option at each level, kept beside it once the design is agreed, so the design can be walked and reviewed board by board.
 
 ```text
-docs/design/ui/
+docs/design/design-system/
   wayfinder.design.md
   wayfinder/
     ia-<subject>.html      ia-<subject>.png

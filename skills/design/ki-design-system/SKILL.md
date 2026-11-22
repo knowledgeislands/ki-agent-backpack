@@ -22,12 +22,12 @@ You are applying the **Knowledge Islands Design System standard** - one way to k
 
 ## What this skill owns
 
-1. **The placement model** - which home holds each kind of design knowledge: values, how, what, why, when and proof.
+1. **The placement model** - which home holds each kind of design knowledge: values, how, what, why, when and proof; and the design system folder, `docs/design/design-system/`, the one home of an app's or package's design system, with each published view's copy under its `projections/<name>/`.
 2. **The component library** - every component library sorted by atomic design into tokens, atoms, molecules, organisms, templates and pages, with one components document giving each component its signature, what it owns and does not own, and its hand-offs; and the shells, designed from the outside in, each owning its state.
 3. **The design work method** - review, brief, options, decision, build, consolidate and retire, and what each stage leaves behind, with options drawn at three levels: information architecture, wireframe and mock-up; and the design book, in which an agreed design keeps its final boards, named by level, beside its design document.
 4. **The annotated board** - the standing projection of the built interface, with numbered pages and coded regions the owner quotes, and [`scripts/annotate-board.ts`](scripts/annotate-board.ts), which prints the in-page region collector and builds the coded overlays and their local previews from a site's board plan and screenshots.
 5. **The floor** - four requirements every adopting design system meets: one home for values, readable contrast, meaning never by colour alone, and keyboard parity.
-6. **The mechanical checker** - `ki repo audit --skill ki-design-system` checks the `.ki.toml` declaration, that the token sources, design guide and design checks exist, that the guide names its token sources, and that the guide repeats no literal colour value.
+6. **The mechanical checker** - `ki repo audit --skill ki-design-system` checks the `.ki.toml` declaration, that the token sources, design guide and design checks exist, that the guide names its token sources, and that the guide repeats no literal colour value, and warns where the design system folder is missing or a view's copy names no publishing account.
 
 A repository's own design guide, tokens and decisions stay with that repository. The formats of guides, Specifications, Decision Records and work records stay with `ki-guides`, `ki-specs`, `ki-decision-records` and `ki-work-roadmap`; token build mechanics for content sites stay with `ki-repo-website-content`.
 
@@ -55,5 +55,5 @@ Carries the universal **AUDIT · CONFORM · EDUCATE · REFRESH**. Invoked as `he
 
 - **Method, not content** - this skill never prescribes how an interface looks. A repository's guide, tokens and decisions do that; the skill says where they live and how they stay true.
 - **Design work** - when a request changes what readers see, follow the stages in [Design work, from brief to rule](references/standard-design-system.md#48-design-work-from-brief-to-rule): review on the annotated board, then brief, options and an owner's decision come before the build, and consolidation into the guide, Specifications, Decision Records and checks comes after it.
-- **Projections** - a design tool outside the repository, such as a design-system artifact or a canvas, is refreshed from the token source and the guide and is never edited as the source; the annotated board is refreshed from the running interface.
+- **Projections** - a design tool outside the repository, such as a design-system artifact or a canvas, is refreshed from the token source and the guide and is never edited as the source; the annotated board is refreshed from the running interface. Every seat works from the files, never from another account's artifact, and a view is republished only by a seat in the account its index names.
 - The `ki` host owns findings, dry-run publication, reporting, and post-conform verification; judgment aspects are counted as unevaluated rather than emitted as synthetic mechanical findings.

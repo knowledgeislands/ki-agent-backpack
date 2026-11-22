@@ -2,6 +2,7 @@ import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { DesignRubricContext } from '../contexts/design.ts'
 
 const PLACEMENT = 'standard-design-system.md#41-where-design-knowledge-lives'
+const FOLDER = 'standard-design-system.md#411-the-design-system-folder'
 const TOKENS = 'standard-design-system.md#42-the-token-source'
 const GUIDE = 'standard-design-system.md#43-the-design-guide'
 const CHECKS = 'standard-design-system.md#49-checks'
@@ -263,11 +264,47 @@ const DSYS_10: RubricItem<DesignRubricContext> = {
   }
 }
 
+const DSYS_11: RubricItem<DesignRubricContext> = {
+  code: 'DSYS-11',
+  title: 'the design system has its folder, and each view names its account',
+  description:
+    'The design system is kept in `docs/design/design-system/`, found by its path with no `.ki.toml` key, and each view’s copy under its `projections/<name>/` holds an `index.json` naming the account that publishes it.',
+  sources: [FOLDER, PROJECTIONS],
+  mechanical: {
+    level: 'WARN',
+    remediation: {
+      class: 'diagnostic',
+      guidance:
+        'Bring the design system into `docs/design/design-system/`: the token source or its export, the components document and the design book; keep each view’s copy under `projections/<name>/` with an `index.json` naming its `account`, then rerun the audit.'
+    },
+    audit: {
+      phase: 'INSPECT',
+      run: ({ folder }) => {
+        if (!folder.exists)
+          return [
+            {
+              status: 'VIOLATION',
+              message: 'The design system is kept in its folder.',
+              subject: 'docs/design/design-system/ is missing'
+            }
+          ]
+        return folder.projectionIssues.length === 0
+          ? [{ status: 'PASS', message: 'The design system has its folder, and each view names its account.' }]
+          : folder.projectionIssues.map((subject) => ({
+              status: 'VIOLATION',
+              message: 'Each view’s copy names the account that publishes it.',
+              subject
+            }))
+      }
+    }
+  }
+}
+
 export const DSYS: RubricFamily<DesignRubricContext, DesignRubricContext> = {
   code: 'DSYS',
   title: 'design system',
   description: "A repository's design knowledge sits in its homes and stays true through checks.",
   standard: PLACEMENT,
   selectContext: (context) => context,
-  items: [DSYS_1, DSYS_2, DSYS_3, DSYS_4, DSYS_5, DSYS_6, DSYS_7, DSYS_8, DSYS_9, DSYS_10]
+  items: [DSYS_1, DSYS_2, DSYS_3, DSYS_4, DSYS_5, DSYS_6, DSYS_7, DSYS_8, DSYS_9, DSYS_10, DSYS_11]
 }

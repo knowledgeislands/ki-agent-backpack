@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:16:28Z
+ki-revised: 2026-11-22T00:40:00Z
 ki-status: in force
 ---
 
@@ -15,6 +15,7 @@ ki-status: in force
 - [3. Terms and definitions](#3-terms-and-definitions)
 - [4. Rules](#4-rules)
   - [4.1 Where design knowledge lives](#41-where-design-knowledge-lives)
+    - [4.1.1 The design system folder](#411-the-design-system-folder)
   - [4.2 The token source](#42-the-token-source)
   - [4.3 The design guide](#43-the-design-guide)
   - [4.4 The component library](#44-the-component-library)
@@ -42,7 +43,8 @@ How a Knowledge Islands repository keeps the knowledge behind its user interface
 
 - A design system: the set of visual and interaction rules one product surface follows, its colours, type, layout, components, how it shows state, and how it behaves for a keyboard, a screen reader or a reader without script.
 - Any repository with a user interface, such as a website, an application or a documentation site, that adopts it by declaring `[skills.ki-design-system]` in `.ki.toml`.
-- Where design knowledge lives, design work and design checks.
+- Where design knowledge lives, the folder that holds the design system, design work and design checks.
+- Who republishes a view of the design system published outside the repository.
 
 [Back to contents](#contents)
 
@@ -65,6 +67,7 @@ This standard routes design knowledge into those instruments. It never forks the
 | Term | Definition |
 | --- | --- |
 | **Design system** | The set of visual and interaction rules one product surface follows. **Standard:** this one, [4.1](#41-where-design-knowledge-lives) |
+| **Design system folder** | `docs/design/design-system/`, the one folder of an app or package repository that holds its design system. **Standard:** this one, [4.1.1](#411-the-design-system-folder) |
 | **Token source** | The canonical home of every design value, as CSS custom properties. **Standard:** this one, [4.2](#42-the-token-source) |
 | **Design guide** | The ordinary guide holding the rules a maintainer follows to design or change a page. **Standard:** this one, [4.3](#43-the-design-guide) |
 | **Component library** | The set of reusable parts an interface is built from, sorted by atomic design into six levels. **Standard:** this one, [4.4](#44-the-component-library) |
@@ -88,12 +91,37 @@ Each kind of design knowledge has one home, so a reader knows where to look and 
 | What is the value?                | The token source, such as `tokens.css`                     | Code                     |
 | How do I build a page?            | The design guide, under `docs/guides/<audience>/`          | `ki-guides`              |
 | What must the interface do?       | Design Specifications, under `docs/specs/`                 | `ki-specs`               |
-| What parts are there, and what does each own? | The components document, one per component library | [The component library](#44-the-component-library) |
+| What parts are there, and what does each own? | The components document, one per component library, in the design system folder | [The component library](#44-the-component-library) |
+| What was agreed, board by board? | The design book, in the design system folder | [The design levels](standard-design-levels.md#45-the-design-book) |
 | Why is it this way?               | Design Decision Records, under `docs/decisions/`           | `ki-decision-records`    |
 | When will it change?              | Design work records, under `docs/roadmap/`                 | `ki-work-roadmap`        |
 | Is it still true?                 | Checks, in the repository's test and check scripts         | Code                     |
 
 The rule for every home is the same: state a thing once, in its home, and elsewhere name it. A guide names a token rather than repeating its value; a Decision Record states a decision rather than restating the guide's procedure; a check enforces a rule rather than redefining it.
+
+[Back to contents](#contents)
+
+#### 4.1.1 The design system folder
+
+Each app or package repository holds one design system, in one folder, `docs/design/design-system/`, laid out the same way in every territory (DESIGN-HOME, DESIGN-FOLDER). A principal or knowledge-base repository is not its home: a design system belongs to the site, app or package it serves. A design system shared by several of one territory's surfaces, as Tessera is for Knowledge Islands, lives in its own package repository and is vendored.
+
+```text
+<site repository>/
+  .ki.toml                              [skills.ki-design-system]: tokens, guide, checks
+  <runtime token file>                  where the code reads it, such as apps/site/src/assets/css/tokens.css
+  docs/guides/developer/site-design.md  the design guide, with the other guides; names the folder
+  docs/design/design-system/            the one home of the site's design system
+    <token source or export>
+    <the components document>
+    <the design book: its design document and boards, by level>
+    projections/<name>/                 each view's copy, as last published or exported
+      index.json                        url, type, account, source revision, when and by whom
+```
+
+- **What the folder holds** (DESIGN-SYSTEM-HOMES): the tokens' source, or their export; [the components document](#44-the-component-library); [the design book](standard-design-levels.md#45-the-design-book), its design document and final boards together; and each view's copy under `projections/<name>/`, as [Projections](#411-projections) sets. Names inside the folder other than `projections/` are the repository's to choose.
+- **The runtime token file** stays where the code reads it, declared as `tokens`. Where the tokens are generated, as Tessera's `tokens.json` writes CSS, their source sits in the folder and the runtime file is its build. Where the runtime CSS is itself the source, the folder holds its export, refreshed from it and never edited, so each value is stated once.
+- **The other homes stay where their own skills expect them:** the design guide under `docs/guides/<audience>/`, Design Specifications under `docs/specs/` and Design Decision Records under `docs/decisions/`. The guide and the folder name each other; the others name the folder rather than repeating it.
+- **No key declares the folder.** The audit finds it by its path, as [Configuration](#412-configuration) sets.
 
 [Back to contents](#contents)
 
@@ -149,7 +177,7 @@ Every component library sorts its parts by atomic design into six levels, each w
 
 Kris, 14 November 2026: "that should be in the skill, and we should make use of this everywhere".
 
-Each library keeps one **components document**, with a table for each level and one row for each component: its **signature**, what it **owns**, what it **does not own**, and its **hand-offs**, the parts it gives work to or takes work from. A signature is the contract later work builds to: names may be added, but not change meaning. The Wayfinder's [component library](https://github.com/knowledgeislands/apps-cairn.local/blob/main/docs/design/ui/wayfinder-components.md) is the model. The repository chooses where the document lives, and the design guide's Components section names it.
+Each library keeps one **components document**, with a table for each level and one row for each component: its **signature**, what it **owns**, what it **does not own**, and its **hand-offs**, the parts it gives work to or takes work from. A signature is the contract later work builds to: names may be added, but not change meaning. The Wayfinder's [component library](https://github.com/knowledgeislands/apps-cairn.local/blob/main/docs/design/design-system/wayfinder-components.design.md) is the model. The document lives in [the design system folder](#411-the-design-system-folder), and the design guide's Components section names it.
 
 The names in the components document are the code's names, and every design board names the same parts at the same levels, as [the design levels](standard-design-levels.md#42-names) set out. A part that fits no level, or two, is a question for the owner, recorded in the components document until it is answered.
 
@@ -241,7 +269,17 @@ A design tool outside the repository is a projection, refreshed from its source 
 - **Projections of the system** - a design-system artifact, a Figma library or a design canvas of components is refreshed from the token source and the guide.
 - **The annotated board** - an interface with readers keeps an [annotated board](standard-annotated-board.md): screenshots of each view and shell state as built, with labelled regions. Its source is the running interface, and it is refreshed from it whenever the interface's code changes.
 
-The guide names each projection and where it lives; the projection carries the date and source revision it was last refreshed from, so the guide holds no state that dates. A projection that disagrees with its source, the token source or what the interface draws, is stale, whatever its date.
+The guide names each projection; its record carries where it is published and the date and source revision it was last refreshed from, so the guide holds no state that dates. A projection that disagrees with its source, the token source or what the interface draws, is stale, whatever its date.
+
+**Each view's copy** (DESIGN-FOLDER, VIEW-ACCOUNT). A projection of the system published outside the repository, such as a design-system artifact or a canvas, keeps its copy in the [design system folder](#411-the-design-system-folder) under `projections/<name>/`, as last published or exported, with an `index.json` recording its url, type, publishing account, source revision, and when and by whom it was last published. Where the view came from a design tool's export, the index extends that export's own record, such as the canvas, export time, author and each board's SHA-256.
+
+**Who republishes a view** (SEAT-ACCESS, VIEW-ACCOUNT):
+
+- Every seat, in any agent host and any account, works from the design system's files, never from an artifact in another account.
+- A view is republished only by a seat in the account its index names. Every other seat changes the files and asks that seat to republish.
+- A view no working seat can reach is republished fresh from the files in a reachable account, and the old view is retired once the owner has checked the new one; it is not migrated.
+- An edit made in a view, such as on a canvas, is brought back into the files before any republish, so no edit or comment lives only in the view.
+- How each kind of seat reaches the files is being trialled from every agent host and is not yet set here.
 
 [Back to contents](#contents)
 
@@ -262,12 +300,12 @@ checks = ["apps/site/scripts/check-contrast.ts", "apps/site/tests/calendars.test
 | `guide`  | path             | The design guide, a Markdown file below `docs/guides/<audience>/`       |
 | `checks` | list of paths    | Files that hold design checks; at least one                             |
 
-All three keys are required, and no other key is recognised.
+All three keys are required, and no other key is recognised. [The design system folder](#411-the-design-system-folder) takes no key: the audit finds it by its path, `docs/design/design-system/` (DESIGN-FOLDER).
 
 [Back to contents](#contents)
 
 ### 4.13 Judgment boundary
 
-The checker can prove that the declared files exist, that the guide names its token sources, and that the guide repeats no literal colour value. It cannot prove that knowledge sits in its right home, that the component library sorts its parts by level with one row for each, that each shell owns its state, that the floor holds on every page, that every checkable rule has a check, that working material has been consolidated and retired and a chosen design's final boards kept in its book, or that the annotated board shows the interface as it now draws. Review asks those questions, page by page and rule by rule.
+The checker can prove that the declared files exist, that the guide names its token sources, that the guide repeats no literal colour value, that the design system folder exists, and that each view's copy under it has an index naming its account. It cannot prove that knowledge sits in its right home, that the component library sorts its parts by level with one row for each, that each shell owns its state, that the floor holds on every page, that every checkable rule has a check, that working material has been consolidated and retired and a chosen design's final boards kept in its book, that a view was republished only from its own account, or that the annotated board shows the interface as it now draws. Review asks those questions, page by page and rule by rule.
 
 [Back to contents](#contents)

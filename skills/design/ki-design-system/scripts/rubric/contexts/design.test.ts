@@ -25,7 +25,7 @@ const DECLARATION = {
 /** A repository with one conforming design system. */
 const repository = (guide = GUIDE): string => {
   const root = mkdtempSync(join(tmpdir(), 'ki-design-system-'))
-  for (const directory of ['src/css', 'docs/guides/developer', 'scripts'])
+  for (const directory of ['src/css', 'docs/guides/developer', 'docs/design/design-system', 'scripts'])
     mkdirSync(join(root, directory), { recursive: true })
   writeFileSync(join(root, 'src/css/tokens.css'), ':root { --primary: oklch(0.5 0.1 224); }\n')
   writeFileSync(join(root, 'docs/guides/developer/design.md'), guide)
@@ -55,9 +55,10 @@ const run = (code: string, value: DesignRubricContext) => {
 
 const statuses = (code: string, value: DesignRubricContext): string[] => run(code, value).map((o) => o.status)
 
-test('a conforming design system passes DSYS-1 to DSYS-5', () => {
+test('a conforming design system passes DSYS-1 to DSYS-5 and DSYS-11', () => {
   const value = context(repository())
-  for (const code of ['DSYS-1', 'DSYS-2', 'DSYS-3', 'DSYS-4', 'DSYS-5']) expect(statuses(code, value)).toEqual(['PASS'])
+  for (const code of ['DSYS-1', 'DSYS-2', 'DSYS-3', 'DSYS-4', 'DSYS-5', 'DSYS-11'])
+    expect(statuses(code, value)).toEqual(['PASS'])
 })
 
 test('the declaration is read validate-down, reporting every problem', () => {
@@ -133,5 +134,27 @@ test('DSYS-5 reports literal colours and passes token compositions and fragments
   const root = repository(`${GUIDE}\nThe page is #071421.\n`)
   expect(run('DSYS-5', context(root))).toEqual([
     expect.objectContaining({ status: 'VIOLATION', subject: 'line 9: #071421' })
+  ])
+})
+
+test('DSYS-11 warns without the folder and for each view whose index names no account', () => {
+  const root = repository()
+  const projections = join(root, 'docs/design/design-system/projections')
+  for (const name of ['canvas', 'empty', 'broken', 'nameless']) mkdirSync(join(projections, name), { recursive: true })
+  writeFileSync(
+    join(projections, 'canvas/index.json'),
+    JSON.stringify({ url: 'https://example.test', account: 'kris' })
+  )
+  writeFileSync(join(projections, 'broken/index.json'), '{')
+  writeFileSync(join(projections, 'nameless/index.json'), JSON.stringify({ url: 'https://example.test' }))
+  writeFileSync(join(projections, 'README.md'), '# Views\n')
+  expect(run('DSYS-11', context(root)).map((o) => o.subject)).toEqual([
+    'docs/design/design-system/projections/broken/index.json is not valid JSON',
+    'docs/design/design-system/projections/empty/index.json is missing',
+    'docs/design/design-system/projections/nameless/index.json does not name its account'
+  ])
+  const bare = mkdtempSync(join(tmpdir(), 'ki-design-system-bare-'))
+  expect(run('DSYS-11', context(bare))).toEqual([
+    expect.objectContaining({ status: 'VIOLATION', subject: 'docs/design/design-system/ is missing' })
   ])
 })
