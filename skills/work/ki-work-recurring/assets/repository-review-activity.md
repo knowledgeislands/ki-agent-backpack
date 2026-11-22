@@ -21,7 +21,7 @@ housekeeping:
 
 ## Goal
 
-Assess whether this knowledge base remains coherent, useful and directed towards its purpose, using the master `ki-repo` REVIEW checklist. Weekly and ad-hoc invocations share this Activity. `ki-repo-kb-activities` owns the note and index; `ki-work-recurring` owns its recurring-work profile.
+Assess whether this knowledge base remains coherent, useful and directed towards its purpose, using the master `ki-repo` REVIEW checklist. Weekly and ad-hoc invocations share this Activity. `ki-repo-kb` owns the note and index; `ki-work-recurring` owns its recurring-work profile.
 
 ## Procedure
 

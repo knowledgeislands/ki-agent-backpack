@@ -162,7 +162,7 @@ const kbRepository = (location = 'Admin/Operations/Activities') => {
   mkdirSync(root, { recursive: true })
   writeFileSync(
     join(repository, '.ki.toml'),
-    `[skills.ki-repo]\nrepo_type = "kb"\n[skills.ki-repo-kb-activities]\nactivities_dir = "${location}"\n[skills.ki-work-recurring]\n`
+    `[skills.ki-repo]\nrepo_type = "kb"\n[skills.ki-repo-kb]\nactivities_dir = "${location}"\n[skills.ki-work-recurring]\n`
   )
   writeFileSync(join(root, 'Activities.md'), '# Activities\n')
   return { repository, root }
@@ -274,7 +274,7 @@ test('housekeeping rejects escaped and symlinked collections and malformed confi
   for (const location of ['../outside', outside, 'linked', 'linked/subdir']) {
     writeFileSync(
       join(repository, '.ki.toml'),
-      `[skills.ki-repo]\nrepo_type = "kb"\n[skills.ki-repo-kb-activities]\nactivities_dir = "${location}"\n`
+      `[skills.ki-repo]\nrepo_type = "kb"\n[skills.ki-repo-kb]\nactivities_dir = "${location}"\n`
     )
     expect(outcomes(repository)[0]?.status).toBe('VIOLATION')
   }

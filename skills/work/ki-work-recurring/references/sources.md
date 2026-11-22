@@ -45,7 +45,11 @@ None.
 
 ## 3. Decisions
 
-None recorded by id. The skill's name follows Kris's naming decision of 14 October 2026 for the change-management design, which [the standard](standard-recurring-work.md#41-what-a-template-is) quotes.
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| KB-FOLD b | "Fold three, split streams", Kris, 22 November 2026, about 20:49 GMT, the Repository guild's sitting, recorded in the Cairn summit's [change 10](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/10-skills-review.change.md#43-decided): `ki-repo-kb-activities` folds into `ki-repo-kb`, so an Activity's location binding, `activities_dir`, is read from `[skills.ki-repo-kb]`, and `ki-repo-kb` owns the Activity note and lays out `Streams/Roadmap/`. | 2026-11-22 | [standard](standard-recurring-work.md) | In force |
+
+No other decision is recorded by id. The skill's name follows Kris's naming decision of 14 October 2026 for the change-management design, which [the standard](standard-recurring-work.md#41-what-a-template-is) quotes.
 
 [Back to contents](#contents)
 

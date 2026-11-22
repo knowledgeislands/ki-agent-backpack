@@ -49,8 +49,8 @@ Durable recurring-work templates and the template side of their runs.
 
 - The shared forward-work lifecycle of a run: `ki-work-roadmap`.
 - Spawning and closing a run: `ki-work next` and `ki-work accept`.
-- An Activity's identity, indexing, realisation and location: `ki-repo-kb-activities`.
-- KB record placement under `Streams/Roadmap/`: `ki-repo-kb-streams`.
+- An Activity's identity, indexing, realisation and location: `ki-repo-kb`.
+- KB record placement under `Streams/Roadmap/`: `ki-repo-kb`.
 - The repository review's checklist, invocation and evidence: `ki-repo` REVIEW.
 
 [Back to contents](#contents)
@@ -79,7 +79,7 @@ This standard defines durable recurring-work templates. A template is not a road
 
 ### 4.2 Placement and identity
 
-Project repositories use one flat template directory, `docs/housekeeping/`, with filenames `<REPO>-HK-<NNN>-<slug>.md`. Knowledge Bases use one canonical Activity note in the collection owned by `ki-repo-kb-activities` (default `Admin/Operations/Activities/`, or its configured `activities_dir`). There is no second KB template in Streams.
+Project repositories use one flat template directory, `docs/housekeeping/`, with filenames `<REPO>-HK-<NNN>-<slug>.md`. Knowledge Bases use one canonical Activity note in the collection owned by `ki-repo-kb` (default `Admin/Operations/Activities/`, or its configured `activities_dir`). There is no second KB template in Streams.
 
 Every recurring definition has a stable `id` in `<REPO>-HK-<NNN>` form, unique within its collection. Project filenames repeat that identifier followed by a lowercase kebab-case slug. KB filenames follow the Activity note convention; the same note holds both the adopted behaviour and its recurring-work profile.
 
@@ -148,7 +148,7 @@ AUDIT accepts only safe regular Markdown files below the selected root, without 
 
 ### 4.5 KB recurring-work profile
 
-An Activity opts into this lifecycle by declaring a `housekeeping` mapping. Declare and activate `ki-work-recurring` alongside `ki-repo-kb-activities`; the latter owns Activity identity, indexing, realization, and the location binding, while this skill owns the recurring profile. An ordinary Activity without the mapping is not a housekeeping template, even if it has a scheduled realization.
+An Activity opts into this lifecycle by declaring a `housekeeping` mapping. Declare and activate `ki-work-recurring` alongside `ki-repo-kb`; the latter owns Activity identity, indexing, realization, and the location binding, while this skill owns the recurring profile. An ordinary Activity without the mapping is not a housekeeping template, even if it has a scheduled realization.
 
 Keep `id`, `title`, and `status` at the Activity's top level. Use snake_case inside the mapping: required `cadence`, `last_run`, `grace`, `spawn_policy`, `spawn_horizon`, and `active_run`; optional `commit_threshold`, `last_run_ref`, `theme`, `component`, `purpose`, and `kind`, with the former `initiative` accepted with a warning. These map one-to-one to the Project template's hyphenated fields. There is one status, not a second nested lifecycle. All schedule and acceptance rules below apply to those mapped fields.
 
