@@ -335,6 +335,16 @@ The rule applies uniformly to existing site repositories too. Kris widened NAMIN
 6. **Drift-check paths.** Repoint every vendored-copy drift check that names the renamed repository as its canonical source, and run each one.
 7. **Workers Builds check.** Confirm that each Worker's Workers Builds connection, under Settings → Build, shows the new repository name, then push or retry a build. The GitHub App connection is normally bound to the repository identifier and survives the rename, but a stale connection fails silently.
 
+A transfer to another owner is a rename plus the transfer itself. Step 7's assumption that the Workers Builds connection survives holds only under the same owner, so after the transfer the steps above are followed by:
+
+- a check of the new owner's GitHub app installs;
+- linking each Cloudflare account to the new owner: Build → Connect → GitHub, then Save on the organisation's configure page;
+- reconnecting each Worker to its repository;
+- registering the checkout again in the KI registry;
+- updating `territory_members` in both Capitals, the one it leaves and the one it joins.
+
+Kris set this under OWNER-TRANSFER on 22 November 2026: "Short clause in 4.8". The estate's own steps for its GitHub organisations live in its chezmoi guide to them.
+
 A rename names the repository alone, so the hostname, DNS, Worker names and Cloudflare configuration do not change. Where the owner's site-safety limit cannot be met, the rename waits and the current name is retained until it can.
 
 [Back to contents](#contents)

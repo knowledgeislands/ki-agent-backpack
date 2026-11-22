@@ -82,10 +82,13 @@ The decisions the standards cite by id, oldest first; each standard keeps citing
 | KEYSTONE-FIXES | The ten Keystone skills are all kept, and their mechanical fixes land in the Cairn summit's change 10, step 6.3; for this skill, `SKILL.md` is slimmed into a router, its detail left in the standards, and any rule only `SKILL.md` held moved into a standard first. Kris, 22 November 2026, about 19:33 GMT, at the Keystone guild's sitting, card: "Keep all, fix". | 2026-11-22 | [SKILL.md](../SKILL.md), [configuration 4.12](standard-configuration.md#412-scaffolding--ownership), [4.13](standard-configuration.md#413-local-registry) | In force |
 | DOCS-LANDING-GITHUB | "_index.md only", Kris on the question card in Loreward's Home Chat at 19:57 GMT, 22 November 2026, recorded in ki.summit's change 23 · Decision: option b): a docs folder's page is `_index.md` alone, with no `README.md` pointer, even though the folder then shows no page on GitHub; the root `README.md` keeps its contract, and `ki-authoring` sets the rule. | 2026-11-22 | [repository, 4.1.1](standard-repository.md#411-root-files) | In force |
 | AUTHORING-FIXES | Option a, item 3: the bare-invocation mode choice is offered through the host's question tool, so the skill names no tool only one host has. Kris, 22 November 2026, about 20:14 GMT, the Authoring guild's sitting in Kitteth's Home Chat, card: "Keep all, fix", recorded in the Cairn summit's change 10, 4.3. | 2026-11-22 | `SKILL.md`, Operating modes | In force |
+| OWNER-TRANSFER | Option a: a transfer to another owner is a rename plus the transfer itself, followed by a check of the new owner's GitHub app installs, linking each Cloudflare account to the new owner, reconnecting each Worker to its repository, registering again in the KI registry and updating both Capitals' `territory_members`; the rename's Workers Builds assumption holds only under the same owner. The estate's own steps stay in its chezmoi guide. Kris, 22 November 2026, on the question card in Loreward's Home Chat: "Short clause in 4.8", recorded in ki.summit's change 23. | 2026-11-22 | [4.8](standard-repository.md#48-repository-naming) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 OWNER-TRANSFER a was applied by Loreward: [repository naming](standard-repository.md#48-repository-naming) gains a short clause for a transfer to another owner, after the rename's seven steps. No criterion changed and no outside source was refreshed.
 
 On 22 November 2026 AUTHORING-FIXES a, item 3, was applied by Loreward: the skill's words name the host's question tool where they named Claude's `AskUserQuestion`. No criterion changed and no outside source was refreshed.
 
