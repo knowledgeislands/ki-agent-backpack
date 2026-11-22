@@ -138,6 +138,7 @@ A change document uses the suffix pattern, `[<name>.]change.md`. Where several a
 ### 4.5 Landing
 
 - **Open fills** while a change is in `draft` and `review`, and empties as it moves on. A gap may be raised as a question and answered: either the change comes to cover it, or it is accepted as a known gap.
+- **An answered question leaves Open** in the same turn its answer is logged, the answer going to the Outline's record of decisions; a `_Answered <letter>_` marker left beside a question is temporary and goes at the next tidy (ANSWERED-MARKER).
 - **A question overtaken before it is asked** is struck through where it stands in 7.1, its tag and title as `~~TAG: <title>~~`, followed by `withdrawn: <reason>, <date>`, with no new call-out; it counts as closed. It stays struck through until the next tidy, so readers see it went, and leaves at the latest when the change moves to `agreed` (WITHDRAWN-QUESTION).
 - **By `agreed`,** Questions is None, and every gap left is accepted by that status, with no marker.
 - **Before `done`,** each consequence and gap gets a home outside the standard, chosen by whatever manages the change: a step in this change if it is done in the rollout, or otherwise a record or a new change wherever that work keeps them. A home may lie ahead, and the item links forward to it. A link to its home then replaces the item, so by `done`, Gaps and Consequences are None too.
@@ -151,7 +152,7 @@ A change document uses the suffix pattern, `[<name>.]change.md`. Where several a
 Beyond the format format's checks, a validator checks:
 
 1. **Front matter:** every field is present, and `ki-status` is one of the seven values.
-2. **Open against status:** an `agreed` change has no questions left; a `done` change has Gaps and Consequences of None. A question struck through as withdrawn counts as closed while it stands in a change still in `draft` or `review`.
+2. **Open against status:** an `agreed` change has no questions left; a `done` change has Gaps and Consequences of None. A question struck through as withdrawn, or marked `_Answered <letter>_`, counts as closed while it stands in a change still in `draft` or `review`, and a marker is named for the next tidy.
 3. **Inputs:** an input that has moved past its version ref is reported, asking for each Before to be checked against the new version; it does not block.
 4. **Shape:** the seven sections and Deltas call-outs are present, and links run both ways.
 5. **Portable:** the parts that land, the Outline and each After, refer to no other change document, nothing still to come, and no particular package, session, person or process, unless the change is about that thing; such references belong in the Introduction, Steps and Open.
