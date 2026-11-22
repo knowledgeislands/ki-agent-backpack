@@ -102,7 +102,7 @@ Resource cards (`diagram.`) point to diagrams of the terms, kept with the backpa
 
 ## Adding a card
 
-A card's wording is settled first in the Cairn summit's knowledge-skills change, by the owner's decision. Only then is it written here, and once it is, it leaves that change.
+A card's wording is settled first in `ki.summit`'s [Ecosystem map (21)](https://github.com/krisb/ki-cairn-store/blob/main/work/ki/ki.summit/21-ecosystem-map.change.md), where the guild's change lives, by the owner's decision (CARD-SETTLING). Only then is it written here, and once it is, it leaves that change.
 
 1. **Write the card** as `<id>.md` in its subgraph's folder under `knowledge/`, in the `ki-knowledge-graph` card format and with the properties [`_graph.md`](knowledge/_graph.md) requires of its type. A term card gives its purpose, then what the thing is and how it is built, the specifications it rests on, our conventions, and a link to the next card. A vendor card gives the vendor's word and its sense, its current examples, and its sources, and links to the industry's term with the predicate `_graph.md` sets for its match. A product card follows [the product cards standard](references/standard-product-cards.md), and its sources sit on the card.
 2. **Use only words already defined** on earlier term cards, and link the cards it builds on. Where a term rests on a specification, link the specification card, or a card for the part it rests on, or name the pending card's id until it is written.
