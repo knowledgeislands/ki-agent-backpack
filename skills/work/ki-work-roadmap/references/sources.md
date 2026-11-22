@@ -38,7 +38,7 @@ Every source the standards follow is in-house.
 | --- | --- | --- |
 | `ROADMAP.md` | Repository-local planning practice, work items, horizons, theme grouping, indexes, and lifecycle | 2026-09-22 |
 | [Change-management adapter standard](../../../keystone/ki-work/references/standard-change-management-adapters.md) | Selector resolution, abstract lifecycle vocabulary, and ownership boundary | 2026-09-22 |
-| [`ki-repo-kb-streams` Streams standard](../../../repository/ki-repo-kb-streams/references/standard-streams-structure.md#44-roadmap) | KB boundary, placement, and off-ramp | 2026-09-22 |
+| [`ki-repo-kb` Knowledge Base standard](../../../repository/ki-repo-kb/references/standard-knowledge-base.md) | KB boundary and the Streams layout, since KB-FOLD b | 2026-11-22 |
 
 [Back to contents](#contents)
 
@@ -52,6 +52,7 @@ None.
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
+| KB-FOLD b | "Fold three, split streams", Kris, 22 November 2026, about 20:49 GMT, the Repository guild's sitting, recorded in the Cairn summit's [change 10](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/10-skills-review.change.md#43-decided): `ki-repo-kb-streams` is split, its record checks coming here, reported in a Knowledge Base under ITEM-1, ITEM-2, ROAD-6 and ROAD-7, its layout to `ki-repo-kb` and its Project close-out to `ki-work`; the `kb-streams` adapter points at this skill. | 2026-11-22 | [4.1](standard-repository-roadmaps.md#41-repositories-it-applies-to) | In force |
 | ROADMAP-EXIT-STATE | "Yes, add returned", Kris, about 01:05 UTC, on Orca item 112, recorded in ki.summit's [change 22](https://github.com/krisb/ki-cairn-store/blob/87ec71c8/work/ki/ki.summit/22-roadmap-horizons.change.md#4-outline): option a), records gain a sixth `resolution`, `returned`: the work went back to ideas, which is not the same as being declined, and `## Cancelled` names where it waits; it takes no `resolution_target`. | 2026-11-22 | [4.9](standard-work-item-format.md#49-cancellation-and-resolution), [4.3](standard-repository-roadmaps.md#43-status-and-horizon) | In force |
 | ROADMAP-UPCOMING-NEW | "Yes, now or next only", Kris, about 19:00 GMT, by Orca item card, relayed by the Cairn summit's guardian from its [change 90](https://github.com/krisb/ki-cairn-store/blob/fdf11947/work/cairn/cairn.summit/90-ways-of-working.change.md#44-decided): option a), new roadmap work goes on only at `now` or `next`, applying ROADMAP-PACKAGE a. | 2026-11-21 | [4.3](standard-repository-roadmaps.md#43-status-and-horizon), [4.5](standard-repository-roadmaps.md#45-lifecycle-moves) | In force |
 | ROADMAP-UPCOMING-EXISTING | "Yes, one at a time", Kris, about 19:00 GMT, by Orca item card, relayed by the Cairn summit's guardian from its [change 90](https://github.com/krisb/ki-cairn-store/blob/fdf11947/work/cairn/cairn.summit/90-ways-of-working.change.md#44-decided): option a), existing `soon` and `future` records leave those horizons one at a time, as each comes up for review, with no sweep, as WIP-TERRITORY a chose for packages over the cap. | 2026-11-21 | [4.3](standard-repository-roadmaps.md#43-status-and-horizon) | In force |

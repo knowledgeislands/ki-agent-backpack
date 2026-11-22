@@ -35,8 +35,8 @@ The tracked readable rubric is the exact publication of the structured catalogue
 
 Repository-roadmap applicability.
 
-- **SCOPE-1 [M] — KB scope** — KB repositories use `ki-repo-kb-streams`; repository-roadmap artifacts in a KB fail, while a KB without them is not applicable. (standard-repository-roadmaps.md)
-  - _Remediation:_ diagnostic — Remove repository-roadmap artifacts from a KB repository or route the concern through ki-repo-kb-streams.
+- **SCOPE-1 [M] — KB scope** — A KB keeps its roadmap records flat in `Streams/Roadmap/`, checked under ITEM-1, ITEM-2, ROAD-6 and ROAD-7; repository-roadmap artifacts in a KB fail. (standard-repository-roadmaps.md)
+  - _Remediation:_ diagnostic — Remove repository-roadmap artifacts from a KB repository and keep its records in Streams/Roadmap/.
 
 ## ROAD — roadmaps
 
@@ -65,7 +65,7 @@ Canonical generated-index structure, placement, and readiness.
   - _Conforming guidance:_ Confirm the lifecycle move with its owner, record a gap, or record an explicit exclusion; never choose the move automatically.
 - **ROAD-6 [M] — repository work-item code** — The ki-repo table declares a valid stable repository code; roadmap configuration declares any identifier areas as a map from code to title and any components as a vocabulary; a bare area list fails in the Knowledge Islands territory and warns elsewhere, where each listed code is defined under ## Areas in the roadmap index; retired themes and area-to-theme maps fail. (standard-repository-roadmaps.md)
   - _Remediation:_ diagnostic — Correct the configured repository code, areas, or component vocabulary from authoritative repository configuration.
-- **ROAD-7 [M] — issue-allocation ledger** — docs/roadmap/_ISSUES.md records repository-wide or fixed-area high-water marks, and may name the work package that does the roadmap's work as `work: <package id>`. A number is reserved by committing the applicable ledger advance on its own before the record is written, in the one designated writing checkout the repository serialises roadmap writes through. The mechanical checks read the ledger alone — its issuing mode, its exact match against the configured areas, and its high-water floor against retained items — and cannot observe the commit ordering or the checkout that made the advance. (standard-repository-roadmaps.md)
+- **ROAD-7 [M] — issue-allocation ledger** — docs/roadmap/_ISSUES.md, or Streams/Roadmap/_ISSUES.md in a KB, records repository-wide or fixed-area high-water marks, and may name the work package that does the roadmap's work as `work: <package id>`. A number is reserved by committing the applicable ledger advance on its own before the record is written, in the one designated writing checkout the repository serialises roadmap writes through. The mechanical checks read the ledger alone — its issuing mode, its exact match against the configured areas, and its high-water floor against retained items — and cannot observe the commit ordering or the checkout that made the advance. (standard-repository-roadmaps.md)
   - _Remediation:_ automatic
 - **ROAD-8 [J] — lifecycle and pruning commit boundaries** — Lifecycle transitions may share their coherent work commit; a prune-only commit with the standardised message removes one or more eligible records only after each has landed as done. (standard-repository-roadmaps.md)
   - _Evidence scope:_ The Git history and proposed commits that create or transition work records, land accepted done records, or prune selected records.
@@ -79,7 +79,7 @@ Canonical generated-index structure, placement, and readiness.
 
 Flat work-item identity, grouping, lifecycle, and dependencies.
 
-- **ITEM-1 [M] — flat work-item identity** — Each canonical item lives directly under docs/roadmap with a unique stable identifier, matching filename, and title of at most four words. (standard-repository-roadmaps.md, standard-work-item-format.md)
+- **ITEM-1 [M] — flat work-item identity** — Each canonical item lives directly under docs/roadmap, or Streams/Roadmap in a KB, with a unique stable identifier, matching filename, and title of at most four words. (standard-repository-roadmaps.md, standard-work-item-format.md)
   - _Remediation:_ diagnostic — Correct the item filename, frontmatter identity, or title to match the canonical flat work-item contract.
 - **ITEM-2 [M] — item state and classification** — Each item has valid status, horizon for its status, a size that is not xl once adopted, an adopted draft at xl warned on and a ready one failed, an assignee from the holder vocabulary that stays fixed once in progress, hold, optional target (date, due or milestone kind, and what), resolution, resolvable Project classification, baseline, dependency, and mandatory timestamp-pair fields. (standard-repository-roadmaps.md)
   - _Remediation:_ diagnostic — Correct the item state fields or dependency declarations; do not choose a priority or lifecycle transition automatically.

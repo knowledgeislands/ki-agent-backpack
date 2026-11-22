@@ -17,7 +17,7 @@ argument-hint: 'audit <repo> | conform <repo> | help | educate <repo> | refresh'
 
 # Knowledge Islands repository roadmap standard
 
-This governance skill owns the shared flat forward-work model. A project repository keeps canonical work items directly under `docs/roadmap/` and one concise root orientation file; a Knowledge Base keeps the same record model directly under `Streams/Roadmap/`, with `ki-repo-kb-streams` owning that container. A repository either issues one repository-wide sequence or declares fixed area namespaces; a work item's `project` or `theme` gives its territory grouping. `ki-work next` is the separate process skill that applies this skill's user-confirmed transition rules to select the next work; this governance skill has no process-skill dependency.
+This governance skill owns the shared flat forward-work model. A project repository keeps canonical work items directly under `docs/roadmap/` and one concise root orientation file; a Knowledge Base keeps the same record model directly under `Streams/Roadmap/`, its records checked here and its folder layout by `ki-repo-kb`. A repository either issues one repository-wide sequence or declares fixed area namespaces; a work item's `project` or `theme` gives its territory grouping. `ki-work next` is the separate process skill that applies this skill's user-confirmed transition rules to select the next work; this governance skill has no process-skill dependency.
 
 Read [the repository-roadmap standard](references/standard-repository-roadmaps.md) before changing a roadmap shape or lifecycle. Read [the generated rubric](references/rubric.md) for the mechanical and judgment criteria. Work-item details live in [the work-item-format standard](references/standard-work-item-format.md). Tracked methodology sources and the REFRESH cadence live in [the source list](references/sources.md).
 
@@ -37,7 +37,7 @@ Carries the universal **AUDIT · CONFORM · EDUCATE · REFRESH** modes. Invoked 
 
 ### Mode AUDIT
 
-Run `ki repo audit --skill ki-work-roadmap --repo <repo>` for a project repository. The catalogue applies the mechanical criteria in [the generated rubric](references/rubric.md): concise root orientation; configured theme vocabulary; work-item placement, frontmatter, identity, theme grouping, lifecycle, and dependency integrity. A Knowledge Base uses `ki-repo-kb-streams` for container audit while its `Streams/Roadmap/` records follow this shared model.
+Run `ki repo audit --skill ki-work-roadmap --repo <repo>` for a project repository. The catalogue applies the mechanical criteria in [the generated rubric](references/rubric.md): concise root orientation; configured theme vocabulary; work-item placement, frontmatter, identity, theme grouping, lifecycle, and dependency integrity. In a Knowledge Base the same catalogue checks the `Streams/Roadmap/` records under ITEM-1, ITEM-2, ROAD-6 and ROAD-7; `ki-repo-kb` audits the Streams layout.
 
 Then apply the rubric's judgment criteria by reading: item quality, horizon placement and transition readiness, stage-appropriate detail, final topic-oriented Discussion, honest lifecycle state, and coherent classification (`kind`, `purpose`, `project` or `theme`, `component`). Report structural or proposed local roadmap action only: never infer adoption or acceptance, move or prune a record, prioritize work, or edit another repository's state. Iterate until mechanical findings are clean and judgment findings are resolved.
 
@@ -49,7 +49,7 @@ Run `ki repo conform --skill ki-work-roadmap --repo <repo> --dry-run` to inspect
 
 ### Mode EDUCATE
 
-Run `ki repo educate --skill ki-work-roadmap --repo <repo>` to render the catalogue's concern and families. To establish a new non-KB repository, scaffold the root orientation only when `ROADMAP.md` and `docs/roadmap/` are both absent. In a KB, use the `ki-repo-kb-streams` skill and create no repository-roadmap artifact.
+Run `ki repo educate --skill ki-work-roadmap --repo <repo>` to render the catalogue's concern and families. To establish a new non-KB repository, scaffold the root orientation only when `ROADMAP.md` and `docs/roadmap/` are both absent. In a KB, keep records in `Streams/Roadmap/` and create no repository-roadmap artifact.
 
 ### Mode REFRESH
 

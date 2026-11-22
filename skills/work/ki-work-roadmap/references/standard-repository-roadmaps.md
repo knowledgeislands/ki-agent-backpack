@@ -52,7 +52,7 @@ The repository-roadmap adapter's shape and lifecycle for non-KB repositories.
 ### 2.2 Out of scope
 
 - A work item's fields, body and detail by stage: [the work-item format](standard-work-item-format.md).
-- A Knowledge Base's roadmap container: `ki-repo-kb-streams`.
+- A Knowledge Base's Streams layout: `ki-repo-kb`.
 - Adapter selection and the abstract record vocabulary: `ki-work`'s [change-management adapter standard](../../../keystone/ki-work/references/standard-change-management-adapters.md).
 - Projects, themes and the rooting of ideas: `ki-work`'s [Project registry](../../../keystone/ki-work/references/standard-project-registry.md).
 - Capture, planning, delivery and acceptance procedures: the `ki-work` subcommands.
@@ -84,7 +84,7 @@ The rules, part by part.
 
 This standard applies to non-KB repositories.
 
-A repository whose `.ki.toml` declares `repo_type = "kb"` uses `ki-repo-kb-streams` and must not add a parallel project `ROADMAP.md` or `docs/roadmap/` tree. It may declare `[skills.ki-work-roadmap]` alongside `[skills.ki-repo-kb-streams]` to configure the shared record model, issuing areas and components; the declaration does not select the project `roadmap` adapter. Streams remains the KB container and audit owner.
+A repository whose `.ki.toml` declares `repo_type = "kb"` keeps its records flat in `Streams/Roadmap/` and must not add a parallel project `ROADMAP.md` or `docs/roadmap/` tree. It declares `[skills.ki-work-roadmap]` to configure the shared record model, issuing areas and components; the declaration does not select the project `roadmap` adapter, which stays `kb-streams`. This skill checks the KB's records: identity under ITEM-1, frontmatter and fields under ITEM-2, issuing areas under ROAD-6 and the `Streams/Roadmap/_ISSUES.md` ledger under ROAD-7, as for a project; CONFORM writes nothing in a KB. `ki-repo-kb` owns the Streams folder layout, and `ki-work` a Project's close-out.
 
 [Back to contents](#contents)
 

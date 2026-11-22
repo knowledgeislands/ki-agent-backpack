@@ -7,7 +7,7 @@ import type {
 } from '../../shared/rubric.ts'
 import { inspectAreaDefinitions } from './area-definitions.ts'
 import { createRoadmapDraft } from './roadmap-drafts.ts'
-import { type Finding, inspectRoadmap } from './roadmap-evidence.ts'
+import { type Finding, inspectRoadmap, isKb } from './roadmap-evidence.ts'
 
 export type RoadmapAuditContext = {
   readonly findings: readonly Finding[]
@@ -61,7 +61,8 @@ export const createRoadmapSession = ({
   publication
 }: RubricContextOptions): RubricSession<RoadmapRubricContext> => {
   const findings = [...inspectRoadmap(repository), ...inspectAreaDefinitions(repository)]
-  const draft = mode === 'conform' ? createRoadmapDraft(repository, findings) : undefined
+  // A Knowledge Base's ledger lives in Streams/Roadmap/, which the docs/roadmap drafts must not write.
+  const draft = mode === 'conform' && !isKb(repository) ? createRoadmapDraft(repository, findings) : undefined
   const audit = { findings }
   const context: RoadmapRubricContext = {
     rubric: { publication },

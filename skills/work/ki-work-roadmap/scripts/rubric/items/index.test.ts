@@ -869,7 +869,7 @@ test('KB scope follows the declared repository kind, not a directory shape', () 
     '[skills.ki-repo]\nrepo_code = "TEST"\nrepo_type = "kb"\n\n[skills.ki-work-roadmap]\n'
   )
   expect(inspectRoadmap(repository)).toContainEqual(
-    expect.objectContaining({ area: 'SCOPE-1', level: 'FAIL', msg: expect.stringContaining('ki-repo-kb-streams') })
+    expect.objectContaining({ area: 'SCOPE-1', level: 'FAIL', msg: expect.stringContaining('Streams/Roadmap/') })
   )
   writeFileSync(
     join(repository, '.ki.toml'),

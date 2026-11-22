@@ -5,6 +5,7 @@ import { basename, dirname, join, relative, resolve } from 'node:path'
 import { inspectRoadmapAreas, matchesRoadmapArea } from '../../shared/roadmap-areas.ts'
 import { isRepositoryCode, SCOPE_SEGMENT, workIdentifier, workIdentifierSource } from '../../shared/work-identifiers.ts'
 import { ASSIGNEE_RE, lockedAssignee } from './assignee-lock.ts'
+import { inspectKbRoadmap } from './kb-roadmap.ts'
 import {
   isEnforcingTerritoryRepository,
   loadProjectRegistry,
@@ -291,7 +292,7 @@ const parseFrontmatter = (
   return { values, body: text.slice(match[0].length) }
 }
 
-const isKb = (repository: string): boolean => {
+export const isKb = (repository: string): boolean => {
   const config = join(repository, '.ki.toml')
   if (!existsSync(config)) return false
   try {
@@ -1166,14 +1167,16 @@ export const inspectRoadmap = (repository: string): readonly Finding[] => {
   const roadmap = join(root, 'docs', 'roadmap')
   const rootIndexPath = join(root, 'ROADMAP.md')
   if (isKb(root)) {
+    // A Knowledge Base keeps its records flat in Streams/Roadmap/ (KB-FOLD b, 22 November 2026).
     if (existsSync(roadmap) || existsSync(rootIndexPath))
       add(
         'FAIL',
         'SCOPE-1',
-        'KB repository must use ki-repo-kb-streams instead of repository roadmap artefacts',
+        'KB repository keeps its roadmap in Streams/Roadmap/, not in repository roadmap artefacts',
         STANDARD
       )
-    else add('NA', 'SCOPE-1', 'KB repository: repository-roadmap standard does not apply', STANDARD)
+    else add('PASS', 'SCOPE-1', 'KB repository keeps its roadmap in Streams/Roadmap/', STANDARD)
+    findings.push(...inspectKbRoadmap(root, STANDARD, FORMAT))
     return findings
   }
   const configuration = roadmapConfiguration(root)

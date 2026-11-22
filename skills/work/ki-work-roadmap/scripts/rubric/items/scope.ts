@@ -7,14 +7,13 @@ const SCOPE_1: RubricItem<RoadmapAuditContext> = {
   code: 'SCOPE-1',
   title: 'KB scope',
   description:
-    'KB repositories use `ki-repo-kb-streams`; repository-roadmap artifacts in a KB fail, while a KB without them is not applicable.',
+    'A KB keeps its roadmap records flat in `Streams/Roadmap/`, checked under ITEM-1, ITEM-2, ROAD-6 and ROAD-7; repository-roadmap artifacts in a KB fail.',
   sources: [SOURCE],
   mechanical: {
     level: 'FAIL',
     remediation: {
       class: 'diagnostic',
-      guidance:
-        'Remove repository-roadmap artifacts from a KB repository or route the concern through ki-repo-kb-streams.'
+      guidance: 'Remove repository-roadmap artifacts from a KB repository and keep its records in Streams/Roadmap/.'
     },
     audit: { phase: 'INSPECT', run: (context) => outcomesFor(context, 'SCOPE-1', 'The repository is in scope.') }
   }

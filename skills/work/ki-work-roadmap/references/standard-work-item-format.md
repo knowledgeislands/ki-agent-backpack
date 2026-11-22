@@ -320,7 +320,7 @@ These links preserve historical evaluation, implementation and integration evide
 
 Before publishing a local mutation, the writer compares the record revision it observed with the revision it will replace and stops on drift. Validation requires pair presence, canonical shape, and `created_at <= updated_at`. It deliberately does not compare either value with the auditor's wall clock, so clock skew or a previously recorded future value cannot make an otherwise monotonic record invalid.
 
-Remote adapters project their provider-native creation and update timestamps into the portable work-item view. They do not duplicate those values into provider bodies. Knowledge Base Streams owns validation and mutation of its local projection; the repository-roadmap adapter owns the equivalent contract under `docs/roadmap/`.
+Remote adapters project their provider-native creation and update timestamps into the portable work-item view. They do not duplicate those values into provider bodies. The repository-roadmap adapter owns validation and mutation of the local projection, under `docs/roadmap/` or a Knowledge Base's `Streams/Roadmap/`.
 
 The timestamp pair supports age, inactivity, coverage, and stale-active reporting; it does not establish lifecycle event history, cycle time, throughput, or time-in-state evidence.
 
