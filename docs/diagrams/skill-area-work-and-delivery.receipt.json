@@ -4,12 +4,12 @@
   "type": "architecture",
   "source": {
     "file": "skill-area-work-and-delivery.architecture.json",
-    "sha256": "91b34beb1a2b4591a82e92492c90b357c0a4b964f75d70f8fd31d2b51c9bb382",
+    "sha256": "69b0ba36d6782f6630f10de0a82a81dd0b3829abf9649c6927896642a194c6bc",
     "bytes": 7356
   },
   "html": {
     "file": "skill-area-work-and-delivery.html",
-    "sha256": "04db81812f9c797aca892f3cb4a810da7abe17b5a60b60e05ff80c8d7cf4b69a",
+    "sha256": "aeadece615c3bd1229cc119ac6ff721640293b7ece124bc65df0d61e48cdb147",
     "bytes": 848130
   },
   "renderer": {

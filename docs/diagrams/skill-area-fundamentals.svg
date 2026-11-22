@@ -1208,8 +1208,8 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         <text x="148" y="852" class="t-backend" font-size="7" text-anchor="middle">R37 · CL · F9</text>
         </g>
 
-        <g id="node-ki-work-roadmap" data-node-id="ki-work-roadmap" data-node-label="ki-work-roadmap" tabindex="0" role="button" aria-label="Focus ki-work-roadmap, work · opt-in, Work and delivery · 1 skill" aria-pressed="false" data-node-kind="database" data-node-sublabel="work · opt-in" data-node-tag="R22 · CL · F4" data-node-context="Work and delivery · 1 skill">
-          <title>ki-work-roadmap · work · opt-in · Work and delivery · 1 skill · R22 · CL · F4</title>
+        <g id="node-ki-work-roadmap" data-node-id="ki-work-roadmap" data-node-label="ki-work-roadmap" tabindex="0" role="button" aria-label="Focus ki-work-roadmap, work · opt-in, Work and delivery · 1 skill" aria-pressed="false" data-node-kind="database" data-node-sublabel="work · opt-in" data-node-tag="R23 · CL · F4" data-node-context="Work and delivery · 1 skill">
+          <title>ki-work-roadmap · work · opt-in · Work and delivery · 1 skill · R23 · CL · F4</title>
           <rect x="364" y="784" width="208" height="76" rx="8" class="c-mask"/>
           <rect x="364" y="784" width="208" height="76" rx="8" class="c-database" data-animate="node" style="--step: 7; --flow-node-name: archify-relay-node-10;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(370 790) scale(0.6875)">
@@ -1218,7 +1218,7 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
           </g>
           <text data-node-label="" x="468" y="820" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-work-roadmap</text>
         <text x="468" y="836" class="t-muted" font-size="9" text-anchor="middle">work · opt-in</text>
-        <text x="468" y="852" class="t-database" font-size="7" text-anchor="middle">R22 · CL · F4</text>
+        <text x="468" y="852" class="t-database" font-size="7" text-anchor="middle">R23 · CL · F4</text>
         </g>
 
         <g id="node-ki-subagents" data-node-id="ki-subagents" data-node-label="ki-subagents" tabindex="0" role="button" aria-label="Focus ki-subagents, agentic ecosystems · automatic, Agentic ecosystems · 1 skill" aria-pressed="false" data-node-kind="backend" data-node-sublabel="agentic ecosystems · automatic" data-node-tag="R5 · CM · F3" data-node-context="Agentic ecosystems · 1 skill">
