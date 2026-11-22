@@ -242,7 +242,7 @@ To review managed personal instructions section by section and verify affected s
 
 `ki-git` owns portable Git and commit policy, including safe lock recovery.
 
-This standard owns only chezmoi's runtime-specific registration of a selected compatible hook payload; it does not define Git hygiene or remove locks.
+Chezmoi's registration of backpack hooks in runtime settings belongs to `ki-env-binding-chezmoi`'s [hook registration standard](../../../environment/ki-env-binding-chezmoi/references/standard-chezmoi-hook-registration.md), under HOOK-HOME a; this standard does not define Git hygiene or remove locks.
 
 Its existing local physical-lock observation is scoped evidence for a chezmoi repository, not an independent portable Git policy.
 

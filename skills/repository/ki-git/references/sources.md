@@ -63,6 +63,7 @@ Kris's decisions behind the rules, each quoted in the standard beside the rule i
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
+| HOOK-HOME a | Chezmoi's hook-registration rule lives in `ki-env-binding-chezmoi`, whose scope widens to KI bindings, MCP servers and hooks; `ki-repo-backpack` keeps the payloads, and `ki-repo-dotfiles-chezmoi` 4.10 and `ki-git`'s five mentions point there. Kris, 22 November 2026, about 21:18 GMT, the Environment guild's sitting, card: "ki-env-binding-chezmoi"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [2.2](standard-git.md#22-out-of-scope), [4.1](standard-git.md#41-scope-and-ownership), [4.8](standard-git.md#48-runtime-binding-and-enforcement) | In force |
 | REPO-GIT-HYGIENE | The clean-down criteria, each naming a read-only Git or provider command and a fixed rule | 2026-10-16 | [4.6](standard-git.md#46-clean-down-state) | taken |
 | GREEN-MAIN | "GREEN-MAIN - agreed as recommended": a repository whose skills, hooks or rubrics run in other repositories' gates takes every edit off its shared primary checkout, extended to `tools-ki` the same day | 2026-10-20 | [4.4](standard-git.md#44-working-copy-and-review-approaches) | taken |
 | WORKTREE-INTEGRATE a) | "do whatever that needs to be": a background run fast-forwards its own worktree branch into the local primary checkout's `main`, and one that cannot fast-forward cleanly keeps its worktree and reports it stranded | 2026-10-20 | [4.4.2](standard-git.md#442-worktree-run-self-integration) | taken |
@@ -74,6 +75,8 @@ Kris's decisions behind the rules, each quoted in the standard beside the rule i
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied HOOK-HOME a, recorded under [Decisions](#3-decisions): the out-of-scope list, scope and ownership, and runtime binding, with SKILL.md's Boundaries and EDUCATE, now point to `ki-env-binding-chezmoi` for hook registration. No criterion changed and no outside source refreshed.
 
 On 22 November 2026 the third SKILLS-LEARNING batch added two pitfalls: in [safe Git hygiene](standard-git.md#45-safe-git-hygiene), a commit refused by its message check leaves what was added before it staged, so check each commit landed before the next; and in [the local integration write boundary](standard-git.md#441-local-integration-write-boundary), typecheck again after resolving a merge conflict. No criterion changed and no external source refreshed.
 

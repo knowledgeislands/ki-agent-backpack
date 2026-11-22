@@ -113,11 +113,17 @@ Measured, not documented.
 
 ## 3. Decisions
 
-None recorded by id. Kris's two decisions behind the rules are quoted in the standard beside the rules they set: the five-part [script header](standard-chezmoi-dotfiles.md#44-script-headers) he agreed on 30 October 2026 and asked on 7 November 2026 to adopt into this skill, and the source's having no commit gate, set on 20 October 2026, under the [Git boundary](standard-chezmoi-dotfiles.md#410-git-boundary) and ADR-KI-HARNESS-SKILLS-017.
+One decision is recorded by id below. Kris's two earlier decisions behind the rules are quoted in the standard beside the rules they set: the five-part [script header](standard-chezmoi-dotfiles.md#44-script-headers) he agreed on 30 October 2026 and asked on 7 November 2026 to adopt into this skill, and the source's having no commit gate, set on 20 October 2026, under the [Git boundary](standard-chezmoi-dotfiles.md#410-git-boundary) and ADR-KI-HARNESS-SKILLS-017.
+
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| HOOK-HOME a | Chezmoi's hook-registration rule lives in `ki-env-binding-chezmoi`, whose scope widens to KI bindings, MCP servers and hooks; `ki-repo-backpack` keeps the payloads, and `ki-repo-dotfiles-chezmoi` 4.10 and `ki-git`'s five mentions point there. Kris, 22 November 2026, about 21:18 GMT, the Environment guild's sitting, card: "ki-env-binding-chezmoi"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [Git boundary, 4.10](standard-chezmoi-dotfiles.md#410-git-boundary) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied HOOK-HOME a, recorded under [Decisions](#3-decisions): [the Git boundary, 4.10](standard-chezmoi-dotfiles.md#410-git-boundary) now points to `ki-env-binding-chezmoi` for chezmoi's hook registration. No criterion changed and no outside source refreshed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
 

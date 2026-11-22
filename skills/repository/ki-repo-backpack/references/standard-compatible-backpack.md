@@ -89,7 +89,7 @@ A **compatible installed backpack** is a verified regular-file payload acquired 
 
 The installed payload, not a checkout, runtime projection, cache, or repository-local `.ki/` directory, is the operation source. A nearby checkout never becomes authoritative because a name matches or a symlink points to it.
 
-For hooks, the publishing side's part is to ship each hook as `hooks/<hook>/<hook>.sh` and list it in the `hooks/README.md` payload table; `ki` installs and checks the payload and the user-environment manager registers it from the installed path. The backpack hooks README's [How hooks are expected to work](../../../../hooks/README.md#how-hooks-are-expected-to-work) sets out all three parts and what `ki` does today.
+For hooks, the publishing side's part is to ship each hook as `hooks/<hook>/<hook>.sh` and list it in the `hooks/README.md` payload table; `ki` installs and checks the payload and the user-environment manager registers it from the installed path. The backpack hooks README's [How hooks are expected to work](../../../../hooks/README.md#how-hooks-are-expected-to-work) sets out all three parts and what `ki` does today; on a chezmoi-managed machine the third part belongs to `ki-env-binding-chezmoi`'s [hook registration standard](../../../environment/ki-env-binding-chezmoi/references/standard-chezmoi-hook-registration.md), under HOOK-HOME a.
 
 A source-backpack audit proves only physical source layout and source capability identity. It cannot establish a verified installed payload, selected local-development source, runtime activation link, declared-capability resolution, component conformance, or executed runtime capability. Those evidence states are host-owned and must be reported separately as observed or unavailable.
 

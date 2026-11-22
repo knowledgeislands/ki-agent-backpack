@@ -69,6 +69,7 @@ The owner decisions the standard and this file name by id.
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
+| HOOK-HOME a | Chezmoi's hook-registration rule lives in `ki-env-binding-chezmoi`, whose scope widens to KI bindings, MCP servers and hooks; `ki-repo-backpack` keeps the payloads, and `ki-repo-dotfiles-chezmoi` 4.10 and `ki-git`'s five mentions point there. Kris, 22 November 2026, about 21:18 GMT, the Environment guild's sitting, card: "ki-env-binding-chezmoi"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [compatible backpack standard, 4.1](standard-compatible-backpack.md#41-source-and-installed-boundaries) | In force |
 | COMMIT-VS-CI | Option a, which Kris chose, "I think we just need to keep them simple": the harness pre-commit hook runs only check-only staged lints, and the focused harness audit runs in CI. | 2026-10-26 | [compatible harness standard, 4.8](standard-compatible-backpack.md#48-commit-gate) | In force |
 | PERSONAL-SPECIAL | Kris's word: the prefix `personal` is reserved for the owner's own personal Harness, which only that owner installs. | 2026-10-29 | [compatible harness standard, 4.7](standard-compatible-backpack.md#47-backpack-declaration) | In force |
 | BACKPACK-DEPTH | Kris's word, in the Cairn summit's change 12: `ki-repo-harness` became `ki-repo-backpack`, and the harness wording in its standards follows when the backpack words are rolled out. | 2026-11-14 | [compatible harness standard](standard-compatible-backpack.md) | In force |
@@ -78,6 +79,8 @@ The owner decisions the standard and this file name by id.
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied HOOK-HOME a, recorded under [Decisions](#3-decisions): [the compatible backpack standard, 4.1](standard-compatible-backpack.md#41-source-and-installed-boundaries) keeps the three-part hook model and points to `ki-env-binding-chezmoi` for the third part. No criterion changed and no outside source refreshed.
 
 On 19 November 2026 BACKPACK-ROOT-WORDS, recorded under [Decisions](#3-decisions), brought the backpack's own root files, `hooks/README.md` and developer guides to the backpack word, the local development guide renamed. No criterion changed and no outside source refreshed.
 

@@ -18,7 +18,7 @@ ki-refresh: external-spec · quarterly
 
 ## 1. Introduction
 
-The sources behind the [chezmoi MCP rendering standard](standard-chezmoi-mcp-rendering.md) and [rubric](rubric.md). Provenance only: the record of _what changed_ lives in git (the REFRESH commit), not a changelog here. This skill tracks no external spec on a clock — it is re-anchored when the chezmoi render contract changes (the `mcp-servers-json` template shape, the `.chezmoidata` wiring, or the `chezmoi apply` behaviour), or when either composed sibling's contract moves.
+The sources behind the [chezmoi MCP rendering standard](standard-chezmoi-mcp-rendering.md), the [chezmoi hook registration standard](standard-chezmoi-hook-registration.md) and the [rubric](rubric.md). Provenance only: the record of _what changed_ lives in git (the REFRESH commit), not a changelog here. This skill tracks no external spec on a clock — it is re-anchored when the chezmoi render contract changes (the `mcp-servers-json` template shape, the `.chezmoidata` wiring, or the `chezmoi apply` behaviour), or when either composed sibling's contract moves.
 
 [Back to contents](#contents)
 
@@ -36,6 +36,8 @@ The house's own skills and source, then chezmoi's documentation.
 | --- | --- | --- |
 | BIND — `ki-env-binding` skill | The renderer-neutral surface audit this skill composes (surfaces agree with the single source) | 2026-10-19 |
 | CHEZ — `ki-repo-dotfiles-chezmoi` skill | The generic chezmoi source-repo standard this skill composes (repo is conventional) | 2026-10-19 |
+| HOOKS — the backpack's `hooks/README.md` payload table and `ki-repo-backpack`'s three-part hook model | The payloads this skill registers, each hook's runtime, event, matcher and timeout | 2026-11-22 |
+| PARTIALS — the chezmoi source's `.chezmoitemplates/*-hook-registrations-json`, their `.chezmoidata` hook entries and the Claude Code and Codex settings targets | The registration shape the hook standard describes | 2026-11-22 |
 | SRC — `~/.config/ki/mcp-servers.yaml` (canonical) + either `.chezmoidata/*mcp*` (data-merge pattern) or a plain managed source file applied verbatim to the canonical path (managed-source pattern) | The single source and the chezmoi data the render path reads | 2026-10-19 |
 
 [Back to contents](#contents)
@@ -53,11 +55,14 @@ The house's own skills and source, then chezmoi's documentation.
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
+| HOOK-HOME a | The hook-registration rule, chezmoi registering a selected backpack hook payload into Claude Code's and Codex's settings, lives in `ki-env-binding-chezmoi`, whose scope widens beyond MCP to KI bindings, MCP servers and hooks; `ki-repo-backpack` keeps the payloads; `ki-repo-dotfiles-chezmoi` 4.10 and `ki-git`'s five mentions point here. Kris, 22 November 2026, about 21:18 GMT, the Environment guild's sitting, card: "ki-env-binding-chezmoi"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [Hook registration standard](standard-chezmoi-hook-registration.md#1-introduction) | In force |
 | ADR-KI-HARNESS-SKILLS-004 | Skills must be valid standalone; its composition-for-backends corollary makes the render path its own composition skill, not a fork or a `--backend` flag | 2026-06-23 | [Chezmoi MCP rendering standard](standard-chezmoi-mcp-rendering.md#1-introduction) | Current |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, made this skill the one home of chezmoi's hook registration under HOOK-HOME a. The new [hook registration standard](standard-chezmoi-hook-registration.md) was written from the chezmoi source's registration partials and the backpack's payload table, and the description widened to hooks. No criterion changed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Environment guild: REFRESH names the backpack as where to run it. No criterion changed and no outside source refreshed.
 
