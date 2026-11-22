@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:33:49Z
+ki-revised: 2026-11-22T18:34:05Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -104,10 +104,13 @@ The loop of [the work design standard](standard-work-design.md) is house practic
 | ROADMAP-EXIT-STATE | "Yes, add returned", Kris, about 01:05 UTC, on Orca item 112, recorded in ki.summit's [change 22](https://github.com/krisb/ki-cairn-store/blob/87ec71c8/work/ki/ki.summit/22-roadmap-horizons.change.md#4-outline): option a), a record that leaves the roadmap as an idea is cancelled with `resolution: returned`, which is not the same as declined, its `## Cancelled` naming where it waits. | 2026-11-22 | [4.3.2](standard-next-work.md#432-capture-substantive-prospective-work), [4.4.1](standard-next-work.md#441-non-kb-repositories), [acceptance](standard-acceptance.md) | In force |
 | UPCOMING-SURFACING | "Yes, one each run", Kris, about 00:59 UTC, on Orca item 112, recorded in ki.summit's [change 22](https://github.com/krisb/ki-cairn-store/blob/da42d7f6/work/ki/ki.summit/22-roadmap-horizons.change.md#4-outline): option a), each `ki-work next` run says how many Soon, Future and held draft records wait and, after the Now and Next candidates, offers one for review, a held draft whose review date has passed first, otherwise the oldest by `updated_at`; it moves to Next or leaves as an idea. | 2026-11-22 | [4.4.1](standard-next-work.md#441-non-kb-repositories) | In force |
 | DESIGN-RUN-CLOCK | DESIGN-RUN is a fixed historical run with nothing outside the house to fetch again, so its Last reviewed reads On change and it leaves the monthly REFRESH clock. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Work design](standard-work-design.md) | In force |
+| RECAP-IDE-ENV | The recap's runtime detection stays as it is, treating `CLAUDECODE=1` with no session ID as Claude Code, though IDE extensions now also set `CLAUDECODE=1` in their terminals; the case is narrow and the evidence advisory, so it is watched rather than changed. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Recap](standard-session-recap.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 Loreward, within remit, from the 4.1 refresh, took RECAP-IDE-ENV, recorded under [Decisions](#3-decisions): [the recap's](standard-session-recap.md) runtime detection is unchanged, and the IDE-terminal case goes under **Watching** below. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 Loreward, within remit, from the 4.1 refresh, took DESIGN-RUN-CLOCK, recorded under [Decisions](#3-decisions): [DESIGN-RUN](#22-advisory) reads On change, as the in-house standards do, so its 7 October date no longer trips the monthly clock (LONG-3). No rule changed and no outside source was refreshed.
 
@@ -153,5 +156,9 @@ Earlier reviews, as each subcommand's skill recorded them:
 - **design,** 2026-11-08: Kris took DOC-TYPES a and STD-BASE a at 22:05 CET, relayed by `personal.reg.inbox`: two document types only, the change document (`.change.md`) and the standard, a design note becoming a change document; and every change document carries `Base: ki-agent-backpack@<commit>` and a `Touches:` line, rebased by reading `git diff <base>..main -- <touched files>`. The [artefact home](standard-work-design.md#41-artefact-home) now names the change document; `ki-authoring` owns the type and its header.
 - **design,** October 2026: Kris's 14 October 2026 decision-tag rule, carried by the [coordination decisions life cycle](../../../work/ki-coordination/references/standard-decisions.md#413-decisions-life-cycle), supersedes numbered decision entries. Reports and the owner's decisions use matching tags; numbered reflection points remain claims.
 - **design,** 2026-10-07: the run's brief, three reviews, merged report and decisions file shaped the stage contracts and templates. The run first kept its artefacts only in local state, and then beside its Decision Record in the decisions collection. The owner then ruled that design artefacts are temporary working material kept beside the subject Project or Initiative and deleted once consolidated, and that the decisions collection holds only Decision Records and their index; the artefact-home rule follows that ruling.
+
+**Watching:**
+
+- The recap's runtime detection: Claude Code's IDE extensions now also set `CLAUDECODE=1` in their integrated terminals, so a grounding helper run by hand there reads as Claude Code and skips Codex transcripts. Change the detection to `CLAUDE_CODE_CHILD_SESSION` or `CLAUDE_CODE_SESSION_ID` if that case is seen in use or the vendor makes the variable authoritative (RECAP-IDE-ENV).
 
 [Back to contents](#contents)
