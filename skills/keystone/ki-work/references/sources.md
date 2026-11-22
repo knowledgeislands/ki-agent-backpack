@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T16:15:00Z
+ki-revised: 2026-11-22T18:33:49Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -68,7 +68,7 @@ The loop of [the work design standard](standard-work-design.md) is house practic
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| DESIGN-RUN — The roadmap-model design run of 7 October 2026, whose outcome Knowledge Islands Principal consolidated into one Decision Record | Five stages; a brief with a numbered reflection; three independent reviewers on different models, one also fact-checking the brief; a merged report settling disputes on evidence; the owner's decisions with an authority grant; a pilot record before parallel waves. Explicitly not adopted: its particular reviewer roster, keeping the artefacts in an untracked local folder, and later filing them as permanent supporting files in the decisions collection | 2026-10-07 |
+| DESIGN-RUN — The roadmap-model design run of 7 October 2026, whose outcome Knowledge Islands Principal consolidated into one Decision Record | Five stages; a brief with a numbered reflection; three independent reviewers on different models, one also fact-checking the brief; a merged report settling disputes on evidence; the owner's decisions with an authority grant; a pilot record before parallel waves. Explicitly not adopted: its particular reviewer roster, keeping the artefacts in an untracked local folder, and later filing them as permanent supporting files in the decisions collection | On change |
 
 [Back to contents](#contents)
 
@@ -103,10 +103,13 @@ The loop of [the work design standard](standard-work-design.md) is house practic
 | ROADMAP-UPCOMING-CAP | "lets scrap the caps until its an issue", Kris, about 19:20 GMT, in Kitteth's bot's Home Chat, recorded in the Cairn summit's [change 90](https://github.com/krisb/ki-cairn-store/blob/fdf11947/work/cairn/cairn.summit/90-ways-of-working.change.md#44-decided): the upcoming-record caps are dropped, so the adoption gate checks for no room, and the start gate's room rests on WIP-PACKAGE a and WIP-TERRITORY a alone. | 2026-11-21 | [4.4.4](standard-next-work.md#444-the-two-gates) | Dropped; no cap in force |
 | ROADMAP-EXIT-STATE | "Yes, add returned", Kris, about 01:05 UTC, on Orca item 112, recorded in ki.summit's [change 22](https://github.com/krisb/ki-cairn-store/blob/87ec71c8/work/ki/ki.summit/22-roadmap-horizons.change.md#4-outline): option a), a record that leaves the roadmap as an idea is cancelled with `resolution: returned`, which is not the same as declined, its `## Cancelled` naming where it waits. | 2026-11-22 | [4.3.2](standard-next-work.md#432-capture-substantive-prospective-work), [4.4.1](standard-next-work.md#441-non-kb-repositories), [acceptance](standard-acceptance.md) | In force |
 | UPCOMING-SURFACING | "Yes, one each run", Kris, about 00:59 UTC, on Orca item 112, recorded in ki.summit's [change 22](https://github.com/krisb/ki-cairn-store/blob/da42d7f6/work/ki/ki.summit/22-roadmap-horizons.change.md#4-outline): option a), each `ki-work next` run says how many Soon, Future and held draft records wait and, after the Now and Next candidates, offers one for review, a held draft whose review date has passed first, otherwise the oldest by `updated_at`; it moves to Next or leaves as an idea. | 2026-11-22 | [4.4.1](standard-next-work.md#441-non-kb-repositories) | In force |
+| DESIGN-RUN-CLOCK | DESIGN-RUN is a fixed historical run with nothing outside the house to fetch again, so its Last reviewed reads On change and it leaves the monthly REFRESH clock. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Work design](standard-work-design.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 Loreward, within remit, from the 4.1 refresh, took DESIGN-RUN-CLOCK, recorded under [Decisions](#3-decisions): [DESIGN-RUN](#22-advisory) reads On change, as the in-house standards do, so its 7 October date no longer trips the monthly clock (LONG-3). No rule changed and no outside source was refreshed.
 
 On 22 November 2026 REFRESH re-fetched the five runtime sources, prompted by LONG-3's overdue warning; no claim the recap relies on changed. Codex documents `/compact`, which summarises the visible chat to free context, beside `/new`, `/clear`, `/resume` and `/fork`, and its `PreCompact` and `PostCompact` hooks match `manual` or `auto`, with `SessionStart` firing on `source: "compact"`; its hooks still warn that the transcript format "isn't a stable interface". Claude Code still documents `/compact`, the same two hooks and matchers, and `SessionStart` on `compact`; its sessions page still keeps transcripts at `<config>/projects/<project>/<session-id>.jsonl`, says their entry format is internal and changes between versions, and has `/cd` relocate a session. `CLAUDE_CODE_SESSION_ID` and `CLAUDE_CODE_PROJECT_DIR_NAME` read as the 17 November review recorded. Two details are new to this file: Claude Code's hooks page says the transcript is written asynchronously and may lag the current turn, and its environment page says IDE extensions also set `CLAUDECODE=1` in their integrated terminals, offering `CLAUDE_CODE_CHILD_SESSION` as the signal of a subprocess Claude Code itself spawned. DESIGN-RUN was not reviewed: the run's artefacts were deleted once consolidated, and nothing outside the house records it.
 
