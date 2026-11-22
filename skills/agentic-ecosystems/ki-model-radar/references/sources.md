@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:39:00Z
+ki-revised: 2026-11-22T18:39:14Z
 ki-refresh: external-spec · weekly
 ---
 
@@ -120,11 +120,13 @@ Independent benchmark and methodology owners.
 | MOVEMENT | Five routes whose movement still recorded the 2026-10-06 decisions read `unchanged`, since movement describes the current review: Claude Opus 5 and Grok 4.6 from `outward`, and Claude Opus 5.5, GPT-6.1 Sol and Grok 4.7 from `new`. GPT-5.6 Sol keeps `outward` under GPT-5.6-SOL-ROUTE. No ring, support level or default moved. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | `radar.toml`, [4.2.3](standard-model-radar.md#423-executable-routes) | taken |
 | GEMINI-CLI-ROUTE | The Gemini 3.8 Flash route through Gemini CLI stays at Assess and not-integrated, with Antigravity CLI's replacement of Gemini CLI for unpaid-tier and Google One users recorded as counter-evidence; no Antigravity CLI route is proposed. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | `radar.toml`, [4.2.3](standard-model-radar.md#423-executable-routes) | taken |
 | GPT-5.6-SOL-ROUTE | The GPT-5.6 Sol route through Codex stays Adopt, available and `outward`, though Codex's models page no longer mentions the model; it is rechecked after its promotional pricing ends on 2026-11-30. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | `radar.toml`, [4.2.3](standard-model-radar.md#423-executable-routes) | taken |
+| AA-APPLICABILITY | Artificial Analysis's Coding Agent Index, now v2.1, stays primary evidence and its Intelligence Index, now v5.0.1, stays corroborating; the refresh's update of both records to the new versions stands. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | `radar.toml`, [4.2.5](standard-model-radar.md#425-evidence) | taken |
 
 [Back to contents](#contents)
 
 ## 4. Last review
 
+- 2026-11-22 — Loreward, within remit, from the 4.1 refresh, took AA-APPLICABILITY, recorded under [Decisions](#3-decisions): the Coding Agent Index v2.1 stays primary and the Intelligence Index v5.0.1 corroborating. Nothing in `radar.toml` changed, and no outside source was refreshed.
 - 2026-11-22 — Loreward, within remit, from the 4.1 refresh, took GPT-5.6-SOL-ROUTE, recorded under [Decisions](#3-decisions): the GPT-5.6 Sol route keeps Adopt, available and `outward`, with a recheck after 2026-11-30 under **Watching**. Nothing in `radar.toml` changed, and no outside source was refreshed.
 - 2026-11-22 — Loreward, within remit, from the 4.1 refresh, took GEMINI-CLI-ROUTE, recorded under [Decisions](#3-decisions): the Gemini CLI route keeps Assess and not-integrated, its counter-evidence recorded. Nothing in `radar.toml` changed, and no outside source was refreshed.
 - 2026-11-22 — Loreward, within remit, from the 4.1 refresh, took MOVEMENT, recorded under [Decisions](#3-decisions): the Claude Opus 5, Claude Opus 5.5, GPT-6.1 Sol, Grok 4.6 and Grok 4.7 routes read `unchanged`, their 2026-10-06 movement no longer describing the current review; GPT-5.6 Sol stays `outward`. No ring, support level or default changed, and no outside source was refreshed.
