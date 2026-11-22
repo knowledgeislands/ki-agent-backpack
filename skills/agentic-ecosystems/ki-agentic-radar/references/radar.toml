@@ -1,5 +1,5 @@
 schema = 1
-reviewed_on = "2026-10-19"
+reviewed_on = "2026-11-22"
 
 [evidence]
 
@@ -9,8 +9,8 @@ title = "Model Context Protocol specification, 2026-07-28"
 url = "https://modelcontextprotocol.io/specification/2026-07-28/basic"
 evidence_class = "normative-text"
 source_role = "primary"
-reviewed_on = "2026-11-15"
-notes = "The current versioned MCP specification defines the protocol's base lifecycle and capabilities."
+reviewed_on = "2026-11-22"
+notes = "The current versioned MCP specification defines the protocol's base lifecycle and capabilities. On 2026-11-22 it is still the latest release; the project's release-cycle post of 2026-11-11 moves to six-monthly releases and targets 2027-03-30 for the next."
 
 [evidence.mcp-aaif-governance]
 id = "mcp-aaif-governance"
@@ -27,8 +27,8 @@ title = "MCP SDK tier system"
 url = "https://modelcontextprotocol.io/community/sdk-tiers"
 evidence_class = "conformance-demonstration"
 source_role = "primary"
-reviewed_on = "2026-11-15"
-notes = "Tier 1 requires all applicable SDK conformance scenarios to pass; this is SDK-scoped, not ecosystem-wide certification."
+reviewed_on = "2026-11-22"
+notes = "Tier 1 requires a 100% pass rate on the applicable conformance scenarios; this is SDK-scoped, not ecosystem-wide certification. Unchanged on 2026-11-22; the Ruby SDK reached Tier 1 on 2026-10-30."
 
 [evidence.mcp-openai-implementation]
 id = "mcp-openai-implementation"
@@ -99,9 +99,18 @@ title = "Agent Client Protocol schema v1.32.0"
 url = "https://github.com/agentclientprotocol/agent-client-protocol/releases/tag/schema-v1.32.0"
 evidence_class = "governance-release"
 source_role = "primary"
-reviewed_on = "2026-11-15"
-notes = "The official project published schema v1.32.0 on 2026-11-14, the latest stable release, still on wire protocolVersion 1. It adds only unstable features: prompt suggestions, a speed config category, a path on markdown plans, and config options on session fork. Of the releases from v1.26.0 onward, only v1.30.0 (2026-11-09) stabilises anything, the client system prompt; the others add unstable features, fixes, and clarifications."
+reviewed_on = "2026-11-22"
+notes = "The official project published schema v1.32.0 on 2026-11-14, still on wire protocolVersion 1. It adds only unstable features: prompt suggestions, a speed config category, a path on markdown plans, and config options on session fork. Of the releases from v1.26.0 to it, only v1.30.0 (2026-11-09) stabilises anything, the client system prompt. Superseded by v1.33.0 (2026-11-18), v1.34.0 (2026-11-20) and v1.34.1 (2026-11-21)."
 
+
+[evidence.acp-schema-v1-34-0]
+id = "acp-schema-v1-34-0"
+title = "Agent Client Protocol schema v1.34.0"
+url = "https://github.com/agentclientprotocol/agent-client-protocol/releases/tag/schema-v1.34.0"
+evidence_class = "governance-release"
+source_role = "primary"
+reviewed_on = "2026-11-22"
+notes = "The official project published schema v1.34.0 on 2026-11-20, still on wire protocolVersion 1. It stabilises subagent sessions, which Clients still opt into through a capability, and plan operations. v1.33.0 (2026-11-18) added only unstable session cursors, and v1.34.1 (2026-11-21), the latest stable release on 2026-11-22, only reorders protocol pages. MCP-over-ACP remains a draft RFD."
 [evidence.acp-schema-v2-alpha-5]
 
 id = "acp-schema-v2-alpha-5"
@@ -136,17 +145,26 @@ title = "Agent Client Protocol schema v2.0.0 alpha 16"
 url = "https://github.com/agentclientprotocol/agent-client-protocol/releases/tag/schema-v2.0.0-alpha.16"
 evidence_class = "governance-release"
 source_role = "counter-evidence"
-reviewed_on = "2026-11-15"
-notes = "The official project published v2 alpha 16 as a prerelease on 2026-11-14, sharing its commit with schema v1.32.0. It is not a stable wire-protocol replacement for protocolVersion 1."
+reviewed_on = "2026-11-22"
+notes = "The official project published v2 alpha 16 as a prerelease on 2026-11-14, sharing its commit with schema v1.32.0; superseded by alpha 17 (2026-11-18) and the beta releases. It is not a stable wire-protocol replacement for protocolVersion 1."
 
+
+[evidence.acp-schema-v2-beta-1]
+id = "acp-schema-v2-beta-1"
+title = "Agent Client Protocol schema v2.0.0 beta 1"
+url = "https://github.com/agentclientprotocol/agent-client-protocol/releases/tag/schema-v2.0.0-beta.1"
+evidence_class = "governance-release"
+source_role = "counter-evidence"
+reviewed_on = "2026-11-22"
+notes = "The official project published v2 beta 1 as a prerelease on 2026-11-20, when ACP v2 moved from Draft to Preview; beta 3 followed on 2026-11-21. The project states that Preview carries no stability contract and is not frozen, and advises Clients to keep requesting v2 opt-in, so v2 has not stabilised and protocolVersion 1 remains the stable wire contract."
 [evidence.acp-governance]
 id = "acp-governance"
 title = "Agent Client Protocol governance"
 url = "https://agentclientprotocol.com/community/governance"
 evidence_class = "governance-release"
 source_role = "primary"
-reviewed_on = "2026-11-15"
-notes = "Zed and JetBrains describe interim joint governance and an intention to move to an independent foundation."
+reviewed_on = "2026-11-22"
+notes = "Zed and JetBrains describe interim joint governance and an intention to move to an independent foundation; unchanged on 2026-11-22."
 
 [evidence.acp-gemini-implementation]
 id = "acp-gemini-implementation"
@@ -181,8 +199,8 @@ title = "Agent Client Protocol remote-agent limitation"
 url = "https://agentclientprotocol.com/get-started/introduction"
 evidence_class = "normative-text"
 source_role = "counter-evidence"
-reviewed_on = "2026-11-15"
-notes = "The official introduction marks full remote-agent support as work in progress."
+reviewed_on = "2026-11-22"
+notes = "The official introduction marks full remote-agent support as work in progress; unchanged on 2026-11-22."
 
 [evidence.ahp-spec-0-9-0]
 id = "ahp-spec-0-9-0"
@@ -217,7 +235,7 @@ title = "Agent Host Protocol specification v1.1.0 release"
 url = "https://github.com/microsoft/agent-host-protocol/releases/tag/spec%2Fv1.1.0"
 evidence_class = "governance-release"
 source_role = "primary"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 notes = "The official project released specification v1.1.0 on 2026-11-12. It adds per-chat config and providers, chat moves, empty snapshots, changeset file status, byte-range resource reads, and MCP token scoping, with experimental windowed flow control and a TCP channel; it promotes no channel to Stable, and some changes affect SDK consumers."
 
 [evidence.ahp-reference-implementations]
@@ -226,8 +244,8 @@ title = "Agent Host Protocol implementation catalogue"
 url = "https://microsoft.github.io/agent-host-protocol/guide/implementations.html"
 evidence_class = "reference-implementation"
 source_role = "primary"
-reviewed_on = "2026-11-15"
-notes = "The official catalogue lists Microsoft project clients and the reference server plus independent clients, among them AHPX, ahpc and WeChat AHP, and independent hosts, among them pi-ahp, ahpd, hydra-ahp, an AHP-ACP gateway and AgentConnect; on 2026-11-15 only AgentConnect states a protocol version in the catalogue, as an AHP 1.0 host."
+reviewed_on = "2026-11-22"
+notes = "The official catalogue lists Microsoft project clients and the reference server plus independent clients, among them AHPX, ahpc and WeChat AHP, and independent hosts, among them pi-ahp, ahpd, hydra-ahp, an AHP-ACP gateway and AgentConnect; on 2026-11-22 only AgentConnect states a protocol version in the catalogue, as an AHP 1.0 host, and the catalogue reports no interoperability or conformance result."
 
 [evidence.ahp-pi-host]
 id = "ahp-pi-host"
@@ -235,7 +253,7 @@ title = "pi-ahp independent Agent Host Protocol host"
 url = "https://github.com/Qusic/pi-ahp"
 evidence_class = "independent-implementation"
 source_role = "corroborating"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 notes = "The independent pi-ahp project implements AHP over WebSocket and documents tests with VS Code and Agent Console clients; on 2026-11-15 it states support for protocol versions 1.0.0 and 0.9.0."
 
 [evidence.ahp-wyrd-server]
@@ -245,17 +263,26 @@ title = "Wyrd Company Agent Host Protocol server"
 url = "https://github.com/wyrd-company/ahp-server"
 evidence_class = "independent-implementation"
 source_role = "corroborating"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 notes = "The independent TypeScript server implements a bounded AHP surface and publishes compatibility tests against Microsoft's TypeScript client; this is implementation evidence, not an independently witnessed interoperability result."
 
+
+[evidence.ahp-ahpd-host]
+id = "ahp-ahpd-host"
+title = "ahpd independent Agent Host Protocol host"
+url = "https://github.com/softov/ahpd"
+evidence_class = "independent-implementation"
+source_role = "corroborating"
+reviewed_on = "2026-11-22"
+notes = "The independent ahpd project is a plugin-based WebSocket AHP host with an SDK for building hosts; on 2026-11-22 it states AHP 1.1.0. This is implementation evidence, not an independently witnessed interoperability result."
 [evidence.ahp-mixed-stability]
 id = "ahp-mixed-stability"
 title = "Agent Host Protocol versioning and stability policy"
 url = "https://microsoft.github.io/agent-host-protocol/specification/versioning"
 evidence_class = "normative-text"
 source_role = "counter-evidence"
-reviewed_on = "2026-11-15"
-notes = "The 1.0 policy promises SemVer compatibility within one MAJOR only for Stable channels and still states that backwards-incompatible changes are inevitable. On 2026-11-15 Canvas is Experimental, both Automation channels and the new TCP channel are Early development, Annotations is Active development, and Changeset and MCP are Release candidates."
+reviewed_on = "2026-11-22"
+notes = "The 1.0 policy promises SemVer compatibility within one MAJOR only for Stable channels and still states that backwards-incompatible changes are inevitable. On 2026-11-22 Canvas is Experimental, both Automation channels and the TCP channel are Early development, Annotations is Active development, and Changeset and MCP are Release candidates; a 1.2.0 draft is offered."
 
 [evidence.ahp-host-orca]
 id = "ahp-host-orca"
@@ -263,8 +290,8 @@ title = "Orca releases, checked for Agent Host Protocol support"
 url = "https://github.com/stablyai/orca/releases"
 evidence_class = "vendor-claim"
 source_role = "counter-evidence"
-reviewed_on = "2026-11-15"
-notes = "Agent host Orca: no AHP support found on 2026-11-10 or 2026-11-15. Releases to 1.4.259 (14 November 2026) name none, the AHP implementation catalogue does not list Orca, and Orca Chat speaks the Agent Client Protocol as a client instead."
+reviewed_on = "2026-11-22"
+notes = "Agent host Orca: no AHP support found on 2026-11-10, 2026-11-15 or 2026-11-22. Releases to 1.4.269 (21 November 2026) name none, the AHP implementation catalogue does not list Orca, and Orca Chat speaks the Agent Client Protocol as a client instead."
 
 [evidence.ahp-host-claude-desktop]
 id = "ahp-host-claude-desktop"
@@ -272,8 +299,8 @@ title = "Claude release notes, checked for Agent Host Protocol support"
 url = "https://support.claude.com/en/articles/12138966-release-notes"
 evidence_class = "vendor-claim"
 source_role = "counter-evidence"
-reviewed_on = "2026-11-15"
-notes = "Agent host Claude Desktop: no AHP support found on 2026-11-10 or 2026-11-15. Release notes to 12 November 2026 name none; only third-party bridges such as ahpd reach Claude, which is not Anthropic's adoption."
+reviewed_on = "2026-11-22"
+notes = "Agent host Claude Desktop: no AHP support found on 2026-11-10, 2026-11-15 or 2026-11-22. Release notes to 20 November 2026 name none; only third-party bridges such as ahpd and AgentConnect reach Claude, which is not Anthropic's adoption."
 
 [evidence.ahp-host-chatgpt-desktop]
 id = "ahp-host-chatgpt-desktop"
@@ -281,8 +308,8 @@ title = "OpenAI Codex and ChatGPT changelog, checked for Agent Host Protocol sup
 url = "https://learn.chatgpt.com/docs/changelog"
 evidence_class = "vendor-claim"
 source_role = "counter-evidence"
-reviewed_on = "2026-11-15"
-notes = "Agent host ChatGPT Desktop: no AHP support found on 2026-11-10 or 2026-11-15. The changelog to Codex CLI 0.169.0 (13 November 2026) names none, and the ChatGPT help-centre release notes refused automated reading. Visual Studio Code's Codex session handoff in its 1.138 and 1.141 updates is Microsoft's own AHP work, not OpenAI's adoption."
+reviewed_on = "2026-11-22"
+notes = "Agent host ChatGPT Desktop: no AHP support found on 2026-11-10, 2026-11-15 or 2026-11-22. The changelog to Codex CLI 0.171.0 (20 November 2026) names none and shows no ChatGPT desktop release, and the ChatGPT help-centre release notes refused automated reading on 2026-11-15. Visual Studio Code's Codex session handoff in its 1.138 and 1.141 updates is Microsoft's own AHP work, not OpenAI's adoption."
 
 [evidence.ahp-host-chatgpt-mobile]
 id = "ahp-host-chatgpt-mobile"
@@ -290,8 +317,8 @@ title = "OpenAI ChatGPT changelog, checked for Agent Host Protocol support in th
 url = "https://learn.chatgpt.com/docs/changelog"
 evidence_class = "vendor-claim"
 source_role = "counter-evidence"
-reviewed_on = "2026-11-15"
-notes = "Agent host ChatGPT Mobile: no AHP support found on 2026-11-10 or 2026-11-15. The ChatGPT for iOS entries to 1.2026.307 name none; only an unaffiliated third-party iOS client exists."
+reviewed_on = "2026-11-22"
+notes = "Agent host ChatGPT Mobile: no AHP support found on 2026-11-10, 2026-11-15 or 2026-11-22. The ChatGPT for iOS entries to 1.2026.314 (18 November 2026) name none; only an unaffiliated third-party iOS client exists."
 
 [evidence.orca-orchestration-implementation]
 id = "orca-orchestration-implementation"
@@ -308,8 +335,8 @@ title = "Orca CLI orchestration documentation"
 url = "https://orca.dev/docs/cli/orchestration"
 evidence_class = "vendor-claim"
 source_role = "corroborating"
-reviewed_on = "2026-11-15"
-notes = "The vendor documents orchestration as experimental, switched on under Settings, Experimental: workers ask, the coordinator replies, gates are created and resolved, and a worker reports done with an outcome. It names neither AHP nor ACP. On 2026-11-15 the page has moved from onorca.dev and says the experimental Orchestration panel and its switch are temporarily unavailable."
+reviewed_on = "2026-11-22"
+notes = "The vendor documents orchestration as experimental, switched on under Settings, Experimental: workers ask, the coordinator replies, gates are created and resolved, and a worker reports done with an outcome. It names neither AHP nor ACP. On 2026-11-15 and 2026-11-22 the page, moved from onorca.dev, says the experimental Orchestration panel and its switch are temporarily unavailable; releases to 1.4.269 (21 November 2026) keep improving worker mail and coordinator reports without declaring it stable."
 
 [evidence.a2a-spec-1-0]
 id = "a2a-spec-1-0"
@@ -317,8 +344,8 @@ title = "Agent2Agent Protocol specification v1.0"
 url = "https://a2a-protocol.org/latest/specification/"
 evidence_class = "normative-text"
 source_role = "primary"
-reviewed_on = "2026-11-15"
-notes = "The Linux Foundation project publishes a stable version 1 protocol specification."
+reviewed_on = "2026-11-22"
+notes = "The Linux Foundation project publishes a stable version 1 protocol specification; on 2026-11-22 the latest specification page names 1.0.0 as the latest released version."
 
 [evidence.a2a-release-1-0-1]
 id = "a2a-release-1-0-1"
@@ -326,9 +353,18 @@ title = "Agent2Agent Protocol v1.0.1 release"
 url = "https://github.com/a2aproject/A2A/releases/tag/v1.0.1"
 evidence_class = "governance-release"
 source_role = "primary"
-reviewed_on = "2026-11-15"
-notes = "The official project released v1.0.1 on 2026-05-28."
+reviewed_on = "2026-11-22"
+notes = "The official project released v1.0.1 on 2026-05-28; still the latest release on 2026-11-22."
 
+
+[evidence.a2a-aaif-governance]
+id = "a2a-aaif-governance"
+title = "A2A joins the Agentic AI Foundation"
+url = "https://a2a-protocol.org/latest/blog/2026/08/27/a-new-chapter-for-a2a-joining-the-agentic-ai-foundation/"
+evidence_class = "governance-release"
+source_role = "primary"
+reviewed_on = "2026-11-22"
+notes = "The A2A project records, on 2026-08-27, its acceptance as a Growth Stage project of the Linux Foundation's Agentic AI Foundation, beside MCP and AGENTS.md; A2A was already a Linux Foundation project, so stewardship stays foundation."
 [evidence.a2a-google-adk-implementation]
 id = "a2a-google-adk-implementation"
 title = "Google Agent Development Kit A2A support"
@@ -353,8 +389,8 @@ title = "Agent2Agent technology compatibility kit"
 url = "https://github.com/a2aproject/a2a-tck"
 evidence_class = "reference-implementation"
 source_role = "primary"
-reviewed_on = "2026-11-15"
-notes = "The official kit tests gRPC, JSON-RPC, and HTTP plus JSON bindings; no reviewed public result matrix was found."
+reviewed_on = "2026-11-22"
+notes = "The official kit tests gRPC, JSON-RPC, and HTTP plus JSON bindings and writes compatibility reports for each local run; on 2026-11-22 no reviewed public result matrix or certification was found."
 
 [evidence.agents-format]
 id = "agents-format"
@@ -362,8 +398,8 @@ title = "AGENTS.md format"
 url = "https://agents.md/"
 evidence_class = "normative-text"
 source_role = "primary"
-reviewed_on = "2026-11-15"
-notes = "The format site defines repository and nested instruction discovery but does not publish a numbered specification version."
+reviewed_on = "2026-11-22"
+notes = "The format site defines repository and nested instruction discovery but does not publish a numbered specification version; on 2026-11-22 it states stewardship by the Agentic AI Foundation under the Linux Foundation and names no conformance suite."
 
 [evidence.agents-aaif-governance]
 id = "agents-aaif-governance"
@@ -398,8 +434,8 @@ title = "AGENTS.md reported ecosystem adoption"
 url = "https://agents.md/"
 evidence_class = "operational-adoption"
 source_role = "corroborating"
-reviewed_on = "2026-11-15"
-notes = "The project reports use across more than 60,000 open-source repositories and lists multiple compatible tools."
+reviewed_on = "2026-11-22"
+notes = "The project reports use across more than 60,000 open-source projects and lists over twenty compatible tools; unchanged on 2026-11-22."
 
 [evidence.agents-ki-local]
 id = "agents-ki-local"
@@ -416,8 +452,8 @@ title = "Visual Studio Code experimental nested AGENTS.md support"
 url = "https://code.visualstudio.com/docs/agents/reference/custom-instructions-reference"
 evidence_class = "independent-implementation"
 source_role = "counter-evidence"
-reviewed_on = "2026-11-15"
-notes = "VS Code's custom instructions reference marks nested AGENTS.md files as experimental, and Local nested-file discovery as experimental and off by default, limiting claims of uniform semantics."
+reviewed_on = "2026-11-22"
+notes = "VS Code's custom instructions reference marks nested AGENTS.md files as experimental, and Local nested-file discovery as experimental and off by default, limiting claims of uniform semantics. On 2026-11-22 it also states that discovery rules differ by harness and that the Local harness is deprecated, due for removal in February 2027."
 
 [evidence.w3c-agent-group]
 id = "w3c-agent-group"
@@ -425,8 +461,8 @@ title = "W3C AI Agent Protocol Community Group"
 url = "https://www.w3.org/community/agentprotocol/"
 evidence_class = "governance-release"
 source_role = "primary"
-reviewed_on = "2026-11-15"
-notes = "The W3C Community Group page records the group's scope, participants, and draft report."
+reviewed_on = "2026-11-22"
+notes = "The W3C Community Group page records the group's scope, 284 participants, and draft reports; on 2026-11-22 its newest drafts are still those of 2025-08-19 and it names no move to a Working Group or the Recommendation track."
 
 [evidence.w3c-agent-draft]
 id = "w3c-agent-draft"
@@ -443,7 +479,7 @@ title = "W3C Community Group non-endorsement notice"
 url = "https://www.w3.org/community/agentprotocol/"
 evidence_class = "governance-release"
 source_role = "counter-evidence"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 notes = "W3C states that Community Group hosting does not imply W3C endorsement."
 
 [evidence.w3c-agent-draft-gaps]
@@ -462,9 +498,18 @@ title = "Obscura open-source browser engine"
 url = "https://github.com/h4ckf0r0day/obscura"
 evidence_class = "reference-implementation"
 source_role = "primary"
-reviewed_on = "2026-11-15"
-notes = "The project publishes a self-hostable Rust browser engine with CDP, Playwright, Puppeteer, rendering, storage, and MCP surfaces; compatibility and performance still require independent and local verification."
+reviewed_on = "2026-11-22"
+notes = "The project publishes a self-hostable Rust browser engine with CDP, Playwright, Puppeteer, rendering, storage, and MCP surfaces; release v0.2.7 (2026-11-13) is the latest on 2026-11-22. Compatibility and performance still require independent and local verification."
 
+
+[evidence.obscura-persistent-profile]
+id = "obscura-persistent-profile"
+title = "Obscura persistent cookies and storage"
+url = "https://github.com/h4ckf0r0day/obscura/blob/main/docs/Persist-cookies-and-storage.md"
+evidence_class = "reference-implementation"
+source_role = "corroborating"
+reviewed_on = "2026-11-22"
+notes = "The project documents an opt-in persistent profile: --storage-dir, or OBSCURA_STORAGE_DIR for MCP, keeps a plaintext cookie jar and per-origin localStorage across runs, separate serve processes give isolated profiles, and since v0.2.7 new profile directories are owner-only and each CDP connection works on a copy-on-write snapshot merged back on close. It documents persistence, not provisioning an authenticated session."
 [evidence.obscura-zero-state]
 
 id = "obscura-zero-state"
@@ -472,8 +517,8 @@ title = "Obscura isolated-session product description"
 url = "https://obscura.sh/#how"
 evidence_class = "vendor-claim"
 source_role = "counter-evidence"
-reviewed_on = "2026-11-15"
-notes = "The product site describes fresh zero-state sessions with no shared cookies. That isolation is useful, but it leaves authenticated-profile provisioning and persistence unresolved for recurring ChatGPT acquisition."
+reviewed_on = "2026-11-22"
+notes = "The product site still describes fresh zero-state sessions with no shared cookies on 2026-11-22. That isolation is useful; the project's own documentation adds opt-in persistent profiles, but provisioning an authenticated profile and recurring ChatGPT fidelity remain unproven for acquisition."
 
 [evidence.gas-city-reference-implementation]
 
@@ -482,8 +527,8 @@ title = "Gas City open-source orchestrator"
 url = "https://github.com/gastownhall/gascity"
 evidence_class = "reference-implementation"
 source_role = "primary"
-reviewed_on = "2026-11-15"
-notes = "The project publishes an MIT-licensed orchestration-builder implementation with Beads-backed durable work, formula workflows, packs, and coding-agent integrations."
+reviewed_on = "2026-11-22"
+notes = "The project publishes an MIT-licensed orchestration-builder implementation with Beads-backed durable work, formula workflows, packs, and coding-agent integrations; v1.5.1 (2026-10-24), a bug, security and documentation release, is the latest stable on 2026-11-22."
 
 [evidence.gas-city-software-factory]
 
@@ -492,8 +537,8 @@ title = "Gas City software-factory architecture"
 url = "https://gascity.com/guide/ai-software-factory/"
 evidence_class = "vendor-claim"
 source_role = "corroborating"
-reviewed_on = "2026-11-15"
-notes = "The vendor describes a customer-owned coding factory where workflows materialise into a Beads work graph, ready steps route to configured agents, and review gates remain operator-controlled."
+reviewed_on = "2026-11-22"
+notes = "The vendor describes a customer-owned coding factory where workflows materialise into a Beads work graph, ready steps route to configured agents, and review gates remain operator-controlled. On 2026-11-22 a multi-operator factory is a stated direction, not a release."
 
 [subjects]
 
@@ -511,7 +556,7 @@ movement = "unchanged"
 owner = "ki-env-binding"
 uncertainty = "SDK tier conformance does not certify every registry server or separately versioned extension."
 return_trigger = "A new specification release, SDK tier change, extension lifecycle change, or local binding failure."
-reviewed_on = "2026-10-19"
+reviewed_on = "2026-11-22"
 evidence = [
   "mcp-spec-2026-07-28",
   "mcp-aaif-governance",
@@ -534,15 +579,16 @@ interoperability_state = "demonstrated"
 ki_stance = "assess"
 movement = "unchanged"
 owner = "ki-agentic-radar"
-uncertainty = "Wire protocolVersion 1 and stable schema release v1.25.0 are separately versioned; session notices and session compaction are now stable, but subagents and MCP-over-ACP remain unstable additions, a v2 alpha 8 exists, and full remote-agent support remains unfinished."
+uncertainty = "Wire protocolVersion 1 and stable schema release v1.34.1 are separately versioned. Session notices, session compaction, the client system prompt, subagent sessions and plan operations are now stable in v1, but MCP-over-ACP remains a draft, v2 has entered Preview with beta schemas that carry no stability contract, and full remote-agent support remains unfinished."
 return_trigger = "Independent-foundation transfer, protocol v2 stabilisation, remote-agent completion, or a local client-agent integration need."
-reviewed_on = "2026-10-19"
+reviewed_on = "2026-11-22"
 evidence = [
   "acp-v1-spec",
   "acp-schema-v1-23-0",
   "acp-schema-v1-24-1",
   "acp-schema-v1-25-0",
   "acp-schema-v1-32-0",
+  "acp-schema-v1-34-0",
   "acp-governance",
   "acp-gemini-implementation",
   "acp-codecompanion-implementation",
@@ -553,6 +599,7 @@ counter_evidence = [
   "acp-schema-v2-alpha-7",
   "acp-schema-v2-alpha-8",
   "acp-schema-v2-alpha-16",
+  "acp-schema-v2-beta-1",
   "acp-remote-limit",
 ]
 
@@ -568,9 +615,9 @@ interoperability_state = "untested"
 ki_stance = "assess"
 movement = "unchanged"
 owner = "ki-agentic-radar"
-uncertainty = "Specification v1.0.0 (2026-10-02) meets the 1.0 return trigger and makes Root, Session, Chat, Terminal, Telemetry, and Resource watch Stable, but six channels remain below Stable. Both independent hosts still target 0.9.0, and no independently witnessed cross-implementation interoperability result has been found. Knowledge Islands tracks AHP as a possible replacement for the Cairn Beacon's polling, AHP-RADAR of 10 November 2026: on 2026-11-10 none of the agent hosts that matter, Orca, Claude Desktop, ChatGPT Desktop and ChatGPT Mobile, supports it, so polling stays the baseline for each."
+uncertainty = "Specification v1.1.0 is current, with a 1.2.0 draft offered; Root, Session, Chat, Terminal, Telemetry, and Resource watch are Stable, but seven channels, Changeset, MCP, Annotations, Canvas, TCP and both Automation channels, remain below Stable. Independent hosts now state 1.0 or later support, pi-ahp 1.0.0 and 0.9.0, ahpd 1.1.0 and AgentConnect 1.0, which meets the 1.0 host-adoption trigger without changing the assessment: no independently witnessed cross-implementation interoperability result has been found. Knowledge Islands tracks AHP as a possible replacement for the Cairn Beacon's polling, AHP-RADAR of 10 November 2026: on 2026-11-10, 2026-11-15 and 2026-11-22 none of the agent hosts that matter, Orca, Claude Desktop, ChatGPT Desktop and ChatGPT Mobile, supports it, so polling stays the baseline for each."
 return_trigger = "Independent hosts adopting 1.0, a published interoperability or conformance result, the remaining channels reaching Stable, Orca, Claude Desktop, ChatGPT Desktop or ChatGPT Mobile shipping AHP support, or a relevant command-centre use case."
-reviewed_on = "2026-11-10"
+reviewed_on = "2026-11-22"
 evidence = [
   "ahp-spec-0-9-0",
   "ahp-release-0-9-0",
@@ -579,6 +626,7 @@ evidence = [
   "ahp-reference-implementations",
   "ahp-pi-host",
   "ahp-wyrd-server",
+  "ahp-ahpd-host",
 ]
 counter_evidence = ["ahp-mixed-stability", "ahp-host-orca", "ahp-host-claude-desktop", "ahp-host-chatgpt-desktop", "ahp-host-chatgpt-mobile"]
 
@@ -594,12 +642,13 @@ interoperability_state = "claimed"
 ki_stance = "assess"
 movement = "unchanged"
 owner = "ki-agentic-radar"
-uncertainty = "An official TCK exists, but the reviewed sources do not publish a pass or certification matrix demonstrating cross-implementation conformance."
+uncertainty = "An official TCK exists and writes compatibility reports for each local run, but the reviewed sources do not publish a pass or certification matrix demonstrating cross-implementation conformance."
 return_trigger = "A public TCK result, certification programme, independent interoperability report, or local agent-to-agent requirement."
-reviewed_on = "2026-10-19"
+reviewed_on = "2026-11-22"
 evidence = [
   "a2a-spec-1-0",
   "a2a-release-1-0-1",
+  "a2a-aaif-governance",
   "a2a-google-adk-implementation",
   "a2a-beeai-implementation",
   "a2a-tck",
@@ -619,7 +668,7 @@ movement = "unchanged"
 owner = "ki-repo"
 uncertainty = "The unversioned format has broad tool adoption but no formal conformance suite, and nested-file semantics are not uniformly stable."
 return_trigger = "A numbered format release, conformance suite, incompatible client behaviour, or foundation governance change."
-reviewed_on = "2026-10-19"
+reviewed_on = "2026-11-22"
 evidence = [
   "agents-format",
   "agents-aaif-governance",
@@ -643,7 +692,7 @@ movement = "unchanged"
 owner = "ki-agentic-radar"
 uncertainty = "This is Community Group incubation with an incomplete living draft, not a W3C Recommendation or demonstrated implementation ecosystem."
 return_trigger = "A formal standards-track transition, complete versioned draft, implementation, or interoperability evidence."
-reviewed_on = "2026-10-19"
+reviewed_on = "2026-11-22"
 evidence = ["w3c-agent-group", "w3c-agent-draft"]
 counter_evidence = ["w3c-cg-nonendorsement", "w3c-agent-draft-gaps"]
 
@@ -659,10 +708,10 @@ interoperability_state = "claimed"
 ki_stance = "assess"
 movement = "unchanged"
 owner = "ki-agentic-radar"
-uncertainty = "Obscura supplies a promising open-source implementation, but no Knowledge Islands trial yet proves authenticated-state handling, complex-app rendering fidelity, downloads, or complete ChatGPT acquisition."
+uncertainty = "Obscura supplies a promising open-source implementation and documents opt-in persistent profiles, which meets the persistent-profile return trigger, but no Knowledge Islands trial yet proves authenticated-state provisioning, complex-app rendering fidelity, downloads, or complete ChatGPT acquisition."
 return_trigger = "A bounded self-hosted ChatGPT acquisition trial, independent CDP compatibility evidence, documented persistent-profile controls, or a material security or release change."
-reviewed_on = "2026-10-19"
-evidence = ["obscura-reference-implementation"]
+reviewed_on = "2026-11-22"
+evidence = ["obscura-reference-implementation", "obscura-persistent-profile"]
 counter_evidence = ["obscura-zero-state"]
 
 [subjects.gas-city]
@@ -679,7 +728,7 @@ movement = "unchanged"
 owner = "ki-agentic-radar"
 uncertainty = "Gas City demonstrates configurable coding workflows over durable Beads state, but no bounded Knowledge Islands evaluation establishes fit, authority boundaries, or comparative value beside other coordination tools."
 return_trigger = "A bounded Knowledge Islands coordination trial, stable shared multi-operator release, independently demonstrated runtime portability, or material trust-boundary change."
-reviewed_on = "2026-10-19"
+reviewed_on = "2026-11-22"
 evidence = ["gas-city-reference-implementation", "gas-city-software-factory"]
 counter_evidence = []
 
@@ -696,6 +745,6 @@ movement = "new"
 owner = "ki-agentic-radar"
 uncertainty = "Experimental in Orca. Its mail is the channel between Cairn sessions in Orca, under ROOMS-CHANNEL and ORCA-FIRST of 20 November 2026, which end AHP-RADAR's watch-only stance for mail; the rest is still watched as a way agent hosts coordinate; a session's use of its own Orca workers is ki-delegation-orca's, not this subject's."
 return_trigger = "Orca making orchestration stable, adopting AHP or another open protocol for it, or a Knowledge Islands need it alone meets."
-reviewed_on = "2026-11-10"
+reviewed_on = "2026-11-22"
 evidence = ["orca-orchestration-implementation", "orca-orchestration-docs"]
 counter_evidence = []
