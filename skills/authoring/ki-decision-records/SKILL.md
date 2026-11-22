@@ -14,31 +14,20 @@ argument-hint: 'audit [dir] | conform [dir] | consolidate [dir] | educate [dir] 
 
 # Knowledge Islands Decision Records standard
 
-You are applying the **Knowledge Islands Decision Records standard** — how Decision Records are written, named, maintained, and indexed in any Knowledge Islands repo, code or KB. DRs are the single instrument for significant standalone decisions; each `decision_type` has its own prefix so the kind of decision is readable from the filename alone. The full format with rationale lives in [the Decision Records standard](references/standard-decision-records.md); the line-by-line checkable criteria live in [the generated rubric](references/rubric.md); the canonical sources are in [the source list](references/sources.md).
+This skill governs typed Decision Records, the single instrument for a significant standalone decision in any Knowledge Islands repository, code or KB: each `decision_type` has its own prefix, so the kind of decision reads from the filename. A record is a concise, self-contained **living present-state record**, edited in place. The rules live in [the Decision Records standard](references/standard-decision-records.md), the checkable criteria in [the generated rubric](references/rubric.md), worked examples in [the exemplars](references/exemplars.md), and the sources in [the source list](references/sources.md).
 
-## What this skill owns
+## Where the rules live
 
-1. **The format standard** — required YAML frontmatter (ID, title, date, maintenance status, `decision_type`, and `decision_type_url`), Nygard body sections (Title, Context, Decision, Consequences), and the optional `## References` section, with exact writing guidance (active voice for Decision, value-neutral Context). A DR is a concise, self-contained **living present-state record**: edit it in place, without historical narrative, a supersession chain, or changelog.
-2. **The prefix table** — nine type-specific prefixes, one per `decision_type`:
+Read the standard before writing, renaming or auditing a record. Its parts:
 
-   | Prefix | `decision_type` |
-   | ------ | --------------- |
-   | `SDR-` | `strategy`      |
-   | `PDR-` | `product`       |
-   | `ADR-` | `architecture`  |
-   | `DDR-` | `data`          |
-   | `XDR-` | `security`      |
-   | `ODR-` | `operations`    |
-   | `GDR-` | `governance`    |
-   | `RDR-` | `research`      |
-   | `KDR-` | `knowledge`     |
+- **Naming, scope and serials,** `<ID>-<title-slug>.md`, the scope from `[skills.ki-repo].repo_code`, serials per prefix within the scope: [4.1](references/standard-decision-records.md#41-naming-convention).
+- **The nine prefixes** and their `decision_type`: [4.2](references/standard-decision-records.md#42-prefix-table).
+- **Placement,** `docs/decisions/` or, in a KB, `Admin/Governance/Decisions/`: [4.3](references/standard-decision-records.md#43-placement); the collection holds only records and their index: [4.4](references/standard-decision-records.md#44-self-contained-collection).
+- **Front matter, sections and template:** [4.5](references/standard-decision-records.md#45-frontmatter) to [4.7](references/standard-decision-records.md#47-templates).
+- **The collection root,** `GDR-<SCOPE>-001: Adopting Decision Records`, **the index** and **the dependency graph:** [4.8](references/standard-decision-records.md#48-collection-root) to [4.10](references/standard-decision-records.md#410-dependency-graph).
+- **Writing and keeping a record,** amend before NEW, edit in place, no history or roadmap inside, and the Enactment Process link: [4.11](references/standard-decision-records.md#411-writing-guidance).
 
-3. **The naming convention** — the filename is `<ID>-<title-slug>.md`: the canonical uppercase ID followed by the title lowercased with non-alphanumeric runs compressed to one dash. The H1 is `<ID>: <title>`, with an open uppercase alphanumeric scope (a segment may lead with a digit but must carry a letter) and a zero-padded serial (≥ 3 digits), monotonically increasing **per prefix within the scope** (NNN is unique for a given `<PREFIX>`+`<SCOPE>` — two DRs may share a serial if their prefixes differ).
-4. **The living-record principle** — a DR states the decision as it stands **now** and is edited **in place**. Before creating a record, locate the existing record that owns the concern and amend it when the proposed change refines, qualifies, or changes that decision. Create a record only for a genuinely independent decision with standalone, durable value. A record contains neither historical narrative, lifecycle language, rejected alternatives, nor a supersession chain or changelog. It reads completely without following a link: the collection holds only records and their index, and a record links only to sibling records and canonical external sources. A change of direction rewrites the live record so every record reads as if written today. See [the Decision Records standard](references/standard-decision-records.md).
-5. **The index rule** — `Decisions.md` in a KB or `_index.md` in a code repository must contain an ordered list, one item per DR, in reveal order. Every collection begins with `GDR-<SCOPE>-001: Adopting Decision Records` (a compound title containing the adoption satisfies it).
-6. **The placement rule** — `repo_type = "kb"` in `.ki.toml` → `Admin/Governance/Decisions/`; all others → `docs/decisions/`. Pass the actual path to the checker.
-7. **The Enactment Process integration** — a DR is the formal artifact for an Enactment Process proposal whose `Decision` output warrants a standalone record.
-8. **The structured rubric** — the catalogue under `scripts/rubric/` validates filenames, required sections, required universal frontmatter, metadata alignment with the filename's canonical type, serial uniqueness and contiguity, index completeness, and reveal-order serial ascension within each prefix. It resolves KB versus code placement from `.ki.toml` and exposes only session-owned index drafts to CONFORM. The generic `ki` host owns execution, findings, publication, rollback, and reporting. Semantic prefix fit remains a judgment check.
+The structured rubric under `scripts/rubric/` checks filenames, sections, front matter, serials, the index and reveal order, resolving KB or code placement from `.ki.toml`; the generic `ki` host runs it. Whether a prefix fits the decision stays a judgment.
 
 ## Operating modes
 
@@ -70,10 +59,5 @@ Run `ki repo educate --skill ki-decision-records --repo <repo>` to render the ca
 
 ## Notes
 
-- **Records are edited in place** — a DR is kept true by editing it. It has no `## Changelog`, supersession chain, or historical framing; a change of direction rewrites the record so it always reads as current.
-- **Scope convention** — the scope is always the repository's `[skills.ki-repo].repo_code` (e.g. `KI-PRINCIPAL`); a sub-domain segment may follow it (e.g. `KI-HARNESS-AGENTS`). Every record's scope equals `repo_code` or begins with `<repo_code>-`, with no exception; a decision owned by another repository is cited by its canonical URL. There is no `[skills.ki-decision-records].scope` setting.
-- **Serials are per-prefix within scope** — NNN is unique for a given `<PREFIX>`+`<SCOPE>`. `GDR-KI-PRINCIPAL-001` and `SDR-KI-PRINCIPAL-001` are both valid; two DRs never share the same prefix+scope+serial.
-- **Amend before NEW** — first locate the record that owns the concern. Refinements, qualifications, and changes of direction update that living record in place; a new DR is reserved for a genuinely independent decision with standalone, durable standing. Routine content additions, typo fixes, and minor configuration changes do not warrant one.
-- **All repos** require frontmatter (`id`, `title`, `date`, `status`, `decision_type`, `decision_type_url`). Generic `type` and `type_url` are not DR fields. KB repos use `Admin/Governance/Decisions/`; code repos use `docs/decisions/`.
-- The KI-wide frontmatter standard owns generic note metadata; this skill owns decision-specific metadata.
-- Checker output conforms to the canonical JSONL response and reporter contract owned by `ki-skills`; judgment aspects are counted as unevaluated rather than emitted as synthetic findings.
+- **Amend before NEW:** locate the record that owns the concern first, and change it in place unless the decision is genuinely independent; the standard's [writing guidance](references/standard-decision-records.md#411-writing-guidance) sets the test.
+- `ki-specs` owns accepted behaviour, `ki-guides` procedures, and `ki-work-roadmap` future delivery.
