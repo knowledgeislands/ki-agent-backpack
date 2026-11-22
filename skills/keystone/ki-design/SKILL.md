@@ -28,7 +28,7 @@ Design shapes; Authoring writes down. A design is written down as a design docum
 
 ## Neighbours
 
-- **`ki-work design`** shapes a Project, theme or model before any work record exists.
+- **`ki-work design`** shapes a Project, theme or model before any work record exists. The two overlap at the brief and the review, and stay apart (DESIGN-LOOP): the loop decides what to do and rolls it out as work records, through the owner's decisions in a change document; this skill shapes the design itself, its options, review and kind's levels. When a loop's subject is a technical or visual design, this skill shapes it and the loop keeps the decisions and rollout; once the loop's change agrees a design, its design document under `docs/design/` is this skill's from then on. A design with no Project or rollout to decide starts here.
 - **`ki-authoring`** sets the design format a design document is written in.
 - **`ki-decision-records`**, **`ki-specs`** and **`ki-diagrams`** write down the decisions, specifications and diagrams a design leaves.
 

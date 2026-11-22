@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:43:37Z
+ki-revised: 2026-11-22T19:58:12Z
 ki-status: in force
 ---
 
@@ -50,6 +50,7 @@ The design loop, from the owner's proposal to a rollout of work records.
 - The change and design formats: `ki-authoring`.
 - Decision Records: `ki-decision-records`.
 - Frozen waves and unattended windows: `ki-coordination`.
+- Shaping a technical or visual design itself, its options, review and kind's levels, and the design document's life cycle once the loop's change agrees it: `ki-design`. The loop keeps the owner's decisions and the rollout, and a design with no Project or rollout to decide goes straight to `ki-design` (DESIGN-LOOP).
 
 [Back to contents](#contents)
 

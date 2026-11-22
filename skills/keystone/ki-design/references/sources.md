@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:48:38Z
+ki-revised: 2026-11-22T19:58:12Z
 ki-refresh: canonical · on-change
 ---
 
@@ -60,10 +60,13 @@ The technical levels in [4.3](standard-design.md#43-each-kinds-levels) follow tw
 | DESIGN-PLACE | Designs live in `docs/design/`, owned by this skill among `ki-repo`'s documentation roots. Kris's word, 17 November, about 00:56 GMT, taking the high-confidence points: "you've got high confidence in some of these, so I think you need to take them and get on with it", relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [4.4](standard-design.md#44-where-a-design-is-written-down) | In force |
 | DESIGN-LIFE | A design's statuses are `draft`, `agreed`, `current`, `shelved` and `replaced`, each step through a change document; `ki-authoring`'s design format sets them, and this skill owns the life cycle. Kris's word, 17 November, taken in the summit's change 11 and carried into [change 16](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided), relayed by the Cairn summit's guardian. | 2026-11-17 | [4.4](standard-design.md#44-where-a-design-is-written-down) | In force |
 | DESIGN-LIVING | A build adds only to a design's Built section; anything else changes through a change document. Kris's word, 17 November, about 00:56 GMT, taking the high-confidence points: "you've got high confidence in some of these, so I think you need to take them and get on with it", relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [4.4](standard-design.md#44-where-a-design-is-written-down) | In force |
+| DESIGN-LOOP | Option b: `ki-work design` stays in `ki-work`, and `ki-design` keeps technical and visual design; the overlap between the two loops is written down in both skills rather than merged. The loop decides what to do and rolls it out as work records; `ki-design` shapes the design itself, takes a loop's technical or visual subject, and owns the design document once the loop's change agrees it. Kris, 22 November 2026, about 19:40 GMT, at the Keystone guild's sitting, card, in his words: "I'm not very sure about this. My gut feeling is to keep the KI work, but I take the points you've raised." | 2026-11-22 | [SKILL.md](../SKILL.md), [2.2](standard-design.md#22-out-of-scope) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 DESIGN-LOOP b, recorded under [Decisions](#3-decisions), was applied in the Cairn summit's change 10, step 6.3: `SKILL.md`'s neighbours and [the standard's 2.2](standard-design.md#22-out-of-scope) now say where `ki-work design` and `ki-design` overlap and where each takes over. No rule changed and no outside source was refreshed.
 
 Later on 17 November 2026 an in-house review applied REVIEW-HOME b, which Kris took that day at about 01:37 GMT: the review's general shape is written once in `ki-authoring`'s [review standard](../../ki-authoring/references/standard-review.md), and [4.2](standard-design.md#42-how-a-design-is-shaped)'s review step now points at it, keeping only what a design adds: what it is reviewed against, the design anchors, and its outcome through the change document that moves it. The pending pointer is gone, and the terms Finding and Anchor cite the review standard. The rubric's DESIGN-3 is unchanged in substance. No outside source refreshed.
 

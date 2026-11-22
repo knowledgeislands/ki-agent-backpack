@@ -33,6 +33,7 @@ The loop writes no work record, grants itself no authority and never chooses for
 - `ki-delegation`, when selected, supplies the packet for any high-risk reviewer or rollout handoff.
 - The [Project registry standard](standard-project-registry.md) owns the flat Project or theme note, which never points into a package and links any resulting Decision Record.
 - `ki-work-package` owns the package, its closed list, its tidy rules and its `_index.md`; `ki-coordination` says when the package is tidied and whether an outcome is homed.
+- `ki-design` shapes a technical or visual design of any kind. The two overlap at the brief and the review, and stay apart (DESIGN-LOOP): this loop decides what to do and rolls it out as work records; `ki-design` shapes the design itself, its options, review and kind's levels. When the loop's subject is a technical or visual design, `ki-design` shapes it and the loop keeps the decisions and rollout; once the change agrees a design, its design document under `docs/design/` is `ki-design`'s from then on. A design with no Project or rollout to decide goes straight to `ki-design`.
 
 ## Invocation
 

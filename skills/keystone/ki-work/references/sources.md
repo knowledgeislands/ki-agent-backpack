@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:34:23Z
+ki-revised: 2026-11-22T19:58:12Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -106,10 +106,13 @@ The loop of [the work design standard](standard-work-design.md) is house practic
 | DESIGN-RUN-CLOCK | DESIGN-RUN is a fixed historical run with nothing outside the house to fetch again, so its Last reviewed reads On change and it leaves the monthly REFRESH clock. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Work design](standard-work-design.md) | In force |
 | RECAP-IDE-ENV | The recap's runtime detection stays as it is, treating `CLAUDECODE=1` with no session ID as Claude Code, though IDE extensions now also set `CLAUDECODE=1` in their terminals; the case is narrow and the evidence advisory, so it is watched rather than changed. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Recap](standard-session-recap.md) | In force |
 | TRANSCRIPT-LAG | The recap's grounding helper notes that Claude Code writes its transcript asynchronously, so the newest turn may be missing, as Claude Code's hooks page says the transcript "may lag the in-memory conversation". Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Recap](standard-session-recap.md#41-run-the-grounding-helper) | In force |
+| DESIGN-LOOP | Option b: `ki-work design` stays in `ki-work`, and `ki-design` keeps technical and visual design; the overlap between the two loops is written down in both skills rather than merged. The loop decides what to do and rolls it out as work records; `ki-design` shapes the design itself, takes a loop's technical or visual subject, and owns the design document once the loop's change agrees it. Kris, 22 November 2026, about 19:40 GMT, at the Keystone guild's sitting, card, in his words: "I'm not very sure about this. My gut feeling is to keep the KI work, but I take the points you've raised." | 2026-11-22 | [the design reference](mode-design.md#relationship-boundary), [design-loop 2.2](standard-work-design.md#22-out-of-scope) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 DESIGN-LOOP b, recorded under [Decisions](#3-decisions), was applied in the Cairn summit's change 10, step 6.3: [the design reference's relationship boundary](mode-design.md#relationship-boundary) and [the design-loop standard's 2.2](standard-work-design.md#22-out-of-scope) now say where `ki-work design` and `ki-design` overlap and where each takes over. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 Loreward, within remit, from the 4.1 refresh, took TRANSCRIPT-LAG, recorded under [Decisions](#3-decisions): [Run the grounding helper](standard-session-recap.md#41-run-the-grounding-helper) now says Claude Code's transcript may lack the newest turn, a fact the 22 November REFRESH found on Claude Code's hooks page. No rule changed and no outside source was refreshed.
 

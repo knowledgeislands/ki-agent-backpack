@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:48:38Z
+ki-revised: 2026-11-22T19:58:12Z
 ki-status: in force
 ---
 
@@ -42,7 +42,7 @@ The shaping of a design, technical or visual, from its brief to the choices it s
 ### 2.2 Out of scope
 
 - How a repository keeps its interface design, the three visual levels and the component library: `ki-design-system`.
-- Shaping a Project, theme or model before any work exists: `ki-work design`.
+- Shaping a Project, theme or model before any work exists, and rolling it out as work records: `ki-work design`. Where its subject is a technical or visual design, this standard shapes that design and the loop keeps the owner's decisions and the rollout; the design document the loop's change agrees is this skill's from then on (DESIGN-LOOP).
 - The format of a design document: `ki-authoring`'s [design format](../../ki-authoring/references/standard-formats-design.md).
 - The review every kind shares: `ki-authoring`'s [review standard](../../ki-authoring/references/standard-review.md).
 - The forms of decision records, specifications and diagrams: Authoring's skills.
