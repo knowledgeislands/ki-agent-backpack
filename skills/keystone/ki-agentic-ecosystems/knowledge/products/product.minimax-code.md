@@ -21,7 +21,7 @@ links:
 
 # MiniMax Code (MiniMax)
 
-MiniMax Code lets its users hand coding and everyday office work to an agent: "From coding to office work, MiniMax Code connects to your local files, tools, and browser", in a Coding mode and a Work mode ([S2]). MiniMax presents it as "The all-in-one general agent built for MiniMax models" ([S1]), and its documentation as "a desktop AI Agent app for software development, everyday workflows, automation, and remote collaboration" ([S3]). MiniMax makes it; it is the former MiniMax Agent desktop app, "officially renamed to MiniMax Code" on 29 May 2026, and its web app still lives at agent.minimax.io ([S4], [S2]). It runs as a desktop app for macOS and Windows, a web app, a phone companion for iOS and Android, and a terminal CLI, `mcode`, with editors reaching it over ACP ([S2], [S5], [S9]). The CLI is open source, "An open-source coding agent for your terminal, powered by MiniMax", whose "First-party code defaults to MIT"; the repository "does not include the desktop application's source" ([S5]). It is paid through MiniMax's M Plan, shown as Go $22, Explore $55 and Build $132, with daily free credits ([S2], [S4]). The latest releases seen are desktop v3.1.16, of 16 November 2026, and CLI 0.7.8, of 19 November 2026 ([S4]). MiniMax's home page also presents MiniMax Design, and its web changelog presents MaxClaw and MaxHermes, "A cloud-based AI assistant built on Hermes Agent" ([S1], [S4]). It is an [agent harness][industry.agent-harness] and a [client][industry.client].
+MiniMax Code lets its users hand coding and everyday office work to an agent: "From coding to office work, MiniMax Code connects to your local files, tools, and browser", in a Coding mode and a Work mode ([S2]). MiniMax presents it as "The all-in-one general agent built for MiniMax models" ([S1]), and its documentation as "a desktop AI Agent app for software development, everyday workflows, automation, and remote collaboration" ([S3]). MiniMax makes it; it is the former MiniMax Agent desktop app, "officially renamed to MiniMax Code" on 29 May 2026, and its web app still lives at agent.minimax.io ([S4], [S2]). It runs as a desktop app for macOS and Windows, a web app, a phone companion for iOS and Android, and a terminal CLI, `mcode`, with editors reaching it over ACP ([S2], [S5], [S9]). The CLI is open source, "An open-source coding agent for your terminal, powered by MiniMax", whose "First-party code defaults to MIT"; the repository "does not include the desktop application's source" ([S5]). It is paid through MiniMax's M Plan, shown as Go $22, Explore $55 and Build $132, with daily free credits ([S2], [S4]). The latest releases seen are desktop v3.1.16, of 16 November 2026, and CLI 0.7.8, of 19 November 2026, by the changelog; the CLI repository's latest GitHub release is v0.7.2, of 31 October 2026 (observed) ([S4], [S5]). MiniMax's home page also presents MiniMax Design, and its web changelog presents MaxClaw and MaxHermes, "A cloud-based AI assistant built on Hermes Agent" ([S1], [S4]). It is an [agent harness][industry.agent-harness] and a [client][industry.client].
 
 ## Contents
 
@@ -41,7 +41,7 @@ MiniMax Code lets its users hand coding and everyday office work to an agent: "F
 | [Instruction file][industry.instruction-file] | `yes` | CLI: "Project rules: `AGENTS.md` in workspace"; `mcode init .` "generates or updates `AGENTS.md`"; the desktop's files not found | [S8], [S7] |
 | [Plugin][industry.plugin] | `yes` | A Plugin Marketplace; packages bundle Apps, MCP and Skills; the CLI takes "official, local, or GitHub plugins" | [S11], [S5] |
 | [MCP][spec.mcp] | `yes` | Local configuration over `stdio`, `http`, `streamable-http` and `sse`, or MCP packaged in plugins | [S10] |
-| [Execution environment][industry.environment] | `yes` | `harness-sandbox` in the CLI: "control tool execution with permissions and sandboxing", its mechanism not documented; desktop cloud sessions "Run in cloud", their isolation not stated | [S5], [S4], [S18] |
+| [Execution environment][industry.environment] | `yes` | `harness-sandbox` in the CLI: "control tool execution with permissions and sandboxing", undocumented in the guides but built on a fork of Anthropic's open-source sandbox-runtime (observed); desktop cloud sessions "Run in cloud", their isolation not stated | [S5], [S23], [S4], [S18] |
 | [Client][industry.client] | `yes` | Desktop, web, phone and terminal; Remote Control from a phone; editors and agent hosts through ACP | [S2], [S5], [S9], [S17] |
 | [Agent host][industry.agent-host] | `unknown` | The pages read do not say it runs other makers' harnesses; it imports their skills only | [S4] |
 | [Channel][industry.channel] | `yes` | Messaging integrations: "After binding a channel, you can send messages to the Agent" through Telegram, WeChat, Lark or Feishu; custom Agents carry "Messaging channel bindings" | [S16], [S14] |
@@ -49,7 +49,7 @@ MiniMax Code lets its users hand coding and everyday office work to an agent: "F
 | [ACP][spec.acp] | `yes` | As agent: `mcode acp` "runs MiniMax Code as Agent Client Protocol server" for "editors and Agent hosts" | [S9] |
 | [AHP][spec.ahp] | `unknown` | Not found | None |
 | [A2A][spec.a2a] | `unknown` | Not found | None |
-| [Bot][system.bot] | `yes` | MiniMax Bot: "Build a team of Bots", "with group chats and scheduled tasks"; "Each Bot has its own model, reasoning level, memory"; scheduled tasks run "while your desktop app is awake" | [S4], [S3], [S15], [S12] |
+| [Bot][system.bot] | `yes` | MiniMax Bot, MiniMax's own Mini App since desktop v3.1.2: "Long-lived Bots", each with "a name, a role, instructions and its own Agent session", "one memory per Bot plus one shared by the team", reached by `@Name` or `message_bot`, and woken by scheduled tasks "only while the Mini App service is running" | [S4], [S22], [S3] |
 
 ## State of play
 
@@ -90,6 +90,8 @@ MiniMax Code lets its users hand coding and everyday office work to an agent: "F
 | [S19] | MiniMax, Custom Models / BYOK | 2026-11-22 |
 | [S20] | MiniMax blog, MiniMax Agent Team: Built for Long-Running Tasks and Continuous Evolution, 27 May 2026 | 2026-11-22 |
 | [S21] | MiniMax blog, MiniMax M3.1 Flash, 19 October 2026 | 2026-11-22 |
+| [S22] | MiniMax, MiniMax-AI/MiniMax-Code-MiniApps, `plugins/minimax-ai/minimax-bot/README.md` | 2026-11-22 |
+| [S23] | MiniMax, MiniMax-AI/minimax-code `third_party/sandbox-runtime` README and `upstream.json`, read through the GitHub API | 2026-11-22 |
 
 [industry.model]: ../industry/industry.model.md
 [industry.session]: ../industry/industry.session.md
@@ -111,22 +113,24 @@ MiniMax Code lets its users hand coding and everyday office work to an agent: "F
 [industry.agent-harness]: ../industry/industry.agent-harness.md
 [S1]: https://www.minimax.io
 [S2]: https://code.minimax.io/about
-[S3]: https://agent.minimax.io/docs/code/welcome
-[S4]: https://agent.minimax.io/docs/changelog
+[S3]: https://code.minimax.io/docs/code/welcome
+[S4]: https://code.minimax.io/docs/changelog
 [S5]: https://github.com/MiniMax-AI/minimax-code
-[S6]: https://agent.minimax.io/docs/cli/features
-[S7]: https://agent.minimax.io/docs/cli/workflows
-[S8]: https://agent.minimax.io/docs/cli/configuration
-[S9]: https://agent.minimax.io/docs/cli/integrations
-[S10]: https://agent.minimax.io/docs/code/agents/mcp
-[S11]: https://agent.minimax.io/docs/code/agents/plugins
-[S12]: https://agent.minimax.io/docs/code/agents/memory
-[S13]: https://agent.minimax.io/docs/code/agents/team
-[S14]: https://agent.minimax.io/docs/code/agents/custom-agents
-[S15]: https://agent.minimax.io/docs/code/automation/schedules
-[S16]: https://agent.minimax.io/docs/code/automation/im
-[S17]: https://agent.minimax.io/docs/code/automation/remote-control
-[S18]: https://agent.minimax.io/docs/code/workflows/tasks
-[S19]: https://agent.minimax.io/docs/code/account/byok
+[S6]: https://code.minimax.io/docs/cli/features
+[S7]: https://code.minimax.io/docs/cli/workflows
+[S8]: https://code.minimax.io/docs/cli/configuration
+[S9]: https://code.minimax.io/docs/cli/integrations
+[S10]: https://code.minimax.io/docs/code/agents/mcp
+[S11]: https://code.minimax.io/docs/code/agents/plugins
+[S12]: https://code.minimax.io/docs/code/agents/memory
+[S13]: https://code.minimax.io/docs/code/agents/team
+[S14]: https://code.minimax.io/docs/code/agents/custom-agents
+[S15]: https://code.minimax.io/docs/code/automation/schedules
+[S16]: https://code.minimax.io/docs/code/automation/im
+[S17]: https://code.minimax.io/docs/code/automation/remote-control
+[S18]: https://code.minimax.io/docs/code/workflows/tasks
+[S19]: https://code.minimax.io/docs/code/account/byok
 [S20]: https://www.minimax.io/blog/minimax-agent-team-long-running-1779893953
 [S21]: https://www.minimax.io/blog/minimax-m31f
+[S22]: https://github.com/MiniMax-AI/MiniMax-Code-MiniApps/blob/main/plugins/minimax-ai/minimax-bot/README.md
+[S23]: https://github.com/MiniMax-AI/minimax-code/tree/main/third_party/sandbox-runtime

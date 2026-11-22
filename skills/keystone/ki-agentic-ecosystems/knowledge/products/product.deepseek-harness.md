@@ -17,7 +17,7 @@ links:
 
 # DeepSeek Harness (DeepSeek)
 
-DeepSeek Harness lets developers run an agent that can "read and edit workspace files, run commands, delegate work, and maintain a plan", on a harness where "every part of the product is a plugin, including the model adapter, the tool registry, the session log" ([S8], [S7]). DeepSeek makes it: "DeepSeek Harness (`dsh`) is an open-source agent harness developed by DeepSeek AI", "built on an everything-is-a-plugin architecture and powered by Cordis", in the `deepseek-ai` GitHub organisation ([S1]). It runs as a web UI started by `npx @deepseek-ai/dsh web`, a desktop app, and headless, SDK, ACP and terminal profiles of the `dsh` command ([S1], [S6], [S7]). It is MIT licensed ([S1]). It is "in developer preview and iterating rapidly. THERE WILL BE COMPATIBILITY-BREAKING CHANGES", and DeepSeek's API documentation says it "is now in developer preview for agent harness developers worldwide" ([S1], [S3]); every capability below is therefore `partial` at most. The latest release seen is the prerelease 0.2.2-rc.5, of 18 November 2026, the npm `latest` tag ([S2], [S24]). It is an [agent harness][industry.agent-harness] and a [client][industry.client].
+DeepSeek Harness lets developers run an agent that can "read and edit workspace files, run commands, delegate work, and maintain a plan", on a harness where "every part of the product is a plugin, including the model adapter, the tool registry, the session log" ([S8], [S7]). DeepSeek makes it: "DeepSeek Harness (`dsh`) is an open-source agent harness developed by DeepSeek AI", "built on an everything-is-a-plugin architecture and powered by Cordis", in the `deepseek-ai` GitHub organisation ([S1]). It runs as a web UI started by `npx @deepseek-ai/dsh web`, a desktop app, and headless, SDK, ACP and terminal profiles of the `dsh` command ([S1], [S6], [S7]). It is MIT licensed ([S1]). It is "in developer preview and iterating rapidly. THERE WILL BE COMPATIBILITY-BREAKING CHANGES", and DeepSeek's API documentation says it "is now in developer preview for agent harness developers worldwide" ([S1], [S3]); every capability below is therefore `partial` at most. The newest release seen is the prerelease 0.2.3-alpha.1, of 22 November 2026, under npm's `alpha` tag; 0.2.2-rc.5, of 18 November 2026, remains npm's `latest` ([S2], [S24]). It is an [agent harness][industry.agent-harness] and a [client][industry.client].
 
 ## Contents
 
@@ -49,6 +49,7 @@ DeepSeek Harness lets developers run an agent that can "read and edit workspace 
 
 ## State of play
 
+- **2026-11-22:** Version 0.2.3-alpha.1, a prerelease under npm's `alpha` tag: Git repositories as plugin sources, an experimental timeline plugin, a code-review page, and optional connector plugins such as Linear, Notion, Feishu, WeCom and DingTalk (translated from Chinese). ([S2], [S24])
 - **2026-11-18:** Version 0.2.2-rc.5, a prerelease and the npm `latest` tag: DeepSeek models use DeepSeek's server-side search with "no per-search charge". ([S2], [S24])
 - **2026-11-13:** Version 0.2.2-rc.3 adds an experimental plugin that imports past conversations from the DeepSeek App or its web version. ([S2])
 - **2026-11-04:** Version 0.2.2-rc.1: phone and tablet support, an experimental `subagent_oar` tool delegating to local Codex or Claude CLIs, and experimental Git worktrees per session. ([S2])
