@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T09:00:00Z
+ki-revised: 2026-11-22T09:20:00Z
 ki-status: in force
 ---
 
@@ -156,7 +156,7 @@ The root `ki:site:build` / `ki:site:dev` aliases and local build/dev operations 
 
 ### 4.6 CI/CD
 
-- **Cloudflare Workers Builds (git integration)** is the deploy path: a push/merge to `main` triggers Cloudflare to build and deploy. The repo needs no deploy workflow of its own for this.
+- **Cloudflare Workers Builds (git integration)** is the only deploy path: a push/merge to `main` triggers Cloudflare to build and deploy. The repo keeps no GitHub Actions deploy workflow, not even as a fallback while a first build is checked; Actions do only content work before deploy, as below.
 - Workers Builds runs a **build command** followed by a **deploy command**. The house pair is `bun run ki:site:build` and `bun run ki:site:deploy` (or the equivalent `bunx wrangler deploy`). There is no Pages-style “deploy directory” setting; `assets.directory` in Wrangler owns that path. Use the optional root directory only to choose the project working directory in a monorepo.
 - Builds of every other branch are optional and follow [§4.9](#49-branch-previews-behind-access): they upload an undeployed version and never run `wrangler deploy`.
 - A repo **may** run a **GitHub Action for pre-deploy content work** (e.g. applying content, optimising images) that commits to `main` and lets Workers Builds deploy the result — but that Action is content tooling, not the hosting standard.
@@ -172,7 +172,12 @@ When a run is separately authorised to read Cloudflare credentials, it reads the
 
 ### 4.8 Zero Trust team naming
 
-Each Cloudflare account's Zero Trust team, which gives the Access login its `<team>.cloudflareaccess.com` domain, is named for that account's own identity in kebab case: the personal account's team is `midnight-ninja` and the 5G Emerge account's is `5g-emerge`. A team never keeps the name of another territory or of a project it once hosted, and carries no stale suffix such as `-io`. The organisation name equals the team domain, as in the Valle Armonia and 5G Emerge accounts, and the login page's text belongs to the account, with no other territory's header or footer. Kris set this on 29 October 2026 when renaming both teams, asking that it be "rolled out uniformly ... following conventions".
+Each Cloudflare account's Zero Trust team, which gives the Access login its `<team>.cloudflareaccess.com` domain, is named for that account's own identity in kebab case: the personal account's team is `midnight-ninja` and the 5G Emerge account's is `5g-emerge`. A team never keeps the name of another territory or of a project it once hosted, and carries no stale suffix such as `-io`. Kris set this on 29 October 2026 when renaming both teams, asking that it be "rolled out uniformly ... following conventions".
+
+What the login page shows depends on what the account hosts:
+
+- **A dedicated account,** hosting one organisation's sites, names itself: its organisation name equals its team domain, as in the 5G Emerge account, and the login page's text belongs to the account, with no other territory's header or footer.
+- **An account hosting several sites** shows nothing specific to any one of them: the organisation is "Private", the login header "Private sign-in", with no logo or footer; every Access application is named "Private site"; and the team address names no site. Kris set this on 22 November 2026, for the personal and Friends accounts: what matters "is that the sign-in screen is neutral".
 
 A team rename is a change to the Access organisation, which makes it connection-critical under the background-run [connection-critical rule](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#484-connection-critical-changes):
 

@@ -175,7 +175,7 @@ Test with `curl -I https://www.example.com` — the response should be `301` wit
 
 ## 9. Set up Cloudflare Workers Builds (CI/CD)
 
-Cloudflare Workers Builds replaces manual `bun run ki:site:deploy` calls: a push to `main` triggers Cloudflare to build and redeploy automatically. No GitHub Actions workflow needed for the deploy itself.
+Cloudflare Workers Builds replaces manual `bun run ki:site:deploy` calls: a push to `main` triggers Cloudflare to build and redeploy automatically. No GitHub Actions deploy workflow is kept, not even as a fallback.
 
 1. Go to **Workers & Pages → `<name>` → Settings → Build**.
 2. Connect the GitHub repository (authorize the Cloudflare GitHub App if prompted). Linking the app to a Cloudflare account is a one-time step in the dashboard, by hand: there is no API for it, so a run cannot do it.

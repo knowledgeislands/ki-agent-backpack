@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T09:00:00Z
+ki-revised: 2026-11-22T09:20:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -64,12 +64,16 @@ The dashboard navigation name **Workers & Pages** remains correct in operator in
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
 | RUN-SECRETS | Kris adopted the Cloudflare half: a run separately authorised to read Cloudflare credentials reads them only through `~/bin/cf-token`, as an access rule, not authority for a credential read or a Cloudflare operation | 2026-10-25 | [4.7](standard-cloudflare-hosting.md#47-credential-access) | taken |
+| BUILDS-ONLY | "No, we don't do it that way. We just use the build, we use the worker's build capability.", Kris, about 00:37 UTC, recorded in the `personal.summit` package's change 40: Workers Builds is the only deploy path, and no GitHub Actions deploy workflow is kept, not even as a fallback | 2026-11-22 | [4.6](standard-cloudflare-hosting.md#46-cicd) | taken |
+| SIGNIN-PRIVATE | "for personal and friends, because we're hosting multiple sites within those, it doesn't make any sense for that to have a URL or a whatever the visitor sees as being specific to any one of them", Kris, about 08:25 GMT, and at 08:34, "I don't particularly care as long as it's [brand-]agnostic ... What's more important is that the sign-in screen is neutral", recorded in the `personal.summit` package's change 40: an account hosting several sites shows a "Private" sign-in that names no site; a dedicated account, such as 5G Emerge, Humans not Robots or Knowledge Islands, may name itself | 2026-11-22 | [4.8](standard-cloudflare-hosting.md#48-zero-trust-team-naming) | taken |
 
 The Zero Trust team naming that Kris set on 29 October 2026 is quoted in the standard beside its rule, [4.8](standard-cloudflare-hosting.md#48-zero-trust-team-naming), and has no id.
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 BUILDS-ONLY and SIGNIN-PRIVATE, which Kris decided that night and morning (the `personal.summit` package's change 40), landed: [CI/CD](standard-cloudflare-hosting.md#46-cicd) keeps no GitHub Actions deploy workflow, not even as a fallback, and [team naming](standard-cloudflare-hosting.md#48-zero-trust-team-naming) gives an account hosting several sites a neutral "Private" sign-in, while a dedicated account keeps its own name. The exemplars and EDUCATE follow. No outside source was refreshed.
 
 On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, brought in what moving the personal account's sites between Cloudflare accounts taught (the `personal.summit` package's change 40): a recipe for moving a site to another account in [the exemplars](exemplars.md#moving-a-site-to-another-account), with a pointer from [the custom-domain clause](standard-cloudflare-hosting.md#44-the-site-wranglerjsonc-shape); the minting practice of `~/bin/cf-token` under [credential access](standard-cloudflare-hosting.md#47-credential-access); a team rename's effect on Workers that check the Access token under [team naming](standard-cloudflare-hosting.md#48-zero-trust-team-naming); and the one-time GitHub app link in EDUCATE. The exemplar's Workers Builds block lost a stale output-directory line, which the standard already ruled out. No rule changed and no outside source was refreshed; BUILDS-ONLY and the multi-site sign-in naming went to Kris as queries.
 

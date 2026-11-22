@@ -81,7 +81,7 @@ The local `build` and `dev` operations plus the public `ki:site:build` and `ki:s
 
 ### Cloudflare Workers Builds — the CI/CD path
 
-The deploy path for house sites is **Cloudflare Workers Builds** (git integration in the Cloudflare dashboard), not a GitHub Actions deploy step. A push or merge to `main` triggers Cloudflare to build and deploy. The repo needs no separate deploy workflow for this — the `wrangler.jsonc` config is sufficient. A repo may run a GitHub Action for **pre-deploy content work** (applying content, optimising images) that commits to `main` and lets Workers Builds deploy the result, but that Action is content tooling, not the hosting standard.
+The deploy path for house sites is **Cloudflare Workers Builds** (git integration in the Cloudflare dashboard), not a GitHub Actions deploy step. A push or merge to `main` triggers Cloudflare to build and deploy. The repo keeps no deploy workflow of its own, not even as a fallback — the `wrangler.jsonc` config is sufficient. A repo may run a GitHub Action for **pre-deploy content work** (applying content, optimising images) that commits to `main` and lets Workers Builds deploy the result, but that Action is content tooling, not the hosting standard.
 
 The minimal Cloudflare Workers Builds configuration (set in the dashboard, not in a workflow file):
 
