@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T01:26:05Z
+ki-revised: 2026-11-22T16:15:00Z
 ki-refresh: canonical · on-change
 ---
 
@@ -75,6 +75,8 @@ None.
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the second SKILLS-LEARNING batch, Kris's steer of that morning to bake the night's lessons into the skills, added two recipes from Tower's roadmap work to [the work-item format](standard-work-item-format.md): group Steps by a prefix on each task-list item, since ITEM-3 refuses a sub-heading there, and rewrite a folded-in merged record's section on how it relates to its target from the target's side. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 an in-house review applies ROADMAP-EXIT-STATE a, which Kris took at about 01:05 UTC on Orca item 112, recorded in ki.summit's [change 22](https://github.com/krisb/ki-cairn-store/blob/87ec71c8/work/ki/ki.summit/22-roadmap-horizons.change.md#4-outline). [Cancellation and resolution](standard-work-item-format.md#49-cancellation-and-resolution) gains `returned`, the resolution a Soon, Future or held draft record takes when it leaves the roadmap as an idea under **Upcoming only** in [Status and horizon](standard-repository-roadmaps.md#43-status-and-horizon), and ITEM-2 accepts it. This is an in-house decision review; no external source was refreshed.
 

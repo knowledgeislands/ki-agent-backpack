@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T01:26:05Z
+ki-revised: 2026-11-22T16:15:00Z
 ki-status: in force
 ---
 
@@ -288,6 +288,8 @@ A held record keeps its status, `baseline_ref`, completed Steps, and review evid
 
 `resolution_target` names the replacing record for `duplicate`, `merged`, and `superseded` when it lives in the same repository, and is forbidden otherwise. It is a canonical work-item identifier of this repository, different from the record, and should resolve in the roadmap; a target with another repository's code fails, because records are pruned and cross-repository identifiers and links break. Where the replacing work lives in another repository, the record keeps its resolution with no `resolution_target`, and `## Cancelled` names that repository and describes the work in plain words, with no identifier or link. Only the owning repository closes its own record: closing a duplicate here never closes or edits the target.
 
+When a merged record's detail is folded into its target, rewrite any section on how it relates to the target from the target's side: copied as it stands, it describes the surviving record as another one (Tower step 46, 22 November 2026).
+
 `resolution` and `resolution_target` are forbidden on every other status.
 
 [Back to contents](#contents)
@@ -455,7 +457,7 @@ An immediate item may remain `status: draft` while `ki-work plan` shapes these s
 
 It becomes `status: ready` only after the sections are concrete, dependencies are satisfied, verification is checkable, and the user approves the plan.
 
-Every Step is a Markdown task-list item. New and Ready plans use `- [ ]`; implementation marks completed work as `- [x]`. In-progress items may contain both states, while Acceptance and Done items require every Step to be `- [x]`.
+Every Step is a Markdown task-list item. New and Ready plans use `- [ ]`; implementation marks completed work as `- [x]`. In-progress items may contain both states, while Acceptance and Done items require every Step to be `- [x]`. Steps holds task-list items only, so the audit (ITEM-3) refuses a sub-heading there: group steps, such as one checklist per machine, by a prefix on each item, `- [ ] sol: ...`, not by sub-headings (Tower step 49, 22 November 2026).
 
 [Back to contents](#contents)
 
