@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T08:55:00Z
+ki-revised: 2026-11-22T09:20:00Z
 ki-status: in force
 ---
 
@@ -143,6 +143,14 @@ Select one of four approaches from repository policy, the requested review bound
 - **`worktrees-with-pr`** — use when concurrent or independently isolated deliveries need separate branches, indexes, and working files. Give each branch its own worktree and PR, then integrate through the repository's review and merge policy.
 - **`worktrees-with-local-integration`** — use isolated task branches for local delivery without remote publication. Independently review the exact delivery commit, then let the repository's authorised integration owner merge it into the named local destination branch under the serialised write boundary below. No push or pull request is implied.
 
+**The purpose test** (WORKTREE-RUNS) chooses between `main` and a worktree by what the work is for. The actor chooses without asking and names its choice, main or worktree, in its report, with a **Lessons** line on how it went:
+
+- **Main, in the primary checkout:** fixes, cosmetics, wording, docs and data refreshes in a few files that nothing shared loads. When unsure, use `main`. Work packages and meeting rooms always stay on the Cairn store's `main`; a large structural move there is named to Kris first.
+- **A worktree:** a change others load, such as skills, hooks, shared packages, schemas, a lockfile, build or CI; work that needs several commits; or a risky change, touching data, security or what the Cairn reads. Count the cost of the worktree's own dependency install.
+- **Limits:** at most one worktree run beside main work per repository. Skill and hook changes in a worktree are not loaded live, so the report says how they were tested. A cross-machine handoff names any unpushed branch.
+
+Kris adopted WORKTREE-RUNS on 22 November 2026, at about 08:58 GMT, under WT-ADOPT a: "Yeah, we can adopt the worksheet proposal, but I want you to do it only if you're in high confidence and I agree with you" ("worksheet" is speech-to-text for worktree). It lifts the pause of 7 November on worktrees and takes the eight points that were high after blind review, with the review's amendments, in the Cairn summit's change 70.
+
 Do not invent a branch, pull-request, or worktree requirement merely because several interactive actors may modify one working copy. Use worktrees when concurrent deliveries require separate branches or isolated working files, or when an unattended coordinator must not mutate a human's checkout; do not keep independent branch work in one working copy merely because separate indexes are possible.
 
 A repository whose skills, hooks or rubrics run in other repositories' gates, such as the KI Agent Backpack, or whose committed code every session runs, such as `tools-ki`, which builds the `ki` command, takes every edit off its shared primary checkout: in a linked worktree on its own branch, integrated into `main` by fast-forward only once its tests and audit pass, so that the `main` other repositories and sessions load stays green and a half-made edit never breaks `ki` for everyone. Kris agreed GREEN-MAIN as recommended on 2026-10-20, "GREEN-MAIN - agreed as recommended", and took its extension to `tools-ki` with the worktree fixes the same day. The `ki-delegation` [green baseline](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#48-coordination) rule stops the line when that `main` is red.
@@ -163,7 +171,12 @@ Verify the proposed combined result against the current destination before advan
 
 #### 4.4.2 Worktree-run self-integration
 
-A background run that works in a linked worktree holds standing authority to fast-forward its own branch into the local primary checkout's `main` once its gates pass on the rebased range; this is the default `worktrees-with-local-integration` grant for runs, and the run is its own integration owner. Its last step before it reports finished is integrate, verify and dispose: rebase its branch onto local `main` without a fetch, run the repository's gates on the rebased range, take the [write boundary](#441-local-integration-write-boundary) so that one writer at a time advances the shared checkout, `git merge --ff-only` into `main` there, confirm its commits are reachable from `main`, then remove the worktree and delete the branch with `git branch -d`.
+A background run that works in a linked worktree holds standing authority to fast-forward its own branch into the local primary checkout's `main` once its gates pass on the rebased range; this is the default `worktrees-with-local-integration` grant for runs, and the run is its own integration owner. Its life as a branch holder, under WORKTREE-RUNS:
+
+1. **Base:** branch `<actor>/<slug>` from a freshly fetched `origin/main`, in a [worktree location](#443-worktree-location) the purpose test allows. Keep it short-lived and unpushed until it lands, since a pushed branch cannot be rebased without a force-push.
+2. **Rebase in the worktree:** fetch again and rebase the branch onto the fresh `origin/main` inside the worktree, never in the primary checkout, then run the repository's gates on the rebased range.
+3. **Land in the primary:** take the [write boundary](#441-local-integration-write-boundary) so that one writer at a time advances the shared checkout, bring its `main` level with `origin/main`, `git merge --ff-only <branch>` there, confirm the commits are reachable from `main`, and push under the push authority the actor holds. A refused fast-forward goes back to the worktree to rebase again, never to a merge in the primary.
+4. **Remove in the same pass:** the creator proves the tip is in `origin/main`, or in local `main` where it holds no push authority, and that nothing is uncommitted, then removes the worktree by its literal absolute path and deletes the branch with `git branch -d`. A worktree whose removal a permission prompt blocks is removed at its owner's next turn, or goes to Kris by name after about a day.
 
 The grant is fast-forward only and local only. It carries no push, no merge commit, no conflict resolution in the primary checkout and no acceptance: independent review of the delivered commits still comes before any work record is accepted. A run that cannot fast-forward cleanly, because of a conflict, a red gate or a write window another writer holds, keeps its worktree and branch and reports it stranded, with the reason, as a blocking query, never as a quiet finish. Kris took WORKTREE-INTEGRATE a) on 2026-10-20, "do whatever that needs to be", whose option read: "Yes, under F1's conditions; a run that cannot fast-forward cleanly keeps its worktree and reports it stranded."
 
@@ -171,9 +184,9 @@ The grant is fast-forward only and local only. It carries no push, no merge comm
 
 #### 4.4.3 Worktree location
 
-A linked worktree lives under one explicit, runtime-owned root outside the repository's primary working tree and outside its Git common directory. The root must not be discoverable as another estate or workspace member, and its repository and task identity must prevent path collisions. Do not use an ad hoc sibling inside a normal workspace tree, a repository-local untracked directory, or a path under `.git` for working files.
+A linked worktree lives under one explicit, runtime-owned root outside the repository's primary working tree and outside its Git common directory: the agent host's own folder, such as Orca's workspaces folder, or one named folder under `~/.local/state`, and never a sibling of the repository, a folder inside it, or `/private/tmp` (WORKTREE-RUNS). The root must not be discoverable as another estate or workspace member, and its repository and task identity must prevent path collisions. Do not use an ad hoc sibling inside a normal workspace tree, a repository-local untracked directory, or a path under `.git` for working files.
 
-The coordinator that creates a worktree owns its location, branch association, and retirement evidence. A portable policy names the containment properties rather than one user's absolute path; an XDG state/data root or a coordinator-owned application-state root is an appropriate implementation.
+The coordinator that creates a worktree owns its location, branch association, and retirement evidence, and its branch name, `<actor>/<slug>`, names its owner and purpose. A portable policy names the containment properties rather than one user's absolute path; an XDG state/data root or a coordinator-owned application-state root is an appropriate implementation.
 
 [Back to contents](#contents)
 

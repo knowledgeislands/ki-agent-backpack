@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T08:55:00Z
+ki-revised: 2026-11-22T09:20:00Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -69,10 +69,13 @@ Kris's decisions behind the rules, each quoted in the standard beside the rule i
 | ACCEPT-BY-CRITERIA a) | "amend in a shared checkout only inside the serialised write window after confirming `HEAD` is this session's own unpushed commit, otherwise make a new commit" | 2026-10-31 | [4.5](standard-git.md#45-safe-git-hygiene) | taken |
 | HOOK-STASH a) | Commit hooks run `lint-staged` with `--no-stash` under the never-stash rule | 2026-11-01 | [4.5](standard-git.md#45-safe-git-hygiene) | taken |
 | LINT-BEFORE-PUSH | "It's really important that we make sure that things do pass the linting before we push them." | 2026-11-06 | [4.5.1](standard-git.md#451-checks-before-committing) | taken |
+| WORKTREE-RUNS | WT-ADOPT a, about 08:58 GMT, in the Cairn summit's [change 70, 4.6](https://github.com/krisb/ki-cairn-store/blob/a5798e5b/work/cairn/cairn.summit/70-bots.change.md#46-decided): "Yeah, we can adopt the worksheet proposal, but I want you to do it only if you're in high confidence and I agree with you"; the purpose test, the branch holder's life and the allowed worktree folders, as the eight high-confidence points with the blind review's amendments | 2026-11-22 | [4.4](standard-git.md#44-working-copy-and-review-approaches), [4.4.2](standard-git.md#442-worktree-run-self-integration), [4.4.3](standard-git.md#443-worktree-location) | taken |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 WORKTREE-RUNS, which Kris adopted at about 08:58 GMT, landed: [working-copy approaches](standard-git.md#44-working-copy-and-review-approaches) gained the purpose test, [worktree-run self-integration](standard-git.md#442-worktree-run-self-integration) the branch holder's life, based and rebased on a freshly fetched `origin/main` in place of local `main` without a fetch, and [worktree location](standard-git.md#443-worktree-location) the allowed folders. GREEN-MAIN's paragraph is unchanged; how it meets the purpose test went to Kris as a query. No outside source was refreshed.
 
 On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, brought three pitfalls from the overnight runs into [safe Git hygiene](standard-git.md#45-safe-git-hygiene) and one into [commit messages](standard-git.md#42-commit-messages): sync by `git fetch` and `git merge --ff-only @{u}` rather than `git pull`, which a branch rebase setting or other sessions' uncommitted files make refuse; stage and commit in one `git commit --only -- <path>...`; write pathspecs literally under zsh; and wrap commit bodies at 100 characters. The hygiene rubric's guidance follows. No rule changed and no outside source was refreshed.
 
