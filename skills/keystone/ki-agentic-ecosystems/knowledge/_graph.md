@@ -32,6 +32,7 @@ This graph gives every Knowledge Islands session the same words for agentic syst
 | `vendor-term` | One vendor's own word for a term, in one sense, with its current examples and sources | `vendor` |
 | `vendor-name` | A vendor's product name used in more than one sense, linking once for each | `vendor` |
 | `resource` | A resource kept outside the cards, such as a diagram, that other cards may link to directly: what it shows and where it and its source live | None |
+| `product` | One agentic product, under the [product cards standard][standard-product-cards]: what it is and who makes it, its capabilities against the graph's terms, its dated state of play and its sources | `vendor`, `reviewed` |
 | `analogy` | An analogy that explains some of the system's own words by setting them beside something outside them, written as an analogy and never as a definition (NAMING-RULE): what it helps a reader see first, then each comparison with where it holds and where it breaks | None |
 
 ## Link vocabulary
@@ -71,7 +72,8 @@ A predicate reads from the card that holds it to its target. The same rule maps 
 | `status` | Whether the card is adopted | `proposal`, `future-concept` or `agreed` | Every card |
 | `territory` | The territory the knowledge belongs to | `knowledge-islands` | Every card |
 | `island` | The island that owns the knowledge | `ki-agent-backpack` | Every card |
-| `vendor` | The vendor whose word the card holds | `Anthropic`, `OpenAI`, `Google`, `Microsoft`, `Orca` or `Zed Industries` | `vendor-term`, `vendor-name` |
+| `vendor` | The vendor whose word the card holds, or a product's maker | For a vendor card, `Anthropic`, `OpenAI`, `Google`, `Microsoft`, `Orca` or `Zed Industries`; for a product card, its maker as the maker names itself | `vendor-term`, `vendor-name`, `product` |
+| `reviewed` | The date a product card's facts were last checked against its sources | `YYYY-MM-DD` | `product` |
 | `origin` | The decisions the card was written from, in one line | Text | Every card |
 | `links` | Typed links, keyed by the target card's id | A predicate from the vocabulary above | Optional |
 
@@ -97,16 +99,18 @@ A predicate reads from the card that holds it to its target. The same rule maps 
 | Google | `google.` | Google's own words | [Gemini][google.gemini], [model][google.model], [agent harness][google.agent-harness], [agent][google.agent], [conversation][google.conversation], [session][google.session], [subagent][google.subagent], [remote subagent][google.remote-subagent], [skill][google.skill] | `vendors/google/` |
 | Orca | `orca.` | Orca's own words | [Orca runtime][orca.runtime], [Orca app][orca.app], [environment][orca.environment] | `vendors/orca/` |
 | Zed Industries | `zed.` | Zed Industries' own words | [Zed][zed.zed] | `vendors/zed/` |
+| Products | `product.` | One card per agentic product, its capabilities read against the terms (ECOSYSTEM-SHAPE a), proposals | [Claude Code][product.claude-code], [Claude Desktop][product.claude-desktop], [Codex][product.codex], [GitHub Copilot cloud agent][product.github-copilot-cloud-agent], [Gemini CLI][product.gemini-cli], [Cursor][product.cursor], [OpenCode][product.opencode], [OpenClaw][product.openclaw], [Orca][product.orca], [Zed][product.zed] | `products/` |
 | Diagrams | `diagram.` | Diagrams of the terms, as resources | [agentic terms by example][diagram.agentic-terms-by-example], [agentic standards and channels][diagram.agentic-standards] | `diagrams/` |
 | Microsoft | `microsoft.` | Microsoft's and GitHub's own words | [Copilot][microsoft.copilot], [model][microsoft.model], [agent harness][microsoft.agent-harness], [agent][microsoft.agent], [agent session][microsoft.agent-session], [chat][microsoft.chat], [subagent][microsoft.subagent], [agent skill][microsoft.agent-skill] | `vendors/microsoft/` |
 | System | `system.` | Knowledge Islands' own words, each mapped onto the industry's | [guild][system.guild], [rig][system.rig], [actor][system.actor], [work package][system.work-package], [backpack][system.backpack], [role][system.role], [seat][system.seat], [bot][system.bot], a proposal; and one analogy, [the civic model][system.civic-map] | `system/` |
 
 ## Extent and limitations
 
-- **What it covers:** seventeen terms in reading order, from the model to the plugin, the agentic system read after the agent as the umbrella the rest build up (CARD-ORDER), and the channel; the specifications the terms rest on, Agent Skills, MCP, ACP, AHP and A2A, MCP at its revision of 28 July 2026, ACP at its release of 18 November 2026, AHP at 1.1.0 and A2A at 1.0.1; the four leading vendors' words for those terms as their documentation used them on 12 November 2026; Orca's and Zed Industries' words; two diagrams; seven of the system's own words, guild, rig, actor, work package, backpack, role and seat, with an eighth, bot, as a proposal; and one analogy, the civic model set beside older civilisations' (CIVIC-MAP, CIVIC-AGREE). Other vendors are added where they matter (VENDORS).
+- **What it covers:** seventeen terms in reading order, from the model to the plugin, the agentic system read after the agent as the umbrella the rest build up (CARD-ORDER), and the channel; the specifications the terms rest on, Agent Skills, MCP, ACP, AHP and A2A, MCP at its revision of 28 July 2026, ACP at its release of 18 November 2026, AHP at 1.1.0 and A2A at 1.0.1; the four leading vendors' words for those terms as their documentation used them on 12 November 2026; Orca's and Zed Industries' words; the first ten product cards, each proposals, under the [product cards standard][standard-product-cards] (ECOSYSTEM-HOME b, ECOSYSTEM-SHAPE a), their facts read on 22 November 2026; two diagrams; seven of the system's own words, guild, rig, actor, work package, backpack, role and seat, with an eighth, bot, as a proposal; and one analogy, the civic model set beside older civilisations' (CIVIC-MAP, CIVIC-AGREE). Other vendors are added where they matter (VENDORS).
 - **Where the cards sit:** the root folder is the skill's `knowledge/` folder, which holds this root definition and a folder for each subgraph, as the table above names, and nothing but the graph (KNOWLEDGE-FOLDER, GRAPH-FOLDERS). A card's folder is never part of its identity, so links in front matter are keyed by id alone.
 - **Beside the graph:** the skill's `references/` folder holds [the sources](../references/sources.md), with every vendor source and the date it was last checked, and the decisions behind the cards; it is not a card.
 - **Refreshed monthly** (TERMS-REFRESH): the vendor cards' examples date quickly, as products are renamed, merged and closed.
+- **Product cards date fastest:** each carries its own `reviewed` date, a dated state of play and its sources with the dates they were read, rather than listing them in the sources file; how they are kept current is open in ki.summit's change 21 (ECOSYSTEM-UPKEEP).
 - **Pending terms:** the system's own terms sit in the `system/` subgraph (TERMS-SOURCE), after guild; the channel's place in the reading order waits on CARD-ORDER. A vendor card that would link to one gains that link when the card is agreed.
 - **Resources outside the graph's folder:** a `resource` card points to its diagram in the backpack's `docs/diagrams/`, where the living-diagram manifest keeps its question, sources, staleness trigger and regeneration prompt; the card holds what it shows, not the image (DIAGRAM-RESOURCE).
 - **Due a vocabulary review:** the `ki:` predicates, until the `ki:` namespace is published.
@@ -206,3 +210,14 @@ A predicate reads from the card that holds it to its target. The same rule maps 
 [microsoft.chat]: ./vendors/microsoft/microsoft.chat.md
 [microsoft.subagent]: ./vendors/microsoft/microsoft.subagent.md
 [microsoft.agent-skill]: ./vendors/microsoft/microsoft.agent-skill.md
+[standard-product-cards]: ../references/standard-product-cards.md
+[product.claude-code]: ./products/product.claude-code.md
+[product.claude-desktop]: ./products/product.claude-desktop.md
+[product.codex]: ./products/product.codex.md
+[product.github-copilot-cloud-agent]: ./products/product.github-copilot-cloud-agent.md
+[product.gemini-cli]: ./products/product.gemini-cli.md
+[product.cursor]: ./products/product.cursor.md
+[product.opencode]: ./products/product.opencode.md
+[product.openclaw]: ./products/product.openclaw.md
+[product.orca]: ./products/product.orca.md
+[product.zed]: ./products/product.zed.md
