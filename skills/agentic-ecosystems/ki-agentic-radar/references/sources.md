@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:23:00Z
+ki-revised: 2026-11-22T18:37:04Z
 ki-refresh: external-spec · weekly
 ---
 
@@ -108,6 +108,7 @@ None.
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
 | AHP-RADAR | AHP adoption is tracked per agent host, each absence dated counter-evidence on the AHP subject; Orca orchestration is assessed, watched and never adopted as a channel between Agora sessions | 2026-11-10 | `radar.toml`, [4.2.2](standard-agentic-radar.md#422-subjects) | taken |
+| ORCA-MOVEMENT | Orca orchestration's movement reads `unchanged`, since movement describes the current review and nothing about it was new on 22 November 2026; its stance stays assess. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | `radar.toml`, [Agentic radar standard](standard-agentic-radar.md) | In force |
 
 [Back to contents](#contents)
 
@@ -119,6 +120,7 @@ The review log records outcomes, newest first; source freshness is tracked in ea
 
 | Review | Outcome | Date |
 | --- | --- | --- |
+| Within-remit ruling | ORCA-MOVEMENT: Orca orchestration's movement goes from `new`, set at its 10 November addition, to `unchanged`; its stance stays assess. Loreward, within remit, from the 4.1 refresh. | 2026-11-22 |
 | Weekly review | ACP's latest stable schema is v1.34.1 (2026-11-21): v1.34.0 (2026-11-20) stabilises subagent sessions and plan operations, and v2 moved to Preview with beta schemas that carry no stability contract, so its v2-stabilisation trigger has not fired; release records added and the uncertainty brought up to date. AHP is unchanged at spec v1.1.0 with a 1.2.0 draft; ahpd now states AHP 1.1.0, and the owner's reassessment of the fired 1.0 host-adoption trigger keeps assess with interoperability untested. Orca to 1.4.269, Claude release notes to 20 November and OpenAI's changelog to Codex CLI 0.171.0 and ChatGPT for iOS 1.2026.314 still name no AHP support. MCP's next specification is targeted for 2027-03-30; A2A's 2026-08-27 move into the Agentic AI Foundation is recorded; Obscura documents opt-in persistent profiles, which meets the browser runtime's persistent-profile return trigger without a local trial. AGENTS.md, W3C, Gas City and Orca orchestration unchanged. | 2026-11-22 |
 | Change 50 alignment | The Orca orchestration entry, in `radar.toml` and its source row, brought to ROOMS-CHANNEL and ORCA-FIRST, which Kris took on 20 November 2026 in the Cairn summit's change 50: its mail is the channel between Cairn sessions in Orca, and the rest is still watched. Stance and evidence unchanged; no source refreshed. | 2026-11-20 |
 | Agentic systems guild review | From the Cairn summit's change 10: `standards-agentic-radar.md` renamed `standard-agentic-radar.md` and reshaped, its rules unchanged under numbered sections; this file took the sources format, each source group's bullets becoming table rows with their reviewed date, the review log newest first, AHP-RADAR as a decision and the open watch items under Watching. No rule changed and no outside source was refreshed. | 2026-11-18 |
