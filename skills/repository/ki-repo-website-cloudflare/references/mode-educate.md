@@ -178,7 +178,7 @@ Test with `curl -I https://www.example.com` — the response should be `301` wit
 Cloudflare Workers Builds replaces manual `bun run ki:site:deploy` calls: a push to `main` triggers Cloudflare to build and redeploy automatically. No GitHub Actions workflow needed for the deploy itself.
 
 1. Go to **Workers & Pages → `<name>` → Settings → Build**.
-2. Connect the GitHub repository (authorize the Cloudflare GitHub App if prompted).
+2. Connect the GitHub repository (authorize the Cloudflare GitHub App if prompted). Linking the app to a Cloudflare account is a one-time step in the dashboard, by hand: there is no API for it, so a run cannot do it.
 3. Set the **build command** to `bun run ki:site:build`.
 4. Set the **deploy command** to `bun run ki:site:deploy` (or `bunx wrangler deploy` when no package script exists).
 5. For a monorepo, set the optional **root directory** to the directory from which those commands resolve. Do not configure a deploy directory; `assets.directory` in `wrangler.jsonc` owns the build-output path.

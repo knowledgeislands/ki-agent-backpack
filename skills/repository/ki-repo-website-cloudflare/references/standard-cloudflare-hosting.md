@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:47:26Z
+ki-revised: 2026-11-22T09:00:00Z
 ki-status: in force
 ---
 
@@ -129,7 +129,7 @@ Required fields:
 Optional when the site has a custom domain; omission is conformant and leaves the deployment on its workers.dev URL:
 
 - **`routes` with `custom_domain: true`** — the apex (and usually `www`, redirected to apex). Without a custom domain, the Worker URL is `<name>.<account-subdomain>.workers.dev`, not `<name>.pages.dev`. In the dashboard the operator path is **Workers & Pages → Overview → Worker → Settings → Domains & Routes → Add → Custom Domain**; “Workers & Pages” remains the correct navigation label.
-- **An active zone on the same account** — a custom domain requires the hostname to belong to a zone in the Cloudflare account that owns the Worker, because Cloudflare creates the proxied DNS record and issues the certificate itself rather than reading DNS you host elsewhere. The two zone setups that keep authoritative DNS with another provider — partial (CNAME) setup and subdomain setup — are plan-gated: partial setup needs a Business or Enterprise plan and subdomain setup is Enterprise-only, so where a domain is hosted outside Cloudflare the only Free or Pro route to a custom domain is delegating the whole apex zone to Cloudflare nameservers. Deleting a custom domain does not remove its certificate; retire that separately under SSL/TLS → Edge Certificates.
+- **An active zone on the same account** — a custom domain requires the hostname to belong to a zone in the Cloudflare account that owns the Worker, because Cloudflare creates the proxied DNS record and issues the certificate itself rather than reading DNS you host elsewhere. The two zone setups that keep authoritative DNS with another provider — partial (CNAME) setup and subdomain setup — are plan-gated: partial setup needs a Business or Enterprise plan and subdomain setup is Enterprise-only, so where a domain is hosted outside Cloudflare the only Free or Pro route to a custom domain is delegating the whole apex zone to Cloudflare nameservers. Deleting a custom domain does not remove its certificate; retire that separately under SSL/TLS → Edge Certificates. A zone cannot move between accounts; moving a site to another account is the recipe in [the exemplars](exemplars.md#moving-a-site-to-another-account).
 
 Other `assets` keys (`html_handling`, `not_found_handling`, `binding`, `run_worker_first`) are optional and per-site; do not require them.
 
@@ -166,7 +166,7 @@ The root `ki:site:build` / `ki:site:dev` aliases and local build/dev operations 
 
 ### 4.7 Credential access
 
-When a run is separately authorised to read Cloudflare credentials, it reads them only through `~/bin/cf-token`. No territory's notes record credential item or token ids, and credential values never enter output or tracked files. Kris adopted the Cloudflare half of RUN-SECRETS on 25 October 2026; this is an access rule, not authority for a credential read or a Cloudflare operation. The background-run [authority limits](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#46-authority-tiers) still apply.
+When a run is separately authorised to read Cloudflare credentials, it reads them only through `~/bin/cf-token`. From it the run mints its own short-lived token with the least privilege the work needs, from the account's minter, or from the user-minter for user-level work such as the Workers Builds API, which takes only a user-owned token; it deletes each token after use and confirms that none is left. No territory's notes record credential item or token ids, and credential values never enter output or tracked files. Kris adopted the Cloudflare half of RUN-SECRETS on 25 October 2026; this is an access rule, not authority for a credential read or a Cloudflare operation. The background-run [authority limits](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#46-authority-tiers) still apply.
 
 [Back to contents](#contents)
 
@@ -178,7 +178,7 @@ A team rename is a change to the Access organisation, which makes it connection-
 
 1. **Restore path first.** Save the current team domain, organisation name and login text, and the identity providers' redirect URLs. To undo a rename while the old name is still unclaimed, put those values back on the account's Access organisation.
 2. **Rename, never delete.** Deleting an organisation locks its name permanently; a rename frees the old name for any account to claim. To move a name between two accounts, free it in one and claim it in the other straight away.
-3. **Dependants.** A team rename is blocked while dashboard SSO is on. Identity providers outside Cloudflare need the new redirect URL; WARP clients must be enrolled again under the new team name; anyone signed in under the old issuer signs in again.
+3. **Dependants.** A team rename is blocked while dashboard SSO is on. Identity providers outside Cloudflare need the new redirect URL; WARP clients must be enrolled again under the new team name; anyone signed in under the old issuer signs in again. A Worker that checks the Access token itself, its `iss` and the certificates from the team domain, is repointed and redeployed in the same step. Browsers keep the old `CF_Authorization` cookie, which the edge passes but a strict Worker rejects, so the Worker clears an invalid cookie and redirects to sign-in, with a plain "please sign in again" page as fallback; visitors are never expected to sign out by hand. A rename leaves the signing keys as they are, so a Worker may keep accepting an old session whose signature verifies, whose audience is its own and which was issued before the rename. The edge itself rejects a bogus cookie, so test a Worker's stale-sign-in path locally, not through the edge. Found moving the personal account's sites on 21 and 22 November 2026.
 4. **Confirm.** Re-read the organisation and each identity provider's redirect URL, check that the login endpoint answers, and check that every Access application is intact.
 5. **References.** The territory that owns any document or configuration naming the old team domain updates it there.
 

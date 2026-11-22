@@ -87,8 +87,8 @@ The minimal Cloudflare Workers Builds configuration (set in the dashboard, not i
 
 ```text
 Build command:   bun run ki:site:build
-Output directory: dist
-Root directory:  (leave empty — build runs from the repo root)
+Deploy command:  bun run ki:site:deploy
+Root directory:  /  (the repo root, where the ki:site:* aliases live)
 ```
 
 Commit-SHA injection (`WORKERS_CI_COMMIT_SHA` surfaced into the page as a `<meta>` tag) is an optional nicety:
@@ -165,6 +165,18 @@ Access: Apps and Policies Edit:
 3. Only once preview URLs are off, delete the preview Access application:
    `DELETE /accounts/{account_id}/access/apps/{app_id}`.
 ```
+
+### Moving a site to another account
+
+A worked recipe from moving live sites between two Cloudflare accounts in November 2026 (the `personal.summit` package's change 40 and store record `20261122T0212Z-personal-summit-overnight-push`). It is connection-critical, so the restore path and the old account stay until the move is proved.
+
+1. **New zone, not a move.** A zone cannot move between accounts: add the domain as a new full zone in the target account, where it stays pending until the registrar points at the new nameservers. Cloudflare assigns the nameserver pair per zone, not per account, so read it for each zone.
+2. **Copy everything first.** Before the switch, copy DNS records, zone settings, rulesets and redirect rules, Email Routing, and each Worker built from its live commit, then check the copies are byte-identical to what the live sites serve.
+3. **Builds before deletion.** Connect Workers Builds to the repository in the new account before deleting anything in the old one: deleting a Worker also deletes its Builds connection, and until the new one exists a push deploys nowhere. Say so if there will be a gap.
+4. **Custom domains wait for an active zone.** A Workers custom domain cannot attach to a pending zone. Bridge with Worker routes on proxied `AAAA` records pointing at the `100::` placeholder, then, once the zone is active, switch to the custom domains the repository's `wrangler.jsonc` declares and remove the bridge records; otherwise the first Builds deploy fails on the existing records.
+5. **Email Routing after activation.** Email Routing can be enabled only once the zone is active, and destination addresses are verified separately in each account, by a message to the destination address.
+6. **Checking the switch.** Ask the registry directly, as `dig +norec NS <domain> @a0.info.afilias-nst.info` for a `.info` domain; RDAP shows the registrar's change before the registry publishes it. Resolve through DNS over HTTPS against both `cloudflare-dns.com` and `dns.google`, because a Mac with DNS servers set by hand, or Tailscale MagicDNS with no global resolver, answers from that setting instead. Negative caching, a 1800-second SOA minimum on Cloudflare, explains "site not found" for up to half an hour; on a Mac, flush with `sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder`.
+7. **Keep the old until the new serves.** Leave the old zone and Workers in place until the new zone serves under its new nameservers, and tidy them on a later day on the owner's word.
 
 ### `_redirects` and `_headers` — static asset rules
 

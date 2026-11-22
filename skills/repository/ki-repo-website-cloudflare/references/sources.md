@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:47:26Z
+ki-revised: 2026-11-22T09:00:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -70,6 +70,8 @@ The Zero Trust team naming that Kris set on 29 October 2026 is quoted in the sta
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, brought in what moving the personal account's sites between Cloudflare accounts taught (the `personal.summit` package's change 40): a recipe for moving a site to another account in [the exemplars](exemplars.md#moving-a-site-to-another-account), with a pointer from [the custom-domain clause](standard-cloudflare-hosting.md#44-the-site-wranglerjsonc-shape); the minting practice of `~/bin/cf-token` under [credential access](standard-cloudflare-hosting.md#47-credential-access); a team rename's effect on Workers that check the Access token under [team naming](standard-cloudflare-hosting.md#48-zero-trust-team-naming); and the one-time GitHub app link in EDUCATE. The exemplar's Workers Builds block lost a stale output-directory line, which the standard already ruled out. No rule changed and no outside source was refreshed; BUILDS-ONLY and the multi-site sign-in naming went to Kris as queries.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
 
