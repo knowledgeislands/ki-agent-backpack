@@ -1,6 +1,7 @@
 /**
  * Publishes each shape skill's worked example of its canonical hooks, composed by `canonical-hooks.ts`, under
- * `skills/repository/<shape>/assets/githooks/<package|no-package>/`, so a repository copies the exact text `HOOK-4`
+ * its owner's `assets/githooks/<package|no-package>/`, or `assets/githooks/<shape>/…` for a shape folded into
+ * another skill, so a repository copies the exact text `HOOK-4`
  * compares against. A shape that declares no hook publishes nothing.
  *
  * Boundary: returns each surface's rendered bytes and never writes. `ki dev skill generate ki-repo` compares or
@@ -32,7 +33,7 @@ export const generate = (_backpackRoot: string): readonly GeneratedSurface[] =>
     if (!owner) return []
     return HOOK_VARIANTS.flatMap((variant) => {
       const hooks = canonicalHooks(shape, variant)
-      return hooks ? HOOK_NAMES.map((hook) => ({ path: hookAsset(owner, variant, hook), content: hooks[hook] })) : []
+      return hooks ? HOOK_NAMES.map((hook) => ({ path: hookAsset(shape, variant, hook), content: hooks[hook] })) : []
     })
   })
 

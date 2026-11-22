@@ -465,9 +465,7 @@ export const createRepoSession = async (
       : undefined
   const declaredRuntimeRules = configSource === undefined ? undefined : runtimeRules(configSource || KI_REPO_DEFAULT)
   const parsedRepositoryConfiguration =
-    configSource === undefined
-      ? undefined
-      : parseRepositoryConfiguration(configSource || `${KI_REPO_DEFAULT}\n[skills.ki-repo-project]\n`)
+    configSource === undefined ? undefined : parseRepositoryConfiguration(configSource || KI_REPO_DEFAULT)
   const gitignoreBlocks =
     declaredRuntimeRules && parsedRepositoryConfiguration && !parsedRepositoryConfiguration.issue
       ? managedGitignoreBlocks(parsedRepositoryConfiguration.rootTables, declaredRuntimeRules)
@@ -645,11 +643,6 @@ export const createRepoSession = async (
       if (configSource !== undefined) {
         const blocks = [
           repoConfigurationRequested && !declaresRootTable(configSource, KI_REPO_TABLE) ? KI_REPO_DEFAULT : '',
-          repoConfigurationRequested &&
-          !declaresRootTable(configSource, KI_REPO_TABLE) &&
-          !declaresRootTable(configSource, 'ki-repo-project')
-            ? '[skills.ki-repo-project]\n'
-            : '',
           authoringConfigurationRequested && !declaresRootTable(configSource, KI_AUTHORING_TABLE)
             ? KI_AUTHORING_DEFAULT
             : ''

@@ -52,7 +52,7 @@ A **package repository** is the canonical source of one or more source trees tha
 - How a component library is designed: `ki-design-system`.
 - When to release: the release-on-demand policy `ki-repo-tools` owns.
 - The toolchain, scripts and tests: `ki-engineering`.
-- The general Project baseline and commit gate: `ki-repo-project`; the universal files: `ki-repo`.
+- The general Project baseline and commit gate: `ki-repo`'s general Project shape and `HOOK-6`; the universal files: `ki-repo`.
 - Temporary adjustments while repositories migrate: [the migration overlay](migration-package-repositories.md).
 
 [Back to contents](#contents)

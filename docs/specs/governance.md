@@ -62,11 +62,11 @@ _Evidence:_ `bun run ki:skills:graph:check` passes — it validates that every e
 
 ### GOV-006 — Exactly one primary repo structure per repo
 
-A Knowledge Islands repo MUST declare at most one primary-structure table (`[skills.ki-repo-project]` or `[skills.ki-repo-kb]`) in its `.ki.toml`; declaring both is a governance error. Other `ki-repo-*` tables are composable repository specialisations, per [ADR-KI-HARNESS-SKILLS-006](../decisions/ADR-KI-HARNESS-SKILLS-006-concern-first-skill-taxonomy-and-implication-graph.md).
+A Knowledge Islands repo MUST have exactly one primary structure, selected by `repo_type` and `primary_shape` under `[skills.ki-repo]`: a Project declares no `[skills.ki-repo-kb]` table and a Knowledge Base no `[skills.ki-repo-project]` table; either is a governance error. Since 22 November 2026 (REPO-CORE a) the general Project shape, `ki-repo-project`, is `ki-repo`'s own and needs no table, so a leftover `[skills.ki-repo-project]` table in a Project is only stale. Other `ki-repo-*` tables are composable repository specialisations, per [ADR-KI-HARNESS-SKILLS-006](../decisions/ADR-KI-HARNESS-SKILLS-006-concern-first-skill-taxonomy-and-implication-graph.md).
 
 _Conformance:_ conforming
 
-_Verify:_ `ki-repo`'s rubric emits a FAIL (`repo-structure`) when both primary tables are declared; composable specialisations are excluded from the count.
+_Verify:_ `ki-repo`'s rubric emits a FAIL (`STRUCT-1`) when a kind declares the other kind's structure table, and a WARN (`STRUCT-2`) for a table left from a retired shape skill; composable specialisations are excluded.
 
 _Evidence:_ `ki-repo`'s rubric emits a FAIL (`repo-structure`) when both primary tables are declared; composable specialisations are excluded from the count.
 

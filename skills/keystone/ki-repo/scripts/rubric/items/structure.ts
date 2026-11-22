@@ -35,14 +35,14 @@ export const STRUCT: RubricFamily<RepoRubricContext, StructureRubricContext> = {
     item(
       'STRUCT-1',
       'Single primary repository structure',
-      'A repository declares at most one mutually exclusive Project or Knowledge Base primary.',
+      'A Project declares no Knowledge Base structure: Project and Knowledge Base are mutually exclusive primaries.',
       'FAIL',
       (context) => context.structure1
     ),
     item(
       'STRUCT-2',
-      'Primary repository structure presence',
-      'A repository declares a Project or Knowledge Base primary structure.',
+      'No retired shape table',
+      '`primary_shape` alone selects the structure: no retired `[skills.ki-repo-project]`, `[skills.ki-repo-homebrew-tap]` or `[skills.ki-repo-specifications]` table remains.',
       'WARN',
       (context) => context.structure2
     ),

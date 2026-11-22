@@ -43,7 +43,7 @@ test('requires the selected adapter to be declared and applicable', () => {
 test('resolves valid local and remote adapters from declared tables', () => {
   expect(
     audit(
-      '[skills.ki-repo]\nrepo_type = "project"\nprimary_shape = "ki-repo-project"\n[skills.ki-repo-project]\n[skills.ki-work]\nadapter = "roadmap"\n\n[skills.ki-work-roadmap]\n'
+      '[skills.ki-repo]\nrepo_type = "project"\nprimary_shape = "ki-repo-project"\n[skills.ki-work]\nadapter = "roadmap"\n\n[skills.ki-work-roadmap]\n'
     )
   ).toEqual([expect.objectContaining({ status: 'PASS', message: expect.stringContaining('ki-work-roadmap') })])
   expect(
@@ -53,7 +53,7 @@ test('resolves valid local and remote adapters from declared tables', () => {
   ).toEqual([expect.objectContaining({ status: 'PASS', message: expect.stringContaining('ki-repo-kb-streams') })])
   expect(
     audit(
-      '[skills.ki-repo]\nrepo_type = "project"\nprimary_shape = "ki-repo-project"\n[skills.ki-repo-project]\n[skills.ki-work]\nadapter = "linear"\n\n[skills.ki-work-linear]\n'
+      '[skills.ki-repo]\nrepo_type = "project"\nprimary_shape = "ki-repo-project"\n[skills.ki-work]\nadapter = "linear"\n\n[skills.ki-work-linear]\n'
     )
   ).toEqual([expect.objectContaining({ status: 'PASS', message: expect.stringContaining('ki-work-linear') })])
 })

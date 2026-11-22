@@ -80,6 +80,22 @@ const HOOK_5: RubricItem<HooksRubricContext> = {
   }
 }
 
+const HOOK_6: RubricItem<HooksRubricContext> = {
+  code: 'HOOK-6',
+  title: 'Check-only general Project gate',
+  description:
+    'Where the general Project, `ki-repo-project`, is the primary shape and a committed pre-commit exists, it runs only fast check-only staged lints: no `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`. The full `ki repo audit` runs in CI.',
+  sources: ['standard-repository.md#45-commit-gate'],
+  mechanical: {
+    level: 'WARN',
+    remediation: {
+      class: 'diagnostic',
+      guidance: 'Copy the canonical Project pre-commit for this package variant, then rerun the audit.'
+    },
+    audit: { phase: 'INSPECT', run: (context) => context.hook6 }
+  }
+}
+
 const HOOK_J1: RubricItem<HooksRubricContext> = {
   code: 'HOOK-J1',
   title: 'Stated gate matches the hook',
@@ -100,5 +116,5 @@ export const HOOK: RubricFamily<RepoRubricContext, HooksRubricContext> = {
   description: 'Existence, binding and canonical text of the committed hooks, composed from the shape skills’ blocks.',
   standard: SOURCE,
   selectContext: (context) => context.hooks,
-  items: [HOOK_1, HOOK_2, HOOK_3, HOOK_4, HOOK_5, HOOK_J1]
+  items: [HOOK_1, HOOK_2, HOOK_3, HOOK_4, HOOK_5, HOOK_6, HOOK_J1]
 }

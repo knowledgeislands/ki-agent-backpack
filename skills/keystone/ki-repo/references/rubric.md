@@ -216,9 +216,9 @@ Capital declaration, Capital-owned territory membership, and registry-backed agr
 
 Primary repository structure, with composable specialisations.
 
-- **STRUCT-1 [M] — Single primary repository structure** — A repository declares at most one mutually exclusive Project or Knowledge Base primary. (standard-repository.md)
+- **STRUCT-1 [M] — Single primary repository structure** — A Project declares no Knowledge Base structure: Project and Knowledge Base are mutually exclusive primaries. (standard-repository.md)
   - _Remediation:_ diagnostic — Align the repository structure declaration with the applicable standard or record an explicit exemption, then rerun the audit.
-- **STRUCT-2 [M] — Primary repository structure presence** — A repository declares a Project or Knowledge Base primary structure. (standard-repository.md)
+- **STRUCT-2 [M] — No retired shape table** — `primary_shape` alone selects the structure: no retired `[skills.ki-repo-project]`, `[skills.ki-repo-homebrew-tap]` or `[skills.ki-repo-specifications]` table remains. (standard-repository.md)
   - _Remediation:_ diagnostic — Align the repository structure declaration with the applicable standard or record an explicit exemption, then rerun the audit.
 - **STRUCT-3 [M] — Single website implementation** — A website declares at most one mutually exclusive content or app implementation. (standard-repository.md)
   - _Remediation:_ diagnostic — Align the repository structure declaration with the applicable standard or record an explicit exemption, then rerun the audit.
@@ -358,6 +358,8 @@ Existence, binding and canonical text of the committed hooks, composed from the 
   - _Remediation:_ diagnostic — Copy the hook named in the finding from the shape skill’s `assets/githooks/<package|no-package>/` byte-exact; a fast check-only repository-specific check becomes a line of the shape’s block in the composer, anything else belongs to CI.
 - **HOOK-5 [M] — Husky retired** — No tracked `.husky/` path, `husky` dependency, Husky call in `prepare` or hook delegating to `.husky/` remains; locally, no untracked `.husky/_` install is left behind. (standard-repository.md)
   - _Remediation:_ diagnostic — Move the hook content into `.githooks/`, set `prepare` to `git config core.hooksPath .githooks`, remove `husky` and `.husky/`, rebind the clone and remove `.husky/_`.
+- **HOOK-6 [M] — Check-only general Project gate** — Where the general Project, `ki-repo-project`, is the primary shape and a committed pre-commit exists, it runs only fast check-only staged lints: no `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`. The full `ki repo audit` runs in CI. (standard-repository.md#45-commit-gate)
+  - _Remediation:_ diagnostic — Copy the canonical Project pre-commit for this package variant, then rerun the audit.
 - **HOOK-J1 [J] — Stated gate matches the hook** — The gate root orientation tells a writer to run matches what the committed pre-commit hook runs. (standard-repository.md)
   - _Evidence scope:_ Root orientation (`AGENTS.md`, `README.md`) and `.githooks/pre-commit`.
   - _Review prompt:_ Compare the checks root orientation says run before a commit with the commands the committed hook runs, including any hook it delegates to.

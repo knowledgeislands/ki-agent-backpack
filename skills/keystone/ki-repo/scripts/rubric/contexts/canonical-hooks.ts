@@ -47,19 +47,18 @@ const SHELL_LINES = [
 ]
 
 const RUBY_LINES = [
-  '# Staged Ruby, syntax-checked with warnings (ki-repo-homebrew-tap GATE-1).',
+  '# Staged Ruby, syntax-checked with warnings (ki-repo-tools TAP-HOOK).',
   "git diff --cached --name-only --diff-filter=ACMR -z -- '*.rb' | xargs -0 -r -n 1 ruby -wc >/dev/null || exit 1"
 ]
 
 /** Every repository shape's hooks; `null` is a shape that declares no hook. */
 export const SHAPE_HOOKS: Readonly<Record<RepositoryShape, ShapeHooks>> = {
-  'ki-repo-project': both('ki-repo-project', NONE),
+  'ki-repo-project': both('ki-repo', NONE),
   'ki-repo-mcp': both('ki-repo-mcp', NONE),
   'ki-repo-website': both('ki-repo-website', NONE),
   'ki-repo-kb': both('ki-repo-kb', NONE),
   'ki-repo-backpack': both('ki-repo-backpack', NONE),
-  'ki-repo-specifications': both('ki-repo-specifications', NONE),
-  'ki-repo-homebrew-tap': both('ki-repo-homebrew-tap', { tools: ['ruby'], lines: RUBY_LINES }),
+  'ki-repo-homebrew-tap': both('ki-repo-tools', { tools: ['ruby'], lines: RUBY_LINES }),
   'ki-repo-tools': both('ki-repo-tools', { tools: ['shellcheck', 'bash', 'mandoc'], lines: SHELL_LINES }),
   'ki-repo-dotfiles-chezmoi': null
 }
@@ -157,6 +156,12 @@ export const hookOwner = (shape: RepositoryShape): string | null => SHAPE_HOOKS[
 
 export const HOOK_VARIANTS: readonly HookVariant[] = ['package', 'no-package']
 
-/** Where a shape skill publishes one canonical hook, relative to the backpack root. */
-export const hookAsset = (owner: string, variant: HookVariant, hook: HookName): string =>
-  `skills/repository/${owner}/assets/githooks/${variant}/${hook}`
+/**
+ * Where a shape's owner publishes one canonical hook, relative to the backpack root. A shape whose skill
+ * was folded into another publishes under that owner, in a folder named for the shape.
+ */
+export const hookAsset = (shape: RepositoryShape, variant: HookVariant, hook: HookName): string => {
+  const owner = hookOwner(shape) ?? shape
+  const home = owner === 'ki-repo' ? 'skills/keystone/ki-repo' : `skills/repository/${owner}`
+  return `${home}/assets/githooks/${owner === shape ? '' : `${shape}/`}${variant}/${hook}`
+}

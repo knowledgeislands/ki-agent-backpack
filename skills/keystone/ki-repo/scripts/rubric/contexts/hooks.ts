@@ -18,6 +18,7 @@ export type HooksRubricContext = {
   hook3: readonly AuditOutcome[]
   hook4: readonly AuditOutcome[]
   hook5: readonly AuditOutcome[]
+  hook6: readonly AuditOutcome[]
 }
 
 const git = (target: string, args: readonly string[]): string | undefined => {
@@ -261,7 +262,7 @@ const canonical = (target: string, shape: RepositoryShape | undefined): readonly
     const line = firstDifference(text, want)
     return {
       status: 'VIOLATION',
-      message: `${hook} differs from the canonical ${shape} ${variant} hook from line ${line}; copy ${hookAsset(owner, variant, name)} from the ki-agent-backpack byte-exact`,
+      message: `${hook} differs from the canonical ${shape} ${variant} hook from line ${line}; copy ${hookAsset(shape, variant, name)} from the ki-agent-backpack byte-exact`,
       subject: hook
     }
   })
@@ -310,6 +311,52 @@ const husky = (target: string, environment: Readonly<Record<string, string | und
     : one({ status: 'PASS', message: 'no Husky files, dependency, call or binding remain' })
 }
 
+/** A line that audits, conforms, repairs or rewrites: none belongs at commit time; the full audit runs in CI. */
+const heavy = (line: string): boolean =>
+  /\bki repo (?:audit|conform|repair)\b|(?:^|\s)--(?:fix|write)(?=\s|$)|\bquiet_audit\b/.test(line)
+
+/**
+ * What the general Project's gate runs (HOOK-6), taken in from `ki-repo-project` GATE-1 under REPO-CORE a:
+ * only check-only staged lints. HOOK-1 owns existence and HOOK-4 the canonical text.
+ */
+export const projectGate = (target: string, shape: RepositoryShape | undefined): readonly AuditOutcome[] => {
+  if (shape !== 'ki-repo-project')
+    return one({
+      status: 'NOT_APPLICABLE',
+      message: 'The general Project is not the primary shape; its selected shape owns the gate.'
+    })
+  const directory = stateOf(join(target, HOOK_DIRECTORY))
+  if (!directory) return one({ status: 'NOT_APPLICABLE', message: 'No Project pre-commit; HOOK-1 owns its existence.' })
+  if (!directory.isDirectory() || directory.isSymbolicLink())
+    return one({
+      status: 'VIOLATION',
+      message: 'Project gate directory must be a real directory.',
+      subject: PRE_COMMIT_HOOK
+    })
+  const file = stateOf(join(target, PRE_COMMIT_HOOK))
+  if (!file) return one({ status: 'NOT_APPLICABLE', message: 'No Project pre-commit; HOOK-1 owns its existence.' })
+  if (!file.isFile() || file.isSymbolicLink())
+    return one({ status: 'VIOLATION', message: 'Project gate must be a regular file.', subject: PRE_COMMIT_HOOK })
+  const offending = readFileSync(join(target, PRE_COMMIT_HOOK), 'utf8')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith('#'))
+    .find(heavy)
+  return one(
+    offending === undefined
+      ? {
+          status: 'PASS',
+          message: 'Project gate runs only check-only staged lints; the full audit runs in CI.',
+          subject: PRE_COMMIT_HOOK
+        }
+      : {
+          status: 'VIOLATION',
+          message: `Project gate runs \`${offending}\`; the gate is check-only and runs no audit, conform, repair or fix.`,
+          subject: PRE_COMMIT_HOOK
+        }
+  )
+}
+
 export const hookEvidence = (
   target: string,
   shape: RepositoryShape | undefined,
@@ -318,7 +365,7 @@ export const hookEvidence = (
   // A shape that declares no hook leaves existence, binding, message and content to its own standard.
   if (shape && SHAPE_HOOKS[shape] === null) {
     const none = one({ status: 'NOT_APPLICABLE', message: `${shape} declares no hook; its standard owns the gate` })
-    return { hook1: none, hook2: none, hook3: none, hook4: none, hook5: husky(target, environment) }
+    return { hook1: none, hook2: none, hook3: none, hook4: none, hook5: husky(target, environment), hook6: none }
   }
   const hook1 = existence(target)
   return {
@@ -326,6 +373,7 @@ export const hookEvidence = (
     hook2: binding(target, hook1[0]?.status === 'PASS', environment),
     hook3: messageHook(target),
     hook4: canonical(target, shape),
-    hook5: husky(target, environment)
+    hook5: husky(target, environment),
+    hook6: projectGate(target, shape)
   }
 }

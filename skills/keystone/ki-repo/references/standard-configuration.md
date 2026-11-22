@@ -172,8 +172,6 @@ supported_runtimes = [
 ]
 
 checks.branch-protection = true
-
-[skills.ki-repo-project]
 ```
 
 `[skills]` is a namespace, not a skill: it makes "this key is a declaration" structural rather than a guess about how the key is spelled. A repository-level setting that belongs to no skill lives in `[repo]` and is never mistaken for one.
@@ -356,9 +354,7 @@ The detection signals `ki-repo` uses (one recursive tree read + `package.json`):
 | `ki-repo-website-app` | Vite config plus React and Vite dependencies at the core-selected site root | `[skills.ki-repo-website-app]` |
 | `ki-repo-website-cloudflare` | a `wrangler.*` config | `[skills.ki-repo-website-cloudflare]` |
 | `ki-repo-mcp` | `@modelcontextprotocol/sdk` or `@modelcontextprotocol/server` dependency | `[skills.ki-repo-mcp]` |
-| `ki-repo-specifications` | `proposals/` + `specifications/` + `schemas/` | `[skills.ki-repo-specifications]` |
-| `ki-repo-tools` | `install.sh` + a `bin/<exe>` | `[skills.ki-repo-tools]` |
-| `ki-repo-homebrew-tap` | `Formula/*.rb` | `[skills.ki-repo-homebrew-tap]` |
+| `ki-repo-tools` | `install.sh` + a `bin/<exe>`, or a tap's `Formula/*.rb` | `[skills.ki-repo-tools]` |
 | `ki-skills` | `skills/*/SKILL.md` | `[skills.ki-skills]` |
 | `ki-subagents` | Claude Markdown or Codex TOML projection | `[skills.ki-subagents]` |
 | `ki-subagents-claude` | `subagents/**/*.md` | `[skills.ki-subagents-claude]` |
@@ -377,7 +373,7 @@ No marker table is decorative — each is read by code. Most are read by their *
 
 ### 4.11 Repository kind
 
-`[skills.ki-repo]` owns the mandatory `repo_type` and `primary_shape` fields. `repo_type` is exactly `project` or `kb`. A Project names a declared core shape in `primary_shape`, using `ki-repo-project` for a general Project. A Knowledge Base writes `primary_shape = "ki-repo-kb"` and a duplicate-free `store_roles` array containing `notes`, optionally `sources` and `legacy`. These are role names, not paths or local-machine bindings. Projects do not declare `store_roles`.
+`[skills.ki-repo]` owns the mandatory `repo_type` and `primary_shape` fields. `repo_type` is exactly `project` or `kb`. A Project names a declared core shape in `primary_shape`, using `ki-repo-project` for a general Project, which needs no table of its own. A Knowledge Base writes `primary_shape = "ki-repo-kb"` and a duplicate-free `store_roles` array containing `notes`, optionally `sources` and `legacy`. These are role names, not paths or local-machine bindings. Projects do not declare `store_roles`.
 
 Both fields must be present even when the repository has only one possible shape. The [Project shape rules](standard-repository.md#422-project-shapes) define supported core shapes and adapters. A missing, unsupported, undeclared, or kind-incompatible shape is invalid. Neither kind nor primary shape is accepted in another skill's table.
 
@@ -387,7 +383,7 @@ Both fields must be present even when the repository has only one possible shape
 
 The **schema and conformer** inside a table belong to the skill that owns it: that skill documents the allowed keys and may emit or update its canonical fragment while preserving unrelated content. `ki-repo` owns the shared file-level contract and the two required foundation markers. No operation embeds another skill's TOML template or edits that skill's table directly. This retains one shared `.ki.toml`, one table per skill, read-only access across table boundaries, and validate-down/conform-down ownership.
 
-`ki-repo`'s own foundation action establishes the opening declaration and required markers. For a missing file it writes the exact header, one canonical `[skills.ki-repo]` general-Project block, its bare `[skills.ki-repo-project]` declaration, and one bare `[skills.ki-authoring]` marker. For a partial file it prepends only the missing header and appends only whichever foundation root marker is absent, adding the bare general-Project declaration only when it creates the `ki-repo` block; `[skills.ki-repo.checks]` alone is not an exact `[skills.ki-repo]` marker. Apart from that bounded prepend and append, existing content remains byte-for-byte unchanged — including values, comments, ordering, and existing newline bytes — repeat runs are idempotent, and dry-run writes nothing. CONFORM applies the local repair while live GitHub changes remain separately confirmed work.
+`ki-repo`'s own foundation action establishes the opening declaration and required markers. For a missing file it writes the exact header, one canonical `[skills.ki-repo]` general-Project block, and one bare `[skills.ki-authoring]` marker. For a partial file it prepends only the missing header and appends only whichever foundation root marker is absent; `[skills.ki-repo.checks]` alone is not an exact `[skills.ki-repo]` marker. Apart from that bounded prepend and append, existing content remains byte-for-byte unchanged — including values, comments, ordering, and existing newline bytes — repeat runs are idempotent, and dry-run writes nothing. CONFORM applies the local repair while live GitHub changes remain separately confirmed work.
 
 The native configuration and activation flow runs this owner leg without embedding a TOML template or writing another skill's table. It re-reads the result before resolving the declared operations from the verified installed collection; it does not vendor an executor. No-seed/no-config activation remains an empty-set operation, so this flow does not recreate an injected baseline. Activation stays separate from configuration: `ki repo skill add <skill>` and `ki skill add <skill>` create only managed runtime discovery links, after ownership and containment checks, and never turn a declaration into an execution payload or vendor an executor into `.ki/` (ADR-KI-HARNESS-012).
 

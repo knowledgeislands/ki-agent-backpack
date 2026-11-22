@@ -113,7 +113,7 @@ const CHECK_DEFAULTS: Record<string, boolean> = {
   topics: true, //              (public) carries the standard topic set
   'secret-scanning': true, //   (public) secret scanning on
   'push-protection': true, //   (public) secret-scanning push protection on
-  structure: true, //           declares one primary repository structure
+  structure: true, //           carries no retired shape-skill table
   'all-runtimes': true //       declares every recognised runtime (RUNTIMES-ALL)
 }
 const KI_CONFIG = '.ki.toml'
@@ -341,7 +341,7 @@ const KI_AUTHORING_DEFAULT = `# The authoring standard (Markdown/TOML house styl
 # governed by it. Declared explicitly, not assumed; its presence is the compliance marker.
 [skills.${skillTable('ki-authoring')}]
 `
-const KI_DEFAULT = `${KI_CONFIGURATION_HEADER}${KI_REPO_DEFAULT}\n${KI_AUTHORING_DEFAULT}\n[skills.ki-repo-project]\n`
+const KI_DEFAULT = `${KI_CONFIGURATION_HEADER}${KI_REPO_DEFAULT}\n${KI_AUTHORING_DEFAULT}`
 
 // Parse the owned table with Bun's TOML parser so quoted table keys, comments,
 // and multiline strings cannot be mistaken for schema. Returns null when the
@@ -693,22 +693,13 @@ const COVERAGE: { skill: string; table: string; artifact: string; detect: (s: Si
     detect: (s) => pkgHasDep(s.pkg, '@modelcontextprotocol/sdk') || pkgHasDep(s.pkg, '@modelcontextprotocol/server')
   },
   {
-    skill: 'specifications',
-    table: skillTable('ki-repo-specifications'),
-    artifact: 'proposals/ + specifications/ + schemas/',
-    detect: (s) => s.root.has('proposals') && s.root.has('specifications') && s.root.has('schemas')
-  },
-  {
     skill: 'tools',
     table: skillTable('ki-repo-tools'),
-    artifact: 'install.sh + bin/<exe>',
-    detect: (s) => s.root.has('install.sh') && [...s.tree].some((p) => /^bin\/[^/]+$/.test(p))
-  },
-  {
-    skill: 'homebrew-tap',
-    table: skillTable('ki-repo-homebrew-tap'),
-    artifact: 'Formula/*.rb',
-    detect: (s) => [...s.tree].some((p) => /^Formula\/[^/]+\.rb$/.test(p))
+    artifact: 'install.sh + bin/<exe>, or a tap Formula/*.rb',
+    // ki-repo-tools took in the Homebrew tap as its distribution standard (REPO-OTHERS a).
+    detect: (s) =>
+      (s.root.has('install.sh') && [...s.tree].some((p) => /^bin\/[^/]+$/.test(p))) ||
+      [...s.tree].some((p) => /^Formula\/[^/]+\.rb$/.test(p))
   },
   {
     skill: 'skills',
@@ -765,9 +756,13 @@ const LEGACY_WORKING_AREAS = ['+/_CHECKPOINTS/', '+/_THREADS/'] as const
 const EARLIER_PACKAGE_AREA = '+/_WORK/'
 const COVERAGE_SKILLS = new Set(COVERAGE.map((c) => c.skill))
 export const detectedCoverageSkills = (): readonly string[] => COVERAGE.map((entry) => entry.table).sort()
-// A primary structure is exclusive; all other ki-repo-* skills are composable
-// specialisations. Each declaration must match the explicit repository kind.
-const PRIMARY_STRUCTURE_TABLES = [skillTable('ki-repo-project'), skillTable('ki-repo-kb')]
+// Shape skills retired on 22 November 2026: ki-repo took in ki-repo-project and ki-repo-specifications,
+// and ki-repo-tools took in ki-repo-homebrew-tap (REPO-CORE a, REPO-OTHERS a). A leftover table is stale.
+const RETIRED_SHAPE_TABLES = [
+  skillTable('ki-repo-project'),
+  skillTable('ki-repo-homebrew-tap'),
+  skillTable('ki-repo-specifications')
+]
 const WEBSITE_IMPLEMENTATION_TABLES = [skillTable('ki-repo-website-content'), skillTable('ki-repo-website-app')]
 type MultilineDelimiter = '"""' | "'''"
 function tripleClose(line: string, delimiter: MultilineDelimiter, from: number): number {
@@ -1185,19 +1180,26 @@ async function auditRepo(
         `${EARLIER_PACKAGE_AREA} holds an earlier copy of a work package and is out of place — a package lives in the Cairn store's work/<territory>/<id>/`
       )
 
-    // ── primary-structure cardinality ── STRUCT-1/2
-    // Project and KB are mutually exclusive primaries. Repository specialisations compose
-    // with either primary and must not participate in this count.
-    const declaredStructure = PRIMARY_STRUCTURE_TABLES.filter((t) => declaresTable(text, t))
-    if (declaredStructure.length > 1)
+    // ── primary structure ── STRUCT-1/2
+    // Project and KB are mutually exclusive primaries: a Project declares no Knowledge Base
+    // structure. Repository specialisations compose with either primary and do not count.
+    const declaredKind = parseRepositoryConfiguration(text).repositoryType
+    if (declaredKind === 'project' && declaresTable(text, skillTable('ki-repo-kb')))
       fail(
         'STRUCT-1',
-        `declares ${declaredStructure.length} primary structures (${declaredStructure.map((t) => `[skills.${t}]`).join(', ')}) — choose Project or Knowledge Base, not both`
+        'repo_type = "project" declares the Knowledge Base structure [skills.ki-repo-kb] — choose Project or Knowledge Base, not both'
       )
-    else if (declaredStructure.length === 0 && enforced('structure'))
+    else if (declaredKind === 'kb' && declaresTable(text, skillTable('ki-repo-project')))
+      fail(
+        'STRUCT-1',
+        'repo_type = "kb" declares the Project structure [skills.ki-repo-project] — choose Project or Knowledge Base, not both'
+      )
+    // `primary_shape` alone selects the structure; a retired shape skill's table is stale.
+    const retiredShapes = RETIRED_SHAPE_TABLES.filter((t) => declaresTable(text, t))
+    if (retiredShapes.length > 0 && enforced('structure'))
       warn(
         'STRUCT-2',
-        'declares no primary repository structure — declare ki-repo-project for a non-KB repository or ki-repo-kb for a Knowledge Base'
+        `declares the retired ${retiredShapes.map((t) => `[skills.${t}]`).join(', ')} — remove it; primary_shape alone selects the structure`
       )
 
     // ── website implementation cardinality ── STRUCT-3/4

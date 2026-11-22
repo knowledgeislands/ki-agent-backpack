@@ -37,8 +37,6 @@ checks.coverage-subagents-chatgpt = false
 # Repository shape
 # -----------------------------------------------------------------------------
 
-[skills.ki-repo-project]
-
 [skills.ki-repo-backpack]
 prefix = "ki"
 

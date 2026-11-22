@@ -20,6 +20,7 @@ ki-status: in force
   - [4.2 Repository kind and Knowledge Base stores](#42-repository-kind-and-knowledge-base-stores)
     - [4.2.1 Kind and stores](#421-kind-and-stores)
     - [4.2.2 Project shapes](#422-project-shapes)
+    - [4.2.3 General Project](#423-general-project)
   - [4.3 Repository write authority](#43-repository-write-authority)
   - [4.4 Working areas](#44-working-areas)
   - [4.5 Commit gate](#45-commit-gate)
@@ -76,7 +77,7 @@ The configuration every Knowledge Islands repo carries, locally and on GitHub, a
 | --- | --- |
 | **Knowledge Islands repo** | A git repo that carries a `.ki.toml`, whose presence is the compliance marker. **Standard:** this one, [1](#1-introduction) |
 | **Working areas** | The fixed `+/` and `-/` scaffold, holding temporary inputs to further work and temporary produced outputs. **Standard:** this one, [4.4](#44-working-areas) |
-| **Primary shape** | The declared `primary_shape`: one core shape skill, `ki-repo-project` for a general Project, or `ki-repo-kb` for a Knowledge Base. **Standard:** this one, [4.2.2](#422-project-shapes) |
+| **Primary shape** | The declared `primary_shape`: one core shape, `ki-repo-project` for a general Project, or `ki-repo-kb` for a Knowledge Base. **Standard:** this one, [4.2.2](#422-project-shapes) |
 | **Org default** | The rubric's default for a check, which a repo may flip only for an overridable check in `[skills.ki-repo.checks]`. **Standard:** this one, [4.11](#411-per-repo-overrides) |
 | **Island maturity** | The level an island declares in `maturity`, on the fixed ordinal scale `founding`, `growing`, `settled`, `thriving`. **Standard:** this one, [4.10](#410-island-maturity) |
 | **Coverage cascade** | The audit that, once `.ki.toml` confirms a ki-repo, checks it declares every governance skill whose applicability is detectable in it. **Standard:** this one, [4.12](#412-coverage-cascade) |
@@ -157,7 +158,7 @@ The repository kind and its stores, and the shapes a Project composes.
 
 #### 4.2.1 Kind and stores
 
-`ki-repo` owns the repository kind: **Project** or **Knowledge Base**. Every repository declares both `repo_type` and `primary_shape` under `[skills.ki-repo]`. A Project writes `repo_type = "project"`; a Knowledge Base writes `repo_type = "kb"` and `primary_shape = "ki-repo-kb"`. No omitted kind, inferred default, alias, or declaration under another skill table is accepted. The matching `ki-repo-project` or `ki-repo-kb` declaration selects the structure standard for that kind.
+`ki-repo` owns the repository kind: **Project** or **Knowledge Base**. Every repository declares both `repo_type` and `primary_shape` under `[skills.ki-repo]`. A Project writes `repo_type = "project"`; a Knowledge Base writes `repo_type = "kb"` and `primary_shape = "ki-repo-kb"`. No omitted kind, inferred default, alias, or declaration under another skill table is accepted. A general Project's structure is this standard's [4.2.3](#423-general-project); a Knowledge Base's is the declared `ki-repo-kb`.
 
 A Knowledge Base declares its roles with `store_roles`. `notes` is required and names the selected repository itself; `sources` and `legacy` are optional external roles. Roles are stable identities only, never filesystem paths, URLs, or local bindings. User-local tooling chooses and validates physical bindings separately, so an external store is not silently made a KI repository.
 
@@ -176,11 +177,21 @@ A KB must declare `ki-repo-kb`. It may also declare `ki-work-roadmap` for the sh
 
 #### 4.2.2 Project shapes
 
-A Project composes the shape skills it actually needs. The core shapes are `ki-repo-dotfiles-chezmoi`, `ki-repo-backpack`, `ki-repo-homebrew-tap`, `ki-repo-mcp`, `ki-repo-specifications`, `ki-repo-tools`, and `ki-repo-website`. Website content, app, and Cloudflare declarations refine the website shape; they are not additional primary-shape candidates. Knowledge Base substructure skills refine the KB kind. `ki-engineering` is a governance capability, not a repository kind or shape.
+A Project composes the shape skills it actually needs. The core shapes are `ki-repo-dotfiles-chezmoi`, `ki-repo-backpack`, `ki-repo-homebrew-tap`, `ki-repo-mcp`, `ki-repo-tools`, and `ki-repo-website`. Each shape is a skill of the same name, except two whose skills were folded into another on 22 November 2026 and whose names stay as `primary_shape` values: the general Project, `ki-repo-project`, owned by `ki-repo` itself and needing no table of its own (REPO-CORE a), and the Homebrew tap, `ki-repo-homebrew-tap`, owned by `ki-repo-tools`, whose table it needs (REPO-OTHERS a). `ki-repo-specifications` was retired the same day, and its repository is a general Project. Website content, app, and Cloudflare declarations refine the website shape; they are not additional primary-shape candidates. Knowledge Base substructure skills refine the KB kind. `ki-engineering` is a governance capability, not a repository kind or shape.
 
-Every Project explicitly selects `primary_shape`, naming one of its declared core shape skills or `ki-repo-project` for a general Project. A Knowledge Base always selects its declared `ki-repo-kb` baseline. Missing, unsupported, undeclared, or kind-incompatible values fail validation. Declaring one specialist does not imply selecting it; adding another specialist does not alter the chosen primary shape. The choice identifies the repository's main responsibility without disabling its other skills. Directory names, display names, TOML table order, and an agent's judgment never replace these fields. Setup may emit an explicit general-Project scaffold; audits and consumers must not infer missing values.
+Every Project explicitly selects `primary_shape`, naming one of its declared core shapes or `ki-repo-project` for a general Project. A Knowledge Base always selects its declared `ki-repo-kb` baseline. Missing, unsupported, undeclared, or kind-incompatible values fail validation. Declaring one specialist does not imply selecting it; adding another specialist does not alter the chosen primary shape. The choice identifies the repository's main responsibility without disabling its other skills. Directory names, display names, TOML table order, and an agent's judgment never replace these fields. Setup may emit an explicit general-Project scaffold; audits and consumers must not infer missing values.
 
 Skill prerequisites are the required edges declared in `ki-depends-on`, evaluated before the skill's own rules. For example, `ki-repo-mcp` requires `ki-engineering`; a shell-only tools repository does not. Optional dependencies and independently detected coverage remain distinct. The `ki-skills` composition contract governs the dependency graph.
+
+[Back to contents](#contents)
+
+#### 4.2.3 General Project
+
+A Project with no specialised responsibility selects `primary_shape = "ki-repo-project"`, the general Project shape. `ki-repo` owns it whole: its declaration is that value alone, and a leftover `[skills.ki-repo-project]` table is stale (`STRUCT-2`). Its commit gate is check-only, under [4.5](#45-commit-gate) and `HOOK-6`.
+
+Every Project repository inherits the `ki-repo` baseline. A specialised structure may add layout, toolchain, deployment, or publication rules, but it must not silently redefine the primary classification or install a second change tracker. A Project does not select a work tracker: `[skills.ki-work]` separately selects `roadmap` or `linear`.
+
+Changing Project to Knowledge Base, or back, changes the repository's primary contract. Treat it as an explicit migration: decide the destination tracker, migrate canonical records, update the configuration atomically, and verify the destination structure before removing the source declaration.
 
 [Back to contents](#contents)
 
@@ -238,9 +249,9 @@ There is one canonical hook for each primary shape and package presence. `ki-rep
 3. Refuse unless every required tool is present: `node_modules/.bin/<tool>` for package tools, `command -v <tool>` for tools on `PATH`. The refusal names the missing tools and the install step, and ends "do not bypass with --no-verify; a gate that cannot run is unknown, not a pass."
 4. Where a package exists, put `$root/node_modules/.bin` on `PATH`.
 5. The staged lint: `ki-engineering` `SCR-11`'s `lint-staged --quiet --no-stash` and `syncpack format --check` where a package exists, `ki-authoring` `MD-hook`'s staged `rumdl check` where none does.
-6. The shape skill's own staged check-only lint lines, if any: `ki-repo-tools` adds `shellcheck`, `bash -n` and `mandoc -T lint`, `ki-repo-homebrew-tap` adds `ruby -wc`.
+6. The shape's own staged check-only lint lines, if any: the `ki-repo-tools` shape adds `shellcheck`, `bash -n` and `mandoc -T lint`, and the `ki-repo-homebrew-tap` shape, which `ki-repo-tools` owns, adds `ruby -wc`.
 
-No hook calls `ki`: the shape's audit, the general Project's `ki-repo` audit included, runs in CI. Each content command ends `|| exit 1`, so failure propagates. `commit-msg` follows the same frame and runs `commitlint --edit "$1"` where a package exists and `ki git check-message "$1"` where none does. A repository-specific check that is fast and check-only becomes a line of its shape's block in the composer, never a local edit to a hook; anything slower or that writes belongs to CI. Each shape skill publishes its canonical hooks, generated by `ki dev skill generate ki-repo`, under `assets/githooks/package/` and `assets/githooks/no-package/`, and a repository copies them byte-exact.
+No hook calls `ki`: the shape's audit, the general Project's `ki-repo` audit included, runs in CI. Each content command ends `|| exit 1`, so failure propagates. `commit-msg` follows the same frame and runs `commitlint --edit "$1"` where a package exists and `ki git check-message "$1"` where none does. A repository-specific check that is fast and check-only becomes a line of its shape's block in the composer, never a local edit to a hook; anything slower or that writes belongs to CI. Each shape skill publishes its canonical hooks, generated by `ki dev skill generate ki-repo`, under `assets/githooks/package/` and `assets/githooks/no-package/`, and a repository copies them byte-exact. A shape whose skill was folded into another publishes under its owner in a folder named for the shape: `ki-repo`'s `assets/githooks/ki-repo-project/` and `ki-repo-tools`' `assets/githooks/ki-repo-homebrew-tap/`.
 
 `ki-repo` owns existence, binding and the canonical text:
 
@@ -249,10 +260,11 @@ No hook calls `ki`: the shape's audit, the general Project's `ki-repo` audit inc
 - `HOOK-3` checks `.githooks/commit-msg` the same way, wherever a gate is, with a package or without one.
 - `HOOK-4` compares each committed hook byte for byte with the canonical hook for the declared `primary_shape` and package presence, and names the first differing line and the asset to copy. Exact comparison subsumes the frame: every canonical text starts `#!/bin/sh`, exits on an empty index before its refusal, tests every external tool it calls and never suggests `--no-verify`. Without a resolvable shape, only that frame is judged, while the configuration items report the shape. Kris set STRICTNESS-CONFORM on 2026-10-20: one canonical hook per shape and package presence, audited by exact comparison, with no extension point.
 - `HOOK-5` checks that Husky is gone: no tracked `.husky/` path, no `husky` dependency, no Husky call in `prepare`, no hook delegating to `.husky/`, and locally no leftover untracked `.husky/_`.
+- `HOOK-6` is the general Project's content criterion, taken in from `ki-repo-project`'s `GATE-1` under REPO-CORE a: where `ki-repo-project` is the primary shape and a committed `pre-commit` exists, it fails any `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write` line. Specialised primary shapes keep their own gates.
 
-`HOOK-1` to `HOOK-4` are not applicable where the primary shape declares no hook; `HOOK-5` applies everywhere. They are WARN while the estate converges wave by wave, and move to FAIL after the last wave. `ki-repo` defines the canonical text but does not yet write it: conform writing the hooks and the binding sweep are `tools-ki` `KI-TOOL-KI-CLI-165` work, which finds a repository that copied its asset already canonical.
+`HOOK-1` to `HOOK-4` and `HOOK-6` are not applicable where the primary shape declares no hook; `HOOK-5` applies everywhere. They are WARN while the estate converges wave by wave, and move to FAIL after the last wave. `ki-repo` defines the canonical text but does not yet write it: conform writing the hooks and the binding sweep are `tools-ki` `KI-TOOL-KI-CLI-165` work, which finds a repository that copied its asset already canonical.
 
-Each shape skill also keeps one content criterion over the hook, not applicable without one, so a shape audit names a check-only breach or its own missing line in its own terms: `ki-engineering` `SCR-11`, `ki-authoring` `MD-hook`, `ki-repo-project`, `ki-repo-kb`, `ki-repo-backpack`, `ki-repo-specifications` and `ki-repo-homebrew-tap` `GATE-1`, and `ki-repo-tools` `SHELL-HOOK`; each fails a hook that runs `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`.
+Each shape skill also keeps one content criterion over the hook, not applicable without one, so a shape audit names a check-only breach or its own missing line in its own terms: `ki-engineering` `SCR-11`, `ki-authoring` `MD-hook`, `ki-repo` `HOOK-6` for the general Project, `ki-repo-kb` and `ki-repo-backpack` `GATE-1`, and `ki-repo-tools` `SHELL-HOOK` and, for the tap, `TAP-HOOK`; each fails a hook that runs `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`.
 
 [Back to contents](#contents)
 
@@ -445,7 +457,7 @@ The rubric carries the **org default** for every check. Most are bedrock — fil
 
 A repo that is **not** a ki-repo (no `.ki.toml`) is never coverage-checked — it just takes the `ki-config` FAIL, so a lookalike repo (an `eleventy.config` but no marker) is not falsely told to opt in. This is `ki-repo`'s single cross-table read. It normally reads only table **presence**; the one value it consumes is the core website `site-root`, solely to locate the app evidence whose coverage it detects. The owning website skill validates that value. The full signal list and the marker-vs-config model live in [the `.ki.toml` standard](standard-configuration.md#410-coverage-enforcement). Silence one signal with `coverage-<skill> = false` under `[skills.ki-repo.checks]`; the resulting informational note makes the intentional omission visible.
 
-The cascade's companion is a **primary-structure** rule: a repo declares at most one of `[skills.ki-repo-project]` and `[skills.ki-repo-kb]`. Project and Knowledge Base are mutually exclusive structures matching the explicitly declared repository kind. Declaring both FAILs (`repo-structure`, bedrock — not overridable). The remaining `ki-repo-*` standards are composable specialisations and do not count. Declaring neither WARNs (`structure`) so every governed repository makes its primary model visible.
+The cascade's companion is a **primary-structure** rule: Project and Knowledge Base are mutually exclusive structures matching the explicitly declared repository kind, so a Project declares no `[skills.ki-repo-kb]` and a Knowledge Base no `[skills.ki-repo-project]`. Either FAILs (`STRUCT-1`, bedrock — not overridable). The remaining `ki-repo-*` standards are composable specialisations and do not count. `primary_shape` alone selects the structure: a table left from a retired shape skill, `[skills.ki-repo-project]`, `[skills.ki-repo-homebrew-tap]` or `[skills.ki-repo-specifications]`, WARNs (`STRUCT-2`, check `structure`) until it is removed.
 
 Website composition has its own narrower cardinality. A repository declaring `[skills.ki-repo-website]` selects exactly one purpose-specific implementation: `[skills.ki-repo-website-content]` or `[skills.ki-repo-website-app]`. Declaring both FAILs; declaring the core without either WARNs. Hosting adapters such as `[skills.ki-repo-website-cloudflare]` are orthogonal and do not participate in this count.
 
