@@ -58,5 +58,22 @@ export const scenarios: Scenario[] = [
     ],
     rubric:
       'House trust boundary: repository operations resolve declared capabilities only from verified installed compatible harnesses and fail before execution when resolution is incomplete. They never fall back to `.ki` wrappers, copied runners, or a nearby checkout. A contributor may select a validated checkout only through explicit `ki dev local set <path>` followed by `ki dev local on`; this is a mutable development source, not a verified installed payload or loaded-runtime proof.'
+  },
+  {
+    skill: 'ki-keystone',
+    id: 'boot-released-mode',
+    prompt:
+      'I want the Cairn store to use released skills from the canonical backpack rather than my working checkout, but I am still editing the backpack on this machine. Can I set a released mode for that one repository in its `.ki.toml`, and how do I get released skills?',
+    assertions: [
+      {
+        name: 'no per-repository released mode',
+        re: /(no|not|cannot|can't)[^.\n]{0,80}(one repository|per[- ]repository|single repository|\.ki\.toml)/i
+      },
+      { name: 'machine-wide selection', re: /(machine|whole machine|every repository|per backpack)/i },
+      { name: 'return to the verified release', re: /ki dev local off/ },
+      { name: 'vendored alternative', re: /vendor/i }
+    ],
+    rubric:
+      "House contract (RELEASED-MODE a): the released-backpack mode is part of verified backpack selection, made per backpack for the whole machine, not a third `.ki.toml` `mode`; `.ki.toml` keeps `current` and `vendored`. `ki dev local off` returns the backpack to its verified release archive, the default, which every linked skill on the machine then follows, and `ki diag --full` shows `mode: off`. While the machine stays in development, a repository that must keep a skill fixed vendors it under `ki-repo`. The canonical backpack's release moves only with a `ki` release, then `ki backpack reinstall` with development off."
   }
 ]
