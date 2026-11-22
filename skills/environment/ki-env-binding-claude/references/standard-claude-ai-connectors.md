@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:31:44Z
+ki-revised: 2026-11-22T18:32:15Z
 ki-status: in force
 ---
 
@@ -21,7 +21,7 @@ ki-status: in force
   - [4.5 Account connectors — the only install point](#45-account-connectors--the-only-install-point)
   - [4.6 Organization / admin — governance for Team & Enterprise](#46-organization--admin--governance-for-team--enterprise)
   - [4.7 How claude.ai connectors surface in Claude Code](#47-how-claudeai-connectors-surface-in-claude-code)
-    - [4.7.1 Two distinct mechanisms — provide vs filter](#471-two-distinct-mechanisms--provide-vs-filter)
+    - [4.7.1 Three mechanisms — provide vs filter](#471-three-mechanisms--provide-vs-filter)
     - [4.7.2 Evaluation order (per server, before it loads)](#472-evaluation-order-per-server-before-it-loads)
     - [4.7.3 The claude.ai-specific interaction](#473-the-claudeai-specific-interaction)
   - [4.8 Picking a lever](#48-picking-a-lever)
@@ -57,7 +57,7 @@ The levers that control MCP connectors added through claude.ai, and how they rea
 | --- | --- |
 | **claude.ai connector** | An MCP connector installed at the account or organization level in the claude.ai web interface. **Standard:** this one, [4.1](#41-the-one-thing-to-know-first) |
 | **Managed settings** | Claude Code's admin-controlled on-disk settings, which user or project settings cannot override. **Standard:** this one, [4.7](#47-how-claudeai-connectors-surface-in-claude-code) |
-| **Provide versus filter** | `managed-mcp.json` provides the servers Claude Code loads; `allowedMcpServers` and `deniedMcpServers` filter servers already configured. **Standard:** this one, [4.7.1](#471-two-distinct-mechanisms--provide-vs-filter) |
+| **Provide versus filter** | `managed-mcp.json` provides the servers Claude Code loads in place of users' own, and `managedMcpServers` provides remote servers alongside them; `allowedMcpServers` and `deniedMcpServers` filter servers already configured. **Standard:** this one, [4.7.1](#471-three-mechanisms--provide-vs-filter) |
 
 [Back to contents](#contents)
 
@@ -129,9 +129,11 @@ This is the leg that matters most for the backpack: Claude Code carries its own 
 
 [Back to contents](#contents)
 
-#### 4.7.1 Two distinct mechanisms — provide vs filter
+#### 4.7.1 Three mechanisms — provide vs filter
 
-- **`managed-mcp.json` provides servers.** It is the admin's exclusive-control deployment: present ⇒ Claude Code loads _only_ the servers it lists, and every user-added server and claude.ai connector stops loading. `{"mcpServers": {}}` (empty map) is the "disable MCP entirely" switch. It is a standalone file at an OS path only an admin can write, delivered by MDM/Jamf/GPO/Intune:
+Two mechanisms provide servers and one filters them.
+
+- **`managed-mcp.json` provides servers in place of users' own.** It is the admin's exclusive-control deployment: present ⇒ every user-added server and claude.ai connector stops loading, and Claude Code loads the servers it lists. Its servers skip the allowlist, unless they use `${VAR}` expansion outside `env`. `{"mcpServers": {}}` (empty map) stops user-added servers and claude.ai connectors, but it does **not** disable MCP entirely: servers provided through `managedMcpServers`, in-process servers (the desktop app's connectors, VS Code's), mod tools, and Claude in Chrome where it is allowed still load. It is a standalone file at an OS path only an admin can write, delivered by MDM/Jamf/GPO/Intune:
 
   | Platform    | Path                                                       |
   | ----------- | ---------------------------------------------------------- |
@@ -141,7 +143,9 @@ This is the leg that matters most for the backpack: Claude Code carries its own 
 
   Its shape is the same `mcpServers` map as a project `.mcp.json` (`http`/`sse` with `url`, or `stdio` with `command`/`args`/`env`). Any user on the machine can read it, so **never put credentials in `env`** — use `${VAR}` expansion, OAuth/per-user headers, or `headersHelper`.
 
-- **`allowedMcpServers` / `deniedMcpServers` filter** whatever was already configured (by a user, a plugin, or `managed-mcp.json`). They are **not a registry** — a server must already exist to be evaluated.
+- **`managedMcpServers` provides remote servers alongside users' own** (v2.1.259+). A managed-settings key, it adds remote `https` servers without suppressing anything, takes precedence over a same-named server in every other scope, and skips the allowlist.
+
+- **`allowedMcpServers` / `deniedMcpServers` filter** whatever was already configured (by a user or a plugin; `managed-mcp.json` servers only where they use `${VAR}` outside `env`). They are **not a registry** — a server must already exist to be evaluated.
 
 [Back to contents](#contents)
 
