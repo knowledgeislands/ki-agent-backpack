@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T09:00:00Z
+ki-revised: 2026-11-22T16:15:00Z
 ki-refresh: canonical · quarterly
 ---
 
@@ -342,6 +342,8 @@ Each owner decision the standard rests on, by its tag: the date, the owner's wor
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the second SKILLS-LEARNING batch, Kris's steer of that morning to bake the night's lessons into the skills, added one pitfall to **Claims**: a handoff names a repository only once the file that does the work has been found there. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, brought four pitfalls from the overnight runs in under existing rules: a query names the concrete thing, under the [owner report](standard-reporting.md#42-owner-report)'s query parts; a checked `/open/` link is not a walked one, and `/system/` routes go by hand, under [Where the owner reads](standard-reporting.md#441-where-the-owner-reads); and a live or unpublished claim is checked against the deployed thing, and a moving figure carries when it was read, under CLAIM-CHECK in [Coordinating practices](standard-coordination.md#44-coordinating-practices). No rule changed and no outside source was refreshed.
 

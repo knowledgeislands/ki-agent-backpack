@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T09:00:00Z
+ki-revised: 2026-11-22T16:15:00Z
 ki-status: in force
 ---
 
@@ -240,7 +240,7 @@ Every report a coordinator gives is an [owner report](standard-reporting.md#42-o
 - **The state:** every send, receive, mark and hold rewrites `_index.md`'s state fields, Now and Held, under [Picking work up](standard-bootstrap.md#44-picking-work-up), so the package alone says how the work is picked up. Its definition changes only with the work.
 - **Decisions:** log each owner decision in [the change document it belongs to](standard-decisions.md#411-decisions-log), and each open point in that change document's Open section, in the turn it arrives and before launching the work it authorises, and verify any later quotation from the transcript file, under that section's two rules. Check each entry against its home at the mark under the [decisions life cycle](standard-decisions.md#413-decisions-life-cycle). Describe a decision by its words and date, never by a number.
 - **Work from other packages** arrives along the tree as steer or feedback, under [Work between packages](standard-messages.md#messages-between-work). A backend nudge is not visible progress; the [surfaces rule](standard-messages.md#44-surfaces) says where the owner sees it.
-- **Claims:** before a brief or a Summary rests on a path, an ownership claim or an instruction's premise, the coordinator, or the run it sends, checks it directly, and reads back in one line any direction it finds ambiguous before acting. A claim that something is live, published or unpublished is checked against the deployed thing itself, and a figure from a source that moves, such as a count, a test total or a commit, carries the revision or time it was read at, or is read again before it is relayed (store record `20261122T0652Z-ki-cairn-overnight-push`). Briefs carry each target repository's standing rules by default under the `ki-delegation` [prompt shape](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#45-prompt-shape).
+- **Claims:** before a brief or a Summary rests on a path, an ownership claim or an instruction's premise, the coordinator, or the run it sends, checks it directly, and reads back in one line any direction it finds ambiguous before acting. A claim that something is live, published or unpublished is checked against the deployed thing itself, and a figure from a source that moves, such as a count, a test total or a commit, carries the revision or time it was read at, or is read again before it is relayed (store record `20261122T0652Z-ki-cairn-overnight-push`). A handoff names a repository only once the file that does the work has been found there, since a tool's apparent home is not always where its code lives (a Rig run, 22 November 2026). Briefs carry each target repository's standing rules by default under the `ki-delegation` [prompt shape](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#45-prompt-shape).
 
 Sources: CLAIM-CHECK, HOOK-ENFORCE and MINIMAL-FOOTER in [the decision register](sources.md#3-decisions).
 
