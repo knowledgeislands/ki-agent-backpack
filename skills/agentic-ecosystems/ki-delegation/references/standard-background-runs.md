@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:32:50Z
+ki-revised: 2026-11-22T08:05:00Z
 ki-status: in force
 ---
 
@@ -167,7 +167,7 @@ A run prompt is cold-agent ready. It contains, in order:
 
 1. the task, quoting the owner decision that authorises it, in the owner's words and dated;
 2. numbered steps;
-3. a verification step;
+3. a verification step, sized to the change under **Check tiers** below;
 4. a landing step: how the work lands under its footer, and who writes the batch's record, under [Landing, then review](#462-landing-then-review);
 5. the report path in the run packet, outside every repository, or that the report is the agent's final message; the session that started the run homes its outcomes under the [run packet](#44-run-packet);
 6. the instructions "Do not use background subagents." and "Never end your session while waiting.", and the skeleton's **Independence** line, kept in every run prompt because it binds only a review run;
@@ -187,6 +187,11 @@ When writing the steps and rules:
 - A fix or revise brief sweeps for the whole class of each finding, not only the instance a reviewer named, and a review loop stops when no must-fix finding remains; should-fix findings go to the owner's read rather than another round. Kris agreed CLASS-FIX as recommended on 2026-10-20, "CLASS-FIX - agreed as recommended".
 - A blind review brief is masked under the `ki-coordination` [query review](../../../work/ki-coordination/references/standard-queries.md#45-query-review): it carries the query's Context and Query only, with the options in no ranked order and no recommendation or confidence, and tells the reviewer not to read the work's change documents or any report. Kris agreed BLIND-REVIEW as recommended on 2026-10-20, "BLIND-REVIEW - agreed as recommended". Every review brief keeps the run-prompt skeleton's **Independence** line word for word and states earlier decisions as dated facts, never as premises, as Kris took REVIEW-CHALLENGE a) under ACCEPT-BY-CRITERIA on 31 October 2026.
 - For output a person will look at, such as a drawing, a page or an app screen, the verification step looks at the rendered result, a screenshot or the opened file, before the run reports. The report names each doubt the run could not settle as an open question rather than settling it with a silent guess, under [Ambiguity](#48-coordination). The design runtime reported both as part of what made the night's design work reliable, in CD-63 to `ki.prj.agora` on 7 November 2026, which Kris asked to be made durable.
+- **Check tiers:** size the checks to the change, as Kris set under CHECKS-LIGHT on 22 November 2026: "they're like once a day kind of checks ... not for small literative changes ... Feels like real overkill".
+  - **While iterating:** the typecheck, the tests for what changed, the commit hooks, and one look at the changed screen.
+  - **Daily, or when Kris asks:** the full suite, the day, night and narrow-width views, and a design review. Design reviewers check at this tier, not after every install, and draw ahead of builds.
+  - **Before landing a release or a risky change,** one touching data, security or what is read: the full set.
+  - **Always:** fold live feedback into the build already running, with one install per batch, and build one thing at a time: make a batch of changes, look at them, then check that the batch builds. A build report says how long went on building and how long on checking, and names only failures and skipped checks.
 - Tell the agent it creates no roadmap record. Kris took CAPTURE-GATE a) on 19 October: "runs never create records; the owning work's coordinator captures only a blocker, a defect seen failing or a Kris request; ideas go to Project notes; small audit fixes need no record". A run that finds a candidate names it in its report, and the owning coordinator decides under the `ki-work next` [capture rule](../../../keystone/ki-work/references/standard-next-work.md#432-capture-substantive-prospective-work). A handoff or rollout a run's work needs elsewhere goes into the report for the coordinator to send along the tree under `ki-coordination`'s [Work between packages](../../../work/ki-coordination/references/standard-messages.md#messages-between-work) (MSG-RETIRE), never as a record in the receiving repository, as Kris set under HANDOFF-AS-MESSAGE on 2026-10-20: "Handoffs are not roadmap items".
 
 **Naming.** A run prompt names no session: a run takes no seat and its report closes with `🧵 <work-id>` of the work it reports to. A brief that starts a new agent session instead, never a background run, names the thread line the session is to take and tells it to rename itself to that line as its first act, by its agent host's rename (runtime-specific: `/rename <thread line>` in Claude Code), as Kris took OPENER-NAME a on 14 November 2026 under `ki-coordination`'s [Opening work](../../../work/ki-coordination/references/standard-opening.md#43-opening-work). A seat working in a package without its keys takes `<role glyph> <package>@<role>`, its seat's id, under SEAT-LINE a and SEAT-AT a in the `ki-work-package` [thread line](../../../work/ki-work-package/references/standard-roles.md#46-thread-line), and a seat whose actor is named puts the name first and its form in brackets, as in `Kitteth (🪨 🔑 cairn.summit)`, under NAME-FIRST a there.
@@ -194,6 +199,8 @@ When writing the steps and rules:
 **Delegating.** A brief that starts a new agent session also tells it to delegate its work to its agent host's own subagents, to stay responsive to its messages and to the owner while that work runs, and to let the subagents do most of the work, checking what they return before posting it, as Kris took OPENER-DELEGATE a on 14 November 2026 under `ki-coordination`'s [Opening work](../../../work/ki-coordination/references/standard-opening.md#43-opening-work). The runs it starts are briefed under this Prompt shape, followed under [Monitoring](#410-monitoring) and checked against their verification step before their results are posted. A run prompt keeps "Do not use background subagents.": the run is the subagent.
 
 A long wait belongs in the foreground: the agent checks the condition every two minutes and updates its status meanwhile.
+
+Sources: CHECKS-LIGHT and CHECKS-PACED in [the source register](sources.md).
 
 [Back to contents](#contents)
 
