@@ -6,7 +6,7 @@
  * (omitting `tools` is the wrong default) so the baseline
  * can't guess its way to the answer.
  */
-import type { Scenario } from '../backpack.ts'
+import type { Scenario } from '../harness.ts'
 
 export const scenarios: Scenario[] = [
   {

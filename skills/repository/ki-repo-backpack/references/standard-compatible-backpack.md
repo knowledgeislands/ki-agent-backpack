@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T04:25:28Z
+ki-revised: 2026-11-18T04:55:00Z
 ki-status: in force
 ---
 
@@ -150,7 +150,7 @@ An empty shelf is valid. Its README distinguishes intentional reserved structure
 
 The source root also contains physical `CLAUDE.md`, `ROADMAP.md`, and `.ki.toml` files. Symlinked, dangling, directory-valued, device, or unreadable evidence is unsafe and does not satisfy a physical-file or physical-directory requirement.
 
-The source backpack may have a `package.json` for its own development and verification. `ki:backpack:eval` is this standard's exact source-backpack evaluation claim: it runs `bun evals/backpack.ts` and is neither an installation, activation, nor governance entry point. Other package-script ownership and complete-set validation belong to `ki-engineering`.
+The source backpack may have a `package.json` for its own development and verification. `ki:harness:eval` is this standard's exact source-backpack evaluation claim: it runs `bun evals/harness.ts` and is neither an installation, activation, nor governance entry point. Other package-script ownership and complete-set validation belong to `ki-engineering`.
 
 [Back to contents](#contents)
 

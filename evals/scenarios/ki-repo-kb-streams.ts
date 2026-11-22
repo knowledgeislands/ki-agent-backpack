@@ -3,7 +3,7 @@
  * Enactment Process. Each probes a house-specific rule (the Focus lifecycle, the
  * proposal path + suffix, the rollout gate, the canonical-zone gate) a skill-less baseline wouldn't know.
  */
-import type { Scenario } from '../backpack.ts'
+import type { Scenario } from '../harness.ts'
 
 export const scenarios: Scenario[] = [
   {

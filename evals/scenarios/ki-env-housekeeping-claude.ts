@@ -7,7 +7,7 @@
  * outside-the-repo path with the `/`→`-` slug, the metadata.type enum with the
  * feedback/project body structure, and the promote-to-CLAUDE.md reconciliation.
  */
-import type { Scenario } from '../backpack.ts'
+import type { Scenario } from '../harness.ts'
 
 export const scenarios: Scenario[] = [
   {

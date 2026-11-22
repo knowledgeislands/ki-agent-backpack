@@ -91,7 +91,7 @@ const rootCapabilitySummaryItem = () => {
 test('the catalogue preserves the current compatible-backpack criteria', () => {
   expect(catalogue.contract).toBe(1)
   expect(catalogue.name).toBe('ki-repo-backpack')
-  expect(catalogue.packageScripts).toEqual(['ki:backpack:eval'])
+  expect(catalogue.packageScripts).toEqual(['ki:harness:eval'])
   expect(catalogue.createSession).toBeFunction()
   expect(catalogue.families.map((family) => family.code)).toEqual([
     'CAP',

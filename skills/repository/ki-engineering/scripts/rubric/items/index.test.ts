@@ -547,18 +547,18 @@ test('unclaimed ki scripts cannot use exclusions as a capability claim', () => {
 test('script exclusions reject invalid, stale, duplicate, patterned, and owned entries', () => {
   const scripts = {
     'ki:deps:update': 'bun update --latest',
-    'ki:backpack:eval': 'bun evals/backpack.ts',
+    'ki:harness:eval': 'bun evals/harness.ts',
     'vendor:generate': 'vendor generate'
   }
   const configuration = `[skills.ki-engineering]
-script_exclusions = ["", "vendor:*", "missing", "vendor:generate", "vendor:generate", "ki:backpack:eval", 7]
+script_exclusions = ["", "vendor:*", "missing", "vendor:generate", "vendor:generate", "ki:harness:eval", 7]
 
 [skills.ki-repo-backpack]
 `
   expect(
     inspectGovernedScriptSurface(configuration, scripts, [
       ...engineeringClaim,
-      { script: 'ki:backpack:eval', skill: 'example/harness:ki-repo-backpack' }
+      { script: 'ki:harness:eval', skill: 'example/harness:ki-repo-backpack' }
     ])
   ).toEqual({
     namingOffenders: [],
@@ -567,7 +567,7 @@ script_exclusions = ["", "vendor:*", "missing", "vendor:generate", "vendor:gener
       'script exclusion "vendor:*" must be exact, not a pattern',
       'stale script exclusion names no existing script: missing',
       'duplicate script exclusion: vendor:generate',
-      'script exclusion overlaps declared owner example/harness:ki-repo-backpack: ki:backpack:eval',
+      'script exclusion overlaps declared owner example/harness:ki-repo-backpack: ki:harness:eval',
       'script_exclusions entries must be non-empty strings'
     ]
   })
@@ -623,7 +623,7 @@ test('the session keeps stable focused context and coalesces package drafts', as
   temporaryDirectories.push(repository)
   writeFileSync(
     join(repository, 'package.json'),
-    '{"name":"example","scripts":{"ki:all":"ki repo audit","ki:engineering:check":"ki repo audit --skill ki-engineering","ki:authoring:fix":"ki repo conform --skill ki-authoring","ki:backpack:eval":"bun evals/backpack.ts"}}\n'
+    '{"name":"example","scripts":{"ki:all":"ki repo audit","ki:engineering:check":"ki repo audit --skill ki-engineering","ki:authoring:fix":"ki repo conform --skill ki-authoring","ki:harness:eval":"bun evals/harness.ts"}}\n'
   )
   const session = await createEngineeringSession(
     { mode: 'conform', repository, userHome: tmpdir(), configuration: {}, packageScriptClaims: [] },
@@ -649,7 +649,7 @@ test('the session keeps stable focused context and coalesces package drafts', as
   expect(writes[0]?.path).toBe('package.json')
   expect(writes[0]?.content).not.toContain('ki repo audit')
   expect(writes[0]?.content).not.toContain('ki repo conform')
-  expect(JSON.parse(writes[0]?.content ?? '{}').scripts['ki:backpack:eval']).toBe('bun evals/backpack.ts')
+  expect(JSON.parse(writes[0]?.content ?? '{}').scripts['ki:harness:eval']).toBe('bun evals/harness.ts')
   expect(JSON.parse(writes[0]?.content ?? '{}').type).toBe('module')
 })
 
@@ -658,7 +658,7 @@ test('SCR-2 proposes removal for any whole-repository or focused native governan
   temporaryDirectories.push(repository)
   writeFileSync(
     join(repository, 'package.json'),
-    '{"scripts":{"ki:all":"ki repo audit","ki:engineering:check":"ki repo audit --skill ki-engineering","ki:authoring:fix":"ki repo conform --skill ki-authoring","ki:backpack:eval":"bun evals/backpack.ts"}}\n'
+    '{"scripts":{"ki:all":"ki repo audit","ki:engineering:check":"ki repo audit --skill ki-engineering","ki:authoring:fix":"ki repo conform --skill ki-authoring","ki:harness:eval":"bun evals/harness.ts"}}\n'
   )
   const session = await createEngineeringSession(
     { mode: 'conform', repository, userHome: tmpdir(), configuration: {}, packageScriptClaims: [] },
@@ -674,7 +674,7 @@ test('SCR-2 proposes removal for any whole-repository or focused native governan
   const scripts = JSON.parse(session.proposal().writes[0]?.content ?? '{}').scripts
   expect(scripts).toEqual({
     'ki:deps:update': 'bun update --latest',
-    'ki:backpack:eval': 'bun evals/backpack.ts',
+    'ki:harness:eval': 'bun evals/harness.ts',
     clean: 'rm -rf dist node_modules',
     prepare: 'git config core.hooksPath .githooks'
   })

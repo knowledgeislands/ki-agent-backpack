@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 
 const EVALS_ROOT = dirname(fileURLToPath(import.meta.url))
 const SCENARIOS_ROOT = join(EVALS_ROOT, 'scenarios')
-const RUNNER = readFileSync(join(EVALS_ROOT, 'backpack.ts'), 'utf8')
+const HARNESS = readFileSync(join(EVALS_ROOT, 'harness.ts'), 'utf8')
 
 const scenarioModules = readdirSync(SCENARIOS_ROOT)
   .filter((entry) => entry.endsWith('.ts'))
@@ -13,12 +13,12 @@ const scenarioModules = readdirSync(SCENARIOS_ROOT)
   .sort()
 
 const scenarioImports = [
-  ...RUNNER.matchAll(
+  ...HARNESS.matchAll(
     /import\s+\{\s*scenarios\s+as\s+([A-Za-z][A-Za-z0-9]*)\s*\}\s+from\s+'\.\/scenarios\/([^']+)\.ts'/g
   )
 ].map((match) => ({ alias: match[1] as string, module: match[2] as string }))
 
-const registryBody = /const ALL: Scenario\[\] = \[([\s\S]*?)\n\]/.exec(RUNNER)?.[1] ?? ''
+const registryBody = /const ALL: Scenario\[\] = \[([\s\S]*?)\n\]/.exec(HARNESS)?.[1] ?? ''
 const registeredAliases = [...registryBody.matchAll(/\.\.\.([A-Za-z][A-Za-z0-9]*)/g)].map(
   (match) => match[1] as string
 )

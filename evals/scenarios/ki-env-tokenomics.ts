@@ -4,7 +4,7 @@
  * These test the boundary between declared policy, bounded filesystem evidence,
  * and effective session state rather than retired runtime-specific machinery.
  */
-import type { Scenario } from "../backpack.ts";
+import type { Scenario } from "../harness.ts";
 
 export const scenarios: Scenario[] = [
   {

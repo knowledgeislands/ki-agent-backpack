@@ -5,7 +5,7 @@
  * retirement state; evaluation-unit integrity; and evidence-backed consumer
  * hand-off rather than general model-comparison advice.
  */
-import type { Scenario } from '../backpack.ts'
+import type { Scenario } from '../harness.ts'
 
 export const scenarios: Scenario[] = [
   {

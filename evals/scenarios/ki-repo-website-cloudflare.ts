@@ -7,7 +7,7 @@
  * the Workers-Static-Assets-not-Pages decision, the `assets`-vs-`main` site/companion
  * distinction, and the exact `dist/` seam.
  */
-import type { Scenario } from '../backpack.ts'
+import type { Scenario } from '../harness.ts'
 
 export const scenarios: Scenario[] = [
   {

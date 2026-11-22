@@ -4,7 +4,7 @@
  * the size cap, the relative-not-wikilinks rule) the skill encodes — house-arbitrary
  * conventions a skill-less baseline can't derive.
  */
-import type { Scenario } from '../backpack.ts'
+import type { Scenario } from '../harness.ts'
 
 export const scenarios: Scenario[] = [
   {

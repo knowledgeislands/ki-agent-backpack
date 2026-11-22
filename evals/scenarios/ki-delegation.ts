@@ -1,5 +1,5 @@
 /** Eval scenarios for the durable high-risk `ki-delegation` packet contract. */
-import type { Scenario } from '../backpack.ts'
+import type { Scenario } from '../harness.ts'
 
 export const scenarios: Scenario[] = [
   {

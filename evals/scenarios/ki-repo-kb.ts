@@ -3,7 +3,7 @@
  * model. Each probes a house-specific rule (zone routing, the zone set, the digest
  * path) a skill-less baseline wouldn't know from general knowledge.
  */
-import type { Scenario } from '../backpack.ts'
+import type { Scenario } from '../harness.ts'
 
 export const scenarios: Scenario[] = [
   {
