@@ -24,7 +24,8 @@ test('the catalogue preserves every ordered ki-repo-tools criterion', () => {
     'MAN',
     'CONFIG',
     'SHARED',
-    'ASSEMBLE'
+    'ASSEMBLE',
+    'TAP'
   ])
   expect(items.map((item) => item.code)).toEqual([
     'TOOL-BIN',
@@ -63,7 +64,21 @@ test('the catalogue preserves every ordered ki-repo-tools criterion', () => {
     'MAN-STYLE',
     'CONFIG-1',
     'SHARED-1',
-    'ASSEMBLE-1'
+    'ASSEMBLE-1',
+    'TAP-1',
+    'TAP-2',
+    'TAP-3',
+    'TAP-4',
+    'TAP-5',
+    'TAP-6',
+    'TAP-7',
+    'TAP-HOOK',
+    'TAP-J1',
+    'TAP-J2',
+    'TAP-J3',
+    'TAP-J4',
+    'TAP-J5',
+    'TAP-J6'
   ])
   expect(new Set(items.map((item) => item.code)).size).toBe(items.length)
   expect(
@@ -87,9 +102,17 @@ test('the catalogue preserves every ordered ki-repo-tools criterion', () => {
     'MAN-STYLE': 'FAIL',
     'CONFIG-1': 'WARN',
     'SHARED-1': 'FAIL',
-    'ASSEMBLE-1': 'FAIL'
+    'ASSEMBLE-1': 'FAIL',
+    'TAP-1': 'FAIL',
+    'TAP-2': 'WARN',
+    'TAP-3': 'WARN',
+    'TAP-4': 'WARN',
+    'TAP-5': 'WARN',
+    'TAP-6': 'WARN',
+    'TAP-7': 'WARN',
+    'TAP-HOOK': 'FAIL'
   })
-  expect(items.filter((item) => item.judgment)).toHaveLength(19)
+  expect(items.filter((item) => item.judgment)).toHaveLength(25)
   for (const item of items) {
     if (item.mechanical) {
       expect(item.mechanical.remediation?.class).toBeDefined()
@@ -106,7 +129,7 @@ test('the catalogue preserves every ordered ki-repo-tools criterion', () => {
 test('the catalogue and family modules expose only the final public surfaces', async () => {
   const entrypoint = (await import('./index.ts')) as Record<string, unknown>
   expect(Object.keys(entrypoint)).toEqual(['default'])
-  expect(familyModules).toHaveLength(9)
+  expect(familyModules).toHaveLength(10)
   for (const file of familyModules) {
     const module = (await import(`./${file}`)) as Record<string, unknown>
     expect(Object.keys(module)).toHaveLength(1)

@@ -27,7 +27,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-The quotable standard behind the [skills.ki-repo-homebrew-tap](../SKILL.md) skill and its [Audit Rubric](rubric.md). This skill **wraps Homebrew's external standard** — the [Formula Cookbook][cookbook], `brew audit`, and `brew style` — rather than inventing a house one. What this document adds on top of Homebrew is only the **tap-shape** conventions: the layout every Knowledge Islands tap shares and the sourcing rule. Where a rule is Homebrew's own, it is labelled _(spec)_; where it is a KI tap-shape convention, _(shape)_. The tracked upstream sources are in [sources.md](sources.md).
+`ki-repo-tools`' distribution standard for the Homebrew tap that carries its tools' formulae, behind the `TAP` family of [the rubric](rubric.md). It was the `ki-repo-homebrew-tap` skill's standard until REPO-OTHERS a folded that skill into `ki-repo-tools` on 22 November 2026 (Kris, card: "Take the top homes"). This skill **wraps Homebrew's external standard** — the [Formula Cookbook][cookbook], `brew audit`, and `brew style` — rather than inventing a house one. What this document adds on top of Homebrew is only the **tap-shape** conventions: the layout every Knowledge Islands tap shares and the sourcing rule. Where a rule is Homebrew's own, it is labelled _(spec)_; where it is a KI tap-shape convention, _(shape)_. The tracked upstream sources are in [sources.md](sources.md).
 
 [Back to contents](#contents)
 
@@ -60,7 +60,7 @@ The static shape of a Knowledge Islands Homebrew tap, beyond what a single valid
 | **Formula** | A Ruby class Homebrew evaluates to install one tool. **Standard:** this one, [4.4](#44-formula-shape) |
 | **(spec)** | A label on a rule that is Homebrew's own. **Standard:** this one, [1](#1-introduction) |
 | **(shape)** | A label on a rule that is a Knowledge Islands tap-shape convention. **Standard:** this one, [1](#1-introduction) |
-| **Config marker** | The keyless `[skills.ki-repo-homebrew-tap]` table in `.ki.toml`. **Standard:** this one, [4.9](#49-config-marker) |
+| **Config marker** | `primary_shape = "ki-repo-homebrew-tap"` under `[skills.ki-repo]`, with the `[skills.ki-repo-tools]` table, in `.ki.toml`. **Standard:** this one, [4.9](#49-config-marker) |
 
 [Back to contents](#contents)
 
@@ -72,7 +72,7 @@ The rules, part by part.
 
 A Homebrew **tap** is a git repository of formulae. A repo becomes a tap by carrying a `Formula/` directory with one or more `*.rb` formula files _(spec)_. Knowledge Islands keeps a single tap, `homebrew-tap`, that distributes the `tools-*` command-line tools; each tool gets one formula _(shape)_. An applicable tap with no `Formula/*.rb` fails rather than warns.
 
-Checker applicability is declaration or structure: `[skills.ki-repo-homebrew-tap]` in `.ki.toml` or a root `Formula/` directory activates the complete audit. With neither, the checker reports one `NA` and stops. A declared repository with no `Formula/`, and a structurally marked but empty `Formula/`, remain applicable failures; an undeclared repository with `Formula/` remains applicable and surfaces the missing marker.
+The `TAP` family applies where `[skills.ki-repo-tools]` is declared and the repository is a tap: its `primary_shape` is `ki-repo-homebrew-tap`, or it has a root `Formula/` and no `bin/`. A tap runs only the `TAP` and `CONFIG` families, since the tool-repository checks (`TOOL`, `SHELL`, `MAN` and the rest) govern the tools, not their distribution; any other repository skips `TAP`. A declared tap with no `Formula/`, and an empty `Formula/`, remain applicable failures. `ki-repo` coverage counts a `Formula/*.rb` as the `ki-repo-tools` signal, so an undeclared tap surfaces the missing table.
 
 [Back to contents](#contents)
 
@@ -91,10 +91,10 @@ homebrew-tap/
 ├── README.md               # Standard Readme shape, with a "## Formulae" table (shape)
 ├── .github/workflows/      # OPTIONAL brew test-bot (shape)
 ├── LICENSE                 # ki-repo's
-└── .ki.toml          # [skills.ki-repo] + [skills.ki-repo-homebrew-tap] (shape)
+└── .ki.toml          # [skills.ki-repo] with primary_shape = "ki-repo-homebrew-tap" + [skills.ki-repo-tools] (shape)
 ```
 
-The README, LICENSE, `.gitignore`, and GitHub settings are **`ki-repo`'s**, not this skill's — this skill checks only the tap-specific delta (the `Formula/` dir, the formula shape, the formulae table, the sourcing rule).
+The README, LICENSE, `.gitignore`, and GitHub settings are **`ki-repo`'s**, not this standard's — the `TAP` family checks only the tap-specific delta (the `Formula/` dir, the formula shape, the formulae table, the sourcing rule).
 
 [Back to contents](#contents)
 
@@ -149,19 +149,19 @@ A tap MAY carry a `.github/workflows/` job running [`brew test-bot`][testbot] �
 
 ### 4.8 Commit gate
 
-`ki-repo` owns whether a committed hook exists and compares it byte for byte with the canonical text ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)). A tap's canonical hooks, with and without a `package.json`, are published as worked examples under [`assets/githooks/`](../assets/githooks/); copy them exactly _(shape)_. `GATE-1` checks what the committed `pre-commit` runs: `ruby -wc` over the staged Ruby files, which checks syntax with warnings and never rewrites, and otherwise only check-only staged lints, never `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`; the tap audit runs in CI, as Kris chose COMMIT-VS-CI a) on 26 October 2026. It is not applicable without a committed hook. `brew style`, `brew audit` and `brew test-bot` stay out of the hook, which stays fast and offline.
+`ki-repo` owns whether a committed hook exists and compares it byte for byte with the canonical text ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)). A tap's canonical hooks, with and without a `package.json`, are published under [`assets/githooks/ki-repo-homebrew-tap/`](../assets/githooks/ki-repo-homebrew-tap/); copy them exactly _(shape)_. `TAP-HOOK`, the tap skill's `GATE-1` until the fold, checks what the committed `pre-commit` runs: `ruby -wc` over the staged Ruby files, which checks syntax with warnings and never rewrites, and otherwise only check-only staged lints, never `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`; the tap audit runs in CI, as Kris chose COMMIT-VS-CI a) on 26 October 2026. It is not applicable without a committed hook. `brew style`, `brew audit` and `brew test-bot` stay out of the hook, which stays fast and offline.
 
 [Back to contents](#contents)
 
 ### 4.9 Config marker
 
-The tap opts into governance with a keyless `[skills.ki-repo-homebrew-tap]` table in `.ki.toml`, alongside `[skills.ki-repo]` _(shape)_. It is **validate-down**: presence is the whole config, any key under it is unknown and WARNed (the tap's shape is fixed by Homebrew, so there is nothing to tune). Run `ki repo conform --skill ki-repo-homebrew-tap <tap-path>` to add the marker safely after `ki-repo` has created the shared config file.
+The tap declares `primary_shape = "ki-repo-homebrew-tap"` under `[skills.ki-repo]` and a keyless `[skills.ki-repo-tools]` table _(shape)_. The shape value stays although its skill folded into `ki-repo-tools`, so the tap keeps its own canonical hooks. The table is **validate-down** under `CONFIG-1`: a tap sets no delivery profile, so any key under it is unknown (the tap's shape is fixed by Homebrew, so there is nothing to tune). A `[skills.ki-repo-homebrew-tap]` table left from before the fold is stale, and `ki-repo` `STRUCT-2` warns until it is removed.
 
 [Back to contents](#contents)
 
 ### 4.10 What `brew` checks that this skill does not
 
-`TAP-7` never runs `brew style` or `brew audit` from hosted audit. Those package-manager commands own the deep formula rules—dependency correctness, `bin`/`libexec` conventions, deprecated DSL, mirror/livecheck hygiene, and RuboCop style—and require separately authorized isolated diagnostics against the intended tap. Static audit reports only parsed source shape: that the tap has a `Formula/` directory, that a versioned tarball rather than HEAD is used, that the README lists the formula, and that the `[skills.ki-repo-homebrew-tap]` marker is present. Missing package-manager evidence is unavailable evidence, not a structural PASS.
+`TAP-7` never runs `brew style` or `brew audit` from hosted audit. Those package-manager commands own the deep formula rules—dependency correctness, `bin`/`libexec` conventions, deprecated DSL, mirror/livecheck hygiene, and RuboCop style—and require separately authorized isolated diagnostics against the intended tap. Static audit reports only parsed source shape: that the tap has a `Formula/` directory, that a versioned tarball rather than HEAD is used, that the README lists the formula, and that the `[skills.ki-repo-tools]` table is present. Missing package-manager evidence is unavailable evidence, not a structural PASS.
 
 [cookbook]: https://docs.brew.sh/Formula-Cookbook
 [standardreadme]: https://github.com/RichardLitt/standard-readme

@@ -9,8 +9,8 @@ ki-shared-dependencies: [ki-skills:rubric]
 ki-contributes: ['.githooks/pre-commit']
 description: >
   Audit or scaffold a KI `tools-*` repository containing one CLI, installer, releases, changelog, CI, help,
-  completion, and optional manual. Use `ki-repo-homebrew-tap` for formulae, `ki-engineering` for
-  TypeScript/Bun, and `ki-repo` for universal files.
+  completion, and optional manual, and the Homebrew tap whose `Formula/*.rb` distributes the tools. Use
+  `ki-engineering` for TypeScript/Bun, and `ki-repo` for universal files.
 argument-hint: 'audit <repo> | conform <repo> | help | educate <repo> | refresh'
 ---
 
@@ -27,7 +27,7 @@ The full, quotable standard lives in [the tool-repository standard](references/s
 This skill judges the **container** and a small shared public interface — not the quality of the tool's own implementation:
 
 - **In scope:** the `bin/<tool>` layout and its exec bit, required developer delivery-guide paths, `install.sh`, local release-marker shape, `CHANGELOG.md`, CI source shape, test-suite presence, completion, manual authoring and distribution, and the capability conditionals below. Runtime `--version`, installer, CI, and release execution remain separate evidence.
-- **Out of scope:** whether tool-specific operations are correct, well-factored, or fast. That is the tool author's concern (and, for a shell tool, shellcheck + bats — which this skill checks are _wired_, not what they _find_). The Homebrew tap and its formula are `ki-repo-homebrew-tap`'s; the repo's README, LICENSE, and GitHub settings are `ki-repo`'s.
+- **Out of scope:** whether tool-specific operations are correct, well-factored, or fast. That is the tool author's concern (and, for a shell tool, shellcheck + bats — which this skill checks are _wired_, not what they _find_). The Homebrew tap is this skill's too, but as a separate repository with its own [standard](#the-homebrew-tap); the repo's README, LICENSE, and GitHub settings are `ki-repo`'s.
 
 ## The canonical shape at a glance
 
@@ -47,7 +47,7 @@ tools-<name>/
 └── .ki.toml                # qualified ki-repo + ki-repo-tools declarations (the opt-in marker).
 ```
 
-`bin/` with ≥1 executable file and both developer delivery guides are hard requirements (**FAIL** if missing); every other expected surface is **WARN** — expected but not ship-stopping. The guide contents remain repository-defined. The companion Homebrew formula lives in the tap repo (`homebrew-<x>`, `Formula/<name>.rb`), governed by `ki-repo-homebrew-tap` — cross-reference it, don't reproduce it.
+`bin/` with ≥1 executable file and both developer delivery guides are hard requirements (**FAIL** if missing); every other expected surface is **WARN** — expected but not ship-stopping. The guide contents remain repository-defined. The companion Homebrew formula lives in the tap repo (`homebrew-<x>`, `Formula/<name>.rb`), under [the Homebrew tap](#the-homebrew-tap) below — cross-reference it, don't reproduce it.
 
 ## The capability-conditional rule
 
@@ -62,11 +62,21 @@ Mirrors `ki-engineering`'s capability-conditional pattern: what the repo _is_ de
 
 A `tools-*` repo opts into this standard by declaring `[skills.ki-repo-tools]` in `.ki.toml`. A keyless table leaves installer and packaging files repository-owned. The optional `profile` plus its validated parameters selects one managed delivery projection; every other key is rejected. `ki-repo` owns selecting the declaration, and conformance never selects a profile or overwrites modified managed files.
 
+## The Homebrew tap
+
+The tools' second channel is the tap, `homebrew-tap`, whose `Formula/*.rb` makes `brew install knowledgeislands/tap/<tool>` resolve. Its shape is this skill's distribution standard, [the Homebrew tap standard](references/standard-homebrew-tap.md), taken in from `ki-repo-homebrew-tap` under REPO-OTHERS a. A tap declares `primary_shape = "ki-repo-homebrew-tap"` with a keyless `[skills.ki-repo-tools]` table; the audit then runs only the `TAP` and `CONFIG` families, since the tool checks govern the tools, not their distribution. The standard wraps Homebrew's own: three rules carry most findings, and its rules are labelled _(spec)_ or _(shape)_ so a house preference is never presented as a Homebrew "MUST".
+
+1. **The tap is `Formula/*.rb`, one formula per tool**, the filename being the formula name; no `Formula/` is a FAIL.
+2. **A formula sources a versioned release, never HEAD**: a tagged tarball with its `sha256`.
+3. **A formula has its required parts**, with a `test do` that runs the installed binary's basic job, not only `--version` or `--help`.
+
+Homebrew fixes the name `homebrew-<x>`, so the standard governs shape, not name. `TAP-7` never runs Homebrew; `brew style`, `brew audit --strict` and `brew test-bot` are separately authorised diagnostics. `TAP-HOOK` checks that the committed gate runs `ruby -wc` over staged Ruby and stays check-only. Each mode file carries a Homebrew tap section.
+
 ## Change and release readiness
 
 Before presenting any tool change for review, read [the change-readiness checklist](references/standard-change-readiness.md). It keeps shared documentation, verification, and authority questions in one place while each repository's developer guide retains its own executable gates and recovery detail.
 
-Before preparing or reviewing a tool release, read [the release-readiness checklist](references/standard-release-readiness.md). Its [release-on-demand policy](references/standard-release-readiness.md#41-release-on-demand) is the one rule for when any KI tooling project releases: hold by default, release only when something needs it, and never release as part of delivering work. The checklist consolidates the existing version, documentation, validation, and distribution obligations into one staged human checklist; it does not create another skill mode or take ownership from `ki-engineering` or `ki-repo-homebrew-tap`.
+Before preparing or reviewing a tool release, read [the release-readiness checklist](references/standard-release-readiness.md). Its [release-on-demand policy](references/standard-release-readiness.md#41-release-on-demand) is the one rule for when any KI tooling project releases: hold by default, release only when something needs it, and never release as part of delivering work. The checklist consolidates the existing version, documentation, validation, and distribution obligations into one staged human checklist; it does not create another skill mode or take ownership from `ki-engineering`.
 
 ## Operating modes
 
@@ -97,6 +107,6 @@ Invoked as `help`, `-h`, or `?`, explain the skill, invocation, modes, capabilit
 ## Notes
 
 - The standard is anchored to `tools-mgit` and `tools-ki`, plus external specs (shellcheck, bats, keep-a-changelog, semver, XDG, POSIX utility conventions, GNU coding standards, clig.dev, `NO_COLOR`) — the tracked [source list](references/sources.md) records them; Mode REFRESH re-fetches on the declared cadence.
-- Refer to another skill by its `name` (`ki-repo`, `ki-engineering`, `ki-repo-homebrew-tap`), never a file path — skills are relocatable.
+- Refer to another skill by its `name` (`ki-repo`, `ki-engineering`), never a file path — skills are relocatable.
 - Hosted execution carries no private checker, reporter, or compatibility wrapper. The skill intentionally has no top-level public script; its executable governance surface is `scripts/rubric/items/index.ts`, loaded directly by `ki`.
 - No `exemplars.md` is bundled: the canonical tree and capability table above, plus the complete installer and release guidance in the standard, already illustrate the reusable shapes; a separate exemplar would duplicate them.

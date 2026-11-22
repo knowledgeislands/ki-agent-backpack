@@ -18,5 +18,18 @@ _On-demand procedure for tools' EDUCATE mode. The canonical shape, the container
    - `CHANGELOG.md` — begin with one consolidated Pre-1.0 baseline of the current command surface and notable behaviours; 0.x tags and GitHub releases retain the per-release record.
 3. **Add `ki-repo`'s files** (README, LICENSE, `.gitignore`, `.editorconfig`) — run `ki-repo`'s EDUCATE for the local-file + GitHub-settings layer.
 4. **Declare the config tables.** Add `[skills.ki-repo-tools]` alongside the qualified `ki-repo` declaration; `ki repo conform --repo <repo-path> --skill ki-repo-tools` can add it to an existing parseable configuration. If the tool has a `package.json`, also declare qualified `ki-engineering` and run its EDUCATE.
-5. **Set up the Homebrew tap** — the companion `Formula/<name>.rb` in the tap repo is `ki-repo-homebrew-tap`'s to scaffold; hand off there.
+5. **Set up the Homebrew tap** — add the companion `Formula/<name>.rb` to the tap repo, following [Homebrew tap](#homebrew-tap) below.
 6. **Cut the first release** — tag `v0.1.0`, create the GitHub release, and confirm `install.sh` fetches it. Run the checker until clean.
+
+## Homebrew tap
+
+_For a new Homebrew tap. Its shape and the name Homebrew fixes live in the [Homebrew tap standard](standard-homebrew-tap.md)._
+
+1. **Name the repo `homebrew-<x>`.** Homebrew requires the prefix so `brew tap <owner>/<x>` resolves (KI uses `homebrew-tap` → `knowledgeislands/tap`). This is an external constraint — do not deviate.
+2. **Create the tap skeleton:**
+   - `Formula/` — the directory that makes the repo a tap.
+   - `README.md` — in the [Standard Readme](https://github.com/RichardLitt/standard-readme) shape: title, one-line description, `Install` and `Usage` carrying `brew install <owner>/<x>/<formula>`, `Contributing`, `License`, and a `## Formulae` table as the tap's extra section (start it with a header row; add a row per formula).
+   - OPTIONAL `.github/workflows/` running [`brew test-bot`](https://docs.brew.sh/BrewTestBot) so the deep formula checks run in CI.
+3. **Add the first formula**, `Formula/<tool>.rb`, copying the shape from an existing formula (e.g. `Formula/mgit.rb`): `class <Camel> < Formula`, a `desc` (≤ 80 chars, no leading article), `homepage`, a **versioned-tarball** `url` (`…/archive/refs/tags/vX.Y.Z.tar.gz`), the tarball's `sha256` (`curl -sL <url> | shasum -a 256`), a `license`, a `def install`, and a `test do` that runs the installed binary's basic job on a small input in `testpath` and asserts on its output, not just `--version` or `--help`. Add its row to the README table.
+4. **Wire governance.** After `ki-repo` establishes the shared `.ki.toml`, set `primary_shape = "ki-repo-homebrew-tap"` under `[skills.ki-repo]` and add a keyless `[skills.ki-repo-tools]` table, then copy the canonical hooks from `assets/githooks/ki-repo-homebrew-tap/`. Run `ki-repo`'s EDUCATE for the repo-level files and GitHub settings. Do **not** add `[skills.ki-engineering]`—a tap has no TypeScript toolchain.
+5. **Verify.** Run `ki repo audit --skill ki-repo-tools --repo <path>` to 0 FAIL, then run `brew style` and `brew audit --strict` explicitly on each formula. Confirm `brew install <owner>/<x>/<tool>` works before publishing.

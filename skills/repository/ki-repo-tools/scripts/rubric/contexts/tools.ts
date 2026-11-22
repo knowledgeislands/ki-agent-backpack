@@ -9,6 +9,7 @@ import type {
   RubricSession
 } from '../../shared/rubric.ts'
 import { type AssembledToolsContext, inspectAssembled } from './assembled.ts'
+import { hasFormulaDirectory, inspectTap, TAP_SHAPE, type TapContext } from './homebrew-tap.ts'
 import { prepareToolSharedCode, type ToolSharedCodeContext } from './shared-code.ts'
 
 type NodeKind = 'missing' | 'file' | 'directory' | 'unsafe'
@@ -108,6 +109,8 @@ export type ToolsRubricContext = {
   readonly config: ToolsConfigContext
   readonly assembled: AssembledToolsContext
   readonly sharedCode: ToolSharedCodeContext
+  /** A Homebrew tap's evidence; the session routes a tap to TAP and CONFIG only. */
+  readonly tap: TapContext
 }
 
 const nodeKind = (path: string): NodeKind => {
@@ -190,6 +193,18 @@ const inspectConfig = (
     return { state: 'absent', keys: [], content, values: {} }
   } catch {
     return { state: 'malformed', keys: [], content, values: {} }
+  }
+}
+
+/** The declared `[skills.ki-repo] primary_shape`, read only to route a tap; `ki-repo` validates it. */
+const primaryShape = (content: string | null): string | null => {
+  if (content === null) return null
+  try {
+    const parsed = Bun.TOML.parse(content) as { readonly skills?: Record<string, unknown> }
+    const value = (parsed.skills?.['ki-repo'] as Record<string, unknown> | undefined)?.primary_shape
+    return typeof value === 'string' ? value : null
+  } catch {
+    return null
   }
 }
 
@@ -367,6 +382,11 @@ export const createToolsSession = ({
       ? inspectConfig(configPath, nodeKind(configPath))
       : { state: 'missing' as const, keys: [], content: null, values: {} }
   const applicable = configEvidence.state === 'present'
+  // A tap is selected by its primary shape, or detected as Formula/ with no bin/ to distribute.
+  const tapRepository =
+    rootState === 'physical' &&
+    (primaryShape(configEvidence.content) === TAP_SHAPE ||
+      (hasFormulaDirectory(root) && inspectedBins.state === 'missing'))
 
   const requestedExecutables = new Set<string>()
   const sharedWrites = new Map<string, ConformWrite>()
@@ -478,14 +498,15 @@ export const createToolsSession = ({
         return assembledOutcomes
       }
     },
-    sharedCode
+    sharedCode,
+    tap: inspectTap(root, rootState === 'physical', applicable && tapRepository)
   }
 
   return {
     subjects: [
       { families: ['RUBRIC'], context: () => context },
       {
-        families: ['TOOL', 'SHELL', 'LANG', 'MAN', 'CONFIG', 'SHARED', 'ASSEMBLE'],
+        families: tapRepository ? ['TAP', 'CONFIG'] : ['TOOL', 'SHELL', 'LANG', 'MAN', 'CONFIG', 'SHARED', 'ASSEMBLE'],
         context: () => context,
         subject: root
       }

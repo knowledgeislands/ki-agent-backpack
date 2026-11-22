@@ -13,12 +13,13 @@ ki-refresh: external-spec · quarterly
   - [2.1 Authoritative](#21-authoritative)
   - [2.2 Advisory](#22-advisory)
     - [2.2.1 In-house tool repositories](#221-in-house-tool-repositories)
+    - [2.2.2 Tap README](#222-tap-readme)
 - [3. Decisions](#3-decisions)
 - [4. Last review](#4-last-review)
 
 ## 1. Introduction
 
-The authoritative and in-house sources behind the [tool-repository standard](standard-tool-repositories.md), the [command-line conventions](standard-cli-conventions.md), the [change-readiness](standard-change-readiness.md) and [release-readiness](standard-release-readiness.md) checklists, the [shared-code standard](standard-tool-shared-code.md), and the [rubric](rubric.md). Mode REFRESH reads this file, re-fetches each source, and diffs it against the standard plus the structured catalogue under `scripts/rubric/items/`. It then **bumps the `Last reviewed` dates** and refreshes the `## Last review` block below; what changed belongs in the commit, not a changelog here.
+The authoritative and in-house sources behind the [tool-repository standard](standard-tool-repositories.md), the [command-line conventions](standard-cli-conventions.md), the [change-readiness](standard-change-readiness.md) and [release-readiness](standard-release-readiness.md) checklists, the [shared-code standard](standard-tool-shared-code.md), the [Homebrew tap standard](standard-homebrew-tap.md), and the [rubric](rubric.md). Mode REFRESH reads this file, re-fetches each source, and diffs it against the standard plus the structured catalogue under `scripts/rubric/items/`. It then **bumps the `Last reviewed` dates** and refreshes the `## Last review` block below; what changed belongs in the commit, not a changelog here.
 
 [Back to contents](#contents)
 
@@ -43,6 +44,14 @@ The external specifications a conformant tool repository builds on.
 | BASH-EXIT — [Bash Reference Manual: Exit Status][bash-exit] | 2 for usage, 126, 127 and 128 + n | 2026-10-18 |
 | CLIG — [Command Line Interface Guidelines][clig] | Streams, prompts, colour, signals, secrets, configuration precedence | 2026-11-15 |
 | NO-COLOR — [NO_COLOR][no-color] | Disabling colour by environment | 2026-11-15 |
+| COOKBOOK — [Formula Cookbook][cookbook] | The required formula parts (`class < Formula`, `desc`, `homepage`, `url`, `sha256`, `license`, `install`, `test do`) and their idioms, the source of `TAP-2` and `TAP-3` | 2026-11-17 |
+| AUDIT — [`brew audit` command reference][audit] | What `brew audit --strict` enforces: separate package-manager evidence, never run by static `TAP-7` | 2026-11-15 |
+| STYLE — [`brew style` / rubocop formula cops][style] | The `desc` rules (≤ 80 characters, no leading "A", "An" or "The") and the formula cops, the source of `TAP-4`, mirrored without running `brew` | 2026-11-15 |
+| ACCEPT — [Acceptable Formulae][acceptable] | Whether a tool is eligible for a formula (notability, stable release, versioned source), background for the sourcing rule | 2026-11-15 |
+| TAP — [Taps (third-party repositories)][taps] | How a tap is named (`homebrew-<x>`) and resolved by `brew tap` and `brew install`, the source of the fixed-name constraint | 2026-11-15 |
+| TESTBOT — [BrewTestBot][testbot] | The `brew test-bot` CI a tap may run, the backstop when a local audit has no `brew` | 2026-11-15 |
+
+A `TAP` finding is spec-driven only if it traces to one of the six Homebrew rows; everything else in the [Homebrew tap standard](standard-homebrew-tap.md) is tap-shape convention and is labelled so, never presented as a Homebrew requirement.
 
 [Back to contents](#contents)
 
@@ -64,6 +73,16 @@ The tool repositories under `knowledgeislands/` provide evidence for house style
 
 [Back to contents](#contents)
 
+#### 2.2.2 Tap README
+
+Non-normative.
+
+| Source | Informs | Last reviewed |
+| --- | --- | --- |
+| README — [Standard Readme][standardreadme] | The section set a tap README follows (title, description, Install, Usage, Contributing, License) with the `## Formulae` table as an extra section: guidance for EDUCATE, CONFORM and `TAP-J5` only, never a mechanical check, since README composition is `ki-authoring`'s and README presence `ki-repo`'s | 2026-11-15 |
+
+[Back to contents](#contents)
+
 ## 3. Decisions
 
 Decisions behind the rules that carry an id. Others, such as Kris's word after RIG-REL-PATCH that follow-up releases stop and ask first, are quoted in the standards beside the rules they set.
@@ -73,10 +92,14 @@ Decisions behind the rules that carry an id. Others, such as Kris's word after R
 | CLI-CONVENTIONS | Write the command-line conventions from the POSIX, GNU, Bash, clig.dev, `NO_COLOR` and XDG sources and the symbolic-link survey of the `mgit-learn` run | 2026-10-18 | [command-line conventions](standard-cli-conventions.md) | taken |
 | RELEASE-NOTICE | After an authorised release, the releasing territory owner or coordinator informs affected owning work, with version, change, compatibility, adoption and reply needs; a notice obligation, not release authority | 2026-10-29 | [4.2](standard-release-readiness.md#42-release-notice) | taken |
 | RELEASE-ACCEPTED | Option a): before a tag, list the roadmap records the release range ships; any not yet accepted is either accepted first or named in the release notice as shipping under review, and acceptance and release stay independent otherwise. Kris, by voice through Natter, 22 November 2026, about 18:36 GMT: "Yeah. Makes sense." (store `meetings/cairn.summit/20261114-voice/messages/20261122T1836Z-voice-release-accepted-answer.md`), from ki.summit's change 23. | 2026-11-22 | [Release readiness](standard-release-readiness.md#43-establish-the-candidate) | In force |
+| COMMIT-VS-CI a) | The tap's committed `pre-commit` runs only check-only staged lints, `ruby -wc` among them, and the tap audit runs in CI. Carried from `ki-repo-homebrew-tap` when it folded in. | 2026-10-26 | [Homebrew tap 4.8](standard-homebrew-tap.md#48-commit-gate) | taken |
+| REPO-OTHERS | Option a: `ki-repo-backpack`, `ki-repo-mcp`, `ki-repo-packages`, `ki-repo-tools` and `ki-repo-dotfiles-chezmoi` stay; `ki-repo-homebrew-tap` folds into `ki-repo-tools` as its distribution standard, the [Homebrew tap standard](standard-homebrew-tap.md), with the `TAP` family, its `GATE-1` becoming `TAP-HOOK`, and the tap keeping `primary_shape = "ki-repo-homebrew-tap"` beside a `[skills.ki-repo-tools]` table; `ki-repo-specifications` retires; release-on-demand stays in this skill. Kris, 22 November 2026, about 21:13 GMT, the Repository guild's sitting, card: "Take the top homes"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [Homebrew tap](standard-homebrew-tap.md), [release readiness](standard-release-readiness.md#41-release-on-demand) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 REPO-OTHERS a folded the `ki-repo-homebrew-tap` skill in, recorded under [Decisions](#3-decisions): its standard became the [Homebrew tap standard](standard-homebrew-tap.md) here with its rules unchanged, its seven Homebrew sources joined the tables above with their review dates, its watch-items joined Watching below, and its rubric became the `TAP` family, `GATE-1` renamed `TAP-HOOK` and its keyless-marker `CONFIG-1` replaced by this skill's own. The tap skill's last REFRESH ran on 15 November 2026, with a focused Cookbook re-read on 17 November. No outside source was refreshed in the fold.
 
 On 22 November 2026 an in-house review applied RELEASE-ACCEPTED a, recorded under [Decisions](#3-decisions): [Establish the candidate](standard-release-readiness.md#43-establish-the-candidate) gains the pre-tag check of the records a release ships, the release notice names any shipping under review, and [Release on demand](standard-release-readiness.md#41-release-on-demand) points at it as the one place acceptance meets release. No rubric check was added, since the check runs at release time rather than on the repository's files. No outside source was refreshed.
 
@@ -96,7 +119,10 @@ The external-spec REFRESH last ran **2026-07-30**. The targeted in-house review 
 
 **Watching:**
 
-- Homebrew's own audit surface (`brew audit` / `brew style`, the Formula Cookbook) is tracked by the sibling `ki-repo-homebrew-tap` skill, not here — reconcile the tap-facing half there.
+- **Homebrew is a live target.** The Cookbook and the `brew audit` and `brew style` cops change without a versioned spec release. Re-diff the required-fields list and the `desc` cops each cycle.
+- **`TAP-4` is a mirror.** The 80-character and no-leading-article rule is copied from `brew style` so the check runs without `brew`; if that cop changes upstream, update `scripts/rubric/items/tap.ts`.
+- **No `head` or `bottle` guidance yet.** The tap standard covers stable versioned-tarball formulae only; extend it if a KI tool ever ships bottles or a `head` spec.
+- **Standard Readme is advisory.** If `ki-authoring` gains its own README convention set (KI-HARNESS-GOV-048), reconcile the tap README entry with it.
 - If a second shell-specific concern emerges beyond shellcheck + bats, reconsider a dedicated `ki-shell` skill (deliberately not created at n=1).
 
 [Back to contents](#contents)
@@ -112,3 +138,17 @@ The external-spec REFRESH last ran **2026-07-30**. The targeted in-house review 
 [bash-exit]: https://www.gnu.org/software/bash/manual/html_node/Exit-Status.html
 [clig]: https://clig.dev/
 [no-color]: https://no-color.org/
+
+[cookbook]: https://docs.brew.sh/Formula-Cookbook
+
+[audit]: https://docs.brew.sh/Manpage#audit-options-formulacask-
+
+[style]: https://docs.brew.sh/Formula-Cookbook#audit-the-formula
+
+[acceptable]: https://docs.brew.sh/Acceptable-Formulae
+
+[taps]: https://docs.brew.sh/Taps
+
+[testbot]: https://docs.brew.sh/BrewTestBot
+
+[standardreadme]: https://github.com/RichardLitt/standard-readme

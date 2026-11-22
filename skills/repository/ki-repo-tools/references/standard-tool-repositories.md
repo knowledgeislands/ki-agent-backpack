@@ -290,7 +290,7 @@ A language conditional is declared as its **own** table, not a key here: a TS/Bu
 ### 4.14 What other skills own
 
 - **`ki-repo`** — the local standard files (README, LICENSE, `.gitignore`, `.editorconfig`), GitHub settings (merge policy, branch protection, topics, visibility), and the `.ki.toml` contract itself. `ki-repo`'s coverage cascade detects an undeclared tool (a `bin/<exe>` + `install.sh` with no qualified `ki-repo-tools` declaration) and WARNs, enforcing the one-structure-skill-per-repo invariant.
-- **`ki-repo-homebrew-tap`** — the tap repo, the `Formula/*.rb` shape, and the tap's own test-bot/CI.
+- **The [Homebrew tap standard](standard-homebrew-tap.md)**, this skill's own since REPO-OTHERS a — the tap repo, the `Formula/*.rb` shape, and the tap's own test-bot/CI.
 - **`ki-engineering`** — the TS/Bun build/lint/test toolchain, only if the tool grows a `package.json`.
 
 [Back to contents](#contents)

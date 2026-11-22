@@ -47,7 +47,7 @@ When a Knowledge Islands tooling project releases, and how a release of a reposi
 ### 2.2 Out of scope
 
 - Selecting work, publishing a release on its own authority, and any consumer's adoption.
-- The companion Homebrew formula: `ki-repo-homebrew-tap`.
+- The companion Homebrew formula: this skill's [Homebrew tap standard](standard-homebrew-tap.md).
 - The repository's exact gates and mechanical steps: its `docs/guides/developer/releasing.md`.
 
 [Back to contents](#contents)
@@ -128,7 +128,7 @@ When a shared delivery profile is declared, confirm `ki-repo-tools` reports ever
 
 - Commit only the reviewed release artifacts, then create the matching `vX.Y.Z` tag and GitHub release. Do not tag an unverified or dirty candidate.
 - Never move or recreate a published release tag or repair published assets in place. Correct the repository, verify a new candidate and publish a new version; a failed receiver handoff is retried through its owning distribution path.
-- Hand the published tag to `ki-repo-homebrew-tap` for the formula's release URL, checksum, and tap-specific validation. That skill owns the formula change.
+- Carry the published tag to the tap for the formula's release URL, checksum, and tap-specific validation under the [Homebrew tap standard](standard-homebrew-tap.md). The formula change is the tap repository's own commit.
 - Publication of an authorised, verified immutable release is standing authority for the enrolled tap to propose its matching formula update through its GitHub App; it need not ask the publisher again for the exact same downstream update. The tap independently checks the version, URL, checksum and formula quality. It may automatically merge only an exact, routine update when branch rules require passing formula checks and the App cannot bypass them. A first-time formula, failed check, unexpected diff, or ambiguous release remains human-reviewed. This policy does not authorise a local agent to push a receiving repository outside that automation.
 - After the validated formula reaches the tap's default branch, the tap owns dispatching its verified tool-release event to explicitly enrolled consumers. An existing website entry may automatically accept an exact version-only update only when branch rules require its passing checks and the App cannot bypass them; first-time entries, maturity changes, unexpected diffs, and consumers not enrolled in automation remain explicit receiver-owned handoffs. The tool repository holds the shared release-App credentials only to mint a token scoped to the tap for its own release dispatch, and does not duplicate consumer-side validation. Check the actual PR and merge outcome; a sent event is not a completed handoff.
 - Verify a fresh release installation and the package-manager path where practical. Confirm that the released executable reports the tagged version and its manual resolves when one is shipped.
@@ -146,7 +146,7 @@ When a shared delivery profile is declared, confirm `ki-repo-tools` reports ever
 
 - `ki-repo-tools` owns this checklist and the generic tool-repository release contract.
 - `ki-engineering` owns the TypeScript/Bun toolchain checks when the repository has a `package.json`.
-- `ki-repo-homebrew-tap` owns the companion formula and its publication checks.
+- The [Homebrew tap standard](standard-homebrew-tap.md) owns the companion formula and its publication checks.
 - `ki-repo` owns repository configuration and GitHub settings; `ki-git` owns commit and tag hygiene.
 
 [Back to contents](#contents)

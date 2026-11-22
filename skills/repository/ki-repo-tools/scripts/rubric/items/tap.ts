@@ -1,7 +1,9 @@
 import type { AuditOutcome, RubricFamily, RubricItem, RubricOutcomes } from '../../shared/rubric.ts'
-import type { HomebrewTapRubricContext, TapContext } from '../contexts/homebrew-tap.ts'
+import type { TapContext } from '../contexts/homebrew-tap.ts'
+import type { ToolsRubricContext } from '../contexts/tools.ts'
 
 const STANDARD = 'standard-homebrew-tap.md'
+const NOT_A_TAP = 'Not a Homebrew tap: primary_shape is not ki-repo-homebrew-tap and there is no Formula/ without bin/.'
 const SOURCE = [STANDARD] as const
 const many = (outcomes: AuditOutcome[]): RubricOutcomes<AuditOutcome> => outcomes as RubricOutcomes<AuditOutcome>
 const DIAGNOSTIC = {
@@ -34,7 +36,7 @@ const TAP_1: RubricItem<TapContext> = {
           return [
             {
               status: 'NOT_APPLICABLE',
-              message: 'The tap declaration is absent; detected Formula/ shape is handled by ki-repo coverage.'
+              message: NOT_A_TAP
             }
           ]
         if (context.formulaDirectory === 'unsafe')
@@ -62,8 +64,7 @@ const TAP_2: RubricItem<TapContext> = {
     audit: {
       phase: 'INSPECT',
       run: (context) => {
-        if (!context.applicable)
-          return [{ status: 'NOT_APPLICABLE', message: 'ki-repo-homebrew-tap is not applicable.' }]
+        if (!context.applicable) return [{ status: 'NOT_APPLICABLE', message: NOT_A_TAP }]
         if (context.formulae.length === 0)
           return [{ status: 'NOT_APPLICABLE', message: 'No formulae are available for class checks.' }]
         return many(
@@ -93,8 +94,7 @@ const TAP_3: RubricItem<TapContext> = {
     audit: {
       phase: 'INSPECT',
       run: (context) => {
-        if (!context.applicable)
-          return [{ status: 'NOT_APPLICABLE', message: 'ki-repo-homebrew-tap is not applicable.' }]
+        if (!context.applicable) return [{ status: 'NOT_APPLICABLE', message: NOT_A_TAP }]
         if (context.formulae.length === 0)
           return [{ status: 'NOT_APPLICABLE', message: 'No formulae are available for field checks.' }]
         const required = [
@@ -134,8 +134,7 @@ const TAP_4: RubricItem<TapContext> = {
     audit: {
       phase: 'INSPECT',
       run: (context) => {
-        if (!context.applicable)
-          return [{ status: 'NOT_APPLICABLE', message: 'ki-repo-homebrew-tap is not applicable.' }]
+        if (!context.applicable) return [{ status: 'NOT_APPLICABLE', message: NOT_A_TAP }]
         if (context.formulae.length === 0)
           return [{ status: 'NOT_APPLICABLE', message: 'No formulae are available for description checks.' }]
         const outcomes = context.formulae.flatMap((formula) => {
@@ -176,8 +175,7 @@ const TAP_5: RubricItem<TapContext> = {
     audit: {
       phase: 'INSPECT',
       run: (context) => {
-        if (!context.applicable)
-          return [{ status: 'NOT_APPLICABLE', message: 'ki-repo-homebrew-tap is not applicable.' }]
+        if (!context.applicable) return [{ status: 'NOT_APPLICABLE', message: NOT_A_TAP }]
         if (context.formulae.length === 0)
           return [{ status: 'NOT_APPLICABLE', message: 'No formulae are available for URL checks.' }]
         const outcomes = context.formulae.flatMap((formula) => {
@@ -211,8 +209,7 @@ const TAP_6: RubricItem<TapContext> = {
     audit: {
       phase: 'INSPECT',
       run: (context) => {
-        if (!context.applicable)
-          return [{ status: 'NOT_APPLICABLE', message: 'ki-repo-homebrew-tap is not applicable.' }]
+        if (!context.applicable) return [{ status: 'NOT_APPLICABLE', message: NOT_A_TAP }]
         if (context.formulae.length === 0)
           return [{ status: 'NOT_APPLICABLE', message: 'No formulae are available for README checks.' }]
         if (context.readme === null)
@@ -248,8 +245,7 @@ const TAP_7: RubricItem<TapContext> = {
     audit: {
       phase: 'DERIVED',
       run: (context) => {
-        if (!context.applicable)
-          return [{ status: 'NOT_APPLICABLE', message: 'ki-repo-homebrew-tap is not applicable.' }]
+        if (!context.applicable) return [{ status: 'NOT_APPLICABLE', message: NOT_A_TAP }]
         if (context.formulae.length === 0)
           return [{ status: 'NOT_APPLICABLE', message: 'No formulae are available for Homebrew checks.' }]
         return [
@@ -262,6 +258,22 @@ const TAP_7: RubricItem<TapContext> = {
         ]
       }
     }
+  }
+}
+
+const TAP_HOOK: RubricItem<TapContext> = {
+  code: 'TAP-HOOK',
+  title: 'check-only tap commit gate',
+  description:
+    'Where a committed `.githooks/pre-commit` exists, it runs `ruby -wc` over the staged Ruby files and otherwise only fast check-only staged lints: no `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`. The full `ki repo audit` runs in CI. `ki-repo` HOOK-1 owns whether the hook exists and HOOK-4 its canonical text.',
+  sources: SOURCE,
+  mechanical: {
+    level: 'FAIL',
+    remediation: {
+      class: 'diagnostic',
+      guidance: 'Copy the canonical pre-commit from `assets/githooks/ki-repo-homebrew-tap/`, then rerun the audit.'
+    },
+    audit: { phase: 'INSPECT', run: (context) => many([...context.hook]) }
   }
 }
 
@@ -309,11 +321,12 @@ const TAP_J6: RubricItem<TapContext> = {
   sources: SOURCE,
   judgment: judgment('When local Homebrew is unavailable, does CI run the appropriate Homebrew test-bot checks?')
 }
-export const TAP: RubricFamily<HomebrewTapRubricContext, TapContext> = {
+export const TAP: RubricFamily<ToolsRubricContext, TapContext> = {
   code: 'TAP',
   title: 'tap structure',
-  description: 'Formula layout, static source evidence, and judgment review of tap correctness.',
+  description:
+    'A Homebrew tap’s formula layout, commit gate, static source evidence, and judgment review of its correctness.',
   standard: STANDARD,
   selectContext: (context) => context.tap,
-  items: [TAP_1, TAP_2, TAP_3, TAP_4, TAP_5, TAP_6, TAP_7, TAP_J1, TAP_J2, TAP_J3, TAP_J4, TAP_J5, TAP_J6]
+  items: [TAP_1, TAP_2, TAP_3, TAP_4, TAP_5, TAP_6, TAP_7, TAP_HOOK, TAP_J1, TAP_J2, TAP_J3, TAP_J4, TAP_J5, TAP_J6]
 }

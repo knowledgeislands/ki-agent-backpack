@@ -8,13 +8,14 @@ import { MAN } from './manual.ts'
 import { RUBRIC } from './publication.ts'
 import { SHARED } from './shared-code.ts'
 import { SHELL } from './shell.ts'
+import { TAP } from './tap.ts'
 import { TOOL } from './tool.ts'
 
 export default {
   contract: 1,
   name: 'ki-repo-tools',
-  concern: 'command-line tool repository structure',
+  concern: 'command-line tool repository structure and its Homebrew tap',
   packageScripts: ['ki:tools:lint-man'],
   createSession: createToolsSession,
-  families: [RUBRIC, TOOL, SHELL, LANG, COMPLETION, MAN, CONFIG, SHARED, ASSEMBLE]
+  families: [RUBRIC, TOOL, SHELL, LANG, COMPLETION, MAN, CONFIG, SHARED, ASSEMBLE, TAP]
 } satisfies SkillRubricDefinition<ToolsRubricContext>

@@ -23,3 +23,15 @@ _On-demand procedure for `ki-repo-tools` CONFORM. The hosted catalogue owns its 
 
 4. For a TS/Bun tool, run `ki-engineering` CONFORM for its toolchain and ensure its qualified declaration is present.
 5. Re-run the `ki-repo-tools` and `ki-repo` audits until clean; a shell tool should also be shellcheck-clean and Bats-green locally.
+
+## Homebrew tap
+
+_For a Homebrew tap. The host publishes no tap repair; formula, README, checksum, marker and repository work remain explicit._
+
+**Precondition:** Run [Mode AUDIT](mode-audit.md) first so every change starts from a known gap list.
+
+1. **Repair formula and README gaps deliberately.** Copy from the healthiest existing formula rather than inventing: add missing formula fields, shorten or de-article a `desc`, repoint a `url` at a tagged-release tarball, recompute its `sha256` explicitly (`curl -sL <url> | shasum -a 256`), and add the formula's row to the README `## Formulae` table. Where the README lacks the advisory [Standard Readme](https://github.com/RichardLitt/standard-readme) shape the standard describes — Install, Usage, Contributing, License around that table — propose it as an explicit README edit, never as an automatic repair.
+2. **Fix the declaration by hand.** After `ki-repo` has established a regular `.ki.toml`, set `primary_shape = "ki-repo-homebrew-tap"` under `[skills.ki-repo]` and add a keyless `[skills.ki-repo-tools]` table, removing any `[skills.ki-repo-homebrew-tap]` table left from before the fold (`ki-repo` `STRUCT-2`). The host proposes no tap write; missing, malformed, symlinked, or otherwise unsafe configuration remains report-only.
+3. **Conform the repository layer separately.** Run `ki repo conform --skill ki-repo --repo <tap-path>` for repo-level files and settings.
+4. **Keep Homebrew validation external.** Hosted AUDIT never runs `brew style` or `brew audit --strict`. Obtain package-manager results only through an explicitly authorized isolated diagnostic; do not treat stale, unavailable, or different-source output as evidence for this checkout.
+5. **Verify.** Re-run AUDIT until its mechanical findings are clean. Do not hand off while `brew` reports issues.
