@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:17:16Z
+ki-revised: 2026-11-22T18:36:21Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -68,10 +68,13 @@ The dashboard navigation name **Workers & Pages** remains correct in operator in
 | SIGNIN-PRIVATE | "for personal and friends, because we're hosting multiple sites within those, it doesn't make any sense for that to have a URL or a whatever the visitor sees as being specific to any one of them", Kris, about 08:25 GMT, and at 08:34, "I don't particularly care as long as it's [brand-]agnostic ... What's more important is that the sign-in screen is neutral", recorded in the `personal.summit` package's change 40: an account hosting several sites shows a "Private" sign-in that names no site; a dedicated account, such as 5G Emerge, Humans not Robots or Knowledge Islands, may name itself | 2026-11-22 | [4.8](standard-cloudflare-hosting.md#48-zero-trust-team-naming) | taken |
 
 The Zero Trust team naming that Kris set on 29 October 2026 is quoted in the standard beside its rule, [4.8](standard-cloudflare-hosting.md#48-zero-trust-team-naming), and has no id.
+| CLOUDFLARE-FACTS | Fact corrections from the 4.1 refresh: 4.4's optional `assets` keys include Wrangler's new `base_path`; 4.9's gotchas add that a Version URL and its branch alias stop working once version retention deletes the version; and the Version URLs link follows its move. 4.9's Builds steps are unchanged. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Cloudflare hosting standard, 4.4](standard-cloudflare-hosting.md#44-the-site-wranglerjsonc-shape), [4.9](standard-cloudflare-hosting.md#49-branch-previews-behind-access) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 Loreward, within remit, from the 4.1 refresh, took CLOUDFLARE-FACTS, recorded under [Decisions](#3-decisions): [the hosting standard](standard-cloudflare-hosting.md) lists `base_path` among the optional `assets` keys and adds the Version URL retention gotcha to 4.9, point 6, and the Version URLs link points at its new page. 4.9's Builds steps are unchanged; the refresh's two queries on them, CLOUDFLARE-BUILDS-API and CLOUDFLARE-WORKER-PREVIEWS, wait for Kris. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 REFRESH re-read every outside source and the BUILD seam, answering the backpack audit's LONG-3 warning that the monthly cadence was overdue; every page was reachable, VERSIONS through a redirect to `/workers/versions-and-deployments/version-urls/`. The canonical deployed site was not inspected. No rule, default or protection changed: two findings that would change one went to Kris as queries, and the wording the standard can absorb was proposed, not written.
 
@@ -123,7 +126,7 @@ REFRESH last ran in full on **2026-10-04**; all eight pages were reachable. Curr
 [wrangler]: https://developers.cloudflare.com/workers/wrangler/configuration/
 [branches]: https://developers.cloudflare.com/workers/ci-cd/builds/build-branches/
 [builds-api]: https://developers.cloudflare.com/workers/ci-cd/builds/api-reference/
-[version-urls]: https://developers.cloudflare.com/workers/configuration/previews/
+[version-urls]: https://developers.cloudflare.com/workers/versions-and-deployments/version-urls/
 [previews]: https://developers.cloudflare.com/workers/previews/
 [access]: https://developers.cloudflare.com/workers/configuration/cloudflare-access/
 [access-paths]: https://developers.cloudflare.com/cloudflare-one/access-controls/policies/app-paths/
