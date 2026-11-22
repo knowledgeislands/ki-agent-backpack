@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T08:32:00Z
+ki-revised: 2026-11-22T09:00:00Z
 ki-refresh: canonical · quarterly
 ---
 
@@ -342,6 +342,8 @@ Each owner decision the standard rests on, by its tag: the date, the owner's wor
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, brought four pitfalls from the overnight runs in under existing rules: a query names the concrete thing, under the [owner report](standard-reporting.md#42-owner-report)'s query parts; a checked `/open/` link is not a walked one, and `/system/` routes go by hand, under [Where the owner reads](standard-reporting.md#441-where-the-owner-reads); and a live or unpublished claim is checked against the deployed thing, and a moving figure carries when it was read, under CLAIM-CHECK in [Coordinating practices](standard-coordination.md#44-coordinating-practices). No rule changed and no outside source was refreshed.
 
 On 22 November 2026 an in-house review applies OTHER-LIVE-WORK, Kris's words of that day at about 08:30 GMT on a Summary's status table, relayed by Bastion via Kitteth: "When it says not in a change yet, though, I don't really understand that one." [The Summary](standard-report-forms.md#417-the-summary)'s catch-all row is renamed **Other live work** and its Change cell gains the gloss `Live items no change document holds: other bots' work, runs, and your own tasks` on its second line, like every other row; the row stays one row and its Where it stands cell is unchanged. The output style source in [core, 4.7](standard-coordination.md#47-generated-surfaces) and the banner test say the same, and the output style is regenerated. No external source refreshed.
 

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T07:18:00Z
+ki-revised: 2026-11-22T09:00:00Z
 ki-status: in force
 ---
 
@@ -185,10 +185,14 @@ The label is written `Outstanding - no action requested now` and the query headi
   - a background agent's run report uses the heading of the work it reports to with `› <run name>` added, and the form line `**Run report at <local time> · last mark <local time>**`;
   - a conversational session's report has no report heading, form line or banner and opens at `## Done`, after its [reply id](#41-reply-forms);
   - a background agent reporting to a conversational session or to ad hoc work heads its saved file `# <work title> › <run name>`, with the form line `**Run report at <local time>**`, and no banner.
+
 - **Sections:** `## Done`, `## In Progress` and `## Queries`, in that order, every time, with the optional `## Findings` between `## In Progress` and `## Queries`. An empty section still appears and says so in one line, `Nothing is running` or `No outstanding queries`. One exception: a [Summary](standard-report-forms.md#417-the-summary) or Status keeps its own sections. A [Stop](standard-holds.md#41-putting-work-on-hold) for a hold keeps the three, with Left over in `## In Progress` and the parked queries in `## Queries`, one line each, with no Context, Query or Options, because the queries live in the package.
+
 - **Done:** completed outcomes, one line each, with material failures, corrections and limitations beside them, not behind them. A background agent puts its commit identifiers and check results here, because the owner reads the report, not the log.
+
 - **In Progress:** what is running and what is waiting, each with its owner or dependency. Then, under `Outstanding - no action requested now`, the matters that need nothing from the owner, grouped as agent work, receiver-owned work, verification limitations and retained material, apart from the decisions the owner must make.
   - A [Summary](standard-report-forms.md#417-the-summary) is windowed on its start: a handoff to other work is reported once, under `## Summary`, and not carried after; an item a record holds is left to the roadmap; and its status table holds only this work's own holdings. A Summary since an earlier time gives the longer view.
+
 - **Findings:** optional, and only on the owner's request: anything the owner asks to have looked into or checked, such as whether a field still makes sense, is a finding with its own tag, and its finding is the output of that look, such as a survey, table, comparison, assessment or short answer, informing a judgement the owner has still to make. A run's own observations and check results stay in Done or become queries.
   - **Placement:** while at least one is open, every Full and Medium reply carries `## Findings`, between `## In Progress` and `## Queries` in a run report, Bootstrap or other Medium reply, and between `## Status` and `## Queries` in a [Summary](standard-report-forms.md#417-the-summary) or Status. A Minimal reply, an Update or Answer, carries instead one line at the end of its Answer counting the findings still open and naming their tags, as `Findings open: 1, THEME-FIELD.` With none open, both are left out.
   - **Shape:** given in full, each finding is a `### <TAG> - <plain-language title>` heading, its tag in the [tag](#needs-tags) vocabulary. Before any table it opens with three lines: **Goal**, the question asked, in the owner's words where they exist, who asked and when; **Scope**, what was and was not looked at; **As of**, when the facts were last checked. The table or short list follows, then one line naming the queries it raised.
@@ -196,6 +200,7 @@ The label is written `Outstanding - no action requested now` and the query headi
   - **Carrying:** a finding stays in every Full and Medium reply's `## Findings` until the owner acknowledges it; a mark, a Summary or the passing of time does not settle it. The first reply to give it gives it in full, table and all. Every later reply gives it in one line: its tag, its answer in brief and the reply that first gave it, as `THEME-FIELD · obsolete in packages, kept on records · first given in Reply 05:30`. A prompt drafted for the owner to hand on is carried the same way under `## Findings`: its goal line says who it is for and what it asks, and the first reply gives the prompt in full in one fenced block.
   - **Settling:** once the owner acknowledges it, give each finding or prompt one disposition in the change document it reaches: homed in a record or in a change document, or dropped.
   - **File:** between reports, a finding lives in the run packet of the run that made it, as `$TMPDIR/ki-agents/<run>/findings/<tag>.md`, holding exactly the text the report carries, goal first, never in the package, under `ki-work-package`'s [closed list](../../ki-work-package/references/standard-work-package.md#43-the-shape). A finding still open when its packet would go is carried into the change document it bears on. The read of the package counts an open finding with it.
+
 - **Queries:** one `###` heading per actionable query, `<tag> - <plain-language title>`, linked to its record where one exists, the tag from the [tag](#needs-tags) vocabulary. A routine open matter is not a query; it belongs in In Progress. Nor is a push of stacked commits: routine push state is left out of the report and banner. A query's body is three bold labels and nothing else:
 
   ```markdown
@@ -213,6 +218,7 @@ The label is written `Outstanding - no action requested now` and the query headi
   ```
 
   - **Parts:** **Context** gives enough to decide without reading anything else, including the matter's significance and current state; where the matter has several parts, it may take the bold lead-ins of the interactive pass's [Where things stand](standard-queries.md#where-things-stand), such as why it comes to the owner and what an answer unblocks. **Query** is the question in one sentence. **Options** is the lettered list, `a)`, `b)` and so on, with no bullet before a letter.
+  - **Concrete:** the Context and the Query name the thing itself, as the owner knows it, never an internal label or position that stands for it: on 22 November 2026 a query named a slot in a list when it meant one specific item left short by an earlier decision, and Kris withdrew his answer once he saw which (the `personal.tower` package's change 20).
   - **Paragraphs:** the three parts are separate paragraphs with a blank line between them, and each option is its own paragraph with a blank line between options, so the query passes `rumdl check` under the house `.rumdl.toml`, whose MD013 reflow would otherwise join lazily continued lines.
   - **Recommendation:** option a) is always the recommendation and carries `(recommended, confidence <level> - <reason>)` before its text, the level `high`, `medium` or `low` and the reason one line, as in `a) (recommended, confidence high - the patch is already on main) push it`. Only option a) carries a confidence.
   - **Confidence:** reflects how reversible the course is and how much of what it rests on the session verified directly, rather than took from another agent's report. A course that destroys, deletes or publishes and rests on claims not verified directly is never `high`. Consistency with an earlier decision is not a reason and earns no level: an option a) whose only reason is an earlier decision is capped at `medium`.
@@ -255,9 +261,13 @@ The label is written `Outstanding - no action requested now` and the query headi
   ```
 
 - **Posting outside:** a recommendation to post anything in the owner's name outside the owner's own repositories and services, an issue, comment, reaction, pull request, discussion, review or message on another owner's repository or service such as an upstream issue tracker, is a query, never an action. Its **Context** or option carries the exact text proposed and where it would go, and nothing is posted until the owner answers that query; a broader grant, an earlier answer or a recommended option never stands in for it. `ki-delegation` owns the ban under its [external-posting rule](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#46-authority-tiers).
+
 - **Plain English:** a query's Context, Query and options, and the report's other explanations, are in plain English. A technical term appears only where needed and is explained in plain words the first time. Links to records are kept under **Links**.
+
 - **Headings:** the sections are `##` headings and each query a `###` heading, so a report nests the same way wherever it appears, under the one `#` report heading. Sub-headings in `Done`, where a long report groups outcomes by topic, and the banner heading are `###` too.
+
 - **Links:** every record, package file, Project, theme, decision, receipt and evidence artefact is linked under [Linking records](#44-linking-records), a pruned record as `[<FULL-ID> (pruned)](https://github.com/<owner>/<repo>/blob/<last revision>/<path>)`.
+
 - **Levels:** the owner's personal instructions set a communication level, `quiet`, `standard` or `detailed`, which this standard does not restate. The shape is the same at every level; the level sets only depth.
   - `quiet`: the status-line cadence during work is unchanged, this report replaces the end-of-unit report, done items are one line each, in-progress items name only the work and what it waits on, and a query carries just enough context to be answered cold.
   - `standard`: adds material context and exceptions to each section.
@@ -336,6 +346,8 @@ Which links to give for each kind of thing:
 - **Show me:** when the owner says "show me" or "open it", a session in an agent host on the Mac where the Wayfinder runs opens the Wayfinder at the thing in question itself, with `open cairn://<route>`, by any route in the catalogue; it never opens one unprompted. A session on another host, or one the owner reads on the phone, gives the link instead.
 - **On the phone,** only `https://` links open, so the GitHub links stay.
 - **Gaps:** an unknown route opens the nearest page, with a notice. A bot's Orca item and a meeting's deeply nested files have no route yet, so they are linked as before.
+- **Checked is not walked:** a `/open/<route>` link that answers 200 shows only that the Beacon accepts the route, not that the page says what the text claims; a link checked that way but not opened and read is labelled as such (store `d0056861`).
+- **System routes:** the Beacon's `/open` refuses `/system/...` routes by design (SYSTEM-MODE), so a reply sends the owner there by hand, through System › Admin, never by a link.
 
 **More than one link.** Where a thing has more than one sensible view, such as the Wayfinder to look around, the file to edit and GitHub from elsewhere, give them on one line: the thing's name links to the main view and short links follow it, compact words or icons, each of which opens where the owner reads. For a change document read on sol:
 
