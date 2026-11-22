@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T08:30:00Z
+ki-revised: 2026-11-22T08:55:00Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -76,6 +76,8 @@ Kris's decisions behind the rules, each taken in conversation or relayed as its 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, brought the overnight runs' pitfalls into [Prompt shape](standard-background-runs.md#45-prompt-shape): check a brief against standing decisions and have a record's writer read its format first; stop processes only by recorded PID and name what a desktop install stops; extract app bundles only in scratch; check a privacy claim against the code before reporting it; run a touched skill's rubric while iterating; and audit a repository's `AGENTS.md` as well as its hooks for hidden check cost. The sync step in the run commits and the landing footers follows `ki-git`'s `git fetch` and `git merge --ff-only @{u}`. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 an in-house review applies BASELINE-CHECKS, Kris's steer of that day at about 08:20 GMT in the Cairn summit's [change 70, 4.6](https://github.com/krisb/ki-cairn-store/blob/bf8acca3/work/cairn/cairn.summit/70-bots.change.md#46-decided), which refines CHECKS-LIGHT: the **Check tiers** full tier moves from daily to at a baseline, and the **Always** line gains the standing duty to keep asking whether each check earns its time. This is an in-house decision review; no external source was refreshed.
 
