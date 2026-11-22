@@ -5,11 +5,10 @@ import type { ChangeManagementRubricContext } from '../types.ts'
 
 const TABLE = 'ki-work'
 type AdapterDefinition = { readonly skill: string; readonly repositoryKind?: 'project' | 'kb' }
-type Adapter = 'roadmap' | 'kb-streams' | 'github-issues' | 'linear'
+type Adapter = 'roadmap' | 'kb-streams' | 'linear'
 const ADAPTERS: Readonly<Record<Adapter, AdapterDefinition>> = {
   roadmap: { skill: 'ki-work-roadmap', repositoryKind: 'project' },
   'kb-streams': { skill: 'ki-repo-kb-streams', repositoryKind: 'kb' },
-  'github-issues': { skill: 'ki-work-github-issues' },
   linear: { skill: 'ki-work-linear' }
 }
 const TOML = (globalThis as unknown as { Bun: { TOML: { parse(text: string): unknown } } }).Bun.TOML
@@ -69,7 +68,7 @@ export const createChangeManagementSession = ({
             ? [
                 {
                   status: 'VIOLATION' as const,
-                  message: 'adapter must be one of: roadmap, kb-streams, github-issues, linear.',
+                  message: 'adapter must be one of: roadmap, kb-streams, linear.',
                   subject: '.ki.toml'
                 }
               ]

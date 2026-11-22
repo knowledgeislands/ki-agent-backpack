@@ -19,7 +19,7 @@ Use the website-owned [skills-by-outcome guide](https://knowledgeislands.info/gu
 <!-- ki-repo-backpack:capability-catalogue:start -->
 ## Generated capability catalogue
 
-This source backpack publishes 64 skills: 59 governance skills, 4 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
+This source backpack publishes 63 skills: 58 governance skills, 4 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
 
 ### Acquire
 
@@ -413,7 +413,7 @@ Create, audit, review, extract, or optimise Agent Skills. Use for SKILL.md scope
 
 #### `ki-work`
 
-Lead the Work guild: choose, plan, deliver, accept and recap work. Use `next` to capture prospective work or decide what comes next, `plan` to make selected work Ready, `implement` to deliver one Ready record to review, `accept` to close, cancel or prune records with human approval, `recap` for a live-session recap or handoff, and `design` to shape a new Project or model before any record exists; audit or choose a repository's forward-work adapter: local roadmap, KB Streams, GitHub Issues or Linear.
+Lead the Work guild: choose, plan, deliver, accept and recap work. Use `next` to capture prospective work or decide what comes next, `plan` to make selected work Ready, `implement` to deliver one Ready record to review, `accept` to close, cancel or prune records with human approval, `recap` for a live-session recap or handoff, and `design` to shape a new Project or model before any record exists; audit or choose a repository's forward-work adapter: local roadmap, KB Streams or Linear.
 
 - **Kind:** Governance
 - **Leads:** Work
@@ -636,19 +636,9 @@ Call, hold and close a meeting: a room at one node of the work tree where named 
 - **Dependencies:** None
 - **Runtime:** Portable
 
-#### `ki-work-github-issues`
-
-Define GitHub Issues configuration, lifecycle mapping, hierarchy, dependencies, review, closure, and remote-write safety as a KI work adapter. Use when GitHub Issues is selected; remote execution is unavailable, while local files use `ki-work-roadmap` and Linear uses `ki-work-linear`.
-
-- **Kind:** Governance
-- **Applicability:** Declaration Only
-- **Arguments:** `audit <repo> | conform <repo> | educate <repo> | help | refresh`
-- **Dependencies:** None
-- **Runtime:** Portable
-
 #### `ki-work-linear`
 
-Define Linear configuration, lifecycle mapping, hierarchy, dependencies, review, closure, and remote-write safety as a KI work adapter. Use when Linear is selected; remote execution is unavailable, while local files use `ki-work-roadmap` and GitHub Issues uses `ki-work-github-issues`.
+Define Linear configuration, lifecycle mapping, hierarchy, dependencies, review, closure, and remote-write safety as KI's one remote-tracker work adapter. Use when Linear is selected; remote execution is unavailable, while local files use `ki-work-roadmap`, and a GitHub Issues adapter is spun out of this one only if needed.
 
 - **Kind:** Governance
 - **Applicability:** Declaration Only

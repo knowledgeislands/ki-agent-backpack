@@ -14,7 +14,7 @@ description: >
   what comes next, `plan` to make selected work Ready, `implement` to deliver one Ready record to review, `accept`
   to close, cancel or prune records with human approval, `recap` for a live-session recap or handoff, and `design`
   to shape a new Project or model before any record exists; audit or choose a repository's forward-work adapter:
-  local roadmap, KB Streams, GitHub Issues or Linear.
+  local roadmap, KB Streams or Linear.
 argument-hint: 'accept <work> | accept prune <record-or-glob>... | audit <repo> | conform <repo> | design start <subject> | design resume <id> | educate <repo> | help | implement <work> | next [--review] | next defer <item> <horizon> | plan <work>... | recap [--runtime <runtime>] [--transcript <session-file>] | refresh'
 ---
 
@@ -42,7 +42,7 @@ Two boundaries the separate skills kept are rules of their subcommands: **`imple
 
 Its other members, each with when to use it:
 
-- **`ki-work-roadmap`** to audit or shape flat local work records in `docs/roadmap/`, the default adapter; **`ki-work-github-issues`** and **`ki-work-linear`** when a repository selects a remote tracker.
+- **`ki-work-roadmap`** to audit or shape flat local work records in `docs/roadmap/`, the default adapter; **`ki-work-linear`** when a repository selects the remote tracker.
 - **`ki-work-recurring`** for recurring work: templates, cadence and due runs.
 - **`ki-work-package`** to create, resume, audit or tidy a work package in the Cairn store.
 - **`ki-coordination`** while coordinating opened work, and for how every session replies.
@@ -50,9 +50,9 @@ Its other members, each with when to use it:
 
 ## Shared model
 
-`[skills.ki-work]` declares exactly one adapter and the matching adapter table is declared beside it. `roadmap` is the default for an ordinary Project repository; `kb-streams` is the default for a Knowledge Base; `github-issues` and `linear` are explicit alternatives. Resolution has no fallback: an absent, unknown, undeclared, or inapplicable declaration stops the process rather than guessing from a directory. This skill owns the abstract lifecycle and classification terms, while the owning adapter retains concrete status mapping, record storage, identity, and structural rules. The [Project registry standard](references/standard-project-registry.md) owns the portable shape of territory Projects and themes.
+`[skills.ki-work]` declares exactly one adapter and the matching adapter table is declared beside it. `roadmap` is the default for an ordinary Project repository; `kb-streams` is the default for a Knowledge Base; `linear` is the explicit remote alternative. Resolution has no fallback: an absent, unknown, undeclared, or inapplicable declaration stops the process rather than guessing from a directory. This skill owns the abstract lifecycle and classification terms, while the owning adapter retains concrete status mapping, record storage, identity, and structural rules. The [Project registry standard](references/standard-project-registry.md) owns the portable shape of territory Projects and themes.
 
-The selected adapter also controls the GitHub Issues feature through `ki-repo`: it stays disabled, with no `package.json` `bugs` field, unless the root `[skills.ki-work-github-issues]` table is declared.
+`ki-repo` keeps the GitHub Issues feature disabled, with no `package.json` `bugs` field, since no supported adapter is a GitHub Issues one.
 
 ## Operating modes
 
@@ -76,7 +76,7 @@ Run `ki repo conform --skill ki-work --repo <repo> --dry-run`. It makes no adapt
 
 ### Mode EDUCATE
 
-Run `ki repo educate --skill ki-work --repo <repo>` to render the adapter contract. Choose the Project or KB default only after confirming its primary structure; choose GitHub Issues or Linear only after confirming remote authority and the owning adapter configuration.
+Run `ki repo educate --skill ki-work --repo <repo>` to render the adapter contract. Choose the Project or KB default only after confirming its primary structure; choose Linear only after confirming remote authority and the owning adapter configuration.
 
 ### Mode IMPLEMENT
 

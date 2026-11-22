@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "05980cdf0f69907228dc711bbb6ca33583049679"
+      "revision": "8d7465bcac8b43c3de64aca97b45e24f689e2f02"
     },
     "legend": {
       "mode": "auto",
@@ -641,25 +641,6 @@
       ]
     },
     {
-      "id": "ki-work-github-issues",
-      "type": "database",
-      "label": "ki-work-github-issues",
-      "sublabel": "work · opt-in",
-      "sources": [
-        {
-          "path": "skills/work/ki-work-github-issues/SKILL.md"
-        }
-      ],
-      "pos": [
-        32,
-        1076
-      ],
-      "size": [
-        200,
-        60
-      ]
-    },
-    {
       "id": "ki-work-linear",
       "type": "database",
       "label": "ki-work-linear",
@@ -670,7 +651,7 @@
         }
       ],
       "pos": [
-        240,
+        32,
         1076
       ],
       "size": [
@@ -689,7 +670,7 @@
         }
       ],
       "pos": [
-        448,
+        240,
         1076
       ],
       "size": [
@@ -708,8 +689,8 @@
         }
       ],
       "pos": [
-        32,
-        1160
+        448,
+        1076
       ],
       "size": [
         200,
@@ -727,8 +708,8 @@
         }
       ],
       "pos": [
-        712,
-        1328
+        32,
+        1248
       ],
       "size": [
         200,
@@ -746,8 +727,8 @@
         }
       ],
       "pos": [
-        712,
-        1468
+        32,
+        1388
       ],
       "size": [
         200,
@@ -765,8 +746,8 @@
         }
       ],
       "pos": [
-        920,
-        1468
+        240,
+        1388
       ],
       "size": [
         200,
@@ -784,8 +765,8 @@
         }
       ],
       "pos": [
-        1128,
-        1468
+        448,
+        1388
       ],
       "size": [
         200,
@@ -803,8 +784,8 @@
         }
       ],
       "pos": [
-        712,
-        1552
+        32,
+        1472
       ],
       "size": [
         200,
@@ -822,8 +803,8 @@
         }
       ],
       "pos": [
-        920,
-        1552
+        240,
+        1472
       ],
       "size": [
         200,
@@ -841,8 +822,8 @@
         }
       ],
       "pos": [
-        712,
-        1692
+        32,
+        1612
       ],
       "size": [
         200,
@@ -860,8 +841,8 @@
         }
       ],
       "pos": [
-        920,
-        1692
+        240,
+        1612
       ],
       "size": [
         200,
@@ -879,8 +860,8 @@
         }
       ],
       "pos": [
-        32,
-        1332
+        712,
+        1328
       ],
       "size": [
         200,
@@ -898,8 +879,8 @@
         }
       ],
       "pos": [
-        240,
-        1332
+        920,
+        1328
       ],
       "size": [
         200,
@@ -917,8 +898,8 @@
         }
       ],
       "pos": [
-        448,
-        1332
+        1128,
+        1328
       ],
       "size": [
         200,
@@ -936,8 +917,8 @@
         }
       ],
       "pos": [
-        32,
-        1416
+        712,
+        1412
       ],
       "size": [
         200,
@@ -955,8 +936,8 @@
         }
       ],
       "pos": [
-        32,
-        1588
+        712,
+        1584
       ],
       "size": [
         200,
@@ -974,8 +955,8 @@
         }
       ],
       "pos": [
-        240,
-        1588
+        920,
+        1584
       ],
       "size": [
         200,
@@ -993,8 +974,8 @@
         }
       ],
       "pos": [
-        448,
-        1588
+        1128,
+        1584
       ],
       "size": [
         200,
@@ -1012,8 +993,8 @@
         }
       ],
       "pos": [
-        32,
-        1672
+        712,
+        1668
       ],
       "size": [
         200,
@@ -1031,8 +1012,8 @@
         }
       ],
       "pos": [
-        32,
-        1812
+        712,
+        1808
       ],
       "size": [
         200,
@@ -1050,8 +1031,8 @@
         }
       ],
       "pos": [
-        240,
-        1812
+        920,
+        1808
       ],
       "size": [
         200,
@@ -1069,8 +1050,8 @@
         }
       ],
       "pos": [
-        448,
-        1812
+        1128,
+        1808
       ],
       "size": [
         200,
@@ -1088,8 +1069,8 @@
         }
       ],
       "pos": [
-        32,
-        1952
+        712,
+        1948
       ],
       "size": [
         200,
@@ -1107,8 +1088,8 @@
         }
       ],
       "pos": [
-        240,
-        1952
+        920,
+        1948
       ],
       "size": [
         200,
@@ -1126,8 +1107,8 @@
         }
       ],
       "pos": [
-        448,
-        1952
+        1128,
+        1948
       ],
       "size": [
         200,
@@ -1145,8 +1126,8 @@
         }
       ],
       "pos": [
-        712,
-        1864
+        32,
+        1784
       ],
       "size": [
         200,
@@ -1164,8 +1145,8 @@
         }
       ],
       "pos": [
-        920,
-        1864
+        240,
+        1784
       ],
       "size": [
         200,
@@ -1183,8 +1164,8 @@
         }
       ],
       "pos": [
-        712,
-        2036
+        32,
+        1956
       ],
       "size": [
         200,
@@ -1202,8 +1183,8 @@
         }
       ],
       "pos": [
-        712,
-        2176
+        32,
+        2096
       ],
       "size": [
         200,
@@ -1221,8 +1202,8 @@
         }
       ],
       "pos": [
-        920,
-        2176
+        240,
+        2096
       ],
       "size": [
         200,
@@ -1240,8 +1221,8 @@
         }
       ],
       "pos": [
-        1128,
-        2176
+        448,
+        2096
       ],
       "size": [
         200,
@@ -1427,7 +1408,6 @@
       "kind": "region",
       "label": "Work and delivery · Work items",
       "wraps": [
-        "ki-work-github-issues",
         "ki-work-linear",
         "ki-work-recurring",
         "ki-work-roadmap"
@@ -1436,12 +1416,11 @@
     },
     {
       "kind": "region",
-      "label": "Work · 7 skills",
+      "label": "Work · 6 skills",
       "wraps": [
         "ki-work-package",
         "ki-coordination",
         "ki-meeting",
-        "ki-work-github-issues",
         "ki-work-linear",
         "ki-work-recurring",
         "ki-work-roadmap"
@@ -1606,7 +1585,7 @@
       "dot": "slate",
       "title": "Generated, not drawn",
       "items": [
-        "64 skills in 8 concerns and 10 functional areas: 3 always on, 20 automatic, 36 opt-in, 5 commands.",
+        "63 skills in 8 concerns and 10 functional areas: 3 always on, 20 automatic, 35 opt-in, 5 commands.",
         "Regenerate with ki repo conform --skill ki-repo-backpack; ki-skills owns the kind and applicability fields it reads."
       ]
     }

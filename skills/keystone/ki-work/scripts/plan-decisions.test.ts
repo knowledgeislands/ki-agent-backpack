@@ -14,11 +14,12 @@ test('uses selected local adapter roots without a shape fallback and refuses rem
   expect(resolveSelectedAdapter({ skills: { 'ki-work': { adapter: 'roadmap' } } })).toMatchObject({
     kind: 'refusal'
   })
+  expect(resolveSelectedAdapter({ skills: { 'ki-work': { adapter: 'linear' }, 'ki-work-linear': {} } })).toMatchObject({
+    kind: 'remote-refusal'
+  })
   expect(
-    resolveSelectedAdapter({
-      skills: { 'ki-work': { adapter: 'github-issues' }, 'ki-work-github-issues': {} }
-    })
-  ).toMatchObject({ kind: 'remote-refusal' })
+    resolveSelectedAdapter({ skills: { 'ki-work': { adapter: 'github-issues' }, 'ki-work-github-issues': {} } })
+  ).toMatchObject({ kind: 'refusal' })
 })
 
 test('permits readiness only as one approved, contained, dependency-ready transition', () => {

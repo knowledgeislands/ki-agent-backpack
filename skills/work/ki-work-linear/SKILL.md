@@ -9,14 +9,16 @@ ki-shared-dependencies: [ki-skills:rubric]
 ki-contributes: ['.ki.toml']
 description: >
   Define Linear configuration, lifecycle mapping, hierarchy, dependencies, review, closure, and remote-write
-  safety as a KI work adapter. Use when Linear is selected; remote execution is unavailable, while local files
-  use `ki-work-roadmap` and GitHub Issues uses `ki-work-github-issues`.
+  safety as KI's one remote-tracker work adapter. Use when Linear is selected; remote execution is unavailable,
+  while local files use `ki-work-roadmap`, and a GitHub Issues adapter is spun out of this one only if needed.
 argument-hint: 'audit <repo> | conform <repo> | educate <repo> | help | refresh'
 ---
 
 # KI Linear change management
 
 This skill configures and explains one Linear team's Issues as a future forward-work adapter. It does not mirror Issues to a local tracker, resolve remote work for a process, or make remote writes. No remote executor is implemented, so a shared process selecting this adapter stops rather than guessing a local path or Linear operation.
+
+It is the Work guild's one remote-tracker skill: the GitHub Issues adapter folded into it under REMOTE-TRACKERS, and one is spun out of it again only when a repository needs it.
 
 `ENG-123` is a **current team-scoped locator**, not durable cross-team identity. A team move creates a new identifier and URL; retain the old locator as historical alias evidence and re-resolve the current locator, team, workflow mapping, and affected fields before any future operation. No UUID persistence claim is made without official evidence.
 

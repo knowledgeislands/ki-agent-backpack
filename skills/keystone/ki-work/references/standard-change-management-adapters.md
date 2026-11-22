@@ -48,7 +48,7 @@ How a repository selects its one change-management adapter, and what every adapt
 
 | Term | Definition |
 | --- | --- |
-| **Adapter** | The one configured source of a repository's forward-work records: `roadmap`, `kb-streams`, `github-issues` or `linear`. **Standard:** this one, [4.1](#41-selection) |
+| **Adapter** | The one configured source of a repository's forward-work records: `roadmap`, `kb-streams` or `linear`. **Standard:** this one, [4.1](#41-selection) |
 | **Abstract record vocabulary** | The lifecycle terms every adapter maps: status, horizon, priority, size, selection order, resolution and classification. **Standard:** this one, [4.3](#43-abstract-record-vocabulary) |
 
 [Back to contents](#contents)
@@ -63,14 +63,14 @@ The repository declares exactly one supported value:
 
 ```toml
 [skills.ki-work]
-adapter = "roadmap" # or kb-streams, github-issues, linear
+adapter = "roadmap" # or kb-streams, linear
 ```
 
-`roadmap` resolves to `ki-work-roadmap` and is the default for an ordinary Project repository. `kb-streams` resolves to `ki-repo-kb-streams` and is the default for a Knowledge Base. `github-issues` resolves to `ki-work-github-issues`; `linear` resolves to `ki-work-linear`. The remote adapters are explicit alternatives for either primary structure.
+`roadmap` resolves to `ki-work-roadmap` and is the default for an ordinary Project repository. `kb-streams` resolves to `ki-repo-kb-streams` and is the default for a Knowledge Base. `linear` resolves to `ki-work-linear`, the one remote-tracker adapter, an explicit alternative for either primary structure. A GitHub Issues adapter is spun out of it only when one is needed (REMOTE-TRACKERS).
 
-The selected adapter's `[skills.<skill-name>]` table must be declared in the same configuration. `roadmap` is valid only for an explicit `repo_type = "project"`; `kb-streams` is valid only for `repo_type = "kb"`. Remote adapters support either valid kind. `ki-repo` owns validation of the mandatory kind and primary shape; no inferred kind or alternate value is accepted. Missing, unknown, undeclared, or inapplicable values are failures, not opportunities for shape-based inference. The selector resolves this declared mapping; the host separately invokes the resolved adapter's audit rather than treating resolution as an adapter audit.
+The selected adapter's `[skills.<skill-name>]` table must be declared in the same configuration. `roadmap` is valid only for an explicit `repo_type = "project"`; `kb-streams` is valid only for `repo_type = "kb"`. The remote adapter supports either valid kind. `ki-repo` owns validation of the mandatory kind and primary shape; no inferred kind or alternate value is accepted. Missing, unknown, undeclared, or inapplicable values are failures, not opportunities for shape-based inference. The selector resolves this declared mapping; the host separately invokes the resolved adapter's audit rather than treating resolution as an adapter audit.
 
-Repository feature selection follows the adapter declaration rather than a parallel toggle. `ki-repo` requires GitHub Issues disabled and no `package.json` `bugs` field for `roadmap`, `kb-streams`, and `linear`; the root `[skills.ki-work-github-issues]` declaration requires Issues enabled and the canonical Issues URL.
+Repository feature selection follows the adapter declaration rather than a parallel toggle. `ki-repo` requires GitHub Issues disabled and no `package.json` `bugs` field for every supported adapter, since none is a GitHub Issues adapter.
 
 [Back to contents](#contents)
 

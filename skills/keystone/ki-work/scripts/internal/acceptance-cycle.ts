@@ -15,7 +15,7 @@ const LINK_RE = /\]\(|https?:\/\//
 
 export type AcceptanceAdapter =
   | { kind: 'local'; adapter: 'roadmap' | 'kb-streams'; root: 'docs/roadmap' | 'Streams/Roadmap' }
-  | { kind: 'remote-execution-unavailable'; adapter: 'github-issues' | 'linear' }
+  | { kind: 'remote-execution-unavailable'; adapter: 'linear' }
   | { kind: 'unresolved'; reason: string }
 
 export type ClosureAuthority =

@@ -7,7 +7,7 @@ export type AdapterDecision =
       readonly owner: string
       readonly recordRoot: string
     }
-  | { readonly kind: 'remote-refusal'; readonly adapter: 'github-issues' | 'linear'; readonly reason: string }
+  | { readonly kind: 'remote-refusal'; readonly adapter: 'linear'; readonly reason: string }
   | { readonly kind: 'refusal'; readonly reason: string }
 
 const tableAt = (configuration: unknown, name: string): Record<string, unknown> | undefined => {
@@ -24,12 +24,11 @@ export const resolveSelectedAdapter = (configuration: unknown): AdapterDecision 
   const owners = {
     roadmap: { owner: 'ki-work-roadmap', recordRoot: 'docs/roadmap' },
     'kb-streams': { owner: 'ki-repo-kb-streams', recordRoot: 'Streams/Roadmap' },
-    'github-issues': { owner: 'ki-work-github-issues' },
     linear: { owner: 'ki-work-linear' }
   } as const
-  if (adapter !== 'roadmap' && adapter !== 'kb-streams' && adapter !== 'github-issues' && adapter !== 'linear')
+  if (adapter !== 'roadmap' && adapter !== 'kb-streams' && adapter !== 'linear')
     return { kind: 'refusal', reason: 'No supported configured change-management adapter is available.' }
-  if (adapter === 'github-issues' || adapter === 'linear')
+  if (adapter === 'linear')
     return !tableAt(configuration, owners[adapter].owner)
       ? { kind: 'refusal', reason: `Selected ${adapter} adapter lacks its required ${owners[adapter].owner} table.` }
       : {

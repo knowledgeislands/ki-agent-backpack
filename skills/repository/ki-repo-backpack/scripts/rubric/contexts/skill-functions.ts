@@ -66,7 +66,7 @@ export const FUNCTIONAL_AREAS: readonly FunctionalArea[] = [
     groups: [
       {
         title: 'Work items',
-        skills: ['ki-work', 'ki-work-roadmap', 'ki-work-github-issues', 'ki-work-linear', 'ki-work-recurring']
+        skills: ['ki-work', 'ki-work-roadmap', 'ki-work-linear', 'ki-work-recurring']
       }
     ]
   },

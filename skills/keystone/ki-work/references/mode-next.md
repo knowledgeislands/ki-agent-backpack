@@ -6,7 +6,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 `ki-work next` is a subcommand of the Work guild's lead. It was the `ki-next` process skill until the guild folded it into `ki-work` (PROCESS-SUBCOMMANDS), and keeps that skill's procedure and boundaries.
 
-Selects and prepares forward work through the configured local adapter's canonical record. GitHub Issues and Linear remain configuration and safety guidance only, so this process stops without writes when either is selected.
+Selects and prepares forward work through the configured local adapter's canonical record. Linear remains configuration and safety guidance only, so this process stops without writes when it is selected.
 
 The full procedure is in [the next-work standard](standard-next-work.md).
 
@@ -66,5 +66,5 @@ With no argument or `next`, run the full procedure.
 
 - A housekeeping template may create a due run only under its declared spawning policy. Bounded triage capture is automatic; adoption, selection, and every other queue transition follow the applicable confirmed rule.
 - `ki-work next` does not start or authorise a wave from similarity alone. A confirmed candidate group proceeds only to a frozen wave under a recorded window grant; implementation still requires that skill's reviewed authorisation.
-- Resolve `[skills.ki-work].adapter` and require its matching declared owner table before reading any local root. The base audit remains the authority for semantic selection validation; this process makes no shape fallback. `roadmap` uses `docs/roadmap/`; `kb-streams` uses `Streams/Roadmap/`; `github-issues` and `linear` stop without writes until their remote execution is separately implemented.
+- Resolve `[skills.ki-work].adapter` and require its matching declared owner table before reading any local root. The base audit remains the authority for semantic selection validation; this process makes no shape fallback. `roadmap` uses `docs/roadmap/`; `kb-streams` uses `Streams/Roadmap/`; `linear` stops without writes until its remote execution is separately implemented.
 - `ki-work next` may recommend `status: done` records for pruning, but it never deletes them. `ki-work accept` owns explicit path or glob selection; `ki repo roadmap prune` is the separate deterministic selected-repository sweep, which commits its deletions by default under the standardised prune message unless run with `--no-commit`.

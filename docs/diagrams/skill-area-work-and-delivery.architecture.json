@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "05980cdf0f69907228dc711bbb6ca33583049679"
+      "revision": "8d7465bcac8b43c3de64aca97b45e24f689e2f02"
     },
     "legend": {
       "mode": "auto",
@@ -93,26 +93,6 @@
       ]
     },
     {
-      "id": "ki-work-github-issues",
-      "type": "database",
-      "label": "ki-work-github-issues",
-      "sublabel": "work · opt-in",
-      "sources": [
-        {
-          "path": "skills/work/ki-work-github-issues/SKILL.md"
-        }
-      ],
-      "tag": "R2 · CM · F3",
-      "pos": [
-        288,
-        392
-      ],
-      "size": [
-        208,
-        76
-      ]
-    },
-    {
       "id": "ki-work-linear",
       "type": "database",
       "label": "ki-work-linear",
@@ -124,8 +104,8 @@
       ],
       "tag": "R2 · CM · F3",
       "pos": [
-        544,
-        268
+        288,
+        392
       ],
       "size": [
         208,
@@ -276,11 +256,10 @@
     },
     {
       "kind": "region",
-      "label": "Work and delivery · 5 skills",
+      "label": "Work and delivery · 4 skills",
       "wraps": [
         "ki-work",
         "ki-work-roadmap",
-        "ki-work-github-issues",
         "ki-work-linear",
         "ki-work-recurring"
       ],
@@ -334,7 +313,7 @@
       "dot": "slate",
       "title": "Generated, not drawn",
       "items": [
-        "5 skills, 3 outside prerequisites, 2 outside dependents, 1 composition and 4 optional edges, read from SKILL.md frontmatter.",
+        "4 skills, 3 outside prerequisites, 2 outside dependents, 1 composition and 4 optional edges, read from SKILL.md frontmatter.",
         "Regenerate with ki repo conform --skill ki-repo-backpack; ki-skills KI-SHAPE-20 keeps the edges resolvable and acyclic."
       ]
     }

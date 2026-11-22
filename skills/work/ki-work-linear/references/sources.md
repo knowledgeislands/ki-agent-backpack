@@ -45,11 +45,17 @@ None.
 
 ## 3. Decisions
 
-None recorded by id: the adapter's rules follow its outside sources and `ki-work`'s adapter contract.
+The adapter's other rules follow its outside sources and `ki-work`'s adapter contract.
+
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| REMOTE-TRACKERS | Option a, refined: `ki-work-github-issues` folds into this skill, which becomes the one remote-tracker skill, and the GitHub Issues skill is removed; a GitHub Issues adapter is spun out of this one later only if one is needed. Linear is wanted soon, for Humans Not Robots' work, so the Linear side stays whole. Kris, 22 November 2026, about 20:02 GMT, at the Work guild's sitting in the Cairn summit's change 10, card: "Merge into one"; refined about 20:05 GMT in his words: "fundamentally probably fold into the Linear one, and then in future if we need another one like Git Issues, could spin it out one. I am going to want to use Linear pretty soon, though, to use extensively in humans and robots." | 2026-11-22 | [SKILL.md](../SKILL.md), [Linear standard](standard-linear.md#22-out-of-scope) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026, in the Cairn summit's change 10, step 6.3's Work landing, REMOTE-TRACKERS was applied, recorded under [Decisions](#3-decisions): this skill's description and body name it the one remote-tracker skill, and `ki-work-github-issues` is removed. The Linear contract is unchanged and no outside source was refreshed.
 
 On 18 November 2026 REFRESH's precondition was brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Work guild: from an installed copy it redirects to the backpack. No criterion changed and no outside source refreshed.
 

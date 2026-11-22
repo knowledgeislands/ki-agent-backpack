@@ -43,6 +43,7 @@ How a repository uses Linear as its forward-work adapter.
 - Choosing an adapter, and the adapter contract every adapter shares: `ki-work`'s [change-management adapter standard](../../../keystone/ki-work/references/standard-change-management-adapters.md).
 - The local record lifecycle: `ki-work-roadmap`.
 - Remote execution: not implemented; this skill performs no remote reads or writes.
+- A GitHub Issues adapter: none exists; one is spun out of this skill only when a repository needs it (REMOTE-TRACKERS).
 
 [Back to contents](#contents)
 

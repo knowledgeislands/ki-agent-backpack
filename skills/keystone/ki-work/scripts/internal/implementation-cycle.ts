@@ -9,7 +9,7 @@ export const REVIEW_PACKET_HEADINGS = [
 
 export type ImplementationAdapter =
   | { kind: 'local'; adapter: 'roadmap' | 'kb-streams' }
-  | { kind: 'remote-execution-unavailable'; adapter: 'github-issues' | 'linear' }
+  | { kind: 'remote-execution-unavailable'; adapter: 'linear' }
   | { kind: 'unresolved'; reason: string }
 
 export type ImplementationCycleInput = {
