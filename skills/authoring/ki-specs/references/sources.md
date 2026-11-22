@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T05:35:52Z
+ki-revised: 2026-11-22T20:59:09Z
 ki-refresh: canonical · on-change
 ---
 
@@ -48,7 +48,7 @@ The initial `vallearmonia-website/docs/specs/` sample has no reproducible immuta
 
 ## 3. Decisions
 
-None recorded by id: the standard rests on the BCP 14 pair and the house conventions it states. Serial scope and applicability remain owner-gated policy questions.
+The standard rests on the BCP 14 pair and the house conventions it states, and on one owner decision recorded by id below. Serial scope and applicability remain owner-gated policy questions.
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
