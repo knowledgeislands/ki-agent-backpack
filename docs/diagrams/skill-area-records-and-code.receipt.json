@@ -4,12 +4,12 @@
   "type": "architecture",
   "source": {
     "file": "skill-area-records-and-code.architecture.json",
-    "sha256": "9db371cada50d1ef5e4dda1b8f24f6185c164b2c94fa27383283c4c8e8a4a4be",
+    "sha256": "90d261641121ae0b7731e4f9e21ceef2ad59489b9f181abf0b0f9693ada18474",
     "bytes": 8147
   },
   "html": {
     "file": "skill-area-records-and-code.html",
-    "sha256": "03d9b0de278ea51f987116c86c457545420c69261023dcf02dfacdea251313ef",
+    "sha256": "7342c88cb4d45151ce4e1ec84d6391a258cf26414b709d3ea1201c13386315c0",
     "bytes": 850552
   },
   "renderer": {

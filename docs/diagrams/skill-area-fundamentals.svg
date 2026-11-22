@@ -1030,8 +1030,8 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         </g>
 
         <!-- Components -->
-        <g id="node-ki-work" data-node-id="ki-work" data-node-label="ki-work" tabindex="0" role="button" aria-label="Focus ki-work, keystone · opt-in, Work and delivery · 1 skill" aria-pressed="false" data-node-kind="database" data-node-sublabel="keystone · opt-in" data-node-tag="R1 · CL · F17" data-node-context="Work and delivery · 1 skill">
-          <title>ki-work · keystone · opt-in · Work and delivery · 1 skill · R1 · CL · F17</title>
+        <g id="node-ki-work" data-node-id="ki-work" data-node-label="ki-work" tabindex="0" role="button" aria-label="Focus ki-work, keystone · opt-in, Work and delivery · 1 skill" aria-pressed="false" data-node-kind="database" data-node-sublabel="keystone · opt-in" data-node-tag="R1 · CL · F16" data-node-context="Work and delivery · 1 skill">
+          <title>ki-work · keystone · opt-in · Work and delivery · 1 skill · R1 · CL · F16</title>
           <rect x="44" y="64" width="208" height="76" rx="8" class="c-mask"/>
           <rect x="44" y="64" width="208" height="76" rx="8" class="c-database" data-animate="node" style="--step: 8; --flow-node-name: archify-relay-node-3;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(50 70) scale(0.6875)">
@@ -1040,7 +1040,7 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
           </g>
           <text data-node-label="" x="148" y="100" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-work</text>
         <text x="148" y="116" class="t-muted" font-size="9" text-anchor="middle">keystone · opt-in</text>
-        <text x="148" y="132" class="t-database" font-size="7" text-anchor="middle">R1 · CL · F17</text>
+        <text x="148" y="132" class="t-database" font-size="7" text-anchor="middle">R1 · CL · F16</text>
         </g>
 
         <g id="node-ki-repo-dotfiles-chezmoi" data-node-id="ki-repo-dotfiles-chezmoi" data-node-label="ki-repo-dotfiles-chezmoi" tabindex="0" role="button" aria-label="Focus ki-repo-dotfiles-chezmoi, repository · opt-in, Repository types · Single-type repositories" aria-pressed="false" data-node-kind="database" data-node-sublabel="repository · opt-in" data-node-tag="R9 · CM · F3" data-node-context="Repository types · Single-type repositories">
