@@ -81,6 +81,7 @@ Knowledge Islands' own words, in the `system/` subgraph, each mapped onto the in
 - [Backpack](knowledge/system/system.backpack.md): a territory's installable bundle of skills, subagent definitions, evals and hooks; Knowledge Islands' plugin.
 - [Role](knowledge/system/system.role.md): a job within a tier, from the role catalogue, the part of a seat after its `@`; close to agent frameworks' role.
 - [Seat](knowledge/system/system.seat.md): the place for one role in one work package, `<package>@<role>`, held by an actor and kept when the actor changes.
+- [Bot](knowledge/system/system.bot.md), a proposal: an agent with its own memory and processes, a named identity an agent host keeps and wakes; the second of the two actor types that run, session and bot, `ki-kind: bot` on the roster, under the same rules and remit as a session, the store staying the record.
 
 One analogy card sits beside them, agreed on 19 November 2026 (CIVIC-AGREE): [the civic model, by analogy](knowledge/system/system.civic-map.md), the work model set beside the agora and forum, satrapies, edicts and memorials, the Royal Road's couriers and the tabularium, each with where it holds and where it breaks (CIVIC-MAP, NAMING-RULE, CIVIC-AGREE).
 
@@ -114,6 +115,7 @@ This skill leads the Agentic systems guild: its words, and agents at work. It sa
 
 - **`ki-subagents`** for subagent roles, and how to run subagents in a given agent host, with `ki-subagents-claude` and `ki-subagents-chatgpt` for each host's projection: the practice, not the vocabulary.
 - **`ki-delegation`** for delegating work to background agents, with `ki-delegation-orca` for Orca's supervised workers.
+- **`ki-agentic-bots`** for how a bot actor works on its agent host: its bootstrap on every wake, its background work, its mail, its memory and its questions.
 - **`ki-agentic-radar`** for how mature a subject is, who has adopted it and the house stance, naming its card in the subject's `card` field.
 - **`ki-model-radar`** for models and the routes between models and agents.
 
