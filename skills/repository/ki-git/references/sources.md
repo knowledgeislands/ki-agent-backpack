@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T09:20:00Z
+ki-revised: 2026-11-22T16:15:00Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -74,6 +74,8 @@ Kris's decisions behind the rules, each quoted in the standard beside the rule i
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the second SKILLS-LEARNING batch added three pitfalls: in [commit messages](standard-git.md#42-commit-messages), read an earlier commit's diff before planning on its message; in [safe Git hygiene](standard-git.md#45-safe-git-hygiene), `git commit --only` takes no untracked file until it is added, and a commit rejected by its hook leaves nothing committed, so wait for the verdict. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 WORKTREE-RUNS, which Kris adopted at about 08:58 GMT, landed: [working-copy approaches](standard-git.md#44-working-copy-and-review-approaches) gained the purpose test, [worktree-run self-integration](standard-git.md#442-worktree-run-self-integration) the branch holder's life, based and rebased on a freshly fetched `origin/main` in place of local `main` without a fetch, and [worktree location](standard-git.md#443-worktree-location) the allowed folders. GREEN-MAIN's paragraph is unchanged; how it meets the purpose test went to Kris as a query. No outside source was refreshed.
 
