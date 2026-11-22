@@ -4,13 +4,13 @@
   "type": "architecture",
   "source": {
     "file": "skill-map.architecture.json",
-    "sha256": "628c2ad7686428d1b1600624d24098c521de0abee7e3054fa54e594a58ad4350",
-    "bytes": 32663
+    "sha256": "91bd2ea770ace305aac1fd1964297e1cd4c31fa28c8f02c86b8146b6a39bf437",
+    "bytes": 33075
   },
   "html": {
     "file": "skill-map.html",
-    "sha256": "466bd293e2ee1aab912e9de9e1d9be83cbcf91eea4c67264fcbcf08331497ce9",
-    "bytes": 951346
+    "sha256": "85689f0a235db6e0cab8373045e996cdb92c6285d8915c2493cad8cc6cd62c2b",
+    "bytes": 953010
   },
   "renderer": {
     "name": "archify",
