@@ -252,7 +252,7 @@ target:
   what: Halloween activity planned
 ```
 
-The mapping contains exactly `date`, a valid ISO calendar date (`YYYY-MM-DD`), `kind`, either `due` for a hard due date or `milestone` for an aim, and `what`, a non-empty single-line description of the outcome. Both kinds may be used at any lifecycle stage, and absence means no target. A target grants no authority and never moves work across horizons or priorities; within one horizon and priority the nearer date goes first, before size. Views flag approaching and past targets and show the date, kind and outcome rather than treating a date as permission to execute. `hold.review` remains the date to reconsider a hold and does not stand in for a target. No unattended-eligibility field is adopted while UNATTENDED-FIELD remains undecided.
+The mapping contains exactly `date`, a valid ISO calendar date (`YYYY-MM-DD`), `kind`, either `due` for a hard due date or `milestone` for an aim, and `what`, a non-empty single-line description of the outcome. Both kinds may be used at any lifecycle stage, and absence means no target. A target grants no authority and never moves work across horizons or priorities; within one horizon and priority the nearer date goes first, before size. Views flag approaching and past targets and show the date, kind and outcome rather than treating a date as permission to execute. `hold.review` remains the date to reconsider a hold and does not stand in for a target.
 
 [Back to contents](#contents)
 
