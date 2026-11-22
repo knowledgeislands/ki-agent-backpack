@@ -194,7 +194,7 @@ This is an authoring presentation rule. Domain skills own a document's required 
 - **Refer to another skill by its `name`**, never by a file path — "the `ki-repo-kb` skill" — because a skill's location on disk is not stable, but its name is how it loads into the session.
 - **In editor / IDE contexts** where the harness asks for clickable references, link files and lines with relative markdown links (`[file.ts:42](src/file.ts#L42)`) rather than bare backtick paths, so the reference is navigable.
 
-Link presentation does not establish territorial authority or canonical knowledge ownership. `ki-repo-kb` owns KB identity, provenance, and adoption; `ki-repo-kb-principal` owns the territorial Charter and Known Lands declaration contract. Keep those declarations in their governed homes and link to them rather than restating them as general authoring conventions.
+Link presentation does not establish territorial authority or canonical knowledge ownership. `ki-repo-kb` owns KB identity, provenance, and adoption; `ki-repo-kb`'s principal standard owns the territorial Charter and Known Lands declaration contract. Keep those declarations in their governed homes and link to them rather than restating them as general authoring conventions.
 
 [Back to contents](#contents)
 
