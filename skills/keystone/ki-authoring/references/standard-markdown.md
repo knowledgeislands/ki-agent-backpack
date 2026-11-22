@@ -77,6 +77,8 @@ Don't hand-apply or document any of these — the toolchain owns them, and resta
 
 Run `ki repo conform --skill ki-authoring` at the repository root and let that hosted rubric settle those.
 
+The writer settles them before committing: every session and run runs `rumdl fmt`, then `rumdl check`, on each Markdown file it is about to commit, under `ki-git`'s [checks before committing](../../../repository/ki-git/references/standard-git.md#451-checks-before-committing).
+
 The one place column width _is_ your job is **tables**, and it is now wholly your job. The former formatter padded table columns only when the padded result fit within its print width, leaving wider tables compact; rumdl's `MD060` styles are unconditional, so the house configuration leaves the opt-in `MD060` off and enforces neither shape. Nothing mechanical will align a table for you — that makes the width conventions below load-bearing rather than advisory.
 
 [Back to contents](#contents)
