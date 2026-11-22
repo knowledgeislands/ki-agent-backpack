@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:51:39Z
+ki-revised: 2026-11-22T18:44:30Z
 ki-status: in force
 ---
 
@@ -75,7 +75,7 @@ This is the one release-timing policy for every Knowledge Islands tooling projec
   2. there is something significant to ship; or
   3. significant changes have accumulated since the last release.
 - **Consolidate.** Releases due only because changes have accumulated wait for a set point in the day and ship together, rather than one release per change.
-- **Delivered work closes without a release.** A work record's delivery, review and acceptance never wait for a release, and an agent never releases as part of delivery. A release is a separate, explicitly authorised action. A follow-up release is no exception: after accepting RIG-REL-PATCH on the morning of 2026-10-14 Kris set that "follow-up releases stop and ask first from now on", so an agent asks before each one even when an earlier release of the same work was authorised.
+- **Delivered work closes without a release.** A work record's delivery, review and acceptance never wait for a release, and an agent never releases as part of delivery. The one point where the two meet is the pre-tag check of the records a release ships, in [Establish the candidate](#43-establish-the-candidate); acceptance and release stay independent everywhere else. A release is a separate, explicitly authorised action. A follow-up release is no exception: after accepting RIG-REL-PATCH on the morning of 2026-10-14 Kris set that "follow-up releases stop and ask first from now on", so an agent asks before each one even when an earlier release of the same work was authorised.
 - **The owner rebuilds locally.** The owner uses new capability before a release by rebuilding the tool from `main` through the repository's documented local rebuild, not by cutting a release.
 - **Pins move only where needed.** A repository's CI `KI_VERSION` pin, held in `.github/ki-version` under `ki-engineering`, moves only when that repository needs the new version. A repository without the `ki-engineering` pin receiver moves its pin by a reviewed change when it needs the new version, and an older pin is not a failure. Adopting the receiver is that repository's opt-in to track every release: under XDR-KI-HARNESS-001 it auto-merges a pin-only bump behind required checks, in the `knowledgeislands` organisation only.
 - **Fewer releases cost less downstream.** Consolidated releases keep the tap, website and pin proposals that each release triggers infrequent; the release automation removes the per-release handling cost, not the reason to hold.
@@ -84,7 +84,7 @@ This is the one release-timing policy for every Knowledge Islands tooling projec
 
 ### 4.2 Release notice
 
-After an authorised release, the releasing territory owner or coordinator sends affected owning work a release notice along the tree, or to the territory's summit where no clear work owner exists. Name the released version, relevant change, compatibility, adoption steps and any reply needed. Follow the existing sender and cross-territory authority boundaries; the receiver owns adoption and any genuinely deferred record. This is a notice obligation, not release authority, consumer selection, rollout execution or foreign-record creation. Follow `ki-coordination`'s [Work between packages](../../../work/ki-coordination/references/standard-messages.md#messages-between-work).
+After an authorised release, the releasing territory owner or coordinator sends affected owning work a release notice along the tree, or to the territory's summit where no clear work owner exists. Name the released version, relevant change, compatibility, adoption steps, any record it ships under review ([4.3](#43-establish-the-candidate)) and any reply needed. Follow the existing sender and cross-territory authority boundaries; the receiver owns adoption and any genuinely deferred record. This is a notice obligation, not release authority, consumer selection, rollout execution or foreign-record creation. Follow `ki-coordination`'s [Work between packages](../../../work/ki-coordination/references/standard-messages.md#messages-between-work).
 
 [Back to contents](#contents)
 
@@ -94,6 +94,7 @@ After an authorised release, the releasing territory owner or coordinator sends 
 - Confirm the intended `vX.Y.Z` version against the latest released tag and Semantic Versioning. Record breaking changes, migrations, or an explicit statement that none apply.
 - Check the other enrolled `tools-*` projects' released versions and roadmap horizons as an advisory consistency snapshot. A peer's backlog or version does not block this candidate; note only a concrete shared-contract or distribution mismatch that affects it.
 - Review the product changes since the last release. Exclude unrelated working-tree changes and resolve any release-blocking failures before changing the version marker.
+- **Records in the range.** Before the tag, list the roadmap records the release range ships: those delivered by commits between the last release tag and the candidate. Each one not yet accepted is either accepted first, under `ki-work` accept, or named in the release notice ([4.2](#42-release-notice)) as shipping under review. Kris took RELEASE-ACCEPTED a by voice on 22 November 2026, about 18:36 GMT: "Yeah. Makes sense."
 - For a public distribution channel, verify that the publishing repository and intended artifacts are publicly reachable. Check visibility before a first release; describe a channel as available only after its actual release, installer, manual and enrolled package-manager path have been verified.
 - Keep one version source of truth in the executable or package metadata. Verify that the candidate's `--version` output will match its tag. From 1.0 onward, the first dated changelog entry must also match; before 1.0, review the consolidated baseline instead of expecting a version heading. Any automated release workflow MUST reject a version/tag mismatch before building, signing, creating a draft, or publishing; a post-publication installation check is not an adequate backstop for an immutable release.
 - Require GitHub release immutability to be enabled for the publishing repository before creating a release. Check the live repository setting (for example, `gh api repos/OWNER/REPO/immutable-releases --jq .enabled` must return `true`) and verify the newly published release is immutable. The setting is not retroactive: do not treat an older mutable release as eligible for an immutable-only receiver. A failing or unavailable check blocks the release, rather than silently weakening a downstream receiver.

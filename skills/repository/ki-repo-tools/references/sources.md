@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T05:38:34Z
+ki-revised: 2026-11-22T18:44:30Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -72,10 +72,13 @@ Decisions behind the rules that carry an id. Others, such as Kris's word after R
 | --- | --- | --- | --- | --- |
 | CLI-CONVENTIONS | Write the command-line conventions from the POSIX, GNU, Bash, clig.dev, `NO_COLOR` and XDG sources and the symbolic-link survey of the `mgit-learn` run | 2026-10-18 | [command-line conventions](standard-cli-conventions.md) | taken |
 | RELEASE-NOTICE | After an authorised release, the releasing territory owner or coordinator informs affected owning work, with version, change, compatibility, adoption and reply needs; a notice obligation, not release authority | 2026-10-29 | [4.2](standard-release-readiness.md#42-release-notice) | taken |
+| RELEASE-ACCEPTED | Option a): before a tag, list the roadmap records the release range ships; any not yet accepted is either accepted first or named in the release notice as shipping under review, and acceptance and release stay independent otherwise. Kris, by voice through Natter, 22 November 2026, about 18:36 GMT: "Yeah. Makes sense." (store `meetings/cairn.summit/20261114-voice/messages/20261122T1836Z-voice-release-accepted-answer.md`), from ki.summit's change 23. | 2026-11-22 | [Release readiness](standard-release-readiness.md#43-establish-the-candidate) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 an in-house review applied RELEASE-ACCEPTED a, recorded under [Decisions](#3-decisions): [Establish the candidate](standard-release-readiness.md#43-establish-the-candidate) gains the pre-tag check of the records a release ships, the release notice names any shipping under review, and [Release on demand](standard-release-readiness.md#41-release-on-demand) points at it as the one place acceptance meets release. No rubric check was added, since the check runs at release time rather than on the repository's files. No outside source was refreshed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
 
