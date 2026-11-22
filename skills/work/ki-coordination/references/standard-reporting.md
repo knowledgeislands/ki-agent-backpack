@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-21T16:26:00Z
+ki-revised: 2026-11-22T04:11:00Z
 ki-status: in force
 ---
 
@@ -322,7 +322,7 @@ A link directs the owner to the right way to see the thing from where they are r
 
 Which links to give for each kind of thing:
 
-- **A Cairn-level thing,** a work package or its change document, a meeting or its file, a record or an actor in the Cairn store: one link takes the owner into the Cairn Wayfinder, given first, as `cairn://package/<work id>`, `cairn://package/<work id>/changes/<file>`, `cairn://meeting/<meeting>/<folder>/<file>`, `cairn://record/<record id>` or `cairn://actor/<actor id>`, by the route forms in Cairn's [chat-links guide](https://github.com/knowledgeislands/apps-cairn.local/blob/main/docs/guides/sessions/chat-links.md). Beside it go the file's own links, its local path on the Mac and its GitHub link where the owner may be elsewhere. On the phone the GitHub link stands alone.
+- **A Cairn-level thing,** a work package or its change document, a meeting or its file, a record or an actor in the Cairn store: one link takes the owner into the Cairn Wayfinder, given first, as `cairn://package/<work id>`, `cairn://package/<work id>/changes/<file>`, `cairn://meeting/<meeting>/<folder>/<file>`, `cairn://record/<record id>` or `cairn://actor/<actor id>`, by the route forms in Cairn's [chat-links guide](https://github.com/knowledgeislands/apps-cairn.local/blob/main/docs/guides/sessions/chat-links.md), and in a reply as its clickable twin, `http://localhost:1677/open/<route>`, under **Everything a reply names** below. Beside it go the file's own links, its local path on the Mac and its GitHub link where the owner may be elsewhere. On the phone the GitHub link stands alone.
 - **A file in a repository:** its local path on the Mac holding it; its GitHub link on `main` once pushed, where the owner may be elsewhere or where it is shared.
 - **A roadmap or work record:** by its full identifier, under [Linking records](#44-linking-records).
 - **A page or artifact in an app:** that app's own link, only where the owner reads in that app's sign-in.

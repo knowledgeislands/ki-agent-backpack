@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T00:40:00Z
+ki-revised: 2026-11-22T04:11:00Z
 ki-refresh: canonical · quarterly
 ---
 
@@ -339,6 +339,8 @@ Each owner decision the standard rests on, by its tag: the date, the owner's wor
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 an in-house review applies WAYFINDER-COMPANION, Kris's steer of that day at about 02:47 GMT, recorded in the Cairn summit's [change 70](https://github.com/krisb/ki-cairn-store/blob/21511b20/work/cairn/cairn.summit/70-bots.change.md#46-decided) and relayed through Kitteth and ki.summit's governor. [Where the owner reads](standard-reporting.md#441-where-the-owner-reads) gains **Everything a reply names**: on a Mac every reply links each Cairn-store thing it names into the Wayfinder, a table each row, by the clickable twin `http://localhost:1677/open/<route>`, since Orca shows `cairn://` as plain text; a prompt goes as a fenced block and also as a Wayfinder link, the kept form for a prompt in a change document, and `?text=` only for a short prompt that is not sensitive; on the phone the GitHub links stay. A later tidy aligns the **A Cairn-level thing** bullet with it. No generated surface or rubric item changed, and no external source was refreshed.
 
 On 22 November 2026 an in-house review applies SEAT-ACCESS b, which Kris took that day at about 00:35 GMT on Orca item 79, and VIEW-ACCOUNT a, taken on 20 November, both recorded in the Cairn summit's [change 60](https://github.com/krisb/ki-cairn-store/blob/8d9c1a56/work/cairn/cairn.summit/60-design.change.md#48-decided), step 6, and landed by the summit guardian's run with `ki-design-system`'s side. [Sessions work alone](standard-messages.md#41-sessions-work-alone) gains **Seats and accounts**: every seat works from the files, never from another account's artifact, and a view is republished only by a seat in the account it names. The routes into the files are named only as being trialled, and the change's FILES-FIRST, VIEWS-ONLY and DISK-EXIT, which Kris has not yet answered, are not written here. No generated surface or rubric item changed, and no external source was refreshed.
 
