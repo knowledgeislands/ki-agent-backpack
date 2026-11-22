@@ -1,16 +1,16 @@
 {
   "schema": 1,
-  "slug": "skill-area-agentic-systems",
+  "slug": "skill-area-agentic-ecosystems",
   "type": "architecture",
   "source": {
-    "file": "skill-area-agentic-systems.architecture.json",
-    "sha256": "f88903876509c6ed0d0e17a4d277d6b357fb34b16a1d164aac01b43b0f6e928b",
-    "bytes": 7570
+    "file": "skill-area-agentic-ecosystems.architecture.json",
+    "sha256": "7d0f02a58a8c7e077dbfdc527b7da130ea8bb2b6f039d68680685b3cbab4cf0f",
+    "bytes": 7618
   },
   "html": {
-    "file": "skill-area-agentic-systems.html",
-    "sha256": "1e13863cfdae8527449442d16af8c558f819b6d20b583fce20ca3b597a6f56af",
-    "bytes": 848567
+    "file": "skill-area-agentic-ecosystems.html",
+    "sha256": "fa9ab699d6a13f0af95c2229df93161ccdedd61237641c7e0090bf9d1cd3bdc9",
+    "bytes": 848738
   },
   "renderer": {
     "name": "archify",

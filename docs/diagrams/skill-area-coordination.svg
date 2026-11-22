@@ -955,7 +955,7 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         <!-- Boundaries (behind everything) -->
         <rect data-graph-role="structural-frame" data-composition-frame-kind="region" data-composition-frame-id="0" data-composition-frame-label="Work and delivery · 1 skill" x="12" y="32" width="272" height="128" rx="12" class="c-region" stroke-width="1"/>
 
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="region" data-composition-frame-id="1" data-composition-frame-label="Agentic systems · 2 skills" x="332" y="32" width="528" height="128" rx="12" class="c-region" stroke-width="1"/>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="region" data-composition-frame-id="1" data-composition-frame-label="Agentic ecosystems · 2 skills" x="332" y="32" width="528" height="128" rx="12" class="c-region" stroke-width="1"/>
 
         <rect data-graph-role="structural-frame" data-composition-frame-kind="region" data-composition-frame-id="2" data-composition-frame-label="Delegation and programme" x="16" y="240" width="520" height="248" rx="12" class="c-region" stroke-width="1"/>
 
@@ -1015,8 +1015,8 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         <text x="148" y="132" class="t-database" font-size="7" text-anchor="middle">R1 · CL · F17</text>
         </g>
 
-        <g id="node-ki-delegation-orca" data-node-id="ki-delegation-orca" data-node-label="ki-delegation-orca" tabindex="0" role="button" aria-label="Focus ki-delegation-orca, agentic systems · command, Agentic systems · 2 skills" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="agentic systems · command" data-node-tag="R– · C0 · F3" data-node-context="Agentic systems · 2 skills">
-          <title>ki-delegation-orca · agentic systems · command · Agentic systems · 2 skills · R– · C0 · F3</title>
+        <g id="node-ki-delegation-orca" data-node-id="ki-delegation-orca" data-node-label="ki-delegation-orca" tabindex="0" role="button" aria-label="Focus ki-delegation-orca, agentic ecosystems · command, Agentic ecosystems · 2 skills" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="agentic ecosystems · command" data-node-tag="R– · C0 · F3" data-node-context="Agentic ecosystems · 2 skills">
+          <title>ki-delegation-orca · agentic ecosystems · command · Agentic ecosystems · 2 skills · R– · C0 · F3</title>
           <rect x="364" y="64" width="208" height="76" rx="8" class="c-mask"/>
           <rect x="364" y="64" width="208" height="76" rx="8" class="c-frontend" data-animate="node" style="--step: 5; --flow-node-name: archify-relay-node-1;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(370 70) scale(0.6875)">
@@ -1026,12 +1026,12 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
             <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
           </g>
           <text data-node-label="" x="468" y="100" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-delegation-orca</text>
-        <text x="468" y="116" class="t-muted" font-size="9" text-anchor="middle">agentic systems · command</text>
+        <text x="468" y="116" class="t-muted" font-size="9" text-anchor="middle">agentic ecosystems · command</text>
         <text x="468" y="132" class="t-frontend" font-size="7" text-anchor="middle">R– · C0 · F3</text>
         </g>
 
-        <g id="node-ki-agentic-bots" data-node-id="ki-agentic-bots" data-node-label="ki-agentic-bots" tabindex="0" role="button" aria-label="Focus ki-agentic-bots, agentic systems · command, Agentic systems · 2 skills" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="agentic systems · command" data-node-tag="R– · C0 · F2" data-node-context="Agentic systems · 2 skills">
-          <title>ki-agentic-bots · agentic systems · command · Agentic systems · 2 skills · R– · C0 · F2</title>
+        <g id="node-ki-agentic-bots" data-node-id="ki-agentic-bots" data-node-label="ki-agentic-bots" tabindex="0" role="button" aria-label="Focus ki-agentic-bots, agentic ecosystems · command, Agentic ecosystems · 2 skills" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="agentic ecosystems · command" data-node-tag="R– · C0 · F2" data-node-context="Agentic ecosystems · 2 skills">
+          <title>ki-agentic-bots · agentic ecosystems · command · Agentic ecosystems · 2 skills · R– · C0 · F2</title>
           <rect x="620" y="64" width="208" height="76" rx="8" class="c-mask"/>
           <rect x="620" y="64" width="208" height="76" rx="8" class="c-frontend" data-animate="node" style="--step: 0; --flow-node-name: archify-relay-node-0;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(626 70) scale(0.6875)">
@@ -1041,7 +1041,7 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
             <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
           </g>
           <text data-node-label="" x="724" y="100" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-agentic-bots</text>
-        <text x="724" y="116" class="t-muted" font-size="9" text-anchor="middle">agentic systems · command</text>
+        <text x="724" y="116" class="t-muted" font-size="9" text-anchor="middle">agentic ecosystems · command</text>
         <text x="724" y="132" class="t-frontend" font-size="7" text-anchor="middle">R– · C0 · F2</text>
         </g>
 
@@ -1058,8 +1058,8 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         <text x="148" y="336" class="t-database" font-size="7" text-anchor="middle">R6 · CL · F17</text>
         </g>
 
-        <g id="node-ki-delegation" data-node-id="ki-delegation" data-node-label="ki-delegation" tabindex="0" role="button" aria-label="Focus ki-delegation, agentic systems · opt-in, Coordination · 6 skills › Delegation and programme" aria-pressed="false" data-node-kind="database" data-node-sublabel="agentic systems · opt-in" data-node-tag="R6 · CM · F4" data-node-context="Coordination · 6 skills › Delegation and programme">
-          <title>ki-delegation · agentic systems · opt-in · Coordination · 6 skills › Delegation and programme · R6 · CM · F4</title>
+        <g id="node-ki-delegation" data-node-id="ki-delegation" data-node-label="ki-delegation" tabindex="0" role="button" aria-label="Focus ki-delegation, agentic ecosystems · opt-in, Coordination · 6 skills › Delegation and programme" aria-pressed="false" data-node-kind="database" data-node-sublabel="agentic ecosystems · opt-in" data-node-tag="R6 · CM · F4" data-node-context="Coordination · 6 skills › Delegation and programme">
+          <title>ki-delegation · agentic ecosystems · opt-in · Coordination · 6 skills › Delegation and programme · R6 · CM · F4</title>
           <rect x="44" y="392" width="208" height="76" rx="8" class="c-mask"/>
           <rect x="44" y="392" width="208" height="76" rx="8" class="c-database" data-animate="node" style="--step: 2; --flow-node-name: archify-relay-node-5;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(50 398) scale(0.6875)">
@@ -1067,7 +1067,7 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
             <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
           </g>
           <text data-node-label="" x="148" y="428" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-delegation</text>
-        <text x="148" y="444" class="t-muted" font-size="9" text-anchor="middle">agentic systems · opt-in</text>
+        <text x="148" y="444" class="t-muted" font-size="9" text-anchor="middle">agentic ecosystems · opt-in</text>
         <text x="148" y="460" class="t-database" font-size="7" text-anchor="middle">R6 · CM · F4</text>
         </g>
 
@@ -1143,9 +1143,9 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
           <text data-boundary-label="" x="20" y="57" class="t-cloud" font-size="9" font-weight="600">Work and delivery · 1 skill</text>
         </g>
 
-        <g data-graph-role="structural-frame-label" data-composition-frame-id="1" data-composition-frame-kind="region" data-composition-frame-label="Agentic systems · 2 skills">
-          <rect data-graph-role="structural-frame-label-mask" x="336" y="44" width="150.4" height="16" rx="3" class="c-mask"/>
-          <text data-boundary-label="" x="340" y="57" class="t-cloud" font-size="9" font-weight="600">Agentic systems · 2 skills</text>
+        <g data-graph-role="structural-frame-label" data-composition-frame-id="1" data-composition-frame-kind="region" data-composition-frame-label="Agentic ecosystems · 2 skills">
+          <rect data-graph-role="structural-frame-label-mask" x="336" y="44" width="166.6" height="16" rx="3" class="c-mask"/>
+          <text data-boundary-label="" x="340" y="57" class="t-cloud" font-size="9" font-weight="600">Agentic ecosystems · 2 skills</text>
         </g>
 
         <g data-graph-role="structural-frame-label" data-composition-frame-id="2" data-composition-frame-kind="region" data-composition-frame-label="Delegation and programme">
