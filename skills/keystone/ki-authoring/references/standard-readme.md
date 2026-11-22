@@ -19,6 +19,7 @@ ki-status: in force
   - [4.3 Credible examples](#43-credible-examples)
   - [4.4 Ownership boundaries](#44-ownership-boundaries)
   - [4.5 Deliberate exclusions](#45-deliberate-exclusions)
+  - [4.6 Docs folder pages](#46-docs-folder-pages)
 
 ## 1. Introduction
 
@@ -37,6 +38,7 @@ How a README is composed.
 - Generic README composition, readability, proportional navigation, and progressive disclosure.
 - Examples in a README.
 - What is deliberately not adopted from Standard Readme.
+- Which file is a docs folder's page.
 
 [Back to contents](#contents)
 
@@ -95,5 +97,13 @@ Examples are evidence, not decoration. Remove stale examples or update them with
 Do not adopt Standard Readme’s fixed section names or order, mandatory library install and usage sections, badge convention, 100-line navigation threshold, or licence-last rule as universal Knowledge Islands policy.
 
 Do not optimize a README for template compliance at the expense of repository purpose. The test is whether the intended reader can identify the repository, understand why it exists, and reach the next useful action quickly.
+
+[Back to contents](#contents)
+
+### 4.6 Docs folder pages
+
+A folder below `docs/` opens on `_index.md`, never on a `README.md`, and carries no `README.md` pointer beside it. GitHub then draws no page below the folder's listing, and a reader there opens `_index.md` to read it; the Wayfinder opens a docs folder on its `_index.md`. Kris chose this on 22 November 2026 at 19:57 GMT, "_index.md only", over a recommended one-line `README.md` pointer (DOCS-LANDING-GITHUB b).
+
+The repository root's `README.md`, whose H1 `ki-repo` holds to the declared title, and the working-area READMEs under `+/` and `-/` are not docs folders and keep their own contracts. The docs skills' checks, `ki-guides`, `ki-diagrams` and `ki-decision-records`, read `_index.md`, and still read an earlier `README.md` alone, with a warning, until it is renamed.
 
 [Back to contents](#contents)

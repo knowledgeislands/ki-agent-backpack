@@ -336,3 +336,35 @@ The decision remains readable.
     { status: 'PASS', message: 'No repo_code is declared, so record scopes are not compared.' }
   ])
 })
+
+// Kris, 22 November 2026, 19:57 GMT, under DOCS-LANDING-GITHUB b: "_index.md only". A code repository's decision
+// index is the folder's `_index.md`; an earlier README.md alone warns until renamed, and one beside `_index.md` warns.
+test('the decision index is _index.md, an earlier README.md warning until renamed', () => {
+  const index1 = (pages: readonly string[]) => {
+    const repository = mkdtempSync(join(tmpdir(), 'ki-decision-records-landing-'))
+    temporaryDirectories.push(repository)
+    const directory = join(repository, 'docs', 'decisions')
+    mkdirSync(directory, { recursive: true })
+    writeFileSync(join(repository, '.ki.toml'), '[skills.ki-decision-records]\n')
+    for (const page of pages) writeFileSync(join(directory, page), '# Decisions\n')
+    const session = catalogue.createSession({ mode: 'audit', repository, userHome: tmpdir(), configuration: {} })
+    const rootContext = session.subjects[1]?.context() as NonNullable<DecisionRecordsRubricContext>
+    const family = families.find((candidate) => candidate.code === 'INDEX')
+    const item = family?.items.find((candidate) => candidate.code === 'INDEX-1')
+    const filename = families.find((candidate) => candidate.code === 'FILENAME')
+    const unparseable = filename?.items.find((candidate) => candidate.code === 'FILENAME-0')
+    return {
+      index: item?.mechanical?.audit.run(family?.selectContext(rootContext) as never),
+      records: unparseable?.mechanical?.audit.run(filename?.selectContext(rootContext) as never)
+    }
+  }
+  expect(index1(['_index.md']).index).toEqual([expect.objectContaining({ status: 'PASS', subject: '_index.md' })])
+  expect(index1(['README.md']).index).toEqual([
+    expect.objectContaining({ status: 'VIOLATION', level: 'WARN', subject: 'README.md' })
+  ])
+  const both = index1(['_index.md', 'README.md'])
+  expect(both.index).toEqual([expect.objectContaining({ status: 'VIOLATION', level: 'WARN', subject: 'README.md' })])
+  // Neither page is read as a decision record.
+  expect(both.records).toEqual([expect.objectContaining({ status: 'PASS' })])
+  expect(index1([]).index).toEqual([expect.objectContaining({ status: 'VIOLATION', subject: '_index.md' })])
+})

@@ -3,13 +3,19 @@ import { dirname, isAbsolute, join, relative, resolve } from 'node:path'
 import type { RubricContextOptions, RubricPublicationContext, RubricSession } from '../../shared/rubric.ts'
 
 const GUIDES_DIRECTORY = 'docs/guides'
-const INDEX_FILE = 'README.md'
+/** The collection's page, `_index.md` alone (DOCS-LANDING-GITHUB), and the earlier name read until renamed. */
+const INDEX_FILE = '_index.md'
+const LEGACY_INDEX = 'README.md'
 const RETIRED_ROOTS = ['docs/spec', 'docs/developer'] as const
 const OPENING_FLOOR = 120
 
 export type GuidesLayoutContext = {
   readonly directoryExists: boolean
   readonly indexExists: boolean
+  /** Set where the entry point is still the earlier `README.md`, with no `_index.md`. */
+  readonly legacyIndex: boolean
+  /** Set where a `README.md` sits beside `_index.md`, which a docs folder leaves out. */
+  readonly readmeBeside: boolean
   readonly rootGuides: readonly string[]
   readonly headingIssues: readonly string[]
   readonly openingIssues: readonly GuideOpeningIssue[]
@@ -61,7 +67,8 @@ const guideFiles = (root: string, directory: string): string[] => {
       else if (
         entry.isFile() &&
         entry.name.endsWith('.md') &&
-        relative(root, path) !== `${GUIDES_DIRECTORY}/${INDEX_FILE}`
+        relative(root, path) !== `${GUIDES_DIRECTORY}/${INDEX_FILE}` &&
+        relative(root, path) !== `${GUIDES_DIRECTORY}/${LEGACY_INDEX}`
       )
         files.push(relative(root, path))
     }
@@ -142,8 +149,11 @@ export const createGuidesSession = ({
   const root = resolve(repository)
   const directory = join(root, GUIDES_DIRECTORY)
   const directoryExists = safeDirectory(root, directory)
-  const indexPath = join(directory, INDEX_FILE)
-  const indexExists = directoryExists && isFile(indexPath)
+  const pageExists = directoryExists && isFile(join(directory, INDEX_FILE))
+  const legacyExists = directoryExists && isFile(join(directory, LEGACY_INDEX))
+  const indexExists = pageExists || legacyExists
+  const legacyIndex = !pageExists && legacyExists
+  const readmeBeside = pageExists && legacyExists
   const files = directoryExists ? guideFiles(root, directory) : []
   const rootGuides = files.filter((file) => dirname(file) === GUIDES_DIRECTORY)
   const headingIssues = files.filter((file) => h1Count(readFileSync(join(root, file), 'utf8')) !== 1)
@@ -153,7 +163,16 @@ export const createGuidesSession = ({
   const escaping = files.flatMap((file) => escapingLinks(root, file, readFileSync(join(root, file), 'utf8')))
   const context: GuidesRubricContext = {
     rubric: { publication },
-    layout: { directoryExists, indexExists, rootGuides, headingIssues, openingIssues, escapingLinks: escaping },
+    layout: {
+      directoryExists,
+      indexExists,
+      legacyIndex,
+      readmeBeside,
+      rootGuides,
+      headingIssues,
+      openingIssues,
+      escapingLinks: escaping
+    },
     boundary: { retiredRoots: RETIRED_ROOTS.filter((path) => existsSync(join(root, path))) },
     judgment: {}
   }

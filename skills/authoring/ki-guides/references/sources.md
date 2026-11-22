@@ -47,11 +47,17 @@ None.
 
 ## 3. Decisions
 
-None recorded by id: the standard rests on GDR-KI-HARNESS-004 and the documentation map above.
+The standard rests on GDR-KI-HARNESS-004 and the documentation map above, and on one owner decision:
+
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| DOCS-LANDING-GITHUB | "_index.md only", Kris on the question card in Loreward's Home Chat at 19:57 GMT, recorded in ki.summit's change 23 · Decision: option b), not the recommended a): a docs folder's page is `_index.md` alone, with no `README.md` pointer beside it, even though the folder then shows no page on GitHub, under `ki-authoring`'s docs folder pages. | 2026-11-22 | [4.4](standard-guides.md#44-guide-root-and-index), GUIDE-2 | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 DOCS-LANDING-GITHUB, recorded under Decisions, was applied by Loreward's run from the Knowledge Islands summit's change 23: the collection's entry point is `docs/guides/_index.md`, and GUIDE-2 warns on an earlier `README.md` alone or one beside it. No outside source was refreshed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Authoring guild: REFRESH names the backpack as where to run it. No criterion changed and no outside source refreshed.
 

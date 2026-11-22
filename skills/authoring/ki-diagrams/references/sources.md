@@ -80,10 +80,13 @@ These sources were added on 2026-10-31 for the [tool preference order](standard-
 | DIAGRAM-PRIVATE-CITATIONS | Decided by Kris on 26 October 2026: a private repository's `traced` entry and source node metadata may cite `path:revision:lines` with no URL, Archify's URL citation object is used only where the remote is public, and the audit accepts either form, reading the path part for freshness. | 2026-10-26 | [4.7](standard-diagrams.md#47-privacy) | In force |
 | DIAGRAM-TOOLS | Kris's words of 29 October 2026: the diagram tools are ranked for each kind of diagram in a preference order, built only from his stated likes, with the SaaS tools as inspiration only and infoschematics as KI's own tool to grow. | 2026-10-29 | [4.2](standard-diagrams.md#42-tool-preference-by-diagram-kind) | In force |
 | DIAGRAM-AGREED | The work state machine Kris agreed on 29 October 2026, drawn by sketching in Mermaid and beautifying in Archify. | 2026-10-29 | [4.2.2](standard-diagrams.md#422-sketch-then-beautify) | In force |
+| DOCS-LANDING-GITHUB | "_index.md only", Kris on the question card in Loreward's Home Chat at 19:57 GMT, recorded in ki.summit's change 23 · Decision: option b), not the recommended a): a docs folder's page is `_index.md` alone, with no `README.md` pointer beside it, even though the folder then shows no page on GitHub, under `ki-authoring`'s docs folder pages. | 2026-11-22 | [4.5](standard-diagrams.md#45-the-manifest), DIAG-1 | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 DOCS-LANDING-GITHUB, recorded under Decisions, was applied by Loreward's run from the Knowledge Islands summit's change 23: the reader-facing index is `docs/diagrams/_index.md`, the template in `assets/` is renamed to match, and DIAG-1 warns on an earlier `README.md` alone or one beside it. No outside source was refreshed.
 
 On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, added three embedding practices the Cairn designer and builder found overnight to [Embedding](standard-diagrams.md#46-embedding): embed an SVG as an image, never inline; one static file per theme on a page with its own theme switch; and the phone-width sizing for a drawn SVG. No rule changed and no outside source was refreshed.
 

@@ -9,7 +9,8 @@ const outcomes = (values: AuditOutcome[], passMessage: string): RubricOutcomes<A
 const INDEX_1: RubricItem<IndexRubricContext> = {
   code: 'INDEX-1',
   title: 'Decision index exists',
-  description: 'The index file exists (`Decisions.md` in a KB, `README.md` in a code repository).',
+  description:
+    'The index file exists (`Decisions.md` in a KB, `_index.md` in a code repository, with no `README.md` beside it); an earlier `README.md` alone warns until renamed.',
   sources: [SOURCE],
   mechanical: {
     level: 'FAIL',
@@ -19,14 +20,34 @@ const INDEX_1: RubricItem<IndexRubricContext> = {
     },
     audit: {
       phase: 'PREPARE',
-      run: (context: IndexRubricContext) =>
-        [
+      run: (context: IndexRubricContext) => {
+        // A docs folder's page is `_index.md` alone, Kris chose on 22 November 2026: "_index.md only" (DOCS-LANDING-GITHUB).
+        if (context.legacyIndex)
+          return [
+            {
+              status: 'VIOLATION',
+              level: 'WARN',
+              message: 'The decision index is still README.md; rename it to _index.md, the folder page.',
+              subject: context.indexFile
+            }
+          ] as const
+        if (context.readmeBeside)
+          return [
+            {
+              status: 'VIOLATION',
+              level: 'WARN',
+              message: 'A README.md sits beside the decision index; a docs folder has _index.md alone.',
+              subject: 'README.md'
+            }
+          ] as const
+        return [
           {
             status: context.indexExists ? 'PASS' : 'VIOLATION',
             message: 'Required decision index exists.',
             subject: context.indexFile
           }
         ] as const
+      }
     }
   }
 }

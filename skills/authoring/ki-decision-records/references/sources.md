@@ -49,11 +49,17 @@ Nygard's original format grounds the standard; the ADR community supports it.
 
 ## 3. Decisions
 
-None recorded by id: the nine-prefix taxonomy, `decision_type_url`, and living-record policy are house conventions the standard states.
+The nine-prefix taxonomy, `decision_type_url`, and living-record policy are house conventions the standard states. One owner decision is recorded by id:
+
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| DOCS-LANDING-GITHUB | "_index.md only", Kris on the question card in Loreward's Home Chat at 19:57 GMT, recorded in ki.summit's change 23 · Decision: option b), not the recommended a): a docs folder's page is `_index.md` alone, with no `README.md` pointer beside it, even though the folder then shows no page on GitHub, under `ki-authoring`'s docs folder pages. | 2026-11-22 | [the index rule](standard-decision-records.md), INDEX-1 | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 DOCS-LANDING-GITHUB, recorded under Decisions, was applied by Loreward's run from the Knowledge Islands summit's change 23: a code repository's decision index is `docs/decisions/_index.md`, and INDEX-1 warns on an earlier `README.md` alone or one beside it. No outside source was refreshed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Authoring guild: REFRESH names the backpack as where to run it; the exemplar ADR keeps its words. No criterion changed and no outside source refreshed.
 

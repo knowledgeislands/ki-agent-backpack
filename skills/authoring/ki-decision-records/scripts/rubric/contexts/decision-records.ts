@@ -125,6 +125,10 @@ export type RootRubricContext = {
 export type IndexRubricContext = {
   indexFile: string
   indexExists: boolean
+  /** A code repository's index still at the earlier `README.md`, with no `_index.md` (DOCS-LANDING-GITHUB). */
+  legacyIndex?: boolean
+  /** A `README.md` beside a code repository's `_index.md`, which DOCS-LANDING-GITHUB leaves out. */
+  readmeBeside?: boolean
   indexIds: readonly string[]
   indexCounts: ReadonlyMap<string, number>
   indexLinks: readonly { id: string; target: string }[]
@@ -250,12 +254,16 @@ const bodyLinks = (body: string): string[] => {
 const bodyHeadings = (body: string): string[] =>
   [...stripCode(body).matchAll(/^#{2,6}\s+(.+?)\s*#*\s*$/gm)].map((match) => match[1] as string)
 
+/** A code repository's decision index, the folder's page (DOCS-LANDING-GITHUB), and the earlier name it replaces. */
+const CODE_INDEX = '_index.md'
+const LEGACY_INDEX = 'README.md'
+
 const strayCollectionEntries = (directory: string, entries: readonly string[]): string[] =>
   entries.filter((entry) => !entry.startsWith('.') && (!entry.endsWith('.md') || isDirectory(join(directory, entry))))
 
-const readRecords = (directory: string, entries: readonly string[], indexFile: string): DecisionRecord[] => {
+const readRecords = (directory: string, entries: readonly string[], pages: readonly string[]): DecisionRecord[] => {
   const records: DecisionRecord[] = []
-  for (const file of entries.filter((entry) => entry.endsWith('.md') && entry !== indexFile)) {
+  for (const file of entries.filter((entry) => entry.endsWith('.md') && !pages.includes(entry))) {
     const path = join(directory, file)
     if (!isRegularFile(path)) continue
     const content = readFileSync(path, 'utf8')
@@ -302,9 +310,9 @@ const readRecords = (directory: string, entries: readonly string[], indexFile: s
   return records
 }
 
-const unparseableRecordFiles = (directory: string, entries: readonly string[], indexFile: string): string[] =>
+const unparseableRecordFiles = (directory: string, entries: readonly string[], pages: readonly string[]): string[] =>
   entries
-    .filter((entry) => entry.endsWith('.md') && entry !== indexFile && isRegularFile(join(directory, entry)))
+    .filter((entry) => entry.endsWith('.md') && !pages.includes(entry) && isRegularFile(join(directory, entry)))
     .filter((file) => {
       const content = readFileSync(join(directory, file), 'utf8')
       const body = content.replace(/^---\n[\s\S]*?\n---\n?/, '')
@@ -535,8 +543,12 @@ export const createDecisionRecordsSession = ({
   const directory = resolveDirectory(repository, kbMode)
   const exists = isDirectory(directory)
   const entries = exists ? readdirSync(directory).sort() : []
-  const indexFile = kbMode ? 'Decisions.md' : 'README.md'
+  // A code repository's folder page is `_index.md` alone; an earlier `README.md` is read until renamed (DOCS-LANDING-GITHUB).
+  const legacyIndex = !kbMode && !entries.includes(CODE_INDEX) && entries.includes(LEGACY_INDEX)
+  const readmeBeside = !kbMode && entries.includes(CODE_INDEX) && entries.includes(LEGACY_INDEX)
+  const indexFile = kbMode ? 'Decisions.md' : legacyIndex ? LEGACY_INDEX : CODE_INDEX
   const indexExists = entries.includes(indexFile)
+  const pages = kbMode ? [indexFile] : [CODE_INDEX, LEGACY_INDEX]
   const indexPath = join(directory, indexFile)
   const indexContent = indexExists ? readFileSync(indexPath, 'utf8') : ''
   const indexLinks = indexContent
@@ -550,7 +562,7 @@ export const createDecisionRecordsSession = ({
     .filter((line) => DECISION_LINK.test(line) && !INDEX_ENTRY.test(line))
   const indexCounts = new Map<string, number>()
   for (const id of indexIds) indexCounts.set(id, (indexCounts.get(id) ?? 0) + 1)
-  const records = readRecords(directory, entries, indexFile)
+  const records = readRecords(directory, entries, pages)
   const { duplicateIds, serialGaps } = serialEvidence(records)
   const indexDraft =
     mode === 'conform' && indexExists && isRegularFile(indexPath)
@@ -561,7 +573,7 @@ export const createDecisionRecordsSession = ({
   const context: DecisionRecordsRubricContext = {
     rubric: { publication },
     filename: {
-      unparseableFiles: unparseableRecordFiles(directory, entries, indexFile),
+      unparseableFiles: unparseableRecordFiles(directory, entries, pages),
       strayEntries: strayCollectionEntries(directory, entries),
       invalidFilenames: records
         .filter((record) => record.file !== record.expectedFilename)
@@ -601,6 +613,8 @@ export const createDecisionRecordsSession = ({
     index: {
       indexFile,
       indexExists,
+      ...(legacyIndex ? { legacyIndex } : {}),
+      ...(readmeBeside ? { readmeBeside } : {}),
       indexIds,
       indexCounts,
       indexLinks,

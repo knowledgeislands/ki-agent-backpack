@@ -206,7 +206,7 @@ Each diagram has up to five forms under `docs/diagrams/`:
 
 - **Receipt** - `<slug>.receipt.json`, beside each committed viewer and only there: the proof that the viewer was rendered from the committed source. It holds the receipt schema version, the slug and type, the source and HTML file names with their SHA-256 hashes and byte counts, and the renderer's name and version, with no local path, so it is portable. [The build command](#482-the-build-command) writes it with the viewer, and it is never hand-edited. A viewer whose receipt is missing or no longer matches its source and HTML is stale, whatever its `last_checked` says: a matching receipt never refreshes `last_checked`, and a stale `last_checked` never fails the receipt.
 
-`docs/diagrams/` holds nothing else apart from the manifest and its `README.md`, and `docs/diagrams/dark/` nothing but dark variants.
+`docs/diagrams/` holds nothing else apart from the manifest and its `_index.md`, and `docs/diagrams/dark/` nothing but dark variants.
 
 [Back to contents](#contents)
 
@@ -232,7 +232,7 @@ The slug is lower-case kebab-case and names the question's subject, not the type
 | `commit_html`  | Optional; `true` commits the diagram's `<slug>.html` and its receipt, and absent or `false` keeps it local |
 | `svg_form`     | Optional; the [SVG form](#44-committed-forms), one of `dual`, `light`, `ki`, `ki-night`, absent meaning `dual` |
 
-`docs/diagrams/README.md` is the reader-facing index: a short introduction, one section per diagram stating its question in prose, and the SVG embedded with `![Title](<slug>.svg)`, or, for a diagram with a [dark variant](#441-the-forms), the `<picture>` pair whose `<img>` is `<slug>.svg`; a diagram with `commit_html = true` also links its figure to `<slug>.html`, for example `[![Title](<slug>.svg)](<slug>.html)`. It does not repeat the manifest's operational fields. Both templates ship in the skill's `assets/`.
+`docs/diagrams/_index.md` is the reader-facing index and the folder's page, with no `README.md` beside it, under `ki-authoring`'s docs-folder rule (DOCS-LANDING-GITHUB); an earlier `README.md` alone is still read, with a warning, until renamed. It holds a short introduction, one section per diagram stating its question in prose, and the SVG embedded with `![Title](<slug>.svg)`, or, for a diagram with a [dark variant](#441-the-forms), the `<picture>` pair whose `<img>` is `<slug>.svg`; a diagram with `commit_html = true` also links its figure to `<slug>.html`, for example `[![Title](<slug>.svg)](<slug>.html)`. It does not repeat the manifest's operational fields. Both templates ship in the skill's `assets/`.
 
 [Back to contents](#contents)
 
@@ -240,7 +240,7 @@ The slug is lower-case kebab-case and names the question's subject, not the type
 
 A diagram is embedded as its SVG, never as a screenshot. The inline figure always links onward to the interactive view:
 
-- **A diagram that commits its HTML** under `commit_html = true` links the figure to it: in the README as a link around the image, and on a site that serves its diagrams, for example, as an **Interactive** control that opens the viewer in an overlay, or in a new tab on a modified click.
+- **A diagram that commits its HTML** under `commit_html = true` links the figure to it: in `_index.md` as a link around the image, and on a site that serves its diagrams, for example, as an **Interactive** control that opens the viewer in an overlay, or in a new tab on a modified click.
 - **A diagram that does not** commits only the source and the SVG. A reader that can build the HTML locally, such as the Observatory, offers the interactive view once `finalize` has written it under `+/diagrams/<slug>/`, and otherwise says it is not built.
 
 Any other Markdown document embeds a diagram with a relative path to its SVG. Where a guide may embed one is `ki-guides`' concern.
@@ -295,7 +295,7 @@ To refresh a stale diagram, or to confirm a warned one:
 
 A change outside `stale_when` needs no rebuild: review it, then advance `last_checked`.
 
-To add a diagram, write its manifest table and README section first, then author the source, finalize, export, and set `last_checked`.
+To add a diagram, write its manifest table and `_index.md` section first, then author the source, finalize, export, and set `last_checked`.
 
 Each working folder `+/diagrams/<slug>/` carries a `mark.toml` sidecar at its root that says who wrote it and when, under the `ki-delegation` background-run standard's [working-area marks](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#442-working-area-marks), which names its fields in one place. The mark is working-area provenance only: neither Archify's `<slug>.delivery.json` beside the HTML nor the committed `<slug>.receipt.json` carries it, so a rebuild leaves the committed receipt unchanged. The audit warns on a working folder without a well-formed mark.
 

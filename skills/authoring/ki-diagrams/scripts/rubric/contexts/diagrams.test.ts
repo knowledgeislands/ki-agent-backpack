@@ -46,7 +46,7 @@ const repository = (options: { git?: boolean } = {}): { root: string; head: stri
   writeFileSync(join(root, 'src/main.ts'), 'export {}\n')
   writeFileSync(join(root, 'docs/diagrams/architecture.architecture.json'), '{"schema_version":1}\n')
   writeFileSync(join(root, 'docs/diagrams/architecture.svg'), SVG)
-  writeFileSync(join(root, 'docs/diagrams/README.md'), README)
+  writeFileSync(join(root, 'docs/diagrams/_index.md'), README)
   let head = '0000000'
   if (options.git) {
     git(root, 'init', '-q')
@@ -85,6 +85,28 @@ test('a conforming diagram set passes DIAG-1 to DIAG-4', () => {
   for (const code of ['DIAG-1', 'DIAG-2', 'DIAG-3', 'DIAG-4']) expect(statuses(code, root)).toEqual(['PASS'])
 })
 
+// Kris, 22 November 2026, 19:57 GMT, under DOCS-LANDING-GITHUB b: "_index.md only". The folder's page is `_index.md`;
+// an earlier README.md alone is still read for embeds and warns until renamed, and one beside `_index.md` warns.
+test('DIAG-1 reads the page from _index.md, warning on an earlier README.md alone or beside it', () => {
+  const legacy = repository().root
+  rmSync(join(legacy, 'docs/diagrams/_index.md'))
+  writeFileSync(join(legacy, 'docs/diagrams/README.md'), README)
+  expect(run('DIAG-1', context(legacy))).toEqual([
+    expect.objectContaining({ status: 'VIOLATION', level: 'WARN', subject: 'docs/diagrams/README.md' })
+  ])
+  writeFileSync(join(legacy, 'docs/diagrams/README.md'), '# Diagrams\n')
+  expect(run('DIAG-1', context(legacy)).map((outcome) => outcome.subject)).toEqual([
+    'missing: docs/diagrams/README.md embeds no architecture.svg',
+    'docs/diagrams/README.md'
+  ])
+
+  const beside = repository().root
+  writeFileSync(join(beside, 'docs/diagrams/README.md'), 'See [the diagrams](_index.md).\n')
+  expect(run('DIAG-1', context(beside))).toEqual([
+    expect.objectContaining({ status: 'VIOLATION', level: 'WARN', subject: 'docs/diagrams/README.md' })
+  ])
+})
+
 test('DIAG-1 fails for an unlisted source, a listed slug without an SVG, and an SVG the README does not embed', () => {
   const unlisted = repository().root
   writeFileSync(join(unlisted, 'docs/diagrams/flow.workflow.json'), '{}\n')
@@ -103,9 +125,9 @@ test('DIAG-1 fails for an unlisted source, a listed slug without an SVG, and an 
   ])
 
   const unembedded = repository().root
-  writeFileSync(join(unembedded, 'docs/diagrams/README.md'), '# Diagrams\n')
+  writeFileSync(join(unembedded, 'docs/diagrams/_index.md'), '# Diagrams\n')
   expect(run('DIAG-1', context(unembedded)).map((outcome) => outcome.subject)).toEqual([
-    'missing: docs/diagrams/README.md embeds no architecture.svg'
+    'missing: docs/diagrams/_index.md embeds no architecture.svg'
   ])
 })
 
@@ -114,7 +136,7 @@ test('DIAG-1 accepts a dark variant under dark/ beside its light SVG, embedded a
   mkdirSync(join(root, 'docs/diagrams/dark'))
   writeFileSync(join(root, 'docs/diagrams/dark/architecture.svg'), SVG)
   writeFileSync(
-    join(root, 'docs/diagrams/README.md'),
+    join(root, 'docs/diagrams/_index.md'),
     '# Diagrams\n\n<picture>\n  <source srcset="dark/architecture.svg" media="(prefers-color-scheme: dark)" />\n' +
       '  <img src="architecture.svg" alt="Architecture" />\n</picture>\n'
   )
@@ -150,9 +172,9 @@ test('DIAG-1 accepts committed HTML only under commit_html, and then requires it
   ])
   writeFileSync(join(optedIn, 'docs/diagrams/architecture.html'), '<html></html>\n')
   expect(run('DIAG-1', context(optedIn)).map((outcome) => outcome.subject)).toEqual([
-    'missing: docs/diagrams/README.md links no architecture.html'
+    'missing: docs/diagrams/_index.md links no architecture.html'
   ])
-  writeFileSync(join(optedIn, 'docs/diagrams/README.md'), `${README}\n[Interactive](architecture.html)\n`)
+  writeFileSync(join(optedIn, 'docs/diagrams/_index.md'), `${README}\n[Interactive](architecture.html)\n`)
   expect(statuses('DIAG-1', optedIn)).toEqual(['PASS'])
 
   writeFileSync(join(optedIn, 'docs/diagrams/architecture.html'), '<a href="file:///tmp/x">x</a>\n')
@@ -183,7 +205,7 @@ test('DIAG-1 fails without a manifest or diagrams directory and reports every sc
   mkdirSync(join(root, 'docs/diagrams'), { recursive: true })
   expect(run('DIAG-1', context(root)).map((outcome) => outcome.subject)).toEqual([
     'docs/diagrams/diagrams.toml is missing',
-    'docs/diagrams/README.md is missing'
+    'docs/diagrams/_index.md is missing'
   ])
   expect(parseManifest('[Bad_Slug]\ntype = "pie"\ntraced = []\nextra = 1\n').issues).toEqual([
     'Bad_Slug: the slug must be lower-case kebab-case',
@@ -281,7 +303,7 @@ const withViewer = (): string => {
     `${entry('architecture', 'architecture', '0000000')}commit_html = true\n`
   )
   writeFileSync(join(directory, 'architecture.html'), '<html></html>\n')
-  writeFileSync(join(directory, 'README.md'), `${README}\n[Interactive](architecture.html)\n`)
+  writeFileSync(join(directory, '_index.md'), `${README}\n[Interactive](architecture.html)\n`)
   const receipt = diagramReceipt(
     {
       slug: 'architecture',

@@ -2,6 +2,7 @@ import { expect, test } from 'bun:test'
 import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { GUIDE } from '../items/guides.ts'
 import { createGuidesSession } from './guides.ts'
 
 const LEAD = 'x'.repeat(120)
@@ -12,7 +13,7 @@ test('the session identifies the controlled root, guides, and retired roots', ()
   const repository = temporaryRepository()
   mkdirSync(join(repository, 'docs/guides/developer'), { recursive: true })
   mkdirSync(join(repository, 'docs/spec'), { recursive: true })
-  writeFileSync(join(repository, 'docs/guides/README.md'), '# Guides\n')
+  writeFileSync(join(repository, 'docs/guides/_index.md'), '# Guides\n')
   writeFileSync(join(repository, 'docs/guides/developer/workflow.md'), '# Workflow\n')
   writeFileSync(
     join(repository, 'docs/guides/developer/example.md'),
@@ -27,6 +28,8 @@ test('the session identifies the controlled root, guides, and retired roots', ()
   expect(context.layout).toEqual({
     directoryExists: true,
     indexExists: true,
+    legacyIndex: false,
+    readmeBeside: false,
     rootGuides: [],
     headingIssues: ['docs/guides/developer/broken.md'],
     openingIssues: [
@@ -44,7 +47,7 @@ test('a docs/logs path is left to its specialised owner', () => {
   const repository = temporaryRepository()
   mkdirSync(join(repository, 'docs/guides'), { recursive: true })
   mkdirSync(join(repository, 'docs/logs'), { recursive: true })
-  writeFileSync(join(repository, 'docs/guides/README.md'), '# Guides\n')
+  writeFileSync(join(repository, 'docs/guides/_index.md'), '# Guides\n')
   const session = createGuidesSession({ mode: 'audit', repository, userHome: tmpdir(), configuration: {} })
   const context = session.subjects[1]?.context()
   if (!context) throw new Error('ki-guides session did not expose its repository subject')
@@ -64,7 +67,7 @@ test('a guide directly below docs/guides is reported; audience folders and refer
   for (const [guides, rootGuides] of cases) {
     const repository = temporaryRepository()
     mkdirSync(join(repository, 'docs/guides'), { recursive: true })
-    writeFileSync(join(repository, 'docs/guides/README.md'), '# Guides\n')
+    writeFileSync(join(repository, 'docs/guides/_index.md'), '# Guides\n')
     for (const guide of guides) {
       const path = join(repository, 'docs/guides', guide)
       mkdirSync(join(path, '..'), { recursive: true })
@@ -78,6 +81,8 @@ test('a guide directly below docs/guides is reported; audience folders and refer
     expect(context.layout).toEqual({
       directoryExists: true,
       indexExists: true,
+      legacyIndex: false,
+      readmeBeside: false,
       rootGuides,
       headingIssues: [],
       openingIssues: [],
@@ -90,13 +95,13 @@ test('a guide directly below docs/guides is reported; audience folders and refer
 test('a link to a document outside the collection escapes; code paths and siblings do not', () => {
   const repository = temporaryRepository()
   mkdirSync(join(repository, 'docs/guides/developer'), { recursive: true })
-  writeFileSync(join(repository, 'docs/guides/README.md'), '# Guides\n')
+  writeFileSync(join(repository, 'docs/guides/_index.md'), '# Guides\n')
   writeFileSync(
     join(repository, 'docs/guides/developer/workflow.md'),
     [
       '# Workflow',
       '',
-      'A sibling: [provenance](provenance.md), and the index: [guides](../README.md).',
+      'A sibling: [provenance](provenance.md), and the index: [guides](../_index.md).',
       'Code is the subject: [the script](../../../scripts/verify.ts) and [a directory](../../../src/).',
       'An external URL: [Bun](https://bun.sh).',
       'Escaping: [a decision](../../decisions/ADR-001-a-decision.md) and [the orientation](../../../AGENTS.md#working-here).',
@@ -118,7 +123,7 @@ test('a link to a document outside the collection escapes; code paths and siblin
 test('a guide opening shorter than 120 characters of prose is reported; the root index is exempt', () => {
   const repository = temporaryRepository()
   mkdirSync(join(repository, 'docs/guides/developer'), { recursive: true })
-  writeFileSync(join(repository, 'docs/guides/README.md'), '# Guides\n\nShort.\n')
+  writeFileSync(join(repository, 'docs/guides/_index.md'), '# Guides\n\nShort.\n')
   const guides: Record<string, string> = {
     'short.md': `# Short\n\n${'x'.repeat(119)}\n\n## Steps\n\n${LEAD}\n`,
     'floor.md': `# Floor\n\n${LEAD}\n\n## Steps\n`,
@@ -136,5 +141,36 @@ test('a guide opening shorter than 120 characters of prose is reported; the root
   expect(context.layout.openingIssues).toEqual([
     { file: 'docs/guides/developer/short.md', length: 119 },
     { file: 'docs/guides/developer/unbroken.md', length: 40 }
+  ])
+})
+
+// Kris, 22 November 2026, 19:57 GMT, under DOCS-LANDING-GITHUB b: "_index.md only". The collection's page is
+// `_index.md`; an earlier README.md alone warns until renamed, one beside `_index.md` warns, and neither is a guide.
+test('GUIDE-2 takes _index.md as the entry point, warning on an earlier README.md alone or beside it', () => {
+  const guide2 = (pages: readonly string[]) => {
+    const repository = temporaryRepository()
+    mkdirSync(join(repository, 'docs/guides'), { recursive: true })
+    for (const page of pages) writeFileSync(join(repository, 'docs/guides', page), '# Guides\n')
+    const context = createGuidesSession({
+      mode: 'audit',
+      repository,
+      userHome: tmpdir(),
+      configuration: {}
+    }).subjects[1]?.context()
+    if (!context) throw new Error('ki-guides session did not expose its repository subject')
+    const item = GUIDE.items.find((candidate) => candidate.code === 'GUIDE-2')
+    return { outcomes: item?.mechanical?.audit.run(context.layout), rootGuides: context.layout.rootGuides }
+  }
+  expect(guide2(['_index.md']).outcomes).toEqual([expect.objectContaining({ status: 'PASS' })])
+  expect(guide2(['README.md']).outcomes).toEqual([
+    expect.objectContaining({ status: 'VIOLATION', level: 'WARN', subject: 'docs/guides/README.md' })
+  ])
+  const both = guide2(['_index.md', 'README.md'])
+  expect(both.outcomes).toEqual([
+    expect.objectContaining({ status: 'VIOLATION', level: 'WARN', subject: 'docs/guides/README.md' })
+  ])
+  expect(both.rootGuides).toEqual([])
+  expect(guide2([]).outcomes).toEqual([
+    expect.objectContaining({ status: 'VIOLATION', subject: 'docs/guides/_index.md' })
   ])
 })

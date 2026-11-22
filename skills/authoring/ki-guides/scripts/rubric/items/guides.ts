@@ -31,14 +31,16 @@ const GUIDE_1: RubricItem<GuidesLayoutContext> = {
 
 const GUIDE_2: RubricItem<GuidesLayoutContext> = {
   code: 'GUIDE-2',
-  title: 'docs/guides/README.md is the collection entry point',
-  description: '`docs/guides/README.md` exists as a regular file and is the collection entry point.',
+  title: 'docs/guides/_index.md is the collection entry point',
+  description:
+    '`docs/guides/_index.md` exists as a regular file and is the collection entry point, with no `README.md` beside it; an earlier `docs/guides/README.md` alone warns until renamed.',
   sources: [SOURCE],
   mechanical: {
     level: 'FAIL',
     remediation: {
       class: 'diagnostic',
-      guidance: 'Add a regular `docs/guides/README.md` collection entry point, then rerun the audit.'
+      guidance:
+        'Add a regular `docs/guides/_index.md` collection entry point, renaming an earlier `README.md` and removing any `README.md` beside it, then rerun the audit.'
     },
     audit: {
       phase: 'INSPECT',
@@ -47,15 +49,34 @@ const GUIDE_2: RubricItem<GuidesLayoutContext> = {
           ? {
               status: 'NOT_APPLICABLE',
               message: 'The collection entry point cannot exist until docs/guides exists.',
-              subject: 'docs/guides/README.md'
+              subject: 'docs/guides/_index.md'
             }
-          : context.indexExists
-            ? { status: 'PASS', message: 'The Guides collection entry point exists.', subject: 'docs/guides/README.md' }
-            : {
+          : // A docs folder's page is `_index.md` alone, Kris chose on 22 November 2026: "_index.md only" (DOCS-LANDING-GITHUB).
+            context.legacyIndex
+            ? {
                 status: 'VIOLATION',
-                message: 'The Guides collection entry point is missing or unsafe.',
+                level: 'WARN',
+                message: 'The Guides entry point is still README.md; rename it to _index.md, the folder page.',
                 subject: 'docs/guides/README.md'
               }
+            : context.readmeBeside
+              ? {
+                  status: 'VIOLATION',
+                  level: 'WARN',
+                  message: 'A README.md sits beside docs/guides/_index.md; a docs folder has _index.md alone.',
+                  subject: 'docs/guides/README.md'
+                }
+              : context.indexExists
+                ? {
+                    status: 'PASS',
+                    message: 'The Guides collection entry point exists.',
+                    subject: 'docs/guides/_index.md'
+                  }
+                : {
+                    status: 'VIOLATION',
+                    message: 'The Guides collection entry point is missing or unsafe.',
+                    subject: 'docs/guides/_index.md'
+                  }
       ]
     }
   }
@@ -64,7 +85,7 @@ const GUIDE_2: RubricItem<GuidesLayoutContext> = {
 const GUIDE_3: RubricItem<GuidesLayoutContext> = {
   code: 'GUIDE-3',
   title: 'each guide has exactly one H1',
-  description: 'Every Markdown guide below `docs/guides/`, except its root `README.md`, has exactly one H1.',
+  description: 'Every Markdown guide below `docs/guides/`, except its root `_index.md`, has exactly one H1.',
   sources: [SOURCE],
   mechanical: {
     level: 'FAIL',
@@ -114,7 +135,7 @@ const GUIDE_5: RubricItem<GuidesLayoutContext> = {
   code: 'GUIDE-5',
   title: 'every guide lives in an audience folder',
   description:
-    'No guide sits directly below `docs/guides/`; apart from the root `README.md`, every guide lives in a folder named for its audience.',
+    'No guide sits directly below `docs/guides/`; apart from the root `_index.md`, every guide lives in a folder named for its audience.',
   sources: [SOURCE],
   mechanical: {
     level: 'FAIL',
@@ -141,7 +162,7 @@ const GUIDE_6: RubricItem<GuidesLayoutContext> = {
   code: 'GUIDE-6',
   title: 'a guide opens with its outcome',
   description:
-    'Every guide below `docs/guides/`, except its root `README.md`, has at least 120 characters of prose before its first `##`; front matter, the H1, and HTML lines do not count.',
+    'Every guide below `docs/guides/`, except its root `_index.md`, has at least 120 characters of prose before its first `##`; front matter, the H1, and HTML lines do not count.',
   sources: ['standard-guides.md#42-a-guide-opens-with-its-outcome'],
   mechanical: {
     level: 'FAIL',

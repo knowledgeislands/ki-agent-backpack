@@ -55,7 +55,7 @@ The home and minimum navigability of a repository's practical guides.
 | Term | Definition |
 | --- | --- |
 | **Guide** | A practical document in `docs/guides/` saying how to use, operate, contribute to or maintain a system. **Standard:** this one, [4.1](#41-the-four-doc-split) |
-| **Guide collection** | A repository's `docs/guides/` tree, movable as a unit, opened by its `README.md`. **Standard:** this one, [4.3.1](#431-every-guide) |
+| **Guide collection** | A repository's `docs/guides/` tree, movable as a unit, opened by its `_index.md`. **Standard:** this one, [4.3.1](#431-every-guide) |
 | **Audience folder** | A folder under `docs/guides/` named for the reader its guides serve. **Standard:** this one, [4.4](#44-guide-root-and-index) |
 
 [Back to contents](#contents)
@@ -120,12 +120,12 @@ Because every guide sits in an audience folder, the collection declares which gu
 ### 4.4 Guide root and index
 
 - Guides live in **`docs/guides/`**.
-- **`docs/guides/README.md`** is the collection entry point. It gives the reader a concise scope statement and links to each guide or guide area with enough description to choose one.
-- Every guide lives in a folder named for its audience, such as `developer/`, `operator/`, or `user/`, so a guide's location declares its reader. Folder names are open, local information architecture, not a KI-wide taxonomy, but each names a reader rather than a topic. A collection with one audience has one folder. A guide that serves several readers sits with its primary reader, and the index may link it from other areas. Only the root `README.md` sits directly under `docs/guides/`.
+- **`docs/guides/_index.md`** is the collection entry point, the folder's page with no `README.md` beside it, under `ki-authoring`'s docs-folder rule (DOCS-LANDING-GITHUB); an earlier `docs/guides/README.md` alone passes GUIDE-2 with a warning until renamed. It gives the reader a concise scope statement and links to each guide or guide area with enough description to choose one.
+- Every guide lives in a folder named for its audience, such as `developer/`, `operator/`, or `user/`, so a guide's location declares its reader. Folder names are open, local information architecture, not a KI-wide taxonomy, but each names a reader rather than a topic. A collection with one audience has one folder. A guide that serves several readers sits with its primary reader, and the index may link it from other areas. Only the root `_index.md` sits directly under `docs/guides/`.
 - `docs/guides/references/` holds supporting material that guides link to, not guides for an audience of its own.
 - Developer guide roles such as `developer/definition-of-done.md` and `developer/releasing.md` are optional under this general standard. A specialised repository-kind overlay may require their presence or an exact role path. When the role has a stable audience, that exact path should preserve the collection's audience route rather than bypass it with a root-level filename. `ki-guides` continues to govern ordinary guide placement and form rather than imposing a universal completion checklist or release policy.
-- AUDIT fails every guide directly below `docs/guides/` other than the root `README.md`. CONFORM never moves an authored guide between folders. Whether a folder name truly names an audience, and whether each guide sits with its primary reader, remain review judgments.
-- Each guide Markdown file other than the root `README.md` has exactly one H1. It identifies the task, outcome, or operating context; its body gives the conditions, ordered work, verification, and recovery information appropriate to the topic.
+- AUDIT fails every guide directly below `docs/guides/` other than the root `_index.md`. CONFORM never moves an authored guide between folders. Whether a folder name truly names an audience, and whether each guide sits with its primary reader, remain review judgments.
+- Each guide Markdown file other than the root `_index.md` has exactly one H1. It identifies the task, outcome, or operating context; its body gives the conditions, ordered work, verification, and recovery information appropriate to the topic.
 
 [Back to contents](#contents)
 

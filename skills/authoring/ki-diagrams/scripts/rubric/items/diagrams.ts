@@ -12,14 +12,14 @@ const DIAG_1: RubricItem<DiagramsRubricContext> = {
   code: 'DIAG-1',
   title: 'the manifest and the committed files agree both ways',
   description:
-    "`docs/diagrams/diagrams.toml` is valid and complete, each `traced` entry a repository-relative path, a pathspec glob or a private repository's `path:revision:lines` citation; every listed diagram has its source, its SVG and an embed in `docs/diagrams/README.md`, as a Markdown image or a `<picture>` whose `<img>` is the light SVG, and a diagram with `commit_html = true` also has its `<slug>.html`, linked from the README; and every file under `docs/diagrams/` belongs to a listed diagram, an HTML file and its `<slug>.receipt.json` only under that opt-in, and a dark variant `docs/diagrams/dark/<slug>.svg` only beside its light `<slug>.svg`.",
+    "`docs/diagrams/diagrams.toml` is valid and complete, each `traced` entry a repository-relative path, a pathspec glob or a private repository's `path:revision:lines` citation; every listed diagram has its source, its SVG and an embed in the folder's page, `docs/diagrams/_index.md`, as a Markdown image or a `<picture>` whose `<img>` is the light SVG, and a diagram with `commit_html = true` also has its `<slug>.html`, linked from that page; and every file under `docs/diagrams/` belongs to a listed diagram, an HTML file and its `<slug>.receipt.json` only under that opt-in, and a dark variant `docs/diagrams/dark/<slug>.svg` only beside its light `<slug>.svg`. An earlier `README.md` page alone, or one beside `_index.md`, warns.",
   sources: [MANIFEST, COMMITTED],
   mechanical: {
     level: 'FAIL',
     remediation: {
       class: 'diagnostic',
       guidance:
-        'List each diagram in `diagrams.toml` with every field, commit its `<slug>.<type>.json` source and `<slug>.svg`, embed the SVG in `README.md`, commit and link `<slug>.html` only where `commit_html = true`, keep a dark variant only as `dark/<slug>.svg` beside its light `<slug>.svg`, and remove or list any stray file, then rerun the audit.'
+        'List each diagram in `diagrams.toml` with every field, commit its `<slug>.<type>.json` source and `<slug>.svg`, embed the SVG in `_index.md`, renaming an earlier `README.md` page, commit and link `<slug>.html` only where `commit_html = true`, keep a dark variant only as `dark/<slug>.svg` beside its light `<slug>.svg`, and remove or list any stray file, then rerun the audit.'
     },
     audit: {
       phase: 'INSPECT',
@@ -34,18 +34,46 @@ const DIAG_1: RubricItem<DiagramsRubricContext> = {
           ]
         const problems = [
           ...(layout.manifestExists ? [] : ['docs/diagrams/diagrams.toml is missing']),
-          ...(layout.indexExists ? [] : ['docs/diagrams/README.md is missing']),
+          ...(layout.indexExists ? [] : ['docs/diagrams/_index.md is missing']),
           ...layout.manifestIssues.map((issue) => `diagrams.toml ${issue}`),
           ...layout.missing.map((path) => `missing: ${path}`),
           ...layout.unlisted.map((path) => `not in the manifest: ${path}`)
         ]
-        return problems.length === 0
-          ? [{ status: 'PASS', message: `The manifest and the ${layout.diagramCount} committed diagrams agree.` }]
-          : problems.map((subject) => ({
-              status: 'VIOLATION',
-              message: 'The manifest and the committed diagram files must agree both ways.',
-              subject
-            }))
+        // A docs folder's page is `_index.md` alone, Kris chose on 22 November 2026: "_index.md only" (DOCS-LANDING-GITHUB).
+        const landing = [
+          ...(layout.legacyIndex
+            ? [
+                {
+                  status: 'VIOLATION' as const,
+                  level: 'WARN' as const,
+                  message: 'The diagrams page is still README.md; rename it to _index.md, the folder page.',
+                  subject: 'docs/diagrams/README.md'
+                }
+              ]
+            : []),
+          ...(layout.readmeBeside
+            ? [
+                {
+                  status: 'VIOLATION' as const,
+                  level: 'WARN' as const,
+                  message: 'A README.md sits beside docs/diagrams/_index.md; a docs folder has _index.md alone.',
+                  subject: 'docs/diagrams/README.md'
+                }
+              ]
+            : [])
+        ]
+        if (problems.length === 0)
+          return landing.length > 0
+            ? landing
+            : [{ status: 'PASS', message: `The manifest and the ${layout.diagramCount} committed diagrams agree.` }]
+        return [
+          ...problems.map((subject) => ({
+            status: 'VIOLATION' as const,
+            message: 'The manifest and the committed diagram files must agree both ways.',
+            subject
+          })),
+          ...landing
+        ]
       }
     }
   }

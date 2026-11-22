@@ -142,7 +142,7 @@ Present-state decision-record structure and writing quality.
 
 Complete, current, and readable decision-record indexes.
 
-- **INDEX-1 [M] — Decision index exists** — The index file exists (`Decisions.md` in a KB, `README.md` in a code repository). (standard-decision-records.md)
+- **INDEX-1 [M] — Decision index exists** — The index file exists (`Decisions.md` in a KB, `_index.md` in a code repository, with no `README.md` beside it); an earlier `README.md` alone warns until renamed. (standard-decision-records.md)
   - _Remediation:_ diagnostic — Create the canonical decision index for this repository or Knowledge Base.
 - **INDEX-2 [M] — Exactly one index entry per record** — Every decision-record file has exactly one entry in the index list, linked by ID. (standard-decision-records.md)
   - _Remediation:_ automatic

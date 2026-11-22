@@ -18,7 +18,9 @@ const TOML = (globalThis as unknown as { Bun: { TOML: { parse(text: string): unk
 
 const DIAGRAMS_DIRECTORY = 'docs/diagrams'
 const MANIFEST_FILE = 'diagrams.toml'
-const INDEX_FILE = 'README.md'
+/** The folder's page, `_index.md` alone (DOCS-LANDING-GITHUB), and the earlier name read until renamed. */
+const INDEX_FILE = '_index.md'
+const LEGACY_INDEX = 'README.md'
 /** The subdirectory of docs/diagrams holding each diagram's optional dark variant, `dark/<slug>.svg`. */
 const DARK_DIRECTORY = 'dark'
 const FIELDS = ['type', 'question', 'audience', 'traced', 'stale_when', 'regenerate', 'last_checked'] as const
@@ -69,9 +71,15 @@ export type DiagramsLayoutContext = {
   readonly manifestIssues: readonly string[]
   readonly manifestExists: boolean
   readonly indexExists: boolean
+  /** The page read for embeds: `_index.md`, or an earlier `README.md` alone until renamed. */
+  readonly indexFile: string
+  /** Set where the page is still the earlier `README.md`, with no `_index.md`. */
+  readonly legacyIndex: boolean
+  /** Set where a `README.md` sits beside `_index.md`, which a docs folder leaves out. */
+  readonly readmeBeside: boolean
   /** Files under docs/diagrams the manifest does not account for. */
   readonly unlisted: readonly string[]
-  /** Committed forms a listed diagram lacks, including an SVG the README does not embed or opted-in HTML it does not link. */
+  /** Committed forms a listed diagram lacks, including an SVG the page does not embed or opted-in HTML it does not link. */
   readonly missing: readonly string[]
   readonly diagramCount: number
 }
@@ -195,15 +203,16 @@ export const parseManifest = (
  * A diagram's `<slug>.html` and its receipt belong to it only under `commit_html = true`, which also requires the
  * HTML; whether the receipt is present and matches is the receipt check's question. A listed diagram may have a
  * dark variant, `dark/<slug>.svg`, under the same slug; one whose light `<slug>.svg` is absent is reported as
- * missing its partner rather than as unlisted. The README embeds the light SVG as a Markdown image or as the
+ * missing its partner rather than as unlisted. The folder's page embeds the light SVG as a Markdown image or as the
  * `<img src>` of a `<picture>` pair.
  */
 export const reconcile = (
   files: readonly string[],
   entries: readonly DiagramEntry[],
-  index: string | undefined
+  index: string | undefined,
+  indexFile: string = INDEX_FILE
 ): { readonly unlisted: readonly string[]; readonly missing: readonly string[] } => {
-  const expected = new Set([MANIFEST_FILE, INDEX_FILE])
+  const expected = new Set([MANIFEST_FILE, INDEX_FILE, LEGACY_INDEX])
   const missing: string[] = []
   for (const { slug, type, commitHtml } of entries) {
     const source = `${slug}.${type}.json`
@@ -214,12 +223,12 @@ export const reconcile = (
       expected.add(html).add(`${slug}${RECEIPT_SUFFIX}`)
       if (!files.includes(html)) missing.push(`${DIAGRAMS_DIRECTORY}/${html}`)
       else if (index !== undefined && !index.includes(`(${html})`))
-        missing.push(`${DIAGRAMS_DIRECTORY}/${INDEX_FILE} links no ${html}`)
+        missing.push(`${DIAGRAMS_DIRECTORY}/${indexFile} links no ${html}`)
     }
     if (!files.includes(source)) missing.push(`${DIAGRAMS_DIRECTORY}/${source}`)
     if (!files.includes(svg)) missing.push(`${DIAGRAMS_DIRECTORY}/${svg}`)
     else if (index !== undefined && !index.includes(`(${svg})`) && !index.includes(`"${svg}"`))
-      missing.push(`${DIAGRAMS_DIRECTORY}/${INDEX_FILE} embeds no ${svg}`)
+      missing.push(`${DIAGRAMS_DIRECTORY}/${indexFile} embeds no ${svg}`)
   }
   const darkPrefix = `${DARK_DIRECTORY}/`
   const unpartnered = (file: string): boolean =>
@@ -405,10 +414,15 @@ export const createDiagramsSession = ({
   const { entries, issues } = manifestExists
     ? parseManifest(readFileSync(manifestPath, 'utf8'))
     : { entries: [], issues: [] }
-  const indexPath = join(directory, INDEX_FILE)
-  const indexExists = directoryExists && isFile(indexPath)
+  const pageExists = directoryExists && isFile(join(directory, INDEX_FILE))
+  const legacyExists = directoryExists && isFile(join(directory, LEGACY_INDEX))
+  const legacyIndex = !pageExists && legacyExists
+  const readmeBeside = pageExists && legacyExists
+  const indexFile = legacyIndex ? LEGACY_INDEX : INDEX_FILE
+  const indexPath = join(directory, indexFile)
+  const indexExists = pageExists || legacyIndex
   const { unlisted, missing } = manifestExists
-    ? reconcile(files, entries, indexExists ? readFileSync(indexPath, 'utf8') : undefined)
+    ? reconcile(files, entries, indexExists ? readFileSync(indexPath, 'utf8') : undefined, indexFile)
     : { unlisted: [], missing: [] }
 
   const sources = files.filter((file) => file.endsWith('.json'))
@@ -433,6 +447,9 @@ export const createDiagramsSession = ({
       manifestExists,
       manifestIssues: issues,
       indexExists,
+      indexFile,
+      legacyIndex,
+      readmeBeside,
       unlisted,
       missing,
       diagramCount: entries.length

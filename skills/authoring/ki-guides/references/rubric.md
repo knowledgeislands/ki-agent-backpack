@@ -33,15 +33,15 @@ The controlled guide root has an entry point and identifiable guide documents.
 
 - **GUIDE-1 [M] — docs/guides is a regular directory** — `docs/guides/` exists as a regular directory inside the repository. (standard-guides.md#44-guide-root-and-index)
   - _Remediation:_ diagnostic — Create a regular `docs/guides/` directory inside the repository, then rerun the audit.
-- **GUIDE-2 [M] — docs/guides/README.md is the collection entry point** — `docs/guides/README.md` exists as a regular file and is the collection entry point. (standard-guides.md#44-guide-root-and-index)
-  - _Remediation:_ diagnostic — Add a regular `docs/guides/README.md` collection entry point, then rerun the audit.
-- **GUIDE-3 [M] — each guide has exactly one H1** — Every Markdown guide below `docs/guides/`, except its root `README.md`, has exactly one H1. (standard-guides.md#44-guide-root-and-index)
+- **GUIDE-2 [M] — docs/guides/_index.md is the collection entry point** — `docs/guides/_index.md` exists as a regular file and is the collection entry point, with no `README.md` beside it; an earlier `docs/guides/README.md` alone warns until renamed. (standard-guides.md#44-guide-root-and-index)
+  - _Remediation:_ diagnostic — Add a regular `docs/guides/_index.md` collection entry point, renaming an earlier `README.md` and removing any `README.md` beside it, then rerun the audit.
+- **GUIDE-3 [M] — each guide has exactly one H1** — Every Markdown guide below `docs/guides/`, except its root `_index.md`, has exactly one H1. (standard-guides.md#44-guide-root-and-index)
   - _Remediation:_ diagnostic — Give each affected guide exactly one H1, then rerun the audit.
 - **GUIDE-4 [M] — a guide links no document outside its collection** — No guide below `docs/guides/` links a Markdown document outside the collection; code paths and sibling guides are unaffected. (standard-guides.md#43-a-guide-is-self-contained)
   - _Remediation:_ diagnostic — Name the document in prose instead of linking it, or move the material the guide needs into docs/guides/references/, then rerun the audit.
-- **GUIDE-5 [M] — every guide lives in an audience folder** — No guide sits directly below `docs/guides/`; apart from the root `README.md`, every guide lives in a folder named for its audience. (standard-guides.md#44-guide-root-and-index)
+- **GUIDE-5 [M] — every guide lives in an audience folder** — No guide sits directly below `docs/guides/`; apart from the root `_index.md`, every guide lives in a folder named for its audience. (standard-guides.md#44-guide-root-and-index)
   - _Remediation:_ diagnostic — Move each named guide into its primary audience's folder below `docs/guides/`, update every inbound link, then rerun the audit.
-- **GUIDE-6 [M] — a guide opens with its outcome** — Every guide below `docs/guides/`, except its root `README.md`, has at least 120 characters of prose before its first `##`; front matter, the H1, and HTML lines do not count. (standard-guides.md#42-a-guide-opens-with-its-outcome)
+- **GUIDE-6 [M] — a guide opens with its outcome** — Every guide below `docs/guides/`, except its root `_index.md`, has at least 120 characters of prose before its first `##`; front matter, the H1, and HTML lines do not count. (standard-guides.md#42-a-guide-opens-with-its-outcome)
   - _Remediation:_ diagnostic — Open each affected guide, before its first `##`, with prose saying what the reader will be able to do once they have read it, then rerun the audit.
 
 ## ROUTE — documentation routing

@@ -25,7 +25,7 @@ regenerate = "Trace one Beacon request from the view's load() through /api/beaco
 last_checked = "18b1c069fc860b926de1d2f848c35034eca2c6cc"
 ```
 
-## A README section
+## An `_index.md` section
 
 ```markdown
 ## Beacon request

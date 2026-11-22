@@ -10,4 +10,4 @@ Read [the Diagrams standard](standard-diagrams.md) and [the rubric](rubric.md) f
 2. For each DIAG-4 warning, compare the reported changes with the diagram's `stale_when`. A matching change is a gap for [REFRESH](mode-refresh.md); a non-matching one is conforming once `last_checked` advances.
 3. Review DIAG-2's judgment: does any label, card or citation name a private repository, a person, note content or a commit subject, and does any citation carry a repository URL where the remote is private instead of the URL-free `path:revision:lines` form?
 4. Review DIAG-5: with Archify installed, does each source pass `finalize --quality showcase`, and does its type answer its question as the standard maps questions to types? Without Archify, record DIAG-5 as unevaluated with the Rig install instruction.
-5. Report gaps by slug. Route a prose problem in `README.md` to `ki-authoring` and an embedding question in a guide to `ki-guides`.
+5. Report gaps by slug. Route a prose problem in `_index.md` to `ki-authoring` and an embedding question in a guide to `ki-guides`.
