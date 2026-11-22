@@ -805,6 +805,7 @@ test('FMT reads the real format standards beside the rubric', () => {
     'change',
     'design',
     'format',
+    'presentation',
     'record',
     'sources',
     'standard'

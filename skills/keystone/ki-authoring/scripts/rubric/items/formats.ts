@@ -172,7 +172,8 @@ const FMT_SHAPE: RubricItem<FormatsRubricContext> = {
     'standard-formats-change.md#46-validation',
     'standard-formats-sources.md#45-validation',
     'standard-formats-record.md#48-validation',
-    'standard-formats-design.md#47-validation'
+    'standard-formats-design.md#47-validation',
+    'standard-formats-presentation.md#48-validation'
   ],
   judgment: {
     scope: 'Every Markdown document whose `ki-document-type` names a format, as listed by FMT-type.',
