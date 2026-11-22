@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T00:40:00Z
+ki-revised: 2026-11-22T16:15:00Z
 ki-status: in force
 ---
 
@@ -102,6 +102,8 @@ The rules, part by part.
 Whoever draws may be able to check only the markup, not the picture: an agent that writes a board's HTML does not see it rendered. Until the drawing side can see its render, a reviewer looks at it by eye, and the round's report says which boards have been seen and by whom.
 
 **The reviewer takes the PNG** (BOARD-PNG). The reviewer who renders a board for review takes its PNG in the same pass, with the repository's own browser automation, and commits it beside the board; the drawing session never does. A board carrying store data is rendered on the caller's side, as `ki-meeting`'s [Git and private data](../../../work/ki-meeting/references/standard-meeting.md#412-git-and-private-data) sets.
+
+**Fitting the PNG to the page.** The board's page writes its own content height to an attribute once it has laid out; headless Chrome's `--dump-dom` reads that attribute back, and the screenshot is then taken at that height, so the PNG holds the whole board and no blank tail (store `c9853881`). A board's README names only files committed beside it: a mock's README that named its generator and render scripts, kept elsewhere, sent readers to nothing (store `c9853881`).
 
 [Back to contents](#contents)
 

@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T09:00:00Z
+ki-revised: 2026-11-22T16:15:00Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -75,6 +75,8 @@ The floor follows one specification, and the house's own documentation standards
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the second SKILLS-LEARNING batch, Kris's steer of that morning to bake the night's lessons into the skills, added two pitfalls from the Cairn's bot-board mock to [Seeing what was drawn](standard-design-levels.md#44-seeing-what-was-drawn): fit the PNG to the page by having it report its own height, and a board's README names only files committed beside it. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, added three contrast and colour pitfalls the Cairn designer met overnight beneath [the floor](standard-design-system.md#410-the-floor): a second tone meets 3:1 on every ground, a tinted edge is a non-text mark, and heat on a map of hued categories goes in lightness. No rule changed and no outside source was refreshed.
 
