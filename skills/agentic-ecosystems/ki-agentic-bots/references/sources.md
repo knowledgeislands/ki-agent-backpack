@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T01:15:00Z
+ki-revised: 2026-11-22T09:00:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -63,6 +63,8 @@ The owner's decisions behind the standard, each recorded in the Cairn summit's [
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, added one Orca recipe that the Cairn information architect found overnight to [On Orca](standard-bots.md#411-on-orca): a timed one-off automation takes `--once --by <ISO time>`, since `--once` with a cron fails. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 the standard was first written under BOTS-GUILD, generalising the Cairn store's `BOTS.md` at `50e99f45` and the decisions above: the store's paths, packages and setup files were left to that store's instance, and Orca's mechanics kept to [4.11](standard-bots.md#411-on-orca), read from change 70's findings against Orca 1.4.267 on 21 November 2026. Orca's command help was not re-read for this draft.
 
