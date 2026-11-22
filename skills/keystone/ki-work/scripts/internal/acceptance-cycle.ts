@@ -55,7 +55,7 @@ export type HousekeepingCompletion =
       replacementMatches: boolean
     }
 
-export type CancelResolution = 'obsolete' | 'rejected' | 'duplicate' | 'merged' | 'superseded'
+export type CancelResolution = 'obsolete' | 'rejected' | 'duplicate' | 'merged' | 'superseded' | 'returned'
 
 const TARGETED_RESOLUTIONS: ReadonlySet<CancelResolution> = new Set(['duplicate', 'merged', 'superseded'])
 const OPEN_STATUSES: ReadonlySet<string> = new Set(['triage', 'draft', 'ready', 'in-progress', 'awaiting-review'])

@@ -120,6 +120,15 @@ test('cancels any explicitly approved open record without delivery evidence or w
     kind: 'cancel',
     resolution: 'obsolete'
   })
+  // Returned work went back to ideas: ## Cancelled names where it waits, and it takes no target.
+  expect(evaluateAcceptanceCycle(input({ item: cancelItem({ resolution: 'returned' }) }))).toMatchObject({
+    kind: 'cancel',
+    resolution: 'returned',
+    targetId: null
+  })
+  expect(
+    evaluateAcceptanceCycle(input({ item: cancelItem({ resolution: 'returned', targetId: 'KI-HARNESS-001' }) }))
+  ).toMatchObject({ kind: 'stop', reason: 'returned cancellation must not name a target record' })
   for (const resolution of ['duplicate', 'merged', 'superseded'] as const)
     expect(
       evaluateAcceptanceCycle(

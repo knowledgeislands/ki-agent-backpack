@@ -304,6 +304,13 @@ test('a cancelled record needs a resolution, a local target and a terminal Cance
   const cancelled = (fields: string, body = '## Cancelled\n\nApproved by Kris Brown on 2026-10-07.\n\n') =>
     createRepository(`status: cancelled\n${fields}\nbaseline_ref: null`, body)
   expect(failures(cancelled('resolution: obsolete'))).toEqual([])
+  // Returned work went back to ideas; ## Cancelled names where it waits, and it takes no target.
+  expect(failures(cancelled('resolution: returned'))).toEqual([])
+  expect(failures(cancelled('resolution: returned\nresolution_target: TEST-002'))).toContainEqual(
+    expect.objectContaining({
+      msg: 'resolution_target is valid only for a duplicate, merged or superseded resolution'
+    })
+  )
   expect(warnings(cancelled('resolution: merged\nresolution_target: TEST-009'))).toContain(
     "resolution_target 'TEST-009' does not resolve to a retained work item; cite its revision in ## Cancelled"
   )

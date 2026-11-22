@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:58:55Z
+ki-revised: 2026-11-22T01:26:05Z
 ki-status: in force
 ---
 
@@ -71,7 +71,7 @@ One work item's file, fields and sections, in a project roadmap or a Knowledge B
 | **Assignee** | Who holds a record, whose it is to take forward, as one of the work model's holder values. **Standard:** this one, [4.4](#44-assignee) |
 | **Classification** | The fields saying what sort of work a record is and what it serves: `kind`, `purpose`, `project`, `theme` and `component`. **Standard:** this one, [4.6](#46-classification) |
 | **Target** | An optional date the work aims towards, `due` or `milestone`, with its outcome. **Standard:** this one, [4.7](#47-target-dates) |
-| **Resolution** | Why a cancelled record ended: `obsolete`, `rejected`, `duplicate`, `merged` or `superseded`. **Standard:** this one, [4.9](#49-cancellation-and-resolution) |
+| **Resolution** | Why a cancelled record ended: `obsolete`, `rejected`, `duplicate`, `merged`, `superseded` or `returned`. **Standard:** this one, [4.9](#49-cancellation-and-resolution) |
 | **Task link** | A verified, provider-keyed reference from a record to a task in another system. **Standard:** this one, [4.10](#410-task-links) |
 | **Review packet** | The `## Review` section a record carries from `awaiting-review`, the evidence for one acceptance decision. **Standard:** this one, [4.13.6](#4136-awaiting-review) |
 
@@ -283,7 +283,8 @@ A held record keeps its status, `baseline_ref`, completed Steps, and review evid
 - `rejected` - the work was considered and declined;
 - `duplicate` - another record already owns the same work;
 - `merged` - the work was folded into another record;
-- `superseded` - a later record replaces it.
+- `superseded` - a later record replaces it;
+- `returned` - the work went back to ideas, which is not the same as being declined: `## Cancelled` names where its idea now waits, as Kris took ROADMAP-EXIT-STATE a on 2026-11-22 ("Yes, add returned"). A `soon` or `future` record, or a held draft, that leaves the roadmap under [Upcoming only](standard-repository-roadmaps.md#43-status-and-horizon) takes it.
 
 `resolution_target` names the replacing record for `duplicate`, `merged`, and `superseded` when it lives in the same repository, and is forbidden otherwise. It is a canonical work-item identifier of this repository, different from the record, and should resolve in the roadmap; a target with another repository's code fails, because records are pruned and cross-repository identifiers and links break. Where the replacing work lives in another repository, the record keeps its resolution with no `resolution_target`, and `## Cancelled` names that repository and describes the work in plain words, with no identifier or link. Only the owning repository closes its own record: closing a duplicate here never closes or edits the target.
 

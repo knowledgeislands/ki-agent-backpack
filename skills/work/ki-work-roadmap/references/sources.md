@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:58:55Z
+ki-revised: 2026-11-22T01:26:05Z
 ki-refresh: canonical · on-change
 ---
 
@@ -52,6 +52,7 @@ None.
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
+| ROADMAP-EXIT-STATE | "Yes, add returned", Kris, about 01:05 UTC, on Orca item 112, recorded in ki.summit's [change 22](https://github.com/krisb/ki-cairn-store/blob/87ec71c8/work/ki/ki.summit/22-roadmap-horizons.change.md#4-outline): option a), records gain a sixth `resolution`, `returned`: the work went back to ideas, which is not the same as being declined, and `## Cancelled` names where it waits; it takes no `resolution_target`. | 2026-11-22 | [4.9](standard-work-item-format.md#49-cancellation-and-resolution), [4.3](standard-repository-roadmaps.md#43-status-and-horizon) | In force |
 | ROADMAP-UPCOMING-NEW | "Yes, now or next only", Kris, about 19:00 GMT, by Orca item card, relayed by the Cairn summit's guardian from its [change 90](https://github.com/krisb/ki-cairn-store/blob/fdf11947/work/cairn/cairn.summit/90-ways-of-working.change.md#44-decided): option a), new roadmap work goes on only at `now` or `next`, applying ROADMAP-PACKAGE a. | 2026-11-21 | [4.3](standard-repository-roadmaps.md#43-status-and-horizon), [4.5](standard-repository-roadmaps.md#45-lifecycle-moves) | In force |
 | ROADMAP-UPCOMING-EXISTING | "Yes, one at a time", Kris, about 19:00 GMT, by Orca item card, relayed by the Cairn summit's guardian from its [change 90](https://github.com/krisb/ki-cairn-store/blob/fdf11947/work/cairn/cairn.summit/90-ways-of-working.change.md#44-decided): option a), existing `soon` and `future` records leave those horizons one at a time, as each comes up for review, with no sweep, as WIP-TERRITORY a chose for packages over the cap. | 2026-11-21 | [4.3](standard-repository-roadmaps.md#43-status-and-horizon) | In force |
 | ROADMAP-UPCOMING-HELD-PLANNED | "Yes, it stays", Kris, about 19:02 GMT, by Orca item card, relayed by the Cairn summit's guardian from its [change 90](https://github.com/krisb/ki-cairn-store/blob/fdf11947/work/cairn/cairn.summit/90-ways-of-working.change.md#44-decided): option a), a held record that is `ready`, `in-progress` or `awaiting-review` stays on the roadmap, so work already done is not lost. | 2026-11-21 | [4.3](standard-repository-roadmaps.md#43-status-and-horizon) | In force |
@@ -74,6 +75,8 @@ None.
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 an in-house review applies ROADMAP-EXIT-STATE a, which Kris took at about 01:05 UTC on Orca item 112, recorded in ki.summit's [change 22](https://github.com/krisb/ki-cairn-store/blob/87ec71c8/work/ki/ki.summit/22-roadmap-horizons.change.md#4-outline). [Cancellation and resolution](standard-work-item-format.md#49-cancellation-and-resolution) gains `returned`, the resolution a Soon, Future or held draft record takes when it leaves the roadmap as an idea under **Upcoming only** in [Status and horizon](standard-repository-roadmaps.md#43-status-and-horizon), and ITEM-2 accepts it. This is an in-house decision review; no external source was refreshed.
 
 On 21 November 2026 an in-house review applies ROADMAP-UPCOMING-NEW a, ROADMAP-UPCOMING-EXISTING a, ROADMAP-UPCOMING-HELD-PLANNED a, ROADMAP-UPCOMING-HELD-DRAFT a and GATES-SIZE-XL a, which Kris took that day between about 19:00 and 19:02 GMT by Orca item card, each option after a blind review, and his dropping of the upcoming-record caps at about 19:20 GMT, all relayed by the Cairn summit's guardian from its [change 90](https://github.com/krisb/ki-cairn-store/blob/fdf11947/work/cairn/cairn.summit/90-ways-of-working.change.md#44-decided). [Status and horizon](standard-repository-roadmaps.md#43-status-and-horizon) gains **Upcoming only**: new work goes on only at `now` or `next`, existing `soon`, `future` and held draft records leave one at a time as each comes up for review, held planned work stays, and there is no cap on upcoming records; [Lifecycle moves](standard-repository-roadmaps.md#45-lifecycle-moves) follows, Future -> Soon going. [Priority and size](standard-work-item-format.md#43-priority-and-size) splits `xl` before adoption, and ITEM-2 warns on an adopted `draft` at `xl`. The checker still admits `soon`, `future` and held drafts, so nothing is swept. This is an in-house decision review; no external source was refreshed.
 

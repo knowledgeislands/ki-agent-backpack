@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:58:55Z
+ki-revised: 2026-11-22T01:26:05Z
 ki-status: in force
 ---
 
@@ -184,7 +184,7 @@ Starting implementation moves the record to Now in the same change, so Now holds
 
 **Upcoming only.** A roadmap holds work ready to build, under [Records and work packages](#49-records-and-work-packages), so new work goes onto it only at `now` or `next`, as Kris took ROADMAP-UPCOMING-NEW a on 2026-11-21 ("Yes, now or next only"), applying ROADMAP-PACKAGE a. No record enters `soon` or `future`, whether by adoption, defer or release, and adoption passes `ki-work next`'s [adoption gate](../../../keystone/ki-work/references/standard-next-work.md#444-the-two-gates). The records already off those horizons are settled one at a time, never by a sweep:
 
-- **Soon and Future:** an existing `soon` or `future` record leaves its horizon when it next comes up for review, as Kris took ROADMAP-UPCOMING-EXISTING a the same day ("Yes, one at a time"). It moves to `next` where it meets the Next entry rule, and otherwise leaves the roadmap: it is cancelled under `ki-work accept`, its `## Cancelled` naming where its idea now waits, in its Project note, its theme page or the Inbox under [Ideas and graduation](#46-ideas-and-graduation), or as an outstanding item in its owning package.
+- **Soon and Future:** an existing `soon` or `future` record leaves its horizon when it next comes up for review, as Kris took ROADMAP-UPCOMING-EXISTING a the same day ("Yes, one at a time"). It moves to `next` where it meets the Next entry rule, and otherwise leaves the roadmap: it is cancelled under `ki-work accept` with `resolution: returned`, its `## Cancelled` naming where its idea now waits, in its Project note, its theme page or the Inbox under [Ideas and graduation](#46-ideas-and-graduation), or as an outstanding item in its owning package.
 - **Held planned work stays:** a held record that is `ready`, `in-progress` or `awaiting-review` stays on the roadmap with its plan and review evidence, so work already done is not lost, as Kris took ROADMAP-UPCOMING-HELD-PLANNED a ("Yes, it stays").
 - **Held drafts leave:** a held `draft` leaves the roadmap the same way as other unready work when it next comes up for review, taking its release condition with it to where its idea now waits, as Kris took ROADMAP-UPCOMING-HELD-DRAFT a ("Yes, drafts leave"). A draft that must wait therefore leaves the roadmap rather than going on hold.
 

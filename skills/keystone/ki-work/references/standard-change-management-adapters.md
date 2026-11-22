@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:43:37Z
+ki-revised: 2026-11-22T01:26:05Z
 ki-status: in force
 ---
 
@@ -91,7 +91,7 @@ Every adapter maps these abstract terms; the [repository-roadmap standard](../..
 - **Priority** - how important the work is among records at the same horizon: high, a material cost from deferral; medium, useful planned progress; or low, a discretionary benefit. It is written at capture, and an absent priority reads as medium.
 - **Size** - the relative end-to-end effort the work involves, from implementation to owner review but not external waiting, and not hours: s, m, l, or xl, xl meaning split before Ready. Required on open work from capture, provisional until revisited before Ready.
 - **Selection order** - adoption, holds and dependencies first, then horizon, then priority, then size, smallest first. Priority never crosses horizons; a high-priority record at a later horizon prompts a proposal to move its horizon.
-- **Resolution** - why cancelled work ended: obsolete, rejected, duplicate, merged, or superseded, with a qualified target record for the last three. Only the owning repository closes its own record.
+- **Resolution** - why cancelled work ended: obsolete, rejected, duplicate, merged, superseded, or returned, with a qualified target record for duplicate, merged, and superseded. Only the owning repository closes its own record.
 - **Classification** - `kind` (deliver, decide, investigate, audit), optional `purpose`, territory-owned `project` or, for projectless work, an optional `theme`, and repository-owned `component`.
 
 Projects and themes are territory registry entries under the [Project registry standard](standard-project-registry.md); an adapter maps them to its native grouping where one exists, such as Linear Projects and Initiatives for themes, and otherwise stores the slugs.
