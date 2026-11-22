@@ -12,7 +12,7 @@ This file holds the interim rules and trial tests that apply while Orca behaviou
 | [Stopping](standard-orca-delegation.md#45-status-steering-and-stopping) | Before the first use of `worker-stop`, check what the installed command stops and what happens to a worker's partial work, and record the result with the stop's outcome. Decided: STOP-VERB a), 7 November 2026 | The first use is recorded |
 | [Questions](standard-orca-delegation.md#410-questions) | The coordinator answers its own asks with `--timeout-ms 1800000`, resuming by message id on timeout. A question only Kris can answer ends the attempt: the worker raises it as a blocking query in its report and keeps it, `worker_done --outcome failed` names its tag, the coordinator records it and retries after Kris answers. Decided: OWNER-ASK a) and TRIAL-ASK a), 7 November 2026 | OF-OWNER-ASK in the Orca fit design is decided |
 | [Ids](standard-orca-delegation.md#49-ids-briefs-and-reports) | Until the machine-local routing record exists, `ki.prj.orca-evaluation`'s `state.md` Run line is a logged exception under its STOCK-TAKE decision | The routing record exists |
-| [Worktree](standard-orca-delegation.md#43-start) | Until the background-run standard's worktree baseline takes effect, `--worktree current` is the default | The worktree baseline takes effect |
+| [Worktree](standard-orca-delegation.md#43-start) | Until the background-run standard's worktree baseline takes effect, `--worktree current` is the default | Ended 22 November 2026: WORKTREE-RUNS's purpose test replaced the baseline, and main work takes `--worktree current` |
 
 ## Next Orca trial
 

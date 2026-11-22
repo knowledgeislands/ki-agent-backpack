@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T08:55:00Z
+ki-revised: 2026-11-22T09:20:00Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -76,6 +76,8 @@ Kris's decisions behind the rules, each taken in conversation or relayed as its 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 WORKTREE-RUNS, which Kris adopted at about 08:58 GMT under WT-ADOPT a in the Cairn summit's [change 70, 4.6](https://github.com/krisb/ki-cairn-store/blob/a5798e5b/work/cairn/cairn.summit/70-bots.change.md#46-decided), landed in [Coordination rules](standard-background-runs.md#481-coordination-rules): a **Worktree choice** by `ki-git`'s purpose test replaces the worktree trial and baseline; **Isolation** takes one worktree run per repository, the allowed folders in place of `$TMPDIR`, and a removal that never waits on a [permission prompt](standard-background-runs.md#483-permission-prompts), which `git worktree remove` can trip; **Integration** rebases on a freshly fetched `origin/main`. The **Worktree audit** now says that `ki` v0.13.0 (`tools-ki` `5889f847`) lets a linked worktree inherit its primary's registration, keeping the isolated-home recipe as the fallback until a run confirms it. No outside source was refreshed.
 
 On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, brought the overnight runs' pitfalls into [Prompt shape](standard-background-runs.md#45-prompt-shape): check a brief against standing decisions and have a record's writer read its format first; stop processes only by recorded PID and name what a desktop install stops; extract app bundles only in scratch; check a privacy claim against the code before reporting it; run a touched skill's rubric while iterating; and audit a repository's `AGENTS.md` as well as its hooks for hidden check cost. The sync step in the run commits and the landing footers follows `ki-git`'s `git fetch` and `git merge --ff-only @{u}`. No rule changed and no outside source was refreshed.
 

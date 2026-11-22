@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:38:02Z
+ki-revised: 2026-11-22T09:20:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -61,6 +61,8 @@ The other answers of 7 November 2026, each option a), are named beside the rules
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 WORKTREE-RUNS, which Kris adopted that morning, replaced the worktree baseline in [the start's worktree step](standard-orca-delegation.md#43-start): the purpose test sends a run to Orca's `new-child` worktree or to `main` with `--worktree current`, and the migration row for the baseline ended. No outside source was refreshed.
 
 On 21 November 2026 an in-house review applies WIP-PACKAGE a, which Kris took that day at about 18:54 GMT, relayed by the Cairn summit's guardian from its [change 90](https://github.com/krisb/ki-cairn-store/blob/fdf11947/work/cairn/cairn.summit/90-ways-of-working.change.md#44-decided): the coordinator's pacing of Orca workers keeps one unit in flight per work package, plus at most its independent review, in place of QUEUE-PACE's ceiling of about three, as `ki-coordination` sets it. This is an in-house decision review; no external source was refreshed.
 

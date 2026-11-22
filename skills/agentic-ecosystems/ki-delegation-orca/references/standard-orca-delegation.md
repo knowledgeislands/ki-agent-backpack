@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:38:02Z
+ki-revised: 2026-11-22T09:20:00Z
 ki-status: in force
 ---
 
@@ -93,7 +93,7 @@ Every rule below rests on one of two grounds, named beside it: **proved**, Orca 
 1. **Run.** Create one Run per package per coordinator session with `orca orchestration run-create --objective "<work id> - <purpose>" --json`. The objective starts with the work id because that is how a later session finds the Run. Proved: the new Run of 1 November 2026 and the gotcha "Finding a Run".
 2. **Worker.** Start each run with `orca orchestration worker-start --spec <brief> --task-title <run name> --worktree <worktree> --agent <claude|codex> [--model <id> --effort <level>] --json`. Claude and Codex workers started this way from a chat coordinator ran without permission prompts and nest under the coordinator's row in Orca's Agents list. Proved: TRIAL-SHAPE and four workers on 1 November 2026.
 3. **Ids.** Read the Task and Dispatch ids from `orca orchestration worker-list --run <run id> --json`, not from the start receipt, which nests them. Proved: the gotcha "worker-start's receipt nests the ids".
-4. **Worktree.** A writing run works in its own worktree, Orca's `new-child`, under the background-run standard's [worktree baseline](../../ki-delegation/references/standard-background-runs.md#48-coordination); a worker commits by pathspec, and workers that touch the same files are chained, never run in parallel. Decided: WORKTREE-OPTOUT a), 30 October 2026; proved: ORCA-DISPATCH-LEARNINGS (2).
+4. **Worktree.** A writing run that `ki-git`'s purpose test sends to a worktree works in its own, Orca's `new-child`, in Orca's workspaces folder, under the background-run standard's [worktree choice](../../ki-delegation/references/standard-background-runs.md#481-coordination-rules); one on `main` takes `--worktree current`. A worker commits by pathspec, and workers that touch the same files are chained, never run in parallel. Decided: WORKTREE-RUNS, 22 November 2026, in place of WORKTREE-OPTOUT a), 30 October 2026; proved: ORCA-DISPATCH-LEARNINGS (2).
 5. **Agent.** Pass the brief's runtime as `--agent` and use Orca's own launch; switch to `orca terminal create` with `worker-start --terminal` only if a worker meets permission prompts or blocked writes. Decided: ORCA-PLACEMENT a), taken in `ki.prj.ways-of-working`.
 6. **Brief as spec.** The spec is the whole rendered brief, with its tier footer, progress protocol and report rule, under the background-run standard's [prompt shape](../../ki-delegation/references/standard-background-runs.md#45-prompt-shape). The coordinator passes a brief already in the run packet, kept exactly as launched, and checks it first for leftover placeholders, a missing or doubled authority footer, a wrong report path and shell truncation. Passing a brief never adds authority. Proved: the four trial workers of 1 November 2026 ran this way; decided: PROMPT-RENDER a), 7 November 2026.
 
