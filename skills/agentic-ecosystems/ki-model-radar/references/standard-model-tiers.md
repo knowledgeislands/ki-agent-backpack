@@ -15,8 +15,8 @@ ki-status: in force
 - [3. Terms and definitions](#3-terms-and-definitions)
 - [4. Rules](#4-rules)
   - [4.1 What a tier records](#41-what-a-tier-records)
-  - [4.2 Claude candidates](#42-claude-candidates)
-  - [4.3 Codex role evidence](#43-codex-role-evidence)
+  - [4.2 Runtime binding — Claude candidates](#42-runtime-binding--claude-candidates)
+  - [4.3 Runtime binding — Codex role evidence](#43-runtime-binding--codex-role-evidence)
   - [4.4 Effort and model identity](#44-effort-and-model-identity)
   - [4.5 Before a tier default moves](#45-before-a-tier-default-moves)
 
@@ -53,7 +53,7 @@ Dated candidates for each portable purpose, for each runtime family the house us
 | Term | Definition |
 | --- | --- |
 | **Candidate** | A model a provider positions for a purpose on a stated date; not a claim that a KI route exposes or should default to it. **Standard:** this one, [4.1](#41-what-a-tier-records) |
-| **Operating role** | Main-thread orchestration, judgment worker or mechanical worker, each mapped to a portable purpose. **Standard:** this one, [4.3](#43-codex-role-evidence) |
+| **Operating role** | Main-thread orchestration, judgment worker or mechanical worker, each mapped to a portable purpose. **Standard:** this one, [4.3](#43-runtime-binding--codex-role-evidence) |
 | **Default effort** | The reasoning effort a candidate is considered at; it is model-dependent. **Standard:** this one, [4.4](#44-effort-and-model-identity) |
 | **Baseline case** | One of the three evaluation cases each candidate runs twice before a default moves. **Standard:** this one, [4.5](#45-before-a-tier-default-moves) |
 
@@ -71,7 +71,7 @@ Each candidate is a model the [radar snapshot](radar.toml) records, and a weekly
 
 [Back to contents](#contents)
 
-### 4.2 Claude candidates
+### 4.2 Runtime binding — Claude candidates
 
 | Purpose | Current candidate | Why consider it | Default effort |
 | ------- | ----------------- | --------------- | -------------- |
@@ -80,11 +80,11 @@ Each candidate is a model the [radar snapshot](radar.toml) records, and a weekly
 | `standard` | Claude Sonnet 5.5 | Faster balanced work | `high` |
 | `fast` | Claude Haiku 5.5 | Focused work at the fastest tier | `medium` |
 
-The [current Anthropic model overview](https://platform.claude.com/docs/en/models/overview) supports these identities, default efforts and provider positioning as of 2026-11-22. It recommends starting with Opus 5.5 for most workloads and Fable 5.2 for demanding reasoning and long-horizon agentic work, or where Opus 5.5 at a higher effort still falls short. Claude Haiku 4.5, the earlier `fast` candidate, is now listed among older models. These rows are candidates, not a claim that KI's Claude route exposes or should default to any of them.
+The [current Anthropic model overview](https://platform.claude.com/docs/en/models/overview) supports these identities, default efforts and provider positioning as of 2026-11-22. It recommends starting with Opus 5.5 for most workloads and Fable 5.2 for demanding reasoning and long-horizon agentic work, or where Opus 5.5 at a higher effort still falls short. Claude Haiku 4.5, the earlier `fast` candidate, is now listed among older models. [Anthropic's versioning guidance](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions) distinguishes fixed model identities from aliases: from the 4.6 models on, a dateless Claude ID names one fixed snapshot and an update ships under a new ID, while an earlier model's alias points to its latest dated snapshot. These rows are candidates, not a claim that KI's Claude route exposes or should default to any of them.
 
 [Back to contents](#contents)
 
-### 4.3 Codex role evidence
+### 4.3 Runtime binding — Codex role evidence
 
 `ki-model-radar`'s `scripts/internal/model-tier-resolution.ts` maps the three operating roles to portable purposes and dated family evidence, without selecting a live model:
 
@@ -102,7 +102,7 @@ The Astra, Sol and Luna positioning is planning evidence rechecked against the o
 
 ### 4.4 Effort and model identity
 
-Effort is model-dependent: `high` is not a universal default, and an older model may not support the effort control its successor does. [Anthropic's versioning guidance](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions) distinguishes fixed model identities from aliases: from the 4.6 models on, a dateless Claude ID names one fixed snapshot and an update ships under a new ID, while an earlier model's alias points to its latest dated snapshot. Do not assume, for any provider, that an ID silently advances to a newer model.
+Effort is model-dependent: `high` is not a universal default, and an older model may not support the effort control its successor does. Providers distinguish fixed model identities from aliases, as the runtime bindings above record; do not assume, for any provider, that an ID silently advances to a newer model.
 
 [Back to contents](#contents)
 
