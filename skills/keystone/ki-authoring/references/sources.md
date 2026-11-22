@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T01:09:07Z
+ki-revised: 2026-11-22T09:00:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -141,6 +141,8 @@ Advisory sources inform local judgment conventions but are not specifications, m
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, added one pitfall Tower met overnight (store record `20261122T0704Z-personal.tower-overnight-push`) to the [change format](standard-formats-change.md#43-shape)'s Steps: step numbers are plain integers, since a lettered one such as `31a.` is joined to the step before it by `rumdl fmt`. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 an in-house review built the presentation format from the Cairn summit's [change 60](https://github.com/krisb/ki-cairn-store/blob/4a220bf8/work/cairn/cairn.summit/60-design.change.md#48-decided), step 10, under ARTIFACT-HOMES a, PRESENTATION-FORMAT and NO-ARTIFACTS. [The presentation format](standard-formats-presentation.md) is in force: a deck is one `<slug>.presentation.md` with its images in a folder beside it, its front matter that of a design with `ki-inputs` as a change's, three statuses, and its home beside what it presents, in a design's folder or `docs/presentations/`, or the territory's principal repository when it serves no single one. The house choices, each tried on pandoc 3.14 and the house rumdl configuration: level-2 headings separate slides, rather than `---` rules, so every slide has an anchor for Contents and the Wayfinder, reads as an outline on GitHub and keeps numbered sections, and `pandoc --shift-heading-level-by=-1 --slide-level=1` builds the deck with no filter, the H1 its title slide; speaker notes are pandoc's `::: notes` blocks, which show under their slide on GitHub and land in a `.pptx`'s notes, the notes under the title becoming the title slide's; rumdl leaves both unchanged. Back to contents links are dropped, since each would show on every slide. An export is derived and not committed, a copy kept as sent going to the Sources folder as an export under SOURCES-NAME a; a cloud view is a projection, as `ki-design-system`'s 4.11 sets. `ki-repo`'s documentation topology names `docs/presentations/`. Open for Kris: where a principal repository that is a Knowledge Base keeps a territory's presentations; until then the format says a Knowledge Base keeps them where its own structure says, as the design format does.
 
