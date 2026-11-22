@@ -31,7 +31,7 @@ export const FUNCTIONAL_AREAS: readonly FunctionalArea[] = [
     groups: [
       { title: 'Repository and writing', skills: ['ki-repo', 'ki-authoring', 'ki-diagrams', 'ki-git'] },
       { title: 'Skills and backpack', skills: ['ki-skills', 'ki-repo-backpack'] },
-      { title: 'Knowledge', skills: ['ki-knowledge-graph', 'ki-agentic-systems'] },
+      { title: 'Knowledge', skills: ['ki-knowledge-graph', 'ki-agentic-ecosystems'] },
       { title: 'Guilds', skills: ['ki-keystone', 'ki-design', 'ki-env'] }
     ]
   },

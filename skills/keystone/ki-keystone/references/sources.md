@@ -24,7 +24,7 @@ The sources and decisions behind [the Keystone standard](standard-keystone.md), 
 
 ## 2. Outside sources
 
-Keystone's guild rules have none: Keystone is Knowledge Islands' own, and the industry has no word for a guild of skills, as `ki-agentic-systems`' guild card records. The bootstrap guidance follows in-house sources only.
+Keystone's guild rules have none: Keystone is Knowledge Islands' own, and the industry has no word for a guild of skills, as `ki-agentic-ecosystems`' guild card records. The bootstrap guidance follows in-house sources only.
 
 ### 2.1 Authoritative
 
@@ -55,7 +55,7 @@ None.
 | KEYSTONE-MIN | The owner's decision, in change 14: Keystone holds only what every other guild rests on, and never becomes a dumping ground. | 2026-11-13 | [4.1](standard-keystone.md#41-the-joining-rule) | In force |
 | GUILD-LEAD | The owner's decision, in change 14: each guild is a tree of skills led by one lead skill. | 2026-11-13 | [4.2](standard-keystone.md#42-one-lead-for-each-guild) | In force |
 | GUILD-PLACE | The owner's decision, in change 14: each skill's frontmatter names its guild and a lead the guild it leads; the folder a skill sits in is storage, not structure. | 2026-11-13 | [4.2](standard-keystone.md#42-one-lead-for-each-guild), [4.3](standard-keystone.md#43-the-guild-map) | In force |
-| KEYSTONE-SKILL | The owner's decision, in change 14: `ki-keystone` holds the guild map, each guild's purpose in a line and its lead, generated from frontmatter; where a session starts in a repository, `ki-repo`, `ki-authoring` and `ki-agentic-systems`; and the rule for joining Keystone, pointing to `ki-skills` for the rest. | 2026-11-13 | [4.3](standard-keystone.md#43-the-guild-map), [4.4](standard-keystone.md#44-where-a-session-starts) | In force; the backpack's catalogue stays with `ki-repo-backpack` for now, grouped by the same guilds |
+| KEYSTONE-SKILL | The owner's decision, in change 14: `ki-keystone` holds the guild map, each guild's purpose in a line and its lead, generated from frontmatter; where a session starts in a repository, `ki-repo`, `ki-authoring` and `ki-agentic-ecosystems`; and the rule for joining Keystone, pointing to `ki-skills` for the rest. | 2026-11-13 | [4.3](standard-keystone.md#43-the-guild-map), [4.4](standard-keystone.md#44-where-a-session-starts) | In force; the backpack's catalogue stays with `ki-repo-backpack` for now, grouped by the same guilds |
 | BOOT-HOME | Kris's decision: this skill owns the one machine-readiness checklist from a fresh machine to a working coordinator, ending in "Ready to coordinate" with observable hook and output-style checks, and `ki-coordination`'s Bootstrap cites it as its "Before the opener" step. | 2026-10-26 | [bootstrap standard](standard-bootstrap.md#47-machine-readiness-for-coordinating-work) | In force |
 | BOOTSTRAP-FOLD | The owner's decision, in change 14: `ki-bootstrap` becomes `ki-keystone bootstrap`, its body a reference loaded only when the mode is called. | 2026-11-13 | [mode-bootstrap.md](mode-bootstrap.md) | In force |
 | OPENER-DELEGATE | Kris's decision in conversation, option a: every opener or brief that starts a session tells it to delegate its work to its agent host's own subagents, stay responsive to its messages and to the owner while that work runs, and let the subagents do most of the work, checking what they return before posting it. | 2026-11-14 | [bootstrap standard](standard-bootstrap.md#47-machine-readiness-for-coordinating-work) | In force |

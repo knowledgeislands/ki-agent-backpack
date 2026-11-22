@@ -38,7 +38,7 @@ What Knowledge Islands sets up and keeps where agents run.
 
 ### 2.2 Out of scope
 
-- What an environment, a machine and an agent host are: `ki-agentic-systems`.
+- What an environment, a machine and an agent host are: `ki-agentic-ecosystems`.
 - Each family's own rules: its lead and its runtime skills.
 - Capturing a session's knowledge: `ki-acquire`.
 
@@ -48,7 +48,7 @@ What Knowledge Islands sets up and keeps where agents run.
 
 | Term | Definition |
 | --- | --- |
-| **Environment** | Where an agent's work runs: the files, tools, access and limits it works with; `ki-agentic-systems`' [environment card](../../ki-agentic-systems/knowledge/industry/industry.environment.md) says what it is. **Standard:** this one, [4.1](#41-what-the-guild-covers) |
+| **Environment** | Where an agent's work runs: the files, tools, access and limits it works with; `ki-agentic-ecosystems`' [environment card](../../ki-agentic-ecosystems/knowledge/industry/industry.environment.md) says what it is. **Standard:** this one, [4.1](#41-what-the-guild-covers) |
 | **Family lead** | The portable skill that holds the rules a family's runtime skills share. **Standard:** `ki-skills`' [guilds standard](../../ki-skills/references/standard-guilds.md#45-how-a-lead-discloses-its-guild) |
 | **Runtime skill** | A family member bound to one agent host, adding only that host's delta to its family lead's rules. **Standard:** this one, [4.2](#42-families) |
 

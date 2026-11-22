@@ -67,7 +67,7 @@ Analyse a conversation, chat, thread, meeting or negotiation for its dynamics: c
 
 #### `ki-agentic-bots`
 
-Work as a bot actor on an agent host: bootstrap from a tracked file on every wake, send background work to the bot's own subagents, mail other bots by name, keep the host's memory a working aid, count the work package as outstanding work and card questions only when due. Use when setting up, running or reviewing a bot, or writing a store's own bootstrap file for its bots; `ki-agentic-systems` says what a bot is, `ki-coordination` owns the coordinating work and `ki-delegation` the background runs.
+Work as a bot actor on an agent host: bootstrap from a tracked file on every wake, send background work to the bot's own subagents, mail other bots by name, keep the host's memory a working aid, count the work package as outstanding work and card questions only when due. Use when setting up, running or reviewing a bot, or writing a store's own bootstrap file for its bots; `ki-agentic-ecosystems` says what a bot is, `ki-coordination` owns the coordinating work and `ki-delegation` the background runs.
 
 - **Kind:** Process
 - **Applicability:** Invocation Only
@@ -77,7 +77,7 @@ Work as a bot actor on an agent host: bootstrap from a tracked file on every wak
 
 #### `ki-agentic-radar`
 
-Maintain an evidence-backed radar for agentic protocols, interfaces, organisations, architectures, research, and vendor terms. Use for maturity, interoperability, or stance; `ki-agentic-systems` defines the terms, `ki-model-radar` owns models, `ki-acquire pulse` discovers signals, and `ki-work next` owns follow-on work.
+Maintain an evidence-backed radar for agentic protocols, interfaces, organisations, architectures, research, and vendor terms. Use for maturity, interoperability, or stance; `ki-agentic-ecosystems` defines the terms, `ki-model-radar` owns models, `ki-acquire pulse` discovers signals, and `ki-work next` owns follow-on work.
 
 - **Kind:** Governance
 - **Applicability:** Declaration Only
@@ -117,7 +117,7 @@ Maintain an evidence-backed radar for models and model-agent routes. Use for mod
 
 #### `ki-subagents`
 
-Define or assess runtime-neutral KI subagent roles: identity, delegation purpose, instructions, lane, grounding, hand-offs, orchestration, and evidence. Use before a native projection; use `ki-subagents-claude` or `ki-subagents-chatgpt` for runtime files, and `ki-agentic-systems` for what a subagent is.
+Define or assess runtime-neutral KI subagent roles: identity, delegation purpose, instructions, lane, grounding, hand-offs, orchestration, and evidence. Use before a native projection; use `ki-subagents-claude` or `ki-subagents-chatgpt` for runtime files, and `ki-agentic-ecosystems` for what a subagent is.
 
 - **Kind:** Governance
 - **Applicability:** Detected
@@ -324,7 +324,7 @@ Lead the Acquire guild and govern source-independent knowledge capture: supplied
 - **Dependencies:** None
 - **Runtime:** Portable
 
-#### `ki-agentic-systems`
+#### `ki-agentic-ecosystems`
 
 Lead the Agentic systems guild and define the words of agentic systems as a knowledge graph: industry cards from model, agent harness, agent, session, subagent and skill to environment, machine, agent host and client, with Anthropic's, OpenAI's, Google's and Microsoft's own words in vendor subgraphs linked to them. Use to learn what an agentic term means, which sense a vendor name such as Claude or Codex carries, how vendors' words compare, or which card to link instead of redefining a term; `ki-agentic-radar` owns maturity and stance, and `ki-subagents` how to run subagents.
 

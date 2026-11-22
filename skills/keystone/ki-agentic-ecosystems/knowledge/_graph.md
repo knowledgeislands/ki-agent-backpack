@@ -1,5 +1,5 @@
 ---
-id: ki-agentic-systems
+id: ki-agentic-ecosystems
 title: The vocabulary of agentic systems
 type: graph
 status: agreed

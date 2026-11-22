@@ -173,10 +173,10 @@ An agent actor's presence is six fields, each holding one plain value so that ea
 
 | Field | Holds |
 | --- | --- |
-| `ki-host` | Its [agent host](../../../keystone/ki-agentic-systems/knowledge/industry/industry.agent-host.md#our-conventions), the application or process that owns its sessions, such as `orca` or `chatgpt-voice` |
-| `ki-harness` | Its [agent harness](../../../keystone/ki-agentic-systems/knowledge/industry/industry.agent-harness.md#our-conventions), the engine that runs the loop, such as `claude-code` or `codex` |
+| `ki-host` | Its [agent host](../../../keystone/ki-agentic-ecosystems/knowledge/industry/industry.agent-host.md#our-conventions), the application or process that owns its sessions, such as `orca` or `chatgpt-voice` |
+| `ki-harness` | Its [agent harness](../../../keystone/ki-agentic-ecosystems/knowledge/industry/industry.agent-harness.md#our-conventions), the engine that runs the loop, such as `claude-code` or `codex` |
 | `ki-rig` | Where it runs: the machine's name, a virtual machine counting as a machine, such as `sol`, or `cloud` for a vendor's machines that cannot be identified |
-| `ki-environment` | Its [execution environment](../../../keystone/ki-agentic-systems/knowledge/industry/industry.environment.md#our-conventions)'s isolation only: `none`, checked and running directly on the rig within what its configuration allows; `harness-sandbox`, the agent harness's own sandbox; `container`; or `vendor-sandbox`, a sandbox the vendor provides |
+| `ki-environment` | Its [execution environment](../../../keystone/ki-agentic-ecosystems/knowledge/industry/industry.environment.md#our-conventions)'s isolation only: `none`, checked and running directly on the rig within what its configuration allows; `harness-sandbox`, the agent harness's own sandbox; `container`; or `vendor-sandbox`, a sandbox the vendor provides |
 | `ki-model` | The model id its latest session runs, exactly as its harness records it, such as `claude-opus-5-5` |
 | `ki-last_seen` | UTC time it was last seen, with milliseconds |
 

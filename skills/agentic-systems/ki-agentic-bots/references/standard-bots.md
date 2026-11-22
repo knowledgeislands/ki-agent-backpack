@@ -28,7 +28,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-How a bot actor works on its agent host. A [bot](../../../keystone/ki-agentic-systems/knowledge/system/system.bot.md) is an actor its host keeps and wakes, under the same rules and remit as a session actor, with the store as the record; this standard sets what it does on every wake and how it works between wakes. It was generalised from the first store's bootstrap file for its bots, in use from 21 November 2026, and from the owner's decisions behind it, which [the sources](sources.md) record.
+How a bot actor works on its agent host. A [bot](../../../keystone/ki-agentic-ecosystems/knowledge/system/system.bot.md) is an actor its host keeps and wakes, under the same rules and remit as a session actor, with the store as the record; this standard sets what it does on every wake and how it works between wakes. It was generalised from the first store's bootstrap file for its bots, in use from 21 November 2026, and from the owner's decisions behind it, which [the sources](sources.md) record.
 
 [Back to contents](#contents)
 
@@ -47,7 +47,7 @@ The working practice of a bot actor on any agent host that keeps bots.
 
 ### 2.2 Out of scope
 
-- What a bot and an actor are, the two actor types and the constraints a bot works under: `ki-agentic-systems`.
+- What a bot and an actor are, the two actor types and the constraints a bot works under: `ki-agentic-ecosystems`.
 - Replies, the bootstrap report, the mark, re-anchoring and reports: `ki-coordination`.
 - The background run contract: `ki-delegation`; Orca's supervised workers: `ki-delegation-orca`.
 - The work package's shape: `ki-work-package`.
@@ -60,9 +60,9 @@ The working practice of a bot actor on any agent host that keeps bots.
 
 | Term | Definition |
 | --- | --- |
-| **Bot** | An agent that has its own memory and processes; a bot actor is an actor run as one. **Standard:** `ki-agentic-systems`' [bot card](../../../keystone/ki-agentic-systems/knowledge/system/system.bot.md) |
-| **Actor** | Whoever acts at a node of the work tree, persisting across sessions, with one roster entry. **Standard:** `ki-agentic-systems`' [actor card](../../../keystone/ki-agentic-systems/knowledge/system/system.actor.md) |
-| **Agent host** | The application or process that runs agent harnesses and owns their sessions; the host, in this standard, always means one. **Standard:** `ki-agentic-systems`' [agent host card](../../../keystone/ki-agentic-systems/knowledge/industry/industry.agent-host.md) |
+| **Bot** | An agent that has its own memory and processes; a bot actor is an actor run as one. **Standard:** `ki-agentic-ecosystems`' [bot card](../../../keystone/ki-agentic-ecosystems/knowledge/system/system.bot.md) |
+| **Actor** | Whoever acts at a node of the work tree, persisting across sessions, with one roster entry. **Standard:** `ki-agentic-ecosystems`' [actor card](../../../keystone/ki-agentic-ecosystems/knowledge/system/system.actor.md) |
+| **Agent host** | The application or process that runs agent harnesses and owns their sessions; the host, in this standard, always means one. **Standard:** `ki-agentic-ecosystems`' [agent host card](../../../keystone/ki-agentic-ecosystems/knowledge/industry/industry.agent-host.md) |
 | **Bootstrap file** | The tracked file at a store's root that every bot of that store reads and follows on every wake, holding what is common to them. **Standard:** this one, [4.2](#42-the-bootstrap-on-every-wake) |
 | **Soul** | An actor's own file in its roster folder, `SOUL.md`, saying who and what it is and how it works. **Standard:** this one, [4.2](#42-the-bootstrap-on-every-wake) |
 | **Wake** | Anything that starts or resumes a bot's turn: the owner in a chat, mail, a scheduled or event run, or the host's own housekeeping. **Standard:** this one, [4.3](#43-by-kind-of-wake) |

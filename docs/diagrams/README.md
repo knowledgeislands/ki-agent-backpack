@@ -60,7 +60,7 @@ What steps does a piece of owner-directed work take? Coordinating work under `ki
 
 ## Agentic vocabulary
 
-How do the agentic terms nest in practice? This instance diagram follows the `ki-agentic-systems` cards from machine and environment, local, remote and cloud, through agent host, agent and session to subagent threads and clients, with real examples from terra, sol and the cloud. sol's session and the cloud row are illustrative.
+How do the agentic terms nest in practice? This instance diagram follows the `ki-agentic-ecosystems` cards from machine and environment, local, remote and cloud, through agent host, agent and session to subagent threads and clients, with real examples from terra, sol and the cloud. sol's session and the cloud row are illustrative.
 
 [![Agentic terms by example](agentic-terms-by-example.svg)](agentic-terms-by-example.html)
 

@@ -9,7 +9,7 @@ ki-shared-dependencies: [ki-skills:rubric]
 description: >
   Define or assess runtime-neutral KI subagent roles: identity, delegation purpose, instructions, lane,
   grounding, hand-offs, orchestration, and evidence. Use before a native projection; use `ki-subagents-claude`
-  or `ki-subagents-chatgpt` for runtime files, and `ki-agentic-systems` for what a subagent is.
+  or `ki-subagents-chatgpt` for runtime files, and `ki-agentic-ecosystems` for what a subagent is.
 argument-hint: 'audit | conform | educate | refresh | help'
 ---
 
@@ -17,7 +17,7 @@ argument-hint: 'audit | conform | educate | refresh | help'
 
 ## Position
 
-What a subagent is, in the industry's sense, is `ki-agentic-systems`' [subagent card](../../keystone/ki-agentic-systems/knowledge/industry/industry.subagent.md); this skill says how to define a role one takes and run it, the practice rather than the vocabulary.
+What a subagent is, in the industry's sense, is `ki-agentic-ecosystems`' [subagent card](../../keystone/ki-agentic-ecosystems/knowledge/industry/industry.subagent.md); this skill says how to define a role one takes and run it, the practice rather than the vocabulary.
 
 This is the runtime-neutral parent for a subagent role. It owns the role's stable identity, selection purpose, core instructions, lane, grounding, hand-offs, orchestration intent, and evidence that selecting the role improves an outcome. It owns no runtime field, file extension, path, installation, activation, effective setting, or execution claim.
 

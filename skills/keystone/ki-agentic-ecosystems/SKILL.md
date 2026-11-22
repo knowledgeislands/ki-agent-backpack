@@ -1,5 +1,5 @@
 ---
-name: ki-agentic-systems
+name: ki-agentic-ecosystems
 ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: knowledge
 ki-applicability: invocation-only
@@ -16,7 +16,7 @@ description: >
 argument-hint: 'educate <term> | help | refresh'
 ---
 
-# Knowledge Islands agentic systems
+# Knowledge Islands agentic ecosystems
 
 This is a knowledge skill: it equips a session with the vocabulary of agentic systems and audits or conforms nothing. It is the one canonical source for agentic terms in Knowledge Islands. Its cards form a knowledge graph in the Semantic Markdown format the `ki-knowledge-graph` skill defines, opened by its root definition, [`_graph.md`](knowledge/_graph.md), which declares the card types, link vocabulary, properties, constraints and subgraphs. The decisions behind its shape are in [the sources](references/sources.md#3-decisions).
 

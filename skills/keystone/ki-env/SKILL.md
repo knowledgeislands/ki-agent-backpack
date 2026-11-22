@@ -17,7 +17,7 @@ argument-hint: 'audit <repo> | conform <repo> | educate <repo> | help | refresh'
 
 # Environment
 
-An environment is where an agent's work runs: the files, tools, access and limits it works with, in the sense of `ki-agentic-systems`' environment card. The Environment guild keeps what Knowledge Islands sets up there. Each concern is a family: a portable lead that holds the rules every runtime shares, and a runtime skill for each agent host that adds only its own delta. [The environment standard](references/standard-environment.md) holds the rules.
+An environment is where an agent's work runs: the files, tools, access and limits it works with, in the sense of `ki-agentic-ecosystems`' environment card. The Environment guild keeps what Knowledge Islands sets up there. Each concern is a family: a portable lead that holds the rules every runtime shares, and a runtime skill for each agent host that adds only its own delta. [The environment standard](references/standard-environment.md) holds the rules.
 
 ## Members
 
@@ -29,7 +29,7 @@ Start from a family's lead; it names its runtime skills.
 
 ## Boundaries
 
-- **`ki-agentic-systems`** says what an environment, a machine and an agent host are.
+- **`ki-agentic-ecosystems`** says what an environment, a machine and an agent host are.
 - **`ki-acquire`** owns capturing a session's knowledge; housekeeping only inventories and cleans up.
 - **`ki-repo-dotfiles-chezmoi`** owns the dotfiles repository the chezmoi binding renders into.
 

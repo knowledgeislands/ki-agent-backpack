@@ -54,7 +54,7 @@ What a guild is, how one is led, named and joined, and how a session finds its w
 
 | Term | Definition |
 | --- | --- |
-| **Guild** | A set of skills that belong together and work together, with one purpose a reader can name, led by one lead skill; `ki-agentic-systems`' [guild card](../../ki-agentic-systems/knowledge/system/system.guild.md) says what it is. **Standard:** this one, [4.1](#41-what-a-guild-is) |
+| **Guild** | A set of skills that belong together and work together, with one purpose a reader can name, led by one lead skill; `ki-agentic-ecosystems`' [guild card](../../ki-agentic-ecosystems/knowledge/system/system.guild.md) says what it is. **Standard:** this one, [4.1](#41-what-a-guild-is) |
 | **Lead skill** | The skill that leads a guild: it says what the guild is for and discloses its other skills as they are needed. Named after its guild. **Standard:** this one, [4.1](#41-what-a-guild-is), [4.5](#45-how-a-lead-discloses-its-guild) |
 | **Member** | A skill that declares a guild in its `ki-guild` key. **Standard:** this one, [4.4](#44-membership) |
 | **Keystone** | The guild of guilds: what every other guild rests on, and each guild's lead skill. Led by `ki-keystone`. **Standard:** this one, [4.2](#42-keystone) |
@@ -72,7 +72,7 @@ The rules, part by part.
 
 A guild is a set of skills that belong together and work together, with one purpose a reader can name in a line (GUILD-TERM). Each guild is a tree of skills led by one lead skill, which discloses the rest the way a skill discloses its references: a lead says what the guild is for and names each member with when to use it, and a member is loaded only when it is needed (GUILD-LEAD). A guild is not a layer above skills. Nothing new sits above a skill, a guild stays within what a skill can be, and a skill family's prefix already shows the same grouping on a smaller scale.
 
-Every guild has exactly one lead, and a skill leads at most one guild. A lead may be any kind of skill, a knowledge skill included, as `ki-agentic-systems` leads the Agentic systems guild (AGENTS-GUILD).
+Every guild has exactly one lead, and a skill leads at most one guild. A lead may be any kind of skill, a knowledge skill included, as `ki-agentic-ecosystems` leads the Agentic systems guild (AGENTS-GUILD).
 
 [Back to contents](#contents)
 
@@ -95,7 +95,7 @@ The guilds' names and prefixes are settled:
 | Keystone | `ki-keystone` | None: its members are leads and what every guild rests on |
 | Repository | `ki-repo` | `ki-repo-` |
 | Work | `ki-work` | `ki-work-` |
-| Agentic systems | `ki-agentic-systems` | `ki-agentic-` (AGENTS-GUILD) |
+| Agentic systems | `ki-agentic-ecosystems` | `ki-agentic-` (AGENTS-GUILD) |
 | Acquire | `ki-acquire` | `ki-acquire-` |
 | Environment | `ki-env` | `ki-env-` (ENV-PREFIX) |
 | Design | `ki-design` | `ki-design-` (DESIGN-LEAD) |
@@ -134,6 +134,6 @@ A lead discloses its guild the way a skill discloses its references: a little at
 
 ### 4.6 The guild map
 
-`ki-keystone` holds the guild map: each guild in a line, with its purpose and its lead, generated from the skills' frontmatter rather than written by hand (KEYSTONE-SKILL). It also names where a session starts in a repository, `ki-repo`, `ki-authoring` and `ki-agentic-systems`, and states Keystone's joining rule, pointing here for the rest of the guild rules. A backpack's published skills catalogue groups skills by their declared guild in the same way.
+`ki-keystone` holds the guild map: each guild in a line, with its purpose and its lead, generated from the skills' frontmatter rather than written by hand (KEYSTONE-SKILL). It also names where a session starts in a repository, `ki-repo`, `ki-authoring` and `ki-agentic-ecosystems`, and states Keystone's joining rule, pointing here for the rest of the guild rules. A backpack's published skills catalogue groups skills by their declared guild in the same way.
 
 [Back to contents](#contents)

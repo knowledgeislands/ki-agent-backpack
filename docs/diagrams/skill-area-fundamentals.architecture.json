@@ -73,13 +73,13 @@
       ]
     },
     {
-      "id": "ki-agentic-systems",
+      "id": "ki-agentic-ecosystems",
       "type": "cloud",
-      "label": "ki-agentic-systems",
+      "label": "ki-agentic-ecosystems",
       "sublabel": "keystone · knowledge",
       "sources": [
         {
-          "path": "skills/keystone/ki-agentic-systems/SKILL.md"
+          "path": "skills/keystone/ki-agentic-ecosystems/SKILL.md"
         }
       ],
       "tag": "R– · C0 · F95",
@@ -419,7 +419,7 @@
       "label": "Knowledge",
       "wraps": [
         "ki-knowledge-graph",
-        "ki-agentic-systems"
+        "ki-agentic-ecosystems"
       ],
       "pad": 28
     },
@@ -444,7 +444,7 @@
         "ki-skills",
         "ki-repo-backpack",
         "ki-knowledge-graph",
-        "ki-agentic-systems",
+        "ki-agentic-ecosystems",
         "ki-keystone",
         "ki-design",
         "ki-env"

@@ -50,7 +50,7 @@ The Keystone guild, and the guild tree of any skill collection organised into gu
 
 | Term | Definition |
 | --- | --- |
-| **Guild** | A set of skills that belong together and work together, led by one lead skill; `ki-agentic-systems`' [guild card](../../ki-agentic-systems/knowledge/system/system.guild.md) says what it is. **Standard:** `ki-skills`' [guilds standard](../../ki-skills/references/standard-guilds.md) |
+| **Guild** | A set of skills that belong together and work together, led by one lead skill; `ki-agentic-ecosystems`' [guild card](../../ki-agentic-ecosystems/knowledge/system/system.guild.md) says what it is. **Standard:** `ki-skills`' [guilds standard](../../ki-skills/references/standard-guilds.md) |
 | **Keystone** | The guild of guilds: what every other guild rests on, and each guild's lead. **Standard:** this one, [4.1](#41-the-joining-rule) |
 | **Skill collection** | The skills a repository holds under its `skills/` folder, at any depth of guild folders. **Standard:** this one, [4.2](#42-one-lead-for-each-guild) |
 | **Guild map** | Each guild with its lead and members, generated from the skills' frontmatter. **Standard:** this one, [4.3](#43-the-guild-map) |
@@ -85,6 +85,6 @@ The backpack's published catalogue, in its `skills/README.md`, stays with `ki-re
 
 ### 4.4 Where a session starts
 
-A session in a repository starts with `ki-repo`, for the repository and the skills it declares; `ki-authoring`, for anything written down; and `ki-agentic-systems`, for the words (KEYSTONE-SKILL). `ki-keystone` names all three, and from there a session finds the guild and lead for its work in the guild map.
+A session in a repository starts with `ki-repo`, for the repository and the skills it declares; `ki-authoring`, for anything written down; and `ki-agentic-ecosystems`, for the words (KEYSTONE-SKILL). `ki-keystone` names all three, and from there a session finds the guild and lead for its work in the guild map.
 
 [Back to contents](#contents)

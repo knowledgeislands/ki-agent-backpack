@@ -142,7 +142,7 @@ describe('agentic radar inspection', () => {
     )
     expect(
       violations(inspectRadar(malformed, TODAY).schema.outcomes).some(({ message }) =>
-        message.includes('subjects.protocol-a.card must be a ki-agentic-systems card id')
+        message.includes('subjects.protocol-a.card must be a ki-agentic-ecosystems card id')
       )
     ).toBeTrue()
   })

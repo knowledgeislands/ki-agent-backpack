@@ -22,7 +22,7 @@ The system's words that the backpack rename left alone get names of their own, c
 
 ## Context
 
-The Cairn summit's change Names (12) mapped the system's own words onto the industry's and renamed each territory's harness its backpack. Its cards, diagrams and words have landed in `ki-agentic-systems` and across the guilds. The change closed on 19 November 2026; what was left is carried here. Its text at its last revision is [Names (12), last revision](https://github.com/krisb/ki-cairn-store/blob/f78440d30dd3dd8baf0f8d16f26c37d5e273e927/work/cairn/cairn.summit/12-names.change.md).
+The Cairn summit's change Names (12) mapped the system's own words onto the industry's and renamed each territory's harness its backpack. Its cards, diagrams and words have landed in `ki-agentic-ecosystems` and across the guilds. The change closed on 19 November 2026; what was left is carried here. Its text at its last revision is [Names (12), last revision](https://github.com/krisb/ki-cairn-store/blob/f78440d30dd3dd8baf0f8d16f26c37d5e273e927/work/cairn/cairn.summit/12-names.change.md).
 
 Taken by Kris on 17 November 2026, about 23:34 GMT, under GUARDIAN-LANDS a, as a naming pass of its own after the guild reviews, with the names going to Kris in that pass and any repository rename his then:
 
