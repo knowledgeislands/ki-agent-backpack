@@ -1,6 +1,6 @@
 import { afterEach, expect, test } from 'bun:test'
 import { execFileSync } from 'node:child_process'
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { inspectBoundaries, provesBoundaryFailure } from './boundaries.ts'
@@ -407,6 +407,28 @@ test('workspace members are cruised and proved under their own bare Vitest entry
     expect(proof.cwd.endsWith('apps/site')).toBe(true)
     expect(proof.args.slice(0, 3)).toEqual(['run', 'test', 'scripts/boundaries.test.ts'])
   }
+})
+
+test('workspace links in the private snapshot resolve to the copy, installed packages to the real install', async () => {
+  const root = workspaceFixture()
+  const outside = mkdtempSync(join(tmpdir(), 'ki-boundary-installed-'))
+  temporary.push(outside)
+  mkdirSync(join(root, 'apps/site/node_modules/@scope'), { recursive: true })
+  symlinkSync('../../../notes', join(root, 'apps/site/node_modules/@scope/notes'))
+  symlinkSync(outside, join(root, 'apps/site/node_modules/installed'))
+  const run = runner({ graph: workspaceGraph() })
+  let checked = false
+  const findings = await inspectBoundaries(root, undefined, async (program, args, cwd) => {
+    if (args[0] === 'run' && !checked) {
+      checked = true
+      const snapshot = dirname(dirname(cwd))
+      expect(realpathSync(join(cwd, 'node_modules/@scope/notes'))).toBe(realpathSync(join(snapshot, 'apps/notes')))
+      expect(realpathSync(join(cwd, 'node_modules/installed'))).toBe(realpathSync(outside))
+    }
+    return run(program, args, cwd)
+  })
+  expect(checked).toBe(true)
+  expect(findings[0]?.level).toBe('PASS')
 })
 
 test('workspace members without a Vitest proof, unsupported patterns or partial graphs cannot pass', async () => {

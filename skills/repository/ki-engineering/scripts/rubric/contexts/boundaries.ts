@@ -115,6 +115,30 @@ const contained = (root: string, path: string): boolean => {
   return relation !== '..' && !relation.startsWith(`..${sep}`) && !isAbsolute(relation)
 }
 
+// A workspace link (Bun's `node_modules/@scope/member -> ../../packages/member`) must land on the copy's own
+// member, or every import between members resolves into the real checkout and reads as a crossing.
+// Installed packages stay linked to the real install, which the copy never patches.
+export const linkModules = async (source: string, target: string, root: string, snapshot: string): Promise<void> => {
+  const entries = await readdir(source, { withFileTypes: true })
+  await mkdir(target, { recursive: true })
+  for (const entry of entries) {
+    const from = join(source, entry.name)
+    if (entry.name.startsWith('@') && entry.isDirectory()) {
+      await linkModules(from, join(target, entry.name), root, snapshot)
+      continue
+    }
+    let real: string
+    try {
+      real = await realpath(from)
+    } catch {
+      continue // A dangling link resolves nothing in the checkout either.
+    }
+    const local = relative(root, real)
+    const member = contained(root, real) && local !== '' && !local.split(sep).includes('node_modules')
+    await symlink(member ? join(snapshot, local) : real, join(target, entry.name))
+  }
+}
+
 const regularFiles = async (root: string, path: string): Promise<string[]> => {
   const files: string[] = []
   try {
@@ -418,9 +442,10 @@ export const inspectBoundaries = async (
         return (await realpath(path)) === resolve(path)
       }
     })
+    const realRoot = await realpath(root)
     for (const path of ['.', ...members.map((member) => member.path)]) {
       try {
-        await symlink(await realpath(join(root, path, 'node_modules')), join(snapshot, path, 'node_modules'), 'dir')
+        await linkModules(join(root, path, 'node_modules'), join(snapshot, path, 'node_modules'), realRoot, snapshot)
       } catch (error) {
         // A hoisted member has no node_modules of its own; the root install must exist.
         if (path === '.' || (error as NodeJS.ErrnoException).code !== 'ENOENT') throw error
