@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T09:00:00Z
+ki-revised: 2026-11-22T17:40:00Z
 ki-status: in force
 ---
 
@@ -106,6 +106,8 @@ The rule for every home is the same: state a thing once, in its home, and elsewh
 #### 4.1.1 The design system folder
 
 Each app or package repository holds one design system, in one folder, `docs/design/design-system/`, laid out the same way in every territory (DESIGN-HOME, DESIGN-FOLDER). A principal or knowledge-base repository is not its home: a design system belongs to the site, app or package it serves. A design system shared by several of one territory's surfaces, as Tessera is for Knowledge Islands, lives in its own package repository and is vendored.
+
+**The repository comes first** (NO-SITE-YET a). An app's or website's repository is created before any work on its design system begins, even when the design system is its first content, so design work never waits in a holding place: not a principal repository, a sources folder, a roster folder or a meeting room. The design system is one of a new app's first iterations, starting from what the app is and its goals.
 
 ```text
 <site repository>/
