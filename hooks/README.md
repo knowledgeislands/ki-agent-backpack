@@ -9,14 +9,14 @@ This directory is where the backpack's hook scripts consolidate — the `PreTool
 A hook reaches a runtime in three parts, each with one owner, as Kris set on 6 November 2026: "I think that's the 3 aspects of how it works".
 
 1. **Backpack.** The backpack ships each hook as `hooks/<hook>/<hook>.sh` and lists it in the [payload table](#payload) below, with its runtime, event, matcher and timeout.
-2. **`ki`.** `ki` installs the payload to `~/.local/share/ki/harnesses/<org>/<harness>/hooks/`. For each registered backpack, `ki doctor` reports each hook that is missing, unregistered in Claude Code or Codex, or lacking its current Codex trusted hash, and `ki repair` registers the missing ones. Where a dotfiles manager owns the settings, both report "managed by chezmoi, run chezmoi apply" instead of writing them.
+2. **`ki`.** `ki` installs the payload to `~/.local/share/ki/backpacks/<org>/<backpack>/hooks/`. For each registered backpack, `ki doctor` reports each hook that is missing, unregistered in Claude Code or Codex, or lacking its current Codex trusted hash, and `ki repair` registers the missing ones. Where a dotfiles manager owns the settings, both report "managed by chezmoi, run chezmoi apply" instead of writing them.
 3. **User-environment manager.** The user-environment manager, such as chezmoi, registers each hook from the installed path, never from a checkout.
 
 Part 2 is the expected behaviour, not shipped behaviour. Its `ki` implementation is tracked with tools-ki through `ki.summit`'s tooling audit. Today `ki doctor` checks only that each backpack is installed, and `ki repair` repairs only skill links and legacy configuration metadata; neither inspects or registers runtime hooks.
 
 ## Payload
 
-`ki` installs every hook below with the backpack, under `<installed backpack>/hooks/`, which on a Mac is `~/.local/share/ki/harnesses/knowledgeislands/ki-agent-backpack/hooks/`. A user-environment manager registers each from that installed path, never from a source checkout; `payload.test.ts` keeps this table and the shipped executables in step.
+`ki` installs every hook below with the backpack, under `<installed backpack>/hooks/`, which on a Mac is `~/.local/share/ki/backpacks/knowledgeislands/ki-agent-backpack/hooks/`. A user-environment manager registers each from that installed path, never from a source checkout; `payload.test.ts` keeps this table and the shipped executables in step.
 
 Each hook has its own folder, `hooks/<hook>/`, holding its script `<hook>.sh` and its test `<hook>.test.ts`. The table gives each script's path under `hooks/`. `git-hooks/` holds no runtime hook: it carries the tests of the repository's own `.githooks/` `commit-msg` and `pre-commit` and of the stub a linked worktree runs in their place.
 

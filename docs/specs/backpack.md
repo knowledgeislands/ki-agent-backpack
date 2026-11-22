@@ -1,0 +1,155 @@
+# Backpack structure — `HARN`
+
+The behaviour of the backpack as a repository: the four-part container and the invariants a Knowledge Islands source backpack must satisfy so its skills, agents, and checkers are discoverable and self-describing. Part of the Specifications corpus; see [index.md](index.md).
+
+> **Status:** accepted contract; conformance is declared per requirement.
+
+## The four-part backpack
+
+### HARN-001 — Four part-directories exist
+
+The repo root MUST contain `skills/`, `subagents/`, `evals/`, and `hooks/` as directories. MCP servers remain independently released repositories outside the backpack.
+
+_Conformance:_ conforming
+
+_Verify:_ `ki repo audit --skill ki-repo-backpack --repo .` — LAY-1 PASSes only when all four directories are present (a missing one is a FAIL).
+
+_Evidence:_ `ki repo audit --skill ki-repo-backpack --repo .` — LAY-1 checks the four required physical directories.
+
+### HARN-002 — Each part declares its status
+
+Each of the four part-directories MUST contain a `README.md` that declares whether the part is populated or an empty shelf.
+
+_Conformance:_ conforming
+
+_Verify:_ `ki repo audit --skill ki-repo-backpack --repo .` — LAY-2 checks a `README.md` in each of `skills/`, `subagents/`, `evals/`, and `hooks/`.
+
+_Evidence:_ `ki-repo-backpack` LAY-2 checks all four shelf descriptions.
+
+## Root anchors
+
+### HARN-003 — Root orientation and config files
+
+The repo root MUST carry `CLAUDE.md` (always-loaded orientation), `.ki.toml` (the KI compliance declaration), and SHOULD carry `ROADMAP.md` (the open-work signal).
+
+_Conformance:_ conforming
+
+_Verify:_ `ki repo audit --skill ki-repo-backpack --repo .` — LAY-3 (`CLAUDE.md`) and LAY-5 (`.ki.toml`) FAIL when absent; LAY-4 (`ROADMAP.md`) WARNs.
+
+_Evidence:_ `ki repo audit --skill ki-repo-backpack --repo .` — LAY-3 (`CLAUDE.md`) and LAY-5 (`.ki.toml`) FAIL when absent; LAY-4 (`ROADMAP.md`) WARNs.
+
+### HARN-004 — Backpack compliance table
+
+`.ki.toml` MUST contain a `[skills.ki-repo-backpack]` table marking the repo as a source backpack, and MUST contain a `[skills.ki-repo]` table opting into KI governance, per [ADR-KI-HARNESS-005](../decisions/ADR-KI-HARNESS-005-validate-down-ki-toml-contract.md).
+
+_Conformance:_ conforming
+
+_Verify:_ `ki repo audit --skill ki-repo-backpack --repo .` — CONFIG-1 (`[skills.ki-repo-backpack]`, FAIL if absent) and CONFIG-2 (`[skills.ki-repo]`, WARN if absent).
+
+_Evidence:_ `ki repo audit --skill ki-repo-backpack --repo .` — CONFIG-1 (`[skills.ki-repo-backpack]`, FAIL if absent) and CONFIG-2 (`[skills.ki-repo]`, WARN if absent).
+
+## Toolchain surface
+
+### HARN-005 — Backpack test surface
+
+`package.json` MUST expose the backpack's appropriate bare `test` entrypoint. Backpack delivery, capability activation, and native governance execution belong to the installed `ki` CLI rather than package-script aliases or repository-local bootstrap runners.
+
+_Conformance:_ conforming
+
+_Verify:_ `bun run test` runs the complete backpack suite; `ki repo audit --skill ki-engineering --repo .` checks the package-toolchain contract without requiring retired governance aliases.
+
+_Evidence:_ `bun run test` runs the complete backpack suite; `ki repo audit --skill ki-engineering --repo .` checks the package-toolchain contract without requiring retired governance aliases.
+
+## Skills convention
+
+### HARN-006 — Directory name is the skill name
+
+For every `skills/<dir>/` containing a `SKILL.md`, the directory name MUST equal the `name:` frontmatter field, and no two skills MUST share a `name:`.
+
+_Conformance:_ conforming
+
+_Verify:_ `ki repo audit --skill ki-repo-backpack --repo .` — SKILLS-1 FAILs on any directory-name/`name:` mismatch; the `ki-skills` cross-skill pass (COLL-1) FAILs on a duplicate `name:`.
+
+_Evidence:_ `ki repo audit --skill ki-repo-backpack --repo .` — SKILLS-1 FAILs on any directory-name/`name:` mismatch; the `ki-skills` cross-skill pass (COLL-1) FAILs on a duplicate `name:`.
+
+## Discipline
+
+### HARN-007 — Repository roadmaps hold only open work in one authoritative home
+
+The repository roadmap MUST list only open work — no completed items, no ticked checkboxes, no `~~struck~~` entries — items being removed when done rather than checked off. Each item's prose MUST live only in its canonical flat `docs/roadmap/<REPO>-<NNN>-<slug>.md` record, while the root `ROADMAP.md` MUST be the exact generated linked index.
+
+_Conformance:_ conforming
+
+_Verify:_ `ki-work-roadmap`'s [repository-roadmap standard](../../skills/work/ki-work-roadmap/references/standard-repository-roadmaps.md), plus its mechanical audit of the root orientation and canonical work items.
+
+_Evidence:_ `ki-work-roadmap`'s [repository-roadmap standard](../../skills/work/ki-work-roadmap/references/standard-repository-roadmaps.md), plus its mechanical audit of the root orientation and canonical work items.
+
+### HARN-008 — CLAUDE.md orientation coverage
+
+The effective root orientation MUST explain the four-part backpack (`skills/`, `subagents/`, `evals/`, `hooks/`) and state the current status of every part, per the `ki-repo-backpack` standard.
+
+_Conformance:_ conforming
+
+_Verify:_ `ki-repo-backpack`'s rubric CLAUDE-1 and CLAUDE-2 ([`skills/repository/ki-repo-backpack/references/rubric.md`](../../skills/repository/ki-repo-backpack/references/rubric.md)), applied by reading (judgment-graded).
+
+_Evidence:_ `ki-repo-backpack`'s rubric CLAUDE-1 and CLAUDE-2 ([`skills/repository/ki-repo-backpack/references/rubric.md`](../../skills/repository/ki-repo-backpack/references/rubric.md)), applied by reading (judgment-graded).
+
+### HARN-009 — Claude Code plan lifecycle hooks
+
+The backpack MUST ship `hooks/plan-stamp/plan-stamp.sh` and `hooks/plan-sync/plan-sync.sh` as a Claude-Code-specific lifecycle pair. The state record is JSON V1 only, with exactly `version`, `session_id`, `plan_file`, and physically resolved `cwd`; malformed, schema-invalid, and plaintext state records MUST fail closed. The compatible backpack payload makes hooks available to runtime bindings; the source backpack MUST NOT claim a repository-local installer, mutate Claude settings, or create hook symlinks.
+
+_Conformance:_ conforming
+
+_Verify:_ `bun hooks/plan-stamp/plan-stamp.test.ts && bun hooks/plan-sync/plan-sync.test.ts` exercises the pair; compatible-backpack inventory checks confirm that the hooks payload is published without source-backpack installation side effects.
+
+_Evidence:_ `bun hooks/plan-stamp/plan-stamp.test.ts && bun hooks/plan-sync/plan-sync.test.ts` exercises the pair; compatible-backpack inventory checks confirm that the hooks payload is published without source-backpack installation side effects.
+
+### HARN-010 — Claude Code stale Git-lock guard
+
+The backpack MUST ship `hooks/git-lock-check/git-lock-check.sh` as a Claude-Code-specific `Stop(*)` hook that removes stale lock files only from the current worktree's physical Git directory and only when no relevant Git process is active. `ki-git` owns that portable safety contract. The compatible backpack publishes the payload for a separate user-environment binding to register; the source backpack does not install it itself.
+
+_Conformance:_ conforming
+
+_Verify:_ `bun hooks/git-lock-check/git-lock-check.test.ts` exercises repository, process, path, and symlink safety; compatible-backpack inventory checks confirm the hook is present in the published payload.
+
+_Evidence:_ `bun hooks/git-lock-check/git-lock-check.test.ts` exercises repository, process, path, and symlink safety; compatible-backpack inventory checks confirm the hook is present in the published payload.
+
+### HARN-011 — Exhaustive capability applicability publication
+
+A populated compatible backpack's skills shelf MUST classify every canonical skill with valid applicability metadata, MUST reject collection-level baseline or detector-registry inconsistency, and MUST publish each capability's applicability in its generated catalogue.
+
+_Conformance:_ conforming
+
+_Verify:_ `ki-repo-backpack` capability-publication tests exercise valid publication and reject missing classification, invalid baseline membership, kind inconsistency, unknown detector targets, and registry-to-skill drift.
+
+_Evidence:_ `skills/README.md` is generated from the complete canonical skill collection and carries an applicability line for every entry.
+
+### HARN-012 — Coordinator reminder hook
+
+The backpack MUST ship `hooks/coordinator-reminder/coordinator-reminder.sh` as a `UserPromptSubmit` and `SessionStart(compact)` hook that injects one line restating the `ki-coordination` responsive-coordinator rules, including the coordinator's update cadence, naming the owner-report form without restating it, the `ki-coordination` report heading and glyph form line that open it and the closing glyph banner, in coordinating work, meaning a session whose working directory or Git top level holds a `.ki.toml` declaring `[skills.ki-coordination]`; at a `SessionStart` with `source: compact` it MUST inject instead a one-line pointer to the `ki-coordination` re-anchoring steps. It MUST NOT require a controlling terminal. `ki-coordination` owns the hook's lines: its standard's generated surfaces hold their text, and `ki dev skill generate ki-coordination --write` renders them into the script. It MUST fail open. The same script MUST serve Claude Code and Codex CLI. It ships in the installed hook payload `ki` installs, like every hook under `hooks/`, and a user-environment manager owns its registration on each runtime, from the installed payload path rather than a checkout.
+
+_Conformance:_ conforming
+
+_Verify:_ `bun test hooks/coordinator-reminder/coordinator-reminder.test.ts` replays sample Claude Code and Codex payloads for a coordinating message in a declaring checkout, a checkout holding work files or checkpoints without the declaration, an ordinary repository, a marked background child under either runtime, a terminal-less Codex process, a terminal-less Claude Code session, post-compaction `SessionStart` with the pointer, and malformed input.
+
+_Evidence:_ `bun test hooks/coordinator-reminder/coordinator-reminder.test.ts` passes; headless `claude -p` and `codex exec` runs from a scratch checkout holding `+/_CHECKPOINTS/` quoted the injected line, and a child carrying `KI_AGENT_RUN` received nothing. On 2026-10-14, after the cadence clause was added, the script replayed by hand with a terminal in its ancestry printed the new line for a coordinating checkout and nothing with `KI_AGENT_RUN` set or in an ordinary repository; the Codex trust hashes cover the handler entry, not the script, so the registration was unchanged. On 2026-10-14 the signal moved from `+/_CHECKPOINTS/` to the `[skills.ki-coordination]` declaration under KI-PRINCIPAL-ECO-013, Kris's words "HOOK-OWNER - (a). A repository that doesn't delegate then never gets the hook, and removing ki-coordination disables it."; the test suite covers both the declaring and the undeclared checkout. On 2026-10-14, under KI-HARNESS-GOV-187 and Kris's "approve the hook runtime split", the terminal check became Codex-only and the compact session start gained the re-anchoring pointer; the suite covers a terminal-less Claude Code session, a terminal-less Codex process and the pointer.
+
+### HARN-013 — Coordinator output style
+
+The backpack MUST ship `output-styles/ki-coordinator.md`, a Claude Code output style whose text is the `ki-coordination` responsive-coordinator rules in Kris's words, the owner-report shape with its reply block, grouped by priority with each line's confidence, the report heading byte-identical to the `ki-coordination` standard, the package's name linked whole to its `_index.md` in the Cairn store, the glyph form line and one rule, and the closing glyph banner with the With worker, Handoff to supervisor and On hold examples byte-identical to the standard, each a `###` heading of glyph state and since time, a counts line and one Markdown list of `- [<state>] <what> · <holder> · since <time>` items, and exactly one closing thread line, `<role glyph> 🔑 <work-id>`, with the actor's name first and that form in brackets where the seat's actor is named, or `🧵 <work-id>` for a session with no role yet, in every state, with no send or resume prompt, so that the style coordinating work runs under and the coordinating-work standard are one document, under the work model GDR-KI-PRINCIPAL-009 decides and KI-HARNESS-GOV-210 writes in; the style is rendered whole from the standard's generated surfaces by `ki dev skill generate ki-coordination --write`, and the banner test fails while it is stale. A repository that declares `ki-coordination` selects it with `outputStyle` in its tracked `.claude/settings.json`, and the backpack does so itself. The style MUST NOT shorten any section, query or banner of an owner report. Deploying the file into a user's `~/.claude/output-styles/` belongs to the user-environment manager, not the backpack.
+
+_Conformance:_ conforming
+
+_Verify:_ `output-styles/ki-coordinator.md` exists with `name: ki-coordinator` frontmatter and carries the three rules, the owner-report shape, the report heading and the glyph banners, which `bun test skills/work/ki-coordination/scripts/banner.test.ts` compares with the standard, asserting the report heading example and the banners byte-identical to the standard's, the glyph form line, the banner heading, counts line and holder list, the closing thread lines, the grouped reply block with each line's confidence and the absence of send or resume lines; `.claude/settings.json` carries `"outputStyle": "ki-coordinator"`.
+
+_Evidence:_ both files are tracked in this repository; the pilot's live acceptance in a coordinating thread is recorded by KI-PRINCIPAL-ECO-013 in Knowledge Islands Principal.
+
+### HARN-014 — Coordinator footer hook
+
+The backpack MUST ship `hooks/coordinator-footer/coordinator-footer.sh` in its installed hook payload as a Claude Code `Stop` hook that reads a coordinating reply's footer against the `ki-coordination` standard's Banner and Summary sections. A reply carrying `## Summary since`, a `· Summary at` or `· Status at` form line, a re-bootstrap, hold or finish report's form line, a state heading or a thread line, and every other reply in a declaring checkout whose session has already closed a reply with a thread line, whatever the owner's last prompt (HOOK-ENFORCE), needs a banner. The hook MUST return `{"decision":"block","reason":...}` naming each missing part only where the banner's state heading or the closing thread line, `<role glyph> 🔑 <work-id>` or `🧵 <work-id>`, is missing or the thread line is not last. A reply with no heading block and no form line MAY close instead with the one-line footer, `<glyph state> · <thread line>` (MINIMAL-FOOTER), whose thread line the hook MUST hold to the same checks. It MUST let every other unusual footer through with a non-blocking `{"systemMessage":...}` warning naming each part: an unrecognised state heading, a missing or odd counts line, except under a Finished heading, a report heading that is not one link covering its whole text, the package's name (HEADING-PACKAGE), or whose link is not a package's `_index.md` in the Cairn store (HEADING-FIX), and, in a Summary or Status, missing art, unless the owner asked for `no art`, a missing roadmap line where the checkout holds `docs/roadmap/`, or a missing package line. Fenced text other than the art never counts. In every session, coordinating or not, it MUST also hold back a reply whose top-level fenced `text` block holds `<TAG> <letter>` lines, the owner's reply block, unless the block opens with a `1 ·` group heading, every such line carries `(high)`, `(medium)` or `(low)` after the letter and a `: <gloss>` after that, and no tag stands on more than one line, naming what is wrong (REPLY-CHECK, HOOK-ENFORCE). It MUST stay silent for any other reply and on missing tools, unusable input or an unreadable transcript, MUST only warn while `stop_hook_active` is set, and MUST read no network and no more than the transcript's last 8 MiB. A user-environment manager owns its registration.
+
+_Conformance:_ conforming
+
+_Verify:_ `bun test hooks/coordinator-footer/coordinator-footer.test.ts` exercises the blocking structural losses and each warning, the long and short forms, `no art`, roadmap applicability, thread-line placement, the Finished, Snoozing and Status shapes, unrecognised headings and odd counts lines, the every-reply path with its coordinating-session and capability guards, plain answers, wakes and meta lines, fenced quotations, launched agents, the reply block's heading, confidence, gloss and single-tag checks in conversational and coordinating sessions, quiet text blocks and an unclosed fence, the `stop_hook_active` downgrade to a warning, the transcript fallback, unusable payloads, a missing `jq` and the system Bash.
+
+_Evidence:_ `bun test hooks/coordinator-footer/coordinator-footer.test.ts` passes; replayed by hand against a 46 MB coordinating transcript it decided in about 0.1 seconds.

@@ -1,6 +1,6 @@
 # Bootstrap — `BOOT`
 
-The behaviour of user bootstrap, harness selection, skill activation, and native repository operations. Part of the Specifications corpus; see [index.md](index.md).
+The behaviour of user bootstrap, backpack selection, skill activation, and native repository operations. Part of the Specifications corpus; see [index.md](index.md).
 
 > **Status:** accepted contract; conformance is declared per requirement.
 
@@ -8,7 +8,7 @@ The behaviour of user bootstrap, harness selection, skill activation, and native
 
 ### BOOT-001 — ~~Self-governing after EDUCATE~~ (deprecated)
 
-Replaced by BOOT-015. Repositories now execute their declared governance through the installed `ki` CLI and compatible harnesses.
+Replaced by BOOT-015. Repositories now execute their declared governance through the installed `ki` CLI and compatible backpacks.
 
 ### BOOT-002 — ~~Vendored checker copies~~ (deprecated)
 
@@ -46,7 +46,7 @@ Replaced by BOOT-003. The native resolver checks declared compatible capabilitie
 
 ### BOOT-008 — ~~Remote EDUCATE transport~~ (deprecated)
 
-Replaced by BOOT-011. First-time setup uses the installed CLI and verified harness acquisition.
+Replaced by BOOT-011. First-time setup uses the installed CLI and verified backpack acquisition.
 
 ## Repository activation
 
@@ -72,13 +72,13 @@ Replaced by BOOT-016. Native repository operations preserve unowned state rather
 
 _Conformance:_ conforming
 
-_Verify:_ run `ki bootstrap` against isolated empty XDG and runtime homes, then inspect `config.toml`, the canonical harness installation, and the two managed user-skill links in each detected runtime.
+_Verify:_ run `ki bootstrap` against isolated empty XDG and runtime homes, then inspect `config.toml`, the canonical backpack installation, and the two managed user-skill links in each detected runtime.
 
-_Evidence:_ tools-ki 0.16.0's `minimumBootstrapUserSkills` requires and links `ki-keystone` and `ki-work`, and accepts the retired set, `ki-bootstrap`, `ki-next`, `ki-plan`, `ki-implement`, `ki-accept`, `ki-batch`, `ki-recap` and `ki-work-design`, for one release from a harness that does not yet provide the current set; the harness provides the current set from 14 November 2026.
+_Evidence:_ tools-ki 0.16.0's `minimumBootstrapUserSkills` requires and links `ki-keystone` and `ki-work`, and accepts the retired set, `ki-bootstrap`, `ki-next`, `ki-plan`, `ki-implement`, `ki-accept`, `ki-batch`, `ki-recap` and `ki-work-design`, for one release from a backpack that does not yet provide the current set; the backpack provides the current set from 14 November 2026.
 
 ### BOOT-012 — Refresh reconciles detected user state
 
-`ki bootstrap --refresh` MUST redetect supported runtimes and rebuild the recorded installed-harness and managed user-skill inventory from current state without declaring governance in a repository.
+`ki bootstrap --refresh` MUST redetect supported runtimes and rebuild the recorded installed-backpack and managed user-skill inventory from current state without declaring governance in a repository.
 
 _Conformance:_ conforming
 
@@ -86,17 +86,17 @@ _Verify:_ change the detectable runtime set in an isolated bootstrapped environm
 
 _Evidence:_ change the detectable runtime set in an isolated bootstrapped environment, run `ki bootstrap --refresh`, and confirm the user inventory and managed links reconcile while a repository `.ki.toml` remains unchanged.
 
-## Harness authority and activation scopes
+## Backpack authority and activation scopes
 
-### BOOT-013 — Installed compatible harnesses are authoritative
+### BOOT-013 — Installed compatible backpacks are authoritative
 
-Native capability resolution MUST use verified installed compatible harnesses, treat the canonical harness as non-removable, and MUST NOT implicitly use a nearby checkout, runtime link, or repository-local payload as an execution source.
+Native capability resolution MUST use verified installed compatible backpacks, treat the canonical backpack as non-removable, and MUST NOT implicitly use a nearby checkout, runtime link, or repository-local payload as an execution source.
 
 _Conformance:_ conforming
 
-_Verify:_ run capability resolution with only a nearby harness checkout and confirm it fails, then install the compatible harness and confirm resolution succeeds; confirm `ki backpack uninstall knowledgeislands/ki-agent-backpack` is refused.
+_Verify:_ run capability resolution with only a nearby backpack checkout and confirm it fails, then install the compatible backpack and confirm resolution succeeds; confirm `ki backpack uninstall knowledgeislands/ki-agent-backpack` is refused.
 
-_Evidence:_ run capability resolution with only a nearby harness checkout and confirm it fails, then install the compatible harness and confirm resolution succeeds; confirm `ki backpack uninstall knowledgeislands/ki-agent-backpack` is refused.
+_Evidence:_ run capability resolution with only a nearby backpack checkout and confirm it fails, then install the compatible backpack and confirm resolution succeeds; confirm `ki backpack uninstall knowledgeislands/ki-agent-backpack` is refused.
 
 ### BOOT-014 — User and repository activation remain separate
 

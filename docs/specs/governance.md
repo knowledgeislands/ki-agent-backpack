@@ -1,6 +1,6 @@
 # Governance — `GOV`
 
-The behaviour of the governance model the harness applies to itself and to the repos it bootstraps: the universal modes, the mechanical-first contract, the severity ladder, and composition. Part of the Specifications corpus; see [index.md](index.md).
+The behaviour of the governance model the backpack applies to itself and to the repos it bootstraps: the universal modes, the mechanical-first contract, the severity ladder, and composition. Part of the Specifications corpus; see [index.md](index.md).
 
 > **Status:** accepted contract; conformance is declared per requirement.
 

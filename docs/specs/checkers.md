@@ -34,9 +34,9 @@ A checker MUST take its target path, read only that target during AUDIT, and emi
 
 _Conformance:_ conforming
 
-_Verify:_ the `ki-skills` source-harness checker test invokes each checker without a format flag and validates its output.
+_Verify:_ the `ki-skills` source-backpack checker test invokes each checker without a format flag and validates its output.
 
-_Evidence:_ the `ki-skills` source-harness checker test invokes each checker without a format flag and validates its output.
+_Evidence:_ the `ki-skills` source-backpack checker test invokes each checker without a format flag and validates its output.
 
 ## Canonical report
 
@@ -106,9 +106,9 @@ An audit and conform checker MUST use the same canonical JSONL report format, di
 
 _Conformance:_ conforming
 
-_Verify:_ the source-harness checker test validates both script families with the same parser and validator.
+_Verify:_ the source-backpack checker test validates both script families with the same parser and validator.
 
-_Evidence:_ the source-harness checker test validates both script families with the same parser and validator.
+_Evidence:_ the source-backpack checker test validates both script families with the same parser and validator.
 
 ### CHK-011 — Title-first rendered identity
 

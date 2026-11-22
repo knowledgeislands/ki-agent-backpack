@@ -46,15 +46,15 @@ _Verify:_ `ki repo educate --skill <declared-skill> --repo <repo>` renders that 
 
 _Evidence:_ `ki repo educate --skill <declared-skill> --repo <repo>` renders that skill's registered concern and rubric without creating a repository-local executor; `ki repo audit --skill ki-skills --repo .` checks the documented mode shape.
 
-### MODE-005 — REFRESH runs only in the harness
+### MODE-005 — REFRESH runs only in the backpack
 
-REFRESH MUST write only to the skill's canonical files under `skills/<name>/` in `ki-agent-backpack`, and when invoked from a repo where the skill is merely vendored it MUST stop and name the harness as where to run it, per [ADR-KI-HARNESS-SKILLS-001](../decisions/ADR-KI-HARNESS-SKILLS-001-audit-conform-educate-refresh-canonical-modes-help.md).
+REFRESH MUST write only to the skill's canonical files under `skills/<name>/` in `ki-agent-backpack`, and when invoked from a repo where the skill is merely vendored it MUST stop and name the backpack as where to run it, per [ADR-KI-HARNESS-SKILLS-001](../decisions/ADR-KI-HARNESS-SKILLS-001-audit-conform-educate-refresh-canonical-modes-help.md).
 
 _Conformance:_ conforming
 
-_Verify:_ each `## Mode REFRESH` section declares the harness-only write target and the vendored-repo stop behaviour.
+_Verify:_ each `## Mode REFRESH` section declares the backpack-only write target and the vendored-repo stop behaviour.
 
-_Evidence:_ each `## Mode REFRESH` section declares the harness-only write target and the vendored-repo stop behaviour.
+_Evidence:_ each `## Mode REFRESH` section declares the backpack-only write target and the vendored-repo stop behaviour.
 
 ## Introspection
 
