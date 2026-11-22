@@ -39,7 +39,7 @@ Claude Code tokenomics evidence bounded to the selected repository.
 ### 2.2 Out of scope
 
 - The portable policy, budgets and model purposes: `ki-env-tokenomics`.
-- Dated Claude model-family evidence: [the Claude model-tier resolution standard](standard-model-tier-resolution.md).
+- Dated Claude model-tier evidence: `ki-model-radar`'s [model-tier standard](../../../agentic-ecosystems/ki-model-radar/references/standard-model-tiers.md).
 - User-home state, another repository and live session data.
 
 [Back to contents](#contents)

@@ -20,7 +20,7 @@ ki-refresh: external-spec · weekly
 
 ## 1. Introduction
 
-The sources behind [the model radar standard](standard-model-radar.md), the `radar.toml` snapshot and the [rubric](rubric.md). This is the refresh ledger for the reviewed sources used by the current snapshot. Evidence identities and claim-level notes live in `radar.toml`.
+The sources behind [the model radar standard](standard-model-radar.md), the [model-tier standard](standard-model-tiers.md), the `radar.toml` snapshot and the [rubric](rubric.md). This is the refresh ledger for the reviewed sources used by the current snapshot. Evidence identities and claim-level notes live in `radar.toml`.
 
 [Back to contents](#contents)
 
@@ -68,6 +68,7 @@ Provider evidence may establish identity, access, licence, pricing and lifecycle
 | [GPT-6.1 Sol model page][openai-gpt-6-1-sol] | Default-route Sol identity and access | 2026-11-22 |
 | [GPT-6 Sol model page][openai-gpt-6-sol] | Earlier Sol identity and access | 2026-11-22 |
 | [Codex models][codex-models] | Models selectable in Codex | 2026-11-22 |
+| [Claude model IDs and versions][claude-model-ids] | Fixed model identities against aliases, for the model-tier standard | 2026-11-22 |
 | [Claude Code model configuration][claude-code-models] | Claude Code aliases and selectable models | 2026-11-22 |
 | [Gemini CLI ACP mode][gemini-cli-acp] | Gemini CLI ACP support and access | 2026-11-22 |
 | [OpenCode ACP support][opencode-acp] | OpenCode ACP support | 2026-11-22 |
@@ -115,6 +116,7 @@ Independent benchmark and methodology owners.
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
+| MODEL-TIERS a | The Claude and Codex model-tier standards move from `ki-env-tokenomics-claude` and `ki-env-tokenomics-chatgpt` into `ki-model-radar`, which already tracks the models and is refreshed; the adapters and `ki-env-tokenomics` keep the four purposes and point to the radar, the repeated tier-movement rule is kept once, and the drift (Fable 5.1 against 5.2) goes with the move; if the radar merges into `ki-radar` at the Agentic sitting, the tiers go with it. Kris, 22 November 2026, about 21:43 GMT, the Environment guild's sitting, card: "Move to ki-model-radar"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [Model-tier standard](standard-model-tiers.md#1-introduction) | In force |
 | HAIKU-5.5 | Claude Haiku 5.5 joins as a model identity with no route | 2026-10-18 | `radar.toml`, [4.2.2](standard-model-radar.md#422-models) | taken |
 | ASTRA-SOURCE | Keep the GPT-6 Astra launch post retired until it is fetchable | 2026-10-18 | `radar.toml`, [4.2.5](standard-model-radar.md#425-evidence) | taken |
 | MOVEMENT | Five routes whose movement still recorded the 2026-10-06 decisions read `unchanged`, since movement describes the current review: Claude Opus 5 and Grok 4.6 from `outward`, and Claude Opus 5.5, GPT-6.1 Sol and Grok 4.7 from `new`. GPT-5.6 Sol keeps `outward` under GPT-5.6-SOL-ROUTE. No ring, support level or default moved. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | `radar.toml`, [4.2.3](standard-model-radar.md#423-executable-routes) | taken |
@@ -127,6 +129,7 @@ Independent benchmark and methodology owners.
 
 ## 4. Last review
 
+- 2026-11-22 — The Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied MODEL-TIERS a, recorded under [Decisions](#3-decisions): the [model-tier standard](standard-model-tiers.md) joins from the two tokenomics adapters, with the Codex role resolver and its test, and states the tier-movement rule once. Its tables were rechecked against the Claude models overview, the Claude model IDs page and the GPT-6 guide: the `frontier` candidate is now Claude Fable 5.2, the `fast` candidate Claude Haiku 5.5 at `medium` effort, Haiku 4.5 being listed among older models, and the GPT-6 guide now names only GPT-6.2 Astra and GPT-6.2 Sol. No criterion changed.
 - 2026-11-22 — Loreward, within remit, from the 4.1 refresh, took NEW-IDENTITIES, recorded under [Decisions](#3-decisions): GPT-6.2 Astra and GPT-6.2 Sol join as model identities on the OpenAI model catalogue, GPT-6 guide and Codex models page, and Claude Fable 5.2 on the Claude models overview and deprecations page, each with no route. The other new identities stay held. No outside source was refreshed.
 - 2026-11-22 — Loreward, within remit, from the 4.1 refresh, took AA-APPLICABILITY, recorded under [Decisions](#3-decisions): the Coding Agent Index v2.1 stays primary and the Intelligence Index v5.0.1 corroborating. Nothing in `radar.toml` changed, and no outside source was refreshed.
 - 2026-11-22 — Loreward, within remit, from the 4.1 refresh, took GPT-5.6-SOL-ROUTE, recorded under [Decisions](#3-decisions): the GPT-5.6 Sol route keeps Adopt, available and `outward`, with a recheck after 2026-11-30 under **Watching**. Nothing in `radar.toml` changed, and no outside source was refreshed.
@@ -198,6 +201,7 @@ All named initial model identities were substantiated. Hosted-only variants reta
 [local-roadmap]: https://github.com/knowledgeislands/ki-agent-backpack/blob/dd45807722a06cf3e54686f4eaa38c1149836e3a/docs/roadmap/KI-HARNESS-REV-003-establish-model-radar.md
 [openai-astra]: https://openai.com/index/gpt-6-astra/
 [openai-gpt-6]: https://developers.openai.com/api/docs/guides/latest-model
+[claude-model-ids]: https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions
 [openai-gpt-6-1-sol]: https://developers.openai.com/api/docs/models/gpt-6.1-sol
 [openai-gpt-6-astra]: https://developers.openai.com/api/docs/models/gpt-6-astra
 [openai-gpt-6-sol]: https://developers.openai.com/api/docs/models/gpt-6-sol

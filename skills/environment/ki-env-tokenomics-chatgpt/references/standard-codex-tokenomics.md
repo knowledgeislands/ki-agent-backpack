@@ -72,7 +72,7 @@ The standard does not infer effective model/profile, loaded instruction hierarch
 
 ### 4.3 Model-tier evidence
 
-The dated [model-tier resolution standard](standard-model-tier-resolution.md) may map a Codex work role to a portable purpose and source-local family evidence. It does not establish effective-model availability, alter the portable taxonomy, select a runtime model, or bypass evaluation, delegation, or spending authority.
+Dated Codex model-tier evidence and the role resolver live in `ki-model-radar`'s [model-tier standard](../../../agentic-ecosystems/ki-model-radar/references/standard-model-tiers.md), under MODEL-TIERS a.
 
 [Back to contents](#contents)
 
