@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T17:59:31Z
+ki-revised: 2026-11-22T20:16:37Z
 ki-refresh: canonical · quarterly
 ---
 
@@ -351,6 +351,8 @@ Each owner decision the standard rests on, by its tag: the date, the owner's wor
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 Loreward's run brought [territory](standard-territory.md)'s **Records** paragraph into line with CLASSIFY-ROUTE a, which `ki-work-roadmap` landed for KI-HARNESS-GOV-237: a Project's record is worked by its package, and a record with no Project goes to its repository's owning package, then the territory's leader, with no steward's next-step link or State of play's routing queue. No rule of this skill changed.
 
 On 22 November 2026 Loreward's run applied WORD-ONLY-QUERY, Kris's "Allow it" of 19:55 GMT that day: the [owner report](standard-reporting.md#42-owner-report)'s reply block gains **No recommendation**, the `<TAG> ? (your call): <gloss>` line, and the `coordinator-footer` Stop hook accepts it, still holding back a line without its gloss and a tag given twice. No outside source was refreshed.
 
