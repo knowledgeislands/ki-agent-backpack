@@ -31,7 +31,7 @@ The structured rubric under `scripts/rubric/` checks filenames, sections, front 
 
 ## Operating modes
 
-Carries the universal **AUDIT · CONFORM · EDUCATE · REFRESH**, plus **CONSOLIDATE** (bring the whole collection back to the consolidated current decisions, run in every regular repository review) and **NEW** (draft a new DR). Invoked as `help` / `-h` / `?`, it explains itself and stops — the generated HELP block (name, purpose, invocation, modes, off-ramps), taking no action. With no mode it does the same, then, in an interactive session only, offers the mode choice via `AskUserQuestion`, prompting for any `argument-hint` target the chosen mode shows.
+Carries the universal **AUDIT · CONFORM · EDUCATE · REFRESH**, plus **CONSOLIDATE** (bring the whole collection back to the consolidated current decisions, run in every regular repository review) and **NEW** (draft a new DR). Invoked as `help` / `-h` / `?`, it explains itself and stops — the generated HELP block (name, purpose, invocation, modes, off-ramps), taking no action. With no mode it does the same, then, in an interactive session only, offers the mode choice through the host's question tool, prompting for any `argument-hint` target the chosen mode shows.
 
 ### Mode AUDIT
 

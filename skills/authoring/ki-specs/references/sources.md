@@ -50,9 +50,15 @@ The initial `vallearmonia-website/docs/specs/` sample has no reproducible immuta
 
 None recorded by id: the standard rests on the BCP 14 pair and the house conventions it states. Serial scope and applicability remain owner-gated policy questions.
 
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| AUTHORING-FIXES | Option a, item 3: the bare-invocation mode choice is offered through the host's question tool, so the skill names no tool only one host has. Kris, 22 November 2026, about 20:14 GMT, the Authoring guild's sitting in Kitteth's Home Chat, card: "Keep all, fix", recorded in the Cairn summit's change 10, 4.3. | 2026-11-22 | `SKILL.md`, Operating modes | In force |
+
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 AUTHORING-FIXES a, item 3, was applied by Loreward: the skill's words name the host's question tool where they named Claude's `AskUserQuestion`. No criterion changed and no outside source was refreshed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Authoring guild: REFRESH names the backpack as where to run it. No criterion changed and no outside source refreshed.
 

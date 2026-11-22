@@ -43,7 +43,7 @@ Applicability is declaration-led. Once a repository declares `ki-specs`, missing
 
 The skill carries universal **AUDIT · CONFORM · EDUCATE · REFRESH**, plus **NEW** for drafting a requirement area.
 
-When invoked as `help`, `-h`, or `?`, explain the skill and stop. With no mode, do the same and then, only in an interactive session, offer the mode choice with `AskUserQuestion`.
+When invoked as `help`, `-h`, or `?`, explain the skill and stop. With no mode, do the same and then, only in an interactive session, offer the mode choice with the host's question tool.
 
 ### Mode EDUCATE
 

@@ -49,7 +49,7 @@ This skill leads the Repository guild: the repository contract and each kind of 
 
 ## Operating modes
 
-Every governance skill carries the universal four **AUDIT · CONFORM · EDUCATE · REFRESH**; EDUCATE here onboards a repo. **REVIEW** is the additional human-led repository-review mode. Invoked as `help` / `-h` / `?`, the skill explains itself and stops — the generated HELP block (name, purpose, invocation, modes, off-ramps), taking no action. With no mode it does the same, then, in an interactive session only, offers the mode choice via `AskUserQuestion`, prompting for any `argument-hint` target the chosen mode shows.
+Every governance skill carries the universal four **AUDIT · CONFORM · EDUCATE · REFRESH**; EDUCATE here onboards a repo. **REVIEW** is the additional human-led repository-review mode. Invoked as `help` / `-h` / `?`, the skill explains itself and stops — the generated HELP block (name, purpose, invocation, modes, off-ramps), taking no action. With no mode it does the same, then, in an interactive session only, offers the mode choice through the host's question tool, prompting for any `argument-hint` target the chosen mode shows.
 
 ### Mode AUDIT — check a repo against the standard
 

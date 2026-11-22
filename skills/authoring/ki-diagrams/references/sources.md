@@ -82,10 +82,13 @@ These sources were added on 2026-10-31 for the [tool preference order](standard-
 | DIAGRAM-AGREED | The work state machine Kris agreed on 29 October 2026, drawn by sketching in Mermaid and beautifying in Archify. | 2026-10-29 | [4.2.2](standard-diagrams.md#422-sketch-then-beautify) | In force |
 | DOCS-LANDING-GITHUB | "_index.md only", Kris on the question card in Loreward's Home Chat at 19:57 GMT, recorded in ki.summit's change 23 · Decision: option b), not the recommended a): a docs folder's page is `_index.md` alone, with no `README.md` pointer beside it, even though the folder then shows no page on GitHub, under `ki-authoring`'s docs folder pages. | 2026-11-22 | [4.5](standard-diagrams.md#45-the-manifest), DIAG-1 | In force |
 | AUTHORING-FIXES | Option a: the skill is kept and fixed. The `ki` and `ki-night` SVG forms take their paint from Tessera's `tessera-tokens`, vendored at the backpack's root under `ki-repo-packages`' lock-and-sync contract with its lock and drift check, in place of the retired `knowledgeislands/ki-design` copy. Kris, 22 November 2026, about 20:14 GMT, the Authoring guild's sitting in Kitteth's Home Chat, card: "Keep all, fix", recorded in the Cairn summit's change 10, 4.3. | 2026-11-22 | [the forms](standard-diagrams.md#441-the-forms) | In force; the glyphs still come from the `ki-design` revision they were drawn from |
+| AUTHORING-FIXES | Option a, item 3: the bare-invocation mode choice is offered through the host's question tool, so the skill names no tool only one host has. Kris, 22 November 2026, about 20:14 GMT, the Authoring guild's sitting in Kitteth's Home Chat, card: "Keep all, fix", recorded in the Cairn summit's change 10, 4.3. | 2026-11-22 | `SKILL.md`, Operating modes | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 AUTHORING-FIXES a, item 3, was applied by Loreward: the skill's words name the host's question tool where they named Claude's `AskUserQuestion`. No criterion changed and no outside source was refreshed.
 
 On 22 November 2026 AUTHORING-FIXES a was applied by Loreward: the token module became `scripts/internal/tessera-tokens.ts`, checked against the vendored `packages/tessera-tokens/tokens.json` at the release `tessera-tokens-lock.json` holds, and the standard names Tessera where it named `ki-design`. The glyph copy keeps its `ki-design` revision until Tessera's icon packages are vendored. No criterion changed and no outside source was refreshed.
 

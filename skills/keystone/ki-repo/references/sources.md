@@ -81,10 +81,13 @@ The decisions the standards cite by id, oldest first; each standard keeps citing
 | ARTIFACT-HOMES | Each artifact's files live in the repository of the thing it serves; a presentation, kept in `ki-authoring`'s presentation format, lives beside what it presents, in the folder of the design it presents or under `docs/presentations/`, which is not a further documentation concern. Kris, 21 November 2026, about 06:50 GMT, "ARTIFACT-HOMES a", relayed by ki.summit's keyholder from the Cairn summit's [change 60](https://github.com/krisb/ki-cairn-store/blob/eae66fca/work/cairn/cairn.summit/60-design.change.md#48-decided), step 10. | 2026-11-21 | [documentation topology](standard-documentation-topology.md#42-ownership-and-gaps) | In force |
 | KEYSTONE-FIXES | The ten Keystone skills are all kept, and their mechanical fixes land in the Cairn summit's change 10, step 6.3; for this skill, `SKILL.md` is slimmed into a router, its detail left in the standards, and any rule only `SKILL.md` held moved into a standard first. Kris, 22 November 2026, about 19:33 GMT, at the Keystone guild's sitting, card: "Keep all, fix". | 2026-11-22 | [SKILL.md](../SKILL.md), [configuration 4.12](standard-configuration.md#412-scaffolding--ownership), [4.13](standard-configuration.md#413-local-registry) | In force |
 | DOCS-LANDING-GITHUB | "_index.md only", Kris on the question card in Loreward's Home Chat at 19:57 GMT, 22 November 2026, recorded in ki.summit's change 23 · Decision: option b): a docs folder's page is `_index.md` alone, with no `README.md` pointer, even though the folder then shows no page on GitHub; the root `README.md` keeps its contract, and `ki-authoring` sets the rule. | 2026-11-22 | [repository, 4.1.1](standard-repository.md#411-root-files) | In force |
+| AUTHORING-FIXES | Option a, item 3: the bare-invocation mode choice is offered through the host's question tool, so the skill names no tool only one host has. Kris, 22 November 2026, about 20:14 GMT, the Authoring guild's sitting in Kitteth's Home Chat, card: "Keep all, fix", recorded in the Cairn summit's change 10, 4.3. | 2026-11-22 | `SKILL.md`, Operating modes | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 AUTHORING-FIXES a, item 3, was applied by Loreward: the skill's words name the host's question tool where they named Claude's `AskUserQuestion`. No criterion changed and no outside source was refreshed.
 
 On 22 November 2026 DOCS-LANDING-GITHUB, recorded under Decisions, was applied by Loreward's run from the Knowledge Islands summit's change 23: [root files](standard-repository.md#411-root-files) notes that the root `README.md` is not a docs folder's page, which is `_index.md` alone under `ki-authoring`. No outside source was refreshed.
 
