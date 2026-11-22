@@ -16,6 +16,7 @@ const DIAG_1: RubricItem<DiagramsRubricContext> = {
   sources: [MANIFEST, COMMITTED],
   mechanical: {
     level: 'FAIL',
+    overrideLevels: ['WARN'],
     remediation: {
       class: 'diagnostic',
       guidance:

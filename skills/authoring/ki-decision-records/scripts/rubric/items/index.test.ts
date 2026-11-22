@@ -358,6 +358,8 @@ test('the decision index is _index.md, an earlier README.md warning until rename
       records: unparseable?.mechanical?.audit.run(filename?.selectContext(rootContext) as never)
     }
   }
+  // ki takes a WARN outcome only from an item that declares it (`overrideLevels`).
+  expect(items.find((candidate) => candidate.code === 'INDEX-1')?.mechanical?.overrideLevels).toContain('WARN')
   expect(index1(['_index.md']).index).toEqual([expect.objectContaining({ status: 'PASS', subject: '_index.md' })])
   expect(index1(['README.md']).index).toEqual([
     expect.objectContaining({ status: 'VIOLATION', level: 'WARN', subject: 'README.md' })

@@ -37,6 +37,7 @@ const GUIDE_2: RubricItem<GuidesLayoutContext> = {
   sources: [SOURCE],
   mechanical: {
     level: 'FAIL',
+    overrideLevels: ['WARN'],
     remediation: {
       class: 'diagnostic',
       guidance:

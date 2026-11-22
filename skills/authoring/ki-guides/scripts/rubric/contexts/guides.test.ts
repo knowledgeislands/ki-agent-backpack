@@ -161,6 +161,8 @@ test('GUIDE-2 takes _index.md as the entry point, warning on an earlier README.m
     const item = GUIDE.items.find((candidate) => candidate.code === 'GUIDE-2')
     return { outcomes: item?.mechanical?.audit.run(context.layout), rootGuides: context.layout.rootGuides }
   }
+  // ki takes a WARN outcome only from an item that declares it (`overrideLevels`).
+  expect(GUIDE.items.find((candidate) => candidate.code === 'GUIDE-2')?.mechanical?.overrideLevels).toContain('WARN')
   expect(guide2(['_index.md']).outcomes).toEqual([expect.objectContaining({ status: 'PASS' })])
   expect(guide2(['README.md']).outcomes).toEqual([
     expect.objectContaining({ status: 'VIOLATION', level: 'WARN', subject: 'docs/guides/README.md' })

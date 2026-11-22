@@ -14,6 +14,7 @@ const INDEX_1: RubricItem<IndexRubricContext> = {
   sources: [SOURCE],
   mechanical: {
     level: 'FAIL',
+    overrideLevels: ['WARN'],
     remediation: {
       class: 'diagnostic',
       guidance: 'Create the canonical decision index for this repository or Knowledge Base.'
