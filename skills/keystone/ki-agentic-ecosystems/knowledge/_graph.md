@@ -99,14 +99,14 @@ A predicate reads from the card that holds it to its target. The same rule maps 
 | Google | `google.` | Google's own words | [Gemini][google.gemini], [model][google.model], [agent harness][google.agent-harness], [agent][google.agent], [conversation][google.conversation], [session][google.session], [subagent][google.subagent], [remote subagent][google.remote-subagent], [skill][google.skill] | `vendors/google/` |
 | Orca | `orca.` | Orca's own words | [Orca runtime][orca.runtime], [Orca app][orca.app], [environment][orca.environment] | `vendors/orca/` |
 | Zed Industries | `zed.` | Zed Industries' own words | [Zed][zed.zed] | `vendors/zed/` |
-| Products | `product.` | One card per agentic product, its capabilities read against the terms (ECOSYSTEM-SHAPE a), proposals | [Claude Code][product.claude-code], [Claude Desktop][product.claude-desktop], [Codex][product.codex], [GitHub Copilot cloud agent][product.github-copilot-cloud-agent], [Gemini CLI][product.gemini-cli], [Cursor][product.cursor], [OpenCode][product.opencode], [OpenClaw][product.openclaw], [Orca][product.orca], [Zed][product.zed] | `products/` |
+| Products | `product.` | One card per agentic product, its capabilities read against the terms (ECOSYSTEM-SHAPE a), proposals | the first ten, [Claude Code][product.claude-code], [Claude Desktop][product.claude-desktop], [Codex][product.codex], [GitHub Copilot cloud agent][product.github-copilot-cloud-agent], [Gemini CLI][product.gemini-cli], [Cursor][product.cursor], [OpenCode][product.opencode], [OpenClaw][product.openclaw], [Orca][product.orca] and [Zed][product.zed]; and twenty-five more under ECOSYSTEMS-SITE, [Antigravity][product.antigravity], [ChatGPT][product.chatgpt], [Claude Managed Agents][product.claude-managed-agents], [Copilot Studio][product.copilot-studio], [DeepSeek Harness][product.deepseek-harness], [Delta][product.delta], [Devin Desktop][product.devin-desktop], [Gas City][product.gas-city], [GitHub Copilot CLI][product.github-copilot-cli], [goose][product.goose], [Grok][product.grok], [Grok Build][product.grok-build], [Hermes Agent][product.hermes-agent], [Jules][product.jules], [Kimi Code][product.kimi-code], [Kiro][product.kiro], [LM Studio][product.lm-studio], [Microsoft 365 Copilot][product.microsoft-365-copilot], [MiniMax Code][product.minimax-code], [Ollama][product.ollama], [OpenAI Agents SDK][product.openai-agents-sdk], [Paperclip][product.paperclip], [Pi][product.pi], [Qwen Code][product.qwen-code], [ZCode][product.zcode] | `products/` |
 | Diagrams | `diagram.` | Diagrams of the terms, as resources | [agentic terms by example][diagram.agentic-terms-by-example], [agentic standards and channels][diagram.agentic-standards] | `diagrams/` |
 | Microsoft | `microsoft.` | Microsoft's and GitHub's own words | [Copilot][microsoft.copilot], [model][microsoft.model], [agent harness][microsoft.agent-harness], [agent][microsoft.agent], [agent session][microsoft.agent-session], [chat][microsoft.chat], [subagent][microsoft.subagent], [agent skill][microsoft.agent-skill] | `vendors/microsoft/` |
 | System | `system.` | Knowledge Islands' own words, each mapped onto the industry's | [guild][system.guild], [rig][system.rig], [actor][system.actor], [work package][system.work-package], [backpack][system.backpack], [role][system.role], [seat][system.seat], [bot][system.bot], a proposal; and one analogy, [the civic model][system.civic-map] | `system/` |
 
 ## Extent and limitations
 
-- **What it covers:** seventeen terms in reading order, from the model to the plugin, the agentic system read after the agent as the umbrella the rest build up (CARD-ORDER), and the channel; the specifications the terms rest on, Agent Skills, MCP, ACP, AHP and A2A, MCP at its revision of 28 July 2026, ACP at its release of 18 November 2026, AHP at 1.1.0 and A2A at 1.0.1; the four leading vendors' words for those terms as their documentation used them on 12 November 2026; Orca's and Zed Industries' words; the first ten product cards, each proposals, under the [product cards standard][standard-product-cards] (ECOSYSTEM-HOME b, ECOSYSTEM-SHAPE a), their facts read on 22 November 2026; two diagrams; seven of the system's own words, guild, rig, actor, work package, backpack, role and seat, with an eighth, bot, as a proposal; and one analogy, the civic model set beside older civilisations' (CIVIC-MAP, CIVIC-AGREE). Other vendors are added where they matter (VENDORS).
+- **What it covers:** seventeen terms in reading order, from the model to the plugin, the agentic system read after the agent as the umbrella the rest build up (CARD-ORDER), and the channel; the specifications the terms rest on, Agent Skills, MCP, ACP, AHP and A2A, MCP at its revision of 28 July 2026, ACP at its release of 18 November 2026, AHP at 1.1.0 and A2A at 1.0.1; the four leading vendors' words for those terms as their documentation used them on 12 November 2026; Orca's and Zed Industries' words; thirty-five product cards, each proposals, under the [product cards standard][standard-product-cards] (ECOSYSTEM-HOME b, ECOSYSTEM-SHAPE a, ECOSYSTEMS-SITE), their facts read on 22 November 2026; two diagrams; seven of the system's own words, guild, rig, actor, work package, backpack, role and seat, with an eighth, bot, as a proposal; and one analogy, the civic model set beside older civilisations' (CIVIC-MAP, CIVIC-AGREE). Other vendors are added where they matter (VENDORS).
 - **Where the cards sit:** the root folder is the skill's `knowledge/` folder, which holds this root definition and a folder for each subgraph, as the table above names, and nothing but the graph (KNOWLEDGE-FOLDER, GRAPH-FOLDERS). A card's folder is never part of its identity, so links in front matter are keyed by id alone.
 - **Beside the graph:** the skill's `references/` folder holds [the sources](../references/sources.md), with every vendor source and the date it was last checked, and the decisions behind the cards; it is not a card.
 - **Refreshed monthly** (TERMS-REFRESH): the vendor cards' examples date quickly, as products are renamed, merged and closed.
@@ -221,3 +221,28 @@ A predicate reads from the card that holds it to its target. The same rule maps 
 [product.openclaw]: ./products/product.openclaw.md
 [product.orca]: ./products/product.orca.md
 [product.zed]: ./products/product.zed.md
+[product.antigravity]: ./products/product.antigravity.md
+[product.chatgpt]: ./products/product.chatgpt.md
+[product.claude-managed-agents]: ./products/product.claude-managed-agents.md
+[product.copilot-studio]: ./products/product.copilot-studio.md
+[product.deepseek-harness]: ./products/product.deepseek-harness.md
+[product.delta]: ./products/product.delta.md
+[product.devin-desktop]: ./products/product.devin-desktop.md
+[product.gas-city]: ./products/product.gas-city.md
+[product.github-copilot-cli]: ./products/product.github-copilot-cli.md
+[product.goose]: ./products/product.goose.md
+[product.grok]: ./products/product.grok.md
+[product.grok-build]: ./products/product.grok-build.md
+[product.hermes-agent]: ./products/product.hermes-agent.md
+[product.jules]: ./products/product.jules.md
+[product.kimi-code]: ./products/product.kimi-code.md
+[product.kiro]: ./products/product.kiro.md
+[product.lm-studio]: ./products/product.lm-studio.md
+[product.microsoft-365-copilot]: ./products/product.microsoft-365-copilot.md
+[product.minimax-code]: ./products/product.minimax-code.md
+[product.ollama]: ./products/product.ollama.md
+[product.openai-agents-sdk]: ./products/product.openai-agents-sdk.md
+[product.paperclip]: ./products/product.paperclip.md
+[product.pi]: ./products/product.pi.md
+[product.qwen-code]: ./products/product.qwen-code.md
+[product.zcode]: ./products/product.zcode.md
