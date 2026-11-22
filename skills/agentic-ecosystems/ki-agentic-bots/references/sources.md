@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T16:20:00Z
+ki-revised: 2026-11-22T16:15:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -64,6 +64,8 @@ The owner's decisions behind the standard, each recorded in the Cairn summit's [
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the second SKILLS-LEARNING batch, Kris's steer of that morning to bake the night's lessons into the skills, added one pitfall to [Questions carded when due](standard-bots.md#48-questions-carded-when-due): check a question's facts again just before carding it. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 MEMORY-FEED b settled the one point [4.6](standard-bots.md#46-memory-a-working-aid) had left open: there is no roster `MEMORY.md`, a lasting lesson goes to its owner, and the host's memory is never copied into the store. The open point was removed from 4.6 and from Watching. No outside source was refreshed.
 

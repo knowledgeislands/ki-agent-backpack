@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T16:20:00Z
+ki-revised: 2026-11-22T16:15:00Z
 ki-status: in force
 ---
 
@@ -144,7 +144,7 @@ Whenever a bot says what is outstanding, gives a summary or a status, or closes 
 
 ### 4.8 Questions carded when due
 
-A card is for a question that is due soon, blocks work, or comes up in the change document the owner is taking now. Every other open question stays in its change document, and the owner works through them change by change; a package's questions are never moved onto cards in bulk (CARDS-PACED). A question that is carded keeps the reply block's form: its context, the query and its options, the recommended one first with its confidence, so it can be answered from the card alone; an answer in either place counts once.
+A card is for a question that is due soon, blocks work, or comes up in the change document the owner is taking now. Every other open question stays in its change document, and the owner works through them change by change; a package's questions are never moved onto cards in bulk (CARDS-PACED). A question that is carded keeps the reply block's form: its context, the query and its options, the recommended one first with its confidence, so it can be answered from the card alone; an answer in either place counts once. Check the question's facts again just before carding it: one carded on 22 November 2026 had lapsed within minutes (CHEZMOI-PUSH).
 
 [Back to contents](#contents)
 
