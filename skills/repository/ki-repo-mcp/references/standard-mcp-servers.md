@@ -32,7 +32,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-The canonical shape shared by every stdio MCP server in the `knowledgeislands/` workspace: `mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-housekeeping-chatgpt`, `mcp-acquire-whatsapp`. This is the reference the `ki-repo-mcp` skill codifies and audits against. Where repos disagree, the majority shape is the standard; documented per-repo exceptions are noted inline. The sources and decisions behind it are in [the sources file](sources.md).
+The canonical shape shared by every stdio MCP server in the `knowledgeislands/` workspace: `mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-housekeeping-chatgpt`, `mcp-acquire-whatsapp`, `mcp-cairn`. This is the reference the `ki-repo-mcp` skill codifies and audits against. Where repos disagree, the majority shape is the standard; documented per-repo exceptions are noted inline. The sources and decisions behind it are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -120,15 +120,16 @@ Top-level `src/` folders are identical across all seven repos: `config`, `main`,
 
 `<app>_<resource>_<action>`, snake_case.
 
-| Repo                     | `<app>` prefix(es)                        |
-| ------------------------ | ----------------------------------------- |
-| mcp-git-audit            | `git`                                     |
-| mcp-ki-kb-fs             | `kb`                                      |
-| mcp-gsuite               | `gsuite`                                  |
-| mcp-m365                 | `m365`                                    |
-| mcp-housekeeping-claude  | `claude_code`, `claude_desktop`, `vscode` |
-| mcp-housekeeping-chatgpt | `chatgpt`, `codex`                        |
-| mcp-acquire-whatsapp     | `whatsapp`                                |
+| Repo                     | `<app>` prefix(es)                                                   |
+| ------------------------ | -------------------------------------------------------------------- |
+| mcp-git-audit            | `git`                                                                |
+| mcp-ki-kb-fs             | `kb`                                                                 |
+| mcp-gsuite               | `gsuite`                                                             |
+| mcp-m365                 | `m365`                                                               |
+| mcp-housekeeping-claude  | `claude_code`, `claude_desktop`, `vscode`                            |
+| mcp-housekeeping-chatgpt | `chatgpt`, `codex`                                                   |
+| mcp-acquire-whatsapp     | `whatsapp`                                                           |
+| mcp-cairn                | none: `who`, `since` and `presence` keep bare names (TOOL-EXCEPTION) |
 
 - **Plural** resource for collection ops (`git_repos_scan`, `gsuite_email_messages_search`, `claude_code_sessions_list`).
 - **Singular** for single-item ops (`claude_code_session_read`, `git_repo_commit`, `gsuite_email_message_get`).
