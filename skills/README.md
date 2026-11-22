@@ -63,7 +63,7 @@ Analyse a conversation, chat, thread, meeting or negotiation for its dynamics: c
 - **Dependencies:** None
 - **Runtime:** Portable
 
-### Agentic Systems
+### Agentic Ecosystems
 
 #### `ki-agentic-bots`
 
@@ -326,10 +326,10 @@ Lead the Acquire guild and govern source-independent knowledge capture: supplied
 
 #### `ki-agentic-ecosystems`
 
-Lead the Agentic systems guild and define the words of agentic systems as a knowledge graph: industry cards from model, agent harness, agent, session, subagent and skill to environment, machine, agent host and client, with Anthropic's, OpenAI's, Google's and Microsoft's own words in vendor subgraphs linked to them. Use to learn what an agentic term means, which sense a vendor name such as Claude or Codex carries, how vendors' words compare, or which card to link instead of redefining a term; `ki-agentic-radar` owns maturity and stance, and `ki-subagents` how to run subagents.
+Lead the Agentic ecosystems guild and define the words of agentic systems as a knowledge graph: industry cards from model, agent harness, agent, session, subagent and skill to environment, machine, agent host and client, with Anthropic's, OpenAI's, Google's and Microsoft's own words in vendor subgraphs linked to them. Use to learn what an agentic term means, which sense a vendor name such as Claude or Codex carries, how vendors' words compare, or which card to link instead of redefining a term; `ki-agentic-radar` owns maturity and stance, and `ki-subagents` how to run subagents.
 
 - **Kind:** Knowledge
-- **Leads:** Agentic Systems
+- **Leads:** Agentic Ecosystems
 - **Applicability:** Invocation Only
 - **Arguments:** `educate <term> | help | refresh`
 - **Dependencies:** None

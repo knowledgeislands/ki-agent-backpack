@@ -43,7 +43,7 @@ How a coordinator logs the owner's decisions in change documents, classes them, 
 ### 2.2 Out of scope
 
 - The shape of a package and its change documents: `ki-work-package`'s [work-package standard](../../ki-work-package/references/standard-work-package.md).
-- The run side of logging decisions: `ki-delegation`'s [background-run standard](../../../agentic-systems/ki-delegation/references/standard-background-runs.md).
+- The run side of logging decisions: `ki-delegation`'s [background-run standard](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md).
 - A change document's own format: `ki-authoring`'s [change format](../../../keystone/ki-authoring/references/standard-formats-change.md).
 - Pruning change documents at the mark: [mark, tidy and finishing](standard-mark.md).
 
@@ -88,7 +88,7 @@ The owner's words are whole only on the turn they arrive: a context-compressing 
 Write each entry by hand, and commit and push the change document under [Committing the package](standard-coordination.md#481-committing-the-package).
 
 - A change document's entries are the work's working record until the change closes, not a Decision Record. Each entry is classed under [decision classes](#412-decision-classes) and homed under the [life cycle](#413-decisions-life-cycle), so nothing durable lives only in the package.
-- The run side, that the session logs the owner's decisions and no background agent does, is the `ki-delegation` [decisions log](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#47-decisions-log)'s.
+- The run side, that the session logs the owner's decisions and no background agent does, is the `ki-delegation` [decisions log](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#47-decisions-log)'s.
 
 Sources: DECISION-NO-NUMBER, LOG-NO-LOSS, OLD-SHAPE-HOMES, FOCUS-ROWS and MSG-SIMPLIFY in [the decision register](sources.md#3-decisions).
 

@@ -3,7 +3,7 @@ name: ki-delegation-orca
 ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: process
 ki-applicability: invocation-only
-ki-guild: agentic-systems
+ki-guild: agentic-ecosystems
 ki-depends-on: [ki-delegation, ki-coordination]
 description: >
   Start, wait on, steer, stop and close Orca supervised workers as a KI delegation launcher, on attended Macs for a work

@@ -141,7 +141,7 @@ describe('buildSkillArea', () => {
     expect(area.meta.repository?.revision).toBe('a'.repeat(40))
   })
 
-  test('lays the agentic systems out as a compact block: hub first, its dependents beside it', () => {
+  test('lays the agentic ecosystems out as a compact block: hub first, its dependents beside it', () => {
     const areas = [
       functional('agentic', 'Agentic', [
         {
@@ -152,10 +152,10 @@ describe('buildSkillArea', () => {
     ]
     const agentic = buildSkillArea(areas[0] as FunctionalArea)(
       readSkillGraphNodes([
-        skill('agentic-systems', 'ki-subagents'),
-        skill('agentic-systems', 'ki-subagents-claude', 'ki-depends-on: [ki-subagents]\n'),
-        skill('agentic-systems', 'ki-subagents-chatgpt', 'ki-depends-on: [ki-subagents]\n'),
-        skill('agentic-systems', 'ki-agent-adapter', 'ki-depends-on: [ki-git]\n'),
+        skill('agentic-ecosystems', 'ki-subagents'),
+        skill('agentic-ecosystems', 'ki-subagents-claude', 'ki-depends-on: [ki-subagents]\n'),
+        skill('agentic-ecosystems', 'ki-subagents-chatgpt', 'ki-depends-on: [ki-subagents]\n'),
+        skill('agentic-ecosystems', 'ki-agent-adapter', 'ki-depends-on: [ki-git]\n'),
         skill('governance', 'ki-git'),
         skill('repo-structure', 'ki-repo-backpack', 'ki-depends-on: [ki-subagents]\n')
       ]).nodes,

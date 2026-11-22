@@ -37,7 +37,7 @@ export const DOMAIN_LABELS: Readonly<Record<string, string>> = {
   keystone: 'keystone',
   repository: 'repository',
   work: 'work',
-  'agentic-systems': 'agentic systems',
+  'agentic-ecosystems': 'agentic ecosystems',
   acquire: 'acquire',
   environment: 'environment',
   design: 'design',

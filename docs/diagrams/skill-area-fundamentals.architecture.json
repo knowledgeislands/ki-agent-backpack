@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "8056a5caca9ec904665efa18e2586cb1c58da498"
+      "revision": "f8d17af8168d8a3e6078e57dbcd905e628eccbdb"
     },
     "legend": {
       "mode": "auto",
@@ -336,10 +336,10 @@
       "id": "ki-subagents",
       "type": "backend",
       "label": "ki-subagents",
-      "sublabel": "agentic systems · automatic",
+      "sublabel": "agentic ecosystems · automatic",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-subagents/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-subagents/SKILL.md"
         }
       ],
       "tag": "R5 · CM · F3",
@@ -388,7 +388,7 @@
     },
     {
       "kind": "region",
-      "label": "Agentic systems · 1 skill",
+      "label": "Agentic ecosystems · 1 skill",
       "wraps": [
         "ki-subagents"
       ],

@@ -5,7 +5,7 @@ import { dirname, join, resolve } from 'node:path'
 import { generate } from '../../../work/ki-coordination/scripts/generate/index.ts'
 
 const root = resolve(import.meta.dir, '../../../..')
-const promptPath = 'skills/agentic-systems/ki-delegation/assets/run-prompt.md'
+const promptPath = 'skills/agentic-ecosystems/ki-delegation/assets/run-prompt.md'
 const standardRoot = 'skills/work/ki-coordination/references'
 const standardPaths = readdirSync(join(root, standardRoot))
   .filter((name) => /^standards?-.*\.md$/.test(name))

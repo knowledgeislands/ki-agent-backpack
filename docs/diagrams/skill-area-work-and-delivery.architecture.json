@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "9c652839d1d7b24278a4f31e8ccc513b96d8d2b1"
+      "revision": "f8d17af8168d8a3e6078e57dbcd905e628eccbdb"
     },
     "legend": {
       "mode": "auto",
@@ -216,10 +216,10 @@
       "id": "ki-delegation",
       "type": "database",
       "label": "ki-delegation",
-      "sublabel": "agentic systems · opt-in",
+      "sublabel": "agentic ecosystems · opt-in",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-delegation/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-delegation/SKILL.md"
         }
       ],
       "tag": "R6 · CM · F4",

@@ -2,13 +2,13 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "Knowledge Islands skills · Agentic systems",
-    "output": "+/diagrams/skill-area-agentic-systems/skill-area-agentic-systems.html",
+    "title": "Knowledge Islands skills · Agentic ecosystems",
+    "output": "+/diagrams/skill-area-agentic-ecosystems/skill-area-agentic-ecosystems.html",
     "quality_profile": "showcase",
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "6e29299259dd00320b60a52fb2d6ebe4aa8cfeb0"
+      "revision": "f8d17af8168d8a3e6078e57dbcd905e628eccbdb"
     },
     "legend": {
       "mode": "auto",
@@ -56,10 +56,10 @@
       "id": "ki-agentic-bots",
       "type": "frontend",
       "label": "ki-agentic-bots",
-      "sublabel": "agentic systems · command",
+      "sublabel": "agentic ecosystems · command",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-agentic-bots/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-agentic-bots/SKILL.md"
         }
       ],
       "tag": "R– · C0 · F2",
@@ -76,10 +76,10 @@
       "id": "ki-delegation-orca",
       "type": "frontend",
       "label": "ki-delegation-orca",
-      "sublabel": "agentic systems · command",
+      "sublabel": "agentic ecosystems · command",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-delegation-orca/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-delegation-orca/SKILL.md"
         }
       ],
       "tag": "R– · C0 · F3",
@@ -96,10 +96,10 @@
       "id": "ki-subagents",
       "type": "backend",
       "label": "ki-subagents",
-      "sublabel": "agentic systems · automatic",
+      "sublabel": "agentic ecosystems · automatic",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-subagents/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-subagents/SKILL.md"
         }
       ],
       "tag": "R5 · CM · F3",
@@ -116,10 +116,10 @@
       "id": "ki-subagents-chatgpt",
       "type": "backend",
       "label": "ki-subagents-chatgpt",
-      "sublabel": "agentic systems · automatic",
+      "sublabel": "agentic ecosystems · automatic",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-subagents-chatgpt/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-subagents-chatgpt/SKILL.md"
         }
       ],
       "tag": "R5 · CM · F3",
@@ -136,10 +136,10 @@
       "id": "ki-subagents-claude",
       "type": "backend",
       "label": "ki-subagents-claude",
-      "sublabel": "agentic systems · automatic",
+      "sublabel": "agentic ecosystems · automatic",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-subagents-claude/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-subagents-claude/SKILL.md"
         }
       ],
       "tag": "R6 · CM · F4",
@@ -196,10 +196,10 @@
       "id": "ki-delegation",
       "type": "database",
       "label": "ki-delegation",
-      "sublabel": "agentic systems · opt-in",
+      "sublabel": "agentic ecosystems · opt-in",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-delegation/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-delegation/SKILL.md"
         }
       ],
       "tag": "R6 · CM · F4",
@@ -234,7 +234,7 @@
     },
     {
       "kind": "region",
-      "label": "Agentic systems · 5 skills",
+      "label": "Agentic ecosystems · 5 skills",
       "wraps": [
         "ki-subagents",
         "ki-subagents-claude",

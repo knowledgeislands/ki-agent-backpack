@@ -27,7 +27,7 @@ export const CONCERN_ORDER = [
   'keystone',
   'repository',
   'work',
-  'agentic-systems',
+  'agentic-ecosystems',
   'acquire',
   'environment',
   'design',

@@ -110,7 +110,7 @@ adapter = "roadmap"
 # Mirrors the skills/ guild directories.
 components = [
   "acquire",
-  "agentic-systems",
+  "agentic-ecosystems",
   "authoring",
   "design",
   "environment",

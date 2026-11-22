@@ -3,7 +3,7 @@ name: ki-agentic-bots
 ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: process
 ki-applicability: invocation-only
-ki-guild: agentic-systems
+ki-guild: agentic-ecosystems
 ki-depends-on: [ki-coordination, ki-delegation, ki-work-package]
 description: >
   Work as a bot actor on an agent host: bootstrap from a tracked file on every wake, send background work to the bot's

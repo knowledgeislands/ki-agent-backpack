@@ -102,7 +102,7 @@ export const guilds = (skills: readonly GuildSkill[]): readonly Guild[] => {
     })
 }
 
-/** A guild's machine name as a reader sees it: `agentic-systems` reads as Agentic systems. */
+/** A guild's machine name as a reader sees it: `agentic-ecosystems` reads as Agentic ecosystems. */
 export const guildTitle = (name: string): string => {
   const words = name.replace(/-/g, ' ')
   return words.charAt(0).toUpperCase() + words.slice(1)

@@ -63,7 +63,7 @@ test('parses folded frontmatter into normalized capability facts', () => {
   expect(
     parseCapabilitySource(
       source('ki-example', {
-        path: 'skills/agentic-systems/ki-example/SKILL.md',
+        path: 'skills/agentic-ecosystems/ki-example/SKILL.md',
         kind: 'process',
         description: 'Use ki-example for a folded\n  outcome.',
         dependencies: ['ki-base'],
@@ -74,8 +74,8 @@ test('parses folded frontmatter into normalized capability facts', () => {
     )
   ).toEqual({
     entry: {
-      path: 'skills/agentic-systems/ki-example/SKILL.md',
-      domain: 'agentic-systems',
+      path: 'skills/agentic-ecosystems/ki-example/SKILL.md',
+      domain: 'agentic-ecosystems',
       name: 'ki-example',
       kind: 'process',
       applicability: 'invocation-only',

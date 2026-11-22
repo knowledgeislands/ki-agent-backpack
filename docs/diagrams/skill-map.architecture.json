@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "8056a5caca9ec904665efa18e2586cb1c58da498"
+      "revision": "f8d17af8168d8a3e6078e57dbcd905e628eccbdb"
     },
     "legend": {
       "mode": "auto",
@@ -761,7 +761,7 @@
       "sublabel": "coordination · opt-in",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-delegation/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-delegation/SKILL.md"
         }
       ],
       "pos": [
@@ -780,7 +780,7 @@
       "sublabel": "agentic · automatic",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-subagents/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-subagents/SKILL.md"
         }
       ],
       "pos": [
@@ -799,7 +799,7 @@
       "sublabel": "agentic · automatic",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-subagents-chatgpt/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-subagents-chatgpt/SKILL.md"
         }
       ],
       "pos": [
@@ -818,7 +818,7 @@
       "sublabel": "agentic · automatic",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-subagents-claude/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-subagents-claude/SKILL.md"
         }
       ],
       "pos": [
@@ -837,7 +837,7 @@
       "sublabel": "agentic · command",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-agentic-bots/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-agentic-bots/SKILL.md"
         }
       ],
       "pos": [
@@ -856,7 +856,7 @@
       "sublabel": "agentic · command",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-delegation-orca/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-delegation-orca/SKILL.md"
         }
       ],
       "pos": [
@@ -875,7 +875,7 @@
       "sublabel": "signals · opt-in",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-agentic-radar/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-agentic-radar/SKILL.md"
         }
       ],
       "pos": [
@@ -894,7 +894,7 @@
       "sublabel": "signals · opt-in",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-model-radar/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-model-radar/SKILL.md"
         }
       ],
       "pos": [
@@ -1507,7 +1507,7 @@
     },
     {
       "kind": "region",
-      "label": "Agentic systems",
+      "label": "Agentic ecosystems",
       "wraps": [
         "ki-subagents",
         "ki-subagents-chatgpt",
@@ -1528,7 +1528,7 @@
     },
     {
       "kind": "region",
-      "label": "Agentic Systems · 8 skills",
+      "label": "Agentic Ecosystems · 8 skills",
       "wraps": [
         "ki-delegation",
         "ki-subagents",

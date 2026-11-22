@@ -32,9 +32,9 @@ Each functional-area diagram answers, for one area: which outside skills do its 
 
 [![Knowledge Islands skills · Repository types](skill-area-repository-types.svg)](skill-area-repository-types.html)
 
-### Agentic systems
+### Agentic ecosystems
 
-[![Knowledge Islands skills · Agentic systems](skill-area-agentic-systems.svg)](skill-area-agentic-systems.html)
+[![Knowledge Islands skills · Agentic ecosystems](skill-area-agentic-ecosystems.svg)](skill-area-agentic-ecosystems.html)
 
 ### Environment
 

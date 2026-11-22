@@ -45,17 +45,17 @@ test('the map renders Keystone first, then each guild by name, with its lead and
   const map = renderGuildMap([
     { name: 'ki-design', path: 'a', guild: 'keystone', leads: 'design' },
     { name: 'ki-keystone', path: 'b', guild: 'keystone', leads: 'keystone' },
-    { name: 'ki-agentic-ecosystems', path: 'c', guild: 'keystone', leads: 'agentic-systems' },
+    { name: 'ki-agentic-ecosystems', path: 'c', guild: 'keystone', leads: 'agentic-ecosystems' },
     { name: 'ki-design-system', path: 'd', guild: 'design' }
   ])
   expect(map.split('\n')).toEqual([
     '| Guild | Lead | Members |',
     '| --- | --- | --- |',
     '| Keystone | `ki-keystone` | `ki-agentic-ecosystems`, `ki-design` |',
-    '| Agentic systems | `ki-agentic-ecosystems` | None |',
+    '| Agentic ecosystems | `ki-agentic-ecosystems` | None |',
     '| Design | `ki-design` | `ki-design-system` |'
   ])
-  expect(guildTitle('agentic-systems')).toBe('Agentic systems')
+  expect(guildTitle('agentic-ecosystems')).toBe('Agentic ecosystems')
 })
 
 test('the splice replaces exactly one marked block and refuses any other', () => {

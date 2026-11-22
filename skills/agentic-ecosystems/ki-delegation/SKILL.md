@@ -3,7 +3,7 @@ name: ki-delegation
 ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: declaration-only
-ki-guild: agentic-systems
+ki-guild: agentic-ecosystems
 ki-depends-on: []
 ki-shared-dependencies: [ki-skills:rubric]
 description: >

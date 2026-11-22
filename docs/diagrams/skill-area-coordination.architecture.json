@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "6e29299259dd00320b60a52fb2d6ebe4aa8cfeb0"
+      "revision": "f8d17af8168d8a3e6078e57dbcd905e628eccbdb"
     },
     "legend": {
       "mode": "auto",
@@ -56,10 +56,10 @@
       "id": "ki-delegation-orca",
       "type": "frontend",
       "label": "ki-delegation-orca",
-      "sublabel": "agentic systems · command",
+      "sublabel": "agentic ecosystems · command",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-delegation-orca/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-delegation-orca/SKILL.md"
         }
       ],
       "tag": "R– · C0 · F3",
@@ -76,10 +76,10 @@
       "id": "ki-agentic-bots",
       "type": "frontend",
       "label": "ki-agentic-bots",
-      "sublabel": "agentic systems · command",
+      "sublabel": "agentic ecosystems · command",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-agentic-bots/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-agentic-bots/SKILL.md"
         }
       ],
       "tag": "R– · C0 · F2",
@@ -116,10 +116,10 @@
       "id": "ki-delegation",
       "type": "database",
       "label": "ki-delegation",
-      "sublabel": "agentic systems · opt-in",
+      "sublabel": "agentic ecosystems · opt-in",
       "sources": [
         {
-          "path": "skills/agentic-systems/ki-delegation/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-delegation/SKILL.md"
         }
       ],
       "tag": "R6 · CM · F4",
@@ -224,7 +224,7 @@
     },
     {
       "kind": "region",
-      "label": "Agentic systems · 2 skills",
+      "label": "Agentic ecosystems · 2 skills",
       "wraps": [
         "ki-delegation-orca",
         "ki-agentic-bots"

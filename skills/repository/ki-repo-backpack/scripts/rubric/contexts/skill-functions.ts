@@ -107,8 +107,8 @@ export const FUNCTIONAL_AREAS: readonly FunctionalArea[] = [
     ]
   },
   {
-    slug: 'agentic-systems',
-    title: 'Agentic systems',
+    slug: 'agentic-ecosystems',
+    title: 'Agentic ecosystems',
     short: 'agentic',
     purpose: 'define agent roles and coordinate agents',
     groups: [

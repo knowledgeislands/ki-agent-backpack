@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T06:50:00Z
+ki-revised: 2026-11-22T01:52:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -177,10 +177,13 @@ The OpenAI News page is a discovery source, not a normative standard. On each RE
 | RUBRIC-KNOWLEDGE | Kris's word, 17 November 2026, about 23:34 GMT, under GUARDIAN-LANDS a, relayed by the Cairn summit's guardian from the summit's [change 11](https://github.com/krisb/ki-cairn-store/blob/c17433e/work/cairn/cairn.summit/11-keystone-guild.change.md#45-decided): option a, the rubric checks a knowledge graph: its root definition, each card's id against its file name, its type and its status, and its links; the check that each card read in order links the next only warns, and exempts the last card of a chain. | 2026-11-17 | [Skill shape](standard-knowledge-islands.md#42-skill-shape), KI-SHAPE-23, KI-SHAPE-24 | In force |
 | OVERLAY-NAME | Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a and Kris's DO-THEN-CHECK, from the summit's [change 10](https://github.com/krisb/ki-cairn-store/blob/fe029b50/work/cairn/cairn.summit/10-skills-review.change.md#71-questions), option a: a migration overlay is its own class in the reference vocabulary, `migration-<topic>.md`, on the prefix pattern `mode-` uses, with no format of its own beyond the overlay rule, so it need not become a standard when the plural allowance goes; the eight overlays are renamed, `ki-coordination`'s after the run then editing it. Reversible; Kris can overturn it. | 2026-11-19 | [Reference vocabulary](standard-knowledge-islands.md) | In force |
 | MCP-INVENTORY | Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a and Kris's DO-THEN-CHECK, from the summit's [change 10](https://github.com/krisb/ki-cairn-store/blob/fe029b50/work/cairn/cairn.summit/10-skills-review.change.md#71-questions), option a: a standard holds rules, not findings, so `ki-repo-mcp`'s 24 September inventory moves into a dated report beside its standard; the reference vocabulary gains `report-<YYYYMMDD>-<topic>.md` for it, a class the decision's "beside the standard" needs. Reversible; Kris can overturn it. | 2026-11-19 | [Reference vocabulary](standard-knowledge-islands.md) | In force |
+| GUILD-FOLLOWS | Taken by ki.summit's guardian, 22 November 2026, recorded in ki.summit's [Held](https://github.com/krisb/ki-cairn-store/blob/08c5f29a/work/ki/ki.summit/_index.md#held) after a blind review agreed with high confidence, to land for Kris's review (LAND-THEN-REVIEW): Kris renamed the lead skill `ki-agentic-ecosystems` that day, so under GUILD-NAMED the guild it leads follows it: the Agentic systems guild becomes Agentic ecosystems, its machine name `agentic-ecosystems` and its folder `skills/agentic-ecosystems/`. No member is renamed, and the prefix stays `ki-agentic-`. | 2026-11-22 | [Guilds](standard-guilds.md#43-names-and-prefixes) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+A later in-house review on **2026-11-22** applied GUILD-FOLLOWS, taken by ki.summit's guardian: the Agentic systems guild is renamed Agentic ecosystems to match its lead, `ki-agentic-ecosystems`, under GUILD-NAMED, in [the guild table](standard-guilds.md#43-names-and-prefixes), each member's `ki-guild`, the lead's `ki-leads`, the backpack's folder, guild map, catalogue and diagrams. No outside source refreshed.
 
 A later in-house review on **2026-11-21** closed STANDARDS-RENAME: with no plural `standards-<topic>.md` file left in any backpack, [the reference vocabulary](standard-knowledge-islands.md) and KI-SHAPE-6 no longer accept one. The rubric is regenerated. No outside source refreshed.
 

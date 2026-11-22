@@ -4,10 +4,10 @@ ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: knowledge
 ki-applicability: invocation-only
 ki-guild: keystone
-ki-leads: agentic-systems
+ki-leads: agentic-ecosystems
 ki-depends-on: []
 description: >
-  Lead the Agentic systems guild and define the words of agentic systems as a knowledge graph: industry cards from
+  Lead the Agentic ecosystems guild and define the words of agentic systems as a knowledge graph: industry cards from
   model, agent harness, agent, session, subagent and skill to environment, machine, agent host and client, with
   Anthropic's, OpenAI's, Google's and Microsoft's own words in vendor subgraphs linked to them. Use to learn what an
   agentic term means, which sense a vendor name such as Claude or Codex carries, how vendors' words compare, or which
@@ -109,9 +109,9 @@ A card's wording is settled first in the Cairn summit's knowledge-skills change,
 
 Another skill that uses an agentic term links to its industry card here rather than defining the term again: a standard's Terms table names the term and points to the card. Where a skill needs a narrower sense, it states the narrowing and still links the card. A vendor's word is linked at its vendor card only where the vendor's own usage is the point.
 
-## The Agentic systems guild
+## The Agentic ecosystems guild
 
-This skill leads the Agentic systems guild: its words, and agents at work. It says what a thing is; its members say how agents work:
+This skill leads the Agentic ecosystems guild: its words, and agents at work. It says what a thing is; its members say how agents work:
 
 - **`ki-subagents`** for subagent roles, and how to run subagents in a given agent host, with `ki-subagents-claude` and `ki-subagents-chatgpt` for each host's projection: the practice, not the vocabulary.
 - **`ki-delegation`** for delegating work to background agents, with `ki-delegation-orca` for Orca's supervised workers.

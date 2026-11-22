@@ -57,7 +57,7 @@ The reply forms every session uses, and the owner report with its queries, answe
 
 - The coordinator reply format, its triggers, templates and banner detail: [reply format and banner](standard-report-forms.md).
 - How queries reach the owner, the query cap and query review: [queries](standard-queries.md).
-- The run half of delegation, including authority tiers and the external-posting ban: `ki-delegation`'s [background-run standard](../../../agentic-systems/ki-delegation/references/standard-background-runs.md).
+- The run half of delegation, including authority tiers and the external-posting ban: `ki-delegation`'s [background-run standard](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md).
 - The banner layout, the table of states and the generated surfaces: [the core](standard-coordination.md).
 
 [Back to contents](#contents)
@@ -254,7 +254,7 @@ The label is written `Outstanding - no action requested now` and the query headi
   b) hold the whole guard in the backpack until the printer lands
   ```
 
-- **Posting outside:** a recommendation to post anything in the owner's name outside the owner's own repositories and services, an issue, comment, reaction, pull request, discussion, review or message on another owner's repository or service such as an upstream issue tracker, is a query, never an action. Its **Context** or option carries the exact text proposed and where it would go, and nothing is posted until the owner answers that query; a broader grant, an earlier answer or a recommended option never stands in for it. `ki-delegation` owns the ban under its [external-posting rule](../../../agentic-systems/ki-delegation/references/standard-background-runs.md#46-authority-tiers).
+- **Posting outside:** a recommendation to post anything in the owner's name outside the owner's own repositories and services, an issue, comment, reaction, pull request, discussion, review or message on another owner's repository or service such as an upstream issue tracker, is a query, never an action. Its **Context** or option carries the exact text proposed and where it would go, and nothing is posted until the owner answers that query; a broader grant, an earlier answer or a recommended option never stands in for it. `ki-delegation` owns the ban under its [external-posting rule](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#46-authority-tiers).
 - **Plain English:** a query's Context, Query and options, and the report's other explanations, are in plain English. A technical term appears only where needed and is explained in plain words the first time. Links to records are kept under **Links**.
 - **Headings:** the sections are `##` headings and each query a `###` heading, so a report nests the same way wherever it appears, under the one `#` report heading. Sub-headings in `Done`, where a long report groups outcomes by topic, and the banner heading are `###` too.
 - **Links:** every record, package file, Project, theme, decision, receipt and evidence artefact is linked under [Linking records](#44-linking-records), a pruned record as `[<FULL-ID> (pruned)](https://github.com/<owner>/<repo>/blob/<last revision>/<path>)`.

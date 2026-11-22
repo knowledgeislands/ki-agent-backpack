@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-14T03:16:02Z
+ki-revised: 2026-11-22T01:52:00Z
 ki-status: in force
 ---
 
@@ -72,7 +72,7 @@ The rules, part by part.
 
 A guild is a set of skills that belong together and work together, with one purpose a reader can name in a line (GUILD-TERM). Each guild is a tree of skills led by one lead skill, which discloses the rest the way a skill discloses its references: a lead says what the guild is for and names each member with when to use it, and a member is loaded only when it is needed (GUILD-LEAD). A guild is not a layer above skills. Nothing new sits above a skill, a guild stays within what a skill can be, and a skill family's prefix already shows the same grouping on a smaller scale.
 
-Every guild has exactly one lead, and a skill leads at most one guild. A lead may be any kind of skill, a knowledge skill included, as `ki-agentic-ecosystems` leads the Agentic systems guild (AGENTS-GUILD).
+Every guild has exactly one lead, and a skill leads at most one guild. A lead may be any kind of skill, a knowledge skill included, as `ki-agentic-ecosystems` leads the Agentic ecosystems guild (AGENTS-GUILD).
 
 [Back to contents](#contents)
 
@@ -95,13 +95,13 @@ The guilds' names and prefixes are settled:
 | Keystone | `ki-keystone` | None: its members are leads and what every guild rests on |
 | Repository | `ki-repo` | `ki-repo-` |
 | Work | `ki-work` | `ki-work-` |
-| Agentic systems | `ki-agentic-ecosystems` | `ki-agentic-` (AGENTS-GUILD) |
+| Agentic ecosystems | `ki-agentic-ecosystems` | `ki-agentic-` (AGENTS-GUILD, GUILD-FOLLOWS) |
 | Acquire | `ki-acquire` | `ki-acquire-` |
 | Environment | `ki-env` | `ki-env-` (ENV-PREFIX) |
 | Design | `ki-design` | `ki-design-` (DESIGN-LEAD) |
 | Authoring | `ki-authoring` | `ki-authoring-` |
 
-A member named before its guild was settled keeps its name until its guild is reviewed, as `ki-git`, `ki-engineering`, `ki-coordination` and the four writing skills of Authoring do: the prefix is required of new members, and a rename is decided, never assumed. A guild's machine name, the value its members declare, is its name in lower-case kebab case, as `agentic-systems`.
+A member named before its guild was settled keeps its name until its guild is reviewed, as `ki-git`, `ki-engineering`, `ki-coordination` and the four writing skills of Authoring do: the prefix is required of new members, and a rename is decided, never assumed. A guild's machine name, the value its members declare, is its name in lower-case kebab case, as `agentic-ecosystems`.
 
 [Back to contents](#contents)
 

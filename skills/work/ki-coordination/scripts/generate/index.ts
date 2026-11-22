@@ -23,7 +23,7 @@ const REFERENCES = 'skills/work/ki-coordination/references'
 const STANDARD = `${REFERENCES}/standard-*.md`
 const HOOK = 'hooks/coordinator-reminder/coordinator-reminder.sh'
 const OUTPUT_STYLE = 'output-styles/ki-coordinator.md'
-const DELEGATION_ASSETS = 'skills/agentic-systems/ki-delegation/assets'
+const DELEGATION_ASSETS = 'skills/agentic-ecosystems/ki-delegation/assets'
 const RUN_PROMPT = `${DELEGATION_ASSETS}/run-prompt.md`
 const DESIGN_BRIEF = 'skills/keystone/ki-work/assets/design/brief.md'
 const FOOTERS = ['none', 'push', 'prune', 'release'].map((tier) => `${DELEGATION_ASSETS}/rules-${tier}.md`)

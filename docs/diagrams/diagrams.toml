@@ -61,13 +61,13 @@ regenerate = "Run `bun skills/repository/ki-repo-backpack/scripts/skill-graph.ts
 last_checked = "80fde15b648d3a93ab4a0a16c46e4c0dcab05a1a"
 commit_html = true
 
-[skill-area-agentic-systems]
+[skill-area-agentic-ecosystems]
 type = "architecture"
-question = "Which outside skills do the Agentic systems skills rely on, which outside skills rely on them, and how do they rely on each other?"
+question = "Which outside skills do the Agentic ecosystems skills rely on, which outside skills rely on them, and how do they rely on each other?"
 audience = "Skill authors and reviewers deciding where a new or changed skill sits"
 traced = ["skills/*/*/SKILL.md"]
-stale_when = "a skill joins or leaves the Agentic systems functional area, or one of its skills is moved, renamed or removed, its ki-applicability changes, or a ki-depends-on or ki-optional-depends-on declaration to or from one of its skills changes"
-regenerate = "Run `bun skills/repository/ki-repo-backpack/scripts/skill-graph.ts --write` to derive the source from the skills layout, SKILL.md frontmatter and the functional-area table, then run `bun run self:diagrams:html --svg skill-area-agentic-systems` to finalize it at showcase quality, commit its HTML and re-export the SVG. Do not hand-draw it."
+stale_when = "a skill joins or leaves the Agentic ecosystems functional area, or one of its skills is moved, renamed or removed, its ki-applicability changes, or a ki-depends-on or ki-optional-depends-on declaration to or from one of its skills changes"
+regenerate = "Run `bun skills/repository/ki-repo-backpack/scripts/skill-graph.ts --write` to derive the source from the skills layout, SKILL.md frontmatter and the functional-area table, then run `bun run self:diagrams:html --svg skill-area-agentic-ecosystems` to finalize it at showcase quality, commit its HTML and re-export the SVG. Do not hand-draw it."
 last_checked = "5c84a14389ddf44770f86b471871c488a095f780"
 commit_html = true
 
@@ -115,7 +115,7 @@ commit_html = true
 type = "workflow"
 question = "What steps does a piece of owner-directed work take, from the owner's message through a coordinating thread and a detached agent to the report, the mark and Project close?"
 audience = "The owner, coordinating threads and agents learning how threads and background runs fit together"
-traced = ["skills/work/ki-coordination/references/standard-coordination.md", "skills/agentic-systems/ki-delegation/references/standard-background-runs.md"]
+traced = ["skills/work/ki-coordination/references/standard-coordination.md", "skills/agentic-ecosystems/ki-delegation/references/standard-background-runs.md"]
 stale_when = "a step of the coordinating-thread loop, the run packet, the report-and-DONE hand-off, the mark or Project close changes in either standard, or a cited heading moves"
 regenerate = "Re-trace the thread loop from the ki-coordination and ki-delegation standards at HEAD, keeping the five lanes and the layout where the facts hold, cite each node's source heading by line at the pinned revision, then run `bun run self:diagrams:html --svg thread-model` to finalize it at showcase quality, commit its HTML and re-export the SVG."
 last_checked = "b3b6a8085316555dfe92712595a442194b34905e"
