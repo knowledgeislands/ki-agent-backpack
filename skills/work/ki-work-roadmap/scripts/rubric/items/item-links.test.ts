@@ -50,8 +50,10 @@ const item7 = (repository: string) => inspectRoadmap(repository).filter((finding
 
 describe('ITEM-7 warns on links to pruned records (PRUNE-LINK-CHECK)', () => {
   test('is a WARN item in the catalogue', () => {
-    const item = catalogue.families.flatMap((family) => family.items).find((candidate) => candidate.code === 'ITEM-7')
-    expect(item?.mechanical?.level).toBe('WARN')
+    const items: readonly { code: string; mechanical?: { level?: string } }[] = catalogue.families.flatMap(
+      (family): readonly { code: string; mechanical?: { level?: string } }[] => family.items
+    )
+    expect(items.find((candidate) => candidate.code === 'ITEM-7')?.mechanical?.level).toBe('WARN')
   })
 
   test('flags a relative link to a record no longer on disc and suggests ki link', () => {
