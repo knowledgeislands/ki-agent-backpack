@@ -27,7 +27,7 @@ ki-status: in force
 
 What a presentation is: a deck of slides with their speaker notes, kept as one Markdown file with its images beside it, so that it reads on GitHub and in the Wayfinder as it stands and converts to a deck when one is to be shown or sent. The file is the presentation; a PDF, a `.pptx` or a cloud deck is built from it and is never the copy anyone changes. It follows the [format format](standard-formats-format.md). The decisions behind these rules are in [the sources file](sources.md).
 
-The rules were set from the Cairn summit's [change 60](https://github.com/krisb/ki-cairn-store/blob/4a220bf8/work/cairn/cairn.summit/60-design.change.md#48-decided), under ARTIFACT-HOMES a and its point on presentations.
+The rules were set from the Cairn summit's [change 60](https://github.com/krisb/ki-cairn-store/blob/eae66fca/work/cairn/cairn.summit/60-design.change.md#48-decided), under ARTIFACT-HOMES a and its point on presentations.
 
 [Back to contents](#contents)
 
