@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T01:26:05Z
+ki-revised: 2026-11-22T01:56:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -102,10 +102,13 @@ The loop of [the work design standard](standard-work-design.md) is house practic
 | GATES-SIZE-SMALL | "Yes, drop it", Kris, about 19:00 GMT, by Orca item card, relayed by the Cairn summit's guardian from its [change 90](https://github.com/krisb/ki-cairn-store/blob/fdf11947/work/cairn/cairn.summit/90-ways-of-working.change.md#44-decided): option a), adoption drops the small-only test; the size rules stand and WIP-PACKAGE a keeps work small. | 2026-11-21 | [4.4.4](standard-next-work.md#444-the-two-gates) | In force |
 | ROADMAP-UPCOMING-CAP | "lets scrap the caps until its an issue", Kris, about 19:20 GMT, in Kitteth's bot's Home Chat, recorded in the Cairn summit's [change 90](https://github.com/krisb/ki-cairn-store/blob/fdf11947/work/cairn/cairn.summit/90-ways-of-working.change.md#44-decided): the upcoming-record caps are dropped, so the adoption gate checks for no room, and the start gate's room rests on WIP-PACKAGE a and WIP-TERRITORY a alone. | 2026-11-21 | [4.4.4](standard-next-work.md#444-the-two-gates) | Dropped; no cap in force |
 | ROADMAP-EXIT-STATE | "Yes, add returned", Kris, about 01:05 UTC, on Orca item 112, recorded in ki.summit's [change 22](https://github.com/krisb/ki-cairn-store/blob/87ec71c8/work/ki/ki.summit/22-roadmap-horizons.change.md#4-outline): option a), a record that leaves the roadmap as an idea is cancelled with `resolution: returned`, which is not the same as declined, its `## Cancelled` naming where it waits. | 2026-11-22 | [4.3.2](standard-next-work.md#432-capture-substantive-prospective-work), [4.4.1](standard-next-work.md#441-non-kb-repositories), [acceptance](standard-acceptance.md) | In force |
+| UPCOMING-SURFACING | "Yes, one each run", Kris, about 00:59 UTC, on Orca item 112, recorded in ki.summit's [change 22](https://github.com/krisb/ki-cairn-store/blob/da42d7f6/work/ki/ki.summit/22-roadmap-horizons.change.md#4-outline): option a), each `ki-work next` run says how many Soon, Future and held draft records wait and, after the Now and Next candidates, offers one for review, a held draft whose review date has passed first, otherwise the oldest by `updated_at`; it moves to Next or leaves as an idea. | 2026-11-22 | [4.4.1](standard-next-work.md#441-non-kb-repositories) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 an in-house review applies UPCOMING-SURFACING a, which Kris took at about 00:59 UTC on Orca item 112, recorded in ki.summit's [change 22](https://github.com/krisb/ki-cairn-store/blob/da42d7f6/work/ki/ki.summit/22-roadmap-horizons.change.md#4-outline). [Select candidates](standard-next-work.md#441-non-kb-repositories) gains a step: every run says how many waiting records there are and offers one for a decision after the Now and Next candidates, so waiting records leave one each run without a sweep. No code changed, and no external source was refreshed.
 
 On 22 November 2026 an in-house review applies ROADMAP-EXIT-STATE a, which Kris took at about 01:05 UTC on Orca item 112, recorded in ki.summit's [change 22](https://github.com/krisb/ki-cairn-store/blob/87ec71c8/work/ki/ki.summit/22-roadmap-horizons.change.md#4-outline). A Soon, Future or held draft record that leaves the roadmap at [Select candidates](standard-next-work.md#441-non-kb-repositories) is cancelled with `resolution: returned`, and [Capture](standard-next-work.md#432-capture-substantive-prospective-work), [the acceptance procedure](standard-acceptance.md), the `accept` mode, [the adapter vocabulary](standard-change-management-adapters.md) and the acceptance-cycle script list it beside the other five. This is an in-house decision review; no external source was refreshed.
 

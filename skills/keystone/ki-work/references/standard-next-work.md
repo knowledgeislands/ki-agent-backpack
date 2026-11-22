@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T01:26:05Z
+ki-revised: 2026-11-22T01:56:00Z
 ki-status: in force
 ---
 
@@ -157,10 +157,11 @@ Before creating a record, search the selected adapter for an existing owner. Do 
 Selection follows one order, as the [work-item format](../../../work/ki-work-roadmap/references/standard-work-item-format.md#43-priority-and-size) states: adoption, holds and dependencies first, then horizon, then `priority` (`high` a material cost from deferral, `medium` useful planned progress, `low` a discretionary benefit, an absent one reading as `medium`), then `size`, smallest first. Priority never crosses horizons: a `high` record at a later horizon is not selected ahead of earlier work, but prompts a proposal to move its horizon through the steps below.
 
 1. Gather dependency-ready `now` and `next` records, ordered within each horizon by `priority` and then by `size`, smallest first. Reuse their canonical record; if several are independently ready, recommend a small ranked set only when each retains its own lifecycle and the user confirms the set and order.
-2. Only when none is eligible, review the existing `soon` and then `future` records, one at a time, under the roadmap standard's **Upcoming only** in [Status and horizon](../../../work/ki-work-roadmap/references/standard-repository-roadmaps.md#43-status-and-horizon): propose moving a record that meets the Next entry rule to `next`, and otherwise its leaving the roadmap, cancelled with `resolution: returned` and its idea placed where it now waits. After confirmation, make the move, run the adapter audit, and re-evaluate at the destination. No record moves to `soon` or `future`.
-3. Review a held `draft` the same way when it comes up: it leaves the roadmap as `returned`, with its release condition. A held `ready`, `in-progress` or `awaiting-review` record stays.
-4. Review triage separately from candidate selection. Present the exact destination horizon, `now` or `next`, the `kind`, and how the record passes the [adoption gate](#444-the-two-gates); adopt only after explicit human confirmation, then re-evaluate at the destination.
-5. Exclude held records from selection. Propose a release only when their named condition changed or their review date has passed.
+2. Every run also brings one waiting record up for a decision (UPCOMING-SURFACING). Say how many `soon`, `future` and held `draft` records wait and, after the `now` and `next` candidates, offer one of them for review: a held `draft` whose review date has passed first, otherwise the oldest by `updated_at`. It moves to `next` or leaves the roadmap as an idea, as the next two steps set out, and nothing moves until the user confirms. Records leave steadily this way, one each run, without a sweep.
+3. Only when none is eligible, review the existing `soon` and then `future` records, one at a time, under the roadmap standard's **Upcoming only** in [Status and horizon](../../../work/ki-work-roadmap/references/standard-repository-roadmaps.md#43-status-and-horizon): propose moving a record that meets the Next entry rule to `next`, and otherwise its leaving the roadmap, cancelled with `resolution: returned` and its idea placed where it now waits. After confirmation, make the move, run the adapter audit, and re-evaluate at the destination. No record moves to `soon` or `future`.
+4. Review a held `draft` the same way when it comes up: it leaves the roadmap as `returned`, with its release condition. A held `ready`, `in-progress` or `awaiting-review` record stays.
+5. Review triage separately from candidate selection. Present the exact destination horizon, `now` or `next`, the `kind`, and how the record passes the [adoption gate](#444-the-two-gates); adopt only after explicit human confirmation, then re-evaluate at the destination.
+6. Exclude held records from selection. Propose a release only when their named condition changed or their review date has passed.
 
 [Back to contents](#contents)
 
