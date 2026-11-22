@@ -34,9 +34,9 @@ The upstream tools, then the in-house layer the standard references.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| ELEVENTY — [Eleventy docs][11ty] | Config API: `addTransform`, `addDataExtension`, `eleventy.before`, `dir` | 2026-10-06 |
-| TAILWIND — [Tailwind CSS v4 docs][tw] | Config-less `@import "tailwindcss"`, `@theme inline`, the CLI | 2026-10-06 |
-| LUCIDE — [Lucide docs][lucide] | Icon delivery (UMD passthrough, client educate) | 2026-10-06 |
+| ELEVENTY — [Eleventy docs][11ty] | Config API: `addTransform`, `addDataExtension`, `eleventy.before`, `dir` | 2026-11-22 |
+| TAILWIND — [Tailwind CSS v4 docs][tw] | Config-less `@import "tailwindcss"`, `@theme inline`, the CLI | 2026-11-22 |
+| LUCIDE — [Lucide docs][lucide] | Icon delivery (UMD passthrough, client educate) | 2026-11-22 |
 
 [Back to contents](#contents)
 
@@ -46,7 +46,7 @@ The standard is self-contained; it is the source of truth for house style. Any c
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| ENG — `ki-engineering` | Separately coverage-selected toolchain layer (referenced, not restated) | 2026-10-06 |
+| ENG — `ki-engineering` | Separately coverage-selected toolchain layer (referenced, not restated) | 2026-11-22 |
 
 [Back to contents](#contents)
 
@@ -66,10 +66,10 @@ On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cai
 
 On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Eleventy site standard](standard-eleventy-site.md), formerly `standards-eleventy-site.md`, was renamed and reshaped to the standard format with its rules unchanged, the overlay's selection paragraphs becoming its first rules section, and this file to the sources format, with the open watch items under Watching. The rubric's source names follow. No rule changed and no outside source was refreshed.
 
-REFRESH last run **2026-10-06**. Re-fetched all three upstream sources and their current package metadata, and re-checked that `ki-engineering` still owns the referenced toolchain layer. The standard remains current: no source change affects its Eleventy 3, config-less Tailwind 4, or vanilla Lucide delivery contract, and its `^3.x` Eleventy pin is not stale.
+REFRESH last run **2026-11-22**, prompted by LONG-3's overdue warning. Re-fetched all three upstream sources and their current package metadata, and re-checked that `ki-engineering` still owns the referenced toolchain layer. The standard remains current: no source change affects its Eleventy 3, config-less Tailwind 4, or vanilla Lucide delivery contract, and its `^3.x` Eleventy pin is not stale. Previously run 2026-10-06.
 
-- **Current packages:** Eleventy remains stable at **3.1.6** (2026-06-02) and `4.0.0-alpha.10` remains pre-release. `@tailwindcss/cli` and `tailwindcss` are **4.3.3** (2026-07-16). Vanilla `lucide` is **1.52.0** (2026-10-04), up from 1.33.0.
-- **Confirmed conformant upstream:** Eleventy documents `addTransform`, `addDataExtension` (with `read: false` and `parser`), and `eleventy.before` with `runMode`; returning `dir` from the config function still works but is marked not preferred in favour of a named `export const config`, and the event `dir` argument is deprecated in favour of `directories`. Tailwind still documents `@import "tailwindcss"` and `@theme inline`. Lucide 1.52.0 still ships `dist/umd/lucide.min.js` exporting `createIcons()`. No source removed the standard's required surface.
+- **Current packages:** Eleventy remains stable at **3.1.8** (2026-11-03) and `4.0.0-alpha.12` remains pre-release. `@tailwindcss/cli` and `tailwindcss` are **4.3.5** (2026-11-06). Vanilla `lucide` is **1.77.0** (2026-11-20), up from 1.52.0.
+- **Confirmed conformant upstream:** Eleventy documents `addTransform`, `addDataExtension` (with `read: false` and `parser`), and `eleventy.before` with `runMode`; returning `dir` from the config function still works but is marked not preferred for order-of-operations reasons in favour of a named `export const config`, and the event `dir` argument is deprecated in favour of `directories`. Tailwind still documents `@import "tailwindcss"`, `@theme inline` and the `@tailwindcss/cli` build. Lucide 1.77.0 still ships `dist/umd/lucide.min.js` exporting `createIcons()`, and its guide still shows the UMD script with `lucide.createIcons()`. No source removed the standard's required surface.
 
 **Watching:**
 

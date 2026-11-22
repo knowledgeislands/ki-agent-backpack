@@ -39,11 +39,11 @@ The runtime documentation behind the recap's transcript and compaction claims.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| CODEX-COMMANDS — [OpenAI Codex developer commands](https://learn.chatgpt.com/docs/developer-commands?surface=cli) | User-invocable `/compact` and current Codex session controls | 2026-11-17 |
-| CODEX-HOOKS — [OpenAI Codex hooks](https://learn.chatgpt.com/docs/hooks) | Manual/automatic compaction hooks and transcript-format stability boundary | 2026-11-17 |
-| CLAUDE-SESSIONS — [Claude Code sessions](https://code.claude.com/docs/en/sessions) | Session storage, compaction, and transcript parsing boundary | 2026-11-17 |
-| CLAUDE-HOOKS — [Claude Code hooks](https://code.claude.com/docs/en/hooks) | Manual/automatic compaction events | 2026-11-17 |
-| CLAUDE-ENV — [Claude Code environment variables](https://code.claude.com/docs/en/env-vars) | `CLAUDE_CODE_SESSION_ID`, `CLAUDECODE`, `CLAUDE_CONFIG_DIR`, and `CLAUDE_CODE_PROJECT_DIR_NAME` for live-session transcript location | 2026-11-17 |
+| CODEX-COMMANDS — [OpenAI Codex developer commands](https://learn.chatgpt.com/docs/developer-commands?surface=cli) | User-invocable `/compact` and current Codex session controls | 2026-11-22 |
+| CODEX-HOOKS — [OpenAI Codex hooks](https://learn.chatgpt.com/docs/hooks) | Manual/automatic compaction hooks and transcript-format stability boundary | 2026-11-22 |
+| CLAUDE-SESSIONS — [Claude Code sessions](https://code.claude.com/docs/en/sessions) | Session storage, compaction, and transcript parsing boundary | 2026-11-22 |
+| CLAUDE-HOOKS — [Claude Code hooks](https://code.claude.com/docs/en/hooks) | Manual/automatic compaction events | 2026-11-22 |
+| CLAUDE-ENV — [Claude Code environment variables](https://code.claude.com/docs/en/env-vars) | `CLAUDE_CODE_SESSION_ID`, `CLAUDECODE`, `CLAUDE_CONFIG_DIR`, and `CLAUDE_CODE_PROJECT_DIR_NAME` for live-session transcript location | 2026-11-22 |
 
 [Back to contents](#contents)
 
@@ -107,6 +107,8 @@ The loop of [the work design standard](standard-work-design.md) is house practic
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 REFRESH re-fetched the five runtime sources, prompted by LONG-3's overdue warning; no claim the recap relies on changed. Codex documents `/compact`, which summarises the visible chat to free context, beside `/new`, `/clear`, `/resume` and `/fork`, and its `PreCompact` and `PostCompact` hooks match `manual` or `auto`, with `SessionStart` firing on `source: "compact"`; its hooks still warn that the transcript format "isn't a stable interface". Claude Code still documents `/compact`, the same two hooks and matchers, and `SessionStart` on `compact`; its sessions page still keeps transcripts at `<config>/projects/<project>/<session-id>.jsonl`, says their entry format is internal and changes between versions, and has `/cd` relocate a session. `CLAUDE_CODE_SESSION_ID` and `CLAUDE_CODE_PROJECT_DIR_NAME` read as the 17 November review recorded. Two details are new to this file: Claude Code's hooks page says the transcript is written asynchronously and may lag the current turn, and its environment page says IDE extensions also set `CLAUDECODE=1` in their integrated terminals, offering `CLAUDE_CODE_CHILD_SESSION` as the signal of a subprocess Claude Code itself spawned. DESIGN-RUN was not reviewed: the run's artefacts were deleted once consolidated, and nothing outside the house records it.
 
 On 22 November 2026 the second SKILLS-LEARNING batch, Kris's steer of that morning to bake the night's lessons into the skills, added two pitfalls from Tower's roadmap prunes to [the prune's reference preflight](standard-acceptance.md#44-prune-explicitly-selected-terminal-records): `ki repo audit` does not report a link a prune leaves dangling, and such a link can break twice, so read the real file name in the prune commit's parent before repointing. [Capture](standard-next-work.md) now names the four-word title limit the audit enforces. No rule changed and no outside source was refreshed.
 
