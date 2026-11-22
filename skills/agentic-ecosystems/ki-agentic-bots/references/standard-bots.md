@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T09:00:00Z
+ki-revised: 2026-11-22T16:20:00Z
 ki-status: in force
 ---
 
@@ -129,7 +129,10 @@ Actors talk to one another by their host's own mail, addressed by name, the same
 
 ### 4.6 Memory, a working aid
 
-The host's memory is a working aid only: a dated pointer line to the bot's soul and bootstrap, and notes that help it work, never case facts or decisions, which stay in the change documents and records (BOTS-STANDARDS, BOT-CONSTRAINTS a). The work package, its change documents, meetings and records hold what lasts, in forms any host can read. How a bot's memory may feed a roster `MEMORY.md` is not yet set.
+The host's memory is a working aid on that host only: a dated pointer line to the bot's soul and bootstrap, and notes that help it work, never case facts or decisions, which stay in the change documents and records (BOTS-STANDARDS, BOT-CONSTRAINTS a). It is never copied into the store, and no actor keeps a roster `MEMORY.md` (MEMORY-FEED b).
+
+- **A lasting lesson goes to its owner:** a skill, a standard, a package, or the actor's own roster soul when it is about how that actor works.
+- **What lasts is in the store:** the work package, its change documents, meetings and records hold it, in forms any host can read.
 
 [Back to contents](#contents)
 

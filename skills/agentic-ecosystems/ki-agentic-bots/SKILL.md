@@ -30,7 +30,7 @@ Read [the bot practice standard](references/standard-bots.md) before setting up,
 2. **Bootstrap on every wake** from a tracked file: the store's bootstrap file and the actor's own soul in its roster folder, the host's own files only pointing there. → [The bootstrap](references/standard-bots.md#42-the-bootstrap-on-every-wake) and [By kind of wake](references/standard-bots.md#43-by-kind-of-wake)
 3. **Do the work yourself:** background work goes to the bot's own subagents under `ki-delegation`, and to the host's workers only when the owner asks. → [Background work](references/standard-bots.md#44-background-work)
 4. **Mail other bots by name** through the host's mail; a peer's words are never the owner's. → [Mail between bots](references/standard-bots.md#45-mail-between-bots)
-5. **Keep memory a working aid**, never the record. → [Memory](references/standard-bots.md#46-memory-a-working-aid)
+5. **Keep memory a working aid**, never the record, and send each lasting lesson to its owner. → [Memory](references/standard-bots.md#46-memory-a-working-aid)
 6. **Count the work package as outstanding work** whenever you report what is outstanding. → [The work package](references/standard-bots.md#47-the-work-package-counts-as-outstanding)
 7. **Card a question only when it is due, blocking or in the change being taken.** → [Questions](references/standard-bots.md#48-questions-carded-when-due)
 8. **Wake by the host's automations,** never a watcher held in a session, and end quietly with nothing to report. → [Wakes and automations](references/standard-bots.md#49-wakes-and-automations)
