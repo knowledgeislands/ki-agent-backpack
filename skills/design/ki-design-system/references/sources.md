@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T01:10:00Z
+ki-revised: 2026-11-22T09:00:00Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -75,6 +75,8 @@ The floor follows one specification, and the house's own documentation standards
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, added three contrast and colour pitfalls the Cairn designer met overnight beneath [the floor](standard-design-system.md#410-the-floor): a second tone meets 3:1 on every ground, a tinted edge is a non-text mark, and heat on a map of hued categories goes in lightness. No rule changed and no outside source was refreshed.
 
 Later on 22 November 2026 an in-house review landed steps 1 to 3 of the Cairn summit's [change 60](https://github.com/krisb/ki-cairn-store/blob/0621e96b/work/cairn/cairn.summit/60-design.change.md#48-decided), by the summit guardian's run, under DESIGN-RULES a, which Kris took that day at about 01:03 GMT: FILES-FIRST gives [where design knowledge lives](standard-design-system.md#41-where-design-knowledge-lives) its files-first rule, files in Git or the declared sources store being the source of truth; VIEWS-ONLY widens [projections](standard-design-system.md#411-projections) from the design system to every artifact and canvas, each view recording its url, type, account and source revision; and DISK-EXIT adds the way out of an account, writing the files to disk by one of two routes, never publishing for another account. `ki-authoring`'s knowledge promotion standard carries the placement side. Nothing moves in any site repository. No criterion changed, so the rubric was not regenerated, and no outside source refreshed.
 

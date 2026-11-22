@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T01:10:00Z
+ki-revised: 2026-11-22T09:00:00Z
 ki-status: in force
 ---
 
@@ -261,6 +261,8 @@ Every design system that adopts this standard meets four requirements, whatever 
 2. **Readable contrast.** Text meets WCAG 2.2 AA (4.5:1, or 3:1 for large text) and meaningful non-text marks meet 3:1, in every theme and mode the product offers, and a check proves it.
 3. **Meaning is never carried by colour alone.** Each meaningful colour has a second carrier: a word, a code, a shape or a line style.
 4. **Keyboard parity.** Everything a pointer can do, a keyboard can do, with visible focus.
+
+Met in practice on the Cairn Wayfinder and its marks: a mark's second tone meets 3:1 against every ground it sits on, white and the page tint alike (store `412dc33b`, `e3123d2d`); a tinted edge is a non-text mark too, and a chip edge at 35% of its link colour failed 3:1 where 55% passed (Wayfinder `700360ad` to `ae0e3a9d`); and where hues already carry categories round the whole wheel, a magnitude such as heat is shown as lightness, not as another hue (Wayfinder `a6c7153b`).
 
 [Back to contents](#contents)
 
