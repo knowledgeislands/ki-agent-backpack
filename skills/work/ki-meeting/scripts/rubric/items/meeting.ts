@@ -5,10 +5,10 @@ const MEETING_1: RubricItem<MeetingContext> = {
   code: 'MEETING-1',
   title: 'a meeting is worth calling and is called from the right node',
   description:
-    'A meeting is optional: it is held mainly to reach a seat outside Orca, and otherwise to share outputs or resources or to work together in a sitting, never only as a route between sessions that reach each other by Orca mail; it sits at one node of the work tree with a type, a purpose and its participants, and is called by the session holding that node or one above it.',
+    'A meeting is optional: it is held for either of two first-class uses, to reach a seat outside Orca or as a shared workbench where participants share outputs or resources and work together in a sitting, never only as a route between sessions that reach each other by Orca mail; it sits at one node of the work tree with a type, a purpose and its participants, and is called by the session holding that node or one above it.',
   sources: ['standard-meeting.md#41-when-to-meet', 'standard-meeting.md#42-who-calls-keeps-and-owns-a-meeting'],
   judgment: judgment(
-    'Did the meeting serve a seat outside Orca, shared outputs or resources, or a working sitting, rather than stand in for Orca mail, and was it called at one node by the session holding it or one above it?'
+    'Did the meeting serve a seat outside Orca or a shared workbench, rather than stand in for Orca mail, and was it called at one node by the session holding it or one above it?'
   )
 }
 
@@ -49,10 +49,10 @@ const MEETING_5: RubricItem<MeetingContext> = {
   code: 'MEETING-5',
   title: 'messages are one immutable, clock-named file each',
   description:
-    "Each message is one file in `messages/`, never edited once written, named from `date -u` with its sender's actor id, and opens with a front matter block of Orca mail's fields, at least from, to and subject, closing with its asks; the caller keeps the open asks in the entry file until each is answered, and prunes messages at adjournment, at close and, in a sitting that runs on, once answered or acknowledged and more than 24 hours old.",
+    "Each message is one file in `messages/`, never edited once written, named from `date -u` with its sender's actor id, and opens with a front matter block of Orca mail's fields, at least from, to and subject, closing with its asks; the caller keeps the open asks in the entry file until each is answered, and prunes messages with `scripts/prune-room.ts` at adjournment, at close and, in a sitting that runs on, once answered or acknowledged and more than 24 hours old.",
   sources: ['standard-meeting.md#48-messages', 'standard-meeting.md#417-pruning'],
   judgment: judgment(
-    "Is every message a single unedited file, named from the clock and its sender's actor id, opening with its front matter block and saying what it asks, and were messages pruned as the standard sets?"
+    "Is every message a single unedited file, named from the clock and its sender's actor id, opening with its front matter block and saying what it asks, and were messages pruned by the script as the standard sets?"
   )
 }
 

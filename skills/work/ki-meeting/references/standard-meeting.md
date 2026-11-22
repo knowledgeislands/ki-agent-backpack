@@ -40,6 +40,8 @@ Ten points taken overnight on 14 November 2026 under the owner's remit for high-
 
 On 20 November 2026 the owner made rooms optional, now that sessions in Orca reach each other by Orca mail: seats run in Orca wherever they can, a room is set up mainly to reach a seat outside Orca and otherwise to share outputs or resources, a room's message opens with Orca mail's fields, and a room's messages are pruned (ROOMS-OPTIONAL, ROOMS-CHANNEL, ORCA-FIRST, ORCA-HOME, MSG-FORM and ROOM-PRUNE).
 
+On 22 November 2026 the owner kept the skill and had it fixed to match practice (WORK-FIXES): a room is also a shared workbench, a first-class use rather than a second one, and pruning is a scripted step at each adjournment and at the close.
+
 [Back to contents](#contents)
 
 ## 2. Scope
@@ -110,7 +112,7 @@ So a meeting can change its transport, as when a tool or Orca mail takes over fr
 
 1. **Direct first** (ROOMS-CHANNEL and ORCA-FIRST, Kris, 20 November 2026). Every session running in Orca reaches another by Orca mail, running or idle, on the same Mac and across the bridge to the other, under `ki-coordination`'s [messages standard](../../ki-coordination/references/standard-messages.md#42-orca-mail-and-the-cairn-beacon). An agent host's own messaging is used only for a session outside Orca ([4.16](#416-runtime-binding)), and work within one session goes to its own subagents. Each receiver keeps its own state in its own work package.
 2. **Seats run in Orca wherever they can** (ORCA-HOME, Kris, 20 November 2026), so that Orca mail reaches them.
-3. **A room is optional** (ROOMS-OPTIONAL, Kris, 20 November 2026). Since each session keeps its own state, a room is never needed to hold it. A meeting is set up mainly to reach a seat outside Orca, such as a voice client, and otherwise when there is a benefit: to share outputs or resources, such as boards, designs or a brief, or to work together in a sitting. A room that is only a route closes once its members can mail each other.
+3. **A room is optional** (ROOMS-OPTIONAL, Kris, 20 November 2026). Since each session keeps its own state, a room is never needed to hold it. A meeting is set up for either of two first-class uses: to reach a seat outside Orca, such as a voice client; or as a **shared workbench** (WORK-FIXES, Kris, 22 November 2026), where participants, sessions in Orca among them, work on one thing in one place, sharing outputs or resources such as boards, designs or a brief, and working together in a sitting. Orca mail still carries the conversation between sessions in Orca; the workbench is where the shared work sits. A room that is only a route closes once its members can mail each other.
 4. **A meeting sits at one node** of the work tree, has a type, a purpose and its participants, and ends. Question, answer and information are messages inside it; the opening carries the brief, joining replaces an acknowledgement, and the close ends it.
 5. **Each session goes back to working alone** when the meeting ends. A meeting grants no authority beyond what the owner gives in it or in the owner's own sessions. Addressed messages in the store are gone (MESSAGES-GO); a direct message carries conversation, not work, which goes along the tree, and every decision goes to its change document.
 
@@ -221,7 +223,9 @@ How participants reach each other, four levels, the first that works (ORCA-FIRST
 ### 4.8 Messages
 
 1. **One file per message** in `messages/`, never edited once written.
+
 2. **Named** `<YYYYMMDD>T<HHMM>Z-<actor id>-<subject>.md` from `date -u`, so the folder lists in order and two messages in one minute stay distinct. `<actor id>` is the sender's actor id, the `<id>` of the `actor:<id>` its entry under `ki-participants` carries ([4.5](#45-the-entry-file)), exactly, as in `20261116T1342Z-wayland-boards-committed.md` or `20261116T1400Z-ki.cairn@information-architect-levels-ready.md`, since tools match who posted when to its participant from the name alone (MSG-FROM, Kris, 16 November 2026); a message the owner carries keeps the actor id of the participant it is from. Messages posted before MSG-FROM keep their names, which carry the sender's role.
+
 3. **Each opens with a front matter block of Orca mail's fields** (MSG-FORM, Kris, 20 November 2026), so that what a session says by Orca mail it says the same way in a room. The fields use Orca's words, each with the `ki-` prefix:
 
    ```yaml
@@ -243,9 +247,13 @@ How participants reach each other, four levels, the first that works (ORCA-FIRST
    - **Status comes from the replies,** since a message is never edited: a `question`, `handoff` or `escalation` is open until a message whose `ki-answers` names it. Read and delivered stay out of the file: a message is delivered once its commit is pushed, and each participant reads what is new since its last read ([4.9](#49-listening-and-check-ins)).
    - **Then the body:** a title line, `# <subject>`; what changed, in plain words; and a closing `Asks:` naming who must do what.
    - **Messages written before MSG-FORM** keep their opening, who it is from, who it is for and what it answers, until they are pruned ([4.17](#417-pruning)).
+
 4. **Open asks.** The caller keeps them in the entry file and ticks each off when it is answered, so nothing asked is lost.
+
 5. **Against crossing** (TRIAL-LESSONS, Kris, 14 November 2026). A participant that needs the others to wait posts a one-line "hold"; each board or other piece of output is rendered once per review pass; and new messages are read in the order of their times.
+
 6. **A correction names what it corrects** (TRIAL-LESSONS, Kris, 14 November 2026): the message it corrects, by its file name.
+
 7. **Times come from the clock** (TIMES-CLOCK, Kris, 14 November 2026). Every time recorded in a message, the entry file or the minutes comes from `date -u` or from Git, never from memory; any other time is marked "about".
 
 The old message queue's best parts come into meetings here (MSG-HOME, Kris, 15 November 2026: "take [the] best bits from [the queue] and bring it into the meeting standards on messaging"):
@@ -319,7 +327,7 @@ Kris, 14 November 2026 (MEET-BUSY):
    - the actions, each with its owner;
    - the choices left to the owner, each with its recommendation;
    - the resume note, after an adjournment;
-   - the transcript: the sitting's messages in order, a line each linking to its file at its last commit, since the sitting's messages are then pruned ([4.17](#417-pruning)).
+   - the transcript: the sitting's messages in order, a line each linking to its file at its last commit, as `prune-room.ts` prints it, since the sitting's messages are then pruned ([4.17](#417-pruning)).
 2. **Choices left to the owner.** Whoever did the work lists them, each with its recommendation, and the caller carries them into the change document's open questions, which feeds the owner's next report.
 3. **Choices go to the owner whole** (CHOICES-WHOLE, Kris, 14 November 2026). Each choice carries its context, its options and a recommendation with its confidence, in the message itself.
 4. **A short pointer at a pause** (MSG-SIMPLIFY a, 20 November 2026). When a sitting pauses, the room needs only a short pointer to the change it fed, since the change, not the room's messages, carries the decisions and outcomes.
@@ -331,7 +339,7 @@ Kris, 14 November 2026 (MEET-BUSY):
 1. **The caller's last message closes the meeting,** naming each outcome and the change document that now holds it. Nothing closes by itself, and a standing room closes only on the owner's word. The close restates each choice and recommendation it carries, and never refers back to an earlier message for them (CHOICES-WHOLE, Kris, 14 November 2026).
 2. **Listening ends.** The caller's watcher stops, and with `ki-status` no longer `open` in the entry file no participant reads as listening.
 3. **Work that landed** during the meeting gets its record, as the store's own rule for records sets.
-4. **Its messages go** once the minutes carry each outcome, as [4.17](#417-pruning) sets.
+4. **Its messages go** once the minutes carry each outcome: the caller runs `prune-room.ts close`, as [4.17](#417-pruning) sets.
 5. **The folder is removed** from the tree once the owner has reviewed the record of the work that landed, and Git history keeps it.
 
 [Back to contents](#contents)
@@ -356,9 +364,11 @@ How the rules above fall on the agent hosts in use when the standard was written
 
 A room keeps its messages only while they are needed (ROOM-PRUNE, Kris, 20 November 2026: "I suspect with messages we only need them 24h tbh, especially if they are acknowledged"). Each room's caller prunes it; Git history keeps every message.
 
-1. **At each adjournment,** once the minutes carry each outcome and a transcript linking each message at its last commit ([4.14](#414-minutes)), the caller deletes that sitting's messages in the same commit.
-2. **At the close,** likewise, the caller deletes the room's remaining messages once the minutes carry the outcomes ([4.15](#415-closing)).
-3. **In a sitting that runs on,** as a standing room's or a long workshop's does, the caller deletes, at each roll call and each check-in with news, the messages more than 24 hours old that have been answered or acknowledged, by a message whose `ki-answers` names them; the sitting's transcript still lists each at its last commit when the sitting adjourns.
+Pruning is a scripted step, not a chore left to memory (WORK-FIXES, Kris, 22 November 2026: "Keep all, fix"). The caller runs the skill's [`scripts/prune-room.ts`](../scripts/prune-room.ts) with the mode that fits, `adjourn`, `close` or `running`, and the meeting folder. It prints the transcript lines, each linking a message at its last commit, and the messages it keeps with the reason; with `--write` it stages the deletions, and the caller commits them with the minutes. It keeps each message carrying an ask not yet answered by itself, and each the caller names with `--keep`, as for the owner's words not yet recorded; it stops on a message not yet committed, which has no commit to link.
+
+1. **At each adjournment,** once the minutes carry each outcome, the caller runs `prune-room.ts adjourn`, puts its transcript in the minutes ([4.14](#414-minutes)) and commits the deletions in the same commit.
+2. **At the close,** likewise, the caller runs `prune-room.ts close` once the minutes carry the outcomes ([4.15](#415-closing)), deleting the room's remaining messages.
+3. **In a sitting that runs on,** as a standing room's or a long workshop's does, the caller runs `prune-room.ts running` at each roll call and each check-in with news, deleting the messages more than 24 hours old that have been answered or acknowledged, by a message whose `ki-answers` names them; the sitting's transcript still lists each at its last commit when the sitting adjourns.
 4. **Never pruned:** the entry file, with its summary, open asks and minutes; a message carrying an ask not yet answered; a message carrying the owner's words, a voice client's above all, until they are recorded in a change document; the current brief and outputs, which are what a room is for (ROOMS-OPTIONAL); and Git history, which is never rewritten.
 5. **A link to a pruned message** points to its file at a commit, so it still opens.
 
