@@ -39,7 +39,7 @@ The receiver's handling of delivered acquired packets.
 ### 2.2 Out of scope
 
 - The knowledge dispositions of each AI session: the [common acquisition receiver-local triage rule](../../../keystone/ki-acquire/references/standard-acquisition.md#48-receiver-local-triage) in `ki-acquire`.
-- The exact scaffold README of `+/_ACQUIRED/`: `ki-repo-kb-principal`, while that overlay is declared.
+- The exact scaffold README of `+/_ACQUIRED/`: the [principal standard](standard-principal.md#42-acquired-packet-scaffold), while the base is its territory's Capital.
 
 [Back to contents](#contents)
 

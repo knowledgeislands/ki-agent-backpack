@@ -88,7 +88,7 @@ The authoritative definition of frontmatter fields for all notes in a Knowledge 
 
 ‡ Component-specific status values remain under their component owners while KB-wide metadata reconciliation is pending.
 
-**Freshness** is carried by the timestamps, not by `status`: a note is current while `reviewed` is at or after its last `updated`, and goes stale once `updated` moves ahead of `reviewed` (or `reviewed` is absent). `status` is reserved for a `note_type`'s own lifecycle where it has one — for example `ki-repo-kb-activities` uses `active` / `inactive`.
+**Freshness** is carried by the timestamps, not by `status`: a note is current while `reviewed` is at or after its last `updated`, and goes stale once `updated` moves ahead of `reviewed` (or `reviewed` is absent). `status` is reserved for a `note_type`'s own lifecycle where it has one — for example the [Activity standard](standard-activities.md) uses `active` / `inactive`.
 
 The generic `type` field is forbidden in governed KB note frontmatter. Every metadata field carries its explicit domain prefix: `note_type` classifies notes, and instrument-specific fields such as `decision_type` remain owned by their instrument skill.
 
@@ -113,10 +113,10 @@ The branches follow, zone by zone.
 | `admin/governance/policy`     | `Admin/Governance/Policies/**/*`                          | TBD                   |
 | `admin/governance/template`   | `Admin/Governance/Templates/**/*`                         | TBD                   |
 | `admin/operations/process`    | `Admin/Operations/Processes/**/*`                         | TBD                   |
-| `admin/operations/activity`   | `Admin/Operations/Activities/**/*`                        | `ki-repo-kb-activities`    |
+| `admin/operations/activity`   | `Admin/Operations/Activities/**/*`                        | `ki-repo-kb`               |
 | `admin/operations/skill`      | `Admin/Operations/Skills/**/*`                            | TBD                   |
 
-`Admin/Operations/Activities/` (or its configured collection) is governed by `ki-repo-kb-activities`: Activity notes retain `note_type: admin/operations/activity`, with an optional nested `housekeeping` profile governed by `ki-work-recurring`. They are canonical notes, not delegated Streams record types. `Admin/Operations/Live Artifacts/` is governed by `ki-repo-kb-live-artifacts`; reconciliation of its component-specific and universal metadata remains separate. The remaining `TBD` rows have no governing skill yet.
+`Admin/Operations/Activities/` (or its configured collection) is governed by the [Activity standard](standard-activities.md): Activity notes retain `note_type: admin/operations/activity`, with an optional nested `housekeeping` profile governed by `ki-work-recurring`. They are canonical notes, not delegated Streams record types. `Admin/Operations/Live Artifacts/` is governed by the [Live Artifact standard](standard-live-artifacts.md); reconciliation of its component-specific and universal metadata remains separate. The remaining `TBD` rows have no governing skill yet.
 
 [Back to contents](#contents)
 
@@ -161,11 +161,11 @@ External reference material. The kinds below are the cross-base **core**; a base
 
 #### 4.3.5 Streams branch (`streams/`)
 
-The `Streams` zone's internal structure is owned by `ki-repo-kb-streams`; these are its note kinds.
+The `Streams` zone's layout is the [Streams structure standard](standard-streams-structure.md); these are its note kinds.
 
 | Note type          | Path context                                     | Defined by      |
 | ------------------ | ------------------------------------------------ | --------------- |
-| `streams/zone`     | `Streams/Streams.md` (zone root)                 | `ki-repo-kb-streams` |
+| `streams/zone`     | `Streams/Streams.md` (zone root)                 | `ki-repo-kb` |
 | `streams/project` | `Streams/Projects/<slug>.md` (Project note) | `ki-work` |
 | `streams/initiative` | `Streams/Initiatives/<slug>.md` (Initiative note) | `ki-work` |
 | _adapter-owned_ | Roadmap work-record metadata | `ki-work-roadmap` |

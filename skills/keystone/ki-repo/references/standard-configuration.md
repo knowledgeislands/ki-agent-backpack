@@ -240,7 +240,7 @@ A `[skills.<name>]` table plays one or both of two roles:
 - **Marker (opt-in)** — its _presence_ declares "this skill governs this repo." The bare header is enough; it needs no keys.
 - **Config** — it carries per-repo declarations the skill reads (data the standard fits to, or `[…checks]` divergences).
 
-The two are separable: a base on the canonical zone names declares a bare `[skills.ki-repo-kb]` (marker only, no keys); a base that renames a zone adds a `[skills.ki-repo-kb.zones]` alias (config). The marker/opt-in skills include `ki-engineering`, `ki-decision-records`, `ki-specs`, `ki-guides`, `ki-repo-kb`, `ki-repo-kb-streams`, the website family, MCP, skills, and subagents. `ki-repo` is the **bedrock marker** — the file's very presence is what makes the repo a ki-repo. `ki-authoring` governs every markdown repo, but it is **declared, not assumed**: every repo carries a bare `[skills.ki-authoring]` table like any other coverage (a missing one is a FAIL — `authoring-baseline`, [ADR-KI-HARNESS-005](../../../../docs/decisions/ADR-KI-HARNESS-005-validate-down-ki-toml-contract.md)). There is no injected/cascade-exempt baseline: coverage is purely what the config declares (ADR-KI-HARNESS-007).
+The two are separable: a base on the canonical zone names declares a bare `[skills.ki-repo-kb]` (marker only, no keys); a base that renames a zone adds a `[skills.ki-repo-kb.zones]` alias (config). The marker/opt-in skills include `ki-engineering`, `ki-decision-records`, `ki-specs`, `ki-guides`, `ki-repo-kb`, the website family, MCP, skills, and subagents. `ki-repo` is the **bedrock marker** — the file's very presence is what makes the repo a ki-repo. `ki-authoring` governs every markdown repo, but it is **declared, not assumed**: every repo carries a bare `[skills.ki-authoring]` table like any other coverage (a missing one is a FAIL — `authoring-baseline`, [ADR-KI-HARNESS-005](../../../../docs/decisions/ADR-KI-HARNESS-005-validate-down-ki-toml-contract.md)). There is no injected/cascade-exempt baseline: coverage is purely what the config declares (ADR-KI-HARNESS-007).
 
 So **what an absent table means is per-skill**, and that is exactly what _Coverage enforcement_ (below) checks:
 
@@ -348,7 +348,6 @@ The detection signals `ki-repo` uses (one recursive tree read + `package.json`):
 | `ki-design` | `docs/design/**` | `[skills.ki-design]` |
 | `ki-engineering` | `package.json` present | `[skills.ki-engineering]` |
 | `ki-repo-kb` | canonical zones (`Pillars/` + `Resources/`) | `[skills.ki-repo-kb]` |
-| `ki-repo-kb-streams` | `Streams/` zone | `[skills.ki-repo-kb-streams]` |
 | `ki-repo-website` | either website implementation signal below | `[skills.ki-repo-website]` |
 | `ki-repo-website-content` | `eleventy.config.*` | `[skills.ki-repo-website-content]` |
 | `ki-repo-website-app` | Vite config plus React and Vite dependencies at the core-selected site root | `[skills.ki-repo-website-app]` |

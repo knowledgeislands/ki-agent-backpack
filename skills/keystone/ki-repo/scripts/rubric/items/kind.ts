@@ -23,8 +23,7 @@ const KIND_1: RubricItem<KindRubricContext> = {
 const KIND_2: RubricItem<KindRubricContext> = {
   code: 'KIND-2',
   title: 'Kind and structure compatibility',
-  description:
-    'A KB kind declares KB structure; shared ki-work-roadmap configuration requires its Streams container. A non-KB does not declare KB structure.',
+  description: 'A KB kind declares KB structure. A non-KB does not declare KB structure.',
   sources: [SOURCE],
   mechanical: {
     level: 'FAIL',

@@ -1,14 +1,5 @@
 import { expect, test } from 'bun:test'
-import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
 import { inspectRoadmapAreas, matchesRoadmapArea } from './roadmap-areas.ts'
-
-test('Streams carries a byte-identical declared copy of the shared area checks', () => {
-  const provider = readFileSync(resolve(import.meta.dir, 'roadmap-areas.ts'))
-  const consumer = resolve(import.meta.dir, '../../../../repository/ki-repo-kb-streams')
-  expect(readFileSync(resolve(consumer, 'scripts/shared/roadmap-areas.ts'))).toEqual(provider)
-  expect(readFileSync(resolve(consumer, 'SKILL.md'), 'utf8')).toContain('ki-work-roadmap:roadmap-areas')
-})
 
 test('rejects malformed or retired area declarations', () => {
   for (const value of [

@@ -24,6 +24,9 @@ ki-status: in force
   - [4.8 Session digest structure](#48-session-digest-structure)
   - [4.9 Commit gate](#49-commit-gate)
   - [4.10 Per-base config, not an extension skill](#410-per-base-config-not-an-extension-skill)
+  - [4.11 Admin subdivisions and the governance baseline](#411-admin-subdivisions-and-the-governance-baseline)
+  - [4.12 Note templates](#412-note-templates)
+  - [4.13 The standards behind the router](#413-the-standards-behind-the-router)
 
 ## 1. Introduction
 
@@ -42,6 +45,8 @@ The structure of a Knowledge Islands base and the contracts that hold it togethe
 - Linking, index notes and source mirrors within a base.
 - Onboarding, zone aliases and the `[skills.ki-repo-kb]` config table.
 - Session digests, the commit gate and per-base configuration.
+- The `Admin/` subdivisions, the governance baseline and note templates.
+- Which focused standard of this skill governs the Streams layout, the Enactment gate, Activities, Live Artifacts and a Capital's principal overlay.
 
 [Back to contents](#contents)
 
@@ -49,7 +54,7 @@ The structure of a Knowledge Islands base and the contracts that hold it togethe
 
 - Note frontmatter: [the frontmatter standard](standard-frontmatter.md).
 - The detail of source mirrors and their labels: [the source mirror standard](standard-source-mirrors.md).
-- The internal structure and process of the `Streams/` zone: `ki-repo-kb-streams`.
+- The `Streams/` layout: [the Streams structure standard](standard-streams-structure.md); the roadmap records in it: `ki-work-roadmap`.
 - The shared `.ki.toml` contract and whether a commit hook exists: `ki-repo`.
 
 [Back to contents](#contents)
@@ -77,7 +82,7 @@ A Knowledge Islands base is a single markdown store organised into five fixed zo
 The standard applies when a base either declares `[skills.ki-repo-kb]` / `[skills.ki-repo-kb.zones]` in `.ki.toml` or carries at least one canonical zone directory. With neither, the checker reports one `NA` and stops. Either signal activates the complete audit: a declared but structurally incomplete base still fails its missing zones, and a zone-bearing base without a declaration is audited with canonical zone names.
 
 - **Island vs Pillar.** Each whole knowledge base is an "island" (a legal base, a personal base, a research base). Within a base, a **Pillar** is a major strand of subject matter - a case, a client, a domain, a theme. A base that holds a zone under a different local folder name keeps that folder and declares it as a [zone alias](#47-zone-aliases-and-the-skillski-repo-kb-config-table) rather than counting as a different zone.
-- **Settling.** `Streams/` holds work in motion; once settled it migrates into `Pillars/` (internal) or `Resources/` (external). The discriminating question for internal vs external: _would this knowledge exist without this base?_ If yes, it is a resource. The **internal structure and process of the `Streams/` zone** — flat adapter-owned operational areas and the Enactment Process that governs them — are owned by the `ki-repo-kb-streams` skill; this skill knows only that `Streams/` is a zone with a same-name index and routes top-level work into it.
+- **Settling.** `Streams/` holds work in motion; once settled it migrates into `Pillars/` (internal) or `Resources/` (external). The discriminating question for internal vs external: _would this knowledge exist without this base?_ If yes, it is a resource. The `Streams/` layout is [the Streams structure standard](standard-streams-structure.md) and the gate on canonical change is [the Enactment gate](standard-enactment-process.md#42-canonical-change-gate); `ki-work-roadmap` owns the records inside `Streams/Roadmap/`.
 
 [Back to contents](#contents)
 
@@ -179,6 +184,36 @@ A base never ships a `<base>-kb` extension skill. What it needs differently is *
 - **Structured data** → the base's `.ki.toml` `[skills.ki-repo-kb]` table, read **validate-down** by this skill: the `[skills.ki-repo-kb.zones]` aliases, `[skills.ki-repo-kb.templates]` overrides, the `required_frontmatter` array, and the `preflight` array (note paths/globs to read before drafting — the base-specific pre-flight that scope declaration and domain context once justified an extension for).
 - **Narrative bindings** (store alias, scope usage, writing standards) → the base's root `AGENTS.md`.
 
-Relationships to sibling skills use explicit boundaries, never extension. Selecting this skill also selects its declared focused prerequisites — `ki-repo-kb-activities`, `ki-repo-kb-live-artifacts`, and `ki-repo-kb-streams` — before the wider base audit. Coverage selects `ki-authoring` separately for Markdown conventions. No skill imports another. A genuinely base-specific _behaviour_ that no declaration can express is a signal to generalise it into this standard skill (a REFRESH candidate), not to fork a coupled one.
+Relationships to sibling skills use explicit boundaries, never extension. The Activity, Live Artifact, Streams, Enactment and principal checks are families of this skill's own audit, under [4.13](#413-the-standards-behind-the-router). Coverage selects `ki-authoring` separately for Markdown conventions. No skill imports another. A genuinely base-specific _behaviour_ that no declaration can express is a signal to generalise it into this standard skill (a REFRESH candidate), not to fork a coupled one.
+
+[Back to contents](#contents)
+
+### 4.11 Admin subdivisions and the governance baseline
+
+`Admin/` carries two canonical subdivisions, each with a same-name index note: `Admin/Governance/` (`Governance.md`) for decisions, charters, conformance records and structural agreements, and `Admin/Operations/` (`Operations.md`) for day-to-day operational artefacts such as Activities, runbooks and logs. The root `Admin/MEMORY.md` stays the memory-cascade anchor. A missing subdivision, or one without its index note, is a WARN, since a base may not yet need it.
+
+When `Admin/Governance/` is present, it holds `Charter.md`, the scope, purpose and owner of the base, and `Conformance.md`, the active skill set with adoption dates. EDUCATE and CONFORM create them as stubs; a missing one is a WARN. Decision Records stay with `ki-decision-records`.
+
+[Back to contents](#contents)
+
+### 4.12 Note templates
+
+The skill ships zone-scoped starter templates under `assets/templates/<zone>/`: `admin/activity.md` for an Activity note, `calendar/session.md` for session notes, `pillars/note.md` for canonical notes and `resources/source.md` for external references. They are stubs of headings, frontmatter keys and inline prompts, filled during SAVE, EXTRACT and EDUCATE. A base may override or extend them with zone-keyed paths, relative to the base, under `[skills.ki-repo-kb.templates]`.
+
+[Back to contents](#contents)
+
+### 4.13 The standards behind the router
+
+Kris folded three satellite skills into this one and split a fourth on 22 November 2026 (KB-FOLD b). Each now stands as a focused standard of this skill, checked by its own rubric families within `ki repo audit --skill ki-repo-kb`:
+
+| Standard | Governs | Families | Keys under `[skills.ki-repo-kb]` |
+| --- | --- | --- | --- |
+| [Streams structure](standard-streams-structure.md) | The `Streams/` operational container and its legacy folders | STREAM | none |
+| [Enactment gate](standard-enactment-process.md) | The one gate on canonical change, pointing to `ki-work` | ENACT | `process_note` |
+| [Activities](standard-activities.md) | Activity notes in `Admin/Operations/Activities/` | ACT | `activities_dir`, `backpack` |
+| [Live Artifacts](standard-live-artifacts.md) | Markdown and HTML pairs in `Admin/Operations/Live Artifacts/` | LA, LA-F | `artifacts_dir`, `sync_threshold_hours` |
+| [Principal](standard-principal.md) | A Capital's governance surface, acquired-packet scaffold and territorial declarations | PRINCIPAL | none |
+
+The principal standard applies whenever the base is its territory's Capital, worked out from `[skills.ki-repo].capital` naming the repository itself; a base that is not its Capital reports those checks as not applicable. The retired `[skills.ki-repo-kb-activities]`, `[skills.ki-repo-kb-live-artifacts]`, `[skills.ki-repo-kb-principal]` and `[skills.ki-repo-kb-streams]` tables are no longer read; `ki-repo` warns on each until it is removed. The roadmap record checks that `ki-repo-kb-streams` held now run under `ki-work-roadmap`, and its Project close-out checks under `ki-work`.
 
 [Back to contents](#contents)

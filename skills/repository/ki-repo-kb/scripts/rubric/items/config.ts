@@ -39,7 +39,7 @@ const CONFIG_0: RubricItem<KbConfigContext> = {
 const CONFIG_1 = mechanical(
   'CONFIG-1',
   'known configuration keys',
-  'Only required_frontmatter, preflight, zones, templates, and boolean strict_link_resolution are recognised beneath [skills.ki-repo-kb].',
+  'Only required_frontmatter, preflight, zones, templates, boolean strict_link_resolution, and the folded bindings activities_dir, backpack, artifacts_dir, sync_threshold_hours and process_note are recognised beneath [skills.ki-repo-kb].',
   (context) => context.knownKeys
 )
 const CONFIG_2 = mechanical(
@@ -67,11 +67,19 @@ const CONFIG_5 = mechanical(
   (context) => context.preflightPaths
 )
 
+// Was ki-repo-kb-streams' CONFIG-2 before KB-FOLD b (22 November 2026); its table's other checks are CONFIG-0 and -1.
+const CONFIG_6 = mechanical(
+  'CONFIG-6',
+  'contained process note binding',
+  'When process_note is declared, it resolves to a regular file beneath the base without symlink traversal.',
+  (context) => context.processNote
+)
+
 export const CONFIG: RubricFamily<KbRubricContext, KbConfigContext> = {
   code: 'CONFIG',
   title: 'KB configuration',
   description: 'Validate-down `[skills.ki-repo-kb]` configuration and zone aliases.',
   standard: SOURCE,
   selectContext: (context) => context.config,
-  items: [CONFIG_0, CONFIG_1, CONFIG_2, CONFIG_3, CONFIG_4, CONFIG_5]
+  items: [CONFIG_0, CONFIG_1, CONFIG_2, CONFIG_3, CONFIG_4, CONFIG_5, CONFIG_6]
 }

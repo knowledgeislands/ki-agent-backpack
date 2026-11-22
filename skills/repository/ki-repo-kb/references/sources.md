@@ -12,6 +12,7 @@ ki-refresh: canonical · on-change
 - [2. Outside sources](#2-outside-sources)
   - [2.1 Authoritative](#21-authoritative)
     - [2.1.1 Canonical (the structure definition)](#211-canonical-the-structure-definition)
+    - [2.1.2 The folded standards](#212-the-folded-standards)
   - [2.2 Advisory](#22-advisory)
     - [2.2.1 Living (how the model is actually used)](#221-living-how-the-model-is-actually-used)
 - [3. Decisions](#3-decisions)
@@ -19,7 +20,7 @@ ki-refresh: canonical · on-change
 
 ## 1. Introduction
 
-The sources behind the [knowledge-base standard][kb-standard], the [frontmatter standard][frontmatter], the [source mirror standard](standard-source-mirrors.md), the [derived search standard](standard-search.md), the [acquired-packet triage standard](standard-acquired-triage.md) and the [rubric](rubric.md).
+The sources behind the [knowledge-base standard][kb-standard], the [frontmatter standard][frontmatter], the [source mirror standard](standard-source-mirrors.md), the [derived search standard](standard-search.md), the [acquired-packet triage standard](standard-acquired-triage.md), the [Streams structure standard](standard-streams-structure.md), the [KB change-management routing standard](standard-enactment-process.md), the [Activity standard](standard-activities.md), the [Live Artifact standard](standard-live-artifacts.md), the [principal standard](standard-principal.md) and the [rubric](rubric.md). The last five came from `ki-repo-kb-streams`, `ki-repo-kb-activities`, `ki-repo-kb-live-artifacts` and `ki-repo-kb-principal` under KB-FOLD b, with their sources below.
 
 The canonical and living sources behind this skill's zone model, note metadata, routing test, and project-bindings table. Mode REFRESH reads this file, re-anchors the model against each source, then **bumps the `last reviewed` dates** (what changed is recorded in the commit, not a changelog — history lives in git). This is the skill's memory of where its structure comes from - keep it current.
 
@@ -44,6 +45,20 @@ The canonical in-house structure definition.
 
 † The authoritative structure: five zones (Calendar / Pillars / Resources / Streams / Admin) flanked by the inbound `+` and outbound `-` working areas. This in-house Reference is the canonical definition — the skill follows no external spec.
 
+#### 2.1.2 The folded standards
+
+| Source | Governs | Last reviewed |
+| --- | --- | --- |
+| [Streams structure standard](standard-streams-structure.md) | The `Streams/` container, recurring Activity off-ramp, owner-approved migration and retention | On change |
+| [KB change-management routing standard](standard-enactment-process.md) | The one always-loaded canonical-change gate, pointing to `ki-work` | On change |
+| ki-principal `Admin/Operations/Activities/` | Live collection sampled for current Activity fields and placement | 2026-08-12 |
+| `ki-repo-backpack` SKILL.md | The backpack layout; the `skills/<name>/SKILL.md` path an Activity's `skill` resolves against | 2026-08-12 |
+| ki-principal `Admin/Operations/Live Artifacts/` | Live Artifact placement evidence; no source and render pair yet | 2026-08-12 |
+| `ki-authoring` SKILL.md | Markdown style for Live Artifact sources | 2026-08-12 |
+| [Principal standard](standard-principal.md) | A Capital's governance surface, scaffold ownership and receiver authority | On change |
+| [Acquired-packet intake contract](standard-principal.md#42-acquired-packet-scaffold) | The durable scaffold and receiver conformance boundary; the [21 October 2026 accepted delivery](https://github.com/knowledgeislands/ki-agent-backpack/commit/52779419) remains historical evidence | On change |
+| [Principal audit and conform fixtures](../scripts/rubric/contexts/principal.test.ts) | Exact-scaffold, unsafe-path, packet-preservation and not-a-Capital evidence | On change |
+
 [Back to contents](#contents)
 
 ### 2.2 Advisory
@@ -60,6 +75,7 @@ These have no URL; they are sampled at REFRESH time through each base's own `kb-
 | `kit-legal` base[^kl] | The same, from a base further along the structure, now on the canonical zone names (alias dropped) | 2026-07-04 |
 | Other bases actively using this skill | The same, as further bases adopt the skill | 2026-07-04 |
 | Per-base `.ki.toml` declarations | Which base-specific declarations recur across bases※ | 2026-08-12 |
+| Receiver bases' local `Streams/` zones and always-loaded instructions | Receiver-owned classification and migration decisions, never the target layout | On change |
 
 ※ Which base-specific declarations recur across bases and should be promoted into this standard skill.
 
@@ -71,6 +87,9 @@ The decisions recorded by id that the standards rest on.
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
+| KB-FOLD b | `ki-repo-kb-activities`, `ki-repo-kb-live-artifacts` and `ki-repo-kb-principal` fold into `ki-repo-kb` as standards behind a router `SKILL.md`, the principal standard applying whenever the base is its territory's Capital; `ki-repo-kb-streams` is split, its layout to `ki-repo-kb`, its record checks to `ki-work-roadmap` and its Project close-out to `ki-work`, the `kb-streams` adapter pointing at `ki-work-roadmap`; one Enactment gate stays in `ki-repo-kb`, pointing to `ki-work`. Kris, 22 November 2026, about 20:49 GMT, the Repository guild's sitting in the Cairn summit's change 10, card: "Fold three, split streams". | 2026-11-22 | [knowledge-base standard, 4.13](standard-knowledge-base.md#413-the-standards-behind-the-router) | In force |
+| KB-NOTE-MODES b | The six note modes, SAVE, UPDATE, QUERY, EXTRACT, DIGEST and IMPROVE, stay as modes, though unused in 60 days; the router `SKILL.md` meets its budget by other means. Kris, 22 November 2026, about 20:59 GMT, the same sitting, card: "Keep the six modes". | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
+| ACTIVITIES-HARNESS-KEY | The key that names the backpack root is `backpack`; `harness` is read as its old name while `backpack` is absent, and ACT-S-3 warns it should be renamed. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a, from the summit's change 12, option a. | 2026-11-19 | [Activity standard, 4.1](standard-activities.md#41-collection) | In force |
 | KB-BINDINGS a | A base's narrative bindings live in its root `AGENTS.md`, which a `CLAUDE.md` imports | 2026-11-16 | [knowledge-base standard][kb-standard] | In force |
 | COVERAGE-SIGNAL a | NOTE-1c no longer tolerates work-package files under `+/_WORK/<id>/` | 2026-11-17 | [frontmatter standard][frontmatter] | In force |
 | COMMIT-VS-CI a | The commit gate is check-only and the `ki-repo-kb` audit runs in CI | 2026-10-26 | [knowledge-base standard][kb-standard] | In force |
@@ -82,6 +101,10 @@ The decisions recorded by id that the standards rest on.
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 Loreward applied KB-FOLD b and KB-NOTE-MODES b, recorded under [Decisions](#3-decisions). The Streams structure, Enactment, Activity, Live Artifact and principal standards moved here with their sources and rubric families, which keep their codes: STREAM, ENACT (formerly the streams GATE family, renamed as it clashed with this skill's commit-gate GATE), ACT, LA, LA-F and PRINCIPAL. The streams CONFIG family's `process_note` binding became CONFIG-6 under `[skills.ki-repo-kb]`, beside `activities_dir`, `backpack`, `artifacts_dir` and `sync_threshold_hours`. PRINCIPAL-2 retired in favour of ENACT-1, and the principal checks now apply when `[skills.ki-repo].capital` names the base itself. ACT-S-3 now warns only on the old `harness` key, leaving unknown keys to CONFIG-1. The Activity and Live Artifact NEW modes folded into SAVE; the six note modes stayed. The streams record checks STREAM-6, 7, 8, 12, 13 and 14 moved to `ki-work-roadmap`'s ITEM-1, ITEM-2, ROAD-6 and ROAD-7, and STREAM-10 and 11 to `ki-work`'s PROJ-1 and PROJ-2. No outside source was refreshed.
+
+**Acquired scaffold rollout.** The reusable acquired-area delivery was accepted on 21 October 2026; that acceptance established the scaffold and its audit and conform contract, not that real receivers applied it. The delivery report's receiver snapshot named `personal-principal`, `va-principal`, `er-principal`, `si-principal`, `tmx-principal`, `ki-principal`, `legal-principal` and `hnr-principal`: historical delivery evidence, not a live rollout ledger. State of play owns the receiver-owned rollout under GOV209-ROLLOUT. PRINCIPAL-5 reports a missing, changed or unsafe scaffold whenever a Capital is audited, and its CONFORM proposes only the exact README. A passing fixture test is not evidence of a real receiver's conformance, and the README is not a dispatch precondition.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH names the backpack, and the knowledge base and source mirror standards speak of a backpack audit. No criterion changed and no outside source refreshed.
 
@@ -105,6 +128,9 @@ Per-source outcome:
 1. **ki-\* rename split across bases.** kit-legal has migrated its `.ki.toml` tables to the `[ki-*]` prefix; ki-principal still declares `[knowledgeislands-*]`. Shared `.ki.toml` contract (owned by `ki-repo`; tracked by the roadmap rename plan) — not a ki-repo-kb model change. Re-check both bases land on `[skills.ki-repo-kb]` once the rename completes.
 2. **No live `[skills.ki-repo-kb.zones]` exemplar.** Both tracked bases have dropped their aliases. The alias binding is kept as a reviewable override with no live exemplar — watch for a new base mid-migration to re-validate it against reality.
 3. **Charter/Conformance adoption.** The model expects `Admin/Governance/Charter.md` + `Conformance.md`; ki-principal lacks Conformance, kit-legal lacks both (all WARN). Watch whether exemplars adopt them or whether the expectation should soften.
+4. **Activity metadata.** Component fields in the living Activity collection do not decide the unresolved universal KB `type` contract, and ki-principal's Activity index defers its roster to the Charter; neither is end-to-end evidence for the index contract yet.
+5. **Live Artifact pairs.** The reference base has no real pair yet, so the LA-S-2, 3 and 4 sync checks and the 24-hour `sync_threshold_hours` default are unvalidated end to end.
+6. **Acquired scaffold.** Each receiver's own conformance, recorded with its own work, and the accepted delivery's hosted availability, pending an online check.
 
 [Back to contents](#contents)
 

@@ -5,75 +5,60 @@ ki-kind: governance
 ki-applicability: detected
 ki-guild: repository
 ki-shared-dependencies: [ki-skills:rubric]
-ki-depends-on: [ki-repo-kb-activities, ki-repo-kb-live-artifacts, ki-repo-kb-streams]
-ki-owns: ['-/_DIGESTS/README.md']
+ki-depends-on: []
+ki-optional-depends-on: [ki-decision-records, ki-work-recurring]
+ki-owns: ['-/_DIGESTS/README.md', '+/_ACQUIRED/README.md']
 ki-contributes: ['.githooks/pre-commit']
 description: >
-  Create, query, update, distil, or audit a KI knowledge base using Calendar, Pillars, Resources, Streams, and
-  directional `+` and `-` areas. Use for notes, session digests, search, or zone conformance;
-  `ki-repo-kb-streams` owns forward-work containers and `ki-authoring` general document style.
+  Create, query, update, distil, or audit a KI knowledge base: the Calendar, Pillars, Resources, Streams and Admin
+  zones with their `+` and `-` working areas, the Streams layout and Enactment gate, Activity notes, Live Artifact
+  pairs, and a Capital's principal governance. Use for notes, session digests, search, or base conformance;
+  `ki-work-roadmap` owns roadmap records and `ki-authoring` general document style.
 argument-hint: 'audit | conform | digest | extract | help | improve | educate | query <question> | refresh | save | update <note>'
 ---
 
 # Knowledge Islands KB
 
-You are helping the user interact with a **Knowledge Islands** knowledge base - a markdown store organised to the Knowledge Islands structure. This skill carries the operating modes and the structure itself; only a handful of store-level details come from the host project. It assumes the zone model below and does not ask the project to redefine it.
+You are helping the user work with a **Knowledge Islands** knowledge base: one Markdown store organised to the Knowledge Islands structure. This SKILL.md is a router. It carries the shared model every mode needs and sends each concern to the standard that holds its rules; only a handful of store-level details come from the host base.
 
-Optional bounded retrieval is governed by the [derived search contract](references/standard-search.md); QUERY selects it only when explicitly provisioned.
+## The standards behind this router
+
+Read the standard for the concern in hand before acting. All of them are checked by one audit, `ki repo audit --skill ki-repo-kb`, whose [generated rubric](references/rubric.md) lists every criterion.
+
+| Concern | Standard | Families |
+| --- | --- | --- |
+| Zones, working areas, linking, indexes, configuration, digests, commit gate, `Admin/` subdivisions, templates | [Knowledge-base standard](references/standard-knowledge-base.md) | ZONE, CONFIG, ADMIN, ROUTE, MEM, LINK, GATE |
+| Note metadata and the `note_type` taxonomy | [Frontmatter standard](references/standard-frontmatter.md) | NOTE |
+| `Streams/` operational container and legacy folders | [Streams structure standard](references/standard-streams-structure.md) | STREAM |
+| The one gate on canonical change | [Enactment gate](references/standard-enactment-process.md) | ENACT |
+| Activity notes in `Admin/Operations/Activities/` | [Activity standard](references/standard-activities.md) | ACT |
+| Markdown and HTML pairs in `Admin/Operations/Live Artifacts/` | [Live Artifact standard](references/standard-live-artifacts.md) | LA, LA-F |
+| A Capital's Charter, Known Lands and acquired-packet scaffold | [Principal standard](references/standard-principal.md) | PRINCIPAL |
+| Packets arriving in `+/_ACQUIRED/` | [Receiver triage](references/standard-acquired-triage.md) | none |
+| Paired sources stores | [Source mirror standard](references/standard-source-mirrors.md) | ZONE |
+| Optional bounded retrieval for QUERY | [Derived search contract](references/standard-search.md) | none |
+
+The principal standard applies whenever the base is its territory's Capital, which the audit works out from `[skills.ki-repo].capital` naming the base itself; a base that is not its Capital skips it. These standards came from four skills folded or split here under KB-FOLD b; the roadmap records inside `Streams/Roadmap/` belong to `ki-work-roadmap`, and the Project registry's close-out checks to `ki-work`. Decision Records stay with `ki-decision-records`, and an Activity's recurring-work profile with `ki-work-recurring`.
 
 ## The Knowledge Islands structure
 
-A Knowledge Islands base is one markdown store with a fixed set of five zones, flanked by an inbound and an outbound working area. The five zones — `Calendar/`, `Pillars/`, `Resources/`, `Streams/`, `Admin/` — each carry an index note of the same name; `+/` (inbound) and `-/` (outbound) are working areas, not zones, and carry no such index.
+Five zones — `Calendar/`, `Pillars/`, `Resources/`, `Streams/`, `Admin/` — each carry an index note of the same name. `+/` (inbound) and `-/` (outbound) are working areas, not zones, and carry no such index.
 
 | Folder       | Holds                                                                                           |
 | ------------ | ----------------------------------------------------------------------------------------------- |
 | `+/`         | Inbound working area - inputs to further local work.† Exempt from most conventions. Not a zone. |
 | `Calendar/`  | Time-stamped records: daily, meeting, session, weekly, monthly notes.                           |
-| `Pillars/`   | Internal canonical knowledge - the base's primary subject matter. One folder per pillar.†       |
+| `Pillars/`   | Internal canonical knowledge - the base's primary subject matter. One folder per pillar.        |
 | `Resources/` | External reference material that exists independently of this base.                             |
-| `Streams/`   | Work in motion — finite adapter-owned work records. ※ |
+| `Streams/`   | Work in motion — finite adapter-owned work records, laid out by the Streams structure standard. |
 | `-/`         | Outbound working area - produced artefacts (session digests, compiled outputs).‡ Not a zone.   |
-| `Admin/`     | Base-agnostic governance and operations.                                                        |
+| `Admin/`     | Base-agnostic governance and operations, in `Governance/` and `Operations/` subdivisions.       |
 
-† Any zone may be held under a different local folder name — a base mid-migration, or one that simply names a zone differently. That is declared as a **zone alias** in the base's config, not treated as a different zone - see [Project bindings](#project-bindings).
-
-※ Migrates to `Pillars/` once settled. Its internal structure and process are owned by the `ki-repo-kb-streams` skill.
+A zone may sit under a different local folder name, declared as a **zone alias** in `.ki.toml`, not treated as a different zone. Each whole base is an "island"; a **Pillar** is a major strand of its subject matter (a case, a client, a domain, a theme).
 
 † `+/` holds inputs to further local work, including locally created records. `ki-trades` owns received cross-repository records under `+/_TRADES/`.
 
 ‡ `ki-trades` owns outgoing cross-repository records under `-/_TRADES/<owner>/<repo>/TRD-<eight-hex>.md`, including their format and lifecycle.
-
-### Acquired packets
-
-For packets delivered to a territory principal's `+/_ACQUIRED/`, read [receiver triage](references/standard-acquired-triage.md). The receiver files the packet, turns it into work, or parks it locally as intake handling; `ki-acquire` owns the separate knowledge dispositions recorded in the package. They preserve source material and write nothing back into the port. `ki-repo-kb-principal` owns the required exact scaffold while its overlay is declared.
-
-### Admin/ subdivisions
-
-The `Admin/` zone carries two canonical subdivisions:
-
-| Folder              | Holds                                                                             |
-| ------------------- | --------------------------------------------------------------------------------- |
-| `Admin/Governance/` | Decisions, charters, conformance records, and structural agreements for the base. |
-| `Admin/Operations/` | Day-to-day operational artefacts: activities, runbooks, and operational logs.     |
-
-Each subdivision carries an index note of the same name (`Governance.md`, `Operations.md`). The root `Admin/MEMORY.md` remains the memory-cascade anchor and is not replaced by these. Absence of either subdivision is a WARN (not FAIL) — a base may legitimately omit one if that concern is not yet active; presence without an index note is also a WARN.
-
-The specific artefact types under these subdivisions have separate owners. This skill delegates Activity notes to its declared `ki-repo-kb-activities` dependency and Live Artifact pairs to `ki-repo-kb-live-artifacts`; selecting `ki-repo-kb` therefore runs both first. Decision Records remain independently selected through `ki-decision-records`. Each focused skill defers the parent zone structure and KI-wide frontmatter standard back here.
-
-### Charter and Conformance baseline
-
-When `Admin/Governance/` is present, two documents are expected there:
-
-| File | Holds |
-| --- | --- |
-| `Admin/Governance/Charter.md` | Scope, purpose, and owner of the base. Created on EDUCATE; kept current by the base's owner. |
-| `Admin/Governance/Conformance.md` | The active skill set governing this base, with adoption dates. Updated when skills change. |
-
-Both are checked by the mechanical audit and created as stubs by EDUCATE and CONFORM. Absence is a WARN (not FAIL) — a base that has no `Governance/` folder yet is not penalised for missing them.
-
-**Pillars** are the second-level unit of organisation: each whole knowledge base is an "island"; within it, a Pillar is a major strand of its subject matter (a case, a client, a domain, a theme). A base may use one Pillar or many.
-
-### Linking within a base
 
 How notes link, and what `LINK-1` resolves and reports, is [the knowledge-base standard's 4.3](references/standard-knowledge-base.md#43-linking-within-a-base).
 
@@ -84,7 +69,7 @@ Produced outputs (session digests, compiled artefacts, handoffs) **bypass this t
 For all other notes, most-specific match wins:
 
 1. Time-bound record -> `Calendar/`.
-2. Active, in-progress work -> `Streams/` (the `ki-repo-kb-streams` skill owns sub-routing within the zone and its adapter-owned lifecycle).
+2. Active, in-progress work -> `Streams/` (finite work as a `Streams/Roadmap/` record; a recurring obligation as an Activity note).
 3. Canonical internal knowledge -> `Pillars/<Pillar>/`.
 4. External reference (would exist without this base) -> `Resources/`.
 5. Unsure -> `+/<Title>.md` at the most specific applicable level.
@@ -93,30 +78,15 @@ For all other notes, most-specific match wins:
 
 Root index `Admin/MEMORY.md` lists the active Pillars. Where the base is Pillar-scoped, scope a session to one Pillar and load `Pillars/<Pillar>/MEMORY.md` (and any per-Pillar profile index) before substantive work. Treat other Pillars as off-limits unless the user switches.
 
-## Note templates
+### Enactment gate
 
-The skill ships zone-scoped starter templates under `assets/templates/<zone>/`. EDUCATE copies the relevant stubs when scaffolding a new base. QUERY can list available templates when the user asks (`?templates`). A base may override or extend these by declaring a `[skills.ki-repo-kb.templates]` table in its `.ki.toml` — keys are zone names, values are paths relative to the base.
-
-| Zone         | Template                                           | Use for                                     |
-| ------------ | -------------------------------------------------- | ------------------------------------------- |
-| `Admin/`     | [activity.md](assets/templates/admin/activity.md)  | New activity note (see `ki-repo-kb-activities`). |
-| `Calendar/`  | [session.md](assets/templates/calendar/session.md) | Session notes.                              |
-| `Pillars/`   | [note.md](assets/templates/pillars/note.md)        | Canonical internal knowledge notes.         |
-| `Resources/` | [source.md](assets/templates/resources/source.md)  | External reference entries.                 |
-
-Templates are stubs — headings, frontmatter keys, and inline `<!-- prompts -->`. They do not carry content; the skill fills in what the user provides during SAVE / EXTRACT / EDUCATE.
+Substantive changes to `Admin/`, `Pillars/` or `Resources/` need approved forward work, captured and delivered through `ki-work`. Time-bound `Calendar/` entries, `+/` triage and trivial fixes are exempt. The base's root `AGENTS.md` anchors the gate; [the Enactment gate standard](references/standard-enactment-process.md) holds its one statement and check.
 
 ## Project bindings
 
-Almost everything is fixed by the structure above. Only these come from the host project - take the narrative bindings from the base's root `AGENTS.md`, which every agent host loads, then the root memory index. **Declarative overrides** (the zone alias and the lists below) are read from the base's `.ki.toml` `[skills.ki-repo-kb]` table instead — see the `ki-repo` skill for the shared-file contract; validate your own table (warn on an unrecognised key) without validating sibling tables. Consume shared `[skills.ki-repo].store_roles` metadata only to select source-mirror applicability. A base never ships a `<base>-kb` skill: what it needs differently is declared here (data) or in its `AGENTS.md` (prose), never forked into a coupled skill.
+Almost everything is fixed. Narrative bindings come from the base's root `AGENTS.md`, which every agent host loads, then the root memory index: the **notes store** alias (default: "the base"), whether a **sources store** is paired under the [source mirror contract](references/standard-source-mirrors.md) (default: none), **scope usage**, Pillar-scoped or flat (default: Pillar-scoped), and **writing standards** (default: British English, cited source paths, concise prose).
 
-- **Notes store** — canonical alias and location of the notes store. _Default:_ the connected base; refer to it as "the base".
-- **Sources store** — whether a paired sources store is declared, following the [source mirror contract](references/standard-source-mirrors.md). _Default:_ none.
-- **Scope usage** — whether the base is Pillar-scoped (declare an active Pillar) or single-Pillar / flat. _Default:_ Pillar-scoped.
-- **Zone names** — the canonical folder per zone, overridable per base. A `[skills.ki-repo-kb.zones]` sub-table maps any canonical zone or working area to this base's local folder name (e.g. `Pillars = "<local folder>"`); resolve every zone reference through it. Useful for a base mid-migration (drop the entry once the folder is renamed) or one that simply names a zone differently. _Default:_ the canonical names (`Calendar` / `Pillars` / `Resources` / `Streams` / `Admin`, plus the `+` / `-` working areas).
-- **Required frontmatter** — the keys every note carrying frontmatter must include. Declare them with `required_frontmatter = ["tags", "status", "author"]` under `[skills.ki-repo-kb]` to have the checker enforce their presence mechanically (extra keys stay free; keys are always `snake_case`). _Default:_ none declared — required frontmatter stays a judgment call resolved from the host's `AGENTS.md`.
-- **Writing standards** — language variant, citation format, structural norms. _Default:_ British English; cite source paths; concise prose.
-- **Domain pre-flight** — any extra reads before drafting (profiles, domain context). Declare them as `preflight = ["<path-or-glob>", …]` under `[skills.ki-repo-kb]` — a list of note paths/globs to read before drafting, which the checker validates _down_. _Default:_ none beyond the memory cascade.
+Declarative overrides live in the base's `.ki.toml` `[skills.ki-repo-kb]` table, read validate-down, warning on an unrecognised key and never validating a sibling table: `zones` aliases, `templates` overrides, `required_frontmatter`, `preflight` reads, `strict_link_resolution`, `process_note`, `activities_dir`, `backpack`, `artifacts_dir` and `sync_threshold_hours`. [The knowledge-base standard's 4.7 and 4.13](references/standard-knowledge-base.md#47-zone-aliases-and-the-skillski-repo-kb-config-table) define each. Consume shared `[skills.ki-repo].store_roles` only to select source-mirror applicability, and `[skills.ki-repo].capital` only to decide whether the principal standard applies. A base never ships a `<base>-kb` skill: what it needs differently is declared (data) or written in its `AGENTS.md` (prose), never forked.
 
 ## Step 1 - Load context
 
@@ -126,7 +96,7 @@ Almost everything is fixed by the structure above. Only these come from the host
 
 ## Operating modes
 
-Step 2 - determine the mode and load its procedure. Invoked as `help` / `-h` / `?`, it explains itself and stops — the generated HELP block (name, purpose, invocation, modes, off-ramps), taking no action. With no mode it does the same, then, in an interactive session only, offers the mode choice via `AskUserQuestion`, prompting for any `argument-hint` target the chosen mode shows. The shared model above — the five zones, the routing test, the **memory cascade**, the project bindings, and Step 1 — is what every mode needs and stays loaded; each mode's _procedure_ lives in its own on-demand file, so read only the one the request selects. Like every governance skill it carries the universal four **AUDIT · CONFORM · EDUCATE · REFRESH** (EDUCATE scaffolds a base); its base-specific modes are the session-level **IMPROVE** (continuous improvement) and the note-ops **DIGEST · EXTRACT · QUERY · SAVE · UPDATE**. Modes are named and alphabetical.
+Step 2 - determine the mode and load its procedure. Invoked as `help` / `-h` / `?`, it explains itself and stops — the generated HELP block (name, purpose, invocation, modes, off-ramps), taking no action. With no mode it does the same, then, in an interactive session only, offers the mode choice via `AskUserQuestion`, prompting for any `argument-hint` target the chosen mode shows. The shared model above stays loaded; each mode's _procedure_ lives in its own on-demand file, so read only the one the request selects. It carries the universal four **AUDIT · CONFORM · EDUCATE · REFRESH** (EDUCATE scaffolds a base), the session-level **IMPROVE**, and the note modes **DIGEST · EXTRACT · QUERY · SAVE · UPDATE**. SAVE also authors a new Activity note or Live Artifact source. Modes are named and alphabetical.
 
 | Mode    | Fires on                                                  | Read before acting                            |
 | ------- | --------------------------------------------------------- | --------------------------------------------- |
@@ -138,16 +108,12 @@ Step 2 - determine the mode and load its procedure. Invoked as `help` / `-h` / `
 | EDUCATE | "set up a new knowledge base"                             | [mode-educate.md](references/mode-educate.md) |
 | QUERY   | "what do my notes say / search my notes"                  | [mode-query.md](references/mode-query.md)     |
 | REFRESH | "is the KB skill still current" (on its declared cadence) | [mode-refresh.md](references/mode-refresh.md) |
-| SAVE    | "save to my notes / capture this"                         | [mode-save.md](references/mode-save.md)       |
+| SAVE    | "save to my notes / capture this / add an activity or live artifact" | [mode-save.md](references/mode-save.md)       |
 | UPDATE  | "update the note on X"                                    | [mode-update.md](references/mode-update.md)   |
 
-The memory cascade and the canonical-zone Enactment gate are part of the shared model above — they apply on every fire, before any mode procedure loads.
+The memory cascade and the Enactment gate apply on every fire, before any mode procedure loads.
 
 ## Notes
 
 - This skill assumes the Knowledge Islands structure. If a base does not follow it, or a binding cannot be resolved and no default fits, ask the user rather than guess.
-- A base supplies its specifics by **declaration**, not a coupled skill: structured data (zone aliases, required frontmatter, pre-flight reads) in its `.ki.toml` `[skills.ki-repo-kb]` table, narrative bindings (store alias, scope, writing standards) in its root `AGENTS.md`. There is no `<base>-kb` extension skill; relationships to sibling skills are composition (e.g. the `Streams` zone delegates to `ki-repo-kb-streams`).
-
-Normative detail: [the Knowledge Islands knowledge-base standard](references/standard-knowledge-base.md). Checkable criteria: [the generated rubric](references/rubric.md), enforced mechanically by `ki repo audit --skill ki-repo-kb`. After changing the catalogue under `scripts/rubric/items/`, regenerate the published catalogue with `ki dev skill rubric ki-repo-kb --write`.
-
-KI-wide frontmatter standard (universal fields and the `note_type` taxonomy): [the frontmatter standard](references/standard-frontmatter.md).
+- After changing the catalogue under `scripts/rubric/items/`, regenerate the published rubric with `ki dev skill rubric ki-repo-kb --write`.

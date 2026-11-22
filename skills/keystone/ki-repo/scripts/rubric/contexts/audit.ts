@@ -13,8 +13,8 @@
  *                (the repo's declared config), from the selected evidence source.
  *                .ki.toml is also the GATE of the coverage cascade: once a
  *                repo is confirmed a ki-repo by carrying it, each other governance
- *                skill whose applicability is detectable in the repo (a Streams/
- *                zone, an eleventy.config, an MCP SDK dep, …) must DECLARE its
+ *                skill whose applicability is detectable in the repo (KB
+ *                zones, an eleventy.config, an MCP SDK dep, …) must DECLARE its
  *                `[skills.ki-<skill>]` opt-in table — detected-but-undeclared
  *                WARNs. A non-ki-repo is never coverage-checked (no false positives).
  *   2. GITHUB  — default branch, license, squash-only + linear, auto-delete-branch,
@@ -656,12 +656,6 @@ const COVERAGE: { skill: string; table: string; artifact: string; detect: (s: Si
     detect: (s) => s.root.has('Pillars') && s.root.has('Resources')
   },
   {
-    skill: 'streams',
-    table: skillTable('ki-repo-kb-streams'),
-    artifact: 'Streams/ zone',
-    detect: (s) => s.root.has('Streams')
-  },
-  {
     skill: 'website',
     table: skillTable('ki-repo-website'),
     artifact: 'a content or app website implementation',
@@ -739,10 +733,8 @@ const COVERAGE: { skill: string; table: string; artifact: string; detect: (s: Si
 // table is not a stale opt-in while a dependent is declared: the host refuses to run without
 // it. Mirrors the collection's SKILL.md frontmatter; repository.test.ts checks it for drift.
 export const COVERAGE_REQUIRED_BY: Readonly<Record<string, readonly string[]>> = {
-  'ki-decision-records': ['ki-repo-backpack', 'ki-repo-kb-principal'],
+  'ki-decision-records': ['ki-repo-backpack'],
   'ki-engineering': ['ki-repo-mcp'],
-  'ki-repo-kb': ['ki-repo-kb-principal'],
-  'ki-repo-kb-streams': ['ki-repo-kb', 'ki-repo-kb-principal'],
   'ki-repo-website': ['ki-repo-website-app', 'ki-repo-website-cloudflare', 'ki-repo-website-content'],
   'ki-skills': ['ki-repo-backpack'],
   'ki-subagents': ['ki-repo-backpack', 'ki-subagents-chatgpt', 'ki-subagents-claude'],
@@ -762,6 +754,14 @@ const RETIRED_SHAPE_TABLES = [
   skillTable('ki-repo-project'),
   skillTable('ki-repo-homebrew-tap'),
   skillTable('ki-repo-specifications')
+]
+// Knowledge Base satellites folded into ki-repo-kb, or split from it, on 22 November 2026 (KB-FOLD b).
+// Their keys now sit under [skills.ki-repo-kb]; a leftover table is stale.
+const RETIRED_KB_TABLES = [
+  skillTable('ki-repo-kb-activities'),
+  skillTable('ki-repo-kb-live-artifacts'),
+  skillTable('ki-repo-kb-principal'),
+  skillTable('ki-repo-kb-streams')
 ]
 const WEBSITE_IMPLEMENTATION_TABLES = [skillTable('ki-repo-website-content'), skillTable('ki-repo-website-app')]
 type MultilineDelimiter = '"""' | "'''"
@@ -968,15 +968,6 @@ async function auditRepo(
     else if (configuration.repositoryType === 'kb') {
       if (!declaresRootTable(kiText, skillTable('ki-repo-kb')))
         fail('KIND-2', 'repo_type = "kb" requires the [skills.ki-repo-kb] structure declaration', KI_CONFIG)
-      if (
-        declaresRootTable(kiText, skillTable('ki-work-roadmap')) &&
-        !declaresRootTable(kiText, skillTable('ki-repo-kb-streams'))
-      )
-        fail(
-          'KIND-2',
-          'repo_type = "kb" with ki-work-roadmap requires [skills.ki-repo-kb-streams] for its roadmap container',
-          KI_CONFIG
-        )
     } else if (declaresRootTable(kiText, skillTable('ki-repo-kb')))
       fail('KIND-2', '[skills.ki-repo-kb] requires repo_type = "kb"', KI_CONFIG)
   }
@@ -1200,6 +1191,12 @@ async function auditRepo(
       warn(
         'STRUCT-2',
         `declares the retired ${retiredShapes.map((t) => `[skills.${t}]`).join(', ')} — remove it; primary_shape alone selects the structure`
+      )
+    const retiredKb = RETIRED_KB_TABLES.filter((t) => declaresTable(text, t))
+    if (retiredKb.length > 0 && enforced('structure'))
+      warn(
+        'STRUCT-2',
+        `declares the retired ${retiredKb.map((t) => `[skills.${t}]`).join(', ')}, folded into ki-repo-kb (KB-FOLD b) — remove it, moving any process_note, activities_dir, backpack, artifacts_dir or sync_threshold_hours under [skills.ki-repo-kb]`
       )
 
     // ── website implementation cardinality ── STRUCT-3/4

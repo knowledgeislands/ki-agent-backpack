@@ -218,7 +218,7 @@ Primary repository structure, with composable specialisations.
 
 - **STRUCT-1 [M] — Single primary repository structure** — A Project declares no Knowledge Base structure: Project and Knowledge Base are mutually exclusive primaries. (standard-repository.md)
   - _Remediation:_ diagnostic — Align the repository structure declaration with the applicable standard or record an explicit exemption, then rerun the audit.
-- **STRUCT-2 [M] — No retired shape table** — `primary_shape` alone selects the structure: no retired `[skills.ki-repo-project]`, `[skills.ki-repo-homebrew-tap]` or `[skills.ki-repo-specifications]` table remains. (standard-repository.md)
+- **STRUCT-2 [M] — No retired shape table** — `primary_shape` alone selects the structure: no retired `[skills.ki-repo-project]`, `[skills.ki-repo-homebrew-tap]` or `[skills.ki-repo-specifications]` table remains, nor a `[skills.ki-repo-kb-activities]`, `-live-artifacts`, `-principal` or `-streams` table folded into `[skills.ki-repo-kb]`. (standard-repository.md)
   - _Remediation:_ diagnostic — Align the repository structure declaration with the applicable standard or record an explicit exemption, then rerun the audit.
 - **STRUCT-3 [M] — Single website implementation** — A website declares at most one mutually exclusive content or app implementation. (standard-repository.md)
   - _Remediation:_ diagnostic — Align the repository structure declaration with the applicable standard or record an explicit exemption, then rerun the audit.
@@ -242,7 +242,7 @@ The repository kind, primary Project shape, and named Knowledge Base store roles
 
 - **KIND-1 [M] — Repository kind, primary shape, and store roles** — ki-repo requires explicit Project or Knowledge Base kind and a compatible declared primary shape, and validates named KB stores. (standard-repository.md)
   - _Remediation:_ diagnostic — Resolve Project or Knowledge Base, compatible store roles, and an unambiguous declared primary shape, then rerun the audit.
-- **KIND-2 [M] — Kind and structure compatibility** — A KB kind declares KB structure; shared ki-work-roadmap configuration requires its Streams container. A non-KB does not declare KB structure. (standard-repository.md)
+- **KIND-2 [M] — Kind and structure compatibility** — A KB kind declares KB structure. A non-KB does not declare KB structure. (standard-repository.md)
   - _Remediation:_ diagnostic — Align the repository kind with its declared structure and planning model, then rerun the audit.
 
 ## MATURITY — Island maturity

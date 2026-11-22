@@ -42,7 +42,7 @@ export const STRUCT: RubricFamily<RepoRubricContext, StructureRubricContext> = {
     item(
       'STRUCT-2',
       'No retired shape table',
-      '`primary_shape` alone selects the structure: no retired `[skills.ki-repo-project]`, `[skills.ki-repo-homebrew-tap]` or `[skills.ki-repo-specifications]` table remains.',
+      '`primary_shape` alone selects the structure: no retired `[skills.ki-repo-project]`, `[skills.ki-repo-homebrew-tap]` or `[skills.ki-repo-specifications]` table remains, nor a `[skills.ki-repo-kb-activities]`, `-live-artifacts`, `-principal` or `-streams` table folded into `[skills.ki-repo-kb]`.',
       'WARN',
       (context) => context.structure2
     ),

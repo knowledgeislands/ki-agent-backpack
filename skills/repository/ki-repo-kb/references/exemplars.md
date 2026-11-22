@@ -8,6 +8,7 @@ ki-document-type: exemplars@2026-11-17T00:55:00Z
 
 - [Collections](#collections)
 - [Selected patterns](#selected-patterns)
+- [The folded standards](#the-folded-standards)
 
 Curated patterns showing what well-formed Knowledge Islands KB notes, folder structures, and zone layouts look like. Use these as concrete references when authoring notes, running CONFORM, or deciding whether a structural choice is correct. They are drawn from `ki-principal` — the canonical live KB — rather than invented examples, so they reflect real decisions made in a conforming base.
 
@@ -87,7 +88,7 @@ ki-principal/
 │   ├── Philosophy/
 │   └── Technē/
 ├── Resources/           ← reference material with external origin
-└── Streams/             ← work in motion (see ki-repo-kb-streams)
+└── Streams/             ← work in motion (see the Streams structure standard)
     ├── Streams.md
     └── Roadmap/
 ```
@@ -113,3 +114,140 @@ See [Charter](Governance/Charter.md) for the island identity.
 ```
 
 The `ki-repo-kb` skill writes Obsidian wikilinks inside the base while keeping its own skill documentation on relative Markdown links.
+
+## The folded standards
+
+Shapes for the Activity, Live Artifact and Streams standards, which came from their own skills under KB-FOLD b.
+
+### Activities
+
+#### Slash-command activity
+
+```yaml
+---
+status: active
+realization: slash-command
+skill: ki-repo-kb
+author: AI-assisted
+---
+```
+
+```markdown
+# KB Audit
+
+Runs `ki-repo-kb` AUDIT mode on demand to check the base structure against the KB standard.
+
+Adopted because the KB grows rapidly and manual structure reviews are error-prone.
+```
+
+#### Scheduled-task activity
+
+```yaml
+---
+status: active
+realization: scheduled-task
+schedule_name: Morning Briefing
+schedule_env: scheduler
+author: AI-assisted
+---
+```
+
+```markdown
+# Morning Briefing
+
+Runs each working day at 06:00. Reads the calendar, active streams, and any outstanding items, then produces a briefing note in Calendar/.
+
+Verify registration in the selected scheduling runtime. The base's Charter records the adoption position.
+```
+
+#### Conversational activity
+
+```yaml
+---
+status: active
+realization: conversational
+author: AI-assisted
+---
+```
+
+```markdown
+# Weekly Review
+
+A recurring conversation with the island custodian each Friday to review the week's captures, route outstanding notes, and update the active streams. No external artefact — invoked by the user.
+```
+
+### Live Artifacts
+
+#### Minimal active artifact
+
+`Admin/Operations/Live Artifacts/Status Board.md`:
+
+```yaml
+---
+status: active
+renders: html
+author: AI-assisted
+---
+```
+
+```markdown
+# Status Board
+
+| Area    | Status  | Last updated |
+| ------- | ------- | ------------ |
+| Streams | 2 open  | 2026-06-27   |
+| Inbox   | 0 items | 2026-06-27   |
+```
+
+The paired `Status Board.html` is generated from this source and lives in the same directory.
+
+#### Index entry
+
+`Admin/Operations/Live Artifacts/Live Artifacts.md` entry:
+
+```markdown
+| Status Board | active | Current open streams and inbox count. |
+```
+
+#### Archived artifact
+
+```yaml
+---
+status: archived
+renders: html
+archived: 2026-06-01
+archive_reason: Replaced by the consolidated Status Board.
+author: AI-assisted
+---
+```
+
+### Streams
+
+These illustrations show the KB placement contract. They do not prescribe a base's repository code, roadmap areas, topical vocabulary, or historic migration map.
+
+#### Target structure
+
+```text
+Streams/
+  Roadmap/
+    _ISSUES.md
+    KB-OPS-001-establish-streams-container.md
+    KB-GOV-002-record-local-authority.md
+Admin/
+  Operations/
+    Activities/
+      Activities.md
+      Weekly Knowledge Review.md
+```
+
+`Streams/Roadmap/` is flat. Horizon and lifecycle are frontmatter in each record, not folders. The illustrated Activity location is the default; use the base's configured `activities_dir` when different. Weekly Knowledge Review is one authoritative Activity with a `ki-work-recurring` profile; its due run becomes a linked roadmap record, not a duplicate recurring definition.
+
+#### Legacy migration decision
+
+| Legacy record | Deliberate destination |
+| --- | --- |
+| `Streams/Active/Review Practice Proposal.md` | Flat roadmap item, if it is finite forward work. |
+| `Streams/Background/Monthly Review.md` | One recurring Activity in its configured collection. |
+| `Streams/Dormant/Knowledge Model.md` | Canonical knowledge, if it has become settled subject matter. |
+
+The owner confirms every classification. The legacy path never determines the new identifier or optional topical metadata.

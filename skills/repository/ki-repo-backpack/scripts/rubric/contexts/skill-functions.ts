@@ -82,13 +82,7 @@ export const FUNCTIONAL_AREAS: readonly FunctionalArea[] = [
       },
       {
         title: 'Knowledge bases',
-        skills: [
-          'ki-repo-kb',
-          'ki-repo-kb-streams',
-          'ki-repo-kb-activities',
-          'ki-repo-kb-live-artifacts',
-          'ki-repo-kb-principal'
-        ]
+        skills: ['ki-repo-kb']
       },
       {
         title: 'Single-type repositories',

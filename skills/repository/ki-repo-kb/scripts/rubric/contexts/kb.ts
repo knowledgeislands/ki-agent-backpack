@@ -10,12 +10,19 @@ import type {
   RubricPublicationContext,
   RubricSession
 } from '../../shared/rubric.ts'
+import { type ActivitiesContext, createActivitiesSession } from './activities.ts'
+import { createLiveArtifactsSession, type LiveArtifactsRubricContext } from './live-artifacts.ts'
+import { createPrincipalSession, type PrincipalContext } from './principal.ts'
+import { type EnactmentRubricContext, type StreamRubricContext, streamsEvidence } from './streams.ts'
 import { parseStrictYaml } from './strict-yaml.ts'
 
 export const ZONES = ['Calendar', 'Pillars', 'Resources', 'Streams', 'Admin'] as const
 export const WORKING_AREAS = ['+', '-'] as const
 const CONFIG = '.ki.toml'
 const CONFIG_TABLE = 'ki-repo-kb'
+// The bindings of the folded satellites (KB-FOLD b, 22 November 2026): the Activity collection and its backpack,
+// harness being backpack's old name that ACT-S-3 warns on, the Live Artifacts collection, and the process note.
+const FOLDED_KEYS = ['activities_dir', 'backpack', 'harness', 'artifacts_dir', 'sync_threshold_hours', 'process_note']
 const SNAKE_CASE = /^[a-z][a-z0-9_]*$/
 const TRADE_RECORD = /^TRD-[0-9a-f]{8}\.md$/
 const WORK_PACKAGE_FILES: ReadonlySet<string> = new Set([
@@ -95,6 +102,7 @@ type KiKbConfig = {
   templates: Record<string, string>
   requiredFrontmatter: string[]
   preflight: string[]
+  processNote?: string
 }
 export type KbEvidenceFinding = {
   level: 'FAIL' | 'WARN' | 'INFO' | 'NOT_APPLICABLE' | 'PASS'
@@ -161,12 +169,20 @@ const parseConfig = (text: string): { value: KiKbConfig | null; malformed: boole
           Object.entries(record)
             .filter(
               ([key]) =>
-                !['zones', 'templates', 'required_frontmatter', 'preflight', 'strict_link_resolution'].includes(key)
+                ![
+                  'zones',
+                  'templates',
+                  'required_frontmatter',
+                  'preflight',
+                  'strict_link_resolution',
+                  ...FOLDED_KEYS
+                ].includes(key)
             )
             .map(([key, value]) => [key, String(value)] as const)
         ),
         zones,
         templates,
+        ...(typeof record.process_note === 'string' ? { processNote: record.process_note } : {}),
         requiredFrontmatter: Array.isArray(record.required_frontmatter)
           ? record.required_frontmatter.filter((value): value is string => typeof value === 'string')
           : [],
@@ -180,6 +196,19 @@ const parseConfig = (text: string): { value: KiKbConfig | null; malformed: boole
   } catch {
     return { value: null, malformed: true }
   }
+}
+
+/** A regular file beneath the base, reached without following a symbolic link. */
+const containedRegularFile = (root: string, path: string): boolean => {
+  const output = relative(root, resolve(root, path))
+  if (!output || isAbsolute(output) || output === '..' || output.startsWith('../')) return false
+  let cursor = root
+  for (const segment of output.split(/[\\/]/)) {
+    if (!segment) continue
+    cursor = join(cursor, segment)
+    if (!existsSync(cursor) || lstatSync(cursor).isSymbolicLink()) return false
+  }
+  return lstatSync(cursor).isFile()
 }
 
 const markdownFiles = (directory: string, files: string[] = []): string[] => {
@@ -247,6 +276,7 @@ export type KbConfigContext = {
   readonly canonicalAliasKeys: KbCheck
   readonly boundary: KbCheck
   readonly preflightPaths: KbCheck
+  readonly processNote: KbCheck
 }
 
 export type KbAdminContext = {
@@ -279,6 +309,11 @@ export type KbGateContext = {
 
 export type KbRubricContext = {
   readonly rubric: RubricPublicationContext
+  readonly stream: StreamRubricContext
+  readonly enactment: EnactmentRubricContext
+  readonly activities: ActivitiesContext
+  readonly liveArtifacts: LiveArtifactsRubricContext
+  readonly principal: PrincipalContext
   readonly zones: KbZoneContext
   readonly config: KbConfigContext
   readonly admin: KbAdminContext
@@ -318,7 +353,7 @@ export const collectKbAuditEvidence = (target: string): readonly KbEvidenceFindi
       parsed.malformed ? 'Cannot parse .ki.toml.' : '[skills.ki-repo-kb] is not declared.',
       CONFIG
     )
-    for (const code of ['CONFIG-1', 'CONFIG-2', 'CONFIG-3', 'CONFIG-4', 'CONFIG-5'])
+    for (const code of ['CONFIG-1', 'CONFIG-2', 'CONFIG-3', 'CONFIG-4', 'CONFIG-5', 'CONFIG-6'])
       add(
         'NOT_APPLICABLE',
         code,
@@ -360,6 +395,11 @@ export const collectKbAuditEvidence = (target: string): readonly KbEvidenceFindi
         config.preflight.length ? 'Declared literal preflight paths resolve.' : 'No preflight paths are declared.',
         CONFIG
       )
+    const processNote = config.processNote
+    if (!processNote) add('PASS', 'CONFIG-6', 'No optional process_note binding is declared.', CONFIG)
+    else if (containedRegularFile(root, processNote.endsWith('.md') ? processNote : `${processNote}.md`))
+      add('PASS', 'CONFIG-6', 'The declared process_note is a contained regular file.', processNote)
+    else add('WARN', 'CONFIG-6', 'The declared process_note is missing, unsafe, or outside the base.', processNote)
   }
   for (const zone of ZONES) {
     const folder = zoneOf(zone)
@@ -694,16 +734,31 @@ const createKbDraft = (repository: string): KbDraft | undefined => {
   }
 }
 
-export const createKbSession = ({
-  mode,
-  repository,
-  publication
-}: RubricContextOptions): RubricSession<KbRubricContext> => {
+// The folded standards' families (KB-FOLD b): each keeps its own session, whose repository subject this one nests.
+const FOLDED_FAMILIES = ['STREAM', 'ENACT', 'ACT', 'LA', 'LA-F', 'PRINCIPAL'] as const
+
+const repositorySubject = <Context>(session: RubricSession<Context>): Context => {
+  const subject = session.subjects[1]
+  if (!subject) throw new Error('a folded ki-repo-kb session exposed no repository subject')
+  return subject.context()
+}
+
+export const createKbSession = (options: RubricContextOptions): RubricSession<KbRubricContext> => {
+  const { mode, repository, publication } = options
+  const activities = createActivitiesSession(options)
+  const liveArtifacts = createLiveArtifactsSession(options)
+  const principal = createPrincipalSession(options)
+  const streams = streamsEvidence(repository)
   const findings = collectKbAuditEvidence(repository)
   const check = (code: string): KbCheck => outcomesFor(findings, code)
   const draft = mode === 'conform' ? createKbDraft(repository) : undefined
   const context: KbRubricContext = {
     rubric: { publication },
+    stream: streams.stream,
+    enactment: streams.enactment,
+    activities: repositorySubject(activities).activities,
+    liveArtifacts: repositorySubject(liveArtifacts),
+    principal: repositorySubject(principal),
     zones: {
       requiredLayout: check('ZONE-1'),
       zoneIndexes: check('ZONE-2'),
@@ -725,7 +780,8 @@ export const createKbSession = ({
       nonRedundantAliases: check('CONFIG-2'),
       canonicalAliasKeys: check('CONFIG-3'),
       boundary: check('CONFIG-4'),
-      preflightPaths: check('CONFIG-5')
+      preflightPaths: check('CONFIG-5'),
+      processNote: check('CONFIG-6')
     },
     admin: {
       subdivisions: check('ADMIN-1'),
@@ -748,8 +804,18 @@ export const createKbSession = ({
   return {
     subjects: [
       { families: ['RUBRIC'], context: () => context },
-      { families: ['ZONE', 'CONFIG', 'ADMIN', 'ROUTE', 'NOTE', 'MEM', 'LINK', 'GATE'], context: () => context }
+      {
+        families: ['ZONE', 'CONFIG', 'ADMIN', 'ROUTE', 'NOTE', 'MEM', 'LINK', 'GATE', ...FOLDED_FAMILIES],
+        context: () => context
+      }
     ],
-    proposal: () => draft?.proposal() ?? { writes: [] }
+    proposal: () => ({
+      writes: [
+        ...(draft?.proposal().writes ?? []),
+        ...activities.proposal().writes,
+        ...liveArtifacts.proposal().writes,
+        ...principal.proposal().writes
+      ]
+    })
   }
 }

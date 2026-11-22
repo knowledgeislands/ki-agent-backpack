@@ -45,6 +45,7 @@ test('the structured catalogue preserves every KB criterion', () => {
   expect(catalogue.contract).toBe(1)
   expect(catalogue.name).toBe('ki-repo-kb')
   expect(catalogue.createSession).toBeFunction()
+  // STREAM to PRINCIPAL are the folded standards' families (KB-FOLD b, 22 November 2026).
   expect(catalogue.families.map((family) => family.code)).toEqual([
     'RUBRIC',
     'ZONE',
@@ -54,7 +55,13 @@ test('the structured catalogue preserves every KB criterion', () => {
     'NOTE',
     'MEM',
     'LINK',
-    'GATE'
+    'GATE',
+    'STREAM',
+    'ENACT',
+    'ACT',
+    'LA',
+    'LA-F',
+    'PRINCIPAL'
   ])
   expect(items.map((item) => item.code)).toEqual([
     'ZONE-1',
@@ -69,6 +76,7 @@ test('the structured catalogue preserves every KB criterion', () => {
     'CONFIG-3',
     'CONFIG-4',
     'CONFIG-5',
+    'CONFIG-6',
     'ADMIN-1',
     'ADMIN-2',
     'ADMIN-3',
@@ -83,9 +91,50 @@ test('the structured catalogue preserves every KB criterion', () => {
     'MEM-1',
     'MEM-2',
     'LINK-1',
-    'GATE-1'
+    'GATE-1',
+    'STREAM-1',
+    'STREAM-2',
+    'STREAM-4',
+    'STREAM-5',
+    'STREAM-9',
+    'ENACT-1',
+    'ENACT-2',
+    'ACT-S-1',
+    'ACT-S-2',
+    'ACT-S-3',
+    'ACT-F-1',
+    'ACT-F-2',
+    'ACT-F-3',
+    'ACT-F-4',
+    'ACT-F-5',
+    'ACT-R-1',
+    'ACT-R-2',
+    'ACT-R-3',
+    'ACT-R-4',
+    'ACT-R-5',
+    'ACT-J-1',
+    'ACT-J-2',
+    'ACT-J-3',
+    'ACT-J-4',
+    'ACT-J-5',
+    'LA-S-0',
+    'LA-S-1',
+    'LA-S-2',
+    'LA-S-3',
+    'LA-S-4',
+    'LA-J-1',
+    'LA-J-2',
+    'LA-J-3',
+    'LA-J-4',
+    'LA-F-1',
+    'LA-F-2',
+    'LA-F-3',
+    'PRINCIPAL-1',
+    'PRINCIPAL-3',
+    'PRINCIPAL-4',
+    'PRINCIPAL-5'
   ])
-  expect(items.filter((item) => item.judgment)).toHaveLength(7)
+  expect(items.filter((item) => item.judgment)).toHaveLength(22)
   expect(items.find((item) => item.code === 'LINK-1')?.mechanical?.level).toBe('FAIL')
   expect(items.filter((item) => item.judgment).every((item) => Boolean(item.judgment?.prompt.trim()))).toBe(true)
 })

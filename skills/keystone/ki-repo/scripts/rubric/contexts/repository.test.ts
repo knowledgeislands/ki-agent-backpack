@@ -993,28 +993,22 @@ describe('repository kind and Knowledge Base stores', () => {
     ).toContain('a Project primary_shape')
   })
 
-  test('allows shared KB roadmap configuration only alongside its Streams container', async () => {
+  test('warns on a retired Knowledge Base satellite table and needs none for shared roadmap configuration', async () => {
     const root = repository()
     const roadmap = '[skills.ki-work-roadmap]\nareas.KM = "knowledge-management"\n'
     const cases = [
-      { configuration: kb, fails: false },
-      { configuration: `${kb}[skills.ki-repo-kb-streams]\n`, fails: false },
-      { configuration: `${kb}[skills.ki-repo-kb-streams]\n${roadmap}`, fails: false },
-      { configuration: kb + roadmap, fails: true },
-      { configuration: `${kb}[skills.ki-repo-kb-streams.settings]\n${roadmap}`, fails: true },
-      { configuration: project + roadmap, fails: false }
+      { configuration: kb, retired: false },
+      { configuration: kb + roadmap, retired: false },
+      { configuration: `${kb}[skills.ki-repo-kb-streams]\n${roadmap}`, retired: true },
+      { configuration: `${kb}[skills.ki-repo-kb-activities]\nactivities_dir = "Admin"\n`, retired: true }
     ]
     for (const fixture of cases) {
       writeFileSync(join(root, '.ki.toml'), fixture.configuration)
-      const findings = (await collectAuditFindings([root])).findings.filter((finding) => finding.code === 'KIND-2')
-      expect(findings).toEqual(
-        fixture.fails
-          ? [
-              expect.objectContaining({
-                level: 'FAIL',
-                message: expect.stringContaining('[skills.ki-repo-kb-streams]')
-              })
-            ]
+      const findings = (await collectAuditFindings([root])).findings
+      expect(findings.filter((finding) => finding.code === 'KIND-2')).toEqual([])
+      expect(findings.filter((finding) => finding.code === 'STRUCT-2')).toEqual(
+        fixture.retired
+          ? [expect.objectContaining({ level: 'WARN', message: expect.stringContaining('KB-FOLD b') })]
           : []
       )
     }
