@@ -25,7 +25,7 @@ A role is a job within a tier, leader, manager or maker, from the role catalogue
 
 - **One catalogue:** `ki-work-package`'s roles standard holds every role, its tier, glyph, what it owns and what it never does; nothing else decides a role.
 - **The job after the `@`:** an actor's place in a package, its [seat][system.seat], is written `<package>@<role>`, as `ki.cairn@warden`, so the role is the part after the `@` (SEAT-AT).
-- **One file each in the store:** each role has a file in the store's roster, `roster/roles/<role>.md`, opening `ki-id: role:<role>`, its fields taken word for word from the catalogue (ROLES-IN-STORE).
+- **One file each in the store:** each role has a card in its own folder in the store's roster, `roster/roles/<role>/_index.md`, opening `ki-id: role:<role>`, with its `image.svg` beside it, the card's fields taken word for word from the catalogue (ROLES-IN-STORE).
 
 [system.actor]: ./system.actor.md
 [system.work-package]: ./system.work-package.md

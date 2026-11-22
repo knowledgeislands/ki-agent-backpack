@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T17:59:31Z
+ki-revised: 2026-11-22T19:57:20Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -209,6 +209,8 @@ The vendors' own documentation and the specifications the cards follow, checked 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026, in the Cairn summit's change 10, step 6.3, [the role card](../knowledge/system/system.role.md) gives the store's role cards their real place, `roster/roles/<role>/_index.md` in a folder of its own with `image.svg` beside it, in place of the older `roster/roles/<role>.md`, as Wayland reported and the store's `roster/roles/` shows. The NAMES-ROLE decision keeps the words it had. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 CARD-SETTLING a, recorded under Decisions, repointed the skill's card-writing procedure from the closed knowledge-skills change to `ki.summit`'s Ecosystem map (21). No criterion changed and no external source refreshed.
 
