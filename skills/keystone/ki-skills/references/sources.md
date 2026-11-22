@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:41:44Z
+ki-revised: 2026-11-22T19:50:35Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -179,10 +179,14 @@ The OpenAI News page is a discovery source, not a normative standard. On each RE
 | MCP-INVENTORY | Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a and Kris's DO-THEN-CHECK, from the summit's [change 10](https://github.com/krisb/ki-cairn-store/blob/fe029b50/work/cairn/cairn.summit/10-skills-review.change.md#71-questions), option a: a standard holds rules, not findings, so `ki-repo-mcp`'s 24 September inventory moves into a dated report beside its standard; the reference vocabulary gains `report-<YYYYMMDD>-<topic>.md` for it, a class the decision's "beside the standard" needs. Reversible; Kris can overturn it. | 2026-11-19 | [Reference vocabulary](standard-knowledge-islands.md) | In force |
 | GUILD-FOLLOWS | Taken by ki.summit's guardian, 22 November 2026, recorded in ki.summit's [Held](https://github.com/krisb/ki-cairn-store/blob/08c5f29a/work/ki/ki.summit/_index.md#held) after a blind review agreed with high confidence, to land for Kris's review (LAND-THEN-REVIEW): Kris renamed the lead skill `ki-agentic-ecosystems` that day, so under GUILD-NAMED the guild it leads follows it: the Agentic systems guild becomes Agentic ecosystems, its machine name `agentic-ecosystems` and its folder `skills/agentic-ecosystems/`. No member is renamed, and the prefix stays `ki-agentic-`. | 2026-11-22 | [Guilds](standard-guilds.md#43-names-and-prefixes) | In force |
 | KI-SHAPE-21-FIELDS | KI-SHAPE-21 skips KI front-matter field names, such as `ki-parent`, `ki-role` and `ki-workers`, since a body naming a field describes a record's shape rather than referring to a skill; this cleared eight false warnings on `ki-coordination` and `ki-work-package`. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Skill shape](standard-knowledge-islands.md#42-skill-shape) | In force |
+| KEYSTONE-FIXES | The ten Keystone skills are all kept, and their mechanical fixes land in the Cairn summit's change 10, step 6.3; for this skill, the kinds line names all three kinds, governance, process and knowledge, and EDUCATE's wording is corrected. Kris, 22 November 2026, about 19:33 GMT, at the Keystone guild's sitting, card: "Keep all, fix". | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
+| REFRESH-SWEEP | No scheduled REFRESH sweep is built, and REFRESH runs on demand. Each skill's declared cadence stays (LONG-2), and LONG-3 flags a skill whose stalest source is older than its cadence plus 14 days' grace, so a stale skill shows at audit; EDUCATE's wording says so rather than imply a scheduled job. Kris, 22 November 2026, about 19:45 GMT, at the Keystone guild's sitting, card: "On demand"; corrected the same evening after Kris recalled that a skill fails its audit when it hasn't been refreshed. | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+A later in-house review on **2026-11-22**, in the Cairn summit's change 10, step 6.3, applied KEYSTONE-FIXES and REFRESH-SWEEP, recorded under [Decisions](#3-decisions): `SKILL.md`'s kinds line names governance, process and knowledge, noting the backpack's one knowledge skill; EDUCATE's first step names those kinds in place of the old Knowledge Islands, process and scoped; and its fifth step declares the new skill's cadence and says REFRESH runs on demand, LONG-3 showing a stale skill at audit, in place of adding the skill to a scheduled sweep that does not exist. No criterion changed and no outside source was refreshed.
 
 On **2026-11-22** Loreward, within remit, from the 4.1 refresh, took KI-SHAPE-21-FIELDS, recorded under [Decisions](#3-decisions): the body-reference check's scanner skips KI front-matter field names, with a test. No criterion's wording changed and no outside source was refreshed.
 
