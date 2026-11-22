@@ -94,9 +94,9 @@ Native capability resolution MUST use verified installed compatible harnesses, t
 
 _Conformance:_ conforming
 
-_Verify:_ run capability resolution with only a nearby harness checkout and confirm it fails, then install the compatible harness and confirm resolution succeeds; confirm `ki harness uninstall knowledgeislands/ki-agent-backpack` is refused.
+_Verify:_ run capability resolution with only a nearby harness checkout and confirm it fails, then install the compatible harness and confirm resolution succeeds; confirm `ki backpack uninstall knowledgeislands/ki-agent-backpack` is refused.
 
-_Evidence:_ run capability resolution with only a nearby harness checkout and confirm it fails, then install the compatible harness and confirm resolution succeeds; confirm `ki harness uninstall knowledgeislands/ki-agent-backpack` is refused.
+_Evidence:_ run capability resolution with only a nearby harness checkout and confirm it fails, then install the compatible harness and confirm resolution succeeds; confirm `ki backpack uninstall knowledgeislands/ki-agent-backpack` is refused.
 
 ### BOOT-014 — User and repository activation remain separate
 

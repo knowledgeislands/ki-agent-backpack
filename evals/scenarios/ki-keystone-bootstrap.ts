@@ -32,7 +32,7 @@ export const scenarios: Scenario[] = [
     skill: 'ki-keystone',
     id: 'boot-activation-scopes',
     prompt:
-      'After `ki harness install example/operations`, are its skills active automatically? Explain the user-scope and repository-scope commands and what each changes.',
+      'After `ki backpack install example/operations`, are its skills active automatically? Explain the user-scope and repository-scope commands and what each changes.',
     assertions: [
       { name: 'installation does not activate', re: /(does not|doesn't|not)[^.\n]{0,40}(activate|active)/i },
       { name: 'user activation command', re: /ki skill add/ },
@@ -52,7 +52,7 @@ export const scenarios: Scenario[] = [
         name: 'fail before operation',
         re: /(fail|stop|refuse)[^.\n]{0,50}(before|without)[^.\n]{0,30}(audit|operation|run)/i
       },
-      { name: 'installed harness authority', re: /(verified|installed)[^.\n]{0,40}harness/i },
+      { name: 'installed harness authority', re: /(verified|installed)[^.\n]{0,40}(backpack|harness)/i },
       { name: 'no local runner fallback', re: /(no|never|not)[^.\n]{0,50}(runner|wrapper|\.ki)/i },
       { name: 'development checkout must be explicit', re: /ki dev local (set|on)/ }
     ],
