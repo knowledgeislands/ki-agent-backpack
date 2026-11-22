@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T23:35:20Z
+ki-revised: 2026-11-22T18:59:47Z
 ki-status: in force
 ---
 
@@ -22,10 +22,11 @@ ki-status: in force
   - [4.6 First-time bootstrap](#46-first-time-bootstrap)
   - [4.7 Machine readiness for coordinating work](#47-machine-readiness-for-coordinating-work)
   - [4.8 Local backpack development](#48-local-backpack-development)
-  - [4.9 Managed-state recovery](#49-managed-state-recovery)
-  - [4.10 Unowned repository state](#410-unowned-repository-state)
-  - [4.11 CI and direct automation](#411-ci-and-direct-automation)
-  - [4.12 Scope and safety separation](#412-scope-and-safety-separation)
+  - [4.9 Verified backpack selection](#49-verified-backpack-selection)
+  - [4.10 Managed-state recovery](#410-managed-state-recovery)
+  - [4.11 Unowned repository state](#411-unowned-repository-state)
+  - [4.12 CI and direct automation](#412-ci-and-direct-automation)
+  - [4.13 Scope and safety separation](#413-scope-and-safety-separation)
 
 ## 1. Introduction
 
@@ -50,7 +51,7 @@ The user setup and capability-activation model, and the boundaries the `ki` comm
 - Skill access when work is delegated into another repository.
 - Native repository operations and what they never execute.
 - First-time bootstrap, and the machine-readiness checklist for coordinating work.
-- Local backpack development, managed-state recovery, unowned repository state, and CI and direct automation.
+- Local backpack development, verified backpack selection and its released-backpack mode, managed-state recovery, unowned repository state, and CI and direct automation.
 - The separation of user and repository state.
 
 [Back to contents](#contents)
@@ -69,10 +70,11 @@ The user setup and capability-activation model, and the boundaries the `ki` comm
 | Term | Definition |
 | --- | --- |
 | **Canonical backpack** | `knowledgeislands/ki-agent-backpack`, always registered and installed by `ki bootstrap`, and never uninstalled. **Standard:** this one, [4.1](#41-authoritative-installed-backpacks) |
+| **Released-backpack mode** | The verified backpack selection in which an installed backpack resolves from its verified release archive rather than a local checkout: the default, between a repository's ordinary current declaration and a vendored copy. **Standard:** this one, [4.9](#49-verified-backpack-selection) |
 | **Activation** | Changing the managed discovery links and configuration that make a skill available, for the user's runtimes or for one repository; separate from installing a backpack. **Standard:** this one, [4.3](#43-explicit-activation-scopes) |
 | **Ready to coordinate** | The result when every step of the machine-readiness checklist passes. **Standard:** this one, [4.7](#47-machine-readiness-for-coordinating-work) |
-| **User state** | The XDG-owned backpack registry and data, configuration, cache, state, and user-runtime activation. **Standard:** this one, [4.12](#412-scope-and-safety-separation) |
-| **Repository state** | `.ki.toml`, repository-scope activation links, and registered native-operation writes. **Standard:** this one, [4.12](#412-scope-and-safety-separation) |
+| **User state** | The XDG-owned backpack registry and data, configuration, cache, state, and user-runtime activation. **Standard:** this one, [4.13](#413-scope-and-safety-separation) |
+| **Repository state** | `.ki.toml`, repository-scope activation links, and registered native-operation writes. **Standard:** this one, [4.13](#413-scope-and-safety-separation) |
 
 [Back to contents](#contents)
 
@@ -199,7 +201,27 @@ The exposure is widest where backpack edits and backpack-dependent verification 
 
 [Back to contents](#contents)
 
-### 4.9 Managed-state recovery
+### 4.9 Verified backpack selection
+
+Each installed backpack resolves from one source at a time, selected per backpack for the whole machine. Every skill linked from it, in user scope and in every repository on the machine, follows that selection. A repository can also hold a skill outside both sources, as a vendored copy under `ki-repo`.
+
+| Source | A skill resolves from | It moves when | Selected by |
+| --- | --- | --- | --- |
+| **Released**, the default | The verified archive of the backpack's release: for the canonical backpack, the revision the installed `ki` release pins | A newer release is installed | `ki bootstrap`, `ki backpack install <backpack-id>`, `ki dev local off [backpack-id]`, `ki backpack reinstall <backpack-id>` |
+| **Development** | The recorded checkout's working tree, uncommitted edits included | Any edit to the checkout | `ki dev local on [backpack-id]`, after `ki dev local set` |
+| **Vendored**, one repository's own | The copy committed in that repository | Its owner refreshes the copy | `mode = "vendored"` in the skill's `.ki.toml` table, under `ki-repo`'s [vendored skills](../../ki-repo/references/standard-configuration.md#434-vendored-skills) |
+
+The **released-backpack mode** is the first row. It sits between a repository's ordinary current declaration and a vendored copy: a skill linked from a released backpack stays fixed until the next verified release is installed, as a vendored copy does, yet nothing is committed into the repository, and the owner never refreshes a copy by hand. It is part of verified backpack selection, not a mode of its own (RELEASED-MODE a): `.ki.toml`'s `mode` keeps its two values, and a repository's `"current"` declaration resolves through whichever source the machine has selected. There is therefore no released mode for one repository alone. A repository that must keep a skill fixed whatever the machine selects vendors it.
+
+Released is the default and the state to return to. `ki bootstrap` installs the verified release, a backpack with no recorded checkout is always released, and development is only ever the explicit exception of [4.8](#48-local-backpack-development). `ki diag --full` shows the selection: each recorded checkout under `locals` reports `mode: on` for development and `mode: off` for released.
+
+Use the released mode wherever a result must be reproducible or comparable across sessions and machines: CI and direct automation ([4.12](#412-ci-and-direct-automation)), and any audit whose figures are reported as a check. Use development only while the backpack itself is being edited, and expect governance to move under it as 4.8 describes.
+
+A released backpack moves only with a release. Each tool is released through its own formula in the shared Homebrew tap, with its own release cycle (TOOL-RELEASES a), and the canonical backpack's released revision is the one pinned by the installed `ki` release. To move it, upgrade `ki`, then, with development off, run `ki backpack reinstall knowledgeislands/ki-agent-backpack`, which replaces the installed archive with the newly pinned release. A compatible backpack other than the canonical one moves the same way when its configured release changes. After switching the selection or installing a release, start a new agent session, as [4.10](#410-managed-state-recovery) says.
+
+[Back to contents](#contents)
+
+### 4.10 Managed-state recovery
 
 Backpack source, installed payloads, runtime-discovery links, and repository declarations are separate owned surfaces. A command refuses unfamiliar, altered, escaping, or unsafe managed state before it overwrites or removes anything. Treat that refusal as a diagnostic: inspect it with `ki diag --full`, `ki doctor`, or the applicable `ki backpack`, `ki skill`, or `ki repo skill` command rather than copying or deleting files across surfaces.
 
@@ -207,7 +229,7 @@ After a command changes a managed skill link or switches the selected developmen
 
 [Back to contents](#contents)
 
-### 4.10 Unowned repository state
+### 4.11 Unowned repository state
 
 Native operations execute only the declared catalogues resolved from verified installed backpacks. A repository directory, executable, manifest, or runtime payload does not become an operation source merely by being present.
 
@@ -215,7 +237,7 @@ Normal repository operations leave unowned material unchanged. They never infer 
 
 [Back to contents](#contents)
 
-### 4.11 CI and direct automation
+### 4.12 CI and direct automation
 
 CI and direct automation explicitly establish the verified installed backpacks, then invoke the native `ki repo` operation required by the repository declaration.
 
@@ -227,7 +249,7 @@ Recovery guidance must identify the failed layer: CLI release, backpack acquisit
 
 [Back to contents](#contents)
 
-### 4.12 Scope and safety separation
+### 4.13 Scope and safety separation
 
 User state comprises the XDG-owned backpack registry and data, configuration, cache, state, and user-runtime activation.
 

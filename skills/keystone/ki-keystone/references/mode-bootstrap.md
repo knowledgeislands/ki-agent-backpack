@@ -46,6 +46,12 @@ A coordinating session needs more than the skills `ki bootstrap` activates: the 
 
 An installed verified payload is the authoritative source of capabilities. Local development is explicit: `ki dev local set <backpack-id> <local-backpack-path>` validates and records a checkout, `ki dev local on [backpack-id]` selects it, and `ki dev local off [backpack-id]` restores the verified archive. A selected local checkout is a mutable development source, not a verified installed payload; activation and loaded runtime capability remain separate host evidence.
 
+## Released-backpack mode
+
+Which source an installed backpack resolves from is its verified backpack selection, made per backpack for the whole machine: **released**, the verified release archive and the default, or **development**, the recorded checkout's working tree. A repository's skill outside both is a vendored copy, under `ki-repo`. The released-backpack mode sits between a repository's ordinary current declaration and a vendored copy: its skills stay fixed until the next verified release is installed, with nothing committed into the repository. It is part of this selection, not a third `.ki.toml` mode (RELEASED-MODE a), so it cannot be chosen for one repository alone.
+
+Return to it with `ki dev local off [backpack-id]`, and read the selection in `ki diag --full`, where each recorded checkout reports `mode: on` or `mode: off`. Use it wherever a result must be reproducible. The canonical backpack's release is the one pinned by the installed `ki`, which has its own formula and release cycle in the shared Homebrew tap (TOOL-RELEASES a); upgrade `ki`, then `ki backpack reinstall knowledgeislands/ki-agent-backpack` with development off. The [bootstrap standard](standard-bootstrap.md#49-verified-backpack-selection) has the rule.
+
 For command grammar, run `ki --help`. For repository coverage, use `ki-repo`.
 
 ## Refreshing this guidance

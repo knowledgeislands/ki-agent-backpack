@@ -80,3 +80,15 @@ ki dev local off knowledgeislands/ki-agent-backpack
 ```
 
 The first command validates the checkout before switching the canonical installed payload. The last restores the verified archive; proximity to a checkout never changes resolution by itself.
+
+## Released-backpack mode
+
+Before an audit whose figures must be reproducible, return the canonical backpack to its verified release and confirm the selection:
+
+```sh
+ki dev local off knowledgeislands/ki-agent-backpack
+ki diag --full
+ki repo audit --repo /absolute/path/to/governed-repository
+```
+
+`ki diag --full` lists the recorded checkout under `locals` with `mode: off`, so every skill linked from the backpack, in user scope and in every repository on the machine, resolves from the verified archive the installed `ki` pins. After upgrading `ki`, `ki backpack reinstall knowledgeislands/ki-agent-backpack`, with development off, moves to the newly pinned release; start a new agent session after either change. No repository selects this mode alone: to keep a skill fixed in one repository whatever the machine selects, vendor it under `ki-repo`.

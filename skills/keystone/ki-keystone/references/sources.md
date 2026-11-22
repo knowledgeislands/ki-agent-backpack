@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:33:54Z
+ki-revised: 2026-11-22T18:59:37Z
 ki-refresh: canonical · on-change
 ---
 
@@ -64,10 +64,14 @@ None.
 | GUILD-TREE | The owner's decision, in change 14, option a: the guild tree, with each guild's one-line purpose as its working label. | 2026-11-14 | [SKILL.md](../SKILL.md#the-guilds) | In force |
 | SEAT-AT | Kris's decision, option a, relayed by the Cairn summit's guardian from the summit's [change 20](https://github.com/krisb/ki-cairn-store/blob/7fb6be3/work/cairn/cairn.summit/20-learnings.change.md#45-decided): a seat is `<package>@<role>`, or `<package>+<slug>@<role>` in a sub-package, in place of `<work id>+<role>`, so a seat working in a package without its keys is named `<role glyph> <package>@<role>`, under `ki-work-package`'s thread line. | 2026-11-16 | [bootstrap standard](standard-bootstrap.md#47-machine-readiness-for-coordinating-work) | In force |
 | NAME-FIRST | Kris's decision, option a, relayed by the Cairn summit's guardian: where a seat's actor is named, the thread line puts the actor's `ki-name` first and the seat's form in brackets, as `Kitteth (🪨 🔑 cairn.summit)`, under `ki-work-package`'s thread line; an unnamed seat keeps the bare form. | 2026-11-17 | [bootstrap standard](standard-bootstrap.md#47-machine-readiness-for-coordinating-work) | In force |
+| RELEASED-MODE | Kris's decision, option a, taken on 17 November 2026 in the Cairn summit's [change 13](https://github.com/krisb/ki-cairn-store/blob/c17433e9/work/cairn/cairn.summit/13-runtimes-and-skill-copies.change.md#42-standalone-repositories-carry-their-skills) and given its yes through TOOL-RELEASES: a released-backpack mode, linked to a verified backpack release rather than the working checkout and between current and vendored, is part of `ki-keystone bootstrap`'s verified backpack selection rather than a mode of its own in `tools-ki`. | 2026-11-17 | [bootstrap standard](standard-bootstrap.md#49-verified-backpack-selection), [mode-bootstrap.md](mode-bootstrap.md#released-backpack-mode) | In force |
+| TOOL-RELEASES | Kris's decision, option a, by voice on 22 November 2026, recorded in the ki summit's [change 12](https://github.com/krisb/ki-cairn-store/blob/e411307b/work/ki/ki.summit/12-tools-veneer.change.md#34-decided): keep the shared Homebrew tap and independent releases, one formula for each tool with its own release cycle. The canonical backpack's release therefore moves with the `ki` release that pins it. | 2026-11-22 | [bootstrap standard](standard-bootstrap.md#49-verified-backpack-selection) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 RELEASED-MODE a was built, freed by TOOL-RELEASES a: the bootstrap standard gains [4.9, verified backpack selection](standard-bootstrap.md#49-verified-backpack-selection), naming the released, development and vendored sources and the released-backpack mode between current and vendored, and the later rules move up one. The bootstrap reference, the exemplars and an eval scenario follow it. The `ki` commands it names were checked against `tools-ki` 0.17.0: `ki backpack install` installs only an absent backpack, and `ki backpack reinstall` replaces an inactive one. No external source refreshed.
 
 On 18 November 2026 the guild map's generator says backpack where it said harness, its root parameter `backpackRoot`, as the Cairn summit's [change 12](https://github.com/krisb/ki-cairn-store/blob/4e581ef/work/cairn/cairn.summit/12-names.change.md#5-steps), step 6, scheduled and Kris's GUARDIAN-LANDS a built. No external source refreshed.
 
@@ -99,7 +103,7 @@ REFRESH last ran **2026-08-12**.
 - Re-check the core user-skill set whenever bootstrap policy changes.
 - Re-check bare-name ambiguity and qualified capability input when multi-harness activation evolves.
 - Re-check supported agent discovery and managed link locations when a runtime binding changes.
-- Re-check acquisition, replacement, and uninstall wording when harness version selection is introduced.
+- Re-check acquisition, replacement, and uninstall wording, and the released-backpack mode, when backpack version selection is introduced or `tools-ki` changes how a release is pinned.
 - Re-check the machine-readiness checklist when the chezmoi hook registration, the output-style link, the Capital's declared skill set or `ki-coordination`'s openers change, and fold in `ki doctor` once it carries the readiness checks.
 
 [Back to contents](#contents)
