@@ -24,6 +24,14 @@ describe('skillMentions', () => {
   test('ignores non-skill ki tokens', () => {
     expect(skillMentions('run `ki repo audit` and read `ki-skills:rubric`')).toEqual([])
   })
+
+  test('ignores KI front-matter field names but keeps skill names beside them', () => {
+    const body = [
+      'Its `_index.md` carries `ki-role`, `ki-workers`, `ki-parent` and `ki-description`.',
+      'A record keeps `ki-id` and `ki-since`; follow `ki-work-package` for the rest.'
+    ].join('\n')
+    expect(skillMentions(body)).toEqual([{ name: 'ki-work-package', line: 2, reliance: true }])
+  })
 })
 
 describe('findDependencyCycle', () => {

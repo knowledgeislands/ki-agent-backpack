@@ -48,18 +48,85 @@ const RELIANCE_RE = new RegExp(
   'i'
 )
 
+/**
+ * KI front-matter field names, such as `ki-parent` or `ki-role`. A body that names a field in
+ * backticks is describing a record's shape, not referring to a skill, so these tokens are not
+ * skill mentions (KI-SHAPE-21-FIELDS, from the Cairn summit's change 10, step 4.1).
+ */
+export const KI_FRONT_MATTER_FIELDS: ReadonlySet<string> = new Set([
+  'ki-answers',
+  'ki-applicability',
+  'ki-at',
+  'ki-chair',
+  'ki-closed',
+  'ki-contributes',
+  'ki-created',
+  'ki-depends-on',
+  'ki-description',
+  'ki-detects',
+  'ki-document-type',
+  'ki-from',
+  'ki-guild',
+  'ki-hold',
+  'ki-id',
+  'ki-inputs',
+  'ki-kind',
+  'ki-leads',
+  'ki-level',
+  'ki-mark',
+  'ki-name',
+  'ki-opened',
+  'ki-optional-depends-on',
+  'ki-outputs',
+  'ki-owner',
+  'ki-owns',
+  'ki-packages',
+  'ki-parent',
+  'ki-participants',
+  'ki-priority',
+  'ki-project',
+  'ki-raised',
+  'ki-records',
+  'ki-refresh',
+  'ki-repositories',
+  'ki-requires',
+  'ki-review',
+  'ki-revised',
+  'ki-role',
+  'ki-runtime-binding',
+  'ki-shared-dependencies',
+  'ki-shared-modules',
+  'ki-since',
+  'ki-sitting',
+  'ki-state',
+  'ki-status',
+  'ki-subject',
+  'ki-supervisor',
+  'ki-supported-runtimes',
+  'ki-theme',
+  'ki-thread',
+  'ki-to',
+  'ki-type',
+  'ki-worker',
+  'ki-workers'
+])
+
 const SKILL_NAME_RE = /`(ki-[a-z0-9]+(?:-[a-z0-9]+)*)`/g
 
 const stripFences = (markdown: string): string =>
   markdown.replace(/```[\s\S]*?```/g, (block) => block.replace(/[^\n]/g, ' '))
 
-/** Every backticked `ki-*` token in a body, with line number and reliance-cue classification. */
+/**
+ * Every backticked `ki-*` token in a body that is not a KI front-matter field name, with line
+ * number and reliance-cue classification.
+ */
 export const skillMentions = (body: string): SkillMention[] => {
   const mentions: SkillMention[] = []
   stripFences(body)
     .split(/\r?\n/)
     .forEach((line, index) => {
       for (const match of line.matchAll(SKILL_NAME_RE)) {
+        if (KI_FRONT_MATTER_FIELDS.has(match[1] as string)) continue
         const before = line.slice(Math.max(0, (match.index ?? 0) - 40), match.index)
         mentions.push({ name: match[1] as string, line: index + 1, reliance: RELIANCE_RE.test(before) })
       }
