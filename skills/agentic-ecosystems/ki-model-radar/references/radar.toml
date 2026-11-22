@@ -423,6 +423,17 @@ reviewed_on = "2026-11-22"
 evidence = ["anthropic-fable-5-1", "anthropic-current-models"]
 counter_evidence = []
 
+[models.claude-fable-5-2]
+id = "claude-fable-5-2"
+display_name = "Claude Fable 5.2"
+provider = "Anthropic"
+openness = "proprietary"
+license = "No public model-weights licence identified"
+retirement = "active"
+reviewed_on = "2026-11-22"
+evidence = ["anthropic-current-models", "anthropic-lifecycle"]
+counter_evidence = []
+
 [models.claude-opus-5-5]
 id = "claude-opus-5-5"
 display_name = "Claude Opus 5.5"
@@ -521,6 +532,28 @@ retirement = "active"
 reviewed_on = "2026-11-22"
 evidence = ["openai-gpt-6-1-sol"]
 counter_evidence = ["openai-models", "openai-gpt-6-guide"]
+
+[models.gpt-6-2-astra]
+id = "gpt-6-2-astra"
+display_name = "GPT-6.2 Astra"
+provider = "OpenAI"
+openness = "proprietary"
+license = "No public model-weights licence identified"
+retirement = "active"
+reviewed_on = "2026-11-22"
+evidence = ["openai-models", "openai-gpt-6-guide", "openai-codex-models"]
+counter_evidence = []
+
+[models.gpt-6-2-sol]
+id = "gpt-6-2-sol"
+display_name = "GPT-6.2 Sol"
+provider = "OpenAI"
+openness = "proprietary"
+license = "No public model-weights licence identified"
+retirement = "active"
+reviewed_on = "2026-11-22"
+evidence = ["openai-models", "openai-gpt-6-guide", "openai-codex-models"]
+counter_evidence = []
 
 [models.gpt-6-luna]
 id = "gpt-6-luna"
