@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T04:11:00Z
+ki-revised: 2026-11-22T04:32:00Z
 ki-status: in force
 ---
 
@@ -327,7 +327,7 @@ Which links to give for each kind of thing:
 - **A roadmap or work record:** by its full identifier, under [Linking records](#44-linking-records).
 - **A page or artifact in an app:** that app's own link, only where the owner reads in that app's sign-in.
 
-**Everything a reply names.** On a Mac, in Orca, Claude Code or Claude Desktop, every reply links each Cairn-store thing it names into the Wayfinder: a package, a change document, its section, step, Agreed row or open question, a tag or work record, a store record, a meeting, an actor, a territory and a repository. A table links each row. The routes are the catalogue in Cairn's [routing design, 2.6](https://github.com/knowledgeislands/apps-cairn.local/blob/main/docs/design/design-system/routing.design.md#26-deep-links-and-their-clickable-twin).
+**Everything a reply names.** On a Mac, in an agent host running there, as [Runtime binding](#442-runtime-binding) names them, every reply links each Cairn-store thing it names into the Wayfinder: a package, a change document, its section, step, Agreed row or open question, a tag or work record, a store record, a meeting, an actor, a territory and a repository. A table links each row. The routes are the catalogue in Cairn's [routing design, 2.6](https://github.com/knowledgeislands/apps-cairn.local/blob/main/docs/design/design-system/routing.design.md#26-deep-links-and-their-clickable-twin).
 
 - **Clickable form:** give each route as `http://localhost:1677/open/<route>`, the twin of `cairn://<route>`, since Orca shows a `cairn://` link as plain text; as `http://localhost:1677/open/package/ki.cairn/tag/MESSAGES-GO`.
 - **Prompts:** a prompt goes as a fenced block, ready to copy, and also as a Wayfinder link, which opens it with Copy. A prompt kept in a change document, under a `### PROMPT-<NAME>: …` heading, takes the kept form, `cairn://prompt/<package>/<change file>/<PROMPT-NAME>`; only a short prompt that is not sensitive, up to about 6 KB, travels in the link itself, as `cairn://prompt?text=…`, encoded whole.
