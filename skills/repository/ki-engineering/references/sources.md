@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:49:33Z
+ki-revised: 2026-11-22T18:49:50Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -120,12 +120,15 @@ The owner decisions the standard names by id. The standard's other decisions are
 | ENGINEERING-SCAFFOLD-BIOME | The CONFORM scaffold and the Biome exemplar move to the harness's current releases: Biome `2.6.6`, its `$schema` with it, Commitlint `^21.2.4`, knip `^6.44.2` and rumdl `^0.3.2`, so a new repository does not start behind the estate. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Engineering standard](standard-engineering.md) | In force |
 | ENGINEERING-FACTS | Fact corrections from the 4.1 refresh: the boundary checker's bullet in 4.4 says dependency-cruiser supports TypeScript `>=7.1 <8` from `18.8.0`, so 7.0 stays unsupported, and the Turborepo cache link follows its move to `turborepo.dev`; the TypeScript link moves once 7.1 is published on `microsoft/TypeScript`. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Engineering standard, 4.4](standard-engineering.md#44-repo-shapes--flat-vs-monorepo-core) | In force |
 | BOUNDARY-SNAPSHOT | DESIGN-2's private snapshot links each installed dependency tree entry by entry, pointing a workspace link at the snapshot's own member, so a Bun workspace's imports between members no longer resolve into the real checkout and read as crossings. A false positive in the checker, not the repository: apps-cairn.local's proof passed in its checkout and failed only in the snapshot. Loreward, within remit, 22 November 2026, from Wayland's ki.cairn change 02, 6.1. Reversible; Kris can overturn it. | 2026-11-22 | [Engineering standard, 4.4](standard-engineering.md#44-repo-shapes--flat-vs-monorepo-core) | In force |
+| TURBO-TRANSIT | TURBO-2 accepts a transit task with no package script when its only key is a non-empty `dependsOn`, Turborepo's relay that carries each workspace's dependency hashes into its own tasks so they rerun on a package change while still running in parallel. Giving it a script would break the script naming law. A task with no script that does anything more still warns. Loreward, within remit, 22 November 2026, from Wayland's ki.cairn change 02, 6.1. Reversible; Kris can overturn it. | 2026-11-22 | [Engineering standard, 4.4](standard-engineering.md#44-repo-shapes--flat-vs-monorepo-core) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
 
 On 22 November 2026 Loreward, within remit, from the 4.1 refresh, took ENGINEERING-FACTS, recorded under [Decisions](#3-decisions): [the engineering standard](standard-engineering.md) now gives dependency-cruiser's TypeScript 7.1 support, and the Turborepo cache link points at `turborepo.dev`. The TypeScript link waits under **Watching**, since TypeScript 7.1 is not yet published on `microsoft/TypeScript`. No rule changed and no outside source was refreshed.
+
+On 22 November 2026 Loreward, within remit, from Wayland's ki.cairn change 02, took TURBO-TRANSIT, recorded under [Decisions](#3-decisions): [the engineering standard](standard-engineering.md) now names the transit task TURBO-2 accepts. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 Loreward, within remit, from Wayland's ki.cairn change 02, took BOUNDARY-SNAPSHOT, recorded under [Decisions](#3-decisions): [the engineering standard](standard-engineering.md) now says how the snapshot links workspace members, and DESIGN-2 passes apps-cairn.local's proof in the snapshot. No rule changed and no outside source was refreshed.
 

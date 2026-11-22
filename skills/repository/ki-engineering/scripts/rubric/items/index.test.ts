@@ -439,6 +439,39 @@ test('TURBO-2 expects a build only from a workspace that emits something', () =>
   expect(emitted.find((entry) => entry.code === 'TURBO-2')?.message).toContain('packages/library:build')
 })
 
+test('TURBO-2 accepts a transit task that only relays dependsOn, but not a scriptless task doing more', () => {
+  const evidence = (transit: unknown) =>
+    inspectTurborepo({
+      workspaces: ['packages/model'],
+      packageSources: [
+        {
+          packagePath: '.',
+          manifestPath: 'package.json',
+          scripts: { typecheck: 'turbo run typecheck', test: 'turbo run test' }
+        },
+        {
+          packagePath: 'packages/model',
+          manifestPath: 'packages/model/package.json',
+          name: '@example/model',
+          scripts: { typecheck: 'tsc --noEmit', test: 'vitest run' },
+          entryPoints: ['./src/index.ts']
+        }
+      ],
+      turboSource: JSON.stringify({
+        remoteCache: { enabled: false },
+        tasks: { transit, typecheck: { dependsOn: ['transit'] }, test: { dependsOn: ['transit'] } }
+      }),
+      turboExists: true,
+      gitignore: '.turbo/\n',
+      rootDependencies: {}
+    }).find((entry) => entry.code === 'TURBO-2')
+  expect(evidence({ dependsOn: ['^transit'] })?.level).toBe('PASS')
+  expect(evidence({ dependsOn: ['^transit'], outputs: ['dist/**'] })?.message).toContain(
+    'configured task(s) have no package script: transit'
+  )
+  expect(evidence({ dependsOn: [] })?.level).toBe('WARN')
+})
+
 test('GEN-1 explains Knip configuration hints and reports tool-specific exclusion gaps', () => {
   const absentKnip = inspectManagedSurfaceExclusions({
     activeLabels: ['src/generated/'],

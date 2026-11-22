@@ -279,8 +279,16 @@ export const inspectTurborepo = ({
       .filter((task) => task && !configuredTaskNames.has(task))
   )
   const packageScriptNames = new Set(packageSources.flatMap((source) => Object.keys(source.scripts)))
+  // Turborepo's transit node runs no script: a task that only relays `dependsOn` carries dependency hashes onward.
+  const relaysOnly = (value: unknown): boolean =>
+    !!value &&
+    typeof value === 'object' &&
+    !Array.isArray(value) &&
+    Object.keys(value).length === 1 &&
+    Array.isArray((value as { dependsOn?: unknown }).dependsOn) &&
+    (value as { dependsOn: unknown[] }).dependsOn.length > 0
   const orphanTasks = Object.keys(tasks).filter((task) => {
-    if (task.startsWith('//#')) return false
+    if (task.startsWith('//#') || relaysOnly(tasks[task])) return false
     const script = task.includes('#') ? task.slice(task.lastIndexOf('#') + 1) : task
     return !packageScriptNames.has(script)
   })
