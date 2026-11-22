@@ -98,7 +98,8 @@ seat_named() {
 # The thread line the session's own last reply closed with, from Claude Code transcript lines on
 # standard input: the last line of the last text of the session's own assistant messages that ends
 # with one, alone or after the state in a one-line footer, <glyph state> · <thread line>, which gives
-# the thread line after its last ` · ` (MINIMAL-FOOTER). Tool calls such as a SendMessage to a peer,
+# the thread line after its last ` · ` (MINIMAL-FOOTER), a last line NO_REPLY set aside (NOTICE-DIGEST).
+# Tool calls such as a SendMessage to a peer,
 # a peer's message, tool results, notifications and a subagent's replies never count, so another
 # seat's line is never read as the session's own.
 own_thread() {
@@ -108,7 +109,7 @@ own_thread() {
       fromjson? | select(type == "object" and .type == "assistant" and .isSidechain != true)
       | .message.content
       | if type == "string" then . elif type == "array" then (map(select(type == "object" and .type == "text") | .text | strings) | join("\n")) else empty end
-      | sub("\\s+$"; "") | split("\n") | last // empty | sub("\\s+$"; "")
+      | sub("\\s+$"; "") | sub("\\s*\nNO_REPLY$"; "") | split("\n") | last // empty | sub("\\s+$"; "")
       | if test("^[^ -~].*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished).* · .") then sub("^.* · "; "") else . end
       | select(test($re))' 2>/dev/null |
     tail -n 1

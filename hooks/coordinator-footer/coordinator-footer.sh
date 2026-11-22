@@ -27,8 +27,13 @@
 # fenced text block holding <TAG> <letter> lines, is held back unless the block opens
 # with a `1 · ` group heading and every such line reads <TAG> <letter> (high|medium|low)
 # (REPLY-CHECK) followed by `: <gloss>`, each tag on one line only, the recommended
-# option's (HOOK-ENFORCE). Otherwise quiet for conversational replies; never blocks
-# twice in a row, only warning then; fails open on unusable input.
+# option's (HOOK-ENFORCE). In every session too, a first line **Reply HH:MM** more than
+# about 5 minutes from the clock's UTC time warns (REPLY-ID-CLOCK). A last line NO_REPLY,
+# which Orca takes as a reply to suppress, is set aside and the rest checked as usual, and
+# a reply of NO_REPLY alone passes on a turn that only takes note of a status, an Orca
+# status message or a task notification (NOTICE-DIGEST). Otherwise quiet for
+# conversational replies; never blocks twice in a row, only warning then; fails open on
+# unusable input.
 set -u
 
 command -v jq >/dev/null 2>&1 || exit 0
@@ -62,6 +67,58 @@ if [ -z "$reply" ] && [ -n "$transcript" ]; then
     jq -rR 'fromjson? | .message.content | arrays | map(select(.type == "text") | .text) | join("\n")' 2>/dev/null)
 fi
 [ -n "$reply" ] || exit 0
+
+# Whether the turn only takes note of a status: its last prompt, tool results and meta lines set
+# aside, is an Orca message of the status kind, whose header line reads ──── From: <sender> (status)
+# ────, or a task notification (NOTICE-DIGEST).
+status_turn() {
+  [ -n "$transcript" ] || return 1
+  recent | LC_ALL=C grep -F '"type":"user"' | LC_ALL=C grep -vF '"tool_result"' | tail -n 20 |
+    jq -rRn '[inputs | fromjson? | select(type == "object" and .isMeta != true) | .message.content
+      | if type == "string" then . elif type == "array" then (map(select(type == "object" and .type == "text") | .text | strings) | join("\n")) else "" end
+      | select(test("\\S"))] | last // empty
+      | select(test("^\\s*<task-notification>") or test("(^|\n)─+ From: [^\n]* \\(status\\) ─+[ \t]*(\n|$)"))
+      | "status"' 2>/dev/null | grep -qx status
+}
+
+# Orca suppresses a reply whose last line is NO_REPLY, so a turn may end quietly (NOTICE-DIGEST): the
+# line is set aside and the rest of the reply checked as usual, so it may follow a well-formed footer.
+# A reply of NO_REPLY alone passes where the turn only takes note of a status; otherwise it is read
+# as the reply, and a coordinating session still asks for its banner.
+bare=
+trail=${reply%"${reply##*[![:space:]]}"}
+case $trail in
+  NO_REPLY | *$'\n'NO_REPLY)
+    rest=${trail%NO_REPLY}
+    rest=${rest%"${rest##*[![:space:]]}"}
+    if [ -n "$rest" ]; then
+      reply=$rest
+    else
+      status_turn && exit 0
+      reply=NO_REPLY bare=1
+    fi
+    ;;
+esac
+
+# The reply id, in every session: a first line **Reply HH:MM** more than about 5 minutes from the
+# clock's UTC time warns and never holds the reply back (REPLY-ID-CLOCK). The gap is taken round the
+# clock face, so an id at 23:58 read at 00:01 is 3 minutes out, and the leeway covers a reply that
+# was slow to write.
+idwarn=
+idline=$(printf '%s\n' "$reply" | LC_ALL=C awk 'NF { sub(/\r$/, ""); print; exit }')
+id_re='^\*\*Reply ([01][0-9]|2[0-3]):([0-5][0-9])\*\*'
+clock_re='^([01][0-9]|2[0-3]):([0-5][0-9])$'
+if [[ $idline =~ $id_re ]]; then
+  id="${BASH_REMATCH[1]}:${BASH_REMATCH[2]}"
+  at=$((10#${BASH_REMATCH[1]} * 60 + 10#${BASH_REMATCH[2]}))
+  now=$(date -u +%H:%M 2>/dev/null) || now=
+  if [[ $now =~ $clock_re ]]; then
+    gap=$(((10#${BASH_REMATCH[1]} * 60 + 10#${BASH_REMATCH[2]} - at + 1440) % 1440))
+    [ "$gap" -le 720 ] || gap=$((1440 - gap))
+    [ "$gap" -le 5 ] ||
+      idwarn="Reply id check: this reply's id, Reply $id, is $gap minutes from the clock's $now UTC. Read it with date -u +%H:%M as the reply is written, under ki-coordination's reply id rule (REPLY-ID-CLOCK); it was let through."
+  fi
+fi
 
 # The reply block, in every session: read only where the reply has a fenced text block.
 # A top-level ```text or ~~~text block holding a <TAG> <letter> line, the tag two or more
@@ -195,7 +252,8 @@ seat_named() {
 # The thread line the session's own last reply closed with, from Claude Code transcript lines on
 # standard input: the last line of the last text of the session's own assistant messages that ends
 # with one, alone or after the state in a one-line footer, <glyph state> · <thread line>, which gives
-# the thread line after its last ` · ` (MINIMAL-FOOTER). Tool calls such as a SendMessage to a peer,
+# the thread line after its last ` · ` (MINIMAL-FOOTER), a last line NO_REPLY set aside (NOTICE-DIGEST).
+# Tool calls such as a SendMessage to a peer,
 # a peer's message, tool results, notifications and a subagent's replies never count, so another
 # seat's line is never read as the session's own.
 own_thread() {
@@ -205,7 +263,7 @@ own_thread() {
       fromjson? | select(type == "object" and .type == "assistant" and .isSidechain != true)
       | .message.content
       | if type == "string" then . elif type == "array" then (map(select(type == "object" and .type == "text") | .text | strings) | join("\n")) else empty end
-      | sub("\\s+$"; "") | split("\n") | last // empty | sub("\\s+$"; "")
+      | sub("\\s+$"; "") | sub("\\s*\nNO_REPLY$"; "") | split("\n") | last // empty | sub("\\s+$"; "")
       | if test("^[^ -~].*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished).* · .") then sub("^.* · "; "") else . end
       | select(test($re))' 2>/dev/null |
     tail -n 1
@@ -376,7 +434,7 @@ if [ "$active" = true ]; then
   [ -z "$blockfix" ] || blockwarn="Reply block check: this reply's reply block $blockfix; $shape. It was let through, since the hook never holds a reply back twice in a row."
   blockfix=
 fi
-[ -n "$missing$unusual$blockfix$blockwarn" ] || exit 0
+[ -n "$missing$unusual$blockfix$blockwarn$idwarn" ] || exit 0
 
 if [ "$form" = summary ]; then what="Summary's footer"; else what="reply's banner"; fi
 if [ -n "$missing$blockfix" ]; then
@@ -390,6 +448,8 @@ if [ -n "$missing$blockfix" ]; then
       # An Update or Answer may close with the one-line footer instead (MINIMAL-FOOTER).
       *) [ -z "$minimal" ] || reason="$reason An Update or Answer may close instead with the one-line footer, <glyph state> · <thread line>, as 🤖 With worker · 🧵 <work-id>, giving the short banner where its state, counts or items have changed (MINIMAL-FOOTER)." ;;
     esac
+    # A reply of NO_REPLY alone ends quietly only on a status turn (NOTICE-DIGEST).
+    [ -z "$bare" ] || reason="$reason A reply of NO_REPLY alone ends a turn quietly only where the turn takes note of an Orca status message or a task notification; otherwise it may follow the footer as its last line (NOTICE-DIGEST)."
   fi
   [ -z "$blockfix" ] || reason="${reason:+$reason }This reply's reply block $blockfix; $shape."
   note=
@@ -397,12 +457,14 @@ if [ -n "$missing$blockfix" ]; then
     if [ -n "$missing" ]; then note=" It also has $unusual"; else note=" The $what also has $unusual"; fi
     note="$note; keep that only where the owner asked for it."
   fi
+  [ -z "$idwarn" ] || note="$note $idwarn"
   jq -cn --arg reason "$reason Give the reply again in full $fix, since the last text is what the owner reads.$note" \
     '{decision: "block", reason: $reason}' 2>/dev/null || exit 0
 else
   message=
   [ -z "$unusual" ] || message="Footer check: this $what has $unusual. It was let through; confirm it was intended, since ki-coordination's Banner section sets the usual form."
   [ -z "$blockwarn" ] || message="${message:+$message }$blockwarn"
+  [ -z "$idwarn" ] || message="${message:+$message }$idwarn"
   jq -cn --arg message "$message" '{systemMessage: $message}' 2>/dev/null || exit 0
 fi
 

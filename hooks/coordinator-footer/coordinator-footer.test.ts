@@ -634,7 +634,8 @@ test("an owner's mark word engages after an earlier key-form reply, and a conver
 // a fenced `text` block holding `<TAG> <letter>` lines, needs the block to open with a `1 · ` group heading and every
 // such line to carry `(high)`, `(medium)` or `(low)` after the letter. Under HOOK-ENFORCE a, 18 November 2026, each
 // line needs its `: <gloss>` too, and each tag takes one line only, the recommended option's, never alternatives.
-const replyId = '**Reply 13:27**'
+// The clock's own time, so the reply id check stays quiet (REPLY-ID-CLOCK).
+const replyId = `**Reply ${new Date().toISOString().slice(11, 16)}**`
 const decision = (...block: string[]): string =>
   [replyId, 'Two things need your word: whether to push now, and whether to keep the old hook.', ['```text', ...block, '```'].join('\n')].join('\n\n')
 const shape =
@@ -781,4 +782,88 @@ test('a banner item with an agreed glyph and brackets warns; a provisional glyph
   expect(run(stop(banner('- 👤 [with you] FOOTER-HOOK · owner · at 21:10'), plain), {}, '/bin/bash').warning).toContain(
     'a banner item pairing an agreed glyph'
   )
+})
+
+// Kris, 22 November 2026, about 17:26 GMT, under NOTICE-DIGEST a: "the coordinator footer hook lets a bot end a
+// status-only turn silently". Orca suppresses a reply whose last line is NO_REPLY.
+const orcaMail = (kind: string): string =>
+  [
+    `──── From: ORCA_SESSION_ID:ABC (orca_session_id:abc) (${kind}) ────`,
+    'Subject: A rule landed',
+    'Nothing to answer.',
+    '────────────────────────────────────────────────────────────'
+  ].join('\n')
+
+test('a last NO_REPLY line after a well-formed footer passes, and the rest is checked as usual', () => {
+  const asked = coordinated('how is the run doing?')
+  expect(run(stop(`${rebootstrap(shortBanner)}\n\nNO_REPLY`, plain))).toEqual(silent)
+  expect(run(stop(`${fullSummary}\nNO_REPLY\n`, plain))).toEqual(silent)
+  expect(run(stop('Still going.\n\n🤖 With worker · 🧵 ki.prj.demo\nNO_REPLY', asked))).toEqual(silent)
+  expect(run(stop('Still going.\n\nNO_REPLY', asked)).reason).toContain('the thread line, <role glyph> 🔑 <work-id> or 🧵 <work-id>, last')
+  expect(run(stop(`${rebootstrap(shortBanner)}\n\nAnything else?\n\nNO_REPLY`, plain)).reason).toContain('the thread line as the very last line')
+  expect(run(stop(summary(heading, counts, roadmap, pkg, items, listening, thread, 'NO_REPLY'), plain)).warning).toContain('no Knowledge Islands art')
+  // NO_REPLY inside a line, or not last, is no quiet ending.
+  expect(run(stop('Still going.\n\n🤖 With worker · 🧵 ki.prj.demo NO_REPLY', asked)).reason).toContain('the thread line')
+  expect(run(stop('Still going.\n\n🤖 With worker · 🧵 ki.prj.demo\nNO_REPLY\nMore.', asked)).reason).toContain('the thread line')
+  expect(run(stop(`${rebootstrap(shortBanner)}\n\nNO_REPLY`, plain), {}, '/bin/bash')).toEqual(silent)
+})
+
+test('a reply of NO_REPLY alone passes on a status turn, and is held back on any other in a coordinating session', () => {
+  const quiet = (owner: Turn['owner']): Outcome => run(stop('NO_REPLY', coordinated(owner)))
+  expect(quiet(orcaMail('status'))).toEqual(silent)
+  expect(quiet([{ type: 'text', text: `[Orca: a preamble]\n\n${orcaMail('status')}` }])).toEqual(silent)
+  expect(quiet('<task-notification>\n<task-id>b1</task-id>\n</task-notification>')).toEqual(silent)
+  expect(run(stop('\nNO_REPLY\n', coordinated(orcaMail('status'))), {}, '/bin/bash')).toEqual(silent)
+  for (const owner of ['how is the run doing?', orcaMail('question'), orcaMail('handoff'), 'Subject: (status) ────']) {
+    const outcome = quiet(owner)
+    expect(outcome.reason).toContain("the banner's ### state heading")
+    expect(outcome.reason).toContain('A reply of NO_REPLY alone ends a turn quietly only where the turn takes note of an Orca status message or a task notification')
+  }
+  // A conversational session stays quiet whatever the turn.
+  expect(run(stop('NO_REPLY', transcript([{ owner: 'and now?' }])))).toEqual(silent)
+})
+
+test('a reply closing its footer before NO_REPLY still makes the session a coordinating one', () => {
+  const quietly = transcript([{ owner: 'Open ki.prj.demo', reply: 'Started.\n\n🤖 With worker · 🧵 ki.prj.demo\n\nNO_REPLY' }, { owner: 'and now?' }])
+  expect(run(stop('Still going.', quietly)).reason).toContain('the thread line')
+})
+
+// Kris, 22 November 2026, about 17:35 GMT, under REPLY-ID-CLOCK a, choosing "Warn past 5 minutes": the hook warns,
+// never holds back, when a reply's id is more than about 5 minutes from the clock's UTC time.
+const clockBin = join(root, 'clock')
+mkdirSync(clockBin, { recursive: true })
+writeFileSync(join(clockBin, 'date'), '#!/bin/sh\nprintf "%s\\n" "$KI_TEST_UTC"\n', { mode: 0o755 })
+const at = (utc: string): Record<string, string> => ({ PATH: `${clockBin}:${process.env.PATH ?? ''}`, KI_TEST_UTC: utc })
+
+test('a reply id within about 5 minutes of the clock passes, across midnight too', () => {
+  for (const [id, utc] of [
+    ['13:27', '13:27'],
+    ['13:27', '13:32'],
+    ['13:27', '13:22'],
+    ['23:58', '00:02'],
+    ['00:01', '23:58']
+  ])
+    expect(run(stop(`**Reply ${id}**\n\nDone.`, plain), at(utc))).toEqual(silent)
+  const now = new Date().toISOString().slice(11, 16)
+  expect(run(stop(`**Reply ${now}**\n\nDone.`, plain))).toEqual(silent)
+})
+
+test('a reply id more than 5 minutes from the clock warns and is let through', () => {
+  expect(run(stop('**Reply 13:27**\n\nDone.', plain), at('13:33')).warning).toBe(
+    "Reply id check: this reply's id, Reply 13:27, is 6 minutes from the clock's 13:33 UTC. Read it with date -u +%H:%M as the reply is written, under ki-coordination's reply id rule (REPLY-ID-CLOCK); it was let through."
+  )
+  expect(run(stop('**Reply 23:50**\n\nDone.', plain), at('00:02')).warning).toContain('is 12 minutes from')
+  expect(run(stop('**Reply 00:10**\n\nDone.', plain), at('23:55')).warning).toContain('is 15 minutes from')
+  expect(run(stop('\n**Reply 09:00** · a late one\n\nDone.', plain), at('21:00')).warning).toContain('is 720 minutes from')
+  expect(run(stop('**Reply 13:27**\n\nDone.', plain), at('13:40'), '/bin/bash').warning).toContain('is 13 minutes from')
+  // Only the first line counts, and only in the id's own form; an unreadable clock says nothing.
+  expect(run(stop('Done.\n\n**Reply 09:00**', plain), at('13:40'))).toEqual(silent)
+  expect(run(stop('**Reply 9:00**\n\nDone.', plain), at('13:40'))).toEqual(silent)
+  expect(run(stop('**Reply 13:27**\n\nDone.', plain), at('soon'))).toEqual(silent)
+  // Beside a footer that is held back, the id's note rides along in the reason.
+  expect(run(stop('**Reply 13:27**\n\nStill going.', coordinated('and now?')), at('14:00')).reason).toContain("Reply id check: this reply's id, Reply 13:27, is 33 minutes")
+  // Beside other warnings, it joins them.
+  const warned = run(stop(`**Reply 13:27**\n\n${summary(heading, counts, roadmap, pkg, items, listening, thread)}`, plain), at('14:00')).warning
+  expect(warned).toContain('no Knowledge Islands art')
+  expect(warned).toContain('is 33 minutes from')
 })
