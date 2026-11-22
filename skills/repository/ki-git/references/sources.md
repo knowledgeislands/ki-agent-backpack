@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T08:30:00Z
+ki-revised: 2026-11-22T08:55:00Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -73,6 +73,8 @@ Kris's decisions behind the rules, each quoted in the standard beside the rule i
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, brought three pitfalls from the overnight runs into [safe Git hygiene](standard-git.md#45-safe-git-hygiene) and one into [commit messages](standard-git.md#42-commit-messages): sync by `git fetch` and `git merge --ff-only @{u}` rather than `git pull`, which a branch rebase setting or other sessions' uncommitted files make refuse; stage and commit in one `git commit --only -- <path>...`; write pathspecs literally under zsh; and wrap commit bodies at 100 characters. The hygiene rubric's guidance follows. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 [checks before committing](standard-git.md#451-checks-before-committing) was brought to BASELINE-CHECKS, Kris's steer of that day at about 08:20 GMT in the Cairn summit's [change 70, 4.6](https://github.com/krisb/ki-cairn-store/blob/bf8acca3/work/cairn/cairn.summit/70-bots.change.md#46-decided) and owned by `ki-delegation`: the full suite belongs to the baseline and release tiers rather than daily. No outside source was refreshed.
 

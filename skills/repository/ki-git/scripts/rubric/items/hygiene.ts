@@ -53,7 +53,7 @@ const HYGIENE_3: RubricItem<GitRubricContext> = {
       'Is either autostash setting `true` at any configuration level, or does any pull or rebase in a shared working tree run without overriding it?',
     outcomes: ['conforming', 'autostash setting conflicts', 'pull override required'],
     guidance:
-      'Report each `true` setting with its origin for the owner of that configuration to change, and pull with `git -c pull.autostash=false -c rebase.autoStash=false pull --ff-only` into a clean checkout. Never stash, directly or through autostash, in a shared working tree.'
+      'Report each `true` setting with its origin for the owner of that configuration to change, and sync with `git fetch`, then `git merge --ff-only @{u}`, never `git pull`. Never stash, directly or through autostash, in a shared working tree.'
   }
 }
 

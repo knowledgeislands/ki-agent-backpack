@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T08:30:00Z
+ki-revised: 2026-11-22T08:55:00Z
 ki-status: in force
 ---
 
@@ -102,6 +102,8 @@ Choose the narrowest type that describes the committed unit rather than combinin
 
 Historic messages are not rewritten merely to conform to this current convention.
 
+Wrap body and footer lines at 100 characters before committing: the house `commitlint` configuration extends `@commitlint/config-conventional`, whose `body-max-line-length` refuses a longer line, as Tower's overnight push found on 22 November 2026 (store record `20261122T0704Z-personal.tower-overnight-push`).
+
 [Back to contents](#contents)
 
 #### 4.2.1 Commit-message binding
@@ -198,11 +200,13 @@ Editing and read-only Git commands may proceed concurrently across disjoint path
 
 Stage only fully enumerated touched paths, using `git add -- <path>...`, and inspect the staged names and diff before committing. Never use whole-tree or implicit collection such as `git add -A`, `git add .`, `git add -u`, `git commit -a`, `git commit -am`, or a broad wildcard pathspec in a shared working tree: each can absorb another actor's work. A commit may include only uncontested paths from the committing thread's touched-path set.
 
+In a shared working tree, stage and commit in one command, `git commit --only -- <path>...`, so the commit takes exactly the named paths whatever else is staged: on 22 November 2026 a deletion another run had staged was swept into a commit made after a separate `git add` (Tower `ebef4b3`, finished in `784eedd`). Write each pathspec literally or pass a shell array: zsh does not word-split an unquoted variable, so `git commit -- $F` with several paths in `$F` names one path that does not exist.
+
 Let repository hooks run: do not bypass them with `--no-verify` or an equivalent option. When a hook fails, fix its cause or stop and report the failure rather than committing around it. After a hook-backed commit, inspect the actual committed names and diff with `git show --name-status HEAD` and `git show HEAD`; hooks may have staged additional files. If a commit this session has not pushed captured unrelated work, coordinate ownership, rebuild only that commit with its intended paths, and restore the unrelated changes unstaged. Never rewrite another actor's commit or a published commit to repair this mistake.
 
 Amend only inside the serialized write window, and only after confirming that `HEAD` is this session's own unpushed commit: its identity matches the commit this session recorded when it made it, and `git branch -r --contains HEAD` names no remote branch. Otherwise make a new commit. In a shared working tree another actor's commit can land between this session's commit and its amend; amending then rewrites that commit, replacing its identity and losing its attribution. In one shared principal checkout a run amended `HEAD` after another work package's commit had landed, giving that commit a new identity without its author's attribution. Kris chose ACCEPT-BY-CRITERIA a) on 31 October 2026: "amend in a shared checkout only inside the serialised write window after confirming `HEAD` is this session's own unpushed commit, otherwise make a new commit".
 
-Never stash in a shared working tree, directly or through Git's autostash: a stash captures every actor's uncommitted changes, not only this session's. A `pull.autostash` or `rebase.autoStash` setting of `true` conflicts with this rule, because a plain `git pull` then stashes and reapplies another session's uncommitted work; on 3 November 2026 such a pull in a shared checkout autostashed another session's uncommitted line and conflicted. Treat either setting, at any configuration level, as a finding, and pull with `git -c pull.autostash=false -c rebase.autoStash=false pull --ff-only` into a clean checkout. Commit hooks run `lint-staged` with `--no-stash` under the same rule, as Kris chose HOOK-STASH a) on 1 November 2026.
+Never stash in a shared working tree, directly or through Git's autostash: a stash captures every actor's uncommitted changes, not only this session's. A `pull.autostash` or `rebase.autoStash` setting of `true` conflicts with this rule, because a plain `git pull` then stashes and reapplies another session's uncommitted work; on 3 November 2026 such a pull in a shared checkout autostashed another session's uncommitted line and conflicted. Treat either setting, at any configuration level, as a finding, and sync without `git pull`: run `git fetch`, then `git merge --ff-only @{u}`, then push fast-forward only. `git pull --ff-only` refuses where `branch.<name>.rebase` is `true` ("Cannot rebase onto multiple branches") and in a checkout where other sessions have uncommitted files, while a fast-forward merge touches only the paths the incoming commits change; where a pull would rebase by configuration, commit first, fetch, and check ahead and behind with `git rev-list --left-right --count @{u}...HEAD` before pushing. Three runs found this on 22 November 2026 (store records `20261122T0710Z-personal-inbox-overnight-push` and `20261122T0704Z-personal.tower-overnight-push`, and the Cairn designer's night). Commit hooks run `lint-staged` with `--no-stash` under the same rule, as Kris chose HOOK-STASH a) on 1 November 2026.
 
 For a delegated worker that must stage outside the shared commit window, a unique temporary `GIT_INDEX_FILE` may isolate its preparatory staging. A separate index does not isolate working files, serialize `HEAD`, or confer commit authority; the worker or coordinator still revalidates the touched paths and takes the same serialized commit window before advancing `HEAD`.
 
