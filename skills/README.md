@@ -648,7 +648,7 @@ Define Linear configuration, lifecycle mapping, hierarchy, dependencies, review,
 
 #### `ki-work-package`
 
-Own the work package of one piece of work, `work/<territory>/<id>/` in the Cairn store: its `_index.md`, holding the definition with its routing description, goals, scope and repositories and the state for recovery, its `NN-<slug>.change.md` change documents, where decisions and open points live, and sub-packages of the same shape, plus the closed list, the writers and the tidy. Use to create, update, resume, audit, tidy or remove a package, or to pick work up without a transcript or vendor session; Git is the logbook, messages go through the Cairn store, and durable knowledge stays with its owners.
+Own the work package of one piece of work, `work/<territory>/<id>/` in the Cairn store: its `_index.md`, holding the definition with its routing description, goals, scope and repositories and the state for recovery, its `NN-<slug>.change.md` change documents, where decisions and open points live, and sub-packages of the same shape, plus the closed list, the writers and the tidy. Use to create, update, resume, audit, tidy or remove a package, or to pick work up without a transcript or vendor session; Git is the logbook, messages go by Orca mail, and durable knowledge stays with its owners.
 
 - **Kind:** Governance
 - **Applicability:** Detected
