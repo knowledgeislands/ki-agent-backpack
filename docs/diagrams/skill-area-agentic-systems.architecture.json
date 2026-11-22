@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "5c84a14389ddf44770f86b471871c488a095f780"
+      "revision": "3a6a09cd63a54f5761fba191a6ccc1c95754380c"
     },
     "legend": {
       "mode": "auto",
@@ -53,6 +53,26 @@
       ]
     },
     {
+      "id": "ki-agentic-bots",
+      "type": "frontend",
+      "label": "ki-agentic-bots",
+      "sublabel": "agentic systems · command",
+      "sources": [
+        {
+          "path": "skills/agentic-systems/ki-agentic-bots/SKILL.md"
+        }
+      ],
+      "tag": "R– · C0 · F2",
+      "pos": [
+        32,
+        392
+      ],
+      "size": [
+        208,
+        76
+      ]
+    },
+    {
       "id": "ki-delegation-orca",
       "type": "frontend",
       "label": "ki-delegation-orca",
@@ -64,7 +84,7 @@
       ],
       "tag": "R– · C0 · F3",
       "pos": [
-        32,
+        288,
         392
       ],
       "size": [
@@ -105,7 +125,7 @@
       "tag": "R5 · CM · F3",
       "pos": [
         288,
-        392
+        268
       ],
       "size": [
         208,
@@ -124,8 +144,28 @@
       ],
       "tag": "R6 · CM · F4",
       "pos": [
-        288,
+        544,
         268
+      ],
+      "size": [
+        208,
+        76
+      ]
+    },
+    {
+      "id": "ki-work-package",
+      "type": "backend",
+      "label": "ki-work-package",
+      "sublabel": "work · automatic",
+      "sources": [
+        {
+          "path": "skills/work/ki-work-package/SKILL.md"
+        }
+      ],
+      "tag": "R13 · CL · F5",
+      "pos": [
+        32,
+        596
       ],
       "size": [
         208,
@@ -144,7 +184,7 @@
       ],
       "tag": "R6 · CL · F17",
       "pos": [
-        32,
+        288,
         596
       ],
       "size": [
@@ -164,7 +204,7 @@
       ],
       "tag": "R6 · CM · F4",
       "pos": [
-        288,
+        544,
         596
       ],
       "size": [
@@ -186,6 +226,7 @@
       "kind": "region",
       "label": "Coordination · Delegation and programme",
       "wraps": [
+        "ki-work-package",
         "ki-coordination",
         "ki-delegation"
       ],
@@ -193,17 +234,36 @@
     },
     {
       "kind": "region",
-      "label": "Agentic systems · 4 skills",
+      "label": "Agentic systems · 5 skills",
       "wraps": [
         "ki-subagents",
         "ki-subagents-claude",
         "ki-subagents-chatgpt",
-        "ki-delegation-orca"
+        "ki-delegation-orca",
+        "ki-agentic-bots"
       ],
       "pad": 32
     }
   ],
   "connections": [
+    {
+      "id": "ki-agentic-bots--ki-coordination",
+      "from": "ki-agentic-bots",
+      "to": "ki-coordination",
+      "variant": "default"
+    },
+    {
+      "id": "ki-agentic-bots--ki-delegation",
+      "from": "ki-agentic-bots",
+      "to": "ki-delegation",
+      "variant": "default"
+    },
+    {
+      "id": "ki-agentic-bots--ki-work-package",
+      "from": "ki-agentic-bots",
+      "to": "ki-work-package",
+      "variant": "default"
+    },
     {
       "id": "ki-delegation-orca--ki-coordination",
       "from": "ki-delegation-orca",
@@ -250,7 +310,7 @@
       "dot": "slate",
       "title": "Generated, not drawn",
       "items": [
-        "4 skills, 2 outside prerequisites, 1 outside dependent, 5 composition and 0 optional edges, read from SKILL.md frontmatter.",
+        "5 skills, 3 outside prerequisites, 1 outside dependent, 8 composition and 0 optional edges, read from SKILL.md frontmatter.",
         "Regenerate with ki repo conform --skill ki-repo-backpack; ki-skills KI-SHAPE-20 keeps the edges resolvable and acyclic."
       ]
     }

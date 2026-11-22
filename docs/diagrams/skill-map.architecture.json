@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "5c84a14389ddf44770f86b471871c488a095f780"
+      "revision": "3a6a09cd63a54f5761fba191a6ccc1c95754380c"
     },
     "legend": {
       "mode": "auto",
@@ -831,6 +831,25 @@
       ]
     },
     {
+      "id": "ki-agentic-bots",
+      "type": "frontend",
+      "label": "ki-agentic-bots",
+      "sublabel": "agentic · command",
+      "sources": [
+        {
+          "path": "skills/agentic-systems/ki-agentic-bots/SKILL.md"
+        }
+      ],
+      "pos": [
+        712,
+        1552
+      ],
+      "size": [
+        200,
+        60
+      ]
+    },
+    {
       "id": "ki-delegation-orca",
       "type": "frontend",
       "label": "ki-delegation-orca",
@@ -841,7 +860,7 @@
         }
       ],
       "pos": [
-        712,
+        920,
         1552
       ],
       "size": [
@@ -1493,6 +1512,7 @@
         "ki-subagents",
         "ki-subagents-chatgpt",
         "ki-subagents-claude",
+        "ki-agentic-bots",
         "ki-delegation-orca"
       ],
       "pad": 10
@@ -1508,12 +1528,13 @@
     },
     {
       "kind": "region",
-      "label": "Agentic Systems · 7 skills",
+      "label": "Agentic Systems · 8 skills",
       "wraps": [
         "ki-delegation",
         "ki-subagents",
         "ki-subagents-chatgpt",
         "ki-subagents-claude",
+        "ki-agentic-bots",
         "ki-delegation-orca",
         "ki-agentic-radar",
         "ki-model-radar"
@@ -1634,7 +1655,7 @@
       "dot": "slate",
       "title": "Generated, not drawn",
       "items": [
-        "65 skills in 8 concerns and 10 functional areas: 3 always on, 20 automatic, 37 opt-in, 5 commands.",
+        "66 skills in 8 concerns and 10 functional areas: 3 always on, 20 automatic, 37 opt-in, 6 commands.",
         "Regenerate with ki repo conform --skill ki-repo-backpack; ki-skills owns the kind and applicability fields it reads."
       ]
     }

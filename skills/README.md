@@ -19,7 +19,7 @@ Use the website-owned [skills-by-outcome guide](https://knowledgeislands.info/gu
 <!-- ki-repo-backpack:capability-catalogue:start -->
 ## Generated capability catalogue
 
-This source backpack publishes 65 skills: 60 governance skills, 4 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
+This source backpack publishes 66 skills: 60 governance skills, 5 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
 
 ### Acquire
 
@@ -64,6 +64,16 @@ Analyse a conversation, chat, thread, meeting or negotiation for its dynamics: c
 - **Runtime:** Portable
 
 ### Agentic Systems
+
+#### `ki-agentic-bots`
+
+Work as a bot actor on an agent host: bootstrap from a tracked file on every wake, send background work to the bot's own subagents, mail other bots by name, keep the host's memory a working aid, count the work package as outstanding work and card questions only when due. Use when setting up, running or reviewing a bot, or writing a store's own bootstrap file for its bots; `ki-agentic-systems` says what a bot is, `ki-coordination` owns the coordinating work and `ki-delegation` the background runs.
+
+- **Kind:** Process
+- **Applicability:** Invocation Only
+- **Arguments:** `help`
+- **Dependencies:** `ki-coordination`, `ki-delegation`, `ki-work-package`
+- **Runtime:** Portable
 
 #### `ki-agentic-radar`
 
