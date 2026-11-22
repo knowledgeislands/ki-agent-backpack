@@ -1,5 +1,5 @@
 schema = 1
-reviewed_on = "2026-10-18"
+reviewed_on = "2026-11-22"
 
 [evidence]
 
@@ -32,21 +32,21 @@ notes = "Method v5.8, its retrospective validation dated 2026-09-30; methodology
 
 [evidence.aa-intelligence-methodology]
 id = "aa-intelligence-methodology"
-title = "Artificial Analysis Intelligence Index v4.3.2 methodology"
+title = "Artificial Analysis Intelligence Index v5.0.1 methodology"
 url = "https://artificialanalysis.ai/methodology/intelligence-benchmarking"
 unit = "provider-endpoint"
 independence = "independent"
-reviewed_on = "2026-10-18"
-notes = "Primarily text-based English evaluation; version history supplies only September 2026 for v4.3, so the benchmark date uses the first day of that month."
+reviewed_on = "2026-11-22"
+notes = "On 2026-11-22 the page presents v5.0.1 (November 2026, regrading every model on CritPt v2), after v5.0 (October to November 2026) replaced v4.3.2 with four equally weighted categories: Knowledge Work (AA-Briefcase v1.1, AutomationBench-AA, GDP.pdf), Coding (FrontierCode-AA 2.0, Terminal-Bench 4.0), Science (Terminal-Bench-Science 0.1, CritPt v2 Hard Subset), and General (AA-Omniscience v1.1, HLE-Diamond); GDPval-AA, SciCode, AA-LCR, and Humanity's Last Exam left the index. It remains a primarily text-based English evaluation. The version history supplies only months and the page gives no data date, so both benchmark dates use the first day of November 2026, a floor for data regraded under v5.0.1."
 
 [evidence.aa-coding-agent-methodology]
 id = "aa-coding-agent-methodology"
-title = "Artificial Analysis Coding Agent Index v1.5 methodology"
+title = "Artificial Analysis Coding Agent Index v2.1 methodology"
 url = "https://artificialanalysis.ai/methodology/coding-agents-benchmarking/"
 unit = "model-agent"
 independence = "independent"
-reviewed_on = "2026-10-18"
-notes = "Equal-weight composite of DeepSWE v1.1, Terminal-Bench 4.0, and SWE-Atlas-QnA; version history supplies only September 2026 for v1.5."
+reviewed_on = "2026-11-22"
+notes = "On 2026-11-22 the page presents v2.1 (November 2026 to date): an equal-weight composite of FrontierCode-AA 2.0 (132 private tasks, rubric graded by a GPT-6 Luna judge with rule-based and Claude Opus 5.5 integrity checks), Terminal-Bench 4.1 (66 tasks, deterministic verifiers and an agent reward-hacking review), and SWE-Atlas-QnA-AA (124 tasks, a GPT-6 Luna judge with five votes per criterion), 322 tasks with three attempts each; each public row is an agent variant, not a model. v2.0 (October to November 2026) replaced DeepSWE with FrontierCode v1.1. The version history supplies only months and the page gives no data date, so both benchmark dates use the first day of November 2026."
 
 [evidence.arena-rank-methodology]
 id = "arena-rank-methodology"
@@ -135,8 +135,8 @@ title = "Anthropic model deprecations"
 url = "https://platform.claude.com/docs/en/about-claude/model-deprecations"
 unit = "provider-endpoint"
 independence = "provider"
-reviewed_on = "2026-11-15"
-notes = "Lists claude-fable-5-2 active with retirement not sooner than 2027-11-09, claude-opus-5 active with retirement not sooner than 2027-07-24, claude-opus-5-5 active with retirement not sooner than 2027-09-22, claude-fable-5-1 active with retirement not sooner than 2027-09-01, claude-sonnet-5-5 active with retirement not sooner than 2027-09-28, claude-haiku-5-5 active with retirement not sooner than 2027-10-07, and claude-haiku-4-5-20251001 still active on 2026-11-15 with no deprecation notice although its not-sooner-than date of 2026-10-15 has passed; claude-sonnet-4-5-20250929 was deprecated on 2026-09-30 for retirement on 2026-11-30. Anthropic gives at least 60 days' notice before retiring a publicly released model."
+reviewed_on = "2026-11-22"
+notes = "Lists claude-fable-5-2 active with retirement not sooner than 2027-11-09, claude-opus-5 active with retirement not sooner than 2027-07-24, claude-opus-5-5 active with retirement not sooner than 2027-09-22, claude-fable-5-1 active with retirement not sooner than 2027-09-01, claude-sonnet-5-5 active with retirement not sooner than 2027-09-28, claude-haiku-5-5 active with retirement not sooner than 2027-10-07, and claude-haiku-4-5-20251001 still active on 2026-11-22 with no deprecation notice although its not-sooner-than date of 2026-10-15 has passed; claude-sonnet-4-5-20250929 was deprecated on 2026-09-30 for retirement on 2026-11-30, and no new deprecation was announced after that. Anthropic gives at least 60 days' notice before retiring a publicly released model."
 
 [evidence.anthropic-current-models]
 id = "anthropic-current-models"
@@ -144,8 +144,8 @@ title = "Anthropic current Claude models overview"
 url = "https://platform.claude.com/docs/en/models/overview"
 unit = "provider-endpoint"
 independence = "provider"
-reviewed_on = "2026-11-15"
-notes = "Identifies Fable 5.2, Opus 5.5, Sonnet 5.5, and Haiku 5.5 as the current lineup, and lists Fable 5.1, Haiku 4.5, Opus 5, and Fable 5 among older models still available, with exact Claude API IDs, capabilities, effort defaults, and retirement commitments. Provider positioning is not independent performance evidence."
+reviewed_on = "2026-11-22"
+notes = "Identifies Fable 5.2, Opus 5.5, Sonnet 5.5, and Haiku 5.5 as the current lineup, and lists Fable 5.1, Haiku 4.5, Opus 5, and Fable 5 among older models still available, with exact Claude API IDs, capabilities, effort defaults, and retirement commitments; on 2026-11-22 it also lists Claude Mythos 5.2, 5.1, and 5 under limited availability to verified organisations. Provider positioning is not independent performance evidence."
 
 [evidence.openai-models]
 id = "openai-models"
@@ -153,8 +153,8 @@ title = "OpenAI API model catalogue"
 url = "https://developers.openai.com/api/docs/models"
 unit = "provider-endpoint"
 independence = "provider"
-reviewed_on = "2026-11-15"
-notes = "Lists gpt-6-astra, gpt-6.1-sol, gpt-6.1-terra, and gpt-6-luna as the current flagship hosted API models; neither gpt-5.6-sol nor gpt-6-sol appears in the catalogue, and gpt-5.6-cyber is the only GPT-5.6 model listed."
+reviewed_on = "2026-11-22"
+notes = "On 2026-11-22 lists gpt-6.2-astra, gpt-6.2-sol, gpt-6.1-terra, and gpt-6-luna as the current flagship hosted API models; gpt-6-astra and gpt-6.1-sol, listed on 2026-11-15, no longer appear, nor do gpt-6-sol, gpt-5.6-sol, or gpt-5.6-terra, and gpt-5.6-cyber is the only GPT-5.6 model listed."
 
 [evidence.openai-gpt-6-guide]
 id = "openai-gpt-6-guide"
@@ -162,8 +162,8 @@ title = "OpenAI GPT-6 family guide"
 url = "https://developers.openai.com/api/docs/guides/latest-model"
 unit = "provider-endpoint"
 independence = "provider"
-reviewed_on = "2026-11-15"
-notes = "Names Astra, GPT-6.1 Sol, GPT-6.1 Terra, and Luna as the current family choices; identifies GPT-6 Sol as the preceding Sol version and GPT-5.6 Terra as the predecessor of GPT-6.1 Terra. It does not establish KI route quality."
+reviewed_on = "2026-11-22"
+notes = "On 2026-11-22 the guide covers GPT-6.2 and names only GPT-6.2 Astra and GPT-6.2 Sol as current choices; it no longer mentions GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol, GPT-6.1 Terra, Luna, or GPT-5.6 Terra, and gives no release date. It does not establish KI route quality."
 
 [evidence.openai-gpt-5-6-terra]
 id = "openai-gpt-5-6-terra"
@@ -171,8 +171,8 @@ title = "OpenAI GPT-5.6 Terra model page"
 url = "https://developers.openai.com/api/docs/models/gpt-5.6-terra"
 unit = "provider-endpoint"
 independence = "provider"
-reviewed_on = "2026-11-15"
-notes = "Confirms the exact previous-family Terra identity remains available; it is not a current GPT-6 family choice."
+reviewed_on = "2026-11-22"
+notes = "Confirms the exact previous-family Terra identity remains available with no deprecation notice on 2026-11-22; it is not a current GPT-6 family choice."
 
 [evidence.openai-gpt-5-6-sol]
 id = "openai-gpt-5-6-sol"
@@ -180,8 +180,80 @@ title = "OpenAI GPT-5.6 Sol model page"
 url = "https://developers.openai.com/api/docs/models/gpt-5.6-sol"
 unit = "provider-endpoint"
 independence = "provider"
-reviewed_on = "2026-11-15"
-notes = "Confirms the gpt-5.6-sol snapshot and gpt-5.6 alias remain available with no deprecation notice, although the model catalogue no longer lists it; its promotional pricing runs until 2026-11-30."
+reviewed_on = "2026-11-22"
+notes = "Confirms the gpt-5.6-sol snapshot and gpt-5.6 alias remain available with no deprecation notice on 2026-11-22, although the model catalogue no longer lists it; its promotional pricing runs until 2026-11-30, and the page does not say what follows."
+
+[evidence.openai-gpt-6-astra]
+id = "openai-gpt-6-astra"
+title = "OpenAI GPT-6 Astra model page"
+url = "https://developers.openai.com/api/docs/models/gpt-6-astra"
+unit = "provider-endpoint"
+independence = "provider"
+reviewed_on = "2026-11-22"
+notes = "Confirms the gpt-6-astra snapshot remains available on Chat Completions, Responses, and Batch, and on Amazon Bedrock, with no deprecation notice or named successor on 2026-11-22, although the model catalogue and GPT-6 guide now present GPT-6.2 Astra. It gives no release date."
+
+[evidence.openai-gpt-6-1-sol]
+id = "openai-gpt-6-1-sol"
+title = "OpenAI GPT-6.1 Sol model page"
+url = "https://developers.openai.com/api/docs/models/gpt-6.1-sol"
+unit = "provider-endpoint"
+independence = "provider"
+reviewed_on = "2026-11-22"
+notes = "Confirms the gpt-6.1-sol snapshot remains available on Chat Completions, Responses, and Batch, and on Amazon Bedrock, with no deprecation notice or named successor on 2026-11-22, although the model catalogue and GPT-6 guide now present GPT-6.2 Sol. OpenAI's deprecations page names gpt-6.1-sol as the replacement for gpt-5 and o3 at their 2026-12-11 shutdown."
+
+[evidence.openai-gpt-6-sol]
+id = "openai-gpt-6-sol"
+title = "OpenAI GPT-6 Sol model page"
+url = "https://developers.openai.com/api/docs/models/gpt-6-sol"
+unit = "provider-endpoint"
+independence = "provider"
+reviewed_on = "2026-11-22"
+notes = "Confirms the gpt-6-sol snapshot remains available with no deprecation notice on 2026-11-22 and points to GPT-6.1 Sol as the newer Sol model without naming it a replacement."
+
+[evidence.openai-codex-models]
+id = "openai-codex-models"
+title = "OpenAI Codex models"
+url = "https://learn.chatgpt.com/docs/models"
+unit = "model-agent"
+independence = "provider"
+reviewed_on = "2026-11-22"
+notes = "Moved from developers.openai.com/codex/models. On 2026-11-22 recommends GPT-6.2 Astra and GPT-6.2 Sol for the Codex app and CLI, its sample configuration uses gpt-6.2-sol, and it still lists gpt-6-astra and gpt-6.1-sol for the desktop app, CLI, and IDE extension, suggesting gpt-6.1-sol for configurations shared with the IDE extension; it does not mention gpt-5.6-sol, ACP, or Zed, and it names no single CLI default."
+
+[evidence.anthropic-claude-code-model-config]
+id = "anthropic-claude-code-model-config"
+title = "Claude Code model configuration"
+url = "https://code.claude.com/docs/en/model-config"
+unit = "model-agent"
+independence = "provider"
+reviewed_on = "2026-11-22"
+notes = "On 2026-11-22 the opus alias resolves to claude-opus-5-5 on the Anthropic API, and claude-opus-5 and claude-fable-5-1 remain selectable by full model name. From Claude Code v2.1.321, a claude-fable-5-1 saved in user settings on Pro, Max, and Ultra plans is migrated to the fable alias, now Fable 5.2, and may follow on Team and Enterprise plans; it can still be selected explicitly. The page does not mention ACP or Zed."
+
+[evidence.zed-external-agents]
+id = "zed-external-agents"
+title = "Zed external agents"
+url = "https://zed.dev/docs/ai/external-agents"
+unit = "model-agent"
+independence = "provider"
+reviewed_on = "2026-11-22"
+notes = "On 2026-11-22 Zed installs Claude Agent, Codex, OpenCode, and Gemini CLI as ACP external agents from its ACP Registry, with extension-provided agents migrated to the registry; each agent owns its authentication, billing, and model selection. Zed is the ACP client, not a model or agent provider; this establishes integration and access only, so it is classed with provider evidence."
+
+[evidence.google-gemini-cli-acp]
+id = "google-gemini-cli-acp"
+title = "Gemini CLI ACP mode"
+url = "https://geminicli.com/docs/cli/acp-mode"
+unit = "model-agent"
+independence = "provider"
+reviewed_on = "2026-11-22"
+notes = "On 2026-11-22 Gemini CLI runs as an ACP agent with gemini --acp, not marked experimental. The page also states that Gemini CLI was replaced by Antigravity CLI for unpaid-tier and Google One users on 2026-06-18 and has not been optimised for Gemini 4 Argon; it does not name Gemini 3.8 Flash or a default model."
+
+[evidence.opencode-acp]
+id = "opencode-acp"
+title = "OpenCode ACP support"
+url = "https://opencode.ai/docs/acp/"
+unit = "model-agent"
+independence = "provider"
+reviewed_on = "2026-11-22"
+notes = "On 2026-11-22 opencode acp runs OpenCode as an ACP agent over stdio, with a Zed configuration example; one prompt per session at a time, no MCP over ACP, and some features depend on unfinalised ACP RFDs. It does not establish which model vendors OpenCode reaches."
 
 [evidence.google-gemini-3-8-flash]
 id = "google-gemini-3-8-flash"
@@ -189,8 +261,8 @@ title = "Google Gemini 3.8 Flash model page"
 url = "https://aistudio.google.com/docs/models/gemini-3.8-flash"
 unit = "provider-endpoint"
 independence = "provider"
-reviewed_on = "2026-11-15"
-notes = "Confirms gemini-3.8-flash as a stable hosted model with multimodal input and a one-million-token context window. The page moved from ai.google.dev to aistudio.google.com by 2026-11-15."
+reviewed_on = "2026-11-22"
+notes = "Confirms gemini-3.8-flash as a stable hosted model with multimodal input and a one-million-token context window, with no deprecation or successor named on 2026-11-22. The page moved from ai.google.dev to aistudio.google.com by 2026-11-15."
 
 [evidence.google-gemini-lifecycle]
 id = "google-gemini-lifecycle"
@@ -198,8 +270,8 @@ title = "Google Gemini model deprecations"
 url = "https://aistudio.google.com/docs/deprecations"
 unit = "provider-endpoint"
 independence = "provider"
-reviewed_on = "2026-11-15"
-notes = "Lists a 2026-09-02 release and no announced shutdown date for gemini-3.8-flash. On 2026-11-15 the page, moved from ai.google.dev to aistudio.google.com, lists gemini-4-argon (released 2026-10-13), gemini-4-carbon (2026-11-10), and gemini-4-hydrogen (2026-11-12), none with a shutdown date."
+reviewed_on = "2026-11-22"
+notes = "Lists a 2026-09-02 release and no announced shutdown date for gemini-3.8-flash. On 2026-11-22 the page, moved from ai.google.dev to aistudio.google.com, lists gemini-4-argon (released 2026-10-13), gemini-4-carbon (2026-11-10), gemini-4-hydrogen (2026-11-12), and gemini-4-neon (2026-11-18), none with a shutdown date."
 
 [evidence.zai-glm-5-3-checkpoint]
 id = "zai-glm-5-3-checkpoint"
@@ -207,8 +279,8 @@ title = "Z.AI GLM-5.3 checkpoint"
 url = "https://huggingface.co/zai-org/GLM-5.3"
 unit = "bare-model"
 independence = "provider"
-reviewed_on = "2026-11-15"
-notes = "Publishes the 753B checkpoint and self-hosting instructions for vLLM, SGLang, Transformers, and related engines."
+reviewed_on = "2026-11-22"
+notes = "Publishes the 753B checkpoint and self-hosting instructions for vLLM, SGLang, Transformers, and related engines; on 2026-11-22 the card states it shares its base model with GLM-5.2, its gains coming from post-training, and names no successor."
 
 [evidence.zai-glm-5-3-license]
 id = "zai-glm-5-3-license"
@@ -225,7 +297,7 @@ title = "Z.AI GLM-5.3-Flash release"
 url = "https://autoclaw.z.ai/blog/model/glm-5.3-flash/"
 unit = "bare-model"
 independence = "provider"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 notes = "Confirms 320B total and 18B active parameters, native multimodality, public weights, and server-oriented deployment engines."
 
 [evidence.zai-glm-5-3-flash-license]
@@ -243,7 +315,7 @@ title = "Moonshot AI Kimi K3 repository"
 url = "https://github.com/MoonshotAI/Kimi-K3"
 unit = "bare-model"
 independence = "provider"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 notes = "Confirms 2.8T total and 104B active parameters, public weights, kimi-k3 API access, and deployment engines."
 
 [evidence.moonshot-kimi-k3-license]
@@ -261,8 +333,8 @@ title = "Alibaba Cloud qwen3.8-max model page"
 url = "https://docs.modelstudio.console.alibabacloud.com/en/model-studio/qwen3-8-max"
 unit = "provider-endpoint"
 independence = "provider"
-reviewed_on = "2026-11-15"
-notes = "Confirms the exact qwen3.8-max hosted identity, 2.4T MoE scale, 1M-token context, and image, text, and video input; it adds an upgraded qwen3.8-max-0902 snapshot with no deprecation or successor notice. On 2026-11-15 the documentation sidebar labels qwen4-max-preview as the latest model."
+reviewed_on = "2026-11-22"
+notes = "Confirms the exact qwen3.8-max hosted identity, 2.4T MoE scale, 1M-token context, and image, text, and video input; it adds an upgraded qwen3.8-max-0902 snapshot with no deprecation or successor notice. On 2026-11-22 the documentation sidebar labels qwen4-max as the latest model, with qwen4-max-preview listed separately."
 
 [evidence.qwen-3-8-family]
 id = "qwen-3-8-family"
@@ -270,7 +342,7 @@ title = "Qwen3.8 open-model repository"
 url = "https://github.com/QwenLM/Qwen3.8"
 unit = "bare-model"
 independence = "provider"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 notes = "Names Qwen3.8-2.4T-A95B and Qwen3.8-27B as open releases; it does not publish a checkpoint under the exact Max identity."
 
 [evidence.qwen-3-8-27b]
@@ -279,7 +351,7 @@ title = "Qwen3.8-27B checkpoint"
 url = "https://huggingface.co/Qwen/Qwen3.8-27B"
 unit = "bare-model"
 independence = "provider"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 notes = "Publishes a 27B checkpoint under Apache License 2.0 with vLLM and SGLang serving instructions."
 
 [evidence.xai-grok-4-6-release]
@@ -288,7 +360,7 @@ title = "SpaceXAI Grok 4.6 launch"
 url = "https://x.ai/news/grok-4-6"
 unit = "provider-endpoint"
 independence = "provider"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 notes = "Confirms the 2026-08-12 release and hosted access through Grok Build, Cursor, the API, and gateways."
 
 [evidence.xai-grok-4-6-model]
@@ -297,7 +369,7 @@ title = "SpaceXAI Grok 4.6 model page"
 url = "https://docs.x.ai/developers/models/grok-4.6"
 unit = "provider-endpoint"
 independence = "provider"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 notes = "Confirms grok-4.6 as an API identity and hosted model with a 500K context window and no deprecation notice; it neither deprecates grok-4.6 nor names a successor."
 
 [evidence.xai-grok-4-7-release]
@@ -306,7 +378,7 @@ title = "SpaceXAI Grok 4.7 launch"
 url = "https://x.ai/news/grok-4-7"
 unit = "provider-endpoint"
 independence = "provider"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 notes = "Confirms the 2026-09-21 release and availability in Cursor and Grok Build, through the Grok API, third-party coding harnesses, model routers, and cloud platforms."
 
 [evidence.xai-grok-4-7-model]
@@ -315,7 +387,7 @@ title = "SpaceXAI Grok 4.7 model page"
 url = "https://docs.x.ai/developers/models/grok-4.7"
 unit = "provider-endpoint"
 independence = "provider"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 notes = "Confirms grok-4.7 as an API identity and hosted model with a 500K context window and no deprecation notice."
 
 [evidence.xai-models]
@@ -324,8 +396,8 @@ title = "SpaceXAI models and pricing index"
 url = "https://docs.x.ai/developers/models"
 unit = "provider-endpoint"
 independence = "provider"
-reviewed_on = "2026-11-15"
-notes = "Lists grok-4.7 first and recommends it for code and general use, with grok-4.6 still listed at the same price and context window; neither model carries a deprecation notice and no public weights or licence terms are given."
+reviewed_on = "2026-11-22"
+notes = "Lists grok-4.7 first and recommends it for code and general use, with grok-4.6 still listed at the same price and context window and grok-build-0.1 also listed; neither grok-4.7 nor grok-4.6 carries a deprecation notice and no public weights or licence terms are given."
 
 [models]
 
@@ -336,7 +408,7 @@ provider = "Anthropic"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["anthropic-opus-5", "anthropic-lifecycle"]
 counter_evidence = []
 
@@ -347,7 +419,7 @@ provider = "Anthropic"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["anthropic-fable-5-1", "anthropic-current-models"]
 counter_evidence = []
 
@@ -358,7 +430,7 @@ provider = "Anthropic"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["anthropic-current-models", "anthropic-lifecycle"]
 counter_evidence = []
 
@@ -369,7 +441,7 @@ provider = "Anthropic"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["anthropic-current-models"]
 counter_evidence = []
 
@@ -380,7 +452,7 @@ provider = "Anthropic"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["anthropic-current-models", "anthropic-lifecycle"]
 counter_evidence = []
 
@@ -391,7 +463,7 @@ provider = "Anthropic"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["anthropic-current-models", "anthropic-lifecycle"]
 counter_evidence = []
 
@@ -402,7 +474,7 @@ provider = "OpenAI"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["openai-gpt-5-6-sol"]
 counter_evidence = ["openai-models"]
 
@@ -413,7 +485,7 @@ provider = "OpenAI"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["openai-gpt-5-6-terra"]
 counter_evidence = []
 
@@ -424,9 +496,9 @@ provider = "OpenAI"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
-evidence = ["openai-models", "openai-gpt-6-guide"]
-counter_evidence = []
+reviewed_on = "2026-11-22"
+evidence = ["openai-gpt-6-astra"]
+counter_evidence = ["openai-models", "openai-gpt-6-guide"]
 
 [models.gpt-6-sol]
 id = "gpt-6-sol"
@@ -435,8 +507,8 @@ provider = "OpenAI"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
-evidence = ["openai-gpt-6-guide"]
+reviewed_on = "2026-11-22"
+evidence = ["openai-gpt-6-sol"]
 counter_evidence = ["openai-models"]
 
 [models.gpt-6-1-sol]
@@ -446,9 +518,9 @@ provider = "OpenAI"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
-evidence = ["openai-models", "openai-gpt-6-guide"]
-counter_evidence = []
+reviewed_on = "2026-11-22"
+evidence = ["openai-gpt-6-1-sol"]
+counter_evidence = ["openai-models", "openai-gpt-6-guide"]
 
 [models.gpt-6-luna]
 id = "gpt-6-luna"
@@ -457,8 +529,8 @@ provider = "OpenAI"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
-evidence = ["openai-gpt-6-guide"]
+reviewed_on = "2026-11-22"
+evidence = ["openai-models"]
 counter_evidence = []
 
 [models.gemini-3-8-flash]
@@ -468,7 +540,7 @@ provider = "Google"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["google-gemini-3-8-flash", "google-gemini-lifecycle"]
 counter_evidence = []
 
@@ -479,7 +551,7 @@ provider = "Z.AI"
 openness = "open-weight"
 license = "GLM-5.3 License"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["zai-glm-5-3-checkpoint", "zai-glm-5-3-license"]
 counter_evidence = ["zai-glm-5-3-license"]
 
@@ -490,7 +562,7 @@ provider = "Z.AI"
 openness = "open-weight"
 license = "MIT License"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["zai-glm-5-3-flash-release", "zai-glm-5-3-flash-license"]
 counter_evidence = ["zai-glm-5-3-flash-license"]
 
@@ -501,7 +573,7 @@ provider = "Moonshot AI"
 openness = "open-weight"
 license = "Kimi K3 License"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["moonshot-kimi-k3"]
 counter_evidence = ["moonshot-kimi-k3-license"]
 
@@ -512,7 +584,7 @@ provider = "Alibaba Cloud Qwen"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["alibaba-qwen-3-8-max"]
 counter_evidence = ["qwen-3-8-family"]
 
@@ -523,7 +595,7 @@ provider = "Alibaba Qwen"
 openness = "open-weight"
 license = "Apache License 2.0"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["qwen-3-8-family", "qwen-3-8-27b"]
 counter_evidence = []
 
@@ -534,7 +606,7 @@ provider = "SpaceXAI"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["xai-grok-4-6-release", "xai-grok-4-6-model", "xai-models"]
 counter_evidence = []
 
@@ -545,7 +617,7 @@ provider = "SpaceXAI"
 openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
-reviewed_on = "2026-11-15"
+reviewed_on = "2026-11-22"
 evidence = ["xai-grok-4-7-release", "xai-grok-4-7-model", "xai-models"]
 counter_evidence = []
 
@@ -561,8 +633,8 @@ locality = "workstation"
 recommendation = "adopt"
 support = "available"
 movement = "outward"
-reviewed_on = "2026-10-18"
-evidence = ["local-model-radar-roadmap", "anthropic-opus-5", "anthropic-lifecycle"]
+reviewed_on = "2026-11-22"
+evidence = ["local-model-radar-roadmap", "anthropic-opus-5", "anthropic-lifecycle", "anthropic-claude-code-model-config", "zed-external-agents"]
 counter_evidence = []
 
 [routes.claude-opus-5-5-claude-code-acp]
@@ -575,8 +647,8 @@ locality = "workstation"
 recommendation = "adopt"
 support = "default"
 movement = "new"
-reviewed_on = "2026-10-18"
-evidence = ["local-model-radar-roadmap", "local-default-route-use", "anthropic-current-models", "anthropic-lifecycle"]
+reviewed_on = "2026-11-22"
+evidence = ["local-model-radar-roadmap", "local-default-route-use", "anthropic-current-models", "anthropic-lifecycle", "anthropic-claude-code-model-config", "zed-external-agents"]
 counter_evidence = []
 
 [routes.claude-fable-5-1-claude-code-acp]
@@ -589,8 +661,8 @@ locality = "workstation"
 recommendation = "adopt"
 support = "available"
 movement = "unchanged"
-reviewed_on = "2026-10-18"
-evidence = ["local-model-radar-roadmap", "anthropic-fable-5-1"]
+reviewed_on = "2026-11-22"
+evidence = ["local-model-radar-roadmap", "anthropic-fable-5-1", "anthropic-claude-code-model-config", "zed-external-agents"]
 counter_evidence = []
 
 [routes.gpt-5-6-sol-codex-acp]
@@ -603,9 +675,9 @@ locality = "workstation"
 recommendation = "adopt"
 support = "available"
 movement = "outward"
-reviewed_on = "2026-10-18"
-evidence = ["local-model-radar-roadmap", "openai-gpt-5-6-sol"]
-counter_evidence = []
+reviewed_on = "2026-11-22"
+evidence = ["local-model-radar-roadmap", "openai-gpt-5-6-sol", "zed-external-agents"]
+counter_evidence = ["openai-codex-models"]
 
 [routes.gpt-6-astra-codex-acp]
 id = "gpt-6-astra-codex-acp"
@@ -617,9 +689,9 @@ locality = "workstation"
 recommendation = "adopt"
 support = "available"
 movement = "unchanged"
-reviewed_on = "2026-10-18"
-evidence = ["local-model-radar-roadmap", "openai-models", "openai-gpt-6-guide"]
-counter_evidence = []
+reviewed_on = "2026-11-22"
+evidence = ["local-model-radar-roadmap", "openai-gpt-6-astra", "openai-codex-models", "zed-external-agents"]
+counter_evidence = ["openai-models", "openai-gpt-6-guide"]
 
 [routes.gpt-6-1-sol-codex-acp]
 id = "gpt-6-1-sol-codex-acp"
@@ -631,9 +703,9 @@ locality = "workstation"
 recommendation = "adopt"
 support = "default"
 movement = "new"
-reviewed_on = "2026-10-18"
-evidence = ["local-model-radar-roadmap", "local-default-route-use", "openai-models", "openai-gpt-6-guide"]
-counter_evidence = []
+reviewed_on = "2026-11-22"
+evidence = ["local-model-radar-roadmap", "local-default-route-use", "openai-gpt-6-1-sol", "openai-codex-models", "zed-external-agents"]
+counter_evidence = ["openai-models", "openai-gpt-6-guide"]
 
 [routes.gemini-3-8-flash-gemini-cli-acp]
 id = "gemini-3-8-flash-gemini-cli-acp"
@@ -645,9 +717,9 @@ locality = "unavailable"
 recommendation = "assess"
 support = "not-integrated"
 movement = "unchanged"
-reviewed_on = "2026-10-18"
-evidence = ["local-model-radar-roadmap", "google-gemini-3-8-flash", "google-gemini-lifecycle"]
-counter_evidence = []
+reviewed_on = "2026-11-22"
+evidence = ["local-model-radar-roadmap", "google-gemini-3-8-flash", "google-gemini-lifecycle", "google-gemini-cli-acp", "zed-external-agents"]
+counter_evidence = ["google-gemini-cli-acp"]
 
 [routes.glm-5-3-opencode-acp]
 id = "glm-5-3-opencode-acp"
@@ -659,8 +731,8 @@ locality = "unavailable"
 recommendation = "assess"
 support = "not-integrated"
 movement = "unchanged"
-reviewed_on = "2026-10-18"
-evidence = ["local-model-radar-roadmap", "zai-glm-5-3-checkpoint"]
+reviewed_on = "2026-11-22"
+evidence = ["local-model-radar-roadmap", "zai-glm-5-3-checkpoint", "opencode-acp", "zed-external-agents"]
 counter_evidence = []
 
 [routes.glm-5-3-self-hosted]
@@ -673,7 +745,7 @@ locality = "cluster"
 recommendation = "assess"
 support = "not-integrated"
 movement = "unchanged"
-reviewed_on = "2026-10-18"
+reviewed_on = "2026-11-22"
 evidence = ["local-model-radar-roadmap", "zai-glm-5-3-checkpoint", "zai-glm-5-3-license"]
 counter_evidence = ["zai-glm-5-3-license"]
 
@@ -687,8 +759,8 @@ locality = "unavailable"
 recommendation = "assess"
 support = "not-integrated"
 movement = "unchanged"
-reviewed_on = "2026-10-18"
-evidence = ["local-model-radar-roadmap", "zai-glm-5-3-flash-release"]
+reviewed_on = "2026-11-22"
+evidence = ["local-model-radar-roadmap", "zai-glm-5-3-flash-release", "opencode-acp", "zed-external-agents"]
 counter_evidence = []
 
 [routes.glm-5-3-flash-self-hosted]
@@ -701,7 +773,7 @@ locality = "server"
 recommendation = "assess"
 support = "not-integrated"
 movement = "unchanged"
-reviewed_on = "2026-10-18"
+reviewed_on = "2026-11-22"
 evidence = ["local-model-radar-roadmap", "zai-glm-5-3-flash-release", "zai-glm-5-3-flash-license"]
 counter_evidence = ["zai-glm-5-3-flash-license"]
 
@@ -715,8 +787,8 @@ locality = "unavailable"
 recommendation = "assess"
 support = "not-integrated"
 movement = "unchanged"
-reviewed_on = "2026-10-18"
-evidence = ["local-model-radar-roadmap", "moonshot-kimi-k3"]
+reviewed_on = "2026-11-22"
+evidence = ["local-model-radar-roadmap", "moonshot-kimi-k3", "opencode-acp", "zed-external-agents"]
 counter_evidence = []
 
 [routes.kimi-k3-self-hosted]
@@ -729,7 +801,7 @@ locality = "cluster"
 recommendation = "assess"
 support = "not-integrated"
 movement = "unchanged"
-reviewed_on = "2026-10-18"
+reviewed_on = "2026-11-22"
 evidence = ["local-model-radar-roadmap", "moonshot-kimi-k3"]
 counter_evidence = ["moonshot-kimi-k3-license"]
 
@@ -743,8 +815,8 @@ locality = "unavailable"
 recommendation = "assess"
 support = "not-integrated"
 movement = "unchanged"
-reviewed_on = "2026-10-18"
-evidence = ["local-model-radar-roadmap", "alibaba-qwen-3-8-max"]
+reviewed_on = "2026-11-22"
+evidence = ["local-model-radar-roadmap", "alibaba-qwen-3-8-max", "opencode-acp", "zed-external-agents"]
 counter_evidence = ["qwen-3-8-family"]
 
 [routes.qwen-3-8-27b-self-hosted]
@@ -757,7 +829,7 @@ locality = "workstation"
 recommendation = "assess"
 support = "not-integrated"
 movement = "unchanged"
-reviewed_on = "2026-10-18"
+reviewed_on = "2026-11-22"
 evidence = ["local-model-radar-roadmap", "qwen-3-8-family", "qwen-3-8-27b"]
 counter_evidence = []
 
@@ -771,7 +843,7 @@ locality = "unavailable"
 recommendation = "assess"
 support = "not-integrated"
 movement = "outward"
-reviewed_on = "2026-10-18"
+reviewed_on = "2026-11-22"
 evidence = ["local-model-radar-roadmap", "xai-grok-4-6-release", "xai-grok-4-6-model"]
 counter_evidence = ["xai-models"]
 
@@ -785,7 +857,7 @@ locality = "unavailable"
 recommendation = "assess"
 support = "not-integrated"
 movement = "new"
-reviewed_on = "2026-10-18"
+reviewed_on = "2026-11-22"
 evidence = ["local-model-radar-roadmap", "xai-grok-4-7-release", "xai-grok-4-7-model", "xai-models"]
 counter_evidence = []
 
@@ -811,38 +883,38 @@ evidence = ["benchlm-methodology"]
 
 [benchmarks.artificial-analysis-intelligence]
 id = "artificial-analysis-intelligence"
-display_name = "Artificial Analysis Intelligence Index v4.3.2"
+display_name = "Artificial Analysis Intelligence Index v5.0.1"
 owner = "Artificial Analysis"
 unit = "provider-endpoint"
-domain = "Agents, coding, scientific reasoning, and general capability"
-metric = "Weighted composite across ten evaluations"
+domain = "Knowledge work, coding, science, and general capability"
+metric = "Composite of four equally weighted categories across nine evaluations"
 constraints = "Primarily text-based English evaluation; image, speech, and multilingual results are separate"
 reproducibility = "Versioned methodology publishes tasks, weights, prompts, graders, and environment details"
 risks = "Composite hides per-task variation and retains endpoint, tool, grader, and language dependence"
 run_cost = "High paid API and task-environment cost"
 applicability = "corroborating"
 lifecycle = "current"
-published_on = "2026-09-01"
-data_as_of = "2026-09-14"
-reviewed_on = "2026-10-18"
+published_on = "2026-11-01"
+data_as_of = "2026-11-01"
+reviewed_on = "2026-11-22"
 evidence = ["aa-intelligence-methodology"]
 
 [benchmarks.artificial-analysis-coding-agent]
 id = "artificial-analysis-coding-agent"
-display_name = "Artificial Analysis Coding Agent Index v1.5"
+display_name = "Artificial Analysis Coding Agent Index v2.1"
 owner = "Artificial Analysis"
 unit = "model-agent"
 domain = "End-to-end software engineering, terminal work, and repository comprehension"
-metric = "Equal-weight pass@1 composite across three benchmark families"
-constraints = "303 tasks with three attempts per task and benchmark-specific agents and environments"
-reproducibility = "Versioned task sets, settings, scoring, efficiency metrics, and reward-hacking review"
-risks = "Results remain agent, scaffold, verifier, judge, network, and environment dependent"
+metric = "Equal-weight composite of a judged rubric score and two pass@1 resolution rates"
+constraints = "322 tasks with three attempts per task; FrontierCode-AA 2.0 tasks are private"
+reproducibility = "Versioned task sets, settings, scoring, efficiency metrics, and reward-hacking review; one component's tasks are not public"
+risks = "Results remain agent, scaffold, verifier, LLM-judge, network, and environment dependent"
 run_cost = "High paid API and container execution cost"
 applicability = "primary"
 lifecycle = "current"
-published_on = "2026-09-01"
-data_as_of = "2026-09-14"
-reviewed_on = "2026-10-18"
+published_on = "2026-11-01"
+data_as_of = "2026-11-01"
+reviewed_on = "2026-11-22"
 evidence = ["aa-coding-agent-methodology"]
 
 [benchmarks.lmarena]
