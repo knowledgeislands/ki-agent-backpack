@@ -76,3 +76,36 @@ export const evaluatePruneSelection = ({
     writes: false
   }
 }
+
+/** A terminal record is due for the standing prune this many days after its terminal state landed (PRUNE-RECORDS). */
+export const STANDING_PRUNE_DAYS = 7
+
+export type StandingPruneInput = {
+  status: PruneCandidate['status']
+  /** When the commit that first recorded the terminal state was made, or null where none is found. */
+  terminalCommittedAt: Date | null
+  /** That commit, and the delivery commits the record names, are on the upstream default branch. */
+  landed: boolean | 'unknown'
+  now: Date
+}
+
+export type StandingPruneOutcome = { due: true } | { due: false; reason: string }
+
+/**
+ * Whether a record may be pruned without asking the owner: `done` or `cancelled` for at least seven days, with its
+ * commits landed. Being due is the deletion authority for that record alone; the selection, preflight and prune-only
+ * commit rules still apply, and closure or cancellation still needs the owner's approval.
+ */
+export const evaluateStandingPrune = ({
+  status,
+  terminalCommittedAt,
+  landed,
+  now
+}: StandingPruneInput): StandingPruneOutcome => {
+  if (status !== 'done' && status !== 'cancelled') return { due: false, reason: 'not done or cancelled' }
+  if (terminalCommittedAt === null) return { due: false, reason: 'its terminal state has not landed in a commit' }
+  if (landed !== true) return { due: false, reason: 'its commits are not yet landed upstream' }
+  const days = (now.getTime() - terminalCommittedAt.getTime()) / 86_400_000
+  if (days < STANDING_PRUNE_DAYS) return { due: false, reason: `terminal for under ${STANDING_PRUNE_DAYS} days` }
+  return { due: true }
+}

@@ -17,15 +17,15 @@ Read [the review-closure procedure](standard-acceptance.md) and [the local autho
 1. Resolve the selected adapter and confirm one exact canonical local record at its physical root is either `awaiting-review` with the roadmap-owned six-heading review packet and passing governing audits or any open record, including triage, with an exact proposed cancellation `resolution`: obsolete, rejected, duplicate, merged, superseded, or returned. Remote adapters stop.
 2. Present the delivery review packet or proposed cancellation and require human approval. An acceptance bundle answer quoted with its source and the exact records it lists, under ACCEPT-BUNDLE, approves delivery closure for those records. A recorded window grant naming closure for a frozen wave may close only that wave's delivery records, never a cancellation.
 3. Record approved closure as `done` or `cancelled`, removing the horizon, retain the terminal record, and ensure that state lands before any later pruning. A failed review returns the record to `in-progress` instead.
-4. Prune only fully resolved regular `done` or `cancelled` records selected beneath the exact adapter root; selection is deletion authority. A prune-only commit may remove several eligible records together, contains no lifecycle transition or unrelated work, and carries the standardised message: subject `chore(roadmap): prune <N> done work record(s)`, singular for one record, and one `- <ID>` body line per record in identifier order.
+4. Prune only fully resolved regular `done` or `cancelled` records selected beneath the exact adapter root; selection is deletion authority. A record terminal for 7 days with its commits landed is due under [the standing prune](standard-acceptance.md#443-the-standing-prune) and is pruned without asking the owner (PRUNE-RECORDS). A prune-only commit may remove several eligible records together, contains no lifecycle transition or unrelated work, and carries the standardised message: subject `chore(roadmap): prune <N> done work record(s)`, singular for one record, and one `- <ID>` body line per record in identifier order.
 
 It never chooses work, starts implementation, edits plan scope, reconstructs missing verification, or treats a recap or passing command as human approval.
 
 ## Relationship boundary
 
-`ki-work recap` identifies unfinished work and may recommend a review-closure action; it never closes or deletes a record.
+`ki-work recap` identifies unfinished work and may recommend a review-closure action or surface records due under the standing prune; it never closes or deletes a record.
 
-`ki-work next` captures and adopts forward work and may surface retained records. It routes an approved cancellation here; it never closes or invokes deletion.
+`ki-work next` captures and adopts forward work and may surface retained records, routing those due under the standing prune here. It routes an approved cancellation here; it never closes or invokes deletion.
 
 `ki-work plan` owns plan shape and the ongoing record, but terminal closure and explicitly selected pruning belong here.
 
@@ -41,12 +41,12 @@ Runtime subagents can help execute bounded review preparation only when separate
 
 `accept <work>` resolves the selected adapter, then reviews one canonical local work record. Delivery closure requires `awaiting-review` and stops for human authority unless a recorded window grant names closure for that record's frozen wave. Cancellation requires exact human approval of its `resolution`, with a same-repository `resolution_target` for duplicate, merged, or superseded, or, where the replacing work lives in another repository, that repository named in plain words in `## Cancelled`; only the owning repository closes its own record. A grant never substitutes. Remote execution stops.
 
-`prune <work-record-or-glob>...` resolves each explicit pathname or glob only under the selected local adapter's canonical root (`docs/roadmap/` or `Streams/Roadmap/`), rejects traversal, symlinks and incomplete resolution, verifies every resolved regular work record is `done` or `cancelled`, then deletes exactly that set. Quote shell globs. The invocation is the deletion authority: do not ask for a second confirmation. Remote execution stops. Use `ki repo roadmap prune` only for the non-KB deterministic repository-roadmap sweep; it commits its deletions by default under the standardised message, and `--no-commit` leaves them for a manual commit under the same message.
+`prune <work-record-or-glob>...` resolves each explicit pathname or glob only under the selected local adapter's canonical root (`docs/roadmap/` or `Streams/Roadmap/`), rejects traversal, symlinks and incomplete resolution, verifies every resolved regular work record is `done` or `cancelled`, then deletes exactly that set. Quote shell globs. The invocation is the deletion authority: do not ask for a second confirmation. With no record or glob, `prune` selects the records due under [the standing prune](standard-acceptance.md#443-the-standing-prune), terminal for 7 days with their commits landed, runs the same checks and preflight, and names each record it pruned in its report; the standing rule is the deletion authority. Remote execution stops. Use `ki repo roadmap prune` only for the non-KB deterministic repository-roadmap sweep; it commits its deletions by default under the standardised message, and `--no-commit` leaves them for a manual commit under the same message.
 
 With no target, identify the required exact accepted item or terminal records and stop.
 
 ## Notes
 
-- Human approval is the default; it is never inferred from a clean gate, a commit, a recap, or silence.
+- Human approval is the default for closure and cancellation; it is never inferred from a clean gate, a commit, a recap, or silence. Pruning a record due under the standing prune needs none (PRUNE-RECORDS).
 - Terminal records are retained until their committed `done` or `cancelled` state precedes a dedicated prune-only commit. Pruning is sanctioned cleanup: Git history is the archive, and pruned records are not restored. `ki repo roadmap prune` makes the prune commit by default unless run with `--no-commit`. Process pruning is explicit destructive cleanup in either local adapter; native roadmap pruning is an intentionally explicit non-KB selected-repository sweep.
 - No KI CLI command, wrapper script, runtime-specific mechanism, push, or release belongs here.

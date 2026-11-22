@@ -64,7 +64,7 @@ On the cadence in [the source list](references/sources.md), compare actual repos
 - A plan answers “how”; a Decision Record answers “why”. Use `ki-decision-records` for the latter.
 - The `ki-work next` process skill selects and promotes work through the readiness contract defined here.
 - The `ki-work plan` process skill shapes an immediate draft through Ready.
-- `ki-work implement` owns Ready → In progress → Awaiting review; `ki-work accept` owns Awaiting review → Done and pruning by explicit work-record path or glob.
+- `ki-work implement` owns Ready → In progress → Awaiting review; `ki-work accept` owns Awaiting review → Done and pruning by explicit work-record path or glob, or without asking once a record has been terminal for 7 days with its commits landed (PRUNE-RECORDS).
 - Lifecycle transitions may share a coherent planning, implementation, or closure commit; only pruning requires its own later commit after the `done` record has landed.
 - `ki-work recap` and `ki-work next` may recommend pruning; they never delete canonical work-item records.
 - The local `scripts/shared/rubric.ts` is the materialised compile-time contract from `ki-skills`; generic execution, findings, progress, transaction safety, rollback, and reporting belong to `ki`.

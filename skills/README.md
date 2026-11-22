@@ -413,12 +413,12 @@ Create, audit, review, extract, or optimise Agent Skills. Use for SKILL.md scope
 
 #### `ki-work`
 
-Lead the Work guild: choose, plan, deliver, accept and recap work. Use `next` to capture prospective work or decide what comes next, `plan` to make selected work Ready, `implement` to deliver one Ready record to review, `accept` to close, cancel or prune records with human approval, `recap` for a live-session recap or handoff, and `design` to shape a new Project or model before any record exists; audit or choose a repository's forward-work adapter: local roadmap, KB Streams or Linear.
+Lead the Work guild: choose, plan, deliver, accept and recap work. Use `next` to capture prospective work or decide what comes next, `plan` to make selected work Ready, `implement` to deliver one Ready record to review, `accept` to close or cancel records with human approval and prune terminal ones, `recap` for a live-session recap or handoff, and `design` to shape a new Project or model before any record exists; audit or choose a repository's forward-work adapter: local roadmap, KB Streams or Linear.
 
 - **Kind:** Governance
 - **Leads:** Work
 - **Applicability:** Declaration Only
-- **Arguments:** `accept <work> | accept prune <record-or-glob>... | audit <repo> | conform <repo> | design start <subject> | design resume <id> | educate <repo> | help | implement <work> | next [--review] | next defer <item> <horizon> | plan <work>... | recap [--runtime <runtime>] [--transcript <session-file>] | refresh`
+- **Arguments:** `accept <work> | accept prune [<record-or-glob>...] | audit <repo> | conform <repo> | design start <subject> | design resume <id> | educate <repo> | help | implement <work> | next [--review] | next defer <item> <horizon> | plan <work>... | recap [--runtime <runtime>] [--transcript <session-file>] | refresh`
 - **Dependencies:** None
 - **Runtime:** Portable
 

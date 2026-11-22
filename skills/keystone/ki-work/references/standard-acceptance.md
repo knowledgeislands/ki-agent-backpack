@@ -20,6 +20,7 @@ ki-status: in force
   - [4.4 Prune explicitly selected terminal records](#44-prune-explicitly-selected-terminal-records)
     - [4.4.1 Select and delete](#441-select-and-delete)
     - [4.4.2 Cross-repository reference preflight](#442-cross-repository-reference-preflight)
+    - [4.4.3 The standing prune](#443-the-standing-prune)
   - [4.5 Controlled acceptance models](#45-controlled-acceptance-models)
 
 ## 1. Introduction
@@ -59,7 +60,7 @@ How a record is closed, cancelled and pruned.
 | **Delivery acceptance** | Closing an `awaiting-review` record as `done` against its six-part review packet, with the owner's approval. **Standard:** this one, [4.1](#41-resolve-the-record-and-closure-evidence) |
 | **Cancellation** | Closing an open record as `cancelled` with exactly one `resolution`, approved by a human. **Standard:** this one, [4.1](#41-resolve-the-record-and-closure-evidence) |
 | **Acceptance bundle** | A coordinating work's `awaiting-review` records brought to the owner as one `ACCEPT` query, whose answer approves delivery closure for each listed record not named as an exception. **Standard:** this one, [4.2](#42-obtain-closure-authority) |
-| **Prune** | Deleting explicitly selected `done` or `cancelled` records in a prune-only commit, Git history being the archive. **Standard:** this one, [4.4](#44-prune-explicitly-selected-terminal-records) |
+| **Prune** | Deleting explicitly selected `done` or `cancelled` records, or those due under the standing prune, in a prune-only commit, Git history being the archive. **Standard:** this one, [4.4](#44-prune-explicitly-selected-terminal-records) |
 
 [Back to contents](#contents)
 
@@ -119,7 +120,7 @@ When recording local acceptance, preserve `created_at` and advance `updated_at` 
 
 ### 4.4 Prune explicitly selected terminal records
 
-Pruning a `done` or `cancelled` record is sanctioned cleanup. Git history is the archive: the parent of the prune commit holds each record, and pruned records are not restored.
+Pruning a `done` or `cancelled` record is sanctioned cleanup. Git history is the archive: the parent of the prune commit holds each record, and pruned records are not restored. A record terminal for seven days with its commits landed is pruned without asking the owner, under [the standing prune](#443-the-standing-prune); every other prune is selected explicitly.
 
 #### 4.4.1 Select and delete
 
@@ -140,6 +141,18 @@ Use mechanical searches for each candidate's canonical path, filename and identi
 Preserve useful references by linking to the appropriate durable current document or a verified immutable Git-history copy. Verify that the chosen history locator is available to its intended readers; a local Git object alone does not prove a hosted URL resolves. A link to a pruned record can break twice, by a wrong prefix as well as by the deleted file: read the record's real file name in the prune commit's parent before repointing the link to that revision (Tower step 49). Repair only within the authorised repository scope, committing repairs before deletion. Prune approval does not authorise peer edits, unarchiving or publication. If an orphaning reference cannot be repaired within that authority, or relevant reference evidence is unavailable, retain the affected Done record and report the exact blocker. Continue pruning only independently safe candidates; never claim exhaustive cross-repository coverage from an incomplete scan.
 
 `ki repo roadmap prune` is a separate native non-KB host operation: it sweeps every selected repository's canonical regular `done` roadmap items after validating the complete selected set. It does not approve closure, choose records by inference, delete a non-terminal record, or replace this procedure when an explicit path or glob selection is required. Complete the reference preflight before invoking it; the command does not supply that evidence. By default it commits each repository's deletions itself as one prune-only commit under the standardised message, staging exactly the deleted record paths and running the repository's hooks; it refuses before deleting anything when the repository is not a Git work tree, already has staged changes, or holds an untracked or modified selected record, and a rejected commit restores the deleted records. `--dry-run` makes the same selection and checks and reports the records and planned commit without changing anything. `--no-commit` only deletes the records and skips those Git checks, so confirm each record's committed `done` state and commit the deletions alone under the same message.
+
+[Back to contents](#contents)
+
+#### 4.4.3 The standing prune
+
+A `done` or `cancelled` record is due for pruning, without asking the owner, once the commit that first recorded its terminal state is at least 7 days old and that commit, with the delivery commits the record names, has landed on the upstream default branch (PRUNE-RECORDS a, Kris, 22 November 2026: "I think you could do 7 days. We don't want to keep them around."). Closure and cancellation still need the owner's approval under [4.2](#42-obtain-closure-authority); the standing prune never closes a record.
+
+1. **Who prunes.** `ki-work accept prune` selects the due records itself, and the rule is the deletion authority for each; `ki-work next` and `ki-work recap` surface due records and route them there, and never delete one.
+2. **The same procedure.** The selection checks of [4.4.1](#441-select-and-delete), the [reference preflight](#442-cross-repository-reference-preflight) and the prune-only commit under the standardised message all apply; a record whose preflight finds a reference it cannot repair stays, and the blocker is reported.
+3. **The report names them.** The session lists each record it pruned under the standing prune in its report, so the owner sees what went without being asked.
+
+`scripts/internal/prune-selection.ts`'s `evaluateStandingPrune` models when a record is due.
 
 [Back to contents](#contents)
 

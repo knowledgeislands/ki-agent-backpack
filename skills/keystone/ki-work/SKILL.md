@@ -12,10 +12,10 @@ ki-contributes: ['.ki.toml']
 description: >
   Lead the Work guild: choose, plan, deliver, accept and recap work. Use `next` to capture prospective work or decide
   what comes next, `plan` to make selected work Ready, `implement` to deliver one Ready record to review, `accept`
-  to close, cancel or prune records with human approval, `recap` for a live-session recap or handoff, and `design`
+  to close or cancel records with human approval and prune terminal ones, `recap` for a live-session recap or handoff, and `design`
   to shape a new Project or model before any record exists; audit or choose a repository's forward-work adapter:
   local roadmap, KB Streams or Linear.
-argument-hint: 'accept <work> | accept prune <record-or-glob>... | audit <repo> | conform <repo> | design start <subject> | design resume <id> | educate <repo> | help | implement <work> | next [--review] | next defer <item> <horizon> | plan <work>... | recap [--runtime <runtime>] [--transcript <session-file>] | refresh'
+argument-hint: 'accept <work> | accept prune [<record-or-glob>...] | audit <repo> | conform <repo> | design start <subject> | design resume <id> | educate <repo> | help | implement <work> | next [--review] | next defer <item> <horizon> | plan <work>... | recap [--runtime <runtime>] [--transcript <session-file>] | refresh'
 ---
 
 # Work
@@ -60,7 +60,7 @@ Carries the universal **AUDIT · CONFORM · EDUCATE · REFRESH** modes and the s
 
 ### Mode ACCEPT
 
-`accept <work>` closes one reviewed record as done, or cancels an open record with an approved resolution; `accept prune <record-or-glob>...` deletes explicitly selected terminal records. Read [the accept reference](references/mode-accept.md) and follow it. It needs the owner's approval for every closure and cancellation, and never chooses work, starts implementation or reconstructs missing verification.
+`accept <work>` closes one reviewed record as done, or cancels an open record with an approved resolution; `accept prune <record-or-glob>...` deletes explicitly selected terminal records, and `accept prune` alone those terminal for 7 days with their commits landed, without asking the owner (PRUNE-RECORDS). Read [the accept reference](references/mode-accept.md) and follow it. It needs the owner's approval for every closure and cancellation, never for the standing prune, and never chooses work, starts implementation or reconstructs missing verification.
 
 ### Mode AUDIT
 
