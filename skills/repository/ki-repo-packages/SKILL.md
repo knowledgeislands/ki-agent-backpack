@@ -64,4 +64,4 @@ Re-read the reference repository and [the sources](references/sources.md), propo
 - `ki-repo-tools` owns installed command-line tools and the release-on-demand policy that also decides when a package releases.
 - `ki-design-system` owns how a component library is designed: its atomic levels and its components document. This skill owns how it is packaged, shown and shared.
 - `ki-decision-records` owns decision-record identity, including records kept from a repository's earlier names.
-- No `exemplars.md` is bundled: `packages-stoa` is the only package repository, and the layout and declaration in the standard already show the reusable shape.
+- No `exemplars.md` is bundled: the layout and declaration in the standard already show the reusable shape.
