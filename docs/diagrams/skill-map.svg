@@ -917,14 +917,14 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         <text x="132" y="388" class="t-muted" font-size="9" text-anchor="middle">fundamentals + acquire · opt-in</text>
         </g>
 
-        <g id="node-ki-agentic-systems" data-node-id="ki-agentic-systems" data-node-label="ki-agentic-systems" tabindex="0" role="button" aria-label="Focus ki-agentic-systems, fundamentals · knowledge, Keystone · 10 skills › Fundamentals · Knowledge" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="fundamentals · knowledge" data-node-context="Keystone · 10 skills › Fundamentals · Knowledge">
-          <title>ki-agentic-systems · fundamentals · knowledge · Keystone · 10 skills › Fundamentals · Knowledge</title>
+        <g id="node-ki-agentic-ecosystems" data-node-id="ki-agentic-ecosystems" data-node-label="ki-agentic-ecosystems" tabindex="0" role="button" aria-label="Focus ki-agentic-ecosystems, fundamentals · knowledge, Keystone · 10 skills › Fundamentals · Knowledge" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="fundamentals · knowledge" data-node-context="Keystone · 10 skills › Fundamentals · Knowledge">
+          <title>ki-agentic-ecosystems · fundamentals · knowledge · Keystone · 10 skills › Fundamentals · Knowledge</title>
           <rect x="240" y="344" width="200" height="60" rx="8" class="c-mask"/>
           <rect x="240" y="344" width="200" height="60" rx="8" class="c-cloud" data-animate="node" style="--step: 4;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(246 350) scale(0.6875)">
             <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
           </g>
-          <text data-node-label="" x="340" y="372" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-agentic-systems</text>
+          <text data-node-label="" x="340" y="372" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-agentic-ecosystems</text>
         <text x="340" y="388" class="t-muted" font-size="9" text-anchor="middle">fundamentals · knowledge</text>
         </g>
 
