@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:05:55Z
+ki-revised: 2026-11-22T09:00:00Z
 ki-status: in force
 ---
 
@@ -190,6 +190,7 @@ The forms a diagram is kept in, and how it is named.
 Each diagram has up to four forms under `docs/diagrams/`:
 
 - **Source** - `<slug>.<type>.json`, the Archify input. It records the repository revision and cites the file and line each node was traced from. It is the thing to edit. Always committed.
+
 - **SVG** - `<slug>.svg`, self-contained, with no reference outside the file other than a fragment or an inline `data:` URI. Always committed. Its form is the manifest's `svg_form`:
   - `dual`, the default for living diagrams: Archify's own export, dark by default and light under `prefers-color-scheme: light`, fonts inlined;
   - `light`: a static light-only export with every paint resolved to a plain attribute, no `<style>`, no CSS variable and no `@font-face`, and the system monospace font, so it renders the same in any SVG viewer, `rsvg-convert` included;
@@ -197,7 +198,9 @@ Each diagram has up to four forms under `docs/diagrams/`:
   - `ki-night`: the `ki` form in the `ki-design` night palette, since a static SVG carries one palette and the KI theme maps both the night and day themes.
 
   A design report uses `ki` or `light`, committed beside the subject's Project note as `ki-work design` sets.
+
 - **Interactive HTML** - `<slug>.html`, the finalized viewer with search, focus, zoom and source links, roughly 800 KB per diagram. Committed only for a diagram whose manifest table sets `commit_html = true`, as a repository that serves its diagrams does, or one whose readers open the viewer from a checkout or a forge; the opt-in then requires it. Otherwise it is rebuilt locally under `+/diagrams/<slug>/` and never committed.
+
 - **Receipt** - `<slug>.receipt.json`, beside each committed viewer and only there: the proof that the viewer was rendered from the committed source. It holds the receipt schema version, the slug and type, the source and HTML file names with their SHA-256 hashes and byte counts, and the renderer's name and version, with no local path, so it is portable. [The build command](#482-the-build-command) writes it with the viewer, and it is never hand-edited. A viewer whose receipt is missing or no longer matches its source and HTML is stale, whatever its `last_checked` says: a matching receipt never refreshes `last_checked`, and a stale `last_checked` never fails the receipt.
 
 `docs/diagrams/` holds nothing else apart from the manifest and its `README.md`.
@@ -238,6 +241,8 @@ A diagram is embedded as its SVG, never as a screenshot. The inline figure alway
 - **A diagram that does not** commits only the source and the SVG. A reader that can build the HTML locally, such as the Observatory, offers the interactive view once `finalize` has written it under `+/diagrams/<slug>/`, and otherwise says it is not built.
 
 Any other Markdown document embeds a diagram with a relative path to its SVG. Where a guide may embed one is `ki-guides`' concern.
+
+A page or app embeds the SVG as an image, an `<img>` or a Markdown image, never inlined into its own markup: a `dual` SVG carries its own `<style>` and theme, which a strict `style-src` Content Security Policy blocks and an app's `[data-theme]` rules override (Cairn, November 2026). A page with its own theme switch embeds the static forms as one file per theme, such as `ki` and `ki-night`, rather than the `dual` form's media query. An SVG drawn for a page read on a phone is 400 units wide with no text under 18 units, so that at 375 px no text falls below 16 px (`apps-agenticecosystems.info` `1ff89c5`).
 
 [Back to contents](#contents)
 

@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:12:00Z
+ki-revised: 2026-11-22T09:00:00Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -84,6 +84,8 @@ These sources were added on 2026-10-31 for the [tool preference order](standard-
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, added three embedding practices the Cairn designer and builder found overnight to [Embedding](standard-diagrams.md#46-embedding): embed an SVG as an image, never inline; one static file per theme on a page with its own theme switch; and the phone-width sizing for a drawn SVG. No rule changed and no outside source was refreshed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Authoring guild: REFRESH names the backpack, and the standard, EDUCATE's starter table and the script comments say backpack where they meant the bundle; the adoption history and identifiers keep their words. No criterion changed and no outside source refreshed.
 
