@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T08:05:00Z
+ki-revised: 2026-11-22T08:30:00Z
 ki-status: in force
 ---
 
@@ -228,7 +228,7 @@ This affects every KI-conformant repository, not an unusual corner case: the rep
 
 #### 4.5.1 Checks before committing
 
-Every session and run, a coordinator's own commits and every change it records in another work package included, runs the repository's own checks on each file it is about to commit before committing it, so that the commit hook finds nothing to refuse. For Markdown that is `rumdl fmt` then `rumdl check` on the file; other files take the formatter and linter the repository's hook or `lint-staged` configuration names for them. These per-file checks and the commit hooks are all a commit needs while iterating; the full suite comes at the daily or release tier of the `ki-delegation` [check tiers](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#45-prompt-shape) (CHECKS-LIGHT). A refused commit is a failure to report with its cause, never a step to retry around and never a reason for `--no-verify`. Before pushing, confirm with `git status --short -- <path>...` that each committed path is clean, so that no file a refused commit left modified or staged travels unnoticed or blocks the next pull. Kris set this on 6 November 2026, after commits had been made that their hooks then failed: "It's really important that we make sure that things do pass the linting before we push them."
+Every session and run, a coordinator's own commits and every change it records in another work package included, runs the repository's own checks on each file it is about to commit before committing it, so that the commit hook finds nothing to refuse. For Markdown that is `rumdl fmt` then `rumdl check` on the file; other files take the formatter and linter the repository's hook or `lint-staged` configuration names for them. These per-file checks and the commit hooks are all a commit needs while iterating; the full suite comes at the baseline or release tier of the `ki-delegation` [check tiers](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#45-prompt-shape) (CHECKS-LIGHT, BASELINE-CHECKS). A refused commit is a failure to report with its cause, never a step to retry around and never a reason for `--no-verify`. Before pushing, confirm with `git status --short -- <path>...` that each committed path is clean, so that no file a refused commit left modified or staged travels unnoticed or blocks the next pull. Kris set this on 6 November 2026, after commits had been made that their hooks then failed: "It's really important that we make sure that things do pass the linting before we push them."
 
 [Back to contents](#contents)
 

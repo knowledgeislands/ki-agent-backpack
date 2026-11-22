@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T08:05:00Z
+ki-revised: 2026-11-22T08:30:00Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -73,6 +73,8 @@ Kris's decisions behind the rules, each quoted in the standard beside the rule i
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 [checks before committing](standard-git.md#451-checks-before-committing) was brought to BASELINE-CHECKS, Kris's steer of that day at about 08:20 GMT in the Cairn summit's [change 70, 4.6](https://github.com/krisb/ki-cairn-store/blob/bf8acca3/work/cairn/cairn.summit/70-bots.change.md#46-decided) and owned by `ki-delegation`: the full suite belongs to the baseline and release tiers rather than daily. No outside source was refreshed.
 
 On 22 November 2026 [checks before committing](standard-git.md#451-checks-before-committing) was aligned with CHECKS-LIGHT, Kris's steer of that day recorded in the Cairn summit's [change 70, 4.6](https://github.com/krisb/ki-cairn-store/blob/72d309b1/work/cairn/cairn.summit/70-bots.change.md#46-decided) and owned by `ki-delegation`: the per-file checks and the commit hooks are all a commit needs while iterating, and the full suite belongs to the daily and release tiers. LINT-BEFORE-PUSH is unchanged; no outside source was refreshed.
 
