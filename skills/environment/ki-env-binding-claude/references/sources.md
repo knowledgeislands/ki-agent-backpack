@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T06:40:00Z
+ki-revised: 2026-11-22T18:14:38Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -29,20 +29,20 @@ The binding standard follows Claude Code's MCP configuration documentation; the 
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| CC — [Claude Code MCP configuration](https://code.claude.com/docs/en/mcp) | Native JSON definitions and explicit HTTP/SSE types | 2026-08-12 |
+| CC — [Claude Code MCP configuration](https://code.claude.com/docs/en/mcp) | Native JSON definitions and explicit HTTP/SSE types | 2026-11-22 |
 
 [Back to contents](#contents)
 
 ### 2.2 Advisory
 
-The claude.ai connector documentation behind the [claude.ai connector control standard](standard-claude-ai-connectors.md), moved here with it from `ki-repo-mcp` on 19 November 2026 under MCP-SURFACES; the date is when that standard was written from them.
+The claude.ai connector documentation behind the [claude.ai connector control standard](standard-claude-ai-connectors.md), moved here with it from `ki-repo-mcp` on 19 November 2026 under MCP-SURFACES; each date is the source's last REFRESH.
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| [Use connectors to extend Claude's capabilities](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities) | Per-conversation toggles, per-tool permission modes and account connectors | 2026-07-03 |
-| [Get started with custom connectors using remote MCP](https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp) | Custom remote-MCP connectors and their OAuth client settings | 2026-07-03 |
-| [Authorize MCP connectors for your entire organization](https://support.claude.com/en/articles/15537633-authorize-mcp-connectors-for-your-entire-organization) | Organization connectors, admin policies and Enterprise-managed auth | 2026-07-03 |
-| [Control MCP server access for your organization (Claude Code)](https://code.claude.com/docs/en/managed-mcp) | `managed-mcp.json`, `allowedMcpServers` / `deniedMcpServers` and the claude.ai connector settings in Claude Code | 2026-07-03 |
+| [Use connectors to extend Claude's capabilities](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities) | Per-conversation toggles, per-tool permission modes and account connectors | 2026-11-22 |
+| [Get started with custom connectors using remote MCP](https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp) | Custom remote-MCP connectors and their OAuth client settings | 2026-11-22 |
+| [Authorize MCP connectors for your entire organization](https://support.claude.com/en/articles/15537633-authorize-mcp-connectors-for-your-entire-organization) | Organization connectors, admin policies and Enterprise-managed auth | 2026-11-22 |
+| [Control MCP server access for your organization (Claude Code)](https://code.claude.com/docs/en/managed-mcp) | `managed-mcp.json`, `allowedMcpServers` / `deniedMcpServers` and the claude.ai connector settings in Claude Code | 2026-11-22 |
 
 [Back to contents](#contents)
 
@@ -57,6 +57,8 @@ The claude.ai connector documentation behind the [claude.ai connector control st
 
 ## 4. Last review
 
+On 22 November 2026 a REFRESH re-read all five outside sources, for the Cairn summit's change 10, step 4.1. Claude Code's MCP configuration still matches [the Claude binding standard](standard-claude-binding.md#42-claude-code-and-claude-desktop): a stdio entry may omit `type`, a URL entry without `type` is an error, and the project `.mcp.json` and the scopes stand. It now also documents a `ws` transport, `streamable-http` as an alias of `http` and SSE as deprecated, none of which changes a rule. The three claude.ai articles and the managed-MCP page have moved on from [the claude.ai connector control standard](standard-claude-ai-connectors.md): connectors are managed at Customize, Connectors; a custom connector takes authentication, OAuth client and request-header choices and must be reachable from Anthropic's cloud on port 443; Enterprise-managed auth has an IdP-managed source, generally available with Okta only, and a Claude-issued source in beta; Always allow, Needs approval and Blocked are set per tool by the organisation's owners, with no documented default; and Claude Code adds `managedMcpServers`, still loads some servers under an empty `managed-mcp.json`, and governs claude.ai connectors differently in terminal, cloud and desktop-app sessions. The connector control standard took the wording that changes no rule: the Customize, Connectors path, a custom connector's choices, On demand tool access, the organisation's connector roles and shared credentials, Enterprise-managed auth's two sources, and a fourth sharp edge in 4.7.2 on ports and name fallbacks. Four points that would change a rule or a protection are held for the owner as queries: the per-tool layer as an organisation lever (PER-TOOL-LAYER), `managedMcpServers` as a third mechanism (MANAGED-MCP-THREE), which sessions the Claude Code controls reach (CONNECTOR-SESSIONS), and a source for the server-managed settings claims (SERVER-MANAGED-SOURCE). The standard's server-managed settings claims, the direct `api.anthropic.com` connection, the gateway bypass and `forceRemoteSettingsRefresh`, appear in none of the five sources and were not checked.
+
 On 19 November 2026 MCP-SURFACES, recorded under [Decisions](#3-decisions), moved `ki-repo-mcp`'s claude.ai connector control standard here whole, with its four sources under Advisory, and brought into the binding standard what `ki-repo-mcp`'s cross-surface enablement standard held beyond it: Claude Code's per-project `.mcp.json`, connector policy kept manual, Cowork's sandbox reason and the order of enablement, 4.5. No rule changed in substance and no outside source refreshed; the connector sources, last reviewed on 3 July 2026, are due a REFRESH.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Environment guild: REFRESH redirects to the backpack from an installed copy. No criterion changed and no outside source refreshed.
@@ -65,6 +67,10 @@ On 18 November 2026 the Environment guild's review, from the Cairn summit's chan
 
 - 2026-08-12 — Claude Code MCP configuration reviewed.
 
-**Watching:** every Claude-native configuration contract; refresh when any changes.
+**Watching:**
+
+- Every Claude-native configuration contract; refresh when any changes.
+- The four queries of the 22 November 2026 REFRESH against the claude.ai connector control standard, until the owner has answered them.
+- The server-managed settings claims in the connector control standard, which no listed source covers.
 
 [Back to contents](#contents)

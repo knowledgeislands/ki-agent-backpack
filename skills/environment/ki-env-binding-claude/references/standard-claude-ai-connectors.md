@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T06:40:00Z
+ki-revised: 2026-11-22T18:14:27Z
 ki-status: in force
 ---
 
@@ -79,7 +79,7 @@ So "control" is really four layers at three different persistence scopes.
 | --- | --- | --- | --- |
 | Per-conversation toggles | Composer **+** / `/` → Connectors | This chat only | No |
 | Per-tool permission mode | Tool menu (Always allow / Needs approval / Blocked) | Account default | Yes |
-| Account connectors | [claude.ai/settings/connectors](https://claude.ai/settings/connectors) | Whole account, all clients | Yes |
+| Account connectors | Customize → Connectors ([claude.ai/customize/connectors](https://claude.ai/customize/connectors)) | Whole account, all clients | Yes |
 | Org admin governance | Admin Console → Policies; Organization settings → Connectors | Every member | Yes |
 
 Only the first row is "just this session." Everything that is actual _control_ — what is installed, what is blocked, what an org may use — lives in persistent state (account UI, admin console, or on-disk config), never in a single conversation.
@@ -90,9 +90,11 @@ Only the first row is "just this session." Everything that is actual _control_ �
 
 Open the tools menu (composer **+**, or `/` → **Connectors**) to toggle which connectors and which individual tools are live for that chat. This is how a crowded connector set is kept from flooding context: enable only what the task needs. Resets each conversation.
 
+**Tool access** in the same menu chooses **Auto**, the default, or **On demand**, which the vendor suggests once ten or more connectors are active.
+
 Watch the tool-count ceiling — connecting many connectors (≈10+) on one account can make chats fail immediately by exceeding Claude's per-request tool limit.† Keep the enabled set lean at the account level rather than relying on per-chat toggles to rescue an overloaded account.
 
-† Reported behaviour, not a documented hard number — treat ≈10 as a caution threshold, not a spec.
+† The vendor states no hard cap; it suggests On demand tool access at ten or more active connectors. Treat ≈10 as a caution threshold, not a spec.
 
 [Back to contents](#contents)
 
@@ -104,7 +106,7 @@ Each tool can be set to **Always allow**, **Needs approval**, or **Blocked**. Re
 
 ### 4.5 Account connectors — the only install point
 
-[claude.ai/settings/connectors](https://claude.ai/settings/connectors) adds or removes prebuilt (Directory) and custom remote-MCP connectors (a remote MCP server URL, with optional OAuth client ID/secret). A connector enabled here appears across web, Desktop, and mobile for that account.
+Customize → Connectors ([claude.ai/customize/connectors](https://claude.ai/customize/connectors)) adds or removes Directory connectors and custom remote-MCP connectors. A custom connector takes a name and a remote MCP server URL, an authentication choice (Sign in now, Sign in when needed or No sign in), an OAuth client (Claude's published identity, recommended; automatic registration; or the server's own client ID and secret) and optional request headers; it cannot be edited, only removed and added again. Claude reaches it from Anthropic's cloud, so the server must be publicly reachable on port 443. A connector enabled here appears across web, Desktop, Cowork and mobile for that account. Free accounts are limited to one custom connector.
 
 [Back to contents](#contents)
 
@@ -112,9 +114,9 @@ Each tool can be set to **Always allow**, **Needs approval**, or **Blocked**. Re
 
 The strong levers are admin-side:
 
-- **Organization settings → Connectors** — an Owner/Primary Owner adds an org connector (Browse → **Add to your team**) or a custom remote MCP URL; members then authenticate individually.
+- **Organization settings → Connectors** — an Owner or Primary Owner (on Enterprise, also a custom role with Manage access to Libraries, for custom connectors) adds an org connector (Browse connectors → **Add to your team**) or a custom remote MCP URL; members then authenticate individually, unless the connector carries a shared credential, which gives everyone that credential's access.
 - **Admin Console → Policies** — push MCP allowlists and tool permissions to every member with no MDM. Server-managed settings require a direct connection to `api.anthropic.com` and are **bypassed** when traffic is routed through a gateway via `ANTHROPIC_BASE_URL`.
-- **Enterprise-managed auth** — provision connectors centrally through the org's IdP, so members do not authenticate each one by hand (beta, Team/Enterprise).
+- **Enterprise-managed auth** — authorize a connector once for the organization so members inherit access on first login: IdP-managed (generally available, Okta only, SSO on both sides) or Claude-issued (beta, no IdP). Set it per connector under Organization settings → Connectors → Configuration → Managed authorization, and per role under Organization settings → Roles; an owner can require a connector to connect only through managed authorization (Team/Enterprise).
 - **Verified-domain restriction** — Enterprise Owners/Primary Owners can prevent services on their verified domains from being connected to accounts _outside_ the organization.
 
 [Back to contents](#contents)
@@ -145,11 +147,12 @@ This is the leg that matters most for the backpack: Claude Code carries its own 
 
 Merge both lists from every settings source, then: (1) **denylist wins** — a match by `serverUrl`, `serverCommand`, or `serverName` is blocked and nothing overrides it; (2) **allowlist** — if `allowedMcpServers` is unset anywhere, the server loads; if it is set, the server must match.
 
-Three sharp edges:
+Four sharp edges:
 
 - **Unset ≠ empty array.** `allowedMcpServers` unset = all allowed; `[]` = _nothing_ allowed; populated = only matches. Easy footgun.
-- **`serverName` is not a security control** — it is the user-assigned label, so a user can name any server `github`. For enforcement use `serverUrl` (supports `*` wildcards; host match is case-insensitive, path case-sensitive) or `serverCommand` (every argument matched exactly, in order). In `allowedMcpServers`, `serverName` is limited to letters, numbers, hyphens, underscores; in `deniedMcpServers` (v2.1.182+) it accepts any string, so a claude.ai connector can be blocked by display name — e.g. `{ "serverName": "claude.ai Slack" }` — but a rename breaks it, so prefer `serverUrl`.
+- **`serverName` is not a security control** — it is the user-assigned label, so a user can name any server `github`. For enforcement use `serverUrl` (supports `*` wildcards; host match is case-insensitive, path case-sensitive) or `serverCommand` (every argument matched exactly, in order). In `allowedMcpServers`, `serverName` is limited to letters, numbers, hyphens, underscores; in `deniedMcpServers` it accepts any non-empty string without leading or trailing whitespace, so a claude.ai connector can be blocked by display name — e.g. `{ "serverName": "claude.ai Slack" }` — but a rename, or a `(N)` suffix on a colliding name, breaks it, so prefer `serverUrl`.
 - **`allowManagedMcpServersOnly: true`** makes only the managed allowlist authoritative (user/project allowlists ignored); the **denylist still merges from all sources**, so a user can always block a server for themselves.
+- **Ports and name fallbacks.** A `serverUrl` hostname written in full matches only the scheme's default port; one with `*` matches every port, so `https://staging.example.com/*` does not deny `:8443`. In the allowlist a `serverName` match counts only when there are no `serverUrl` (remote) or `serverCommand` (stdio) entries.
 
 [Back to contents](#contents)
 
