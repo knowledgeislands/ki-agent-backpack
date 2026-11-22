@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:17:42Z
+ki-revised: 2026-11-22T01:10:00Z
 ki-status: in force
 ---
 
@@ -39,6 +39,7 @@ Where durable knowledge goes, and the types of durable document.
 - The durable document types and their format standards.
 - The promotion loop, and classifying user-level instructions.
 - Keeping knowledge independent of a replaceable execution environment.
+- Where an artifact's files live, and why a cloud artifact is never a durable home.
 
 [Back to contents](#contents)
 
@@ -91,13 +92,14 @@ A durable document has a type, and each type has its format standard, all follow
 - **Standard:** the rule itself, in the owning skill's `references/`, as the placement ladder above routes it; its format is the [standard format](standard-formats-standard.md).
 - **Change document:** a proposed change to one or more standards, kept in the work package of the work that proposes it, carrying the design outline and a planning section; its format is the [change format](standard-formats-change.md). A design note proposing a change is a change document. `ki-work design` owns its life cycle, from draft to graduation and deletion.
 - **Design document:** the design that stands, of any kind, changed only through change documents, under `docs/design/` in a repository; its format is the [design format](standard-formats-design.md), and `ki-design` owns its life cycle.
+- **Presentation:** a deck of slides with their speaker notes, kept as Markdown beside what it presents, or under `docs/presentations/`, and exported to a deck only as a derived copy; its format is the [presentation format](standard-formats-presentation.md).
 - **Sources file:** a skill's record of the outside specifications and decisions its standards rest on; its format is the [sources format](standard-formats-sources.md).
 
 Run briefs, run reports and the work package's own files keep the shapes their owning skills set.
 
 Migration: an existing `.design.md` design note whose `ki-document-type` is not `design` stays readable as a change document during the rollout and is not renamed, since a reader goes by `ki-document-type`, not the name; delete this line once none remains.
 
-Sources: FORMATS-FORMAT and DESIGN-FRONT in [the sources](sources.md#3-decisions).
+Sources: FORMATS-FORMAT, DESIGN-FRONT and PRESENTATION-FORMAT in [the sources](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -135,6 +137,10 @@ The `ki-repo-dotfiles-chezmoi` agent-instruction layering rule points here; `ki-
 An agent runtime or coordination system is additive, not the durable owner of a repository's knowledge or operating model. Preserve purpose, procedures, authority, accepted decisions, work state, verification evidence, and residual learning in their repository-owned homes. Runtime memory, task conversations, and scheduler history may aid execution but must not be the only record needed to understand or continue the work.
 
 The continuity test is practical: with the repository, its referenced durable sources, and verified declared skills and tooling, can a person or another execution environment determine what matters, what happened, what remains, what authority is required, and how to proceed? This is not a promise of dependency-free or offline operation. Keep secrets outside Git, declare external dependencies and access prerequisites, and retain non-secret evidence locators. Changing the executor neither changes repository authority nor permits replaying uncertain work; reconcile in-flight claims, holds, and returned evidence before handover.
+
+**Files first** (FILES-FIRST, ARTIFACT-HOMES). Files are the source of truth for every design system and every artifact worth keeping, such as a canvas, a deck or a dashboard: in a Git repository, or, for material unsuitable for Git, in the [sources store](../../ki-repo/references/standard-repository.md#421-kind-and-stores) the repository declares. An artifact's files live in the repository of the thing it serves; one that serves no single repository lives in the principal repository of the territory it serves, or of the territory that owns the work when it spans several.
+
+**A cloud artifact is never a durable home** (VIEWS-ONLY, DISK-EXIT). A cloud artifact, canvas or design-system artifact is only a published view of those files, refreshed from them and never edited as the source, and it records its url, type, publishing account and source revision. The way out of the account that holds it is writing its files to disk, never publishing an artifact for another account to read. [`ki-design-system`'s Projections](../../../design/ki-design-system/references/standard-design-system.md#411-projections) sets how a view records its account, who republishes it and the two routes to disk.
 
 [Back to contents](#contents)
 
