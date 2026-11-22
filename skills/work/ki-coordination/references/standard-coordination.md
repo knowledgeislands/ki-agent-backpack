@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T16:15:00Z
+ki-revised: 2026-11-22T17:40:00Z
 ki-status: in force
 ---
 
@@ -240,9 +240,11 @@ Every report a coordinator gives is an [owner report](standard-reporting.md#42-o
 - **The state:** every send, receive, mark and hold rewrites `_index.md`'s state fields, Now and Held, under [Picking work up](standard-bootstrap.md#44-picking-work-up), so the package alone says how the work is picked up. Its definition changes only with the work.
 - **Decisions:** log each owner decision in [the change document it belongs to](standard-decisions.md#411-decisions-log), and each open point in that change document's Open section, in the turn it arrives and before launching the work it authorises, and verify any later quotation from the transcript file, under that section's two rules. Check each entry against its home at the mark under the [decisions life cycle](standard-decisions.md#413-decisions-life-cycle). Describe a decision by its words and date, never by a number.
 - **Work from other packages** arrives along the tree as steer or feedback, under [Work between packages](standard-messages.md#messages-between-work). A backend nudge is not visible progress; the [surfaces rule](standard-messages.md#44-surfaces) says where the owner sees it.
-- **Claims:** before a brief or a Summary rests on a path, an ownership claim or an instruction's premise, the coordinator, or the run it sends, checks it directly, and reads back in one line any direction it finds ambiguous before acting. A claim that something is live, published or unpublished is checked against the deployed thing itself, and a figure from a source that moves, such as a count, a test total or a commit, carries the revision or time it was read at, or is read again before it is relayed (store record `20261122T0652Z-ki-cairn-overnight-push`). A handoff names a repository only once the file that does the work has been found there, since a tool's apparent home is not always where its code lives (a Rig run, 22 November 2026). Briefs carry each target repository's standing rules by default under the `ki-delegation` [prompt shape](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#45-prompt-shape).
+- **Claims:** before a brief or a Summary rests on a path, an ownership claim or an instruction's premise, the coordinator, or the run it sends, checks it directly, and reads back in one line any direction it finds ambiguous before acting. A claim that something is live, published or unpublished is checked against the deployed thing itself, and a figure from a source that moves, such as a count, a test total or a commit, carries the revision or time it was read at, or is read again before it is relayed (store record `20261122T0652Z-ki-cairn-overnight-push`). A handoff names a repository only once the file that does the work has been found there, since a tool's apparent home is not always where its code lives, as a Rig run found on 22 November 2026. Briefs carry each target repository's standing rules by default under the `ki-delegation` [prompt shape](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#45-prompt-shape).
+  - **Done means tried:** a procedure is tried once for real, end to end, before it is called done; a report lists what changed beyond its brief, and cards in the same turn any of it that needs the owner (WAYS-APPLY).
+  - **Handoffs and briefs:** a handoff or brief names the newest decision on its subject, by its words and date, and lists its open points numbered, each with its answer where it has one. A handoff whose files a run is already editing is folded into that run by message, not forked into a second one (WAYS-APPLY).
 
-Sources: CLAIM-CHECK, HOOK-ENFORCE and MINIMAL-FOOTER in [the decision register](sources.md#3-decisions).
+Sources: CLAIM-CHECK, HOOK-ENFORCE, MINIMAL-FOOTER and WAYS-APPLY in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -421,6 +423,8 @@ Edit the text here, never in a rendered file. A hook source holds no single quot
 - **Renders nothing:** its checks read the shape those two sections set, so a change to the footer's parts there changes the hook and its test in the same commit.
 - **Checks** every Summary, Status, Bootstrap and Stop, every reply that opens a banner, and every other reply in a coordinating session, one in a checkout declaring `[skills.ki-coordination]` that has already closed a reply with its thread line in either form, whatever the owner's last message, a wake's Update and a plain Answer included, as Kris set under HOOK-ENFORCE on 18 November 2026: "Yeah, we need the hook enforcing". A conversational session, which has closed no reply with a thread line, is never held to the banner. It cannot tell every trigger a reply met; the banner's depth stays the coordinator's judgement.
 - **Checks the reply block in every session,** coordinating or not: a reply holding a fenced `text` block with `<TAG> <letter>` lines is asking for a decision, and is held back unless the block opens with its `1 ·` group heading, every such line carries `(high)`, `(medium)` or `(low)` after the letter and a `: <gloss>` after that, and each tag appears on one line only, its recommended option's, never offering alternatives, under the owner report's **Reply block** and HOOK-ENFORCE. A reply with no such block is never touched by it, and the banner checks stay coordinating only.
+- **Checks the reply id in every session:** a first line `**Reply HH:MM**` more than about 5 minutes from the clock's UTC time warns and is never held back, the gap read round the clock face so a reply across UTC midnight reads true and a reply slow to write is allowed for, under REPLY-ID-CLOCK.
+- **Lets a turn end quietly:** a last line `NO_REPLY`, which Orca takes as a reply to suppress, is set aside and the rest checked as usual, so it may follow a well-formed footer; a reply of `NO_REPLY` alone passes where the turn only takes note of a status, an Orca message of the status kind or a task notification, and is otherwise held to the banner like any reply, under NOTICE-DIGEST.
 - The [hooks README](../../../../hooks/README.md) gives its decision rules and the payload's registrations.
 
 <!-- ki-coordination:source hook-line -->
@@ -530,7 +534,7 @@ After a compaction, before replying, follow the `ki-coordination` standard's re-
 No layout, section, query or banner of a reply is ever shortened by this style, by any proxy shaping block or by a communication level. A communication level governs only the wording inside the Answer, never the layout. Record each owner decision in the change document it belongs to in the turn it arrives, in the owner's words, before launching the work it authorises, and describe a decision by its words and date, never by its number.
 ````
 
-Sources: FOOTER-HOOK, REPLY-ID, REPLY-CHECK, NAME-FIRST, HEADING-FIX, HEADING-PACKAGE, HOOK-ENFORCE, MINIMAL-FOOTER and FINDINGS-KEEP in [the decision register](sources.md#3-decisions).
+Sources: FOOTER-HOOK, REPLY-ID, REPLY-CHECK, NAME-FIRST, HEADING-FIX, HEADING-PACKAGE, HOOK-ENFORCE, MINIMAL-FOOTER, FINDINGS-KEEP, REPLY-ID-CLOCK and NOTICE-DIGEST in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 

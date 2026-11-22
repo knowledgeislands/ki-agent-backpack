@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T06:38:00Z
+ki-revised: 2026-11-22T17:40:00Z
 ki-status: in force
 ---
 
@@ -73,6 +73,10 @@ The rules, part by part.
 
 Queries reach the owner in the Summary by default, except that a Summary whose summary runs long gives only their count until the owner has taken stock, under **Summary first** in [The Summary](standard-report-forms.md#417-the-summary). After a Summary that lists open queries, or on the owner's request, use the [interactive pass](#43-interactive-pass): one decision per turn, its context in chat Markdown, then a short question card, or plain chat Markdown alone where the runtime has no card.
 
+**Choosing the recommended option.** Do not recommend the cautious option only because it is cautious when its downside can be undone; recommend what the evidence favours. Protections go only where the owner has drawn a line: a new one, such as a further check, a hold or a gate, goes to the owner as a question first and is not added on the agent's own judgement.
+
+Sources: PROTECT-ONLY-ASKED in [the decision register](sources.md#3-decisions).
+
 [Back to contents](#contents)
 
 ### 4.2 Query cap
@@ -96,9 +100,11 @@ While more than ten queries are open with the owner, a run re-checks every one a
 - **When:** before a reply, a Summary, a Bootstrap or an [interactive pass](#43-interactive-pass) puts any query to the owner, while more than ten are open across the package's change documents.
 - **Who:** a background run under `ki-delegation`, since the coordinator does no substantive work itself, reading the change documents, the record and the repositories as they now stand.
 - **What it does:** it drops each query that is settled, done or not the owner's, the last sent to its holder; merges queries that overlap into one; re-rates each remaining query's confidence; and ranks the rest by the [query cap](#42-query-cap)'s order. It writes the result into the change documents' Open sections, and only then does the cap choose which three a reply shows.
+- **Just before each card, whatever the count:** each question is checked against the current facts, the latest decisions included, just before it is carded or asked, and its context states the check time, as `Checked 17:40 GMT`. A question overtaken first is not asked: it is struck through in its change document as withdrawn, with its reason and date, under the change format's [landing rules](../../../keystone/ki-authoring/references/standard-formats-change.md#45-landing), and the pass's total drops by one (WAYS-APPLY, WITHDRAWN-QUESTION).
+- **Renames:** a rename is carried through every open card, its title, options and descriptions, and the question's record, the day it lands, so no card names a thing by a name it no longer has (WAYS-APPLY).
 - **Beside the cap and the review:** the cap sets how many one reply shows and the re-check which are still worth asking. A query the re-check rates medium or low, or high with a destructive recommended course, still goes to its [query review](#45-query-review) before it reaches the owner.
 
-Sources: QUERY-RECHECK in [the decision register](sources.md#3-decisions).
+Sources: QUERY-RECHECK, WAYS-APPLY and WITHDRAWN-QUESTION in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -130,7 +136,7 @@ After a Summary that lists open queries, or on the owner's request, the coordina
    - **Pairs:** two related questions may share one card, each with a short header and its own two discussion options; otherwise one question per card.
 3. **After the answer.** Log a real choice in the change document it belongs to, then go back to step 1, whose read-back, saying what was chosen and what it changes, opens the next query's first reply. A discussion option logs nothing; [the discussion options](#the-discussion-options) say what follows.
 4. **Why.** Orca folds everything in a reply under "Worked for" except its last text, and does not show text written after a card's answer in the same reply. So the context is the first reply's last text, the card stands alone in its own reply, and the read-back, plain chat after the answer, breaks the run of tool calls so the next context renders on its own instead of folding away with them. Orca's card also drops line breaks in its title, as reported to Orca, while chat text renders in full above the card.
-5. **At the end of the set.** Take again the queries deferred to the end, in the order they were deferred, each opening with a short discussion in plain chat before its first reply. When the last query is answered and logged, the next reply reads it back, with what it changes, takes a mark and gives the Summary, for a clean baseline and a fresh view.
+5. **At the end of the set.** Take again the queries deferred to the end, in the order they were deferred, each opening with a short discussion in plain chat before its first reply; each may then be left open for another day, as [the discussion options](#the-discussion-options) say. When the last query is answered and logged, the next reply reads it back, with what it changes, takes a mark and gives the Summary, for a clean baseline and a fresh view.
 
 <a id="where-things-stand"></a>**Where things stand** is a few short bullets, enough to decide without scrolling back, each opening with a short bold lead-in naming its part, as Kris praised under QUERY-LEAD-INS on 19 November 2026: "The way that you broke down the queries … as in where things stand, why this comes to you, what the review found, a second review tonight, what it unblocks, those kinds of things, are really good. The options are really good as well."
 
@@ -164,7 +170,7 @@ Query 4 of 10 · SPEC-AGREE: agree the specification cards
 <a id="the-discussion-options"></a>**The discussion options** close every query's options, on a card and in the plain fallback alike, after the real choices, so the owner can say "not yet, let's talk" without typing into the free-text box:
 
 - **Talk it through now:** the pass pauses on this query, a short discussion of it follows in plain chat, then the query is asked again, its options revised where the talk changed them, and the pass carries on.
-- **Come back at the end:** the query moves to the end of this set and is taken again there, before the closing mark and Summary; it is not parked beyond the set. Chosen again at the end, it leaves the query open for the Summary that closes the set.
+- **Come back at the end:** the query moves to the end of this set and is taken again there, before the closing mark and Summary; it is not parked beyond the set. Taken again at the end, it adds no new card button: its options offer one plain choice beside the real ones, to leave the question open for another day, kept in its change document, and that choice logs nothing (LATER-BUTTON).
 
 A quick first run through the set thus decides what it can. While a query is talked through or waits for the end, work on queries already decided may launch in the background, each decision logged in its change document first, as [the decisions practice](standard-coordination.md#44-coordinating-practices) allows, so the decided work starts while the rest are discussed.
 
@@ -174,7 +180,7 @@ A quick first run through the set thus decides what it can. While a query is tal
 - The total is the number of open queries when the pass starts. When an answer raises a new query, add it to the total and say so. A query deferred to the end keeps its number when it is taken again.
 - Nothing is shortened because it is asked interactively, and each query keeps its [tag](standard-reporting.md#needs-tags).
 
-Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET-MARK, CARD-LOOP, CARD-PATTERN, CARD-READBACK, CARD-DISCUSS, CONTEXT-EXAMPLE, QUERY-LEAD-INS and SUMMARY-FIRST in [the decision register](sources.md#3-decisions).
+Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET-MARK, CARD-LOOP, CARD-PATTERN, CARD-READBACK, CARD-DISCUSS, CONTEXT-EXAMPLE, QUERY-LEAD-INS, SUMMARY-FIRST and LATER-BUTTON in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 

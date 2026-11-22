@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T06:38:00Z
+ki-revised: 2026-11-22T17:40:00Z
 ki-status: in force
 ---
 
@@ -103,7 +103,7 @@ Sources: HELD-VS-RECORD and OLD-SHAPE-HOMES in [the decision register](sources.m
 At every send and every mark, prune your own package, so `work/<territory>/<id>/` shows only what is still open and Git holds the rest. The `ki-work-package` [tidy](../../ki-work-package/references/standard-work-package.md#410-the-tidy) rules, over its [closed list](../../ki-work-package/references/standard-work-package.md#43-the-shape), set what goes, what stays, how and who; `_index.md`, the live change documents and the sub-packages always stay. This standard sets the timing and the judgement.
 
 - **Judgement:** whether a report's outcome, or every point of a feedback package, has a durable home in a record, a change document or a commit. A report and its brief live in the run's packet, `$TMPDIR/ki-agents/<run>/`, never in the package, under the `ki-delegation` [run packet](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#44-run-packet). A packet is eligible for removal once its report's outcome is homed and every query has been copied in full into the change documents' Open sections; the queries need not be answered yet. Keep a packet whose outcome has no durable home, without homing it in haste. A later [Summary](standard-report-forms.md#417-the-summary) reads a removed report's outcome where it was homed.
-- **Change documents:** at each mark, review the change documents in the package and its sub-packages, a `.design.md` design note among them. Delete each one that has graduated under the `ki-work design` [artefact home](../../../keystone/ki-work/references/standard-work-design.md#41-artefact-home), or that the package records as superseded; keep drafts, documents under review and any in doubt. The mark prompts a review, never an automatic deletion. Beyond graduation, a change document goes only when every outcome it carried is homed, the owner's words and any grant included, and every link into it has been rewritten first. A diagram's source and its renders go together.
+- **Change documents:** at each mark, review the change documents in the package and its sub-packages, a `.design.md` design note among them. Delete each one that has graduated under the `ki-work design` [artefact home](../../../keystone/ki-work/references/standard-work-design.md#41-artefact-home), or that the package records as superseded; keep drafts, documents under review and any in doubt. The mark prompts a review, never an automatic deletion. Beyond graduation, a change document goes only when every outcome it carried is homed, the owner's words and any grant included, and every link into it has been rewritten first. Before it graduates or goes, search for links into it across the store's other documents and the other repositories, and in the Wayfinder's view data as well as its guides, since a view can hold a path no guide shows (WAYS-APPLY). A diagram's source and its renders go together.
 - **Temporary output:** remove, by literal path, each of your own run packets, `$TMPDIR/ki-agents/<run>/`, once its outcomes are homed or its output is superfluous.
 - **Record threshold:** deletion is operational work under the [record threshold](standard-decisions.md#412-decision-classes) and opens no record.
 - **Flagging:** the `ki-work-package` rubric's [FOLDER](../../ki-work-package/references/rubric.md) items fail a package holding a file outside the closed list. They fail a package holding a report, a brief or any other file outside the closed list, and name every finished work's package as due for close-out.
@@ -112,7 +112,7 @@ At every send and every mark, prune your own package, so `work/<territory>/<id>/
   - No item counts the open questions across a package's change documents; the coordinator keeps them under the [owner queue](standard-coordination.md#44-coordinating-practices) cap itself.
   - No item counts the records awaiting acceptance either since COORD-REPOINT (Kris, 16 November 2026); the coordinator keeps them under the same cap, until the check returns in `ki-work-package` as a warning under [Mechanical boundary](standard-coordination.md#49-mechanical-boundary).
 
-Sources: THREAD-TIDY and THREADS-TRIM in [the decision register](sources.md#3-decisions).
+Sources: THREAD-TIDY, THREADS-TRIM and WAYS-APPLY in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T08:32:00Z
+ki-revised: 2026-11-22T17:40:00Z
 ki-status: in force
 ---
 
@@ -308,7 +308,7 @@ Rename thread: /rename <thread line>
 <thread line>
 ```
 
-**Run report**, Medium, written by the run under the [owner report](standard-reporting.md#42-owner-report): the Bootstrap's template with `› <run name>` added to the heading, the form line `**Run report at <now> · last mark <mark time>**`, `## Done` holding its outcomes, commits and checks, no `Rename thread:` line, and a banner of F2, F3, F6 and F9 alone, closing with `🧵 <work-id>` of the work it reports to.
+**Run report**, Medium, written by the run under the [owner report](standard-reporting.md#42-owner-report): the Bootstrap's template with `› <run name>` added to the heading, the form line `**Run report at <now> · last mark <mark time>**`, `## Done` holding its outcomes, commits and checks and closing with its one-line `**Lessons:**`, under the [owner report](standard-reporting.md#42-owner-report), no `Rename thread:` line, and a banner of F2, F3, F6 and F9 alone, closing with `🧵 <work-id>` of the work it reports to.
 
 **Stop**, Medium, for a hold, under [Putting work on hold](standard-holds.md#41-putting-work-on-hold), alone in its message:
 
