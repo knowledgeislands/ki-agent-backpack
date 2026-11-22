@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T05:50:00Z
+ki-revised: 2026-11-22T09:00:00Z
 ki-status: in force
 ---
 
@@ -75,7 +75,7 @@ The rules, part by part.
 
 ### 4.1 The capture package
 
-Acquisition faithfully preserves an authorised source scope as a transient capture package: a quick dumping point, not lasting provenance. Curation, evaluation, dispatch and source retirement are separate operations. The receiving repository supplies its capture entry point, paths and publication authority. This skill accepts no configuration keys and defines no storage layout or source adapter.
+Acquisition faithfully preserves an authorised source scope as a transient capture package: a quick dumping point, not lasting provenance. Curation, evaluation, dispatch and source retirement are separate operations. The receiving repository supplies its capture entry point, paths and publication authority. A top-level `CAPTURE.md` serves as that entry point even for an older chat that can only read the repository through a GitHub connector (personal inbox, `8f734355`). A drop-off folder that receives verbatim text, such as pasted chats, is excluded from the Markdown linter as captured packages already are, so text kept verbatim cannot fail the commit hook. This skill accepts no configuration keys and defines no storage layout or source adapter.
 
 The capture package is the only record of what was acquired until curation empties it. Keep no ledger, checkpoint, journal, intake receipt or per-capture ticket beside it; Git history holds earlier bytes. A provider skill may add a source-side marker, such as Granola's Acquired folder, under its own separately authorised contract.
 

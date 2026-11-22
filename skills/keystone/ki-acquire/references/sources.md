@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T05:50:00Z
+ki-revised: 2026-11-22T09:00:00Z
 ki-refresh: canonical · on-change
 ---
 
@@ -78,6 +78,8 @@ The Knowledge Islands model and the in-house repositories whose published text t
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, added two working practices the personal inbox found overnight (store record `20261122T0710Z-personal-inbox-overnight-push`) to [the capture package](standard-acquisition.md#41-the-capture-package): a top-level `CAPTURE.md` as the entry point an older chat can reach through a GitHub connector, and drop-off folders excluded from the Markdown linter. No rule changed and no outside source was refreshed.
 
 On 19 November 2026, under CURATION-HOME, the curation and dispatch rules left this skill for the Inbox: the common acquisition standard's 4.6 lost its curation, no-links and meetings paragraphs, its 4.7 Dispatch and authority became 4.7 Authority, keeping only capture authority, each with a pointer to the Inbox, and rubric item ACQUIRE-6 was retired, with ACQUIRE-5 no longer judging dispatch. The decisions those paragraphs carried stay in force, homed in the Inbox; card origins and future ideas also stay in `ki-knowledge-graph`'s card rules. No outside source was refreshed.
 
