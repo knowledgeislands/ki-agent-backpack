@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "ffbc3261f702d5aaee1d16cad6aa9b102d4d8278"
+      "revision": "011a2b98965ec155780112401fe737bd0109cd99"
     },
     "legend": {
       "mode": "auto",
@@ -375,82 +375,6 @@
       ]
     },
     {
-      "id": "ki-repo-kb-streams",
-      "type": "backend",
-      "label": "ki-repo-kb-streams",
-      "sublabel": "repo types · automatic",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-kb-streams/SKILL.md"
-        }
-      ],
-      "pos": [
-        920,
-        708
-      ],
-      "size": [
-        200,
-        60
-      ]
-    },
-    {
-      "id": "ki-repo-kb-activities",
-      "type": "database",
-      "label": "ki-repo-kb-activities",
-      "sublabel": "repo types · opt-in",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-kb-activities/SKILL.md"
-        }
-      ],
-      "pos": [
-        1128,
-        708
-      ],
-      "size": [
-        200,
-        60
-      ]
-    },
-    {
-      "id": "ki-repo-kb-live-artifacts",
-      "type": "database",
-      "label": "ki-repo-kb-live-artifacts",
-      "sublabel": "repo types · opt-in",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-kb-live-artifacts/SKILL.md"
-        }
-      ],
-      "pos": [
-        712,
-        792
-      ],
-      "size": [
-        200,
-        60
-      ]
-    },
-    {
-      "id": "ki-repo-kb-principal",
-      "type": "database",
-      "label": "ki-repo-kb-principal",
-      "sublabel": "repo types · opt-in",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-kb-principal/SKILL.md"
-        }
-      ],
-      "pos": [
-        920,
-        792
-      ],
-      "size": [
-        200,
-        60
-      ]
-    },
-    {
       "id": "ki-repo-mcp",
       "type": "backend",
       "label": "ki-repo-mcp",
@@ -462,7 +386,7 @@
       ],
       "pos": [
         712,
-        932
+        848
       ],
       "size": [
         200,
@@ -481,7 +405,7 @@
       ],
       "pos": [
         920,
-        932
+        848
       ],
       "size": [
         200,
@@ -500,7 +424,7 @@
       ],
       "pos": [
         1128,
-        932
+        848
       ],
       "size": [
         200,
@@ -519,7 +443,7 @@
       ],
       "pos": [
         712,
-        1016
+        932
       ],
       "size": [
         200,
@@ -652,7 +576,7 @@
       ],
       "pos": [
         712,
-        1188
+        1104
       ],
       "size": [
         200,
@@ -671,7 +595,7 @@
       ],
       "pos": [
         712,
-        1328
+        1244
       ],
       "size": [
         200,
@@ -690,7 +614,7 @@
       ],
       "pos": [
         920,
-        1328
+        1244
       ],
       "size": [
         200,
@@ -709,7 +633,7 @@
       ],
       "pos": [
         1128,
-        1328
+        1244
       ],
       "size": [
         200,
@@ -728,7 +652,7 @@
       ],
       "pos": [
         712,
-        1412
+        1328
       ],
       "size": [
         200,
@@ -747,7 +671,7 @@
       ],
       "pos": [
         920,
-        1412
+        1328
       ],
       "size": [
         200,
@@ -766,7 +690,7 @@
       ],
       "pos": [
         712,
-        1552
+        1468
       ],
       "size": [
         200,
@@ -785,7 +709,7 @@
       ],
       "pos": [
         920,
-        1552
+        1468
       ],
       "size": [
         200,
@@ -1070,7 +994,7 @@
       ],
       "pos": [
         712,
-        1724
+        1640
       ],
       "size": [
         200,
@@ -1089,7 +1013,7 @@
       ],
       "pos": [
         920,
-        1724
+        1640
       ],
       "size": [
         200,
@@ -1108,7 +1032,7 @@
       ],
       "pos": [
         712,
-        1896
+        1812
       ],
       "size": [
         200,
@@ -1127,7 +1051,7 @@
       ],
       "pos": [
         712,
-        2036
+        1952
       ],
       "size": [
         200,
@@ -1146,7 +1070,7 @@
       ],
       "pos": [
         920,
-        2036
+        1952
       ],
       "size": [
         200,
@@ -1165,7 +1089,7 @@
       ],
       "pos": [
         1128,
-        2036
+        1952
       ],
       "size": [
         200,
@@ -1282,11 +1206,7 @@
       "kind": "region",
       "label": "Repository types · Knowledge bases",
       "wraps": [
-        "ki-repo-kb",
-        "ki-repo-kb-streams",
-        "ki-repo-kb-activities",
-        "ki-repo-kb-live-artifacts",
-        "ki-repo-kb-principal"
+        "ki-repo-kb"
       ],
       "pad": 10
     },
@@ -1303,7 +1223,7 @@
     },
     {
       "kind": "region",
-      "label": "Repository · 16 skills",
+      "label": "Repository · 12 skills",
       "wraps": [
         "ki-git",
         "ki-repo-backpack",
@@ -1313,10 +1233,6 @@
         "ki-repo-website-cloudflare",
         "ki-repo-website-content",
         "ki-repo-kb",
-        "ki-repo-kb-streams",
-        "ki-repo-kb-activities",
-        "ki-repo-kb-live-artifacts",
-        "ki-repo-kb-principal",
         "ki-repo-mcp",
         "ki-repo-tools",
         "ki-repo-dotfiles-chezmoi",
@@ -1515,7 +1431,7 @@
       "dot": "slate",
       "title": "Generated, not drawn",
       "items": [
-        "60 skills in 8 concerns and 10 functional areas: 3 always on, 18 automatic, 34 opt-in, 5 commands.",
+        "56 skills in 8 concerns and 10 functional areas: 3 always on, 17 automatic, 31 opt-in, 5 commands.",
         "Regenerate with ki repo conform --skill ki-repo-backpack; ki-skills owns the kind and applicability fields it reads."
       ]
     }

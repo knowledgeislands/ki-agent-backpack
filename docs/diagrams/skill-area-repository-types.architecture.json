@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "ffbc3261f702d5aaee1d16cad6aa9b102d4d8278"
+      "revision": "011a2b98965ec155780112401fe737bd0109cd99"
     },
     "legend": {
       "mode": "auto",
@@ -64,8 +64,8 @@
       ],
       "tag": "R27 · CL · F4",
       "pos": [
-        588,
-        704
+        620,
+        392
       ],
       "size": [
         208,
@@ -84,8 +84,8 @@
       ],
       "tag": "R9 · CM · F3",
       "pos": [
-        844,
-        580
+        876,
+        268
       ],
       "size": [
         208,
@@ -102,90 +102,10 @@
           "path": "skills/repository/ki-repo-kb/SKILL.md"
         }
       ],
-      "tag": "R25 · CL · F18",
+      "tag": "R67 · CL · F23",
       "pos": [
-        44,
-        580
-      ],
-      "size": [
-        208,
-        76
-      ]
-    },
-    {
-      "id": "ki-repo-kb-activities",
-      "type": "database",
-      "label": "ki-repo-kb-activities",
-      "sublabel": "repository · opt-in",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-kb-activities/SKILL.md"
-        }
-      ],
-      "tag": "R19 · CM · F8",
-      "pos": [
-        44,
-        828
-      ],
-      "size": [
-        208,
-        76
-      ]
-    },
-    {
-      "id": "ki-repo-kb-live-artifacts",
-      "type": "database",
-      "label": "ki-repo-kb-live-artifacts",
-      "sublabel": "repository · opt-in",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-kb-live-artifacts/SKILL.md"
-        }
-      ],
-      "tag": "R13 · CM · F8",
-      "pos": [
-        300,
-        704
-      ],
-      "size": [
-        208,
-        76
-      ]
-    },
-    {
-      "id": "ki-repo-kb-principal",
-      "type": "database",
-      "label": "ki-repo-kb-principal",
-      "sublabel": "repository · opt-in",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-kb-principal/SKILL.md"
-        }
-      ],
-      "tag": "R6 · CM · F3",
-      "pos": [
-        300,
-        828
-      ],
-      "size": [
-        208,
-        76
-      ]
-    },
-    {
-      "id": "ki-repo-kb-streams",
-      "type": "backend",
-      "label": "ki-repo-kb-streams",
-      "sublabel": "repository · automatic",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-kb-streams/SKILL.md"
-        }
-      ],
-      "tag": "R19 · CL · F8",
-      "pos": [
-        44,
-        704
+        332,
+        268
       ],
       "size": [
         208,
@@ -204,8 +124,8 @@
       ],
       "tag": "R14 · CL · F11",
       "pos": [
-        588,
-        952
+        620,
+        640
       ],
       "size": [
         208,
@@ -224,8 +144,8 @@
       ],
       "tag": "R10 · CM · F4",
       "pos": [
-        588,
-        828
+        620,
+        516
       ],
       "size": [
         208,
@@ -244,8 +164,8 @@
       ],
       "tag": "R11 · CL · F12",
       "pos": [
-        588,
-        580
+        620,
+        268
       ],
       "size": [
         208,
@@ -304,8 +224,8 @@
       ],
       "tag": "R20 · CM · F8",
       "pos": [
-        300,
-        392
+        44,
+        516
       ],
       "size": [
         208,
@@ -324,28 +244,8 @@
       ],
       "tag": "R42 · CM · F8",
       "pos": [
-        300,
-        268
-      ],
-      "size": [
-        208,
-        76
-      ]
-    },
-    {
-      "id": "ki-work-recurring",
-      "type": "database",
-      "label": "ki-work-recurring",
-      "sublabel": "work · opt-in",
-      "sources": [
-        {
-          "path": "skills/work/ki-work-recurring/SKILL.md"
-        }
-      ],
-      "tag": "R2 · CM · F3",
-      "pos": [
         44,
-        1156
+        640
       ],
       "size": [
         208,
@@ -364,8 +264,28 @@
       ],
       "tag": "R37 · CL · F9",
       "pos": [
+        44,
+        844
+      ],
+      "size": [
+        208,
+        76
+      ]
+    },
+    {
+      "id": "ki-work-recurring",
+      "type": "database",
+      "label": "ki-work-recurring",
+      "sublabel": "work · opt-in",
+      "sources": [
+        {
+          "path": "skills/work/ki-work-recurring/SKILL.md"
+        }
+      ],
+      "tag": "R2 · CM · F3",
+      "pos": [
         364,
-        1156
+        844
       ],
       "size": [
         208,
@@ -385,7 +305,7 @@
       "tag": "R63 · CL · F4",
       "pos": [
         684,
-        1156
+        844
       ],
       "size": [
         208,
@@ -405,7 +325,7 @@
       "tag": "R4 · CL · F17",
       "pos": [
         1004,
-        1156
+        844
       ],
       "size": [
         208,
@@ -424,17 +344,17 @@
     },
     {
       "kind": "region",
-      "label": "Work and delivery · 1 skill",
+      "label": "Records and code · Records",
       "wraps": [
-        "ki-work-recurring"
+        "ki-decision-records"
       ],
       "pad": 32
     },
     {
       "kind": "region",
-      "label": "Records and code · Records",
+      "label": "Work and delivery · 1 skill",
       "wraps": [
-        "ki-decision-records"
+        "ki-work-recurring"
       ],
       "pad": 32
     },
@@ -469,11 +389,7 @@
       "kind": "region",
       "label": "Knowledge bases",
       "wraps": [
-        "ki-repo-kb",
-        "ki-repo-kb-streams",
-        "ki-repo-kb-activities",
-        "ki-repo-kb-live-artifacts",
-        "ki-repo-kb-principal"
+        "ki-repo-kb"
       ],
       "pad": 28
     },
@@ -491,17 +407,13 @@
     },
     {
       "kind": "region",
-      "label": "Repository types · 14 skills",
+      "label": "Repository types · 10 skills",
       "wraps": [
         "ki-repo-website",
         "ki-repo-website-content",
         "ki-repo-website-app",
         "ki-repo-website-cloudflare",
         "ki-repo-kb",
-        "ki-repo-kb-streams",
-        "ki-repo-kb-activities",
-        "ki-repo-kb-live-artifacts",
-        "ki-repo-kb-principal",
         "ki-repo-mcp",
         "ki-repo-backpack",
         "ki-repo-tools",
@@ -525,40 +437,16 @@
       "variant": "default"
     },
     {
-      "id": "ki-repo-kb--ki-repo-kb-activities",
+      "id": "ki-repo-kb--ki-decision-records",
       "from": "ki-repo-kb",
-      "to": "ki-repo-kb-activities",
-      "variant": "default"
-    },
-    {
-      "id": "ki-repo-kb--ki-repo-kb-live-artifacts",
-      "from": "ki-repo-kb",
-      "to": "ki-repo-kb-live-artifacts",
-      "variant": "default"
-    },
-    {
-      "id": "ki-repo-kb--ki-repo-kb-streams",
-      "from": "ki-repo-kb",
-      "to": "ki-repo-kb-streams",
-      "variant": "default"
-    },
-    {
-      "id": "ki-repo-kb-activities--ki-work-recurring",
-      "from": "ki-repo-kb-activities",
-      "to": "ki-work-recurring",
+      "to": "ki-decision-records",
       "variant": "dashed"
     },
     {
-      "id": "ki-repo-kb-principal--ki-decision-records",
-      "from": "ki-repo-kb-principal",
-      "to": "ki-decision-records",
-      "variant": "default"
-    },
-    {
-      "id": "ki-repo-kb-principal--ki-repo-kb",
-      "from": "ki-repo-kb-principal",
-      "to": "ki-repo-kb",
-      "variant": "default"
+      "id": "ki-repo-kb--ki-work-recurring",
+      "from": "ki-repo-kb",
+      "to": "ki-work-recurring",
+      "variant": "dashed"
     },
     {
       "id": "ki-repo-mcp--ki-engineering",
@@ -600,7 +488,7 @@
       "dot": "slate",
       "title": "Generated, not drawn",
       "items": [
-        "14 skills, 4 outside prerequisites, 1 outside dependent, 11 composition and 1 optional edges, read from SKILL.md frontmatter.",
+        "10 skills, 4 outside prerequisites, 1 outside dependent, 6 composition and 2 optional edges, read from SKILL.md frontmatter.",
         "Home in another area: ki-repo-backpack; only edges within this area are drawn for them here, and their home area's diagram draws the rest.",
         "Regenerate with ki repo conform --skill ki-repo-backpack; ki-skills KI-SHAPE-20 keeps the edges resolvable and acyclic."
       ]

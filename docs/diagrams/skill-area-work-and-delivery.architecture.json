@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "2afee9ad0d1cd8d3f216437996ff4f7615afa7f3"
+      "revision": "011a2b98965ec155780112401fe737bd0109cd99"
     },
     "legend": {
       "mode": "auto",
@@ -33,16 +33,16 @@
   },
   "components": [
     {
-      "id": "ki-repo-kb-activities",
-      "type": "database",
-      "label": "ki-repo-kb-activities",
-      "sublabel": "repository · opt-in",
+      "id": "ki-repo-kb",
+      "type": "backend",
+      "label": "ki-repo-kb",
+      "sublabel": "repository · automatic",
       "sources": [
         {
-          "path": "skills/repository/ki-repo-kb-activities/SKILL.md"
+          "path": "skills/repository/ki-repo-kb/SKILL.md"
         }
       ],
-      "tag": "R19 · CM · F8",
+      "tag": "R67 · CL · F23",
       "pos": [
         32,
         64
@@ -218,7 +218,7 @@
       "kind": "region",
       "label": "Repository types · Knowledge bases",
       "wraps": [
-        "ki-repo-kb-activities"
+        "ki-repo-kb"
       ],
       "pad": 32
     },
@@ -274,8 +274,8 @@
       "variant": "default"
     },
     {
-      "id": "ki-repo-kb-activities--ki-work-recurring",
-      "from": "ki-repo-kb-activities",
+      "id": "ki-repo-kb--ki-work-recurring",
+      "from": "ki-repo-kb",
       "to": "ki-work-recurring",
       "variant": "dashed"
     },

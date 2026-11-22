@@ -419,8 +419,8 @@ svg[data-preset="editorial"] { --flow-halo-peak: 0.07; --flow-glow-peak: 0.28; -
   43.684%, 100% { stroke-dashoffset: var(--flow-shift, 0px); opacity: 0; }
 }
 @keyframes archify-relay-wake-1 { 
-  0% { stroke-dashoffset: var(--flow-len, 0px); opacity: var(--flow-peak, 0.3); animation-timing-function: cubic-bezier(0.45, 0.05, 0.35, 1); }
-  39.474% { stroke-dashoffset: 0px; opacity: var(--flow-peak, 0.3); }
+  0%, 11.842% { opacity: 0; }
+  39.474% { opacity: var(--flow-peak, 0.3); }
   63.158%, 100% { stroke-dashoffset: 0px; opacity: 0; }
 }
 @keyframes archify-relay-comet-2 { 
@@ -909,7 +909,7 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         </g>
         <g data-graph-role="automatic-crossover" style="--step:1">
           <path data-graph-role="automatic-crossover-underlay" d="M 788 140 L 788 236 Q 788 244 780 244 L 170 244 Q 162 244 162 252 L 162 268" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="ki-repo-kb-principal" data-edge-to="ki-decision-records" data-edge-key="1" data-edge-id="ki-repo-kb-principal--ki-decision-records" data-composition-points="788,140;788,244;162,244;162,268" data-composition-crossover="halo" data-composition-independent="true" d="M 788 140 L 788 236 Q 788 244 780 244 L 170 244 Q 162 244 162 252 L 162 268" class="a-default" data-animate="edge" style="--step: 1;" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <path data-edge-from="ki-repo-kb" data-edge-to="ki-decision-records" data-edge-key="1" data-edge-id="ki-repo-kb--ki-decision-records" data-composition-points="788,140;788,244;162,244;162,268" data-composition-crossover="halo" data-composition-independent="true" d="M 788 140 L 788 236 Q 788 244 780 244 L 170 244 Q 162 244 162 252 L 162 268" class="a-dashed" data-animate="edge" style="--step: 1;" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:2">
           <path data-graph-role="automatic-crossover-underlay" d="M 1068 140 L 1068 268" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
@@ -934,8 +934,8 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         <text x="148" y="132" class="t-database" font-size="7" text-anchor="middle">R27 · CL · F4</text>
         </g>
 
-        <g id="node-ki-work" data-node-id="ki-work" data-node-label="ki-work" tabindex="0" role="button" aria-label="Focus ki-work, keystone · opt-in, Work and delivery · 1 skill" aria-pressed="false" data-node-kind="database" data-node-sublabel="keystone · opt-in" data-node-tag="R1 · CL · F16" data-node-context="Work and delivery · 1 skill">
-          <title>ki-work · keystone · opt-in · Work and delivery · 1 skill · R1 · CL · F16</title>
+        <g id="node-ki-work" data-node-id="ki-work" data-node-label="ki-work" tabindex="0" role="button" aria-label="Focus ki-work, keystone · opt-in, Work and delivery · 1 skill" aria-pressed="false" data-node-kind="database" data-node-sublabel="keystone · opt-in" data-node-tag="R3 · CL · F16" data-node-context="Work and delivery · 1 skill">
+          <title>ki-work · keystone · opt-in · Work and delivery · 1 skill · R3 · CL · F16</title>
           <rect x="364" y="64" width="208" height="76" rx="8" class="c-mask"/>
           <rect x="364" y="64" width="208" height="76" rx="8" class="c-database" data-animate="node" style="--step: 3; --flow-node-name: archify-relay-node-3;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(370 70) scale(0.6875)">
@@ -944,20 +944,19 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
           </g>
           <text data-node-label="" x="468" y="100" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-work</text>
         <text x="468" y="116" class="t-muted" font-size="9" text-anchor="middle">keystone · opt-in</text>
-        <text x="468" y="132" class="t-database" font-size="7" text-anchor="middle">R1 · CL · F16</text>
+        <text x="468" y="132" class="t-database" font-size="7" text-anchor="middle">R3 · CL · F16</text>
         </g>
 
-        <g id="node-ki-repo-kb-principal" data-node-id="ki-repo-kb-principal" data-node-label="ki-repo-kb-principal" tabindex="0" role="button" aria-label="Focus ki-repo-kb-principal, repository · opt-in, Repository types · Knowledge bases" aria-pressed="false" data-node-kind="database" data-node-sublabel="repository · opt-in" data-node-tag="R6 · CM · F3" data-node-context="Repository types · Knowledge bases">
-          <title>ki-repo-kb-principal · repository · opt-in · Repository types · Knowledge bases · R6 · CM · F3</title>
+        <g id="node-ki-repo-kb" data-node-id="ki-repo-kb" data-node-label="ki-repo-kb" tabindex="0" role="button" aria-label="Focus ki-repo-kb, repository · automatic, Repository types · Knowledge bases" aria-pressed="false" data-node-kind="backend" data-node-sublabel="repository · automatic" data-node-tag="R67 · CL · F23" data-node-context="Repository types · Knowledge bases">
+          <title>ki-repo-kb · repository · automatic · Repository types · Knowledge bases · R67 · CL · F23</title>
           <rect x="684" y="64" width="208" height="76" rx="8" class="c-mask"/>
-          <rect x="684" y="64" width="208" height="76" rx="8" class="c-database" data-animate="node" style="--step: 1; --flow-node-name: archify-relay-node-1;" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(690 70) scale(0.6875)">
-            <ellipse cx="8" cy="4" rx="5" ry="2"/>
-            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          <rect x="684" y="64" width="208" height="76" rx="8" class="c-backend" data-animate="node" style="--step: 1; --flow-node-name: archify-relay-node-1;" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(690 70) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
-          <text data-node-label="" x="788" y="100" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-repo-kb-principal</text>
-        <text x="788" y="116" class="t-muted" font-size="9" text-anchor="middle">repository · opt-in</text>
-        <text x="788" y="132" class="t-database" font-size="7" text-anchor="middle">R6 · CM · F3</text>
+          <text data-node-label="" x="788" y="100" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-repo-kb</text>
+        <text x="788" y="116" class="t-muted" font-size="9" text-anchor="middle">repository · automatic</text>
+        <text x="788" y="132" class="t-backend" font-size="7" text-anchor="middle">R67 · CL · F23</text>
         </g>
 
         <g id="node-ki-repo-mcp" data-node-id="ki-repo-mcp" data-node-label="ki-repo-mcp" tabindex="0" role="button" aria-label="Focus ki-repo-mcp, repository · automatic, Repository types · Single-type repositories" aria-pressed="false" data-node-kind="backend" data-node-sublabel="repository · automatic" data-node-tag="R14 · CL · F11" data-node-context="Repository types · Single-type repositories">

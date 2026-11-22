@@ -19,7 +19,7 @@ Use the website-owned [skills-by-outcome guide](https://knowledgeislands.info/gu
 <!-- ki-repo-backpack:capability-catalogue:start -->
 ## Generated capability catalogue
 
-This source backpack publishes 60 skills: 55 governance skills, 4 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
+This source backpack publishes 56 skills: 51 governance skills, 4 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
 
 ### Acquire
 
@@ -396,7 +396,7 @@ Lead the Repository guild and audit or conform the universal KI repository contr
 - **Kind:** Governance
 - **Leads:** Repository
 - **Applicability:** Baseline
-- **Detects:** `ki-decision-records`, `ki-design`, `ki-engineering`, `ki-guides`, `ki-repo-kb`, `ki-repo-kb-streams`, `ki-repo-mcp`, `ki-repo-tools`, `ki-repo-website`, `ki-repo-website-app`, `ki-repo-website-cloudflare`, `ki-repo-website-content`, `ki-skills`, `ki-specs`, `ki-subagents`, `ki-subagents-chatgpt`, `ki-subagents-claude`, `ki-work-package`
+- **Detects:** `ki-decision-records`, `ki-design`, `ki-engineering`, `ki-guides`, `ki-repo-kb`, `ki-repo-mcp`, `ki-repo-tools`, `ki-repo-website`, `ki-repo-website-app`, `ki-repo-website-cloudflare`, `ki-repo-website-content`, `ki-skills`, `ki-specs`, `ki-subagents`, `ki-subagents-chatgpt`, `ki-subagents-claude`, `ki-work-package`
 - **Arguments:** `audit | conform <repo> | educate <repo> | help | refresh | review [scope] | review close <REV-NNN>`
 - **Dependencies:** `ki-authoring`, `ki-git`
 - **Runtime:** Runtime-bound; supported runtimes are resolved by its host contract
@@ -466,51 +466,11 @@ Audit or conform KI chezmoi source repositories: source-versus-target editing, a
 
 #### `ki-repo-kb`
 
-Create, query, update, distil, or audit a KI knowledge base using Calendar, Pillars, Resources, Streams, and directional `+` and `-` areas. Use for notes, session digests, search, or zone conformance; `ki-repo-kb-streams` owns forward-work containers and `ki-authoring` general document style.
+Create, query, update, distil, or audit a KI knowledge base: the Calendar, Pillars, Resources, Streams and Admin zones with their `+` and `-` working areas, the Streams layout and Enactment gate, Activity notes, Live Artifact pairs, and a Capital's principal governance. Use for notes, session digests, search, or base conformance; `ki-work-roadmap` owns roadmap records and `ki-authoring` general document style.
 
 - **Kind:** Governance
 - **Applicability:** Detected
 - **Arguments:** `audit | conform | digest | extract | help | improve | educate | query <question> | refresh | save | update <note>`
-- **Dependencies:** `ki-repo-kb-activities`, `ki-repo-kb-live-artifacts`, `ki-repo-kb-streams`
-- **Runtime:** Portable
-
-#### `ki-repo-kb-activities`
-
-Create, audit, and maintain Activity notes recording automation, scheduling, and agentic work adopted by a KI knowledge base. Use for activity identity, frontmatter, realisation type, index, or linked skill and scheduled-task evidence; `ki-work-recurring` owns recurring-work lifecycle and `ki-repo-kb` owns zones.
-
-- **Kind:** Governance
-- **Applicability:** Declaration Only
-- **Arguments:** `audit | conform | help | educate | new <name> | refresh`
-- **Dependencies:** None
-- **Runtime:** Portable
-
-#### `ki-repo-kb-live-artifacts`
-
-Create, audit, and maintain KI Live Artifact pairs: a Markdown source and rendered HTML view for dashboards, queues, trackers, or status boards. Use for pair naming, index, or sync; `ki-repo-kb` owns zones and `ki-authoring` Markdown style.
-
-- **Kind:** Governance
-- **Applicability:** Declaration Only
-- **Arguments:** `audit | conform | help | educate | new <name> | refresh`
-- **Dependencies:** None
-- **Runtime:** Portable
-
-#### `ki-repo-kb-principal`
-
-Audit or conform a designated principal KI knowledge base's governance overlay: territorial Charter, Known Lands inventory and signposting, memory root, acquired-packet scaffold, and Enactment gate. Use for principal governance declarations; designation and authority remain owner-governed, while `ki-repo-kb` owns general base structure.
-
-- **Kind:** Governance
-- **Applicability:** Declaration Only
-- **Arguments:** `audit | conform | educate | help | refresh`
-- **Dependencies:** `ki-repo-kb`, `ki-decision-records`
-- **Runtime:** Portable
-
-#### `ki-repo-kb-streams`
-
-Govern the KI knowledge-base Streams container and flat Roadmap records. Use for KB forward-work structure or migration; lifecycle actions belong to `ki-work next`, `ki-work plan`, `ki-work implement`, and `ki-work accept`, while `ki-repo-kb` owns zones.
-
-- **Kind:** Governance
-- **Applicability:** Detected
-- **Arguments:** `audit | conform | help | educate | refresh`
 - **Dependencies:** None
 - **Runtime:** Portable
 
@@ -628,7 +588,7 @@ Own the work package of one piece of work, `work/<territory>/<id>/` in the Cairn
 
 #### `ki-work-recurring`
 
-Govern recurring-work identity, cadence, due-run reservation, and successful-run evidence for Project templates and opted-in KB Activities. Use for recurring maintenance; `ki-repo-kb-activities` owns Activity notes and `ki-env-housekeeping-*` skills own runtime cleanup.
+Govern recurring-work identity, cadence, due-run reservation, and successful-run evidence for Project templates and opted-in KB Activities. Use for recurring maintenance; `ki-repo-kb` owns Activity notes and `ki-env-housekeeping-*` skills own runtime cleanup.
 
 - **Kind:** Governance
 - **Applicability:** Declaration Only

@@ -928,7 +928,7 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         </g>
         <g data-graph-role="automatic-crossover" style="--step:1">
           <path data-graph-role="automatic-crossover-underlay" d="M 136 140 L 136 268" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
-          <path data-edge-from="ki-repo-kb-activities" data-edge-to="ki-work-recurring" data-edge-key="1" data-edge-id="ki-repo-kb-activities--ki-work-recurring" data-composition-points="136,140;136,268" data-composition-crossover="halo" data-composition-independent="true" d="M 136 140 L 136 268" class="a-dashed" data-animate="edge" style="--step: 1;" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+          <path data-edge-from="ki-repo-kb" data-edge-to="ki-work-recurring" data-edge-key="1" data-edge-id="ki-repo-kb--ki-work-recurring" data-composition-points="136,140;136,268" data-composition-crossover="halo" data-composition-independent="true" d="M 136 140 L 136 268" class="a-dashed" data-animate="edge" style="--step: 1;" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
         </g>
         <g data-graph-role="automatic-crossover" style="--step:2">
           <path data-graph-role="automatic-crossover-underlay" d="M 122 468 L 122 596" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
@@ -944,17 +944,16 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         </g>
 
         <!-- Components -->
-        <g id="node-ki-repo-kb-activities" data-node-id="ki-repo-kb-activities" data-node-label="ki-repo-kb-activities" tabindex="0" role="button" aria-label="Focus ki-repo-kb-activities, repository · opt-in, Repository types · Knowledge bases" aria-pressed="false" data-node-kind="database" data-node-sublabel="repository · opt-in" data-node-tag="R19 · CM · F8" data-node-context="Repository types · Knowledge bases">
-          <title>ki-repo-kb-activities · repository · opt-in · Repository types · Knowledge bases · R19 · CM · F8</title>
+        <g id="node-ki-repo-kb" data-node-id="ki-repo-kb" data-node-label="ki-repo-kb" tabindex="0" role="button" aria-label="Focus ki-repo-kb, repository · automatic, Repository types · Knowledge bases" aria-pressed="false" data-node-kind="backend" data-node-sublabel="repository · automatic" data-node-tag="R67 · CL · F23" data-node-context="Repository types · Knowledge bases">
+          <title>ki-repo-kb · repository · automatic · Repository types · Knowledge bases · R67 · CL · F23</title>
           <rect x="32" y="64" width="208" height="76" rx="8" class="c-mask"/>
-          <rect x="32" y="64" width="208" height="76" rx="8" class="c-database" data-animate="node" style="--step: 1; --flow-node-name: archify-relay-node-1;" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(38 70) scale(0.6875)">
-            <ellipse cx="8" cy="4" rx="5" ry="2"/>
-            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          <rect x="32" y="64" width="208" height="76" rx="8" class="c-backend" data-animate="node" style="--step: 1; --flow-node-name: archify-relay-node-1;" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(38 70) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
-          <text data-node-label="" x="136" y="100" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-repo-kb-activities</text>
-        <text x="136" y="116" class="t-muted" font-size="9" text-anchor="middle">repository · opt-in</text>
-        <text x="136" y="132" class="t-database" font-size="7" text-anchor="middle">R19 · CM · F8</text>
+          <text data-node-label="" x="136" y="100" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-repo-kb</text>
+        <text x="136" y="116" class="t-muted" font-size="9" text-anchor="middle">repository · automatic</text>
+        <text x="136" y="132" class="t-backend" font-size="7" text-anchor="middle">R67 · CL · F23</text>
         </g>
 
         <g id="node-ki-repo-backpack" data-node-id="ki-repo-backpack" data-node-label="ki-repo-backpack" tabindex="0" role="button" aria-label="Focus ki-repo-backpack, repository · opt-in, Fundamentals · Skills and backpack" aria-pressed="false" data-node-kind="database" data-node-sublabel="repository · opt-in" data-node-tag="R27 · CL · F4" data-node-context="Fundamentals · Skills and backpack">
@@ -970,8 +969,8 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         <text x="456" y="132" class="t-database" font-size="7" text-anchor="middle">R27 · CL · F4</text>
         </g>
 
-        <g id="node-ki-work" data-node-id="ki-work" data-node-label="ki-work" tabindex="0" role="button" aria-label="Focus ki-work, keystone · opt-in, Work and delivery · 4 skills" aria-pressed="false" data-node-kind="database" data-node-sublabel="keystone · opt-in" data-node-tag="R1 · CL · F16" data-node-context="Work and delivery · 4 skills">
-          <title>ki-work · keystone · opt-in · Work and delivery · 4 skills · R1 · CL · F16</title>
+        <g id="node-ki-work" data-node-id="ki-work" data-node-label="ki-work" tabindex="0" role="button" aria-label="Focus ki-work, keystone · opt-in, Work and delivery · 4 skills" aria-pressed="false" data-node-kind="database" data-node-sublabel="keystone · opt-in" data-node-tag="R3 · CL · F16" data-node-context="Work and delivery · 4 skills">
+          <title>ki-work · keystone · opt-in · Work and delivery · 4 skills · R3 · CL · F16</title>
           <rect x="32" y="392" width="208" height="76" rx="8" class="c-mask"/>
           <rect x="32" y="392" width="208" height="76" rx="8" class="c-database" data-animate="node" style="--step: 2; --flow-node-name: archify-relay-node-2;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(38 398) scale(0.6875)">
@@ -980,7 +979,7 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
           </g>
           <text data-node-label="" x="136" y="428" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-work</text>
         <text x="136" y="444" class="t-muted" font-size="9" text-anchor="middle">keystone · opt-in</text>
-        <text x="136" y="460" class="t-database" font-size="7" text-anchor="middle">R1 · CL · F16</text>
+        <text x="136" y="460" class="t-database" font-size="7" text-anchor="middle">R3 · CL · F16</text>
         </g>
 
         <g id="node-ki-work-linear" data-node-id="ki-work-linear" data-node-label="ki-work-linear" tabindex="0" role="button" aria-label="Focus ki-work-linear, work · opt-in, Work and delivery · 4 skills" aria-pressed="false" data-node-kind="database" data-node-sublabel="work · opt-in" data-node-tag="R2 · CM · F3" data-node-context="Work and delivery · 4 skills">

@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "2afee9ad0d1cd8d3f216437996ff4f7615afa7f3"
+      "revision": "011a2b98965ec155780112401fe737bd0109cd99"
     },
     "legend": {
       "mode": "auto",
@@ -73,16 +73,16 @@
       ]
     },
     {
-      "id": "ki-repo-kb-principal",
-      "type": "database",
-      "label": "ki-repo-kb-principal",
-      "sublabel": "repository · opt-in",
+      "id": "ki-repo-kb",
+      "type": "backend",
+      "label": "ki-repo-kb",
+      "sublabel": "repository · automatic",
       "sources": [
         {
-          "path": "skills/repository/ki-repo-kb-principal/SKILL.md"
+          "path": "skills/repository/ki-repo-kb/SKILL.md"
         }
       ],
-      "tag": "R6 · CM · F3",
+      "tag": "R67 · CL · F23",
       "pos": [
         684,
         64
@@ -254,7 +254,7 @@
       "kind": "region",
       "label": "Repository types · Knowledge bases",
       "wraps": [
-        "ki-repo-kb-principal"
+        "ki-repo-kb"
       ],
       "pad": 32
     },
@@ -315,10 +315,10 @@
       "variant": "default"
     },
     {
-      "id": "ki-repo-kb-principal--ki-decision-records",
-      "from": "ki-repo-kb-principal",
+      "id": "ki-repo-kb--ki-decision-records",
+      "from": "ki-repo-kb",
       "to": "ki-decision-records",
-      "variant": "default"
+      "variant": "dashed"
     },
     {
       "id": "ki-repo-mcp--ki-engineering",
@@ -348,7 +348,7 @@
       "dot": "slate",
       "title": "Generated, not drawn",
       "items": [
-        "6 skills, 0 outside prerequisites, 4 outside dependents, 3 composition and 1 optional edges, read from SKILL.md frontmatter.",
+        "6 skills, 0 outside prerequisites, 4 outside dependents, 2 composition and 2 optional edges, read from SKILL.md frontmatter.",
         "Home in another area: ki-authoring, ki-diagrams; only edges within this area are drawn for them here, and their home area's diagram draws the rest.",
         "Regenerate with ki repo conform --skill ki-repo-backpack; ki-skills KI-SHAPE-20 keeps the edges resolvable and acyclic."
       ]
