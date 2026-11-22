@@ -15,9 +15,9 @@ Curated patterns showing what well-formed Knowledge Islands KB notes, folder str
 
 | Source | URL | What it covers |
 | --- | --- | --- |
-| ki-principal | No public URL — KI repos are the primary exemplars | Zone layout, folder-note, frontmatter, link style † |
+| ki-principal | [knowledgeislands/ki-principal](https://github.com/knowledgeislands/ki-principal) | Zone layout, folder-note, frontmatter, link style † |
 
-† Zone layout, folder-note structure, frontmatter, and internal link style across a live KB conforming to the standard. `ki-principal` is at `/Users/krisbrown/workspaces/knowledge-islands/ki-principal/` on this machine; it is the reference base the skill tracks — see `sources.md` for conformance status.
+† Zone layout, folder-note structure, frontmatter, and internal link style across a live KB conforming to the standard. `ki-principal` is the reference base the skill tracks — see `sources.md` for conformance status.
 
 ## Selected patterns
 
