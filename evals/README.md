@@ -9,10 +9,10 @@ It's a **rough signal, not a gate.** The model's output varies from run to run, 
 ## Run it
 
 ```bash
-bun run ki:harness:eval                        # all scenarios, on Sonnet
-bun run ki:harness:eval --model opus           # pick a model: sonnet | opus | haiku
-bun run ki:harness:eval --scenario toml-style  # just one scenario
-bun run ki:harness:eval --runs 3               # repeat 3× and average — steadier signal
+bun run ki:backpack:eval                        # all scenarios, on Sonnet
+bun run ki:backpack:eval --model opus           # pick a model: sonnet | opus | haiku
+bun run ki:backpack:eval --scenario toml-style  # just one scenario
+bun run ki:backpack:eval --runs 3               # repeat 3× and average — steadier signal
 ```
 
 It drives your local `claude` CLI (no API key needed), so each run spends a little of your normal quota. The summary prints the rough cost.
@@ -39,13 +39,13 @@ Each scenario ends with a verdict — **skill helped / regressed / no difference
 
 ## Adding scenarios
 
-One file per skill in `scenarios/` (e.g. `scenarios/ki-repo-kb.ts`), each exporting a list of scenarios. A scenario is just three things: a **prompt**, some regex **assertions**, and a judge **rubric**. Copy an existing file for the shape, then add it to the `ALL` list in [`harness.ts`](harness.ts). The deterministic registry test fails when a physical scenario module is unregistered, registered more than once, or reuses a scenario ID; it never invokes a model.
+One file per skill in `scenarios/` (e.g. `scenarios/ki-repo-kb.ts`), each exporting a list of scenarios. A scenario is just three things: a **prompt**, some regex **assertions**, and a judge **rubric**. Copy an existing file for the shape, then add it to the `ALL` list in [`backpack.ts`](backpack.ts). The deterministic registry test fails when a physical scenario module is unregistered, registered more than once, or reuses a scenario ID; it never invokes a model.
 
 Aim for **3+ per skill**, and test your **house-specific** names, paths, and rules — not general best practice, which the model knows with or without the skill.
 
 ## Where it stands
 
-Nearly every skill has scenarios — including authoring, binding, bootstrap, decision records, engineering, feature definitions, handoffs, housekeeping, KB capabilities, MCP, plugins, repository governance, roadmaps, skills, subagents, tokenomics, and both website layers. The matrix run across Haiku, Sonnet, and Opus covered the original set, and the result in one line was: **on house-specific facts, loading a skill reliably takes the model from "I don't know" to the right answer — on every model.** That's the whole point, confirmed. Newer scenarios are not yet in a matrix run — re-run `bun run ki:harness:eval` to regenerate `evals/results/`.
+Nearly every skill has scenarios — including authoring, binding, bootstrap, decision records, engineering, feature definitions, handoffs, housekeeping, KB capabilities, MCP, plugins, repository governance, roadmaps, skills, subagents, tokenomics, and both website layers. The matrix run across Haiku, Sonnet, and Opus covered the original set, and the result in one line was: **on house-specific facts, loading a skill reliably takes the model from "I don't know" to the right answer — on every model.** That's the whole point, confirmed. Newer scenarios are not yet in a matrix run — re-run `bun run ki:backpack:eval` to regenerate `evals/results/`.
 
 ## Deterministic gates
 
@@ -53,4 +53,4 @@ These behavioural evals remain advisory. Deterministic rubric and hook fixtures 
 
 The one skill left uncovered is **`ki-repo-backpack`, and that is by design.** Its assertions are pure bundle _structure_ that the native `ki-repo-backpack` audit already checks mechanically, and the no-skill-baseline method here rewards a recallable house fact. If a planted-violation scenario ever clears the "the model couldn't already know this" bar, revisit that choice.
 
-**For routine runs, use Sonnet — it's the most cost-effective arm.** A full matrix (every scenario × 3 runs) costs roughly **$9 on Haiku, $23 on Sonnet, $34 on Opus** at the original scenario count. Opus gives no cleaner signal than Sonnet for about 50% more, so keep it for occasional confirmation; Sonnet is a representative, trustworthy model at a sensible price. (Haiku is cheapest and did well here, but a stronger model is the safer regression proxy.) Run results aren't checked in — they're regeneratable, so just re-run `bun run ki:harness:eval`.
+**For routine runs, use Sonnet — it's the most cost-effective arm.** A full matrix (every scenario × 3 runs) costs roughly **$9 on Haiku, $23 on Sonnet, $34 on Opus** at the original scenario count. Opus gives no cleaner signal than Sonnet for about 50% more, so keep it for occasional confirmation; Sonnet is a representative, trustworthy model at a sensible price. (Haiku is cheapest and did well here, but a stronger model is the safer regression proxy.) Run results aren't checked in — they're regeneratable, so just re-run `bun run ki:backpack:eval`.

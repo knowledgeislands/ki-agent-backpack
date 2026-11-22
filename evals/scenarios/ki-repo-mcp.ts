@@ -8,7 +8,7 @@
  * names, the access-level env var + default, and the `<app>_<resource>_<action>`
  * tool-naming convention. Those are what the skill genuinely owns.
  */
-import type { Scenario } from '../harness.ts'
+import type { Scenario } from '../backpack.ts'
 
 export const scenarios: Scenario[] = [
   {

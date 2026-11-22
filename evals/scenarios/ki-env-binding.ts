@@ -5,7 +5,7 @@
  * health. They intentionally avoid retired client tokens and unverified Cowork
  * behavior.
  */
-import type { Scenario } from "../harness.ts";
+import type { Scenario } from "../backpack.ts";
 
 export const scenarios: Scenario[] = [
   {

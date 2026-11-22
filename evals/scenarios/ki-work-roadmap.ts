@@ -1,5 +1,5 @@
 /** Eval scenarios for the flat non-KB `ki-work-roadmap` contract. */
-import type { Scenario } from '../harness.ts'
+import type { Scenario } from '../backpack.ts'
 
 export const scenarios: Scenario[] = [
   {

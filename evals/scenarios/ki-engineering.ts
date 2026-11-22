@@ -5,7 +5,7 @@
  * assisted answer that applies the house contract from a generic TS/Bun answer;
  * they are not recall questions about a single rule.
  */
-import type { Scenario } from '../harness.ts'
+import type { Scenario } from '../backpack.ts'
 
 export const scenarios: Scenario[] = [
   {

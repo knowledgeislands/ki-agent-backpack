@@ -2,9 +2,9 @@
 /**
  * Skill eval harness — behavioural validation, the complement to the linters.
  *
- *   bun evals/harness.ts                 # run every scenario on the default model (sonnet)
- *   bun evals/harness.ts --model opus    # …on another model (sonnet | opus | haiku | full id)
- *   bun evals/harness.ts --scenario toml-style   # one scenario by id
+ *   bun evals/backpack.ts                # run every scenario on the default model (sonnet)
+ *   bun evals/backpack.ts --model opus   # …on another model (sonnet | opus | haiku | full id)
+ *   bun evals/backpack.ts --scenario toml-style   # one scenario by id
  *
  * For each scenario it runs the same prompt TWICE through the local `claude` CLI:
  *   • baseline  — `claude -p <prompt> --disallowed-tools Skill`  (skills off — see runClaude)

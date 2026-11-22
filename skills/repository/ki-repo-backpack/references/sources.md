@@ -73,10 +73,13 @@ The owner decisions the standard and this file name by id.
 | PERSONAL-SPECIAL | Kris's word: the prefix `personal` is reserved for the owner's own personal Harness, which only that owner installs. | 2026-10-29 | [compatible harness standard, 4.7](standard-compatible-backpack.md#47-backpack-declaration) | In force |
 | BACKPACK-DEPTH | Kris's word, in the Cairn summit's change 12: `ki-repo-harness` became `ki-repo-backpack`, and the harness wording in its standards follows when the backpack words are rolled out. | 2026-11-14 | [compatible harness standard](standard-compatible-backpack.md) | In force |
 | BACKPACK-ROOT-WORDS | The backpack's own files outside its skills say backpack where they meant the bundle, in one pass under this skill: the root `README.md`, `CLAUDE.md` and `AGENTS.md`, `hooks/README.md` and the developer guides, the guide renamed `local-backpack-development.md` with its links; `ki:harness:eval`, `evals/harness.ts`, installed paths under `harnesses/`, decision identifiers, quotations and "eval harness" in the industry's sense keep their words. `ki-coordination`'s two example banners and its output style follow after the run then editing it. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a, from the summit's change 12, option a, under HARNESS-NAME. Reversible; Kris can overturn it. | 2026-11-19 | [Compatible backpack standard](standard-compatible-backpack.md) | In force |
+| EVAL-SCRIPT-NAME | The source backpack's evaluation claim says backpack too: `ki:harness:eval` became `ki:backpack:eval` and `evals/harness.ts` became `evals/backpack.ts`, overturning that part of BACKPACK-ROOT-WORDS. "Eval harness" in the industry's sense keeps its words. Kris's overnight brief to Loreward, 22 November 2026. | 2026-11-22 | [compatible backpack standard, 4.3](standard-compatible-backpack.md#43-source-backpack-layout) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 EVAL-SCRIPT-NAME, recorded under [Decisions](#3-decisions), renamed the evaluation claim to `ki:backpack:eval` and its runner to `evals/backpack.ts` in the standard, the rubric catalogue and its test. No criterion changed and no outside source refreshed.
 
 On 19 November 2026 BACKPACK-ROOT-WORDS, recorded under [Decisions](#3-decisions), brought the backpack's own root files, `hooks/README.md` and developer guides to the backpack word, the local development guide renamed. No criterion changed and no outside source refreshed.
 

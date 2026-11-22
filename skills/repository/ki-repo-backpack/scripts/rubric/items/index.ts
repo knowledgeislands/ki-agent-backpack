@@ -15,7 +15,7 @@ export default {
   contract: 1,
   name: 'ki-repo-backpack',
   concern: 'Knowledge Islands compatible backpacks',
-  packageScripts: ['ki:harness:eval'],
+  packageScripts: ['ki:backpack:eval'],
   createSession: createBackpackSession,
   families: [CAP, PAYLOAD, LAY, CLAUDE, CONFIG, SKILLS, LONG, COLL, GATE, RUBRIC]
 } satisfies SkillRubricDefinition<BackpackRubricContext>

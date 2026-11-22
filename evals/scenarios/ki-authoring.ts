@@ -11,7 +11,7 @@
  * Assertions are regexes over the answer text — the deterministic half of the
  * hybrid score. The `rubric` is handed to the LLM judge for the qualitative half.
  */
-import type { Scenario } from '../harness.ts'
+import type { Scenario } from '../backpack.ts'
 
 export const scenarios: Scenario[] = [
   {

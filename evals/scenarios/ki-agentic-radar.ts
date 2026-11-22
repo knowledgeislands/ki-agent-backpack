@@ -4,7 +4,7 @@
  * These test the house-specific distinction between specification maturity,
  * implementation evidence, interoperability evidence, and structural patterns.
  */
-import type { Scenario } from '../harness.ts'
+import type { Scenario } from '../backpack.ts'
 
 export const scenarios: Scenario[] = [
   {

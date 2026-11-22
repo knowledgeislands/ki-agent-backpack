@@ -3,7 +3,7 @@
  * `.ki.toml` contract. Each probes a house-specific rule (the compliance
  * marker, merge policy, the one-table-per-skill model) a baseline wouldn't know.
  */
-import type { Scenario } from '../harness.ts'
+import type { Scenario } from '../backpack.ts'
 
 export const scenarios: Scenario[] = [
   {

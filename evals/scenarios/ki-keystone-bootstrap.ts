@@ -5,7 +5,7 @@
  * what first-time bootstrap installs, how harness installation differs from skill
  * activation, and why repository operations never fall back to checkout-local runners.
  */
-import type { Scenario } from '../harness.ts'
+import type { Scenario } from '../backpack.ts'
 
 export const scenarios: Scenario[] = [
   {

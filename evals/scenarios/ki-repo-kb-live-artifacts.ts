@@ -7,7 +7,7 @@
  * pairing with the "unpublished"/"orphan" vocabulary, the 24-hour sync-threshold
  * direction, and the required `renders` frontmatter key.
  */
-import type { Scenario } from '../harness.ts'
+import type { Scenario } from '../backpack.ts'
 
 export const scenarios: Scenario[] = [
   {

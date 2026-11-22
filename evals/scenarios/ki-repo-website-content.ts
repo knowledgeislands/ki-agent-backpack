@@ -6,7 +6,7 @@
  * cannot derive: the config-less-Tailwind + portable-dist invariants, the run-TS-natively
  * rule (no transpile, tsx legacy), and the flat-vs-`site/` layout with its `site:` prefix.
  */
-import type { Scenario } from '../harness.ts'
+import type { Scenario } from '../backpack.ts'
 
 export const scenarios: Scenario[] = [
   {

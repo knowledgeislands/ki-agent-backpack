@@ -6,7 +6,7 @@
  * `### <PREFIX>-NNN — title` + BCP 14 + `_Verify:_` requirement shape, append-only IDs,
  * and the unnumbered `## Gaps` backlog that sits outside the as-built contract.
  */
-import type { Scenario } from '../harness.ts'
+import type { Scenario } from '../backpack.ts'
 
 export const scenarios: Scenario[] = [
   {

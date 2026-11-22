@@ -9,7 +9,7 @@
  * Changelog, or supersession), and the KB placement + required frontmatter that
  * differ from a code repo.
  */
-import type { Scenario } from '../harness.ts'
+import type { Scenario } from '../backpack.ts'
 
 export const scenarios: Scenario[] = [
   {

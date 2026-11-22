@@ -7,7 +7,7 @@
  * (slash-command needs a `skill:`; scheduled-task needs `schedule_name` and only
  * WARNs on external registration), and the fixed Activities.md index location.
  */
-import type { Scenario } from '../harness.ts'
+import type { Scenario } from '../backpack.ts'
 
 export const scenarios: Scenario[] = [
   {
