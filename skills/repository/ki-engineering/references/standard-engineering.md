@@ -67,7 +67,7 @@ The common engineering layer of every Knowledge Islands TypeScript/Bun repositor
 ### 2.2 Out of scope
 
 - Rules meaningful only for one artifact type, which live in that artifact's skill, such as `ki-repo-mcp`.
-- How we write, and the Markdown configuration's content: `ki-authoring`.
+- How we write, and the Markdown configuration's content: `ki-authoring`, which owns `.rumdl.toml` and `.editorconfig` wholly (scaffold, drift check and overwrite on drift); this skill neither scaffolds nor content-checks either.
 - Whether the commit hooks exist and match their canonical text, and the `.ki.toml` table-per-skill contract: `ki-repo`; the commit-message vocabulary: `ki-git`.
 
 [Back to contents](#contents)
