@@ -1231,8 +1231,8 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         <text x="692" y="1268" class="t-backend" font-size="7" text-anchor="middle">R14 · CL · F11</text>
         </g>
 
-        <g id="node-ki-repo-packages" data-node-id="ki-repo-packages" data-node-label="ki-repo-packages" tabindex="0" role="button" aria-label="Focus ki-repo-packages, repository · opt-in, Repository types · 17 skills › Single-type repositories" aria-pressed="false" data-node-kind="database" data-node-sublabel="repository · opt-in" data-node-tag="R9 · CM · F4" data-node-context="Repository types · 17 skills › Single-type repositories">
-          <title>ki-repo-packages · repository · opt-in · Repository types · 17 skills › Single-type repositories · R9 · CM · F4</title>
+        <g id="node-ki-repo-packages" data-node-id="ki-repo-packages" data-node-label="ki-repo-packages" tabindex="0" role="button" aria-label="Focus ki-repo-packages, repository · opt-in, Repository types · 17 skills › Single-type repositories" aria-pressed="false" data-node-kind="database" data-node-sublabel="repository · opt-in" data-node-tag="R10 · CM · F4" data-node-context="Repository types · 17 skills › Single-type repositories">
+          <title>ki-repo-packages · repository · opt-in · Repository types · 17 skills › Single-type repositories · R10 · CM · F4</title>
           <rect x="588" y="1076" width="208" height="76" rx="8" class="c-mask"/>
           <rect x="588" y="1076" width="208" height="76" rx="8" class="c-database" data-animate="node" style="--step: 10;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(594 1082) scale(0.6875)">
@@ -1241,7 +1241,7 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
           </g>
           <text data-node-label="" x="692" y="1112" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-repo-packages</text>
         <text x="692" y="1128" class="t-muted" font-size="9" text-anchor="middle">repository · opt-in</text>
-        <text x="692" y="1144" class="t-database" font-size="7" text-anchor="middle">R9 · CM · F4</text>
+        <text x="692" y="1144" class="t-database" font-size="7" text-anchor="middle">R10 · CM · F4</text>
         </g>
 
         <g id="node-ki-repo-project" data-node-id="ki-repo-project" data-node-label="ki-repo-project" tabindex="0" role="button" aria-label="Focus ki-repo-project, repository · opt-in, Repository types · 17 skills › Projects" aria-pressed="false" data-node-kind="database" data-node-sublabel="repository · opt-in" data-node-tag="R2 · CM · F3" data-node-context="Repository types · 17 skills › Projects">
