@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:17:42Z
+ki-revised: 2026-11-22T01:09:07Z
 ki-status: in force
 ---
 
@@ -38,7 +38,7 @@ The repository-level topology of durable documentation.
 ### 2.2 Out of scope
 
 - The content contracts of each concern: `ki-decision-records`, `ki-specs`, `ki-guides`, `ki-design` with `ki-authoring`'s design format, and `ki-work-roadmap`.
-- Authored placement and style: `ki-authoring`.
+- Authored placement and style: `ki-authoring`, whose presentation format also sets where a presentation lives.
 - Knowledge Base repositories.
 
 [Back to contents](#contents)
@@ -70,6 +70,8 @@ In a non-Knowledge-Base repository, durable documentation has five concerns:
 ### 4.2 Ownership and gaps
 
 `ki-repo` owns this repository-level topology and reviews whether material is routed to the appropriate concern. It does not replace the specialist content contracts owned by `ki-decision-records`, `ki-specs`, `ki-guides`, `ki-design` or `ki-work-roadmap`.
+
+Presentations are not a sixth concern: a presentation presents material the concerns already hold, and lives beside it, in the folder of the design it presents or under `docs/presentations/`, as `ki-authoring`'s [presentation format](../../ki-authoring/references/standard-formats-presentation.md#46-naming-and-place) sets (ARTIFACT-HOMES).
 
 This topology is not a further documentation category and does not require every repository to instantiate every concern. A missing durable contract is a named gap for the relevant specialist skill, not material silently placed in an unowned generic documentation directory. `ki-authoring` continues to govern authored placement and style.
 

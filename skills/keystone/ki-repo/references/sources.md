@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:49:03Z
+ki-revised: 2026-11-22T01:09:07Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -78,10 +78,13 @@ The decisions the standards cite by id, oldest first; each standard keeps citing
 | SETTINGS-SCOPE | The settings plan's `all` array covers every non-fork repository in `knowledgeislands/`, 22 on 17 November, and `public` every public one among them, each checked against GitHub's live visibility; the fork `paperclip` stays out. Taken at high confidence by the Cairn summit's guardian on Kris's word to take high-confidence calls. | 2026-11-17 | [repository](standard-repository.md#413-applying-it) | In force |
 | COVERAGE-SIGNAL | A `+/_WORK/` folder no longer counts as `ki-work-package`'s coverage signal: a work package lives in the Cairn store, so a `+/_WORK/` left in a repository is out of place and COV-1 warns on it, naming the store's `work/<territory>/<id>/`; the old `+/_CHECKPOINTS/` keeps its tolerance-window signal. A check at about 04:15 GMT found no tracked checkout holding such a copy. COVERAGE-SIGNAL a, taken by the Cairn summit's guardian, 17 November 2026, about 04:30 GMT, under Kris's direction to take high-confidence calls, from the summit's [change 10](https://github.com/krisb/ki-cairn-store/blob/57d4c69/work/cairn/cairn.summit/10-skills-review.change.md#71-questions). | 2026-11-17 | [configuration](standard-configuration.md#410-coverage-enforcement) | In force |
 | COPY-DETAILS | A vendored copy the audit cannot check is reported as information, not a warning, since a copy that cannot be checked is not thereby wrong; and where the backpack's current version of the skill differs from the one at the copy's `commit`, the audit adds an information-level note that the backpack has moved on past it. The note's code is `tools-ki`'s, built by ki.tools; the managed `.gitignore` block re-including vendored copies, `RUNTIMES-6` checking they are tracked, and Git computing the hashes go to the Repository guild's review. Kris, 17 November 2026, about 23:34 GMT, under GUARDIAN-LANDS a, from the Cairn summit's [change 13](https://github.com/krisb/ki-cairn-store/blob/c17433e/work/cairn/cairn.summit/13-runtimes-and-skill-copies.change.md#42-standalone-repositories-carry-their-skills). | 2026-11-17 | [configuration](standard-configuration.md#434-vendored-skills) | In force |
+| ARTIFACT-HOMES | Each artifact's files live in the repository of the thing it serves; a presentation, kept in `ki-authoring`'s presentation format, lives beside what it presents, in the folder of the design it presents or under `docs/presentations/`, which is not a further documentation concern. Kris, 21 November 2026, about 06:50 GMT, "ARTIFACT-HOMES a", relayed by ki.summit's keyholder from the Cairn summit's [change 60](https://github.com/krisb/ki-cairn-store/blob/4a220bf8/work/cairn/cairn.summit/60-design.change.md#48-decided), step 10. | 2026-11-21 | [documentation topology](standard-documentation-topology.md#42-ownership-and-gaps) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the documentation topology named `docs/presentations/` under ARTIFACT-HOMES a, from the Cairn summit's change 60, step 10: presentations follow `ki-authoring`'s new presentation format and are not a sixth concern. No criterion changed and no outside source refreshed.
 
 Later still on 18 November 2026 the skill's code followed HARNESS-NAME, from the Cairn summit's change 12, step 6, for the Keystone guild: the generator's root parameter is `backpackRoot`, the canonical hooks say the backpack root, and the configuration tests' `[repo]` examples use the `backpacks` key. No criterion changed and no outside source refreshed.
 
