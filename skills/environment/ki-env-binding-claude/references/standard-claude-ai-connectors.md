@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:14:27Z
+ki-revised: 2026-11-22T18:31:44Z
 ki-status: in force
 ---
 
@@ -78,7 +78,7 @@ So "control" is really four layers at three different persistence scopes.
 | Layer | Where | Scope | Persists beyond one chat? |
 | --- | --- | --- | --- |
 | Per-conversation toggles | Composer **+** / `/` → Connectors | This chat only | No |
-| Per-tool permission mode | Tool menu (Always allow / Needs approval / Blocked) | Account default | Yes |
+| Per-tool permission mode | Organization settings → Connectors → Tools (Always allow / Needs approval / Blocked) | Every member; members cannot override it | Yes |
 | Account connectors | Customize → Connectors ([claude.ai/customize/connectors](https://claude.ai/customize/connectors)) | Whole account, all clients | Yes |
 | Org admin governance | Admin Console → Policies; Organization settings → Connectors | Every member | Yes |
 
@@ -100,7 +100,9 @@ Watch the tool-count ceiling — connecting many connectors (≈10+) on one acco
 
 ### 4.4 Per-tool permission mode — the fatigue-vs-safety dial
 
-Each tool can be set to **Always allow**, **Needs approval**, or **Blocked**. Read-only tools default to auto-run; write tools prompt. This default is account-wide and persists across chats.
+This is an organisation lever. An organisation's Owners set each connector tool to **Always allow**, **Needs approval** or **Blocked** under Organization settings → Connectors → Tools. The setting applies to the whole organisation, and no member can override it. The vendor documents no default mode.
+
+An individual has two lighter levers: the **Allow always** choice in a tool's approval prompt, and the **Search and tools** menu, which turns tools on or off for the conversation (§4.3). Claude Code enforces the organisation's **Blocked** setting, so a tool blocked here stays blocked from a Claude Code session too.
 
 [Back to contents](#contents)
 
@@ -169,9 +171,9 @@ This managed-settings surface is precisely what makes claude.ai connectors gover
 
 ### 4.8 Picking a lever
 
-- **Individual, day to day** — per-chat tools menu (§4.3) + per-tool permission modes (§4.4).
+- **Individual, day to day** — per-chat tools menu (§4.3) and the Allow always prompt (§4.4).
 - **Individual, durable** — prune the account connector set (§4.5); fewer connectors beats more toggling.
-- **Org governance** — admin console allowlist and/or Enterprise-managed auth (§4.6).
+- **Org governance** — per-tool permission modes (§4.4), admin console allowlist and/or Enterprise-managed auth (§4.6).
 - **Governing how they land in Claude Code** — `allowedMcpServers` / `deniedMcpServers` and the `managed-mcp.json` interaction (§4.7).
 
 [Back to contents](#contents)
