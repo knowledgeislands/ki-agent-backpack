@@ -1,7 +1,7 @@
 ---
 id: KI-HARNESS-HK-005
 title: Weekly agentic radar review
-status: active
+status: paused
 cadence: P1W
 last-run: 2026-09-18
 grace: P2D

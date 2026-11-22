@@ -1,7 +1,7 @@
 ---
 id: KI-HARNESS-HK-002
 title: Knowledge reconciliation
-status: active
+status: paused
 cadence: P1M
 last-run: 2026-09-18
 commit-threshold: 100

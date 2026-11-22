@@ -1,7 +1,7 @@
 ---
 id: KI-HARNESS-HK-001
 title: Engineering alignment review
-status: active
+status: paused
 cadence: P1M
 last-run: 2026-09-18
 commit-threshold: 100
