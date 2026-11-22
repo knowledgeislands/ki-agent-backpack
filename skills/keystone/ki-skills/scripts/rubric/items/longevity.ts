@@ -3,6 +3,8 @@ import { judgment } from '../../shared/rubric.ts'
 import { type KiSkillsRubricContext, type LongevityRubricContext, selectKiSkillsContext } from '../contexts/contexts.ts'
 
 const REFRESH_GRACE_DAYS = 14
+/** LONG-3 warns for the first two months a source list is overdue and fails after (LONG3-LEVEL). */
+const OVERDUE_WARN_DAYS = 60
 
 const LONG_1: RubricItem<unknown> = {
   code: 'LONG-1',
@@ -17,21 +19,20 @@ const LONG_2: RubricItem<unknown> = {
   code: 'LONG-2',
   title: 'the refresh path has a cadence',
   description:
-    "_A cadence, not just a capability._ A skill that ships a refresh path also **declares a cadence** in its `sources.md` `**Refresh:**` marker (`<class> · <cadence>`) and, where supported, registers a scheduled run; a refresh capability with no declared cadence is a half-measure. The cadence has runtime teeth in both directions: overdue → LONG-3 WARN; too-soon → the REFRESH mode's confirm-before-force gate (enforcement framework §5).",
+    "_A cadence, not just a capability._ A skill that ships a refresh path also **declares a cadence** in its `sources.md` `ki-refresh` marker (`<class> · <cadence>`); a refresh capability with no declared cadence is a half-measure. REFRESH runs on demand, or wherever the host chooses to schedule it; no scheduled job is assumed. The cadence has runtime teeth in both directions: overdue → LONG-3 WARN, then FAIL; too-soon → the REFRESH mode's confirm-before-force gate (enforcement framework §5).",
   sources: ['COMMUNITY'],
-  judgment: judgment(
-    'Does the refresh path have an appropriate declared cadence and scheduled execution where supported?'
-  )
+  judgment: judgment('Does the refresh path have an appropriate declared cadence?')
 }
 
 const LONG_3: RubricItem<LongevityRubricContext> = {
   code: 'LONG-3',
   title: 'the declared refresh cadence is being met',
   description:
-    "_The cadence is actually being met._ Where a skill carries `references/sources.md`, its stalest `Last reviewed` date (the oldest row in that table column, so a fresh row cannot mask a stale one and dates quoted in prose don't count) is within the skill's **declared per-skill cadence** plus grace; an overdue source list WARNs so AUDIT and the scheduled refresh routine surface it. A `canonical · on-change` skill carries no clock and is exempt — it refreshes when the model changes, not on a calendar. Never a FAIL — staleness is elapsed time, not a defect in the change under review.",
+    "_The cadence is actually being met._ Where a skill carries `references/sources.md`, its stalest `Last reviewed` date (the oldest row in that table column, so a fresh row cannot mask a stale one and dates quoted in prose don't count) is within the skill's **declared per-skill cadence** plus 14 days' grace, when the source list falls due. An overdue source list WARNs for its first two months overdue, so AUDIT surfaces it, and FAILs once it is more than two months overdue. A `canonical · on-change` skill carries no clock and is exempt — it refreshes when the model changes, not on a calendar.",
   sources: ['COMMUNITY'],
   mechanical: {
     level: 'WARN',
+    overrideLevels: ['FAIL'],
     remediation: {
       class: 'diagnostic',
       guidance:
@@ -42,14 +43,21 @@ const LONG_3: RubricItem<LongevityRubricContext> = {
       run: (context) => {
         if (!context.sourcesPresent || context.cadence === null || context.windowDays === null)
           return [{ status: 'NOT_APPLICABLE', message: 'no declared refresh cadence to assess' }]
-        if (context.ageDays !== null && context.ageDays <= context.windowDays + REFRESH_GRACE_DAYS)
-          return [{ status: 'PASS', message: 'the declared refresh cadence is being met' }]
+        if (context.ageDays === null)
+          return [
+            {
+              status: 'VIOLATION',
+              message: `references/sources.md declares a ${context.cadence} cadence but has no \`Last reviewed\` date — run Mode REFRESH`
+            }
+          ]
+        const overdueDays = context.ageDays - (context.windowDays + REFRESH_GRACE_DAYS)
+        if (overdueDays <= 0) return [{ status: 'PASS', message: 'the declared refresh cadence is being met' }]
+        const failing = overdueDays > OVERDUE_WARN_DAYS
         return [
           {
             status: 'VIOLATION',
-            message: context.lastReviewed
-              ? `references/sources.md has a source last reviewed ${context.lastReviewed} (${context.ageDays} days ago), past its ${context.cadence} REFRESH cadence + ${REFRESH_GRACE_DAYS}d grace — run Mode REFRESH`
-              : `references/sources.md declares a ${context.cadence} cadence but has no \`Last reviewed\` date — run Mode REFRESH`
+            ...(failing ? { level: 'FAIL' as const } : {}),
+            message: `references/sources.md has a source last reviewed ${context.lastReviewed} (${context.ageDays} days ago), ${overdueDays} days past its ${context.cadence} REFRESH cadence + ${REFRESH_GRACE_DAYS}d grace${failing ? `, more than ${OVERDUE_WARN_DAYS} days overdue` : ''} — run Mode REFRESH`
           }
         ]
       }

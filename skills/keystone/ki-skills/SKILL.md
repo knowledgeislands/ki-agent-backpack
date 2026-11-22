@@ -64,7 +64,7 @@ Review a skill (or every skill in a repo) against the rubric and report.
 2. **Scaffold** `<name>/SKILL.md` with `references/`, `scripts/`, `assets/` only as needed. The directory name **is** the `name:` frontmatter (lowercase, hyphenated, in sync).
 3. **Write to the rubric, not from memory** — open [the rubric](references/rubric.md) and satisfy each criterion as you draft. In particular: trigger-rich third-person `description`; body under 500 lines / ~5,000 tokens; one default approach with an escape hatch, not a menu; detail in `references/`; relative markdown links (angle-bracket form for paths with spaces), never wikilinks; refer to other skills by `name`, never path.
 4. **Self-audit before finishing** — run Mode AUDIT on the new skill. EDUCATE and AUDIT share one rubric on purpose.
-5. **Declare its refresh cadence** — give the new skill's `references/sources.md` its `ki-refresh` cadence (LONG-2). No scheduled job sweeps the set's REFRESH: REFRESH runs on demand, and audit check LONG-3 flags a skill whose stalest source is older than its cadence plus 14 days' grace, so a stale skill shows at audit rather than falling silently out of date.
+5. **Declare its refresh cadence** — give the new skill's `references/sources.md` its `ki-refresh` cadence (LONG-2). No scheduled job sweeps the set's REFRESH: REFRESH runs on demand, and once a skill's stalest source is older than its cadence plus 14 days' grace, audit check LONG-3 warns for two months and then fails, so a stale skill shows at audit rather than falling silently out of date.
 
 ### Mode EXTRACT — identify reusable capabilities from a project
 
