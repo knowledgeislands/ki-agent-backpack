@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-21T22:45:00Z
+ki-revised: 2026-11-22T00:40:00Z
 ki-status: in force
 ---
 
@@ -33,6 +33,7 @@ How a session works alone, how work reaches other work along the tree now the me
 ### 2.1 In scope
 
 - A session's independence over its package and repositories.
+- Seats and accounts: every seat works from the files, and a published view is republished only from its own account.
 - Orca mail as the channel between sessions in Orca, the order of routes, and the Cairn Beacon.
 - Work between packages: along the tree, receipt, transfers, method changes, release notices and owner feedback.
 - Urgent work and when a worker is live.
@@ -72,7 +73,9 @@ The rules, part by part.
 
 A session is independent and autonomous over its work package and the repositories its `repositories:` names. It does its work there with its agent host's own subagents, under the `ki-delegation` [background-run standard](../../../agentic-systems/ki-delegation/references/standard-background-runs.md), and those subagents act across those repositories. It never asks another session to act for it. It contacts another session only when that is essential, and then as a one-way hand-off that nobody waits on: a lesson learned, for example, goes to the guildmaster, who takes it up as scheduled work. A hand-off goes along the tree under [Work between packages](#messages-between-work), a signal that confers no execution authority.
 
-Sources: SESSIONS-ALONE and AGENT-HOST in [the decision register](sources.md#3-decisions).
+**Seats and accounts** (SEAT-ACCESS b, VIEW-ACCOUNT a, 22 and 20 November 2026). Every seat, in any agent host and any account, works from the files in the repositories its work names, never from an artifact in another account. A view published outside a repository, such as a cloud artifact or a canvas, names the account that publishes it, and only a seat in that account republishes it; any other seat changes the files and asks that seat, by Orca mail or along the tree, to republish. A view no working seat can reach is republished fresh from the files in a reachable account, and the old one retired once the owner has checked it. How each kind of seat reaches the files is being trialled from every agent host and is not yet set. For a design system the view's index and its folder are `ki-design-system`'s, under its [Projections](../../../design/ki-design-system/references/standard-design-system.md#411-projections).
+
+Sources: SESSIONS-ALONE, AGENT-HOST, SEAT-ACCESS and VIEW-ACCOUNT in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
