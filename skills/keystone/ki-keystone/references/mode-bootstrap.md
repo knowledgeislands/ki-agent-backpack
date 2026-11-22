@@ -34,7 +34,7 @@ Managed activation is fail-closed. If a link, installed payload, or development 
 
 ## Repository operations
 
-`.ki.toml` declares the skills that govern a repository. `ki repo educate`, `ki repo audit`, and `ki repo conform` resolve only those declarations and their explicit dependencies from installed backpacks.
+`.ki.toml` declares the skills that govern a repository; its schema, resolution, activation flow and local registry are `ki-repo`'s. `ki repo educate`, `ki repo audit`, and `ki repo conform` resolve only those declarations and their explicit dependencies from installed backpacks.
 
 Missing, incompatible, undeclared, or ambiguous skills fail before an audit or conform operation runs. The CLI executes native rubric catalogues; it never uses repository-vendored runners or `.ki/bin` wrappers.
 

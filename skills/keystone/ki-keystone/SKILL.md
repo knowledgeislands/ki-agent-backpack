@@ -21,11 +21,12 @@ Keystone is the guild of guilds: it holds what every other guild rests on, and e
 
 ## Where to start
 
-A session in a repository starts with three skills:
+A session starts from the work it is given, through two skills:
 
-- **`ki-repo`** for the repository itself: its `.ki.toml`, its shape and the skills it declares.
-- **`ki-authoring`** for anything written down: formats, READMEs, decisions and knowledge placement.
-- **`ki-agentic-ecosystems`** for the words: what an agent, a session, a subagent or a skill is.
+- **`ki-coordination`** when it is opened on a piece of work: its opener, `Bootstrap <id> ... under ki-coordination`, picks the work package up, and its reply forms set how every session replies, opened or not.
+- **`ki-work`** to choose, plan, deliver, accept or recap work: `next` when nothing is chosen yet, and its other subcommands from there.
+
+From there the guild map below finds the lead for whatever the work touches: `ki-repo` for the repository and the skills it declares, `ki-authoring` for anything written down, and `ki-agentic-ecosystems` for the words.
 
 On a machine not yet set up, or when a skill will not activate, start with this skill's BOOTSTRAP mode below.
 
@@ -83,7 +84,7 @@ Run `ki repo audit --skill ki-keystone --repo <repo>`. In a repository with no s
 
 ### Mode BOOTSTRAP
 
-`bootstrap` explains first-time Knowledge Islands activation through the `ki` CLI: `ki bootstrap`, installed backpacks, user and repository skill activation, native repository operations, machine readiness for coordinating work, and local backpack development. Read [the bootstrap reference](references/mode-bootstrap.md) and follow it; it loads [the bootstrap standard](references/standard-bootstrap.md) and [the exemplars](references/exemplars.md) as needed. It changes no user or repository state. Route exact command and option questions to `ki --help`, and `.ki.toml` coverage to `ki-repo`.
+`bootstrap` explains first-time Knowledge Islands activation through the `ki` CLI: `ki bootstrap`, installed backpacks, user and repository skill activation, native repository operations, machine readiness for coordinating work, and local backpack development. Read [the bootstrap reference](references/mode-bootstrap.md) and follow it; it loads [the bootstrap standard](references/standard-bootstrap.md) and [the exemplars](references/exemplars.md) as needed. It changes no user or repository state. Route exact command and option questions to `ki --help`, and `.ki.toml` declarations, their resolution, the activation flow and the local registry to `ki-repo`.
 
 ### Mode CONFORM
 

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T19:02:36Z
+ki-revised: 2026-11-22T19:53:35Z
 ki-status: in force
 ---
 
@@ -102,15 +102,9 @@ The canonical backpack cannot be uninstalled. `ki backpack uninstall <backpack-i
 
 ### 4.2 Declarative repository selection
 
-`.ki.toml` declares the governance coverage of one repository through explicit `[ki-<skill>]` tables.
+`.ki.toml` declares the skills that govern one repository. `ki-repo` owns that declaration and its rules: the file's schema and creation, declared coverage, how a bare skill name resolves against the declared backpacks, the native configuration and activation flow, and the local registry of addressed repositories, in [the `.ki.toml` contract](../../ki-repo/references/standard-configuration.md)'s [4.3](../../ki-repo/references/standard-configuration.md#43-backpacks-and-the-skills-namespace), [4.12](../../ki-repo/references/standard-configuration.md#412-scaffolding--ownership) and [4.13](../../ki-repo/references/standard-configuration.md#413-local-registry) (BOOTSTRAP-HOME).
 
-`ki-repo` owns the file's schema, creation, and declared coverage.
-
-The native resolver physically resolves the selected repository, reads those declarations, validates every explicit dependency, and resolves only the selected skills from verified installed compatible backpacks.
-
-Dependencies must be declared explicitly; a resolver must not inject a baseline, infer an undeclared skill, or silently rename a declaration.
-
-Missing, incompatible, undeclared, or untrusted skills are fail-closed errors before an operation writes.
+What bootstrap adds is where the selected skills come from: the native resolver resolves only them, from verified installed compatible backpacks ([4.1](#41-authoritative-installed-backpacks)), and validates every explicit dependency. It never injects a baseline, infers an undeclared skill or silently renames a declaration, and a missing, incompatible, undeclared or untrusted skill is a fail-closed error before an operation writes.
 
 [Back to contents](#contents)
 

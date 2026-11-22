@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-14T03:42:25Z
+ki-revised: 2026-11-22T19:53:35Z
 ki-status: in force
 ---
 
@@ -85,6 +85,6 @@ The backpack's published catalogue, in its `skills/README.md`, stays with `ki-re
 
 ### 4.4 Where a session starts
 
-A session in a repository starts with `ki-repo`, for the repository and the skills it declares; `ki-authoring`, for anything written down; and `ki-agentic-ecosystems`, for the words (KEYSTONE-SKILL). `ki-keystone` names all three, and from there a session finds the guild and lead for its work in the guild map.
+A session starts from the work it is given: `ki-coordination` when it is opened on a piece of work, its opener picking the work package up and its reply forms setting how every session replies; and `ki-work` to choose, plan, deliver, accept or recap work, `next` when nothing is chosen yet (KEYSTONE-FIXES, refining KEYSTONE-SKILL). `ki-keystone` names both, and from there a session finds the guild and lead for its work in the guild map: `ki-repo` for the repository and the skills it declares, `ki-authoring` for anything written down, and `ki-agentic-ecosystems` for the words.
 
 [Back to contents](#contents)
