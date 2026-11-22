@@ -19,6 +19,8 @@ const TOML = (globalThis as unknown as { Bun: { TOML: { parse(text: string): unk
 const DIAGRAMS_DIRECTORY = 'docs/diagrams'
 const MANIFEST_FILE = 'diagrams.toml'
 const INDEX_FILE = 'README.md'
+/** The subdirectory of docs/diagrams holding each diagram's optional dark variant, `dark/<slug>.svg`. */
+const DARK_DIRECTORY = 'dark'
 const FIELDS = ['type', 'question', 'audience', 'traced', 'stale_when', 'regenerate', 'last_checked'] as const
 
 /**
@@ -191,7 +193,10 @@ export const parseManifest = (
 /**
  * Files under docs/diagrams that no listed diagram accounts for, and the committed forms a listed diagram lacks.
  * A diagram's `<slug>.html` and its receipt belong to it only under `commit_html = true`, which also requires the
- * HTML; whether the receipt is present and matches is the receipt check's question.
+ * HTML; whether the receipt is present and matches is the receipt check's question. A listed diagram may have a
+ * dark variant, `dark/<slug>.svg`, under the same slug; one whose light `<slug>.svg` is absent is reported as
+ * missing its partner rather than as unlisted. The README embeds the light SVG as a Markdown image or as the
+ * `<img src>` of a `<picture>` pair.
  */
 export const reconcile = (
   files: readonly string[],
@@ -204,7 +209,7 @@ export const reconcile = (
     const source = `${slug}.${type}.json`
     const svg = `${slug}.svg`
     const html = `${slug}.html`
-    expected.add(source).add(svg)
+    expected.add(source).add(svg).add(`${DARK_DIRECTORY}/${svg}`)
     if (commitHtml) {
       expected.add(html).add(`${slug}${RECEIPT_SUFFIX}`)
       if (!files.includes(html)) missing.push(`${DIAGRAMS_DIRECTORY}/${html}`)
@@ -213,11 +218,19 @@ export const reconcile = (
     }
     if (!files.includes(source)) missing.push(`${DIAGRAMS_DIRECTORY}/${source}`)
     if (!files.includes(svg)) missing.push(`${DIAGRAMS_DIRECTORY}/${svg}`)
-    else if (index !== undefined && !index.includes(`(${svg})`))
+    else if (index !== undefined && !index.includes(`(${svg})`) && !index.includes(`"${svg}"`))
       missing.push(`${DIAGRAMS_DIRECTORY}/${INDEX_FILE} embeds no ${svg}`)
   }
+  const darkPrefix = `${DARK_DIRECTORY}/`
+  const unpartnered = (file: string): boolean =>
+    file.startsWith(darkPrefix) && file.endsWith('.svg') && !files.includes(file.slice(darkPrefix.length))
+  for (const file of files)
+    if (unpartnered(file))
+      missing.push(`${DIAGRAMS_DIRECTORY}/${file.slice(darkPrefix.length)}, the light partner of ${file}`)
   return {
-    unlisted: files.filter((file) => !expected.has(file)).map((file) => `${DIAGRAMS_DIRECTORY}/${file}`),
+    unlisted: files
+      .filter((file) => !expected.has(file) && !unpartnered(file))
+      .map((file) => `${DIAGRAMS_DIRECTORY}/${file}`),
     missing
   }
 }
@@ -376,11 +389,16 @@ export const createDiagramsSession = ({
   const root = resolve(repository)
   const directory = join(root, DIAGRAMS_DIRECTORY)
   const directoryExists = isDirectory(directory)
+  const listFiles = (folder: string, prefix = ''): string[] =>
+    readdirSync(folder, { withFileTypes: true })
+      .filter((entry) => entry.isFile() && !entry.isSymbolicLink())
+      .map((entry) => `${prefix}${entry.name}`)
+  const darkDirectory = join(directory, DARK_DIRECTORY)
   const files = directoryExists
-    ? readdirSync(directory, { withFileTypes: true })
-        .filter((entry) => entry.isFile() && !entry.isSymbolicLink())
-        .map((entry) => entry.name)
-        .sort()
+    ? [
+        ...listFiles(directory),
+        ...(isDirectory(darkDirectory) ? listFiles(darkDirectory, `${DARK_DIRECTORY}/`) : [])
+      ].sort()
     : []
   const manifestPath = join(directory, MANIFEST_FILE)
   const manifestExists = directoryExists && isFile(manifestPath)

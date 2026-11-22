@@ -109,6 +109,30 @@ test('DIAG-1 fails for an unlisted source, a listed slug without an SVG, and an 
   ])
 })
 
+test('DIAG-1 accepts a dark variant under dark/ beside its light SVG, embedded as a picture pair', () => {
+  const { root } = repository()
+  mkdirSync(join(root, 'docs/diagrams/dark'))
+  writeFileSync(join(root, 'docs/diagrams/dark/architecture.svg'), SVG)
+  writeFileSync(
+    join(root, 'docs/diagrams/README.md'),
+    '# Diagrams\n\n<picture>\n  <source srcset="dark/architecture.svg" media="(prefers-color-scheme: dark)" />\n' +
+      '  <img src="architecture.svg" alt="Architecture" />\n</picture>\n'
+  )
+  expect(statuses('DIAG-1', root)).toEqual(['PASS'])
+
+  writeFileSync(join(root, 'docs/diagrams/dark/architecture.svg'), '<svg><a href="https://example.com">x</a></svg>\n')
+  expect(run('DIAG-3', context(root)).map((outcome) => outcome.subject)).toEqual([
+    'docs/diagrams/dark/architecture.svg: href="h'
+  ])
+
+  writeFileSync(join(root, 'docs/diagrams/dark/flow.svg'), SVG)
+  writeFileSync(join(root, 'docs/diagrams/dark/notes.txt'), 'x\n')
+  expect(run('DIAG-1', context(root)).map((outcome) => outcome.subject)).toEqual([
+    'missing: docs/diagrams/flow.svg, the light partner of dark/flow.svg',
+    'not in the manifest: docs/diagrams/dark/notes.txt'
+  ])
+})
+
 test('DIAG-1 accepts committed HTML only under commit_html, and then requires it and its README link', () => {
   const unlisted = repository().root
   writeFileSync(join(unlisted, 'docs/diagrams/architecture.html'), '<html></html>\n')

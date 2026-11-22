@@ -12,14 +12,14 @@ const DIAG_1: RubricItem<DiagramsRubricContext> = {
   code: 'DIAG-1',
   title: 'the manifest and the committed files agree both ways',
   description:
-    "`docs/diagrams/diagrams.toml` is valid and complete, each `traced` entry a repository-relative path, a pathspec glob or a private repository's `path:revision:lines` citation; every listed diagram has its source, its SVG and an embed in `docs/diagrams/README.md`, and a diagram with `commit_html = true` also has its `<slug>.html`, linked from the README; and every file under `docs/diagrams/` belongs to a listed diagram, an HTML file and its `<slug>.receipt.json` only under that opt-in.",
+    "`docs/diagrams/diagrams.toml` is valid and complete, each `traced` entry a repository-relative path, a pathspec glob or a private repository's `path:revision:lines` citation; every listed diagram has its source, its SVG and an embed in `docs/diagrams/README.md`, as a Markdown image or a `<picture>` whose `<img>` is the light SVG, and a diagram with `commit_html = true` also has its `<slug>.html`, linked from the README; and every file under `docs/diagrams/` belongs to a listed diagram, an HTML file and its `<slug>.receipt.json` only under that opt-in, and a dark variant `docs/diagrams/dark/<slug>.svg` only beside its light `<slug>.svg`.",
   sources: [MANIFEST, COMMITTED],
   mechanical: {
     level: 'FAIL',
     remediation: {
       class: 'diagnostic',
       guidance:
-        'List each diagram in `diagrams.toml` with every field, commit its `<slug>.<type>.json` source and `<slug>.svg`, embed the SVG in `README.md`, commit and link `<slug>.html` only where `commit_html = true`, and remove or list any stray file, then rerun the audit.'
+        'List each diagram in `diagrams.toml` with every field, commit its `<slug>.<type>.json` source and `<slug>.svg`, embed the SVG in `README.md`, commit and link `<slug>.html` only where `commit_html = true`, keep a dark variant only as `dark/<slug>.svg` beside its light `<slug>.svg`, and remove or list any stray file, then rerun the audit.'
     },
     audit: {
       phase: 'INSPECT',
@@ -94,7 +94,7 @@ const DIAG_3: RubricItem<DiagramsRubricContext> = {
   code: 'DIAG-3',
   title: 'each SVG is self-contained',
   description:
-    'Every committed `docs/diagrams/*.svg` is an SVG document whose `href` and `url()` references are fragments or inline `data:` URIs only.',
+    'Every committed `docs/diagrams/*.svg`, dark variants under `dark/` included, is an SVG document whose `href` and `url()` references are fragments or inline `data:` URIs only.',
   sources: [COMMITTED],
   mechanical: {
     level: 'FAIL',

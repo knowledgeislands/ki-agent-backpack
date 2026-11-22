@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T09:00:00Z
+ki-revised: 2026-11-22T09:50:00Z
 ki-status: in force
 ---
 
@@ -66,6 +66,7 @@ How a Knowledge Islands repository or knowledge-base island keeps its diagrams.
 
 | Term | Definition |
 | --- | --- |
+| **Dark variant** | `dark/<slug>.svg`, a diagram's optional dark-theme SVG beside its light `<slug>.svg`, sharing its slug and source. **Standard:** this one, [4.4.1](#441-the-forms) |
 | **Living diagram** | A diagram that explains the system as built, traced from named source files and kept current as the code changes. **Standard:** this one, [1](#1-introduction) |
 | **Island diagram** | A diagram in a knowledge-base island that explains a model or process, traced from the notes it draws on. **Standard:** this one, [4.9](#49-island-diagrams) |
 | **Manifest** | `docs/diagrams/diagrams.toml`, the machine-readable authority listing each diagram by slug. **Standard:** this one, [4.5](#45-the-manifest) |
@@ -187,7 +188,7 @@ The forms a diagram is kept in, and how it is named.
 
 #### 4.4.1 The forms
 
-Each diagram has up to four forms under `docs/diagrams/`:
+Each diagram has up to five forms under `docs/diagrams/`:
 
 - **Source** - `<slug>.<type>.json`, the Archify input. It records the repository revision and cites the file and line each node was traced from. It is the thing to edit. Always committed.
 
@@ -199,17 +200,19 @@ Each diagram has up to four forms under `docs/diagrams/`:
 
   A design report uses `ki` or `light`, committed beside the subject's Project note as `ki-work design` sets.
 
+- **Dark variant** - `dark/<slug>.svg`, optional: the same diagram drawn for a dark theme, beside a light `<slug>.svg`, for a page that embeds one file per theme as [embedding](#46-embedding) sets. It has the same slug and the same one source, is self-contained as the SVG is, and is never committed without its light partner. Archify's `dual` form needs none, as it carries both themes; the `ki-night` export of a `ki` diagram is one.
+
 - **Interactive HTML** - `<slug>.html`, the finalized viewer with search, focus, zoom and source links, roughly 800 KB per diagram. Committed only for a diagram whose manifest table sets `commit_html = true`, as a repository that serves its diagrams does, or one whose readers open the viewer from a checkout or a forge; the opt-in then requires it. Otherwise it is rebuilt locally under `+/diagrams/<slug>/` and never committed.
 
 - **Receipt** - `<slug>.receipt.json`, beside each committed viewer and only there: the proof that the viewer was rendered from the committed source. It holds the receipt schema version, the slug and type, the source and HTML file names with their SHA-256 hashes and byte counts, and the renderer's name and version, with no local path, so it is portable. [The build command](#482-the-build-command) writes it with the viewer, and it is never hand-edited. A viewer whose receipt is missing or no longer matches its source and HTML is stale, whatever its `last_checked` says: a matching receipt never refreshes `last_checked`, and a stale `last_checked` never fails the receipt.
 
-`docs/diagrams/` holds nothing else apart from the manifest and its `README.md`.
+`docs/diagrams/` holds nothing else apart from the manifest and its `README.md`, and `docs/diagrams/dark/` nothing but dark variants.
 
 [Back to contents](#contents)
 
 #### 4.4.2 Naming
 
-The slug is lower-case kebab-case and names the question's subject, not the type: `beacon-request`, not `sequence-1`. The type is the file's second extension and matches the manifest's `type`. One slug, one diagram.
+The slug is lower-case kebab-case and names the question's subject, not the type: `beacon-request`, not `sequence-1`. The type is the file's second extension and matches the manifest's `type`. One slug, one diagram: a dark variant takes its light file's slug under `dark/`, never a suffix such as `<slug>-dark.svg`, and has no manifest table of its own.
 
 [Back to contents](#contents)
 
@@ -229,7 +232,7 @@ The slug is lower-case kebab-case and names the question's subject, not the type
 | `commit_html`  | Optional; `true` commits the diagram's `<slug>.html` and its receipt, and absent or `false` keeps it local |
 | `svg_form`     | Optional; the [SVG form](#44-committed-forms), one of `dual`, `light`, `ki`, `ki-night`, absent meaning `dual` |
 
-`docs/diagrams/README.md` is the reader-facing index: a short introduction, one section per diagram stating its question in prose, and the SVG embedded with `![Title](<slug>.svg)`; a diagram with `commit_html = true` also links its figure to `<slug>.html`, for example `[![Title](<slug>.svg)](<slug>.html)`. It does not repeat the manifest's operational fields. Both templates ship in the skill's `assets/`.
+`docs/diagrams/README.md` is the reader-facing index: a short introduction, one section per diagram stating its question in prose, and the SVG embedded with `![Title](<slug>.svg)`, or, for a diagram with a [dark variant](#441-the-forms), the `<picture>` pair whose `<img>` is `<slug>.svg`; a diagram with `commit_html = true` also links its figure to `<slug>.html`, for example `[![Title](<slug>.svg)](<slug>.html)`. It does not repeat the manifest's operational fields. Both templates ship in the skill's `assets/`.
 
 [Back to contents](#contents)
 
@@ -243,6 +246,17 @@ A diagram is embedded as its SVG, never as a screenshot. The inline figure alway
 Any other Markdown document embeds a diagram with a relative path to its SVG. Where a guide may embed one is `ki-guides`' concern.
 
 A page or app embeds the SVG as an image, an `<img>` or a Markdown image, never inlined into its own markup: a `dual` SVG carries its own `<style>` and theme, which a strict `style-src` Content Security Policy blocks and an app's `[data-theme]` rules override (Cairn, November 2026). A page with its own theme switch embeds the static forms as one file per theme, such as `ki` and `ki-night`, rather than the `dual` form's media query. An SVG drawn for a page read on a phone is 400 units wide with no text under 18 units, so that at 375 px no text falls below 16 px (`apps-agenticecosystems.info` `1ff89c5`).
+
+The dark file of such a pair is the diagram's [dark variant](#441-the-forms), `dark/<slug>.svg`, never a second slug. A page or README that follows the reader's system theme embeds the pair as a `<picture>` whose `<source>` carries the dark file under `prefers-color-scheme: dark`, with the light file as the `<img>`, so a reader that ignores `<source>` still shows the light diagram (`apps-ninja.midnight.tower` `9b5c1c7`):
+
+```html
+<picture>
+  <source srcset="dark/data-boundaries.svg" media="(prefers-color-scheme: dark)" />
+  <img src="data-boundaries.svg" alt="Data boundaries" />
+</picture>
+```
+
+A page whose own theme switch overrides the system theme swaps the same two files under its theme attribute instead.
 
 [Back to contents](#contents)
 
