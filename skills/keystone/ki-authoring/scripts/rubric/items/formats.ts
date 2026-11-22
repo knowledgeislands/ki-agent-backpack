@@ -187,7 +187,11 @@ const FMT_SHAPE: RubricItem<FormatsRubricContext> = {
 const REVIEW_VALUES = new Set(['awaiting', 'approved'])
 const RECORD_NAME = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})Z-([a-z0-9]+(?:-[a-z0-9]+)*)$/
 const THEME = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/
-const BATCH_SECTIONS = ['Purpose', 'Goals', 'What changed']
+const BATCH_SECTIONS = ['Purpose', 'Goals', 'What changed', 'Lessons']
+// The record format's version that added Lessons (LESSONS-LINE): a batch record following an earlier one passes
+// without it, and one following this version or a later one needs it.
+const LESSONS_FROM = '2026-11-22T17:40:00Z'
+const EARLIER_BATCH_SECTIONS = ['Purpose', 'Goals', 'What changed']
 const REVIEW_SECTIONS = ['What stands today', 'Left open']
 const LIVING_SECTIONS = ['What stands today', 'Left open', 'History']
 const RECORD_FILE = /(?:^|\/)\d{8}T\d{4}Z-[^/#]+\.md(?:#.*)?$/
@@ -198,12 +202,16 @@ const inOrder = (headings: readonly string[], sections: readonly string[]) =>
 
 // What a dated record's sections break: a consolidated review's three parts and pinned originals, or a batch record's.
 const datedProblems = (record: RecordEvidence, slug: string): readonly string[] => {
-  if (!slug.startsWith('review-'))
-    return inOrder(record.headings, BATCH_SECTIONS) || inOrder(record.headings, REVIEW_SECTIONS)
+  if (!slug.startsWith('review-')) {
+    const earlier = record.version !== undefined && record.version < LESSONS_FROM
+    return inOrder(record.headings, BATCH_SECTIONS) ||
+      (earlier && inOrder(record.headings, EARLIER_BATCH_SECTIONS)) ||
+      inOrder(record.headings, REVIEW_SECTIONS)
       ? []
       : [
-          "a batch record has Purpose, Goals and What changed, or the review's What stands today and Left open, and no other section"
+          "a batch record has Purpose, Goals, What changed and Lessons, or the review's What stands today and Left open, and no other section"
         ]
+  }
   const recordLinks = record.openingLinks.filter((link) => RECORD_FILE.test(link))
   return [
     ...(inOrder(record.headings, REVIEW_SECTIONS)
@@ -265,7 +273,7 @@ const FMT_RECORD: RubricItem<FormatsRubricContext> = {
   code: 'FMT-record',
   title: 'a record follows the record format',
   description:
-    "A record, a document whose `ki-document-type` is `record@<version>`, passes the record format's Validation: `ki-id` is `record:` and its file name, `ki-revised` is present, `ki-theme` a lower-case word, `ki-packages` a list and `ki-review` `awaiting` or `approved`; a dated record's `ki-at` matches the name's time and its `ki-revised`, when it was last written, is at or after its `ki-at`, and its name is a time and a slug, whose length in words is left to review, since a hyphen may join one word or separate two; a batch record has Purpose, Goals and What changed, or a review's sections; a consolidated review, named `review-…`, has What stands today and Left open, and its opening line links the records it replaces, each pinned at a commit; and a living record, named by its theme, carries that theme in `ki-theme`, needs no `ki-at`, and has What stands today, Left open and History. An older record, `record` with no version, is read as written: only its `ki-at`, `ki-review` and any `ki-id` are checked. Each field is read under its older bare name too, as FMT-prefix warns.",
+    "A record, a document whose `ki-document-type` is `record@<version>`, passes the record format's Validation: `ki-id` is `record:` and its file name, `ki-revised` is present, `ki-theme` a lower-case word, `ki-packages` a list and `ki-review` `awaiting` or `approved`; a dated record's `ki-at` matches the name's time and its `ki-revised`, when it was last written, is at or after its `ki-at`, and its name is a time and a slug, whose length in words is left to review, since a hyphen may join one word or separate two; a batch record has Purpose, Goals, What changed and Lessons, or a review's sections, one following a version of the format before Lessons passing without it; a consolidated review, named `review-…`, has What stands today and Left open, and its opening line links the records it replaces, each pinned at a commit; and a living record, named by its theme, carries that theme in `ki-theme`, needs no `ki-at`, and has What stands today, Left open and History. An older record, `record` with no version, is read as written: only its `ki-at`, `ki-review` and any `ki-id` are checked. Each field is read under its older bare name too, as FMT-prefix warns.",
   sources: ['standard-formats-record.md#48-validation'],
   mechanical: {
     level: 'FAIL',

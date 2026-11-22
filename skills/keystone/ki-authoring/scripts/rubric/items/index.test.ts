@@ -745,6 +745,11 @@ test('FMT-record fails a record that breaks the record format, lets ki-revised f
     `---\nki-id: record:${name}\nki-document-type: record@2026-11-16T23:15:00Z\nki-revised: 2026-11-16T23:15:00Z\nki-at: 2026-11-16T23:15:00Z\ntitle: T\nki-theme: store\nki-packages:\n  - cairn.summit\nki-review: awaiting\n${extra}---\n\n# T\n\n`
   const living = (name: string, theme: string, sections: string) =>
     `---\nki-id: record:${name}\nki-document-type: record@2026-11-17T02:23:23Z\nki-revised: 2026-11-17T02:23:23Z\ntitle: T\n${theme}ki-packages:\n  - cairn.summit\nki-review: approved\n---\n\n# T\n\nWhat the theme covers.\n\n${sections}`
+  const lessons = (name: string) =>
+    front(name)
+      .replace('record@2026-11-16T23:15:00Z', 'record@2026-11-22T17:40:00Z')
+      .replaceAll('2026-11-16T23:15:00Z', '2026-11-22T17:40:00Z')
+      .concat('Lead.\n\n')
   const pinned = 'https://github.com/krisb/ki-cairn-store/blob/9968877/record/20261114T0339Z-overnight.md'
   const records: Record<string, string> = {
     '20261116T2315Z-a-batch': `${front('20261116T2315Z-a-batch')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
@@ -756,6 +761,10 @@ test('FMT-record fails a record that breaks the record format, lets ki-revised f
     '20261116T2315Z-no-theme': `${front('20261116T2315Z-no-theme').replace('ki-theme: store\n', '')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
     '20261116T2315Z-written-later': `${front('20261116T2315Z-written-later').replace('ki-revised: 2026-11-16T23:15:00Z', 'ki-revised: 2026-11-17T03:00:00Z')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
     '20261116T2315Z-earlier-revised': `${front('20261116T2315Z-earlier-revised').replace('ki-revised: 2026-11-16T23:15:00Z', 'ki-revised: 2026-11-16T23:00:00Z')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
+    // From the version that added Lessons (LESSONS-LINE), a batch record needs it; an earlier one may carry it.
+    '20261122T1740Z-with-lessons': `${lessons('20261122T1740Z-with-lessons')}## Purpose\n\n## Goals\n\n## What changed\n\n## Lessons\n`,
+    '20261122T1740Z-no-lessons': `${lessons('20261122T1740Z-no-lessons')}## Purpose\n\n## Goals\n\n## What changed\n`,
+    '20261116T2315Z-early-lessons': `${front('20261116T2315Z-early-lessons')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n\n## Lessons\n`,
     store: living('store', 'ki-theme: store\n', '## What stands today\n\n## Left open\n\n## History\n'),
     skills: living('skills', 'ki-theme: estate\n', '## What stands today\n\n## Left open\n'),
     legal: living('legal', '', '## What stands today\n\n## Left open\n\n## History\n'),
@@ -786,6 +795,10 @@ test('FMT-record fails a record that breaks the record format, lets ki-revised f
       'a consolidated review has What stands today and Left open, and no other section'
     ],
     ['record/20261116T2315Z-review-old-parts.md', 'a record the opening line links is not pinned at a commit'],
+    [
+      'record/20261122T1740Z-no-lessons.md',
+      "a batch record has Purpose, Goals, What changed and Lessons, or the review's What stands today and Left open, and no other section"
+    ],
     ['record/legal.md', '`ki-theme` is missing or not a lower-case word'],
     ['record/skills.md', "a living record's `ki-theme` is not skills"],
     ['record/skills.md', 'a living record has What stands today, Left open and History, and no other section']

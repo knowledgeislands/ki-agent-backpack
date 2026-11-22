@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T07:02:00Z
+ki-revised: 2026-11-22T17:40:00Z
 ki-status: in force
 ---
 
@@ -116,9 +116,9 @@ These are the [review standard](standard-review.md)'s two outcomes for a record,
 
 ### 4.3 A batch record
 
-1. **Sections:** **Purpose**, what the work is for, in a few sentences; **Goals**, what the batch aimed at, each with where it got to; and **What changed**, each entry marked **Notable** or Minor and one or two sentences on what is now different.
+1. **Sections:** **Purpose**, what the work is for, in a few sentences; **Goals**, what the batch aimed at, each with where it got to; **What changed**, each entry marked **Notable** or Minor and one or two sentences on what is now different; and **Lessons**, what the batch taught that the next one should know, one line each, or None (LESSONS-LINE).
 2. **Purpose first, not a digest:** a record says what the work is for and how far each goal got. What changed is said from the owner's side, as release notes for users are, never as a developer's changelog.
-3. **Goals and what changed only:** a record asks the owner for nothing, and an entry ends at the fact. What comes next belongs in the change documents' open points or the roadmaps.
+3. **Goals, what changed and lessons only:** a record asks the owner for nothing, and an entry ends at the fact; a lesson says what was learnt, and the rule it may lead to goes to its owner, not into the record. What comes next belongs in the change documents' open points or the roadmaps.
 4. **One record for each batch that lands,** not one a day; a session spent deciding writes none, since its decisions are in the change documents.
 5. **Or the review's shape:** a record of a single batch may instead take a consolidated review's shape, as in [4.4](#44-a-consolidated-review), its opening line saying what the batch was for in place of the records it replaces.
 6. **The records are the change log:** for the work a keeper of records tracks, as the Cairn store does, its batch records, through their What changed, are the change log, read where the owner reads the records, as the Wayfinder's Updates page shows them; no package, meeting or store keeps a change log of its own. A code repository's `CHANGELOG.md` stays the release log of what that repository ships, and a record that lands such a release links to its entry rather than repeating it (CHANGELOG-RECORDS).
@@ -168,7 +168,7 @@ Each theme has one living record, its current account, read before anything bene
 Beyond the format format's checks, as this standard replaces them, a validator checks:
 
 1. **Front matter:** `ki-id` is `record:` and the file's name, `ki-revised` is present, `ki-theme` is a lower-case word, `ki-packages` is a list, and `ki-review` is `awaiting` or `approved`; a dated record's `ki-at` matches the file name's time and its `ki-revised` is at or after its `ki-at`, and a living record's `ki-theme` is its file's name.
-2. **Sections:** a batch record has Purpose, Goals and What changed, in order, or a consolidated review's sections, and no other section; a consolidated review has What stands today and Left open, in order, and no other section; a living record has What stands today, Left open and History, in order, and no other section.
+2. **Sections:** a batch record has Purpose, Goals, What changed and Lessons, in order, or a consolidated review's sections, and no other section, a batch record following an earlier version of this format passing without Lessons; a consolidated review has What stands today and Left open, in order, and no other section; a living record has What stands today, Left open and History, in order, and no other section.
 3. **Opening line:** a consolidated review's first paragraph under the H1 links at least one record, and each record it links is pinned at a commit.
 4. **Name:** the file name is a time and a slug of five words at most, or a theme.
 

@@ -180,6 +180,8 @@ export type FormatStandardEvidence = {
 export type RecordEvidence = {
   path: string
   versioned: boolean
+  /** The version of the record format it follows, the part of its `ki-document-type` after `@`. */
+  version?: string
   /** The front matter fields KI defines that are written without the `ki-` prefix, read under their `ki-` names. */
   unprefixed?: readonly string[]
   id?: string
@@ -488,6 +490,7 @@ const inspectRecords = (repository: string, paths: readonly string[]): readonly 
       {
         path,
         versioned: type.includes('@'),
+        ...(type.includes('@') ? { version: type.slice(type.indexOf('@') + 1) } : {}),
         ...(unprefixed.length > 0 ? { unprefixed } : {}),
         ...(id ? { id } : {}),
         ...(at ? { at } : {}),
