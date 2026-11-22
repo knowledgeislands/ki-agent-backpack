@@ -61,6 +61,7 @@ test('the catalogue declares its families and criteria in order', () => {
     'PKG-4',
     'PKG-5',
     'PKG-6',
+    'PKG-7',
     'PKG-J1',
     'PKG-J2',
     'PKG-J3',
@@ -74,6 +75,7 @@ test('a conforming package repository passes every mechanical criterion and prop
   const { statuses, session } = run(fixture())
   for (const code of ['CONFIG-1', 'CONFIG-2', 'PKG-1', 'PKG-2', 'PKG-3', 'PKG-4', 'PKG-5', 'PKG-6'])
     expect(statuses(code)).toEqual(['PASS'])
+  expect(statuses('PKG-7')).toEqual(['NOT_APPLICABLE'])
   expect(session.proposal()).toEqual({ writes: [] })
 })
 
@@ -133,6 +135,17 @@ test('drift in the version, changelog, Storybook, tsconfig and register is repor
   expect(statuses('PKG-6')).toEqual(['VIOLATION'])
   writeFileSync(join(repository, 'packages', 'demo', 'package.json'), '{"name":"demo"}\n')
   expect(run(repository).statuses('PKG-1')).toEqual(['VIOLATION'])
+})
+
+test('a web component package is named <name>-elements or <name>-<subset>-elements', () => {
+  const repository = fixture()
+  for (const name of ['elements', 'demo-elements', 'demo-forms-elements']) {
+    mkdirSync(join(repository, 'packages', name), { recursive: true })
+    writeFileSync(join(repository, 'packages', name, 'custom-elements.json'), '{}\n')
+  }
+  writeFileSync(join(repository, 'packages', 'demo', 'custom-elements.json'), '{}\n')
+  const { statuses } = run(repository, { packages: ['demo', 'elements', 'demo-elements', 'demo-forms-elements'] })
+  expect(statuses('PKG-7')).toEqual(['VIOLATION', 'VIOLATION', 'PASS', 'PASS'])
 })
 
 test('the sync paragraph must be one quotation naming the path and all four tools', () => {

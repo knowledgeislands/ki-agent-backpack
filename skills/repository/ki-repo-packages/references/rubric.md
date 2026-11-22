@@ -45,6 +45,8 @@ The vendored packages, Storybook, sync paragraphs, consumers, releases, manifest
   - _Remediation:_ diagnostic — Inline the compiler options the vendored tsconfig.json inherits and drop its `extends`.
 - **PKG-6 [M] — no consumer register** — The repository keeps no list of its consumers; they are found by the lock file they hold. (standard-package-repositories.md#48-consumers)
   - _Remediation:_ diagnostic — Find consumers by scanning the local estate for the package’s lock file, then retire the register.
+- **PKG-7 [M] — each web component package is named for its elements** — A vendored package that ships `custom-elements.json` is named `<name>-elements` after the thing it serves, or `<name>-<subset>-elements` for a subset of the atomic design levels, never plain `elements`. (standard-package-repositories.md#45-the-custom-elements-manifest)
+  - _Remediation:_ diagnostic — Rename the package `<name>-elements`, or `<name>-<subset>-elements` for a subset, with its lock file, scripts and sync paragraph.
 - **PKG-J1 [J] — units stay generic** — Consumer or organisation detail reaches a unit only through configuration, a slot, a namespaced custom property or the consumer’s adapter, and no consumer name appears in the vendored tree. (standard-package-repositories.md#411-generic-units)
   - _Evidence scope:_ Every unit, style and vendoring tool in the vendored tree.
   - _Review prompt:_ Does any unit hold a constant, name or branch that serves one consumer or organisation rather than a configurable, generic behaviour?

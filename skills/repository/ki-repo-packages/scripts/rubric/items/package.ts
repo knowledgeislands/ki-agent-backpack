@@ -204,6 +204,43 @@ const PKG_6: RubricItem<PackagesContext> = {
   }
 }
 
+const ELEMENTS_NAME = /^[a-z0-9]+(?:-[a-z0-9]+)*-elements$/
+
+const PKG_7: RubricItem<PackagesContext> = {
+  code: 'PKG-7',
+  title: 'each web component package is named for its elements',
+  description:
+    'A vendored package that ships `custom-elements.json` is named `<name>-elements` after the thing it serves, or `<name>-<subset>-elements` for a subset of the atomic design levels, never plain `elements`.',
+  sources: [`${STANDARD}#45-the-custom-elements-manifest`],
+  mechanical: {
+    level: 'WARN',
+    remediation: {
+      class: 'diagnostic',
+      guidance:
+        'Rename the package `<name>-elements`, or `<name>-<subset>-elements` for a subset, with its lock file, scripts and sync paragraph.'
+    },
+    audit: {
+      phase: 'INSPECT',
+      run: ({ packages }) => {
+        const present = packages.filter((entry) => entry.physical)
+        if (!present.length) return [NO_PACKAGE]
+        return present.map(({ name, elementsManifest }): AuditOutcome => {
+          const subject = `packages/${name}/`
+          if (!elementsManifest)
+            return { status: 'NOT_APPLICABLE', message: 'The package ships no custom-elements.json.', subject }
+          return ELEMENTS_NAME.test(name)
+            ? { status: 'PASS', message: `The web component package is named ${name}.`, subject }
+            : {
+                status: 'VIOLATION',
+                message: `The web component package is named ${name}, not <name>-elements or <name>-<subset>-elements.`,
+                subject
+              }
+        })
+      }
+    }
+  }
+}
+
 const PKG_J1: RubricItem<PackagesContext> = {
   code: 'PKG-J1',
   title: 'units stay generic',
@@ -287,5 +324,5 @@ export const PKG: RubricFamily<PackagesContext, PackagesContext> = {
   description: 'The vendored packages, Storybook, sync paragraphs, consumers, releases, manifests and code form.',
   standard: STANDARD,
   selectContext: (context) => context,
-  items: [PKG_1, PKG_2, PKG_3, PKG_4, PKG_5, PKG_6, PKG_J1, PKG_J2, PKG_J3, PKG_J4, PKG_J5]
+  items: [PKG_1, PKG_2, PKG_3, PKG_4, PKG_5, PKG_6, PKG_7, PKG_J1, PKG_J2, PKG_J3, PKG_J4, PKG_J5]
 }

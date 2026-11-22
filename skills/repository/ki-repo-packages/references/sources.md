@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T05:05:00Z
+ki-revised: 2026-11-22T07:50:00Z
 ki-refresh: canonical · on-change
 ---
 
@@ -57,10 +57,13 @@ Kris's decisions behind the rules, each with where it was taken or recorded.
 | ELEMENTS-MULTI | Recorded in the Cairn summit's change 14: a package repository may hold one package per layer, each copied and locked on its own | 2026-11-14 | [4.3](standard-package-repositories.md#43-several-packages) | taken |
 | COMPONENT-LIBRARY | Recorded in the Cairn summit's change 14: the words component library and web component library | 2026-11-14 | [1](standard-package-repositories.md#1-introduction) | taken |
 | PACKAGES-NOTICE a | Kris's decision relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/658d48f/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions): a release sends no notice, and each consumer finds a release with its own `drift` | 2026-11-17 | [4.9](standard-package-repositories.md#49-versions-and-releases) | taken |
+| ELEMENTS-NAME | Kris's words of 22 November 2026, relayed by Bastion via Kitteth. At about 07:45 GMT: "I think we should follow that as a convention ... It could also just be elements ... It would only need a prefix if we choose to split the elements up into subsets." Superseded at about 07:47 GMT: "perhaps having a prefix always would be good. So if it's called the same thing as the thing, for example, tower-elements or stoa-elements, then we know it replies to everything. Or it could be tower-something-elements if it's for a particular subset of the atomic design components." A web component package is named `<name>-elements`, or `<name>-<subset>-elements` for a subset, never plain `elements` | 2026-11-22 | [4.5](standard-package-repositories.md#45-the-custom-elements-manifest) | taken |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026, under ELEMENTS-NAME, which Kris took that day, relayed by Bastion via Kitteth, [The custom elements manifest](standard-package-repositories.md#45-the-custom-elements-manifest) names a web component package `<name>-elements`, or `<name>-<subset>-elements` for a subset of the atomic design levels; plain `elements`, which Kris first proposed, gave way to an always-present prefix two minutes later. The new `PKG-7` warns when a vendored package that ships `custom-elements.json` is not so named. `packages-stoa`'s `packages/stoa/` and `tooling/elements/`, and the FHM sites' `packages/elements/`, predate the rule and were not renamed. No outside source was fetched.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
 

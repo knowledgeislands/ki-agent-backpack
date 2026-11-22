@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T05:05:00Z
+ki-revised: 2026-11-22T07:50:00Z
 ki-status: in force
 ---
 
@@ -63,7 +63,7 @@ A **package repository** is the canonical source of one or more source trees tha
 | --- | --- |
 | **Package repository** | The canonical source of one or more source trees that other repositories copy whole into themselves and build from. **Standard:** this one, [1](#1-introduction) |
 | **Vendor** | To copy a package whole into a consumer and pin it with a lock file, so that no consumer's build fetches it. **Standard:** this one, [4.6](#46-the-vendoring-contract) |
-| **Web component library** | A package of custom elements that any page uses by its tag. **Standard:** this one, [1](#1-introduction) |
+| **Web component library** | A package of custom elements that any page uses by its tag, named `<name>-elements`. **Standard:** this one, [1](#1-introduction), [4.5](#45-the-custom-elements-manifest) |
 | **Consumer** | Any repository on a Rig host's local estate that holds the package's lock file. **Standard:** this one, [4.8](#48-consumers) |
 | **Sync paragraph** | The paragraph for each vendored package that every consumer carries word for word in its `AGENTS.md`. **Standard:** this one, [4.7](#47-the-sync-paragraph) |
 
@@ -124,6 +124,8 @@ A repository that still has the earlier `apps/workbench/`, a hand-made page with
 [Back to contents](#contents)
 
 ### 4.5 The custom elements manifest
+
+A repository's whole set of custom elements is one package named `<name>-elements`, where `<name>` is the thing's own name, as in `stoa-elements` or `tower-elements`, so the name says that it covers every element. A package that holds only a subset of the atomic design levels is named `<name>-<subset>-elements`. The prefix is always there: a package is never named plain `elements`.
 
 Each package of web components publishes its manifest: `custom-elements.json` inside the vendored folder, generated from the source by the [Custom Elements Manifest analyser](https://custom-elements-manifest.open-wc.org/analyzer/getting-started/) and named by `customElements` in the package's `package.json`, as Spectrum Web Components and Shoelace do. The manifest lists each element's tag, attributes, properties, events, slots and custom properties. The Storybook builds its controls and documentation from it, and any site may read it, as Shoelace's and Red Hat's Eleventy sites do, so no element is described twice by hand. The manifest is regenerated whenever an element's interface changes, and a check fails when the committed manifest differs from a fresh one.
 

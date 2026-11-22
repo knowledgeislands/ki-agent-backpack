@@ -21,6 +21,8 @@ export type VendoredPackage = {
   readonly tsconfigExtends: boolean | null
   /** Whether `AGENTS.md` quotes a sync paragraph naming its path and every vendoring tool. */
   readonly syncParagraph: boolean
+  /** Whether it ships a `custom-elements.json` manifest, which makes it a web component package. */
+  readonly elementsManifest: boolean
 }
 
 export type PackagesContext = {
@@ -134,7 +136,8 @@ export const createPackagesSession = ({
       physical,
       version: physical ? readVersion(join(folder, 'package.json')) : null,
       tsconfigExtends: tsconfig === null ? null : /"extends"\s*:/.test(tsconfig),
-      syncParagraph: publishesSyncParagraph(guidance, name)
+      syncParagraph: publishesSyncParagraph(guidance, name),
+      elementsManifest: physical && pathKind(join(folder, 'custom-elements.json')) === 'file'
     }
   })
   const present = packages.filter((entry) => entry.physical)
