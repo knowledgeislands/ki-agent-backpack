@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T16:15:00Z
+ki-revised: 2026-11-22T17:40:00Z
 ki-status: in force
 ---
 
@@ -237,7 +237,7 @@ Classification fields say what sort of work a record is and what it serves. Each
 
 `component` names the part of the repository the record touches, from the repository's declared vocabulary.
 
-The resolved Project locates its package in the Capital; its `project` tag is the link, not a transfer of authority or records. Selection into `now` neither opens work nor grants execution. The assigned package steward adds the routed record to its next steps at its next wake. A record without `project` goes first to its existing regular or ad hoc owner and reaches State of play's routing queue only if ownership is unresolved. Reclassification first reconciles runs in flight and their reporting package.
+A resolved Project's record is worked by the Project's package in the Cairn store, which names it in its [`ki-records`](../../ki-work-package/references/standard-work-package.md#44-the-entry-file); the `project` tag is the link, never a transfer of authority or records. Selection into `now` neither opens work nor grants execution. A record without `project` goes to the package that owns its repository, and up to the territory's leader only if ownership is unresolved, under `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down). Reclassification first reconciles runs in flight and their reporting package.
 
 [Back to contents](#contents)
 

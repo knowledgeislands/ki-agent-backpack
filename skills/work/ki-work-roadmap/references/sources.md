@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T16:15:00Z
+ki-revised: 2026-11-22T17:40:00Z
 ki-refresh: canonical · on-change
 ---
 
@@ -71,10 +71,13 @@ None.
 | HANDOFF-AS-MESSAGE | "Handoffs are not roadmap items ... we push the need to roll things out into other projects triage folders, and that's not what this is for." | 2026-10-20 | [4.2](standard-work-item-format.md#42-frontmatter) | In force |
 | IDEAS-ROOTING | "Ideas start as Idea: bullets in the owning Project or Initiative note"; under the work model an Initiative note becomes a theme page. | 2026-10-17 | [4.6](standard-repository-roadmaps.md#46-ideas-and-graduation) | In force; its `_IDEAS.md` fallback replaced by IDEAS-INBOX |
 | RECORD-THRESHOLD | "RECORD-THRESHOLD / agree: a record only for a product or standard change needing acceptance; operational work runs on the decisions log, brief and report; add it to the ki-coordination standard". | 2026-10-14 | [4.6](standard-repository-roadmaps.md#46-ideas-and-graduation) | In force |
+| CLASSIFY-ROUTE a | The classified record's routing in the store's words: a resolved Project's record is worked by the Project's package in the Cairn store, which names it in `ki-records`; a record with no Project goes to its repository's owning package, and up to the territory's leader only if ownership is unresolved, under CASCADE-DOWN; the `project` tag stays a link, never a transfer of authority. Option a of CLASSIFY-ROUTE in `ki.summit`'s [Pending changes and e2e (13)](https://github.com/krisb/ki-cairn-store/blob/main/work/ki/ki.summit/13-pending-changes-and-e2e.change.md#71-questions), landed on 22 November 2026 under LAND-THEN-REVIEW on the coordinator's word, for Kris to accept with KI-HARNESS-GOV-237. | 2026-11-22 | [classification](standard-work-item-format.md#46-classification) | In force, for Kris's acceptance |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 CLASSIFY-ROUTE a, recorded under Decisions, rewrote the last paragraph of [classification](standard-work-item-format.md#46-classification) in the store's words, delivering KI-HARNESS-GOV-237 for Kris's acceptance: no Capital, package steward or State of play's routing queue remains. No criterion changed and no external source refreshed.
 
 On 22 November 2026 the second SKILLS-LEARNING batch, Kris's steer of that morning to bake the night's lessons into the skills, added two recipes from Tower's roadmap work to [the work-item format](standard-work-item-format.md): group Steps by a prefix on each task-list item, since ITEM-3 refuses a sub-heading there, and rewrite a folded-in merged record's section on how it relates to its target from the target's side. No rule changed and no outside source was refreshed.
 
