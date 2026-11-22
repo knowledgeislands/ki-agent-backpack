@@ -319,8 +319,10 @@ const boundaryOutcomes = (record: ParsedRecord, fields: Readonly<Record<string, 
 }
 
 /**
- * A top-level package's place in the one tree: the root alone carries no parent, each territory's summit names the
- * root, and other work names a node of its own territory; the tree beneath a node is its register (COVERS-REGISTER).
+ * A top-level package's place in the tree: the root, the estate package, carries no parent and stands apart from the
+ * tree rather than over it, so each territory's summit carries none either (ROOT-APART, 22 November 2026); other work
+ * names a node of its own territory, a `cairn.*` node the root among them; the tree beneath a node is its register
+ * (COVERS-REGISTER).
  */
 const placementFailures = (id: string, fields: Readonly<Record<string, unknown>>): readonly string[] => {
   const segments = id.split('.')
@@ -338,7 +340,8 @@ const placementFailures = (id: string, fields: Readonly<Record<string, unknown>>
   if (root) {
     if ('parent' in fields) failures.push(`the root, ${ROOT_ID}, carries no parent`)
   } else if (summit) {
-    if (parent !== ROOT_ID) failures.push(`a territory's summit names the root, ${ROOT_ID}, as parent`)
+    if ('parent' in fields)
+      failures.push(`a territory's summit carries no parent, standing apart from the root, ${ROOT_ID}`)
   } else if (typeof parent !== 'string' || !WORK_ID.test(parent) || parent.split('.')[0] !== territory || parent === id)
     failures.push('parent must name a different node of the same territory')
   return failures

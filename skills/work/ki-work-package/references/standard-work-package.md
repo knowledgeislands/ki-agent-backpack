@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-21T22:45:00Z
+ki-revised: 2026-11-22T17:40:00Z
 ki-status: in force
 ---
 
@@ -115,7 +115,7 @@ Roadmap records stay with their code and hold work ready to build, under `ki-wor
 
 An old package's open work comes into the store's owning package, the territory's summit or a node, as its outstanding items, in one shape the Wayfinder reviews, and becomes a roadmap record only once it is ready to build, as Kris took LEGACY-ROADMAP a on 17 November 2026 in the [same change](https://github.com/krisb/ki-cairn-store/blob/4af7d31/work/cairn/cairn.summit/42-roadmap-2.change.md#63-roadmaps-for-the-migrated-packages), after turning down records first: "You're meant to be working on a new way, not on an old way".
 
-The packages form one tree, rooted at `cairn.summit`, `ki-level: root`: the owner's seat over the territories, not a territory, and the only package with no `ki-parent` (AGORA-ABOVE, Kris, 11 November 2026). Each territory's top is its summit, `<territory>.summit`, its State of play, which names `cairn.summit` as `ki-parent` and sits directly under it, because each territory needs an independence of its own; the summit replaces the main State of play, `<territory>.sop.main` (KIND-DROP and MASSIF, Kris, 11 November 2026). Every other package, a Project, regular work, ad hoc work or a secondary State of play, is a node beneath the summit: its id is `<territory>.<slug>`, with a further dot segment for a node beneath a node, as `ki.cairn` beneath `ki.summit` and `personal.rig.sol` beneath `personal.rig.summit`, and its level `regular`, or `project` where it carries one Project, the id naming no kind, as Kris took NODE-ID a on 16 November 2026. Each names as `ki-parent` the node of its own territory whose authority it sits under, its summit or a node beneath it; a sub-package names its parent package instead. Any node can split its authority by adding nodes beneath it, and nodes fold back up when they are no longer needed, so a Project sits where the authority it needs is. The tree is the register: a node covers everything beneath it, read from the `ki-parent` links, and work with no package yet belongs on the roadmap, not in any package (COVERS-REGISTER, Kris, 16 November 2026). Check that each parent resolves, stays within its territory and closes no cycle.
+`cairn.summit`, `ki-level: root`, is the estate package and the guardian's seat, not a territory's. It stands apart from the territories' trees rather than over them, as Kris steered under ROOT-APART on 22 November 2026, that the Cairn "doesn't need to necessarily be the parent of the other summit work packages ... it's just some special handling": it carries no `ki-parent`, no territory's summit names it as one, and the `cairn.*` packages name it as theirs. This revises AGORA-ABOVE and ROOT-LEVEL a on the parent only. Each territory's top is its summit, `<territory>.summit`, its State of play, which carries no `ki-parent` and roots its territory's tree, because each territory needs an independence of its own; the summit replaces the main State of play, `<territory>.sop.main` (KIND-DROP and MASSIF, Kris, 11 November 2026). Every other package, a Project, regular work, ad hoc work or a secondary State of play, is a node beneath the summit: its id is `<territory>.<slug>`, with a further dot segment for a node beneath a node, as `ki.cairn` beneath `ki.summit` and `personal.rig.sol` beneath `personal.rig.summit`, and its level `regular`, or `project` where it carries one Project, the id naming no kind, as Kris took NODE-ID a on 16 November 2026. Each names as `ki-parent` the node of its own territory whose authority it sits under, its summit or a node beneath it; a sub-package names its parent package instead. Any node can split its authority by adding nodes beneath it, and nodes fold back up when they are no longer needed, so a Project sits where the authority it needs is. The tree is the register: a node covers everything beneath it, read from the `ki-parent` links, and work with no package yet belongs on the roadmap, not in any package (COVERS-REGISTER, Kris, 16 November 2026). Check that each parent resolves, stays within its territory and closes no cycle.
 
 <a id="cascade-down"></a>
 
@@ -125,7 +125,7 @@ The packages form one tree, rooted at `cairn.summit`, `ki-level: root`: the owne
 - **Own it if there is no one below.** Where the node the work would go to has no one seated, no seat under its `ki-workers` or only a vacant one, there is no one to cascade it to: the node holding the work owns it and does it itself, through its own runs where it delegates. It never parks work on an empty node, and never waits for a seat to be filled.
 - **Escalate up.** Only a real escalation comes back up: a decision beyond the node's remit. A node never passes work back up because it got no response, and never because the work is hard.
 - **Confidence is no grant.** High confidence never licenses a node to act without coordination: what it does on its own confidence stays within its remit and is told to the node above, under `ki-coordination`'s [Weighing what to do](../../ki-coordination/references/standard-reporting.md#415-weighing-what-to-do).
-- **One path.** An escalation travels up the path the work came down, node by node. The owner may still talk to any node directly.
+- **One path.** An escalation travels up the path the work came down, node by node. A summit has no parent, so a matter going up from a summit goes to the guardian by name, the keyholder of `cairn.summit` (ROOT-APART). The owner may still talk to any node directly.
 
 [Back to contents](#contents)
 
@@ -187,7 +187,7 @@ Every field takes the `ki-` prefix, as KI defines them all (KI-PREFIX, Kris, 17 
 | `ki-level` | required | `root`, on `cairn.summit` alone, `territory`, `regular` or `project`; a sub-package's is its parent's, or `regular` beneath the root or a summit |
 | `ki-label` | optional | title with an inventory host or category requirement suffix; never a session seat |
 | `ki-project` | required at `project` level, else absent | the Project note's slug, the node's own slug in its id |
-| `ki-parent` | required below the root, absent on the root | `cairn.summit` on a territory's summit, else a node of the same territory, or a sub-package's parent package |
+| `ki-parent` | required except on the root and a territory's summit, absent on both (ROOT-APART) | a node of the same territory, `cairn.summit` for a `cairn.*` node, or a sub-package's parent package |
 | `ki-description` | required | the routing description, at most 500 characters |
 | `ki-worker`, `ki-supervisor` | required | each a holder |
 | `ki-role` | required | the package's role, one role from [the role catalogue](standard-roles.md#43-role-catalogue); a package without one is warned on under [the role migration file](migration-roles.md) |
@@ -237,7 +237,7 @@ Signposts: the standard's defaults, and:
 
 The defaults follow [CASCADE-DOWN](#cascade-down): a matter goes up the path the work came down and comes back down from the node that can see all it touches, and the owner may still talk to any node directly.
 
-- **Wider reach goes up, never sideways.** A matter that reaches beyond the node and the nodes beneath it, such as a skill, a standard, the work model or anything crossing packages, goes to the parent's keyholder, as feedback by Orca mail between sessions in Orca, otherwise through the agent host's messaging or a meeting, under `ki-coordination`'s [Steer and feedback](../../ki-coordination/references/standard-reporting.md#416-steer-and-feedback). Where the parent has no one seated, its keyholder is the one above it, under [Writers](#49-writers). Each node settles what reaches only its own subtree and passes the rest up, node by node. A skill, a standard and the work model reach every territory, so they reach the guardian, the keyholder of `cairn.summit`. A node never takes such a matter straight to a guild, its lead skill or another leader, even one that is running.
+- **Wider reach goes up, never sideways.** A matter that reaches beyond the node and the nodes beneath it, such as a skill, a standard, the work model or anything crossing packages, goes to the parent's keyholder, as feedback by Orca mail between sessions in Orca, otherwise through the agent host's messaging or a meeting, under `ki-coordination`'s [Steer and feedback](../../ki-coordination/references/standard-reporting.md#416-steer-and-feedback). Where the parent has no one seated, its keyholder is the one above it, under [Writers](#49-writers). Each node settles what reaches only its own subtree and passes the rest up, node by node; a summit, which has no parent, sends it to the guardian by name, the keyholder of `cairn.summit`, which stands apart from the trees (ROOT-APART). A skill, a standard and the work model reach every territory, so they reach the guardian. A node never takes such a matter straight to a guild, its lead skill or another leader, even one that is running.
 - **The guardian sends it back down.** It delegates the matter down the tree to the node that owns it: for a skill or a standard, the guild that `ki-keystone`'s [guild map](../../../keystone/ki-keystone/SKILL.md#the-guild-map) names, through that guild's package; otherwise the leader whose Scope covers it. Where that node has no one seated, the nearest seated node above it owns the work.
 - **The owner's word given at a node.** When the owner gives a leader a decision directly that changes a standard, a skill or the work model, the leader records it in the owner's words in a change document of its own package and sends it up, as above, to land. It does not change the skill or the standard itself.
 - **A long-standing request** left with the owner is flagged up a level at a time, under `ki-coordination`'s [Long-standing requests](../../ki-coordination/references/standard-territory.md#43-long-standing-requests).
@@ -281,6 +281,8 @@ ki-raised:
 - **Held** - work waiting on a named decision or event, one line each with its release condition. Deferred deliverable work becomes an unadopted triage record in its home repository under `ki-work next`'s [capture rule](../../../keystone/ki-work/references/standard-next-work.md#432-capture-substantive-prospective-work), as Kris took HELD-VS-RECORD a) on 7 November 2026, and ideas go to the Project note's Notes, to the Inbox, or to a record through `ki-work next`; neither stays here.
 - **Workers** - the live seats, one entry each; a seat that has ended leaves the list.
 
+**Pitfall: an `_index.md` summary goes stale fast** (Bastion's lesson, `ki.cairn`'s Overnight UI (52), steps 53 to 55). A Now line or a Changes summary written at one move is wrong by the next, so the session that makes a move rewrites every line it touched in the same commit, and a reader checks the change document before acting on a summary.
+
 History stays out, as Kris answered STATE-HISTORY: the recap since the mark reads the package's Git log, so nothing needs a dated log in Now or Held. Evidence, such as commit identifiers, test counts and artefact hashes, lives in the run report and the commit; the state may link one, not copy it.
 
 **An actor's state and its package's** (STANDDOWN-SCOPE a, 20 November 2026). An actor's state, on its roster entry, and its package's state, its hold with `release` and `ki-since`, are independent, each recorded in its own place, though often aligned. A return time on the roster and one in a hold's `release` can drift apart.
@@ -299,7 +301,7 @@ Standing an actor down and bringing it back are `ki-coordination`'s [holds](../.
 - **They are numbered** in tens by group, in the order they are taken, with gaps for new ones.
 - **They are named by name, not number.** The number is only a change document's priority; its name is the slug after the number, in sentence case. Wherever one is mentioned, in a file or a reply, it is called by that name, with its number in brackets after it if at all, as "Case website (70)", never "change 70" or "70" alone, and a link to it takes the same text, as `[Case website (70)](70-case-website.change.md)`. Replies follow `ki-coordination`'s [Links and wording](../../ki-coordination/references/standard-reporting.md#43-links-and-wording).
 - **Decisions live in the change document they belong to.** When the change closes, each goes to its durable home, a standard, `AGENTS.md` or a record, and the change is deleted. Review and graduation are `ki-work design`'s.
-- **Open points live in a change document's Open section,** in full, and nothing already answered stays there.
+- **Open points live in a change document's Open section,** in full, and nothing already answered stays there. An answered question leaves Open in the same turn its answer is logged; an `_Answered <letter>_` marker left on it meanwhile is temporary and goes at the next tidy, and Questions read None by `agreed` (ANSWERED-MARKER a, Kris, 22 November 2026: "Leaves Open now"). A question overtaken before it is answered is struck through as withdrawn, under `ki-authoring`'s [change format](../../../keystone/ki-authoring/references/standard-formats-change.md).
 
 [Back to contents](#contents)
 
@@ -336,7 +338,7 @@ Every writer is named, and every other party only reads. This standing contract 
 | The package's keyholder† | `_index.md`, its change documents and sub-packages, and tidy deletions | Another package |
 | A background run, design runs and `ki-work design` included | A change document in the package its brief names | Any other kind, its report included |
 
-† The keyholder is the actor seated at the package, as its `ki-workers` name it. A package with no seat, or only a vacant one, is held by its parent node's keyholder under [CASCADE-DOWN](#cascade-down), who writes in it as its keyholder until a seat is taken. Every other party writes nothing in a package: it asks the keyholder in a meeting or a conversation.
+† The keyholder is the actor seated at the package, as its `ki-workers` name it. A package with no seat, or only a vacant one, is held by its parent node's keyholder, a summit's by the guardian since it has no parent (ROOT-APART), under [CASCADE-DOWN](#cascade-down), who writes in it as its keyholder until a seat is taken. Every other party writes nothing in a package: it asks the keyholder in a meeting or a conversation.
 
 A new package is seeded by its parent node's keyholder, usually the guardian, or by any session the owner points at it on the owner's word, which holds the new package's keys while it seeds it: it writes `_index.md` on hold, with the package's first step as the top line of its Now, and a first change document only if there is a change to carry. Whatever must be done first on pick-up stays the top line of Now, as Kris set under FIRST-STEP-HOME a on 15 November 2026.
 
@@ -360,7 +362,7 @@ The pass each package receives to reach the shape, and to keep it:
 4. **No empty folders.**
 5. **Identity.** `_index.md`'s `ki-id`, `ki-level`, `ki-role` and H1 match the package's current work id and the role catalogue.
 6. **The state is now.** At most five Now lines, waiting items under Held, live seats under `ki-workers`, no history.
-7. **Every open point is in a change document's Open section,** in full, and nothing already answered.
+7. **Every open point is in a change document's Open section,** in full, and nothing already answered: no `_Answered <letter>_` marker is left (ANSWERED-MARKER a).
 8. **Every rule has a home.** A decision that changes how work is done goes into the standard that owns the practice or, if local to one repository, that repository's `AGENTS.md`.
 9. **The roster is current.** The package is registered under its current id, with nothing left under an old id.
 10. **Earlier copies listed.** Any copy left elsewhere after a move or rename is listed, and removed only on its owner's word.

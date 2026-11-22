@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-21T15:08:16Z
+ki-revised: 2026-11-22T17:40:00Z
 ki-status: in force
 ---
 
@@ -104,7 +104,7 @@ The rows run tier by tier in the tiers' order, leaders, managers, makers, and wi
 
 | Role | Tier | Rank | Glyph | Owns | Never does |
 | --- | --- | --- | --- | --- | --- |
-| guardian | leaders | 1 | 🪨 | The state of every work package in the Cairn store, from `cairn.summit`, the root of its work tree | Does a package's own work, which is its seat's, or acts on a change document before Kris's word |
+| guardian | leaders | 1 | 🪨 | The state of every work package in the Cairn store, from `cairn.summit`, the estate package, which stands apart from the territories' trees | Does a package's own work, which is its seat's, or acts on a change document before Kris's word |
 | governor | leaders | 2 | 🏛️ | Heads one territory: its State of play, priorities, dispatch, the admission of its managers and the queries it brings to Kris; convenes its council | Outranks another territory's governor, decides for another territory, or does its managers' or makers' work |
 | councillor | leaders | 3 | 🗳️ | A further leader's share of one territory's decisions, by its governor's grant, and its vote in the council and in admissions | Heads the territory, acts outside it, or decides alone what the council holds |
 | guildmaster | managers | 1 | ⚖️ | This catalogue and the skills that capture how we work | Judges roles alone, since Kris and the council may overturn it, or builds the tools and does the work its skills govern |
@@ -115,11 +115,17 @@ The rows run tier by tier in the tiers' order, leaders, managers, makers, and wi
 | warden | managers | 6 | ⚒️ | One place in the work tree, standing work or a Project: its package, records, runs and queue, its standing work within its standing grants, and a Project's delivery from Ready to awaiting acceptance | Sets priority across Projects, takes up territory dispatch, accepts its own delivery, acts past its grants instead of taking the exception up, or works outside its place |
 | voice | makers | 1 | 🦜 | Kris's spoken word carried to and from the seat that holds a package, as messages in its meeting, quoting him exactly | Decides anything, writes anything but messages, or carries as Kris's word what he did not say |
 | technical-architect | makers | 2 | 🏗️ | Technical architecture: the components, data, interfaces and technology choices of a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
-| information-architect | makers | 3 | 📐 | Information architecture: the structure, naming, navigation and models of a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
-| graphic-designer | makers | 4 | 🎨 | Visual design and its artefacts for a handed-off piece | Takes work no seat handed it, or reports to Kris directly |
+| information-architect | makers | 3 | 📐 | Information architecture and functional design: the structure, naming, navigation and models of a handed-off piece, how it interacts, moves and flows, and the structural approaches and skills it is held to; a floating maker, seated in the Cairn | Takes work no seat handed it, or reports to Kris directly |
+| graphic-designer | makers | 4 | 🎨 | Visual design and its artefacts for a handed-off piece, in whatever style it calls for, grounded in the design skill or the site's own design system, illustration included; a floating maker, seated in the Cairn | Takes work no seat handed it, or reports to Kris directly |
 | journeyman | makers | 5 | 🐝 | A handed-off unit of general making, reported to the seat that handed it over | Takes work no seat handed it, or reports to Kris directly |
 
 The two architects are two makers because their responsibilities differ, as Kris took ARCHITECT-SPLIT a on 16 November 2026: the information architect shapes how a piece is organised and found, the technical architect how it is built, as `ki-design`'s [design standard](../../../keystone/ki-design/references/standard-design.md#41-what-design-covers) draws them. Their seats read `ki.cairn@information-architect` and `ki.cairn@technical-architect`; the one `architect` they replace is read under [the role migration file](migration-roles.md).
+
+<a id="floating-makers"></a>**The information architect and the graphic designer are floating makers,** seated in the Cairn rather than in any one territory, as Kris took FLOATING-MAKERS a on 22 November 2026, after DESIGNER-ROLE on 21 November, "the information architect needs to be the kind of more functional designer, how things interact and move, and then the illustrator is the one that's making it pretty":
+
+- **Seat:** one seat each, in `cairn.summit`'s `ki-workers`, tier makers; the estate keeps one of each (ROLE-SINGLE).
+- **Jobs:** each serves any package whose keyholder asks for it by Orca mail, works the job in the asking package without its keys, taking that package's keyless form, `<package>@information-architect` or `<package>@graphic-designer`, and homes the job's questions in that package's change documents.
+- **No package of its own** until a job needs one; it reports to the keyholder who asked, never to Kris directly.
 
 The voice is a maker because it speaks for the seat that holds the package and reports to it, as Kris asked on 17 November 2026 for a role glyph for his voice client, "some kind of chatterbox thing": its seat reads `<package>@voice`, such as `cairn.summit@voice`, and the store's `VOICE.md` sets how it works.
 
@@ -127,7 +133,7 @@ The harbourmaster is the manager once called the gatekeeper, renamed as Kris too
 
 The graphic designer is the maker once called the illustrator, renamed as Kris took ILLUSTRATOR-RENAME on 21 November 2026, "I think that's a better name"; its glyph stays 🎨 and its seat reads `<package>@graphic-designer`, such as `ki.cairn@graphic-designer`. The old `illustrator` is read under [the role migration file](migration-roles.md).
 
-Every territory's summit, `<territory>.summit`, is seated by its governor; councillor is kept for any further leader, as Kris took SOP-MAIN-GOVERNOR a) under ROLES-WRITE on 7 November 2026, for the main State of play the summit has replaced. The quartermaster's seat is `ki.tools`, under `ki.summit`, as Kris set under QUARTERMASTER-SOP on 7 November 2026, "the actual quartermaster should be ki.sop.tools, and it should live as a leader", the id becoming `ki.tools` under KIND-DROP on 11 November 2026, when secondary States of play gave way to nodes beneath the summit. The quartermaster is a manager, ranked after the guildmaster, as Kris took QM-TIER a on 17 November 2026: it holds one package, `ki.tools`, kept working and released within the territory, never heads the territory or decides how a tool behaves, and answers to KI's governor, as QM-SEAT named it on 14 November 2026, "a manager across the tools repositories". The guardian's seat is `cairn.summit`, the root of the Cairn store's work tree: Kris took the role as the agoranomos under AGORANOMOS-ROLE on 10 November 2026, and renamed it the guardian, glyph 🪨, under ROOT-ROLE and THREAD-GLYPH a on 11 November 2026. Each role glyph differs from every other and from the banner's state and line glyphs under `ki-coordination`'s [Banner](../../ki-coordination/references/standard-coordination.md#46-banner).
+Every territory's summit, `<territory>.summit`, is seated by its governor; councillor is kept for any further leader, as Kris took SOP-MAIN-GOVERNOR a) under ROLES-WRITE on 7 November 2026, for the main State of play the summit has replaced. The quartermaster's seat is `ki.tools`, under `ki.summit`, as Kris set under QUARTERMASTER-SOP on 7 November 2026, "the actual quartermaster should be ki.sop.tools, and it should live as a leader", the id becoming `ki.tools` under KIND-DROP on 11 November 2026, when secondary States of play gave way to nodes beneath the summit. The quartermaster is a manager, ranked after the guildmaster, as Kris took QM-TIER a on 17 November 2026: it holds one package, `ki.tools`, kept working and released within the territory, never heads the territory or decides how a tool behaves, and answers to KI's governor, as QM-SEAT named it on 14 November 2026, "a manager across the tools repositories". The guardian's seat is `cairn.summit`, the estate package at `ki-level: root`, which stands apart from the territories' trees under ROOT-APART: Kris took the role as the agoranomos under AGORANOMOS-ROLE on 10 November 2026, and renamed it the guardian, glyph 🪨, under ROOT-ROLE and THREAD-GLYPH a on 11 November 2026. Each role glyph differs from every other and from the banner's state and line glyphs under `ki-coordination`'s [Banner](../../ki-coordination/references/standard-coordination.md#46-banner).
 
 [Back to contents](#contents)
 

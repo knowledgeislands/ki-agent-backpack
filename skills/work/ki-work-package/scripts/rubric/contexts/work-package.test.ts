@@ -104,7 +104,6 @@ const entry = ({ id, fields = [], drop = [], body, changes = ['10-pilot.change.m
 const MAIN = entry({
   id: 'ki.summit',
   drop: ['parent'],
-  fields: ['parent: cairn.summit'],
   changes: []
 }).replace('level: regular', 'level: territory')
 
@@ -475,7 +474,7 @@ describe('RECORD-2 schema', () => {
     expect(messages(run(RECORD, 'RECORD-2', context(root)))).toContain('Held must say something')
   })
 
-  test('the tree is rooted at cairn.summit, each summit under it, and any node may split', () => {
+  test('cairn.summit is the root, standing apart, each summit carries no parent, and any node may split', () => {
     const root = store()
     write(
       root,
@@ -501,10 +500,16 @@ describe('RECORD-2 schema', () => {
       'territory work id must be its summit'
     ],
     [
+      'a summit naming the root as parent',
+      'ki.summit',
+      MAIN.replace('level: territory', 'level: territory\nki-parent: cairn.summit'),
+      "a territory's summit carries no parent, standing apart from the root, cairn.summit"
+    ],
+    [
       'a summit naming another parent',
       'ki.summit',
-      MAIN.replace('parent: cairn.summit', 'parent: hnr.summit'),
-      "a territory's summit names the root, cairn.summit, as parent"
+      MAIN.replace('level: territory', 'level: territory\nki-parent: hnr.summit'),
+      "a territory's summit carries no parent, standing apart from the root, cairn.summit"
     ],
     [
       'level root away from the root',
