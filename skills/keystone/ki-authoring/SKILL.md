@@ -53,7 +53,7 @@ Like every governance skill it carries the universal **AUDIT · CONFORM · EDUCA
 
 1. **Run the hosted structured checker** — `ki repo audit --skill ki-authoring --repo <repo-path>`. The catalogue prepares the formatter evidence with shell-free argument arrays, so the check is self-sufficient in a repository with or without `ki-engineering` or a `package.json`. The host owns findings, reporting, and the non-zero exit on any FAIL.
 2. Apply the **judgment** (`[J]`) criteria from [the rubric](references/rubric.md) — the response summary counts what remains unevaluated, but does not manufacture findings for review work the checker did not perform. Does a wide table spill into footnotes? Is link text descriptive? Do existing TOML values, comments, and configuration structure read clearly? Do not assess what keys or table identities mean here: `ki-repo` owns that contract.
-3. **Report** by location → criterion → fix; lead with FAIL findings, then judgment findings. Trade records under `+/_TRADES/` and `-/_TRADES/` are authored Markdown like any other and are formatted with the rest. Their integrity is a property of meaning, not bytes: `ki-trades` `AUTH-1` compares a record against the sender's copy through a projection that ignores formatting, so formatting them changes nothing it checks. An exclusion list was the weaker guarantee — it only avoided touching the records, never verified them, and never covered Biome at all.
+3. **Report** by location → criterion → fix; lead with FAIL findings, then judgment findings.
 
 ### Mode CONFORM — bring a document into house style
 

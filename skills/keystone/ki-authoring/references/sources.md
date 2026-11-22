@@ -143,10 +143,13 @@ Advisory sources inform local judgment conventions but are not specifications, m
 | KEYSTONE-FIXES | The ten Keystone skills are all kept, and their mechanical fixes land in the Cairn summit's change 10, step 6.3; for this skill, commit and pull-request conventions point to `ki-git`, which owns them, while a repository's configuration and the `.ki.toml` contract stay with `ki-repo`. Kris, 22 November 2026, about 19:33 GMT, at the Keystone guild's sitting, card: "Keep all, fix". | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
 | DOCS-LANDING-GITHUB | "_index.md only", Kris on the question card in Loreward's Home Chat at 19:57 GMT, recorded in ki.summit's change 23 · Decision: option b), not the recommended a): a docs folder's page is `_index.md` alone, with no `README.md` pointer beside it, even though the folder then shows no page on GitHub; the docs skills' checks read `_index.md` and warn on an earlier `README.md` until renamed. | 2026-11-22 | [README, 4.6](standard-readme.md#46-docs-folder-pages) | In force |
 | MD-WRITER | Closed as built: Kris's answer of 8 November 2026, "Writers fix it", is `ki-git` 4.5.1, where every session and run runs `rumdl fmt`, then `rumdl check`, on each file before committing, and the store's hook stays check-only; the `ki agent` half is moot. This standard adds one pointer to that rule. Kitteth, 22 November 2026, about 19:58 GMT, within remit at the Work guild's sitting, high confidence, no new decision asked of Kris. | 2026-11-22 | [Markdown](standard-markdown.md#41-what-to-leave-to-the-linter) | In force |
+| TRADES-DROP | Option a: `ki-trades` and `ki-trade` are dropped now, ahead of the 31 December review TRADES-FATE set, so this skill no longer names `ki-trades`. Kris, 22 November 2026, about 19:59 GMT, at the Work guild's sitting in the Cairn summit's change 10, card: "Drop now". | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 TRADES-DROP a was applied by Loreward: the skill's `SKILL.md` no longer names the dropped `ki-trades`. No rule changed and no external source refreshed.
 
 Later on 22 November 2026 MD-WRITER, recorded under Decisions, was closed as built in the same step's Work landing: the Markdown standard's 4.1 points to `ki-git`'s checks before committing, where the writer runs `rumdl fmt` and `rumdl check`. No rule changed and no outside source was refreshed.
 

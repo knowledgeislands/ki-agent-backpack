@@ -59,9 +59,15 @@ Receiver Knowledge Bases are evidence of migration needs, not sources of the tar
 
 None recorded by id: the model is canonical to this skill.
 
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| TRADES-DROP | Option a: `ki-trades` and `ki-trade` are dropped now, ahead of the 31 December review TRADES-FATE set, so this skill no longer names `ki-trades`. Kris, 22 November 2026, about 19:59 GMT, at the Work guild's sitting in the Cairn summit's change 10, card: "Drop now". | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
+
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 TRADES-DROP a was applied by Loreward: the skill's `SKILL.md` no longer names the dropped `ki-trades`. No rule changed and no external source refreshed.
 
 On 21 November 2026 the checker was brought to GATES-SIZE-XL a, which Kris took that day at about 19:02 GMT by Orca item card, "Yes, split before adoption", relayed by the Cairn summit's guardian from its [change 90](https://github.com/krisb/ki-cairn-store/blob/fdf11947/work/cairn/cairn.summit/90-ways-of-working.change.md#44-decided); `ki-work-roadmap`'s [priority and size](../../../work/ki-work-roadmap/references/standard-work-item-format.md#43-priority-and-size) carries the rule and its decision row. STREAM-12 now warns on an adopted `draft` record of size `xl`, as the roadmap adapter's ITEM-2 does, beside STREAM-7's failure on a ready one. This is an in-house decision review; no external source was refreshed.
 
