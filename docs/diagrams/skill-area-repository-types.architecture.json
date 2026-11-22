@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "f1a5d4c0618d9d855440ff358d2723d903ae5361"
+      "revision": "ffbc3261f702d5aaee1d16cad6aa9b102d4d8278"
     },
     "legend": {
       "mode": "auto",
@@ -65,7 +65,7 @@
       "tag": "R27 · CL · F4",
       "pos": [
         588,
-        952
+        704
       ],
       "size": [
         208,
@@ -85,26 +85,6 @@
       "tag": "R9 · CM · F3",
       "pos": [
         844,
-        580
-      ],
-      "size": [
-        208,
-        76
-      ]
-    },
-    {
-      "id": "ki-repo-homebrew-tap",
-      "type": "backend",
-      "label": "ki-repo-homebrew-tap",
-      "sublabel": "repository · automatic",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-homebrew-tap/SKILL.md"
-        }
-      ],
-      "tag": "R10 · CM · F7",
-      "pos": [
-        588,
         580
       ],
       "size": [
@@ -225,7 +205,7 @@
       "tag": "R14 · CL · F11",
       "pos": [
         588,
-        1200
+        952
       ],
       "size": [
         208,
@@ -245,47 +225,7 @@
       "tag": "R10 · CM · F4",
       "pos": [
         588,
-        1076
-      ],
-      "size": [
-        208,
-        76
-      ]
-    },
-    {
-      "id": "ki-repo-project",
-      "type": "database",
-      "label": "ki-repo-project",
-      "sublabel": "repository · opt-in",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-project/SKILL.md"
-        }
-      ],
-      "tag": "R2 · CM · F3",
-      "pos": [
-        588,
-        268
-      ],
-      "size": [
-        208,
-        76
-      ]
-    },
-    {
-      "id": "ki-repo-specifications",
-      "type": "backend",
-      "label": "ki-repo-specifications",
-      "sublabel": "repository · automatic",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-specifications/SKILL.md"
-        }
-      ],
-      "tag": "R6 · CM · F3",
-      "pos": [
-        588,
-        704
+        828
       ],
       "size": [
         208,
@@ -302,10 +242,10 @@
           "path": "skills/repository/ki-repo-tools/SKILL.md"
         }
       ],
-      "tag": "R4 · CL · F11",
+      "tag": "R11 · CL · F12",
       "pos": [
         588,
-        828
+        580
       ],
       "size": [
         208,
@@ -405,7 +345,7 @@
       "tag": "R2 · CM · F3",
       "pos": [
         44,
-        1404
+        1156
       ],
       "size": [
         208,
@@ -425,7 +365,7 @@
       "tag": "R37 · CL · F9",
       "pos": [
         364,
-        1404
+        1156
       ],
       "size": [
         208,
@@ -445,7 +385,7 @@
       "tag": "R63 · CL · F4",
       "pos": [
         684,
-        1404
+        1156
       ],
       "size": [
         208,
@@ -465,7 +405,7 @@
       "tag": "R4 · CL · F17",
       "pos": [
         1004,
-        1404
+        1156
       ],
       "size": [
         208,
@@ -539,29 +479,19 @@
     },
     {
       "kind": "region",
-      "label": "Projects",
-      "wraps": [
-        "ki-repo-project"
-      ],
-      "pad": 28
-    },
-    {
-      "kind": "region",
       "label": "Single-type repositories",
       "wraps": [
-        "ki-repo-specifications",
         "ki-repo-mcp",
         "ki-repo-backpack",
         "ki-repo-tools",
         "ki-repo-packages",
-        "ki-repo-homebrew-tap",
         "ki-repo-dotfiles-chezmoi"
       ],
       "pad": 28
     },
     {
       "kind": "region",
-      "label": "Repository types · 17 skills",
+      "label": "Repository types · 14 skills",
       "wraps": [
         "ki-repo-website",
         "ki-repo-website-content",
@@ -572,13 +502,10 @@
         "ki-repo-kb-activities",
         "ki-repo-kb-live-artifacts",
         "ki-repo-kb-principal",
-        "ki-repo-project",
-        "ki-repo-specifications",
         "ki-repo-mcp",
         "ki-repo-backpack",
         "ki-repo-tools",
         "ki-repo-packages",
-        "ki-repo-homebrew-tap",
         "ki-repo-dotfiles-chezmoi"
       ],
       "pad": 44
@@ -673,7 +600,7 @@
       "dot": "slate",
       "title": "Generated, not drawn",
       "items": [
-        "17 skills, 4 outside prerequisites, 1 outside dependent, 11 composition and 1 optional edges, read from SKILL.md frontmatter.",
+        "14 skills, 4 outside prerequisites, 1 outside dependent, 11 composition and 1 optional edges, read from SKILL.md frontmatter.",
         "Home in another area: ki-repo-backpack; only edges within this area are drawn for them here, and their home area's diagram draws the rest.",
         "Regenerate with ki repo conform --skill ki-repo-backpack; ki-skills KI-SHAPE-20 keeps the edges resolvable and acyclic."
       ]

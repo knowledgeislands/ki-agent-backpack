@@ -90,18 +90,9 @@ export const FUNCTIONAL_AREAS: readonly FunctionalArea[] = [
           'ki-repo-kb-principal'
         ]
       },
-      { title: 'Projects', skills: ['ki-repo-project'] },
       {
         title: 'Single-type repositories',
-        skills: [
-          'ki-repo-specifications',
-          'ki-repo-mcp',
-          'ki-repo-backpack',
-          'ki-repo-tools',
-          'ki-repo-packages',
-          'ki-repo-homebrew-tap',
-          'ki-repo-dotfiles-chezmoi'
-        ]
+        skills: ['ki-repo-mcp', 'ki-repo-backpack', 'ki-repo-tools', 'ki-repo-packages', 'ki-repo-dotfiles-chezmoi']
       }
     ]
   },

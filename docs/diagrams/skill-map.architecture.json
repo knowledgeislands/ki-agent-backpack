@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "8d7465bcac8b43c3de64aca97b45e24f689e2f02"
+      "revision": "ffbc3261f702d5aaee1d16cad6aa9b102d4d8278"
     },
     "legend": {
       "mode": "auto",
@@ -451,44 +451,6 @@
       ]
     },
     {
-      "id": "ki-repo-project",
-      "type": "database",
-      "label": "ki-repo-project",
-      "sublabel": "repo types · opt-in",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-project/SKILL.md"
-        }
-      ],
-      "pos": [
-        712,
-        932
-      ],
-      "size": [
-        200,
-        60
-      ]
-    },
-    {
-      "id": "ki-repo-homebrew-tap",
-      "type": "backend",
-      "label": "ki-repo-homebrew-tap",
-      "sublabel": "repo types · automatic",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-homebrew-tap/SKILL.md"
-        }
-      ],
-      "pos": [
-        712,
-        1072
-      ],
-      "size": [
-        200,
-        60
-      ]
-    },
-    {
       "id": "ki-repo-mcp",
       "type": "backend",
       "label": "ki-repo-mcp",
@@ -499,27 +461,8 @@
         }
       ],
       "pos": [
-        920,
-        1072
-      ],
-      "size": [
-        200,
-        60
-      ]
-    },
-    {
-      "id": "ki-repo-specifications",
-      "type": "backend",
-      "label": "ki-repo-specifications",
-      "sublabel": "repo types · automatic",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-specifications/SKILL.md"
-        }
-      ],
-      "pos": [
-        1128,
-        1072
+        712,
+        932
       ],
       "size": [
         200,
@@ -537,8 +480,8 @@
         }
       ],
       "pos": [
-        712,
-        1156
+        920,
+        932
       ],
       "size": [
         200,
@@ -556,8 +499,8 @@
         }
       ],
       "pos": [
-        920,
-        1156
+        1128,
+        932
       ],
       "size": [
         200,
@@ -575,8 +518,8 @@
         }
       ],
       "pos": [
-        1128,
-        1156
+        712,
+        1016
       ],
       "size": [
         200,
@@ -708,8 +651,8 @@
         }
       ],
       "pos": [
-        32,
-        1248
+        712,
+        1188
       ],
       "size": [
         200,
@@ -727,8 +670,8 @@
         }
       ],
       "pos": [
-        32,
-        1388
+        712,
+        1328
       ],
       "size": [
         200,
@@ -746,8 +689,8 @@
         }
       ],
       "pos": [
-        240,
-        1388
+        920,
+        1328
       ],
       "size": [
         200,
@@ -765,8 +708,8 @@
         }
       ],
       "pos": [
-        448,
-        1388
+        1128,
+        1328
       ],
       "size": [
         200,
@@ -784,8 +727,8 @@
         }
       ],
       "pos": [
-        32,
-        1472
+        712,
+        1412
       ],
       "size": [
         200,
@@ -803,8 +746,8 @@
         }
       ],
       "pos": [
-        240,
-        1472
+        920,
+        1412
       ],
       "size": [
         200,
@@ -822,8 +765,8 @@
         }
       ],
       "pos": [
-        32,
-        1612
+        712,
+        1552
       ],
       "size": [
         200,
@@ -841,8 +784,8 @@
         }
       ],
       "pos": [
-        240,
-        1612
+        920,
+        1552
       ],
       "size": [
         200,
@@ -860,8 +803,8 @@
         }
       ],
       "pos": [
-        712,
-        1328
+        32,
+        1248
       ],
       "size": [
         200,
@@ -879,8 +822,8 @@
         }
       ],
       "pos": [
-        920,
-        1328
+        240,
+        1248
       ],
       "size": [
         200,
@@ -898,8 +841,8 @@
         }
       ],
       "pos": [
-        1128,
-        1328
+        448,
+        1248
       ],
       "size": [
         200,
@@ -917,8 +860,8 @@
         }
       ],
       "pos": [
-        712,
-        1412
+        32,
+        1332
       ],
       "size": [
         200,
@@ -936,8 +879,8 @@
         }
       ],
       "pos": [
-        712,
-        1584
+        32,
+        1504
       ],
       "size": [
         200,
@@ -955,8 +898,8 @@
         }
       ],
       "pos": [
-        920,
-        1584
+        240,
+        1504
       ],
       "size": [
         200,
@@ -974,8 +917,8 @@
         }
       ],
       "pos": [
-        1128,
-        1584
+        448,
+        1504
       ],
       "size": [
         200,
@@ -993,8 +936,8 @@
         }
       ],
       "pos": [
-        712,
-        1668
+        32,
+        1588
       ],
       "size": [
         200,
@@ -1012,8 +955,8 @@
         }
       ],
       "pos": [
-        712,
-        1808
+        32,
+        1728
       ],
       "size": [
         200,
@@ -1031,8 +974,8 @@
         }
       ],
       "pos": [
-        920,
-        1808
+        240,
+        1728
       ],
       "size": [
         200,
@@ -1050,8 +993,8 @@
         }
       ],
       "pos": [
-        1128,
-        1808
+        448,
+        1728
       ],
       "size": [
         200,
@@ -1069,8 +1012,8 @@
         }
       ],
       "pos": [
-        712,
-        1948
+        32,
+        1868
       ],
       "size": [
         200,
@@ -1088,8 +1031,8 @@
         }
       ],
       "pos": [
-        920,
-        1948
+        240,
+        1868
       ],
       "size": [
         200,
@@ -1107,8 +1050,8 @@
         }
       ],
       "pos": [
-        1128,
-        1948
+        448,
+        1868
       ],
       "size": [
         200,
@@ -1126,8 +1069,8 @@
         }
       ],
       "pos": [
-        32,
-        1784
+        712,
+        1724
       ],
       "size": [
         200,
@@ -1145,8 +1088,8 @@
         }
       ],
       "pos": [
-        240,
-        1784
+        920,
+        1724
       ],
       "size": [
         200,
@@ -1164,8 +1107,8 @@
         }
       ],
       "pos": [
-        32,
-        1956
+        712,
+        1896
       ],
       "size": [
         200,
@@ -1183,8 +1126,8 @@
         }
       ],
       "pos": [
-        32,
-        2096
+        712,
+        2036
       ],
       "size": [
         200,
@@ -1202,8 +1145,8 @@
         }
       ],
       "pos": [
-        240,
-        2096
+        920,
+        2036
       ],
       "size": [
         200,
@@ -1221,8 +1164,8 @@
         }
       ],
       "pos": [
-        448,
-        2096
+        1128,
+        2036
       ],
       "size": [
         200,
@@ -1349,19 +1292,9 @@
     },
     {
       "kind": "region",
-      "label": "Repository types · Projects",
-      "wraps": [
-        "ki-repo-project"
-      ],
-      "pad": 10
-    },
-    {
-      "kind": "region",
       "label": "Repository types · Single-type repositories",
       "wraps": [
-        "ki-repo-homebrew-tap",
         "ki-repo-mcp",
-        "ki-repo-specifications",
         "ki-repo-tools",
         "ki-repo-dotfiles-chezmoi",
         "ki-repo-packages"
@@ -1370,7 +1303,7 @@
     },
     {
       "kind": "region",
-      "label": "Repository · 19 skills",
+      "label": "Repository · 16 skills",
       "wraps": [
         "ki-git",
         "ki-repo-backpack",
@@ -1384,10 +1317,7 @@
         "ki-repo-kb-activities",
         "ki-repo-kb-live-artifacts",
         "ki-repo-kb-principal",
-        "ki-repo-project",
-        "ki-repo-homebrew-tap",
         "ki-repo-mcp",
-        "ki-repo-specifications",
         "ki-repo-tools",
         "ki-repo-dotfiles-chezmoi",
         "ki-repo-packages"
@@ -1585,7 +1515,7 @@
       "dot": "slate",
       "title": "Generated, not drawn",
       "items": [
-        "63 skills in 8 concerns and 10 functional areas: 3 always on, 20 automatic, 35 opt-in, 5 commands.",
+        "60 skills in 8 concerns and 10 functional areas: 3 always on, 18 automatic, 34 opt-in, 5 commands.",
         "Regenerate with ki repo conform --skill ki-repo-backpack; ki-skills owns the kind and applicability fields it reads."
       ]
     }

@@ -19,7 +19,7 @@ Use the website-owned [skills-by-outcome guide](https://knowledgeislands.info/gu
 <!-- ki-repo-backpack:capability-catalogue:start -->
 ## Generated capability catalogue
 
-This source backpack publishes 63 skills: 58 governance skills, 4 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
+This source backpack publishes 60 skills: 55 governance skills, 4 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
 
 ### Acquire
 
@@ -396,7 +396,7 @@ Lead the Repository guild and audit or conform the universal KI repository contr
 - **Kind:** Governance
 - **Leads:** Repository
 - **Applicability:** Baseline
-- **Detects:** `ki-decision-records`, `ki-design`, `ki-engineering`, `ki-guides`, `ki-repo-homebrew-tap`, `ki-repo-kb`, `ki-repo-kb-streams`, `ki-repo-mcp`, `ki-repo-specifications`, `ki-repo-tools`, `ki-repo-website`, `ki-repo-website-app`, `ki-repo-website-cloudflare`, `ki-repo-website-content`, `ki-skills`, `ki-specs`, `ki-subagents`, `ki-subagents-chatgpt`, `ki-subagents-claude`, `ki-work-package`
+- **Detects:** `ki-decision-records`, `ki-design`, `ki-engineering`, `ki-guides`, `ki-repo-kb`, `ki-repo-kb-streams`, `ki-repo-mcp`, `ki-repo-tools`, `ki-repo-website`, `ki-repo-website-app`, `ki-repo-website-cloudflare`, `ki-repo-website-content`, `ki-skills`, `ki-specs`, `ki-subagents`, `ki-subagents-chatgpt`, `ki-subagents-claude`, `ki-work-package`
 - **Arguments:** `audit | conform <repo> | educate <repo> | help | refresh | review [scope] | review close <REV-NNN>`
 - **Dependencies:** `ki-authoring`, `ki-git`
 - **Runtime:** Runtime-bound; supported runtimes are resolved by its host contract
@@ -462,16 +462,6 @@ Audit or conform KI chezmoi source repositories: source-versus-target editing, a
 - **Applicability:** Declaration Only
 - **Arguments:** `audit <repo> | conform <repo> | help | educate <repo> | refresh`
 - **Dependencies:** `ki-authoring`
-- **Runtime:** Portable
-
-#### `ki-repo-homebrew-tap`
-
-Audit or scaffold a KI Homebrew tap and its `Formula/*.rb` distribution surface. Use for formula sources, tap shape, README publication, `brew audit`, or `brew style`; `ki-repo-tools` owns CLI repositories and `ki-repo` universal files.
-
-- **Kind:** Governance
-- **Applicability:** Detected
-- **Arguments:** `audit <repo> | conform <repo> | educate <repo> | help | refresh`
-- **Dependencies:** None
 - **Runtime:** Portable
 
 #### `ki-repo-kb`
@@ -544,29 +534,9 @@ Audit or conform a KI `packages-*` repository whose source trees consumers vendo
 - **Dependencies:** None
 - **Runtime:** Portable
 
-#### `ki-repo-project`
-
-Explain the baseline and composable structures for a non-Knowledge-Base KI Project repository. Use when orienting or migrating a Project and choosing specialised `ki-repo-*` overlays; `ki-repo` owns primary-kind declarations, `ki-work` tracker selection, and `ki-repo-kb` Knowledge Bases.
-
-- **Kind:** Governance
-- **Applicability:** Declaration Only
-- **Arguments:** `audit <repo> | conform <repo> | educate <repo> | help | refresh`
-- **Dependencies:** None
-- **Runtime:** Portable
-
-#### `ki-repo-specifications`
-
-Audit or scaffold the KI Specifications repository container: proposals, specifications, schemas, templates, examples, docs, and tooling. Use `ki-specs` for requirement records, `ki-decision-records` for decisions, and `ki-repo` for universal files.
-
-- **Kind:** Governance
-- **Applicability:** Detected
-- **Arguments:** `audit <repo> | conform <repo> | educate <repo> | help | refresh`
-- **Dependencies:** None
-- **Runtime:** Portable
-
 #### `ki-repo-tools`
 
-Audit or scaffold a KI `tools-*` repository containing one CLI, installer, releases, changelog, CI, help, completion, and optional manual. Use `ki-repo-homebrew-tap` for formulae, `ki-engineering` for TypeScript/Bun, and `ki-repo` for universal files.
+Audit or scaffold a KI `tools-*` repository containing one CLI, installer, releases, changelog, CI, help, completion, and optional manual, and the Homebrew tap whose `Formula/*.rb` distributes the tools. Use `ki-engineering` for TypeScript/Bun, and `ki-repo` for universal files.
 
 - **Kind:** Governance
 - **Applicability:** Detected
