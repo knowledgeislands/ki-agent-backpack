@@ -55,12 +55,15 @@ The house's own skills and source, then chezmoi's documentation.
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
+| ENV-FIXES a | All ten Environment skills are kept, with the fixes: `ki-env-housekeeping-chatgpt` repointed from the old Inbox (`krisb/inbox`) to Harbour (`krisb/ki-cairn-harbour`); `ki-env-housekeeping-claude`'s memory text trimmed to the disabled case; `ki-env-binding-chatgpt` refreshed, due since 12 November; `ki-env-binding-chezmoi`'s SKILL.md, which stated its composition three times, trimmed to once; the two tokenomics adapters' sources refreshed with the MODEL-TIERS move; no regrouping by host. Kris, 22 November 2026, about 21:45 GMT, the Environment guild's sitting, card: "Keep all ten, with fixes"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [SKILL.md](../SKILL.md#composition) | In force |
 | HOOK-HOME a | The hook-registration rule, chezmoi registering a selected backpack hook payload into Claude Code's and Codex's settings, lives in `ki-env-binding-chezmoi`, whose scope widens beyond MCP to KI bindings, MCP servers and hooks; `ki-repo-backpack` keeps the payloads; `ki-repo-dotfiles-chezmoi` 4.10 and `ki-git`'s five mentions point here. Kris, 22 November 2026, about 21:18 GMT, the Environment guild's sitting, card: "ki-env-binding-chezmoi"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [Hook registration standard](standard-chezmoi-hook-registration.md#1-introduction) | In force |
 | ADR-KI-HARNESS-SKILLS-004 | Skills must be valid standalone; its composition-for-backends corollary makes the render path its own composition skill, not a fork or a `--backend` flag | 2026-06-23 | [Chezmoi MCP rendering standard](standard-chezmoi-mcp-rendering.md#1-introduction) | Current |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied ENV-FIXES a, recorded under [Decisions](#3-decisions): SKILL.md states its composition once, under Composition, where the introduction, a layers list and a note had each stated it. No criterion changed and no outside source refreshed.
 
 On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, made this skill the one home of chezmoi's hook registration under HOOK-HOME a. The new [hook registration standard](standard-chezmoi-hook-registration.md) was written from the chezmoi source's registration partials and the backpack's payload table, and the description widened to hooks. No criterion changed.
 

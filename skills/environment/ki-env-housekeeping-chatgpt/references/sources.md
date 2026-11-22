@@ -42,11 +42,17 @@ None.
 
 ## 3. Decisions
 
-None recorded by id: the rules follow the outside sources above and the shared rules of `ki-env-housekeeping`.
+The rules follow the outside sources above and the shared rules of `ki-env-housekeeping`; one decision is recorded by id below.
+
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| ENV-FIXES a | All ten Environment skills are kept, with the fixes: `ki-env-housekeeping-chatgpt` repointed from the old Inbox (`krisb/inbox`) to Harbour (`krisb/ki-cairn-harbour`); `ki-env-housekeeping-claude`'s memory text trimmed to the disabled case; `ki-env-binding-chatgpt` refreshed, due since 12 November; `ki-env-binding-chezmoi`'s SKILL.md, which stated its composition three times, trimmed to once; the two tokenomics adapters' sources refreshed with the MODEL-TIERS move; no regrouping by host. Kris, 22 November 2026, about 21:45 GMT, the Environment guild's sitting, card: "Keep all ten, with fixes"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied ENV-FIXES a, recorded under [Decisions](#3-decisions): SKILL.md now names Harbour's `ki-muninn chatgpt` commands, in krisb/ki-cairn-harbour, as the owner of repository staging, where it named the Inbox. No criterion changed and no outside source refreshed.
 
 On 19 November 2026 MEMORY-ONCE, taken in `ki-env-housekeeping`, cut [the Codex memory standard](standard-codex-memory.md#42-repository-policy)'s restatement of the native-memory policy to this host's delta, pointing at the lead's 4.1; nothing host-specific was lost. No criterion changed and no outside source refreshed.
 

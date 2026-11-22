@@ -16,16 +16,9 @@ argument-hint: 'audit <target> | conform <target> | help | educate <target> | re
 
 # The chezmoi render path for KI bindings
 
-You are governing **one render path**: how the canonical MCP single source becomes the file-editable surfaces that run the servers, through chezmoi. This is a **governance skill** and a **composition skill** — it sits on top of two siblings and adds a delta over them, never forking their shared modes (`ADR-KI-HARNESS-SKILLS-004`, the composition-for-backends corollary: a render path is its own skill, not a `--backend` flag on `ki-env-binding`).
+You are governing **one render path**: how the canonical MCP single source becomes the file-editable surfaces that run the servers, through chezmoi. This governance skill's own part is the render contract — the `mcp-servers-json` template, its source-data wiring, and the `chezmoi apply` that generates the surfaces `ki-env-binding` audits — which belongs to neither sibling it composes, as [Composition](#composition) sets out. The full model is in [the standard](references/standard-chezmoi-mcp-rendering.md); the checkable criteria are in [the generated rubric](references/rubric.md); provenance is in [the sources list](references/sources.md).
 
-The two composed layers:
-
-- **`ki-env-binding`** owns the portable canonical source and mcporter evidence; runtime adapters own their native client surfaces.
-- **`ki-repo-dotfiles-chezmoi`** is the house standard for any chezmoi source repo — naming prefixes, templating, `chezmoi apply`, surgical-patch reverse-merge — with no knowledge of MCP.
-
-This skill's **delta** is the render contract that ties them together — the `mcp-servers-json` template, its source-data wiring, and the `chezmoi apply` that generates the surfaces `ki-env-binding` audits. That contract belongs to neither sibling: `ki-env-binding` owns no renderer, and `ki-repo-dotfiles-chezmoi` covers only generic dotfile templating. The full model is in [the standard](references/standard-chezmoi-mcp-rendering.md); the checkable criteria are in [the generated rubric](references/rubric.md); provenance is in [the sources list](references/sources.md).
-
-It is also the one owner of **hook registration** (HOOK-HOME a): how chezmoi registers a selected backpack hook payload in Claude Code's and Codex's settings, through the `.chezmoitemplates/*-hook-registrations-json` partials, from the `ki`-installed path. The backpack keeps the payloads, under `ki-repo-backpack`'s three-part hook model. The rules are in [the hook registration standard](references/standard-chezmoi-hook-registration.md); the rubric does not yet check them, so AUDIT reads them.
+It is also the one owner of **hook registration** (HOOK-HOME a): how chezmoi registers a selected backpack hook payload in Claude Code's and Codex's settings, through the `.chezmoitemplates/*-hook-registrations-json` partials, from the `ki`-installed path. The backpack keeps the payloads, under `ki-repo-backpack`'s three-part hook model. The rules are in [the hook registration standard](references/standard-chezmoi-hook-registration.md); the rubric does not yet check them, so AUDIT reads them by hand.
 
 ## Operating modes
 
@@ -66,12 +59,13 @@ Re-anchor when the chezmoi render contract changes — the `mcp-servers-json` te
 
 ## Composition
 
-- `ki-env-binding` — owns the renderer-neutral surface audit (surfaces agree with the single source). This skill composes its AUDIT / CONFORM for the surface half; it never re-implements the surface check.
-- `ki-repo-dotfiles-chezmoi` — owns the generic chezmoi source-repo standard. This skill composes its AUDIT / CONFORM for the repo half; it never re-checks generic repo shape.
+This is a **composition skill**: it sits on two siblings and adds the render contract over them, never forking their shared modes. It is its own skill rather than a `--backend` flag on `ki-env-binding` (`ADR-KI-HARNESS-SKILLS-004`, the composition-for-backends corollary), because `ki-env-binding` is renderer-neutral by design and folding chezmoi into it would couple every surface audit to one renderer.
+
+- `ki-env-binding` — owns the portable canonical source, mcporter evidence and the renderer-neutral surface audit (surfaces agree with the single source); runtime adapters own their native client surfaces. This skill composes its AUDIT / CONFORM for the surface half; it never re-implements the surface check.
+- `ki-repo-dotfiles-chezmoi` — owns the generic chezmoi source-repo standard (naming prefixes, templating, `chezmoi apply`, surgical-patch reverse-merge), with no knowledge of MCP. This skill composes its AUDIT / CONFORM for the repo half; it never re-checks generic repo shape.
 - `ki-repo-backpack` — owns the hook payloads this skill registers, and the three-part hook model.
 - `ki-repo-mcp` — owns each MCP server's own code and the cross-surface-enablement design record. For a single server's layout, route there.
 
 ## Notes
 
-- **Why a separate skill, not a flag:** `ki-env-binding` is renderer-neutral by design — folding chezmoi into it would couple every surface audit to one renderer. The render path is a genuine delta over both siblings, so it composes them rather than forking their modes (`ADR-KI-HARNESS-SKILLS-004`).
 - **Not coverage-scoped everywhere:** this skill is installed only where the chezmoi render path is actually in use; a plain (non-chezmoi) setup runs `ki-env-binding` alone and re-renders through whatever tool reads the canonical source.
