@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T01:52:00Z
+ki-revised: 2026-11-22T16:15:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -182,6 +182,8 @@ The OpenAI News page is a discovery source, not a normative standard. On each RE
 [Back to contents](#contents)
 
 ## 4. Last review
+
+A later in-house review on **2026-11-22**, in the second SKILLS-LEARNING batch, added one pitfall to [Maintaining a rubric](standard-rubric-authoring.md#46-maintaining-a-rubric): a standard's rule that adds a file or folder is checked against the audit's file inventory in the same change, as `ki-diagrams`' DIAG-1 showed. No rule changed and no outside source was refreshed.
 
 A later in-house review on **2026-11-22** applied GUILD-FOLLOWS, taken by ki.summit's guardian: the Agentic systems guild is renamed Agentic ecosystems to match its lead, `ki-agentic-ecosystems`, under GUILD-NAMED, in [the guild table](standard-guilds.md#43-names-and-prefixes), each member's `ki-guild`, the lead's `ki-leads`, the backpack's folder, guild map, catalogue and diagrams. No outside source refreshed.
 

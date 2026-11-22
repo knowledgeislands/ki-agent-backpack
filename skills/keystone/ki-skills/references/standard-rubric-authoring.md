@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T00:55:00Z
+ki-revised: 2026-11-22T16:15:00Z
 ki-status: in force
 ---
 
@@ -221,7 +221,7 @@ Skill-specific behaviour shared by both commands belongs in `scripts/rubric/cont
 Once a skill conforms to this structure, ordinary maintenance SHOULD be isolated to the rule being changed:
 
 1. Update the rubric item in its semantic family file.
-2. Before changing what a criterion requires of a value, search the whole catalogue, including CONFORM writers and scaffolds, for every other place that reads or writes that value, and change them together in one change. Otherwise one criterion warns on what another requires, and CONFORM silently reverts the new requirement.
+2. Before changing what a criterion requires of a value, search the whole catalogue, including CONFORM writers and scaffolds, for every other place that reads or writes that value, and change them together in one change. Otherwise one criterion warns on what another requires, and CONFORM silently reverts the new requirement. The same holds when a standard's rule adds a file or folder: check the audit's file inventory, the paths it reads, lists and reports, in the same change, or the audit passes over the new file; a rule adding a dark variant's subfolder was missed by DIAG-1 until `ki-diagrams` `eaa85537e`.
 3. Add or refine focused context evidence only when the rule needs information or a safe write capability that the existing context does not provide.
 4. Regenerate `references/rubric.md` from the canonical TypeScript catalogue.
 5. Run the skill's focused tests, then exercise its catalogue through the live `ki` host.
