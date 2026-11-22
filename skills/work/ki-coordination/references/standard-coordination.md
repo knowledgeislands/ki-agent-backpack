@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-21T16:26:00Z
+ki-revised: 2026-11-22T08:05:00Z
 ki-status: in force
 ---
 
@@ -197,6 +197,7 @@ The coordinator stays responsive, so the owner never has to remind it to delegat
   - A coordinator removes through a bounded run; a run uses literal absolute paths or leaves removal to the tool that made the thing, under the `ki-delegation` [permission prompts](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#483-permission-prompts) rule.
   - The interactive cause is probable, not proven, until the owner reports a prompt's wording. This grants no bypass of a permission gate.
 - **Owner messages:** a new owner message steers; it is not a stop and moves nothing. Fold it into running and queued work, redirecting, re-queuing or logging a decision as needed, and keep going. Stop or abort a background agent or piece of work only when the owner expressly says so, naming the work. Never mid-way through long work, the coordinator answers promptly.
+- **Feedback order:** class each piece of owner feedback as it lands as a fix, a feature or a cosmetic change, and work fixes first, then features, then cosmetics, unless the owner says otherwise; cosmetics wait for one sweep. Kris set FEEDBACK-PRIORITY on 22 November 2026: "a prioritization that needs to be had ... cosmetic refinements as opposed to new features or functionality". Feedback folds into the build already running, with one install per batch, under the `ki-delegation` [check tiers](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#45-prompt-shape).
 - **Cadence:** while work lies with a worker:
   - give timed updates of one or two lines when launching work and when an agent finishes, and none while waiting, each timestamped from the clock in that turn, never from recalled labels;
   - raise a blocking query in a single line the moment it arises, not at the next report;
@@ -223,7 +224,7 @@ The five hard rules remain authoritative here: Follow the coordinating-work stan
 
 **Binding.** Where `[skills.ki-coordination]` is declared, the hook and the output style are bound, a runtime-specific binding under Claude Code: the repository's tracked `.claude/settings.json` selects `"outputStyle": "ki-coordinator"`, and the user's Claude Code settings register `hooks/coordinator-reminder/coordinator-reminder.sh` at `UserPromptSubmit` and `SessionStart`, with the style deployed as `~/.claude/output-styles/ki-coordinator.md`. The style and the hook line are backpack-owned and generated from this standard; the user-environment manager, chezmoi, only links the style to the primary checkout and registers the hook. The `ki-coordination` rubric checks that the binding is present.
 
-Sources: SMALL-FIXES, PERM-PROMPTS-SHAPES, UPDATE-CADENCE, QUIET-LISTEN, GAP-SUMMARY, HEARTBEAT, OOS-WAKE, WAKE-SUBSTRATE, CONCURRENCY, WIP-PACKAGE, HOOK-BINDING, QUERY-CAP, QUERY-CAP-3 and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
+Sources: SMALL-FIXES, PERM-PROMPTS-SHAPES, FEEDBACK-PRIORITY, UPDATE-CADENCE, QUIET-LISTEN, GAP-SUMMARY, HEARTBEAT, OOS-WAKE, WAKE-SUBSTRATE, CONCURRENCY, WIP-PACKAGE, HOOK-BINDING, QUERY-CAP, QUERY-CAP-3 and HOOK-ENFORCE in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -259,8 +260,11 @@ The Work Process note's The seven states and Roles sections own the states, the 
   - Finished once closed.
 
   Only the owner's receive and the hold are set, besides the worker's own idle hold under [Putting work on hold](standard-holds.md#41-putting-work-on-hold); every other state follows from where the items lie. Authorised work waiting for worker capacity stays with the worker; send to the supervisor only for an actual decision or review.
+
 - **Receiving:** the owner receives with `with me`, `ack`, `got it` or `seen`, and agrees a hold with `pause` or `done for now`; `resume` and `finish` move work off hold and to Finished. `hold` is not a receive word. A coordinator's own receive is committed with its next send.
+
 - **Sending:** a send is a commit of the package whose subject carries the move, such as `docs(work): ki.ways-of-working send to owner`, `docs(work): ki.ways-of-working receive by owner` or `docs(work): ki.ways-of-working hold, paused`, under the note's Git is the logbook. Only sends and the owner's receives commit.
+
 - **A stuck worker** comes back to its supervisor with a blocking query: its send reads `🤖 → 👤 Handoff to supervisor · blocked`. A worker item that has neither moved nor beaten for 10 minutes is stuck; nobody sets stuck.
 
 [Back to contents](#contents)
