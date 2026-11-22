@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:34:05Z
+ki-revised: 2026-11-22T18:34:23Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -105,10 +105,13 @@ The loop of [the work design standard](standard-work-design.md) is house practic
 | UPCOMING-SURFACING | "Yes, one each run", Kris, about 00:59 UTC, on Orca item 112, recorded in ki.summit's [change 22](https://github.com/krisb/ki-cairn-store/blob/da42d7f6/work/ki/ki.summit/22-roadmap-horizons.change.md#4-outline): option a), each `ki-work next` run says how many Soon, Future and held draft records wait and, after the Now and Next candidates, offers one for review, a held draft whose review date has passed first, otherwise the oldest by `updated_at`; it moves to Next or leaves as an idea. | 2026-11-22 | [4.4.1](standard-next-work.md#441-non-kb-repositories) | In force |
 | DESIGN-RUN-CLOCK | DESIGN-RUN is a fixed historical run with nothing outside the house to fetch again, so its Last reviewed reads On change and it leaves the monthly REFRESH clock. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Work design](standard-work-design.md) | In force |
 | RECAP-IDE-ENV | The recap's runtime detection stays as it is, treating `CLAUDECODE=1` with no session ID as Claude Code, though IDE extensions now also set `CLAUDECODE=1` in their terminals; the case is narrow and the evidence advisory, so it is watched rather than changed. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Recap](standard-session-recap.md) | In force |
+| TRANSCRIPT-LAG | The recap's grounding helper notes that Claude Code writes its transcript asynchronously, so the newest turn may be missing, as Claude Code's hooks page says the transcript "may lag the in-memory conversation". Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Recap](standard-session-recap.md#41-run-the-grounding-helper) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 Loreward, within remit, from the 4.1 refresh, took TRANSCRIPT-LAG, recorded under [Decisions](#3-decisions): [Run the grounding helper](standard-session-recap.md#41-run-the-grounding-helper) now says Claude Code's transcript may lack the newest turn, a fact the 22 November REFRESH found on Claude Code's hooks page. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 Loreward, within remit, from the 4.1 refresh, took RECAP-IDE-ENV, recorded under [Decisions](#3-decisions): [the recap's](standard-session-recap.md) runtime detection is unchanged, and the IDE-terminal case goes under **Watching** below. No rule changed and no outside source was refreshed.
 

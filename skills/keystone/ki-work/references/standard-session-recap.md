@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:43:37Z
+ki-revised: 2026-11-22T18:34:23Z
 ki-status: in force
 ---
 
@@ -90,7 +90,7 @@ The selector is a basename, not a path. It must name exactly one eligible regula
 
 This emits a `repository` object with `available` or `unavailable` status, the physical Git root when available, staged/unstaged/untracked `filesTouched`, a combined staged-and-unstaged `diffStat`, `toolTally`, `highCostCandidates` (repeated identical calls, large-file re-reads), and the exact `ki-work-recap-repository-evidence/v1` marker. The marker records only the resolved repository root, full `HEAD` or `null`, and observed clean/dirty worktree state. On a later run, the helper recovers only a type-valid marker from the selected runtime's helper-output record and reports `transcriptEvidence.status` as `unchanged`, `changed`, or `unavailable`.
 
-The comparison qualifies transcript-derived tool tallies and high-cost suggestions; it never replaces fresh Git checks. A missing, malformed, foreign-repository, unresolvable, or same-commit-dirty marker is `unavailable`, not a guessed result. Local Claude and Codex JSONL is a version-sensitive convenience format; parse failure or no selected transcript is `unavailable`, never transcript completeness. It is a **helper**, not a checker — treat its output as raw signal to combine with warm in-session context, not a verdict.
+The comparison qualifies transcript-derived tool tallies and high-cost suggestions; it never replaces fresh Git checks. A missing, malformed, foreign-repository, unresolvable, or same-commit-dirty marker is `unavailable`, not a guessed result. Local Claude and Codex JSONL is a version-sensitive convenience format, and Claude Code writes its transcript asynchronously, so the newest turn may be missing from it; parse failure or no selected transcript is `unavailable`, never transcript completeness. It is a **helper**, not a checker — treat its output as raw signal to combine with warm in-session context, not a verdict.
 
 [Back to contents](#contents)
 
