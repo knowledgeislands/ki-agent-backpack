@@ -9,7 +9,7 @@ ki-shared-dependencies: [ki-skills:rubric]
 description: >
   Govern knowledge graphs: Semantic Markdown cards named by readable ids, a `_graph.md` root definition, typed links
   with SKOS by default, subgraphs, layered graphs with shadow nodes, staging graphs and tending. Use to define or tend
-  a graph; `ki-acquire` owns capture, the Inbox curation and dispatch, `ki-dodecakrisis` sorting and `ki-repo-kb`
+  a graph; `ki-acquire` owns capture, Harbour curation and dispatch, `ki-dodecakrisis` sorting and `ki-repo-kb`
   knowledge-base structure.
 argument-hint: 'audit <repo> | conform <repo> | educate <repo> | tend <area> | help | refresh'
 ---
@@ -18,7 +18,7 @@ argument-hint: 'audit <repo> | conform <repo> | educate <repo> | tend <area> | h
 
 Read [the knowledge-graph standard](references/standard-knowledge-graph.md) first: what every graph shares, its root definition, cards, links and subgraphs, layered graphs and shadow nodes, and then the staging graph and tending. While [the migration overlay](references/migration-knowledge-graph.md) exists, read it last; it lists temporary adjustments, and the standard wins wherever the two differ.
 
-The skill holds the method, how a graph is defined, staged and tended; a graph itself keeps the things that are, its concepts and their relations, and a card never restates this method. Sorting before Deposit is the `ki-dodecakrisis` skill's, and faithful capture, coverage, originals and provider rules are the `ki-acquire` skill's and its provider skills'. Curating captures into cards, and dispatch, belong to the Inbox (personal.inbox), under CURATION-HOME, 19 November 2026. The folders and zones of a knowledge base, the staging base's included, are the `ki-repo-kb` skill's. Prose style is the `ki-authoring` skill's, and a receiving island's triage of what it is sent is the `ki-work next` skill's. Executable checks and importers live in the repositories that run them. The concepts the standard relies on are cards in the skill's own graph, flat in `knowledge/` and opened by [its root definition](knowledge/_graph.md), while the standard, rubric and sources stay in `references/`; read a card when the standard names its concept. The [generated rubric](references/rubric.md) holds the review criteria. This skill accepts no repository configuration properties.
+The skill holds the method, how a graph is defined, staged and tended; a graph itself keeps the things that are, its concepts and their relations, and a card never restates this method. Sorting before Deposit is the `ki-dodecakrisis` skill's, and faithful capture, coverage, originals and provider rules are the `ki-acquire` skill's and its provider skills'. Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour), under CURATION-HOME, 19 November 2026. The folders and zones of a knowledge base, the staging base's included, are the `ki-repo-kb` skill's. Prose style is the `ki-authoring` skill's, and a receiving island's triage of what it is sent is the `ki-work next` skill's. Executable checks and importers live in the repositories that run them. The concepts the standard relies on are cards in the skill's own graph, flat in `knowledge/` and opened by [its root definition](knowledge/_graph.md), while the standard, rubric and sources stay in `references/`; read a card when the standard names its concept. The [generated rubric](references/rubric.md) holds the review criteria. This skill accepts no repository configuration properties.
 
 ## Operating modes
 

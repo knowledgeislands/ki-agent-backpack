@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T05:50:00Z
+ki-revised: 2026-11-22T19:49:27Z
 ki-status: in force
 ---
 
@@ -26,7 +26,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-A knowledge graph is cards about things, joined by typed links, kept in a repository. It serves any use: a skill's body of knowledge, an island's settled knowledge, or material being curated from captures. Curation is one use, and the relationships geared to it are some of the graph's, not its limit (KG-GENERAL, Kris, 12 November 2026). This standard sets what every graph shares: its root definition, its cards and links, its subgraphs and how graphs layer; it then sets how a graph built from captures is staged, and how every graph is tended. Curating captures into cards, and dispatch, belong to the Inbox (personal.inbox), under CURATION-HOME, 19 November 2026.
+A knowledge graph is cards about things, joined by typed links, kept in a repository. It serves any use: a skill's body of knowledge, an island's settled knowledge, or material being curated from captures. Curation is one use, and the relationships geared to it are some of the graph's, not its limit (KG-GENERAL, Kris, 12 November 2026). This standard sets what every graph shares: its root definition, its cards and links, its subgraphs and how graphs layer; it then sets how a graph built from captures is staged, and how every graph is tended. Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour), under CURATION-HOME, 19 November 2026.
 
 The standard holds the method, and a graph keeps the things that are, under SKILLS-OVER-GRAPH (Kris, 7 November 2026). The concepts the standard relies on, such as Semantic Markdown, layered graphs and progressive disclosure, are cards in the skill's own graph, which [its root definition](../knowledge/_graph.md) opens; the standard follows those cards rather than restating them (KG-SELF). The decisions behind these rules are in [the sources file](sources.md#3-decisions).
 
@@ -48,7 +48,7 @@ What every knowledge graph shares, and the staging and tending of graphs.
 ### 2.2 Out of scope
 
 - Sorting before Deposit, and the Deposit routes: the `ki-dodecakrisis` skill.
-- Curating captures into cards, its pace, and dispatch: the Inbox (personal.inbox), under CURATION-HOME, 19 November 2026.
+- Curating captures into cards, its pace, and dispatch: Harbour (cairn.harbour), under CURATION-HOME, 19 November 2026.
 - Faithful capture, coverage, originals, provider rules and the capture package: the `ki-acquire` skill and its provider skills.
 - Folders, zones and zone aliases of any knowledge base, the staging base's included: the `ki-repo-kb` skill.
 - How a skill holds a graph, and the knowledge kind of skill: the `ki-skills` skill.
@@ -71,9 +71,9 @@ What every knowledge graph shares, and the staging and tending of graphs.
 | **Subgraph** | A part of a graph with its own subject, declared in the root definition, whose cards' ids carry its prefix. **Standard:** this one, [4.5](#45-subgraphs) |
 | **Attachment point** | A card a graph declares fully confident will not move, which other graphs may pin to. **Standard:** this one, [4.6](#46-layered-graphs-and-shadow-nodes) |
 | **Shadow node** | A read-only pointer in a lower graph to an attachment point above, recording the card it shadows, where that card lives and when it was last checked. **Standard:** this one, [4.6](#46-layered-graphs-and-shadow-nodes) |
-| **Curation** | The use of a graph that turns deposited and captured material into cards, from Deposit to dispatch. **Owner:** the Inbox (personal.inbox), under CURATION-HOME; what a curated card keeps is this standard's, [4.7](#47-staging-and-tending) |
+| **Curation** | The use of a graph that turns deposited and captured material into cards, from Deposit to dispatch. **Owner:** Harbour (cairn.harbour), under CURATION-HOME; what a curated card keeps is this standard's, [4.7](#47-staging-and-tending) |
 | **Staging graph** | The graph where curated knowledge is staged before it is settled, mirroring each receiving island. **Standard:** this one, [4.7.1](#471-the-staging-graph) |
-| **Dispatch** | A Git move of a package of settled cards from the staging graph into the receiving island's `+/_ACQUIRED/`. **Owner:** the Inbox (personal.inbox), under CURATION-HOME |
+| **Dispatch** | A Git move of a package of settled cards from the staging graph into the receiving island's `+/_ACQUIRED/`. **Owner:** Harbour (cairn.harbour), under CURATION-HOME |
 
 [Back to contents](#contents)
 
@@ -125,7 +125,7 @@ A card is one Semantic Markdown file: one coherent, addressable knowledge resour
 - **Origin.** A card has no origin section in its body. Where its origin would help someone check it later, its front matter gives it in one plain `origin:` line; otherwise it has none.
 - **Future ideas.** An idea for later becomes a card with `status: future-concept`, not roadmap work; only an idea being acted on now becomes work.
 - **Sensitivity.** A card may carry `sensitive: true` with `sensitivity: <reason>`, weighed whenever the card would be used outside its own island; most cards carry neither.
-- **Method stays out.** A card says what a thing is. How to tend is this skill's, and how to curate or dispatch is the Inbox's; a card that holds such method links to its owner instead.
+- **Method stays out.** A card says what a thing is. How to tend is this skill's, and how to curate or dispatch is Harbour's; a card that holds such method links to its owner instead.
 
 [Back to contents](#contents)
 
@@ -170,7 +170,7 @@ Shadow nodes have a life cycle:
 
 ### 4.7 Staging and tending
 
-A graph built from captures is staged before it settles, and every graph is tended. Curating captures into cards, and dispatch, belong to the Inbox (personal.inbox), under CURATION-HOME, 19 November 2026.
+A graph built from captures is staged before it settles, and every graph is tended. Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour), under CURATION-HOME, 19 November 2026.
 
 What a card curated from a capture keeps is durable: the positions, proposals and commitments, and which organisation holds each, rather than who attended, for how long, people's titles or the tactics of the moment, which stay in the capture. Responsibilities are recorded against organisations, not people.
 

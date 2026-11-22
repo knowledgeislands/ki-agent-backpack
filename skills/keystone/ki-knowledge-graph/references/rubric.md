@@ -68,7 +68,7 @@ Cards are judged on supplied card evidence; each says what one thing is, in the 
 
 → [standard](standard-knowledge-graph.md)
 
-What a card curated from a capture keeps is judged on the cards and the captures they came from; curating itself is the Inbox’s, under CURATION-HOME.
+What a card curated from a capture keeps is judged on the cards and the captures they came from; curating itself is Harbour’s, under CURATION-HOME.
 
 - **CURATE-4 [J] — curation keeps what is durable** — Positions, proposals and commitments are kept with the organisation holding each, and the moment’s detail stays in the capture. (standard-knowledge-graph.md#47-staging-and-tending)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.

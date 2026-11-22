@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T09:00:00Z
+ki-revised: 2026-11-22T19:49:27Z
 ki-status: in force
 ---
 
@@ -25,7 +25,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-How knowledge is brought in from outside, whatever its source: what a capture holds, how it is preserved and verified, how a port stages it, and how its receiver triages it. Curating captures into cards, and dispatch, belong to the Inbox (personal.inbox), under CURATION-HOME. Provider skills add each source's own completeness and capability rules. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+How knowledge is brought in from outside, whatever its source: what a capture holds, how it is preserved and verified, how a port stages it, and how its receiver triages it. Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour), under CURATION-HOME. Provider skills add each source's own completeness and capability rules. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -51,7 +51,7 @@ The source-independent contract for capture.
 - A Knowledge Base's packet intake handling: `ki-repo-kb`.
 - Local paths, publication authority and environment steps: the receiving repository's guides.
 - The durable lifecycle and its rationale: Knowledge Islands' Acquisition Process, named in the sources file.
-- Curating captures into cards, its pace, and dispatch: the Inbox (personal.inbox), under CURATION-HOME, 19 November 2026.
+- Curating captures into cards, its pace, and dispatch: Harbour (cairn.harbour), under CURATION-HOME, 19 November 2026.
 
 [Back to contents](#contents)
 
@@ -64,7 +64,7 @@ The source-independent contract for capture.
 | **Port** | A capture point, which may also be a knowledge-capture staging area. **Standard:** this one, [4.6](#46-staging-and-curation) |
 | **Staging area** | A port's area where captured meaning is curated into knowledge cards before it is reconciled into the owning repositories' canonical graphs. **Standard:** this one, [4.6](#46-staging-and-curation) |
 | **Holding area** | A port declared to keep what it stages for now, dispatching nothing while the declaration stands. **Standard:** this one, [4.6](#46-staging-and-curation) |
-| **Dispatch** | Moving a package from the capture area into the receiving island's `+/_ACQUIRED/`; delivery is acceptance. **Owner:** the Inbox (personal.inbox), under CURATION-HOME |
+| **Dispatch** | Moving a package from the capture area into the receiving island's `+/_ACQUIRED/`; delivery is acceptance. **Owner:** Harbour (cairn.harbour), under CURATION-HOME |
 | **Disposition** | The receiver's evidenced verdict on a received session: harvested, retained as source evidence, routed onward, or no residual knowledge. **Standard:** this one, [4.8](#48-receiver-local-triage) |
 
 [Back to contents](#contents)
@@ -75,7 +75,7 @@ The rules, part by part.
 
 ### 4.1 The capture package
 
-Acquisition faithfully preserves an authorised source scope as a transient capture package: a quick dumping point, not lasting provenance. Curation, evaluation, dispatch and source retirement are separate operations. The receiving repository supplies its capture entry point, paths and publication authority. A top-level `CAPTURE.md` serves as that entry point even for an older chat that can only read the repository through a GitHub connector (personal inbox, `8f734355`). A drop-off folder that receives verbatim text, such as pasted chats, is excluded from the Markdown linter as captured packages already are, so text kept verbatim cannot fail the commit hook. This skill accepts no configuration keys and defines no storage layout or source adapter.
+Acquisition faithfully preserves an authorised source scope as a transient capture package: a quick dumping point, not lasting provenance. Curation, evaluation, dispatch and source retirement are separate operations. The receiving repository supplies its capture entry point, paths and publication authority. A top-level `CAPTURE.md` serves as that entry point even for an older chat that can only read the repository through a GitHub connector (Harbour, `8f734355`). A drop-off folder that receives verbatim text, such as pasted chats, is excluded from the Markdown linter as captured packages already are, so text kept verbatim cannot fail the commit hook. This skill accepts no configuration keys and defines no storage layout or source adapter.
 
 The capture package is the only record of what was acquired until curation empties it. Keep no ledger, checkpoint, journal, intake receipt or per-capture ticket beside it; Git history holds earlier bytes. A provider skill may add a source-side marker, such as Granola's Acquired folder, under its own separately authorised contract.
 
@@ -117,15 +117,15 @@ Acquire has four top-level folders: `captured/` holds faithful captures, `contex
 
 Acquire's staging area is `curated/<territory>/<island>/`, one island being one repository. Under each island the layout follows that island's own shape: for a principal, its own zone and folder names, such as `Pillars/`, `Resources/`, `Streams/` and `Calendar/`, so a staged file's path says where it would land. Every territory principal has a scaffolded skeleton of its zones, each with a README saying what lands there, and other islands get folders only when needed (RESTRUCTURE, ISLAND-SHAPE-AND-MEETINGS, SCAFFOLD, 1 November 2026). Its cards form a maturing knowledge graph, the realisation of semantic Markdown, much like Zettelkasten index cards. Cards are tended and matured there with no rush to move them. They migrate into the islands later, once they conform to the standards being built, or earlier when a card is plainly an addition to existing knowledge and its home is decided. The backlog is played in reverse date order, which shows where one card supersedes another (HOLDING-SCOPE-CARDS, 1 November 2026). The port's own entry points must still work without its staged content, and no curated file ever stands in for an uncurated capture.
 
-Curating captures into cards, and dispatch, belong to the Inbox (personal.inbox), under CURATION-HOME, 19 November 2026.
+Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour), under CURATION-HOME, 19 November 2026.
 
-A port may hold material awaiting incorporation, worked back one day at a time, newest first, without bulk moves to classify it. Acquire holds captures whose territory is not yet settled, and for now every capture older than 31 October 2026, in the top-level `_held/`, and works them back that way, with dispatch on hold (ACQ020-HISTORY); the `sources-inbox` store mirrors it. Acquire renamed the folder from `_review` on 1 November 2026, because holding means material awaiting incorporation while review now means comments, findings and proposed changes, and on 2 November moved it out of `captured/` to the top level (ACQUIRE-HELD-RENAME).
+A port may hold material awaiting incorporation, worked back one day at a time, newest first, without bulk moves to classify it. Acquire holds captures whose territory is not yet settled, and for now every capture older than 31 October 2026, in the top-level `_held/`, and works them back that way, with dispatch on hold (ACQ020-HISTORY); Harbour's store, `sources-personal/ki-cairn-harbour/`, mirrors it. Acquire renamed the folder from `_review` on 1 November 2026, because holding means material awaiting incorporation while review now means comments, findings and proposed changes, and on 2 November moved it out of `captured/` to the top level (ACQUIRE-HELD-RENAME).
 
 [Back to contents](#contents)
 
 ### 4.7 Authority
 
-Curating captures into cards, and dispatch, belong to the Inbox (personal.inbox), under CURATION-HOME, 19 November 2026.
+Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour), under CURATION-HOME, 19 November 2026.
 
 Capture authority does not grant provider mutation, receiver reconciliation, source deletion or history compaction; each needs its own grant. Do not reset or rewrite history to hide a verification failure.
 
