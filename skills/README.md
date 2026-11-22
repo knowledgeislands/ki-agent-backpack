@@ -107,7 +107,7 @@ Start, wait on, steer, stop and close Orca supervised workers as a KI delegation
 
 #### `ki-model-radar`
 
-Maintain an evidence-backed radar for models and model-agent routes. Use for model comparisons, benchmark relevance, recommendations, or retirements. Use `ki-agentic-radar` for broader agentic standards, `ki-acquire pulse` for signal discovery, and `ki-env-tokenomics` for model purpose.
+Maintain an evidence-backed radar for models and model-agent routes, with the dated model-tier candidates for each portable purpose. Use for model comparisons, benchmark relevance, tier candidates, recommendations, or retirements. Use `ki-agentic-radar` for broader agentic standards, `ki-acquire pulse` for signal discovery, and `ki-env-tokenomics` for model purpose.
 
 - **Kind:** Governance
 - **Applicability:** Declaration Only
@@ -213,7 +213,7 @@ Create, audit or refresh how a repository keeps its user-interface design: the t
 
 #### `ki-env-binding`
 
-Govern the portable KI MCP inventory in XDG `mcp-servers.yaml`: schema, client targeting, and mcporter drift. Use runtime binding skills for Claude or Codex surfaces and `ki-env-binding-chezmoi` for chezmoi rendering.
+Govern how agents reach KI tools and access: the portable MCP inventory in XDG `mcp-servers.yaml`, its schema, client targeting and mcporter drift, and credential access through the 1Password cached reader and Cloudflare's `cf-token`. Use runtime binding skills for Claude or Codex surfaces and `ki-env-binding-chezmoi` for chezmoi rendering.
 
 - **Kind:** Governance
 - **Applicability:** Declaration Only
@@ -233,7 +233,7 @@ Audit or safely render KI-targeted MCP servers into Codex native `[mcp_servers]`
 
 #### `ki-env-binding-chezmoi`
 
-Audit or conform the chezmoi rendering path from canonical KI `mcp-servers.yaml` through a renderer partial and `chezmoi apply`. Use for that portable-source-to-dotfiles pipeline; `ki-env-binding` owns the source contract and `ki-repo-dotfiles-chezmoi` owns general chezmoi structure.
+Audit or conform what chezmoi renders into runtime settings for KI: MCP servers from canonical `mcp-servers.yaml` through a renderer partial, and backpack hook registrations for Claude Code and Codex, through `chezmoi apply`. Use for that source-to-dotfiles pipeline; `ki-env-binding` owns the MCP source contract and `ki-repo-dotfiles-chezmoi` owns general chezmoi structure.
 
 - **Kind:** Governance
 - **Applicability:** Declaration Only

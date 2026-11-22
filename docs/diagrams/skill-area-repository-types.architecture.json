@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "011a2b98965ec155780112401fe737bd0109cd99"
+      "revision": "08f8e208b173ed3861056b9b4eda445f5ba54470"
     },
     "legend": {
       "mode": "auto",
@@ -42,7 +42,7 @@
           "path": "skills/environment/ki-env-binding-chezmoi/SKILL.md"
         }
       ],
-      "tag": "R8 · CM · F3",
+      "tag": "R8 · CM · F4",
       "pos": [
         44,
         64

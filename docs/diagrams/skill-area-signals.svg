@@ -834,8 +834,8 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         <text x="136" y="256" class="t-database" font-size="7" text-anchor="middle">R7 · CM · F4</text>
         </g>
 
-        <g id="node-ki-model-radar" data-node-id="ki-model-radar" data-node-label="ki-model-radar" tabindex="0" role="button" aria-label="Focus ki-model-radar, agentic ecosystems · opt-in, Signals · 3 skills" aria-pressed="false" data-node-kind="database" data-node-sublabel="agentic ecosystems · opt-in" data-node-tag="R6 · CM · F4" data-node-context="Signals · 3 skills">
-          <title>ki-model-radar · agentic ecosystems · opt-in · Signals · 3 skills · R6 · CM · F4</title>
+        <g id="node-ki-model-radar" data-node-id="ki-model-radar" data-node-label="ki-model-radar" tabindex="0" role="button" aria-label="Focus ki-model-radar, agentic ecosystems · opt-in, Signals · 3 skills" aria-pressed="false" data-node-kind="database" data-node-sublabel="agentic ecosystems · opt-in" data-node-tag="R6 · CM · F5" data-node-context="Signals · 3 skills">
+          <title>ki-model-radar · agentic ecosystems · opt-in · Signals · 3 skills · R6 · CM · F5</title>
           <rect x="288" y="188" width="208" height="76" rx="8" class="c-mask"/>
           <rect x="288" y="188" width="208" height="76" rx="8" class="c-database" data-animate="node" style="--step: 2;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(294 194) scale(0.6875)">
@@ -844,7 +844,7 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
           </g>
           <text data-node-label="" x="392" y="224" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-model-radar</text>
         <text x="392" y="240" class="t-muted" font-size="9" text-anchor="middle">agentic ecosystems · opt-in</text>
-        <text x="392" y="256" class="t-database" font-size="7" text-anchor="middle">R6 · CM · F4</text>
+        <text x="392" y="256" class="t-database" font-size="7" text-anchor="middle">R6 · CM · F5</text>
         </g>
 
         <!-- Connection labels -->
