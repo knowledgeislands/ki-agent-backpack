@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T17:59:30Z
+ki-revised: 2026-11-22T19:51:01Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -140,10 +140,13 @@ Advisory sources inform local judgment conventions but are not specifications, m
 | LESSONS-LINE | A batch record gains a fourth section, **Lessons**, one line each or None, and its validator follows. Kris, 22 November 2026, about 17:20 GMT, on the question card in Loreward's Home Chat, choosing "Records and reports (recommended, high confidence)", from the Knowledge Islands summit's [change 23](https://github.com/krisb/ki-cairn-store/blob/main/work/ki/ki.summit/23-skills-learning.change.md#42-decided). | 2026-11-22 | [record format](standard-formats-record.md#43-a-batch-record) | In force |
 | WITHDRAWN-QUESTION | A question overtaken before it is asked is struck through in 7.1 as withdrawn, with its reason and date, with no new call-out; it counts as closed and leaves by `agreed`. Settled by WAYS-APPLY a, Kris, 22 November 2026, about 17:26 GMT, sending back the reply block in Kitteth's Home Chat, whose theme "recheck a question against the latest decisions just before carding it" it carries out (the Cairn summit's [change 70](https://github.com/krisb/ki-cairn-store/blob/48d8299393f28fa81e4ee6c7608de84e43230ca8/work/cairn/cairn.summit/70-bots.change.md#46-decided), 4.6). | 2026-11-22 | [change format](standard-formats-change.md#45-landing) | In force |
 | ANSWERED-MARKER | An answered question leaves Open in the same turn its answer is logged, and a `_Answered <letter>_` marker is temporary, removed at the next tidy; Questions still reads None by `agreed`. Kris, 22 November 2026, about 17:38 GMT, on the question card, choosing "Leaves Open now" (the Knowledge Islands summit's [change 23](https://github.com/krisb/ki-cairn-store/blob/main/work/ki/ki.summit/23-skills-learning.change.md#71-questions)). | 2026-11-22 | [change format](standard-formats-change.md#45-landing) | In force |
+| KEYSTONE-FIXES | The ten Keystone skills are all kept, and their mechanical fixes land in the Cairn summit's change 10, step 6.3; for this skill, commit and pull-request conventions point to `ki-git`, which owns them, while a repository's configuration and the `.ki.toml` contract stay with `ki-repo`. Kris, 22 November 2026, about 19:33 GMT, at the Keystone guild's sitting, card: "Keep all, fix". | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 KEYSTONE-FIXES, recorded under Decisions, was applied in the Cairn summit's change 10, step 6.3: `SKILL.md`'s out-of-scope list sends commit and pull-request conventions to `ki-git`, not `ki-repo`, which keeps a repository's configuration and the `.ki.toml` contract. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 LESSONS-LINE, WITHDRAWN-QUESTION and ANSWERED-MARKER, recorded under Decisions, were applied by Loreward's run from the Knowledge Islands summit's change 23. [The record format](standard-formats-record.md#43-a-batch-record) moves to a new version: a batch record has a fourth section, Lessons, and FMT-record needs it from that version, a record following an earlier one passing without it. [The change format](standard-formats-change.md#45-landing) strikes a question overtaken before it is asked through in 7.1 as withdrawn, with its reason and date, counting it closed until it leaves, at the latest by `agreed`, and an answered question leaves Open in the turn its answer is logged, any `_Answered <letter>_` marker going at the next tidy. No outside source was refreshed.
 

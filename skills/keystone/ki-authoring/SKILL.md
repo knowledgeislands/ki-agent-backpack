@@ -94,7 +94,8 @@ Each set is a self-contained reference, loaded on demand. Read the one relevant 
 Out of scope by design, with their natural homes:
 
 - **KB note-writing conventions** (zones, frontmatter, routing) → the `ki-repo-kb` skill.
-- **Commit and PR conventions, a repo's configuration, and the `.ki.toml` _contract_** (the compliance marker + one-table-per-skill model) → the `ki-repo` skill. This skill owns only the TOML _formatting_ style every such table is written in.
+- **Commit and PR conventions** → the `ki-git` skill.
+- **A repo's configuration and the `.ki.toml` _contract_** (the compliance marker + one-table-per-skill model) → the `ki-repo` skill. This skill owns only the TOML _formatting_ style every such table is written in.
 - **SKILL.md authoring** (frontmatter, description, body altitude) → the `ki-skills` skill.
 
 ## Adding a convention set
