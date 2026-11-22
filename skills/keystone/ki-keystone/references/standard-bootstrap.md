@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:59:47Z
+ki-revised: 2026-11-22T19:02:36Z
 ki-status: in force
 ---
 
@@ -88,7 +88,7 @@ One verified, XDG-managed backpack set exists per user. The canonical `knowledge
 
 The backpack payload, configuration, cache, and mutable state occupy separate XDG-owned locations. `ki diag --full` reports the effective paths.
 
-`ki backpack install <backpack-id>` acquires or atomically replaces the selected backpack from immutable release evidence verified by the installed `ki` release. `ki backpack list` and `ki backpack info <backpack-id>` inspect the installed set.
+`ki backpack install <backpack-id>` acquires the selected backpack from immutable release evidence verified by the installed `ki` release when it is not yet installed, and leaves an installed one as it is. `ki backpack reinstall <backpack-id>` atomically replaces an installed backpack from that evidence, once it has no active skills and is not development-linked. `ki backpack list` and `ki backpack info <backpack-id>` inspect the installed set.
 
 Verified installed compatible backpacks are the sole source of registered capabilities and operations.
 
