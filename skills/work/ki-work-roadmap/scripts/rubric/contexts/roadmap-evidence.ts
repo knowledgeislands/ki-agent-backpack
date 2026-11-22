@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 /** Mechanical auditor for flat non-KB repository work items. */
 import { existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs'
-import { join, relative, resolve } from 'node:path'
+import { basename, dirname, join, relative, resolve } from 'node:path'
 import { inspectRoadmapAreas, matchesRoadmapArea } from '../../shared/roadmap-areas.ts'
 import { isRepositoryCode, SCOPE_SEGMENT, workIdentifier, workIdentifierSource } from '../../shared/work-identifiers.ts'
 import { ASSIGNEE_RE, lockedAssignee } from './assignee-lock.ts'
@@ -975,6 +975,38 @@ const validateDependencies = (items: readonly WorkItem[], configuration?: Roadma
  * contradicted theme fails. A bare slug resolves in the repository's own Capital territory; `<territory>/<slug>`
  * resolves in the named territory's registry.
  */
+const MARKDOWN_LINK = /\[([^\]\n]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g
+
+/**
+ * ITEM-7 (PRUNE-LINK-CHECK): a relative Markdown link in a record whose target is a work record no longer on disc
+ * points at a pruned record, which opens nowhere. URLs, commit-pinned ones included, are skipped; the fix is the
+ * pinned `[<ID> (pruned)](…/blob/<last revision>/…)` form that `ki link <ID>` prints.
+ */
+const validatePrunedLinks = (root: string, items: readonly WorkItem[]): void => {
+  for (const item of items) {
+    const from = dirname(join(root, item.file))
+    const seen = new Set<string>()
+    for (const match of item.body.matchAll(MARKDOWN_LINK)) {
+      const target = (match[2] ?? '').replace(/^<|>$/g, '')
+      if (/^[a-z][a-z0-9+.-]*:/i.test(target) || target.startsWith('#') || target.startsWith('/')) continue
+      const path = target.split(/[?#]/)[0] ?? ''
+      if (path === '') continue
+      const file = basename(path)
+      const record = FILE_RE.exec(file)
+      if (!record || existsSync(resolve(from, decodeURIComponent(path))) || seen.has(path)) continue
+      seen.add(path)
+      const id = record[1] ?? file
+      add(
+        'WARN',
+        'ITEM-7',
+        `links pruned record ${id} at '${target}'; replace it with the pinned form \`ki link ${id}\` prints, [${id} (pruned)](…/blob/<last revision>/…)`,
+        STANDARD,
+        item.file
+      )
+    }
+  }
+}
+
 const validateClassification = (repository: string, items: readonly WorkItem[]): void => {
   const classified = items.filter((item) => item.project || item.theme || item.initiative)
   if (!classified.length) return
@@ -1165,6 +1197,7 @@ export const inspectRoadmap = (repository: string): readonly Finding[] => {
   validateDependencies(items, configuration)
   validateAssigneeLock(root, items)
   validateClassification(root, items)
+  validatePrunedLinks(root, items)
   const ledgerPath = join(roadmap, ISSUE_LEDGER)
   if (!existsSync(ledgerPath) || lstatSync(ledgerPath).isSymbolicLink() || !lstatSync(ledgerPath).isFile())
     add(

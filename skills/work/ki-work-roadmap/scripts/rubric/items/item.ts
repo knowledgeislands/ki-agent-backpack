@@ -127,6 +127,25 @@ export const ITEM: RubricFamily<RoadmapRubricContext, RoadmapAuditContext> = {
         guidance:
           'Reconcile against repository and task evidence, correct only verified links in the designated primary checkout, or record the unresolved association as a named gap.'
       }
+    },
+    {
+      code: 'ITEM-7',
+      title: 'links to pruned records',
+      description:
+        'A relative Markdown link in a work record never points at a pruned record; it uses the commit-pinned form, `[<ID> (pruned)](…/blob/<last revision>/…)`, that `ki link <ID>` prints, so it still opens.',
+      sources: [SOURCE],
+      mechanical: {
+        level: 'WARN',
+        remediation: {
+          class: 'diagnostic',
+          guidance:
+            'Run `ki link <ID>` for the pruned record and replace the relative link with the pinned form it prints.'
+        },
+        audit: {
+          phase: 'INSPECT',
+          run: (context) => outcomesFor(context, 'ITEM-7', 'No work record links a pruned record by a relative path.')
+        }
+      }
     }
   ]
 }

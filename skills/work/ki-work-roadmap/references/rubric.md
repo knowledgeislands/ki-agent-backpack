@@ -101,6 +101,8 @@ Flat work-item identity, grouping, lifecycle, and dependencies.
   - _Review prompt:_ Do each item’s task links and task-side backlinks agree on governing ownership and purpose, preserve historical associations, and avoid inferring a current claim, release, or KI acceptance from a task link alone?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Reconcile against repository and task evidence, correct only verified links in the designated primary checkout, or record the unresolved association as a named gap.
+- **ITEM-7 [M] — links to pruned records** — A relative Markdown link in a work record never points at a pruned record; it uses the commit-pinned form, `[<ID> (pruned)](…/blob/<last revision>/…)`, that `ki link <ID>` prints, so it still opens. (standard-repository-roadmaps.md)
+  - _Remediation:_ diagnostic — Run `ki link <ID>` for the pruned record and replace the relative link with the pinned form it prints.
 
 ## INDEX — root orientation
 

@@ -344,6 +344,8 @@ Pruning is the exception. Repository history must contain the selected item as `
 
 Pruning a terminal record, `done` or `cancelled`, is sanctioned cleanup. Git history is the archive: the parent of the prune commit holds the record, and pruned records are not restored. The prune commit uses one standardised message so every cleanup is recognisable in the log: the subject `chore(roadmap): prune <N> done work record(s)`, singular for one record, and a body with one `- <ID>` line per record in identifier order. `ki repo roadmap prune` writes this commit itself by default, staging exactly the deleted record paths and running the repository's hooks; it refuses before deleting anything when the repository is not a Git work tree, already has staged changes, or holds a selected record that is untracked or modified, and a rejected commit restores the deleted records. `--dry-run` makes the same selection and checks and reports the records and planned commit without changing anything. `--no-commit` only deletes the records and skips those Git checks, so the caller confirms each record's committed `done` state and commits the deletions alone under the same message.
 
+A relative link to a record breaks once that record is pruned. A record links a pruned one only at a commit, in the form `[<ID> (pruned)](…/blob/<last revision>/…)` that `ki link <ID>` prints, and ITEM-7 warns on each relative link whose target is a work record no longer on disc, skipping URLs, commit-pinned ones included (PRUNE-LINK-CHECK a, Kris, 22 November 2026, 19:52 GMT: "Warn on them").
+
 [Back to contents](#contents)
 
 ### 4.11 Number reservation

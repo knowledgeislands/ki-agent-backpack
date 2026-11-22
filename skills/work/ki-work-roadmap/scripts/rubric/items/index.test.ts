@@ -167,6 +167,7 @@ test('the structured catalogue represents the flat work-item standard', () => {
     'ITEM-4',
     'ITEM-5',
     'ITEM-6',
+    'ITEM-7',
     'ROOT-1',
     'EXEC-1',
     'EXEC-2',
