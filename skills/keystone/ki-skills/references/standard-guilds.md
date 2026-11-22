@@ -127,7 +127,7 @@ A lead discloses its guild the way a skill discloses its references: a little at
 4. **Process skills as subcommands.** Process skills that form one lifecycle become subcommands of their guild's lead, as governance skills already have modes (PROCESS-SUBCOMMANDS): `ki-work next | plan | implement | accept | recap | design`, and `ki-acquire pulse`. `ki-bootstrap` became `ki-keystone bootstrap` the same way (BOOTSTRAP-FOLD).
    - Each subcommand's detail is a reference, `references/mode-<verb>.md`, loaded only when the subcommand is called.
    - A boundary the separate skill kept survives as a rule of its subcommand: `implement` never accepts its own work, and `accept` needs the owner's approval.
-   - Not every process folds: one outside a lifecycle stays a skill of its own until its guild is reviewed, as `ki-trade`, `ki-delegation-orca` and `ki-design-inspiration` do.
+   - Not every process folds: one outside a lifecycle stays a skill of its own until its guild is reviewed, as `ki-delegation-orca` and `ki-design-inspiration` do.
    - The lead's description must still fire for every way the folded work is asked for, tested with the trigger checks in [the Agent Skills standard](standard-agent-skills.md) before the separate skills go.
 
 [Back to contents](#contents)

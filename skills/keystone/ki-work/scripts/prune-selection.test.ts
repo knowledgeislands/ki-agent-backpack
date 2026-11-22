@@ -14,8 +14,7 @@ const input = (overrides: Partial<PruneSelectionInput> = {}): PruneSelectionInpu
       symlink: false,
       canonical: true,
       status: 'done',
-      committedDone: true,
-      retainedByCompletionObservationTrade: false
+      committedDone: true
     }
   ],
   ...overrides
@@ -53,7 +52,7 @@ test('groups multiple eligible done records under one prune-only commit boundary
   })
 })
 
-test('stops without writes for an invalid root, traversal, incomplete resolution, symlink, non-terminal, or retained trade', () => {
+test('stops without writes for an invalid root, traversal, incomplete resolution, symlink, or non-terminal record', () => {
   expect(evaluatePruneSelection(input({ root: 'Streams/Roadmap' }))).toMatchObject({
     kind: 'stop',
     reason: 'selected adapter root is invalid',
@@ -93,24 +92,6 @@ test('stops without writes for an invalid root, traversal, incomplete resolution
   ).toMatchObject({
     kind: 'stop',
     reason: 'KI-HARNESS-001-complete.md has uncertain committed done evidence',
-    writes: false
-  })
-  expect(
-    evaluatePruneSelection(
-      input({ candidates: [{ ...input().candidates[0], retainedByCompletionObservationTrade: true }] })
-    )
-  ).toMatchObject({
-    kind: 'stop',
-    reason: 'KI-HARNESS-001-complete.md is retained by an unresolved completion-observation trade',
-    writes: false
-  })
-  expect(
-    evaluatePruneSelection(
-      input({ candidates: [{ ...input().candidates[0], retainedByCompletionObservationTrade: 'unknown' }] })
-    )
-  ).toMatchObject({
-    kind: 'stop',
-    reason: 'KI-HARNESS-001-complete.md has uncertain completion-observation trade evidence',
     writes: false
   })
 })

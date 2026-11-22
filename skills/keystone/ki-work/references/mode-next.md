@@ -14,14 +14,13 @@ Capture is gated by the burn-down focus and CAPTURE-GATE: a background run never
 
 ## What this subcommand does
 
-1. **Ground** the configured local adapter's canonical records and issue ledger, active `ki-work-recurring` templates, and inbound records validated by declared `ki-trades` governance.
-2. **Triage** incoming submissions through an exact human-confirmed receiver disposition, including the proportionate direct-application gate for a work trade, without treating adoption as roadmap authority.
-3. **Review and capture** relevance: capture substantive, non-duplicate prospective work that passes the graduation test as triage automatically; require confirmation to change adopted work.
-4. **Screen for synergy** across dependency-ready candidates: propose a delivery wave only when the items share a bounded delivery advantage and remain independently executable. A shared Project or component alone is not enough.
-5. **Select or spawn** one dependency-ready immediate record, or a small, explicitly confirmed synergistic group to plan independently before it can join a frozen wave in a coordinating package's unattended window.
-6. **Defer, hold, or release** an explicitly named record only after presenting its exact destination horizon, hold condition, wording, and affected lifecycle state.
-7. **Hand off for planning** selected Now or Next drafts to `ki-work plan`; its adapter creates the right in-place execution detail.
-8. **Recommend** eligible roadmap cleanup without deleting roadmap records.
+1. **Ground** the configured local adapter's canonical records and issue ledger, and active `ki-work-recurring` templates.
+2. **Review and capture** relevance: capture substantive, non-duplicate prospective work that passes the graduation test as triage automatically; require confirmation to change adopted work.
+3. **Screen for synergy** across dependency-ready candidates: propose a delivery wave only when the items share a bounded delivery advantage and remain independently executable. A shared Project or component alone is not enough.
+4. **Select or spawn** one dependency-ready immediate record, or a small, explicitly confirmed synergistic group to plan independently before it can join a frozen wave in a coordinating package's unattended window.
+5. **Defer, hold, or release** an explicitly named record only after presenting its exact destination horizon, hold condition, wording, and affected lifecycle state.
+6. **Hand off for planning** selected Now or Next drafts to `ki-work plan`; its adapter creates the right in-place execution detail.
+7. **Recommend** eligible roadmap cleanup without deleting roadmap records.
 
 `ki-work next` owns intake review and adoption. It does not cancel records; after exact human confirmation it hands a cancellation, with its resolution, to `ki-work accept`.
 
@@ -50,8 +49,6 @@ When a recap precedes it, `ki-work next` begins only after its bounded handoff i
 `ki-coordination` delivers a confirmed, independent Ready set as a frozen wave within an unattended window's recorded grant. It does not change `ki-work next` ownership of selection, priority, or an individual item's lifecycle.
 
 A wave covers one repository and is frozen before delivery starts. It retains the same selection, readiness, acceptance, pruning, push, release, and repository-boundary stops.
-
-`ki-trade` prepares, submits, receives, releases, and prunes local trade records. It hands a validated received record to `ki-work next`; it never chooses the receiver's disposition.
 
 The subcommands are invocation surfaces, not separate `.ki.toml` governance roots.
 

@@ -8,7 +8,6 @@ export type PruneCandidate = {
   status: 'triage' | 'draft' | 'ready' | 'in-progress' | 'awaiting-review' | 'done' | 'cancelled'
   /** The record has landed in its terminal state, `done` or `cancelled`, in an earlier commit. */
   committedDone: boolean | 'unknown'
-  retainedByCompletionObservationTrade: boolean | 'unknown'
 }
 
 export type PruneSelectionInput = {
@@ -68,18 +67,6 @@ export const evaluatePruneSelection = ({
       return { kind: 'stop', reason: `${candidate.path} has not landed as done`, writes: false }
     if (candidate.committedDone === 'unknown')
       return { kind: 'stop', reason: `${candidate.path} has uncertain committed done evidence`, writes: false }
-    if (candidate.retainedByCompletionObservationTrade === true)
-      return {
-        kind: 'stop',
-        reason: `${candidate.path} is retained by an unresolved completion-observation trade`,
-        writes: false
-      }
-    if (candidate.retainedByCompletionObservationTrade === 'unknown')
-      return {
-        kind: 'stop',
-        reason: `${candidate.path} has uncertain completion-observation trade evidence`,
-        writes: false
-      }
   }
   return {
     kind: 'selected',

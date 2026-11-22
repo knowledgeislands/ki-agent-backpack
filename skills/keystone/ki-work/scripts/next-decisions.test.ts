@@ -8,8 +8,7 @@ import {
   promotionDecision,
   rankCandidates,
   releaseDecision,
-  resolveSelectedAdapter,
-  tradeDisposition
+  resolveSelectedAdapter
 } from './internal/next-decisions.ts'
 
 const local = (adapter: 'roadmap' | 'kb-streams') => ({
@@ -124,7 +123,7 @@ test('re-reads issue-ledger scope immediately before publishing record and ledge
   ).toMatchObject({ kind: 'refuse' })
 })
 
-test('spawns only one active housekeeping run and separates direct trade application', () => {
+test('spawns only one active housekeeping run', () => {
   expect(
     housekeepingSpawnDecision({
       status: 'active',
@@ -165,22 +164,4 @@ test('spawns only one active housekeeping run and separates direct trade applica
       confirmed: true
     })
   ).toBe('refuse')
-  expect(
-    tradeDisposition({
-      bounded: true,
-      reversible: true,
-      independentlyVerifiable: true,
-      materialDecision: false,
-      confirmed: true
-    })
-  ).toBe('apply-directly')
-  expect(
-    tradeDisposition({
-      bounded: true,
-      reversible: true,
-      independentlyVerifiable: true,
-      materialDecision: true,
-      confirmed: true
-    })
-  ).toBe('adopt-work-record')
 })

@@ -47,7 +47,6 @@ Its other members, each with when to use it:
 - **`ki-work-package`** to create, resume, audit or tidy a work package in the Cairn store.
 - **`ki-coordination`** while coordinating opened work, and for how every session replies.
 - **`ki-meeting`** to call, hold or close a meeting at one node of the work tree.
-- **`ki-trades`** to design or audit trades between repositories, and **`ki-trade`** for one side of one trade.
 
 ## Shared model
 

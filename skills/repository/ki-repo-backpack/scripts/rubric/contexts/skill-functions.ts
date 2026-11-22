@@ -55,8 +55,7 @@ export const FUNCTIONAL_AREAS: readonly FunctionalArea[] = [
       {
         title: 'Delegation and programme',
         skills: ['ki-delegation', 'ki-work-package', 'ki-coordination', 'ki-meeting']
-      },
-      { title: 'Trades', skills: ['ki-trades', 'ki-trade'] }
+      }
     ]
   },
   {

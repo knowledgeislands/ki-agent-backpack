@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "f52d0ea5c32202a23c672cbe4c83482b1046acc7"
+      "revision": "05980cdf0f69907228dc711bbb6ca33583049679"
     },
     "legend": {
       "mode": "auto",
@@ -44,7 +44,7 @@
       ],
       "tag": "R1 · CL · F17",
       "pos": [
-        44,
+        32,
         64
       ],
       "size": [
@@ -64,7 +64,7 @@
       ],
       "tag": "R– · C0 · F3",
       "pos": [
-        364,
+        352,
         64
       ],
       "size": [
@@ -84,7 +84,7 @@
       ],
       "tag": "R– · C0 · F2",
       "pos": [
-        620,
+        608,
         64
       ],
       "size": [
@@ -104,7 +104,7 @@
       ],
       "tag": "R6 · CL · F17",
       "pos": [
-        44,
+        32,
         268
       ],
       "size": [
@@ -124,7 +124,7 @@
       ],
       "tag": "R6 · CM · F4",
       "pos": [
-        44,
+        32,
         392
       ],
       "size": [
@@ -144,48 +144,8 @@
       ],
       "tag": "R10 · CM · F7",
       "pos": [
-        300,
+        288,
         392
-      ],
-      "size": [
-        208,
-        76
-      ]
-    },
-    {
-      "id": "ki-trade",
-      "type": "frontend",
-      "label": "ki-trade",
-      "sublabel": "work · command",
-      "sources": [
-        {
-          "path": "skills/work/ki-trade/SKILL.md"
-        }
-      ],
-      "tag": "R– · C0 · F1",
-      "pos": [
-        588,
-        392
-      ],
-      "size": [
-        208,
-        76
-      ]
-    },
-    {
-      "id": "ki-trades",
-      "type": "database",
-      "label": "ki-trades",
-      "sublabel": "work · opt-in",
-      "sources": [
-        {
-          "path": "skills/work/ki-trades/SKILL.md"
-        }
-      ],
-      "tag": "R16 · CL · F3",
-      "pos": [
-        588,
-        268
       ],
       "size": [
         208,
@@ -204,7 +164,7 @@
       ],
       "tag": "R13 · CL · F5",
       "pos": [
-        300,
+        288,
         268
       ],
       "size": [
@@ -233,36 +193,14 @@
     },
     {
       "kind": "region",
-      "label": "Delegation and programme",
+      "label": "Coordination · 4 skills",
       "wraps": [
         "ki-delegation",
         "ki-work-package",
         "ki-coordination",
         "ki-meeting"
       ],
-      "pad": 28
-    },
-    {
-      "kind": "region",
-      "label": "Trades",
-      "wraps": [
-        "ki-trades",
-        "ki-trade"
-      ],
-      "pad": 28
-    },
-    {
-      "kind": "region",
-      "label": "Coordination · 6 skills",
-      "wraps": [
-        "ki-delegation",
-        "ki-work-package",
-        "ki-coordination",
-        "ki-meeting",
-        "ki-trades",
-        "ki-trade"
-      ],
-      "pad": 44
+      "pad": 32
     }
   ],
   "connections": [
@@ -309,12 +247,6 @@
       "variant": "default"
     },
     {
-      "id": "ki-trade--ki-trades",
-      "from": "ki-trade",
-      "to": "ki-trades",
-      "variant": "default"
-    },
-    {
       "id": "ki-work--ki-delegation",
       "from": "ki-work",
       "to": "ki-delegation",
@@ -326,7 +258,7 @@
       "dot": "cyan",
       "title": "Reading the diagram",
       "items": [
-        "The middle region holds the skills that hand work between agents, threads and repositories, nested by the capability each brings; each sublabel names the source concern the skill lives in.",
+        "The middle region holds the skills that hand work between agents, threads and repositories; each sublabel names the source concern the skill lives in.",
         "Regions below hold the outside skills these rely on, and regions above the outside skills that rely on these, each titled by its home functional area.",
         "Stats: R = unique published rubric criteria (– = no publication); C = script-source bytes including tests/shared code: 0, S <10 KiB, M <100 KiB, L ≥100 KiB; F = reference files, including rubric. Recursive physical files only.",
         "An arrow runs from a skill to the skill it relies on, downward between regions: solid is ki-depends-on composition, dashed is ki-optional-depends-on augmentation."
@@ -336,7 +268,7 @@
       "dot": "slate",
       "title": "Generated, not drawn",
       "items": [
-        "6 skills, 0 outside prerequisites, 3 outside dependents, 8 composition and 1 optional edges, read from SKILL.md frontmatter.",
+        "4 skills, 0 outside prerequisites, 3 outside dependents, 7 composition and 1 optional edges, read from SKILL.md frontmatter.",
         "Regenerate with ki repo conform --skill ki-repo-backpack; ki-skills KI-SHAPE-20 keeps the edges resolvable and acyclic."
       ]
     }

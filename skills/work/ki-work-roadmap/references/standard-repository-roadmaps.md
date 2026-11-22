@@ -26,8 +26,7 @@ ki-status: in force
   - [4.10 Lifecycle commit boundaries](#410-lifecycle-commit-boundaries)
   - [4.11 Number reservation](#411-number-reservation)
   - [4.12 Roadmap write locus](#412-roadmap-write-locus)
-  - [4.13 Trade review](#413-trade-review)
-  - [4.14 Conform and educate](#414-conform-and-educate)
+  - [4.13 Conform and educate](#413-conform-and-educate)
 
 ## 1. Introduction
 
@@ -46,7 +45,7 @@ The repository-roadmap adapter's shape and lifecycle for non-KB repositories.
 - Status and horizon, triage and the lifecycle moves.
 - Ideas, the graduation test and the migration windows.
 - Work-item discipline, records and work packages, and the lifecycle commit boundaries, number reservation and write locus.
-- Trade review in a roadmap audit, and what CONFORM and EDUCATE do.
+- What CONFORM and EDUCATE do.
 
 [Back to contents](#contents)
 
@@ -275,7 +274,6 @@ The model stays at v1: new fields and statuses entered v1 directly. The migratio
 - a `themes` list or area-to-theme map in `.ki.toml`;
 - `horizon: waiting-for` or `horizon: parked`, which `horizon: hold` with a `hold` mapping replaces;
 - `horizon: triage`, which `status: triage` without a horizon replaces;
-- `waiting_on_trades`, which `hold.trades` replaces;
 - `intake_disposition` and `intake_disposition_target`, which a cancellation with a `resolution` replaces.
 
 A few residual shapes still only warn: a `done` record carrying Now or Next, an open record at a horizon the former rule allowed but the table above does not, and a Capital's retired `Streams/Projects/Initiatives.md` index.
@@ -322,11 +320,7 @@ Its start transition records the immutable full `HEAD` commit in `baseline_ref`;
 
 `blocks` and `blocked_by` use work-item identifiers, must be reverse-consistent and acyclic, and cannot permit execution while a blocker is not done. Because that check gates execution on the blocker's lifecycle, only genuine build order belongs in the field: declare it when the work cannot be built without something that does not exist yet, and withdraw it once that thing exists. A declaration standing on a related record's approval state, rather than on missing work, makes the audit fail for a reason that is not true and holds executable work behind a review queue.
 
-An optional `hold.trades: [TRD-…]` list identifies the exact trade records whose observable progress forms a hold condition. It is valid only at `horizon: hold`, contains unique canonical trade identities, and never replaces or extends `blocks` or `blocked_by`. The item body states the exact condition being observed: receipt, a terminal receiver decision, or completion of receiver-local work linked from an adopted trade.
-
 An explicit later prune path or glob removes only the resolved `done` or `cancelled` items; the selection itself is the deletion authority and does not need a second confirmation. `ki-work-recurring` templates may spawn linked ordinary work records; their cadence does not create a second delivery lifecycle.
-
-A done work item linked from an adopted completion-observation trade remains retained until sender release is observable. Roadmap review and pruning report that external reference as a guard and refuse to remove the linked work record while it is unresolved.
 
 Every process-owned lifecycle or semantic work-item mutation preserves `created_at`, advances `updated_at` monotonically, and refuses to replace a changed source revision. Remote adapters project provider-native timestamps rather than duplicating them into remote bodies. The work-item format owns the precise timestamp contract.
 
@@ -368,22 +362,7 @@ Every write under the roadmap directory — capture, shaping, a lifecycle transi
 
 [Back to contents](#contents)
 
-### 4.13 Trade review
-
-Where a repository declares `ki-trades` and its records exist, include their structural relevance in the judgment portion of a roadmap audit.
-
-- **Inbound:** identify each submission that still needs receiver review or a separately confirmed local roadmap proposal. A trade status, including adopted, does not create or prioritize a work item.
-- **Outbound:** identify observable receiver progress that may warrant an originating follow-up. The receiver owns disposition, priority, execution, and acceptance.
-- **Holding:** confirm that each `hold.trades` identity names an existing relevant trade and that the prose names its precise observed condition without treating the trade as a local dependency.
-- **Pruning:** identify a done item still referenced by an adopted completion-observation trade whose sender release is not yet observable; it is not prune-eligible.
-
-The review is read-only and reports structural guidance or proposed local roadmap action only.
-
-It does not set disposition, infer adoption or acceptance from silence, move or prune trade records, prioritize local work, or change another repository's state.
-
-[Back to contents](#contents)
-
-### 4.14 Conform and educate
+### 4.13 Conform and educate
 
 `ki repo conform --skill ki-work-roadmap --repo <repo> --dry-run` shows the exact root-orientation replacement.
 

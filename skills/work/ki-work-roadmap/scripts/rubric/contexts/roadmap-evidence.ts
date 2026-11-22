@@ -37,7 +37,6 @@ export type WorkItem = {
   readonly terminalTriage: boolean
   readonly blocks: readonly string[]
   readonly blockedBy: readonly string[]
-  readonly waitingOnTrades: readonly string[]
   readonly baselineRef: string | null
   readonly intakeDisposition: string | undefined
   readonly intakeDispositionTarget: string | undefined
@@ -69,7 +68,6 @@ const FILE_RE = new RegExp(`^(${workIdentifierSource()})-([a-z0-9]+(?:-[a-z0-9]+
 const LEDGER_AREA_ENTRY = new RegExp(`^(${SCOPE_SEGMENT}):\\s*(\\d+)$`)
 const COMMIT_RE = /^(?:[0-9a-f]{40}|[0-9a-f]{64})$/
 const TIMESTAMP_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/
-const TRADE_RE = /^TRD-[0-9a-f]{8}$/
 const TASK_PROVIDER_RE = /^[a-z][a-z0-9-]*$/
 const TASK_RELATIONS = new Set(['evaluation', 'implementation', 'review', 'integration', 'coordination', 'related'])
 const TASK_FIELDS = ['authority', 'scope', 'id', 'key', 'url', 'relation'] as const
@@ -85,7 +83,7 @@ const HORIZONS_BY_STATUS: Readonly<Record<string, readonly string[]>> = {
   'awaiting-review': ['now', 'hold']
 }
 const HOLD_REASONS = new Set(['waiting-for', 'parked'])
-const HOLD_FIELDS = new Set(['reason', 'condition', 'review', 'trades'])
+const HOLD_FIELDS = new Set(['reason', 'condition', 'review'])
 const HOLD_STALE_DAYS = 31
 const HOLD_PARSE_ERROR = Symbol('hold parse error')
 const RESOLUTIONS = new Set(['obsolete', 'rejected', 'duplicate', 'merged', 'superseded', 'returned'])
@@ -126,7 +124,6 @@ const RECORD_FIELDS = new Set([
   'housekeeping_template',
   'scheduled_for',
   // Retired fields, recognised only so the checker can fail them.
-  'waiting_on_trades',
   'intake_disposition',
   'intake_disposition_target'
 ])
@@ -635,17 +632,6 @@ const validateHold = (
     add('FAIL', 'ITEM-2', 'hold.condition must name the release condition', FORMAT, display)
   if ('review' in fields && !isoDate(fields.review))
     add('FAIL', 'ITEM-2', 'hold.review must be an ISO date', FORMAT, display)
-  if ('trades' in fields) {
-    const trades = fields.trades
-    if (!Array.isArray(trades) || !trades.length)
-      add('FAIL', 'TRADE-2', 'hold.trades must be a non-empty list', FORMAT, display)
-    else {
-      if (trades.some((trade) => typeof trade !== 'string' || !TRADE_RE.test(trade)))
-        add('FAIL', 'TRADE-2', 'hold.trades must contain only canonical trade identities', FORMAT, display)
-      if (new Set(trades).size !== trades.length)
-        add('FAIL', 'TRADE-2', 'hold.trades must not repeat a trade identity', FORMAT, display)
-    }
-  }
   if (
     status === 'in-progress' &&
     updatedAt &&
@@ -771,9 +757,6 @@ const parseItem = (repository: string, name: string, configuration?: RoadmapConf
   const resolutionTarget = value('resolution_target')
   const blocks = Array.isArray(parsed.values.blocks) ? (parsed.values.blocks as string[]) : undefined
   const blockedBy = Array.isArray(parsed.values.blocked_by) ? (parsed.values.blocked_by as string[]) : undefined
-  const waitingOnTrades = Array.isArray(parsed.values.waiting_on_trades)
-    ? (parsed.values.waiting_on_trades as string[])
-    : undefined
   const baselineRef = parsed.values.baseline_ref
   const intakeDisposition = value('intake_disposition')
   const intakeDispositionTarget = value('intake_disposition_target')
@@ -866,8 +849,6 @@ const parseItem = (repository: string, name: string, configuration?: RoadmapConf
   if ('theme' in parsed.values && 'initiative' in parsed.values)
     add('FAIL', 'ITEM-2', 'name a theme or a legacy initiative, not both', FORMAT, display)
   validateLegacyIntake(parsed.values, id, terminalTriage, intakeDisposition, intakeDispositionTarget, display)
-  if ('waiting_on_trades' in parsed.values)
-    retire('waiting_on_trades; name the trades in hold.trades', display, 'TRADE-2')
   if (baselineRef !== null && (typeof baselineRef !== 'string' || !COMMIT_RE.test(baselineRef)))
     add('FAIL', 'ITEM-2', 'baseline_ref must be null or a full lowercase commit ID', FORMAT, display)
   if ((createdAt === undefined) !== (updatedAt === undefined))
@@ -909,7 +890,6 @@ const parseItem = (repository: string, name: string, configuration?: RoadmapConf
     terminalTriage,
     blocks,
     blockedBy,
-    waitingOnTrades: waitingOnTrades ?? [],
     baselineRef: baselineRef as string | null,
     intakeDisposition,
     intakeDispositionTarget,

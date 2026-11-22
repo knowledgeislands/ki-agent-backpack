@@ -27,7 +27,6 @@ export type RoadmapRubricContext = {
   readonly index: RoadmapIndexContext
   readonly execution: RoadmapAuditContext
   readonly safety: RoadmapAuditContext
-  readonly trades: RoadmapAuditContext
 }
 
 const auditOutcome = (finding: Finding): AuditOutcome => {
@@ -74,17 +73,13 @@ export const createRoadmapSession = ({
     items: audit,
     index: { ...audit, ...(draft ? { normaliseRoot: draft.normaliseRoot } : {}) },
     execution: audit,
-    safety: audit,
-    trades: audit
+    safety: audit
   }
 
   return {
     subjects: [
       { families: ['RUBRIC'], context: () => context },
-      {
-        families: ['SCOPE', 'ROAD', 'ITEM', 'INDEX', 'EXEC', 'SAFE', 'TRADE'],
-        context: () => context
-      }
+      { families: ['SCOPE', 'ROAD', 'ITEM', 'INDEX', 'EXEC', 'SAFE'], context: () => context }
     ],
     proposal: () => draft?.proposal() ?? { writes: [] }
   }

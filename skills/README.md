@@ -19,7 +19,7 @@ Use the website-owned [skills-by-outcome guide](https://knowledgeislands.info/gu
 <!-- ki-repo-backpack:capability-catalogue:start -->
 ## Generated capability catalogue
 
-This source backpack publishes 66 skills: 60 governance skills, 5 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
+This source backpack publishes 64 skills: 59 governance skills, 4 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
 
 ### Acquire
 
@@ -633,26 +633,6 @@ Call, hold and close a meeting: a room at one node of the work tree where named 
 - **Kind:** Process
 - **Applicability:** Invocation Only
 - **Arguments:** `adjourn <meeting> | call <node id> <slug> | close <meeting> | help | join <meeting> | sit <meeting>`
-- **Dependencies:** None
-- **Runtime:** Portable
-
-#### `ki-trade`
-
-Operate one repository's side of a declared cross-repository trade: prepare, inspect, submit, receive, release, or prune a work or knowledge record. Use for one concrete trade action; `ki-trades` owns record and route governance, while `ki-work next` owns receiver disposition.
-
-- **Kind:** Process
-- **Applicability:** Invocation Only
-- **Arguments:** `prepare <receiver> | observe <TRD> | submit <TRD> | abandon <TRD> | receive <TRD> | release <TRD> | prune <TRD> | routes <list|check> | standing <list|check|capture> | list | show <TRD> | help`
-- **Dependencies:** `ki-trades`
-- **Runtime:** Portable
-
-#### `ki-trades`
-
-Govern directional work and knowledge trades between KI repositories: routes, records, authority, receipt, decisions, release, and pruning. Use to design or audit the system; `ki-trade` performs one side and `ki-work next` owns receiver disposition.
-
-- **Kind:** Governance
-- **Applicability:** Declaration Only
-- **Arguments:** `audit <repo> | conform <repo> | educate <repo> | help | refresh`
 - **Dependencies:** None
 - **Runtime:** Portable
 

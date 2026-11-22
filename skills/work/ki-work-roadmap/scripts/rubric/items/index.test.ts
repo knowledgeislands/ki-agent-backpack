@@ -149,8 +149,7 @@ test('the structured catalogue represents the flat work-item standard', () => {
     'ITEM',
     'INDEX',
     'EXEC',
-    'SAFE',
-    'TRADE'
+    'SAFE'
   ])
   expect(items.map((item) => item.code)).toEqual([
     'SCOPE-1',
@@ -173,9 +172,7 @@ test('the structured catalogue represents the flat work-item standard', () => {
     'EXEC-2',
     'EXEC-3',
     'EXEC-4',
-    'SAFE-1',
-    'TRADE-1',
-    'TRADE-2'
+    'SAFE-1'
   ])
 })
 
@@ -891,22 +888,4 @@ test('a theme slug is accepted and a legacy initiative warns', () => {
   expect(inspectRoadmap(repository).map((finding) => finding.msg)).toContain(
     'migration window: initiative is retired; name the theme in theme'
   )
-})
-
-test('waiting_on_trades is retired', () => {
-  const repository = createFixture()
-  const item = join(repository, 'docs', 'roadmap', 'TEST-001-build-the-foundation.md')
-  writeFileSync(
-    item,
-    readFileSync(item, 'utf8')
-      .replace('horizon: next', 'horizon: waiting-for')
-      .replace('blocked_by: []', 'blocked_by: []\nwaiting_on_trades: [TRD-1234abcd]')
-      .replace(
-        '\n## Current state\n\nThe first slice is not implemented.\n\n## Steps\n\n- [ ] Implement the first slice.\n\n## Files touched\n\n- `src/foundation.ts`\n\n## Verify\n\n- `bun test`\n\n## Dependencies / blocks\n\nNo dependencies.\n',
-        '\n'
-      )
-  )
-  expect(inspectRoadmap(repository).filter((finding) => finding.area === 'TRADE-2')).toEqual([
-    expect.objectContaining({ level: 'FAIL', msg: 'retired: waiting_on_trades; name the trades in hold.trades' })
-  ])
 })

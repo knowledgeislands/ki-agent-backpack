@@ -263,21 +263,16 @@ test('hold requires a valid mapping and is forbidden elsewhere', () => {
   const held = (hold: string, status = 'in-progress', baseline = BASE) =>
     createRepository(`kind: deliver\nhorizon: hold\n${hold}\nstatus: ${status}\nbaseline_ref: ${baseline}`, EXECUTION)
   expect(
-    failures(
-      held(
-        'hold:\n  reason: waiting-for\n  condition: The upstream release ships.\n  review: 2026-11-01\n  trades: [TRD-1234abcd]'
-      )
-    )
+    failures(held('hold:\n  reason: waiting-for\n  condition: The upstream release ships.\n  review: 2026-11-01'))
   ).toEqual([])
   expect(failures(held(''))).toContainEqual(
     expect.objectContaining({ msg: 'horizon hold requires a hold mapping with reason and condition' })
   )
-  expect(failures(held('hold:\n  reason: someday\n  condition: ""\n  trades: [TRD-X, TRD-X]'))).toEqual(
+  expect(failures(held('hold:\n  reason: someday\n  condition: ""\n  trades: [TRD-1234abcd]'))).toEqual(
     expect.arrayContaining([
       expect.objectContaining({ msg: 'hold.reason must be waiting-for or parked' }),
       expect.objectContaining({ msg: 'hold.condition must name the release condition' }),
-      expect.objectContaining({ area: 'TRADE-2', msg: 'hold.trades must contain only canonical trade identities' }),
-      expect.objectContaining({ area: 'TRADE-2', msg: 'hold.trades must not repeat a trade identity' })
+      expect.objectContaining({ msg: 'hold has unexpected field(s): trades' })
     ])
   )
   expect(

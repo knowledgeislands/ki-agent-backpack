@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "f52d0ea5c32202a23c672cbe4c83482b1046acc7"
+      "revision": "05980cdf0f69907228dc711bbb6ca33583049679"
     },
     "legend": {
       "mode": "auto",
@@ -162,7 +162,7 @@
           "path": "skills/work/ki-work-roadmap/SKILL.md"
         }
       ],
-      "tag": "R24 · CL · F4",
+      "tag": "R22 · CL · F4",
       "pos": [
         288,
         268
@@ -268,7 +268,7 @@
     },
     {
       "kind": "region",
-      "label": "Coordination · Delegation and programme",
+      "label": "Coordination · 1 skill",
       "wraps": [
         "ki-delegation"
       ],

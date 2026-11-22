@@ -14,7 +14,6 @@ The `ki-skills` skill and its cited decisions own the dependency, optional-augme
 
 ## Working here
 
-- **Cross-repository work** → use `ki-trades` for the portable contract. The receiving repository retains priority, execution, and acceptance authority.
 - **Skill work** → use `ki-skills` for `SKILL.md`, rubric, dependency, collision, and cross-skill consistency concerns.
 - **Markdown and TOML** → use `ki-authoring` for formatting, authored shape, and knowledge placement.
 - **TypeScript and Bun** → use `ki-engineering` for code, tests, package scripts, and toolchain configuration.

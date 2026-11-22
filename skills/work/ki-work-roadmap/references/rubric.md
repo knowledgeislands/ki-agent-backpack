@@ -19,7 +19,6 @@ Line-by-line criteria for auditing ki-work-roadmap. Classifications are derived 
 - [INDEX — root orientation](#index--root-orientation)
 - [EXEC — execution](#exec--execution)
 - [SAFE — safe mechanics](#safe--safe-mechanics)
-- [TRADE — trade review](#trade--trade-review)
 
 ## RUBRIC — Generated rubric publication
 
@@ -141,21 +140,3 @@ Regular-file boundaries and host-owned transactional publication.
 
 - **SAFE-1 [M] — safe mechanics** — Governed roadmap inputs and outputs are regular local files; CONFORM changes session-owned drafts and leaves dry-run, validation, atomic publication, and rollback to the host. (standard-repository-roadmaps.md)
   - _Remediation:_ diagnostic — Replace unsafe inputs or outputs with regular local files and preserve host-owned publication controls.
-
-## TRADE — trade review
-
-→ [standard](standard-repository-roadmaps.md)
-
-Read-only judgment guidance for declared cross-repository trade submissions.
-
-- **TRADE-1 [J] — trade review** — Where declared ki-trades records exist, report structural guidance and proposed local roadmap action without setting disposition, inferring adoption, prioritizing work, pruning records, or changing remote state. (standard-repository-roadmaps.md)
-  - _Evidence scope:_ Declared inbound and outbound trade records in the local repository.
-  - _Review prompt:_ Inspect declared trade records read-only: identify submissions needing receiver review or a separately confirmed local roadmap proposal and outbound progress needing follow-up; report proposals only.
-  - _Outcomes:_ conforming; proposal; exclusion
-  - _Conforming guidance:_ Record read-only observations and proposals only; the receiver owns disposition, prioritization, adoption, and pruning decisions.
-- **TRADE-2 [M + J] — trade-aware holds and pruning** — Trade waits use one flat canonical identity array in hold.trades, name the exact observed condition in hold.condition, and retain done work referenced by unresolved completion observation. (standard-repository-roadmaps.md)
-  - _Remediation:_ guarded — Correct evidenced wait identities or prose only after confirming the relevant trade state; do not prune or release records automatically.
-  - _Evidence scope:_ Every trade-aware wait and candidate for done-work pruning.
-  - _Review prompt:_ Review each trade-aware wait and pruning candidate: confirm the trade exists and is relevant, the prose names receipt, terminal decision, or linked-work completion precisely, and no done work is pruned before completion-observation sender release is observable.
-  - _Outcomes:_ conforming; gap; exclusion
-  - _Conforming guidance:_ Retain the record until the responsible receiver or sender has made and observed the required decision; record a gap or exclusion when evidence is incomplete.

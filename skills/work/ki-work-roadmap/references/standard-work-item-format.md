@@ -266,10 +266,9 @@ hold:
   reason: waiting-for
   condition: tools-ki releases the roadmap list grouping
   review: 2026-11-01
-  trades: [TRD-1234abcd]
 ```
 
-`reason` is `waiting-for` for an external condition or `parked` for an intentional pause. `condition` is the non-empty named release condition. `review` is an optional ISO date, required in substance where release cannot be observed. `trades` is an optional list of unique `TRD-<eight-hex>` identities whose observable progress forms the condition; it records cross-repository conditions rather than local dependencies, so never place trade identities in `blocks` or `blocked_by`. The body states the exact condition observed.
+`reason` is `waiting-for` for an external condition or `parked` for an intentional pause. `condition` is the non-empty named release condition. `review` is an optional ISO date, required in substance where release cannot be observed. The body states the exact condition observed.
 
 A held record keeps its status, `baseline_ref`, completed Steps, and review evidence. Release chooses a horizon afresh.
 

@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "f52d0ea5c32202a23c672cbe4c83482b1046acc7"
+      "revision": "05980cdf0f69907228dc711bbb6ca33583049679"
     },
     "legend": {
       "mode": "auto",
@@ -641,44 +641,6 @@
       ]
     },
     {
-      "id": "ki-trades",
-      "type": "database",
-      "label": "ki-trades",
-      "sublabel": "coordination · opt-in",
-      "sources": [
-        {
-          "path": "skills/work/ki-trades/SKILL.md"
-        }
-      ],
-      "pos": [
-        32,
-        1076
-      ],
-      "size": [
-        200,
-        60
-      ]
-    },
-    {
-      "id": "ki-trade",
-      "type": "frontend",
-      "label": "ki-trade",
-      "sublabel": "coordination · command",
-      "sources": [
-        {
-          "path": "skills/work/ki-trade/SKILL.md"
-        }
-      ],
-      "pos": [
-        240,
-        1076
-      ],
-      "size": [
-        200,
-        60
-      ]
-    },
-    {
       "id": "ki-work-github-issues",
       "type": "database",
       "label": "ki-work-github-issues",
@@ -690,7 +652,7 @@
       ],
       "pos": [
         32,
-        1216
+        1076
       ],
       "size": [
         200,
@@ -709,7 +671,7 @@
       ],
       "pos": [
         240,
-        1216
+        1076
       ],
       "size": [
         200,
@@ -728,7 +690,7 @@
       ],
       "pos": [
         448,
-        1216
+        1076
       ],
       "size": [
         200,
@@ -747,7 +709,7 @@
       ],
       "pos": [
         32,
-        1300
+        1160
       ],
       "size": [
         200,
@@ -918,7 +880,7 @@
       ],
       "pos": [
         32,
-        1472
+        1332
       ],
       "size": [
         200,
@@ -937,7 +899,7 @@
       ],
       "pos": [
         240,
-        1472
+        1332
       ],
       "size": [
         200,
@@ -956,7 +918,7 @@
       ],
       "pos": [
         448,
-        1472
+        1332
       ],
       "size": [
         200,
@@ -975,7 +937,7 @@
       ],
       "pos": [
         32,
-        1556
+        1416
       ],
       "size": [
         200,
@@ -994,7 +956,7 @@
       ],
       "pos": [
         32,
-        1728
+        1588
       ],
       "size": [
         200,
@@ -1013,7 +975,7 @@
       ],
       "pos": [
         240,
-        1728
+        1588
       ],
       "size": [
         200,
@@ -1032,7 +994,7 @@
       ],
       "pos": [
         448,
-        1728
+        1588
       ],
       "size": [
         200,
@@ -1051,7 +1013,7 @@
       ],
       "pos": [
         32,
-        1812
+        1672
       ],
       "size": [
         200,
@@ -1070,7 +1032,7 @@
       ],
       "pos": [
         32,
-        1952
+        1812
       ],
       "size": [
         200,
@@ -1089,7 +1051,7 @@
       ],
       "pos": [
         240,
-        1952
+        1812
       ],
       "size": [
         200,
@@ -1108,7 +1070,7 @@
       ],
       "pos": [
         448,
-        1952
+        1812
       ],
       "size": [
         200,
@@ -1127,7 +1089,7 @@
       ],
       "pos": [
         32,
-        2092
+        1952
       ],
       "size": [
         200,
@@ -1146,7 +1108,7 @@
       ],
       "pos": [
         240,
-        2092
+        1952
       ],
       "size": [
         200,
@@ -1165,7 +1127,7 @@
       ],
       "pos": [
         448,
-        2092
+        1952
       ],
       "size": [
         200,
@@ -1463,15 +1425,6 @@
     },
     {
       "kind": "region",
-      "label": "Coordination · Trades",
-      "wraps": [
-        "ki-trades",
-        "ki-trade"
-      ],
-      "pad": 10
-    },
-    {
-      "kind": "region",
       "label": "Work and delivery · Work items",
       "wraps": [
         "ki-work-github-issues",
@@ -1483,13 +1436,11 @@
     },
     {
       "kind": "region",
-      "label": "Work · 9 skills",
+      "label": "Work · 7 skills",
       "wraps": [
         "ki-work-package",
         "ki-coordination",
         "ki-meeting",
-        "ki-trades",
-        "ki-trade",
         "ki-work-github-issues",
         "ki-work-linear",
         "ki-work-recurring",
@@ -1655,7 +1606,7 @@
       "dot": "slate",
       "title": "Generated, not drawn",
       "items": [
-        "66 skills in 8 concerns and 10 functional areas: 3 always on, 20 automatic, 37 opt-in, 6 commands.",
+        "64 skills in 8 concerns and 10 functional areas: 3 always on, 20 automatic, 36 opt-in, 5 commands.",
         "Regenerate with ki repo conform --skill ki-repo-backpack; ki-skills owns the kind and applicability fields it reads."
       ]
     }

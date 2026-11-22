@@ -188,16 +188,3 @@ export const housekeepingSpawnDecision = (input: {
   if (input.policy === 'when-due') return input.due ? 'spawn-active-run-only' : 'refuse'
   return input.overdue ? 'spawn-active-run-only' : 'refuse'
 }
-
-export const tradeDisposition = (input: {
-  readonly bounded: boolean
-  readonly reversible: boolean
-  readonly independentlyVerifiable: boolean
-  readonly materialDecision: boolean
-  readonly confirmed: boolean
-}): 'apply-directly' | 'adopt-work-record' | 'refuse' => {
-  if (!input.confirmed) return 'refuse'
-  return input.bounded && input.reversible && input.independentlyVerifiable && !input.materialDecision
-    ? 'apply-directly'
-    : 'adopt-work-record'
-}
