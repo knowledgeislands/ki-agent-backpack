@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T16:15:00Z
+ki-revised: 2026-11-22T17:40:00Z
 ki-status: in force
 ---
 
@@ -171,7 +171,7 @@ What the rules mean on Orca, read from Orca 1.4.267 on 21 November 2026; Orca's 
 - **Wakes.** The owner's chat and mail to the bot land in its Home Chat, which continues until a compaction; mail sent with `--chat new` starts a new chat; an automation runs as a new conversation each time by default.
 - **Mail.** Send with `orca orchestration send --to bot:<name>` and a type of handoff, question or status; answer with `orca orchestration reply`.
 - **Automations.** Listening and nudges are `orca automations`, with a precheck that wakes the bot only on news, and a timed nudge a one-off, made with `--once --by <ISO time>`, since `--once` with a cron schedule fails; Orca's rules agree that a bot never keeps a scheduler of its own.
-- **Ending quietly.** A run with nothing to report ends with `NO_REPLY`.
+- **Ending quietly.** A run with nothing to report ends with `NO_REPLY`: on its own line after a well-formed footer, or alone on a turn that only takes in a status notice or a task notification. The backpack's coordinator footer hook lets both through, as Kris took NOTICE-DIGEST a on 22 November 2026: "the coordinator footer hook lets a bot end a status-only turn silently". Rule notices that need no action reach a bot as one digest when a batch of the owner's decisions closes, never one message per rule; a rule a bot must act on at once still goes at once.
 - **Cards.** A question for the owner is an Orca item with buttons, so it reaches the owner's Needs you list, beside the reply block.
 
 [Back to contents](#contents)

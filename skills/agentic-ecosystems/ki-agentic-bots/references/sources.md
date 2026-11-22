@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T16:15:00Z
+ki-revised: 2026-11-22T17:40:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -60,10 +60,13 @@ The owner's decisions behind the standard, each recorded in the Cairn summit's [
 | CARDS-PACED | A steer, 22 November 2026, about 00:32 GMT: "Not all of the questions need to go straight onto cards ... We need to go through them bit by bit with the change records." A card is for a question due soon, blocking work, or in the change being taken now. | 2026-11-22 | [4.8](standard-bots.md#48-questions-carded-when-due) | In force |
 | MEMORY-FEED b | Kris, about 16:02 GMT, on the question card in his home chat with the summit's lead, choosing "No roster file": no actor keeps a roster `MEMORY.md`; every lasting lesson goes to its owner, a skill, a standard, a package or the actor's own roster `SOUL.md`; a bot's host memory stays a per-host working aid, never copied into the store. It settles change 70's gap 8 and revises BOT-RECORD to drop the file. | 2026-11-22 | [4.6](standard-bots.md#46-memory-a-working-aid) | In force |
 | BOTS-GUILD | About 09:40 GMT on 21 November: "we need to put bots as a concept into our agentic systems one"; its scope set by the Cairn summit's guardian on 22 November 2026, about 00:25 GMT, in change 70's step 2, with host practice in `ki-delegation-orca` or a new member skill. A new member skill was chosen, since the practice holds on any host and is not delegation to Orca's workers, which BOT-WORK a sets aside. | 2026-11-22 | [the standard](standard-bots.md) | In force; landed for the owner's review |
+| NOTICE-DIGEST a | Kris, 22 November 2026, in the WAYS-APPLY reply block in Kitteth's Home Chat, reviewed blind at high: "no-action rule notices go to the bots as one digest when a batch of Kris's decisions closes, never one message per rule; rules bots must act on at once still go at once; the coordinator footer hook lets a bot end a status-only turn silently", recorded in the Cairn summit's [Bots (70), 4.6](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/70-bots.change.md#46-decided). It settles NO-REPLY-FOOTER. | 2026-11-22 | [On Orca](standard-bots.md#411-on-orca) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 NOTICE-DIGEST a, recorded under Decisions, was applied to Ending quietly: where `NO_REPLY` may stand, that the backpack's footer hook lets it through, and that no-action rule notices come as one digest. No criterion changed and no external source refreshed.
 
 On 22 November 2026 the second SKILLS-LEARNING batch, Kris's steer of that morning to bake the night's lessons into the skills, added one pitfall to [Questions carded when due](standard-bots.md#48-questions-carded-when-due): check a question's facts again just before carding it. No rule changed and no outside source was refreshed.
 
