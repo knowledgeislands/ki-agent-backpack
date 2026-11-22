@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:32:15Z
+ki-revised: 2026-11-22T18:32:43Z
 ki-status: in force
 ---
 
@@ -24,6 +24,7 @@ ki-status: in force
     - [4.7.1 Three mechanisms — provide vs filter](#471-three-mechanisms--provide-vs-filter)
     - [4.7.2 Evaluation order (per server, before it loads)](#472-evaluation-order-per-server-before-it-loads)
     - [4.7.3 The claude.ai-specific interaction](#473-the-claudeai-specific-interaction)
+    - [4.7.4 Which sessions these reach](#474-which-sessions-these-reach)
   - [4.8 Picking a lever](#48-picking-a-lever)
 
 ## 1. Introduction
@@ -125,7 +126,7 @@ The strong levers are admin-side:
 
 ### 4.7 How claude.ai connectors surface in Claude Code
 
-This is the leg that matters most for the backpack: Claude Code carries its own admin-controlled MCP governance, and claude.ai connectors fall under it. Everything here is written to on-disk managed settings, so it outlives any session and **cannot be overridden by user or project settings**.
+This is the leg that matters most for the backpack: Claude Code carries its own admin-controlled MCP governance, and claude.ai connectors fall under it where Claude Code fetches them itself. The managed settings here outlive any session and **cannot be overridden by user or project settings**, but how far they reach a claude.ai connector depends on the kind of session (§4.7.4).
 
 [Back to contents](#contents)
 
@@ -166,18 +167,29 @@ Four sharp edges:
 
 - **Suppression by default** — deploying `managed-mcp.json` _suppresses claude.ai connectors_, including ones an admin configured for the org in the claude.ai console.
 - **`allowAllClaudeAiMcps: true`** (v2.1.149+, admin-controlled tiers only) reloads the claude.ai connectors alongside the managed set. Allow/deny still apply, so specific connectors can still be blocked; it affects _only_ claude.ai connectors — plugin-provided servers stay suppressed.
-- **`disableClaudeAiConnectors`** turns claude.ai connectors off entirely.
+- **`disableClaudeAiConnectors`** turns claude.ai connectors off entirely. It works in any settings scope, and `true` in any source wins, so a checked-in project `.claude/settings.json` can opt a repository out; `ENABLE_CLAUDEAI_MCP_SERVERS=false` does the same for one shell session.
 - **`forceRemoteSettingsRefresh`** makes enforcement fail-closed — Claude Code refuses to start if managed settings cannot be fetched.
 
-This managed-settings surface is precisely what makes claude.ai connectors governable _from the Claude Code side_, independent of the account/org levers in §4.6.
+This managed-settings surface is what makes claude.ai connectors governable _from the Claude Code side_, independent of the account/org levers in §4.6, in the sessions where Claude Code fetches the connectors itself (§4.7.4).
 
 [Back to contents](#contents)
+
+#### 4.7.4 Which sessions these reach
+
+The controls in §4.7.1 to §4.7.3 hold in full only where Claude Code fetches claude.ai connectors itself:
+
+| Session | What governs claude.ai connectors | What differs |
+| --- | --- | --- |
+| Terminal, IDE and SDK sessions | Claude Code's managed settings, allow and deny lists and `disableClaudeAiConnectors`, as in §4.7.1 to §4.7.3 | Nothing |
+| Cloud sessions | The organisation's settings (§4.6) and the allow and deny lists | A proxy rewrites connector URLs, so a `serverUrl` entry written for a connector's own URL does not match; a `managed-mcp.json` on the host drops connectors whatever `allowAllClaudeAiMcps` says |
+| The desktop app's local and SSH sessions | Only the organisation's **Blocked** tool setting (§4.4) | Connectors arrive in-process, so no MCP setting and no `managed-mcp.json` reaches them |
 
 ### 4.8 Picking a lever
 
 - **Individual, day to day** — per-chat tools menu (§4.3) and the Allow always prompt (§4.4).
 - **Individual, durable** — prune the account connector set (§4.5); fewer connectors beats more toggling.
 - **Org governance** — per-tool permission modes (§4.4), admin console allowlist and/or Enterprise-managed auth (§4.6).
-- **Governing how they land in Claude Code** — `allowedMcpServers` / `deniedMcpServers` and the `managed-mcp.json` interaction (§4.7).
+- **Governing how they land in Claude Code** — `allowedMcpServers` / `deniedMcpServers` and the `managed-mcp.json` interaction (§4.7), checked against the kind of session (§4.7.4).
+- **A repository opting out** — `disableClaudeAiConnectors: true` in its checked-in `.claude/settings.json` (§4.7.3).
 
 [Back to contents](#contents)
