@@ -23,7 +23,7 @@ export const resolveSelectedAdapter = (configuration: unknown): AdapterDecision 
   const adapter = selection?.adapter
   const owners = {
     roadmap: { owner: 'ki-work-roadmap', recordRoot: 'docs/roadmap' },
-    'kb-streams': { owner: 'ki-repo-kb-streams', recordRoot: 'Streams/Roadmap' },
+    'kb-streams': { owner: 'ki-work-roadmap', recordRoot: 'Streams/Roadmap' },
     linear: { owner: 'ki-work-linear' }
   } as const
   if (adapter !== 'roadmap' && adapter !== 'kb-streams' && adapter !== 'linear')

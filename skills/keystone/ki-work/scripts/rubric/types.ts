@@ -10,4 +10,5 @@ export type { AuditOutcome, RubricContextOptions, RubricFamily, RubricSession, S
 
 export type ChangeManagementRubricContext = {
   selection: { outcomes: readonly AuditOutcome[] }
+  projects: { closeOut: readonly AuditOutcome[]; ideaStage: readonly AuditOutcome[] }
 }

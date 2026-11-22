@@ -42,7 +42,7 @@ Two boundaries the separate skills kept are rules of their subcommands: **`imple
 
 Its other members, each with when to use it:
 
-- **`ki-work-roadmap`** to audit or shape flat local work records in `docs/roadmap/`, the default adapter; **`ki-work-linear`** when a repository selects the remote tracker.
+- **`ki-work-roadmap`** to audit or shape flat local work records in `docs/roadmap/`, the default adapter, or in a Knowledge Base's `Streams/Roadmap/`; **`ki-work-linear`** when a repository selects the remote tracker.
 - **`ki-work-recurring`** for recurring work: templates, cadence and due runs.
 - **`ki-work-package`** to create, resume, audit or tidy a work package in the Cairn store.
 - **`ki-coordination`** while coordinating opened work, and for how every session replies.
@@ -64,7 +64,7 @@ Carries the universal **AUDIT · CONFORM · EDUCATE · REFRESH** modes and the s
 
 ### Mode AUDIT
 
-Run `ki repo audit --skill ki-work --repo <repo>`. It verifies that the local table selects one supported, declared, applicable adapter mapping. Then run the resolved adapter's own audit; this selector neither interprets nor repairs adapter-specific configuration, and resolution alone is not an adapter audit.
+Run `ki repo audit --skill ki-work --repo <repo>`. It verifies that the local table selects one supported, declared, applicable adapter mapping, and on a Capital checks its Project registry's close-out and idea-stage Projects (PROJ). Then run the resolved adapter's own audit; this selector neither interprets nor repairs adapter-specific configuration, and resolution alone is not an adapter audit.
 
 ### Mode CONFORM
 

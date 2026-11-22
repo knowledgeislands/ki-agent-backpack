@@ -1,5 +1,5 @@
 import { afterEach, expect, test } from 'bun:test'
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createChangeManagementSession } from './change-management.ts'
@@ -48,9 +48,9 @@ test('resolves valid local and remote adapters from declared tables', () => {
   ).toEqual([expect.objectContaining({ status: 'PASS', message: expect.stringContaining('ki-work-roadmap') })])
   expect(
     audit(
-      '[skills.ki-repo]\nrepo_type = "kb"\n\n[skills.ki-work]\nadapter = "kb-streams"\n\n[skills.ki-repo-kb-streams]\n'
+      '[skills.ki-repo]\nrepo_type = "kb"\n\n[skills.ki-work]\nadapter = "kb-streams"\n\n[skills.ki-work-roadmap]\n'
     )
-  ).toEqual([expect.objectContaining({ status: 'PASS', message: expect.stringContaining('ki-repo-kb-streams') })])
+  ).toEqual([expect.objectContaining({ status: 'PASS', message: expect.stringContaining('ki-work-roadmap') })])
   expect(
     audit(
       '[skills.ki-repo]\nrepo_type = "project"\nprimary_shape = "ki-repo-project"\n[skills.ki-work]\nadapter = "linear"\n\n[skills.ki-work-linear]\n'
@@ -69,4 +69,27 @@ test('does not resolve adapters against an unsupported explicit repository kind'
       ).toContainEqual(
         expect.objectContaining({ status: 'VIOLATION', message: expect.stringContaining('Invalid repository kind') })
       )
+})
+
+test("reports a Capital's Project registry close-out under PROJ (KB-FOLD b)", () => {
+  const repository = mkdtempSync(join(tmpdir(), 'ki-work-'))
+  temporaryDirectories.push(repository)
+  const capital = 'https://github.com/example/capital'
+  writeFileSync(
+    join(repository, '.ki.toml'),
+    `[skills.ki-repo]\nrepo_type = "kb"\nrepository = "${capital}"\ncapital = "${capital}"\n`
+  )
+  mkdirSync(join(repository, 'Streams', 'Projects'), { recursive: true })
+  writeFileSync(
+    join(repository, 'Streams', 'Projects', 'finished.md'),
+    '---\nnote_type: streams/project\nslug: finished\nlifecycle: completed\n---\n\n# Finished\n\n## Notes\n'
+  )
+  const session = createChangeManagementSession({ mode: 'audit', repository, userHome: '/tmp', configuration: {} })
+  expect(session.subjects[0]?.families).toEqual(['SELECT', 'PROJ'])
+  expect(session.subjects[0]?.context().projects.closeOut).toContainEqual(
+    expect.objectContaining({ status: 'VIOLATION', subject: join('Streams', 'Projects', 'finished.md') })
+  )
+  expect(session.subjects[0]?.context().projects.ideaStage).toEqual([
+    expect.objectContaining({ status: 'NOT_APPLICABLE' })
+  ])
 })

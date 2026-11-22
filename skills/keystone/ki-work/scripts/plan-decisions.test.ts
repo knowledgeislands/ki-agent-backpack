@@ -4,7 +4,7 @@ import { delegationDecision, readinessDecision, resolveSelectedAdapter } from '.
 const selected = (adapter: 'roadmap' | 'kb-streams') => ({
   skills: {
     'ki-work': { adapter },
-    [adapter === 'roadmap' ? 'ki-work-roadmap' : 'ki-repo-kb-streams']: {}
+    'ki-work-roadmap': {}
   }
 })
 

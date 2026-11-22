@@ -37,7 +37,7 @@ ki-work recap (optional current-session context)
                     └─> one window grant in its change document
                           └─> ki-work implement (each named Ready item through Awaiting review)
 
-The base selector governs adapter choice; `ki-work-roadmap` governs the local record model and `ki-repo-kb-streams` its KB Streams container.
+The base selector governs adapter choice; `ki-work-roadmap` governs the local record model, in a Knowledge Base's `Streams/Roadmap/` too, and `ki-repo-kb` the Streams layout.
 ```
 
 `ki-work recap` is optional.

@@ -53,7 +53,7 @@ When referring to a specific work item in prose, link its canonical document usi
 
 1. Run `git rev-parse --show-toplevel` and physically resolve the result.
 2. Run `ki repo audit --skill ki-work --repo <git-root>` and stop on any failure. Read the selected adapter literal and require its matching declared owner table; the base audit remains the semantic selector authority.
-3. `roadmap` uses `ki-work-roadmap` and `docs/roadmap/`; `kb-streams` uses `ki-repo-kb-streams` and `Streams/Roadmap/`. Run the selected local adapter audit and stop on any failure or warning. `linear` stops without reads or writes because remote process execution is not implemented.
+3. `roadmap` uses `ki-work-roadmap` and `docs/roadmap/`; `kb-streams` uses `ki-work-roadmap` and `Streams/Roadmap/`. Run the selected local adapter audit and stop on any failure or warning. `linear` stops without reads or writes because remote process execution is not implemented.
 4. Resolve each record only inside the selected canonical root; never follow a symlink outside the physical git root, infer an alternate tree, or use repository shape as an adapter fallback.
 
 ## Notes

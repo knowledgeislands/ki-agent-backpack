@@ -2,13 +2,15 @@ import { existsSync, readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import type { AuditOutcome, RubricContextOptions, RubricSession } from '../../shared/rubric.ts'
 import type { ChangeManagementRubricContext } from '../types.ts'
+import { closeOutEvidence, ideaStageEvidence, type ProjectEvidence } from './closeout.ts'
 
 const TABLE = 'ki-work'
 type AdapterDefinition = { readonly skill: string; readonly repositoryKind?: 'project' | 'kb' }
 type Adapter = 'roadmap' | 'kb-streams' | 'linear'
 const ADAPTERS: Readonly<Record<Adapter, AdapterDefinition>> = {
   roadmap: { skill: 'ki-work-roadmap', repositoryKind: 'project' },
-  'kb-streams': { skill: 'ki-repo-kb-streams', repositoryKind: 'kb' },
+  // KB-FOLD b, 22 November 2026: a Knowledge Base's records are checked by ki-work-roadmap.
+  'kb-streams': { skill: 'ki-work-roadmap', repositoryKind: 'kb' },
   linear: { skill: 'ki-work-linear' }
 }
 const TOML = (globalThis as unknown as { Bun: { TOML: { parse(text: string): unknown } } }).Bun.TOML
@@ -20,6 +22,15 @@ const tableAt = (skills: Record<string, unknown> | undefined, name: string): Rec
     : undefined
 }
 const isAdapter = (value: unknown): value is Adapter => typeof value === 'string' && value in ADAPTERS
+
+const auditOutcomes = (evidence: readonly ProjectEvidence[]): readonly AuditOutcome[] =>
+  evidence.map(
+    ({ level, message, subject }): AuditOutcome => ({
+      status: level === 'FAIL' || level === 'WARN' ? 'VIOLATION' : level,
+      message,
+      ...(subject ? { subject } : {})
+    })
+  )
 
 export const createChangeManagementSession = ({
   repository
@@ -108,9 +119,17 @@ export const createChangeManagementSession = ({
     }
   }
 
-  const context: ChangeManagementRubricContext = { selection: { outcomes } }
+  // A Capital's Project registry, in its Streams, gets its close-out and idea-stage checks here (KB-FOLD b).
+  const streams = join(root, 'Streams')
+  const context: ChangeManagementRubricContext = {
+    selection: { outcomes },
+    projects: {
+      closeOut: auditOutcomes(closeOutEvidence(root, streams)),
+      ideaStage: auditOutcomes(ideaStageEvidence(root, streams))
+    }
+  }
   return {
-    subjects: [{ families: ['SELECT'], context: () => context }],
+    subjects: [{ families: ['SELECT', 'PROJ'], context: () => context }],
     proposal: () => ({ writes: [] })
   }
 }
