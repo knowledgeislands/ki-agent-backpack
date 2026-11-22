@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T01:56:00Z
+ki-revised: 2026-11-22T16:15:00Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -107,6 +107,8 @@ The loop of [the work design standard](standard-work-design.md) is house practic
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the second SKILLS-LEARNING batch, Kris's steer of that morning to bake the night's lessons into the skills, added two pitfalls from Tower's roadmap prunes to [the prune's reference preflight](standard-acceptance.md#44-prune-explicitly-selected-terminal-records): `ki repo audit` does not report a link a prune leaves dangling, and such a link can break twice, so read the real file name in the prune commit's parent before repointing. [Capture](standard-next-work.md) now names the four-word title limit the audit enforces. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 an in-house review applies UPCOMING-SURFACING a, which Kris took at about 00:59 UTC on Orca item 112, recorded in ki.summit's [change 22](https://github.com/krisb/ki-cairn-store/blob/da42d7f6/work/ki/ki.summit/22-roadmap-horizons.change.md#4-outline). [Select candidates](standard-next-work.md#441-non-kb-repositories) gains a step: every run says how many waiting records there are and offers one for a decision after the Now and Next candidates, so waiting records leave one each run without a sweep. No code changed, and no external source was refreshed.
 
