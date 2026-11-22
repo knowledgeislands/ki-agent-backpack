@@ -177,11 +177,11 @@ const requiredDev = [
   'typescript'
 ]
 const versions: Record<string, string> = {
-  '@biomejs/biome': '^2.5.15',
-  '@commitlint/cli': '^21.2.3',
-  '@commitlint/config-conventional': '^21.2.3',
-  knip: '^6.39.0',
-  rumdl: '^0.3.0',
+  '@biomejs/biome': '^2.6.6',
+  '@commitlint/cli': '^21.2.4',
+  '@commitlint/config-conventional': '^21.2.4',
+  knip: '^6.44.2',
+  rumdl: '^0.3.2',
   'lint-staged': '^17.6.0',
   syncpack: '^15.3.3',
   typescript: '^7.0.2'
@@ -210,7 +210,7 @@ const defaults = {
 }
 `,
   'biome.json': `{
-  "$schema": "https://biomejs.dev/schemas/2.5.15/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.6.6/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",

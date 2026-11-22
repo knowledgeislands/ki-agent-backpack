@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:16:29Z
+ki-revised: 2026-11-22T18:35:09Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -42,7 +42,7 @@ The pins the standard hard-codes. The standard pins versions in `packageManager`
 | --- | --- | --- |
 | BUN — [Bun releases][bun] | `packageManager` and `mise` runtime line; Bun-install / Node-run split. Pinned at: harness declared and resolved `1.4.4`, adopted 2026-11-05; CONFORM scaffold `1.4.4` from 2026-11-03; graded by `DEPS-1` | 2026-11-22 |
 | NODE — [Node release schedule][node] | `engines.node >= 22` for `dist/`. Pinned at: declared floor `>=22` | 2026-11-22 |
-| BIOME — [Biome releases][biome] | `biome.json` schema + formatter/linter config. Pinned at: harness declared and resolved `2.6.6`; CONFORM scaffold and exemplar `$schema` `2.5.15` | 2026-11-22 |
+| BIOME — [Biome releases][biome] | `biome.json` schema + formatter/linter config. Pinned at: harness declared and resolved `2.6.6`; CONFORM scaffold and exemplar `$schema` `2.6.6` | 2026-11-22 |
 | TS — [TypeScript releases][ts] | `tsconfig` / `tsconfig.build` compiler options. Pinned at: declared range and resolved `7.0.2` | 2026-11-22 |
 | VITEST — [Vitest guide][vitest] | config-gated test profile + 100% coverage (`vitest run`, v8). Pinned at: capability-selected; upstream `5.1.1` | 2026-11-22 |
 | SYNCPACK — [syncpack releases][syncpack] | package ordering inside engineering audit/conform. Pinned at: declared range and resolved `15.3.3` | 2026-11-22 |
@@ -117,10 +117,13 @@ The owner decisions the standard names by id. The standard's other decisions are
 | --- | --- | --- | --- | --- |
 | COMMIT-VS-CI | Option a, which Kris chose: commit time checks and never rewrites, so the `lint-staged` block is check-only. | 2026-10-26 | [engineering standard, 4.5.1](standard-engineering.md#451-the-coverage-manifest--every-key-is-driven-by-an-owning-skill-core) | In force |
 | ENGINEERING-BUN | Option a, which Kris took, relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/658d48f/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions): the standard and `SKILL.md` ask for `bun@1.4.x`, the minor every repository pins, in place of `bun@1.3.x`. | 2026-11-17 | [engineering standard, 4.5](standard-engineering.md#45-packagejson--toolchain-pinning-core) | In force |
+| ENGINEERING-SCAFFOLD-BIOME | The CONFORM scaffold and the Biome exemplar move to the harness's current releases: Biome `2.6.6`, its `$schema` with it, Commitlint `^21.2.4`, knip `^6.44.2` and rumdl `^0.3.2`, so a new repository does not start behind the estate. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Engineering standard](standard-engineering.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 Loreward, within remit, from the 4.1 refresh, took ENGINEERING-SCAFFOLD-BIOME, recorded under [Decisions](#3-decisions): the CONFORM scaffold and [the Biome exemplar](exemplars.md) now write Biome `2.6.6` and the harness's Commitlint, knip and rumdl floors. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 REFRESH ran on every outside source, answering the backpack audit's LONG-3 warning that the monthly cadence was overdue; all were reachable, the Turborepo page now at `turborepo.dev`. HARNESS and COLLECTION were read again; FRAMEWORK was not and keeps its date. The Pinned at cells now carry what was read. No rule, default or protection changed: the scaffold's Biome default went to Kris as a query, and the wording the standard can absorb was proposed, not written.
 
