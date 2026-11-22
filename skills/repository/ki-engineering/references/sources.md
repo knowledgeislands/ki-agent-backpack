@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:35:09Z
+ki-revised: 2026-11-22T18:35:51Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -104,7 +104,7 @@ The standard is a **deliberately selected house shape**, not a vote count. Curre
 [depcruise]: https://github.com/sverweij/dependency-cruiser/releases
 [depcruise-ts7]: https://github.com/sverweij/dependency-cruiser/releases/tag/v18.8.0
 [ts71]: https://github.com/microsoft/TypeScript/issues/63703
-[turbo-cache]: https://turborepo.com/docs/crafting-your-repository/caching
+[turbo-cache]: https://turborepo.dev/docs/crafting-your-repository/caching
 [vite-cache]: https://vite.dev/config/shared-options#cachedir
 
 [Back to contents](#contents)
@@ -118,10 +118,13 @@ The owner decisions the standard names by id. The standard's other decisions are
 | COMMIT-VS-CI | Option a, which Kris chose: commit time checks and never rewrites, so the `lint-staged` block is check-only. | 2026-10-26 | [engineering standard, 4.5.1](standard-engineering.md#451-the-coverage-manifest--every-key-is-driven-by-an-owning-skill-core) | In force |
 | ENGINEERING-BUN | Option a, which Kris took, relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/658d48f/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions): the standard and `SKILL.md` ask for `bun@1.4.x`, the minor every repository pins, in place of `bun@1.3.x`. | 2026-11-17 | [engineering standard, 4.5](standard-engineering.md#45-packagejson--toolchain-pinning-core) | In force |
 | ENGINEERING-SCAFFOLD-BIOME | The CONFORM scaffold and the Biome exemplar move to the harness's current releases: Biome `2.6.6`, its `$schema` with it, Commitlint `^21.2.4`, knip `^6.44.2` and rumdl `^0.3.2`, so a new repository does not start behind the estate. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Engineering standard](standard-engineering.md) | In force |
+| ENGINEERING-FACTS | Fact corrections from the 4.1 refresh: the boundary checker's bullet in 4.4 says dependency-cruiser supports TypeScript `>=7.1 <8` from `18.8.0`, so 7.0 stays unsupported, and the Turborepo cache link follows its move to `turborepo.dev`; the TypeScript link moves once 7.1 is published on `microsoft/TypeScript`. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Engineering standard, 4.4](standard-engineering.md#44-repo-shapes--flat-vs-monorepo-core) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 Loreward, within remit, from the 4.1 refresh, took ENGINEERING-FACTS, recorded under [Decisions](#3-decisions): [the engineering standard](standard-engineering.md) now gives dependency-cruiser's TypeScript 7.1 support, and the Turborepo cache link points at `turborepo.dev`. The TypeScript link waits under **Watching**, since TypeScript 7.1 is not yet published on `microsoft/TypeScript`. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 Loreward, within remit, from the 4.1 refresh, took ENGINEERING-SCAFFOLD-BIOME, recorded under [Decisions](#3-decisions): the CONFORM scaffold and [the Biome exemplar](exemplars.md) now write Biome `2.6.6` and the harness's Commitlint, knip and rumdl floors. No rule changed and no outside source was refreshed.
 
@@ -160,6 +163,6 @@ REFRESH last run **2026-10-06**. Cadence: monthly, alongside the other governanc
 
 - The dependency-cruiser workaround in [2.1.2](#212-tool-compatibility-constraints), until the repositories move to TypeScript 7.1.
 - The harness's adoption windows for rumdl, knip, Biome, lint-staged and Bun, the first closing on 24 November 2026.
-- The TS row's link, while TypeScript's releases move from `typescript-go` to `microsoft/TypeScript`.
+- The TS row's link: repoint it to `https://github.com/microsoft/TypeScript/releases` once TypeScript 7.1 is published there; on 22 November 2026 only the 7.1 beta was.
 
 [Back to contents](#contents)
