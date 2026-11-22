@@ -315,7 +315,7 @@ Audit non-secret Claude Code repository evidence—instructions, rules, settings
 
 #### `ki-acquire`
 
-Lead the Acquire guild and govern source-independent knowledge capture: supplied scope, honest coverage, faithful lean preservation, verified destinations and staging in a port, with the transient capture package as the only record. Use for common acquisition rules, and for `pulse`: capture a submitted link, scan bounded public sources for what changed, or triage signals. ki-acquire-chatgpt and ki-acquire-granola own their provider contracts; the Inbox owns curation and dispatch.
+Lead the Acquire guild and govern source-independent knowledge capture: supplied scope, honest coverage, faithful lean preservation, verified destinations and staging in a port, with the transient capture package as the only record. Use for common acquisition rules, and for `pulse`: capture a submitted link, scan bounded public sources for what changed, or triage signals. ki-acquire-chatgpt and ki-acquire-granola own their provider contracts; Harbour owns curation and dispatch.
 
 - **Kind:** Governance
 - **Leads:** Acquire
@@ -381,7 +381,7 @@ Lead the Keystone guild, the guild of guilds: the guild map of every KI skill by
 
 #### `ki-knowledge-graph`
 
-Govern knowledge graphs: Semantic Markdown cards named by readable ids, a `_graph.md` root definition, typed links with SKOS by default, subgraphs, layered graphs with shadow nodes, staging graphs and tending. Use to define or tend a graph; `ki-acquire` owns capture, the Inbox curation and dispatch, `ki-dodecakrisis` sorting and `ki-repo-kb` knowledge-base structure.
+Govern knowledge graphs: Semantic Markdown cards named by readable ids, a `_graph.md` root definition, typed links with SKOS by default, subgraphs, layered graphs with shadow nodes, staging graphs and tending. Use to define or tend a graph; `ki-acquire` owns capture, Harbour curation and dispatch, `ki-dodecakrisis` sorting and `ki-repo-kb` knowledge-base structure.
 
 - **Kind:** Governance
 - **Applicability:** Declaration Only
