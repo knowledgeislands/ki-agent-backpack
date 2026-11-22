@@ -50,6 +50,7 @@ Kris's decisions behind the rules, each taken in conversation or relayed as its 
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
+| CRED-HOME a | Credential access lives in `ki-env-binding` as a new standard, `standard-credential-access.md`, holding the Cloudflare `~/bin/cf-token` rule (from `ki-repo-website-cloudflare` 4.7, under CF-CREDENTIALS a) and the 1Password `~/bin/chezmoi/op-cache` rule (from `ki-delegation` 4.6.1); the description widens from MCP to tools and access; the old places become one-line pointers, and `ki-delegation` 4.6.4 stays the authority rule. Kris, 22 November 2026, about 21:30 GMT, the Environment guild's sitting, card: "ki-env-binding, both rules"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [Background runs, 4.6.1](standard-background-runs.md#461-the-tiers) | In force |
 | BASELINE-ORCA | Kris's direction relayed by `personal.reg.rig-sol`: A reach-only always-on Orca server, giving remote reach into attended sessions and launching no runs, outside the Enactment Process that any server launching or hosting runs still needs | 2026-11-08 | [4.1.2](standard-background-runs.md#412-agent-hosts) | taken |
 | LAND-THEN-REVIEW | Kris's decision relayed by the Cairn summit's guardian, in change 07, now held in [change 20](https://github.com/krisb/ki-cairn-store/blob/7fb6be3/work/cairn/cairn.summit/20-learnings.change.md#41-landing-then-review): work that is high-confidence, or reversible through more work, lands on `main` without waiting for Kris, who reviews it afterwards; destructive work still waits for his word. The push tier rests on it, under [Landing, then review](standard-background-runs.md#462-landing-then-review) | 2026-11-12 | [4.6.2](standard-background-runs.md#462-landing-then-review) | taken |
 | NO-PR-UNLESS-MAJOR | Kris's decision relayed by the Cairn summit's guardian, in change 07: no pull request unless something major is at stake, such as an experiment or a risky change, under [Landing, then review](standard-background-runs.md#462-landing-then-review) | 2026-11-12 | [4.6.2](standard-background-runs.md#462-landing-then-review) | taken |
@@ -78,6 +79,8 @@ Kris's decisions behind the rules, each taken in conversation or relayed as its 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied CRED-HOME a, recorded under [Decisions](#3-decisions): the 1Password cached-reader and Cloudflare `cf-token` paragraph in [the tiers](standard-background-runs.md#461-the-tiers) became a one-line pointer to `ki-env-binding`'s credential access standard; [provider tokens](standard-background-runs.md#464-provider-tokens) stays the authority rule, and the footers keep naming the reader. No criterion changed and no outside source refreshed.
 
 On 22 November 2026 TRADES-DROP a was applied by Loreward: the skill's `SKILL.md` no longer names the dropped `ki-trades`. No rule changed and no external source refreshed.
 

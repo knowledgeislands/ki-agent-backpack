@@ -8,17 +8,20 @@ ki-depends-on: []
 ki-shared-modules: [binding]
 ki-shared-dependencies: [ki-skills:rubric]
 description: >
-  Govern the portable KI MCP inventory in XDG `mcp-servers.yaml`: schema, client targeting, and mcporter
-  drift. Use runtime binding skills for Claude or Codex surfaces and `ki-env-binding-chezmoi` for chezmoi
-  rendering.
+  Govern how agents reach KI tools and access: the portable MCP inventory in XDG `mcp-servers.yaml`, its
+  schema, client targeting and mcporter drift, and credential access through the 1Password cached reader and
+  Cloudflare's `cf-token`. Use runtime binding skills for Claude or Codex surfaces and `ki-env-binding-chezmoi`
+  for chezmoi rendering.
 argument-hint: 'audit [project] | conform [project] | help | educate [project] | refresh'
 ---
 
-# Knowledge Islands MCP binding
+# Knowledge Islands tool and access binding
 
 `ki-env-binding` owns the portable canonical MCP declaration, not any vendor's configuration files. The one source resolves explicit `$KI_MCP_SOURCE` first, then `$XDG_CONFIG_HOME/ki/mcp-servers.yaml` (default `~/.config/ki/mcp-servers.yaml`). Each `mcpServers` entry has a unique `name`, non-empty `clients:`, and one closed stdio or URL definition. URL entries may declare `auth: oauth` for mcporter and typed literal or 1Password-reference headers, every URL entry declares one supported transport for each targeted client, and either definition may select the bounded `ephemeral` or `keep-alive` lifecycle.
 
 The source has client tokens because it serves several clients, but a client adapter owns that client's native configuration and safe writer. This root itself audits only the vendor-neutral mcporter projection. Host-bound runtimes reach these servers through their own host's mcporter bridge, while claude.ai connectors belong to cloud sessions; the standard's [host surface selection](references/standard-cross-surface-binding.md#44-host-surface-selection) owns that rule. Read [the standard](references/standard-cross-surface-binding.md), [generated rubric](references/rubric.md), and [sources](references/sources.md) for the contract.
+
+It also owns **credential access** (CRED-HOME a): once a task has separately authorised a credential read, a 1Password read goes only through the managed cached reader, `~/bin/chezmoi/op-cache`, and a Cloudflare read only through `~/bin/cf-token`, minting a short-lived least-privilege token. [The credential access standard](references/standard-credential-access.md) holds both rules; whether a run may read at all stays with `ki-delegation`'s authority tiers. No rubric criterion checks it yet.
 
 ## Operating modes
 

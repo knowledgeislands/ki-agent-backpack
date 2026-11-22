@@ -166,7 +166,7 @@ The root `ki:site:build` / `ki:site:dev` aliases and local build/dev operations 
 
 ### 4.7 Credential access
 
-When a run is separately authorised to read Cloudflare credentials, it reads them only through `~/bin/cf-token`. From it the run mints its own short-lived token with the least privilege the work needs, from the account's minter, or from the user-minter for user-level work such as the Workers Builds API, which takes only a user-owned token; it deletes each token after use and confirms that none is left. No territory's notes record credential item or token ids, and credential values never enter output or tracked files. Kris adopted the Cloudflare half of RUN-SECRETS on 25 October 2026; this is an access rule, not authority for a credential read or a Cloudflare operation. The background-run [authority limits](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#46-authority-tiers) still apply.
+A run separately authorised to read Cloudflare credentials reads them only through `~/bin/cf-token`, minting its own short-lived least-privilege token, under `ki-env-binding`'s [credential access standard](../../../environment/ki-env-binding/references/standard-credential-access.md#42-cloudflare-through-cf-token) (CF-CREDENTIALS a, CRED-HOME a).
 
 [Back to contents](#contents)
 

@@ -235,7 +235,7 @@ A brief cannot grant an external post. Its only permission is Kris's answer to a
 
 Where a brief's body and its authority footer conflict, the footer wins. The task supplies specifics within the footer's tier and grants, never authority beyond them, with no exception. Every authority footer carries both rules in its posting line.
 
-In Kris's managed environment, when a task separately authorises a 1Password read, read only through the managed cached reader, `~/bin/chezmoi/op-cache "op://<vault>/<item>/<field>"`, with `OP_CACHE_SERVICE_ACCOUNT_ONLY=1`, and use `~/bin/chezmoi/op-cache --tag <tag> [--vault <vault>]` for discovery. Never call `op` directly or repeatedly: the reader caches each item for a day, so a run costs at most one read per item per day. Leave `chezmoi-op`, which manages the cache, to Kris. Kris set this on 30 October 2026 under OP-CACHE: "agents should be using cached_op". If the helper cannot read without a desktop prompt, stop and report; do not fall back to interactive access. Keep credential values out of output and tracked files. This condition grants no credential authority. When a task separately authorises a Cloudflare credential read, use only `~/bin/cf-token`. No territory's notes record credential item or token ids. Keep credential values out of output and tracked files; this rule grants no Cloudflare operation or credential authority. Kris adopted this Cloudflare half of RUN-SECRETS on 25 October 2026.
+A task that separately authorises a credential read reaches it under `ki-env-binding`'s [credential access standard](../../../environment/ki-env-binding/references/standard-credential-access.md), 1Password only through `~/bin/chezmoi/op-cache` and Cloudflare only through `~/bin/cf-token` (CRED-HOME a); that access rule grants no credential authority.
 
 [Back to contents](#contents)
 
@@ -277,7 +277,7 @@ Provider tokens, Cloudflare first, set up per profile and per account, stay leas
 - **Approved permission:** once Kris approves that permission, a run whose task cites the approval grants it through the token, saving the token's policy before the change and verifying the policy after it, then does the work. The task names the provider calls, since no grant is implied.
 - **No manual change:** never ask Kris to make the change by hand when a token can.
 
-The rule grants nothing by itself. Each approved permission is the named exception to the footers' ban on a credential change, scoped to that permission, token and account, and each further permission needs Kris's approval again. Credential values stay out of output and tracked files under the cached-reader rule above. In an unattended window the [criticality test](#467-criticality-test) still keeps credentials out, so the query is parked for the return report.
+The rule grants nothing by itself. Each approved permission is the named exception to the footers' ban on a credential change, scoped to that permission, token and account, and each further permission needs Kris's approval again. Credential values stay out of output and tracked files under the [credential access standard](../../../environment/ki-env-binding/references/standard-credential-access.md). In an unattended window the [criticality test](#467-criticality-test) still keeps credentials out, so the query is parked for the return report.
 
 [Back to contents](#contents)
 
