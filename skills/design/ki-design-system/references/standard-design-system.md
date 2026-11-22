@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T00:40:00Z
+ki-revised: 2026-11-22T01:10:00Z
 ki-status: in force
 ---
 
@@ -44,7 +44,7 @@ How a Knowledge Islands repository keeps the knowledge behind its user interface
 - A design system: the set of visual and interaction rules one product surface follows, its colours, type, layout, components, how it shows state, and how it behaves for a keyboard, a screen reader or a reader without script.
 - Any repository with a user interface, such as a website, an application or a documentation site, that adopts it by declaring `[skills.ki-design-system]` in `.ki.toml`.
 - Where design knowledge lives, the folder that holds the design system, design work and design checks.
-- Who republishes a view of the design system published outside the repository.
+- Files as the source of truth for a design system and every artifact worth keeping, and the views published from them outside the repository: what each records, who republishes it, and how files leave a cloud account.
 
 [Back to contents](#contents)
 
@@ -74,7 +74,7 @@ This standard routes design knowledge into those instruments. It never forks the
 | **Components document** | The one document per library with a row for each component: its signature, what it owns and does not own, and its hand-offs. **Standard:** this one, [4.4](#44-the-component-library) |
 | **Shell** | One layer of the interface's onion, a template that says what state it owns. **Standard:** this one, [4.5](#45-shells-and-their-state) |
 | **The floor** | The four requirements every adopting design system meets. **Standard:** this one, [4.10](#410-the-floor) |
-| **Projection** | A design tool outside the repository, refreshed from its source and never edited as the source. **Standard:** this one, [4.11](#411-projections) |
+| **Projection** | A view published outside the repository, of the design system or of any other artifact or canvas, refreshed from its files and never edited as the source. **Standard:** this one, [4.11](#411-projections) |
 
 [Back to contents](#contents)
 
@@ -98,6 +98,8 @@ Each kind of design knowledge has one home, so a reader knows where to look and 
 | Is it still true?                 | Checks, in the repository's test and check scripts         | Code                     |
 
 The rule for every home is the same: state a thing once, in its home, and elsewhere name it. A guide names a token rather than repeating its value; a Decision Record states a decision rather than restating the guide's procedure; a check enforces a rule rather than redefining it.
+
+**Files first** (FILES-FIRST). Every home above is a file. Files are the source of truth for a design system and for every artifact worth keeping, such as its boards, a canvas or a deck: in a Git repository, or, for material unsuitable for Git, in the [sources store](../../../keystone/ki-repo/references/standard-repository.md#421-kind-and-stores) the repository declares. A cloud artifact, a canvas or a design-system artifact is never a home: it is a view of the files, as [Projections](#411-projections) sets.
 
 [Back to contents](#contents)
 
@@ -264,12 +266,13 @@ Every design system that adopts this standard meets four requirements, whatever 
 
 ### 4.11 Projections
 
-A design tool outside the repository is a projection, refreshed from its source and never edited as the source. There are two kinds:
+Every view published outside the repository is a projection (VIEWS-ONLY): a cloud artifact, a canvas or a design-system artifact is only a published view of the files that [4.1](#41-where-design-knowledge-lives) makes the source of truth, refreshed from them and never edited as the source. It holds for every artifact and canvas, not only the design system. There are three kinds:
 
 - **Projections of the system** - a design-system artifact, a Figma library or a design canvas of components is refreshed from the token source and the guide.
+- **Projections of other artifacts** - a canvas of boards, a page or a deck published from files kept in the repository it serves is refreshed from those files.
 - **The annotated board** - an interface with readers keeps an [annotated board](standard-annotated-board.md): screenshots of each view and shell state as built, with labelled regions. Its source is the running interface, and it is refreshed from it whenever the interface's code changes.
 
-The guide names each projection; its record carries where it is published and the date and source revision it was last refreshed from, so the guide holds no state that dates. A projection that disagrees with its source, the token source or what the interface draws, is stale, whatever its date.
+The guide names each projection of the design system. Every view records its url, type, publishing account and the source revision it was last refreshed from, so the guide holds no state that dates: a view of the design system in its copy's index, as below, and a view of another artifact in the same record beside that artifact's files. A projection that disagrees with its source, the token source, the artifact's files or what the interface draws, is stale, whatever its date.
 
 **Each view's copy** (DESIGN-FOLDER, VIEW-ACCOUNT). A projection of the system published outside the repository, such as a design-system artifact or a canvas, keeps its copy in the [design system folder](#411-the-design-system-folder) under `projections/<name>/`, as last published or exported, with an `index.json` recording its url, type, publishing account, source revision, and when and by whom it was last published. Where the view came from a design tool's export, the index extends that export's own record, such as the canvas, export time, author and each board's SHA-256.
 
@@ -280,6 +283,13 @@ The guide names each projection; its record carries where it is published and th
 - A view no working seat can reach is republished fresh from the files in a reachable account, and the old view is retired once the owner has checked the new one; it is not migrated.
 - An edit made in a view, such as on a canvas, is brought back into the files before any republish, so no edit or comment lives only in the view.
 - How each kind of seat reaches the files is being trialled from every agent host and is not yet set here.
+
+**The way out of an account** (DISK-EXIT). An artifact's files leave the cloud account that holds them only by being written to disk, into the repository or its sources store, by one of two routes:
+
+- a session in that account writes the files straight to local disk, through a desktop bridge to the machine's files;
+- a session signed in to that account reads its own artifact back as files and saves them locally.
+
+Never publish an artifact for another account to read: a seat in another account cannot open or export it as files, and it would be a second source.
 
 [Back to contents](#contents)
 
@@ -306,6 +316,6 @@ All three keys are required, and no other key is recognised. [The design system 
 
 ### 4.13 Judgment boundary
 
-The checker can prove that the declared files exist, that the guide names its token sources, that the guide repeats no literal colour value, that the design system folder exists, and that each view's copy under it has an index naming its account. It cannot prove that knowledge sits in its right home, that the component library sorts its parts by level with one row for each, that each shell owns its state, that the floor holds on every page, that every checkable rule has a check, that working material has been consolidated and retired and a chosen design's final boards kept in its book, that a view was republished only from its own account, or that the annotated board shows the interface as it now draws. Review asks those questions, page by page and rule by rule.
+The checker can prove that the declared files exist, that the guide names its token sources, that the guide repeats no literal colour value, that the design system folder exists, and that each view's copy under it has an index naming its account. It cannot prove that knowledge sits in its right home, that the component library sorts its parts by level with one row for each, that each shell owns its state, that the floor holds on every page, that every checkable rule has a check, that working material has been consolidated and retired and a chosen design's final boards kept in its book, that no view was edited as the source, that a view was republished only from its own account, that an artifact's files left its account only through the disk, or that the annotated board shows the interface as it now draws. Review asks those questions, page by page and rule by rule.
 
 [Back to contents](#contents)
