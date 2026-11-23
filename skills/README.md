@@ -396,7 +396,7 @@ Lead the Repository guild and audit or conform the universal KI repository contr
 - **Kind:** Governance
 - **Leads:** Repository
 - **Applicability:** Baseline
-- **Detects:** `ki-decision-records`, `ki-design`, `ki-engineering`, `ki-guides`, `ki-repo-kb`, `ki-repo-mcp`, `ki-repo-tools`, `ki-repo-website`, `ki-repo-website-app`, `ki-repo-website-cloudflare`, `ki-repo-website-content`, `ki-skills`, `ki-specs`, `ki-subagents`, `ki-subagents-chatgpt`, `ki-subagents-claude`, `ki-work-package`
+- **Detects:** `ki-decision-records`, `ki-design`, `ki-engineering`, `ki-guides`, `ki-repo-kb`, `ki-repo-mcp`, `ki-repo-tools`, `ki-repo-website`, `ki-repo-website-cloudflare`, `ki-repo-website-content`, `ki-repo-website-interactive`, `ki-skills`, `ki-specs`, `ki-subagents`, `ki-subagents-chatgpt`, `ki-subagents-claude`, `ki-work-package`
 - **Arguments:** `audit | conform <repo> | educate <repo> | help | refresh | review [scope] | review close <REV-NNN>`
 - **Dependencies:** `ki-authoring`, `ki-git`
 - **Runtime:** Runtime-bound; supported runtimes are resolved by its host contract
@@ -506,22 +506,12 @@ Audit or scaffold a KI `tools-*` repository containing one CLI, installer, relea
 
 #### `ki-repo-website`
 
-Govern the generator-neutral KI website seam: source root, reproducible `dist/`, and `ki:site:build`, `ki:site:dev`, and `ki:site:clean`. Use before choosing `ki-repo-website-content` or `ki-repo-website-app`; hosting is independent.
+Govern the generator-neutral KI website seam: source root, reproducible `dist/`, and `ki:site:build`, `ki:site:dev`, and `ki:site:clean`. Use before choosing `ki-repo-website-content` or `ki-repo-website-interactive`; hosting is independent.
 
 - **Kind:** Governance
 - **Applicability:** Detected
 - **Arguments:** `audit <repo> | conform <repo> | help | educate <repo> | refresh`
 - **Dependencies:** None
-- **Runtime:** Portable
-
-#### `ki-repo-website-app`
-
-Govern the KI interactive website implementation: one client-side React application bundled by Vite to `dist/`. Use for dashboards or single SPAs; select it instead of `ki-repo-website-content`, with `ki-repo-website` owning the neutral site lifecycle and hosting handled separately.
-
-- **Kind:** Governance
-- **Applicability:** Detected
-- **Arguments:** `audit <repo> | conform <repo> | help | educate <repo> | refresh`
-- **Dependencies:** `ki-repo-website`
 - **Runtime:** Portable
 
 #### `ki-repo-website-cloudflare`
@@ -536,7 +526,17 @@ Govern Cloudflare Workers Static Assets hosting—not Pages—for either KI webs
 
 #### `ki-repo-website-content`
 
-Govern KI content sites built with Eleventy 3, Markdown or data, Nunjucks, Tailwind 4 tokens, and portable `dist/`. Use for documentation, publication, or marketing pages; use `ki-repo-website-app` for a React/Vite SPA and choose hosting separately.
+Govern KI content sites built with Eleventy 3, Markdown or data, Nunjucks, Tailwind 4 tokens, and portable `dist/`. Use for documentation, publication, or marketing pages; use `ki-repo-website-interactive` for a React/Vite SPA and choose hosting separately.
+
+- **Kind:** Governance
+- **Applicability:** Detected
+- **Arguments:** `audit <repo> | conform <repo> | help | educate <repo> | refresh`
+- **Dependencies:** `ki-repo-website`
+- **Runtime:** Portable
+
+#### `ki-repo-website-interactive`
+
+Govern the KI interactive website implementation: one client-side React application bundled by Vite to `dist/`. Use for dashboards or single SPAs; select it instead of `ki-repo-website-content`, with `ki-repo-website` owning the neutral site lifecycle and hosting handled separately.
 
 - **Kind:** Governance
 - **Applicability:** Detected

@@ -1029,36 +1029,36 @@ been cleared for every commercial, promotional, or redistributive use.</metadata
         <text x="812" y="528" class="t-muted" font-size="9" text-anchor="middle">repo types · automatic</text>
         </g>
 
-        <g id="node-ki-repo-website-app" data-node-id="ki-repo-website-app" data-node-label="ki-repo-website-app" tabindex="0" role="button" aria-label="Focus ki-repo-website-app, repo types · automatic, Repository · 12 skills › Repository types · Websites" aria-pressed="false" data-node-kind="backend" data-node-sublabel="repo types · automatic" data-node-context="Repository · 12 skills › Repository types · Websites">
-          <title>ki-repo-website-app · repo types · automatic · Repository · 12 skills › Repository types · Websites</title>
+        <g id="node-ki-repo-website-cloudflare" data-node-id="ki-repo-website-cloudflare" data-node-label="ki-repo-website-cloudflare" tabindex="0" role="button" aria-label="Focus ki-repo-website-cloudflare, repo types · automatic, Repository · 12 skills › Repository types · Websites" aria-pressed="false" data-node-kind="backend" data-node-sublabel="repo types · automatic" data-node-context="Repository · 12 skills › Repository types · Websites">
+          <title>ki-repo-website-cloudflare · repo types · automatic · Repository · 12 skills › Repository types · Websites</title>
           <rect x="920" y="484" width="200" height="60" rx="8" class="c-mask"/>
           <rect x="920" y="484" width="200" height="60" rx="8" class="c-backend" data-animate="node" style="--step: 12;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(926 490) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
-          <text data-node-label="" x="1020" y="512" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-repo-website-app</text>
+          <text data-node-label="" x="1020" y="512" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-repo-website-cloudflare</text>
         <text x="1020" y="528" class="t-muted" font-size="9" text-anchor="middle">repo types · automatic</text>
         </g>
 
-        <g id="node-ki-repo-website-cloudflare" data-node-id="ki-repo-website-cloudflare" data-node-label="ki-repo-website-cloudflare" tabindex="0" role="button" aria-label="Focus ki-repo-website-cloudflare, repo types · automatic, Repository · 12 skills › Repository types · Websites" aria-pressed="false" data-node-kind="backend" data-node-sublabel="repo types · automatic" data-node-context="Repository · 12 skills › Repository types · Websites">
-          <title>ki-repo-website-cloudflare · repo types · automatic · Repository · 12 skills › Repository types · Websites</title>
+        <g id="node-ki-repo-website-content" data-node-id="ki-repo-website-content" data-node-label="ki-repo-website-content" tabindex="0" role="button" aria-label="Focus ki-repo-website-content, repo types · automatic, Repository · 12 skills › Repository types · Websites" aria-pressed="false" data-node-kind="backend" data-node-sublabel="repo types · automatic" data-node-context="Repository · 12 skills › Repository types · Websites">
+          <title>ki-repo-website-content · repo types · automatic · Repository · 12 skills › Repository types · Websites</title>
           <rect x="1128" y="484" width="200" height="60" rx="8" class="c-mask"/>
           <rect x="1128" y="484" width="200" height="60" rx="8" class="c-backend" data-animate="node" style="--step: 12;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(1134 490) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
-          <text data-node-label="" x="1228" y="512" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-repo-website-cloudflare</text>
+          <text data-node-label="" x="1228" y="512" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-repo-website-content</text>
         <text x="1228" y="528" class="t-muted" font-size="9" text-anchor="middle">repo types · automatic</text>
         </g>
 
-        <g id="node-ki-repo-website-content" data-node-id="ki-repo-website-content" data-node-label="ki-repo-website-content" tabindex="0" role="button" aria-label="Focus ki-repo-website-content, repo types · automatic, Repository · 12 skills › Repository types · Websites" aria-pressed="false" data-node-kind="backend" data-node-sublabel="repo types · automatic" data-node-context="Repository · 12 skills › Repository types · Websites">
-          <title>ki-repo-website-content · repo types · automatic · Repository · 12 skills › Repository types · Websites</title>
+        <g id="node-ki-repo-website-interactive" data-node-id="ki-repo-website-interactive" data-node-label="ki-repo-website-interactive" tabindex="0" role="button" aria-label="Focus ki-repo-website-interactive, repo types · automatic, Repository · 12 skills › Repository types · Websites" aria-pressed="false" data-node-kind="backend" data-node-sublabel="repo types · automatic" data-node-context="Repository · 12 skills › Repository types · Websites">
+          <title>ki-repo-website-interactive · repo types · automatic · Repository · 12 skills › Repository types · Websites</title>
           <rect x="712" y="568" width="200" height="60" rx="8" class="c-mask"/>
           <rect x="712" y="568" width="200" height="60" rx="8" class="c-backend" data-animate="node" style="--step: 12;" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(718 574) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
-          <text data-node-label="" x="812" y="596" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-repo-website-content</text>
+          <text data-node-label="" x="812" y="596" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ki-repo-website-interactive</text>
         <text x="812" y="612" class="t-muted" font-size="9" text-anchor="middle">repo types · automatic</text>
         </g>
 

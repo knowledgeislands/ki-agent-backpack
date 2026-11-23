@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "011a2b98965ec155780112401fe737bd0109cd99"
+      "revision": "06b97cdb734d9417a5c169360b2a990db9ef5bd0"
     },
     "legend": {
       "mode": "auto",
@@ -299,25 +299,6 @@
       ]
     },
     {
-      "id": "ki-repo-website-app",
-      "type": "backend",
-      "label": "ki-repo-website-app",
-      "sublabel": "repo types · automatic",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-website-app/SKILL.md"
-        }
-      ],
-      "pos": [
-        920,
-        484
-      ],
-      "size": [
-        200,
-        60
-      ]
-    },
-    {
       "id": "ki-repo-website-cloudflare",
       "type": "backend",
       "label": "ki-repo-website-cloudflare",
@@ -328,7 +309,7 @@
         }
       ],
       "pos": [
-        1128,
+        920,
         484
       ],
       "size": [
@@ -344,6 +325,25 @@
       "sources": [
         {
           "path": "skills/repository/ki-repo-website-content/SKILL.md"
+        }
+      ],
+      "pos": [
+        1128,
+        484
+      ],
+      "size": [
+        200,
+        60
+      ]
+    },
+    {
+      "id": "ki-repo-website-interactive",
+      "type": "backend",
+      "label": "ki-repo-website-interactive",
+      "sublabel": "repo types · automatic",
+      "sources": [
+        {
+          "path": "skills/repository/ki-repo-website-interactive/SKILL.md"
         }
       ],
       "pos": [
@@ -1196,9 +1196,9 @@
       "label": "Repository types · Websites",
       "wraps": [
         "ki-repo-website",
-        "ki-repo-website-app",
         "ki-repo-website-cloudflare",
-        "ki-repo-website-content"
+        "ki-repo-website-content",
+        "ki-repo-website-interactive"
       ],
       "pad": 10
     },
@@ -1229,9 +1229,9 @@
         "ki-repo-backpack",
         "ki-engineering",
         "ki-repo-website",
-        "ki-repo-website-app",
         "ki-repo-website-cloudflare",
         "ki-repo-website-content",
+        "ki-repo-website-interactive",
         "ki-repo-kb",
         "ki-repo-mcp",
         "ki-repo-tools",

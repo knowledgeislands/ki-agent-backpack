@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "08f8e208b173ed3861056b9b4eda445f5ba54470"
+      "revision": "06b97cdb734d9417a5c169360b2a990db9ef5bd0"
     },
     "legend": {
       "mode": "auto",
@@ -193,26 +193,6 @@
       ]
     },
     {
-      "id": "ki-repo-website-app",
-      "type": "backend",
-      "label": "ki-repo-website-app",
-      "sublabel": "repository · automatic",
-      "sources": [
-        {
-          "path": "skills/repository/ki-repo-website-app/SKILL.md"
-        }
-      ],
-      "tag": "R12 · CM · F7",
-      "pos": [
-        44,
-        392
-      ],
-      "size": [
-        208,
-        76
-      ]
-    },
-    {
       "id": "ki-repo-website-cloudflare",
       "type": "backend",
       "label": "ki-repo-website-cloudflare",
@@ -225,7 +205,7 @@
       "tag": "R20 · CM · F8",
       "pos": [
         44,
-        516
+        392
       ],
       "size": [
         208,
@@ -243,6 +223,26 @@
         }
       ],
       "tag": "R42 · CM · F8",
+      "pos": [
+        44,
+        516
+      ],
+      "size": [
+        208,
+        76
+      ]
+    },
+    {
+      "id": "ki-repo-website-interactive",
+      "type": "backend",
+      "label": "ki-repo-website-interactive",
+      "sublabel": "repository · automatic",
+      "sources": [
+        {
+          "path": "skills/repository/ki-repo-website-interactive/SKILL.md"
+        }
+      ],
+      "tag": "R12 · CM · F7",
       "pos": [
         44,
         640
@@ -380,7 +380,7 @@
       "wraps": [
         "ki-repo-website",
         "ki-repo-website-content",
-        "ki-repo-website-app",
+        "ki-repo-website-interactive",
         "ki-repo-website-cloudflare"
       ],
       "pad": 28
@@ -411,7 +411,7 @@
       "wraps": [
         "ki-repo-website",
         "ki-repo-website-content",
-        "ki-repo-website-app",
+        "ki-repo-website-interactive",
         "ki-repo-website-cloudflare",
         "ki-repo-kb",
         "ki-repo-mcp",
@@ -455,12 +455,6 @@
       "variant": "default"
     },
     {
-      "id": "ki-repo-website-app--ki-repo-website",
-      "from": "ki-repo-website-app",
-      "to": "ki-repo-website",
-      "variant": "default"
-    },
-    {
       "id": "ki-repo-website-cloudflare--ki-repo-website",
       "from": "ki-repo-website-cloudflare",
       "to": "ki-repo-website",
@@ -469,6 +463,12 @@
     {
       "id": "ki-repo-website-content--ki-repo-website",
       "from": "ki-repo-website-content",
+      "to": "ki-repo-website",
+      "variant": "default"
+    },
+    {
+      "id": "ki-repo-website-interactive--ki-repo-website",
+      "from": "ki-repo-website-interactive",
       "to": "ki-repo-website",
       "variant": "default"
     }
