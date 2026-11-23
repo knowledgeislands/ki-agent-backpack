@@ -1,6 +1,6 @@
 # Decision Records — Knowledge Islands Harness
 
-This directory holds the Decision Records for the **ki-agentic-harness** and the Knowledge Islands governance skill set it houses — Architecture Decision Records (`ADR-`), Strategy Decision Records (`SDR-`), and Governance Decision Records (`GDR-`), per the prefix table in the `ki-decision-records` skill.
+This directory holds the Decision Records for the **ki-agent-backpack** and the Knowledge Islands governance skill set it houses — Architecture (`ADR-`), Strategy (`SDR-`), Governance (`GDR-`), Data (`DDR-`), Operations (`ODR-`) and Security (`XDR-`) Decision Records, per the prefix table in the `ki-decision-records` skill.
 
 The directory holds only Decision Records and this index; each record states its decision in its own words. The ecosystem fundamentals these records build on - routing responsibility, repository structures and boundaries, and ecosystem coordination - are Arcadia's [Knowledge Islands ecosystem fundamentals](https://github.com/knowledgeislands/ki-principal/blob/main/Admin/Governance/Decisions/GDR-KI-PRINCIPAL-006-knowledge-islands-ecosystem-fundamentals.md) (GDR-KI-PRINCIPAL-006), cited by URL rather than copied.
 
@@ -10,7 +10,7 @@ The directory holds only Decision Records and this index; each record states its
 <PREFIX>-<SCOPE>-NNN
 ```
 
-`<PREFIX>` encodes the decision type (`ADR-` architecture, `SDR-` strategy, `GDR-` governance). `<SCOPE>` is one or more uppercase alphanumeric segments separated by hyphens — e.g. `KI-HARNESS`, `KI-HARNESS-SKILLS`. `NNN` is a zero-padded integer (minimum three digits), monotonically increasing per prefix within the scope. Foundational harness records use the bare scope `<PREFIX>-KI-HARNESS-NNN`; domain-specific ADRs append a sub-scope: `ADR-KI-HARNESS-<SUB-SCOPE>-NNN`. A filename is `<ID>-<title-slug>.md`: the canonical uppercase ID followed by the title lowercased with non-alphanumeric runs compressed to one dash.
+`<PREFIX>` encodes the decision type (`ADR-` architecture, `SDR-` strategy, `GDR-` governance, `DDR-` data, `ODR-` operations, `XDR-` security). `<SCOPE>` is one or more uppercase alphanumeric segments separated by hyphens — e.g. `KI-HARNESS`, `KI-HARNESS-SKILLS`. `NNN` is a zero-padded integer (minimum three digits), monotonically increasing per prefix within the scope. Foundational harness records use the bare scope `<PREFIX>-KI-HARNESS-NNN`; domain-specific ADRs append a sub-scope: `ADR-KI-HARNESS-<SUB-SCOPE>-NNN`. A filename is `<ID>-<title-slug>.md`: the canonical uppercase ID followed by the title lowercased with non-alphanumeric runs compressed to one dash.
 
 Sub-scopes used in this harness:
 

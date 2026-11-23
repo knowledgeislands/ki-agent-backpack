@@ -17,7 +17,7 @@ The advisory rule then pulled against the specialised overlays. `ki-repo-website
 
 ## Decision
 
-Every guide lives in a folder below `docs/guides/` named for its audience. Only the collection's `README.md` sits directly below `docs/guides/`; `docs/guides/references/` holds supporting material, not guides for an audience of its own.
+Every guide lives in a folder below `docs/guides/` named for its audience. Only the collection's `_index.md` sits directly below `docs/guides/`; `docs/guides/references/` holds supporting material, not guides for an audience of its own.
 
 - **Enforcement is mechanical.** GUIDE-5 fails every other Markdown file directly below `docs/guides/`. CONFORM never moves an authored guide; the author chooses its folder.
 - **Names are local.** Folder names are open local vocabulary, not a KI-wide taxonomy, but each names a reader rather than a topic. Whether it does is a ROUTE-2 judgment, because a checker cannot tell an audience from a topic.
