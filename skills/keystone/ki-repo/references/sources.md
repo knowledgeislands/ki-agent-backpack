@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:10:23Z
+ki-revised: 2026-11-23T03:10:10Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -29,15 +29,15 @@ The GitHub and licensing specifications the standards follow.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [REST: repository settings][repo-settings] | merge methods, auto-delete-branch, features, description, visibility, and repository-administration permission | 2026-11-17 |
-| [REST: branch protection][branch-protection] | the optional `branch-protection` body (PR, `build` check, linear) | 2026-11-17 |
-| [Repository rulesets][rulesets] | the modern alternative to classic protection (private-repo path) | 2026-11-17 |
-| [REST: Dependabot alerts / fixes][dependabot] | `vulnerability-alerts`, `automated-security-fixes` endpoints | 2026-11-17 |
-| [Secret scanning detection scope][secret-scanning] | public automatic scanning and private/internal GitHub Secret Protection boundary | 2026-11-17 |
-| [REST: Actions permissions for a repository][actions] | `allowed_actions` policy | 2026-11-17 |
-| [`gh` CLI manual][gh-cli] | `gh repo list/view/edit`, `gh api` — how evidence is read and confirmed live changes are applied | 2026-11-17 |
-| [SPDX License List][spdx] | authoritative license identifiers, including MIT and UNLICENSED | 2026-11-17 |
-| [Choose a License][choosealicense] | supporting license-selection guidance | 2026-11-17 |
+| [REST: repository settings][repo-settings] | merge methods, auto-delete-branch, features, description, visibility, and repository-administration permission | 2026-11-23 |
+| [REST: branch protection][branch-protection] | the optional `branch-protection` body (PR, `build` check, linear) | 2026-11-23 |
+| [Repository rulesets][rulesets] | the modern alternative to classic protection (private-repo path) | 2026-11-23 |
+| [REST: Dependabot alerts / fixes][dependabot] | `vulnerability-alerts`, `automated-security-fixes` endpoints | 2026-11-23 |
+| [Secret scanning detection scope][secret-scanning] | public automatic scanning and private/internal GitHub Secret Protection boundary | 2026-11-23 |
+| [REST: Actions permissions for a repository][actions] | `allowed_actions` policy | 2026-11-23 |
+| [`gh` CLI manual][gh-cli] | `gh repo list/view/edit`, `gh api` — how evidence is read and confirmed live changes are applied | 2026-11-23 |
+| [SPDX License List][spdx] | authoritative license identifiers, including MIT and UNLICENSED | 2026-11-23 |
+| [Choose a License][choosealicense] | supporting license-selection guidance | 2026-11-23 |
 
 [repo-settings]: https://docs.github.com/en/rest/repos/repos#update-a-repository
 [branch-protection]: https://docs.github.com/en/rest/branches/branch-protection
@@ -93,6 +93,15 @@ The decisions the standards cite by id, oldest first; each standard keeps citing
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 23 November 2026 REFRESH ran against all nine tracked sources, for Gilder's overnight sources sweep. No governed field or criterion changed, so no standard or rubric change is proposed; the organisation scan for emergent topics was not run.
+
+- **REST repository settings / `gh` CLI**: the update endpoint, still at API version `2026-03-10`, keeps every governed field; `use_squash_pr_title_as_default` is still closing down, and `security_and_analysis` now also lists `code_security`, AI and non-provider pattern detection and delegated bypass options, none governed here. `gh` 2.105.0 of 18 November adds a `gh event` preview for waiting on pull request events; `gh repo list/view/edit` and `gh api` are unchanged.
+- **REST branch protection / rulesets**: classic protection carries no deprecation; only `required_status_checks.contexts` has a closing-down notice, in favour of `checks`. The rulesets section lists a "Converting branch protections to rulesets" page that preserves existing behaviour, offered, not required.
+- **Dependabot / Actions**: `vulnerability-alerts` and `automated-security-fixes` are unchanged. `/actions/permissions` keeps `enabled`, `allowed_actions` and `sha_pinning_required`; its repository-level sub-endpoints (workflow token permissions, fork pull request approval, retention) are not governed here.
+- **Secret scanning**: unchanged: free and automatic on public repositories; private and internal ones need GitHub Secret Protection on Team or Enterprise Cloud.
+- **SPDX / Choose a License**: SPDX list 3.29.0 of 16 September 2026 is still current and keeps `MIT`; `UNLICENSED` is still not an SPDX identifier. Choose a License still recommends MIT for simple permissive use.
+- **Open watch-items:** carried from 17 November: `contexts` leaving the branch-protection body, when the auditor's fallback can go; whether `sha_pinning_required` should join the Actions policy; and classic protection beside rulesets.
 
 On 22 November 2026 WEBSITE-APP-NAME a, from the Cairn summit's change 10, step 6.3, renamed `ki-repo-website-app` to `ki-repo-website-interactive`, and this skill's references follow; no rule or criterion changed.
 
