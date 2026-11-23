@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T20:59:09Z
+ki-revised: 2026-11-23T02:05:22Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -19,7 +19,7 @@ ki-refresh: external-spec · quarterly
 
 ## 1. Introduction
 
-The sources behind [the Diagrams standard](standard-diagrams.md) and its [rubric](rubric.md). The standard is Knowledge Islands house policy, derived from the `apps-observatory` pilot (`KI-OBSERVA-APP-034` there) and the tooling research of 2026-10-03, adopted by `KI-HARNESS-GOV-131`. The research reported some facts it could not verify; they are marked.
+The sources behind [the Diagrams standard](standard-diagrams.md) and its [rubric](rubric.md). The standard is Knowledge Islands house policy, derived from the `apps-observatory` pilot (`KI-OBSERVA-APP-034` there) and the tooling research of 2026-10-03, adopted by `KI-HARNESS-GOV-131`. The research reported two facts about D2 it could not verify; both were confirmed on 23 November 2026.
 
 [Back to contents](#contents)
 
@@ -31,7 +31,7 @@ The standard follows one tool, Archify; the other tools inform its preference or
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| ARCHIFY — [Archify](https://tt-a1i.github.io/archify/) | The chosen tool: types, JSON source, viewer, SVG export, Chrome route | 2026-10-14 |
+| ARCHIFY — [Archify](https://tt-a1i.github.io/archify/) | The chosen tool: types, JSON source, viewer, SVG export, Chrome route | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -43,32 +43,32 @@ The alternatives reviewed in the tooling research, and the tools added for the [
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| D2 — [D2 blog](https://d2lang.com/blog/) and [releases](https://github.com/terrastruct/d2/releases) | Code-generated maps; maintainer change (unverified) | 2026-10-03 |
-| TALA — [TALA](https://github.com/terrastruct/TALA) | D2's layout engine, reported free from D2 0.9.0 (unverified) | 2026-10-03 |
-| LIKEC4 — [LikeC4](https://likec4.dev/) | C4-only modelling | 2026-10-03 |
-| STRUCTURIZR — [Structurizr](https://github.com/structurizr/structurizr) | DSL with a dated look | 2026-10-03 |
-| STATELY — [Stately Sketch](https://stately.ai/blog/2026-03-26-introducing-stately-sketch) and [visualiser](https://stately.ai/docs/visualizer) | State charts, only with XState | 2026-10-03 |
-| SLICKMAP — [SlickMap](https://github.com/astuteo/slickmap) | Site trees without a dark theme | 2026-10-03 |
-| PAID-SAAS — [Ilograph](https://www.ilograph.com/desktop/) and [Eraser pricing](https://www.eraser.io/pricing) | Paid or SaaS, failing the private-repository rule | 2026-10-03 |
-| TLDRAW — [tldraw licence key](https://tldraw.dev/sdk-features/license-key) | Hand-drawn, commercial licence | 2026-10-03 |
-| DEPCRUISE — [dependency-cruiser CLI](https://github.com/sverweij/dependency-cruiser/blob/main/doc/cli.md) | `-T d2` reporter for generated dependency maps | 2026-10-03 |
-| REACT-SCANNER — [react-scanner](https://github.com/moroshko/react-scanner) | Usage statistics, a category mismatch | 2026-10-03 |
-| STORYBOOK — [Storybook Composition](https://storybook.js.org/docs/sharing/storybook-composition/) | Storybook merging, a category mismatch | 2026-10-03 |
+| D2 — [D2 blog](https://d2lang.com/blog/) and [releases](https://github.com/d2lang/d2/releases) | Code-generated maps; a non-profit project under Hack Club since September 2026 | 2026-11-23 |
+| TALA — [TALA is open-source](https://d2lang.com/blog/tala-is-open-source/) and [D2 0.9.0](https://github.com/d2lang/d2/releases/tag/v0.9.0) | D2's layout engine, open source (MPL-2.0) and bundled from D2 0.9.0 | 2026-11-23 |
+| LIKEC4 — [LikeC4](https://likec4.dev/) | C4-only modelling | 2026-11-23 |
+| STRUCTURIZR — [Structurizr](https://github.com/structurizr/structurizr) | DSL with a dated look | 2026-11-23 |
+| STATELY — [Stately Sketch](https://stately.ai/blog/2026-03-26-introducing-stately-sketch) and [Sketch source](https://github.com/statelyai/sketch) | State charts, only with XState | 2026-11-23 |
+| SLICKMAP — [SlickMap](https://github.com/astuteo/slickmap) | Site trees without a dark theme | 2026-11-23 |
+| PAID-SAAS — [Ilograph](https://www.ilograph.com/desktop/) and [Eraser pricing](https://www.eraser.io/pricing) | Paid or SaaS, failing the private-repository rule | 2026-11-23 |
+| TLDRAW — [tldraw licence key](https://tldraw.dev/sdk-features/license-key) | Hand-drawn, commercial licence | 2026-11-23 |
+| DEPCRUISE — [dependency-cruiser CLI](https://github.com/sverweij/dependency-cruiser/blob/main/doc/cli.md) | `-T d2` reporter for generated dependency maps | 2026-11-23 |
+| REACT-SCANNER — [react-scanner](https://github.com/moroshko/react-scanner) | Usage statistics, a category mismatch | 2026-11-23 |
+| STORYBOOK — [Storybook Composition](https://storybook.js.org/docs/sharing/storybook-composition/) | Storybook merging, a category mismatch | 2026-11-23 |
 
 [Back to contents](#contents)
 
 #### 2.2.2 Added for the tool preference order
 
-These sources were added on 2026-10-31 for the [tool preference order](standard-diagrams.md#42-tool-preference-by-diagram-kind) without fetching their pages. The next REFRESH reviews each and gives it a last-reviewed date.
+These sources were added on 2026-10-31 for the [tool preference order](standard-diagrams.md#42-tool-preference-by-diagram-kind) without fetching their pages, and first reviewed on 23 November 2026.
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| MERMAID — [Mermaid state diagrams](https://mermaid.js.org/syntax/stateDiagram.html) and [Sankey](https://mermaid.js.org/syntax/sankey.html) | Mermaid's re-evaluation and the sketch step | Not yet reviewed |
-| ISOFLOW — [Isoflow](https://isoflow.io/) and [FossFLOW](https://github.com/stan-smith/FossFLOW) | Isometric infrastructure pictures, liked | Not yet reviewed |
-| D3 — [D3](https://d3js.org/) | Bespoke and quantitative diagrams drawn directly | Not yet reviewed |
-| TYPESET — [fletcher](https://typst.app/universe/package/fletcher) and [TikZ](https://tikz.dev/) | Figures inside typeset documents | Not yet reviewed |
-| INSPIRATION — [IcePanel](https://icepanel.io/) and [Napkin](https://www.napkin.ai/) | Paid or SaaS, inspiration only | Not yet reviewed |
-| INFOSCHEMATICS — [infoschematics](https://infoschematics.info/) | Knowledge Islands' own diagramming tool, to grow | Not yet reviewed |
+| MERMAID — [Mermaid state diagrams](https://mermaid.js.org/syntax/stateDiagram.html) and [Sankey](https://mermaid.js.org/syntax/sankey.html) | Mermaid's re-evaluation and the sketch step | 2026-11-23 |
+| ISOFLOW — [Isoflow](https://isoflow.io/) and [Isoflow community edition](https://github.com/markmanx/isoflow) | Isometric infrastructure pictures, liked | 2026-11-23 |
+| D3 — [D3](https://d3js.org/) | Bespoke and quantitative diagrams drawn directly | 2026-11-23 |
+| TYPESET — [fletcher](https://typst.app/universe/package/fletcher) and [TikZ](https://tikz.dev/) | Figures inside typeset documents | 2026-11-23 |
+| INSPIRATION — [IcePanel](https://icepanel.io/) and [Napkin](https://www.napkin.ai/) | Paid or SaaS, inspiration only | 2026-11-23 |
+| INFOSCHEMATICS — [infoschematics](https://infoschematics.info/) | Knowledge Islands' own diagramming tool, to grow | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -87,6 +87,8 @@ These sources were added on 2026-10-31 for the [tool preference order](standard-
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 23 November 2026 the quarterly REFRESH reviewed every source; the standard's own text was left alone and the changes it shows went to Gilder as proposals. Archify is at 3.3.0 (22 November 2026) and now Apache-2.0: 3.1.0 added ERD, class, tree, timeline and waterfall types, 3.2.0 one-page explainers, and 3.3.0 ships `bin/export-svg.mjs`, a command-line SVG export through the viewer's own Export menu (`auto`, `light` or `dark`), and a Code Analysis module that reads import graphs. D2 became a non-profit project under Hack Club and moved to `d2lang/d2`, and D2 0.9.0 bundles TALA as open source, settling both unverified facts; the TALA row now points at that announcement, as its old repository is archived. Stately's visualiser is deprecated, so the row points at Sketch's source; Sketch reads XState, JSON, YAML and Mermaid. FossFLOW's repository has gone, with only unofficial forks continuing it, so the row points at the open-source Isoflow it came from. LikeC4 now allows its own element kinds beyond C4. Mermaid 12.3 draws state diagrams with its `neo` look and ELK layout by default, and Sankey is no longer marked beta. The 2.2.2 sources had their first review; the paid and SaaS tools are unchanged in kind.
 
 On 22 November 2026 AUTHORING-FIXES a, item 3, was applied by Loreward: the skill's words name the host's question tool where they named Claude's `AskUserQuestion`. No criterion changed and no outside source was refreshed.
 
@@ -108,8 +110,9 @@ On 18 November 2026 the Authoring guild's review, from the Cairn summit's change
 
 **Watching:**
 
-- Mermaid's re-evaluation on its current rendering (state, Sankey), which settles DIAGRAM-REPLACE's warning and Mermaid's place in the order.
-- The 2026-10-31 sources in [2.2.2](#222-added-for-the-tool-preference-order), each unreviewed until the next REFRESH.
-- The two unverified D2 facts: the maintainer change and TALA free from D2 0.9.0.
+- Mermaid's re-evaluation on its current rendering (state, Sankey), which settles DIAGRAM-REPLACE's warning and Mermaid's place in the order; Mermaid 12.3's defaults are the evidence to judge.
+- Archify's own `export-svg.mjs`, which REFRESH says should shrink or retire `scripts/export-svg.ts`; it covers `dual`, `light` and dark exports but not the `ki` and `ki-night` forms. Proposed to Gilder.
+- Archify's ten diagram types against the manifest's five, and its Code Analysis module as a possible import-graph importer. Proposed to Gilder.
+- FossFLOW's home: no official successor to `stan-smith/FossFLOW` yet.
 
 [Back to contents](#contents)
