@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T00:54:54Z
+ki-revised: 2026-11-23T11:27:19Z
 ki-status: in force
 ---
 
@@ -327,9 +327,10 @@ Sources: LINK-FORM and COORD-REPORT-CHECKS in [the decision register](sources.md
 
 #### 4.4.1 Where the owner reads
 
-A link directs the owner to the right way to see the thing from where they are reading the reply. Give the most sensible choice of links, not strictly one, and never a link that will not open there. The agent host usually says where that is.
+A link directs the owner to the right way to see the thing from where they are reading the reply. Give the most sensible choice of links, not strictly one, and never a link that will not open there. The agent host usually says where that is. Where the owner reads, not where the session runs, decides which links to give: the two can differ, as a session running on sol while the owner reads on terra or on the phone.
 
-- **On a Mac, sol or terra,** in an agent host running there, as [Runtime binding](#442-runtime-binding) names them: `cairn://` links open the Cairn Wayfinder, which registers the scheme on both Macs, and their clickable twins open it from Orca, as below; a local path opens where the host runs on the Mac holding the file; `https://` links open.
+- **On a Mac, sol or terra,** in an agent host running there, as [Runtime binding](#442-runtime-binding) names them: `cairn://` links open the Cairn Wayfinder, which registers the scheme on both Macs, and their clickable twins open it from Orca, as below, but on the Mac the owner reads on only once the change is pushed and pulled there; `https://` links open.
+- **A local path or scratch file** opens only on the session's own host. Where the owner reads on another Mac, give its GitHub link once pushed, or name it as not pushed, with the machine it is on.
 - **On the phone, or in a remote or cloud session:** only `https://` links open. Give a pushed file's GitHub link on `main`, and name a file that is not pushed as such, with the machine it is on. Never a `cairn://` link or a local path alone.
 - **In an app's own sign-in,** a desktop or web app the owner is signed into: a link to that app's own artifact or page opens; never one that needs another sign-in, such as an artifact made from another app's session.
 - **Unsure where:** give the set for the thing, each link labelled, so whichever opens serves.
@@ -365,7 +366,7 @@ The same read on the phone gives only `[cairn.summit change 20](https://github.c
 - **Never invented:** a link whose target cannot be resolved, or that would not open where the owner reads, is left out and the text says so.
 - **In files** this rule does not apply: a relative link stays within its repository's root, as `ki-authoring` sets.
 
-Sources: LINKS-STANDARD, WAYFINDER-COMPANION and WAYFINDER-DRIVE in [the decision register](sources.md#3-decisions).
+Sources: LINKS-STANDARD, LINKS-WHERE-READ, WAYFINDER-COMPANION and WAYFINDER-DRIVE in [the decision register](sources.md#3-decisions).
 
 #### 4.4.2 Runtime binding
 
