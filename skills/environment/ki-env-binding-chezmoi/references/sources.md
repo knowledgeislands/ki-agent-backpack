@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T23:56:44Z
+ki-revised: 2026-11-23T02:34:50Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -34,11 +34,11 @@ The house's own skills and source, then chezmoi's documentation.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| BIND — `ki-env-binding` skill | The renderer-neutral surface audit this skill composes (surfaces agree with the single source) | 2026-10-19 |
-| CHEZ — `ki-repo-dotfiles-chezmoi` skill | The generic chezmoi source-repo standard this skill composes (repo is conventional) | 2026-10-19 |
-| HOOKS — the backpack's `hooks/README.md` payload table and `ki-repo-backpack`'s three-part hook model | The payloads this skill registers, each hook's runtime, event, matcher and timeout | 2026-11-22 |
-| PARTIALS — the chezmoi source's `.chezmoitemplates/*-hook-registrations-json`, their `.chezmoidata` hook entries and the Claude Code and Codex settings targets | The registration shape the hook standard describes | 2026-11-22 |
-| SRC — `~/.config/ki/mcp-servers.yaml` (canonical) + either `.chezmoidata/*mcp*` (data-merge pattern) or a plain managed source file applied verbatim to the canonical path (managed-source pattern) | The single source and the chezmoi data the render path reads | 2026-10-19 |
+| BIND — `ki-env-binding` skill | The renderer-neutral surface audit this skill composes (surfaces agree with the single source) | 2026-11-23 |
+| CHEZ — `ki-repo-dotfiles-chezmoi` skill | The generic chezmoi source-repo standard this skill composes (repo is conventional) | 2026-11-23 |
+| HOOKS — the backpack's `hooks/README.md` payload table and `ki-repo-backpack`'s three-part hook model | The payloads this skill registers, each hook's runtime, event, matcher and timeout | 2026-11-23 |
+| PARTIALS — the chezmoi source's `.chezmoitemplates/*-hook-registrations-json`, their `.chezmoidata` hook entries and the Claude Code and Codex settings targets | The registration shape the hook standard describes | 2026-11-23 |
+| SRC — `~/.config/ki/mcp-servers.yaml` (canonical) + either `.chezmoidata/*mcp*` (data-merge pattern) or a plain managed source file applied verbatim to the canonical path (managed-source pattern) | The single source and the chezmoi data the render path reads | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -46,8 +46,8 @@ The house's own skills and source, then chezmoi's documentation.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| CHEZMOI — [Chezmoi templating](https://www.chezmoi.io/user-guide/templating/) | Template/data/partial semantics | 2026-10-19 |
-| APPLY — [Chezmoi usage](https://www.chezmoi.io/user-guide/frequently-asked-questions/usage/) | Explicit preview and apply distinction | 2026-10-19 |
+| CHEZMOI — [Chezmoi templating](https://www.chezmoi.io/user-guide/templating/) | Template/data/partial semantics | 2026-11-23 |
+| APPLY — [Chezmoi usage](https://www.chezmoi.io/user-guide/frequently-asked-questions/usage/) | Explicit preview and apply distinction | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -62,6 +62,8 @@ The house's own skills and source, then chezmoi's documentation.
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 23 November 2026 the overnight sources refresh reviewed every listed source. chezmoi has moved from 2.72 to 2.74.2 (2.74.1 installed): 2.74.0 removes the deprecated `remove` command and adds a skip-conflicts choice to `apply`, and 2.73.2 stops reading `.chezmoidata` inside `external_` directories; none touches `.chezmoitemplates` partials, `.chezmoidata` merging or the `diff`-then-`apply` split, and the templating and usage pages still say what the standards rest on. The chezmoi source uses the data-merge pattern, with no rendered `~/.config/ki/mcp-servers.yaml`; its shell profile sets `KI_MCP_SOURCE` to the `.chezmoidata` file, the explicit binding 4.3 of the rendering standard allows. The partial's client tokens match `ki-env-binding`'s four, and the hook partials still match the payload table, but the source also registers two hooks the backpack does not ship, the Cairn presence hook and Headroom's, through the same partials; a proposal asks the hook standard to say where they stand. No rule changed.
 
 On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied ENV-FIXES a, recorded under [Decisions](#3-decisions): SKILL.md states its composition once, under Composition, where the introduction, a layers list and a note had each stated it. No criterion changed and no outside source refreshed.
 
@@ -79,6 +81,7 @@ Initial authoring, **2026-07-13** — drafted alongside the renderer-neutral spl
 
 **Watching:**
 
+- **Non-backpack hooks** — the presence and Headroom hooks registered through `*-hook-registrations-json` partials sit outside the hook standard's backpack-payload scope and its rule 5; watch until a proposal settles whether the standard covers them.
 - **Render-template shape** — the `mcp-servers-json` partial and the target `.tmpl` files it feeds. Re-anchor when chezmoi's templating contract or the per-surface `mcpServers` config shape changes.
 - **Source location** — the canonical XDG home, a `.chezmoidata/*mcp*` render input, or a managed-source-file pattern (BINDCHEZ-3 recognises both repository shapes). Re-anchor if the resolution order in `ki-env-binding` moves, or if a third source shape emerges.
 - **Composed siblings** — if `ki-env-binding`'s recognised surfaces/`clients` tokens or `ki-repo-dotfiles-chezmoi`'s repo-shape criteria change, confirm the BINDCHEZ delta still sits cleanly on top rather than duplicating a sibling criterion.
