@@ -83,7 +83,9 @@ None.
 
 ## 3. Decisions
 
-None.
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| DESIGN-SETTLED | “`ki-design-inspiration` stays its own process skill, its description widened from websites to app and component work” (settled by Kitteth within remit under CONFIDENCE-FIRST, 23 November, about 00:45 GMT, the Design guild's sitting, from its brief, which put no question to Kris). Recorded in the Cairn summit's [change 10, 4.3](https://github.com/krisb/ki-cairn-store/blob/42f99d6f7b9aedbc96610af382d6985b6cb6e993/work/cairn/cairn.summit/10-skills-review.change.md#43-decided). | 2026-11-23 | [the skill's description](../SKILL.md) | In force |
 
 [Back to contents](#contents)
 

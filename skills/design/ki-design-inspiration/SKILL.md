@@ -6,16 +6,16 @@ ki-applicability: invocation-only
 ki-guild: design
 ki-depends-on: []
 description: >
-  Find website design inspiration in curated galleries and turn selected examples into practical directions
-  for navigation, sections, calls to action, grids, motion, and other UI patterns. Use for visual references
-  and adaptation ideas; website repository structure belongs to `ki-repo-website`, and keeping a design
-  system to `ki-design-system`.
-argument-hint: 'help | inspire <website-or-component> | refresh'
+  Find design inspiration for websites, apps and components in curated galleries and turn selected examples
+  into practical directions for navigation, sections, calls to action, grids, motion, and other UI patterns.
+  Use for visual references and adaptation ideas; website repository structure belongs to `ki-repo-website`,
+  and keeping a design system to `ki-design-system`.
+argument-hint: 'help | inspire <website-app-or-component> | refresh'
 ---
 
-# Website design inspiration
+# Design inspiration
 
-Turn a curated collection of design galleries into useful references for the current website or component. This is a research and design process, with no required governance dependencies or implementation stack.
+Turn a curated collection of design galleries into useful references for the current website, app or component. This is a research and design process, with no required governance dependencies or implementation stack.
 
 Read [the source list](references/sources.md) when choosing resources or refreshing the collection. It owns the URLs, routing notes, and review dates. Inclusion expresses interest in a resource, not approval of every design or output it contains.
 
@@ -25,7 +25,7 @@ Focused design tools may complement the galleries by turning inspiration into de
 
 ### Mode HELP
 
-For `help`, `-h`, or `?`, explain the source collection, inspiration output, and refresh operation, then stop. With a design request, infer INSPIRE. With no design context, explain the skill and ask what website or component needs inspiration.
+For `help`, `-h`, or `?`, explain the source collection, inspiration output, and refresh operation, then stop. With a design request, infer INSPIRE. With no design context, explain the skill and ask what website, app or component needs inspiration.
 
 ### Mode INSPIRE
 
@@ -41,7 +41,7 @@ Inspect promising entries visually using the available browser or image tools, a
 
 Return a short selection with a direct link to each inspected example, the observed design choice, why it fits the brief, and a concrete adaptation. Distinguish observation from proposed implementation. Assess the relevant tradeoffs: hierarchy and density for layouts, navigation and recovery for interactive components, and reduced motion and small-screen behaviour for animation. Gallery inclusion is not evidence of accessibility, conversion performance, or implementation quality.
 
-Conclude with a coherent recommended direction that fits the site's content and identity. Extract reusable principles rather than copying a site's branding or assembling incompatible pieces. If implementation is also requested, pass the selected direction into that work under the current task's authority and toolchain.
+Conclude with a coherent recommended direction that fits the site's or app's content and identity. Extract reusable principles rather than copying a site's branding or assembling incompatible pieces. If implementation is also requested, pass the selected direction into that work under the current task's authority and toolchain.
 
 For example:
 
