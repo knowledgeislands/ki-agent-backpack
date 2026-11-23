@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T23:56:44Z
+ki-revised: 2026-11-23T02:37:03Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -42,13 +42,13 @@ The tool documentation first, then the in-house case study and measurements, eac
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [Reference: source state attributes][attributes] | the `dot_`/`executable_`/`private_`/`.tmpl` naming-prefix system and the fixed prefix order | 2026-11-17 |
-| [Reference: `.chezmoiignore`][chezmoiignore] | ignore-file syntax, including negation-through-ignored-parents | 2026-11-15 |
-| [User guide: use scripts to perform actions][scripts] | `run_onchange_` script semantics — when chezmoi re-runs a script | 2026-11-15 |
-| [Reference: templating][templating] | `.chezmoidata`/`.chezmoitemplates`, Go-template rendering | 2026-11-15 |
-| [CLI: `chezmoi doctor`][doctor] | built-in diagnostics | 2026-11-15 |
-| [CLI: `chezmoi status` / `managed` / `unmanaged`][status] | drift-checking commands | 2026-11-15 |
-| [CLI: `source-path` / `target-path`][source-path] | resolving between source and target paths | 2026-11-15 |
+| [Reference: source state attributes][attributes] | the `dot_`/`executable_`/`private_`/`.tmpl` naming-prefix system and the fixed prefix order | 2026-11-23 |
+| [Reference: `.chezmoiignore`][chezmoiignore] | ignore-file syntax, including negation-through-ignored-parents | 2026-11-23 |
+| [User guide: use scripts to perform actions][scripts] | `run_onchange_` script semantics — when chezmoi re-runs a script | 2026-11-23 |
+| [Reference: templating][templating] | `.chezmoidata`/`.chezmoitemplates`, Go-template rendering | 2026-11-23 |
+| [CLI: `chezmoi doctor`][doctor] | built-in diagnostics | 2026-11-23 |
+| [CLI: `chezmoi status` / `managed` / `unmanaged`][status] | drift-checking commands | 2026-11-23 |
+| [CLI: `source-path` / `target-path`][source-path] | resolving between source and target paths | 2026-11-23 |
 
 [attributes]: https://www.chezmoi.io/reference/source-state-attributes/
 [chezmoiignore]: https://www.chezmoi.io/reference/special-files/chezmoiignore/
@@ -64,11 +64,11 @@ The tool documentation first, then the in-house case study and measurements, eac
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [TOMLKit README and limitations][tomlkit] | style-preserving TOML document model and its known ordering limitation | 2026-11-15 |
-| [ruamel.yaml round-trip details][ruamel-round-trip] | comment, anchor, merge, and blank-line preservation in the round-trip API | 2026-11-15 |
-| [ruamel.yaml indentation details][ruamel-indentation] | normalization limits for inconsistently indented YAML | 2026-11-15 |
-| [Microsoft `jsonc-parser` utilities][jsonc-parser] | localized path edits, missing-property creation, and applying text edits | 2026-11-15 |
-| [uv: running a script with dependencies][uv-script-dependencies] | `uv run --with` and `--no-project` dependency execution | 2026-11-15 |
+| [TOMLKit README and limitations][tomlkit] | style-preserving TOML document model and its known ordering limitation | 2026-11-23 |
+| [ruamel.yaml round-trip details][ruamel-round-trip] | comment, anchor, merge, and blank-line preservation in the round-trip API | 2026-11-23 |
+| [ruamel.yaml indentation details][ruamel-indentation] | normalization limits for inconsistently indented YAML | 2026-11-23 |
+| [Microsoft `jsonc-parser` utilities][jsonc-parser] | localized path edits, missing-property creation, and applying text edits | 2026-11-23 |
+| [uv: running a script with dependencies][uv-script-dependencies] | `uv run --with` and `--no-project` dependency execution | 2026-11-23 |
 
 [tomlkit]: https://github.com/python-poetry/tomlkit
 [ruamel-round-trip]: https://yaml.dev/doc/ruamel.yaml/detail/#Round_trip_including_comments
@@ -84,9 +84,9 @@ The n=1 case study, not chezmoi.io-sourced.
 
 | Source                                                          | Governs                   | Last reviewed |
 | --------------------------------------------------------------- | ------------------------- | ------------- |
-| One anonymized personal chezmoi dotfiles repo, audited directly | House patterns†           | 2026-11-15    |
-| A surgical TOML patch in the same repo, reviewed directly       | Config-editing heuristic‡ | 2026-11-15    |
-| The owner's agreed script-header shape, applied across the same repo | Script headers‖ | 2026-11-07 |
+| One anonymized personal chezmoi dotfiles repo, audited directly | House patterns†           | 2026-11-23    |
+| A surgical TOML patch in the same repo, reviewed directly       | Config-editing heuristic‡ | 2026-11-23    |
+| The owner's agreed script-header shape, applied across the same repo | Script headers‖ | 2026-11-23 |
 
 † Shell-loader and bin/env dispatcher patterns; Pattern A/B decision rule; single-source multi-target templating; agent-instruction layering; audit etiquette.
 
@@ -123,6 +123,12 @@ One decision is recorded by id below. Kris's two earlier decisions behind the ru
 
 ## 4. Last review
 
+Scheduled REFRESH, **2026-11-23**, from the overnight sources refresh — every documentation source re-read and the case-study repo re-read; the measured claims were not re-measured, since the installed chezmoi is still v2.74.1, the version they were measured on.
+
+- **chezmoi.io sources**: confirmed. The prefix order for each kind of entry, `private_` and no `executable_` on a directory read as the standard now says; `.chezmoiignore` still says every exclude beats every include and still does not document negation through an ignored parent; `run_onchange_` still hashes the rendered content; `status` still recurses by default; `doctor` and `source-path` are unchanged. chezmoi has reached v2.74.2: 2.74.0 removed the deprecated `remove` command, which the standard does not use, and added a skip-conflicts choice to `apply`; 2.73.2 stopped reading `.chezmoidata` inside `external_` directories. None changes a rule here.
+- **Format-tooling sources**: confirmed. TOMLKit 0.15.2 keeps its one ordering limitation, `jsonc-parser`'s `modify` is unchanged with 3.3.1 still the latest release, the ruamel.yaml anchors resolve and the round-trip and indentation limits read as before, and `uv run --with` and `--no-project` are unchanged.
+- **House-convention source**: the loader, `bin/`, templating and layering patterns stand, and its TOML binding is still a `modify_` binding using tomlkit through `uv`. All 46 scripts HEADER-1 covers carry the five-part header. The five `modify_` fragment bindings, bash scripts that chezmoi runs, fall outside HEADER-1's scope and carry no Created line; a proposal asks whether the rule should cover them.
+
 On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied HOOK-HOME a, recorded under [Decisions](#3-decisions): [the Git boundary, 4.10](standard-chezmoi-dotfiles.md#410-git-boundary) now points to `ki-env-binding-chezmoi` for chezmoi's hook registration. No criterion changed and no outside source refreshed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
@@ -144,6 +150,6 @@ Focused format-editor promotion, **2026-07-16** — the surgical config-editing 
 - **Format-tooling sources**: TOMLKit, ruamel.yaml, Microsoft `jsonc-parser`, and uv documentation fetched and reviewed 2026-07-16. The standard records documented preservation behavior and explicit limits rather than promising universal byte identity.
 - **House-convention source**: the same single case study, explicitly not treated as a corpus. Its TOML fixture demonstrated a byte-stable no-op round trip and missing-key creation for that file and tool version; those observations became verification requirements, not universal tool guarantees. A version-specific `dasel` limitation and the time-sensitive claim that JSON5 lacks mature tooling were deliberately not promoted. Re-confirm every `[J]` criterion once a second and third chezmoi repo have been audited against this skill; narrow or retire anything that proves case-specific.
 
-**Watching:** a second and third chezmoi repository audited against this skill, to confirm or narrow every `[J]` criterion, and the measured claims on another platform or a materially newer chezmoi.
+**Watching:** whether the script-header rule should cover `modify_` scripts, as proposed on 2026-11-23; a second and third chezmoi repository audited against this skill, to confirm or narrow every `[J]` criterion, and the measured claims on another platform or a materially newer chezmoi.
 
 [Back to contents](#contents)
