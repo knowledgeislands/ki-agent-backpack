@@ -29,8 +29,8 @@ Two sources set the principles the portable policy follows.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [Effective context engineering for AI agents][context] | finite-context and attribution principles | 2026-11-15 |
-| [Agent Skills specification][skills] | skill descriptions as a standing selection surface | 2026-11-15 |
+| [Effective context engineering for AI agents][context] | finite-context and attribution principles | 2026-11-23 |
+| [Agent Skills specification][skills] | skill descriptions as a standing selection surface | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -52,6 +52,8 @@ One decision is recorded by id below. The coordination recommendation in [Model 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+**REFRESH last run 2026-11-23.** Both sources were re-read and confirmed unchanged. The context-engineering article still carries its 29 September 2025 date and no revision: context remains a finite attention budget, and the aim the smallest set of high-signal tokens. The Agent Skills specification still loads about 100 tokens of name and description per skill at startup, caps a description at 1,024 characters, and recommends a body under 5,000 tokens and 500 lines. Nothing touches the budget defaults, the model-purpose set or POL-2.
 
 On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied MODEL-TIERS a, recorded under [Decisions](#3-decisions): the dated model-tier evidence moved to `ki-model-radar`'s model-tier standard, and this skill points there. No criterion changed.
 
