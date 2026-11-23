@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:10:23Z
+ki-revised: 2026-11-23T02:32:54Z
 ki-refresh: canonical · quarterly
 ---
 
@@ -34,11 +34,11 @@ Every source the standard follows is in-house.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| Knowledge Islands coordinating-thread practice | The responsive coordinator and its three rules, the counted turn budget and self-check, coordinating-thread practices, the closing banner with its one live frame, its REST and BUSY list beneath, the DRAINED frame with its list and the drain resume line, the DONE frame and the resume line, draining a thread and the drain report, the Summary, recap since the mark and full summary, the three thread types, the state-of-play thread and coordination threads with their openers and bootstrap, directions from the state-of-play thread, re-anchoring after compaction, the surfaces rule and red-x recovery, the decision classes, the one list, the design-note home and Project close, parking tangents, linking records, committing the thread folder, keeping primary checkouts current and the refresh rule | 2026-10-15 |
-| `ki-delegation` | The background-run contract the thread launches under, the decisions log and its tracked thread folder, and the owner report with its Needs tags, adopted here by reference | 2026-10-15 |
-| `ki-work-package`, then named `ki-work-folder` | The checkpoint record a thread resumes from and keeps current: naming, label, record form and lifecycle | 2026-10-14 |
-| `ki-env-tokenomics` | The coordination model purpose a coordinating thread runs on | 2026-10-14 |
-| `ki-work` | The Project registry the state-of-play thread manages and labels resolve against | 2026-10-14 |
+| Knowledge Islands coordinating-thread practice | The responsive coordinator and its three rules, the counted turn budget and self-check, coordinating-thread practices, the closing banner with its one live frame, its REST and BUSY list beneath, the DRAINED frame with its list and the drain resume line, the DONE frame and the resume line, draining a thread and the drain report, the Summary, recap since the mark and full summary, the three thread types, the state-of-play thread and coordination threads with their openers and bootstrap, directions from the state-of-play thread, re-anchoring after compaction, the surfaces rule and red-x recovery, the decision classes, the one list, the design-note home and Project close, parking tangents, linking records, committing the thread folder, keeping primary checkouts current and the refresh rule | 2026-11-23 |
+| `ki-delegation` | The background-run contract the thread launches under and the run side of the decisions log; it adopts this standard's owner report and Needs tags by reference | 2026-11-23 |
+| `ki-work-package` | The work package a session resumes from and keeps current: its `_index.md`, change documents, naming and lifecycle | 2026-11-23 |
+| `ki-env-tokenomics` | The coordination model purpose a coordinating thread runs on | 2026-11-23 |
+| `ki-work` | The Project registry the state-of-play thread manages and labels resolve against | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -48,7 +48,7 @@ Supporting evidence, not normative rules: an advisory source informs a rule here
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| [Agent Host Protocol](https://microsoft.github.io/agent-host-protocol/specification/overview.html), Microsoft, v1.0.0 of 2 October 2026 | What may later replace the Agora Beacon's polling for an agent host that supports it; adoption per agent host is tracked in `ki-radar`, formerly `ki-agentic-radar` (AHP-RADAR, RADAR-MERGE a) | 2026-11-10 |
+| [Agent Host Protocol](https://microsoft.github.io/agent-host-protocol/specification/overview.html), Microsoft, v1.1.0 of 12 November 2026 | What may later replace the Agora Beacon's polling for an agent host that supports it; adoption per agent host is tracked in `ki-radar`, formerly `ki-agentic-radar` (AHP-RADAR, RADAR-MERGE a) | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -355,6 +355,8 @@ Each owner decision the standard rests on, by its tag: the date, the owner's wor
 
 ## 4. Last review
 
+On 23 November 2026 the overnight sources refresh reviewed every listed source. The in-house sources still carry what the standard takes from them: the Work Process note's links into this skill all resolve and its changes since 15 October follow this standard; `ki-delegation` now adopts this standard's owner report and Needs tags rather than owning them, and `ki-work-package`'s checkpoint is the package's `_index.md`, so both rows are reworded. The Agent Host Protocol moved to v1.1.0 on 12 November 2026, adding experimental windowed, flow-controlled subscriptions and per-chat providers; its subscribe-and-push channels are unchanged and it still says nothing of replacing polling, so AHP-RADAR stands. No rule changed. GLYPH-REVIEW's listing of provisional glyphs was not run in this source-only sweep.
+
 On 23 November 2026 Loreward's run applied OPTION-WHY, Kris's steer of 22 November 2026, recorded under Decisions, in the Cairn summit's change 10, step 6.3: every option in a query now carries its justification beside what it changes, not only the recommended one, which also carries its confidence. [Queries](standard-queries.md#43-interactive-pass) changes the card descriptions, **The options** in Where things stand, the plain fallback and the worked example; [the owner report](standard-reporting.md#42-owner-report) gives each alternative its justification in brackets, as option a) has its reason; the core standard's Options rule and card paragraph, and with them the generated `ki-coordinator` output style, follow; COORD-6 checks it. No outside source was refreshed.
 
 On 22 November 2026 Loreward's run brought [territory](standard-territory.md)'s **Records** paragraph into line with CLASSIFY-ROUTE a, which `ki-work-roadmap` landed for KI-HARNESS-GOV-237: a Project's record is worked by its package, and a record with no Project goes to its repository's owning package, then the territory's leader, with no steward's next-step link or State of play's routing queue. No rule of this skill changed.
@@ -643,6 +645,8 @@ A 7 November 2026 owner-policy review under run `orca-land` of `ki.reg.guilds` a
 
 **Watching:**
 
+- GLYPH-REVIEW: the provisional glyphs and bracketed state words used since the last refresh are still to be listed and put to Kris at the next full REFRESH.
+- AHP's experimental windowed subscriptions (v1.1.0) and whether any agent host in `ki-radar` ships AHP support that could replace the Beacon's polling.
 - How `ki agent` exports a queue and re-imports it on another host: whether the checkpoint carries the briefs themselves or only references to tracked brief files, and how a re-queue avoids a duplicate run if the old queue was not cleared.
 - Agents that must run on a specific host, for example work against a machine-local resource or a host-bound service: whether they stay queued on the old host, are held in the checkpoint with a host constraint, or block the move.
 
