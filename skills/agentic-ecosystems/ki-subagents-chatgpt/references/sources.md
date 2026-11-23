@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:25:51Z
+ki-revised: 2026-11-23T02:58:42Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -35,7 +35,7 @@ The Codex documentation and the local host boundary.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| CODEX — [OpenAI Codex Subagents documentation](https://learn.chatgpt.com/docs/agent-configuration/subagents) | TOML locations, required fields, supported source keys, and runtime boundaries | 2026-11-15 |
+| CODEX — [OpenAI Codex Subagents documentation](https://learn.chatgpt.com/docs/agent-configuration/subagents) | TOML locations, required fields, supported source keys, and runtime boundaries | 2026-11-23 |
 
 The refreshed official OpenAI documentation confirms source paths, native fields, and default runtime availability. Repository evidence still cannot prove effective installation, activation, or execution.
 
@@ -45,7 +45,7 @@ The refreshed official OpenAI documentation confirms source paths, native fields
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| HOST — Current repository and KI host capability inspection | KI harness has no Codex subagent publication path or generic subagent publisher | 2026-11-15 |
+| HOST — Current repository and KI host capability inspection | KI harness has no Codex subagent publication path or generic subagent publisher | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -64,6 +64,8 @@ None.
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 23 November 2026 the monthly refresh re-read the Codex Subagents page. Custom agents still sit in `.codex/agents/` or `~/.codex/agents/`, still require `name`, `description` and `developer_instructions`, still take `name` over the filename, and subagents are still on by default (`agents.enabled` defaults to true). The page adds that a custom agent named like a built-in, such as `explorer`, takes precedence over it, and its global `[agents]` table now names `max_concurrent_threads_per_session`, keeping `max_threads` as a legacy alias, and `interrupt_message`; neither is a source field. `tools-ki` at `32f9ba0c` still gives the Codex agent the skills capability only, so the host boundary holds; it now has a subagents path for Claude Code alone, which is not a generic publisher. Both Watching items still hold, and the change to the supported keys is proposed rather than written.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Agentic systems guild: REFRESH routes to the backpack, and what the skill called the Harness host is the `ki` host. No criterion changed and no outside source refreshed.
 
