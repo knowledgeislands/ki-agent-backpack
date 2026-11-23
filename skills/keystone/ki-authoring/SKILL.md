@@ -31,6 +31,7 @@ This skill leads the Authoring guild: documents and writing things down. It hold
 - **`ki-specs`** for accepted behaviour: specifications with their conformance state, verification plans and evidence.
 - **`ki-guides`** for the practical how: guides to using, operating, contributing to or maintaining a system.
 - **`ki-diagrams`** for living diagrams that explain a system, kept fresh beside their sources.
+- **`ki-exchange-dynamics`** for exchange dynamics analyses: one evidence-linked analysis of a conversation, meeting or negotiation, and its renderings.
 
 ## Document formats come first
 

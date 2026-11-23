@@ -146,10 +146,13 @@ Advisory sources inform local judgment conventions but are not specifications, m
 | TRADES-DROP | Option a: `ki-trades` and `ki-trade` are dropped now, ahead of the 31 December review TRADES-FATE set, so this skill no longer names `ki-trades`. Kris, 22 November 2026, about 19:59 GMT, at the Work guild's sitting in the Cairn summit's change 10, card: "Drop now". | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
 | AUTHORING-FIXES | Option a, item 3: the bare-invocation mode choice is offered through the host's question tool, so the skill names no tool only one host has. Kris, 22 November 2026, about 20:14 GMT, the Authoring guild's sitting in Kitteth's Home Chat, card: "Keep all, fix", recorded in the Cairn summit's change 10, 4.3. | 2026-11-22 | `SKILL.md`, Operating modes | In force |
 | KB-FOLD b | "Fold three, split streams", Kris, 22 November 2026, about 20:49 GMT, the Repository guild's sitting, recorded in the Cairn summit's [change 10](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/10-skills-review.change.md#43-decided): `ki-repo-kb-principal` folds into `ki-repo-kb`, whose principal standard now owns the territorial Charter and Known Lands contract the Markdown standard defers to. | 2026-11-22 | [Markdown](standard-markdown.md) | In force |
+| EXCHANGE-HOME a | `ki-exchange-dynamics` moves from Acquire to Authoring, as another document format with its own standard, beside `ki-diagrams`, `ki-guides` and `ki-specs`, so this guild's member list names it; no rule changes. Kris, 22 November 2026, about 22:25 GMT, the Acquire guild's sitting in the Cairn summit's change 10, card: "I presume you mean move it to the authoring because it becomes another document format that we create standards for." | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 23 November 2026, under EXCHANGE-HOME a, recorded under [Decisions](#3-decisions), the Authoring guild's member list in `SKILL.md` names `ki-exchange-dynamics`, which moved from the Acquire guild. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 AUTHORING-FIXES a, item 3, was applied by Loreward: the skill's words name the host's question tool where they named Claude's `AskUserQuestion`. No criterion changed and no outside source was refreshed.
 

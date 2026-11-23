@@ -52,10 +52,13 @@ Kris's note and word that own the method, its design note, and the work and rend
 | --- | --- | --- | --- | --- |
 | SKILL-HOMES a) | "a new harness skill `ki-exchange-dynamics` in the `acquire` group, drawing through `archify` and `dataviz`"; Kris, in `ki.reg.guilds`. | 2026-11-07 | [the exchange dynamics standard](standard-exchange-dynamics.md#1-introduction), [the rendering standard](standard-exchange-dynamics-rendering.md#44-renderers) | In force |
 | MIGRATION-OVERLAY | The standards describe only the final state, and temporary adjustments sit in the migration overlay; Kris, in `ki.reg.guilds`. | 2026-11-07 | [the exchange dynamics standard](standard-exchange-dynamics.md), [the rendering standard](standard-exchange-dynamics-rendering.md) | In force |
+| EXCHANGE-HOME a | The skill moves from Acquire to Authoring, as another document format with its own standard, beside `ki-diagrams`, `ki-guides` and `ki-specs`; its folder, `ki-guild` and the two guilds' member lists change, and no rule changes; EXCHANGE-LEGAL stays open in ki.summit's change 23. Kris, 22 November 2026, about 22:25 GMT, the Acquire guild's sitting in the Cairn summit's change 10, card: "I presume you mean move it to the authoring because it becomes another document format that we create standards for." | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 23 November 2026, under EXCHANGE-HOME a, recorded under [Decisions](#3-decisions), in the Cairn summit's change 10, step 6.3, the skill moved from `skills/acquire/` to `skills/authoring/` and its `ki-guild` from `acquire` to `authoring`; the schema's `$id` follows the new path. No rule or criterion changed and no outside source was refreshed.
 
 On 18 November 2026 the Acquire guild's review, in the Cairn summit's change 10, brought the skill's files into `ki-authoring`'s formats: the two standards were renamed `standard-exchange-dynamics.md` and `standard-exchange-dynamics-rendering.md` and given the standard format's sections, their rules moved unchanged under numbered subsections, the exchange dynamics standard's Scope becoming its Scope's lead-in and its Boundary its Out of scope, and this file took the sources format, its named decisions gathered into [Decisions](#3-decisions). No rule changed and no outside source was refreshed.
 

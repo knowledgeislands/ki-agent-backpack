@@ -71,10 +71,13 @@ None.
 | BOOTSTRAP-HOME | Option b: `ki-keystone bootstrap` stays in `ki-keystone`, where a new session starts, and only its repeat of `ki-repo`'s registry and activation rules is trimmed, pointing to `ki-repo` instead. Kris, 22 November 2026, about 19:43 GMT, at the Keystone guild's sitting, card: "Keep in ki-keystone"; on its low use he added: "We haven't done a bootstrap for a while, because we haven't had need to do a bootstrap for a while." | 2026-11-22 | [bootstrap 4.2](standard-bootstrap.md#42-declarative-repository-selection), [the bootstrap reference](mode-bootstrap.md#repository-operations) | In force |
 | TRADES-DROP | Option a: `ki-trades` and `ki-trade` are dropped now, ahead of the 31 December review TRADES-FATE set, so the guild map's Work row no longer lists them. Kris, 22 November 2026, about 19:59 GMT, at the Work guild's sitting in the Cairn summit's change 10, card: "Drop now". | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
 | KB-FOLD b | "Fold three, split streams", Kris, 22 November 2026, about 20:49 GMT, the Repository guild's sitting, recorded in the Cairn summit's [change 10](https://github.com/krisb/ki-cairn-store/blob/main/work/cairn/cairn.summit/10-skills-review.change.md#43-decided): four Repository guild members, `ki-repo-kb-activities`, `ki-repo-kb-live-artifacts`, `ki-repo-kb-principal` and `ki-repo-kb-streams`, leave the backpack, so the generated guild map drops them. | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
+| EXCHANGE-HOME a | `ki-exchange-dynamics` moves from Acquire to Authoring, so the generated guild map lists it under Authoring. Kris, 22 November 2026, about 22:25 GMT, the Acquire guild's sitting in the Cairn summit's change 10, card: "I presume you mean move it to the authoring because it becomes another document format that we create standards for." | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 23 November 2026, under EXCHANGE-HOME a, the generated guild map moved `ki-exchange-dynamics` from the Acquire row to the Authoring row; no rule or criterion changed.
 
 On 22 November 2026 WEBSITE-APP-NAME a, from the Cairn summit's change 10, step 6.3, renamed `ki-repo-website-app` to `ki-repo-website-interactive`, and this skill's references follow; no rule or criterion changed.
 
