@@ -12,13 +12,14 @@ The governing skill for what makes a good agent definition is **`ki-subagents`**
 
 KI governance-domain agents. Each is grounded in the ki-principal KB and the harness skill set; each defers to its siblings for adjacent concerns.
 
-| Agent                   | Lane                                                     |
-| ----------------------- | -------------------------------------------------------- |
-| `ki-skills-lead`        | SKILL.md authoring, auditing, and conformance            |
-| `ki-engineering-lead`   | Toolchain compliance and repo structure                  |
-| `ki-repo-kb-curator`         | KB zone health, note structure, and link integrity       |
-| `ki-decision-author`    | DR authoring (SDR / GDR / ADR) and the Decisions index   |
-| `ki-repo-kb-streams-curator` | Enactment process, proposals pipeline, and streams state |
+| Agent | Lane |
+| --- | --- |
+| `ki-skills-lead` | SKILL.md authoring, auditing, and conformance |
+| `ki-engineering-lead` | Toolchain compliance and repo structure |
+| `ki-repo-kb-curator` | KB zone health, note structure, and link integrity |
+| `ki-decision-author` | DR authoring (SDR / GDR / ADR) and the Decisions index |
+
+Choosing, planning and recording work, which the retired `ki-repo-kb-streams-curator` once held as streams and proposals, belongs to the `ki-work` and `ki-work-roadmap` skills.
 
 ## Adding an agent
 

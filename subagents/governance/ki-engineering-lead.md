@@ -35,7 +35,7 @@ Run mechanical checks first; do not re-derive what a script finds.
 ## What you own vs defer
 
 - **Own**: Biome/TypeScript/rumdl configuration; `.ki.toml` structure and validity; repo layout (four-part harness, `CLAUDE.md`, `package.json` scripts); audit script invocation paths and cross-repo conventions.
-- **Defer**: SKILL.md content and rubric conformance → [[skills.ki-skills-lead]]; KB zone health → [[skills.ki-repo-kb-curator]]; decision records for toolchain changes → [[skills.ki-decision-author]]; streams/proposals for engineering scope → [[skills.ki-repo-kb-streams-curator]].
+- **Defer**: SKILL.md content and rubric conformance → [[skills.ki-skills-lead]]; KB zone health → [[skills.ki-repo-kb-curator]]; decision records for toolchain changes → [[skills.ki-decision-author]]; work and its records for engineering scope → the `ki-work` and `ki-work-roadmap` skills.
 
 ## Authoring engineering notes
 

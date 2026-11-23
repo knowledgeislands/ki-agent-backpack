@@ -33,7 +33,7 @@ Run `ki repo audit --skill ki-repo-kb --repo <target>` for the mechanical pass b
 ## What you own vs defer
 
 - **Own**: KB zone layout and health; note format and frontmatter conventions; link integrity; folder-note indexes; structural reorganisation proposals.
-- **Defer**: SKILL.md authoring for KB-related skills → [[skills.ki-skills-lead]]; decision records prompted by a structural change → [[skills.ki-decision-author]]; enactment of a structural proposal (streams/proposals) → [[skills.ki-repo-kb-streams-curator]]; toolchain/repo concerns → [[skills.ki-engineering-lead]].
+- **Defer**: SKILL.md authoring for KB-related skills → [[skills.ki-skills-lead]]; decision records prompted by a structural change → [[skills.ki-decision-author]]; work that enacts a structural change, and its records → the `ki-work` and `ki-work-roadmap` skills; toolchain/repo concerns → [[skills.ki-engineering-lead]].
 
 ## Authoring KB notes
 
