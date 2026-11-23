@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T21:58:53Z
+ki-revised: 2026-11-23T01:42:27Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -40,16 +40,16 @@ The pins the standard hard-codes. The standard pins versions in `packageManager`
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| BUN — [Bun releases][bun] | `packageManager` and `mise` runtime line; Bun-install / Node-run split. Pinned at: harness declared and resolved `1.4.4`, adopted 2026-11-05; CONFORM scaffold `1.4.4` from 2026-11-03; graded by `DEPS-1` | 2026-11-22 |
-| NODE — [Node release schedule][node] | `engines.node >= 22` for `dist/`. Pinned at: declared floor `>=22` | 2026-11-22 |
-| BIOME — [Biome releases][biome] | `biome.json` schema + formatter/linter config. Pinned at: harness declared and resolved `2.6.6`; CONFORM scaffold and exemplar `$schema` `2.6.6` | 2026-11-22 |
-| TS — [TypeScript releases][ts] | `tsconfig` / `tsconfig.build` compiler options. Pinned at: declared range and resolved `7.0.2` | 2026-11-22 |
-| VITEST — [Vitest guide][vitest] | config-gated test profile + 100% coverage (`vitest run`, v8). Pinned at: capability-selected; upstream `5.1.1` | 2026-11-22 |
-| SYNCPACK — [syncpack releases][syncpack] | package ordering inside engineering audit/conform. Pinned at: declared range and resolved `15.3.3` | 2026-11-22 |
-| COMMITLINT — [Commitlint releases][commitlint] | deterministic Conventional Commit validation in the `.githooks/commit-msg` binding. Pinned at: declared range and resolved `21.2.4` | 2026-11-22 |
-| MDLINT — [rumdl releases][rumdl] | Markdown audit/conform inside `ki-authoring` ❡. Pinned at: declared `^0.3.2`, resolved `0.3.2` | 2026-11-22 |
-| KNIP — [knip releases][knip] | dependency + dead-code checks inside engineering audit/conform. Pinned at: declared range and resolved `6.44.2` | 2026-11-22 |
-| DEPCRUISER — [dependency-cruiser releases][depcruise] | module-boundary checker in the isolated `tooling/depcruise` root (`DESIGN-2`). Pinned at: collection declares `^18.5.0` to `^18.8.0`, each with TypeScript `^6.0.3` | 2026-11-22 |
+| BUN — [Bun releases][bun] | `packageManager` and `mise` runtime line; Bun-install / Node-run split. Pinned at: harness declared and resolved `1.4.4`, adopted 2026-11-05; CONFORM scaffold `1.4.4` from 2026-11-03; graded by `DEPS-1` | 2026-11-23 |
+| NODE — [Node release schedule][node] | `engines.node >= 22` for `dist/`. Pinned at: declared floor `>=22` | 2026-11-23 |
+| BIOME — [Biome releases][biome] | `biome.json` schema + formatter/linter config. Pinned at: harness declared and resolved `2.6.6`; CONFORM scaffold and exemplar `$schema` `2.6.6` | 2026-11-23 |
+| TS — [TypeScript releases][ts] | `tsconfig` / `tsconfig.build` compiler options. Pinned at: declared range and resolved `7.0.2` | 2026-11-23 |
+| VITEST — [Vitest guide][vitest] | config-gated test profile + 100% coverage (`vitest run`, v8). Pinned at: capability-selected; upstream `5.1.1` | 2026-11-23 |
+| SYNCPACK — [syncpack releases][syncpack] | package ordering inside engineering audit/conform. Pinned at: declared range and resolved `15.3.3` | 2026-11-23 |
+| COMMITLINT — [Commitlint releases][commitlint] | deterministic Conventional Commit validation in the `.githooks/commit-msg` binding. Pinned at: declared range and resolved `21.2.4` | 2026-11-23 |
+| MDLINT — [rumdl releases][rumdl] | Markdown audit/conform inside `ki-authoring` ❡. Pinned at: declared `^0.3.2`, resolved `0.3.2` | 2026-11-23 |
+| KNIP — [knip releases][knip] | dependency + dead-code checks inside engineering audit/conform. Pinned at: declared range and resolved `6.44.2` | 2026-11-23 |
+| DEPCRUISER — [dependency-cruiser releases][depcruise] | module-boundary checker in the isolated `tooling/depcruise` root (`DESIGN-2`). Pinned at: collection declares `^18.5.0` to `^18.8.0`, each with TypeScript `^6.0.3` | 2026-11-23 |
 
 ❡ The Markdown mechanical pass.
 
@@ -61,7 +61,7 @@ A pin is current only if every tool that consumes it supports it. A consumer tha
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| dependency-cruiser `18.9.0`, consuming the TypeScript compiler API | Consumer supports: `typescript >=2 <7 \|\| >=7.1 <8`, the 7.1 range added in [`18.8.0`][depcruise-ts7]. Pinned: `7.0.2`. Workaround: isolated `tooling/depcruise` root on TypeScript 6, installed by the root `prepare` script. Retire when: the repository moves to TypeScript 7.1, whose stable release is planned for 2026-11-24 ([7.1 plan][ts71]) | 2026-11-22 |
+| dependency-cruiser `18.9.0`, consuming the TypeScript compiler API | Consumer supports: `typescript >=2 <7 \|\| >=7.1 <8`, the 7.1 range added in [`18.8.0`][depcruise-ts7]. Pinned: `7.0.2`. Workaround: isolated `tooling/depcruise` root on TypeScript 6, installed by the root `prepare` script. Retire when: the repository moves to TypeScript 7.1, whose stable release is planned for 2026-11-24 ([7.1 plan][ts71]) | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -71,8 +71,8 @@ These upstream locations determine whether the shared ignore contract needs an a
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| Turborepo — [Caching][turbo-cache] | Generated location: `.turbo/cache`. Managed coverage: `.turbo/` from `ki-engineering` | 2026-11-22 |
-| Vite — [Shared options][vite-cache] | Generated location: `node_modules/.vite`. Managed coverage: `node_modules/` from `ki-engineering` | 2026-11-22 |
+| Turborepo — [Caching][turbo-cache] | Generated location: `.turbo/cache`. Managed coverage: `.turbo/` from `ki-engineering` | 2026-11-23 |
+| Vite — [Shared options][vite-cache] | Generated location: `node_modules/.vite`. Managed coverage: `node_modules/` from `ki-engineering` | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -82,9 +82,9 @@ The standard is a **deliberately selected house shape**, not a vote count. Curre
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| HARNESS — `package.json` + `bun.lock` † | declared ranges and exact resolved versions for the canonical harness | 2026-11-22 |
-| COLLECTION — current configured collection ※ | house-shape comparison during a deliberate refresh, not a normative repository count | 2026-11-22 |
-| FRAMEWORK — harness rubric sources ‡ | mode, checker, judgment-status, and generated-publication contracts | 2026-10-06 |
+| HARNESS — `package.json` + `bun.lock` † | declared ranges and exact resolved versions for the canonical harness | 2026-11-23 |
+| COLLECTION — current configured collection ※ | house-shape comparison during a deliberate refresh, not a normative repository count | 2026-11-23 |
+| FRAMEWORK — harness rubric sources ‡ | mode, checker, judgment-status, and generated-publication contracts | 2026-11-23 |
 
 † `package.json` expresses the compatible range where one is selected; `bun.lock` is the resolved evidence for this harness. They are distinct.
 
@@ -126,6 +126,15 @@ The owner decisions the standard names by id. The standard's other decisions are
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 23 November 2026 the overnight REFRESH sweep ran on every outside source and every in-house row, FRAMEWORK included, which had kept its 6 October date; all were reachable. No rule, default or protection needs to change, so nothing was proposed.
+
+- **Upstream:** since the day before, syncpack `15.3.4` of 22 November, bug fixes and performance only, and knip `6.48.0` of 22 November, plugin and entry-discovery fixes; neither touches a governed key. Bun `1.4.5`, Biome `2.6.8`, TypeScript `7.0.2`, Vitest `5.1.1`, Commitlint `21.2.4`, rumdl `0.3.5` and dependency-cruiser `18.9.0` are unchanged. TypeScript 7.1 is still beta only, its plan issue open.
+- **Node:** 26 is the latest LTS, 24 and 22 remain LTS and 27 is in alpha; the `>=22` floor stands.
+- **Harness:** `package.json` and `bun.lock` still declare and resolve Bun `1.4.4`, Biome `2.6.6`, TypeScript `7.0.2`, syncpack `15.3.3`, Commitlint `21.2.4`, knip `6.44.2`, rumdl `0.3.2` and lint-staged `17.6.0`.
+- **Framework:** the `ki-skills` rubric-authoring standard has changed since 6 October only in format and naming; the item catalogue's tests pass and the generated rubric is in sync with the published one.
+- **Collection:** read from the local checkouts. Bun runs from `1.4.2`, in the Humans not Robots repositories, to `1.4.4`; Biome from `2.5.15` to `2.6.8`; TypeScript is `^7.0.2` throughout; dependency-cruiser from `^18.5.0` to `^18.8.0`.
+- **Generated-artifact locations:** Turborepo still writes `.turbo/cache`, and Vite `node_modules/.vite`.
 
 On 22 November 2026 Loreward, from the Cairn summit's change 10, step 6.3, took REPO-CORE, recorded under [Decisions](#3-decisions): `SKILL.md` became a router to [the engineering standard](standard-engineering.md), whose sections already held every rule it restated except the `.editorconfig` ownership now in 2.2. No criterion changed and no outside source was refreshed.
 
@@ -171,7 +180,7 @@ REFRESH last run **2026-10-06**. Cadence: monthly, alongside the other governanc
 **Watching:**
 
 - The dependency-cruiser workaround in [2.1.2](#212-tool-compatibility-constraints), until the repositories move to TypeScript 7.1.
-- The harness's adoption windows for rumdl, knip, Biome, lint-staged and Bun, the first closing on 24 November 2026.
+- The harness's adoption windows for rumdl, knip, Biome, lint-staged, Bun and syncpack, the first closing on 24 November 2026 and syncpack's `15.3.4` and knip's `6.48.0` on 6 December.
 - The TS row's link: repoint it to `https://github.com/microsoft/TypeScript/releases` once TypeScript 7.1 is published there; on 22 November 2026 only the 7.1 beta was.
 
 [Back to contents](#contents)
