@@ -59,7 +59,7 @@ The rules, part by part.
 
 ### 4.1 Delivery
 
-A delivery into a territory principal's `+/_ACQUIRED/` is accepted on delivery. Each delivery folder contains one whole capture package or a roll-up of whole packages, preserving original names and bytes without an extra manifest, dispatch ID or ledger. The acquire port alone delivers packets; the receiver owns what happens to their local copies afterwards. `ki-repo-kb-principal` owns the exact scaffold README while that overlay is declared.
+A delivery into a territory principal's `+/_ACQUIRED/` is accepted on delivery. Each delivery folder contains one whole capture package or a roll-up of whole packages, preserving original names and bytes without an extra manifest, dispatch ID or ledger. The acquire port alone delivers packets; the receiver owns what happens to their local copies afterwards. [The principal standard](standard-principal.md#42-acquired-packet-scaffold) owns the exact scaffold README while the base is its territory's Capital.
 
 [Back to contents](#contents)
 
