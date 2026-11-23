@@ -29,9 +29,9 @@ Knowledge Islands' own delegation practice and the neighbouring skills govern; t
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| Knowledge Islands delegation practice | Durable high-risk handoff, authority, escalation, verification, and return boundaries; background runs on the agent host's own subagents within the package's repositories, run packet and report homing, authority tiers and grants, decisions log and its tracked home in the package, coordination, worktree placement, concurrency, monitoring, and the owner report with its Needs tags; coordinating work is `ki-coordination`'s | 2026-11-12 |
-| `ki-env-tokenomics` | Model-purpose and context-cost policy belong outside the packet, including the coordinating-thread model | 2026-10-13 |
-| `ki-work-roadmap` | Approved work-record lifecycle, plan ownership, and review boundary | 2026-08-12 |
+| Knowledge Islands delegation practice | Durable high-risk handoff, authority, escalation, verification, and return boundaries; background runs on the agent host's own subagents within the package's repositories, run packet and report homing, authority tiers and grants, decisions log and its tracked home in the package, coordination, worktree placement, concurrency, monitoring, and the owner report with its Needs tags; coordinating work is `ki-coordination`'s | 2026-11-23 |
+| `ki-env-tokenomics` | Model-purpose and context-cost policy belong outside the packet, including the coordinating-thread model | 2026-11-23 |
+| `ki-work-roadmap` | Approved work-record lifecycle, plan ownership, and review boundary | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -39,8 +39,8 @@ Knowledge Islands' own delegation practice and the neighbouring skills govern; t
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| [OpenAI: Codex subagents][openai-subagents] | Ordinary subagent task selection, permissions, and execution guidance | 2026-08-12 |
-| [Anthropic: Claude Code sub-agents][anthropic-subagents] | Ordinary subagent task fit, restricted capabilities, and isolation guidance | 2026-08-12 |
+| [OpenAI: Codex subagents][openai-subagents] | Ordinary subagent task selection, permissions, and execution guidance | 2026-11-23 |
+| [Anthropic: Claude Code sub-agents][anthropic-subagents] | Ordinary subagent task fit, restricted capabilities, and isolation guidance | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -82,6 +82,8 @@ Kris's decisions behind the rules, each taken in conversation or relayed as its 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 23 November 2026 the overnight sources refresh re-fetched both vendor guides and re-read the in-house sources; no rule needs to change. Claude Code's sub-agents page still frames a subagent as its own context window returning a summary, for side tasks that would flood the main context, with `tools` and `disallowedTools`, permission-mode inheritance from the parent, and `isolation: worktree`, which branches from the default branch rather than the parent's `HEAD`. Subagents now start in the background by default, nest up to three layers, run up to 20 at once, and surface their permission prompts in the main session, so an unattended run still has nobody to answer them, as [Permission prompts](standard-background-runs.md#483-permission-prompts) holds. OpenAI's Codex subagents page, still on learn.chatgpt.com, keeps read-heavy work as the good fit and warns against parallel write-heavy work; subagents inherit the parent's sandbox and approvals, and a non-interactive action needing new approval fails back to the parent; the concurrency key is now `agents.max_concurrent_threads_per_session`, with `max_threads` its legacy alias. The delegation practice in both standards is current to the landings of 22 November 2026, `ki-env-tokenomics` still owns model-purpose and context-cost policy, and `ki-work-roadmap` the work-record lifecycle.
 
 On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied CRED-HOME a, recorded under [Decisions](#3-decisions): the 1Password cached-reader and Cloudflare `cf-token` paragraph in [the tiers](standard-background-runs.md#461-the-tiers) became a one-line pointer to `ki-env-binding`'s credential access standard; [provider tokens](standard-background-runs.md#464-provider-tokens) stays the authority rule, and the footers keep naming the reader. No criterion changed and no outside source refreshed.
 
@@ -236,7 +238,7 @@ A 7 November 2026 owner-policy review under run `orca-land` of `ki.reg.guilds` a
 **Watching:**
 
 - Re-review quarterly or when either guide changes its delegation, isolation, permission, or background-execution semantics. Watch whether a runtime adds durable, portable authority and escalation records that make this packet redundant; until then, packets describe the needed governance boundary and executing processes choose a mechanism that can honour it.
-- The vendor guides, last reviewed 2026-08-12, are past their quarterly cadence.
+- Claude Code's `isolation: worktree` branches from the default branch, not the parent's `HEAD`, so a worktree subagent does not see unpushed work on a coordinator's branch; [Coordination rules](standard-background-runs.md#481-coordination-rules) places worktree runs itself and does not rely on it.
 
 [Back to contents](#contents)
 
