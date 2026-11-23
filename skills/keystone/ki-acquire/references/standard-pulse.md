@@ -43,7 +43,7 @@ The rules every pulse operation shares.
 
 - Each operation's steps, boundary and off-ramps: [the pulse mode](mode-pulse.md).
 - Durable landscape posture: `ki-radar`.
-- What a destination does with a hand-off: its owner, such as `ki-repo-kb`, `ki-trades`, a governance skill's REFRESH mode or `ki-work next`.
+- What a destination does with a hand-off: its owner, such as Harbour's capture, `ki-radar`'s REFRESH, another governance skill's REFRESH mode or `ki-work next`.
 
 [Back to contents](#contents)
 
@@ -117,9 +117,9 @@ Do not combine dispositions. When a signal appears to need both learning and act
 
 A disposition does not grant Pulse ownership of its destination:
 
-- Route **Read / learn** to `ki-repo-kb` SAVE only when the selected repository is the intended Knowledge Base. If another declared repository owns it, use `ki-trades`.
+- Route **Read / learn** to Harbour's capture (cairn.harbour), which preserves the reading candidate and later curates it under CURATION-HOME. It does not go to `ki-repo-kb` SAVE or through `ki-trades` (PULSE-BOUNDARY, 22 November 2026).
 - Add **Watch** only to an existing owning record with a named monitoring trigger. If no such record exists, keep it transient; do not create a Pulse log or subscription.
-- Route **Act** from a changed normative source to the owning governance skill's REFRESH mode. Present other finite work to `ki-work next` in the owning repository, which applies its graduation test and keeps the work as an idea or captures a `status: triage` record; Pulse neither creates nor selects that work itself.
+- Route **Act** on an agentic or model signal by firing `ki-radar`'s REFRESH return trigger, under [the radar standard's REFRESH](../../../agentic-ecosystems/ki-radar/references/standard-radar.md#45-refresh): PULSE discovers and the radar assesses, so Pulse never edits a radar snapshot itself (PULSE-BOUNDARY). Route **Act** from any other changed normative source to the owning governance skill's REFRESH mode. Present other finite work to `ki-work next` in the owning repository, which applies its graduation test and keeps the work as an idea or captures a `status: triage` record; Pulse neither creates nor selects that work itself.
 - **Discard** writes nothing.
 
 Durable read, watch, and act hand-offs require explicit user authority and the destination owner's normal gates. If the owner is absent, unresolved, remote-only, or refuses the hand-off, report `none / unavailable` and create no artifact. Never write directly into another repository or destination as a shortcut.

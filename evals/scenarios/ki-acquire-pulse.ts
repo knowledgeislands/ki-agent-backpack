@@ -11,24 +11,24 @@ export const scenarios: Scenario[] = [
       { name: 'preserves inaccessible status', re: /unread|inaccessible|unavailable|could not access/i },
       { name: 'does not invent content', re: /cannot|won.t|must not|do not.*(invent|summari|claim|title)/i },
       { name: 'preserves user context', re: /interesting|user.*(reason|context)|later/i },
-      { name: 'routes rather than owns storage', re: /ki-repo-kb|ki-trades|destination owner/i }
+      { name: 'routes rather than owns storage', re: /Harbour|destination owner/i }
     ],
     rubric:
       'House contract: an explicit Capture may retain one inaccessible source as `unread / content unavailable`, with observation metadata, resolvable author, user context, and uncertainty. It must not invent the article title, topic, summary, or claims. Any durable reading candidate is handed to the runtime-resolved destination owner, never stored by Pulse.'
   },
   {
     skill: 'ki-acquire',
-    id: 'pulse-bounded-scan-to-kb-reading',
+    id: 'pulse-bounded-scan-to-harbour-reading',
     prompt:
-      'Scan public release notes and documentation for local-first software and durable agent context. Keep these interests for weekly reuse, inspect the best 25 leads, and save every interesting result to my selected Knowledge Base.',
+      'Scan public release notes and documentation for local-first software and durable agent context. Keep these interests for weekly reuse, inspect the best 25 leads, and save every interesting result for later reading.',
     assertions: [
       { name: 'rejects standing configuration', re: /not|cannot|won.t|do not.*(persist|save|keep|weekly|subscription|config)/i },
       { name: 'limits inspected leads', re: /(at most|maximum|no more than) ten|10 leads/i },
       { name: 'limits observations', re: /(at most|maximum|no more than) five|5 (cited )?observations/i },
-      { name: 'routes reading through KB owner', re: /ki-repo-kb.*SAVE|SAVE.*ki-repo-kb/i }
+      { name: 'routes reading through Harbour capture', re: /Harbour/i }
     ],
     rubric:
-      'House contract: Scan requires an invocation-scoped interest/query brief, persists no weekly interest or source configuration, inspects at most ten leads, and returns at most five cited observations. Read / learn outcomes reach a selected Knowledge Base only through `ki-repo-kb` SAVE and its normal authority boundary.'
+      'House contract: Scan requires an invocation-scoped interest/query brief, persists no weekly interest or source configuration, inspects at most ten leads, and returns at most five cited observations. Read / learn outcomes go to Harbour's capture, not `ki-repo-kb` SAVE or `ki-trades`, under its normal authority boundary (PULSE-BOUNDARY).'
   },
   {
     skill: 'ki-acquire',
@@ -38,11 +38,11 @@ export const scenarios: Scenario[] = [
     assertions: [
       { name: 'requires primary-source verification', re: /primary|official|standard.*(text|source)/i },
       { name: 'assigns act disposition', re: /Act/i },
-      { name: 'routes to owning refresh', re: /owning.*REFRESH|REFRESH.*owning/i },
+      { name: 'routes to owning refresh', re: /owning.*REFRESH|REFRESH.*owning|ki-radar.*REFRESH/i },
       { name: 'does not implement recommendation', re: /not|cannot|won.t|does not.*(patch|implement|change)/i }
     ],
     rubric:
-      "House contract: a secondary community post is discovery evidence only. Pulse verifies an actionable technical or governance claim against a primary source where one exists, assigns exactly one `Act` disposition, and routes a normative-source change to the owning governance skill's REFRESH mode without patching it itself."
+      "House contract: a secondary community post is discovery evidence only. Pulse verifies an actionable technical or governance claim against a primary source where one exists, assigns exactly one `Act` disposition, and routes a normative-source change to the owning governance skill's REFRESH mode without patching it itself; an act on an agentic or model signal fires `ki-radar`'s REFRESH return trigger instead (PULSE-BOUNDARY)."
   },
   {
     skill: 'ki-acquire',

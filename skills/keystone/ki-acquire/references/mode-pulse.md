@@ -40,8 +40,8 @@ Return the bounded observations with their source metadata, access state, uncert
 
 ## Off-ramps
 
-- `ki-repo-kb` owns saving a reading candidate in the selected Knowledge Base.
-- `ki-trades` owns transport to another declared repository.
-- An owning governance skill's REFRESH mode owns normative-source refresh.
+- Harbour's capture (cairn.harbour) owns a **Read / learn** candidate: it preserves it and later curates it under CURATION-HOME (PULSE-BOUNDARY).
+- `ki-radar`'s REFRESH owns an **Act** on an agentic or model signal: the act fires its return trigger, and Pulse edits no radar snapshot.
+- Any other owning governance skill's REFRESH mode owns its own normative-source refresh.
 - `ki-work next` owns finite work capture and selection in the owning repository.
 - An existing owning record owns a durable watch trigger; without one, Watch stays transient.
