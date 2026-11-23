@@ -8,16 +8,20 @@ Each agent is a Markdown file with YAML frontmatter followed by a system-prompt 
 
 The governing skill for what makes a good agent definition is **`ki-subagents`** (under [skills/](../skills)) — the agents twin of `ki-skills`. Run its AUDIT mode over any agent, or the whole set, before shipping.
 
+## Register
+
+This file is the backpack's **role register**: every role source under `subagents/` is linked from a table below, and every link resolves to a source. There is no `ki` tool surface for subagent roles; an agent run installs them into each host, reading this register to find every role, under `ki-subagents`' [register and install](../skills/agentic-ecosystems/ki-subagents/references/standard-portable-subagents.md#45-register-and-install) rule (SUBAGENT-PUBLISHER a). `ki-subagents`' REGISTER-1 checks that no role source is left out.
+
 ## governance/
 
 KI governance-domain agents. Each is grounded in the ki-principal KB and the harness skill set; each defers to its siblings for adjacent concerns.
 
 | Agent | Lane |
 | --- | --- |
-| `ki-skills-lead` | SKILL.md authoring, auditing, and conformance |
-| `ki-engineering-lead` | Toolchain compliance and repo structure |
-| `ki-repo-kb-curator` | KB zone health, note structure, and link integrity |
-| `ki-decision-author` | DR authoring (SDR / GDR / ADR) and the Decisions index |
+| [`ki-skills-lead`](governance/ki-skills-lead.md) | SKILL.md authoring, auditing, and conformance |
+| [`ki-engineering-lead`](governance/ki-engineering-lead.md) | Toolchain compliance and repo structure |
+| [`ki-repo-kb-curator`](governance/ki-repo-kb-curator.md) | KB zone health, note structure, and link integrity |
+| [`ki-decision-author`](governance/ki-decision-author.md) | DR authoring (SDR / GDR / ADR) and the Decisions index |
 
 Choosing, planning and recording work, which the retired `ki-repo-kb-streams-curator` once held as streams and proposals, belongs to the `ki-work` and `ki-work-roadmap` skills.
 
@@ -25,4 +29,5 @@ Choosing, planning and recording work, which the retired `ki-repo-kb-streams-cur
 
 1. Group it in a domain subdirectory.
 2. Add `<role>.md` with `name` and `description` frontmatter.
-3. Audit with `ki-subagents` and resolve findings.
+3. Register it: add its row, linking the file, to its domain's table above.
+4. Audit with `ki-subagents` and resolve findings.

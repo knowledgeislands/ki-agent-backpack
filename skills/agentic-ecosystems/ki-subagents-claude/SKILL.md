@@ -19,7 +19,7 @@ argument-hint: 'audit <agent-or-dir> | conform <agent> | help | educate <descrip
 
 `ki-subagents` owns the portable semantic contract, and `ki-agentic-ecosystems` what a subagent is, with Anthropic's own sense on its [subagent card](../../keystone/ki-agentic-ecosystems/knowledge/vendors/anthropic/anthropic.subagent.md). This adapter owns only its Claude Code Markdown/YAML projection: YAML parsing, native fields, and source discovery. Read the [Claude projection standard](references/standard-subagent-definitions.md) and generated [rubric](references/rubric.md) after reading the parent contract.
 
-The backpack currently preserves candidate Claude source files under `subagents/`, but the host does not publish them to `.claude/agents` or consume its advertised `subagents` path. A clean audit therefore proves only a repository-owned source payload. Installation, selection precedence, activation, effective permissions, and execution are unavailable without a host and authorised runtime evidence path.
+The backpack currently preserves candidate Claude source files under `subagents/`, but the host does not publish them to `.claude/agents` or consume its advertised `subagents` path. A clean audit therefore proves only a repository-owned source payload. Installation, selection precedence, activation, effective permissions, and execution are unavailable without a host and authorised runtime evidence path. Roles reach Claude Code only through the install run in `ki-subagents`' [register and install](../ki-subagents/references/standard-portable-subagents.md#45-register-and-install) rule, which links each registered role into the host's agents folder; the `ki` host gets no subagent tool surface (SUBAGENT-PUBLISHER a).
 
 ## Operating modes
 
@@ -31,7 +31,7 @@ Run the portable parent first. Then run `ki repo audit --skill ki-subagents-clau
 
 ### Mode CONFORM — bring an existing agent into line
 
-Run AUDIT first. Correct only the source definition through its responsible author; no CONFORM operation publishes a Claude agent today. Apply portable semantic changes through `ki-subagents`, then rerun this adapter's source checks.
+Run AUDIT first. Correct only the source definition through its responsible author; no CONFORM operation publishes a Claude agent today. Apply portable semantic changes through `ki-subagents`, then rerun this adapter's source checks. Placing a role in a host is the install run's work, driven from the register.
 
 ### Mode EDUCATE — write a new agent
 

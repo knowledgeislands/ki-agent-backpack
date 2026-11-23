@@ -14,6 +14,7 @@ Line-by-line criteria for auditing ki-subagents. Classifications are derived fro
 
 - [PORTABLE — Portable role semantics](#portable--portable-role-semantics)
 - [HOST — Host/runtime boundary](#host--hostruntime-boundary)
+- [REGISTER — Role register](#register--role-register)
 - [RUBRIC — Generated rubric publication](#rubric--generated-rubric-publication)
 
 ## PORTABLE — Portable role semantics
@@ -47,6 +48,19 @@ No source-only false assurance.
 - **HOST-1 [J] — No false runtime assurance** — Source evidence is not activation or execution evidence. (standard-portable-subagents.md#44-boundary)
   - _Evidence scope:_ The target skill and the evidence named by this criterion.
   - _Review prompt:_ The role and adapters do not report source conformance as installation, publication, activation, effective settings, or execution.
+  - _Outcomes:_ conforming; gap; exclusion
+  - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
+
+## REGISTER — Role register
+
+→ [standard](standard-portable-subagents.md)
+
+Every role source is registered, so the install run picks every one up.
+
+- **REGISTER-1 [M + J] — Every role source is registered** — subagents/README.md links every role source under subagents/, each source declares a name, and every link resolves to a source. (standard-portable-subagents.md#45-register-and-install)
+  - _Remediation:_ diagnostic — Add a link to each unregistered role source in subagents/README.md, give each source a frontmatter name, and remove or correct each link that resolves to no source.
+  - _Evidence scope:_ The target skill and the evidence named by this criterion.
+  - _Review prompt:_ The register gives each role its lane, so the install run and a reader can tell the roles apart without opening each source.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Record the review as conforming, a named Gap with its next action, or an explicit justified exclusion.
 

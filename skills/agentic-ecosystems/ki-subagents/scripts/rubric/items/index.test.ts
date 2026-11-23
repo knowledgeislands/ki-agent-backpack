@@ -6,6 +6,13 @@ const items = catalogue.families.flatMap((family) => family.items as readonly Ru
 
 test('the portable parent owns semantic criteria without native fields', () => {
   expect(catalogue.name).toBe('ki-subagents')
-  expect(items.map((item) => item.code)).toEqual(['PORTABLE-1', 'PORTABLE-2', 'PORTABLE-3', 'HOST-1', 'RUBRIC-1'])
-  expect(items.every((item) => !item.mechanical || item.code === 'RUBRIC-1')).toBe(true)
+  expect(items.map((item) => item.code)).toEqual([
+    'PORTABLE-1',
+    'PORTABLE-2',
+    'PORTABLE-3',
+    'HOST-1',
+    'REGISTER-1',
+    'RUBRIC-1'
+  ])
+  expect(items.every((item) => !item.mechanical || ['REGISTER-1', 'RUBRIC-1'].includes(item.code))).toBe(true)
 })

@@ -57,7 +57,9 @@ None.
 
 ## 3. Decisions
 
-None recorded by id: the rules follow the sources above and `ki-subagents`'s portable contract.
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| SUBAGENT-PUBLISHER a | “a, refined: no `ki` tool surface for subagent roles; roles are installed into each host by an agent run, not by a publisher command, and every role is registered (declared where its territory's install reads it) so the install picks every one up (Kris, 23 November, about 00:15 GMT, in chat: "Yeah, just install them by hand, but automated for you. There's no need to add a tool surface for it, right? And yeah, they should be registered as well, actually. So it's important that it picks those up.")”, Cairn summit's change 10, 4.3, landed under step 6.3. Applied here: no Codex subagent tool surface is to be added; a Codex projection, once authored, is placed by `ki-subagents`' install run. | 2026-11-23 | [SKILL.md](../SKILL.md), [Codex subagents](standard-codex-subagents.md) | In force |
 
 [Back to contents](#contents)
 

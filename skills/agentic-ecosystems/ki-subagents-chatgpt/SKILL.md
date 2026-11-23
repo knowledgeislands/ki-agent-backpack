@@ -21,7 +21,7 @@ argument-hint: 'audit | conform | educate | refresh | help'
 
 This adapter owns the Codex standalone TOML projection of a role defined by `ki-subagents`: required `name`, `description`, and `developer_instructions`; Codex-supported source configuration keys; candidate source discovery; and native mechanics. It owns no portable role judgment, and no definition: what a subagent is belongs to `ki-agentic-ecosystems`, with OpenAI's own sense on its [subagent card](../../keystone/ki-agentic-ecosystems/knowledge/vendors/openai/openai.subagent.md).
 
-Codex reads custom agent files from `.codex/agents/` or `~/.codex/agents/`, but the `ki` host has no Codex subagent capability/path or generic publisher. This adapter may inspect an authorised candidate source payload only; publication, installation, activation, effective model/profile/MCP state, and execution are unavailable and must be routed to a future host/runtime integration.
+Codex reads custom agent files from `.codex/agents/` or `~/.codex/agents/`, but the `ki` host has no Codex subagent capability/path or generic publisher. This adapter may inspect an authorised candidate source payload only; publication, installation, activation, effective model/profile/MCP state, and execution are unavailable and must be routed to a future host/runtime integration. No `ki` tool surface is to be added (SUBAGENT-PUBLISHER a): once the backpack authors a Codex projection, the install run in `ki-subagents`' [register and install](../ki-subagents/references/standard-portable-subagents.md#45-register-and-install) rule places it.
 
 ## Operating modes
 
@@ -33,7 +33,7 @@ Codex reads custom agent files from `.codex/agents/` or `~/.codex/agents/`, but 
 
 ### Mode CONFORM
 
-Repair only the authorised candidate source contract. Do not write `.codex/agents/`, user-home configuration, or host payload paths; no publisher currently exists.
+Repair only the authorised candidate source contract. Do not write `.codex/agents/`, user-home configuration, or host payload paths; no publisher currently exists. Placing a projection in a host is the install run's work.
 
 ### Mode EDUCATE
 

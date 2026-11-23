@@ -18,6 +18,7 @@ ki-status: in force
   - [4.2 Required semantic evidence](#42-required-semantic-evidence)
   - [4.3 Record and projections](#43-record-and-projections)
   - [4.4 Boundary](#44-boundary)
+  - [4.5 Register and install](#45-register-and-install)
 
 ## 1. Introduction
 
@@ -34,13 +35,14 @@ The semantics of a portable subagent role.
 - The role's identity, selection, instructions, lane, grounding, hand-offs, orchestration and outcome evidence.
 - Which projection carries the role record, and how other projections relate to it.
 - The boundary between the role and its runtime adapters.
+- The register of a backpack's roles, and the agent run that installs them from it.
 
 [Back to contents](#contents)
 
 ### 2.2 Out of scope
 
 - Each runtime's serialization and its fields: Claude Code Markdown/YAML in `ki-subagents-claude`, Codex standalone TOML in `ki-subagents-chatgpt`.
-- Installation, publication, activation, effective settings and runtime execution, which are host and runtime questions.
+- Each host's effective settings, activation and runtime execution, which are host and runtime questions; this standard sets only how the install run finds and places the roles.
 
 [Back to contents](#contents)
 
@@ -52,6 +54,8 @@ The semantics of a portable subagent role.
 | **Primary projection** | The `ki-subagents-claude` Markdown file that carries the role record. **Standard:** this one, [4.3](#43-record-and-projections) |
 | **Record fields** | Identity (`name`), selection (`description`) and the instruction body. **Standard:** this one, [4.3](#43-record-and-projections) |
 | **Projection fields** | Every other key an adapter supports, owned by the runtime adapter. **Standard:** this one, [4.3](#43-record-and-projections) |
+| **Role register** | A backpack's `subagents/README.md`, linking every role source, which the install run reads. **Standard:** this one, [4.5](#45-register-and-install) |
+| **Install run** | The agent run that places every registered role into one host. **Standard:** this one, [4.5](#45-register-and-install) |
 
 [Back to contents](#contents)
 
@@ -88,6 +92,23 @@ Any other projection with the same `name` corresponds to the primary and never e
 
 ### 4.4 Boundary
 
-Claude Code Markdown/YAML and its fields are owned by `ki-subagents-claude`. Codex standalone TOML and its fields are owned by `ki-subagents-chatgpt`. Installation, publication, activation, effective settings, and runtime execution are host/runtime questions. The current `ki` host implements no generic subagent publisher, so neither adapter may claim them.
+Claude Code Markdown/YAML and its fields are owned by `ki-subagents-claude`. Codex standalone TOML and its fields are owned by `ki-subagents-chatgpt`. Activation, effective settings, and runtime execution are host/runtime questions. The `ki` host has no subagent publisher and gets none: roles reach a host only through the install run in [Register and install](#45-register-and-install), and neither adapter may claim a role is installed or active from its source alone.
+
+[Back to contents](#contents)
+
+### 4.5 Register and install
+
+There is no `ki` tool surface for subagent roles, and none is to be added. Kris settled this on 23 November 2026 (SUBAGENT-PUBLISHER a, refined): "Yeah, just install them by hand, but automated for you. There's no need to add a tool surface for it, right? And yeah, they should be registered as well, actually. So it's important that it picks those up."
+
+**The register.** Each backpack's `subagents/README.md` is its role register. It links every role source under `subagents/`, with the role's lane, and every link resolves to a source; a role that is not linked is not registered, and the install run does not see it. REGISTER-1 checks this mechanically.
+
+The register is the backpack's README rather than a `[skills.ki-subagents]` list in a territory's `.ki.toml` for three reasons. The roles are authored in the backpack, so the register sits beside them and a new role and its registration are reviewed in one commit. The install run already reads the backpack it installs from, which is the territory's own. And a `.ki.toml` property is validated by the `ki` host, so it would need the tool-side change the decision rules out, and would repeat the list in each repository that declares the skill.
+
+**The install run.** An agent run installs the roles into one host. The owner asks for it, or a coordinating session starts it under `ki-delegation`, after a role is added, changed or removed:
+
+1. Read the register and resolve each link to its role source. If REGISTER-1 finds an unregistered source, a nameless source or a dangling link, stop and report it rather than guess.
+2. Place each registered role with the host's adapter. For Claude Code, `ki-subagents-claude`'s primary projection is linked by a symbolic link named `<name>.md` into the host's agents folder, `~/.claude/agents/` for the user or a repository's `.claude/agents/`, pointing at the source, so the host always reads the reviewed file. For Codex, `ki-subagents-chatgpt` places a TOML projection only where the backpack has authored one; none exists yet.
+3. Remove each link the run placed earlier, one pointing into a backpack's `subagents/`, whose role the register no longer lists. Leave every other agent file alone, because the run did not place it.
+4. Report each role as placed, unchanged or removed, per host. The host listing the role is the installation evidence; source conformance alone is not.
 
 [Back to contents](#contents)

@@ -77,6 +77,6 @@ Current Claude Code supports `name`, `description`, `tools`, `disallowedTools`, 
 
 ### 4.4 Source discovery and host boundary
 
-Within the candidate source tree, declared names must be unique. This is source-payload evidence only. The `ki` host advertises Claude subagent path metadata but has no generic publisher that consumes it, so publication, installation, activation, effective settings, and execution are all unavailable. A future authorised host integration must supply those claims and evidence.
+Within the candidate source tree, declared names must be unique. This is source-payload evidence only. The `ki` host advertises Claude subagent path metadata but has no generic publisher that consumes it, so publication, installation, activation, effective settings, and execution are all unavailable. A future authorised host integration must supply those claims and evidence. Placing roles is the install run's work under `ki-subagents`' [register and install](../../ki-subagents/references/standard-portable-subagents.md#45-register-and-install) rule, from the backpack's register; its report, and the host listing the role, are the installation evidence (SUBAGENT-PUBLISHER a).
 
 [Back to contents](#contents)

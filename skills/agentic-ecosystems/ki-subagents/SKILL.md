@@ -19,7 +19,7 @@ argument-hint: 'audit | conform | educate | refresh | help'
 
 What a subagent is, in the industry's sense, is `ki-agentic-ecosystems`' [subagent card](../../keystone/ki-agentic-ecosystems/knowledge/industry/industry.subagent.md); this skill says how to define a role one takes and run it, the practice rather than the vocabulary.
 
-This is the runtime-neutral parent for a subagent role. It owns the role's stable identity, selection purpose, core instructions, lane, grounding, hand-offs, orchestration intent, and evidence that selecting the role improves an outcome. It owns no runtime field, file extension, path, installation, activation, effective setting, or execution claim.
+This is the runtime-neutral parent for a subagent role. It owns the role's stable identity, selection purpose, core instructions, lane, grounding, hand-offs, orchestration intent, and evidence that selecting the role improves an outcome. It owns no runtime field, file extension, activation, effective setting, or execution claim. It does own the role register and the install run that places every registered role into a host by an agent run, since no `ki` tool surface serves subagent roles (SUBAGENT-PUBLISHER a).
 
 Use `ki-subagents-claude` to project an approved role into Claude Code Markdown/YAML; that file is the designated primary projection and carries the role record, as the [record and projections](references/standard-portable-subagents.md#43-record-and-projections) section sets out. Use `ki-subagents-chatgpt` to project it into Codex standalone TOML. Choose the adapter only after this semantic work is explicit; do not copy one runtime's fields into the other.
 
@@ -30,7 +30,8 @@ Use `ki-subagents-claude` to project an approved role into Claude Code Markdown/
 1. Establish the role's identity, purpose and delegation cues without naming a runtime.
 2. Review the core instructions for a bounded lane, grounding-before-action, explicit hand-offs, and intended orchestration.
 3. Record evidence from representative work that the role was selected appropriately and improved the result. Source shape alone is not outcome evidence.
-4. Route native serialization and source-payload checks to the selected adapter. Route installation, activation, effective configuration, and execution to an authorised host/runtime evidence owner.
+4. Check that every role source is registered (REGISTER-1): the backpack's `subagents/README.md` links each one, so the install run picks every one up.
+5. Route native serialization and source-payload checks to the selected adapter. Installation is the install run's, from the register, under [register and install](references/standard-portable-subagents.md#45-register-and-install); route activation, effective configuration, and execution to an authorised host/runtime evidence owner.
 
 ### Mode CONFORM
 
