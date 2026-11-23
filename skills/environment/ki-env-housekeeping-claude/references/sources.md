@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T23:56:44Z
+ki-revised: 2026-11-23T01:30:29Z
 ki-refresh: external-spec · 180d
 ---
 
@@ -31,9 +31,9 @@ Claude Code's own documentation governs native memory selection; Headroom and th
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [Claude Code memory][claude-memory] | Native auto-memory, its location and loading | 2026-09-27 |
-| [Claude Code settings][claude-settings] | `autoMemoryEnabled`, `autoMemoryDirectory` and settings precedence | 2026-09-27 |
-| [Claude Code environment variables][claude-env] | The `CLAUDE_CODE_DISABLE_AUTO_MEMORY` override | 2026-09-27 |
+| [Claude Code memory][claude-memory] | Native auto-memory, its location and loading | 2026-11-23 |
+| [Claude Code settings][claude-settings] | `autoMemoryEnabled`, `autoMemoryDirectory` and settings precedence | 2026-11-23 |
+| [Claude Code environment variables][claude-env] | The `CLAUDE_CODE_DISABLE_AUTO_MEMORY` override | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -45,8 +45,8 @@ Headroom publishes no versioned schema for its rendered output, and the paired s
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| [extraheadroom.com/reduce-claude-code-costs][headroom-tools] | The rendered `headroom:learn` block and its learn sweep | 2026-07-04 |
-| Recorded Headroom CLI evidence: tracked 0.31.0; installed 0.34.0 | Database selection and the `memory` and `learn` commands | 2026-08-12 |
+| [Headroom failure learning][headroom-learn] | The rendered `headroom:learn` block and its learn sweep | 2026-11-23 |
+| Recorded Headroom CLI evidence: tracked 0.31.0; installed 0.45.0 | Database selection and the `memory` and `learn` commands | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -54,7 +54,7 @@ Headroom publishes no versioned schema for its rendered output, and the paired s
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| `@knowledgeislands/mcp-housekeeping-claude` source README + tool surface | The server's tools for the areas the skill does not check itself | 2026-07-09 |
+| `@knowledgeislands/mcp-housekeeping-claude` source README + tool surface | The server's tools for the areas the skill does not check itself | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -70,6 +70,8 @@ The rules follow the outside sources above and the shared rules of `ki-env-house
 
 ## 4. Last review
 
+On 23 November 2026 REFRESH re-fetched the three Claude Code pages, re-read Headroom and the paired server's README and tool surface. Claude Code still enables auto-memory by default, with `autoMemoryEnabled`, the absolute-or-`~/` `autoMemoryDirectory` and `CLAUDE_CODE_DISABLE_AUTO_MEMORY` (`1` off, `0` forced on) as recorded, and settings precedence unchanged; `MEMORY.md` now loads up to its first 200 lines or 25KB. The Headroom page on extraheadroom.com no longer covers `headroom learn`, so its row is repointed to Headroom's own failure-learning page. Installed Headroom 0.45.0 still writes the recorded markers, heading and dated line into `MEMORY.md` (`CLAUDE.local.md` is now its default CLAUDE file), and its `memory list/show/delete` and `learn` help match [the auto-memory standard](standard-auto-memory.md#44-repairing-a-regenerated-cross-repo-learned-pattern). Two changes are proposed, not made: memory is now kept per Git repository, shared by its worktrees, where the checker derives the directory from the path it is given; and the page names the memory kind a `type` field, where the checker requires `metadata.type`.
+
 On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied ENV-FIXES a, recorded under [Decisions](#3-decisions): SKILL.md's native-memory text now states the disabled case, KI's default, and leaves the transition and enabled cases to [the auto-memory standard](standard-auto-memory.md). No criterion changed and no outside source refreshed.
 
 On 19 November 2026 MEMORY-ONCE, taken in `ki-env-housekeeping`, cut [the auto-memory standard](standard-auto-memory.md#42-repair-boundary)'s restatement of the native-memory policy to this host's delta, pointing at the lead's 4.1; nothing host-specific was lost. No criterion changed and no outside source refreshed.
@@ -82,13 +84,16 @@ At the earlier reviews, dated in the tables above: Claude Code enables auto-memo
 
 **Watching:**
 
-- The recorded Headroom version drift (tracked 0.31.0 versus installed 0.34.0) means the local format and database-operation wording are not a claim about the installed runtime. REFRESH rechecks the exact version and documented command behavior before changing those claims.
+- The recorded Headroom version drift (tracked 0.31.0 versus installed 0.45.0) means the local format and database-operation wording are not a claim about the installed runtime. REFRESH rechecks the exact version and documented command behavior before changing those claims.
+- Headroom's failure-learning page shows the learned-patterns block without the dated line that 0.45.0 still writes; the standard follows the installed writer until the two agree.
+- The memory directory for a linked worktree, and `CLAUDE_CODE_PROJECT_DIR_NAME`, which can name it outright; proposed for the checker, not yet changed.
+- Whether the frontmatter kind is `type` or `metadata.type`; proposed for checking against a file Claude Code writes now.
 - The server README and tool surface establish a source payload only. REFRESH must record registration, access exposure, and executed-audit evidence independently if a runtime claim is needed.
 - If Headroom ships a documented, versioned schema for `MEMORY.md` / frontmatter, replace its row with that URL and re-derive [the auto-memory standard](standard-auto-memory.md) and the checker from it directly.
 
 [Back to contents](#contents)
 
-[headroom-tools]: https://extraheadroom.com/reduce-claude-code-costs
+[headroom-learn]: https://docs.headroomlabs.ai/docs/failure-learning
 [claude-memory]: https://code.claude.com/docs/en/memory
 [claude-settings]: https://code.claude.com/docs/en/settings
 [claude-env]: https://code.claude.com/docs/en/env-vars
