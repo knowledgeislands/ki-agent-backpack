@@ -63,6 +63,7 @@ The decisions the standards cite by id, oldest first; each standard keeps citing
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
+| WEBSITE-APP-NAME a | `ki-repo-website-app` is renamed `ki-repo-website-interactive`, a name that says the kind of site without naming a framework. Kris, 22 November 2026, about 22:16 GMT, in chat: "WEBSITE-APP-NAME a"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | The website rows of the [configuration standard](standard-configuration.md) and the [repository standard](standard-repository.md); the coverage override is now `coverage-website-interactive` | In force |
 | STRICTNESS-CONFORM | One canonical commit hook per shape and package presence, audited by exact comparison, with no extension point. | 2026-10-20 | [repository](standard-repository.md#45-commit-gate) | In force |
 | HOMEPAGE-SOURCE | `.ki.toml` is the master for the repository's homepage; the root `package.json` `homepage` and the GitHub homepage mirror it, never the other way round. | 2026-10-24 | [repository](standard-repository.md#462-packagejson-identity--metadata) | In force |
 | PREFIX-RENAME | The handle `personal` is reserved for an estate owner's own territory, the one word that territory uses everywhere, and never names a public brand or organisation. | 2026-10-25 | [configuration](standard-configuration.md#49-territory-selection) | In force |
@@ -91,6 +92,8 @@ The decisions the standards cite by id, oldest first; each standard keeps citing
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 WEBSITE-APP-NAME a, from the Cairn summit's change 10, step 6.3, renamed `ki-repo-website-app` to `ki-repo-website-interactive`, and this skill's references follow; no rule or criterion changed.
 
 On 22 November 2026 OWNER-TRANSFER a was applied by Loreward: [repository naming](standard-repository.md#48-repository-naming) gains a short clause for a transfer to another owner, after the rename's seven steps. No criterion changed and no outside source was refreshed.
 

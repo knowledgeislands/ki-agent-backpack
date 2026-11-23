@@ -6,9 +6,9 @@ ki-document-type: rubric@2026-11-17T00:55:00Z
 
 # Generated rubric — interactive React/Vite website
 
-> **Generated publication.** The TypeScript rubric items under `scripts/rubric/items/` are canonical. Edit those definitions, then rerun `ki dev skill rubric ki-repo-website-app --write`.
+> **Generated publication.** The TypeScript rubric items under `scripts/rubric/items/` are canonical. Edit those definitions, then rerun `ki dev skill rubric ki-repo-website-interactive --write`.
 
-Line-by-line criteria for auditing ki-repo-website-app. Classifications are derived from item aspects: **[M]** mechanical, **[J]** judgment, **[M + J]** hybrid, and **[M-heuristic + J]** hybrid with heuristic mechanical evidence. Sources are cited as declared by each canonical item.
+Line-by-line criteria for auditing ki-repo-website-interactive. Classifications are derived from item aspects: **[M]** mechanical, **[J]** judgment, **[M + J]** hybrid, and **[M-heuristic + J]** hybrid with heuristic mechanical evidence. Sources are cited as declared by each canonical item.
 
 ## Contents
 

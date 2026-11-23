@@ -34,11 +34,17 @@ The house's composition decision is the one source the core follows.
 
 ## 3. Decisions
 
-None recorded by id: the standard rests on the composition decision above.
+The standard otherwise rests on the composition decision above.
+
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| WEBSITE-APP-NAME a | `ki-repo-website-app` is renamed `ki-repo-website-interactive`, a name that says the kind of site without naming a framework. Kris, 22 November 2026, about 22:16 GMT, in chat: "WEBSITE-APP-NAME a"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | The implementation choice in the [website standard](standard-website.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 WEBSITE-APP-NAME a, from the Cairn summit's change 10, step 6.3, renamed `ki-repo-website-app` to `ki-repo-website-interactive`, and this skill's references follow; no rule or criterion changed.
 
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
 

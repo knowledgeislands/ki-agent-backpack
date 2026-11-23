@@ -350,7 +350,7 @@ The detection signals `ki-repo` uses (one recursive tree read + `package.json`):
 | `ki-repo-kb` | canonical zones (`Pillars/` + `Resources/`) | `[skills.ki-repo-kb]` |
 | `ki-repo-website` | either website implementation signal below | `[skills.ki-repo-website]` |
 | `ki-repo-website-content` | `eleventy.config.*` | `[skills.ki-repo-website-content]` |
-| `ki-repo-website-app` | Vite config plus React and Vite dependencies at the core-selected site root | `[skills.ki-repo-website-app]` |
+| `ki-repo-website-interactive` | Vite config plus React and Vite dependencies at the core-selected site root | `[skills.ki-repo-website-interactive]` |
 | `ki-repo-website-cloudflare` | a `wrangler.*` config | `[skills.ki-repo-website-cloudflare]` |
 | `ki-repo-mcp` | `@modelcontextprotocol/sdk` or `@modelcontextprotocol/server` dependency | `[skills.ki-repo-mcp]` |
 | `ki-repo-tools` | `install.sh` + a `bin/<exe>`, or a tap's `Formula/*.rb` | `[skills.ki-repo-tools]` |

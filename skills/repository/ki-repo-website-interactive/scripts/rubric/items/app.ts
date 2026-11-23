@@ -149,7 +149,7 @@ const APP_9 = item('APP-9', 'App opt-in', 'The app implementation table is prese
   if (context.malformedConfiguration)
     return [{ status: 'VIOLATION', message: '.ki.toml is malformed or unsafe.', subject: '.ki.toml' }]
   return context.applicable
-    ? [{ status: 'PASS', message: 'The [skills.ki-repo-website-app] table is present.', subject: '.ki.toml' }]
+    ? [{ status: 'PASS', message: 'The [skills.ki-repo-website-interactive] table is present.', subject: '.ki.toml' }]
     : [{ status: 'NOT_APPLICABLE', message: 'The app implementation is not declared.' }]
 })
 const APP_10 = item(
@@ -163,7 +163,7 @@ const APP_10 = item(
       ? [{ status: 'PASS', message: 'The app table is keyless.', subject: '.ki.toml' }]
       : context.configurationKeys.map((key) => ({
           status: 'VIOLATION' as const,
-          message: `Unknown key under [skills.ki-repo-website-app]: ${key}.`,
+          message: `Unknown key under [skills.ki-repo-website-interactive]: ${key}.`,
           subject: '.ki.toml'
         })))
 )

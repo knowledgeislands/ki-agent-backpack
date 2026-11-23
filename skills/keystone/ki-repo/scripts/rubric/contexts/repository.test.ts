@@ -966,7 +966,7 @@ describe('repository kind and Knowledge Base stores', () => {
     expect(parseRepositoryConfiguration(config).issue).toBeUndefined()
     const website =
       config.replaceAll('ki-repo-mcp', 'ki-repo-website') +
-      '[skills.ki-repo-website-app]\n[skills.ki-repo-website-cloudflare]\n'
+      '[skills.ki-repo-website-interactive]\n[skills.ki-repo-website-cloudflare]\n'
     expect(parseRepositoryConfiguration(website).primaryShape).toBe('ki-repo-website')
     expect(parseRepositoryConfiguration(website).issue).toBeUndefined()
     expect(parseRepositoryConfiguration(project + '[skills.ki-repo-tools]\n').primaryShape).toBe('ki-repo-project')
@@ -988,7 +988,7 @@ describe('repository kind and Knowledge Base stores', () => {
     ).toContain('a Knowledge Base requires')
     expect(
       parseRepositoryConfiguration(
-        project.replace('primary_shape = "ki-repo-project"', 'primary_shape = "ki-repo-website-app"')
+        project.replace('primary_shape = "ki-repo-project"', 'primary_shape = "ki-repo-website-interactive"')
       ).issue
     ).toContain('a Project primary_shape')
   })
@@ -1283,11 +1283,13 @@ coverage-guides = false
 
     const coverage = (await collectAuditFindings([root])).findings.filter((finding) => finding.code === 'COV-1')
     expect(coverage).toContainEqual(expect.objectContaining({ message: expect.stringContaining('ki-website (') }))
-    expect(coverage).toContainEqual(expect.objectContaining({ message: expect.stringContaining('ki-website-app') }))
+    expect(coverage).toContainEqual(
+      expect.objectContaining({ message: expect.stringContaining('ki-website-interactive') })
+    )
 
     writeFileSync(
       join(root, '.ki.toml'),
-      '[skills.ki-repo]\n\n[skills.ki-repo-website]\n\n[skills.ki-repo-website-content]\n\n[skills.ki-repo-website-app]\n'
+      '[skills.ki-repo]\n\n[skills.ki-repo-website]\n\n[skills.ki-repo-website-content]\n\n[skills.ki-repo-website-interactive]\n'
     )
     const structure = (await collectAuditFindings([root])).findings.filter((finding) => finding.code === 'STRUCT-3')
     expect(structure).toContainEqual(
@@ -1306,7 +1308,9 @@ coverage-guides = false
     writeFileSync(join(root, '.ki.toml'), '[skills.ki-repo]\n\n[skills.ki-repo-website]\nsite-root = "web"\n')
 
     const coverage = (await collectAuditFindings([root])).findings.filter((finding) => finding.code === 'COV-1')
-    expect(coverage).toContainEqual(expect.objectContaining({ message: expect.stringContaining('ki-website-app') }))
+    expect(coverage).toContainEqual(
+      expect.objectContaining({ message: expect.stringContaining('ki-website-interactive') })
+    )
     expect(coverage).not.toContainEqual(expect.objectContaining({ message: expect.stringContaining('ki-website (') }))
   })
 

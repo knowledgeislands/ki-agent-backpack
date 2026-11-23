@@ -51,6 +51,7 @@ None.
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
+| WEBSITE-APP-NAME a | `ki-repo-website-app` is renamed `ki-repo-website-interactive`, a name that says the kind of site without naming a framework. Kris, 22 November 2026, about 22:16 GMT, in chat: "WEBSITE-APP-NAME a"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | The Repository row of the guild map | In force |
 | KEYSTONE-HUB | The owner's decision, in the Cairn summit's change 14: Keystone is the guild of guilds; its lead, `ki-keystone`, mostly signposts, and each guild's lead is a member of Keystone as well as the root of its own guild; there is no deeper hierarchy. | 2026-11-13 | [4.1](standard-keystone.md#41-the-joining-rule), [4.2](standard-keystone.md#42-one-lead-for-each-guild) | In force |
 | KEYSTONE-MIN | The owner's decision, in change 14: Keystone holds only what every other guild rests on, and never becomes a dumping ground. | 2026-11-13 | [4.1](standard-keystone.md#41-the-joining-rule) | In force |
 | GUILD-LEAD | The owner's decision, in change 14: each guild is a tree of skills led by one lead skill. | 2026-11-13 | [4.2](standard-keystone.md#42-one-lead-for-each-guild) | In force |
@@ -74,6 +75,8 @@ None.
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 WEBSITE-APP-NAME a, from the Cairn summit's change 10, step 6.3, renamed `ki-repo-website-app` to `ki-repo-website-interactive`, and this skill's references follow; no rule or criterion changed.
 
 On 22 November 2026 KEYSTONE-FIXES and BOOTSTRAP-HOME b, recorded under [Decisions](#3-decisions), were applied in the Cairn summit's change 10, step 6.3. "Where to start" in `SKILL.md` and [the Keystone standard's 4.4](standard-keystone.md#44-where-a-session-starts) now starts a session with `ki-coordination` for opened work and `ki-work` for choosing and doing work, the guild map then finding `ki-repo`, `ki-authoring` and `ki-agentic-ecosystems`, which KEYSTONE-SKILL had named as the start. [The bootstrap standard's 4.2](standard-bootstrap.md#42-declarative-repository-selection) no longer restates `ki-repo`'s declaration rules, whose `[ki-<skill>]` table form had gone stale, and points to `ki-repo`'s `.ki.toml` contract for the schema, resolution, activation flow and local registry, keeping the resolver guarantees that are bootstrap's own; the bootstrap reference and BOOTSTRAP mode point there too. No outside source was refreshed.
 

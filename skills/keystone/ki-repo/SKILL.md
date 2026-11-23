@@ -5,7 +5,7 @@ ki-kind: governance
 ki-applicability: baseline
 ki-guild: keystone
 ki-leads: repository
-ki-detects: [ki-decision-records, ki-design, ki-engineering, ki-guides, ki-repo-kb, ki-repo-mcp, ki-repo-tools, ki-repo-website, ki-repo-website-app, ki-repo-website-cloudflare, ki-repo-website-content, ki-skills, ki-specs, ki-subagents, ki-subagents-chatgpt, ki-subagents-claude, ki-work-package]
+ki-detects: [ki-decision-records, ki-design, ki-engineering, ki-guides, ki-repo-kb, ki-repo-mcp, ki-repo-tools, ki-repo-website, ki-repo-website-cloudflare, ki-repo-website-content, ki-repo-website-interactive, ki-skills, ki-specs, ki-subagents, ki-subagents-chatgpt, ki-subagents-claude, ki-work-package]
 ki-runtime-binding: true
 ki-depends-on: [ki-authoring, ki-git]
 ki-shared-dependencies: [ki-skills:rubric, ki-work-roadmap:work-identifiers]
@@ -44,7 +44,7 @@ This skill leads the Repository guild: the repository contract and each kind of 
 
 - **`ki-git`** for commits and shared-tree safety, and **`ki-engineering`** for TypeScript and Bun engineering and its toolchain.
 - The general Project baseline is `ki-repo`'s own (`primary_shape = "ki-repo-project"`), with the overlay skills for each kind: `ki-repo-tools` for a CLI and its Homebrew tap, `ki-repo-mcp` for an MCP server, `ki-repo-packages` for vendored packages, `ki-repo-backpack` for a backpack and `ki-repo-dotfiles-chezmoi` for a chezmoi source.
-- **`ki-repo-website`** for a website's generator-neutral seam, with `ki-repo-website-content`, `ki-repo-website-app` and `ki-repo-website-cloudflare` for its content, application and hosting.
+- **`ki-repo-website`** for a website's generator-neutral seam, with `ki-repo-website-content`, `ki-repo-website-interactive` and `ki-repo-website-cloudflare` for its content, application and hosting.
 - **`ki-repo-kb`** for a knowledge base, its Streams layout, Enactment gate, Activities, Live Artifacts and a Capital's principal governance.
 
 ## Operating modes

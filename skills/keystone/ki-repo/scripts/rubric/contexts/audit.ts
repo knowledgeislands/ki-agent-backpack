@@ -668,8 +668,8 @@ const COVERAGE: { skill: string; table: string; artifact: string; detect: (s: Si
     detect: hasContentWebsite
   },
   {
-    skill: 'website-app',
-    table: skillTable('ki-repo-website-app'),
+    skill: 'website-interactive',
+    table: skillTable('ki-repo-website-interactive'),
     artifact: 'Vite config with React and Vite dependencies',
     detect: hasAppWebsite
   },
@@ -735,7 +735,7 @@ const COVERAGE: { skill: string; table: string; artifact: string; detect: (s: Si
 export const COVERAGE_REQUIRED_BY: Readonly<Record<string, readonly string[]>> = {
   'ki-decision-records': ['ki-repo-backpack'],
   'ki-engineering': ['ki-repo-mcp'],
-  'ki-repo-website': ['ki-repo-website-app', 'ki-repo-website-cloudflare', 'ki-repo-website-content'],
+  'ki-repo-website': ['ki-repo-website-cloudflare', 'ki-repo-website-content', 'ki-repo-website-interactive'],
   'ki-skills': ['ki-repo-backpack'],
   'ki-subagents': ['ki-repo-backpack', 'ki-subagents-chatgpt', 'ki-subagents-claude'],
   'ki-work-package': ['ki-agentic-bots', 'ki-coordination', 'ki-delegation-orca']
@@ -763,7 +763,7 @@ const RETIRED_KB_TABLES = [
   skillTable('ki-repo-kb-principal'),
   skillTable('ki-repo-kb-streams')
 ]
-const WEBSITE_IMPLEMENTATION_TABLES = [skillTable('ki-repo-website-content'), skillTable('ki-repo-website-app')]
+const WEBSITE_IMPLEMENTATION_TABLES = [skillTable('ki-repo-website-content'), skillTable('ki-repo-website-interactive')]
 type MultilineDelimiter = '"""' | "'''"
 function tripleClose(line: string, delimiter: MultilineDelimiter, from: number): number {
   let at = line.indexOf(delimiter, from)
@@ -1211,7 +1211,7 @@ async function auditRepo(
     else if (declaresTable(text, skillTable('ki-repo-website')) && declaredWebsiteImplementations.length === 0)
       warn(
         'STRUCT-4',
-        'declares [skills.ki-repo-website] but no implementation — choose ki-repo-website-content or ki-repo-website-app'
+        'declares [skills.ki-repo-website] but no implementation — choose ki-repo-website-content or ki-repo-website-interactive'
       )
   }
 

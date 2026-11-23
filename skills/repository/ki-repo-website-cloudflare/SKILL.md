@@ -72,7 +72,7 @@ With no mode, show HELP and, in an interactive session only, offer the mode choi
 
 ## Boundaries
 
-- Shared `dist/` lifecycle → `ki-repo-website`; Eleventy content structure → `ki-repo-website-content`; React/Vite app structure → `ki-repo-website-app`.
+- Shared `dist/` lifecycle → `ki-repo-website`; Eleventy content structure → `ki-repo-website-content`; React/Vite app structure → `ki-repo-website-interactive`.
 - Companion Workers, APIs, Durable Objects, bindings, secrets, `wrangler dev`, deploy flags, KV/R2/D1, crons, and queues → `cloudflare` / `wrangler`.
 - Bun, lint/dependency families, TypeScript, and Biome → `ki-engineering`.
 - Universal repository files and repository configuration ownership → `ki-repo`.

@@ -69,6 +69,7 @@ The owner decisions the standard and this file name by id.
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
+| WEBSITE-APP-NAME a | `ki-repo-website-app` is renamed `ki-repo-website-interactive`, a name that says the kind of site without naming a framework. Kris, 22 November 2026, about 22:16 GMT, in chat: "WEBSITE-APP-NAME a"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | The Repository area in `scripts/rubric/contexts/skill-functions.ts` | In force |
 | HOOK-HOME a | Chezmoi's hook-registration rule lives in `ki-env-binding-chezmoi`, whose scope widens to KI bindings, MCP servers and hooks; `ki-repo-backpack` keeps the payloads, and `ki-repo-dotfiles-chezmoi` 4.10 and `ki-git`'s five mentions point there. Kris, 22 November 2026, about 21:18 GMT, the Environment guild's sitting, card: "ki-env-binding-chezmoi"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [compatible backpack standard, 4.1](standard-compatible-backpack.md#41-source-and-installed-boundaries) | In force |
 | COMMIT-VS-CI | Option a, which Kris chose, "I think we just need to keep them simple": the harness pre-commit hook runs only check-only staged lints, and the focused harness audit runs in CI. | 2026-10-26 | [compatible harness standard, 4.8](standard-compatible-backpack.md#48-commit-gate) | In force |
 | PERSONAL-SPECIAL | Kris's word: the prefix `personal` is reserved for the owner's own personal Harness, which only that owner installs. | 2026-10-29 | [compatible harness standard, 4.7](standard-compatible-backpack.md#47-backpack-declaration) | In force |
@@ -79,6 +80,8 @@ The owner decisions the standard and this file name by id.
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 WEBSITE-APP-NAME a, from the Cairn summit's change 10, step 6.3, renamed `ki-repo-website-app` to `ki-repo-website-interactive`, and this skill's references follow; no rule or criterion changed.
 
 On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied HOOK-HOME a, recorded under [Decisions](#3-decisions): [the compatible backpack standard, 4.1](standard-compatible-backpack.md#41-source-and-installed-boundaries) keeps the three-part hook model and points to `ki-env-binding-chezmoi` for the third part. No criterion changed and no outside source refreshed.
 

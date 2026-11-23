@@ -398,7 +398,7 @@ describe('ki-repo-website-cloudflare session', () => {
     mkdirSync(join(repository, 'apps', 'site'), { recursive: true })
     writeFileSync(
       join(repository, '.ki.toml'),
-      '[skills.ki-repo-website]\n\n[skills.ki-repo-website-app]\n\n[skills.ki-repo-website-cloudflare]\n'
+      '[skills.ki-repo-website]\n\n[skills.ki-repo-website-interactive]\n\n[skills.ki-repo-website-cloudflare]\n'
     )
     writeFileSync(join(repository, 'apps', 'site', 'wrangler.jsonc'), '{"assets":{"directory":"./dist"}}\n')
     const context = WCF.selectContext(createWebsiteCloudflareSession(options(repository)).subjects[0].context())

@@ -17,6 +17,6 @@ Reciprocal off-ramps name where work leaves the site-build layer:
 
 - **The Bun mandate, aggregate/scoped audit wiring, direct code-tool execution, `tsconfig`/Biome, and type-checking** → `ki-engineering`.
 - **Markdown and TOML style** → `ki-authoring`.
-- **A single interactive React/Vite application** → `ki-repo-website-app`.
+- **A single interactive React/Vite application** → `ki-repo-website-interactive`.
 - **`wrangler.jsonc`, Workers Static Assets, deployment, and domains** → `ki-repo-website-cloudflare`.
 - **Repository APIs and GitHub configuration** → `ki-repo`.

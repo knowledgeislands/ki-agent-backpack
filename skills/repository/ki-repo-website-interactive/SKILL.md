@@ -1,5 +1,5 @@
 ---
-name: ki-repo-website-app
+name: ki-repo-website-interactive
 ki-document-type: skill@2026-11-17T00:55:00Z
 ki-kind: governance
 ki-applicability: detected

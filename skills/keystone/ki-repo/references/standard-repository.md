@@ -445,7 +445,7 @@ The rubric carries the **org default** for every check. Most are bedrock — fil
 - `topics` / `secret-scanning` / `push-protection` are **public-only** — they don't apply to a private repo regardless of the override, so private repos need say nothing about them.
 - A key under `[…checks]` that names no overridable check (a typo, or a bedrock check) **WARNs** — it would otherwise silently do nothing. The auditor's `CHECK_DEFAULTS` registry is the source of truth for what's overridable.
 - A **redundant** override — one whose value just restates the org default (e.g. `wiki = true`) — does nothing, so the auditor flags it with a `note` advising it be dropped. The aim is that a `.ki.toml` carries only genuine divergences, and a conforming repo's `[…checks]` is empty or absent.
-- `coverage-<skill>` (for example `coverage-website-content = false` for a vendored Eleventy config) is also accepted here — it opts the repo out of **one** coverage signal of the cascade below. It does not disable `coverage-website-app` or `coverage-website-cloudflare`. A key naming no coverage skill WARNs, like any unknown check.
+- `coverage-<skill>` (for example `coverage-website-content = false` for a vendored Eleventy config) is also accepted here — it opts the repo out of **one** coverage signal of the cascade below. It does not disable `coverage-website-interactive` or `coverage-website-cloudflare`. A key naming no coverage skill WARNs, like any unknown check.
 
 [Back to contents](#contents)
 
@@ -459,7 +459,7 @@ A repo that is **not** a ki-repo (no `.ki.toml`) is never coverage-checked — i
 
 The cascade's companion is a **primary-structure** rule: Project and Knowledge Base are mutually exclusive structures matching the explicitly declared repository kind, so a Project declares no `[skills.ki-repo-kb]` and a Knowledge Base no `[skills.ki-repo-project]`. Either FAILs (`STRUCT-1`, bedrock — not overridable). The remaining `ki-repo-*` standards are composable specialisations and do not count. `primary_shape` alone selects the structure: a table left from a retired shape skill, `[skills.ki-repo-project]`, `[skills.ki-repo-homebrew-tap]` or `[skills.ki-repo-specifications]`, WARNs (`STRUCT-2`, check `structure`) until it is removed. So does a `[skills.ki-repo-kb-activities]`, `[skills.ki-repo-kb-live-artifacts]`, `[skills.ki-repo-kb-principal]` or `[skills.ki-repo-kb-streams]` table, whose skills folded into `ki-repo-kb` on 22 November 2026 (KB-FOLD b), their keys moving under `[skills.ki-repo-kb]`.
 
-Website composition has its own narrower cardinality. A repository declaring `[skills.ki-repo-website]` selects exactly one purpose-specific implementation: `[skills.ki-repo-website-content]` or `[skills.ki-repo-website-app]`. Declaring both FAILs; declaring the core without either WARNs. Hosting adapters such as `[skills.ki-repo-website-cloudflare]` are orthogonal and do not participate in this count.
+Website composition has its own narrower cardinality. A repository declaring `[skills.ki-repo-website]` selects exactly one purpose-specific implementation: `[skills.ki-repo-website-content]` or `[skills.ki-repo-website-interactive]`. Declaring both FAILs; declaring the core without either WARNs. Hosting adapters such as `[skills.ki-repo-website-cloudflare]` are orthogonal and do not participate in this count.
 
 [Back to contents](#contents)
 

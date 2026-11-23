@@ -63,6 +63,7 @@ The dashboard navigation name **Workers & Pages** remains correct in operator in
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
+| WEBSITE-APP-NAME a | `ki-repo-website-app` is renamed `ki-repo-website-interactive`, a name that says the kind of site without naming a framework. Kris, 22 November 2026, about 22:16 GMT, in chat: "WEBSITE-APP-NAME a"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | The sibling named in the [Cloudflare hosting standard](standard-cloudflare-hosting.md) | In force |
 | CF-CREDENTIALS a | `ki-repo-website-cloudflare` 4.7, getting Cloudflare credentials through `~/bin/cf-token` short-lived least-privilege tokens, moves to the Environment guild as an access rule beside `ki-env-binding`, not `ki-delegation`, whose 4.6.4 stays the authority rule on runs that may change them; 4.8's Zero Trust naming stays in the Cloudflare skill. Kris, 22 November 2026, about 20:35 GMT, the Repository guild's sitting, card: "Move to Environment". | 2026-11-22 | [4.7](standard-cloudflare-hosting.md#47-credential-access) | In force |
 | CRED-HOME a | Credential access lives in `ki-env-binding` as a new standard, `standard-credential-access.md`, holding the Cloudflare `~/bin/cf-token` rule (from `ki-repo-website-cloudflare` 4.7, under CF-CREDENTIALS a) and the 1Password `~/bin/chezmoi/op-cache` rule (from `ki-delegation` 4.6.1); the description widens from MCP to tools and access; the old places become one-line pointers, and `ki-delegation` 4.6.4 stays the authority rule. Kris, 22 November 2026, about 21:30 GMT, the Environment guild's sitting, card: "ki-env-binding, both rules"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [4.7](standard-cloudflare-hosting.md#47-credential-access) | In force |
 | RUN-SECRETS | Kris adopted the Cloudflare half: a run separately authorised to read Cloudflare credentials reads them only through `~/bin/cf-token`, as an access rule, not authority for a credential read or a Cloudflare operation | 2026-10-25 | [4.7](standard-cloudflare-hosting.md#47-credential-access), now `ki-env-binding`'s credential access standard | taken |
@@ -75,6 +76,8 @@ The Zero Trust team naming that Kris set on 29 October 2026 is quoted in the sta
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 WEBSITE-APP-NAME a, from the Cairn summit's change 10, step 6.3, renamed `ki-repo-website-app` to `ki-repo-website-interactive`, and this skill's references follow; no rule or criterion changed.
 
 On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied CF-CREDENTIALS a and CRED-HOME a, recorded under [Decisions](#3-decisions): [credential access](standard-cloudflare-hosting.md#47-credential-access) became a one-line pointer to `ki-env-binding`'s credential access standard, and Zero Trust team naming stays here. No criterion changed and no outside source refreshed.
 

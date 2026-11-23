@@ -2,7 +2,7 @@ import type { Scenario } from '../harness.ts'
 
 export const scenarios: Scenario[] = [
   {
-    skill: 'ki-repo-website-app',
+    skill: 'ki-repo-website-interactive',
     id: 'website-app-not-eleventy',
     prompt: 'Our site is one interactive React dashboard. Should we add Eleventy, and what build seam does the app standard require?',
     assertions: [
@@ -10,6 +10,6 @@ export const scenarios: Scenario[] = [
       { name: 'React Vite', re: /react[^.\n]{0,20}vite|vite[^.\n]{0,20}react/i },
       { name: 'dist output', re: /dist\//i }
     ],
-    rubric: 'A single interactive SPA selects `ki-repo-website-app`, not the content skill. React/Vite is the current implementation and `vite build` emits the shared `dist/` seam. Adding Eleventy would create a second build system because it does not bundle the React application.'
+    rubric: 'A single interactive SPA selects `ki-repo-website-interactive`, not the content skill. React/Vite is the current implementation and `vite build` emits the shared `dist/` seam. Adding Eleventy would create a second build system because it does not bundle the React application.'
   }
 ]

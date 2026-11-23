@@ -10,7 +10,7 @@ ki-owns: [eleventy.config.ts, eleventy.config.js, eleventy.config.mjs, eleventy.
 ki-contributes: ['.ki.toml', package.json]
 description: >
   Govern KI content sites built with Eleventy 3, Markdown or data, Nunjucks, Tailwind 4 tokens, and portable
-  `dist/`. Use for documentation, publication, or marketing pages; use `ki-repo-website-app` for a React/Vite
+  `dist/`. Use for documentation, publication, or marketing pages; use `ki-repo-website-interactive` for a React/Vite
   SPA and choose hosting separately.
 argument-hint: 'audit <repo> | conform <repo> | help | educate <repo> | refresh'
 ---
@@ -105,7 +105,7 @@ Reciprocal off-ramps — each names this skill back for the site-build layer:
 
 - **The Bun mandate, aggregate/scoped audit wiring, direct code-tool execution, `tsconfig`/`biome`, and type-check** → `ki-engineering`. This skill owns the _site-build_ delta on top of that common layer; it references it, never restates it.
 - **Markdown / TOML formatting style** (including content prose) → `ki-authoring`.
-- **A single interactive React/Vite application** → `ki-repo-website-app`; do not select both implementation skills.
+- **A single interactive React/Vite application** → `ki-repo-website-interactive`; do not select both implementation skills.
 - **Serving the built `dist/`** — the `wrangler.jsonc`, Workers Static Assets, custom domains, deploy scripts → `ki-repo-website-cloudflare`. The `dist/` is the seam between the two.
 - **Any Worker that is not a static site** (bots, ingress receivers, APIs, Durable Objects), and general Cloudflare/Workers usage → the generic `cloudflare` / `wrangler` skills.
 - **A repo's GitHub settings, security, and the universal local files** → `ki-repo`.

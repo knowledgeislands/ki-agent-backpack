@@ -36,11 +36,17 @@ Vite's and React's own documentation, which the implementation follows.
 
 ## 3. Decisions
 
-None recorded by id: the standard rests on the outside sources above.
+The standard otherwise rests on the outside sources above.
+
+| Id | Decision | Date | Backs | Status |
+| --- | --- | --- | --- | --- |
+| WEBSITE-APP-NAME a | `ki-repo-website-app` is renamed `ki-repo-website-interactive`, a name that says the kind of site without naming a framework. Kris, 22 November 2026, about 22:16 GMT, in chat: "WEBSITE-APP-NAME a"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | The skill's name and folder | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 the skill was renamed from `ki-repo-website-app` to `ki-repo-website-interactive` under WEBSITE-APP-NAME a, from the Cairn summit's change 10, step 6.3. Its folder, name and every backpack reference moved; `ki` skips a leftover `[skills.ki-repo-website-app]` table for one release, and the coverage override is now `coverage-website-interactive`. No rule or criterion changed and no outside source was refreshed.
 
 Reviewed 2026-11-22, prompted by LONG-3's overdue warning; all three sources were reachable and no standard change was needed. Vite is at 8.3.8 and still bundles with Rolldown, treats a root `index.html` as the entry, scaffolds `react` and `react-ts` templates, now beside `react-compiler` and `react-compiler-ts`, with `vite` and `vite build` scripts, and defaults `build.outDir` to `dist`, emptied on build when inside the root. React still names Vite, with Parcel and Rsbuild, as a build tool for starting from scratch, and says its recommended frameworks also produce client-only single-page applications. The official React plugin, `@vitejs/plugin-react`, is at 6.3.0. The purpose boundary and the core-owned site-root contract hold. Previously reviewed 2026-10-04.
 

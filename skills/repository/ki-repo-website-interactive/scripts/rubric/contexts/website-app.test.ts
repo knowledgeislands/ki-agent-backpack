@@ -34,7 +34,7 @@ describe('interactive website context', () => {
   test('accepts one React/Vite app that emits dist', () => {
     const repository = root()
     mkdirSync(join(repository, 'apps', 'site', 'src'), { recursive: true })
-    writeFileSync(join(repository, '.ki.toml'), '[skills.ki-repo-website]\n[skills.ki-repo-website-app]\n')
+    writeFileSync(join(repository, '.ki.toml'), '[skills.ki-repo-website]\n[skills.ki-repo-website-interactive]\n')
     writeFileSync(
       join(repository, 'apps', 'site', 'package.json'),
       JSON.stringify({
@@ -52,7 +52,7 @@ describe('interactive website context', () => {
   test('rejects an Eleventy build beside the app', () => {
     const repository = root()
     mkdirSync(join(repository, 'apps', 'site'), { recursive: true })
-    writeFileSync(join(repository, '.ki.toml'), '[skills.ki-repo-website-app]\n')
+    writeFileSync(join(repository, '.ki.toml'), '[skills.ki-repo-website-interactive]\n')
     writeFileSync(
       join(repository, 'apps', 'site', 'package.json'),
       JSON.stringify({
@@ -71,7 +71,7 @@ describe('interactive website context', () => {
     mkdirSync(join(repository, 'web', 'src'), { recursive: true })
     writeFileSync(
       join(repository, '.ki.toml'),
-      '[skills.ki-repo-website]\nsite-root = "web"\n[skills.ki-repo-website-app]\n'
+      '[skills.ki-repo-website]\nsite-root = "web"\n[skills.ki-repo-website-interactive]\n'
     )
     writeFileSync(join(repository, 'package.json'), JSON.stringify({ dependencies: {} }))
     writeFileSync(
@@ -96,17 +96,19 @@ describe('interactive website context', () => {
     const repository = root()
     writeFileSync(
       join(repository, '.ki.toml'),
-      '[skills.ki-repo-website]\nsite-root = "apps/site"\n[skills.ki-repo-website-app]\nsite-root = "."\n'
+      '[skills.ki-repo-website]\nsite-root = "apps/site"\n[skills.ki-repo-website-interactive]\nsite-root = "."\n'
     )
 
     expect(violations(repository)).toContainEqual(
-      expect.objectContaining({ message: expect.stringContaining('Unknown key under [skills.ki-repo-website-app]') })
+      expect.objectContaining({
+        message: expect.stringContaining('Unknown key under [skills.ki-repo-website-interactive]')
+      })
     )
   })
   test('rejects a bare package-local development key', () => {
     const repository = root()
     mkdirSync(join(repository, 'apps', 'site', 'src'), { recursive: true })
-    writeFileSync(join(repository, '.ki.toml'), '[skills.ki-repo-website]\n[skills.ki-repo-website-app]\n')
+    writeFileSync(join(repository, '.ki.toml'), '[skills.ki-repo-website]\n[skills.ki-repo-website-interactive]\n')
     writeFileSync(
       join(repository, 'apps', 'site', 'package.json'),
       JSON.stringify({

@@ -40,7 +40,7 @@ The website core: implementation selection, site selection and the build seam.
 
 ### 2.2 Out of scope
 
-- What the selected package's commands run: `ki-repo-website-content` or `ki-repo-website-app`.
+- What the selected package's commands run: `ki-repo-website-content` or `ki-repo-website-interactive`.
 - How `dist/` is published: a hosting adapter such as `ki-repo-website-cloudflare`.
 - Turborepo adoption and the toolchain: `ki-engineering`.
 
@@ -50,7 +50,7 @@ The website core: implementation selection, site selection and the build seam.
 
 | Term | Definition |
 | --- | --- |
-| **Purpose-specific implementation** | `ki-repo-website-content` for a page collection or `ki-repo-website-app` for one interactive browser application, exactly one of which a website declares. **Standard:** this one, [4.1](#41-selection) |
+| **Purpose-specific implementation** | `ki-repo-website-content` for a page collection or `ki-repo-website-interactive` for one interactive browser application, exactly one of which a website declares. **Standard:** this one, [4.1](#41-selection) |
 | **Site root** | The selected site's directory, `apps/site` by default, set by `site-root` or a named registry. **Standard:** this one, [4.2](#42-site-selection) |
 | **Primary site** | The named site, in multi-site mode, that the unqualified `ki:site:*` aliases serve. **Standard:** this one, [4.2](#42-site-selection) |
 | **Build seam** | The generated `dist/` at the site root and the three public root aliases that build, develop and clean it. **Standard:** this one, [4.3](#43-build-seam) |
@@ -66,7 +66,7 @@ The rules, part by part: selection, site selection, the build seam and ownership
 Every governed website declares `[skills.ki-repo-website]` and exactly one purpose-specific implementation:
 
 - `[skills.ki-repo-website-content]` for a page collection generated from Markdown and data.
-- `[skills.ki-repo-website-app]` for one interactive browser application.
+- `[skills.ki-repo-website-interactive]` for one interactive browser application.
 
 The two implementations are mutually exclusive. Hosting is independent and composes with either.
 

@@ -4,7 +4,7 @@ import { APP } from './app.ts'
 import { RUBRIC } from './publication.ts'
 export default {
   contract: 1,
-  name: 'ki-repo-website-app',
+  name: 'ki-repo-website-interactive',
   concern: 'interactive React/Vite website',
   createSession: createWebsiteAppSession,
   families: [RUBRIC, APP]

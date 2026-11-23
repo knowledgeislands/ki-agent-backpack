@@ -133,7 +133,7 @@ Optional when the site has a custom domain; omission is conformant and leaves th
 
 Other `assets` keys (`html_handling`, `not_found_handling`, `binding`, `run_worker_first`, `base_path`) are optional and per-site; do not require them.
 
-For `[skills.ki-repo-website-app]`, `assets.not_found_handling` is not optional: set it to `"single-page-application"` so browser navigation to a client-side route returns `index.html`.
+For `[skills.ki-repo-website-interactive]`, `assets.not_found_handling` is not optional: set it to `"single-page-application"` so browser navigation to a client-side route returns `index.html`.
 
 [Back to contents](#contents)
 
@@ -221,7 +221,7 @@ This standard governs **only the site Worker** — the one that serves `dist/`. 
 - **Companion Workers** — a bot, an ingress/webhook receiver, an API, anything with a `main` entry and bindings (R2, Durable Objects + their `migrations`, KV, D1), `triggers.crons`, or `vars`/secrets. These are real Workers but **not** the static site; they route to the generic `cloudflare` / `wrangler` skills. The audit notes their presence and moves on.
 - **Workers Builds build variables** — not yet a house pattern; record them in the guide when a site sets them.
 - **General Cloudflare/Workers/wrangler usage** — `wrangler dev` mechanics, general Access mechanics, binding configuration, secret management, deploy flags, runtime APIs → the `cloudflare` / `wrangler` skills.
-- **Building the `dist/`** → `ki-repo-website` plus exactly one of `ki-repo-website-content` or `ki-repo-website-app`.
+- **Building the `dist/`** → `ki-repo-website` plus exactly one of `ki-repo-website-content` or `ki-repo-website-interactive`.
 - **The toolchain** (Bun, lint/deps, tsconfig/biome) → `ki-engineering`.
 
 [Back to contents](#contents)

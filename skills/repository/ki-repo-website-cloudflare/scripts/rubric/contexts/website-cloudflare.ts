@@ -235,7 +235,7 @@ const inspectConfiguration = (
   try {
     const parsed = Bun.TOML.parse(text) as Record<string, unknown>
     const skills = parsed.skills as Record<string, unknown> | undefined
-    const appDeclared = skills?.['ki-repo-website-app'] !== undefined
+    const appDeclared = skills?.['ki-repo-website-interactive'] !== undefined
     const website = skills?.[WEBSITE_CONFIG_SECTION]
     const websiteTable =
       website && typeof website === 'object' && !Array.isArray(website) ? (website as Record<string, unknown>) : null

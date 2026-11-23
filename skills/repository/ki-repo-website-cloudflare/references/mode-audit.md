@@ -11,7 +11,7 @@ Check one repository's static-site hosting without launching Wrangler or changin
    ```bash
    ki repo audit --skill ki-engineering --repo <repo>
    ki repo audit --skill ki-repo-website --repo <repo>
-   ki repo audit --skill ki-repo-website-content --repo <repo> # or ki-repo-website-app
+   ki repo audit --skill ki-repo-website-content --repo <repo> # or ki-repo-website-interactive
    ```
 
 2. Run the hosted mechanical catalogue:

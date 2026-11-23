@@ -50,7 +50,7 @@ The content implementation of the Knowledge Islands website: a collection of pag
 
 - The toolchain beneath the site: `ki-engineering`.
 - Selecting the site root and the root `ki:site:*` aliases: `ki-repo-website`.
-- A single interactive application: `ki-repo-website-app`.
+- A single interactive application: `ki-repo-website-interactive`.
 - Serving `dist/`: a hosting adapter such as `ki-repo-website-cloudflare`.
 
 [Back to contents](#contents)
@@ -73,7 +73,7 @@ The rules, part by part: selection, the stack, layout, configuration, styling, c
 
 The content overlay applies to the single core-selected site or, with a named multi-site registry, every registered site by default. `[skills.ki-repo-website-content]` may use only `sites = ["name"]` to select a non-empty subset of known names; it never declares paths. Every selected site receives a separate content audit subject. The existing keyless form remains the complete single-site contract.
 
-Use this implementation when the website is a collection of pages generated from Markdown or structured data. A single interactive SPA is a legitimate non-adoption: select `ki-repo-website-app` instead. Eleventy does not bundle React application JavaScript, so combining both implementations would introduce two build systems and is outside the current standard.
+Use this implementation when the website is a collection of pages generated from Markdown or structured data. A single interactive SPA is a legitimate non-adoption: select `ki-repo-website-interactive` instead. Eleventy does not bundle React application JavaScript, so combining both implementations would introduce two build systems and is outside the current standard.
 
 The standard applies only when a repository declares a keyless `[skills.ki-repo-website-content]` table in `.ki.toml`. The content skill consumes the site root selected by `[skills.ki-repo-website].site-root`; it does not declare a second path key. An `eleventy.config.{ts,js,mjs,cjs}` file is coverage evidence for `ki-repo`, not local selection authority; an undeclared site receives one `NOT_APPLICABLE` result here.
 

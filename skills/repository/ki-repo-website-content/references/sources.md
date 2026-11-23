@@ -54,11 +54,14 @@ The standard is self-contained; it is the source of truth for house style. Any c
 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
+| WEBSITE-APP-NAME a | `ki-repo-website-app` is renamed `ki-repo-website-interactive`, a name that says the kind of site without naming a framework. Kris, 22 November 2026, about 22:16 GMT, in chat: "WEBSITE-APP-NAME a"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | The sibling named in the [Eleventy site standard](standard-eleventy-site.md) | In force |
 | SITE-ROADMAP | A content site is not required to carry `ROADMAP.md`: WEB-7 and the skill's `ki-requires: [ROADMAP.md]` are dropped, its number not reused, and the forward-work tracker is left to `ki-work`'s choice, since no rule in the standard backed the check. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a, from the summit's change 10. Reversible; Kris can overturn it. | 2026-11-19 | [Eleventy site standard](standard-eleventy-site.md) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 22 November 2026 WEBSITE-APP-NAME a, from the Cairn summit's change 10, step 6.3, renamed `ki-repo-website-app` to `ki-repo-website-interactive`, and this skill's references follow; no rule or criterion changed.
 
 On 19 November 2026 SITE-ROADMAP dropped WEB-7, the check that a content site carries `ROADMAP.md`, and the skill's `ki-requires` of it; the rubric was regenerated. No outside source was refreshed.
 

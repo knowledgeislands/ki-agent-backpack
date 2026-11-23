@@ -78,7 +78,12 @@ export const FUNCTIONAL_AREAS: readonly FunctionalArea[] = [
     groups: [
       {
         title: 'Websites',
-        skills: ['ki-repo-website', 'ki-repo-website-content', 'ki-repo-website-app', 'ki-repo-website-cloudflare']
+        skills: [
+          'ki-repo-website',
+          'ki-repo-website-content',
+          'ki-repo-website-interactive',
+          'ki-repo-website-cloudflare'
+        ]
       },
       {
         title: 'Knowledge bases',

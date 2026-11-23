@@ -2,7 +2,7 @@ import { existsSync, lstatSync, readFileSync } from 'node:fs'
 import { isAbsolute, join, resolve } from 'node:path'
 import type { RubricContextOptions, RubricPublicationContext, RubricSession } from '../../shared/rubric.ts'
 
-const TABLE = 'ki-repo-website-app'
+const TABLE = 'ki-repo-website-interactive'
 const WEBSITE_TABLE = 'ki-repo-website'
 const DEFAULT_SITE_ROOT = 'apps/site'
 const VITE_CONFIGS = ['vite.config.ts', 'vite.config.js', 'vite.config.mjs', 'vite.config.mts'] as const
