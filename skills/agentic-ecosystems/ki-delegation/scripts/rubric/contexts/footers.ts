@@ -22,6 +22,7 @@ const SHARED_PROHIBITIONS = [
   'Never touch, stage or revert other uncommitted changes',
   'Do not read or print secrets',
   '~/bin/chezmoi/op-cache',
+  'ki-env-binding/references/standard-credential-access.md',
   'marked confidential is never made public',
   "Nothing is posted in Kris's name outside his own repositories and services",
   'express permission for that specific post',

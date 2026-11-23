@@ -54,6 +54,26 @@ test('a footer that grants above its tier, omits a grant or drops a prohibition 
   }
 })
 
+test('a footer that keeps the cached-reader wording but drops its credential-access citation is a violation', () => {
+  const directory = copy()
+  try {
+    const none = readFileSync(join(directory, 'rules-none.md'), 'utf8')
+    writeFileSync(
+      join(directory, 'rules-none.md'),
+      none.replace(
+        'ki-env-binding/references/standard-credential-access.md',
+        'ki-delegation/references/standard-background-runs.md'
+      )
+    )
+    const messages = footerOutcomes(directory).map((outcome) => `${outcome.subject}: ${outcome.message}`)
+    expect(messages).toContain(
+      'assets/rules-none.md: Footer lacks the required wording `ki-env-binding/references/standard-credential-access.md`.'
+    )
+  } finally {
+    rmSync(directory, { recursive: true })
+  }
+})
+
 test('a missing grant, or one that lifts another ban, grants a tier, drops a limit or stays draft, is a violation', () => {
   const directory = copy()
   try {

@@ -235,7 +235,7 @@ A brief cannot grant an external post. Its only permission is Kris's answer to a
 
 Where a brief's body and its authority footer conflict, the footer wins. The task supplies specifics within the footer's tier and grants, never authority beyond them, with no exception. Every authority footer carries both rules in its posting line.
 
-A task that separately authorises a credential read reaches it under `ki-env-binding`'s [credential access standard](../../../environment/ki-env-binding/references/standard-credential-access.md), 1Password only through `~/bin/chezmoi/op-cache` and Cloudflare only through `~/bin/cf-token` (CRED-HOME a); that access rule grants no credential authority.
+A task that separately authorises a credential read reaches it under `ki-env-binding`'s [credential access standard](../../../environment/ki-env-binding/references/standard-credential-access.md), 1Password only through `~/bin/chezmoi/op-cache` and Cloudflare only through `~/bin/cf-token` (CRED-HOME a); that access rule grants no credential authority. Each authority footer keeps the cached-reader wording in full, because a footer must stand alone for a run that does not load this skill, and cites that standard as the rule's home (FOOTER-OPCACHE b).
 
 [Back to contents](#contents)
 
