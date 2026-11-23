@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T23:56:44Z
+ki-revised: 2026-11-23T02:00:39Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -34,10 +34,10 @@ The outside specifications, then the house's own evidence.
 
 | Source                           | Governs                                    | Last reviewed |
 | -------------------------------- | ------------------------------------------ | ------------- |
-| [Conventional Commits 1.0.0][cc] | commit-message grammar and optional scope  | 2026-08-12    |
-| [Git documentation][git]         | Git command and worktree vocabulary        | 2026-08-12    |
-| [Git workflows][workflows]       | upstream workflow guidance                 | 2026-08-12    |
-| [git-worktree][worktree]         | linked-worktree terminology and boundaries | 2026-08-12    |
+| [Conventional Commits 1.0.0][cc] | commit-message grammar and optional scope  | 2026-11-23    |
+| [Git documentation][git]         | Git command and worktree vocabulary        | 2026-11-23    |
+| [Git workflows][workflows]       | upstream workflow guidance                 | 2026-11-23    |
+| [git-worktree][worktree]         | linked-worktree terminology and boundaries | 2026-11-23    |
 
 [cc]: https://www.conventionalcommits.org/en/v1.0.0/
 [git]: https://git-scm.com/docs/git
@@ -50,9 +50,9 @@ The outside specifications, then the house's own evidence.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| Harness commit history | current type vocabulary and direct-main practice | 2026-08-12 |
-| `hooks/git-lock-check/git-lock-check.sh` and its run test | stale-lock guard semantics and safety boundary | 2026-08-12 |
-| GDR-KI-HARNESS-003 | portable ownership boundaries | 2026-08-12 |
+| Harness commit history | current type vocabulary and direct-main practice | 2026-11-23 |
+| `hooks/git-lock-check/git-lock-check.sh` and its run test | stale-lock guard semantics and safety boundary | 2026-11-23 |
+| GDR-KI-HARNESS-003 | portable ownership boundaries | 2026-11-23 |
 | Rig delivery guidance and shared-tree practice | post-hook committed-path inspection and bounded recovery | 2026-10-04 |
 
 [Back to contents](#contents)
@@ -75,6 +75,8 @@ Kris's decisions behind the rules, each quoted in the standard beside the rule i
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 23 November 2026 the overnight sources refresh re-fetched the four outside pages and re-read the in-house evidence; no rule needs to change. Conventional Commits is still 1.0.0, with `<type>[optional scope]: <description>` and the optional `!`. The Git manual and `git-worktree` were last updated in 2.56.0 (28 September 2026), 2.56.1 being installed; `git-worktree` keeps the main and linked worktree, the per-worktree admin directory under `$GIT_DIR/worktrees`, lock, prune and `remove`, which refuses an unclean worktree without `--force` and a locked one without it twice, so the lock guard's boundary holds. `gitworkflows` is unchanged since 2.35.0. The harness's last 200 commits use only the six types in [commit messages](standard-git.md#42-commit-messages), most of them `docs`; `hooks/git-lock-check/` and its test have changed only by moving into their own folder; and GDR-KI-HARNESS-003 is still current. Rig's `AGENTS.md` no longer carries the committed-path inspection rule, which [safe Git hygiene](standard-git.md#45-safe-git-hygiene) has owned since 4 October 2026, so that row keeps its date.
 
 On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied HOOK-HOME a, recorded under [Decisions](#3-decisions): the out-of-scope list, scope and ownership, and runtime binding, with SKILL.md's Boundaries and EDUCATE, now point to `ki-env-binding-chezmoi` for hook registration. No criterion changed and no outside source refreshed.
 
@@ -108,6 +110,6 @@ Conventional Commits confirms the `type(scope): summary` shape; the Knowledge Is
 
 Git and workflow documentation remain supporting source context, while the harness keeps the concrete safety limits for the local hook. The native rubric remains judgment-only: its source-backed prompts name the minimum read-only evidence but do not claim a mechanical Git-state audit.
 
-**Watching:** Git behaviour, the commit vocabulary, the hook contract, and any runtime-binding boundary; refresh quarterly, or earlier when one changes.
+**Watching:** Git behaviour, the commit vocabulary, the hook contract, and any runtime-binding boundary; refresh quarterly, or earlier when one changes. The Rig delivery guidance row now has no live text behind it and may be retired once the standard is accepted as the rule's only home. Git's manual now lists experimental `git history` and `git replay`, which rewrite history; nothing in the standard names them.
 
 [Back to contents](#contents)
