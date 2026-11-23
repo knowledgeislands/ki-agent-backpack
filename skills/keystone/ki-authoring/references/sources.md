@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T00:54:54Z
+ki-revised: 2026-11-23T01:49:13Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -31,13 +31,13 @@ The specifications and tools the standards follow or draw on.
 
 | Source                      | Governs                                                     | Last reviewed |
 | --------------------------- | ----------------------------------------------------------- | ------------- |
-| [CommonMark spec][cm]       | the Markdown syntax baseline                                | 2026-10-18    |
-| [rumdl rules][ru]           | the `MDxxx` rules enforced, their options, and reflow modes | 2026-10-18    |
-| [rumdl global settings][rgs] | configuration-file and global-setting semantics | 2026-10-18 |
-| [rumdl CLI][rcli] | `check --fix` behaviour and exit semantics | 2026-10-18 |
-| [rumdl releases][rr] | current upstream release | 2026-10-18 |
-| [GitHub alert guidance][ga] | GitHub alert labels, purpose, and Markdown form             | 2026-10-18    |
-| [TOML spec][toml]           | TOML syntax for the shared `.ki.toml`                | 2026-10-18    |
+| [CommonMark spec][cm]       | the Markdown syntax baseline                                | 2026-11-23    |
+| [rumdl rules][ru]           | the `MDxxx` rules enforced, their options, and reflow modes | 2026-11-23    |
+| [rumdl global settings][rgs] | configuration-file and global-setting semantics | 2026-11-23 |
+| [rumdl CLI][rcli] | `check --fix` behaviour and exit semantics | 2026-11-23 |
+| [rumdl releases][rr] | current upstream release | 2026-11-23 |
+| [GitHub alert guidance][ga] | GitHub alert labels, purpose, and Markdown form             | 2026-11-23    |
+| [TOML spec][toml]           | TOML syntax for the shared `.ki.toml`                | 2026-11-23    |
 
 [Back to contents](#contents)
 
@@ -47,14 +47,14 @@ Advisory sources inform local judgment conventions but are not specifications, m
 
 | Source                | Informs                                                 | Last reviewed |
 | --------------------- | ------------------------------------------------------- | ------------- |
-| [Standard Readme][sr] | README entry-point structure and reader discoverability | 2026-10-18    |
-| [Conventional Comments][cc] | [The review standard](standard-review.md#44-a-findings-shape)'s finding: each labelled with its kind and whether it blocks | 2026-11-17 |
-| [Design docs at Google][ubl] | [Who reviews](standard-review.md#41-who-reviews): peers who did not write it, early, while change is cheap | 2026-11-17 |
-| [AIP-100][aip100] and [Zalando's API guidelines][zal] | [What it is reviewed against](standard-review.md#42-what-it-is-reviewed-against): precedent and anchored rules, a deviation marked where it is made | 2026-11-17 |
-| [The Rust RFC book][rfc] and [Oxide's RFD 1][rfd] | [The outcome](standard-review.md#45-the-outcome): a stated disposition, held in the document's own state | 2026-11-17 |
-| [Scaling architecture conversationally][advice] | [Who reviews](standard-review.md#41-who-reviews): the advice process, whoever decides consulting first and the advice recorded | 2026-11-17 |
-| [Nielsen Norman Group's design critiques][nng] | [Not taste](standard-review.md#42-what-it-is-reviewed-against): every comment tied to the goals | 2026-11-17 |
-| [Pandoc's slide shows][pandoc] and [Marpit's heading divider][marpit] | [The presentation format](standard-formats-presentation.md#43-slides): slides split at a heading level, `::: notes` carried into speaker notes, and one source exported to `.pptx`, reveal.js and beamer; checked against pandoc 3.14 on sol | 2026-11-22 |
+| [Standard Readme][sr] | README entry-point structure and reader discoverability | 2026-11-23    |
+| [Conventional Comments][cc] | [The review standard](standard-review.md#44-a-findings-shape)'s finding: each labelled with its kind and whether it blocks | 2026-11-23 |
+| [Design docs at Google][ubl] | [Who reviews](standard-review.md#41-who-reviews): peers who did not write it, early, while change is cheap | 2026-11-23 |
+| [AIP-100][aip100] and [Zalando's API guidelines][zal] | [What it is reviewed against](standard-review.md#42-what-it-is-reviewed-against): precedent and anchored rules, a deviation marked where it is made | 2026-11-23 |
+| [The Rust RFC book][rfc] and [Oxide's RFD 1][rfd] | [The outcome](standard-review.md#45-the-outcome): a stated disposition, held in the document's own state | 2026-11-23 |
+| [Scaling architecture conversationally][advice] | [Who reviews](standard-review.md#41-who-reviews): the advice process, whoever decides consulting first and the advice recorded | 2026-11-23 |
+| [Nielsen Norman Group's design critiques][nng] | [Not taste](standard-review.md#42-what-it-is-reviewed-against): every comment tied to the goals | 2026-11-23 |
+| [Pandoc's slide shows][pandoc] and [Marpit's heading divider][marpit] | [The presentation format](standard-formats-presentation.md#43-slides): slides split at a heading level, `::: notes` carried into speaker notes, and one source exported to `.pptx`, reveal.js and beamer; checked against pandoc 3.14 on sol | 2026-11-23 |
 
 [cm]: https://spec.commonmark.org/
 [ru]: https://rumdl.dev/rules
@@ -152,6 +152,14 @@ Advisory sources inform local judgment conventions but are not specifications, m
 
 ## 4. Last review
 
+On 23 November 2026 the overnight REFRESH sweep re-fetched every outside source, all reachable, and re-ran the recorded rumdl reproductions on 0.3.5, the upstream release, beside the harness's resolved 0.3.2. No convention, rule configuration or standard needs to change, so nothing was proposed.
+
+- **Specifications:** CommonMark 0.31.2 and TOML v1.1.0 remain current; GitHub's alert guidance is unchanged, five labels used sparingly and never consecutively. Standard Readme's latest release is v1.3.0 of March 2026, its `spec.md` unchanged since.
+- **rumdl:** upstream is 0.3.5 of 18 November. The rules page lists 90 rules up to `MD096`, 19 opt-in, as on 18 October; the CLI's exit codes and `--preflight` are unchanged. 0.3.3 to 0.3.5 add `MD013` frontmatter reflow, which raises nothing in the harness, `MD057` and `MD051` reference-definition fixes, and an `MD076` fix that preserves loose lists; 0.3.4's breaking change is to the Rust library API only.
+- **Fixed point:** `rumdl check .` is clean on 0.3.2 across 689 files. On 0.3.5 it raises 57 `MD076` findings in 9 files, each a tight list with an item holding a blank-separated code block; `rumdl fmt` adds the blank lines and 0.3.2 accepts the result, so the change is benign but must land with the harness's move to 0.3.5, as **Watching** records.
+- **Reproductions on 0.3.5:** the `##]` continuation still becomes a heading and loses its full stop; `MD013` still skips a paragraph holding `|`; `MD060` under `any` still strips a placeholder table's padding and reports clean; the empty list item after a lazy line still does not reproduce; the `MD056` guard holds under the standard flavor and the Obsidian flavor stays clean. `MD030` now reports `8.Does...` as paragraph text and no longer rewrites it.
+- **Advisory:** Conventional Comments, Design docs at Google, AIP-100, Zalando's guidelines, the Rust RFC book, Oxide's RFD 1, the advice process and Nielsen Norman Group's critiques say what the review standard draws from them. Pandoc 3.14 is still the latest release; a deck built with `--shift-heading-level-by=-1 --slide-level=1` carries the title notes and each slide's notes into the `.pptx`, and Marpit's `headingDivider` is unchanged.
+
 On 23 November 2026, under EXCHANGE-HOME a, recorded under [Decisions](#3-decisions), the Authoring guild's member list in `SKILL.md` names `ki-exchange-dynamics`, which moved from the Acquire guild. No rule changed and no outside source was refreshed.
 
 On 22 November 2026 AUTHORING-FIXES a, item 3, was applied by Loreward: the skill's words name the host's question tool where they named Claude's `AskUserQuestion`. No criterion changed and no outside source was refreshed.
@@ -244,11 +252,12 @@ REFRESH last run **2026-10-18** under KI-HARNESS-GOV-194. Every source was re-fe
 - **Standing check:** a rule this configuration disables is a deferral, not a verdict. Re-test each one against its recorded reproduction on every rumdl upgrade, and re-enable the ones upstream has fixed — otherwise a defensive setting outlives the defect and quietly costs the coverage it was meant to protect.
 - **Watching:**
   - Every estate repository on the house toolchain now pins `^0.3.0`, except the website and `ki-design`, which stay on their own pins until they follow. `--preflight` breaks on 0.2.78, so a consumer still below 0.3.0 must move its pin before it adopts the house `check --fix --preflight` command.
-  - `MD056` is fixed for aliased wikilinks under the Obsidian flavor in 0.2.54. Under the standard flavor, `[[Target|Label]]` correctly retains GFM pipe semantics and is reported as an extra table cell. Since 0.3.0 the standard-flavor fix no longer truncates the row either. The house configuration keeps that useful finding but marks MD056 unfixable, so `check --fix` preserves the source, and keeps that guard as defence in depth. Re-test both flavors and the no-fix guard on each upgrade.
-  - Block constructs are recognised on soft-wrapped continuation lines, which is one root cause behind three separate corruptions. A line beginning `##]` is admitted as an ATX heading although CommonMark requires a space after the hash run, and `MD022`, `MD018` and `MD026` then split the paragraph and delete its full stop. An empty list item after a wrapped line is read as a setext heading, and `MD003` injects a literal `##` mid-sentence. `MD030` reads `8.Does ownership...` as a marker with no space and inserts one. To re-test each: run the construct through `rumdl check --fix` and through a reference CommonMark parser, and confirm they now agree. On 0.3.0 the `##]` case still reproduces, the setext case did not reproduce with an indicative fixture, and `MD030` behaves by design. No rule is disabled here in the house configuration, because the harness content does not carry these constructs — `kit-legal` disables `MD030` locally and defuses the other two by rejoining the wraps at source.
-  - `MD013` reflow silently skips any paragraph containing a `|`, so a wikilink-heavy base is less normalised than a clean gate implies. Non-destructive, and no rule is disabled for it. To re-test: write a wrapped paragraph containing `[[Target|Label]]` and confirm `rumdl check --fix` joins it to one line. Still skipped on 0.3.0 under the standard flavor.
-  - `MD060` mis-handles a placeholder table whose only body row holds `-` cells, stripping the padding and leaving it misaligned while reporting clean, and still does on 0.3.0. Even once fixed, re-enabling needs the separate judgment above, since no style reproduces the former conditional padding: `aligned` rewrites every wide table into one long row and `any` enforces nothing.
+  - `MD056` is fixed for aliased wikilinks under the Obsidian flavor in 0.2.54. Under the standard flavor, `[[Target|Label]]` correctly retains GFM pipe semantics and is reported as an extra table cell. Since 0.3.0 the standard-flavor fix no longer truncates the row either. The house configuration keeps that useful finding but marks MD056 unfixable, so `check --fix` preserves the source, and keeps that guard as defence in depth. Re-test both flavors and the no-fix guard on each upgrade; both held on 0.3.5.
+  - Block constructs are recognised on soft-wrapped continuation lines, which is one root cause behind three separate corruptions. A line beginning `##]` is admitted as an ATX heading although CommonMark requires a space after the hash run, and `MD022`, `MD018` and `MD026` then split the paragraph and delete its full stop. An empty list item after a wrapped line is read as a setext heading, and `MD003` injects a literal `##` mid-sentence. `MD030` reads `8.Does ownership...` as a marker with no space and inserts one. To re-test each: run the construct through `rumdl check --fix` and through a reference CommonMark parser, and confirm they now agree. On 0.3.0 the `##]` case still reproduces, the setext case did not reproduce with an indicative fixture, and `MD030` behaves by design. On 0.3.5 the `##]` case still reproduces, the setext case still does not, and `MD030` reports the line as paragraph text without inserting a space. No rule is disabled here in the house configuration, because the harness content does not carry these constructs — `kit-legal` disables `MD030` locally and defuses the other two by rejoining the wraps at source.
+  - `MD013` reflow silently skips any paragraph containing a `|`, so a wikilink-heavy base is less normalised than a clean gate implies. Non-destructive, and no rule is disabled for it. To re-test: write a wrapped paragraph containing `[[Target|Label]]` and confirm `rumdl check --fix` joins it to one line. Still skipped on 0.3.0 and 0.3.5 under the standard flavor.
+  - `MD060` mis-handles a placeholder table whose only body row holds `-` cells, stripping the padding and leaving it misaligned while reporting clean, and still does on 0.3.0 and, under `any`, on 0.3.5. Even once fixed, re-enabling needs the separate judgment above, since no style reproduces the former conditional padding: `aligned` rewrites every wide table into one long row and `any` enforces nothing.
   - `MD057` is disabled pending a decision about published skill copies, whose links into the source repository's `docs/` tree resolve there and dangle in the publication. This one waits on a decision here, not on upstream. Triaged: this repository's own findings were all genuine and are fixed, and the findings elsewhere are genuinely broken links except in the retired `ki-plugins` projection, where they were the publication artefact described above. Enabling the rule estate-wide would fail that repository for links correct at source.
+  - rumdl 0.3.5's `MD076` reports 57 tight lists in 9 harness files, each with an item holding a blank-separated code block; `rumdl fmt` adds the blank lines, which 0.3.2 also accepts. The harness's move to 0.3.5 should carry that reformat in the same change so the gate stays a fixed point.
   - rumdl is pre-1.0 and single-maintainer; confirm the house Markdown output is unaffected on each bump. The estate is a fixed point of this configuration, so any diff on upgrade is a regression to investigate rather than an improvement to accept.
   - Biome does not support Markdown at all (no `markdown` key in its schema); if that changes it would displace rumdl's formatter role but not its linter role, since the structural and link-integrity rules have no Biome counterpart.
 
