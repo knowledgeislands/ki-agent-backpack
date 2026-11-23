@@ -35,7 +35,7 @@ Nygard's original format grounds the standard; the ADR community supports it.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| NYGARD — [Nygard ADR format (original): Documenting architecture decisions](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions) | The short single-decision record with Context, active-voice Decision and Consequences | 2026-08-12 |
+| NYGARD — [Nygard ADR format (original): Documenting architecture decisions](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions) | The short single-decision record with Context, active-voice Decision and Consequences | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -43,7 +43,7 @@ Nygard's original format grounds the standard; the ADR community supports it.
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| ADR-GITHUB — [ADR GitHub community resources: adr.github.io](https://adr.github.io) | Supporting community evidence for optional record patterns, not authority for the house taxonomy, serial scope, or living-record policy | 2026-08-12 |
+| ADR-GITHUB — [ADR GitHub community resources: adr.github.io](https://adr.github.io) | Supporting community evidence for optional record patterns, not authority for the house taxonomy, serial scope, or living-record policy | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -60,6 +60,13 @@ The nine-prefix taxonomy, `decision_type_url`, and living-record policy are hous
 [Back to contents](#contents)
 
 ## 4. Last review
+
+REFRESH ran **2026-11-23** for Gilder's overnight sources sweep; both sources were re-fetched and no rule changed.
+
+- **NYGARD:** the page is live and unchanged: Title, Context, active-voice Decision, Status and Consequences. The house's omission of Status remains intended.
+- **ADR-GITHUB:** still community evidence only, recommending no sections or statuses. MADR's latest release is still 4.0.0 (September 2024), so Considered Options / Pros and Cons has not consolidated further; eADR appears only in a JavaLand 2026 talk title (10 March 2026), with no documented convention.
+
+**Watching:** the three items below stand unchanged.
 
 On 22 November 2026 AUTHORING-FIXES a, item 3, was applied by Loreward: the skill's words name the host's question tool where they named Claude's `AskUserQuestion`. No criterion changed and no outside source was refreshed.
 
