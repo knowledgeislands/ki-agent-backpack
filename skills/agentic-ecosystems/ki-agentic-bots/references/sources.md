@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:10:23Z
+ki-revised: 2026-11-23T03:13:09Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -29,7 +29,7 @@ Orca's own references govern what the standard says about Orca; the first store'
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [Orca][orca] 1.4.267, its bundled bots and automations references and `orca bot` and `orca orchestration` command help, read on sol | A bot's folder, the files Orca owns, wakes, mail, automations, the quiet ending and items | 2026-11-21 |
+| [Orca][orca] 1.4.269, its bundled bot rules and `orca bot`, `orca orchestration` and `orca automations` command help, read on sol, with its release notes to 1.4.271 | A bot's folder, the files Orca owns, wakes, mail, automations, the quiet ending and items | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -37,8 +37,8 @@ Orca's own references govern what the standard says about Orca; the first store'
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| The Cairn store's `BOTS.md`, at [`50e99f45`][bots] | The re-anchor, the kinds of wake, the working rules and the Orca section, generalised here; it stays that store's own instance | 2026-11-22 |
-| The Cairn summit's [change 70][c70], [4.2](https://github.com/krisb/ki-cairn-store/blob/50e99f45/work/cairn/cairn.summit/70-bots.change.md#42-what-an-orca-bot-is) | What an Orca bot is, each fact marked verified or inferred, read on sol on 21 November 2026 | 2026-11-22 |
+| The Cairn store's `BOTS.md`, at [`705a92dc`][bots] | The re-anchor, the kinds of wake, the working rules and the Orca section, generalised here from `50e99f45`; it stays that store's own instance | 2026-11-23 |
+| The Cairn summit's [change 70][c70], [4.2](https://github.com/krisb/ki-cairn-store/blob/50e99f45/work/cairn/cairn.summit/70-bots.change.md#42-what-an-orca-bot-is) | What an Orca bot is, each fact marked verified or inferred, read on sol on 21 November 2026; unchanged to its close-out at `48d82993` before the change graduated | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -67,6 +67,8 @@ The owner's decisions behind the standard, each recorded in the Cairn summit's [
 
 ## 4. Last review
 
+On 23 November 2026, for Gilder's overnight sources sweep, Orca 1.4.269 on sol was re-read: its bot rules as written into each bot's files, and `orca bot`, `orca orchestration send` and `orca automations create` help. Every fact in [4.11](standard-bots.md#411-on-orca) still holds: Orca owns `AGENTS.md`, `CLAUDE.md` and `bot.json`; a memory line is removed only with `orca bot memory forget`; the hand-code-to-a-worker default yields to `SOUL.md`; `--chat new` starts a new chat; an automation runs in a new conversation by default; `--once --by` with no event is a one-time reminder; and a final message whose last word is `NO_REPLY` tells nobody. Orca has added `orca bot new-chat`, run only when the owner asks to start fresh, which reads `SOUL.md` and `MEMORY.md` again; automations that start on Slack, GitHub or Linear events, with `--runs-in` and `--results-to`; and @mention hand-offs in group rooms. Release 1.4.271, not yet on sol, journals closed items in a bot's memory and resumes open requests after a restart. A proposal to bring 4.11 up to 1.4.269 is with Gilder. The Cairn store's `BOTS.md` has moved on since `50e99f45`, adding worktree, paced-check, drafts-only and card-answering rules and noting what is not yet known; change 70 graduated with 4.2 unchanged.
+
 On 22 November 2026 NOTICE-DIGEST a, recorded under Decisions, was applied to Ending quietly: where `NO_REPLY` may stand, that the backpack's footer hook lets it through, and that no-action rule notices come as one digest. No criterion changed and no external source refreshed.
 
 On 22 November 2026 the second SKILLS-LEARNING batch, Kris's steer of that morning to bake the night's lessons into the skills, added one pitfall to [Questions carded when due](standard-bots.md#48-questions-carded-when-due): check a question's facts again just before carding it. No rule changed and no outside source was refreshed.
@@ -79,11 +81,13 @@ On 22 November 2026 the standard was first written under BOTS-GUILD, generalisin
 
 **Watching:**
 
-- Orca's bots are in beta and changed in four releases over two days; [4.11](standard-bots.md#411-on-orca) is re-read against each release the bots run on.
+- Orca's bots are in beta and changed in four releases over two days; [4.11](standard-bots.md#411-on-orca) is re-read against each release the bots run on. Sol runs 1.4.269; 1.4.271 is out.
+- Orca 1.4.271's memory journal of closed items, and its note that work state lives in Items and the journal, beside [4.6](standard-bots.md#46-memory-a-working-aid) and [4.7](standard-bots.md#47-the-work-package-counts-as-outstanding), which keep the package as the record.
+- What `BOTS.md` still lists as not known: how long Orca keeps mail between bots, whether automations survive a restart, runs missed while the Mac sleeps, and how a Codex bot reads its files; and how group rooms' @mention hand-offs develop, with no convention adopted.
 
 [Back to contents](#contents)
 
 [c70]: https://github.com/krisb/ki-cairn-store/blob/50e99f45/work/cairn/cairn.summit/70-bots.change.md
 [c70-16fdb159]: https://github.com/krisb/ki-cairn-store/blob/16fdb159/work/cairn/cairn.summit/70-bots.change.md#46-decided
-[bots]: https://github.com/krisb/ki-cairn-store/blob/50e99f45/BOTS.md
+[bots]: https://github.com/krisb/ki-cairn-store/blob/705a92dc/BOTS.md
 [orca]: https://github.com/stablyai/orca
