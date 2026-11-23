@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T01:21:54Z
+ki-revised: 2026-11-23T02:45:51Z
 ki-refresh: external-spec · quarterly
 ---
 
