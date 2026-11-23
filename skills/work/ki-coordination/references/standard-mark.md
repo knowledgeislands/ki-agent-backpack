@@ -44,7 +44,7 @@ The mark and the work done at it, parked tangents, pruning the package, closing 
 
 - The Summary the mark starts: [reply format and banner](standard-report-forms.md).
 - The tidy rules over a package's closed list: `ki-work-package`'s [work-package standard](../../ki-work-package/references/standard-work-package.md).
-- Stopping an unfinished Orca worker: `ki-delegation-orca`'s [Orca delegation standard](../../../agentic-ecosystems/ki-delegation-orca/references/standard-orca-delegation.md).
+- Stopping an unfinished Orca worker, and every Orca worker command: Orca's own `orchestration` skill, since `ki-delegation-orca` retired (ORCA-WORKERS b).
 - The decisions life cycle the mark works: [decisions and change documents](standard-decisions.md).
 
 [Back to contents](#contents)
@@ -130,7 +130,7 @@ A coordinator that starts Orca supervised workers, or whose runs start them, clo
 - **Mark, hold and Finished:** before a mark is struck, before a hold's Stop and before the Finished banner, `orca orchestration worker-list --run <run id> --terminal-state reclaimable --json` returns none for each Orca Run the work created. A settled worker left open, a leftover, is released then under the same authority and reported. A worker still owing a decision is named in the receive or mark commit and in the hold report's `## Left over`.
 - **What release does:** cleanup after settlement, not cancellation. It archives the worker's output, so `worker-read` still returns it, then closes only that worker's own coordinator-owned agent terminal, never setup, configured, reused, pre-existing or user-taken-over terminals. Release is terminal accounting, reported apart from Task status, and the worker is then listed as `released`.
 - **History is not close-out:** close-out never deletes an Orca AI Vault session. Deleting conversation history is the owner's own choice, and no background agent or coordinator makes it.
-- **Chat coordinators:** a coordinator in an Orca chat, not an Orca terminal, may release a worker it started. The proof covers chat coordinators only on the runtime the `ki-delegation-orca` [Runtime binding](../../../agentic-ecosystems/ki-delegation-orca/references/standard-orca-delegation.md#414-runtime-binding) names as proved. Where a release is refused or its effect is uncertain, name the Dispatch as still owing a decision and close nothing by hand. Release never stands in for stopping an unfinished worker, which stops only under the `ki-delegation-orca` stop rule.
+- **Chat coordinators:** a coordinator in an Orca chat, not an Orca terminal, may release a worker it started. The proof covers chat coordinators only on a runtime Orca's own `orchestration` skill names as supporting it. Where a release is refused or its effect is uncertain, name the Dispatch as still owing a decision and close nothing by hand. Release never stands in for stopping an unfinished worker, which stops only under Orca's own `orchestration` skill.
 
 Sources: ORCA-WORKER-CLEANUP, ORCA-CLOSE-OUT, ACCEPT-BY-CRITERIA, WORKER-LEFTOVERS, TRIAL-SHAPE and CLOSEOUT-STRIKE in [the decision register](sources.md#3-decisions).
 

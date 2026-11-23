@@ -738,7 +738,7 @@ export const COVERAGE_REQUIRED_BY: Readonly<Record<string, readonly string[]>> =
   'ki-repo-website': ['ki-repo-website-cloudflare', 'ki-repo-website-content', 'ki-repo-website-interactive'],
   'ki-skills': ['ki-repo-backpack'],
   'ki-subagents': ['ki-repo-backpack', 'ki-subagents-chatgpt', 'ki-subagents-claude'],
-  'ki-work-package': ['ki-agentic-bots', 'ki-coordination', 'ki-delegation-orca']
+  'ki-work-package': ['ki-agentic-bots', 'ki-coordination']
 }
 const requiredByDeclared = (kiText: string, table: string): boolean =>
   (COVERAGE_REQUIRED_BY[table] ?? []).some((dependent) => declaresTable(kiText, dependent))

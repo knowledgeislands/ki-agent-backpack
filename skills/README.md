@@ -19,7 +19,7 @@ Use the website-owned [skills-by-outcome guide](https://knowledgeislands.info/gu
 <!-- ki-repo-backpack:capability-catalogue:start -->
 ## Generated capability catalogue
 
-This source backpack publishes 55 skills: 50 governance skills, 4 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
+This source backpack publishes 54 skills: 50 governance skills, 3 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
 
 ### Acquire
 
@@ -73,16 +73,6 @@ Govern agent delegation: routine background runs on the agent host's own subagen
 - **Applicability:** Declaration Only
 - **Arguments:** `audit <repo> | conform <repo> | educate <work-item> | help | refresh`
 - **Dependencies:** None
-- **Runtime:** Portable
-
-#### `ki-delegation-orca`
-
-Start, wait on, steer, stop and close Orca supervised workers as a KI delegation launcher, on attended Macs for a work package that opts in. Use when a coordinator dispatches runs through `orca orchestration`; `ki-delegation` owns the portable run contract, `ki-coordination` the coordinating work, and Orca's own `orchestration` skill its command mechanics.
-
-- **Kind:** Process
-- **Applicability:** Invocation Only
-- **Arguments:** `start <brief> | wait | status | steer <dispatch> | stop <dispatch> | close <dispatch> | recover | help`
-- **Dependencies:** `ki-delegation`, `ki-coordination`
 - **Runtime:** Portable
 
 #### `ki-radar`

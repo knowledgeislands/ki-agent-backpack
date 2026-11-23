@@ -41,7 +41,7 @@ Read [the bot practice standard](references/standard-bots.md) before setting up,
 
 - **`ki-agentic-ecosystems`** says what a bot and an actor are; this skill never redefines them.
 - **`ki-coordination`** owns the coordinating work a bot does: its replies, bootstrap report, mark, re-anchoring and reports.
-- **`ki-delegation`** owns the background runs a bot starts; `ki-delegation-orca` is used only when the owner asks for Orca workers.
+- **`ki-delegation`** owns the background runs a bot starts; Orca's own `orchestration` skill covers Orca workers only when the owner asks for them, while a bot's own use of Orca stays here.
 - **`ki-work-package`** owns the package a bot counts as its outstanding work.
 - It grants no authority: a bot works under the same rules and remit as a session in its seat.
 - How durable and shared state stays portable across ecosystems belongs to the guild's ecosystem work, not here.

@@ -118,7 +118,7 @@ Another skill that uses an agentic term links to its industry card here rather t
 This skill leads the Agentic ecosystems guild: its words, and agents at work. It says what a thing is; its members say how agents work:
 
 - **`ki-subagents`** for subagent roles, and how to run subagents in a given agent host, with `ki-subagents-claude` and `ki-subagents-chatgpt` for each host's projection: the practice, not the vocabulary.
-- **`ki-delegation`** for delegating work to background agents, with `ki-delegation-orca` for Orca's supervised workers.
+- **`ki-delegation`** for delegating work to background agents, each host's own subagents doing the work and Orca's own `orchestration` skill covering Orca workers when Kris asks for them.
 - **`ki-agentic-bots`** for how a bot actor works on its agent host: its bootstrap on every wake, its background work, its mail, its memory and its questions.
 - **`ki-radar`** for how mature a subject is, who has adopted it and the house stance, naming its card in the subject's `card` field, and for models and the routes between models and agents.
 

@@ -49,7 +49,7 @@ The working practice of a bot actor on any agent host that keeps bots.
 
 - What a bot and an actor are, the two actor types and the constraints a bot works under: `ki-agentic-ecosystems`.
 - Replies, the bootstrap report, the mark, re-anchoring and reports: `ki-coordination`.
-- The background run contract: `ki-delegation`; Orca's supervised workers: `ki-delegation-orca`.
+- The background run contract: `ki-delegation`; Orca's supervised workers, when the owner asks for them: Orca's own `orchestration` skill.
 - The work package's shape: `ki-work-package`.
 - How shared and durable state stays readable by any ecosystem: the guild's ecosystem work.
 - Moving a session actor to a bot, and the setup check of one host's bots: each store's own instance.
