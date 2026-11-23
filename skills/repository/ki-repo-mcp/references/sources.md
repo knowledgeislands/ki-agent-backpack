@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T21:58:53Z
+ki-revised: 2026-11-23T01:49:41Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -41,14 +41,14 @@ The spec is versioned by date. Track the **latest released** version and note th
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| SPEC — [MCP spec — versioning / latest][spec] | Which dated revision is current and whether a released SDK supports it | 2026-10-18 |
-| CHANGELOG — [2026-07-28 changelog][changelog] | What changed since 2025-11-25 (stateless core, `server/discover`, required `resultType`, Multi Round-Trip Requests, tasks moved to an extension, transport-session and SSE-resumability removals) | 2026-10-18 |
-| SDK — [TypeScript SDK releases][sdk] | Which dated revision is current and whether a released SDK supports it | 2026-10-18 |
-| TOOLS — [Server → Tools][tools] | Tool shape, `inputSchema`/`outputSchema`, `structuredContent`, annotations, `isError` vs protocol errors, tool-name charset/length, `icons`, `execution.taskSupport` | 2026-10-18 |
-| SEC — [Security Best Practices][sec] | Confused deputy, token passthrough, SSRF, session hijacking, scope minimization, local-server compromise | 2026-10-18 |
-| AUTH — [Authorization][auth] | OAuth 2.1 framework, token audience, PKCE, dynamic client registration — relevant to the gmail / m365 auth-servers | 2026-10-18 |
+| SPEC — [MCP spec — versioning / latest][spec] | Which dated revision is current and whether a released SDK supports it | 2026-11-23 |
+| CHANGELOG — [2026-07-28 changelog][changelog] | What changed since 2025-11-25 (stateless core, `server/discover`, required `resultType`, Multi Round-Trip Requests, tasks moved to an extension, transport-session and SSE-resumability removals) | 2026-11-23 |
+| SDK — [TypeScript SDK releases][sdk] | Which dated revision is current and whether a released SDK supports it | 2026-11-23 |
+| TOOLS — [Server → Tools][tools] | Tool shape, `inputSchema`/`outputSchema`, `structuredContent`, annotations, `isError` vs protocol errors, tool-name charset/length, `icons`, `execution.taskSupport` | 2026-11-23 |
+| SEC — [Security Best Practices][sec] | Confused deputy, token passthrough, SSRF, session hijacking, scope minimization, local-server compromise | 2026-11-23 |
+| AUTH — [Authorization][auth] | OAuth 2.1 framework, token audience, PKCE, dynamic client registration — relevant to the gmail / m365 auth-servers | 2026-11-23 |
 
-All six original sibling repositories now declare the v2 server package (2.3.0) and so select the 2026-07-28 profile; two newer repositories (`mcp-acquire-whatsapp`, `mcp-housekeeping-chatgpt`) declare the v1 SDK (`^1.32.0`) and the 2025-11-25 profile.
+All six original sibling repositories now declare the v2 server package (2.4.0) and so select the 2026-07-28 profile; two newer repositories (`mcp-acquire-whatsapp`, `mcp-housekeeping-chatgpt`) declare the v1 SDK (`^1.32.2`) and the 2025-11-25 profile.
 
 [Back to contents](#contents)
 
@@ -58,11 +58,11 @@ These primary sources ground the separate source-install contract. They do not m
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| SEMVER — [Semantic Versioning 2.0.0][semver] | Version grammar and precedence | 2026-10-18 |
-| GIT-TAG — [Git tag documentation][git-tag] | Annotated release tags and object identity | 2026-10-18 |
-| GITHUB-RELEASE — [GitHub release management][github-release] | Owner-designated stable release marker | 2026-10-18 |
-| BUN-INSTALL — [Bun install documentation][bun-install] | Frozen lockfile installation | 2026-10-18 |
-| BUN-LOCK — [Bun lockfile documentation][bun-lock] | Committed dependency evidence | 2026-10-18 |
+| SEMVER — [Semantic Versioning 2.0.0][semver] | Version grammar and precedence | 2026-11-23 |
+| GIT-TAG — [Git tag documentation][git-tag] | Annotated release tags and object identity | 2026-11-23 |
+| GITHUB-RELEASE — [GitHub release management][github-release] | Owner-designated stable release marker | 2026-11-23 |
+| BUN-INSTALL — [Bun install documentation][bun-install] | Frozen lockfile installation | 2026-11-23 |
+| BUN-LOCK — [Bun lockfile documentation][bun-lock] | Committed dependency evidence | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -72,8 +72,8 @@ The standard is defined as the **majority shape** across the seven sibling repos
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| REPOS — The seven sibling repos † | Layout, config injection, tool naming, the shared `utils/` helpers, the package/tsconfig/vitest/biome toolchain | 2026-10-18 |
-| CLAUDE — Each repo's own `AGENTS.md` | Per-repo invariants: the per-repo statement of its own invariants — the standard tracks these and flags drift | 2026-10-18 |
+| REPOS — The seven sibling repos † | Layout, config injection, tool naming, the shared `utils/` helpers, the package/tsconfig/vitest/biome toolchain | 2026-11-23 |
+| CLAUDE — Each repo's own `AGENTS.md` | Per-repo invariants: the per-repo statement of its own invariants — the standard tracks these and flags drift | 2026-11-23 |
 
 † Every server that declares `[skills.ki-repo-mcp]`, under MCP-BASIS: `mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-housekeeping-chatgpt` and `mcp-acquire-whatsapp`. The sixth original, `mcp-ki-kb-notion-mirror`, was deleted on 26 October 2026.
 
@@ -87,8 +87,9 @@ The community sources.
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| COMMUNITY — [Tool Annotations as Risk Vocabulary (MCP blog)][annotations] | What the `*Hint` annotations can and can't do — anchors the annotation-driven gate | 2026-10-18 |
-| REGISTRY — [GitHub MCP Registry][github-mcp] | MCP server discovery and integration examples; catalogue entries are discovery evidence, not protocol requirements | 2026-10-18 |
+| COMMUNITY — [Tool Annotations as Risk Vocabulary (MCP blog)][annotations] | What the `*Hint` annotations can and can't do — anchors the annotation-driven gate | 2026-11-23 |
+| REGISTRY — [GitHub MCP Registry][github-mcp] | MCP server discovery and integration examples; catalogue entries are discovery evidence, not protocol requirements | 2026-11-23 |
+| LOCAL-SEC — [Local Server Security (MCP docs, 2026-07-28)][local-sec] | Local stdio threat model: the client and a stdio server share one trust domain, so provenance, version pinning, per-server credentials, narrow filesystem roots and egress control are operator controls; informs the security invariants, not a protocol requirement | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -109,6 +110,23 @@ The decisions the standard cites by id, oldest first; the standard keeps citing 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+REFRESH ran **2026-11-23** for Gilder's overnight sources sweep. Every listed source was re-fetched or re-read; no standard, rubric or item module was changed.
+
+- **SPEC / CHANGELOG:** 2026-07-28 is still the latest released revision; the docs index carries a `draft` revision but no newer dated one. The changelog also records `subscriptions/listen` replacing the HTTP GET stream and `resources/subscribe`, removal of `notifications/elicitation/complete`, issuer-bound client credentials (SEP-2352), and the deprecation of HTTP+SSE, the `includeContext` values and dynamic client registration. The spec index now names Tasks, Skills over MCP and MCP Apps as extensions.
+- **SDK:** `@modelcontextprotocol/server`, `client` and `core` are at **2.4.0** (2026-10-23) and the v1 SDK at **1.32.2**. 2.4.0 adds Skills over MCP (SEP-2640, experimental `attach`), rejects `x-mcp-header` on `number` parameters with `-32020`, stops wrapping `.meta({ id })` output schemas in `{ result }` on 2025-11-25 connections, and adds opt-in `scope` on token refresh for Entra ID (`AADSTS90009`), relevant to `mcp-m365`.
+- **TOOLS / SEC / AUTH:** the 2025-11-25 pages are unchanged in substance.
+- **LOCAL-SEC:** added. The 2026-07-28 docs publish a Local Server Security guide; it is operator guidance for the house's own stdio servers, advisory only.
+- **COMMUNITY / REGISTRY:** the annotations post is unchanged, same five SEPs. The GitHub registry now lists 896 servers, still with no curation or protocol requirement.
+- **Source distribution:** SemVer 2.0.0 current; `git tag` still last updated in 2.55.0; GitHub immutable releases unchanged, now advising a draft first so every asset is attached before lock; Bun unchanged, `bun ci` as the frozen-lockfile shorthand.
+- **REPOS / CLAUDE:** the six v2 siblings declare `@modelcontextprotocol/server` and `client` **2.4.0**, current; `mcp-acquire-whatsapp` and `mcp-housekeeping-chatgpt` declare the v1 SDK `^1.32.2`. `mcp-git-audit` and `mcp-m365` AGENTS.md now declare 2026-07-28, so the profile-declaration drift of 2026-10-18 is resolved (`mcp-ki-kb-notion-mirror` is deleted). `mcp-cairn` has no local checkout here and was not scanned.
+
+**Watching:**
+
+- Add 2026-07-28 TOOLS, SEC and AUTH rows beside the 2025-11-25 ones and make the structured-output rule profile-dependent: every v2 server now declares 2026-07-28, so the 2025-11-25 pages no longer describe most of the fleet. Assess the error-code range and cacheable-result fields for that profile; deterministic ordering is already codified.
+- Migration of the two v1 repositories, and `mcp-cairn`'s SDK pin and profile when a checkout is available.
+- Skills over MCP (SEP-2640): an extension the SDK now ships; watch whether it touches server shape.
+- Unchanged: rate limiting for any future remote server, and the open annotation vocabulary proposals.
 
 On 22 November 2026 REPO-OTHERS a, recorded under [Decisions](#3-decisions), added `mcp-cairn` to the server lists in `SKILL.md` and [the server standard](standard-mcp-servers.md), and to [the tool-prefix table](standard-mcp-servers.md#43-tool-naming) with its declared exceptions. The majority basis under MCP-BASIS was not recounted. No rule changed and no outside source was refreshed.
 
@@ -189,6 +207,7 @@ TOOLS/SEC/AUTH and the Community/In-house rows were not re-fetched this pass (fi
 [annotations]: https://blog.modelcontextprotocol.io/posts/2026-03-16-tool-annotations/
 [csi]: https://www.nsa.gov/Portals/75/documents/Cybersecurity/CSI_MCP_SECURITY.pdf
 [github-mcp]: https://github.com/mcp
+[local-sec]: https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/local-server-security
 [semver]: https://semver.org/
 [git-tag]: https://git-scm.com/docs/git-tag
 [github-release]: https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository
