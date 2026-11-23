@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:39:49Z
+ki-revised: 2026-11-23T02:48:19Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -29,12 +29,13 @@ The floor follows one specification, and the house's own documentation standards
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| WCAG — [WCAG 2.2](https://www.w3.org/TR/WCAG22/) | The floor: 1.4.1 Use of Color, 1.4.3 and 1.4.11 contrast, 2.1.1 Keyboard, 2.4.7 Focus Visible | 2026-10-11 |
-| [The Guides standard](../../../authoring/ki-guides/references/standard-guides.md) | The design guide's home and form | 2026-10-11 |
-| [The Specifications standard](../../../authoring/ki-specs/references/standard-specs.md) | When a design rule becomes a Specification | 2026-10-11 |
-| [The Decision Records standard](../../../authoring/ki-decision-records/references/standard-decision-records.md) | Prefix choice and the living-record rule for design decisions | 2026-10-11 |
-| [The design-loop standard](../../../keystone/ki-work/references/standard-work-design.md) | The boundary with shape-level design, and temporary artefacts | 2026-10-11 |
-| [The design format](../../../keystone/ki-authoring/references/standard-formats-design.md) | The design document a design book belongs to, and how its boards and images are shown | 2026-11-17 |
+| WCAG — [WCAG 2.2](https://www.w3.org/TR/WCAG22/) | The floor: 1.4.1 Use of Color, 1.4.3 and 1.4.11 contrast, 2.1.1 Keyboard, 2.4.7 Focus Visible | 2026-11-23 |
+| [The Guides standard](../../../authoring/ki-guides/references/standard-guides.md) | The design guide's home and form | 2026-11-23 |
+| [The Specifications standard](../../../authoring/ki-specs/references/standard-specs.md) | When a design rule becomes a Specification | 2026-11-23 |
+| [The Decision Records standard](../../../authoring/ki-decision-records/references/standard-decision-records.md) | Prefix choice and the living-record rule for design decisions | 2026-11-23 |
+| [The design-loop standard](../../../keystone/ki-work/references/standard-work-design.md) | The boundary with shape-level design, and temporary artefacts | 2026-11-23 |
+| [The design standard](../../../keystone/ki-design/references/standard-design.md) | The loop of brief, options and review that design work points to | 2026-11-23 |
+| [The design format](../../../keystone/ki-authoring/references/standard-formats-design.md) | The design document a design book belongs to, and how its boards and images are shown | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -42,7 +43,7 @@ The floor follows one specification, and the house's own documentation standards
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| ATOMIC — Brad Frost, [Atomic Web Design](https://bradfrost.com/blog/post/atomic-web-design/) (2013) and [Atomic Design](https://atomicdesign.bradfrost.com/) (2016) | The component library's levels, with tokens added beneath atoms; held as the house's choice, which can change | 2026-11-17 |
+| ATOMIC — Brad Frost, [Atomic Web Design](https://bradfrost.com/blog/post/atomic-web-design/) (2013) and [Atomic Design](https://atomicdesign.bradfrost.com/) (2016) | The component library's levels, with tokens added beneath atoms; held as the house's choice, which can change | 2026-11-23 |
 | `5g-emerge-phase3` at `ceaf95344da3564693302a359d3a20959f0b0a19` | The pilot: tokens, guide, decision record and checks | 2026-10-11 |
 | [`apps-cairn.local`](https://github.com/knowledgeislands/apps-cairn.local/tree/7f58d7714d13563ec1e85d9217e42ad7cb5a219e) at `7f58d7714` | The exemplar: tokens, guide, design system folder, component library and checks, passing every mechanical criterion | 2026-11-23 |
 | An annotated design board for a knowledge-base viewer, 2 and 3 November 2026 | The annotated board: numbering, shells and components, region codes, measuring, and the first board tooling | 2026-11-03 |
@@ -79,6 +80,8 @@ The floor follows one specification, and the house's own documentation standards
 
 ## 4. Last review
 
+On 23 November 2026 the quarterly outside-source refresh re-read every authoritative source and the atomic design source. WCAG 2.2 is still the Recommendation of 12 December 2024, and 1.4.1, 1.4.3 (4.5:1, 3:1 for large text), 1.4.11 (3:1), 2.1.1 and 2.4.7 read as the floor cites them. The Guides, Specifications, Decision Records and design format standards still own what this skill routes to them. The design-loop standard now hands the shaping of a design to `ki-design`, whose [design standard](../../../keystone/ki-design/references/standard-design.md#42-how-a-design-is-shaped) design work already points to, so it was added as a source. Brad Frost's atomic design still names atoms, molecules, organisms, templates and pages. The DTCG format has no release after 2025.10. No rule needs to change.
+
 On 23 November 2026 the Design guild's landing, step 6.3 of the Cairn summit's [change 10](https://github.com/krisb/ki-cairn-store/blob/42f99d6f7b9aedbc96610af382d6985b6cb6e993/work/cairn/cairn.summit/10-skills-review.change.md#43-decided), applied DESIGN-SETTLED, recorded under Decisions: [the exemplar](exemplars.md) is now `apps-cairn.local` at `7f58d7714`, whose `ki-design-system` audit passes every mechanical criterion, in place of the 5G-EMERGE Phase 3 pilot, which stays the standard's origin; and [design work](standard-design-system.md#48-design-work-from-brief-to-rule) is cut to a pointer to `ki-design`'s loop of brief, options and review, keeping only the steps that use this skill's files: review on the annotated board, options at three levels, build, consolidate and retire, with DRAW-BUILD unchanged. No criterion changed, so the rubric was not regenerated, and no outside source was refreshed.
 
 On 22 November 2026 NO-SITE-YET, recorded under Decisions, was applied to [the design system folder](standard-design-system.md#411-the-design-system-folder): the app's or website's repository comes first, and its design system is one of its first iterations. No criterion changed and no external source refreshed.
@@ -106,6 +109,9 @@ On 17 November 2026 an in-house review built the Cairn summit's [change 16, the 
 - 2026-11-03 - Added the annotated board from its first use: Review as stage 0 of design work, the board as a projection of the running interface, DSYS-8 asking whether it was refreshed, and `scripts/annotate-board.ts`, generalised from the first board's tooling, with its pages, selectors and canvas format left to each site.
 - 2026-10-11 - Created from the 5G-EMERGE Phase 3 pilot. Confirmed the placement model against the current Guides, Specifications, Decision Records and design-loop standards, and the floor against WCAG 2.2.
 
-**Watching:** the W3C Design Tokens Community Group format, stable since its 2025.10 version: settled on 17 November as an allowed upstream form under TOKEN-SOURCE; watched for a tool that would need a token source to move to it.
+**Watching:**
+
+- The W3C Design Tokens Community Group format, stable since its 2025.10 version and unchanged at 23 November: settled on 17 November as an allowed upstream form under TOKEN-SOURCE; watched for a tool that would need a token source to move to it.
+- WCAG 3, a Working Draft (latest 10 September 2026) whose provisions are all still Developing and which drops the A and AA levels; the floor stays on WCAG 2.2 until WCAG 3 is a Recommendation.
 
 [Back to contents](#contents)
