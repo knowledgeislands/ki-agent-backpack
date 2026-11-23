@@ -171,11 +171,11 @@ Create or audit repository Specifications: accepted behaviour and quality requir
 
 #### `ki-design-inspiration`
 
-Find website design inspiration in curated galleries and turn selected examples into practical directions for navigation, sections, calls to action, grids, motion, and other UI patterns. Use for visual references and adaptation ideas; website repository structure belongs to `ki-repo-website`, and keeping a design system to `ki-design-system`.
+Find design inspiration for websites, apps and components in curated galleries and turn selected examples into practical directions for navigation, sections, calls to action, grids, motion, and other UI patterns. Use for visual references and adaptation ideas; website repository structure belongs to `ki-repo-website`, and keeping a design system to `ki-design-system`.
 
 - **Kind:** Process
 - **Applicability:** Invocation Only
-- **Arguments:** `help | inspire <website-or-component> | refresh`
+- **Arguments:** `help | inspire <website-app-or-component> | refresh`
 - **Dependencies:** None
 - **Runtime:** Portable
 
