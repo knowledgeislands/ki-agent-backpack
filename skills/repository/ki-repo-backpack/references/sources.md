@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:10:23Z
+ki-revised: 2026-11-23T03:05:50Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -34,8 +34,8 @@ The outside specifications, then the in-house sources; a tag the review cites op
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| AS — [Agent Skills specification][as-spec] | The individual `SKILL.md` format the backpack serves † | 2026-11-15 |
-| CC — [Claude Code subagent docs][cc-subagents] | The subagent definition format the `subagents/` part serves | 2026-11-15 |
+| AS — [Agent Skills specification][as-spec] | The individual `SKILL.md` format the backpack serves † | 2026-11-23 |
+| CC — [Claude Code subagent docs][cc-subagents] | The subagent definition format the `subagents/` part serves | 2026-11-23 |
 
 † Including the directory-name = `name:` constraint and the `references/`, `scripts/`, `assets/` layout.
 
@@ -45,12 +45,12 @@ The outside specifications, then the in-house sources; a tag the review cites op
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| AH — [ki-agent-backpack README][ah-readme] | The KI canonical source-backpack implementation § | 2026-11-15 |
-| CH — [ADR-KI-HARNESS-012][compatible] | Installed identity, direct payload, capability, host, and activation boundaries | 2026-11-15 |
-| KR — `ki-repo` skill | The `.ki.toml` contract and what makes a KI-governed repository | 2026-11-15 |
-| KS — `ki-skills` skill | The governed-rubric family, session, and host boundary ‡ | 2026-11-15 |
-| KE — `ki-engineering` skill | Development toolchain ownership outside compatible-backpack installation semantics | 2026-11-15 |
-| BD — Cairn summit change 12, BACKPACK-DEPTH (Kris, 14 November 2026) | This skill's name: `ki-repo-harness` became `ki-repo-backpack`; the harness wording in its standards follows when the backpack words are rolled out | 2026-11-15 |
+| AH — [ki-agent-backpack README][ah-readme] | The KI canonical source-backpack implementation § | 2026-11-23 |
+| CH — [ADR-KI-HARNESS-012][compatible] | Installed identity, direct payload, capability, host, and activation boundaries | 2026-11-23 |
+| KR — `ki-repo` skill | The `.ki.toml` contract and what makes a KI-governed repository | 2026-11-23 |
+| KS — `ki-skills` skill | The governed-rubric family, session, and host boundary ‡ | 2026-11-23 |
+| KE — `ki-engineering` skill | Development toolchain ownership outside compatible-backpack installation semantics | 2026-11-23 |
+| BD — Cairn summit change 12, BACKPACK-DEPTH (Kris, 14 November 2026) | This skill's name: `ki-repo-harness` became `ki-repo-backpack`; the harness wording in its standards follows when the backpack words are rolled out | 2026-11-23 |
 
 § Source layout and shelf practice are inferred from this repository; installed-payload policy comes from [CH].
 
@@ -94,6 +94,21 @@ On 18 November 2026 the skill's words followed BACKPACK-DEPTH and HARNESS-NAME, 
 On 19 November 2026 that group followed too, under DIAGRAM-GROUP-WORD a, from the same change's step 5: the Fundamentals group is "Skills and backpack", and the skill map and the four functional-area diagrams that draw it were regenerated and re-exported with the living diagrams' redraw.
 
 On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the compatible backpack standard](standard-compatible-backpack.md), formerly `standard-compatible-harness.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format. The rubric's source names follow. No rule changed and no outside source was refreshed.
+
+_REFRESH last run **2026-11-23** (previous: 2026-11-15)._
+
+**Confirmed:**
+
+- [AS] re-fetched live: unchanged since the last review, and the Agent Skills repository has had no commit since 4 November, when governance passed to the Agentic AI Foundation. It still defines no bundle or multi-skill grouping and still requires `name` to match the parent directory.
+- [CC] re-fetched live: still one Markdown file per subagent with YAML frontmatter, `name` and `description` required, project (`.claude/agents/`) and user (`~/.claude/agents/`) locations, subfolders scanned recursively. New fields and plugin-scoped ids are `ki-subagents-claude` matters; nothing changes the `subagents/` part of the backpack contract.
+- [AH] and [CH] re-read from this repository: the README still names the four parts, and the ADR, unchanged since 8 October, still gives the installed payload as `skills/`, `subagents/` and `hooks/`, which `tools-ki`'s payload roots still match.
+- [KR], [KS] and [KE] re-read: `ki-repo` still owns the `.ki.toml` contract, `ki-skills` the governed-rubric framework, and `ki-engineering` package scripts and the toolchain.
+- [BD] re-read at its last revision in the Cairn store: change 12 closed on 19 November with its decisions homed in the backpack, and BACKPACK-DEPTH sits in this file's [Decisions](#3-decisions).
+
+**Watching:**
+
+- [CH] still calls `knowledgeislands/ki-agentic-harness` the baseline compatible harness; unchanged, as above.
+- The repository root holds `output-styles/` (one Claude Code output style, since 14 October), which is none of the four shelves and which neither the README nor the standard names.
 
 _REFRESH last run **2026-11-15** (previous: 2026-09-26)._
 
