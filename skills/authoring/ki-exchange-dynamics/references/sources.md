@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T00:54:54Z
+ki-revised: 2026-11-23T01:28:49Z
 ki-refresh: canonical · on-change
 ---
 
@@ -31,9 +31,9 @@ Kris's note and word that own the method, its design note, and the work and rend
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| Kris's note "Knowledge Islands - Exchange Dynamics Analysis (EDA)" of 4 November 2026, captured privately in the Inbox as `captured/knowledge-islands/intake/2026-11-04-exchange-dynamics-analysis/` | The method: the three dimensions, sentiment kept apart from tension, the phase vocabulary, the three-column visual specification and colour system, the schema's parts, the four layers and the ten mandatory principles, the package layout and the future interactive view. Its governing principle, "Analyse once, render many ways", is his. The capture is lineage only: its reference infographic and the conversation it analyses name real private individuals and are not copied, quoted or described here | 2026-11-07 |
+| Kris's note "Knowledge Islands - Exchange Dynamics Analysis (EDA)" of 4 November 2026, captured privately in Harbour (krisb/ki-cairn-harbour, the Inbox's successor) as `knowledge/intake/captured/knowledge-islands/intake/2026-11-04-exchange-dynamics-analysis/` | The method: the three dimensions, sentiment kept apart from tension, the phase vocabulary, the three-column visual specification and colour system, the schema's parts, the four layers and the ten mandatory principles, the package layout and the future interactive view. Its governing principle, "Analyse once, render many ways", is his. The capture is lineage only: its reference infographic and the conversation it analyses name real private individuals and are not copied, quoted or described here | 2026-11-23 |
 | Kris's word of 4 November 2026 about the worked example, "we could actually just pretend anonymized anyway ... call them random names" | Why the published example is wholly invented | 2026-11-07 |
-| The design note `eda.design.md` in ki.sop.main's `_emerging` focus, at [ki-principal revision f562bf6e](https://github.com/knowledgeislands/ki-principal/blob/f562bf6e41d08c50f659191ec455ec4a99efed46/%2B/_WORK/ki.sop.main/_emerging/eda.design.md) | The skill's design: the candidate homes, the units of comprehension, the layout, the methodology, schema, visual specification and workflow outlines, and the invented allotment exchange | 2026-11-07 |
+| The design note `eda.design.md` in ki.sop.main's `_emerging` focus, at [ki-principal revision f562bf6e](https://github.com/knowledgeislands/ki-principal/blob/f562bf6e41d08c50f659191ec455ec4a99efed46/%2B/_WORK/ki.sop.main/_emerging/eda.design.md) | The skill's design: the candidate homes, the units of comprehension, the layout, the methodology, schema, visual specification and workflow outlines, and the invented allotment exchange | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -41,8 +41,8 @@ Kris's note and word that own the method, its design note, and the work and rend
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| The harness work package `ki.reg.guilds` | The decisions that placed the skill | 2026-11-07 |
-| The `archify` skill, a vendored third-party skill installed alongside the harness, and the `dataviz` chart-design skill | The renderers the rendering standard names; neither is owned here, and the standard relies only on archify's explainer page and dataviz's form, palette and colour-validator guidance | 2026-11-07 |
+| The harness work package `ki.reg.guilds`, now the Cairn store's `work-legacy/batch-01-initial/ki/ki.reg.guilds/`, its live points taken up by `ki.guilds` | The decisions that placed the skill | 2026-11-23 |
+| The `archify` skill, a vendored third-party skill installed alongside the harness, and the `dataviz` chart-design skill | The renderers the rendering standard names; neither is owned here, and the standard relies only on archify's explainer page and dataviz's form, palette and colour-validator guidance | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -58,6 +58,8 @@ Kris's note and word that own the method, its design note, and the work and rend
 
 ## 4. Last review
 
+On 23 November 2026 the overnight sources refresh found Kris's note unchanged since the skill was written, its capture moved only by path into Harbour's `knowledge/intake/captured/`, and the pinned design note still served; the legacy guild package was repointed to the Cairn store's `work-legacy/`. `archify` still offers the explainer page with native charts and HTML, SVG and image export, now at v3.3.0 upstream (22 November 2026) while v3.2.0 is installed; `dataviz` still carries its form heuristic, mark specs, reference palette and a runnable light and dark validator. GUILD-NAME was answered by the guild map, so the overlay's line keeping the skill in `acquire` until then is overtaken and is proposed for deletion, not changed.
+
 On 23 November 2026, under EXCHANGE-HOME a, recorded under [Decisions](#3-decisions), in the Cairn summit's change 10, step 6.3, the skill moved from `skills/acquire/` to `skills/authoring/` and its `ki-guild` from `acquire` to `authoring`; the schema's `$id` follows the new path. No rule or criterion changed and no outside source was refreshed.
 
 On 18 November 2026 the Acquire guild's review, in the Cairn summit's change 10, brought the skill's files into `ki-authoring`'s formats: the two standards were renamed `standard-exchange-dynamics.md` and `standard-exchange-dynamics-rendering.md` and given the standard format's sections, their rules moved unchanged under numbered subsections, the exchange dynamics standard's Scope becoming its Scope's lead-in and its Boundary its Out of scope, and this file took the sources format, its named decisions gathered into [Decisions](#3-decisions). No rule changed and no outside source was refreshed.
@@ -66,7 +68,8 @@ On 7 November 2026, under SKILL-HOMES a) and an away-window grant to build the s
 
 **Watching**
 
-- GUILD-NAME, still open when the skill was placed.
+- `dataviz` wants a single-hue sequential scale and keeps green to red for status, while Kris's note sets a green, yellow, amber and red tension scale; the note governs, and the validator's verdict on that scale is untested.
+- The installed `archify` behind upstream v3.3.0, recorded in a rendering's `design-decisions.md` when one is made.
 - The first rendering of the invented example through `archify`, as the migration overlay records.
 
 [Back to contents](#contents)
