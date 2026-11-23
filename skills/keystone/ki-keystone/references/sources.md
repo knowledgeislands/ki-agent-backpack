@@ -34,10 +34,10 @@ Every source the bootstrap guidance follows is in-house.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| ADR — [ADR-KI-HARNESS-012](../../../../docs/decisions/ADR-KI-HARNESS-012-compatible-harness-publication-and-governed-rubric-boundary.md) | backpack payload, capability, and native-rubric ownership | 2026-08-12 |
-| HC — [Compatible harness decision, ADR-KI-HARNESS-012](../../../../docs/decisions/ADR-KI-HARNESS-012-compatible-harness-publication-and-governed-rubric-boundary.md) | backpack identity, capability identity, and activation boundary | 2026-08-12 |
-| TK — installed `ki --help` surfaces | current public grammar, bootstrap, activation, local development, and diagnostics | 2026-08-12 |
-| KR — `ki-repo` skill | `.ki.toml` and declared repository coverage | 2026-08-12 |
+| ADR — [ADR-KI-HARNESS-012](../../../../docs/decisions/ADR-KI-HARNESS-012-compatible-harness-publication-and-governed-rubric-boundary.md) | backpack payload, capability, and native-rubric ownership | 2026-11-23 |
+| HC — [Compatible harness decision, ADR-KI-HARNESS-012](../../../../docs/decisions/ADR-KI-HARNESS-012-compatible-harness-publication-and-governed-rubric-boundary.md) | backpack identity, capability identity, and activation boundary | 2026-11-23 |
+| TK — installed `ki --help` surfaces | current public grammar, bootstrap, activation, local development, and diagnostics | 2026-11-23 |
+| KR — `ki-repo` skill | `.ki.toml` and declared repository coverage | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -79,6 +79,8 @@ None.
 
 ## 4. Last review
 
+On 23 November 2026 REFRESH re-checked the in-house sources; nothing in the guidance changed. ADR-KI-HARNESS-012 is still current, though its text still says harness and names `knowledgeislands/ki-agentic-harness` where the skill says backpack. Every `ki` command the guidance names exists in `tools-ki` 0.17.0, the latest tag, including `ki backpack install`, `reinstall`, `info` and `uninstall`, `ki repo skill add` and `remove`, `ki dev local set`, `on` and `off`, and `ki bootstrap --refresh`. `ki-repo` still owns the `.ki.toml` contract, with coverage kept separate from user activation. `ki doctor` does not yet carry the readiness checks.
+
 On 23 November 2026, under EXCHANGE-HOME a, the generated guild map moved `ki-exchange-dynamics` from the Acquire row to the Authoring row; no rule or criterion changed.
 
 On 22 November 2026 WEBSITE-APP-NAME a, from the Cairn summit's change 10, step 6.3, renamed `ki-repo-website-app` to `ki-repo-website-interactive`, and this skill's references follow; no rule or criterion changed.
@@ -105,7 +107,7 @@ A 2026-11-10 in-house review under `agora.sop.main` follows the removal of `ki a
 
 A 2026-10-26 in-house review under `wow-harness-a` applied BOOT-HOME, which Kris decided that day: this skill owns the one machine-readiness checklist from a fresh machine to a working coordinator, ending in "Ready to coordinate" with observable hook and output-style checks, and `ki-coordination`'s Bootstrap cites it as its "Before the opener" step. A `ki doctor` readiness check was requested from `tools-ki` by message; readiness never depends on it before it exists. Command surfaces were confirmed against the installed `ki --help` (`ki agent prompts`, `ki registry`, `ki doctor`), not re-reviewed in full.
 
-REFRESH last ran **2026-08-12**.
+The REFRESH before that ran on **2026-08-12**.
 
 - ADR and HC confirm that verified installed compatible harnesses are authoritative, runtime links are projections, and repositories never carry an alternative executor.
 - TK confirms current `ki bootstrap`, `ki harness`, `ki skill add/remove`, `ki repo skill add/remove`, `ki repo`, `ki dev local set/on/off`, `ki doctor`, and `ki diag` grammar.
@@ -115,6 +117,7 @@ REFRESH last ran **2026-08-12**.
 **Watching:**
 
 - Re-check the core user-skill set whenever bootstrap policy changes.
+- Re-check the guidance if `ki backpack missing`, `outdated` or `search`, new in the command surface and not yet named, become part of bootstrap or activation.
 - Re-check bare-name ambiguity and qualified capability input when multi-harness activation evolves.
 - Re-check supported agent discovery and managed link locations when a runtime binding changes.
 - Re-check acquisition, replacement, and uninstall wording, and the released-backpack mode, when backpack version selection is introduced or `tools-ki` changes how a release is pinned.
