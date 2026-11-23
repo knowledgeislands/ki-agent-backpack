@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:25:51Z
+ki-revised: 2026-11-23T03:00:09Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -35,7 +35,7 @@ The Claude Code documentation and the local host boundary.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| CC — [Claude Code subagents](https://code.claude.com/docs/en/sub-agents) | Markdown/YAML source shape, required/supported fields, discovery, and runtime-only limits | 2026-11-15 |
+| CC — [Claude Code subagents](https://code.claude.com/docs/en/sub-agents) | Markdown/YAML source shape, required/supported fields, discovery, and runtime-only limits | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -43,7 +43,7 @@ The Claude Code documentation and the local host boundary.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| HOST — Current repository and KI host capability inspection | No generic subagent publisher consumes the advertised Claude path | 2026-11-15 |
+| HOST — Current repository and KI host capability inspection | No generic subagent publisher consumes the advertised Claude path | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -63,6 +63,8 @@ None.
 
 ## 4. Last review
 
+On 2026-11-23 the Claude Code subagents page was re-read. It still documents Markdown files with YAML frontmatter, still requires only `name` and `description`, still makes `name` the identity (the filename need not match, except for plugin-scoped ids), and still silently ignores unrecognised fields, now traceable through `claude --debug`. The two watched differences still hold and are now filed as proposals for the owner. The host check also holds: `tools-ki` acquires the `subagents/` payload but nothing publishes it to `.claude/agents`, so placement stays with the install run (SUBAGENT-PUBLISHER a).
+
 On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Agentic systems guild: the backpack preserves the candidate source files, REFRESH names the backpack, and what the standard called the Harness host is the `ki` host. No criterion changed and no outside source refreshed.
 
 On 18 November 2026 the Agentic systems guild's review, from the Cairn summit's change 10, brought the files into the formats: `standards-subagent-definitions.md` was renamed `standard-subagent-definitions.md` and reshaped, its rules unchanged under numbered sections, and this file took the sources format, its Normative and Local boundary tables as authoritative sub-groups. The rubric's discovery item now cites the section's full anchor. No rule changed and no outside source was refreshed.
@@ -73,7 +75,7 @@ On 2026-09-26, Claude Code still documented Markdown/YAML source definitions wit
 
 **Watching:**
 
-- The page lists three fields the standard's supported set lacks, `autoCompactWindow`, `omitClaudeMd` and `experimental`, so the adapter would flag them although Claude Code accepts them.
-- The page allows a name of up to 256 characters that contains no colon and does not start with a hyphen, giving `reviewer-v2` as an example, so the standard's rule that digits are invalid is stricter than Claude Code.
+- The page lists three fields the standard's supported set lacks, `autoCompactWindow`, `omitClaudeMd` and `experimental`, so the adapter would flag them although Claude Code accepts them. Proposed on 2026-11-23.
+- The page allows a name of up to 256 characters that contains no colon and does not start with a hyphen, giving `reviewer-v2` as an example, so the standard's rule that digits are invalid is stricter than Claude Code. Proposed on 2026-11-23.
 
 [Back to contents](#contents)
