@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "06b97cdb734d9417a5c169360b2a990db9ef5bd0"
+      "revision": "2622092861b4eb2a40a835b059212823ab5e9070"
     },
     "legend": {
       "mode": "auto",
@@ -774,25 +774,6 @@
       ]
     },
     {
-      "id": "ki-exchange-dynamics",
-      "type": "database",
-      "label": "ki-exchange-dynamics",
-      "sublabel": "acquire · opt-in",
-      "sources": [
-        {
-          "path": "skills/acquire/ki-exchange-dynamics/SKILL.md"
-        }
-      ],
-      "pos": [
-        32,
-        1332
-      ],
-      "size": [
-        200,
-        60
-      ]
-    },
-    {
       "id": "ki-env-binding",
       "type": "database",
       "label": "ki-env-binding",
@@ -804,7 +785,7 @@
       ],
       "pos": [
         32,
-        1504
+        1420
       ],
       "size": [
         200,
@@ -823,7 +804,7 @@
       ],
       "pos": [
         240,
-        1504
+        1420
       ],
       "size": [
         200,
@@ -842,7 +823,7 @@
       ],
       "pos": [
         448,
-        1504
+        1420
       ],
       "size": [
         200,
@@ -861,7 +842,7 @@
       ],
       "pos": [
         32,
-        1588
+        1504
       ],
       "size": [
         200,
@@ -880,7 +861,7 @@
       ],
       "pos": [
         32,
-        1728
+        1644
       ],
       "size": [
         200,
@@ -899,7 +880,7 @@
       ],
       "pos": [
         240,
-        1728
+        1644
       ],
       "size": [
         200,
@@ -918,7 +899,7 @@
       ],
       "pos": [
         448,
-        1728
+        1644
       ],
       "size": [
         200,
@@ -937,7 +918,7 @@
       ],
       "pos": [
         32,
-        1868
+        1784
       ],
       "size": [
         200,
@@ -956,7 +937,7 @@
       ],
       "pos": [
         240,
-        1868
+        1784
       ],
       "size": [
         200,
@@ -975,7 +956,7 @@
       ],
       "pos": [
         448,
-        1868
+        1784
       ],
       "size": [
         200,
@@ -1090,6 +1071,25 @@
       "pos": [
         1128,
         1952
+      ],
+      "size": [
+        200,
+        60
+      ]
+    },
+    {
+      "id": "ki-exchange-dynamics",
+      "type": "database",
+      "label": "ki-exchange-dynamics",
+      "sublabel": "acquire · opt-in",
+      "sources": [
+        {
+          "path": "skills/authoring/ki-exchange-dynamics/SKILL.md"
+        }
+      ],
+      "pos": [
+        712,
+        2092
       ],
       "size": [
         200,
@@ -1319,12 +1319,11 @@
     },
     {
       "kind": "region",
-      "label": "Acquire · 4 skills",
+      "label": "Acquire · 3 skills",
       "wraps": [
         "ki-acquire-chatgpt",
         "ki-acquire-granola",
-        "ki-dodecakrisis",
-        "ki-exchange-dynamics"
+        "ki-dodecakrisis"
       ],
       "pad": 24
     },
@@ -1405,12 +1404,21 @@
     },
     {
       "kind": "region",
-      "label": "Authoring · 4 skills",
+      "label": "Acquire",
+      "wraps": [
+        "ki-exchange-dynamics"
+      ],
+      "pad": 10
+    },
+    {
+      "kind": "region",
+      "label": "Authoring · 5 skills",
       "wraps": [
         "ki-diagrams",
         "ki-decision-records",
         "ki-guides",
-        "ki-specs"
+        "ki-specs",
+        "ki-exchange-dynamics"
       ],
       "pad": 24
     }

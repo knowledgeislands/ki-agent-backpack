@@ -35,7 +35,7 @@ Govern ChatGPT conversation capture: honest digest or full-thread coverage, rout
 
 #### `ki-acquire-granola`
 
-Acquire Granola meetings through read-only MCP calls: complete date windows, folder routing, transcripts and screenshots, one capture per meeting UUID, skipping on Acquired or Captured membership. Use for Granola import or audit; `ki-acquire` owns the common contract, the Inbox's `ki-muninn` owns CLI execution, and marking or retirement needs separate approval.
+Acquire Granola meetings through read-only MCP calls: complete date windows, folder routing, transcripts and screenshots, one capture per meeting UUID, skipping on Acquired or Captured membership. Use for Granola import or audit; `ki-acquire` owns the common contract, Harbour's `ki-muninn` owns CLI execution, and marking or retirement needs separate approval.
 
 - **Kind:** Governance
 - **Applicability:** Declaration Only
@@ -50,16 +50,6 @@ Govern D12, the Dodecakrisis: the ten sorting rules, mailbox queues and tags, gu
 - **Kind:** Governance
 - **Applicability:** Declaration Only
 - **Arguments:** `audit <repo> | conform <repo> | educate <repo> | sort <mailbox> | sweep <mailbox> | learn <mailbox> | help | refresh`
-- **Dependencies:** None
-- **Runtime:** Portable
-
-#### `ki-exchange-dynamics`
-
-Analyse a conversation, chat, thread, meeting or negotiation for its dynamics: chronology, sentiment kept apart from tension, phases and participants, as one evidence-linked analysis validated against a schema, then render it as an infographic or report. Use to analyse an exchange or audit an analysis; `ki-acquire` owns capture and `ki-diagrams` system diagrams.
-
-- **Kind:** Governance
-- **Applicability:** Declaration Only
-- **Arguments:** `audit <repo> | conform <repo> | educate <repo> | analyse <exchange> | render <analysis> | help | refresh`
 - **Dependencies:** None
 - **Runtime:** Portable
 
@@ -164,6 +154,16 @@ Create, audit or refresh a repository's living Archify diagrams: committed sourc
 - **Kind:** Governance
 - **Applicability:** Declaration Only
 - **Arguments:** `audit [dir] | conform [dir] | help | educate [dir] | refresh`
+- **Dependencies:** None
+- **Runtime:** Portable
+
+#### `ki-exchange-dynamics`
+
+Analyse a conversation, chat, thread, meeting or negotiation for its dynamics: chronology, sentiment kept apart from tension, phases and participants, as one evidence-linked analysis validated against a schema, then render it as an infographic or report. Use to analyse an exchange or audit an analysis; `ki-acquire` owns capture and `ki-diagrams` system diagrams.
+
+- **Kind:** Governance
+- **Applicability:** Declaration Only
+- **Arguments:** `audit <repo> | conform <repo> | educate <repo> | analyse <exchange> | render <analysis> | help | refresh`
 - **Dependencies:** None
 - **Runtime:** Portable
 
