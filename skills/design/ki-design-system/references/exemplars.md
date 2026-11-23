@@ -6,25 +6,30 @@ ki-document-type: exemplars@2026-11-17T00:55:00Z
 
 These illustrate [the Design System standard](standard-design-system.md) but do not add requirements.
 
-## The 5G-EMERGE Phase 3 site
+## The Cairn Wayfinder
 
-`5g-emerge-phase3` at `ceaf95344da3564693302a359d3a20959f0b0a19` is the pilot the standard was drawn from. Its design knowledge sits in the homes the standard names:
+[`apps-cairn.local`](https://github.com/knowledgeislands/apps-cairn.local/tree/7f58d7714d13563ec1e85d9217e42ad7cb5a219e) at `7f58d7714`, the Cairn's local app, is the exemplar (DESIGN-SETTLED). It declares `[skills.ki-design-system]` and passes every mechanical criterion, and its design knowledge sits in the homes the standard names:
 
-- **Values** - `apps/site/src/assets/css/tokens.css` composes every colour from per-theme hue anchors and per-mode lightness steps across six themes and two modes, with two meaning palettes outside the themes: status colours, and eight numbered calendar slots that each calendar names in its registry beside a short text code.
-- **How** - `docs/guides/developer/site-design.md` gives principles, colour, type, layout, components, state, interaction, enhancement, words and a merge checklist, naming tokens rather than values.
-- **Why** - `ADR-5GE-P3-001` records how colour is composed and that the calendar slots form a meaning palette.
-- **Proof** - `apps/site/scripts/check-contrast.ts` measures every text and non-text pair, hue parity and every colour mix in all twelve theme and mode combinations; the smoke suite proves the calendars page is complete without script.
-- **Design work** - the calendars page went from an owner's brief, through three directions on a design canvas, to a combined choice, and was consolidated into the guide, the ADR and the checks. Its work record holds the brief and the decision until the record is pruned.
-
-It predates the standard in one way an adopting repository does not copy: it does not yet declare `[skills.ki-design-system]`, because no harness release carried the skill when the pilot ran. With the declaration below, it passes every mechanical criterion.
+- **Values** - `apps/wayfinder/src/renderer/styles/tokens.css` holds every colour, size, layer and motion value as a custom property, night the reference and day beside it, and says which names follow Tessera's and which are the Wayfinder's own.
+- **How** - `docs/guides/developer/wayfinder-design.md` gives principles, colour, type, layout, components, state, interaction and accessibility, enhancement, words and a merge section, naming tokens rather than values.
+- **The design system folder** - `docs/design/design-system/` holds the design book, six design documents with their pictures beside them, the components document, `wayfinder-components.design.md`, among them; the boards exported from the design canvas, named by level and kind, `ia-`, `mock-`, `atoms-` and the like; and the canvas's copy under `projections/canvas/`, whose `index.json` names its url, type, account and source revision. Its README names the guide, and the guide names the components document.
+- **The component library** - `apps/wayfinder/src/renderer/components/` sorts the components into atoms, molecules, organisms and templates, with pages beside them, and the components document gives each one its signature, what it owns, what it does not own and its hand-offs.
+- **Why** - each design document's Decisions section cites the decisions it rests on, each taken in a change document of the Cairn's work package; the repository keeps no decision records of its own yet.
+- **Proof** - `apps/wayfinder/src/renderer/styles.test.ts` finds any literal colour, duration, layer or monospace in a sheet, and `apps/wayfinder/src/renderer/contrast.test.ts` measures text at 4.5:1 and marks at 3:1 in night and day, naming today's shortfalls rather than hiding them; each component's suite checks its roles, names and keys.
+- **Design work** - the Wayfinder's pages were drawn at the three levels in design meetings, each level agreed before the next, and the agreed designs were built, consolidated into the guide, the tokens and the checks, and kept in the design book.
 
 ## A declaration
 
 ```toml
 [skills.ki-design-system]
-tokens = ["apps/site/src/assets/css/tokens.css"]
-guide = "docs/guides/developer/site-design.md"
-checks = ["apps/site/scripts/check-contrast.ts", "apps/site/tests/calendars.test.ts"]
+tokens = [
+  "apps/wayfinder/src/renderer/styles/tokens.css",
+]
+guide = "docs/guides/developer/wayfinder-design.md"
+checks = [
+  "apps/wayfinder/src/renderer/styles.test.ts",
+  "apps/wayfinder/src/renderer/contrast.test.ts",
+]
 ```
 
 ## A state table in a guide
