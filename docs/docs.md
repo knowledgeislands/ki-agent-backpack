@@ -8,13 +8,13 @@ This is the map of `docs/` and the guiding principles that govern everything in 
 
 **A source is written to be read on its own terms.** Decision Records ([`decisions/`](decisions)) are **self-contained**. A record inlines the context it needs and states the decision in full; it links only to sibling DRs in the same set, following the reading-order layering, and to canonical external sources such as a pinned URL. The collection holds only records and their index; working material that informed a decision is not kept beside it. The format is governed by the `ki-decision-records` skill.
 
-**The map may link; the sources it maps mostly do not.** This page and each source's own `README.md` or `index.md` are indexes — they exist to point outward. That is not a licence for records and guide chapters to duplicate content from another authority.
+**The map may link; the sources it maps mostly do not.** This page and each source's own `_index.md` or `index.md` are indexes — they exist to point outward. That is not a licence for records and guide chapters to duplicate content from another authority.
 
 ## Documentation locations
 
 ### Decisions — the _why_
 
-[`decisions/`](decisions) holds the Decision Records: `ADR-`, `GDR-`, and the other typed records, each a living present-state record in the Nygard five-section shape. The bare `ADR-KI-HARNESS-NNN` series is the **foundations**; sub-scoped series (`TOOLCHAIN`, `SKILLS`, `AGENTS`) carry decisions about a narrower area. See [`decisions/README.md`](decisions/_index.md) for the reading order (grouped by scope, numeric within each) and the by-ID index.
+[`decisions/`](decisions) holds the Decision Records: `ADR-`, `GDR-`, and the other typed records, each a living present-state record in the Nygard five-section shape. The bare `ADR-KI-HARNESS-NNN` series is the **foundations**; sub-scoped series (`TOOLCHAIN`, `SKILLS`, `AGENTS`) carry decisions about a narrower area. See [`decisions/_index.md`](decisions/_index.md) for the reading order (grouped by scope, numeric within each) and the by-ID index.
 
 ### Specifications — the _what_
 
