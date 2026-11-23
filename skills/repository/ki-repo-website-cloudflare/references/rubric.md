@@ -51,7 +51,7 @@ Workers Static Assets hosting standard.
 - **WCF-10 [M-heuristic + J] — optional custom-domain routes** — When a custom domain is declared, at least one route uses custom_domain. (standard-cloudflare-hosting.md#44-the-site-wranglerjsonc-shape)
   - _Remediation:_ diagnostic — Correct the evidenced Cloudflare hosting issue through the responsible site owner; hosted conform does not infer deployment or security intent.
   - _Evidence scope:_ The Cloudflare Worker, static assets, deployment configuration, and evidence named by this criterion.
-  - _Review prompt:_ When custom-domain routes are declared, verify they name the intended apex and any www host; workers.dev-only hosting needs no exception.
+  - _Review prompt:_ When custom-domain routes are declared, verify they name the intended apex; www is never a custom domain but redirects to the apex; workers.dev-only hosting needs no exception.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the hosting design through the responsible site owner, record a named gap, or record an explicit justified exclusion.
 - **WCF-13 [M + J] — deploy script** — The selected site package deploys with Wrangler and the repository root delegates the public alias. (standard-cloudflare-hosting.md#45-the-script-family)
@@ -84,7 +84,7 @@ Workers Static Assets hosting standard.
   - _Review prompt:_ Confirm the live preview Access application covers the version and branch-alias hostnames and the bare workers.dev hostname with the site allow policy and no bypass, and that a preview URL redirects to the Access login; read the dashboard only through an authorised operator.
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Revise the hosting design through the responsible site owner, record a named gap, or record an explicit justified exclusion.
-- **WCF-19 [M + J] — companion Worker boundary** — Companion Workers remain out of scope. (standard-cloudflare-hosting.md#411-boundaries--what-is-not-in-scope)
+- **WCF-19 [M + J] — companion Worker boundary** — Companion Workers remain out of scope. (standard-cloudflare-hosting.md#412-boundaries--what-is-not-in-scope)
   - _Remediation:_ diagnostic — Correct the evidenced Cloudflare hosting issue through the responsible site owner; hosted conform does not infer deployment or security intent.
   - _Evidence scope:_ The Cloudflare Worker, static assets, deployment configuration, and evidence named by this criterion.
   - _Review prompt:_ Confirm configs classified as companions have main without assets and route their bindings, secrets, and runtime concerns to cloudflare/wrangler.
@@ -94,7 +94,13 @@ Workers Static Assets hosting standard.
   - _Remediation:_ diagnostic — Correct the evidenced Cloudflare hosting issue through the responsible site owner; hosted conform does not infer deployment or security intent.
 - **WCF-21 [M] — opt-in validation** — The hosting table is keyless or selects a valid non-empty subset of named website sites. (standard-cloudflare-hosting.md#42-model--workers-static-assets-not-pages)
   - _Remediation:_ diagnostic — Correct the evidenced Cloudflare hosting issue through the responsible site owner; hosted conform does not infer deployment or security intent.
-- **WCF-22 [M + J] — hosting delta** — This remains the hosting delta only. (standard-cloudflare-hosting.md#411-boundaries--what-is-not-in-scope)
+- **WCF-28 [M + J] — www redirects to the apex** — Every domain answers on www with a 301 redirect to its apex and serves no app there: the site Worker routes name no www custom domain, and the Cloudflare guide records the zone redirect rule. (standard-cloudflare-hosting.md#411-every-domains-www-redirects-to-its-apex)
+  - _Remediation:_ diagnostic — Correct the evidenced Cloudflare hosting issue through the responsible site owner; hosted conform does not infer deployment or security intent.
+  - _Evidence scope:_ The Cloudflare Worker, static assets, deployment configuration, and evidence named by this criterion.
+  - _Review prompt:_ For each custom domain, confirm www answers with a 301 to the apex through a dynamic redirect rule matching http.host eq "www.<zone>", with the wildcard_replace target to https://<zone>/${2}, status 301 and preserve_query_string false, recorded in the Cloudflare guide, and that the www DNS record is a proxied AAAA to 100::.
+  - _Outcomes:_ conforming; gap; exclusion
+  - _Conforming guidance:_ Revise the hosting design through the responsible site owner, record a named gap, or record an explicit justified exclusion.
+- **WCF-22 [M + J] — hosting delta** — This remains the hosting delta only. (standard-cloudflare-hosting.md#412-boundaries--what-is-not-in-scope)
   - _Remediation:_ diagnostic — Correct the evidenced Cloudflare hosting issue through the responsible site owner; hosted conform does not infer deployment or security intent.
   - _Evidence scope:_ The Cloudflare Worker, static assets, deployment configuration, and evidence named by this criterion.
   - _Review prompt:_ Confirm Workers Builds, account/domain binding, and deployed behavior separately without expanding this rubric into the site build or general Worker concerns.

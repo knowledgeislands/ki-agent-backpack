@@ -227,6 +227,40 @@ describe('ki-repo-website-cloudflare session', () => {
     ])
   })
 
+  test('flags a www custom domain, because www redirects to the apex (WWW-301)', () => {
+    const item = WCF.items.find((candidate) => candidate.code === 'WCF-28')
+    const apexOnly = makeRoot()
+    writeCanonicalRepository(apexOnly)
+    expect(
+      item?.mechanical?.audit.run(
+        WCF.selectContext(createWebsiteCloudflareSession(options(apexOnly)).subjects[0].context())
+      )
+    ).toEqual([{ status: 'PASS', message: 'No www custom domain is declared.', subject: 'apps/site/wrangler.jsonc' }])
+
+    const withWww = makeRoot()
+    writeCanonicalRepository(withWww)
+    const configPath = join(withWww, 'apps', 'site', 'wrangler.jsonc')
+    writeFileSync(
+      configPath,
+      readFileSync(configPath, 'utf8').replace(
+        '{ "pattern": "example.com", "custom_domain": true }',
+        '{ "pattern": "example.com", "custom_domain": true }, { "pattern": "www.example.com", "custom_domain": true }'
+      )
+    )
+    expect(
+      item?.mechanical?.audit.run(
+        WCF.selectContext(createWebsiteCloudflareSession(options(withWww)).subjects[0].context())
+      )
+    ).toEqual([
+      {
+        status: 'VIOLATION',
+        message:
+          'The site Worker serves www as a custom domain (www.example.com); www must 301 to the apex through a zone redirect rule instead.',
+        subject: 'apps/site/wrangler.jsonc'
+      }
+    ])
+  })
+
   test('keeps conform and all Wrangler or deployment operations report-only', () => {
     const repository = makeRoot()
     writeCanonicalRepository(repository)

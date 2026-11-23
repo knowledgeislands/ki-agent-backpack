@@ -467,7 +467,7 @@ const WCF_10: RubricItem<WebsiteCloudflareContext> = {
     }
   },
   judgment: judgment(
-    'When custom-domain routes are declared, verify they name the intended apex and any www host; workers.dev-only hosting needs no exception.'
+    'When custom-domain routes are declared, verify they name the intended apex; www is never a custom domain but redirects to the apex; workers.dev-only hosting needs no exception.'
   )
 }
 
@@ -699,7 +699,7 @@ const WCF_19: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-19',
   title: 'companion Worker boundary',
   description: 'Companion Workers remain out of scope.',
-  sources: [`${SOURCE}#411-boundaries--what-is-not-in-scope`],
+  sources: [`${SOURCE}#412-boundaries--what-is-not-in-scope`],
   mechanical: {
     level: 'WARN',
     remediation: DIAGNOSTIC,
@@ -805,11 +805,52 @@ const WCF_21: RubricItem<WebsiteCloudflareContext> = {
   }
 }
 
+const WCF_28: RubricItem<WebsiteCloudflareContext> = {
+  code: 'WCF-28',
+  title: 'www redirects to the apex',
+  description:
+    'Every domain answers on www with a 301 redirect to its apex and serves no app there: the site Worker routes name no www custom domain, and the Cloudflare guide records the zone redirect rule.',
+  sources: [`${SOURCE}#411-every-domains-www-redirects-to-its-apex`],
+  mechanical: {
+    level: 'WARN',
+    remediation: DIAGNOSTIC,
+    audit: {
+      phase: 'INSPECT',
+      run: (context) => {
+        const skip = skipped(context)
+        if (skip) return skip
+        const site = firstSite(context)
+        if (!site) return []
+        if (site.wwwCustomDomains.length > 0)
+          return [
+            {
+              status: 'VIOLATION',
+              message: `The site Worker serves www as a custom domain (${site.wwwCustomDomains.join(', ')}); www must 301 to the apex through a zone redirect rule instead.`,
+              subject: site.path
+            }
+          ]
+        return [
+          {
+            status: site.hasCustomDomain ? 'PASS' : 'NOT_APPLICABLE',
+            message: site.hasCustomDomain
+              ? 'No www custom domain is declared.'
+              : 'No custom-domain route is declared; workers.dev-only hosting has no www host.',
+            subject: site.path
+          }
+        ]
+      }
+    }
+  },
+  judgment: judgment(
+    'For each custom domain, confirm www answers with a 301 to the apex through a dynamic redirect rule matching http.host eq "www.<zone>", with the wildcard_replace target to https://<zone>/${2}, status 301 and preserve_query_string false, recorded in the Cloudflare guide, and that the www DNS record is a proxied AAAA to 100::.'
+  )
+}
+
 const WCF_22: RubricItem<WebsiteCloudflareContext> = {
   code: 'WCF-22',
   title: 'hosting delta',
   description: 'This remains the hosting delta only.',
-  sources: [`${SOURCE}#411-boundaries--what-is-not-in-scope`],
+  sources: [`${SOURCE}#412-boundaries--what-is-not-in-scope`],
   mechanical: {
     level: 'WARN',
     remediation: DIAGNOSTIC,
@@ -856,6 +897,7 @@ export const WCF: RubricFamily<WebsiteCloudflareRubricContext, WebsiteCloudflare
     WCF_19,
     WCF_20,
     WCF_21,
+    WCF_28,
     WCF_22,
     WCF_23,
     WCF_24

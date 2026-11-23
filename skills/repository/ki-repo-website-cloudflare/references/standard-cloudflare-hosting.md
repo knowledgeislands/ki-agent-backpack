@@ -24,7 +24,8 @@ ki-status: in force
   - [4.8 Zero Trust team naming](#48-zero-trust-team-naming)
   - [4.9 Branch previews behind Access](#49-branch-previews-behind-access)
   - [4.10 The Cloudflare guide — dashboard-owned settings](#410-the-cloudflare-guide--dashboard-owned-settings)
-  - [4.11 Boundaries — what is not in scope](#411-boundaries--what-is-not-in-scope)
+  - [4.11 Every domain's www redirects to its apex](#411-every-domains-www-redirects-to-its-apex)
+  - [4.12 Boundaries — what is not in scope](#412-boundaries--what-is-not-in-scope)
 
 ## 1. Introduction
 
@@ -45,12 +46,13 @@ Serving the selected site's built `dist/` from one Cloudflare Worker with Static
 - The hosting script family, CI/CD through Workers Builds, and branch previews behind Access.
 - Cloudflare credential access and Zero Trust team naming.
 - The repository's Cloudflare guide for dashboard-owned settings.
+- Every domain's `www` redirect to its apex.
 
 [Back to contents](#contents)
 
 ### 2.2 Out of scope
 
-The full list, with each item's home, is in [Boundaries](#411-boundaries--what-is-not-in-scope). In short:
+The full list, with each item's home, is in [Boundaries](#412-boundaries--what-is-not-in-scope). In short:
 
 - Companion Workers, and general Cloudflare, Workers and Wrangler usage: the `cloudflare` and `wrangler` skills.
 - Building the `dist/`: `ki-repo-website` with its selected implementation.
@@ -64,9 +66,10 @@ The full list, with each item's home, is in [Boundaries](#411-boundaries--what-i
 | --- | --- |
 | **Site Worker** | The one Cloudflare Worker with an `assets` block and no `main` that serves the selected site's `dist/`. **Standard:** this one, [4.2](#42-model--workers-static-assets-not-pages) |
 | **`dist/` seam** | The one place the hosting and build layers meet: the build output that `assets.directory` points at. **Standard:** this one, [4.3](#43-the-dist-seam) |
-| **Companion Worker** | Any other Worker, with a `main` entry, bindings, crons or secrets; out of scope here. **Standard:** this one, [4.11](#411-boundaries--what-is-not-in-scope) |
+| **Companion Worker** | Any other Worker, with a `main` entry, bindings, crons or secrets; out of scope here. **Standard:** this one, [4.12](#412-boundaries--what-is-not-in-scope) |
 | **Version URL** | The URL of an undeployed Worker version made by `wrangler versions upload`, which branch previews use. **Standard:** this one, [4.9](#49-branch-previews-behind-access) |
 | **Cloudflare guide** | `docs/guides/developer/cloudflare.md`, recording the settings only the dashboard owns. **Standard:** this one, [4.10](#410-the-cloudflare-guide--dashboard-owned-settings) |
+| **www redirect** | The zone's dynamic redirect rule that answers every request to `www.<zone>` with a 301 to the apex, so no app is served on `www`. **Standard:** this one, [4.11](#411-every-domains-www-redirects-to-its-apex) |
 
 [Back to contents](#contents)
 
@@ -128,7 +131,7 @@ Required fields:
 
 Optional when the site has a custom domain; omission is conformant and leaves the deployment on its workers.dev URL:
 
-- **`routes` with `custom_domain: true`** — the apex (and usually `www`, redirected to apex). Without a custom domain, the Worker URL is `<name>.<account-subdomain>.workers.dev`, not `<name>.pages.dev`. In the dashboard the operator path is **Workers & Pages → Overview → Worker → Settings → Domains & Routes → Add → Custom Domain**; “Workers & Pages” remains the correct navigation label.
+- **`routes` with `custom_domain: true`** — the apex only. `www` is never a Workers custom domain: it redirects to the apex under [§4.11](#411-every-domains-www-redirects-to-its-apex). Without a custom domain, the Worker URL is `<name>.<account-subdomain>.workers.dev`, not `<name>.pages.dev`. In the dashboard the operator path is **Workers & Pages → Overview → Worker → Settings → Domains & Routes → Add → Custom Domain**; “Workers & Pages” remains the correct navigation label.
 - **An active zone on the same account** — a custom domain requires the hostname to belong to a zone in the Cloudflare account that owns the Worker, because Cloudflare creates the proxied DNS record and issues the certificate itself rather than reading DNS you host elsewhere. That record is a proxied `AAAA` record to `100::`, read-only and gone when the domain is detached, so a custom domain's readiness is read from the account's Workers domains, not from whether such records exist ([the exemplars](exemplars.md#moving-a-site-to-another-account), step 4). The two zone setups that keep authoritative DNS with another provider — partial (CNAME) setup and subdomain setup — are plan-gated: partial setup needs a Business or Enterprise plan and subdomain setup is Enterprise-only, so where a domain is hosted outside Cloudflare the only Free or Pro route to a custom domain is delegating the whole apex zone to Cloudflare nameservers. Deleting a custom domain does not remove its certificate; retire that separately under SSL/TLS → Edge Certificates. A zone cannot move between accounts; moving a site to another account is the recipe in [the exemplars](exemplars.md#moving-a-site-to-another-account).
 
 Other `assets` keys (`html_handling`, `not_found_handling`, `binding`, `run_worker_first`, `base_path`) are optional and per-site; do not require them.
@@ -214,7 +217,30 @@ The split rule: **`wrangler.jsonc` owns everything it can express; the guide rec
 
 [Back to contents](#contents)
 
-### 4.11 Boundaries — what is not in scope
+### 4.11 Every domain's www redirects to its apex
+
+Every domain's `www` host answers with a 301 redirect to its apex, and no app or site is served there. Kris set this as a fixed rule on 22 November 2026 (WWW-301): "Any domain should have a 301 redirect. We don't serve an app. We put a redirect in there instead. That's a fixed rule that we need to have."
+
+The model is knowledgeislands.info's. The redirect is a dynamic redirect rule on the zone, recorded in the Cloudflare guide ([§4.10](#410-the-cloudflare-guide--dashboard-owned-settings)) as the exact values an operator enters:
+
+| Field | Value |
+| --- | --- |
+| When incoming requests match | `http.host eq "www.<zone>"` |
+| Type | Dynamic |
+| URL | `wildcard_replace(http.request.full_uri, r"http*://www.<zone>/*", r"https://<zone>/${2}")` |
+| Status code | `301` |
+| Preserve query string | Off (`preserve_query_string: false`); the wildcard replacement already carries the path and query |
+
+The `www` DNS record is a proxied `AAAA` record to `100::`, which only gives the proxy a request for the rule to answer; it is not a Workers custom domain, and the site Worker's `routes` name the apex alone ([§4.4](#44-the-site-wranglerjsonc-shape)).
+
+Two lessons from putting the model in place on 22 November 2026:
+
+- **Token scope.** A token that edits redirect rules also needs Zone Read on the zone, not the redirect-rules permission alone.
+- **Checking a new hostname.** Check a new `www` host against 1.1.1.1 with the address pinned, such as `curl -sI --resolve www.<zone>:443:<address> https://www.<zone>/`, after reading the address with `dig @1.1.1.1 www.<zone> AAAA`. The local resolver may have cached the name's earlier absence, and that negative cache lasts up to 30 minutes.
+
+[Back to contents](#contents)
+
+### 4.12 Boundaries — what is not in scope
 
 This standard governs **only the site Worker** — the one that serves `dist/`. Out of scope, with their homes:
 

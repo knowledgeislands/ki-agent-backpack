@@ -37,6 +37,8 @@ export type WranglerConfigEvidence = {
   readonly observabilityEnabled: boolean
   readonly hasCustomDomain: boolean
   readonly previewUrls: boolean | null
+  /** Custom-domain route patterns on a `www.` host, which WWW-301 forbids. */
+  readonly wwwCustomDomains: readonly string[]
 }
 
 export type WebsiteCloudflareContext = {
@@ -171,7 +173,16 @@ const inspectWranglerConfig = (root: string, path: string): WranglerConfigEviden
       routes.some(
         (route) => route && typeof route === 'object' && (route as Record<string, unknown>).custom_domain === true
       ),
-    previewUrls: typeof value?.preview_urls === 'boolean' ? value.preview_urls : null
+    previewUrls: typeof value?.preview_urls === 'boolean' ? value.preview_urls : null,
+    wwwCustomDomains: Array.isArray(routes)
+      ? routes.flatMap((route) => {
+          if (!route || typeof route !== 'object') return []
+          const entry = route as Record<string, unknown>
+          return entry.custom_domain === true && typeof entry.pattern === 'string' && /^www\./i.test(entry.pattern)
+            ? [entry.pattern]
+            : []
+        })
+      : []
   }
 }
 
