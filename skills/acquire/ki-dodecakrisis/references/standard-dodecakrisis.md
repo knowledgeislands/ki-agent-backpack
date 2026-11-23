@@ -44,7 +44,7 @@ The sorter's rules and how they run; the concept and the execution belong elsewh
 
 - The D12 card owns the concept: the twelve Ds, their names and why.
 - `mcp-gsuite` and `mcp-m365` own the protected list and its enforcement, and the tools D12 calls.
-- The Inbox's `ki-muninn` owns execution: `ki-muninn d12 sweep`, `ki-muninn d12 learn` and the mail import that reads each Deposit route.
+- Harbour's `ki-muninn` owns execution: `ki-muninn d12 sweep`, `ki-muninn d12 learn` and the mail import that reads each Deposit route.
 - `ki-acquire` owns capture, curation and dispatch after Deposit; the evidential owner, such as Legal, owns naming, filing and verifying evidential copies.
 - Scheduling belongs to the scheduler and is approved separately each time.
 
@@ -162,6 +162,7 @@ The rules file is TOML in the declaring repository, holding three arrays of tabl
 | `guards` | for Delete and Digest | The guard ids the query excludes; must include the mailbox's evidential guard |
 | `route` | for Deposit | A declared Deposit route |
 | `filter` | no | The name of the platform filter or rule that helps it, which begins with `D12` |
+| `age` | for a short-lived rule | Whole days after which the Short-lived sweep places what the rule matched in Delete, such as `7` for sign-in codes or `3` for parcel tracking; a rule without it is not short-lived |
 
 ```toml
 [[guard]]

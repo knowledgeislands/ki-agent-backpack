@@ -43,7 +43,7 @@ How the sorting rules improve, within the D12 standard's write and approval rule
 
 - The ten rules, the rules file and the approval every write needs: [the D12 standard](standard-dodecakrisis.md).
 - Labels, sweeps and providers: [the mailbox standard](standard-mailbox.md).
-- Running the learning loop: the Inbox's `ki-muninn d12 learn`.
+- Running the learning loop: Harbour's `ki-muninn d12 learn`.
 
 [Back to contents](#contents)
 

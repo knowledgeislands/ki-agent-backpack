@@ -104,7 +104,7 @@ Filters act only on arrivals and cannot act on age, so D12's own sweeps do. `ki-
 | Digest | Lets go of a Digest item after 14 days, by placing it in Delete |
 | Defer | Returns a Defer item to the inbox and the rules on its date, removing its Defer tag |
 | Deposit | Removes an item from the mailbox 30 days after its route's owner has verified the stored copy |
-| Short-lived | Places items in Delete after a short age, by a short-lived rule such as sign-in codes after 7 days or parcel tracking after 3 |
+| Short-lived | Places items in Delete after a short age, by a short-lived rule, one whose `age` the [rules file](standard-dodecakrisis.md#43-the-rules-file) sets, such as sign-in codes after 7 days or parcel tracking after 3 |
 
 Each sweep runs as a dry run first and reports its count for each label, and every sweep, run or schedule cites its approval. A sweep never acts on a protected label or an item that carries one, and never trashes anything that has not passed through the Delete outcome.
 

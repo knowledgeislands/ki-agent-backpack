@@ -31,7 +31,7 @@ The Knowledge Islands card that owns the concept, and the in-house work and tool
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| The Knowledge Islands D12 card, "D12, the Dodecakrisis", Kris's fundamental tenet of 5 November 2026, staged in the Inbox's knowledge graph under `ki-principal/Pillars/knowledge-tending/` until ki-principal takes it | The concept: the twelve Ds, their names and why | 2026-11-07 |
+| The Knowledge Islands D12 card, "D12, the Dodecakrisis", Kris's fundamental tenet of 5 November 2026, staged in Harbour's knowledge graph (krisb/ki-cairn-harbour) under `ki-principal/Pillars/knowledge-tending/` until ki-principal takes it | The concept: the twelve Ds, their names and why | 2026-11-07 |
 
 [Back to contents](#contents)
 
@@ -41,8 +41,8 @@ The Knowledge Islands card that owns the concept, and the in-house work and tool
 | --- | --- | --- |
 | The Inbox's work package `personal.reg.inbox-terra` | The sorting-engine draft and the Gmail D12 design that the mailbox and learning standards graduate, with Kris's Gmail decisions of 6 November 2026 | 2026-11-07 |
 | The harness work package `ki.reg.guilds` | Kris's decisions of 7 November 2026 that shaped the skill | 2026-11-07 |
-| `mcp-gsuite` and `mcp-m365` | The mail tools D12 calls and the protected-label enforcement | 2026-11-07 |
-| The Inbox's `ki-muninn` (krisb/inbox, `packages/ki-muninn/`) | D12's execution and the mail import that reads each Deposit route | 2026-11-07 |
+| `mcp-gsuite` and `mcp-m365` | The mail tools D12 calls and the protected-label enforcement: the protected lists, `mcp-gsuite` `4560520` and `mcp-m365` `b9a3c15`, and `mcp-m365`'s rule, category and change tools, `7ebff50` and `4a839ec`, all of 22 November 2026 | 2026-11-23 |
+| Harbour's `ki-muninn` (krisb/ki-cairn-harbour, `packages/ki-muninn/`) | D12's execution and the mail import that reads each Deposit route; `d12 survey`, `sweep` and `learn` as guarded dry runs since Harbour `f0511740` | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -66,11 +66,17 @@ The Knowledge Islands card that owns the concept, and the in-house work and tool
 | PROTECTED-HOME a | The mail server declares and enforces the protected list; Kris, in `ki.reg.guilds`. | 2026-11-07 | [mailbox 4.2](standard-mailbox.md#42-protected-labels) | In force |
 | PROTECTED-READ a | The protected list covers read state too; Kris, in `ki.reg.guilds`. | 2026-11-07 | [mailbox 4.2](standard-mailbox.md#42-protected-labels) | In force |
 | MIGRATION-OVERLAY | The standards describe only the final state, and temporary adjustments sit in the migration overlay; Kris. | 2026-11-07 | [D12](standard-dodecakrisis.md), [mailbox](standard-mailbox.md), [learning](standard-learning.md) | In force |
+| ACQUIRE-FIXES | `ki-acquire-chatgpt`, `ki-acquire-granola` and `ki-dodecakrisis` "are repointed from the Inbox (`krisb/inbox`) to Harbour (`krisb/ki-cairn-harbour`)"; settled by Kitteth within remit, the Acquire guild's sitting in the Cairn summit's change 10. | 2026-11-22 | [D12 2.2](standard-dodecakrisis.md#22-out-of-scope), [learning 2.2](standard-learning.md#22-out-of-scope) | In force |
+| D12-NOW b | D12 is taken forward now, not by Kitteth: handed to Wicket (cairn.harbour) on Gmail and the HNR mailbox, with the tool gaps asked of ki.tools and muninn's `d12 sweep` and `d12 learn` built in Harbour; the skill stays in Acquire and the overlay names the work as under way, not held. Kris, the Acquire guild's sitting, card: "No, it needs to be taken forward now, but not by you." | 2026-11-22 | [Migration](migration-dodecakrisis.md) | In force |
+| D12-HNR-HOME a | Harbour declares both mailboxes and holds their D12 rules; Kris, sending back Wicket's reply block in cairn.harbour's change 60: "D12-PROTECTED-FIRST a, D12-INTERIM a, D12-HNR-HOME a". | 2026-11-22 | [Migration](migration-dodecakrisis.md) | In force |
+| D12-AGE | The rules file gains `age` for a short-lived rule, which the Short-lived sweep needs; Wicket's gap 3 in cairn.harbour's change 60, carried by D12-NOW. | 2026-11-22 | [D12 4.3](standard-dodecakrisis.md#43-the-rules-file), [mailbox 4.3](standard-mailbox.md#43-sweeps) | In force |
 | DOCKET-HOME | Where the Docket is bound; until it is answered, rule 8 stays a rule of the concept only. | 2026-11-07 | [D12 4.1](standard-dodecakrisis.md#41-the-ten-rules) | Parked |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 23 November 2026, in the Cairn summit's change 10, step 6.3, under ACQUIRE-FIXES, D12-NOW b and D12-HNR-HOME a, recorded under [Decisions](#3-decisions): live wording naming the Inbox's muninn now names Harbour's (`krisb/ki-cairn-harbour`, `packages/ki-muninn/`); the migration overlay names D12 as under way, led by Wicket, with the protected lists (T1) and `mcp-m365`'s rule tools (T3) landed on 22 November 2026 and live on sol, muninn's D12 commands Harbour's, and its line on hnr-principal declaring the HNR mailbox dropped; and the rules file gains `age` for a short-lived rule (D12-AGE). The servers' and muninn's commits were read; no mailbox was read.
 
 On 18 November 2026 the Acquire guild's review, in the Cairn summit's change 10, brought the skill's files into `ki-authoring`'s formats: the three standards were renamed `standard-dodecakrisis.md`, `standard-mailbox.md` and `standard-learning.md` and given the standard format's sections, their rules moved unchanged under numbered subsections and the D12 standard's Boundary became its Out of scope, and this file took the sources format, its named decisions gathered into [Decisions](#3-decisions), with glosses for the Gmail decisions taken from the Inbox's design of 6 November 2026. No rule changed and no outside source was refreshed.
 
@@ -79,6 +85,6 @@ On 7 November 2026, under SKILLS-OVER-GRAPH a and the D12 decisions above, the s
 **Watching**
 
 - DOCKET-HOME, parked since 7 November 2026.
-- Each mail server reporting its protected list, `ki-muninn` shipping `d12 sweep`, `d12 learn` and the `eml.txt` form, and `mcp-m365`'s missing rule, category and change tools, as the migration overlay lists.
+- Each mail server reporting its protected list enforced, Harbour's `ki-muninn` running `d12 sweep` and `d12 learn` with an approval and taking up `age` and the `eml.txt` form, and `hnr-mcp-m365`'s mailbox-settings scopes, as the migration overlay lists.
 
 [Back to contents](#contents)
