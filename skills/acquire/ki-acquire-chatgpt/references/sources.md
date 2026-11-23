@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T00:54:54Z
+ki-revised: 2026-11-23T02:01:50Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -31,8 +31,8 @@ OpenAI's published documentation, and the in-house adapter whose evidence the st
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [Projects in ChatGPT][chatgpt-projects] | Official project grouping, chats, files, and instructions | 2026-09-20 |
-| [Exporting ChatGPT history and data][chatgpt-export] | Official readable export and its delivery boundary | 2026-09-22 |
+| [Projects in ChatGPT][chatgpt-projects] | Official project grouping, chats, files, and instructions | 2026-11-23 |
+| [Exporting ChatGPT history and data][chatgpt-export] | Official readable export and its delivery boundary | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -40,7 +40,7 @@ OpenAI's published documentation, and the in-house adapter whose evidence the st
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| [ChatGPT housekeeping adapter][housekeeping-adapter] | Opaque local-store evidence, never conversation content | 2026-09-20 |
+| [ChatGPT housekeeping adapter][housekeeping-adapter] | Opaque local-store evidence, never conversation content | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -55,6 +55,8 @@ OpenAI's published documentation, and the in-house adapter whose evidence the st
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 23 November 2026 the quarterly REFRESH re-read all three sources; no rule changes. Projects in ChatGPT still groups chats, files and instructions, now with project-only or default memory, sharing, and per-plan file limits; it offers no dedicated project export, and names the Enterprise and Edu Compliance API as the route to project data. The export page still gives delivery within seven days and a 24-hour link, now adds a Privacy Portal route and a local `index.html` viewer with ChatGPT, Codex and Files sections, withholds self-service export from Business, Enterprise and Healthcare workspaces, and still mentions neither projects nor an incremental or API export. The housekeeping adapter stays read-only, treating local `*.data` records as opaque bytes, and now also reads repository-scoped Codex sessions.
 
 On 23 November 2026, in the Cairn summit's change 10, step 6.3, under ACQUIRE-FIXES, recorded under [Decisions](#3-decisions), live wording naming the Inbox's muninn now names Harbour's (`krisb/ki-cairn-harbour`, `packages/ki-muninn/`) and its ChatGPT operator guide. No rule changed and no outside source was refreshed.
 
@@ -72,6 +74,8 @@ On 2026-09-22, official ChatGPT documentation confirmed that an eligible signed-
 
 - A supported incremental conversation-read interface, which would settle incremental readable acquisition, still an unresolved dependency.
 - Whether an account export comes to expose complete project membership, write-ups, assets and stable project identifiers.
+- The Enterprise and Edu Compliance API, which exposes project data but lies outside a personal account; relevant only if an organisation-managed workspace is acquired.
+- The housekeeping adapter's README still routes staging to `ki acquire import`, removed under ATER-027; that is the adapter repository's own drift to fix, not this skill's.
 
 [Back to contents](#contents)
 
