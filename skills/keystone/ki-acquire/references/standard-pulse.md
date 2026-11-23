@@ -42,7 +42,7 @@ The rules every pulse operation shares.
 ### 2.2 Out of scope
 
 - Each operation's steps, boundary and off-ramps: [the pulse mode](mode-pulse.md).
-- Durable landscape posture: `ki-agentic-radar` and `ki-model-radar`.
+- Durable landscape posture: `ki-radar`.
 - What a destination does with a hand-off: its owner, such as `ki-repo-kb`, `ki-trades`, a governance skill's REFRESH mode or `ki-work next`.
 
 [Back to contents](#contents)

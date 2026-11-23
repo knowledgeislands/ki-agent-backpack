@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "2622092861b4eb2a40a835b059212823ab5e9070"
+      "revision": "5396e3e8ad60a9c158d5c1e3521b7fbdd3e00aea"
     },
     "legend": {
       "mode": "auto",
@@ -679,36 +679,17 @@
       ]
     },
     {
-      "id": "ki-agentic-radar",
+      "id": "ki-radar",
       "type": "database",
-      "label": "ki-agentic-radar",
+      "label": "ki-radar",
       "sublabel": "signals · opt-in",
       "sources": [
         {
-          "path": "skills/agentic-ecosystems/ki-agentic-radar/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-radar/SKILL.md"
         }
       ],
       "pos": [
         712,
-        1468
-      ],
-      "size": [
-        200,
-        60
-      ]
-    },
-    {
-      "id": "ki-model-radar",
-      "type": "database",
-      "label": "ki-model-radar",
-      "sublabel": "signals · opt-in",
-      "sources": [
-        {
-          "path": "skills/agentic-ecosystems/ki-model-radar/SKILL.md"
-        }
-      ],
-      "pos": [
-        920,
         1468
       ],
       "size": [
@@ -1297,14 +1278,13 @@
       "kind": "region",
       "label": "Signals",
       "wraps": [
-        "ki-agentic-radar",
-        "ki-model-radar"
+        "ki-radar"
       ],
       "pad": 10
     },
     {
       "kind": "region",
-      "label": "Agentic Ecosystems · 8 skills",
+      "label": "Agentic Ecosystems · 7 skills",
       "wraps": [
         "ki-delegation",
         "ki-subagents",
@@ -1312,8 +1292,7 @@
         "ki-subagents-claude",
         "ki-agentic-bots",
         "ki-delegation-orca",
-        "ki-agentic-radar",
-        "ki-model-radar"
+        "ki-radar"
       ],
       "pad": 24
     },
@@ -1439,7 +1418,7 @@
       "dot": "slate",
       "title": "Generated, not drawn",
       "items": [
-        "56 skills in 8 concerns and 10 functional areas: 3 always on, 17 automatic, 31 opt-in, 5 commands.",
+        "55 skills in 8 concerns and 10 functional areas: 3 always on, 17 automatic, 30 opt-in, 5 commands.",
         "Regenerate with ki repo conform --skill ki-repo-backpack; ki-skills owns the kind and applicability fields it reads."
       ]
     }

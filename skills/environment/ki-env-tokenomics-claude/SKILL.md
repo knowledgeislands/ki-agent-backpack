@@ -21,7 +21,7 @@ argument-hint: 'audit | conform | educate | refresh | help'
 
 The audit inventories project instruction files and contained imports, `.claude/CLAUDE.md`, project rules, parseable project settings, and parseable project MCP declarations. It reports structural presence only and never emits configuration values. Effective model, loaded context, active MCP tools, trust, approvals, memory use, transcript, compaction, billing, and token measurements remain unavailable.
 
-Dated, advisory Claude model-tier evidence lives in `ki-model-radar`'s [model-tier standard](../../agentic-ecosystems/ki-model-radar/references/standard-model-tiers.md) (MODEL-TIERS a); this adapter does not infer the effective model or change an agent's configuration.
+Dated, advisory Claude model-tier evidence lives in `ki-radar`'s [model-tier standard](../../agentic-ecosystems/ki-radar/references/standard-model-tiers.md) (MODEL-TIERS a); this adapter does not infer the effective model or change an agent's configuration.
 
 CONFORM is report-only unless a future item proves an existing safe, item-owned write. It currently emits no writes or commands.
 

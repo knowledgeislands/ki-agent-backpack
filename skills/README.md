@@ -19,7 +19,7 @@ Use the website-owned [skills-by-outcome guide](https://knowledgeislands.info/gu
 <!-- ki-repo-backpack:capability-catalogue:start -->
 ## Generated capability catalogue
 
-This source backpack publishes 56 skills: 51 governance skills, 4 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
+This source backpack publishes 55 skills: 50 governance skills, 4 process skills and 1 knowledge skill. The entries below are generated from canonical `SKILL.md` frontmatter, grouped by each skill's declared guild; edit the source skill, then run `ki repo conform --skill ki-repo-backpack` to republish this section.
 
 ### Acquire
 
@@ -65,16 +65,6 @@ Work as a bot actor on an agent host: bootstrap from a tracked file on every wak
 - **Dependencies:** `ki-coordination`, `ki-delegation`, `ki-work-package`
 - **Runtime:** Portable
 
-#### `ki-agentic-radar`
-
-Maintain an evidence-backed radar for agentic protocols, interfaces, organisations, architectures, research, and vendor terms. Use for maturity, interoperability, or stance; `ki-agentic-ecosystems` defines the terms, `ki-model-radar` owns models, `ki-acquire pulse` discovers signals, and `ki-work next` owns follow-on work.
-
-- **Kind:** Governance
-- **Applicability:** Declaration Only
-- **Arguments:** `audit | conform | educate | help | refresh`
-- **Dependencies:** None
-- **Runtime:** Portable
-
 #### `ki-delegation`
 
 Govern agent delegation: routine background runs on the agent host's own subagents (run packet, prompt shape, authority footers, decisions log, coordination, concurrency, monitoring) and durable packets for approved high-risk handoffs. Use when delegating to background agents or writing a delegation brief; `ki-coordination` governs the coordinating work that starts them.
@@ -95,9 +85,9 @@ Start, wait on, steer, stop and close Orca supervised workers as a KI delegation
 - **Dependencies:** `ki-delegation`, `ki-coordination`
 - **Runtime:** Portable
 
-#### `ki-model-radar`
+#### `ki-radar`
 
-Maintain an evidence-backed radar for models and model-agent routes, with the dated model-tier candidates for each portable purpose. Use for model comparisons, benchmark relevance, tier candidates, recommendations, or retirements. Use `ki-agentic-radar` for broader agentic standards, `ki-acquire pulse` for signal discovery, and `ki-env-tokenomics` for model purpose.
+Maintain one evidence-backed radar, reviewed monthly, for agentic protocols, interfaces, organisations, architectures, research and vendor terms, and for models and model-agent routes with their dated model-tier candidates. Use for maturity, interoperability, stance, model comparison, benchmark relevance, tiers or retirements; `ki-agentic-ecosystems` defines terms, `ki-acquire pulse` discovers signals, and `ki-work next` owns follow-on work.
 
 - **Kind:** Governance
 - **Applicability:** Declaration Only
@@ -326,7 +316,7 @@ Lead the Acquire guild and govern source-independent knowledge capture: supplied
 
 #### `ki-agentic-ecosystems`
 
-Lead the Agentic ecosystems guild and define the words of agentic systems as a knowledge graph: industry cards from model, agent harness, agent, session, subagent and skill to environment, machine, agent host and client, with Anthropic's, OpenAI's, Google's and Microsoft's own words in vendor subgraphs linked to them. Use to learn what an agentic term means, which sense a vendor name such as Claude or Codex carries, how vendors' words compare, or which card to link instead of redefining a term; `ki-agentic-radar` owns maturity and stance, and `ki-subagents` how to run subagents.
+Lead the Agentic ecosystems guild and define the words of agentic systems as a knowledge graph: industry cards from model, agent harness, agent, session, subagent and skill to environment, machine, agent host and client, with Anthropic's, OpenAI's, Google's and Microsoft's own words in vendor subgraphs linked to them. Use to learn what an agentic term means, which sense a vendor name such as Claude or Codex carries, how vendors' words compare, or which card to link instead of redefining a term; `ki-radar` owns maturity and stance, and `ki-subagents` how to run subagents.
 
 - **Kind:** Knowledge
 - **Leads:** Agentic Ecosystems

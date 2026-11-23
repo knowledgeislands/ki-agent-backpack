@@ -72,7 +72,7 @@ The standard does not infer effective model/profile, loaded instruction hierarch
 
 ### 4.3 Model-tier evidence
 
-Dated Codex model-tier evidence and the role resolver live in `ki-model-radar`'s [model-tier standard](../../../agentic-ecosystems/ki-model-radar/references/standard-model-tiers.md), under MODEL-TIERS a.
+Dated Codex model-tier evidence and the role resolver live in `ki-radar`'s [model-tier standard](../../../agentic-ecosystems/ki-radar/references/standard-model-tiers.md), under MODEL-TIERS a.
 
 [Back to contents](#contents)
 

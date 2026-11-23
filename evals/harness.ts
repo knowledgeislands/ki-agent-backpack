@@ -44,8 +44,7 @@ import { scenarios as mcpScenarios } from './scenarios/ki-repo-mcp.ts'
 import { scenarios as repoScenarios } from './scenarios/ki-repo.ts'
 import { scenarios as skillsScenarios } from './scenarios/ki-skills.ts'
 import { scenarios as tokenomicsScenarios } from './scenarios/ki-env-tokenomics.ts'
-import { scenarios as modelRadarScenarios } from './scenarios/ki-model-radar.ts'
-import { scenarios as agenticRadarScenarios } from './scenarios/ki-agentic-radar.ts'
+import { scenarios as radarScenarios } from './scenarios/ki-radar.ts'
 import { scenarios as decisionRecordsScenarios } from './scenarios/ki-decision-records.ts'
 import { scenarios as repoRoadmapScenarios } from './scenarios/ki-work-roadmap.ts'
 import { scenarios as housekeepingScenarios } from './scenarios/ki-env-housekeeping-claude.ts'
@@ -72,8 +71,7 @@ const ALL: Scenario[] = [
   ...repoScenarios,
   ...skillsScenarios,
   ...tokenomicsScenarios,
-  ...modelRadarScenarios,
-  ...agenticRadarScenarios,
+  ...radarScenarios,
   ...decisionRecordsScenarios,
   ...specsScenarios,
   ...repoRoadmapScenarios,

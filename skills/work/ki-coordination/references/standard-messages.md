@@ -92,7 +92,7 @@ Orca mail is the channel between sessions in Orca (ROOMS-CHANNEL, ORCA-FIRST). E
 
 A message by any route carries conversation, not work, under [Surfaces](#44-surfaces); work goes along the tree.
 
-Messages in the Cairn store are gone (MESSAGES-GO): the store keeps no `messages/`, and the Cairn MCP is being reworked to hold meetings, which the Beacon is to call and manage. The [Agent Host Protocol](https://microsoft.github.io/agent-host-protocol/specification/overview.html), AHP, may later carry what polling carries now, for an agent host the `ki-agentic-radar` radar shows supports it. The rest of Orca's orchestration, its worker dispatch, ask and decision gates, stays watched in the radar.
+Messages in the Cairn store are gone (MESSAGES-GO): the store keeps no `messages/`, and the Cairn MCP is being reworked to hold meetings, which the Beacon is to call and manage. The [Agent Host Protocol](https://microsoft.github.io/agent-host-protocol/specification/overview.html), AHP, may later carry what polling carries now, for an agent host the `ki-radar` radar shows supports it. The rest of Orca's orchestration, its worker dispatch, ask and decision gates, stays watched in the radar.
 
 Sources: AHP-RADAR, MSG-RETIRE, ROOMS-CHANNEL, ORCA-FIRST and ORCA-WAKE in [the decision register](sources.md#3-decisions); ROOMS-OPTIONAL and ORCA-HOME in `ki-meeting`'s [sources](../../ki-meeting/references/sources.md#3-decisions); AHP in [the outside sources](sources.md#2-outside-sources).
 

@@ -55,7 +55,7 @@ Generated from every skill's frontmatter, the guild it declares and the guild it
 | --- | --- | --- |
 | Keystone | `ki-keystone` | `ki-acquire`, `ki-agentic-ecosystems`, `ki-authoring`, `ki-design`, `ki-env`, `ki-knowledge-graph`, `ki-repo`, `ki-skills`, `ki-work` |
 | Acquire | `ki-acquire` | `ki-acquire-chatgpt`, `ki-acquire-granola`, `ki-dodecakrisis` |
-| Agentic ecosystems | `ki-agentic-ecosystems` | `ki-agentic-bots`, `ki-agentic-radar`, `ki-delegation`, `ki-delegation-orca`, `ki-model-radar`, `ki-subagents`, `ki-subagents-chatgpt`, `ki-subagents-claude` |
+| Agentic ecosystems | `ki-agentic-ecosystems` | `ki-agentic-bots`, `ki-delegation`, `ki-delegation-orca`, `ki-radar`, `ki-subagents`, `ki-subagents-chatgpt`, `ki-subagents-claude` |
 | Authoring | `ki-authoring` | `ki-decision-records`, `ki-diagrams`, `ki-exchange-dynamics`, `ki-guides`, `ki-specs` |
 | Design | `ki-design` | `ki-design-inspiration`, `ki-design-system` |
 | Environment | `ki-env` | `ki-env-binding`, `ki-env-binding-chatgpt`, `ki-env-binding-chezmoi`, `ki-env-binding-claude`, `ki-env-housekeeping`, `ki-env-housekeeping-chatgpt`, `ki-env-housekeeping-claude`, `ki-env-tokenomics`, `ki-env-tokenomics-chatgpt`, `ki-env-tokenomics-claude` |

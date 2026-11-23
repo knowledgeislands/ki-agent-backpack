@@ -43,7 +43,7 @@ The declared, portable policy for what an agent's context costs.
 
 ### 2.2 Out of scope
 
-- Observed runtime evidence and effective state: the runtime adapters; dated model-tier evidence: `ki-model-radar`'s [model-tier standard](../../../agentic-ecosystems/ki-model-radar/references/standard-model-tiers.md).
+- Observed runtime evidence and effective state: the runtime adapters; dated model-tier evidence: `ki-radar`'s [model-tier standard](../../../agentic-ecosystems/ki-radar/references/standard-model-tiers.md).
 - MCP-server and search-surface design: `ki-repo-mcp` and `ki-repo-kb`.
 - Installed-skill description quality: `ki-skills`.
 
@@ -85,7 +85,7 @@ Only `[skills.ki-env-tokenomics]` is read, validate-down. Recognised scalar keys
 
 ### 4.4 Model purpose
 
-`fast` is for mechanical or bulk work, `standard` for well-scoped default work, `reasoning` for hard judgement, and `frontier` for long-horizon autonomous work. These are purposes, not provider names. A runtime's concrete effective or default model is evidence owned by its adapter and cannot revise the repository's declared purpose. The dated candidates for each purpose, and the rule for moving a default, live in `ki-model-radar`'s [model-tier standard](../../../agentic-ecosystems/ki-model-radar/references/standard-model-tiers.md).
+`fast` is for mechanical or bulk work, `standard` for well-scoped default work, `reasoning` for hard judgement, and `frontier` for long-horizon autonomous work. These are purposes, not provider names. A runtime's concrete effective or default model is evidence owned by its adapter and cannot revise the repository's declared purpose. The dated candidates for each purpose, and the rule for moving a default, live in `ki-radar`'s [model-tier standard](../../../agentic-ecosystems/ki-radar/references/standard-model-tiers.md).
 
 Coordination is a purpose of its own. A coordinating thread, as defined in [the `ki-coordination` coordinating-thread standard](../../../work/ki-coordination/references/standard-coordination.md#43-coordinator-responsiveness), dispatches, decides with the owner and reports under its counted turn budget, so it should run on `fast`, or `standard` where `fast` is too weak to follow that contract reliably, at low reasoning effort. When the budget cannot be kept on the chosen model, escalate the model one step rather than letting the thread do the work itself. Reserve `reasoning` and `frontier` for the background agents that do the substantive reasoning, analysis and drafting. This is a recommendation for choosing a session's model; it adds no `preferred_model_type` value.
 

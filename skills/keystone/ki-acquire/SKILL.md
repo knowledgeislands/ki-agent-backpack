@@ -44,7 +44,7 @@ Explain the common workflow and the repository's capture entry point, and route 
 
 ### Mode PULSE
 
-`pulse capture <url-or-source> [reason]`, `pulse scan <interest-or-query> [sources]` or `pulse triage [current-signals]` runs one bounded, on-demand pulse and keeps no standing state. Read [the pulse reference](references/mode-pulse.md) and follow it; it loads [the Pulse standard](references/standard-pulse.md). `ki-agentic-radar` and `ki-model-radar` own durable landscape posture.
+`pulse capture <url-or-source> [reason]`, `pulse scan <interest-or-query> [sources]` or `pulse triage [current-signals]` runs one bounded, on-demand pulse and keeps no standing state. Read [the pulse reference](references/mode-pulse.md) and follow it; it loads [the Pulse standard](references/standard-pulse.md). `ki-radar` owns durable landscape posture.
 
 ### Mode REFRESH
 

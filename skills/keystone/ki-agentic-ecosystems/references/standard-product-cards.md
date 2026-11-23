@@ -42,7 +42,7 @@ The shape of a product card.
 
 - The card format every card shares, which `ki-knowledge-graph` owns, and the graph's card types and link vocabulary, which [the root definition](../knowledge/_graph.md) declares.
 - A vendor's own words for a term, which stay on its vendor cards.
-- Maturity, adoption and the house stance on a product, which `ki-agentic-radar` and `ki-model-radar` own.
+- Maturity, adoption and the house stance on a product, which `ki-radar` owns.
 - The word for the parts a product plays and whether orchestration is one, open in change 21 as PRODUCT-ROLES, and how cards are kept current, open there as ECOSYSTEM-UPKEEP.
 - The generator, the matrix, the crosswalk and the site.
 

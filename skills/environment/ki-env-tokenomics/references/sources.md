@@ -47,6 +47,7 @@ One decision is recorded by id below. The coordination recommendation in [Model 
 | Id | Decision | Date | Backs | Status |
 | --- | --- | --- | --- | --- |
 | MODEL-TIERS a | The Claude and Codex model-tier standards move from `ki-env-tokenomics-claude` and `ki-env-tokenomics-chatgpt` into `ki-model-radar`; the adapters and `ki-env-tokenomics` keep the four purposes and point to the radar, the tier-movement rule is kept once, and the Fable 5.1 drift goes with the move. Kris, 22 November 2026, about 21:43 GMT, the Environment guild's sitting, card: "Move to ki-model-radar"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [Tokenomics standard, 4.4](standard-tokenomics.md#44-model-purpose) | In force |
+| RADAR-MERGE a | “a: `ki-agentic-radar` and `ki-model-radar` merge into one `ki-radar`: a shared radar standard, a standard and snapshot for each subject kind kept intact, one rubric, one REFRESH, the evidence schemas merged, and a monthly cadence matching how they are run; MODEL-TIERS' tiers go with it (Kris, 22 November, about 22:33 GMT, the Agentic ecosystems guild's sitting, card: "One ki-radar, monthly")”, Cairn summit's change 10, 4.3, landed under step 6.3. The dated model-tier evidence now lives in `ki-radar`'s model-tier standard, and this skill points there. | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
 
 [Back to contents](#contents)
 

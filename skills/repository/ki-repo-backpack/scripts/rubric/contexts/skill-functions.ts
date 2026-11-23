@@ -146,7 +146,7 @@ export const FUNCTIONAL_AREAS: readonly FunctionalArea[] = [
     title: 'Signals',
     short: 'signals',
     purpose: 'watch the field and keep its radars current',
-    groups: [{ skills: ['ki-acquire', 'ki-agentic-radar', 'ki-model-radar'] }]
+    groups: [{ skills: ['ki-acquire', 'ki-radar'] }]
   },
   {
     slug: 'design',

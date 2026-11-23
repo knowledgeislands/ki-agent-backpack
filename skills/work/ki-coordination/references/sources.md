@@ -48,7 +48,7 @@ Supporting evidence, not normative rules: an advisory source informs a rule here
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| [Agent Host Protocol](https://microsoft.github.io/agent-host-protocol/specification/overview.html), Microsoft, v1.0.0 of 2 October 2026 | What may later replace the Agora Beacon's polling for an agent host that supports it; adoption per agent host is tracked in `ki-agentic-radar` (AHP-RADAR) | 2026-11-10 |
+| [Agent Host Protocol](https://microsoft.github.io/agent-host-protocol/specification/overview.html), Microsoft, v1.0.0 of 2 October 2026 | What may later replace the Agora Beacon's polling for an agent host that supports it; adoption per agent host is tracked in `ki-radar`, formerly `ki-agentic-radar` (AHP-RADAR, RADAR-MERGE a) | 2026-11-10 |
 
 [Back to contents](#contents)
 
@@ -348,6 +348,7 @@ Each owner decision the standard rests on, by its tag: the date, the owner's wor
 | WORKTREE-START | "option a), "do whatever that needs to be", whose option read: "Start now in code repositories under F1 and F4", F4 being this sweep" | 2026-10-20 | [territory, 4.4](standard-territory.md#44-worktree-sweep) | In force |
 | WOW-REFRESH | Decision: While Ways of working is defining the method it sends targeted `REFRESH` lines itself; afterwards territory work sends them. | date not recorded | [bootstrap, 4.6](standard-bootstrap.md#46-targeted-refresh-and-landed-notices) | In force |
 | WRITERS-SEAT | Decision: option a), the stewardship paragraph speaks the store's words: a package's steward is its keyholder, the actor seated at it as its `ki-workers` name it; a seat changes hands by acknowledged handover with no timeout takeover; a package with no seat is held by its parent node's keyholder under CASCADE-DOWN; STEWARD-FIELD closes, `ki-workers` being the field, and the creation cap goes, while a package is still created in the state its actual move supports, never implying With worker. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a and Kris's DO-THEN-CHECK, from the summit's [change 10](https://github.com/krisb/ki-cairn-store/blob/13996d65/work/cairn/cairn.summit/10-skills-review.change.md#43-decided), following `ki-work-package`'s writers rule. Reversible; Kris can overturn it. | 2026-11-19 | [territory, 4.1.2](standard-territory.md#412-coordinating-assigned-packages) | In force |
+| RADAR-MERGE a | “a: `ki-agentic-radar` and `ki-model-radar` merge into one `ki-radar`: a shared radar standard, a standard and snapshot for each subject kind kept intact, one rubric, one REFRESH, the evidence schemas merged, and a monthly cadence matching how they are run; MODEL-TIERS' tiers go with it (Kris, 22 November, about 22:33 GMT, the Agentic ecosystems guild's sitting, card: "One ki-radar, monthly")”, Cairn summit's change 10, 4.3, landed under step 6.3. AHP adoption per agent host is tracked in `ki-radar`, which the listening and messages standards now name. | 2026-11-22 | [Listening](standard-listening.md), [Messages](standard-messages.md) | In force |
 
 [Back to contents](#contents)
 

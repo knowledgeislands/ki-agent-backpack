@@ -62,9 +62,7 @@ prefix = "ki"
 
 [skills.ki-delegation]
 
-[skills.ki-model-radar]
-
-[skills.ki-agentic-radar]
+[skills.ki-radar]
 
 [skills.ki-env-binding]
 

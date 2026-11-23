@@ -21,7 +21,7 @@ argument-hint: 'audit | conform | educate | refresh | help'
 
 The audit reports paths and structural presence only. It parses the selected trusted project TOML only to verify its shape and never reports values, including environment variables, API keys, headers, or credential-bearing configuration. Effective model/profile, loaded instruction hierarchy, active MCP, trust, memory use, transcript, compaction, billing, and tool-schema metrics are unavailable.
 
-Dated Codex model-tier evidence, the role resolver and the evaluation protocol live in `ki-model-radar`'s [model-tier standard](../../agentic-ecosystems/ki-model-radar/references/standard-model-tiers.md) (MODEL-TIERS a); this adapter selects no effective model, and repository bindings remain advisory.
+Dated Codex model-tier evidence, the role resolver and the evaluation protocol live in `ki-radar`'s [model-tier standard](../../agentic-ecosystems/ki-radar/references/standard-model-tiers.md) (MODEL-TIERS a); this adapter selects no effective model, and repository bindings remain advisory.
 
 CONFORM is report-only and emits no writes or commands.
 

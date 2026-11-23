@@ -8,7 +8,7 @@
     "repository": {
       "url": "https://github.com/knowledgeislands/ki-agent-backpack",
       "provider": "github",
-      "revision": "e9292c27758ab9ce566165eff5acbe4b26581b82"
+      "revision": "5396e3e8ad60a9c158d5c1e3521b7fbdd3e00aea"
     },
     "legend": {
       "mode": "auto",
@@ -53,39 +53,19 @@
       ]
     },
     {
-      "id": "ki-agentic-radar",
+      "id": "ki-radar",
       "type": "database",
-      "label": "ki-agentic-radar",
+      "label": "ki-radar",
       "sublabel": "agentic ecosystems · opt-in",
       "sources": [
         {
-          "path": "skills/agentic-ecosystems/ki-agentic-radar/SKILL.md"
+          "path": "skills/agentic-ecosystems/ki-radar/SKILL.md"
         }
       ],
-      "tag": "R7 · CM · F4",
-      "pos": [
-        32,
-        188
-      ],
-      "size": [
-        208,
-        76
-      ]
-    },
-    {
-      "id": "ki-model-radar",
-      "type": "database",
-      "label": "ki-model-radar",
-      "sublabel": "agentic ecosystems · opt-in",
-      "sources": [
-        {
-          "path": "skills/agentic-ecosystems/ki-model-radar/SKILL.md"
-        }
-      ],
-      "tag": "R6 · CM · F5",
+      "tag": "R8 · CM · F8",
       "pos": [
         288,
-        188
+        64
       ],
       "size": [
         208,
@@ -96,11 +76,10 @@
   "boundaries": [
     {
       "kind": "region",
-      "label": "Signals · 3 skills",
+      "label": "Signals · 2 skills",
       "wraps": [
         "ki-acquire",
-        "ki-agentic-radar",
-        "ki-model-radar"
+        "ki-radar"
       ],
       "pad": 32
     }
@@ -121,7 +100,7 @@
       "dot": "slate",
       "title": "Generated, not drawn",
       "items": [
-        "3 skills, 0 outside prerequisites, 0 outside dependents, 0 composition and 0 optional edges, read from SKILL.md frontmatter.",
+        "2 skills, 0 outside prerequisites, 0 outside dependents, 0 composition and 0 optional edges, read from SKILL.md frontmatter.",
         "Home in another area: ki-acquire; only edges within this area are drawn for them here, and their home area's diagram draws the rest.",
         "Regenerate with ki repo conform --skill ki-repo-backpack; ki-skills KI-SHAPE-20 keeps the edges resolvable and acyclic."
       ]

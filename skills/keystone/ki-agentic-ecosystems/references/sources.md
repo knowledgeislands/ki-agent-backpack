@@ -137,7 +137,7 @@ The vendors' own documentation and the specifications the cards follow, checked 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
 | **[ST]** The earlier local terms study of 4 November 2026, in the Cairn store's legacy work | which words sessions already used loosely, such as launcher, harness and host | 2026-11-12 |
-| **[RD]** The `ki-agentic-radar` skill's sources, for AHP adoption by agent host | the standards cards | 2026-11-10 |
+| **[RD]** The `ki-radar` skill's sources, for AHP adoption by agent host | the standards cards | 2026-11-10 |
 
 [Back to contents](#contents)
 
@@ -205,6 +205,7 @@ The vendors' own documentation and the specifications the cards follow, checked 
 | PRODUCT-CARDS | Written by a Loreward run for ki.summit's change 21, step 4, under ECOSYSTEM-SHAPE a, for the owner's review: a product card is a `product` card in the `products/` subgraph, with its maker as `vendor` and a `reviewed` date, links to the terms it is an instance of, the specifications it conforms to and its vendor cards, a fixed table of seventeen capability rows valued `yes`, `partial`, `no` or `unknown`, a dated state of play, and its own sources, each with the date it was read. | 2026-11-22 | [the product cards standard](standard-product-cards.md) | Draft |
 | ECOSYSTEMS-SITE | The owner's word, 22 November 2026, about 02:55 GMT, relayed by the Cairn summit's guardian and recorded in ki.summit's [change 21](https://github.com/krisb/ki-cairn-store/blob/4326fc34/work/ki/ki.summit/21-ecosystem-map.change.md#41-decided): "make sure that it's got everything populated on there as much as possible, with all the different ecosystems mentioned that we've been talking about", as a definitive reference. A product card for every agentic ecosystem, product or platform the change, its sources, the vendor cards and the guild's skills name, each a proposal until reviewed. | 2026-11-22 | every `product.` card written under it | In force; the owner reviews the cards |
 | CARD-SETTLING a | A term card's wording is settled in `ki.summit`'s [Ecosystem map (21)](https://github.com/krisb/ki-cairn-store/blob/main/work/ki/ki.summit/21-ecosystem-map.change.md), which holds the guild's change under CASCADE-DOWN while its seat is vacant, in place of the Cairn summit's knowledge-skills change, now closed. Option a, landed on 22 November 2026 under LAND-THEN-REVIEW on the coordinator's word. | 2026-11-22 | [SKILL.md](../SKILL.md) | In force, for Kris's review |
+| RADAR-MERGE a | “a: `ki-agentic-radar` and `ki-model-radar` merge into one `ki-radar`: a shared radar standard, a standard and snapshot for each subject kind kept intact, one rubric, one REFRESH, the evidence schemas merged, and a monthly cadence matching how they are run; MODEL-TIERS' tiers go with it (Kris, 22 November, about 22:33 GMT, the Agentic ecosystems guild's sitting, card: "One ki-radar, monthly")”, Cairn summit's change 10, 4.3, landed under step 6.3. Maturity and stance, for terms and products, now sit with `ki-radar`. | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
 
 [Back to contents](#contents)
 
