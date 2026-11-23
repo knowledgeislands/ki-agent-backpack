@@ -29,9 +29,9 @@ Granola's published documentation, and the client whose transport the standard r
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [Granola MCP documentation][granola-mcp] | Official endpoint, OAuth, scopes, current tool descriptions | 2026-10-16 |
-| [Shared-screen snapshots][granola-snapshots] | Source image capture and Images stack | 2026-10-01 |
-| [Historical export][granola-export] | CSV export contents and limits | 2026-10-01 |
+| [Granola MCP documentation][granola-mcp] | Official endpoint, OAuth, scopes, current tool descriptions | 2026-11-23 |
+| [Shared-screen snapshots][granola-snapshots] | Source image capture and Images stack | 2026-11-23 |
+| [Historical export][granola-export] | CSV export contents and limits | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -39,7 +39,7 @@ Granola's published documentation, and the client whose transport the standard r
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| [mcporter configuration][mcporter-config] | HTTP transport, OAuth credential boundary, schema and CLI access | 2026-08-27 |
+| [mcporter configuration][mcporter-config] | HTTP transport, OAuth credential boundary, schema and CLI access | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -51,10 +51,20 @@ Granola's published documentation, and the client whose transport the standard r
 | GRANOLA-MOVE | A repository may declare `capture_moves` instead of `acquired_folder_id`, and the confirmed move adds Captured and reads it back before invoking `remove_note_from_folder` on Triaged and reading back again; tools-ki `e4fbd81c` and `d85feb4a`. | 2026-11-03 | [4.8](standard-granola-acquisition.md#48-triaged-to-captured-moves) | In force |
 | ATER-027 | The how-to points at the assistant's, now the Inbox's, `ki-muninn` after tools-ki `4faf9724` removed `ki acquire`; the `ki-acquire-*` adapter front matter, which only tools-ki read, is removed, `capture_moves` is shown in `[muninn.granola]`, and repeat runs name the recent-changes window `ki-muninn` runs by default. | 2026-11-05 | [1](standard-granola-acquisition.md#1-introduction), [4.5](standard-granola-acquisition.md#45-repeat-runs-and-amendments), [4.8](standard-granola-acquisition.md#48-triaged-to-captured-moves) | In force |
 | INBOX-RENAME | The assistant repository became the Inbox: `krisb/assistant` is now `krisb/inbox`; Kris's word, from `personal.reg.inbox-terra`. | 2026-11-06 | [1](standard-granola-acquisition.md#1-introduction) | In force |
+| ACQUIRE-FIXES | The skill "is repointed from the Inbox (`krisb/inbox`) to Harbour (`krisb/ki-cairn-harbour`)", the name the repository took under HARBOUR-RENAME, "is refreshed (its oldest source falls due on 27 November)", and "the Granola off-ramp naming Knowledge Islands Principal as owner of the acquisition lifecycle is corrected"; settled by Kitteth within remit, the Acquire guild's sitting in the Cairn summit's change 10. | 2026-11-22 | [1](standard-granola-acquisition.md#1-introduction), [2.2](standard-granola-acquisition.md#22-out-of-scope) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 23 November 2026, in the Cairn summit's change 10, step 6.3, under ACQUIRE-FIXES, recorded under [Decisions](#3-decisions): live wording naming the Inbox's muninn now names Harbour's (`krisb/ki-cairn-harbour`, `packages/ki-muninn/`) and its Granola operator guide, and the off-ramp and Out of scope no longer name Knowledge Islands Principal as owner of the lifecycle: `ki-acquire` owns the provider-neutral common contract, and the durable lifecycle is Knowledge Islands' Acquisition Process, which `ki-acquire` names. All four outside sources were re-read, and no rule changed:
+
+- **MCP documentation.** The endpoint, `https://mcp.granola.ai/mcp`, and browser OAuth with dynamic client registration are unchanged. The scope is now named as the active workspace, one at a time, and its personal notes take in notes shared directly with the principal and notes in private folders shared with them; [4.1](standard-granola-acquisition.md#41-owned-notes-and-source-boundary) already excludes those. Twenty-one tools are documented: reads, among them `get_meeting_attachment` for shared-screen snapshots and `search_meetings` and `search_transcripts`; paid-plan organise and edit tools, among them `add_note_to_folder`, `remove_note_from_folder`, `update_summary` and `generate_summary`; and account tools, among them `switch_workspace` and `sign_out`. `list_meetings` is hidden from some named clients but still documented. The free plan reaches only the last 30 days and has no transcript or edit tools. Rate limits are now published: most tools allow 5 requests a second on paid plans.
+- **Shared-screen snapshots.** Unchanged in substance: only screens others share, in the Images stack; the page names no MCP or API route, which the MCP page gives as `get_meeting_attachment`.
+- **Historical export.** Still CSV only, emailed within a few hours, of owned notes with full history, excluding deleted notes and notes without a summary; one export a day, with the link lasting 24 hours.
+- **mcporter configuration.** A configured server name is the OAuth trust boundary, and changing its URL wipes its tokens; credentials sit in a shared vault, `~/.mcporter/credentials.json` or under `$XDG_DATA_HOME`, with optional encryption; `allowedTools` and `blockedTools` can narrow what is advertised. None of this changes the credential boundary in [4.1](standard-granola-acquisition.md#41-owned-notes-and-source-boundary).
+
+No live schema was inspected and no Granola tool was called. The local bridge's tool list advertises 23 tool names, two more than the documentation: `create_meeting_note_from_transcript` and `give_feedback`, both mutations that acquisition does not allowlist.
 
 On 18 November 2026 the Acquire guild's review, in the Cairn summit's change 10, brought the skill's files into `ki-authoring`'s formats: the standard was renamed `standard-granola-acquisition.md` and given the standard format's sections, its rules moved unchanged under numbered subsections, and this file took the sources format, its named decisions gathered into [Decisions](#3-decisions). No rule changed and no outside source was refreshed.
 
@@ -70,7 +80,8 @@ On 2026-10-16, official documentation confirmed owned/shared scopes, screenshot 
 
 **Watching**
 
-- The MCP's advertised tools, thirteen when last inspected on 2026-10-16, and any change of shape in the reads acquisition allowlists.
+- The MCP's advertised tools, thirteen when last inspected on 2026-10-16 and 23 names on the local bridge on 23 November 2026, and any change of shape in the reads acquisition allowlists.
+- Whether `list_meetings`, hidden from some clients since the documentation of November 2026, stays available, since complete enumeration in [4.2](standard-granola-acquisition.md#42-complete-identity-enumeration) relies on its date-window listing.
 - The current omissions, among them source URL, creation and update timestamps, tags, audio, content version and deletion tombstone, should the MCP come to return them.
 
 [Back to contents](#contents)

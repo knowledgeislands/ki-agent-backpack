@@ -26,7 +26,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This standard adds Granola's completeness and capability rules to the `ki-acquire` common contract. It governs read-only import, the separately confirmed additive Acquired marker and the separately confirmed Triaged-to-Captured move. The Inbox's `ki-muninn` executes them as `granola import`, `mark` and `images`, reading the receiving repository's `[muninn.granola]` settings, and its README and the Inbox's Granola operator guide own commands, flags and defaults; Knowledge Islands Principal owns the provider-neutral lifecycle.
+This standard adds Granola's completeness and capability rules to the `ki-acquire` common contract. It governs read-only import, the separately confirmed additive Acquired marker and the separately confirmed Triaged-to-Captured move. Harbour's `ki-muninn` executes them as `granola import`, `mark` and `images`, reading the receiving repository's `[muninn.granola]` settings, and its README and Harbour's Granola operator guide own commands, flags and defaults; `ki-acquire` owns the provider-neutral common contract.
 
 Acquisition keeps no ledger, checkpoint, journal or flagged-identity file. The committed capture is the only record: its front matter carries the source identity, account binding, hashes and folder memberships, and Git history holds earlier bytes. An interrupted run is simply repeated.
 
@@ -52,8 +52,8 @@ What this provider standard adds to the common contract, and what it leaves to o
 ### 2.2 Out of scope
 
 - The source-independent capture contract, curation and dispatch: `ki-acquire`'s common acquisition standard.
-- Commands, flags and defaults: the Inbox's `ki-muninn` README and its Granola operator guide.
-- The provider-neutral lifecycle: Knowledge Islands Principal.
+- Commands, flags and defaults: Harbour's `ki-muninn` README and its Granola operator guide.
+- The durable lifecycle and its rationale: Knowledge Islands' Acquisition Process, named in `ki-acquire`'s sources.
 
 [Back to contents](#contents)
 

@@ -45,7 +45,7 @@ What this provider standard adds to the common contract, and what it leaves to o
 ### 2.2 Out of scope
 
 - The source-independent capture contract, curation and dispatch: `ki-acquire`'s common acquisition standard.
-- Commands, flags and defaults of the executable bridge: the Inbox's `ki-muninn` README.
+- Commands, flags and defaults of the executable bridge: Harbour's `ki-muninn` README.
 - Local paths and publication authority: the receiving repository's guides.
 
 [Back to contents](#contents)
@@ -66,7 +66,7 @@ The rules, part by part.
 
 ### 4.1 Readable source
 
-Capture only conversation text the runtime can actually read, or an official account export kept outside Git. Opaque local-store records, interface titles, browser scraping and undocumented private APIs are never conversation content. The executable bridge, the Inbox's `ki-muninn chatgpt import` and `chatgpt export`, checks one user-prepared readable capture and writes it as a Knowledge Export Package; it contacts no provider and claims nothing more. An account export is a bounded snapshot, not proof of complete project membership.
+Capture only conversation text the runtime can actually read, or an official account export kept outside Git. Opaque local-store records, interface titles, browser scraping and undocumented private APIs are never conversation content. The executable bridge, Harbour's `ki-muninn chatgpt import` and `chatgpt export`, checks one user-prepared readable capture and writes it as a Knowledge Export Package; it contacts no provider and claims nothing more. An account export is a bounded snapshot, not proof of complete project membership.
 
 [Back to contents](#contents)
 

@@ -50,10 +50,13 @@ OpenAI's published documentation, and the in-house adapter whose evidence the st
 | --- | --- | --- | --- | --- |
 | ATER-027 | The executable bridge is the assistant's, now the Inbox's, `ki-muninn chatgpt import` and `export`, after tools-ki `4faf9724` removed `ki acquire`; the `ki-acquire-*` adapter front matter, which only tools-ki read, is removed. | 2026-11-05 | [4.1](standard-chatgpt-acquisition.md#41-readable-source) | In force |
 | INBOX-RENAME | The assistant repository became the Inbox: `krisb/assistant` is now `krisb/inbox`; Kris's word, from `personal.reg.inbox-terra`. | 2026-11-06 | [4.1](standard-chatgpt-acquisition.md#41-readable-source) | In force |
+| ACQUIRE-FIXES | The skill "is repointed from the Inbox (`krisb/inbox`) to Harbour (`krisb/ki-cairn-harbour`)", the name the repository took under HARBOUR-RENAME; settled by Kitteth within remit, the Acquire guild's sitting in the Cairn summit's change 10. | 2026-11-22 | [4.1](standard-chatgpt-acquisition.md#41-readable-source) | In force |
 
 [Back to contents](#contents)
 
 ## 4. Last review
+
+On 23 November 2026, in the Cairn summit's change 10, step 6.3, under ACQUIRE-FIXES, recorded under [Decisions](#3-decisions), live wording naming the Inbox's muninn now names Harbour's (`krisb/ki-cairn-harbour`, `packages/ki-muninn/`) and its ChatGPT operator guide. No rule changed and no outside source was refreshed.
 
 On 18 November 2026 the Acquire guild's review, in the Cairn summit's change 10, brought the skill's files into `ki-authoring`'s formats: the standard was renamed `standard-chatgpt-acquisition.md` and given the standard format's sections, its rules moved unchanged under numbered subsections, and this file took the sources format, its named decisions gathered into [Decisions](#3-decisions). No rule changed and no outside source was refreshed.
 
