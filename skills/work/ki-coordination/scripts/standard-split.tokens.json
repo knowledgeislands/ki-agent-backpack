@@ -265,7 +265,7 @@
     "at <time>",
     "awaiting-review",
     "b)",
-    "b) <an alternative>",
+    "b) (<why someone would choose it>) <an alternative>",
     "b) object to the ones you name",
     "caffeinate -dims -w <session pid>",
     "cat",

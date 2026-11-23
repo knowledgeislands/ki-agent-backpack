@@ -131,7 +131,7 @@ After a Summary that lists open queries, or on the owner's request, the coordina
 2. **Second reply.** Woken by the timer, the reply holds only the card, through the runtime's question tool, such as `AskUserQuestion`:
    - **Title:** one line, the counter and the plain question, as in `Query 2 of 5: Release the held work now?`.
    - **Options:** each a short label, the real choices first with the recommended one leading, its label carrying `(recommended, <confidence> confidence)`, then the two [discussion options](#the-discussion-options). A card holds at most four options, so it carries at most two real choices; a query with more is asked in the plain fallback's chat form, or split into separately tagged parts.
-   - **Descriptions:** one or two sentences per option saying what it means; the recommended option's opens with `Why:`.
+   - **Descriptions:** one or two sentences for each real option: what it changes, then `Why:` and its justification, why someone would choose it, so every option carries its own case and not only the recommended one, whose label also carries its confidence (OPTION-WHY).
    - **Own words:** the card's free-text box takes the owner's own words, so no option offers them.
    - **Pairs:** two related questions may share one card, each with a short header and its own two discussion options; otherwise one question per card.
 3. **After the answer.** Log a real choice in the change document it belongs to, then go back to step 1, whose read-back, saying what was chosen and what it changes, opens the next query's first reply. A discussion option logs nothing; [the discussion options](#the-discussion-options) say what follows.
@@ -141,7 +141,7 @@ After a Summary that lists open queries, or on the owner's request, the coordina
 <a id="where-things-stand"></a>**Where things stand** is a few short bullets, enough to decide without scrolling back, each opening with a short bold lead-in naming its part, as Kris praised under QUERY-LEAD-INS on 19 November 2026: "The way that you broke down the queries … as in where things stand, why this comes to you, what the review found, a second review tonight, what it unblocks, those kinds of things, are really good. The options are really good as well."
 
 - **The parts:** typically why it comes to the owner, where it stands, what was found, what a review found and what an answer unblocks. Only the parts that apply are used, each named in the owner's terms, such as **A second review tonight**, and none is padded out to fill a slot.
-- **The options:** numbered, each with a bold name, the recommended one first carrying its confidence and a one-line _Why:_, as the [plain fallback](#plain-fallback) sets.
+- **The options:** numbered, each with a bold name, what it changes and a one-line _Why:_ giving its justification, the recommended one first and also carrying its confidence, as the [plain fallback](#plain-fallback) sets (OPTION-WHY).
 - **In the written report:** a query's **Context** paragraph in [the owner report](standard-reporting.md#42-owner-report) may take the same lead-ins, as short bold-led sentences or bullets, where the matter has several parts.
 
 For example, trimmed:
@@ -159,8 +159,8 @@ Query 4 of 10 · SPEC-AGREE: agree the specification cards
 **The options**
 
 1. **Make every correction, and agree the MCP, ACP and A2A cards now** _(recommended, high confidence, reviewed)_. … _Why:_ the facts are checked, and an agreed card is easy to revise.
-2. **Make the corrections, but leave the cards as proposals.**
-3. **Leave them as they are.**
+2. **Make the corrections, but leave the cards as proposals.** _Why:_ the facts are fixed now while agreement waits for the redraw.
+3. **Leave them as they are.** _Why:_ nothing changes until you have read the cards yourself.
 ```
 
 <a id="the-real-example"></a>**The real example.** A query about a field or a format shows the real thing in its context, from the store or the repository it concerns: the actual current value, quoted from its file and named by its path, and what it would become under the recommended choice, and under another where they differ, so the owner decides on the thing itself rather than a description of it, as Kris took CONTEXT-EXAMPLE a on 16 November 2026: "that level of detail… is exactly what is useful to me".
@@ -174,13 +174,13 @@ Query 4 of 10 · SPEC-AGREE: agree the specification cards
 
 A quick first run through the set thus decides what it can. While a query is talked through or waits for the end, work on queries already decided may launch in the background, each decision logged in its change document first, as [the decisions practice](standard-coordination.md#44-coordinating-practices) allows, so the decided work starts while the rest are discussed.
 
-<a id="plain-fallback"></a>**Plain fallback.** Where the runtime has no question card, or no way for a timer to wake the coordinator, ask in plain chat Markdown alone: one reply with the read-back of the previous answer and what it changes, the context and **The options**, numbered, each with a bold name and what it means, the recommended one first carrying _(recommended, <confidence> confidence)_ and a one-line _Why:_, then the two discussion options, closing with "Reply with a number, or your own words.". Then stop and wait. An unattended window asks in plain text, never through a card, because a card blocks the session.
+<a id="plain-fallback"></a>**Plain fallback.** Where the runtime has no question card, or no way for a timer to wake the coordinator, ask in plain chat Markdown alone: one reply with the read-back of the previous answer and what it changes, the context and **The options**, numbered, each with a bold name, what it changes and a one-line _Why:_ giving its justification, the recommended one first and also carrying _(recommended, <confidence> confidence)_, then the two discussion options, closing with "Reply with a number, or your own words.". Then stop and wait. An unattended window asks in plain text, never through a card, because a card blocks the session.
 
 - Never put the next query's card in the same reply as an answer's read-back.
 - The total is the number of open queries when the pass starts. When an answer raises a new query, add it to the total and say so. A query deferred to the end keeps its number when it is taken again.
 - Nothing is shortened because it is asked interactively, and each query keeps its [tag](standard-reporting.md#needs-tags).
 
-Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET-MARK, CARD-LOOP, CARD-PATTERN, CARD-READBACK, CARD-DISCUSS, CONTEXT-EXAMPLE, QUERY-LEAD-INS, SUMMARY-FIRST and LATER-BUTTON in [the decision register](sources.md#3-decisions).
+Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET-MARK, CARD-LOOP, CARD-PATTERN, CARD-READBACK, CARD-DISCUSS, CONTEXT-EXAMPLE, QUERY-LEAD-INS, SUMMARY-FIRST, LATER-BUTTON and OPTION-WHY in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
