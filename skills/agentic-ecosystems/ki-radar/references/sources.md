@@ -112,8 +112,8 @@ By class, as the standard's evidence independence reads them.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [Local model-radar roadmap][local-roadmap] | Initial route ownership and recommendation (pinned commit) | 2026-11-15 |
-| [Owner default-route decision][local-defaults] | 2026-10-06 default decision (pinned commit); owner-attested day-to-day use | 2026-11-15 |
+| [Local model-radar roadmap][local-roadmap] | Initial route ownership and recommendation (pinned commit) | 2026-11-23 |
+| [Owner default-route decision][local-defaults] | 2026-10-06 default decision (pinned commit); owner-attested day-to-day use | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -121,8 +121,8 @@ By class, as the standard's evidence independence reads them.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [Thoughtworks Technology Radar FAQ][thoughtworks-radar] | Source ring semantics | 2026-11-15 |
-| [Open Source AI Definition 1.0][osi-osaid] | Open Source AI classification | 2026-11-15 |
+| [Thoughtworks Technology Radar FAQ][thoughtworks-radar] | Source ring semantics | 2026-11-23 |
+| [Open Source AI Definition 1.0][osi-osaid] | Open Source AI classification | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -132,39 +132,39 @@ Provider evidence may establish identity, access, licence, pricing and lifecycle
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [Claude Opus 5 launch][claude-opus] | Identity, access, release | 2026-11-15 |
-| [Claude Fable 5.1 model overview][claude-fable] | Identity, access, lifecycle | 2026-11-15 |
-| [Claude model deprecations][claude-lifecycle] | Opus and Fable lifecycle | 2026-11-22 |
-| [Current Claude models][claude-current] | Fable, Opus, Sonnet, and Haiku identities and effort | 2026-11-22 |
-| [OpenAI model catalogue][openai-models] | Current flagship identities and access | 2026-11-22 |
-| [OpenAI GPT-6 guide][openai-gpt-6] | Current GPT-6.2 Astra and Sol positioning | 2026-11-22 |
-| [GPT-5.6 Sol model page][openai-sol] | Previous-family Sol identity, alias, and access | 2026-11-22 |
-| [GPT-5.6 Terra model page][openai-terra] | Previous-family Terra identity and access | 2026-11-22 |
-| [GPT-6 Astra model page][openai-gpt-6-astra] | Astra identity and access | 2026-11-22 |
-| [GPT-6.1 Sol model page][openai-gpt-6-1-sol] | Default-route Sol identity and access | 2026-11-22 |
-| [GPT-6 Sol model page][openai-gpt-6-sol] | Earlier Sol identity and access | 2026-11-22 |
-| [Codex models][codex-models] | Models selectable in Codex | 2026-11-22 |
-| [Claude model IDs and versions][claude-model-ids] | Fixed model identities against aliases, for the model-tier standard | 2026-11-22 |
-| [Claude Code model configuration][claude-code-models] | Claude Code aliases and selectable models | 2026-11-22 |
-| [Gemini CLI ACP mode][gemini-cli-acp] | Gemini CLI ACP support and access | 2026-11-22 |
-| [OpenCode ACP support][opencode-acp] | OpenCode ACP support | 2026-11-22 |
-| [Zed external agents][zed-agents] | ACP client integration of the routed agents | 2026-11-22 |
-| [Gemini 3.8 Flash model page][gemini-flash] | Identity, capability, stable access | 2026-11-22 |
-| [Gemini model deprecations][gemini-lifecycle] | Release and shutdown status | 2026-11-22 |
-| [GLM-5.3 checkpoint][glm-53] | Identity, weights, deployment | 2026-11-22 |
-| [GLM-5.3 licence][glm-53-license] | Exact weights licence | 2026-11-15 |
-| [GLM-5.3-Flash release][glm-53-flash] | Identity, scale, deployment | 2026-11-22 |
-| [GLM-5.3-Flash licence][glm-53-flash-license] | Exact weights licence | 2026-11-15 |
-| [Kimi K3 repository][kimi-k3] | Identity, weights, access | 2026-11-22 |
-| [Kimi K3 licence][kimi-k3-license] | Exact weights licence | 2026-11-15 |
-| [Qwen3.8 Max model page][qwen-max] | Exact hosted Max identity | 2026-11-22 |
-| [Qwen3.8 repository][qwen-family] | Open-model family boundary | 2026-11-22 |
-| [Qwen3.8-27B checkpoint][qwen-27b] | Workstation-lane weights and licence | 2026-11-22 |
-| [Grok 4.6 launch][grok-launch] | Identity, release, hosted routes | 2026-11-22 |
-| [Grok 4.6 model page][grok-model] | API identity and current access | 2026-11-22 |
-| [Grok 4.7 launch][grok-47-launch] | Identity, release, hosted routes | 2026-11-22 |
-| [Grok 4.7 model page][grok-47-model] | API identity and current access | 2026-11-22 |
-| [SpaceXAI models and pricing index][xai-models] | Current recommended model and listed alternatives | 2026-11-22 |
+| [Claude Opus 5 launch][claude-opus] | Identity, access, release | 2026-11-23 |
+| [Claude Fable 5.1 model overview][claude-fable] | Identity, access, lifecycle | 2026-11-23 |
+| [Claude model deprecations][claude-lifecycle] | Opus and Fable lifecycle | 2026-11-23 |
+| [Current Claude models][claude-current] | Fable, Opus, Sonnet, and Haiku identities and effort | 2026-11-23 |
+| [OpenAI model catalogue][openai-models] | Current flagship identities and access | 2026-11-23 |
+| [OpenAI GPT-6 guide][openai-gpt-6] | Current GPT-6.2 Astra and Sol positioning | 2026-11-23 |
+| [GPT-5.6 Sol model page][openai-sol] | Previous-family Sol identity, alias, and access | 2026-11-23 |
+| [GPT-5.6 Terra model page][openai-terra] | Previous-family Terra identity and access | 2026-11-23 |
+| [GPT-6 Astra model page][openai-gpt-6-astra] | Astra identity and access | 2026-11-23 |
+| [GPT-6.1 Sol model page][openai-gpt-6-1-sol] | Default-route Sol identity and access | 2026-11-23 |
+| [GPT-6 Sol model page][openai-gpt-6-sol] | Earlier Sol identity and access | 2026-11-23 |
+| [Codex models][codex-models] | Models selectable in Codex | 2026-11-23 |
+| [Claude model IDs and versions][claude-model-ids] | Fixed model identities against aliases, for the model-tier standard | 2026-11-23 |
+| [Claude Code model configuration][claude-code-models] | Claude Code aliases and selectable models | 2026-11-23 |
+| [Gemini CLI ACP mode][gemini-cli-acp] | Gemini CLI ACP support and access | 2026-11-23 |
+| [OpenCode ACP support][opencode-acp] | OpenCode ACP support | 2026-11-23 |
+| [Zed external agents][zed-agents] | ACP client integration of the routed agents | 2026-11-23 |
+| [Gemini 3.8 Flash model page][gemini-flash] | Identity, capability, stable access | 2026-11-23 |
+| [Gemini model deprecations][gemini-lifecycle] | Release and shutdown status | 2026-11-23 |
+| [GLM-5.3 checkpoint][glm-53] | Identity, weights, deployment | 2026-11-23 |
+| [GLM-5.3 licence][glm-53-license] | Exact weights licence | 2026-11-23 |
+| [GLM-5.3-Flash release][glm-53-flash] | Identity, scale, deployment | 2026-11-23 |
+| [GLM-5.3-Flash licence][glm-53-flash-license] | Exact weights licence | 2026-11-23 |
+| [Kimi K3 repository][kimi-k3] | Identity, weights, access | 2026-11-23 |
+| [Kimi K3 licence][kimi-k3-license] | Exact weights licence | 2026-11-23 |
+| [Qwen3.8 Max model page][qwen-max] | Exact hosted Max identity | 2026-11-23 |
+| [Qwen3.8 repository][qwen-family] | Open-model family boundary | 2026-11-23 |
+| [Qwen3.8-27B checkpoint][qwen-27b] | Workstation-lane weights and licence | 2026-11-23 |
+| [Grok 4.6 launch][grok-launch] | Identity, release, hosted routes | 2026-11-23 |
+| [Grok 4.6 model page][grok-model] | API identity and current access | 2026-11-23 |
+| [Grok 4.7 launch][grok-47-launch] | Identity, release, hosted routes | 2026-11-23 |
+| [Grok 4.7 model page][grok-47-model] | API identity and current access | 2026-11-23 |
+| [SpaceXAI models and pricing index][xai-models] | Current recommended model and listed alternatives | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -180,17 +180,17 @@ Independent benchmark and methodology owners.
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| [BenchLM methodology][benchlm] | BenchAlign aggregation and uncertainty | 2026-11-15 |
-| [AA Intelligence methodology][aa-intelligence] | Intelligence Index v5.0.1 | 2026-11-22 |
-| [AA Coding Agent methodology][aa-coding] | Coding Agent Index v2.1 | 2026-11-22 |
-| [Arena-Rank methodology][arena-rank] | Bradley–Terry ranking and uncertainty | 2026-11-15 |
-| [Arena leaderboard policy][arena-policy] | Public model and data policy | 2026-11-15 |
-| [Arena leaderboard changelog][arena-changelog] | Leaderboard method and data changes | 2026-11-15 |
-| [SWE-bench leaderboards][swe-bench] | Current benchmark-family shape | 2026-11-15 |
-| [Terminal-Bench 4.1][terminal-bench] | Current terminal benchmark | 2026-11-15 |
-| [Harbor core concepts][harbor] | Task-environment evaluation unit | 2026-11-15 |
-| [HELM repository][helm] | Framework and leaderboard scope | 2026-11-15 |
-| [HELM maintenance policy][helm-maintenance] | Maintenance lifecycle | 2026-11-15 |
+| [BenchLM methodology][benchlm] | BenchAlign aggregation and uncertainty | 2026-11-23 |
+| [AA Intelligence methodology][aa-intelligence] | Intelligence Index v5.0.1 | 2026-11-23 |
+| [AA Coding Agent methodology][aa-coding] | Coding Agent Index v2.1 | 2026-11-23 |
+| [Arena-Rank methodology][arena-rank] | Bradley–Terry ranking and uncertainty | 2026-11-23 |
+| [Arena leaderboard policy][arena-policy] | Public model and data policy | 2026-11-23 |
+| [Arena leaderboard changelog][arena-changelog] | Leaderboard method and data changes | 2026-11-23 |
+| [SWE-bench leaderboards][swe-bench] | Current benchmark-family shape | 2026-11-23 |
+| [Terminal-Bench 4.1][terminal-bench] | Current terminal benchmark | 2026-11-23 |
+| [Harbor core concepts][harbor] | Task-environment evaluation unit | 2026-11-23 |
+| [HELM repository][helm] | Framework and leaderboard scope | 2026-11-23 |
+| [HELM maintenance policy][helm-maintenance] | Maintenance lifecycle | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -258,6 +258,7 @@ Agent Client Protocol is disambiguated from similarly named IBM and AGNTCY proto
 
 ### 4.2 Model subjects
 
+- 2026-11-23 — Weekly review, in the overnight sources refresh, rechecked every tracked source, including the standards, licences and local owner sources last reviewed on 2026-11-15; `radar.toml` and the model-tier tables were not changed, and the data updates below are held as proposals for the owner. BenchLM now presents BenchAlign v6.0, its methodology and catalogue dated 2026-11-21, and no longer states a retrospective-validation date, so its record's method version and data date are stale. The Arena changelog runs to 2026-11-20, adding a 2026-11-17 Alignment Index method change (majority vote of multi-lab LLM judges) and a 2026-11-18 Agent leaderboard overhaul into an overall and six focused indexes. Terminal-Bench is still 4.1, its newest entries dated 2026-11-18. Artificial Analysis stays at Intelligence Index v5.0.1 and Coding Agent Index v2.1, still without a data date. Moonshot released Kimi K3.1 Pro, a post-trained Kimi K3 with open weights from early November under its own licence, found through the Arena and Terminal-Bench boards and secondary reports rather than the Kimi K3 repository, which does not mention it. The retired GPT-6 Astra launch post is fetchable again: it confirms `gpt-6-astra` with Azure and Amazon Bedrock access, but gives no exact release date, its earliest update being dated 2026-09-22. Claude Code's page says sessions migrated to Fable 5.2 start at `medium` effort, where the API overview gives `high` as Fable 5.2's default; the tier table follows the API. The Thoughtworks FAQ names the fourth ring Caution, as the local adaptation already reads. SWE-bench again rendered only partly. Claude, OpenAI, Codex, ACP harness, Gemini, GLM, Kimi K3, Qwen, Grok, OSAID, Harbor and HELM identities, lifecycles and licences are otherwise unchanged since 2026-11-22; Google also lists `genie-4` (2026-11-19), not a radar candidate.
 - 2026-11-22 — The Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied MODEL-TIERS a, recorded under [Decisions](#3-decisions): the [model-tier standard](standard-model-tiers.md) joins from the two tokenomics adapters, with the Codex role resolver and its test, and states the tier-movement rule once. Its tables were rechecked against the Claude models overview, the Claude model IDs page and the GPT-6 guide: the `frontier` candidate is now Claude Fable 5.2, the `fast` candidate Claude Haiku 5.5 at `medium` effort, Haiku 4.5 being listed among older models, and the GPT-6 guide now names only GPT-6.2 Astra and GPT-6.2 Sol. No criterion changed.
 - 2026-11-22 — Loreward, within remit, from the 4.1 refresh, took NEW-IDENTITIES, recorded under [Decisions](#3-decisions): GPT-6.2 Astra and GPT-6.2 Sol join as model identities on the OpenAI model catalogue, GPT-6 guide and Codex models page, and Claude Fable 5.2 on the Claude models overview and deprecations page, each with no route. The other new identities stay held. No outside source was refreshed.
 - 2026-11-22 — Loreward, within remit, from the 4.1 refresh, took AA-APPLICABILITY, recorded under [Decisions](#3-decisions): the Coding Agent Index v2.1 stays primary and the Intelligence Index v5.0.1 corroborating. Nothing in `radar.toml` changed, and no outside source was refreshed.
@@ -289,11 +290,13 @@ All named initial model identities were substantiated. Hosted-only variants reta
 - do not promote an open-weight model to Open Source AI Definition conformance without evidence for the definition's data-information, code, and parameter requirements.
 - keep hosted `qwen3.8-max` separate from Apache-2.0 Qwen3.8 open-weight checkpoints.
 - track Gemini 4 Argon only once it reaches general availability. On 2026-11-15 the deprecations page lists `gemini-4-argon` as released on 2026-10-13 with no shutdown date and its model page marks it stable, so it appears to have reached general availability; adding it, and Gemini 4 Carbon, Hydrogen and, from 2026-11-18, Neon, awaits the owner.
-- watch for a formal Claude Haiku 4.5 deprecation notice. On 2026-11-22 it is still active on the deprecations page with no notice, its not-sooner-than date of 2026-10-15 has passed, and the models overview lists it among older models rather than the current lineup; Anthropic gives at least 60 days' notice before retiring a publicly released model, so it cannot retire before mid-January 2027. It has no route today.
+- watch for a formal Claude Haiku 4.5 deprecation notice. On 2026-11-23 it is still active on the deprecations page with no notice, its not-sooner-than date of 2026-10-15 has passed, and the models overview lists it among older models rather than the current lineup; Anthropic gives at least 60 days' notice before retiring a publicly released model, so it cannot retire before mid-January 2027. It has no route today.
 - Artificial Analysis moved to Intelligence Index v5.0.1 and Coding Agent Index v2.1 in November 2026, and on 2026-11-22 their records took the new versions, metrics and constraints. The Coding Agent Index now uses FrontierCode-AA 2.0, with private tasks and an LLM judge, in place of DeepSWE, and Terminal-Bench 4.1; whether each record keeps its applicability is the owner's call.
 - decide whether Claude Fable 5.2, GPT-6.2 Astra, GPT-6.2 Sol, GPT-6.1 Terra, Qwen4 Max, and the Gemini 4 models, Neon included, join the radar as model identities; none has a route. Claude Mythos 5.2 is limited to verified organisations.
-- GPT-6.1 Sol, a default route's model, and GPT-6 Astra have left OpenAI's catalogue and GPT-6 guide in favour of GPT-6.2 Sol and Astra, with no deprecation notice; watch for one, and for Codex dropping either model.
-- the owner kept the [GPT-6 Astra launch post][openai-astra] retired on 2026-10-18 (ASTRA-SOURCE). Re-add the Astra launch post when fetchable, restoring the release date and cloud-access claims only it carried.
+- GPT-6.1 Sol, a default route's model, and GPT-6 Astra have left OpenAI's catalogue and GPT-6 guide in favour of GPT-6.2 Sol and Astra, with no deprecation notice; watch for one, and for Codex dropping either model. On 2026-11-23 both model pages show no notice and Codex still lists both.
+- the owner kept the [GPT-6 Astra launch post][openai-astra] retired on 2026-10-18 (ASTRA-SOURCE). On 2026-11-23 it was fetchable again and supports the Azure and Amazon Bedrock access claims, but not the 2026-09-03 release date; re-adding it, with its evidence in `radar.toml`, awaits the owner.
+- decide whether Kimi K3.1 Pro, an open-weight successor to Kimi K3 released on 2026-10-23 with weights from early November, joins the radar; its own repository and licence need fetching first, and Kimi K3 has no successor recorded.
+- BenchLM's record still reads method v5.8 and data of 2026-11-13, the Arena record data of 2026-11-12 and Terminal-Bench data of 2026-11-14; on 2026-11-23 they read BenchAlign v6.0 with data of 2026-11-21, 2026-11-20 and 2026-11-18, held as proposals.
 - recheck the GPT-5.6 Sol route after its promotional pricing ends on 2026-11-30: on 2026-11-22 Codex's models page no longer mentions it, and its own model page shows it available (GPT-5.6-SOL-ROUTE).
 
 [Back to contents](#contents)
