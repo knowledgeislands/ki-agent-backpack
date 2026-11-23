@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T23:56:44Z
+ki-revised: 2026-11-23T01:21:54Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -29,8 +29,10 @@ OpenAI's own Codex documentation is the evidence for the stable and experimental
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [Codex CLI command reference](https://learn.chatgpt.com/docs/developer-commands?surface=cli#cli-codex-delete) | Stable one-session `codex delete` fallback. | 2026-08-18 |
-| [Codex app-server reference](https://developers.openai.com/codex/app-server) | Initialization, experimental capability, paginated inventory, exact `cwd`, descendant filtering, and permanent deletion. | 2026-08-18 |
+| [Codex CLI command reference](https://learn.chatgpt.com/docs/developer-commands?surface=cli#cli-codex-delete) | Stable one-session `codex delete` fallback. | 2026-11-23 |
+| [Codex app-server reference](https://learn.chatgpt.com/docs/app-server) | Initialization, experimental capability, paginated inventory, exact `cwd`, descendant filtering, and permanent deletion. | 2026-11-23 |
+| [Codex local memory](https://learn.chatgpt.com/docs/customization/memories) | Codex local memory as generated state apart from ChatGPT web memory; its store location and controls. | 2026-11-23 |
+| [Codex configuration basics](https://learn.chatgpt.com/docs/config-file/config-basic) | Configuration precedence, trusted-project loading and the `[features] memories` flag. | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -52,6 +54,8 @@ The rules follow the outside sources above and the shared rules of `ki-env-house
 
 ## 4. Last review
 
+On 23 November 2026 the quarterly REFRESH re-fetched the four OpenAI pages. The app-server reference has moved to learn.chatgpt.com, repointed above. It still documents the `experimentalApi` opt-in, exact-match `cwd`, cursor pagination, the experimental `ancestorThreadId` filter and permanent `thread/delete` with spawned descendants, so [the Codex state standard](standard-codex-state.md) holds. `codex delete` stays stable, and `--force` now needs a UUID. The two memory pages the memory standard cites are now listed; they confirm local memory is off by default, project configuration loads only when trusted and outranks profiles. Two changes are proposed, not made: the memory check reads only `memories/`, where a fresh Codex home now writes `memories_v2/`; and the inventory sends no `sourceKinds` or `modelProviders`, so the defaults (`cli` and `vscode` sources, the configured provider) leave out the repository's `exec`, app-server, sub-agent and other-provider threads.
+
 On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied ENV-FIXES a, recorded under [Decisions](#3-decisions): SKILL.md now names Harbour's `ki-muninn chatgpt` commands, in krisb/ki-cairn-harbour, as the owner of repository staging, where it named the Inbox. No criterion changed and no outside source refreshed.
 
 On 19 November 2026 MEMORY-ONCE, taken in `ki-env-housekeeping`, cut [the Codex memory standard](standard-codex-memory.md#42-repository-policy)'s restatement of the native-memory policy to this host's delta, pointing at the lead's 4.1; nothing host-specific was lost. No criterion changed and no outside source refreshed.
@@ -66,7 +70,8 @@ On 2026-08-18, the CLI documented stable permanent deletion by saved-session ID 
 
 **Watching:**
 
-- The two OpenAI pages [the Codex local-memory standard](standard-codex-memory.md) cites, on memory and on configuration precedence, are not yet listed above; the next REFRESH reviews them and lists them.
 - App-server and its `ancestorThreadId` filter are still experimental.
+- The `memories_v2/` store: the reconciliation check in [the Codex memory standard](standard-codex-memory.md#44-reconciliation) sees only `memories/` until the proposed fix lands.
+- `thread/list`'s default `sourceKinds` and `modelProviders` filters, which narrow the inventory unless the adapter widens them; proposed, to be verified against the installed protocol schema.
 
 [Back to contents](#contents)
