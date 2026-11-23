@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T21:58:53Z
+ki-revised: 2026-11-23T02:10:40Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -33,23 +33,23 @@ The external specifications a conformant tool repository builds on.
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| SHELLCHECK — [ShellCheck][shellcheck] | Shell-tool lint gate (SHELL-LINT) — clean in CI | 2026-11-15 |
-| BATS — [bats-core][bats] | Shell-tool test framework (SHELL-TEST) — `*.bats` + CI run; fatal `[[ ]]` and `!` assertions (SHELL-FATAL) | 2026-11-15 |
-| CHANGELOG — [Keep a Changelog][keepachangelog] | Optional chronological changelog shape | 2026-11-15 |
-| SEMVER — [Semantic Versioning 2.0.0][semver] | `vX.Y.Z` version marker + release tags | 2026-11-15 |
-| XDG — [XDG Base Directory Specification][xdg] | Where the tool writes config/state/cache; the [command-line conventions](standard-cli-conventions.md#47-configuration-state-and-cache) directory table | 2026-11-15 |
-| POSIX-UTIL — [POSIX.1-2024 Utility Conventions][posix-util] | [Command-line](standard-cli-conventions.md) option syntax, `--`, `-` as standard input | 2026-11-15 |
-| POSIX-FIND — [POSIX `find`][posix-find] and the `cp`, `chown`, `cd` pages | `-H`, `-L` and `-P` symbolic-link options | 2026-11-15 |
-| GNU-CLI — [GNU Coding Standards: Command-Line Interfaces][gnu-cli] | Long options, `--help`, `--version`, the option table | 2026-10-18 |
-| BASH-EXIT — [Bash Reference Manual: Exit Status][bash-exit] | 2 for usage, 126, 127 and 128 + n | 2026-10-18 |
-| CLIG — [Command Line Interface Guidelines][clig] | Streams, prompts, colour, signals, secrets, configuration precedence | 2026-11-15 |
-| NO-COLOR — [NO_COLOR][no-color] | Disabling colour by environment | 2026-11-15 |
-| COOKBOOK — [Formula Cookbook][cookbook] | The required formula parts (`class < Formula`, `desc`, `homepage`, `url`, `sha256`, `license`, `install`, `test do`) and their idioms, the source of `TAP-2` and `TAP-3` | 2026-11-17 |
-| AUDIT — [`brew audit` command reference][audit] | What `brew audit --strict` enforces: separate package-manager evidence, never run by static `TAP-7` | 2026-11-15 |
-| STYLE — [`brew style` / rubocop formula cops][style] | The `desc` rules (≤ 80 characters, no leading "A", "An" or "The") and the formula cops, the source of `TAP-4`, mirrored without running `brew` | 2026-11-15 |
-| ACCEPT — [Acceptable Formulae][acceptable] | Whether a tool is eligible for a formula (notability, stable release, versioned source), background for the sourcing rule | 2026-11-15 |
-| TAP — [Taps (third-party repositories)][taps] | How a tap is named (`homebrew-<x>`) and resolved by `brew tap` and `brew install`, the source of the fixed-name constraint | 2026-11-15 |
-| TESTBOT — [BrewTestBot][testbot] | The `brew test-bot` CI a tap may run, the backstop when a local audit has no `brew` | 2026-11-15 |
+| SHELLCHECK — [ShellCheck][shellcheck] | Shell-tool lint gate (SHELL-LINT) — clean in CI | 2026-11-23 |
+| BATS — [bats-core][bats] | Shell-tool test framework (SHELL-TEST) — `*.bats` + CI run; fatal `[[ ]]` and `!` assertions (SHELL-FATAL) | 2026-11-23 |
+| CHANGELOG — [Keep a Changelog][keepachangelog] | Optional chronological changelog shape | 2026-11-23 |
+| SEMVER — [Semantic Versioning 2.0.0][semver] | `vX.Y.Z` version marker + release tags | 2026-11-23 |
+| XDG — [XDG Base Directory Specification][xdg] | Where the tool writes config/state/cache; the [command-line conventions](standard-cli-conventions.md#47-configuration-state-and-cache) directory table | 2026-11-23 |
+| POSIX-UTIL — [POSIX.1-2024 Utility Conventions][posix-util] | [Command-line](standard-cli-conventions.md) option syntax, `--`, `-` as standard input | 2026-11-23 |
+| POSIX-FIND — [POSIX `find`][posix-find] and the `cp`, `chown`, `cd` pages | `-H`, `-L` and `-P` symbolic-link options | 2026-11-23 |
+| GNU-CLI — [GNU Coding Standards: Command-Line Interfaces][gnu-cli] | Long options, `--help`, `--version`, the option table | 2026-11-23 |
+| BASH-EXIT — [Bash Reference Manual: Exit Status][bash-exit] | 2 for usage, 126, 127 and 128 + n | 2026-11-23 |
+| CLIG — [Command Line Interface Guidelines][clig] | Streams, prompts, colour, signals, secrets, configuration precedence | 2026-11-23 |
+| NO-COLOR — [NO_COLOR][no-color] | Disabling colour by environment | 2026-11-23 |
+| COOKBOOK — [Formula Cookbook][cookbook] | The required formula parts (`class < Formula`, `desc`, `homepage`, `url`, `sha256`, `license`, `install`, `test do`) and their idioms, the source of `TAP-2` and `TAP-3` | 2026-11-23 |
+| AUDIT — [`brew audit` command reference][audit] | What `brew audit --strict` enforces: separate package-manager evidence, never run by static `TAP-7` | 2026-11-23 |
+| STYLE — [`brew style` / rubocop formula cops][style] | The `desc` rules (≤ 80 characters, no leading "A", "An" or "The") and the formula cops, the source of `TAP-4`, mirrored without running `brew` | 2026-11-23 |
+| ACCEPT — [Acceptable Formulae][acceptable] | Whether a tool is eligible for a formula (notability, stable release, versioned source), background for the sourcing rule | 2026-11-23 |
+| TAP — [Taps (third-party repositories)][taps] | How a tap is named (`homebrew-<x>`) and resolved by `brew tap` and `brew install`, the source of the fixed-name constraint | 2026-11-23 |
+| TESTBOT — [BrewTestBot][testbot] | The `brew test-bot` CI a tap may run, the backstop when a local audit has no `brew` | 2026-11-23 |
 
 A `TAP` finding is spec-driven only if it traces to one of the six Homebrew rows; everything else in the [Homebrew tap standard](standard-homebrew-tap.md) is tap-shape convention and is labelled so, never presented as a Homebrew requirement.
 
@@ -65,11 +65,11 @@ The tool repositories under `knowledgeislands/` provide evidence for house style
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| MGIT — `tools-mgit` | Bash/Git boundary, installer overrides, workspace/repository command grouping; fatal Bats assertions under Bash 3.2 (`00ef0de`) | 2026-10-04 |
-| KI — `tools-ki` | Typed command host, diagnostics, completion, signed installer, manual distribution | 2026-10-04 |
-| RIG — `tools-rig` | Authored assembly, terminal ownership, workstation isolation, installer verification | 2026-10-04 |
-| TECHNE — `tools-techne` | Typed operator boundary, compiled archives, remote-environment hold | 2026-10-04 |
-| ALMANAC — `tools-git-almanac` | Read-only Git inspection, reporting boundary, Node artifact delivery | 2026-10-04 |
+| MGIT — `tools-mgit` | Bash/Git boundary, installer overrides, workspace/repository command grouping; fatal Bats assertions under Bash 3.2 (`00ef0de`) | 2026-11-23 |
+| KI — `tools-ki` | Typed command host, diagnostics, completion, signed installer, manual distribution | 2026-11-23 |
+| RIG — `tools-rig` | Authored assembly, terminal ownership, workstation isolation, installer verification | 2026-11-23 |
+| TECHNE — `tools-techne` | Typed operator boundary, compiled archives, remote-environment hold | 2026-11-23 |
+| ALMANAC — `tools-git-almanac` | Read-only Git inspection, reporting boundary, Node artifact delivery | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -79,7 +79,7 @@ Non-normative.
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
-| README — [Standard Readme][standardreadme] | The section set a tap README follows (title, description, Install, Usage, Contributing, License) with the `## Formulae` table as an extra section: guidance for EDUCATE, CONFORM and `TAP-J5` only, never a mechanical check, since README composition is `ki-authoring`'s and README presence `ki-repo`'s | 2026-11-15 |
+| README — [Standard Readme][standardreadme] | The section set a tap README follows (title, description, Install, Usage, Contributing, License) with the `## Formulae` table as an extra section: guidance for EDUCATE, CONFORM and `TAP-J5` only, never a mechanical check, since README composition is `ki-authoring`'s and README presence `ki-repo`'s | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -98,6 +98,8 @@ Decisions behind the rules that carry an id. Others, such as Kris's word after R
 [Back to contents](#contents)
 
 ## 4. Last review
+
+The quarterly REFRESH of **23 November 2026** reviewed all seventeen outside sources and the five in-house tool repositories; no rule was changed here, and three proposals went to Gilder. ShellCheck is still 0.11.0. bats-core is still 1.14.0 and its gotchas still ask for `|| false` after `[[ ]]` under Bash 3.2; its unreleased changes add `--` and `$BATS_ALLOW_EMPTY_SUITE`. Keep a Changelog 1.1.0, Semantic Versioning 2.0.0, XDG 0.8, the POSIX.1-2024 utility conventions, `find` with only `-H` and `-L` (`cp` and `chown` add `-P`), clig.dev and `NO_COLOR` read as before. gnu.org refused automated requests again, so the GNU Coding Standards' command-line section was read from its source in the gnulib mirror (last updated 4 November 2026, that section unchanged) and the Bash Exit Status text from a Bash source mirror (2 for usage, 126, 127, 128 + n, unchanged). Homebrew 7.0.15 is current. The Cookbook keeps the same required parts, adds `post_install_steps` in place of a deprecated `post_install`, `compatibility_version` and a `browsed:` homepage date, none of which a KI formula uses yet. The `desc` cop still allows 80 characters and forbids a leading article. `brew audit --new` implies `--strict` and `--online`. Since Homebrew 6.0.0 third-party taps are untrusted by default: a fully qualified install trusts only that formula, which the house tap README already uses. In-house: all five tool repositories still run CI and release only on manual dispatch, which the standard's "on every push" does not allow for; `tools-mgit`'s changelog keeps an `Unreleased` section above its Pre-1.0 baseline, which the standard's 4.5 rules out; and `tools-rig`'s CI pins bats 1.11.1.
 
 On 22 November 2026 REPO-OTHERS a folded the `ki-repo-homebrew-tap` skill in, recorded under [Decisions](#3-decisions): its standard became the [Homebrew tap standard](standard-homebrew-tap.md) here with its rules unchanged, its seven Homebrew sources joined the tables above with their review dates, its watch-items joined Watching below, and its rubric became the `TAP` family, `GATE-1` renamed `TAP-HOOK` and its keyless-marker `CONFIG-1` replaced by this skill's own. The tap skill's last REFRESH ran on 15 November 2026, with a focused Cookbook re-read on 17 November. No outside source was refreshed in the fold.
 
@@ -119,6 +121,10 @@ The external-spec REFRESH last ran **2026-07-30**. The targeted in-house review 
 
 **Watching:**
 
+- **CI on manual dispatch.** The standard's "on every push" against five dispatch-only tool repositories; proposed to Gilder.
+- **Tap trust.** Homebrew 6.0.0's default tap trust; the tap README rule's wording is proposed to Gilder.
+- **gnu.org refuses automated fetches.** The GNU-CLI and BASH-EXIT rows were reviewed from source mirrors (gnulib, a Bash mirror); re-read the published pages when they can be reached.
+- **`tools-mgit`'s `Unreleased` section** and **`tools-rig`'s bats 1.11.1 pin**, both repository findings for their owners rather than standard changes.
 - **Homebrew is a live target.** The Cookbook and the `brew audit` and `brew style` cops change without a versioned spec release. Re-diff the required-fields list and the `desc` cops each cycle.
 - **`TAP-4` is a mirror.** The 80-character and no-leading-article rule is copied from `brew style` so the check runs without `brew`; if that cop changes upstream, update `scripts/rubric/items/tap.ts`.
 - **No `head` or `bottle` guidance yet.** The tap standard covers stable versioned-tarball formulae only; extend it if a KI tool ever ships bottles or a `head` spec.
