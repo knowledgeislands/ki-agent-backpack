@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T20:59:09Z
+ki-revised: 2026-11-23T03:08:08Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -31,9 +31,9 @@ The provider's own documentation is the evidence for remote capability and behav
 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
-| [Teams][workflow] | team-specific workflow values and automatic archive | 2026-11-15 |
-| [Issues][move] | mutable locators, aliases, team moves, and affected fields | 2026-11-15 |
-| [Delete and archive issues][retention] | automatic archive, deletion, recovery, and retention | 2026-11-15 |
+| [Teams][workflow] | team-specific workflow values and automatic archive | 2026-11-23 |
+| [Issues][move] | mutable locators, aliases, team moves, and affected fields | 2026-11-23 |
+| [Delete and archive issues][retention] | automatic archive, deletion, recovery, and retention | 2026-11-23 |
 
 [Back to contents](#contents)
 
@@ -55,6 +55,8 @@ The adapter's other rules follow its outside sources and `ki-work`'s adapter con
 
 ## 4. Last review
 
+On 23 November 2026, every source was re-read, with the docs index. The Teams page still says workflows can be customised per team, and now places statuses, auto-close and auto-archive on the team's Automations settings page; it says a team's identifier can be changed in its General settings but not what that does to existing issue identifiers. The team-move section is unchanged: a new issue identifier and URL, old URLs and inline references redirect, previous identifiers stay searchable, cycles may be cleared, team labels and projects are removed, relations and priority stay, status maps to the closest destination state, and open issues moved by someone outside a triage team go to triage. Archiving is still automatic with no manual action, held back by open parents, sub-issues, projects or recent activity; deleted issues are still recoverable for 30 days and then removed for good. Linear's pages now point agents at its MCP server for reads and writes, which does not change the adapter's no-execution boundary. Nothing here changes the standard.
+
 On 22 November 2026, in the Cairn summit's change 10, step 6.3's Work landing, REMOTE-TRACKERS was applied, recorded under [Decisions](#3-decisions): this skill's description and body name it the one remote-tracker skill, and `ki-work-github-issues` is removed. The Linear contract is unchanged and no outside source was refreshed.
 
 On 18 November 2026 REFRESH's precondition was brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Work guild: from an installed copy it redirects to the backpack. No criterion changed and no outside source refreshed.
@@ -67,7 +69,8 @@ On 2026-09-26, Linear still documented team-specific workflows, a new issue iden
 
 **Watching:**
 
-- Whether Linear brings back a page that sets out issue statuses.
+- Whether Linear brings back a page that sets out issue statuses: on 23 November 2026 the docs index still lists none, and the Issue properties page still has no body.
+- Whether a team identifier change, now named on the Teams page, gives issues new identifiers as a team move does; Linear does not say.
 
 [Back to contents](#contents)
 
