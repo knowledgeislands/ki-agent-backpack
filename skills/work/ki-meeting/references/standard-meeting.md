@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T11:30:13Z
 ki-status: in force
 ---
 
@@ -162,7 +162,7 @@ The caller makes the folder and writes `_index.md`. Setting a meeting up and bri
 
 ```yaml
 ---
-ki-id: meeting:cairn.wayfinder.designs  # meeting:<folder's name>
+ki-id: meeting:cairn.wayfinder.designs  # meeting:<node id>.<slug>
 ki-document-type: meeting
 ki-name: Wayfinder designs              # optional, a human label, never a copy of the id
 ki-kind: workshop                       # workshop | review | retrospective | standing-room
@@ -179,7 +179,7 @@ ki-participants:                        # those who answered this sitting's roll
 ---
 ```
 
-Every field the block holds is one KI defines, so each takes the `ki-` prefix, under the [format format](../../../keystone/ki-authoring/references/standard-formats-format.md#42-front-matter); a participant's own keys, nested inside `ki-participants`, keep their names, and a reader takes a field written without the prefix under its `ki-` name until the meetings are swept. Every resource passes ids, never copies: the block opens with the meeting's own `ki-id`, `meeting:<folder's name>`, then `ki-document-type`, the kind of document, an optional human `ki-name` and `ki-kind`, and every reference in it is a typed id. The `ki-chair` field names the chair by its actor id. A participant carries only its `id` and its `route`: its name, host and rig are its roster file's, and the role it takes is the agenda's. Every seat in a meeting has a roster file in the store; an actor with no name takes its seat's id, `<package>@<role>`, as `actor:ki.cairn@information-architect` in `roster/ki.cairn@information-architect.md`, and that file holds its host and rig. A tool reads this block, the message file names and each message's own block ([4.8](#48-messages)), and nothing else in the folder; a message written before messages opened with a front matter block has none, and a tool reads only its name. The owner is not listed; the owner is at every meeting. Then, in order:
+Every field the block holds is one KI defines, so each takes the `ki-` prefix, under the [format format](../../../keystone/ki-authoring/references/standard-formats-format.md#42-front-matter); a participant's own keys, nested inside `ki-participants`, keep their names, and a reader takes a field written without the prefix under its `ki-` name until the meetings are swept. Every resource passes ids, never copies: the block opens with the meeting's own `ki-id`, `meeting:<node id>.<slug>`, the node's work id and the slug of the meeting's folder without its date, as `meeting:cairn.summit.voice` for `meetings/cairn.summit/20261114-voice/`, then `ki-document-type`, the kind of document, an optional human `ki-name` and `ki-kind`, and every reference in it is a typed id. The `ki-chair` field names the chair by its actor id. A participant carries only its `id` and its `route`: its name, host and rig are its roster file's, and the role it takes is the agenda's. Every seat in a meeting has a roster file in the store; an actor with no name takes its seat's id, `<package>@<role>`, as `actor:ki.cairn@information-architect` in `roster/ki.cairn@information-architect.md`, and that file holds its host and rig. A tool reads this block, the message file names and each message's own block ([4.8](#48-messages)), and nothing else in the folder; a message written before messages opened with a front matter block has none, and a tool reads only its name. The owner is not listed; the owner is at every meeting. Then, in order:
 
 1. **Summary,** kept current: where the meeting stands, the decisions it has led to, and what comes next.
 2. **Brief:** why the meeting exists, what it should produce, the change document that will hold its decisions, and what participants work from.
