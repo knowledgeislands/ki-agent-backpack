@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-24T04:52:17Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T05:31:51Z
 ki-refresh: canonical · on-change
 ---
 
@@ -31,6 +31,7 @@ The Knowledge Islands card that owns the concept, and the in-house work and tool
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
 | The Knowledge Islands D12 card, "D12, the Dodecakrisis", Kris's fundamental tenet of 5 November 2026, staged in Harbour's knowledge graph (krisb/ki-cairn-harbour) under `knowledge/maturation/curated/knowledge-islands/ki-principal/Pillars/knowledge-tending/` until ki-principal takes it | The concept: the twelve Ds, their names and why | 2026-11-23 |
+| The D12 diagram, drawn in Kris's email-triage session of 5 November 2026 and kept beside the D12 card in Harbour (krisb/ki-cairn-harbour) as `knowledge/maturation/curated/knowledge-islands/ki-principal/Pillars/knowledge-tending/d12-dodecakrisis.svg`, now in ki-principal at `Pillars/Philosophy/Model/Processes/D12 Dodecakrisis/` | The copy in [`assets/d12-dodecakrisis.svg`](../assets/d12-dodecakrisis.svg) that the D12 standard shows | 2026-11-24 |
 
 [Back to contents](#contents)
 

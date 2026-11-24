@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T05:31:51Z
 ki-status: in force
 ---
 
@@ -72,6 +72,8 @@ The rules, part by part.
 ### 4.1 The ten rules
 
 D12 is a sorter. Everything delivered drops into Do; the sorting rules place it in a queue by what it looks like; each queue is worked to a conclusion; a concluded item goes back through the rules, until the rules send it out to Deposit or Delete.
+
+![D12, the Dodecakrisis: deliveries drop into Do, whose sorting rules place each item in one of the seven queues, Determine to Digest, or send it out to Deposit or Delete; concluded items go back through the rules, and the Docket keeps the actions the queues make](../assets/d12-dodecakrisis.svg)
 
 1. **The sorting rules are Do's top.** They place each delivery in a queue, or send it straight to Deposit or Delete. Sorting by hand is the same step done by a person.
 2. **The cycle.** Concluded items come off the bottom of the queues and go back through the sorting rules, which place them again or send them out. The loop is the same whether a step was automatic or by hand.
