@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T11:36:16Z
 ki-status: in force
 ---
 
@@ -144,7 +144,7 @@ For `[skills.ki-repo-website-interactive]`, `assets.not_found_handling` is not o
 
 The public hosting alias may resolve through the exact selected-package terminal command, one exact `self:site:<primary>:<operation>` hop, or exact `turbo run <operation>` delegation when root `turbo.json` declares that operation. The hosting seam checks exact `deploy`, `preview`, or `upload` task presence without duplicating `ki-engineering`'s generic task-graph adoption and quality checks. Direct `--cwd` command chains, undeclared or mismatched tasks, additional shell commands, missing aliases, and cyclic forwarding remain invalid.
 
-The selected site's `<site-root>/package.json` owns local operations:
+The selected site's `<site-root>/package.json` owns local operations, and declares `wrangler` among its locked devDependencies, so that each `bunx wrangler` script runs the declared version and never fetches one:
 
 - **`deploy`** → `bunx wrangler deploy`.
 - **`preview`** → build, then `bunx wrangler dev` through the real Worker runtime.
