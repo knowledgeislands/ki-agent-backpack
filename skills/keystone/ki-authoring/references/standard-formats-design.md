@@ -1,5 +1,5 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
+ki-document-type: standard@2026-11-24T04:26:02Z
 ki-revised: 2026-11-18T03:32:23Z
 ki-status: in force
 ---
@@ -24,7 +24,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-What a design document is: the design that stands, of any kind, visual or technical, written so that it renders and a reader walking a repository can see what the design is now. It is changed only through change documents, as a standard is: a change proposes, and the design document is what the change agrees. It follows the [format format](standard-formats-format.md). The decisions behind these rules are in [the sources file](sources.md).
+What a design document is: the design that stands, of any kind, visual or technical, written so that it renders and a reader walking a repository can see what the design is now. It is changed only through change documents, as a standard is: a change proposes, and the design document is what the change agrees. It follows the [format format](standard-formats-format.md). The sources behind these rules are in [the sources file](sources.md).
 
 The rules were set in the Cairn summit's [change 16, the Design guild](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided).
 
@@ -79,7 +79,7 @@ ki-id: design:<slug>
 ki-document-type: design@<version ref of standard-formats-design.md>
 title: <its name, the H1>
 ki-status: <draft, agreed, current, shelved or replaced>
-ki-revised: <UTC, to the second>
+ki-revised: 2026-11-18T03:32:23Z
 ki-owner: actor:<id>
 ---
 ```

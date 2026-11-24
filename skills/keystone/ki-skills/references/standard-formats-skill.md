@@ -1,5 +1,5 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
+ki-document-type: standard@2026-11-24T04:26:02Z
 ki-revised: 2026-11-17T00:55:00Z
 ki-status: in force
 ---
@@ -22,7 +22,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-What a skill's `SKILL.md` is: the entry file that names a skill, says when to select it, and routes to the rest of its files. Its type word is `skill`. It follows `ki-authoring`'s [format format](../../ki-authoring/references/standard-formats-format.md) wherever this standard does not replace it, and the skill's other files follow the [mode](standard-formats-mode.md), [exemplars](standard-formats-exemplars.md) and [rubric](standard-formats-rubric.md) formats. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+What a skill's `SKILL.md` is: the entry file that names a skill, says when to select it, and routes to the rest of its files. Its type word is `skill`. It follows `ki-authoring`'s [format format](../../ki-authoring/references/standard-formats-format.md) wherever this standard does not replace it, and the skill's other files follow the [mode](standard-formats-mode.md), [exemplars](standard-formats-exemplars.md) and [rubric](standard-formats-rubric.md) formats. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

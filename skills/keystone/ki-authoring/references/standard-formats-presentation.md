@@ -1,5 +1,5 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
+ki-document-type: standard@2026-11-24T04:26:02Z
 ki-revised: 2026-11-22T01:09:07Z
 ki-status: in force
 ---
@@ -25,9 +25,9 @@ ki-status: in force
 
 ## 1. Introduction
 
-What a presentation is: a deck of slides with their speaker notes, kept as one Markdown file with its images beside it, so that it reads on GitHub and in the Wayfinder as it stands and converts to a deck when one is to be shown or sent. The file is the presentation; a PDF, a `.pptx` or a cloud deck is built from it and is never the copy anyone changes. It follows the [format format](standard-formats-format.md). The decisions behind these rules are in [the sources file](sources.md).
+What a presentation is: a deck of slides with their speaker notes, kept as one Markdown file with its images beside it, so that it reads on GitHub and in the Wayfinder as it stands and converts to a deck when one is to be shown or sent. The file is the presentation; a PDF, a `.pptx` or a cloud deck is built from it and is never the copy anyone changes. It follows the [format format](standard-formats-format.md). The sources behind these rules are in [the sources file](sources.md).
 
-The rules were set from the Cairn summit's [change 60](https://github.com/krisb/ki-cairn-store/blob/eae66fca/work/cairn/cairn.summit/60-design.change.md#48-decided), under ARTIFACT-HOMES a and its point on presentations.
+The rules were set from the Cairn summit's [change 60](https://github.com/krisb/ki-cairn-store/blob/eae66fca/work/cairn/cairn.summit/60-design.change.md#48-decided) and its point on presentations.
 
 [Back to contents](#contents)
 
@@ -80,7 +80,7 @@ ki-id: presentation:<slug>
 ki-document-type: presentation@<version ref of standard-formats-presentation.md>
 title: <its name, the H1 and the title slide>
 ki-status: <draft, ready or retired>
-ki-revised: <UTC, to the second>
+ki-revised: 2026-11-22T01:09:07Z
 ki-owner: actor:<id>
 ki-inputs:
   - <organisation>/<repository>:<path>@<version ref>

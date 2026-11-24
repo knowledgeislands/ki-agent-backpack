@@ -1,5 +1,5 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
+ki-document-type: standard@2026-11-24T04:26:02Z
 ki-revised: 2026-11-17T00:55:00Z
 ki-status: in force
 ---
@@ -24,7 +24,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-What every type of document shares, and what the format standard for each type must say. Every format standard is an instance of this one, this one included. The decisions behind these rules are in [the sources file](sources.md).
+What every type of document shares, and what the format standard for each type must say. Every format standard is an instance of this one, this one included. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

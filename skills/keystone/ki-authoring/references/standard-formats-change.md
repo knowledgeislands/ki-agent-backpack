@@ -1,5 +1,5 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
+ki-document-type: standard@2026-11-24T04:26:02Z
 ki-revised: 2026-11-24T03:22:50Z
 ki-status: in force
 ---
@@ -23,7 +23,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-What a change document is: a proposal to change one or more standards, or how work is done, with its design outline and a planning section. It follows the [format format](standard-formats-format.md). The decisions behind these rules are in [the sources file](sources.md).
+What a change document is: a proposal to change one or more standards, or how work is done, with its design outline and a planning section. It follows the [format format](standard-formats-format.md). The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -72,7 +72,7 @@ The rules, part by part.
 ```yaml
 ---
 ki-document-type: change@<version ref of standard-formats-change.md>
-ki-revised: 2026-11-09T21:36:32Z
+ki-revised: 2026-11-24T03:22:50Z
 ki-status: <one of the values below>
 ki-inputs:
   - <organisation>/<repository>@<version ref>
@@ -138,8 +138,8 @@ A change document uses the suffix pattern, `[<name>.]change.md`. Where several a
 ### 4.5 Landing
 
 - **Open fills** while a change is in `draft` and `review`, and empties as it moves on. A gap may be raised as a question and answered: either the change comes to cover it, or it is accepted as a known gap.
-- **An answered question leaves Open** in the same turn its answer is applied to the Outline or Steps; a `_Answered <letter>_` marker left beside a question is temporary and goes at the next tidy (ANSWERED-MARKER).
-- **A question overtaken before it is asked** is struck through where it stands in 7.1, its tag and title as `~~TAG: <title>~~`, followed by `withdrawn: <reason>, <date>`, with no new call-out; it counts as closed. It stays struck through until the next tidy, so readers see it went, and leaves at the latest when the change moves to `agreed` (WITHDRAWN-QUESTION).
+- **An answered question leaves Open** in the same turn its answer is applied to the Outline or Steps; a `_Answered <letter>_` marker left beside a question is temporary and goes at the next tidy.
+- **A question overtaken before it is asked** is struck through where it stands in 7.1, its tag and title as `~~TAG: <title>~~`, followed by `withdrawn: <reason>, <date>`, with no new call-out; it counts as closed. It stays struck through until the next tidy, so readers see it went, and leaves at the latest when the change moves to `agreed`.
 - **By `agreed`,** Questions is None, and every gap left is accepted by that status, with no marker.
 - **Before `done`,** each consequence and gap gets a home outside the standard, chosen by whatever manages the change: a step in this change if it is done in the rollout, or otherwise a record or a new change wherever that work keeps them. A home may lie ahead, and the item links forward to it. A link to its home then replaces the item, so by `done`, Gaps and Consequences are None too.
 - **A new standard may stand first as a draft.** A change that creates a standard may put it at its final path with `ki-status: draft` before it lands, where something must name or link it first, as documents of a new type name their format standard; it need not, and otherwise the standard lands with the change.

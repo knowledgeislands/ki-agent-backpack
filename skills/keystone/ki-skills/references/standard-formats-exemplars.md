@@ -1,5 +1,5 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
+ki-document-type: standard@2026-11-24T04:26:02Z
 ki-revised: 2026-11-17T00:55:00Z
 ki-status: in force
 ---
@@ -21,7 +21,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-What an exemplars file is: a skill's optional worked examples, each showing one rule of its standard applied, for a session to study when a rule needs an example. Its type word is `exemplars`. It follows `ki-authoring`'s [format format](../../ki-authoring/references/standard-formats-format.md) wherever this standard does not replace it. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+What an exemplars file is: a skill's optional worked examples, each showing one rule of its standard applied, for a session to study when a rule needs an example. Its type word is `exemplars`. It follows `ki-authoring`'s [format format](../../ki-authoring/references/standard-formats-format.md) wherever this standard does not replace it. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

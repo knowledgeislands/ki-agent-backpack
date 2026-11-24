@@ -1,5 +1,5 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
+ki-document-type: standard@2026-11-24T04:26:02Z
 ki-revised: 2026-11-17T00:55:00Z
 ki-status: in force
 ---
@@ -21,7 +21,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-What a mode file is: one independently invoked procedure of a skill, lifted out of `SKILL.md` so that only the mode a session calls is loaded. Its type word is `mode`. It follows `ki-authoring`'s [format format](../../ki-authoring/references/standard-formats-format.md) wherever this standard does not replace it. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+What a mode file is: one independently invoked procedure of a skill, lifted out of `SKILL.md` so that only the mode a session calls is loaded. Its type word is `mode`. It follows `ki-authoring`'s [format format](../../ki-authoring/references/standard-formats-format.md) wherever this standard does not replace it. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
