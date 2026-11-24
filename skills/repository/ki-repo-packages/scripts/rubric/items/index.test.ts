@@ -153,4 +153,8 @@ test('the sync paragraph must be one quotation naming the path and all four tool
   expect(publishesSyncParagraph(SYNC, 'other')).toBe(false)
   expect(publishesSyncParagraph(SYNC.replaceAll('> ', ''), 'demo')).toBe(false)
   expect(publishesSyncParagraph(SYNC.replace('`defer`', 'reject'), 'demo')).toBe(false)
+  // One paragraph whose glob covers every declared package serves them all.
+  const shared = SYNC.replaceAll('packages/demo/', 'packages/demo*/')
+  expect(['demo', 'demo-tokens'].map((name) => publishesSyncParagraph(shared, name))).toEqual([true, true])
+  expect(publishesSyncParagraph(shared, 'other')).toBe(false)
 })

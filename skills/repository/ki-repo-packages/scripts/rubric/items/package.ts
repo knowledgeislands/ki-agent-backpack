@@ -118,7 +118,7 @@ const PKG_4: RubricItem<PackagesContext> = {
   code: 'PKG-4',
   title: 'AGENTS.md publishes each sync paragraph',
   description:
-    'For each vendored package, a block quotation in `AGENTS.md` names its path and the `verify`, `drift`, `sync` and `defer` tools, for every consumer of it to carry word for word.',
+    'For each vendored package, a block quotation in `AGENTS.md` names its path, or a glob such as `packages/<package>*/` that covers it, and the `verify`, `drift`, `sync` and `defer` tools, for every consumer of it to carry word for word.',
   sources: [`${STANDARD}#47-the-sync-paragraph`],
   mechanical: {
     level: 'WARN',

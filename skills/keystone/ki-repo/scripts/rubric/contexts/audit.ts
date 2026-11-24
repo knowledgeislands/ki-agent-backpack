@@ -1040,7 +1040,9 @@ async function auditRepo(
       )
     if (r.visibility === 'PRIVATE' && p.private !== true)
       fail('PKG-1', 'private repo: package.json must set "private": true', 'package.json')
-    if (r.visibility === 'PUBLIC' && p.private === true)
+    // A package repository's root is a private workspace that is never released; its vendored packages are.
+    const vendoredWorkspace = kiText != null && declaresRootTable(kiText, skillTable('ki-repo-packages'))
+    if (r.visibility === 'PUBLIC' && p.private === true && !vendoredWorkspace)
       fail('PKG-1', 'public repo: package.json must not set "private": true', 'package.json')
     const bugsUrl = urlOf(p.bugs)
     if (issuesPolicy.bugsUrl == null && p.bugs !== undefined)

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T16:06:33Z
+ki-revised: 2026-11-24T16:10:44Z
 ki-status: in force
 ---
 
@@ -313,6 +313,8 @@ The engineering coverage manifest assigns the `package.json` **identity & metada
 | `bugs`        | absent unless `ki-work-github-issues` is declared; then canonical URL   | FAIL      |
 | `homepage`    | present                                                                 | WARN      |
 | `keywords`    | non-empty array                                                         | WARN      |
+
+**Package repositories.** A repository that declares `[skills.ki-repo-packages]` keeps its root `package.json` as a private workspace that is never released, so its `"private": true` is exempt from the `private` rule even when the repository is public; its vendored packages carry the releases, under `ki-repo-packages`.
 
 **Homepage.** `.ki.toml` is the master for the repository's homepage, as it is for its description: an optional `homepage` in `[skills.ki-repo]` names the repository's one live landing page, and the root `package.json` `homepage` and the GitHub homepage mirror it, never the other way round. Where `.ki.toml` declares no `homepage`, the repository has no homepage: a value left in the root `package.json` or on GitHub is stale, the audit reports it as drift, and conform proposes clearing it but clears nothing without explicit approval. Workspace packages' own `homepage` fields are outside this rule. The `present` warning above stands until the metadata checker that implements this rule lands; the checker then replaces it.
 

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T16:10:44Z
 ki-status: in force
 ---
 
@@ -103,6 +103,8 @@ packages-<name>/
 └── .ki.toml                # [skills.ki-repo-packages] package = "<package>", or packages = [...]
 ```
 
+The root `package.json` sets `"private": true` even when the repository is public, because the root is never released, and `ki-repo`'s PKG-1 exempts it.
+
 Each vendored folder holds exactly what a consumer copies: nothing outside it reaches a consumer, and nothing inside it may depend on a path outside it. Its own `package.json` carries the release version. A unit manifest beside it, such as Stoa's `units.json5`, lists the units and carries the same version where the package keeps one.
 
 [Back to contents](#contents)
@@ -146,7 +148,7 @@ A change the consumer needs is made upstream first and then re-vendored; the ven
 
 ### 4.7 The sync paragraph
 
-The package repository's `AGENTS.md` publishes one paragraph for each vendored package, as a block quotation under its own heading, that every consumer of that package carries word for word in its `AGENTS.md`. It names the vendored path and the lock, forbids local edits, routes changes upstream, and names `verify`, `drift`, `sync` and `defer`. Changing it is a release: consumers take the new wording when they next re-vendor.
+The package repository's `AGENTS.md` publishes one paragraph for each vendored package, as a block quotation under its own heading, that every consumer of that package carries word for word in its `AGENTS.md`. Packages that share a paragraph may publish one, whose path glob, such as `packages/tessera*/`, covers every package it serves. It names the vendored path and the lock, forbids local edits, routes changes upstream, and names `verify`, `drift`, `sync` and `defer`. Changing it is a release: consumers take the new wording when they next re-vendor.
 
 [Back to contents](#contents)
 

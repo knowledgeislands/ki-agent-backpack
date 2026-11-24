@@ -90,7 +90,13 @@ const readVersion = (path: string): string | null => {
   }
 }
 
-/** Whether a block quotation in the guidance names the vendored path and every vendoring verb. */
+/** Whether a quoted `packages/<path>/` names the package, exactly or through a `*` glob over its name, such as `tessera*`. */
+const namesPackage = (quotation: string, packageName: string): boolean =>
+  [...quotation.matchAll(/packages\/([\w.*-]+)\//g)].some(([, path]) =>
+    new RegExp(`^${(path ?? '').split('*').map(escapePattern).join('[\\w.-]*')}$`).test(packageName)
+  )
+
+/** Whether a block quotation in the guidance names the vendored path, or a glob covering it, and every vendoring verb. */
 export const publishesSyncParagraph = (guidance: string, packageName: string): boolean => {
   const quotations = guidance
     .split(/\n(?!>)/)
@@ -103,8 +109,7 @@ export const publishesSyncParagraph = (guidance: string, packageName: string): b
     .filter(Boolean)
   return quotations.some(
     (quotation) =>
-      quotation.includes(`packages/${packageName}/`) &&
-      VERBS.every((verb) => new RegExp(`\\b${verb}\\b`).test(quotation))
+      namesPackage(quotation, packageName) && VERBS.every((verb) => new RegExp(`\\b${verb}\\b`).test(quotation))
   )
 }
 
