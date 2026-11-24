@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T22:43:05Z
 ki-status: in force
 ---
 
@@ -251,7 +251,7 @@ An idea has no identifier, horizon, or status, and never owns state. The Project
 - as an `Idea:` bullet in its theme page's `## Notes` when the theme is known and no Project fits; or
 - otherwise in the Inbox, where it goes through capture, intake and maturation until it is ready to become a record.
 
-A new idea therefore starts as an `Idea:` bullet in its owning Project note or theme page, and an idea that no Project or theme owns goes to the Inbox. Roadmaps keep no `_IDEAS.md`: an idea goes through capture, intake and maturation in the Inbox until it is ready to become a record, and an `Idea:` bullet in an owning Project note stays.
+A new idea therefore starts as an `Idea:` bullet in its owning Project note or theme page, and an idea that no Project or theme owns goes to the Inbox. Roadmaps keep no `_IDEAS.md`, and the audit warns on a residual one: an idea goes through capture, intake and maturation in the Inbox until it is ready to become a record, and an `Idea:` bullet in an owning Project note stays.
 
 A roadmap no longer keeps `docs/roadmap/_IDEAS.md`, or `Streams/Roadmap/_IDEAS.md` in a Knowledge Base, and no idea is added to one. Until its entries have moved to the Inbox and it is deleted, an existing `_IDEAS.md` is not a record: it carries no identity, the structural-validity invariant skips it, and CONFORM never creates or rewrites it. When a whole idea graduates, its bullet is removed and useful research moves into the record; a Project note or theme page never names a record identifier, because [links point upwards](../../../keystone/ki-work/references/standard-project-registry.md#49-links-point-upwards). No record names an idea-stage Project: the Project graduates to `active` first.
 

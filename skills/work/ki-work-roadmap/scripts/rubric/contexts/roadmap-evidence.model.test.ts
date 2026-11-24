@@ -466,10 +466,17 @@ test('territorial enforcement uses the canonical Capital roster and warns for un
   expect(isEnforcingTerritoryRepository(capital, environment)).toBe(false)
 })
 
-test('the ideas list beside the ledger is not a record', () => {
+test('a residual ideas list beside the ledger is not a record, and warns as retired', () => {
   const repository = createRepository('kind: deliver\nhorizon: future\nstatus: draft\nbaseline_ref: null', '')
   writeFileSync(join(repository, 'docs', 'roadmap', IDEAS_LIST), '# Ideas\n\n- Try a faster parser.\n')
   expect(failures(repository)).toEqual([])
+  expect(inspectRoadmap(repository).filter((finding) => finding.level === 'WARN')).toEqual([
+    expect.objectContaining({
+      area: 'ROAD-1',
+      file: `docs/roadmap/${IDEAS_LIST}`,
+      msg: expect.stringContaining(`${IDEAS_LIST} is retired`)
+    })
+  ])
 })
 
 const createCapital = (): string => {

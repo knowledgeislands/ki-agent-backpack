@@ -142,6 +142,7 @@ export const legacyAreaList = (repository: string): { level: 'FAIL' | 'WARN'; ms
     : { level: 'WARN', msg: `outside the Knowledge Islands territory, ${LEGACY_AREA_LIST}` }
 
 export const ISSUE_LEDGER = '_ISSUES.md'
+/** The retired ideas list: never read as a record, and warned on while it remains. */
 export const IDEAS_LIST = '_IDEAS.md'
 /** Roadmap index holding area definitions; not a record. */
 export const ROADMAP_INDEX = 'README.md'
@@ -1188,6 +1189,14 @@ export const inspectRoadmap = (repository: string): readonly Finding[] => {
     const display = relative(root, join(roadmap, entry.name))
     if (!entry.isFile()) {
       add('FAIL', 'ROAD-1', 'docs/roadmap contains only regular work-item files', STANDARD, display)
+    } else if (entry.name === IDEAS_LIST) {
+      add(
+        'WARN',
+        'ROAD-1',
+        `${IDEAS_LIST} is retired: move each idea to its owning Project note, its theme page or the Inbox, then delete the file`,
+        STANDARD,
+        display
+      )
     }
   }
   const items = workItemsFor(root, configuration)

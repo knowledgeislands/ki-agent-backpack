@@ -44,7 +44,7 @@ Repository-roadmap applicability.
 
 Canonical generated-index structure, placement, and readiness.
 
-- **ROAD-1 [M] — roadmap structure and root orientation** — The canonical docs/roadmap structure contains only regular work-item files, the issue ledger, the ideas list and an optional README index, and root ROADMAP.md is a concise orientation rather than a duplicate queue. (standard-repository-roadmaps.md)
+- **ROAD-1 [M] — roadmap structure and root orientation** — The canonical docs/roadmap structure contains only regular work-item files, the issue ledger and an optional README index, and root ROADMAP.md is a concise orientation rather than a duplicate queue. A residual `_IDEAS.md`, retired with the ideas list, warns until its ideas move to their Project note, theme page or the Inbox. (standard-repository-roadmaps.md, standard-repository-roadmaps.md#46-ideas-and-graduation)
   - _Remediation:_ diagnostic — Restore the concise root orientation and canonical roadmap structure without reconstructing or prioritizing the work queue.
 - **ROAD-2 [J] — honest horizon placement** — Triage records are captured, unadopted work without a horizon; adopted records sit in honest horizons for their status; held records name their reason, condition, and review date; cancelled records carry an evidence-backed resolution. (standard-repository-roadmaps.md)
   - _Evidence scope:_ Every horizon, triage adoption boundary, hold, and cancellation.
