@@ -82,6 +82,10 @@ const shortBanner = [heading, counts, items, listening, thread].join('\n\n')
 interface Turn {
   readonly owner?: string | readonly unknown[]
   readonly meta?: boolean
+  // A compaction's summary, which Claude Code records as a user line.
+  readonly summary?: boolean
+  // Prompts Claude Code delivered while the turn ran, recorded as queued-command attachments.
+  readonly queued?: readonly string[]
   readonly reply?: string
 }
 
@@ -91,7 +95,16 @@ const transcript = (turns: readonly Turn[]): string => {
   const lines: string[] = []
   for (const turn of turns) {
     if (turn.owner !== undefined)
-      lines.push(JSON.stringify({ type: 'user', ...(turn.meta ? { isMeta: true } : {}), message: { role: 'user', content: turn.owner } }))
+      lines.push(
+        JSON.stringify({
+          type: 'user',
+          ...(turn.meta ? { isMeta: true } : {}),
+          ...(turn.summary ? { isCompactSummary: true } : {}),
+          message: { role: 'user', content: turn.owner }
+        })
+      )
+    for (const prompt of turn.queued ?? [])
+      lines.push(JSON.stringify({ type: 'attachment', attachment: { type: 'queued_command', prompt: [{ type: 'text', text: prompt }], commandMode: 'prompt' } }))
     if (turn.reply !== undefined) {
       lines.push(JSON.stringify({ type: 'assistant', message: { role: 'assistant', content: [{ type: 'tool_use', name: 'Bash', input: {} }] } }))
       lines.push(JSON.stringify({ type: 'user', message: { role: 'user', content: [{ type: 'tool_result', content: 'mark' }] } }))
@@ -810,10 +823,11 @@ test('a banner item with an agreed glyph and brackets warns; a provisional glyph
   )
 })
 
-// The hook lets a bot end a status-only turn silently. Orca suppresses a reply whose last line is NO_REPLY.
-const orcaMail = (kind: string): string =>
+// The hook lets a bot end a status-only turn silently. Orca tells nobody of a reply whose last line is NO_REPLY,
+// though its chat still shows any text before it.
+const orcaMail = (kind: string, from = 'ORCA_SESSION_ID:ABC (orca_session_id:abc)'): string =>
   [
-    `──── From: ORCA_SESSION_ID:ABC (orca_session_id:abc) (${kind}) ────`,
+    `──── From: ${from} (${kind}) ────`,
     'Subject: A rule landed',
     'Nothing to answer.',
     '────────────────────────────────────────────────────────────'
@@ -842,10 +856,48 @@ test('a reply of NO_REPLY alone passes on a status turn, and is held back on any
   for (const owner of ['how is the run doing?', orcaMail('question'), orcaMail('handoff'), 'Subject: (status) ────']) {
     const outcome = quiet(owner)
     expect(outcome.reason).toContain("the banner's ### state heading")
-    expect(outcome.reason).toContain('A reply of NO_REPLY alone ends a turn quietly only where the turn takes note of an Orca status message or a task notification')
+    expect(outcome.reason).toContain('A reply of NO_REPLY alone ends a turn quietly only where every prompt of the turn is Orca status mail or a task notification')
   }
   // A conversational session stays quiet whatever the turn.
   expect(run(stop('NO_REPLY', transcript([{ owner: 'and now?' }])))).toEqual(silent)
+})
+
+test('a bare NO_REPLY is the whole reply, whitespace aside, and nothing else passes as one', () => {
+  const status = coordinated(orcaMail('status'))
+  for (const reply of ['  NO_REPLY', 'NO_REPLY  \n', '\n\t NO_REPLY \n\n']) {
+    expect(run(stop(reply, status))).toEqual(silent)
+    expect(run(stop(reply, status), {}, '/bin/bash')).toEqual(silent)
+  }
+  // Any other text, the marker dressed or worded round, is checked as a reply and asks for its banner.
+  for (const reply of ['NO_REPLY.', '**NO_REPLY**', 'NO_REPLY, noted', 'Noted. NO_REPLY', 'Noted.\nNO_REPLY']) {
+    const outcome = run(stop(reply, status))
+    expect(outcome.reason).toContain("the banner's ### state heading")
+    expect(outcome.reason).not.toContain('A reply of NO_REPLY alone')
+  }
+})
+
+test('a status turn is one whose every prompt, the opening one and any delivered while it ran, is status mail or a task notification', () => {
+  const opened = (owner: Turn['owner'], queued: readonly string[] = [], after: readonly Turn[] = []): string =>
+    transcript([{ owner: 'Open ki.prj.demo', reply: rebootstrap(shortBanner) }, { owner, queued }, ...after])
+  const notice = '<task-notification>\n<task-id>b1</task-id>\n</task-notification>'
+  const quiet = (path: string): Outcome => run(stop('NO_REPLY', path))
+  expect(quiet(opened(orcaMail('status'), [orcaMail('status'), notice]))).toEqual(silent)
+  expect(quiet(opened(notice, [orcaMail('status')]))).toEqual(silent)
+  expect(quiet(opened(orcaMail('status', 'Orca (orca:items)')))).toEqual(silent)
+  // Status mail delivered while a turn ran counts only where the opening prompt was status too.
+  expect(quiet(opened('how is the run doing?', [orcaMail('status')])).reason).toContain('A reply of NO_REPLY alone')
+  expect(quiet(opened(orcaMail('status'), [orcaMail('question')])).reason).toContain('A reply of NO_REPLY alone')
+  expect(quiet(opened(orcaMail('status'), [orcaMail('status'), 'and the rest?'])).reason).toContain('A reply of NO_REPLY alone')
+  // A message holding status mail beside mail of another kind is no status turn.
+  expect(quiet(opened(`${orcaMail('status')}\n\n${orcaMail('handoff')}`)).reason).toContain('A reply of NO_REPLY alone')
+  // A compaction's summary is no prompt, and the turn's prompts before it still count.
+  expect(quiet(opened(orcaMail('status'), [], [{ owner: 'This session is being continued from a previous conversation.', summary: true }]))).toEqual(
+    silent
+  )
+  expect(quiet(opened('how is the run doing?', [], [{ owner: 'This session is being continued.', summary: true }])).reason).toContain(
+    'A reply of NO_REPLY alone'
+  )
+  expect(run(stop('NO_REPLY', opened(orcaMail('status'), [orcaMail('status')])), {}, '/bin/bash')).toEqual(silent)
 })
 
 test('a reply closing its footer before NO_REPLY still makes the session a coordinating one', () => {

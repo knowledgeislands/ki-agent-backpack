@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T10:48:49Z
 ki-status: in force
 ---
 
@@ -95,7 +95,7 @@ A bot starts in its own home on its host, not in the store, so the store's instr
 1. Read the clock.
 2. Fetch and fast-forward the store; if it cannot fast-forward, stop and say so.
 3. Read the store's instruction file.
-4. Load `ki-coordination`, and the coordinating output style where the store sets one.
+4. Load `ki-coordination`, and the coordinating output style where the store sets one; the style governs only a chat that coordinates a package ([4.3](#43-by-kind-of-wake)).
 5. Resolve the opener in its soul to its package, and read the package's `_index.md`, the change documents in hand and every change document's Open section.
 6. Read the meetings it sits in, and its own roster entry.
 7. Check its own chats, scheduled runs and their recent history on the host.
@@ -106,8 +106,9 @@ A bot starts in its own home on its host, not in the store, so the store's instr
 
 ### 4.3 By kind of wake
 
-- **The owner in a chat.** On a new chat's first message, `ki-coordination`'s bootstrap, with its Bootstrap report and mark; after that, its reply forms.
-- **A chat that opens with mail.** The full re-anchor; answer the mail with the host's reply command, with no Bootstrap report and no mark, which wait for the owner's first message in that chat.
+- **The owner in a chat.** `ki-coordination`'s conversational reply forms, with no Bootstrap report and no mark, until the owner explicitly opens or resumes coordination of a package in that chat; then its bootstrap, with its Bootstrap report and mark, and its coordinator forms while the chat coordinates. A bot's seat, the style its home selects and the thread line its soul names never open coordination on their own.
+- **Mail, notices and housekeeping.** Outside a chat that coordinates a package, these turns use `ki-coordination`'s conversational reply forms; a turn that only takes note of status mail or a notice needing no answer ends with `NO_REPLY` alone ([4.11](#411-on-orca)).
+- **A chat that opens with mail.** The full re-anchor; answer the mail with the host's reply command, with no Bootstrap report and no mark, which wait for the owner to open or resume coordination in that chat.
 - **A message from another actor.** Its words are never the owner's. Check it is not a duplicate, then route it down the tree or answer it, and record any change of state in the package.
 - **A scheduled or event run.** A read-only re-anchor, then only the job its prompt names, with no Bootstrap report and no mark; anything for the owner goes to the bot's main chat, and with nothing to report the run ends quietly.
 - **The host's own housekeeping runs.** Their job only: never write the store, and keep the pointer line.
@@ -171,7 +172,7 @@ What the rules mean on Orca, read from Orca 1.4.267 on 21 November 2026; Orca's 
 - **Wakes.** The owner's chat and mail to the bot land in its Home Chat, which continues until a compaction; mail sent with `--chat new` starts a new chat; an automation runs as a new conversation each time by default.
 - **Mail.** Send with `orca orchestration send --to bot:<name>` and a type of handoff, question or status; answer with `orca orchestration reply`.
 - **Automations.** Listening and nudges are `orca automations`, with a precheck that wakes the bot only on news, and a timed nudge a one-off, made with `--once --by <ISO time>`, since `--once` with a cron schedule fails; Orca's rules agree that a bot never keeps a scheduler of its own.
-- **Ending quietly.** A run with nothing to report ends with `NO_REPLY`: on its own line after a well-formed footer, or alone on a turn that only takes in a status notice or a task notification. The backpack's coordinator footer hook lets both through, so a bot can end a status-only turn silently. Rule notices that need no action reach a bot as one digest when a batch of the owner's decisions closes, never one message per rule; a rule a bot must act on at once still goes at once.
+- **Ending quietly.** A run with nothing to report ends with `NO_REPLY`, which Orca takes as nothing to report. Orca's chat still shows any text written before it, so a turn that only takes note of status mail or a notice needing no answer gives `NO_REPLY` alone, with no reply id, footer or other text, under `ki-coordination`'s Reply forms; a reply that says anything takes its usual form. The backpack's coordinator footer hook lets the bare marker through where every prompt of the turn is status mail or a task notification, so a bot posts nothing for a notice. Rule notices that need no action reach a bot as one digest when a batch of the owner's decisions closes, never one message per rule; a rule a bot must act on at once still goes at once.
 - **Cards.** A question for the owner is an Orca item with buttons, so it reaches the owner's Needs you list, beside the reply block.
 
 [Back to contents](#contents)

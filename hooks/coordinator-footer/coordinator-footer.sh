@@ -30,8 +30,9 @@
 # ? in place of the letter carries no recommendation and is held back. In every session too, a first line **Reply HH:MM** more than
 # about 5 minutes from the clock's UTC time warns. A last line NO_REPLY,
 # which Orca takes as a reply to suppress, is set aside and the rest checked as usual, and
-# a reply of NO_REPLY alone passes on a turn that only takes note of a status, an Orca
-# status message or a task notification. Otherwise quiet for
+# a reply that is NO_REPLY alone, whitespace aside, passes on a turn whose every prompt, the
+# one that opened it and any delivered while it ran, is Orca status mail or a task
+# notification. Otherwise quiet for
 # conversational replies; never blocks twice in a row, only warning then; fails open on
 # unusable input.
 set -u
@@ -68,35 +69,42 @@ if [ -z "$reply" ] && [ -n "$transcript" ]; then
 fi
 [ -n "$reply" ] || exit 0
 
-# Whether the turn only takes note of a status: its last prompt, tool results and meta lines set
-# aside, is an Orca message of the status kind, whose header line reads ──── From: <sender> (status)
-# ────, or a task notification.
+# Whether the turn only takes note of status: every prompt of the turn, the one that opened it and
+# any Claude Code delivered while it ran as a queued command, is Orca status mail or a task
+# notification. Tool results, meta lines and a compaction's summary are no prompts. Status mail
+# holds one or more Orca header lines, ──── From: <sender> (status) ────, and none of any other
+# kind, so a status message carrying a question or a handoff beside it is no status turn.
 status_turn() {
   [ -n "$transcript" ] || return 1
-  recent | LC_ALL=C grep -F '"type":"user"' | LC_ALL=C grep -vF '"tool_result"' | tail -n 20 |
-    jq -rRn '[inputs | fromjson? | select(type == "object" and .isMeta != true) | .message.content
-      | if type == "string" then . elif type == "array" then (map(select(type == "object" and .type == "text") | .text | strings) | join("\n")) else "" end
-      | select(test("\\S"))] | last // empty
-      | select(test("^\\s*<task-notification>") or test("(^|\n)─+ From: [^\n]* \\(status\\) ─+[ \t]*(\n|$)"))
-      | "status"' 2>/dev/null | grep -qx status
+  recent | LC_ALL=C grep -E '"type":"(user|queued_command)"' | LC_ALL=C grep -vF '"type":"tool_result"' |
+    jq -rRn '
+      def text: if type == "string" then . elif type == "array" then (map(select(type == "object" and .type == "text") | .text | strings) | join("\n")) else "" end;
+      def kinds: [scan("(?:^|\n)─+ From: [^\n]* \\(([a-z_-]+)\\) ─+[ \t]*(?=\n|$)") | .[0]];
+      def quiet: test("^\\s*<task-notification>") or (kinds | length > 0 and all(. == "status"));
+      reduce (inputs | fromjson? | select(type == "object")) as $e ([];
+        if $e.type == "user" and $e.isMeta != true and $e.isCompactSummary != true then
+          ($e.message.content | text) as $t | if ($t | test("\\S")) then [$t] else . end
+        elif $e.type == "attachment" and ($e.attachment | type) == "object" and $e.attachment.type == "queued_command" then
+          . + [$e.attachment.prompt | text]
+        else . end)
+      | select(length > 0 and all(quiet)) | "status"' 2>/dev/null | grep -qx status
 }
 
-# Orca suppresses a reply whose last line is NO_REPLY, so a turn may end quietly: the
-# line is set aside and the rest of the reply checked as usual, so it may follow a well-formed footer.
-# A reply of NO_REPLY alone passes where the turn only takes note of a status; otherwise it is read
-# as the reply, and a coordinating session still asks for its banner.
+# Orca tells nobody of a reply whose last line is NO_REPLY, though its chat still shows any text
+# before the line, so a turn may end quietly: the line is set aside and the rest of the reply checked
+# as usual, so it may follow a well-formed footer. A reply that is NO_REPLY alone, whitespace aside,
+# shows nothing and passes on a status turn; otherwise it is read as the reply, and a coordinating
+# session still asks for its banner.
 bare=
 trail=${reply%"${reply##*[![:space:]]}"}
-case $trail in
-  NO_REPLY | *$'\n'NO_REPLY)
+case ${trail#"${trail%%[![:space:]]*}"} in
+  NO_REPLY)
+    status_turn && exit 0
+    reply=NO_REPLY bare=1
+    ;;
+  *$'\n'NO_REPLY)
     rest=${trail%NO_REPLY}
-    rest=${rest%"${rest##*[![:space:]]}"}
-    if [ -n "$rest" ]; then
-      reply=$rest
-    else
-      status_turn && exit 0
-      reply=NO_REPLY bare=1
-    fi
+    reply=${rest%"${rest##*[![:space:]]}"}
     ;;
 esac
 
@@ -453,7 +461,7 @@ if [ -n "$missing$blockfix" ]; then
       *) [ -z "$minimal" ] || reason="$reason An Update or Answer may close instead with the one-line footer, <glyph state> · <thread line>, as 🤖 With worker · 🧵 <work-id>, giving the short banner where its state, counts or items have changed." ;;
     esac
     # A reply of NO_REPLY alone ends quietly only on a status turn.
-    [ -z "$bare" ] || reason="$reason A reply of NO_REPLY alone ends a turn quietly only where the turn takes note of an Orca status message or a task notification; otherwise it may follow the footer as its last line."
+    [ -z "$bare" ] || reason="$reason A reply of NO_REPLY alone ends a turn quietly only where every prompt of the turn is Orca status mail or a task notification; otherwise it may follow the footer as its last line."
   fi
   [ -z "$blockfix" ] || reason="${reason:+$reason }This reply's reply block $blockfix; $shape."
   note=

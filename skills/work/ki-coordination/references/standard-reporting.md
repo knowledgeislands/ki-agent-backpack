@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T05:44:04Z
+ki-revised: 2026-11-24T10:48:49Z
 ki-status: in force
 ---
 
@@ -93,10 +93,11 @@ Every reply to the owner takes one of three forms.
 - **Suggestions carry a confidence.** In every reply form and every session, a suggestion is a recommendation carrying a confidence, `high`, `medium` or `low`: a query's options under the [owner report](#42-owner-report), a suggestion in a conversational reply, a plan proposed for agreement and a run report alike.
 - **Reply id.** Every reply to the owner, in every form, opens with its id as a bold first line, `**Reply HH:MM**`: the UTC time read from the clock as the reply is written, with `date -u +%H:%M`, never guessed or carried over from an earlier reply. The coordinator footer hook checks it in every session, warning without holding the reply back when the id is more than about 5 minutes from the clock. The owner refers to a reply by it, often by voice, as in "about reply 13:27". It is a line of its own, not a heading, and counts as none of the reply's prose. A coordinator form puts it before its heading block, or, where it has none, before its Answer or banner, under [Blocks, parts and layouts](standard-report-forms.md#411-blocks-parts-and-layouts). A saved report, such as a run report written into a package, carries none: its `#` heading stays its first line.
 - **Reply block.** Every reply that asks the owner to decide anything ends with the reply block, whatever its form, in the shape the owner report's **Reply block** sets: a conversational reply after its prose, an owner report or coordinator form after its queries and before any banner. A reply that asks nothing carries none, and no reply carries a `No reply needed.` line. The Stop hook checks the block's shape in every session, under [Generated surfaces](standard-coordination.md#47-generated-surfaces).
+- **No reply.** A turn that only takes note of status mail or a notice needing no answer, in any session, gives no reply: its whole last message is `NO_REPLY`, with no reply id, footer or other text, which Orca takes as nothing to report. Orca's chat still shows any text written before the marker, so a footer there is posted for every notice. A turn that answers, asks or reports anything replies in its form. The Stop hook lets the bare marker through only on a turn whose every prompt is status mail or a task notification, under [Generated surfaces](standard-coordination.md#47-generated-surfaces).
 
 #### 4.1.1 Session kinds
 
-A session with no coordinating opener is conversational. It may do bounded work directly, including regular or ad hoc work, and uses the conversational reply forms. A repository declaring this skill, or injecting its hook, does not make a session a coordinator.
+A session with no coordinating opener is conversational. It may do bounded work directly, including regular or ad hoc work, and uses the conversational reply forms. A repository declaring this skill, or injecting its hook, does not make a session a coordinator. Nor does a bot's seat: the coordinating style its home selects and the thread line its soul names make no chat a coordinating one. A bot coordinates only in a chat where the owner has explicitly opened or resumed coordination of a package, and its other turns, handling mail, notices or housekeeping, use the conversational reply forms.
 
 A run is the detached actor a coordinator briefs under `ki-delegation`, not a fourth owner-facing session kind. It delivers its bounded unit and returns the owner report to its reporting package.
 
