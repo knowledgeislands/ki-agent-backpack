@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T16:06:33Z
 ki-status: in force
 ---
 
@@ -102,8 +102,8 @@ Do not optimize a README for template compliance at the expense of repository pu
 
 ### 4.6 Docs folder pages
 
-A folder below `docs/` opens on `_index.md`, never on a `README.md`, and carries no `README.md` pointer beside it. GitHub then draws no page below the folder's listing, and a reader there opens `_index.md` to read it; the Wayfinder opens a docs folder on its `_index.md`. Not even a one-line `README.md` pointer is added for GitHub's sake.
+`docs/` itself and every folder below it open on `_index.md`, never on a `README.md`, and carries no `README.md` pointer beside it. GitHub then draws no page below the folder's listing, and a reader there opens `_index.md` to read it; the Wayfinder opens a docs folder on its `_index.md`. Not even a one-line `README.md` pointer is added for GitHub's sake.
 
-The repository root's `README.md`, whose H1 `ki-repo` holds to the declared title, and the working-area READMEs under `+/` and `-/` are not docs folders and keep their own contracts. The docs skills' checks, `ki-guides`, `ki-diagrams` and `ki-decision-records`, read `_index.md`, and still read an earlier `README.md` alone, with a warning, until it is renamed.
+The repository root's `README.md`, whose H1 `ki-repo` holds to the declared title, and the working-area READMEs under `+/` and `-/` are not docs folders and keep their own contracts. The docs skills' checks, `ki-guides`, `ki-diagrams` and `ki-decision-records`, read `_index.md`, and `ki-repo`'s DOC-2 reads `docs/` itself. An earlier `README.md` page is renamed to `_index.md` when its folder's keeper next works there, not in a sweep; until then the checks still read it alone, with a warning, never a failure.
 
 [Back to contents](#contents)

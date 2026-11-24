@@ -47,7 +47,8 @@ const DIAG_1: RubricItem<DiagramsRubricContext> = {
                 {
                   status: 'VIOLATION' as const,
                   level: 'WARN' as const,
-                  message: 'The diagrams page is still README.md; rename it to _index.md, the folder page.',
+                  message:
+                    'The diagrams page is still README.md; rename it to _index.md, the folder page, when its keeper next works there.',
                   subject: 'docs/diagrams/README.md'
                 }
               ]

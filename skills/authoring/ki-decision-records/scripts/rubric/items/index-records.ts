@@ -10,7 +10,7 @@ const INDEX_1: RubricItem<IndexRubricContext> = {
   code: 'INDEX-1',
   title: 'Decision index exists',
   description:
-    'The index file exists (`Decisions.md` in a KB, `_index.md` in a code repository, with no `README.md` beside it); an earlier `README.md` alone warns until renamed.',
+    'The index file exists (`Decisions.md` in a KB, `_index.md` in a code repository, with no `README.md` beside it); an earlier `README.md` alone warns until its keeper next works there and renames it.',
   sources: [SOURCE],
   mechanical: {
     level: 'FAIL',
@@ -28,7 +28,8 @@ const INDEX_1: RubricItem<IndexRubricContext> = {
             {
               status: 'VIOLATION',
               level: 'WARN',
-              message: 'The decision index is still README.md; rename it to _index.md, the folder page.',
+              message:
+                'The decision index is still README.md; rename it to _index.md, the folder page, when its keeper next works there.',
               subject: context.indexFile
             }
           ] as const

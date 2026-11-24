@@ -16,7 +16,12 @@ import {
   localTreePaths,
   parseRepositoryConfiguration
 } from './audit.ts'
-import { createRepoSession, type FilesRubricContext, type WorkingAreasRubricContext } from './repository.ts'
+import {
+  createRepoSession,
+  docsPageOutcomes,
+  type FilesRubricContext,
+  type WorkingAreasRubricContext
+} from './repository.ts'
 
 const roots: string[] = []
 
@@ -1385,5 +1390,27 @@ coverage-guides = false
     expect((await collectAuditFindings([root])).findings).toContainEqual(
       expect.objectContaining({ level: 'FAIL', code: 'ACCESS-1', subject: expect.stringContaining('[local checkout]') })
     )
+  })
+})
+
+describe('docs/ folder page', () => {
+  const docsRoot = (files: readonly string[]): string => {
+    const root = mkdtempSync(join(tmpdir(), 'ki-repo-docs-'))
+    roots.push(root)
+    for (const file of files) {
+      mkdirSync(dirname(join(root, file)), { recursive: true })
+      writeFileSync(join(root, file), '# Docs\n')
+    }
+    return root
+  }
+
+  test('passes _index.md, warns on README.md alone or beside it, and skips a missing docs/', () => {
+    expect(docsPageOutcomes(docsRoot(['docs/_index.md'])).map((outcome) => outcome.status)).toEqual(['PASS'])
+    expect(docsPageOutcomes(docsRoot(['docs/README.md']))[0]).toMatchObject({
+      status: 'VIOLATION',
+      subject: 'docs/README.md'
+    })
+    expect(docsPageOutcomes(docsRoot(['docs/_index.md', 'docs/README.md']))[0]?.message).toContain('beside')
+    expect(docsPageOutcomes(docsRoot(['README.md'])).map((outcome) => outcome.status)).toEqual(['NOT_APPLICABLE'])
   })
 })

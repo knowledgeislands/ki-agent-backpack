@@ -33,7 +33,7 @@ The controlled guide root has an entry point and identifiable guide documents.
 
 - **GUIDE-1 [M] — docs/guides is a regular directory** — `docs/guides/` exists as a regular directory inside the repository. (standard-guides.md#44-guide-root-and-index)
   - _Remediation:_ diagnostic — Create a regular `docs/guides/` directory inside the repository, then rerun the audit.
-- **GUIDE-2 [M] — docs/guides/_index.md is the collection entry point** — `docs/guides/_index.md` exists as a regular file and is the collection entry point, with no `README.md` beside it; an earlier `docs/guides/README.md` alone warns until renamed. (standard-guides.md#44-guide-root-and-index)
+- **GUIDE-2 [M] — docs/guides/_index.md is the collection entry point** — `docs/guides/_index.md` exists as a regular file and is the collection entry point, with no `README.md` beside it; an earlier `docs/guides/README.md` alone warns until its keeper next works there and renames it. (standard-guides.md#44-guide-root-and-index)
   - _Remediation:_ diagnostic — Add a regular `docs/guides/_index.md` collection entry point, renaming an earlier `README.md` and removing any `README.md` beside it, then rerun the audit.
 - **GUIDE-3 [M] — each guide has exactly one H1** — Every Markdown guide below `docs/guides/`, except its root `_index.md`, has exactly one H1. (standard-guides.md#44-guide-root-and-index)
   - _Remediation:_ diagnostic — Give each affected guide exactly one H1, then rerun the audit.

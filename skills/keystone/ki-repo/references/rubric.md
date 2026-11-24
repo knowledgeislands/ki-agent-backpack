@@ -303,6 +303,8 @@ Repository-level ownership of durable documentation concerns.
   - _Review prompt:_ Does each durable documentation concern have the right owner, with decisions explaining choices, Specifications defining behaviour, Guides helping people operate or contribute, and roadmap records tracking planned change?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Route the material to its owning concern, record a named gap where the required contract is absent, or record an explicit repository-level exclusion.
+- **DOC-2 [M] — docs/ opens on its folder page** — `docs/` opens on `_index.md` like every folder below it; a `README.md` page there is renamed when its keeper next works in the folder. (standard-repository.md)
+  - _Remediation:_ diagnostic — Rename docs/README.md to docs/_index.md when next working in docs/.
 
 ## OVR — Override rationale
 

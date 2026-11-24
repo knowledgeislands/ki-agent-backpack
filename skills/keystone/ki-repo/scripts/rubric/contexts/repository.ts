@@ -209,6 +209,10 @@ Canonical work, decisions, and knowledge belong in their owning collections. Kee
 
 const WORKING_AREA_DIRECTORIES = ['+', '-'] as const
 
+export type DocumentationRubricContext = {
+  docsPage: readonly AuditOutcome[]
+}
+
 export type WorkingAreasRubricContext = {
   workingAreas1: readonly AuditOutcome[]
   ensureWorkingAreaScaffold?: () => void
@@ -239,6 +243,7 @@ export type RepoRubricContext = {
   overrides: Record<string, never>
   synchronisation: Record<string, never>
   workingAreas: WorkingAreasRubricContext
+  documentation: DocumentationRubricContext
   hooks: HooksRubricContext
 }
 
@@ -282,6 +287,30 @@ const pathState = (path: string): ReturnType<typeof lstatSync> | undefined => {
   } catch {
     return undefined
   }
+}
+
+/** `docs/` itself opens on `_index.md` like every folder below it; a `README.md` page warns until its keeper renames it. */
+export const docsPageOutcomes = (target: string): readonly AuditOutcome[] => {
+  const docs = join(target, 'docs')
+  if (!isSafeDirectory(docs))
+    return [{ status: 'NOT_APPLICABLE', message: 'The repository has no docs/ folder.', subject: 'docs' }]
+  const page = isSafeRegularFile(join(docs, '_index.md'))
+  const readme = existsSync(join(docs, 'README.md'))
+  if (readme)
+    return [
+      {
+        status: 'VIOLATION',
+        message: page
+          ? 'A README.md sits beside docs/_index.md; a docs folder has _index.md alone.'
+          : 'The docs/ page is still README.md; rename it to _index.md, the folder page, when its keeper next works there.',
+        subject: 'docs/README.md'
+      }
+    ]
+  return [
+    page
+      ? { status: 'PASS', message: 'docs/ opens on _index.md.', subject: 'docs/_index.md' }
+      : { status: 'NOT_APPLICABLE', message: 'docs/ has no folder page.', subject: 'docs' }
+  ]
 }
 
 const workingAreaOutcomes = (target: string): readonly AuditOutcome[] => {
@@ -601,6 +630,7 @@ export const createRepoSession = async (
           }
         : {})
     },
+    documentation: { docsPage: docsPageOutcomes(target) },
     hooks: hookEvidence(target, configSource ? parsedRepositoryConfiguration?.primaryShape : undefined)
   }
 
@@ -632,6 +662,7 @@ export const createRepoSession = async (
           'OVR',
           'SYNC',
           'WORK',
+          'DOC',
           'HOOK'
         ],
         context: () => context

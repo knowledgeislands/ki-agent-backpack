@@ -33,7 +33,7 @@ const GUIDE_2: RubricItem<GuidesLayoutContext> = {
   code: 'GUIDE-2',
   title: 'docs/guides/_index.md is the collection entry point',
   description:
-    '`docs/guides/_index.md` exists as a regular file and is the collection entry point, with no `README.md` beside it; an earlier `docs/guides/README.md` alone warns until renamed.',
+    '`docs/guides/_index.md` exists as a regular file and is the collection entry point, with no `README.md` beside it; an earlier `docs/guides/README.md` alone warns until its keeper next works there and renames it.',
   sources: [SOURCE],
   mechanical: {
     level: 'FAIL',
@@ -57,7 +57,8 @@ const GUIDE_2: RubricItem<GuidesLayoutContext> = {
             ? {
                 status: 'VIOLATION',
                 level: 'WARN',
-                message: 'The Guides entry point is still README.md; rename it to _index.md, the folder page.',
+                message:
+                  'The Guides entry point is still README.md; rename it to _index.md, the folder page, when its keeper next works there.',
                 subject: 'docs/guides/README.md'
               }
             : context.readmeBeside

@@ -1,7 +1,5 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
-import type { RepoRubricContext } from '../contexts/repository.ts'
-
-type DocumentationRubricContext = Record<string, never>
+import type { DocumentationRubricContext, RepoRubricContext } from '../contexts/repository.ts'
 
 const DOC_1: RubricItem<DocumentationRubricContext> = {
   code: 'DOC-1',
@@ -19,11 +17,27 @@ const DOC_1: RubricItem<DocumentationRubricContext> = {
   }
 }
 
+const DOC_2: RubricItem<DocumentationRubricContext> = {
+  code: 'DOC-2',
+  title: 'docs/ opens on its folder page',
+  description:
+    '`docs/` opens on `_index.md` like every folder below it; a `README.md` page there is renamed when its keeper next works in the folder.',
+  sources: ['standard-repository.md'],
+  mechanical: {
+    level: 'WARN',
+    remediation: {
+      class: 'diagnostic',
+      guidance: 'Rename docs/README.md to docs/_index.md when next working in docs/.'
+    },
+    audit: { phase: 'INSPECT', run: (context) => context.docsPage }
+  }
+}
+
 export const DOC: RubricFamily<RepoRubricContext, DocumentationRubricContext> = {
   code: 'DOC',
   title: 'Documentation topology',
   description: 'Repository-level ownership of durable documentation concerns.',
   standard: 'standard-documentation-topology.md',
-  selectContext: () => ({}),
-  items: [DOC_1]
+  selectContext: (context) => context.documentation,
+  items: [DOC_1, DOC_2]
 }
