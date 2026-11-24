@@ -8,6 +8,7 @@ import {
   BUN_RUNTIME,
   classifyBunRuntime,
   collectPackageScriptSources,
+  collectTrackedEnvironmentFiles,
   collectTrackedMjs,
   dependencyFreshnessFindings,
   findRelativeNodeModulesScriptUses,
@@ -22,10 +23,12 @@ import {
   inspectManagedSurfaceExclusions,
   inspectToolchainActivation,
   inspectTurborepo,
+  isRealEnvironmentFile,
   MINIMUM_RELEASE_AGE_SECONDS,
   newestReleasePastWindow,
   nextVersionAfter,
-  pinnedBunRuntime
+  pinnedBunRuntime,
+  uncoveredEnvironmentProbes
 } from '../contexts/audit-evidence.ts'
 import {
   createEngineeringSession,
@@ -85,7 +88,7 @@ test('the structured catalogue preserves the engineering criteria', async () => 
   const codes = catalogue.families
     .filter((family) => family.code !== 'RUBRIC')
     .flatMap((family) => family.items.map((item) => item.code))
-  expect(codes).toHaveLength(62)
+  expect(codes).toHaveLength(63)
   expect(new Set(codes).size).toBe(codes.length)
   expect(codes[0]).toBe('PKG-1')
   expect(codes).toContain('TEST-7')
@@ -103,6 +106,7 @@ test('the structured catalogue preserves the engineering criteria', async () => 
   expect(codes).toContain('SCR-10')
   expect(codes).toContain('SCR-11')
   expect(codes).toContain('BUN-2')
+  expect(codes).toContain('ENV-5')
   expect(codes.at(-1)).toBe('TOML-3')
 
   const observableCoverage = catalogue.families
@@ -132,6 +136,49 @@ test('BUN-2 finds tracked mjs files without reporting untracked files', async ()
   execFileSync('git', ['-C', repository, 'add', '--', 'script.mjs'])
 
   expect(await collectTrackedMjs(repository)).toEqual(['script.mjs'])
+})
+
+test('ENV-5 names real environment files, examples and samples excepted', () => {
+  for (const path of ['.env', '.env.local', '.env.production', 'apps/site/.env.development'])
+    expect(isRealEnvironmentFile(path)).toBe(true)
+  for (const path of [
+    '.env.example',
+    '.env.local.example',
+    'apps/site/.env.sample',
+    '.envrc',
+    'env.ts',
+    '.environment'
+  ])
+    expect(isRealEnvironmentFile(path)).toBe(false)
+})
+
+test('ENV-5 finds tracked real environment files at any depth without reporting untracked ones', async () => {
+  const repository = mkdtempSync(join(tmpdir(), 'ki-engineering-'))
+  temporaryDirectories.push(repository)
+  execFileSync('git', ['init', '--quiet', repository])
+  mkdirSync(join(repository, 'apps', 'site'), { recursive: true })
+  for (const file of ['.env.example', 'apps/site/.env.production', '.env', '.envrc', 'untracked/.env'])
+    mkdirSync(dirname(join(repository, file)), { recursive: true })
+  for (const file of ['.env.example', 'apps/site/.env.production', '.env', '.envrc', 'untracked/.env'])
+    writeFileSync(join(repository, file), 'KEY=value\n')
+  execFileSync('git', ['-C', repository, 'add', '--', '.env.example', 'apps/site/.env.production', '.env', '.envrc'])
+
+  expect(await collectTrackedEnvironmentFiles(repository)).toEqual(['.env', 'apps/site/.env.production'])
+  expect(await collectTrackedEnvironmentFiles(join(repository, 'missing'))).toBeUndefined()
+})
+
+test('ENV-5 asks the root .gitignore, not another excludes file, to cover .env and .env.local', async () => {
+  const repository = mkdtempSync(join(tmpdir(), 'ki-engineering-'))
+  temporaryDirectories.push(repository)
+  execFileSync('git', ['init', '--quiet', repository])
+  expect(await uncoveredEnvironmentProbes(repository)).toEqual(['.env', '.env.local'])
+  writeFileSync(join(repository, '.git', 'info', 'exclude'), '.env*\n')
+  writeFileSync(join(repository, '.gitignore'), '.env.local\n')
+  expect(await uncoveredEnvironmentProbes(repository)).toEqual(['.env'])
+  writeFileSync(join(repository, '.gitignore'), '.env\n.env.*\n!.env.local\n')
+  expect(await uncoveredEnvironmentProbes(repository)).toEqual(['.env.local'])
+  writeFileSync(join(repository, '.gitignore'), '.env*\n!.env*.example\n')
+  expect(await uncoveredEnvironmentProbes(repository)).toEqual([])
 })
 
 test('SCR-10 finds relative node_modules execution in root and safe workspace scripts only', () => {

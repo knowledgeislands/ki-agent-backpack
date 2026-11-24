@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T16:25:30Z
+ki-revised: 2026-11-24T22:39:42Z
 ki-status: in force
 ---
 
@@ -421,9 +421,11 @@ A non-`tsc` build (for example Eleventy or Vite) is outside this section — the
 
 When a repo reads environment config (it has `.env*.example`, or calls `process.loadEnvFile`):
 
-- A committed `.env*.example` template; real `.env.*` files are gitignored.
+- A committed `.env*.example` template; real `.env.*` files are gitignored, the root `.gitignore` covering at least `.env` and `.env.local`.
 - `NODE_ENV=development` appears **only** in dev/inspect scripts (never in `start`/`build`/`test`).
 - The config loader calls `process.loadEnvFile()` inside a try/catch for Node/Bun parity (§4.7).
+
+Whatever the capability, Git tracks no real `.env` or `.env.<name>` file at any depth; only `.example` and `.sample` templates are committed. A file holding only public build settings is no exception: the audit fails it, and the remedy is the owner's.
 
 The variable **names/prefix** and which vars exist are artifact-specific (e.g. an MCP uses `MCP_<APP>_*` with the shared access-level + audit-log block) and live in that artifact's skill.
 

@@ -64,6 +64,23 @@ export const ENVIRONMENT: RubricFamily<EngineeringRubricContext, EnvironmentRubr
         guidance:
           'Use the matching XDG variable before its specification default, record a named Gap, or record an explicit exclusion.'
       }
+    },
+    {
+      code: 'ENV-5',
+      title: 'Real environment files are never tracked',
+      description:
+        'Git tracks no real `.env` or `.env.<name>` file at any depth, examples and samples excepted, whatever the capability; where the repository reads environment config, a repository `.gitignore` covers `.env` and `.env.local`, warning when none does.',
+      sources: ['standard-engineering.md'],
+      mechanical: {
+        level: 'FAIL',
+        overrideLevels: ['WARN'],
+        remediation: {
+          class: 'diagnostic',
+          guidance:
+            'Untrack each real environment file with `git rm --cached`, rotating any secret it held, keep a redacted `.env*.example` template in its place, and cover real files in the root `.gitignore`; then rerun the audit.'
+        },
+        audit: { phase: 'INSPECT', run: (context) => auditEvidence(context.env5, 'FAIL', ['WARN']) }
+      }
     }
   ]
 }

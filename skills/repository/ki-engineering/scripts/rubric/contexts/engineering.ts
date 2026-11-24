@@ -101,7 +101,11 @@ export type BuildRubricContext = {
   build3: EngineeringEvidence
   build4: EngineeringEvidence
 }
-export type EnvironmentRubricContext = { env1: EngineeringEvidence; env2: EngineeringEvidence }
+export type EnvironmentRubricContext = {
+  env1: EngineeringEvidence
+  env2: EngineeringEvidence
+  env5: EngineeringEvidence
+}
 export type TomlRubricContext = {
   toml1: EngineeringEvidence
   toml2: EngineeringEvidence
@@ -467,7 +471,7 @@ export const createEngineeringSession = async (
       build3: evidence('BUILD-3'),
       build4: evidence('BUILD-4')
     },
-    environment: { env1: evidence('ENV-1'), env2: evidence('ENV-2') },
+    environment: { env1: evidence('ENV-1'), env2: evidence('ENV-2'), env5: evidence('ENV-5') },
     toml: {
       toml1: evidence('TOML-1'),
       toml2: evidence('TOML-2'),

@@ -616,6 +616,7 @@ const mechanicalEngineeringCheckIds = new Set([
   'BUILD-4',
   'ENV-1',
   'ENV-2',
+  'ENV-5',
   'TOML-1',
   'TOML-2',
   'TOML-3'
@@ -1079,6 +1080,54 @@ export const collectTrackedMjs = async (repository: string): Promise<readonly st
   } catch {
     return []
   }
+}
+
+/** A real environment file, `.env` or `.env.<name>` at any depth, which is not an example or sample template. */
+export const isRealEnvironmentFile = (path: string): boolean => {
+  const name = path.split('/').pop() ?? ''
+  return /^\.env(?:\..+)?$/.test(name) && !/\.(?:example|sample)$/i.test(name)
+}
+
+/** The real environment files Git tracks, or undefined where Git cannot list them. */
+export const collectTrackedEnvironmentFiles = async (repository: string): Promise<readonly string[] | undefined> => {
+  try {
+    const result = await run('git', ['-C', repository, 'ls-files', '-z'], { encoding: 'utf8', maxBuffer: 64 << 20 })
+    return result.stdout.split('\0').filter(Boolean).filter(isRealEnvironmentFile).sort()
+  } catch {
+    return undefined
+  }
+}
+
+/** The probe paths a root `.gitignore` must cover: the bare file and the local override. */
+export const ENVIRONMENT_IGNORE_PROBES = ['.env', '.env.local'] as const
+
+/**
+ * The probe paths the root `.gitignore` does not cover, decided by `git check-ignore --no-index`, whose rules a global
+ * excludes file or `.git/info/exclude` would otherwise satisfy on one machine only. Undefined where Git cannot decide.
+ */
+export const uncoveredEnvironmentProbes = async (repository: string): Promise<readonly string[] | undefined> => {
+  let stdout: string
+  try {
+    stdout = (
+      await run(
+        'git',
+        ['-C', repository, 'check-ignore', '--no-index', '--verbose', '--non-matching', ...ENVIRONMENT_IGNORE_PROBES],
+        { encoding: 'utf8' }
+      )
+    ).stdout
+  } catch (error) {
+    const result = error as { code?: unknown; stdout?: unknown }
+    if (result.code !== 1 || typeof result.stdout !== 'string') return undefined
+    stdout = result.stdout
+  }
+  const covered = new Set<string>()
+  for (const line of stdout.split('\n')) {
+    const tab = line.lastIndexOf('\t')
+    if (tab < 0) continue
+    const [source = '', , pattern = ''] = line.slice(0, tab).split(':')
+    if (source === '.gitignore' && !pattern.startsWith('!')) covered.add(line.slice(tab + 1))
+  }
+  return ENVIRONMENT_IGNORE_PROBES.filter((probe) => !covered.has(probe))
 }
 
 export const usesCanonicalCoverageReportsDirectory = (
@@ -2473,6 +2522,26 @@ export const collectAuditEvidence = async (
       : add('PASS', 'ENV-2', 'NODE_ENV=development only in dev/inspect scripts', STD, 'package.json')
   } else {
     add('NOT_APPLICABLE', 'ENV-1', 'no env capability — not applicable', STD)
+  }
+  // Real environment files are never tracked, whatever the capability; an env-capable repo's root `.gitignore`
+  // covers them.
+  const trackedEnvironment = await collectTrackedEnvironmentFiles(repo)
+  if (trackedEnvironment === undefined)
+    add('INFO', 'ENV-5', 'Git could not list tracked files — tracked environment files not checked', STD)
+  else if (trackedEnvironment.length)
+    for (const file of trackedEnvironment)
+      add('FAIL', 'ENV-5', `real environment file ${file} is tracked — untrack it and keep only a template`, STD, file)
+  else add('PASS', 'ENV-5', 'no real environment file is tracked', STD)
+  if (hasEnv) {
+    const uncovered = await uncoveredEnvironmentProbes(repo)
+    if (uncovered?.length)
+      add(
+        'WARN',
+        'ENV-5',
+        `.gitignore has no pattern covering ${uncovered.join(' and ')} — add one such as .env and .env.*, with !.env*.example`,
+        STD,
+        '.gitignore'
+      )
   }
 
   // ── core: .ki.toml qualified ki-engineering table ────────
