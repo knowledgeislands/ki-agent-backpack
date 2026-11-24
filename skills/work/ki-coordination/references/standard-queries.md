@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T05:39:07Z
 ki-status: in force
 ---
 
@@ -18,6 +18,7 @@ ki-status: in force
   - [4.2 Query cap](#42-query-cap)
     - [4.2.1 Query re-check](#421-query-re-check)
   - [4.3 Interactive pass](#43-interactive-pass)
+    - [4.3.1 Quick round](#431-quick-round)
   - [4.4 Goal-setting pass](#44-goal-setting-pass)
   - [4.5 Query review](#45-query-review)
   - [4.6 Review independence source](#46-review-independence-source)
@@ -37,7 +38,7 @@ How queries reach the owner, and how many one reply puts to them.
 ### 2.1 In scope
 
 - Where queries reach the owner, the query cap and the query re-check.
-- The interactive pass: its two replies, the read-back, the real example, the discussion options and the plain fallback.
+- The interactive pass: its two replies, the read-back, the real example, the discussion options and the plain fallback, and its quick round.
 - The goal-setting pass.
 - Blind query review and the marked review-independence source.
 - The defaults query and acceptance bundles.
@@ -59,6 +60,7 @@ How queries reach the owner, and how many one reply puts to them.
 | **Query cap** | At most three queries in one reply, the most critical first, then one line saying how many more are open and where they are held. **Standard:** this one, [4.2](#42-query-cap) |
 | **Query re-check** | The run that, while more than ten queries are open, checks every one against where things stand before any is put to the owner, dropping, merging, re-rating and ranking them. **Standard:** this one, [4.2.1](#421-query-re-check) |
 | **Interactive pass** | Taking the open queries one decision at a time, in two replies per query: the context in chat, then a short question card, or plain chat alone where the runtime has no card. **Standard:** this one, [4.3](#43-interactive-pass) |
+| **Quick round** | The interactive pass's faster form, taken on the owner's word: the owner answers several queries at once, and the coordinator reads every answer back, then acts on them together. **Standard:** this one, [4.3.1](#431-quick-round) |
 | **Discussion options** | The two options closing every query in a pass, Talk it through now and Come back at the end, so the owner can defer without typing. **Standard:** this one, [4.3](#43-interactive-pass) |
 | **Query review** | One masked, blind review run a query goes to before it reaches the owner when it is medium or low confidence, or high with a destructive recommended course. **Standard:** this one, [4.5](#45-query-review) |
 | **Acceptance bundle** | One `ACCEPT` query per work listing its records awaiting acceptance, oldest first, which the State of play brings before any other query. **Standard:** this one, [4.8](#48-acceptance-bundles) |
@@ -104,7 +106,7 @@ While more than ten queries are open with the owner, a run re-checks every one a
 
 ### 4.3 Interactive pass
 
-After a Summary that lists open queries, or on the owner's request, the coordinator takes the open queries in an interactive pass; either one alone starts it. After a Summary that gave only the count of its queries, under **Summary first** in [The Summary](standard-report-forms.md#417-the-summary), the reply after the owner has taken stock offers the pass, inline one by one or interactively with context, and the pass starts on the owner's word. The pass after the Summary that closes a pass asks only the queries that pass did not. The pass never batches: one decision at a time, two replies per query, so the owner sends nothing between questions.
+After a Summary that lists open queries, or on the owner's request, the coordinator takes the open queries in an interactive pass; either one alone starts it. After a Summary that gave only the count of its queries, under **Summary first** in [The Summary](standard-report-forms.md#417-the-summary), the reply after the owner has taken stock offers the pass, inline one by one or interactively with context, and the pass starts on the owner's word. The pass after the Summary that closes a pass asks only the queries that pass did not. Unless the owner takes a [quick round](#431-quick-round), the pass never batches: one decision at a time, two replies per query, so the owner sends nothing between questions.
 
 1. **First reply.** Start a short background timer, about 5 seconds, such as a background `sleep 5` whose completion wakes the coordinator. End the reply with its last text: the [read-back](#the-read-back) of the previous answer, if any, then the next query's context as ordinary Markdown:
 
@@ -173,6 +175,18 @@ A quick first run through the set thus decides what it can. While a query is tal
 - Never put the next query's card in the same reply as an answer's read-back.
 - The total is the number of open queries when the pass starts. When an answer raises a new query, add it to the total and say so. A query deferred to the end keeps its number when it is taken again.
 - Nothing is shortened because it is asked interactively, and each query keeps its [tag](standard-reporting.md#needs-tags).
+
+[Back to contents](#contents)
+
+#### 4.3.1 Quick round
+
+A quick round gets through a set of queries quickly and acts on them once the answers are in. The owner takes one by asking for it or by answering several queries at once.
+
+- **Asking:** the queries go in the owner report's shape, at most three a reply under the [query cap](#42-query-cap), each with its one recommended option, confidence and justification, and the reply block; the next three follow each set of answers until the set is through.
+- **Answering:** the owner answers several at once, by sending back the reply block, as it stands or changed, or by answering in a list, by tag or in order.
+- **Read-back:** the coordinator reads every answer back in one list, each with what was chosen and what it changes, as [the read-back](#the-read-back) does, and asks one line where an answer is unclear.
+- **Acting:** each answer is applied to its change document in the turn it arrives, under [Answers](standard-reporting.md#421-answers), and the decided work launches together once the round's answers are in, rather than after each one.
+- **Discussion:** a query that needs talking through leaves the round for the one-at-a-time pass above, and the round closes as that pass does, with a mark and the Summary.
 
 [Back to contents](#contents)
 

@@ -1087,6 +1087,21 @@ test('an interactive pass ends a timed first reply with the read-back and contex
   expect(standard).toContain('**Pairs:** two related questions may share one card, each with a short header')
 })
 
+// A quick round collects a set of answers first and acts on them together: every answer is read back, then the decided
+// work launches together, and a query that needs discussion goes to the one-at-a-time pass.
+test('a quick round reads every answer back, then launches the decided work together', () => {
+  for (const text of [standard, outputStyle]) {
+    expect(text).toContain('unless Kris takes a quick round, the pass never batches')
+    expect(text).toContain('by asking for it or by answering several queries at once')
+    expect(text).toContain('read every answer back in one list')
+    expect(text).toContain("launch the decided work together once the round's answers are in")
+    expect(text).toContain('in the one-at-a-time pass')
+  }
+  expect(standard).toContain('Unless the owner takes a [quick round](#431-quick-round), the pass never batches')
+  expect(standard).toContain('reads every answer back in one list')
+  expect(standard).toContain("the decided work launches together once the round's answers are in")
+})
+
 // A listening thread also helps manage and refine the work packages and keep them in good state: it makes at most one
 // small, silent tidy of its own package at a wake and only points out problems in another's.
 test('a listening thread tends its own work package at its wakes', () => {
