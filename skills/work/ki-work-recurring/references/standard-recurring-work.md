@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T11:26:13Z
 ki-status: in force
 ---
 
@@ -217,6 +217,6 @@ The Activity note is the sole standing definition; a due run becomes a linked it
 
 ### 4.9 Retention
 
-Completed runs are retained as `done` or `cancelled` records in both adapters until `ki-work accept prune` receives an explicit selection. A template retains date and immutable review evidence, not a dependency on the continued presence of an unpruned run file. Lightweight working-area tidying remains subject to each specialist area's retention policy; recurring review does not confer general deletion authority.
+A finished run is an ordinary `done` or `cancelled` record in both adapters, and is pruned like any other: seven days after its terminal state lands, under `ki-work accept`'s [standing prune](../../../keystone/ki-work/references/standard-acceptance.md#443-the-standing-prune), or sooner by an explicit selection. A template retains date and immutable review evidence, not a dependency on the continued presence of an unpruned run file. Lightweight working-area tidying remains subject to each specialist area's retention policy; recurring review does not confer general deletion authority.
 
 [Back to contents](#contents)
