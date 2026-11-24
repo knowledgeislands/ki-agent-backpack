@@ -5,7 +5,7 @@ const MEETING_1: RubricItem<MeetingContext> = {
   code: 'MEETING-1',
   title: 'a meeting is worth calling and is called from the right node',
   description:
-    'A meeting is optional: it is held for either of two first-class uses, to reach a seat outside Orca or as a shared workbench where participants share outputs or resources and work together in a sitting, never only as a route between sessions that reach each other by Orca mail; it sits at one node of the work tree with a type, a purpose and its participants, and is called by the session holding that node or one above it.',
+    'A meeting is optional: it is held for either of two first-class uses, to reach a seat outside Orca or as a shared workbench where participants share resources and work together in a sitting, never only as a route between sessions that reach each other by Orca mail; it sits at one node of the work tree with a type, a purpose and its participants, and is called by the session holding that node or one above it.',
   sources: ['standard-meeting.md#41-when-to-meet', 'standard-meeting.md#42-who-calls-keeps-and-owns-a-meeting'],
   judgment: judgment(
     'Did the meeting serve a seat outside Orca or a shared workbench, rather than stand in for Orca mail, and was it called at one node by the session holding it or one above it?'
@@ -16,7 +16,7 @@ const MEETING_2: RubricItem<MeetingContext> = {
   code: 'MEETING-2',
   title: 'the folder and its entry file keep the standard shape',
   description:
-    'The meeting lives in its own folder at `meetings/<node id>/<date>-<slug>/`, holding `_index.md`, `messages/`, `brief/`, an output folder and `notes/`; `_index.md` opens with the front matter block tools read and then gives the summary, brief, agenda, boundaries, open asks and minutes.',
+    'The meeting lives in its own folder at `meetings/<node id>/<date>-<slug>/`, holding `_index.md`, `messages/`, `brief/` and `notes/` and no designs or other work products, which live in the project or design system they belong to; `_index.md` opens with the front matter block tools read and then gives the summary, brief, agenda, boundaries, open asks and minutes.',
   sources: ['standard-meeting.md#44-where-a-meeting-is-kept', 'standard-meeting.md#45-the-entry-file'],
   judgment: judgment(
     'Does the folder hold the standard parts, and does `_index.md` carry a current front matter block followed by its six parts in order?'

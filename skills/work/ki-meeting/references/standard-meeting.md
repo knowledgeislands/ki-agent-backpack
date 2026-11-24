@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T11:30:13Z
+ki-revised: 2026-11-24T22:09:23Z
 ki-status: in force
 ---
 
@@ -108,7 +108,7 @@ So a meeting can change its transport, as when a tool or Orca mail takes over fr
 
 1. **Direct first.** Every session running in Orca reaches another by Orca mail, running or idle, on the same Mac and across the bridge to the other, under `ki-coordination`'s [messages standard](../../ki-coordination/references/standard-messages.md#42-orca-mail-and-the-cairn-beacon). An agent host's own messaging is used only for a session outside Orca ([4.16](#416-runtime-binding)), and work within one session goes to its own subagents. Each receiver keeps its own state in its own work package.
 2. **Seats run in Orca wherever they can,** so that Orca mail reaches them.
-3. **A room is optional.** Since each session keeps its own state, a room is never needed to hold it. A meeting is set up for either of two first-class uses: to reach a seat outside Orca, such as a voice client; or as a **shared workbench**, where participants, sessions in Orca among them, work on one thing in one place, sharing outputs or resources such as boards, designs or a brief, and working together in a sitting. Orca mail still carries the conversation between sessions in Orca; the workbench is where the shared work sits. A room that is only a route closes once its members can mail each other.
+3. **A room is optional.** Since each session keeps its own state, a room is never needed to hold it. A meeting is set up for either of two first-class uses: to reach a seat outside Orca, such as a voice client; or as a **shared workbench**, where participants, sessions in Orca among them, work on one thing in one place, sharing resources such as a brief, and working together in a sitting. Orca mail still carries the conversation between sessions in Orca; the workbench is where they work together, while what they make lives in the project or design system it belongs to ([4.4](#44-where-a-meeting-is-kept)). A room that is only a route closes once its members can mail each other.
 4. **A meeting sits at one node** of the work tree, has a type, a purpose and its participants, and ends. Question, answer and information are messages inside it; the opening carries the brief, joining replaces an acknowledgement, and the close ends it.
 5. **Each session goes back to working alone** when the meeting ends. A meeting grants no authority beyond what the owner gives in it or in the owner's own sessions. Addressed messages in the store are gone; a direct message carries conversation, not work, which goes along the tree, and every decision goes to its change document.
 
@@ -130,14 +130,14 @@ Each meeting is of one type, named in its entry file, which says what the meetin
 
 | Type | What it does | What it produces | Standard |
 | --- | --- | --- | --- |
-| **Workshop** | Makes something together, such as designs | The thing made, in the output folder, each part final or with its choices listed | [Workshop](standard-workshop.md) |
+| **Workshop** | Makes something together, such as designs | The thing made, in the project or design system it belongs to, each part final or with its choices listed | [Workshop](standard-workshop.md) |
 | **Review** | Assesses something already made | A verdict on each part | [Review](standard-review.md) |
 | **Retrospective** | Looks back at a meeting or a run of work | What to keep and what to change, each sent to the change document that owns that way of working | [Retrospective](standard-retrospective.md) |
 | **Standing room** | Runs while its members work, as a standing conversation with a seat outside Orca, such as a voice client, and closes only on the owner's word | Messages and minutes; its decisions go to change documents | [Standing room](standard-standing-room.md) |
 
 A meeting runs by this standard and by its type's.
 
-**The standing room** is the one type with no time limit per sitting and no `brief/` or output folder; where it differs from the rules below, its standard says so.
+**The standing room** is the one type with no time limit per sitting and no `brief/`; where it differs from the rules below, its standard says so.
 
 [Back to contents](#contents)
 
@@ -148,10 +148,9 @@ A meeting runs by this standard and by its type's.
    - `_index.md`, the entry file, never `README.md`;
    - `messages/`, one file per message;
    - `brief/`, what participants work from, except in a standing room;
-   - an output folder named for the work, such as `designs/`, except in a standing room;
    - `notes/`, for anything too long for a message.
-3. **How output is named** belongs to the kind of work, such as a design meeting's levels, not to this standard.
-4. **Outputs land where their readers can open them.** The agenda says where each participant's outputs go ([4.5](#45-the-entry-file)); unless the agenda says otherwise, each participant also puts what it makes in the output folder. How each agent host in use shares its outputs is in [4.16](#416-runtime-binding).
+3. **No work products in the room.** A design or any other work product lives in the project or design system it belongs to, never in the meeting folder; the room keeps only its messages, notes and minutes. How output is named belongs to the kind of work, such as a design meeting's levels, not to this standard.
+4. **Outputs land where their readers can open them.** The agenda says where in its project or design system each participant's outputs go, and links to them ([4.5](#45-the-entry-file)). How each agent host in use shares its outputs is in [4.16](#416-runtime-binding).
 5. **Nothing in the folder is a decision.** Outcomes live in change documents ([4.13](#413-decisions)).
 
 [Back to contents](#contents)
@@ -348,7 +347,7 @@ How the rules above fall on the agent hosts in use when the standard was written
 - **Through a connector:** ChatGPT's voice mode, which cannot reach the file system, through its own GitHub connector.
 - **Between machines:** Claude Code's Remote Control was the remote messaging tried between a session on sol and one on terra. It does not reach the sessions in use, which run Claude Code as their harness inside Orca as their host, since Remote Control comes only with Claude Code's own interface, so rigs reached each other through a standing room. Orca mail across the bridge between the paired Orca hosts now carries it, as Hob Sol and Hob Terra used it on 20 November 2026, and the housekeepers' standing room closed.
 - **Seats outside Orca,** which keep a room: the voice client in ChatGPT's voice mode; on 20 November 2026 also a Claude Design session and a Claude chat in Claude Desktop, and a graphic designer in the ChatGPT desktop app's Codex, while each stays outside Orca.
-- **Sharing outputs:** Claude Design shares its boards as its own artifacts, which is what the owner expects there, and in a meeting puts them in the output folder too; the graphic designer works in its own app and puts what it makes in the output folder, and does not send the owner to GitHub.
+- **Sharing outputs:** Claude Design shares its boards as its own artifacts, which is what the owner expects there, and in a meeting puts them in the project or design system they belong to, not in the room; the graphic designer works in its own app and puts what it makes there too, and does not send the owner to GitHub.
 - **Without Git:** Claude Design works in a sandboxed shell that cannot delete Git's lock files and has no checkout or push of its own, so it is a participant without Git, and the chair commits its files.
 - **Listening:** the caller runs a shell watcher on the folder; Claude Desktop, which cannot keep a shell loop open between turns, listens by scheduled wake-ups. In the first sitting the caller checked every 30 seconds and Claude Design every two minutes until a set time.
 

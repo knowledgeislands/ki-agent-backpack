@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T22:09:23Z
 ki-status: in force
 ---
 
@@ -60,7 +60,7 @@ The rules, part by part.
 ### 4.1 What a review produces
 
 1. **A verdict on each part** of the thing under review, given as its findings in the [review standard](../../../keystone/ki-authoring/references/standard-review.md#44-a-findings-shape)'s shape: a part not accepted as it stands has a blocking finding, whose change says what would change the verdict.
-2. **The verdicts are the output.** The caller gathers them in the output folder or the minutes; a verdict is a recommendation, and the outcome is the owner's, Approve or Accept with changes, recorded in the change document as the [review standard](../../../keystone/ki-authoring/references/standard-review.md#45-the-outcome) sets.
+2. **The verdicts are the output.** The caller gathers them in the minutes; a verdict is a recommendation, and the outcome is the owner's, Approve or Accept with changes, recorded in the change document as the [review standard](../../../keystone/ki-authoring/references/standard-review.md#45-the-outcome) sets.
 
 [Back to contents](#contents)
 

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T22:09:23Z
 ki-status: in force
 ---
 
@@ -66,7 +66,7 @@ The rules, part by part.
 
 ### 4.2 What a standing room produces
 
-1. **Messages and minutes, nothing else.** A standing room needs no `brief/` and no output folder; its entry file's brief says why it stands, and anything too long for a message goes in `notes/`.
+1. **Messages and minutes, nothing else.** A standing room needs no `brief/`; its entry file's brief says why it stands, and anything too long for a message goes in `notes/`.
 2. **A decision still goes to a change document.** The room holds the conversation, never the decision ([the meeting standard, 4.13](standard-meeting.md#413-decisions)); the brief names the change documents its decisions go to.
 
 [Back to contents](#contents)

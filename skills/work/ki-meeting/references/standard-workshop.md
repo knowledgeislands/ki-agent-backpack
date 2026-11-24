@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T22:09:23Z
 ki-status: in force
 ---
 
@@ -61,7 +61,7 @@ The rules, part by part.
 
 ### 4.1 What a workshop produces
 
-1. **The thing made,** by its makers, in the meeting's output folder, named for the work, such as `designs/`.
+1. **The thing made,** by its makers, in the project or design system it belongs to, never in the meeting folder, which keeps only its messages, notes and minutes; the agenda links to each part where it lives.
 2. **Each part ends final,** or with the choices it leaves to the owner listed, each with its recommendation.
 3. **No decision.** A workshop produces options and finished parts; the owner's decisions on them go to the change document, as for every meeting.
 4. **Agreed design is drawn against the build.** In a design workshop, once a decision is agreed its drawing follows the build rather than leading it, and drawings ahead of the build are for open choices only, as `ki-design-system` sets in its design work.
