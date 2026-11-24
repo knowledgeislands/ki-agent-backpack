@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-24T04:52:17Z
-ki-revised: 2026-11-24T05:39:07Z
+ki-revised: 2026-11-24T04:52:17Z
 ki-refresh: canonical · quarterly
 ---
 
@@ -38,7 +38,6 @@ Every source the standard follows is in-house.
 | `ki-work-package` | The work package a session resumes from and keeps current: its `_index.md`, change documents, naming and lifecycle | 2026-11-23 |
 | `ki-env-tokenomics` | The coordination model purpose a coordinating thread runs on | 2026-11-23 |
 | `ki-work` | The Project registry the state-of-play thread manages and labels resolve against | 2026-11-23 |
-| Kris's steer, 23 November 2026, cairn.summit change 10 | The one recommendation, with its confidence and justification, every option set carries, and the quick round that collects a set of answers before acting on them together | 2026-11-24 |
 
 [Back to contents](#contents)
 

@@ -1096,6 +1096,8 @@ test('a quick round reads every answer back, then launches the decided work toge
     expect(text).toContain('read every answer back in one list')
     expect(text).toContain("launch the decided work together once the round's answers are in")
     expect(text).toContain('in the one-at-a-time pass')
+    // Every option set gives one recommendation, so the reply block's no-recommendation form is retired.
+    expect(text).not.toContain('(your call)')
   }
   expect(standard).toContain('Unless the owner takes a [quick round](#431-quick-round), the pass never batches')
   expect(standard).toContain('reads every answer back in one list')

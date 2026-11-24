@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T05:39:07Z
+ki-revised: 2026-11-24T05:51:46Z
 ki-status: in force
 ---
 
@@ -38,7 +38,7 @@ How queries reach the owner, and how many one reply puts to them.
 ### 2.1 In scope
 
 - Where queries reach the owner, the query cap and the query re-check.
-- The interactive pass: its two replies, the read-back, the real example, the discussion options and the plain fallback, and its quick round.
+- The interactive pass: its two replies, the read-back, the real example, the discussion options, the plain fallback and its quick round.
 - The goal-setting pass.
 - Blind query review and the marked review-independence source.
 - The defaults query and acceptance bundles.
@@ -73,7 +73,7 @@ The rules, part by part.
 
 ### 4.1 Questions
 
-Queries reach the owner in the Summary by default, except that a Summary whose summary runs long gives only their count until the owner has taken stock, under **Summary first** in [The Summary](standard-report-forms.md#417-the-summary). After a Summary that lists open queries, or on the owner's request, use the [interactive pass](#43-interactive-pass): one decision per turn, its context in chat Markdown, then a short question card, or plain chat Markdown alone where the runtime has no card.
+Queries reach the owner in the Summary by default, except that a Summary whose summary runs long gives only their count until the owner has taken stock, under **Summary first** in [The Summary](standard-report-forms.md#417-the-summary). After a Summary that lists open queries, or on the owner's request, use the [interactive pass](#43-interactive-pass), or its [quick round](#431-quick-round): one decision per turn, its context in chat Markdown, then a short question card, or plain chat Markdown alone where the runtime has no card, or, in a quick round, several answers at once, acted on together.
 
 **Choosing the recommended option.** Do not recommend the cautious option only because it is cautious when its downside can be undone; recommend what the evidence favours. Protections go only where the owner has drawn a line: a new one, such as a further check, a hold or a gate, goes to the owner as a question first and is not added on the agent's own judgement.
 
@@ -186,7 +186,8 @@ A quick round gets through a set of queries quickly and acts on them once the an
 - **Answering:** the owner answers several at once, by sending back the reply block, as it stands or changed, or by answering in a list, by tag or in order.
 - **Read-back:** the coordinator reads every answer back in one list, each with what was chosen and what it changes, as [the read-back](#the-read-back) does, and asks one line where an answer is unclear.
 - **Acting:** each answer is applied to its change document in the turn it arrives, under [Answers](standard-reporting.md#421-answers), and the decided work launches together once the round's answers are in, rather than after each one.
-- **Discussion:** a query that needs talking through leaves the round for the one-at-a-time pass above, and the round closes as that pass does, with a mark and the Summary.
+- **Discussion:** a query that needs talking through leaves the round for the one-at-a-time pass above.
+- **Closing:** the round closes as that pass does, with a mark and the Summary.
 
 [Back to contents](#contents)
 

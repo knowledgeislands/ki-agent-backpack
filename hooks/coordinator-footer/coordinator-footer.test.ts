@@ -715,6 +715,11 @@ test('a ? line in place of a recommendation is held back, naming the line', () =
   expect(run(stop(decision('NAME ? (your call): pick the name'), conversation, ordinary)).reason).toContain('does not open with its first group heading')
 })
 
+// Only a ? where the letter goes is held back: a gloss may still ask a question.
+test('a gloss holding a ? passes', () => {
+  expect(run(stop(decision('1 · Now', 'NAME a (high): is Cairn the name?', 'PUSH a (medium): push now?'), conversation, ordinary))).toEqual(silent)
+})
+
 test('a tag given twice is held back when one of its lines is a ? line', () => {
   for (const block of [
     ['1 · Now', 'NAME a (high): call it Cairn', 'NAME ? (your call): pick the name'],
