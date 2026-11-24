@@ -60,7 +60,7 @@ Carries the universal **AUDIT · CONFORM · EDUCATE · REFRESH** modes and the s
 
 ### Mode ACCEPT
 
-`accept <work>` closes one reviewed record as done, or cancels an open record with an approved resolution; `accept prune <record-or-glob>...` deletes explicitly selected terminal records, and `accept prune` alone those terminal for 7 days with their commits landed, without asking the owner (PRUNE-RECORDS). Read [the accept reference](references/mode-accept.md) and follow it. It needs the owner's approval for every closure and cancellation, never for the standing prune, and never chooses work, starts implementation or reconstructs missing verification.
+`accept <work>` closes one reviewed record as done, or cancels an open record with an approved resolution; `accept prune <record-or-glob>...` deletes explicitly selected terminal records, and `accept prune` alone those terminal for 7 days with their commits landed, without asking the owner. Read [the accept reference](references/mode-accept.md) and follow it. It needs the owner's approval for every closure and cancellation, never for the standing prune, and never chooses work, starts implementation or reconstructs missing verification.
 
 ### Mode AUDIT
 

@@ -7,7 +7,7 @@ territory: knowledge-islands
 island: ki-agent-backpack
 vendor: OpenClaw Foundation
 reviewed: 2026-11-22
-origin: ki.summit change 21, ECOSYSTEM-HOME b and ECOSYSTEM-SHAPE a (22 November 2026)
+origin: ki.summit change 21 (22 November 2026)
 links:
   industry.agent-host:
     predicate: skos:broadMatch

@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T00:54:54Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -25,7 +25,7 @@ ki-status: in force
 
 How D12 runs in a mailbox: queues and tags, protected labels, sweeps and Deposit routes, with what differs between Gmail and Microsoft 365. It applies the [D12 standard](standard-dodecakrisis.md), whose write and approval rules govern everything here.
 
-The sources and decisions behind these rules are in [the sources file](sources.md).
+The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -84,7 +84,7 @@ Nothing else lives under the root but the outcome labels and the provenance labe
 
 ### 4.2 Protected labels
 
-Some labels, folders and categories must never be changed or touched, such as Gmail's `Z_ARCHIVE/` and `Z_ARCHIVE/Legal Matters`. Under PROTECTED-HOME a) and PROTECTED-READ a) (Kris, 7 November 2026):
+Some labels, folders and categories must never be changed or touched, such as Gmail's `Z_ARCHIVE/` and `Z_ARCHIVE/Legal Matters`. These rules protect them:
 
 - **The server holds the list.** Each mail server's per-account configuration declares the protected labels, folders and categories; chezmoi manages that configuration. An entry covers its sub-labels and is held by id, so renaming a label does not lift its protection.
 - **The server refuses every change** to a protected label or the messages it holds, whoever calls: no label added, removed, renamed, created under or deleted; no message moved, archived, trashed, categorised, or marked read or unread; no filter or rule created that acts on one.

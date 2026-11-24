@@ -4,7 +4,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 # Plan
 
-`ki-work plan` is a subcommand of the Work guild's lead. It was the `ki-plan` process skill until the guild folded it into `ki-work` (PROCESS-SUBCOMMANDS), and keeps that skill's procedure and boundaries.
+`ki-work plan` is a subcommand of the Work guild's lead. It was the `ki-plan` process skill until the guild folded it into `ki-work`, and keeps that skill's procedure and boundaries.
 
 Shapes one or more selected Now or Next drafts through Ready.
 

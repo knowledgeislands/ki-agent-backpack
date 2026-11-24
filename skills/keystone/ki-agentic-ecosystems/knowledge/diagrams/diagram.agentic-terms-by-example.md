@@ -5,7 +5,7 @@ type: resource
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, DIAGRAM-RESOURCE (12 November 2026), redrawn under ki.summit change 21, EXEC-ENV-NAMES a) (21 November 2026)
+origin: Cairn summit change 22 (12 November 2026), redrawn under ki.summit change 21 (21 November 2026)
 links:
   industry.machine:
     predicate: dcterms:subject

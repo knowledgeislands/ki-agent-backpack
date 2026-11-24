@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T00:54:54Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -30,7 +30,7 @@ This standard adds Granola's completeness and capability rules to the `ki-acquir
 
 Acquisition keeps no ledger, checkpoint, journal or flagged-identity file. The committed capture is the only record: its front matter carries the source identity, account binding, hashes and folder memberships, and Git history holds earlier bytes. An interrupted run is simply repeated.
 
-The sources and decisions behind these rules are in [the sources file](sources.md).
+The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

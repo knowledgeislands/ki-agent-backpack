@@ -5,12 +5,12 @@ type: graph
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 06, KG-SELF and KG-HOME a) (Kris, 12 November 2026)
+origin: Cairn summit change 06
 ---
 
 # The knowledge-graph method's own graph
 
-This graph holds the concepts the knowledge-graph standard relies on, so the standard follows its cards rather than restating them (KG-SELF): what a card is, how cards and graphs are addressed and layered, the vocabularies their links draw on, and the principles a graph keeps. It is the first graph to define itself in a root definition. A reader starts from the [knowledge graph][knowledge-graph], then [Semantic Markdown][semantic-markdown], the card format, and [layered graphs][layered-graphs].
+This graph holds the concepts the knowledge-graph standard relies on, so the standard follows its cards rather than restating them: what a card is, how cards and graphs are addressed and layered, the vocabularies their links draw on, and the principles a graph keeps. It is the first graph to define itself in a root definition. A reader starts from the [knowledge graph][knowledge-graph], then [Semantic Markdown][semantic-markdown], the card format, and [layered graphs][layered-graphs].
 
 ## Card types
 
@@ -65,10 +65,10 @@ None: the graph is one flat list, and every id is a plain name.
 ## Extent and limitations
 
 - **What it covers:** the 22 cards the Inbox curated under the Principal's Pillars and dispatched to the backpack on 7 November 2026, all proposals but one future concept. The island and pillar on each record where they were staged; their long-term home as knowledge may still be the Principal's Pillars.
-- **Where the cards sit:** the root folder is the skill's `knowledge/` folder, which holds this root definition and the cards, flat, since the graph has no subgraphs, and nothing but the graph (KNOWLEDGE-FOLDER, GRAPH-FOLDERS).
+- **Where the cards sit:** the root folder is the skill's `knowledge/` folder, which holds this root definition and the cards, flat, since the graph has no subgraphs, and nothing but the graph.
 - **Beside the graph:** the skill's `references/` folder holds the standard, its migration overlay, the generated rubric and the sources; those files are not cards.
 - **Links left behind:** links to cards outside this graph were removed when the cards moved, their text kept: the Knowledge Islands territory card, the KIG tool card, the assistant repository's `context/` folder, and Harbour's knowledge-tending cards for knowledge capture, the capture funnel, the change-log graph, knowledge tending and knowledge independence, and its ethical-knowledge card. Each can come back as a shadow node once its graph declares an attachment point.
-- **Due a split:** six links reached into sections of cards, the knowledge graph's addressing and RDF foundations' representations and multiple graphs; they now point at the whole card, and those sections are due to become cards of their own when the graph is next tended (KG-GRAIN).
+- **Due a split:** six links reached into sections of cards, the knowledge graph's addressing and RDF foundations' representations and multiple graphs; they now point at the whole card, and those sections are due to become cards of their own when the graph is next tended.
 - **Due a vocabulary review:** `ki:part-of` could be Dublin Core's `dcterms:isPartOf`, and the `ki:` namespace is not yet published.
 - **Pending:** cards for the root definition, card types, link types and subgraphs themselves, so the standard can follow them as it does the rest.
 

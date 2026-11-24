@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:45:05Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -22,7 +22,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-Optional bounded retrieval over a Knowledge Islands base: its authority and ingestion, the derived configuration schema, the pinned engine protocol, and the KI response with its mirror labels. The decisions behind these rules are in [the sources file](sources.md).
+Optional bounded retrieval over a Knowledge Islands base: its authority and ingestion, the derived configuration schema, the pinned engine protocol, and the KI response with its mirror labels. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

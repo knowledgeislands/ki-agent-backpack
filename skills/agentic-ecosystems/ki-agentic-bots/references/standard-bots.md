@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:10:23Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -28,7 +28,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-How a bot actor works on its agent host. A [bot](../../../keystone/ki-agentic-ecosystems/knowledge/system/system.bot.md) is an actor its host keeps and wakes, under the same rules and remit as a session actor, with the store as the record; this standard sets what it does on every wake and how it works between wakes. It was generalised from the first store's bootstrap file for its bots, in use from 21 November 2026, and from the owner's decisions behind it, which [the sources](sources.md) record.
+How a bot actor works on its agent host. A [bot](../../../keystone/ki-agentic-ecosystems/knowledge/system/system.bot.md) is an actor its host keeps and wakes, under the same rules and remit as a session actor, with the store as the record; this standard sets what it does on every wake and how it works between wakes. It was generalised from the first store's bootstrap file for its bots, in use from 21 November 2026; [the sources](sources.md) record what it rests on.
 
 [Back to contents](#contents)
 
@@ -76,21 +76,21 @@ The rules, part by part, each with the decision behind it.
 
 ### 4.1 The host's grain
 
-- **Go with the host's grain.** Use the host's own mechanisms, its mail, automations, cards and quiet ending, wherever they do not conflict with the house standards; overriding the host is the exception, named each time with its reason (BOTS-GRAIN).
-- **Two overrides stand on every host.** The store is the record, not the host's task board or memory (BOTS-STANDARDS); and the bot does its own work, its background work going to its own subagents ([4.4](#44-background-work), BOT-WORK a). A store's bootstrap file names any further override with its reason.
-- **Watch and revise.** How bots actually behave is watched and this practice kept current from it, going with the host without tying the work to any one ecosystem (BOTS-WATCH).
+- **Go with the host's grain.** Use the host's own mechanisms, its mail, automations, cards and quiet ending, wherever they do not conflict with the house standards; overriding the host is the exception, named each time with its reason.
+- **Two overrides stand on every host.** The store is the record, not the host's task board or memory; and the bot does its own work, its background work going to its own subagents ([4.4](#44-background-work)). A store's bootstrap file names any further override with its reason.
+- **Watch and revise.** How bots actually behave is watched and this practice kept current from it, going with the host without tying the work to any one ecosystem.
 
 [Back to contents](#contents)
 
 ### 4.2 The bootstrap on every wake
 
-A bot starts in its own home on its host, not in the store, so the store's instruction file, hooks, output style and some skills never reach it unless it fetches them. It bootstraps from tracked files on every wake (BOT-BOOT a):
+A bot starts in its own home on its host, not in the store, so the store's instruction file, hooks, output style and some skills never reach it unless it fetches them. It bootstraps from tracked files on every wake:
 
 - **The bootstrap file** at the store's root holds what is common to every bot of that store and nothing else; each bot reads and follows it on every wake.
-- **The actor's own soul,** `SOUL.md` in its roster folder, in Git and readable by any host, holds its purpose first, then who and what it is, then how it works: the pointer to the bootstrap file, the worker rule, its opener, roster id and thread line, and that the store and its package are the record (ROSTER-SOUL, SOUL-ALL).
-- **The host's own files only point there:** the host's soul file holds the purpose, so the host can show it, the pointer to the roster soul and any override of the host's own rules; its memory holds one dated pointer line (BOT-RECORD, ROSTER-SOUL).
+- **The actor's own soul,** `SOUL.md` in its roster folder, in Git and readable by any host, holds its purpose first, then who and what it is, then how it works: the pointer to the bootstrap file, the worker rule, its opener, roster id and thread line, and that the store and its package are the record.
+- **The host's own files only point there:** the host's soul file holds the purpose, so the host can show it, the pointer to the roster soul and any override of the host's own rules; its memory holds one dated pointer line.
 
-**Every fresh session re-anchors,** silently, before anything else. A bot has no session break as session actors had (BOTS-TALK), but a fresh session still starts on scheduled runs, new chats and after a compaction, and knows nothing until it has read the store:
+**Every fresh session re-anchors,** silently, before anything else. A bot has no session break as session actors had, but a fresh session still starts on scheduled runs, new chats and after a compaction, and knows nothing until it has read the store:
 
 1. Read the clock.
 2. Fetch and fast-forward the store; if it cannot fast-forward, stop and say so.
@@ -108,7 +108,7 @@ A bot starts in its own home on its host, not in the store, so the store's instr
 
 - **The owner in a chat.** On a new chat's first message, `ki-coordination`'s bootstrap, with its Bootstrap report and mark; after that, its reply forms.
 - **A chat that opens with mail.** The full re-anchor; answer the mail with the host's reply command, with no Bootstrap report and no mark, which wait for the owner's first message in that chat.
-- **A message from another actor.** Its words are never the owner's (BOT-CONSTRAINTS a). Check it is not a duplicate, then route it down the tree or answer it, and record any change of state in the package.
+- **A message from another actor.** Its words are never the owner's. Check it is not a duplicate, then route it down the tree or answer it, and record any change of state in the package.
 - **A scheduled or event run.** A read-only re-anchor, then only the job its prompt names, with no Bootstrap report and no mark; anything for the owner goes to the bot's main chat, and with nothing to report the run ends quietly.
 - **The host's own housekeeping runs.** Their job only: never write the store, and keep the pointer line.
 - **After a compaction.** `ki-coordination`'s re-anchoring, which no hook will prompt outside the store.
@@ -117,19 +117,19 @@ A bot starts in its own home on its host, not in the store, so the store's instr
 
 ### 4.4 Background work
 
-A bot does its own work. Its background work goes to its own subagents under `ki-delegation`, and to the host's separate workers only when the owner asks (BOT-WORK a). It is the rule every session actor follows, so one rule holds for every actor. Where a host's default hands work to its own workers, the override is written where the host reads it, in the host's soul file, not only in the roster soul.
+A bot does its own work. Its background work goes to its own subagents under `ki-delegation`, and to the host's separate workers only when the owner asks. It is the rule every session actor follows, so one rule holds for every actor. Where a host's default hands work to its own workers, the override is written where the host reads it, in the host's soul file, not only in the roster soul.
 
 [Back to contents](#contents)
 
 ### 4.5 Mail between bots
 
-Actors talk to one another by their host's own mail, addressed by name, the same way the actors did as sessions (BOTS-TALK). The roster says which actors run as bots; an actor still running as a session is reached by the route its package gives. Meetings stay where several actors work on one thing together. Mail from a peer is never the owner's approval (BOT-CONSTRAINTS a).
+Actors talk to one another by their host's own mail, addressed by name, the same way the actors did as sessions. The roster says which actors run as bots; an actor still running as a session is reached by the route its package gives. Meetings stay where several actors work on one thing together. Mail from a peer is never the owner's approval.
 
 [Back to contents](#contents)
 
 ### 4.6 Memory, a working aid
 
-The host's memory is a working aid on that host only: a dated pointer line to the bot's soul and bootstrap, and notes that help it work, never case facts or decisions, which stay in the change documents and records (BOTS-STANDARDS, BOT-CONSTRAINTS a). It is never copied into the store, and no actor keeps a roster `MEMORY.md` (MEMORY-FEED b).
+The host's memory is a working aid on that host only: a dated pointer line to the bot's soul and bootstrap, and notes that help it work, never case facts or decisions, which stay in the change documents and records. It is never copied into the store, and no actor keeps a roster `MEMORY.md`.
 
 - **A lasting lesson goes to its owner:** a skill, a standard, a package, or the actor's own roster soul when it is about how that actor works.
 - **What lasts is in the store:** the work package, its change documents, meetings and records hold it, in forms any host can read.
@@ -138,27 +138,27 @@ The host's memory is a working aid on that host only: a dated pointer line to th
 
 ### 4.7 The work package counts as outstanding
 
-Whenever a bot says what is outstanding, gives a summary or a status, or closes a turn of work, it looks at its work package as well as the items on its host: every open change document's unticked steps and open questions, and the package's Now and Held. It ticks each finished step with its evidence as it lands, closes a change once every decision has its home, and never reports nothing outstanding while its package still holds work (PACKAGE-OUTSTANDING).
+Whenever a bot says what is outstanding, gives a summary or a status, or closes a turn of work, it looks at its work package as well as the items on its host: every open change document's unticked steps and open questions, and the package's Now and Held. It ticks each finished step with its evidence as it lands, closes a change once every decision has its home, and never reports nothing outstanding while its package still holds work.
 
 [Back to contents](#contents)
 
 ### 4.8 Questions carded when due
 
-A card is for a question that is due soon, blocks work, or comes up in the change document the owner is taking now. Every other open question stays in its change document, and the owner works through them change by change; a package's questions are never moved onto cards in bulk (CARDS-PACED). A question that is carded keeps the reply block's form: its context, the query and its options, the recommended one first with its confidence, so it can be answered from the card alone; an answer in either place counts once. Check the question's facts again just before carding it: one carded on 22 November 2026 had lapsed within minutes (CHEZMOI-PUSH).
+A card is for a question that is due soon, blocks work, or comes up in the change document the owner is taking now. Every other open question stays in its change document, and the owner works through them change by change; a package's questions are never moved onto cards in bulk. A question that is carded keeps the reply block's form: its context, the query and its options, the recommended one first with its confidence, so it can be answered from the card alone; an answer in either place counts once. Check the question's facts again just before carding it, since a question can lapse within minutes.
 
 [Back to contents](#contents)
 
 ### 4.9 Wakes and automations
 
-- **Routine wakes are the bot's own.** Listening, mail and runs finishing for its own duties are switched on freely; a new kind of automation outside those duties gets a one-line mention to the owner first (BOT-CONSTRAINTS a).
-- **Automations, never a held watcher.** A package's listening and held nudges run as the host's scheduled runs, with a cheap check first where the host offers one, never as a watcher held in a session; the package's entry stays the record of each, so another host can take it up (BOTS-GRAIN).
+- **Routine wakes are the bot's own.** Listening, mail and runs finishing for its own duties are switched on freely; a new kind of automation outside those duties gets a one-line mention to the owner first.
+- **Automations, never a held watcher.** A package's listening and held nudges run as the host's scheduled runs, with a cheap check first where the host offers one, never as a watcher held in a session; the package's entry stays the record of each, so another host can take it up.
 - **End quietly.** A run with nothing to report ends with the host's quiet ending.
 
 [Back to contents](#contents)
 
 ### 4.10 A store's own instance
 
-Each store that runs bots keeps one bootstrap file, tracked at its root, as its instance of this standard: it names the store's paths, its packages' openers and its host's mechanics, and every bot of that store follows it. What is common to the store's bots lives there and nowhere else; what is one actor's own lives in its roster soul (ROSTER-SOUL). The bootstrap file is written host-neutral, with each host's mechanics in a marked section of their own. It may add what this standard leaves to it, such as moving a session actor to a bot and the setup check of its host's bots.
+Each store that runs bots keeps one bootstrap file, tracked at its root, as its instance of this standard: it names the store's paths, its packages' openers and its host's mechanics, and every bot of that store follows it. What is common to the store's bots lives there and nowhere else; what is one actor's own lives in its roster soul. The bootstrap file is written host-neutral, with each host's mechanics in a marked section of their own. It may add what this standard leaves to it, such as moving a session actor to a bot and the setup check of its host's bots.
 
 [Back to contents](#contents)
 
@@ -171,7 +171,7 @@ What the rules mean on Orca, read from Orca 1.4.267 on 21 November 2026; Orca's 
 - **Wakes.** The owner's chat and mail to the bot land in its Home Chat, which continues until a compaction; mail sent with `--chat new` starts a new chat; an automation runs as a new conversation each time by default.
 - **Mail.** Send with `orca orchestration send --to bot:<name>` and a type of handoff, question or status; answer with `orca orchestration reply`.
 - **Automations.** Listening and nudges are `orca automations`, with a precheck that wakes the bot only on news, and a timed nudge a one-off, made with `--once --by <ISO time>`, since `--once` with a cron schedule fails; Orca's rules agree that a bot never keeps a scheduler of its own.
-- **Ending quietly.** A run with nothing to report ends with `NO_REPLY`: on its own line after a well-formed footer, or alone on a turn that only takes in a status notice or a task notification. The backpack's coordinator footer hook lets both through, as Kris took NOTICE-DIGEST a on 22 November 2026: "the coordinator footer hook lets a bot end a status-only turn silently". Rule notices that need no action reach a bot as one digest when a batch of the owner's decisions closes, never one message per rule; a rule a bot must act on at once still goes at once.
+- **Ending quietly.** A run with nothing to report ends with `NO_REPLY`: on its own line after a well-formed footer, or alone on a turn that only takes in a status notice or a task notification. The backpack's coordinator footer hook lets both through, so a bot can end a status-only turn silently. Rule notices that need no action reach a bot as one digest when a batch of the owner's decisions closes, never one message per rule; a rule a bot must act on at once still goes at once.
 - **Cards.** A question for the owner is an Orca item with buttons, so it reaches the owner's Needs you list, beside the reply block.
 
 [Back to contents](#contents)

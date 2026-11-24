@@ -5,7 +5,7 @@ type: analogy
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, CIVIC-MAP under NAMING-RULE a (11 November 2026), and change 12, CIVIC-MAP a (17 November 2026), one analogy card once the system cards were agreed; prytany and synedrion withdrawn; written as a proposal and agreed as written, CIVIC-AGREE a (19 November 2026)
+origin: Cairn summit change 22 (11 November 2026), and change 12 (17 November 2026), one analogy card after the system cards; prytany and synedrion withdrawn; written as a proposal (19 November 2026)
 links:
   system.work-package:
     predicate: skos:related
@@ -17,7 +17,7 @@ links:
 
 # The civic model, by analogy
 
-This card helps a newcomer grasp the shape of Knowledge Islands' work model quickly, by setting it beside how older civilisations organised the same things: where people meet, who heads a province, how word travels and where records are kept. It is an analogy, never a definition. The system is its own synthesis, taking what each source did well without adopting any one of them, or its prejudices, and its own names come from things in the landscape that outlast their makers, not from a civilisation and its time (NAMING-RULE).
+This card helps a newcomer grasp the shape of Knowledge Islands' work model quickly, by setting it beside how older civilisations organised the same things: where people meet, who heads a province, how word travels and where records are kept. It is an analogy, never a definition. The system is its own synthesis, taking what each source did well without adopting any one of them, or its prejudices, and its own names come from things in the landscape that outlast their makers, not from a civilisation and its time.
 
 The work model's words are defined on their own cards: the [work package][system.work-package], each a node of the work tree, the [role][system.role] and the [seat][system.seat].
 

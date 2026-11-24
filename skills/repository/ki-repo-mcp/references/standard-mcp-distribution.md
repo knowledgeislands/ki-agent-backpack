@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:50:00Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -24,7 +24,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-How a Knowledge Islands MCP server is distributed as governed, versioned Git source: the release evidence its repository supplies and the hand-off to the installer. The sources and decisions behind it are in [the sources file](sources.md).
+How a Knowledge Islands MCP server is distributed as governed, versioned Git source: the release evidence its repository supplies and the hand-off to the installer. The sources behind it are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

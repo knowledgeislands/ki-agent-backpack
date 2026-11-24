@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:10:23Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -23,7 +23,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-How the skills of a Knowledge Islands backpack are grouped into guilds, each led by one skill, with Keystone as the guild of guilds. It sits beside [the Knowledge Islands skill standard](standard-knowledge-islands.md), whose skill shape declares the guild keys this standard gives meaning to. The decisions behind these rules are in [the sources file](sources.md#3-decisions); they were settled in the Cairn summit's change 14.
+How the skills of a Knowledge Islands backpack are grouped into guilds, each led by one skill, with Keystone as the guild of guilds. It sits beside [the Knowledge Islands skill standard](standard-knowledge-islands.md), whose skill shape declares the guild keys this standard gives meaning to. The sources behind these rules are in [the sources file](sources.md); they were settled in the Cairn summit's change 14.
 
 [Back to contents](#contents)
 
@@ -70,23 +70,23 @@ The rules, part by part.
 
 ### 4.1 What a guild is
 
-A guild is a set of skills that belong together and work together, with one purpose a reader can name in a line (GUILD-TERM). Each guild is a tree of skills led by one lead skill, which discloses the rest the way a skill discloses its references: a lead says what the guild is for and names each member with when to use it, and a member is loaded only when it is needed (GUILD-LEAD). A guild is not a layer above skills. Nothing new sits above a skill, a guild stays within what a skill can be, and a skill family's prefix already shows the same grouping on a smaller scale.
+A guild is a set of skills that belong together and work together, with one purpose a reader can name in a line. Each guild is a tree of skills led by one lead skill, which discloses the rest the way a skill discloses its references: a lead says what the guild is for and names each member with when to use it, and a member is loaded only when it is needed. A guild is not a layer above skills. Nothing new sits above a skill, a guild stays within what a skill can be, and a skill family's prefix already shows the same grouping on a smaller scale.
 
-Every guild has exactly one lead, and a skill leads at most one guild. A lead may be any kind of skill, a knowledge skill included, as `ki-agentic-ecosystems` leads the Agentic ecosystems guild (AGENTS-GUILD).
+Every guild has exactly one lead, and a skill leads at most one guild. A lead may be any kind of skill, a knowledge skill included, as `ki-agentic-ecosystems` leads the Agentic ecosystems guild.
 
 [Back to contents](#contents)
 
 ### 4.2 Keystone
 
-Keystone is the guild of guilds (KEYSTONE-HUB). Its lead, `ki-keystone`, mostly signposts: it points to each guild's lead. Each guild's lead is a member of Keystone as well as the root of its own guild, so Keystone lists the leads and each guild opens from its lead. `ki-keystone` itself is the one exception, at the top; there is no deeper hierarchy.
+Keystone is the guild of guilds. Its lead, `ki-keystone`, mostly signposts: it points to each guild's lead. Each guild's lead is a member of Keystone as well as the root of its own guild, so Keystone lists the leads and each guild opens from its lead. `ki-keystone` itself is the one exception, at the top; there is no deeper hierarchy.
 
-Keystone stays minimal (KEYSTONE-MIN). It holds only what every other guild rests on, and never becomes a dumping ground. **The joining rule:** a skill joins Keystone only when it is a guild's lead, or when every guild rests on it, as `ki-skills` and `ki-knowledge-graph` do. A skill that serves one guild joins that guild, however widely it is used. `ki-repo` stays in Keystone, among its best-known skills, and leads the Repository guild (GUILD-PLACE).
+Keystone stays minimal. It holds only what every other guild rests on, and never becomes a dumping ground. **The joining rule:** a skill joins Keystone only when it is a guild's lead, or when every guild rests on it, as `ki-skills` and `ki-knowledge-graph` do. A skill that serves one guild joins that guild, however widely it is used. `ki-repo` stays in Keystone, among its best-known skills, and leads the Repository guild.
 
 [Back to contents](#contents)
 
 ### 4.3 Names and prefixes
 
-A guild's lead is named after it, and the guild's prefix is the lead's name: `ki-repo` and `ki-repo-*`, `ki-work` and `ki-work-*` (GUILD-NAMED). A new member of a guild takes the guild's prefix. A member's own family extends the prefix, as `ki-env-binding` and `ki-env-binding-claude` do.
+A guild's lead is named after it, and the guild's prefix is the lead's name: `ki-repo` and `ki-repo-*`, `ki-work` and `ki-work-*`. A new member of a guild takes the guild's prefix. A member's own family extends the prefix, as `ki-env-binding` and `ki-env-binding-claude` do.
 
 The guilds' names and prefixes are settled:
 
@@ -95,10 +95,10 @@ The guilds' names and prefixes are settled:
 | Keystone | `ki-keystone` | None: its members are leads and what every guild rests on |
 | Repository | `ki-repo` | `ki-repo-` |
 | Work | `ki-work` | `ki-work-` |
-| Agentic ecosystems | `ki-agentic-ecosystems` | `ki-agentic-` (AGENTS-GUILD, GUILD-FOLLOWS) |
+| Agentic ecosystems | `ki-agentic-ecosystems` | `ki-agentic-` |
 | Acquire | `ki-acquire` | `ki-acquire-` |
-| Environment | `ki-env` | `ki-env-` (ENV-PREFIX) |
-| Design | `ki-design` | `ki-design-` (DESIGN-LEAD) |
+| Environment | `ki-env` | `ki-env-` |
+| Design | `ki-design` | `ki-design-` |
 | Authoring | `ki-authoring` | `ki-authoring-` |
 
 A member named before its guild was settled keeps its name until its guild is reviewed, as `ki-git`, `ki-engineering`, `ki-coordination` and the four writing skills of Authoring do: the prefix is required of new members, and a rename is decided, never assumed. A guild's machine name, the value its members declare, is its name in lower-case kebab case, as `agentic-ecosystems`.
@@ -107,10 +107,10 @@ A member named before its guild was settled keeps its name until its guild is re
 
 ### 4.4 Membership
 
-Membership is declared, never foldered (GUILD-PLACE). Every Knowledge Islands skill names its guild in exact frontmatter, `ki-guild: <guild>`, and a lead also names the guild it leads, `ki-leads: <guild>`. Both keys carry the `ki-` prefix every Knowledge Islands key carries, so neither collides with the Agent Skills specification's (KI-KEYS).
+Membership is declared, never foldered. Every Knowledge Islands skill names its guild in exact frontmatter, `ki-guild: <guild>`, and a lead also names the guild it leads, `ki-leads: <guild>`. Both keys carry the `ki-` prefix every Knowledge Islands key carries, so neither collides with the Agent Skills specification's.
 
 - **A lead is a member of Keystone,** `ki-guild: keystone`, and only `ki-keystone` declares `ki-leads: keystone`.
-- **The folder is storage, not structure.** A backpack stores its skills in one folder per guild, named by the guild's machine name, with every lead in `keystone/` (GUILD-FOLDERS); tools and readers take membership from the frontmatter, never from the path.
+- **The folder is storage, not structure.** A backpack stores its skills in one folder per guild, named by the guild's machine name, with every lead in `keystone/`; tools and readers take membership from the frontmatter, never from the path.
 - **A repository-local `ki-self`** belongs to no guild.
 
 The Knowledge Islands skill standard's [skill shape](standard-knowledge-islands.md#42-skill-shape) carries the keys, rubric **KI-SHAPE-22** checks each skill's declaration, and the backpack's capability publication checks the collection: every skill declares a guild, every lead is a member of Keystone, and no guild has more than one lead.
@@ -123,8 +123,8 @@ A lead discloses its guild the way a skill discloses its references: a little at
 
 1. **One line of purpose.** The lead's description and opening say what the guild is for, so a session knows whether it is in the right place.
 2. **Its members, each with when to use it.** The lead names each member once, with the request or repository shape that calls for it, and leaves the member's own rules to the member. Where a member is a family's lead, the guild's lead names the family lead, not each runtime skill.
-3. **Family leads.** Where runtime skills share rules, a family lead holds them and each runtime skill adds only its runtime's delta, as `ki-env-binding`, `ki-env-housekeeping` and `ki-env-tokenomics` do for their Claude and ChatGPT skills (HOUSEKEEPING-LEAD).
-4. **Process skills as subcommands.** Process skills that form one lifecycle become subcommands of their guild's lead, as governance skills already have modes (PROCESS-SUBCOMMANDS): `ki-work next | plan | implement | accept | recap | design`, and `ki-acquire pulse`. `ki-bootstrap` became `ki-keystone bootstrap` the same way (BOOTSTRAP-FOLD).
+3. **Family leads.** Where runtime skills share rules, a family lead holds them and each runtime skill adds only its runtime's delta, as `ki-env-binding`, `ki-env-housekeeping` and `ki-env-tokenomics` do for their Claude and ChatGPT skills.
+4. **Process skills as subcommands.** Process skills that form one lifecycle become subcommands of their guild's lead, as governance skills already have modes: `ki-work next | plan | implement | accept | recap | design`, and `ki-acquire pulse`. `ki-bootstrap` became `ki-keystone bootstrap` the same way.
    - Each subcommand's detail is a reference, `references/mode-<verb>.md`, loaded only when the subcommand is called.
    - A boundary the separate skill kept survives as a rule of its subcommand: `implement` never accepts its own work, and `accept` needs the owner's approval.
    - Not every process folds: one outside a lifecycle stays a skill of its own until its guild is reviewed, as `ki-design-inspiration` does.
@@ -134,6 +134,6 @@ A lead discloses its guild the way a skill discloses its references: a little at
 
 ### 4.6 The guild map
 
-`ki-keystone` holds the guild map: each guild in a line, with its purpose and its lead, generated from the skills' frontmatter rather than written by hand (KEYSTONE-SKILL). It also names where a session starts in a repository, `ki-repo`, `ki-authoring` and `ki-agentic-ecosystems`, and states Keystone's joining rule, pointing here for the rest of the guild rules. A backpack's published skills catalogue groups skills by their declared guild in the same way.
+`ki-keystone` holds the guild map: each guild in a line, with its purpose and its lead, generated from the skills' frontmatter rather than written by hand. It also names where a session starts in a repository, `ki-repo`, `ki-authoring` and `ki-agentic-ecosystems`, and states Keystone's joining rule, pointing here for the rest of the guild rules. A backpack's published skills catalogue groups skills by their declared guild in the same way.
 
 [Back to contents](#contents)

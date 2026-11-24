@@ -64,7 +64,7 @@ A `tools-*` repo opts into this standard by declaring `[skills.ki-repo-tools]` i
 
 ## The Homebrew tap
 
-The tools' second channel is the tap, `homebrew-tap`, whose `Formula/*.rb` makes `brew install knowledgeislands/tap/<tool>` resolve. Its shape is this skill's distribution standard, [the Homebrew tap standard](references/standard-homebrew-tap.md), taken in from the retired Homebrew tap skill under REPO-OTHERS a. A tap declares `primary_shape = "ki-repo-homebrew-tap"` with a keyless `[skills.ki-repo-tools]` table; the audit then runs only the `TAP` and `CONFIG` families, since the tool checks govern the tools, not their distribution. The standard wraps Homebrew's own: three rules carry most findings, and its rules are labelled _(spec)_ or _(shape)_ so a house preference is never presented as a Homebrew "MUST".
+The tools' second channel is the tap, `homebrew-tap`, whose `Formula/*.rb` makes `brew install knowledgeislands/tap/<tool>` resolve. Its shape is this skill's distribution standard, [the Homebrew tap standard](references/standard-homebrew-tap.md), taken in from the retired Homebrew tap skill. A tap declares `primary_shape = "ki-repo-homebrew-tap"` with a keyless `[skills.ki-repo-tools]` table; the audit then runs only the `TAP` and `CONFIG` families, since the tool checks govern the tools, not their distribution. The standard wraps Homebrew's own: three rules carry most findings, and its rules are labelled _(spec)_ or _(shape)_ so a house preference is never presented as a Homebrew "MUST".
 
 1. **The tap is `Formula/*.rb`, one formula per tool**, the filename being the formula name; no `Formula/` is a FAIL.
 2. **A formula sources a versioned release, never HEAD**: a tagged tarball with its `sha256`.

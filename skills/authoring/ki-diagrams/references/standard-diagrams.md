@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T20:59:09Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -92,7 +92,7 @@ Archify was chosen on 2026-10-03 against six criteria: visual quality, a committ
 - it has no route or import-graph importer;
 - its command line has no SVG export, which [the exporter](#483-the-svg-exporter) supplies.
 
-Mermaid and Graphviz were excluded at the owner's direction as not good enough to look at. Mermaid's place is now pending re-evaluation on its current rendering (state, Sankey), since Kris noted on 29 October 2026 that it "looks like it has massively improved its rendering recently"; until that re-evaluation settles it, the exclusion and the audit warning below stand. The audit warns on each fenced `mermaid` block left in the repository's tracked Markdown, naming its file and line, until it is replaced by an Archify diagram or the owner decides to keep it, as Kris set on 19 October 2026 under DIAGRAM-REPLACE: "Re mermaid diagrams, if they can be replaced with archify they should be, e.g. activity diagrams. Flag any others that don't and I'll decide about them too". A kept diagram carries `<!-- ki-diagrams: keep mermaid -->` on the line before its fence, so the decision sits beside it: Mermaid diagrams found in a repository are replaced by Archify diagrams wherever Archify can carry them, and the rest are flagged to the owner. D2 is allowed only for maps generated mechanically from code, such as a route manifest or a dependency graph, styled from the Tessera tokens; it has no interactive HTML. LikeC4 models C4 architecture only; Structurizr looks dated; Stately suits state charts only where XState is adopted; SlickMap has no dark theme; Ilograph, Eraser and IcePanel need payment or SaaS, which fails the private-repository rule; tldraw and Excalidraw are hand-drawn rather than generated; react-scanner, Storybook Composition and framework route visualisers are category mismatches. [Sources](sources.md) lists the evidence for each, and [tool preference by diagram kind](#42-tool-preference-by-diagram-kind) ranks the candidates in the owner's order.
+Mermaid and Graphviz are excluded as not good enough to look at. Mermaid's place is pending re-evaluation on its current rendering (state, Sankey), which has much improved; until that re-evaluation settles it, the exclusion and the audit warning below stand. The audit warns on each fenced `mermaid` block left in the repository's tracked Markdown, naming its file and line, until it is replaced by an Archify diagram or the owner decides to keep it. A kept diagram carries `<!-- ki-diagrams: keep mermaid -->` on the line before its fence, so the decision sits beside it: Mermaid diagrams found in a repository are replaced by Archify diagrams wherever Archify can carry them, such as activity diagrams, and the rest are flagged to the owner to decide. D2 is allowed only for maps generated mechanically from code, such as a route manifest or a dependency graph, styled from the Tessera tokens; it has no interactive HTML. LikeC4 models C4 architecture only; Structurizr looks dated; Stately suits state charts only where XState is adopted; SlickMap has no dark theme; Ilograph, Eraser and IcePanel need payment or SaaS, which fails the private-repository rule; tldraw and Excalidraw are hand-drawn rather than generated; react-scanner, Storybook Composition and framework route visualisers are category mismatches. [Sources](sources.md) lists the evidence for each, and [tool preference by diagram kind](#42-tool-preference-by-diagram-kind) ranks the candidates in preference order.
 
 The tool choice is recorded here rather than in a Decision Record. `ADR-KI-HARNESS-TOOLCHAIN-002` lists Archify among the backpack's adopted complementary tools and links back to this section.
 
@@ -100,13 +100,13 @@ The tool choice is recorded here rather than in a Decision Record. `ADR-KI-HARNE
 
 ### 4.2 Tool preference by diagram kind
 
-The order the owner set, how a diagram is sketched and then beautified, the tools kept for inspiration, and KI's own tool.
+The tool preference order, how a diagram is sketched and then beautified, the tools kept for inspiration, and KI's own tool.
 
 [Back to contents](#contents)
 
 #### 4.2.1 The order
 
-Kris asked on 29 October 2026, under DIAGRAM-TOOLS, for the diagram tools to be ranked "as candidates for those [kinds of diagram] ... in a preference order", so that "we can make the best use of them". The order is built only from his stated likes:
+The diagram tools are ranked as candidates for each kind of diagram, in a preference order, so that the best use is made of them. The order is built only from the owner's stated likes:
 
 1. **Archify** first: "I really like Archify".
 2. **Liked:** Stately/XState ("Stately might be pretty decent"), LikeC4 for C4 architecture ("the C4 ones, they're really good") and Isoflow/FossFLOW ("I love Isoflow as well").
@@ -142,13 +142,13 @@ The order says which tool to reach for. It widens nothing about what is committe
 
 #### 4.2.2 Sketch, then beautify
 
-To find a diagram's shape quickly, sketch it in Mermaid and iterate on the simplified output; once the shape settles, beautify it in Archify, which gives the committed form. Kris put it this way on 29 October 2026: "perhaps it's okay to do this using mermaid just to get some quick output ... iterate with a simplified output and then beautify that with another one". Ways of working took Archify for the beautify step, and the work state machine Kris agreed on 29 October 2026 under DIAGRAM-AGREED was drawn that way. A sketch is a working draft: keep it in the conversation or a temporary folder, out of the committed diagram set, since a Mermaid block left in tracked Markdown draws the audit's warning like any other.
+To find a diagram's shape quickly, sketch it in Mermaid and iterate on the simplified output; once the shape settles, beautify it in Archify, which gives the committed form. A sketch is a working draft: keep it in the conversation or a temporary folder, out of the committed diagram set, since a Mermaid block left in tracked Markdown draws the audit's warning like any other.
 
 [Back to contents](#contents)
 
 #### 4.2.3 Inspiration only
 
-Ilograph, Eraser, IcePanel and Napkin are paid or software-as-a-service tools, which fails the private-repository rule. They are inspiration only: study what they do well and carry the parts KI likes into its own tools, as Kris said: "the SaaS ones can inform what we're doing. We can always reverse engineer aspects that we like".
+Ilograph, Eraser, IcePanel and Napkin are paid or software-as-a-service tools, which fails the private-repository rule. They are inspiration only: study what they do well and reverse-engineer the parts KI likes into its own tools.
 
 [Back to contents](#contents)
 
@@ -232,7 +232,7 @@ The slug is lower-case kebab-case and names the question's subject, not the type
 | `commit_html`  | Optional; `true` commits the diagram's `<slug>.html` and its receipt, and absent or `false` keeps it local |
 | `svg_form`     | Optional; the [SVG form](#44-committed-forms), one of `dual`, `light`, `ki`, `ki-night`, absent meaning `dual` |
 
-`docs/diagrams/_index.md` is the reader-facing index and the folder's page, with no `README.md` beside it, under `ki-authoring`'s docs-folder rule (DOCS-LANDING-GITHUB); an earlier `README.md` alone is still read, with a warning, until renamed. It holds a short introduction, one section per diagram stating its question in prose, and the SVG embedded with `![Title](<slug>.svg)`, or, for a diagram with a [dark variant](#441-the-forms), the `<picture>` pair whose `<img>` is `<slug>.svg`; a diagram with `commit_html = true` also links its figure to `<slug>.html`, for example `[![Title](<slug>.svg)](<slug>.html)`. It does not repeat the manifest's operational fields. Both templates ship in the skill's `assets/`.
+`docs/diagrams/_index.md` is the reader-facing index and the folder's page, with no `README.md` beside it, under `ki-authoring`'s docs-folder rule; an earlier `README.md` alone is still read, with a warning, until renamed. It holds a short introduction, one section per diagram stating its question in prose, and the SVG embedded with `![Title](<slug>.svg)`, or, for a diagram with a [dark variant](#441-the-forms), the `<picture>` pair whose `<img>` is `<slug>.svg`; a diagram with `commit_html = true` also links its figure to `<slug>.html`, for example `[![Title](<slug>.svg)](<slug>.html)`. It does not repeat the manifest's operational fields. Both templates ship in the skill's `assets/`.
 
 [Back to contents](#contents)
 
@@ -270,7 +270,7 @@ No committed source, SVG or HTML may carry:
 
 Sources cite repository-relative paths. A repository URL in a source's metadata is the repository's own public remote or is omitted. The audit checks the mechanical cases; naming a private repository or a person is a judgment it asks for.
 
-**Citations.** Where the remote is public, a diagram may cite the revision and lines it was traced from through Archify's own citation object, which carries the repository URL. Where the remote is private, the citation is URL-free: a `traced` entry in the manifest, and the node metadata in the source, carry `path:revision:lines`, the repository-relative path, the short revision and the line or line range, as in `src/beacon.ts:0123abc:12-40`, with no URL, no repository name and no commit subject. A source may also cite paths alone, as before. The audit accepts either form, reads the path part of a cited entry for the [freshness](#48-regeneration-and-freshness) check, and fails an entry whose suffix is neither a revision nor a revision and lines. Kris settled the form under DIAGRAM-PRIVATE-CITATIONS on 26 October 2026, extending the rule above without a new privacy exception.
+**Citations.** Where the remote is public, a diagram may cite the revision and lines it was traced from through Archify's own citation object, which carries the repository URL. Where the remote is private, the citation is URL-free: a `traced` entry in the manifest, and the node metadata in the source, carry `path:revision:lines`, the repository-relative path, the short revision and the line or line range, as in `src/beacon.ts:0123abc:12-40`, with no URL, no repository name and no commit subject. A source may also cite paths alone, as before. The audit accepts either form, reads the path part of a cited entry for the [freshness](#48-regeneration-and-freshness) check, and fails an entry whose suffix is neither a revision nor a revision and lines. This form extends the rule above without a new privacy exception.
 
 [Back to contents](#contents)
 

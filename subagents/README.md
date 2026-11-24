@@ -10,7 +10,7 @@ The governing skill for what makes a good agent definition is **`ki-subagents`**
 
 ## Register
 
-This file is the backpack's **role register**: every role source under `subagents/` is linked from a table below, and every link resolves to a source. There is no `ki` tool surface for subagent roles; an agent run installs them into each host, reading this register to find every role, under `ki-subagents`' [register and install](../skills/agentic-ecosystems/ki-subagents/references/standard-portable-subagents.md#45-register-and-install) rule (SUBAGENT-PUBLISHER a). `ki-subagents`' REGISTER-1 checks that no role source is left out.
+This file is the backpack's **role register**: every role source under `subagents/` is linked from a table below, and every link resolves to a source. There is no `ki` tool surface for subagent roles; an agent run installs them into each host, reading this register to find every role, under `ki-subagents`' [register and install](../skills/agentic-ecosystems/ki-subagents/references/standard-portable-subagents.md#45-register-and-install) rule. `ki-subagents`' REGISTER-1 checks that no role source is left out.
 
 ## governance/
 

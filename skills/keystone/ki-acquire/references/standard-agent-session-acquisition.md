@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T19:59:53Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -21,7 +21,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-How a Claude or Codex agent session is acquired whole, as an owner-selected exception, under [the common acquisition standard](standard-acquisition.md). The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+How a Claude or Codex agent session is acquired whole, as an owner-selected exception, under [the common acquisition standard](standard-acquisition.md). The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

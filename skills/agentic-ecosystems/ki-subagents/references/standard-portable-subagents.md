@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:25:51Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -98,11 +98,11 @@ Claude Code Markdown/YAML and its fields are owned by `ki-subagents-claude`. Cod
 
 ### 4.5 Register and install
 
-There is no `ki` tool surface for subagent roles, and none is to be added. Kris settled this on 23 November 2026 (SUBAGENT-PUBLISHER a, refined): "Yeah, just install them by hand, but automated for you. There's no need to add a tool surface for it, right? And yeah, they should be registered as well, actually. So it's important that it picks those up."
+There is no `ki` tool surface for subagent roles, and none is to be added. Roles are installed by hand, through an automated agent run rather than a tool, and every role is registered so that the install run picks it up.
 
 **The register.** Each backpack's `subagents/README.md` is its role register. It links every role source under `subagents/`, with the role's lane, and every link resolves to a source; a role that is not linked is not registered, and the install run does not see it. REGISTER-1 checks this mechanically.
 
-The register is the backpack's README rather than a `[skills.ki-subagents]` list in a territory's `.ki.toml` for three reasons. The roles are authored in the backpack, so the register sits beside them and a new role and its registration are reviewed in one commit. The install run already reads the backpack it installs from, which is the territory's own. And a `.ki.toml` property is validated by the `ki` host, so it would need the tool-side change the decision rules out, and would repeat the list in each repository that declares the skill.
+The register is the backpack's README rather than a `[skills.ki-subagents]` list in a territory's `.ki.toml` for three reasons. The roles are authored in the backpack, so the register sits beside them and a new role and its registration are reviewed in one commit. The install run already reads the backpack it installs from, which is the territory's own. And a `.ki.toml` property is validated by the `ki` host, so it would need the tool-side change this section rules out, and would repeat the list in each repository that declares the skill.
 
 **The install run.** An agent run installs the roles into one host. The owner asks for it, or a coordinating session starts it under `ki-delegation`, after a role is added, changed or removed:
 

@@ -20,6 +20,6 @@
 
 ## Challenges
 
-- <An earlier decision, by its words and date> - <why the evidence suggests revisiting it, with source>
+- <An earlier decision, by what it changed> - <why the evidence suggests revisiting it, with source>
 
 <Or `None`.>

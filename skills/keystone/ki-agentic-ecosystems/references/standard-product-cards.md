@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:10:23Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: draft
 ---
 
@@ -22,7 +22,7 @@ ki-status: draft
 
 ## 1. Introduction
 
-The ecosystem map's knowledge base is one card per product in this skill's knowledge graph, beside the term cards, and the matrix, the crosswalk and the agenticecosystems.info site are generated from it (ECOSYSTEM-HOME b, ECOSYSTEM-SHAPE a). A product card says what one agentic product is and who makes it, what it can do against the graph's terms, how things stand with it on a given date, and where each fact came from, in a shape fixed enough for a generator to read. This standard sets that shape. It is a draft, written with the first product cards on 22 November 2026, for the owner's review in ki.summit's change 21. The decisions behind it are in [the sources](sources.md#3-decisions).
+The ecosystem map's knowledge base is one card per product in this skill's knowledge graph, beside the term cards, and the matrix, the crosswalk and the agenticecosystems.info site are generated from it. A product card says what one agentic product is and who makes it, what it can do against the graph's terms, how things stand with it on a given date, and where each fact came from, in a shape fixed enough for a generator to read. This standard sets that shape. It is a draft, written with the first product cards on 22 November 2026, for the owner's review in ki.summit's change 21. The sources behind it are in [the sources](sources.md).
 
 [Back to contents](#contents)
 
@@ -91,7 +91,7 @@ Beside the properties every card carries, a product card's front matter holds:
 In this order:
 
 1. **The title,** as `# <title>`.
-2. **What it is,** in one paragraph, purpose first (PURPOSE-FIRST): what the product lets its users do, then what it is, who makes it, the surfaces it runs on and its licence, each fact cited.
+2. **What it is,** in one paragraph, purpose first: what the product lets its users do, then what it is, who makes it, the surfaces it runs on and its licence, each fact cited.
 3. **`## Contents`:** links to the three sections that follow.
 4. **`## Capabilities`:** the capabilities table, [4.4](#44-capabilities).
 5. **`## State of play`:** a list of dated items, newest first, each `- **YYYY-MM-DD:** <what happened>` with its sources. An item is added, never rewritten; one that stops being true is answered by a newer item.

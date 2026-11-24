@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T00:54:54Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -25,7 +25,7 @@ ki-status: in force
 
 How an exchange dynamics analysis is presented. Read [the exchange dynamics standard](standard-exchange-dynamics.md) first: a rendering reads the analysis and nothing else, adds no reading of its own, and changes only with a fresh analysis. The same analysis can be rendered as a one-page infographic, a Markdown report or a PDF, and the reference layout below can be reproduced by any rendering model.
 
-The sources and decisions behind these rules are in [the sources file](sources.md).
+The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

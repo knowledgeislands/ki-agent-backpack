@@ -7,7 +7,7 @@ territory: knowledge-islands
 island: ki-agent-backpack
 vendor: Ollama
 reviewed: 2026-11-22
-origin: ki.summit change 21, ECOSYSTEMS-SITE (22 November 2026)
+origin: ki.summit change 21 (22 November 2026)
 links:
   industry.model:
     predicate: skos:related

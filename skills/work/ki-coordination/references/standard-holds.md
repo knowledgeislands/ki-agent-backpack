@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-24T03:22:50Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -19,7 +19,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This file holds draining, the paused hold, Snoozing and release, and standing a seat down. It extends [the core](standard-coordination.md). The decisions behind its rules are in [the sources file](sources.md).
+This file holds draining, the paused hold, Snoozing and release, and standing a seat down. It extends [the core](standard-coordination.md). The sources behind its rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -117,9 +117,7 @@ On hold is the Work Process note's state, with its two reasons: paused, and more
   - The owner's `pause`, `done for now` or `snooze` turns an idle hold into the owner's form, `hold.set_by: owner`. A hold with no `set_by` was set by the owner.
 - **Paused work and urgent work:** a paused hold stays closed to whatever arrives. Work sent to it waits in its package. The node above, acting for the held work under [acting for idle work](standard-territory.md#411-territory-work), puts anything that will not wait to the owner as a `resume` query in the Open section of its own change document for that work; the package stays paused until the owner answers. A sender with genuinely urgent work sends it to the owner under [Urgent work](standard-messages.md#messages-between-work), not into the paused package.
 - **Release:** `resume`, the release condition being met, or, while Snoozing, a new line or new work, moves the work to Handoff to worker. The coordinator re-reads the package, takes the parked queries in the change documents' Open sections back up as open and starts from `_index.md`'s Now. `finish` moves the work to Finished. A paused hold older than 31 days is flagged in the views.
-  - A stood-down seat comes back only on the owner's word (STANDDOWN-RETURN a, 20 November 2026). When a timed return falls due, the guardian nudges the owner about every hour until the owner restarts the seat or gives a new return time. A seat is never restarted automatically: a due return is a reminder, not a release.
-
-Sources: HOLD-DRAIN, HOLD-NAMES, HOLD-TIDY, SNOOZE, DRAIN-END, TERRITORY-HOLD, SNOOZE-STATE, SNOOZE-HEADING, HOLD-IDLE, HOLD-SELF, HOLD-LISTEN, HOLD-URGENT and STANDDOWN-RETURN in [the decision register](sources.md#3-decisions).
+  - A stood-down seat comes back only on the owner's word. When a timed return falls due, the guardian nudges the owner about every hour until the owner restarts the seat or gives a new return time. A seat is never restarted automatically: a due return is a reminder, not a release.
 
 [Back to contents](#contents)
 
@@ -127,12 +125,10 @@ Sources: HOLD-DRAIN, HOLD-NAMES, HOLD-TIDY, SNOOZE, DRAIN-END, TERRITORY-HOLD, S
 
 A hold rests a package; a stand-down rests the actor seated at it. The two are independent, each recorded in its own place, though often aligned, under `ki-work-package`'s [state](../../ki-work-package/references/standard-work-package.md#45-the-state). A seat stands down to protect the owner's focus, so that work which is not the priority does not pull the owner into switching tasks; its package stays, with its follow-ups and due dates in view.
 
-- **Standing down** (STAND-DOWN-GO a, 20 November 2026): the seat drains its runs, commits and pushes its own work and tidies its package, as [Putting work on hold](#41-putting-work-on-hold) sets, marks its own roster entry stood down, then gives its Stop. Its session is ended only after the Stop, by the owner or the guardian. It comes back as a fresh session opened from its package's opener, which clears the roster mark as its first step, and only as **Release** in 4.1 sets.
+- **Standing down:** the seat drains its runs, commits and pushes its own work and tidies its package, as [Putting work on hold](#41-putting-work-on-hold) sets, marks its own roster entry stood down, then gives its Stop. Its session is ended only after the Stop, by the owner or the guardian. It comes back as a fresh session opened from its package's opener, which clears the roster mark as its first step, and only as **Release** in 4.1 sets.
 - **The roster mark** is `ki-presence: stood-down`, with `ki-presence_until` and `ki-presence_said` for a timed return, as the Cairn store's roster holds under STANDDOWN-FIELD a. An indefinite stand-down means no fixed return; it says nothing about how much the work matters.
-- **The guardian is never stood down** (Kris, 20 November 2026): the root's coordinator stays the owner's main conduit. When a stood-down seat's package has a deadline coming up, the guardian tells the owner, who decides whether the seat comes back.
-- **Focus mode** (Kris, 20 November 2026): a pilot group keeps working, today Cairn, Personal and Knowledge Islands, and changes are tried there before they spread; every other seat takes a break. The group is not fixed.
-- **Background only** (QUIET-FORM c, adjusted, 20 November 2026): the quiet form short of a stand-down. The seat does its agreed work first, then any high-confidence, low-hanging fruit, and the owner does not hear from it for a while; its news reaches the owner only as **Quiet news** in [Work between packages](standard-messages.md#43-work-between-packages) sets. Whether it is working or waiting shows as before, and the background-only instruction shows beside that in a field of its own, `ki-attention: background-only`, since `ki-presence` stays for stood-down alone (QUIET-FIELD a, Kris, 21 November 2026, about 23:00 GMT). A timed instruction adds `ki-attention_until`, an ISO instant with its zone, and `ki-attention_said`, the owner's own words. The field is left out when it is not set and never holds a `normal` value; its lasting home is the Cairn store's roster.
-
-Sources: STAND-DOWN-GO, STANDDOWN-RETURN, QUIET-FORM and QUIET-FIELD in [the decision register](sources.md#3-decisions); the guardian and focus mode are Kris's words of 20 November 2026 at 16:26 and 16:28 GMT, recorded in the Cairn summit's [change 50, 4.9](https://github.com/krisb/ki-cairn-store/blob/4fcaf48d8c9d3c280021a5cdc758bb770310e688/work/cairn/cairn.summit/50-rooms.change.md#49-timed-and-indefinite-stand-downs).
+- **The guardian is never stood down:** the root's coordinator stays the owner's main conduit. When a stood-down seat's package has a deadline coming up, the guardian tells the owner, who decides whether the seat comes back.
+- **Focus mode:** a pilot group keeps working, today Cairn, Personal and Knowledge Islands, and changes are tried there before they spread; every other seat takes a break. The group is not fixed.
+- **Background only:** the quiet form short of a stand-down. The seat does its agreed work first, then any high-confidence, low-hanging fruit, and the owner does not hear from it for a while; its news reaches the owner only as **Quiet news** in [Work between packages](standard-messages.md#43-work-between-packages) sets. Whether it is working or waiting shows as before, and the background-only instruction shows beside that in a field of its own, `ki-attention: background-only`, since `ki-presence` stays for stood-down alone. A timed instruction adds `ki-attention_until`, an ISO instant with its zone, and `ki-attention_said`, the owner's own words. The field is left out when it is not set and never holds a `normal` value; its lasting home is the Cairn store's roster.
 
 [Back to contents](#contents)

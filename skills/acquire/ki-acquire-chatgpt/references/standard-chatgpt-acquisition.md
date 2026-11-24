@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T00:54:54Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -24,7 +24,7 @@ ki-status: in force
 
 This standard adds ChatGPT's coverage and capability rules to the `ki-acquire` common contract. A capture is the digest the receiving repository's capture route writes from an accessible conversation, or a full-thread snapshot when one is requested. The capture is the only record: keep no checkpoint, mark file, intake receipt or conversation index beside it.
 
-The sources and decisions behind these rules are in [the sources file](sources.md).
+The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

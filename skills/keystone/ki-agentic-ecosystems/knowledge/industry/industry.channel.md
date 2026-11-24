@@ -5,7 +5,7 @@ type: term
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, CARD-CHANNEL a (12 November 2026), and change 12, its wording agreed under CARDS (16 November 2026)
+origin: Cairn summit change 22 (12 November 2026), and change 12, its wording (16 November 2026)
 links:
   industry.session:
     predicate: skos:related
@@ -23,11 +23,11 @@ links:
 
 A channel lets something outside an agent's session reach it while it runs, so the agent can react to events that happen while nobody is watching.
 
-Option A of CARD-CHANNEL was taken on the owner's word for every high-confidence recommendation (12 November 2026): the industry's words only. The owner agreed the card's wording on 16 November 2026.
+This card uses the industry's words only.
 
 ## What the industry says
 
-Anthropic, who lead (LEADERS), define the word: "A channel is an MCP server that pushes events into your running Claude Code session", which may be two-way, the agent replying through it "like a chat bridge"; Telegram, Discord and iMessage are the first, and channels are a research preview ([Claude Code channels][a7]). Anthropic set it apart from three neighbours on the same page:
+Anthropic, who lead, define the word: "A channel is an MCP server that pushes events into your running Claude Code session", which may be two-way, the agent replying through it "like a chat bridge"; Telegram, Discord and iMessage are the first, and channels are a research preview ([Claude Code channels][a7]). Anthropic set it apart from three neighbours on the same page:
 
 - **An integration** starts a new session from an outside system, as Claude in Slack does from a mention; a channel reaches the session already open.
 - **A standard [MCP server][spec.mcp]** is queried by the agent; "nothing is pushed to the session".

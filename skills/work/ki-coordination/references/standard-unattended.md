@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-24T03:22:50Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -20,7 +20,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This file holds away grants, unattended windows, scheduled wakes and headless passes. It extends [the core](standard-coordination.md). The decisions behind its rules are in [the sources file](sources.md).
+This file holds away grants, unattended windows, scheduled wakes and headless passes. It extends [the core](standard-coordination.md). The sources behind its rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -109,8 +109,6 @@ A window is an episode in With worker, not a state: a period the owner grants fo
 
   An optional [interactive pass](standard-queries.md#43-interactive-pass) follows. Strike the next mark only once the owner has seen the return report or finished the pass.
 
-Sources: WINDOW-CLOCK, RETURN-FORM, DENY-LIST, WINDOW-PLAN, CONFLICT-RUN, PROGRESS-SCOPE, UNATTENDED-AWAKE, BATCH-RETIRE and WINDOW-QUESTIONS in [the decision register](sources.md#3-decisions).
-
 [Back to contents](#contents)
 
 ### 4.3 Headless passes
@@ -143,7 +141,5 @@ A headless pass is one bounded coordinator turn without a live session: a machin
   - The next attended Summary or return report carries what passes did since the mark under [the Summary](standard-report-forms.md#417-the-summary), with each miss beside its unit: usage-limit stops, skipped firings, passes that found a live session and failed runs.
   - While the job watches a work, the banner carries it as a `⏰` scheduled item under **Scheduled wakes**, naming the launchd job, its observed next firing, its durable lifetime, its expiry and "stop the wake".
 - **Stopping:** "stop the wake" stops the job starting passes for that work, recorded in the Steps of the change document that named the passes and dropped from the banner. A hold drains it under [Putting work on hold](standard-holds.md#41-putting-work-on-hold), and Finished removes it. A pass stops a run only when the owner has named it and said stop.
-
-Sources: WAKE-SUBSTRATE and OOS-WAKE in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)

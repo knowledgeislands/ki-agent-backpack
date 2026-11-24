@@ -5,7 +5,7 @@ type: term
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, CARDS-AGENT (12 November 2026)
+origin: Cairn summit change 22 (12 November 2026)
 links:
   industry.model:
     predicate: ki:runs
@@ -21,9 +21,9 @@ Vendor text often writes "harness" for the harness and the agent together; read 
 
 ## Our conventions
 
-A territory's bundle of skills, subagents, evals and hooks, such as the `ki-agent-backpack` repository, is not an agent harness: it runs no loop and calls no model. Under INDUSTRY-FIRST it has its own name, a [backpack][system.backpack] (HARNESS-NAME); never call it a harness.
+A territory's bundle of skills, subagents, evals and hooks, such as the `ki-agent-backpack` repository, is not an agent harness: it runs no loop and calls no model. Because the industry's word wins, it has its own name, a [backpack][system.backpack]; never call it a harness.
 
-Knowledge Islands names an agent harness by one of six values: `claude-code`; `codex`; `gemini`; `claude-chat`, Claude's own chat loop in Claude Desktop or claude.ai, Cowork included; `claude-design`; and `chatgpt`, ChatGPT's own loop, voice included. The Cairn store's roster records each agent [actor][system.actor]'s agent harness as `ki-harness`, beside the application it runs in as `ki-host` (PRESENCE-FIELDS a), so one harness keeps one value wherever it runs.
+Knowledge Islands names an agent harness by one of six values: `claude-code`; `codex`; `gemini`; `claude-chat`, Claude's own chat loop in Claude Desktop or claude.ai, Cowork included; `claude-design`; and `chatgpt`, ChatGPT's own loop, voice included. The Cairn store's roster records each agent [actor][system.actor]'s agent harness as `ki-harness`, beside the application it runs in as `ki-host`, so one harness keeps one value wherever it runs.
 
 ## Next
 

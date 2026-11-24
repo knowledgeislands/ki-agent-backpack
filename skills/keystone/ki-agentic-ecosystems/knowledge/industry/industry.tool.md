@@ -5,7 +5,7 @@ type: term
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 12, 4.5, drafted for the owner's review (17 November 2026) and agreed as written, CARDS-AGREE a (17 November 2026); read after the remote agent
+origin: Cairn summit change 12, 4.5, drafted (17 November 2026); read after the remote agent
 links:
   industry.agent:
     predicate: skos:related

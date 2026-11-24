@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T01:09:07Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -19,7 +19,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-How durable documentation in a non-Knowledge-Base repository divides into concerns, and who routes material between them. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+How durable documentation in a non-Knowledge-Base repository divides into concerns, and who routes material between them. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -62,7 +62,7 @@ In a non-Knowledge-Base repository, durable documentation has five concerns:
 - Decision Records explain durable choices.
 - Specifications define behaviour-level contracts.
 - Guides help people use, operate, contribute to, or maintain the system.
-- Designs say what the system is designed to be, each the design that stands, under `docs/design/` (DESIGN-PLACE).
+- Designs say what the system is designed to be, each the design that stands, under `docs/design/`.
 - The Roadmap records planned work.
 
 [Back to contents](#contents)
@@ -71,7 +71,7 @@ In a non-Knowledge-Base repository, durable documentation has five concerns:
 
 `ki-repo` owns this repository-level topology and reviews whether material is routed to the appropriate concern. It does not replace the specialist content contracts owned by `ki-decision-records`, `ki-specs`, `ki-guides`, `ki-design` or `ki-work-roadmap`.
 
-Presentations are not a sixth concern: a presentation presents material the concerns already hold, and lives beside it, in the folder of the design it presents or under `docs/presentations/`, as `ki-authoring`'s [presentation format](../../ki-authoring/references/standard-formats-presentation.md#46-naming-and-place) sets (ARTIFACT-HOMES).
+Presentations are not a sixth concern: a presentation presents material the concerns already hold, and lives beside it, in the folder of the design it presents or under `docs/presentations/`, as `ki-authoring`'s [presentation format](../../ki-authoring/references/standard-formats-presentation.md#46-naming-and-place) sets.
 
 This topology is not a further documentation category and does not require every repository to instantiate every concern. A missing durable contract is a named gap for the relevant specialist skill, not material silently placed in an unowned generic documentation directory. `ki-authoring` continues to govern authored placement and style.
 

@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-21T15:12:06Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -23,7 +23,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This file holds bootstrap, resolving the opener, re-anchoring after compaction, picking work up, red-x recovery and targeted refresh. It extends [the core](standard-coordination.md). The decisions behind its rules are in [the sources file](sources.md).
+This file holds bootstrap, resolving the opener, re-anchoring after compaction, picking work up, red-x recovery and targeted refresh. It extends [the core](standard-coordination.md). The sources behind its rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -81,14 +81,12 @@ A one-line opener brings a new or running session onto this contract, for exampl
 6. acts first on the top line of `_index.md`'s Now, the work's first step, then on whatever has reached the work along the tree under [Work between packages](standard-messages.md#messages-between-work), before launching any work;
 7. as the summit, gathers every record awaiting acceptance across its territory's repositories, the work beneath its nodes included, and brings them first, ahead of every other query, as one bundle per work under [Acceptance bundles](standard-queries.md#48-acceptance-bundles);
 8. gives the Bootstrap, trigger T2 in the [coordinator reply format](standard-report-forms.md#412-triggers), a full Medium [report](standard-reporting.md#42-owner-report) under the [report heading](standard-report-forms.md#42-banner-detail), form line `**Bootstrap at <local time> · last mark <local time>**`:
-   - `## Done` gives its coordinator role and where the work stands, ending with `Rename thread: /rename <thread line>`, the thread line being `<role glyph> 🔑 <work-id>`, written `<Name> (<role glyph> 🔑 <work-id>)` where the seat's actor is named (NAME-FIRST), or `🧵 <work-id>` with no role yet, the same line the opener named, under [Opening work](standard-opening.md#43-opening-work);
+   - `## Done` gives its coordinator role and where the work stands, ending with `Rename thread: /rename <thread line>`, the thread line being `<role glyph> 🔑 <work-id>`, written `<Name> (<role glyph> 🔑 <work-id>)` where the seat's actor is named, or `🧵 <work-id>` with no role yet, the same line the opener named, under [Opening work](standard-opening.md#43-opening-work);
    - `## In Progress` gives what is running;
    - `## Queries` gives the open queries in full, at most three under the [query cap](standard-queries.md#42-query-cap);
    - the [banner](standard-coordination.md#46-banner) and thread line close it, rendered as every banner is, without the roadmap and package lines, the thread line last.
 
 Work opened, bootstrapped or restarted in a new session with no mark strikes one at its start, writing `ki-mark` in `_index.md`'s state fields, so every work carries a mark. [Re-anchoring](#43-re-anchoring-after-compaction) in the same session moves none.
-
-Sources: BOOT-HOME, REBOOT-SHAPE, WORK-REVIEW-RETIRE, OPENER-NAME, FIRST-STEP-HOME, SECONDARY-SOP, ROSTER-SELF, EXEC-ENV-NAMES, QUERY-CAP and QUERY-CAP-3 in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -117,8 +115,6 @@ After any compaction, owner's or runtime's, the coordinator, before answering an
 The style file wins because a session keeps the style it loaded at start through a compaction, so the loaded copy can lag the file on disk; the [compact pointer](standard-coordination.md#47-generated-surfaces) and the style's re-anchoring paragraph say the same.
 
 Re-anchoring moves no mark. The backpack's hook injects a one-line pointer to this section on a compact session start in Claude Code; a Codex session re-anchors on the owner's next message, where the hook's ordinary line reaches it.
-
-Sources: STYLE-STALE in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -151,8 +147,6 @@ Run the [repository level check](standard-sync.md#43-repository-level-check) bef
 - Whatever must be done first on pick-up is the top line of `_index.md`'s Now, written there when the package is seeded and kept there at every move.
 - Work others wait on says `READY` up the tree as feedback, and the node above identifies each waiting piece by its thread line, in its own order.
 
-Sources: PICKUP-PRINCIPLE, PICKUP-READS and FIRST-STEP-HOME in [the decision register](sources.md#3-decisions).
-
 [Back to contents](#contents)
 
 ### 4.5 Recovering a session showing a red x
@@ -163,16 +157,12 @@ A red x in the editor's session list means the backend turn errored, not that th
 2. If the editor will not send into the session, open a new one in the same project folder and identify the work by its id and exact label from the thread line. The coordinator verifies both against `_index.md` before acting; the old transcript becomes history.
 3. The recovered coordinator reports, as part of taking stock, what it missed and what it did about it. That report's `## Done` carries a line saying the session was recovered and when, in UTC.
 
-Sources: RED-X-RECOVERY in [the decision register](sources.md#3-decisions).
-
 [Back to contents](#contents)
 
 ### 4.6 Targeted refresh and landed notices
 
-**Targeted refresh.** No `REFRESH` line is sent since the queue retired (MSG-RETIRE): a method change reaches work through the bootstrap and update revision checks under [Refreshing this guidance](standard-coordination.md#482-refreshing-this-guidance), and the receiver rereads at its next safe point, before launching further work. Held work is not woken.
+**Targeted refresh.** No `REFRESH` line is sent since the message queue retired: a method change reaches work through the bootstrap and update revision checks under [Refreshing this guidance](standard-coordination.md#482-refreshing-this-guidance), and the receiver rereads at its next safe point, before launching further work. Held work is not woken.
 
 **Landed notices.** When a change a coordinator asked for lands, or one that changes how it works, the session that landed it says so along the tree, as steer recorded in that work's package. A coordinator that finds its `ki-method_read` behind at bootstrap, says in its next reply, in a line or two, how its own behaviour has changed, naming the Ways of working change. No acknowledgement line is needed: setting `ki-method_read` is the confirmation.
-
-Sources: REFRESH-TARGET, WOW-REFRESH, LANDED-NOTICE and MSG-RETIRE in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)

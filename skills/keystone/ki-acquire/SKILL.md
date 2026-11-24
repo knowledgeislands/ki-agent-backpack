@@ -18,7 +18,7 @@ argument-hint: 'audit <repo> | conform <repo> | educate <repo> | help | pulse ca
 
 # Knowledge acquisition
 
-Read [the common acquisition standard](references/standard-acquisition.md), then the receiving repository's capture entry point and only the applicable source route. Keep capture simple: establish scope, find any existing capture, route, preserve, verify and report. Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour), under CURATION-HOME, 19 November 2026.
+Read [the common acquisition standard](references/standard-acquisition.md), then the receiving repository's capture entry point and only the applicable source route. Keep capture simple: establish scope, find any existing capture, route, preserve, verify and report. Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour).
 
 This skill owns the common capture contract; provider skills add source completeness and capability rules. Repository guides supply local paths, publication authority and environment steps. Knowledge Islands owns the durable lifecycle and rationale. Executable importers live outside the backpack: Harbour's muninn (krisb/ki-cairn-harbour, `packages/ki-muninn/`) runs the acquisition the `ki-acquire-granola` and `ki-acquire-chatgpt` provider skills govern, which `ki acquire` in tools-ki ran until 5 November 2026, and will run as `ki muninn` once tools-ki's `ki-<name>` extension mechanism, KI-TOOL-KI-CLI-176, lands. The [generated rubric](references/rubric.md) holds the review criteria. This skill accepts no repository configuration properties.
 

@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T16:15:00Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -22,7 +22,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-An interface is designed three times, each time at a finer grain, and the coarser level is agreed before the finer one is drawn. Changing a name at the first level costs a line; at the last it costs every screen. Kris, 13 November 2026: "the things you defined really good, is information architecture, wireframes and mock-ups. That's exactly the sort of three levels of things I want." This standard sets the three levels and how a round of design runs through them. A round sits between the brief and the decision in [design work](standard-design-system.md#48-design-work-from-brief-to-rule); [the annotated board](standard-annotated-board.md) shows the interface as built, and [the component library](standard-design-system.md#44-the-component-library) names the parts every level draws. The sources behind it are in [the sources file](sources.md).
+An interface is designed three times, each time at a finer grain, and the coarser level is agreed before the finer one is drawn. Changing a name at the first level costs a line; at the last it costs every screen. This standard sets the three levels and how a round of design runs through them. A round sits between the brief and the decision in [design work](standard-design-system.md#48-design-work-from-brief-to-rule); [the annotated board](standard-annotated-board.md) shows the interface as built, and [the component library](standard-design-system.md#44-the-component-library) names the parts every level draws. The sources behind it are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -93,7 +93,7 @@ The rules, part by part.
 4. **Mock up in every state.** Loading, empty and failed are part of the first mock-up, not a later round.
 5. **Review before posting.** A second reader reviews each file against the brief's rules and this skill's rubric, as `ki-authoring`'s [review standard](../../../keystone/ki-authoring/references/standard-review.md) sets, each finding anchored to a board code and region; the blocking findings are settled before the round is called final, and the owner's outcome comes through the design's change.
 6. **Say what has not been checked.** A board nobody has seen rendered is posted as such.
-7. **Once a level is agreed and built, draw against the build.** Drawings ahead of the build are for open choices only, as [design work](standard-design-system.md#48-design-work-from-brief-to-rule) sets (DRAW-BUILD).
+7. **Once a level is agreed and built, draw against the build.** Drawings ahead of the build are for open choices only, as [design work](standard-design-system.md#48-design-work-from-brief-to-rule) sets.
 
 [Back to contents](#contents)
 
@@ -101,7 +101,7 @@ The rules, part by part.
 
 Whoever draws may be able to check only the markup, not the picture: an agent that writes a board's HTML does not see it rendered. Until the drawing side can see its render, a reviewer looks at it by eye, and the round's report says which boards have been seen and by whom.
 
-**The reviewer takes the PNG** (BOARD-PNG). The reviewer who renders a board for review takes its PNG in the same pass, with the repository's own browser automation, and commits it beside the board; the drawing session never does. A board carrying store data is rendered on the caller's side, as `ki-meeting`'s [Git and private data](../../../work/ki-meeting/references/standard-meeting.md#412-git-and-private-data) sets.
+**The reviewer takes the PNG**. The reviewer who renders a board for review takes its PNG in the same pass, with the repository's own browser automation, and commits it beside the board; the drawing session never does. A board carrying store data is rendered on the caller's side, as `ki-meeting`'s [Git and private data](../../../work/ki-meeting/references/standard-meeting.md#412-git-and-private-data) sets.
 
 **Fitting the PNG to the page.** The board's page writes its own content height to an attribute once it has laid out; headless Chrome's `--dump-dom` reads that attribute back, and the screenshot is then taken at that height, so the PNG holds the whole board and no blank tail (store `c9853881`). A board's README names only files committed beside it: a mock's README that named its generator and render scripts, kept elsewhere, sent readers to nothing (store `c9853881`).
 
@@ -109,7 +109,7 @@ Whoever draws may be able to check only the markup, not the picture: an agent th
 
 ### 4.5 The design book
 
-A visual design's document and its final boards together make its **design book** (DESIGN-RENDER, Kris, 17 November 2026). The document is a design document in `ki-authoring`'s [design format](../../../keystone/ki-authoring/references/standard-formats-design.md), kept in the repository's [design system folder](standard-design-system.md#411-the-design-system-folder), `docs/design/design-system/` (DESIGN-SYSTEM-HOMES); its final boards are the chosen option at each level, kept beside it once the design is agreed, so the design can be walked and reviewed board by board.
+A visual design's document and its final boards together make its **design book**. The document is a design document in `ki-authoring`'s [design format](../../../keystone/ki-authoring/references/standard-formats-design.md), kept in the repository's [design system folder](standard-design-system.md#411-the-design-system-folder), `docs/design/design-system/`; its final boards are the chosen option at each level, kept beside it once the design is agreed, so the design can be walked and reviewed board by board.
 
 ```text
 docs/design/design-system/

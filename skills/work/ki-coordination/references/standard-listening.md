@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-24T03:22:50Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -19,7 +19,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This file holds the inbox watch, the two session capabilities and host sync. It extends [the core](standard-coordination.md). The decisions behind its rules are in [the sources file](sources.md).
+This file holds the inbox watch, the two session capabilities and host sync. It extends [the core](standard-coordination.md). The sources behind its rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -81,9 +81,7 @@ The rules, part by part.
   - where the runtime cannot be woken;
   - where the owner has not asked the session to listen and it is no host sync thread, `ki-listening_enabled: false`.
 
-  Work [Snoozing](standard-holds.md#41-putting-work-on-hold), the idle hold included, keeps the watcher armed. The watcher shows no line in the banner: the [banner's meeting line](standard-report-forms.md#42-banner-detail) names only the meetings the session is in and who it works with there, under LISTEN-LINE and FOOTER-DELEGATES.
-
-Sources: INBOX-WATCH, LISTEN-STATUS, LISTEN-OPT-IN, QUIET-LISTEN, WAKE-SESSION and LISTEN-LINE in [the decision register](sources.md#3-decisions).
+  Work [Snoozing](standard-holds.md#41-putting-work-on-hold), the idle hold included, keeps the watcher armed. The watcher shows no line in the banner: the [banner's meeting line](standard-report-forms.md#42-banner-detail) names only the meetings the session is in and who it works with there.
 
 <a id="thread-capabilities"></a>
 
@@ -114,8 +112,6 @@ It mentions a tidy only when something needs the owner. It never edits another p
 
 **Host sync.** The coordinator is its Mac's sync thread. It repeats each pass until the Mac and GitHub are clean and level, or something needs judgement, and only then waits for its next slot. A quiet pass says nothing, a pass that changed something says at most one short line, and only a matter for judgement or the owner gets a full report. Host sync implies listening.
 
-Neither capability has a banner line: the meeting line names only the meetings the session is in and who it works with there, under LISTEN-LINE and FOOTER-DELEGATES. Host sync has no banner line either, because Cairn keeps the machines in sync through each machine's household package; the `ki-syncing_enabled` and `ki-syncing_status` fields stay in `_index.md`'s state fields.
-
-Sources: THREAD-CAPABILITIES, FOOTER-CAPABILITY-STATUS-2, LISTEN-OPT-IN, LISTEN-TENDS-PACKAGE, SYNC-UNTIL-CLEAN, SYNC-QUIET, SYNC-LINE-OFF, REPLY-FORMAT and LISTEN-LINE in [the decision register](sources.md#3-decisions).
+Neither capability has a banner line: the meeting line names only the meetings the session is in and who it works with there. Host sync has no banner line either, because Cairn keeps the machines in sync through each machine's household package; the `ki-syncing_enabled` and `ki-syncing_status` fields stay in `_index.md`'s state fields.
 
 [Back to contents](#contents)

@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-24T03:22:50Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -22,7 +22,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This file holds how work reaches other work now that the message queue has retired, and the surfaces a coordinator reads. It extends [the core](standard-coordination.md). The decisions behind its rules are in [the sources file](sources.md).
+This file holds how work reaches other work now that the message queue has retired, and the surfaces a coordinator reads. It extends [the core](standard-coordination.md). The sources behind its rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -73,9 +73,7 @@ The rules, part by part.
 
 A session is independent and autonomous over its work package and the repositories its `repositories:` names. It does its work there with its agent host's own subagents, under the `ki-delegation` [background-run standard](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md), and those subagents act across those repositories. It never asks another session to act for it. It contacts another session only when that is essential, and then as a one-way hand-off that nobody waits on: a lesson learned, for example, goes to the guildmaster, who takes it up as scheduled work. A hand-off goes along the tree under [Work between packages](#messages-between-work), a signal that confers no execution authority.
 
-**Seats and accounts** (SEAT-ACCESS b, VIEW-ACCOUNT a, 22 and 20 November 2026). Every seat, in any agent host and any account, works from the files in the repositories its work names, never from an artifact in another account. A view published outside a repository, such as a cloud artifact or a canvas, names the account that publishes it, and only a seat in that account republishes it; any other seat changes the files and asks that seat, by Orca mail or along the tree, to republish. A view no working seat can reach is republished fresh from the files in a reachable account, and the old one retired once the owner has checked it. How each kind of seat reaches the files is being trialled from every agent host and is not yet set. For a design system the view's index and its folder are `ki-design-system`'s, under its [Projections](../../../design/ki-design-system/references/standard-design-system.md#411-projections).
-
-Sources: SESSIONS-ALONE, AGENT-HOST, SEAT-ACCESS and VIEW-ACCOUNT in [the decision register](sources.md#3-decisions).
+**Seats and accounts.** Every seat, in any agent host and any account, works from the files in the repositories its work names, never from an artifact in another account. A view published outside a repository, such as a cloud artifact or a canvas, names the account that publishes it, and only a seat in that account republishes it; any other seat changes the files and asks that seat, by Orca mail or along the tree, to republish. A view no working seat can reach is republished fresh from the files in a reachable account, and the old one retired once the owner has checked it. How each kind of seat reaches the files is being trialled from every agent host and is not yet set. For a design system the view's index and its folder are `ki-design-system`'s, under its [Projections](../../../design/ki-design-system/references/standard-design-system.md#411-projections).
 
 [Back to contents](#contents)
 
@@ -83,7 +81,7 @@ Sources: SESSIONS-ALONE, AGENT-HOST, SEAT-ACCESS and VIEW-ACCOUNT in [the decisi
 
 ### 4.2 Orca mail and the Cairn Beacon
 
-Orca mail is the channel between sessions in Orca (ROOMS-CHANNEL, ORCA-FIRST). Every session running in Orca reaches another with `orca orchestration send`, and answers with `reply`, running or idle, on the same Mac or across the bridge between the paired Orca hosts with `--on <host>`; each receiver keeps its own state in its own work package. The routes, in order:
+Orca mail is the channel between sessions in Orca. Every session running in Orca reaches another with `orca orchestration send`, and answers with `reply`, running or idle, on the same Mac or across the bridge between the paired Orca hosts with `--on <host>`; each receiver keeps its own state in its own work package. The routes, in order:
 
 1. **Subagents, within a session.** Work inside one session goes to its agent host's own subagents, under [Sessions work alone](#41-sessions-work-alone).
 2. **Orca mail, between sessions in Orca,** on the same Mac and across the bridge, waking an idle one as [Waking an idle Orca tab](#45-waking-an-idle-orca-tab) sets. Never type into another agent's terminal, and if mail is refused, never fall back to `orca terminal send`.
@@ -92,9 +90,9 @@ Orca mail is the channel between sessions in Orca (ROOMS-CHANNEL, ORCA-FIRST). E
 
 A message by any route carries conversation, not work, under [Surfaces](#44-surfaces); work goes along the tree.
 
-Messages in the Cairn store are gone (MESSAGES-GO): the store keeps no `messages/`, and the Cairn MCP is being reworked to hold meetings, which the Beacon is to call and manage. The [Agent Host Protocol](https://microsoft.github.io/agent-host-protocol/specification/overview.html), AHP, may later carry what polling carries now, for an agent host the `ki-radar` radar shows supports it. The rest of Orca's orchestration, its worker dispatch, ask and decision gates, stays watched in the radar.
+Messages in the Cairn store are gone: the store keeps no `messages/`, and the Cairn MCP is being reworked to hold meetings, which the Beacon is to call and manage. The [Agent Host Protocol](https://microsoft.github.io/agent-host-protocol/specification/overview.html), AHP, may later carry what polling carries now, for an agent host the `ki-radar` radar shows supports it. The rest of Orca's orchestration, its worker dispatch, ask and decision gates, stays watched in the radar.
 
-Sources: AHP-RADAR, MSG-RETIRE, ROOMS-CHANNEL, ORCA-FIRST and ORCA-WAKE in [the decision register](sources.md#3-decisions); ROOMS-OPTIONAL and ORCA-HOME in `ki-meeting`'s [sources](../../ki-meeting/references/sources.md#3-decisions); AHP in [the outside sources](sources.md#2-outside-sources).
+Sources: AHP in [the outside sources](sources.md#2-outside-sources).
 
 <a id="messages-between-work"></a>
 
@@ -102,7 +100,7 @@ Sources: AHP-RADAR, MSG-RETIRE, ROOMS-CHANNEL, ORCA-FIRST and ORCA-WAKE in [the 
 
 ### 4.3 Work between packages
 
-The message queue has retired (MSG-HOME, MSG-RETIRE): no package keeps a `messages.md`, no session writes a line into another package, and conversation between sessions goes by Orca mail under [Orca mail and the Cairn Beacon](#42-orca-mail-and-the-cairn-beacon), by the agent host's own messaging only outside Orca, or in a meeting, under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md), whose [messages](../../ki-meeting/references/standard-meeting.md#48-messages) keep the queue's best parts. Work for another package goes along the tree, under [Steer and feedback](standard-reporting.md#416-steer-and-feedback), and cascades down it under `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down): delegate down, own it if there is no one below, escalate up.
+The message queue has retired: no package keeps a `messages.md`, no session writes a line into another package, and conversation between sessions goes by Orca mail under [Orca mail and the Cairn Beacon](#42-orca-mail-and-the-cairn-beacon), by the agent host's own messaging only outside Orca, or in a meeting, under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md), whose [messages](../../ki-meeting/references/standard-meeting.md#48-messages) keep the queue's best parts. Work for another package goes along the tree, under [Steer and feedback](standard-reporting.md#416-steer-and-feedback), and cascades down it under `ki-work-package`'s [cascade rule](../../ki-work-package/references/standard-work-package.md#cascade-down): delegate down, own it if there is no one below, escalate up.
 
 - **Along the tree:** a hand-off, a rollout, a unit to route, a release notice or a method improvement goes up as feedback to the nearest node above both packages, and comes down from it as steer.
   - The receiving package's holder records it, or the root's guardian while no session holds the package: in a change document, its Open section for what needs the owner, or in `_index.md`'s Now or Held.
@@ -122,15 +120,13 @@ The message queue has retired (MSG-HOME, MSG-RETIRE): no package keeps a `messag
   1. The sender tells the owner at once, and reaches the owning work's holder by Orca mail, or, where it is outside Orca, through its agent host's messaging or a meeting they both sit in.
   2. Only where no one is live, nor reachable by Orca mail, which wakes an idle session in Orca, and the unit lies within the sender's own authority, the sender does it through a detached run and tells the owner, naming the run and its commits. Outside the sender's authority it goes to the owner as a blocking query.
 
-  A worker is **live** when its `ki-workers` entry in the package's `_index.md` says `status: active`, it is listening, and its package or Cairn shows activity within the last 30 minutes. Listening is read from meetings alone: a session is listening while it is a participant of an open meeting with a sitting under way, the `ki-workers` entry's actor id, `id: actor:<id>`, listed in the meeting's entry file under `ki-participants` with `ki-status: open`, the two matched by id alone (ACTOR-KEY), under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). No `ki-workers` entry or roster file carries `listening`. Cairn reads the register and is not a second source. A holder in Orca need not be live to be reached: Orca mail wakes it (ORCA-FIRST, WAKE-LIMIT), so step 2 waits until mail has gone unanswered or been refused.
+  A worker is **live** when its `ki-workers` entry in the package's `_index.md` says `status: active`, it is listening, and its package or Cairn shows activity within the last 30 minutes. Listening is read from meetings alone: a session is listening while it is a participant of an open meeting with a sitting under way, the `ki-workers` entry's actor id, `id: actor:<id>`, listed in the meeting's entry file under `ki-participants` with `ki-status: open`, the two matched by id alone, under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md#45-the-entry-file). No `ki-workers` entry or roster file carries `listening`. Cairn reads the register and is not a second source. A holder in Orca need not be live to be reached: Orca mail wakes it, so step 2 waits until mail has gone unanswered or been refused.
 
-- **Quiet news** (QUIET-INTERRUPT a, 20 November 2026): news from a background-only, stood-down or paused actor, under [holds, 4.2](standard-holds.md#42-standing-a-seat-down), reaches the owner only through the guardian, batched into one message; such a seat never interrupts the owner directly.
+- **Quiet news:** news from a background-only, stood-down or paused actor, under [holds, 4.2](standard-holds.md#42-standing-a-seat-down), reaches the owner only through the guardian, batched into one message; such a seat never interrupts the owner directly.
   - Only four things interrupt: a deadline at risk within the next working day; work blocked on a decision only the owner can make, where the block stops the pilot group; a security or credential exposure; and a failure that loses work or data.
   - Destructive or outward-facing work interrupts only when a deadline is tied to it.
   - Routine news waits for the next catch-up, given when the owner asks or at the next Summary.
   - What counts as at risk is the guardian's judgement.
-
-Sources: CASCADE-DOWN, MSG-RETIRE, ROUTE-RECEIPT, HANDOFF-AS-MESSAGE, URGENT-CRITERIA, LIVENESS, LISTEN-HOME, FEEDBACK-AS-MESSAGE and QUIET-INTERRUPT in [the decision register](sources.md#3-decisions); MSG-HOME in `ki-meeting`'s [sources](../../ki-meeting/references/sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -149,20 +145,16 @@ A coordinator learns of other work through its own package, `_index.md` and the 
 
 A nudge by Orca mail or through an agent host's messaging carries conversation, not work: work reaches a package only along the tree.
 
-Sources: SURFACES-RULE in [the decision register](sources.md#3-decisions).
-
 [Back to contents](#contents)
 
 ### 4.5 Waking an idle Orca tab
 
-An Orca chat tab that has gone idle has no running agent process, so the agent host's own messaging cannot reach it and its list of agents does not show it; Orca mail reaches it and wakes it. Kris took ORCA-WAKE a on 20 November 2026, setting how a tab is woken, and WAKE-LIMIT a the same day: any session may mail, and so wake, any session it works with.
+An Orca chat tab that has gone idle has no running agent process, so the agent host's own messaging cannot reach it and its list of agents does not show it; Orca mail reaches it and wakes it. Any session may mail, and so wake, any session it works with.
 
 1. **Find the tab.** Read its chat session id from `orca agent list --json`, matching the chat by its title or thread line.
 2. **Send.** Run `orca orchestration send --to orca_session_id:<id> --subject <subject> --body <text>`. For a chat on another Mac whose Orca is paired, add `--on <host>`; no SSH is involved.
 3. **What arrives.** The message lands in the existing chat as agent mail, marked as from another session and not as the owner's typing, and that conversation carries on. The receiver answers with `orca orchestration reply`, which keeps the thread and goes back across the bridge by itself.
 
-**Limits.** Never message an agent with `orca terminal send`, never start a new session to reach it, and never use `claude --resume`. Any session may mail, and so wake, the sessions it works with (WAKE-LIMIT, which replaces ORCA-WAKE's limit to the guardian's roll calls and held messages and to other coordinators on the owner's word). Each wake costs the woken session the tokens to re-read its package, so a session mails another only when it has something for it. A wake carries conversation, not work, under [Surfaces](#44-surfaces).
-
-Sources: ORCA-WAKE and WAKE-LIMIT in [the decision register](sources.md#3-decisions).
+**Limits.** Never message an agent with `orca terminal send`, never start a new session to reach it, and never use `claude --resume`. Any session may mail, and so wake, the sessions it works with. Each wake costs the woken session the tokens to re-read its package, so a session mails another only when it has something for it. A wake carries conversation, not work, under [Surfaces](#44-surfaces).
 
 [Back to contents](#contents)

@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-24T03:22:50Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -25,7 +25,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This is the on-demand procedure for `ki-work accept`: closing a reviewed record, cancelling an open one and pruning terminal records. The kind, authority boundary, and relationship map live in [the mode](mode-accept.md). The decisions behind these rules are in the [sources file](sources.md#3-decisions).
+This is the on-demand procedure for `ki-work accept`: closing a reviewed record, cancelling an open one and pruning terminal records. The kind, authority boundary, and relationship map live in [the mode](mode-accept.md). The sources behind these rules are in the [sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -90,7 +90,7 @@ When the owner must decide, use the runtime's structured ask-user-questions inte
 
 Require explicit human approval before writing `done` or `cancelled`. A standing human grant counts only when it is recorded by its scope, its date and where it was given, such as the reply id or message, and that scope covers the exact record.
 
-An acceptance bundle is such a grant. Kris adopted ACCEPT-BUNDLE on 2026-10-20, "from Knowledge Islands perspective, I think we need to accept them ... happier for us to go through that ... definitely something that should happen as the first point of call in the state of play", so a coordinating work brings its `awaiting-review` records as one `ACCEPT` query, oldest first, each line naming the record, its outcome and any concern, under the `ki-coordination` [acceptance bundles](../../../work/ki-coordination/references/standard-queries.md#48-acceptance-bundles) rule. The owner's one-word answer, `ACCEPT` or `ACCEPT` with exceptions named, recorded in the work's change document by its scope, its date and where it was given, with no quoted words, and the exact list of records it covers, approves delivery closure for each listed record that is not an exception. It never approves a cancellation, a record outside the list or a record whose review packet has changed since the list was written; those still need their own approval.
+An acceptance bundle is such a grant. Accepting finished work is the first point of call at each mark: coordinating work brings its `awaiting-review` records as one `ACCEPT` query, oldest first, each line naming the record, its outcome and any concern, under the `ki-coordination` [acceptance bundles](../../../work/ki-coordination/references/standard-queries.md#48-acceptance-bundles) rule. The owner's one-word answer, `ACCEPT` or `ACCEPT` with exceptions named, recorded in the work's change document by its scope, its date and where it was given, with no quoted words, and the exact list of records it covers, approves delivery closure for each listed record that is not an exception. It never approves a cancellation, a record outside the list or a record whose review packet has changed since the list was written; those still need their own approval.
 
 A recorded grant is the other source of delivery closure. An unattended window's grant, recorded in the Steps of the change document the window works from, approves delivery closure only where it names closure for a frozen wave under `ki-coordination`'s [unattended window](../../../work/ki-coordination/references/standard-unattended.md#42-unattended-windows) rule, and only for a record of that wave whose membership is unchanged since it was frozen and whose current review packet and evidence are rechecked first. A grant never cancels or prunes a record, and a grant that merely permits planning, delivery, delegation or reporting, or that names a different record, is not closure authority.
 
@@ -146,7 +146,7 @@ Preserve useful references by linking to the appropriate durable current documen
 
 #### 4.4.3 The standing prune
 
-A `done` or `cancelled` record is due for pruning, without asking the owner, once the commit that first recorded its terminal state is at least 7 days old and that commit, with the delivery commits the record names, has landed on the upstream default branch (PRUNE-RECORDS a, Kris, 22 November 2026: "I think you could do 7 days. We don't want to keep them around."). Closure and cancellation still need the owner's approval under [4.2](#42-obtain-closure-authority); the standing prune never closes a record.
+A `done` or `cancelled` record is due for pruning, without asking the owner, once the commit that first recorded its terminal state is at least 7 days old and that commit, with the delivery commits the record names, has landed on the upstream default branch: terminal records are not kept around. Closure and cancellation still need the owner's approval under [4.2](#42-obtain-closure-authority); the standing prune never closes a record.
 
 1. **Who prunes.** `ki-work accept prune` selects the due records itself, and the rule is the deletion authority for each; `ki-work next` and `ki-work recap` surface due records and route them there, and never delete one.
 2. **The same procedure.** The selection checks of [4.4.1](#441-select-and-delete), the [reference preflight](#442-cross-repository-reference-preflight) and the prune-only commit under the standardised message all apply; a record whose preflight finds a reference it cannot repair stays, and the blocker is reported.

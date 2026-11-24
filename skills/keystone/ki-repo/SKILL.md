@@ -36,7 +36,7 @@ This file routes; the standards hold the rules, and the generated rubric publish
 | The review criteria | [The generated rubric](references/rubric.md) |
 | Worked examples, when onboarding a repo or when a rule needs one | [The exemplars](references/exemplars.md) |
 | The human-led repository review | [The REVIEW procedure](references/mode-review.md) |
-| Where the standards come from, and the decisions behind them | [The sources](references/sources.md) |
+| Where the standards come from | [The sources](references/sources.md) |
 
 ## The Repository guild
 

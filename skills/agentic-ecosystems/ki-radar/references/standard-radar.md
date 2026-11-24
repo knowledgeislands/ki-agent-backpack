@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:10:23Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -23,7 +23,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This standard holds what `ki-radar`'s two subject kinds share: one authority boundary, one evidence core, one monthly cadence, one REFRESH and one adoption boundary. Each subject kind keeps its own standard and snapshot intact: [the agentic-radar standard](standard-agentic-radar.md) and `agentic-radar.toml` for agentic protocols, interfaces, organisations, architectures, research and vendor terms, and [the model-radar standard](standard-model-radar.md) and `model-radar.toml` for models, executable routes and benchmarks, with [the model-tier standard](standard-model-tiers.md) beside it. Kris merged the two radars on 22 November 2026 under RADAR-MERGE a; the sources behind it are in [the sources file](sources.md).
+This standard holds what `ki-radar`'s two subject kinds share: one authority boundary, one evidence core, one monthly cadence, one REFRESH and one adoption boundary. Each subject kind keeps its own standard and snapshot intact: [the agentic-radar standard](standard-agentic-radar.md) and `agentic-radar.toml` for agentic protocols, interfaces, organisations, architectures, research and vendor terms, and [the model-radar standard](standard-model-radar.md) and `model-radar.toml` for models, executable routes and benchmarks, with [the model-tier standard](standard-model-tiers.md) beside it. The two radars were merged on 22 November 2026; the sources behind this standard are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -91,7 +91,7 @@ Both kinds keep the same evidence rules. Every evidence and counter-evidence ref
 
 ### 4.4 Dates and cadence
 
-All dates are real `YYYY-MM-DD` calendar values, and neither snapshot nor any record is future-dated. The radar is reviewed monthly, matching how it is run (RADAR-MERGE a). A review older than 35 days, a month of 31 days plus four days of operational grace, warns; elapsed time alone does not invalidate historical evidence.
+All dates are real `YYYY-MM-DD` calendar values, and neither snapshot nor any record is future-dated. The radar is reviewed monthly, matching how it is run. A review older than 35 days, a month of 31 days plus four days of operational grace, warns; elapsed time alone does not invalidate historical evidence.
 
 [Back to contents](#contents)
 
@@ -99,7 +99,7 @@ All dates are real `YYYY-MM-DD` calendar values, and neither snapshot nor any re
 
 One REFRESH covers both subject kinds. It writes only this skill's canonical files in `ki-agent-backpack`; from an installed copy it stops and redirects there. It reads [the tracked sources](sources.md), gathers bounded current evidence for current subjects and their return triggers, reconciles it with both snapshots and the model-tier tables, and proposes reviewed changes. If the last review is within the month and no trigger fired, it confirms before forcing an early run.
 
-A return trigger fires REFRESH early for the subjects it names. Each subject kind's standard lists its own, such as a new specification version or a material model release or deprecation. `ki-acquire pulse` hands the radar its signals this way: when PULSE's verdict is to act on an agentic or model signal, that act fires this REFRESH's return trigger rather than editing a snapshot itself (PULSE-BOUNDARY).
+A return trigger fires REFRESH early for the subjects it names. Each subject kind's standard lists its own, such as a new specification version or a material model release or deprecation. `ki-acquire pulse` hands the radar its signals this way: when PULSE's verdict is to act on an agentic or model signal, that act fires this REFRESH's return trigger rather than editing a snapshot itself.
 
 REFRESH creates no standing inbox. It routes material consequences to the owning capability's REFRESH mode, a Decision Record or `ki-work next`, and never mutates a consumer directly.
 

@@ -21,7 +21,7 @@ links:
 
 # The knowledge/ Folder
 
-The `knowledge/` folder is the proposed home of a repository's [knowledge graph][graph]: a top-level folder of small, atomic nodes, each a [Semantic Markdown][semantic-markdown] card with one primary home path, linked by typed predicates. A repository follows the Knowledge Islands graph standard when it has `knowledge/` in place of `Pillars/`; that single test makes plain which standard a repository follows, with no "version 1" and "version 2". Kris set out the idea on 4 November 2026.
+The `knowledge/` folder is the proposed home of a repository's [knowledge graph][graph]: a top-level folder of small, atomic nodes, each a [Semantic Markdown][semantic-markdown] card with one primary home path, linked by typed predicates. A repository follows the Knowledge Islands graph standard when it has `knowledge/` in place of `Pillars/`; that single test makes plain which standard a repository follows, with no "version 1" and "version 2".
 
 ## Why
 
@@ -33,7 +33,7 @@ Only `Pillars/` changes: it is replaced, over time, by `knowledge/`. `Admin/` (g
 
 ## Naming
 
-`knowledge/` is lower case and kebab-case throughout, folders and node files alike, as in `knowledge/knowledge-tending/knowledge-capture-funnel.md`. The older areas keep their current names for now; Kris's preference is for a later, separate rename that moves every area to lower case and kebab-case, such as `admin/` and `streams/`, so the whole repository follows one convention.
+`knowledge/` is lower case and kebab-case throughout, folders and node files alike, as in `knowledge/knowledge-tending/knowledge-capture-funnel.md`. The older areas keep their current names for now; a later, separate rename is preferred, one that moves every area to lower case and kebab-case, such as `admin/` and `streams/`, so the whole repository follows one convention.
 
 ## Folder notes
 

@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T20:17:12Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -23,7 +23,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-These judgment-layer conventions govern how a Knowledge Islands README helps a reader orient and act. They draw selectively on [Standard Readme][sr], an advisory specification designed primarily for open-source libraries. The local convention owns the interpretation; differences from that source are not audit findings. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+These judgment-layer conventions govern how a Knowledge Islands README helps a reader orient and act. They draw selectively on [Standard Readme][sr], an advisory specification designed primarily for open-source libraries. The local convention owns the interpretation; differences from that source are not audit findings. The sources behind these rules are in [the sources file](sources.md).
 
 [sr]: https://github.com/RichardLitt/standard-readme
 
@@ -102,7 +102,7 @@ Do not optimize a README for template compliance at the expense of repository pu
 
 ### 4.6 Docs folder pages
 
-A folder below `docs/` opens on `_index.md`, never on a `README.md`, and carries no `README.md` pointer beside it. GitHub then draws no page below the folder's listing, and a reader there opens `_index.md` to read it; the Wayfinder opens a docs folder on its `_index.md`. Kris chose this on 22 November 2026 at 19:57 GMT, "_index.md only", over a recommended one-line `README.md` pointer (DOCS-LANDING-GITHUB b).
+A folder below `docs/` opens on `_index.md`, never on a `README.md`, and carries no `README.md` pointer beside it. GitHub then draws no page below the folder's listing, and a reader there opens `_index.md` to read it; the Wayfinder opens a docs folder on its `_index.md`. Not even a one-line `README.md` pointer is added for GitHub's sake.
 
 The repository root's `README.md`, whose H1 `ki-repo` holds to the declared title, and the working-area READMEs under `+/` and `-/` are not docs folders and keep their own contracts. The docs skills' checks, `ki-guides`, `ki-diagrams` and `ki-decision-records`, read `_index.md`, and still read an earlier `README.md` alone, with a warning, until it is renamed.
 

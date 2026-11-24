@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T22:58:47Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -20,7 +20,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-Change management uses one configured adapter per repository. The adapter is the authoritative source of forward-work records; the selector and process skills do not duplicate its queue or synchronise a second tracker. The decisions behind these rules are in the [sources file](sources.md#3-decisions).
+Change management uses one configured adapter per repository. The adapter is the authoritative source of forward-work records; the selector and process skills do not duplicate its queue or synchronise a second tracker. The sources behind these rules are in the [sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -65,7 +65,7 @@ The repository declares exactly one supported value:
 adapter = "roadmap" # or kb-streams, linear
 ```
 
-`roadmap` resolves to `ki-work-roadmap` and is the default for an ordinary Project repository. `kb-streams` resolves to `ki-work-roadmap`, which checks a Knowledge Base's records in `Streams/Roadmap/`, and is the default for a Knowledge Base. `linear` resolves to `ki-work-linear`, the one remote-tracker adapter, an explicit alternative for either primary structure. A GitHub Issues adapter is spun out of it only when one is needed (REMOTE-TRACKERS).
+`roadmap` resolves to `ki-work-roadmap` and is the default for an ordinary Project repository. `kb-streams` resolves to `ki-work-roadmap`, which checks a Knowledge Base's records in `Streams/Roadmap/`, and is the default for a Knowledge Base. `linear` resolves to `ki-work-linear`, the one remote-tracker adapter, an explicit alternative for either primary structure. A GitHub Issues adapter is spun out of it only when one is needed.
 
 The selected adapter's `[skills.<skill-name>]` table must be declared in the same configuration. `roadmap` is valid only for an explicit `repo_type = "project"`; `kb-streams` is valid only for `repo_type = "kb"`. The remote adapter supports either valid kind. `ki-repo` owns validation of the mandatory kind and primary shape; no inferred kind or alternate value is accepted. Missing, unknown, undeclared, or inapplicable values are failures, not opportunities for shape-based inference. The selector resolves this declared mapping; the host separately invokes the resolved adapter's audit rather than treating resolution as an adapter audit.
 

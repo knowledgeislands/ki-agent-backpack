@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-24T03:22:50Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -33,7 +33,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This file holds the reply forms every session uses and the owner report with its queries, answers, tags, quiet tools and links. It extends [the core](standard-coordination.md). The decisions behind its rules are in [the sources file](sources.md).
+This file holds the reply forms every session uses and the owner report with its queries, answers, tags, quiet tools and links. It extends [the core](standard-coordination.md). The sources behind its rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -91,18 +91,14 @@ Every reply to the owner takes one of three forms.
 - While coordinating, the report at the end of a unit is the Summary.
 - In a conversational session, a request for a "summary", "full summary", "mark" or "status" gets a conversational reply, and a "recap" gets the ordinary `ki-work recap` session recap in its own form; neither borrows a coordinator form.
 - **Suggestions carry a confidence.** In every reply form and every session, a suggestion is a recommendation carrying a confidence, `high`, `medium` or `low`: a query's options under the [owner report](#42-owner-report), a suggestion in a conversational reply, a plan proposed for agreement and a run report alike.
-- **Reply id.** Every reply to the owner, in every form, opens with its id as a bold first line, `**Reply HH:MM**`: the UTC time read from the clock as the reply is written, with `date -u +%H:%M`, never guessed or carried over from an earlier reply. The coordinator footer hook checks it in every session, warning without holding the reply back when the id is more than about 5 minutes from the clock (REPLY-ID-CLOCK). The owner refers to a reply by it, often by voice, as in "about reply 13:27". It is a line of its own, not a heading, and counts as none of the reply's prose. A coordinator form puts it before its heading block, or, where it has none, before its Answer or banner, under [Blocks, parts and layouts](standard-report-forms.md#411-blocks-parts-and-layouts). A saved report, such as a run report written into a package, carries none: its `#` heading stays its first line.
+- **Reply id.** Every reply to the owner, in every form, opens with its id as a bold first line, `**Reply HH:MM**`: the UTC time read from the clock as the reply is written, with `date -u +%H:%M`, never guessed or carried over from an earlier reply. The coordinator footer hook checks it in every session, warning without holding the reply back when the id is more than about 5 minutes from the clock. The owner refers to a reply by it, often by voice, as in "about reply 13:27". It is a line of its own, not a heading, and counts as none of the reply's prose. A coordinator form puts it before its heading block, or, where it has none, before its Answer or banner, under [Blocks, parts and layouts](standard-report-forms.md#411-blocks-parts-and-layouts). A saved report, such as a run report written into a package, carries none: its `#` heading stays its first line.
 - **Reply block.** Every reply that asks the owner to decide anything ends with the reply block, whatever its form, in the shape the owner report's **Reply block** sets: a conversational reply after its prose, an owner report or coordinator form after its queries and before any banner. A reply that asks nothing carries none, and no reply carries a `No reply needed.` line. The Stop hook checks the block's shape in every session, under [Generated surfaces](standard-coordination.md#47-generated-surfaces).
-
-Sources: REPORTING-FORMS, RECOMMEND-CONFIDENCE, REPLY-FORMAT, REPLY-BLOCK, REPLY-ID and REPLY-CHECK in [the decision register](sources.md#3-decisions).
 
 #### 4.1.1 Session kinds
 
 A session with no coordinating opener is conversational. It may do bounded work directly, including regular or ad hoc work, and uses the conversational reply forms. A repository declaring this skill, or injecting its hook, does not make a session a coordinator.
 
 A run is the detached actor a coordinator briefs under `ki-delegation`, not a fourth owner-facing session kind. It delivers its bounded unit and returns the owner report to its reporting package.
-
-Sources: REPORTING-FORMS in [the decision register](sources.md#3-decisions).
 
 #### 4.1.2 Units of work
 
@@ -131,15 +127,13 @@ A conversational session does bounded work directly, without delegating, opening
 
 Work that must outlive the session takes an ad hoc package, `work/<territory>/<territory>.<slug>/` in the Cairn store, under the work-package standard. It pauses by putting the work On hold through an update of the state in its `_index.md`, with no Stop or banner. Its agents head their reports `# <work title> › <run name>` with `**Run report at <local time>**` and no banner.
 
-Sources: CONVERSATIONAL-RUN and CONVRUN-NARROW in [the decision register](sources.md#3-decisions).
-
 #### 4.1.4 Coordinator-only machinery
 
 The report heading and form line, the banner and its thread line, the mark, the acting rule for work received along the tree, re-anchoring after compaction, the turn budget and the watcher belong to coordinators only. A conversational session's optional package is a plain record: it notes a pause in `_index.md`'s state fields and how to carry on in its Now, and is finished and pruned when the work ends.
 
 #### 4.1.5 Weighing what to do
 
-Everything a session wants to do carries three weights, and one rule says what it does alone, what it puts to the node above and what it settles first. Kris took them on 11 November 2026 under TREE-WORKING, and narrowed the second rule on 12 November under 04-RULE2 a, in the Cairn summit's [change 04](https://github.com/krisb/ki-cairn-store/blob/8e4746657458d41bc47aeba994cde9412e08a535/work/cairn/cairn.summit/04-weighing-open-points.change.md).
+Everything a session wants to do carries three weights, and one rule says what it does alone, what it puts to the node above and what it settles first. The Cairn summit's [change 04](https://github.com/krisb/ki-cairn-store/blob/8e4746657458d41bc47aeba994cde9412e08a535/work/cairn/cairn.summit/04-weighing-open-points.change.md) holds their background.
 
 - **Benefit:** how much it helps or opens up: high, medium or low.
 - **Cascade:** how far its effects spread and how hard they are to put back: contained, within the session's package and easily put back, or wide, reaching other packages, a standard, shared data, credentials or anything published.
@@ -150,27 +144,23 @@ The rule:
 
 1. **Within the remit, cascade contained, confidence high:** the session does it, and tells the node above as a notice, in its next record or report.
 2. **Confidence high, but outside the remit, destructive or major:** the session puts it to the node above as a query, and the node above applies the same rule. A wide cascade alone does not send it up: inside a remit, high-confidence work that more work can undo lands and is reviewed through the record, under [Landing, then review](standard-sync.md#41-landing-then-review).
-3. **Confidence not yet high:** nobody moves on it. The session says what would settle it, gathers that first where it can, through a read-only check or a question down or up the tree, then weighs it again. A step that is easy to put back is itself cheap evidence: trying it can be the check. A recommendation below high never goes to the owner as a choice to take (CONF-HIGH): the session breaks the point into parts, settles the parts it can, and puts each remaining part either at high or as a way to raise it, giving the owner the ways that would, such as a check, a trial, a reading or a narrower question, with what each costs. Confidence is `high`, `medium` or `low`, never a level between them.
-4. **Agreed in talk** (TALK-AGREE): when the owner answers in conversation rather than in a reply block, the session lists each point the talk settled, with its tag, a line and its confidence that the owner meant it, marking any it is unsure of; the owner confirms the list whole, as "all agreed", the list sent back, or the list with points struck or changed, and only then is a point recorded as decided.
+3. **Confidence not yet high:** nobody moves on it. The session says what would settle it, gathers that first where it can, through a read-only check or a question down or up the tree, then weighs it again. A step that is easy to put back is itself cheap evidence: trying it can be the check. A recommendation below high never goes to the owner as a choice to take: the session breaks the point into parts, settles the parts it can, and puts each remaining part either at high or as a way to raise it, giving the owner the ways that would, such as a check, a trial, a reading or a narrower question, with what each costs. Confidence is `high`, `medium` or `low`, never a level between them.
+4. **Agreed in talk:** when the owner answers in conversation rather than in a reply block, the session lists each point the talk settled, with its tag, a line and its confidence that the owner meant it, marking any it is unsure of; the owner confirms the list whole, as "all agreed", the list sent back, or the list with points struck or changed, and only then is a point recorded as decided.
 
 The reply block stays as [Owner report](#42-owner-report) sets it, grouped by priority with each line's confidence (04-REPLY a).
 
-Sources: TREE-WORKING, 04-RULE2 and 04-REPLY in [the decision register](sources.md#3-decisions).
-
 #### 4.1.6 Steer and feedback
 
-Work packages form one tree, and coordination between them runs along it, as Kris took on 11 November 2026 in the Cairn summit's [change 00](https://github.com/krisb/ki-cairn-store/blob/fa651a2c309ff338acf15b533d84820809fd5c7e/work/cairn/cairn.summit/00-authority-tree.change.md).
+Work packages form one tree, and coordination between them runs along it, as the Cairn summit's [change 00](https://github.com/krisb/ki-cairn-store/blob/fa651a2c309ff338acf15b533d84820809fd5c7e/work/cairn/cairn.summit/00-authority-tree.change.md).
 
-- **Work cascades down and stays down** under `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down), the tree's governing principle: delegate down, own it if there is no one below, escalate up. Feedback is never a way to hand work back: only a decision beyond a node's remit goes up, node by node along the path the work came down.
+- **Work cascades down and stays down** under `ki-work-package`'s [cascade rule](../../ki-work-package/references/standard-work-package.md#cascade-down), the tree's governing principle: delegate down, own it if there is no one below, escalate up. Feedback is never a way to hand work back: only a decision beyond a node's remit goes up, node by node along the path the work came down.
 - **Steer goes down,** carrying direction and remit. A node gives remit down from its own, never wider.
 - **Feedback comes up.** It reflects only the view from the node and its immediate parent: it informs the decision above and never overrides it.
 - **Messaging between packages is this cycle,** and nothing else: no sideways traffic. A decision above comes down as fresh steer, so the node below goes on without asking again.
-- **Conversation is not traffic.** Sessions may still talk across the tree, by Orca mail, in a meeting, or through their agent host's own messaging outside Orca, under `ki-meeting`'s [routes](../../ki-meeting/references/standard-meeting.md#46-routes) (ORCA-FIRST); that conversation carries no authority, and an outcome reaches a package only through the session that holds it.
-- **Peers stay out of the owner's replies** (QUIET-PEERS): another session's acknowledgements and minor progress, whether they arrive in a meeting, by Orca mail, through the agent host's messaging or along the tree, are background, and stay out of a session's replies to the owner. The owner hears from a session about its peers only where they disagree, or where one of them needs the owner.
-- **A decision is made at the lowest node whose remit covers everything it reaches,** its children included (DECISION-HEIGHT). A finding in one branch that reaches another goes up to the nearest node above both, which steers back down. That node weighs it under [Weighing what to do](#415-weighing-what-to-do).
-- **The owner acts wherever a decision is needed** (HUMAN-ANYWHERE): a question whose reach stays inside one part of the tree is put to the owner at that node, and goes up only if it reaches wider or is getting nowhere there.
-
-Sources: CASCADE-DOWN, STEER-FEEDBACK, DECISION-HEIGHT, HUMAN-ANYWHERE and QUIET-PEERS in [the decision register](sources.md#3-decisions); MEET-ROUTES and MEET-CHAIR in `ki-meeting`'s [sources](../../ki-meeting/references/sources.md#3-decisions).
+- **Conversation is not traffic.** Sessions may still talk across the tree, by Orca mail, in a meeting, or through their agent host's own messaging outside Orca, under `ki-meeting`'s [routes](../../ki-meeting/references/standard-meeting.md#46-routes); that conversation carries no authority, and an outcome reaches a package only through the session that holds it.
+- **Peers stay out of the owner's replies:** another session's acknowledgements and minor progress, whether they arrive in a meeting, by Orca mail, through the agent host's messaging or along the tree, are background, and stay out of a session's replies to the owner. The owner hears from a session about its peers only where they disagree, or where one of them needs the owner.
+- **A decision is made at the lowest node whose remit covers everything it reaches,** its children included. A finding in one branch that reaches another goes up to the nearest node above both, which steers back down. That node weighs it under [Weighing what to do](#415-weighing-what-to-do).
+- **The owner acts wherever a decision is needed:** a question whose reach stays inside one part of the tree is put to the owner at that node, and goes up only if it reaches wider or is getting nowhere there.
 
 [Back to contents](#contents)
 
@@ -190,7 +180,7 @@ The label is written `Outstanding - no action requested now` and the query headi
 
 - **Done:** completed outcomes, one line each, with material failures, corrections and limitations beside them, not behind them. A background agent puts its commit identifiers and check results here, because the owner reads the report, not the log.
 
-- **Lessons:** one line closing `## Done` in every owner report and run report, `**Lessons:** <what this unit taught the next one>`, or `**Lessons:** None`. A lesson that should change a rule goes to the rule's owner as well, under SKILLS-LEARNING, and the line says where it went (LESSONS-LINE).
+- **Lessons:** one line closing `## Done` in every owner report and run report, `**Lessons:** <what this unit taught the next one>`, or `**Lessons:** None`. A lesson that should change a rule goes to the rule's owner as well, and the line says where it went.
 
 - **In Progress:** what is running and what is waiting, each with its owner or dependency. Then, under `Outstanding - no action requested now`, the matters that need nothing from the owner, grouped as agent work, receiver-owned work, verification limitations and retained material, apart from the decisions the owner must make.
   - A [Summary](standard-report-forms.md#417-the-summary) is windowed on its start: a handoff to other work is reported once, under `## Summary`, and not carried after; an item a record holds is left to the roadmap; and its status table holds only this work's own holdings. A Summary since an earlier time gives the longer view.
@@ -220,19 +210,19 @@ The label is written `Outstanding - no action requested now` and the query headi
   ```
 
   - **Parts:** **Context** gives enough to decide without reading anything else, including the matter's significance and current state; where the matter has several parts, it may take the bold lead-ins of the interactive pass's [Where things stand](standard-queries.md#where-things-stand), such as why it comes to the owner and what an answer unblocks. **Query** is the question in one sentence. **Options** is the lettered list, `a)`, `b)` and so on, with no bullet before a letter.
-  - **Concrete:** the Context and the Query name the thing itself, as the owner knows it, never an internal label or position that stands for it: on 22 November 2026 a query named a slot in a list when it meant one specific item left short by an earlier decision, and Kris withdrew his answer once he saw which (the `personal.tower` package's change 20).
+  - **Concrete:** the Context and the Query name the thing itself, as the owner knows it, never an internal label or position that stands for it: on 22 November 2026 a query named a slot in a list when it meant one specific item left short by an earlier decision, and the owner withdrew the answer once he saw which (the `personal.tower` package's change 20).
   - **Paragraphs:** the three parts are separate paragraphs with a blank line between them, and each option is its own paragraph with a blank line between options, so the query passes `rumdl check` under the house `.rumdl.toml`, whose MD013 reflow would otherwise join lazily continued lines.
   - **Recommendation:** option a) is always the recommendation, unless the query has none under the reply block's **No recommendation**, and carries `(recommended, confidence <level> - <reason>)` before its text, the level `high`, `medium` or `low` and the reason one line, as in `a) (recommended, confidence high - the patch is already on main) push it`. Only option a) carries a confidence.
-  - **Justification:** every option carries its justification, why someone would choose it, beside what it changes: option a)'s is the reason in its brackets, and each alternative's opens it in brackets, as in `b) (nothing changes until you have read it) leave it as it is`, as Kris steered under OPTION-WHY on 22 November 2026: "on top of any option, we should also have a justification as well. We know recommended the confidence and the justification, not just what it changes to be."
+  - **Justification:** every option carries its justification, why someone would choose it, beside what it changes: option a)'s is the reason in its brackets, and each alternative's opens it in brackets, as in `b) (nothing changes until you have read it) leave it as it is`; the recommended option carries its confidence as well.
   - **Confidence:** reflects how reversible the course is and how much of what it rests on the session verified directly, rather than took from another agent's report. A course that destroys, deletes or publishes and rests on claims not verified directly is never `high`. Consistency with an earlier decision is not a reason and earns no level: an option a) whose only reason is an earlier decision is capped at `medium`.
-  - **One recommendation:** a `###` query marks only one option recommended; a query that would recommend more than one is split into separately tagged queries. No file check reads reports for this or for the confidence form; COORD-6 reviews both as judgement, under COORD-REPORT-CHECKS.
+  - **One recommendation:** a `###` query marks only one option recommended; a query that would recommend more than one is split into separately tagged queries. No file check reads reports for this or for the confidence form; COORD-6 reviews both as judgement.
   - **Review:** before reaching the owner, a query passes the [query review](standard-queries.md#45-query-review) where its confidence or course calls for one.
   - **Alternatives:** further options appear only when they are real alternatives. A query needing only confirmation still gives a), plus b) for the obvious alternative, with its justification, such as "leave it as it is".
   - **Cap:** a reply or report puts at most three queries to the owner, the most critical first, then one line saying how many more are open and where they are held, as in `A further 7 are held in the package's change documents.`, under the [query cap](standard-queries.md#42-query-cap). The reply block carries the same three and no others.
   - **Reply block:** every reply or report that asks the owner to decide anything closes with the reply block, ready for the owner to copy, change and send, whatever its form: a coordinator's reply, a run report and a conversational session's report after their queries, and a conversational reply after its prose. It is one fenced `text` block holding exactly the text to send back, with nothing to strip out. A reply that asks nothing carries none.
     - **Groups:** the queries are grouped by priority under numbered headings, the most pressing first, each heading `<n> · <what the group is>`, adding `, can run while you're away` where the group's work can go ahead while the owner is away, with a blank line between groups. The block opens with its `1 ·` heading, even where there is one group.
-    - **Lines:** under its heading, one line per query, its tag, the recommended option's letter and that option's confidence in brackets, as `<TAG> a (high)`, `(medium)` or `(low)`, then a short gloss after a colon, as `<TAG> a (high): what it does`. Each tag appears once, carrying only the recommended option: the block never offers alternatives, which stay in the query's **Options**. The Stop hook holds back a line without its confidence or gloss and a tag given twice (HOOK-ENFORCE).
-    - **No recommendation:** a question with no honest recommendation takes the line `<TAG> ? (your call): <gloss>` in place of a letter and confidence, and its **Options** then carry no `(recommended …)`; the form is for that case only, and every other line keeps its letter and confidence (WORD-ONLY-QUERY).
+    - **Lines:** under its heading, one line per query, its tag, the recommended option's letter and that option's confidence in brackets, as `<TAG> a (high)`, `(medium)` or `(low)`, then a short gloss after a colon, as `<TAG> a (high): what it does`. Each tag appears once, carrying only the recommended option: the block never offers alternatives, which stay in the query's **Options**. The Stop hook holds back a line without its confidence or gloss and a tag given twice.
+    - **No recommendation:** a question with no honest recommendation takes the line `<TAG> ? (your call): <gloss>` in place of a letter and confidence, and its **Options** then carry no `(recommended …)`; the form is for that case only, and every other line keeps its letter and confidence.
 
   A reply block:
 
@@ -279,13 +269,9 @@ The label is written `Outstanding - no action requested now` and the query headi
   - No level hides a failure, a required decision or a material risk.
   - In a coordinator session the level never changes the layout and governs only the wording inside B1, the Answer, under the [coordinator reply format](standard-report-forms.md#41-coordinator-reply-format).
 
-Sources: REPORT-SOURCE, OWNER-REPORT-FORMAT, REPORT-HEADINGS, REPLY-BLOCK, REPLY-ID, HOLD-QUERIES, SUMMARY-WINDOW, FINDINGS-SECTION, FINDINGS-KEEP, QUERY-SHAPE, QUERY-LEAD-INS, FORM-VS-RUMDL, CONFIDENCE-STANDARD, REVIEW-LIFT, ACCEPT-BY-CRITERIA, CONFIDENCE-CHECK, REVIEW-CHECK, NO-EXTERNAL-POSTING, PLAIN-ENGLISH, REPLY-FORMAT, REPLY-GROUPS, QUERY-CAP, QUERY-CAP-3, COORD-REPORT-CHECKS, HOOK-ENFORCE and OPTION-WHY in [the decision register](sources.md#3-decisions).
-
 #### 4.2.1 Answers
 
 Every reply asking the owner to decide anything, in any form, ends with the reply block under the owner report's **Reply block**; no reply carries a `No reply needed.` line. The owner answers by sending the block as it stands or changed, or in speech, naming a query by its tag or answering in order, and may answer with an option's bare letter. In a block sent back, the worker reads each `<TAG> <letter>` line as that query's answer: the numbered group headings are ignored, and so is a bracketed confidence after the letter, which may be kept, changed or left out, and so is a gloss after a colon, so a block sent back as it stands is an answer taking every recommendation. The worker applies each answer to its change document in the turn it arrives, under [Applying decisions](standard-decisions.md#411-applying-decisions), reads it back in chat as `Taken as: <the instruction it will act on>`, and asks one line where an answer is unclear, never acting on a guess. An answer given in speech, in chat or relayed by another session is read back the same way; no answer is logged or quoted. A suggested course is not approval: nothing is acted on until the owner answers.
-
-Sources: REPLY-BLOCK, REPLY-FORMAT and REPLY-GROUPS in [the decision register](sources.md#3-decisions).
 
 #### 4.2.2 Quiet tools
 
@@ -294,8 +280,6 @@ Every session and every background agent runs its tools quietly and reports what
 - **Git:** run Git with `-q` wherever the command takes it, such as `git commit -q`, `git fetch -q`, `git pull -q` and `git push -q`.
 - **No pasted output:** never paste gate, audit, test or Git output into a reply, update or report, in full or in part; it stays in the session log.
 - **One line per outcome:** report each outcome in one plain line, such as "tests pass", "the ki-coordination audit has no new findings" or "the unit failed its push", naming a failure and what it means in the same line. Detail and evidence follow only when the owner asks.
-
-Sources: QUIET-TOOLS and RESTART-AGREE in [the decision register](sources.md#3-decisions).
 
 <a id="needs-tags"></a>
 
@@ -321,9 +305,7 @@ Whenever a session or report mentions a roadmap or work record, a package file, 
 - **Never invented:** when a target cannot be resolved, the text says so.
 - **Pruned records:** a pruned record has no local file, so it is linked as `[<FULL-ID> (pruned)](https://github.com/<owner>/<repo>/blob/<last revision>/<path>)`. The link text is always the full identifier followed by `(pruned)`, and the last revision is the last commit in which the file existed, usually the parent of the prune commit. A live record keeps its local-file link; a pruned record is never pointed at the Project note that carries it, nor left as a bare identifier.
 - **Scope:** status lines, reports, recaps and package files alike, a background agent's report included.
-- **No file check:** no rubric item reads reports for links any more, under COORD-REPORT-CHECKS; COORD-5 reviews linking as judgement. That every record identifier in a record is a link is the record's owner's rule: the Cairn store's contract and its [change 20](https://github.com/krisb/ki-cairn-store/blob/7fb6be3/work/cairn/cairn.summit/20-learnings.change.md#42-the-record).
-
-Sources: LINK-FORM and COORD-REPORT-CHECKS in [the decision register](sources.md#3-decisions).
+- **No file check:** no rubric item reads reports for links any more; COORD-5 reviews linking as judgement. That every record identifier in a record is a link is the record's owner's rule: the Cairn store's contract and its [change 20](https://github.com/krisb/ki-cairn-store/blob/7fb6be3/work/cairn/cairn.summit/20-learnings.change.md#42-the-record).
 
 #### 4.4.1 Where the owner reads
 
@@ -347,7 +329,7 @@ Which links to give for each kind of thing:
 - **Clickable form:** give each route as `http://localhost:1677/open/<route>`, the twin of `cairn://<route>`; as `http://localhost:1677/open/package/ki.cairn/tag/MESSAGES-GO`. Never put a raw `cairn://` link in Orca chat text, which shows it as plain text that does not open.
 - **Copyable command:** a reply may also give `open "cairn://<route>"` in a fenced block by its footer, so the owner can paste it into a terminal on the Mac.
 - **Prompts:** a prompt goes as a fenced block, ready to copy, and also as a Wayfinder link, which opens it with Copy. A prompt kept in a change document, under a `### PROMPT-<NAME>: …` heading, takes the kept form, `cairn://prompt/<package>/<change file>/<PROMPT-NAME>`; only a short prompt, up to about 6 KB, travels in the link itself, as `cairn://prompt?text=…`, encoded whole.
-- **Family and court matter:** a prompt about it travels as any other, kept or in the link, since it needs no special treatment in logs, Git, the store or the Wayfinder; care applies only when something is published, and that care is Kris's (FAMLEGAL-OPEN). A secret never goes in a prompt in either form.
+- **Family and court matter:** a prompt about it travels as any other, kept or in the link, since it needs no special treatment in logs, Git, the store or the Wayfinder; care applies only when something is published, and that care is the owner's. A secret never goes in a prompt in either form.
 - **Show me:** when the owner says "show me" or "open it", a session in an agent host on the Mac where the Wayfinder runs opens the Wayfinder at the thing in question itself, with `open cairn://<route>`, by any route in the catalogue; it never opens one unprompted. A session on another host, or one the owner reads on the phone, gives the link instead.
 - **On the phone,** only `https://` links open, so the GitHub links stay.
 - **Gaps:** an unknown route opens the nearest page, with a notice. A bot's Orca item and a meeting's deeply nested files have no route yet, so they are linked as before.
@@ -366,13 +348,9 @@ The same read on the phone gives only `[cairn.summit change 20](https://github.c
 - **Never invented:** a link whose target cannot be resolved, or that would not open where the owner reads, is left out and the text says so.
 - **In files** this rule does not apply: a relative link stays within its repository's root, as `ki-authoring` sets.
 
-Sources: LINKS-STANDARD, LINKS-WHERE-READ, WAYFINDER-COMPANION and WAYFINDER-DRIVE in [the decision register](sources.md#3-decisions).
-
 #### 4.4.2 Runtime binding
 
 Under the Claude runtimes, the agent hosts on a Mac are Orca, Claude Code and Claude Desktop, and the apps with their own sign-in are Claude Desktop and Claude Design; a claude.ai artifact made from another app's session needs another sign-in, so it is never given. Another runtime names its own hosts and apps here.
-
-Sources: LINKS-STANDARD in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 

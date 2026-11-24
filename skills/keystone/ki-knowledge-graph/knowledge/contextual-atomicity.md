@@ -25,7 +25,7 @@ links:
 
 # Contextual Atomicity and Recursive Graph Composition
 
-The right granularity of knowledge depends on context: a [card][semantic-markdown] should stay coherent for its reader rather than splitting every fact into its own resource. Kris proposed this as atomic knowledge, drawing on [Zettelkasten][zettelkasten] and, by loose analogy only, on [Atomic Design][atomic-design]. A quote can be one atomic card even though its words are not meaningful units there; a word can be an atomic concept in a linguistic island; a galaxy can be a meaningful unit when the subject is the universe.
+The right granularity of knowledge depends on context: a [card][semantic-markdown] should stay coherent for its reader rather than splitting every fact into its own resource. It was proposed as atomic knowledge, drawing on [Zettelkasten][zettelkasten] and, by loose analogy only, on [Atomic Design][atomic-design]. A quote can be one atomic card even though its words are not meaningful units there; a word can be an atomic concept in a linguistic island; a galaxy can be a meaningful unit when the subject is the universe.
 
 Within the [Knowledge Graph][graph], a compound graph can itself be treated as one addressable entity when referenced by a higher-level graph. Choosing the unit that is atomic for its context, from a quote to a compound graph, is **contextual atomicity**. Compound graphs may recursively compose other graphs, including graphs in other [jurisdictions][territories], without duplicating them, changing ownership or endorsing their assertions.
 

@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T23:56:44Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -20,7 +20,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This standard governs one thing: **how chezmoi registers a selected backpack hook payload in Claude Code's and Codex's settings**. It is the one home of that rule, under HOOK-HOME a, which Kris took on 22 November 2026 at the Environment guild's sitting with the card "ki-env-binding-chezmoi". Every other skill that names hook registration points here: `ki-repo-dotfiles-chezmoi`, `ki-git` and `ki-repo-backpack`.
+This standard governs one thing: **how chezmoi registers a selected backpack hook payload in Claude Code's and Codex's settings**. It is the one home of that rule. Every other skill that names hook registration points here: `ki-repo-dotfiles-chezmoi`, `ki-git` and `ki-repo-backpack`.
 
 The [generated rubric](rubric.md) has no hook criterion yet, so a reviewer reads this standard beside it; the sources behind it are in [the sources file](sources.md).
 

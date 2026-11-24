@@ -19,7 +19,7 @@ links:
 
 # Layered Graphs, Attachment Points and Shadow Nodes
 
-Each repository keeps its own [knowledge graph][graph], usually in its [`knowledge/` folder][folder], and the graphs join in layers rather than by copying. Kris agreed the picture on 4 November 2026.
+Each repository keeps its own [knowledge graph][graph], usually in its [`knowledge/` folder][folder], and the graphs join in layers rather than by copying.
 
 - **Attachment point.** A graph declares its attachment points: the nodes it is fully confident will not be relocated, which other graphs may pin to. Declaring one is a promise of a stable id and path, with a deprecation pointer rather than removal if it ever has to change.
 - **Shadow node.** Another graph brings an attachment point in as a shadow node: a read-only pointer, kept in the assistant repository under its `context/`, that records what it shadows and when it was last checked. The lower graph hangs its own nodes off the shadow.
@@ -29,7 +29,7 @@ So the canonical graph sits above, as Knowledge Islands Principal's does, and a 
 
 ## Shadow-node life cycle
 
-Kris proposed this refinement on 7 November 2026: shadows are left behind, pruned back where untended and grown again when needed.
+A refinement: shadows are left behind, pruned back where untended and grown again when needed.
 
 - **Lift.** When a card is promoted up, its shadow nodes stay behind, so links into the lower graph still resolve.
 - **Prune.** After a few rounds of use and population, shadows in areas no longer being tended are pruned back. Nothing is lost, because the real card lives in the graph above.

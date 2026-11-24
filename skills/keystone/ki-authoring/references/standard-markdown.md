@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T22:58:47Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -30,7 +30,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-The **judgment-layer** rules for the Markdown written across Knowledge Islands repositories and bases — the choices a formatter cannot make. Markdown is a distinct standard because its mechanical formatter/linter boundary and its human table, link, callout, and code-block decisions do not apply to the TOML configuration format. Everything mechanical (prose wrapping, bullet and quote characters, heading hierarchy, single H1, list spacing) is owned by **rumdl**. This file only covers what remains for a person or model. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+The **judgment-layer** rules for the Markdown written across Knowledge Islands repositories and bases — the choices a formatter cannot make. Markdown is a distinct standard because its mechanical formatter/linter boundary and its human table, link, callout, and code-block decisions do not apply to the TOML configuration format. Everything mechanical (prose wrapping, bullet and quote characters, heading hierarchy, single H1, list spacing) is owned by **rumdl**. This file only covers what remains for a person or model. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -85,7 +85,7 @@ The one place column width _is_ your job is **tables**, and it is now wholly you
 
 ### 4.2 Markdown flavour
 
-Markdown stays the Knowledge Islands authoring format. Typst is noted as a possible authoring alternative, not adopted: Kris said on 29 October 2026, under DIAGRAM-TOOLS, "Typst is definitely more about authoring and is possibly an alternative to Markdown. But right now, Markdown is what we use." Nothing here authors in Typst until a later decision says so; its diagramming package, fletcher, is ranked in the `ki-diagrams` [tool preference order](../../../authoring/ki-diagrams/references/standard-diagrams.md#42-tool-preference-by-diagram-kind).
+Markdown stays the Knowledge Islands authoring format. Typst is noted as a possible authoring alternative, not adopted: it is more about authoring than diagramming and could stand in for Markdown, but Markdown is what is used now. Nothing here authors in Typst until a later decision says so; its diagramming package, fletcher, is ranked in the `ki-diagrams` [tool preference order](../../../authoring/ki-diagrams/references/standard-diagrams.md#42-tool-preference-by-diagram-kind).
 
 Knowledge Islands prefers GitHub-flavoured Markdown (GFM). Other flavours, chiefly Obsidian's wikilinks, embeds and custom callouts, remain supported: a reader, audit or tool must never fail merely because a file uses another flavour, and no one need convert a file just to read or cite it. Do not add a per-note flavour field.
 
@@ -188,7 +188,7 @@ This is an authoring presentation rule. Domain skills own a document's required 
 ### 4.6 Links
 
 - **Use descriptive, note-relative Markdown links in angle brackets as the house form**, including KB note content: `[ref](<references/My Detail.md>)`. Normalise Obsidian's `%20` space encoding to literal spaces inside the angle-bracket destination, structurally within links; preserve other necessary URI escapes and literal percent signs. `ki-repo-kb` owns internal-link resolution.
-- **A relative link never leaves its repository's root** (LINK-ROOT). Link to another repository by its web address on the default branch, such as `https://github.com/<owner>/<repo>/blob/main/<path>`, never by a path that climbs out of the repository, such as `../../other-repo/…`. Such a path resolves only where two checkouts happen to sit side by side, and breaks on GitHub and on every other machine.
+- **A relative link never leaves its repository's root.** Link to another repository by its web address on the default branch, such as `https://github.com/<owner>/<repo>/blob/main/<path>`, never by a path that climbs out of the repository, such as `../../other-repo/…`. Such a path resolves only where two checkouts happen to sit side by side, and breaks on GitHub and on every other machine.
 - **Keep supported wikilinks readable inside table cells.** Escape an existing wikilink alias separator as `\|`; an unescaped `|` is parsed as a column separator. GFM conversion uses a descriptive Markdown link instead.
 - **Write descriptive link text** — the words you'd skim for, not "click here" or a bare URL. `[the repo standard](…)`, not `[here](…)`.
 - **Refer to another skill by its `name`**, never by a file path — "the `ki-repo-kb` skill" — because a skill's location on disk is not stable, but its name is how it loads into the session.

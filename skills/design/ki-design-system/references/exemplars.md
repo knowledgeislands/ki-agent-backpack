@@ -8,7 +8,7 @@ These illustrate [the Design System standard](standard-design-system.md) but do 
 
 ## The Cairn Wayfinder
 
-[`apps-cairn.local`](https://github.com/knowledgeislands/apps-cairn.local/tree/7f58d7714d13563ec1e85d9217e42ad7cb5a219e) at `7f58d7714`, the Cairn's local app, is the exemplar (DESIGN-SETTLED). It declares `[skills.ki-design-system]` and passes every mechanical criterion, and its design knowledge sits in the homes the standard names:
+[`apps-cairn.local`](https://github.com/knowledgeislands/apps-cairn.local/tree/7f58d7714d13563ec1e85d9217e42ad7cb5a219e) at `7f58d7714`, the Cairn's local app, is the exemplar. It declares `[skills.ki-design-system]` and passes every mechanical criterion, and its design knowledge sits in the homes the standard names:
 
 - **Values** - `apps/wayfinder/src/renderer/styles/tokens.css` holds every colour, size, layer and motion value as a custom property, night the reference and day beside it, and says which names follow Tessera's and which are the Wayfinder's own.
 - **How** - `docs/guides/developer/wayfinder-design.md` gives principles, colour, type, layout, components, state, interaction and accessibility, enhancement, words and a merge section, naming tokens rather than values.

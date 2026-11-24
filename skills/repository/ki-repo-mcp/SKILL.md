@@ -91,7 +91,7 @@ The Bun-install / Node-run split, the **`bun test` trap**, and the `process.load
 
 ## Where a server is turned on
 
-Turning a server on in a client is not this skill's: the canonical MCP source, each client surface, the order surfaces are enabled in and claude.ai connector control belong to the Environment guild's `ki-env-binding` and `ki-env-binding-claude` (MCP-SURFACES). This skill keeps only what an MCP repository ships. Client registration, web or admin changes, remote deployment, generated clients and repository-defined commands are never hidden conform operations here.
+Turning a server on in a client is not this skill's: the canonical MCP source, each client surface, the order surfaces are enabled in and claude.ai connector control belong to the Environment guild's `ki-env-binding` and `ki-env-binding-claude`. This skill keeps only what an MCP repository ships. Client registration, web or admin changes, remote deployment, generated clients and repository-defined commands are never hidden conform operations here.
 
 ## Notes
 

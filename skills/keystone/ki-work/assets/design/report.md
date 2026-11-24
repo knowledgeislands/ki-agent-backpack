@@ -22,7 +22,7 @@
 
 ## Challenges
 
-- <An earlier decision, by its words and date> - <which review challenged it and why; the decision tag that puts it to the owner>
+- <An earlier decision, by what it changed> - <which review challenged it and why; the decision tag that puts it to the owner>
 
 <Or `None`.>
 

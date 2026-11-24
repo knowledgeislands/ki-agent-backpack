@@ -5,7 +5,7 @@ type: specification
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, SPEC-CARDS, drafted as a proposal for the owner's review (12 November 2026), corrected from the blind review of 18 November 2026 and agreed, SPEC-AGREE a (19 November 2026)
+origin: Cairn summit change 22, drafted as a proposal (12 November 2026) and corrected from the blind review of 18 November 2026
 links:
   spec.a2a:
     predicate: dcterms:isPartOf

@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T22:58:47Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -27,7 +27,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-The frontmatter fields of the notes in a Knowledge Islands base: the universal fields, the `note_type` taxonomy that pairs each note type with where it may live, and the fields some note types add. Its refresh is structure · annually. The decisions behind these rules are in [the sources file](sources.md).
+The frontmatter fields of the notes in a Knowledge Islands base: the universal fields, the `note_type` taxonomy that pairs each note type with where it may live, and the fields some note types add. Its refresh is structure · annually. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -84,7 +84,7 @@ The authoritative definition of frontmatter fields for all notes in a Knowledge 
 | `tags` | Optional | Topical / temporal / source labels (`topic/*`, `date/*`, `source/*`) — retained, but never the **kind** classifier |
 | `author` | Recommended | `AI-assisted` / `Manual` / `Mixed` |
 
-† NOTE-1c delegates metadata classification for `Streams/Roadmap/**`, old `+/_CHECKPOINTS/<thread>.md` checkpoints, canonical acquisition records under `+/_ACQUIRE/<adapter>/*.md`, and peer-qualified `TRD-*.md` protocol records under either working area to their owning skills. These records still undergo YAML, key-shape, and declared required-field checks. Nested checkpoint or acquisition paths, including `_RETIRED`, are not delegated. Local session digests under `-/_DIGESTS/` remain governed here. A work package lives in the Cairn store, so a package file left directly under `+/_WORK/<id>/`, such as its `_index.md`, `state.md`, `queries.md`, `messages.md` or `decisions.md`, is no longer delegated: NOTE-1c fails it as an earlier copy, out of place, naming the store's `work/<territory>/<id>/` (COVERAGE-SIGNAL a).
+† NOTE-1c delegates metadata classification for `Streams/Roadmap/**`, old `+/_CHECKPOINTS/<thread>.md` checkpoints, canonical acquisition records under `+/_ACQUIRE/<adapter>/*.md`, and peer-qualified `TRD-*.md` protocol records under either working area to their owning skills. These records still undergo YAML, key-shape, and declared required-field checks. Nested checkpoint or acquisition paths, including `_RETIRED`, are not delegated. Local session digests under `-/_DIGESTS/` remain governed here. A work package lives in the Cairn store, so a package file left directly under `+/_WORK/<id>/`, such as its `_index.md`, `state.md`, `queries.md`, `messages.md` or `decisions.md`, is no longer delegated: NOTE-1c fails it as an earlier copy, out of place, naming the store's `work/<territory>/<id>/`.
 
 ‡ Component-specific status values remain under their component owners while KB-wide metadata reconciliation is pending.
 

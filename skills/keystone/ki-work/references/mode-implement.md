@@ -4,7 +4,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 # Implement
 
-`ki-work implement` is a subcommand of the Work guild's lead. It was the `ki-implement` process skill until the guild folded it into `ki-work` (PROCESS-SUBCOMMANDS), and keeps that skill's procedure and boundaries.
+`ki-work implement` is a subcommand of the Work guild's lead. It was the `ki-implement` process skill until the guild folded it into `ki-work`, and keeps that skill's procedure and boundaries.
 
 Delivers one approved, ready work record to an evidence-backed awaiting-review boundary.
 
@@ -33,7 +33,7 @@ The caller or `ki-work accept` owns the next decision.
 
 `ki-work plan` owns plan shape and readiness material; it does not replace this delivery procedure.
 
-Kris's coordinating-work rule requires detached background runs for every unit; an in-session subagent is not such a run. Conversational bounded work may proceed directly, and a background run may use bounded subagents within its approved plan. `ki-delegation`, when active, owns run and durable-packet contracts. The delivering agent retains authority boundaries, dependency ordering, integration, verification and the final account of its unit; the coordinator retains the owner's conversation.
+The coordinating-work rule requires detached background runs for every unit; an in-session subagent is not such a run. Conversational bounded work may proceed directly, and a background run may use bounded subagents within its approved plan. `ki-delegation`, when active, owns run and durable-packet contracts. The delivering agent retains authority boundaries, dependency ordering, integration, verification and the final account of its unit; the coordinator retains the owner's conversation.
 
 `ki-coordination` may deliver a frozen wave of independent records only within an unattended window's recorded grant.
 

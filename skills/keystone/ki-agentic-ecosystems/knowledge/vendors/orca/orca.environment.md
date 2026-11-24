@@ -6,7 +6,7 @@ status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
 vendor: Orca
-origin: ki.summit change 21, EXEC-ENV a) (21 November 2026)
+origin: ki.summit change 21 (21 November 2026)
 links:
   industry.environment:
     predicate: skos:relatedMatch

@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T22:58:47Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -89,7 +89,7 @@ The container does not prescribe a topical-folder or `groups` vocabulary. Where 
 
 ### 4.2 Records and the Project registry
 
-`Streams/Roadmap/` is the KB placement of a project repository's `docs/roadmap/`. `ki-work-roadmap` owns its records, their identity, frontmatter floor, `_ISSUES.md` ledger, areas and intake, under [its KB rule](../../../work/ki-work-roadmap/references/standard-repository-roadmaps.md#41-repositories-it-applies-to); its audit checks them in a Knowledge Base. `ki-work` owns the Project registry's [close-out assessment](../../../keystone/ki-work/references/standard-project-registry.md#45-close-out-assessment) and [idea-stage checks](../../../keystone/ki-work/references/standard-project-registry.md#43-idea-stage-project). This standard keeps only the container they sit in (KB-FOLD b, 22 November 2026).
+`Streams/Roadmap/` is the KB placement of a project repository's `docs/roadmap/`. `ki-work-roadmap` owns its records, their identity, frontmatter floor, `_ISSUES.md` ledger, areas and intake, under [its KB rule](../../../work/ki-work-roadmap/references/standard-repository-roadmaps.md#41-repositories-it-applies-to); its audit checks them in a Knowledge Base. `ki-work` owns the Project registry's [close-out assessment](../../../keystone/ki-work/references/standard-project-registry.md#45-close-out-assessment) and [idea-stage checks](../../../keystone/ki-work/references/standard-project-registry.md#43-idea-stage-project). This standard keeps only the container they sit in.
 
 [Back to contents](#contents)
 

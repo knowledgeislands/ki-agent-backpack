@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T00:54:54Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -21,9 +21,9 @@ ki-status: in force
 
 ## 1. Introduction
 
-How D12, the Dodecakrisis, runs: the ten rules, the rules file and its guards, the configuration a declaring repository supplies, and the approval every write needs. The concept, the twelve Ds, their names and why, is the Knowledge Islands D12 card's; this standard holds the rules and how they run, under D12-CANON a) (Kris, 7 November 2026). The [mailbox standard](standard-mailbox.md) binds D12 to a mailbox and the [learning standard](standard-learning.md) improves its rules.
+How D12, the Dodecakrisis, runs: the ten rules, the rules file and its guards, the configuration a declaring repository supplies, and the approval every write needs. The concept, the twelve Ds, their names and why, is the Knowledge Islands D12 card's; this standard holds the rules and how they run. The [mailbox standard](standard-mailbox.md) binds D12 to a mailbox and the [learning standard](standard-learning.md) improves its rules.
 
-The sources and decisions behind these rules are in [the sources file](sources.md).
+The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

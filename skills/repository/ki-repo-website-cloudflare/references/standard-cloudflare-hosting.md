@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:25:51Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -169,18 +169,18 @@ The root `ki:site:build` / `ki:site:dev` aliases and local build/dev operations 
 
 ### 4.7 Credential access
 
-A run separately authorised to read Cloudflare credentials reads them only through `~/bin/cf-token`, minting its own short-lived least-privilege token, under `ki-env-binding`'s [credential access standard](../../../environment/ki-env-binding/references/standard-credential-access.md#42-cloudflare-through-cf-token) (CF-CREDENTIALS a, CRED-HOME a).
+A run separately authorised to read Cloudflare credentials reads them only through `~/bin/cf-token`, minting its own short-lived least-privilege token, under `ki-env-binding`'s [credential access standard](../../../environment/ki-env-binding/references/standard-credential-access.md#42-cloudflare-through-cf-token).
 
 [Back to contents](#contents)
 
 ### 4.8 Zero Trust team naming
 
-Each Cloudflare account's Zero Trust team, which gives the Access login its `<team>.cloudflareaccess.com` domain, is named for that account's own identity in kebab case: the personal account's team is `midnight-ninja` and the 5G Emerge account's is `5g-emerge`. A team never keeps the name of another territory or of a project it once hosted, and carries no stale suffix such as `-io`. Kris set this on 29 October 2026 when renaming both teams, asking that it be "rolled out uniformly ... following conventions".
+Each Cloudflare account's Zero Trust team, which gives the Access login its `<team>.cloudflareaccess.com` domain, is named for that account's own identity in kebab case: the personal account's team is `midnight-ninja` and the 5G Emerge account's is `5g-emerge`. A team never keeps the name of another territory or of a project it once hosted, and carries no stale suffix such as `-io`. The naming is applied uniformly across accounts.
 
 What the login page shows depends on what the account hosts:
 
 - **A dedicated account,** hosting one organisation's sites, names itself: its organisation name equals its team domain, as in the 5G Emerge account, and the login page's text belongs to the account, with no other territory's header or footer.
-- **An account hosting several sites** shows nothing specific to any one of them: the organisation is "Private", the login header "Private sign-in", with no logo or footer; every Access application is named "Private site"; and the team address names no site. Kris set this on 22 November 2026, for the personal and Friends accounts: what matters "is that the sign-in screen is neutral".
+- **An account hosting several sites** shows nothing specific to any one of them: the organisation is "Private", the login header "Private sign-in", with no logo or footer; every Access application is named "Private site"; and the team address names no site. What matters is that the sign-in screen is neutral.
 
 A team rename is a change to the Access organisation, which makes it connection-critical under the background-run [connection-critical rule](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#484-connection-critical-changes):
 
@@ -219,7 +219,7 @@ The split rule: **`wrangler.jsonc` owns everything it can express; the guide rec
 
 ### 4.11 Every domain's www redirects to its apex
 
-Every domain's `www` host answers with a 301 redirect to its apex, and no app or site is served there. Kris set this as a fixed rule on 22 November 2026 (WWW-301): "Any domain should have a 301 redirect. We don't serve an app. We put a redirect in there instead. That's a fixed rule that we need to have."
+Every domain's `www` host answers with a 301 redirect to its apex, and no app or site is served there. This is a fixed rule for every domain.
 
 The model is knowledgeislands.info's. The redirect is a dynamic redirect rule on the zone, recorded in the Cloudflare guide ([§4.10](#410-the-cloudflare-guide--dashboard-owned-settings)) as the exact values an operator enters:
 

@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T22:58:47Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -71,7 +71,7 @@ The template first, then its fields, then how its runs are spawned, closed and k
 
 ### 4.1 What a template is
 
-This standard was published under the skill name `ki-work-housekeeping` until 14 October 2026, when the skill became `ki-work-recurring` under Kris's naming decision for the change-management design ("names change: (c) ki-coordination, ki-work-recurring, ..."), because "housekeeping" reads as cleanup while the skill governs recurring work. Repositories declaring `[skills.ki-work-housekeeping]` in `.ki.toml` rename the table to `[skills.ki-work-recurring]`.
+This standard was published under the skill name `ki-work-housekeeping` until 14 October 2026, when the skill became `ki-work-recurring`, because "housekeeping" reads as cleanup while the skill governs recurring work. Repositories declaring `[skills.ki-work-housekeeping]` in `.ki.toml` rename the table to `[skills.ki-work-recurring]`.
 
 This standard defines durable recurring-work templates. A template is not a roadmap item: it is the source from which `ki-work next` may spawn one due run. The run uses the common forward-work lifecycle and carries the template identifier plus its scheduled date. Partition templates by independently runnable purpose and cost, not by every artifact type.
 

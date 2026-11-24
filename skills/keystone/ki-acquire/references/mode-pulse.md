@@ -4,7 +4,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 # Pulse
 
-`ki-acquire pulse` runs one bounded, on-demand knowledge-acquisition pulse and retains no standing state. It was the `ki-pulse` process skill until the Acquire guild folded it into its lead (PROCESS-SUBCOMMANDS). Read [the Pulse standard](standard-pulse.md) before Capture, Scan, or Triage. It defines the invocation-scoped brief, common signal shape, evidence rules, dispositions, and destination owners.
+`ki-acquire pulse` runs one bounded, on-demand knowledge-acquisition pulse and retains no standing state. It was the `ki-pulse` process skill until the Acquire guild folded it into its lead. Read [the Pulse standard](standard-pulse.md) before Capture, Scan, or Triage. It defines the invocation-scoped brief, common signal shape, evidence rules, dispositions, and destination owners.
 
 Invoked as `pulse capture <url-or-source> [reason]`, `pulse scan <interest-or-query> [sources]` or `pulse triage [current-signals]`. With `pulse` alone and no clear contextual signal, explain the three operations, the transient default, limits and off-ramps, then stop without browsing or writing; in an interactive session only, ask which operation and required input the user intends.
 
@@ -40,7 +40,7 @@ Return the bounded observations with their source metadata, access state, uncert
 
 ## Off-ramps
 
-- Harbour's capture (cairn.harbour) owns a **Read / learn** candidate: it preserves it and later curates it under CURATION-HOME (PULSE-BOUNDARY).
+- Harbour's capture (cairn.harbour) owns a **Read / learn** candidate: it preserves it and later curates it.
 - `ki-radar`'s REFRESH owns an **Act** on an agentic or model signal: the act fires its return trigger, and Pulse edits no radar snapshot.
 - Any other owning governance skill's REFRESH mode owns its own normative-source refresh.
 - `ki-work next` owns finite work capture and selection in the owning repository.

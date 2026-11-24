@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T20:17:12Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -120,7 +120,7 @@ Because every guide sits in an audience folder, the collection declares which gu
 ### 4.4 Guide root and index
 
 - Guides live in **`docs/guides/`**.
-- **`docs/guides/_index.md`** is the collection entry point, the folder's page with no `README.md` beside it, under `ki-authoring`'s docs-folder rule (DOCS-LANDING-GITHUB); an earlier `docs/guides/README.md` alone passes GUIDE-2 with a warning until renamed. It gives the reader a concise scope statement and links to each guide or guide area with enough description to choose one.
+- **`docs/guides/_index.md`** is the collection entry point, the folder's page with no `README.md` beside it, under `ki-authoring`'s docs-folder rule; an earlier `docs/guides/README.md` alone passes GUIDE-2 with a warning until renamed. It gives the reader a concise scope statement and links to each guide or guide area with enough description to choose one.
 - Every guide lives in a folder named for its audience, such as `developer/`, `operator/`, or `user/`, so a guide's location declares its reader. Folder names are open, local information architecture, not a KI-wide taxonomy, but each names a reader rather than a topic. A collection with one audience has one folder. A guide that serves several readers sits with its primary reader, and the index may link it from other areas. Only the root `_index.md` sits directly under `docs/guides/`.
 - `docs/guides/references/` holds supporting material that guides link to, not guides for an audience of its own.
 - Developer guide roles such as `developer/definition-of-done.md` and `developer/releasing.md` are optional under this general standard. A specialised repository-kind overlay may require their presence or an exact role path. When the role has a stable audience, that exact path should preserve the collection's audience route rather than bypass it with a root-level filename. `ki-guides` continues to govern ordinary guide placement and form rather than imposing a universal completion checklist or release policy.

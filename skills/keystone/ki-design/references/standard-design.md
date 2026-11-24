@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T19:59:53Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -21,7 +21,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-How a design of any kind is shaped in Knowledge Islands, before Authoring's skills write it down, and which skill takes each kind. The decisions behind it are in [the sources file](sources.md#3-decisions).
+How a design of any kind is shaped in Knowledge Islands, before Authoring's skills write it down, and which skill takes each kind. The sources behind it are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -42,7 +42,7 @@ The shaping of a design, technical or visual, from its brief to the choices it s
 ### 2.2 Out of scope
 
 - How a repository keeps its interface design, the three visual levels and the component library: `ki-design-system`.
-- Shaping a Project, theme or model before any work exists, and rolling it out as work records: `ki-work design`. Where its subject is a technical or visual design, this standard shapes that design and the loop keeps the owner's decisions and the rollout; the design document the loop's change agrees is this skill's from then on (DESIGN-LOOP).
+- Shaping a Project, theme or model before any work exists, and rolling it out as work records: `ki-work design`. Where its subject is a technical or visual design, this standard shapes that design and the loop keeps the owner's decisions and the rollout; the design document the loop's change agrees is this skill's from then on.
 - The format of a design document: `ki-authoring`'s [design format](../../ki-authoring/references/standard-formats-design.md).
 - The review every kind shares: `ki-authoring`'s [review standard](../../ki-authoring/references/standard-review.md).
 - The forms of decision records, specifications and diagrams: Authoring's skills.
@@ -68,17 +68,17 @@ The rules, part by part.
 
 ### 4.1 What design covers
 
-The Design guild covers all design, technical as well as visual (DESIGN-LEAD). Its two architects are two makers in `ki-work-package`'s [role catalogue](../../../work/ki-work-package/references/standard-roles.md#43-role-catalogue), since their responsibilities differ (ARCHITECT-SPLIT): the information architect, `information-architect` 📐, shapes the structure, naming, navigation and models of a handed-off piece, and the technical architect, `technical-architect` 🏗️, its components, data, interfaces and technology choices. `ki-design` leads the guild; `ki-design-system` is its member for visual design and `ki-design-inspiration` for visual references. Technical design stays in the lead until it needs a member of its own (DESIGN-AUTHORING).
+The Design guild covers all design, technical as well as visual. Its two architects are two makers in `ki-work-package`'s [role catalogue](../../../work/ki-work-package/references/standard-roles.md#43-role-catalogue), since their responsibilities differ: the information architect, `information-architect` 📐, shapes the structure, naming, navigation and models of a handed-off piece, and the technical architect, `technical-architect` 🏗️, its components, data, interfaces and technology choices. `ki-design` leads the guild; `ki-design-system` is its member for visual design and `ki-design-inspiration` for visual references. Technical design stays in the lead until it needs a member of its own.
 
 [Back to contents](#contents)
 
 ### 4.2 How a design is shaped
 
-Every design goes through the same three steps, whatever its kind (DESIGN-AUTHORING):
+Every design goes through the same three steps, whatever its kind:
 
 1. **The brief.** What the design is for, what it must satisfy and what it leaves out, written and agreed before any option is drawn. The names already in use, in code or in the work, are read first.
 2. **The options.** More than one way to meet the brief, each with what it costs, and the one recommended marked, so the choice is the owner's.
-3. **The review.** A second reader checks the chosen design before it is called final, as `ki-authoring`'s [review standard](../../ki-authoring/references/standard-review.md) sets for every kind: who reviews, the finding's shape, what was not checked, and the outcome, Approve or Accept with changes (REVIEW-SHAPE, REVIEW-HOME). A design adds only this:
+3. **The review.** A second reader checks the chosen design before it is called final, as `ki-authoring`'s [review standard](../../ki-authoring/references/standard-review.md) sets for every kind: who reviews, the finding's shape, what was not checked, and the outcome, Approve or Accept with changes. A design adds only this:
    - **Against what.** Its brief is its Introduction; its governing standards are the design format, this standard's levels for its kind and, for a visual design, the design system's floor; its precedent is the agreed designs and decision records beside it. A coarser level is reviewed and agreed before the finer one.
    - **The design anchors,** beside the review standard's general ones: a board code and region, such as "wayfinder 2.1b P3", a component by its name and level, a C4 element, and an API resource or operation.
    - **The outcome through the change document** that moves the design, as the review standard sets: the owner's Approve takes the design to `agreed`, and no field is added to the design.
@@ -91,8 +91,8 @@ Rubric **DESIGN-1** to **DESIGN-3** review it.
 
 Each kind of design is drawn at levels, each finer than the last, and a coarser level is agreed before the finer one is drawn, because a change costs least at the coarsest level.
 
-- **Visual design** has three: information architecture, wireframes and mock-ups, held by `ki-design-system` (DESIGN-LEVELS).
-- **Technical design** has three kinds, each with three levels (TECH-LEVELS):
+- **Visual design** has three: information architecture, wireframes and mock-ups, held by `ki-design-system`.
+- **Technical design** has three kinds, each with three levels:
 
 | Kind | Coarse | Middle | Fine | After |
 | --- | --- | --- | --- | --- |
@@ -108,8 +108,8 @@ Rubric **DESIGN-4** reviews it.
 
 ### 4.4 Where a design is written down
 
-Design shapes; Authoring writes down (DESIGN-AUTHORING). A design is written down as a design document, in `ki-authoring`'s [design format](../../ki-authoring/references/standard-formats-design.md): the design as it stands first, its brief in its Introduction, under `docs/design/` (DESIGN-PLACE). Its choices, contracts and architecture still go where the repository keeps them, each linked from the design rather than restated in it: a choice that needs its reason kept becomes a decision record under `ki-decision-records`, a contract others build to a specification under `ki-specs`, and an architecture is drawn under `ki-diagrams`. `ki-design-system` already keeps its design specifications and decision records in Authoring's forms.
+Design shapes; Authoring writes down. A design is written down as a design document, in `ki-authoring`'s [design format](../../ki-authoring/references/standard-formats-design.md): the design as it stands first, its brief in its Introduction, under `docs/design/`. Its choices, contracts and architecture still go where the repository keeps them, each linked from the design rather than restated in it: a choice that needs its reason kept becomes a decision record under `ki-decision-records`, a contract others build to a specification under `ki-specs`, and an architecture is drawn under `ki-diagrams`. `ki-design-system` already keeps its design specifications and decision records in Authoring's forms.
 
-This skill owns a design's life cycle: it moves from `draft` to `agreed`, `current`, `shelved` or `replaced` only through a change document, whose review is the design's review, as [4.2](#42-how-a-design-is-shaped) sets out (DESIGN-LIFE). A living design, which every build adds to, takes a build's additions only in its Built section; anything else changes through a change document (DESIGN-LIVING). A Project's shape, before any work exists, is `ki-work design`'s. Rubric **DESIGN-5** reviews it.
+This skill owns a design's life cycle: it moves from `draft` to `agreed`, `current`, `shelved` or `replaced` only through a change document, whose review is the design's review, as [4.2](#42-how-a-design-is-shaped) sets out. A living design, which every build adds to, takes a build's additions only in its Built section; anything else changes through a change document. A Project's shape, before any work exists, is `ki-work design`'s. Rubric **DESIGN-5** reviews it.
 
 [Back to contents](#contents)

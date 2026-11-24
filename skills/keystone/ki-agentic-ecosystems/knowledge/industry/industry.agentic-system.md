@@ -5,7 +5,7 @@ type: term
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 23 (now 12), NAMES-SYSTEM a (13 November 2026); read after the agent under CARD-ORDER (17 November 2026)
+origin: Cairn summit change 23, now 12 (13 November 2026); read after the agent (17 November 2026)
 links:
   industry.agent:
     predicate: dcterms:hasPart

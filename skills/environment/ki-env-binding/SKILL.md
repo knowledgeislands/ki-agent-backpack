@@ -21,7 +21,7 @@ argument-hint: 'audit [project] | conform [project] | help | educate [project] |
 
 The source has client tokens because it serves several clients, but a client adapter owns that client's native configuration and safe writer. This root itself audits only the vendor-neutral mcporter projection. Host-bound runtimes reach these servers through their own host's mcporter bridge, while claude.ai connectors belong to cloud sessions; the standard's [host surface selection](references/standard-cross-surface-binding.md#44-host-surface-selection) owns that rule. Read [the standard](references/standard-cross-surface-binding.md), [generated rubric](references/rubric.md), and [sources](references/sources.md) for the contract.
 
-It also owns **credential access** (CRED-HOME a): once a task has separately authorised a credential read, a 1Password read goes only through the managed cached reader, `~/bin/chezmoi/op-cache`, and a Cloudflare read only through `~/bin/cf-token`, minting a short-lived least-privilege token. [The credential access standard](references/standard-credential-access.md) holds both rules; whether a run may read at all stays with `ki-delegation`'s authority tiers. No rubric criterion checks it yet.
+It also owns **credential access**: once a task has separately authorised a credential read, a 1Password read goes only through the managed cached reader, `~/bin/chezmoi/op-cache`, and a Cloudflare read only through `~/bin/cf-token`, minting a short-lived least-privilege token. [The credential access standard](references/standard-credential-access.md) holds both rules; whether a run may read at all stays with `ki-delegation`'s authority tiers. No rubric criterion checks it yet.
 
 ## Operating modes
 

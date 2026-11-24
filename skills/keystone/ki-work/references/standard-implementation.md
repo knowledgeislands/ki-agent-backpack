@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-21T19:23:41Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -23,7 +23,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This is the on-demand procedure for `ki-work implement`: delivering one approved Ready record to review. The kind, boundary, and relationship map live in [the mode](mode-implement.md). The decisions behind these rules are in the [sources file](sources.md#3-decisions).
+This is the on-demand procedure for `ki-work implement`: delivering one approved Ready record to review. The kind, boundary, and relationship map live in [the mode](mode-implement.md). The sources behind these rules are in the [sources file](sources.md).
 
 [Back to contents](#contents)
 

@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T07:10:00Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -21,7 +21,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-The housekeeping rules every agent host shares, held by the family's lead so each runtime skill adds only its own host's surfaces and controls. The rules were drawn from what `ki-env-housekeeping-claude` and `ki-env-housekeeping-chatgpt` both already held. The decisions behind them are in [the sources file](sources.md#3-decisions).
+The housekeeping rules every agent host shares, held by the family's lead so each runtime skill adds only its own host's surfaces and controls. The rules were drawn from what `ki-env-housekeeping-claude` and `ki-env-housekeeping-chatgpt` both already held. The sources behind them are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -62,7 +62,7 @@ The rules, part by part.
 
 ### 4.1 Native memory policy
 
-Every repository that declares a runtime housekeeping skill sets its native-memory policy explicitly, `auto_memory = "disabled" | "transition" | "enabled"`, in that skill's table, recording a reviewed decision rather than relying on a host's default. An unset or invalid policy fails. `disabled` is the ordinary state; `transition` is temporary and warns until the repository's existing notes are reviewed and routed, then becomes `disabled`; and `enabled` is an exception, never a remediation inferred from existing notes, and needs the owner's express approval and a project-scoped opt-in in the host. The policy is Knowledge Islands' own value, separate from any setting the host keeps. Each runtime skill states only its host's delta: where the host keeps memory, how the policy is applied there and what it checks (MEMORY-ONCE). Rubric **HOUSE-1** reviews it.
+Every repository that declares a runtime housekeeping skill sets its native-memory policy explicitly, `auto_memory = "disabled" | "transition" | "enabled"`, in that skill's table, recording a reviewed decision rather than relying on a host's default. An unset or invalid policy fails. `disabled` is the ordinary state; `transition` is temporary and warns until the repository's existing notes are reviewed and routed, then becomes `disabled`; and `enabled` is an exception, never a remediation inferred from existing notes, and needs the owner's express approval and a project-scoped opt-in in the host. The policy is Knowledge Islands' own value, separate from any setting the host keeps. Each runtime skill states only its host's delta: where the host keeps memory, how the policy is applied there and what it checks. Rubric **HOUSE-1** reviews it.
 
 [Back to contents](#contents)
 

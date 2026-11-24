@@ -7,7 +7,7 @@ territory: knowledge-islands
 island: ki-agent-backpack
 vendor: DeepSeek
 reviewed: 2026-11-22
-origin: ki.summit change 21, ECOSYSTEMS-SITE (22 November 2026)
+origin: ki.summit change 21 (22 November 2026)
 links:
   industry.agent-harness:
     predicate: skos:broadMatch

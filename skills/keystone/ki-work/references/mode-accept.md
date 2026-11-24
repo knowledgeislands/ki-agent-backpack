@@ -4,7 +4,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 # Accept
 
-`ki-work accept` is a subcommand of the Work guild's lead. It was the `ki-accept` process skill until the guild folded it into `ki-work` (PROCESS-SUBCOMMANDS), and keeps that skill's procedure and boundaries.
+`ki-work accept` is a subcommand of the Work guild's lead. It was the `ki-accept` process skill until the guild folded it into `ki-work`, and keeps that skill's procedure and boundaries.
 
 Reviews the required delivery or cancellation evidence, records approved closure, retains terminal records, and prunes explicitly selected terminal records.
 
@@ -15,9 +15,9 @@ Read [the review-closure procedure](standard-acceptance.md) and [the local autho
 `ki-work accept` is the only subcommand that closes a work-record lifecycle. It also owns its explicitly selected terminal-record prune procedure.
 
 1. Resolve the selected adapter and confirm one exact canonical local record at its physical root is either `awaiting-review` with the roadmap-owned six-heading review packet and passing governing audits or any open record, including triage, with an exact proposed cancellation `resolution`: obsolete, rejected, duplicate, merged, superseded, or returned. Remote adapters stop.
-2. Present the delivery review packet or proposed cancellation and require human approval. An acceptance bundle answer recorded by its scope, its date and where it was given, with the exact records it lists, under ACCEPT-BUNDLE, approves delivery closure for those records. A recorded window grant naming closure for a frozen wave may close only that wave's delivery records, never a cancellation.
+2. Present the delivery review packet or proposed cancellation and require human approval. An acceptance bundle answer recorded by its scope, its date and where it was given, with the exact records it lists, approves delivery closure for those records. A recorded window grant naming closure for a frozen wave may close only that wave's delivery records, never a cancellation.
 3. Record approved closure as `done` or `cancelled`, removing the horizon, retain the terminal record, and ensure that state lands before any later pruning. A failed review returns the record to `in-progress` instead.
-4. Prune only fully resolved regular `done` or `cancelled` records selected beneath the exact adapter root; selection is deletion authority. A record terminal for 7 days with its commits landed is due under [the standing prune](standard-acceptance.md#443-the-standing-prune) and is pruned without asking the owner (PRUNE-RECORDS). A prune-only commit may remove several eligible records together, contains no lifecycle transition or unrelated work, and carries the standardised message: subject `chore(roadmap): prune <N> done work record(s)`, singular for one record, and one `- <ID>` body line per record in identifier order.
+4. Prune only fully resolved regular `done` or `cancelled` records selected beneath the exact adapter root; selection is deletion authority. A record terminal for 7 days with its commits landed is due under [the standing prune](standard-acceptance.md#443-the-standing-prune) and is pruned without asking the owner. A prune-only commit may remove several eligible records together, contains no lifecycle transition or unrelated work, and carries the standardised message: subject `chore(roadmap): prune <N> done work record(s)`, singular for one record, and one `- <ID>` body line per record in identifier order.
 
 It never chooses work, starts implementation, edits plan scope, reconstructs missing verification, or treats a recap or passing command as human approval.
 
@@ -47,6 +47,6 @@ With no target, identify the required exact accepted item or terminal records an
 
 ## Notes
 
-- Human approval is the default for closure and cancellation; it is never inferred from a clean gate, a commit, a recap, or silence. Pruning a record due under the standing prune needs none (PRUNE-RECORDS).
+- Human approval is the default for closure and cancellation; it is never inferred from a clean gate, a commit, a recap, or silence. Pruning a record due under the standing prune needs none.
 - Terminal records are retained until their committed `done` or `cancelled` state precedes a dedicated prune-only commit. Pruning is sanctioned cleanup: Git history is the archive, and pruned records are not restored. `ki repo roadmap prune` makes the prune commit by default unless run with `--no-commit`. Process pruning is explicit destructive cleanup in either local adapter; native roadmap pruning is an intentionally explicit non-KB selected-repository sweep.
 - No KI CLI command, wrapper script, runtime-specific mechanism, push, or release belongs here.

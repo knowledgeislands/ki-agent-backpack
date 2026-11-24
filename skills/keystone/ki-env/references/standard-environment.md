@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-14T03:40:22Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -20,7 +20,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-What the Environment guild keeps, and how its skills divide the work between portable family leads and runtime skills. The decisions behind it are in [the sources file](sources.md#3-decisions).
+What the Environment guild keeps, and how its skills divide the work between portable family leads and runtime skills. The sources behind it are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -60,7 +60,7 @@ The rules, part by part.
 
 ### 4.1 What the guild covers
 
-The Environment guild keeps what Knowledge Islands sets up where agents run, in the sense of the environment card: where an agent's work runs, with its files, tools, access and limits (ENV-PREFIX). It has three concerns, each a family:
+The Environment guild keeps what Knowledge Islands sets up where agents run, in the sense of the environment card: where an agent's work runs, with its files, tools, access and limits. It has three concerns, each a family:
 
 | Concern | Family lead | What it keeps |
 | --- | --- | --- |
@@ -74,12 +74,12 @@ Rubric **ENV-1** reviews it.
 
 ### 4.2 Families
 
-Each concern is a family. Its portable lead holds the rules every runtime shares, and each runtime skill depends on its lead and adds only its agent host's delta (HOUSEKEEPING-LEAD). A rule that holds for every runtime moves up to the lead; a rule that holds for one stays with its runtime skill. A new agent host gains a runtime skill in each family that needs one, never a fork of the lead. Rubric **ENV-2** reviews it.
+Each concern is a family. Its portable lead holds the rules every runtime shares, and each runtime skill depends on its lead and adds only its agent host's delta. A rule that holds for every runtime moves up to the lead; a rule that holds for one stays with its runtime skill. A new agent host gains a runtime skill in each family that needs one, never a fork of the lead. Rubric **ENV-2** reviews it.
 
 [Back to contents](#contents)
 
 ### 4.3 Names
 
-The guild's prefix is `ki-env-`, and each family extends it, as `ki-env-binding` and `ki-env-binding-claude` (ENV-PREFIX, GUILD-NAMED). A family's runtime skill is named after the family and the runtime family it serves, `claude` or `chatgpt`, or the tool it renders to, as `chezmoi`.
+The guild's prefix is `ki-env-`, and each family extends it, as `ki-env-binding` and `ki-env-binding-claude`. A family's runtime skill is named after the family and the runtime family it serves, `claude` or `chatgpt`, or the tool it renders to, as `chezmoi`.
 
 [Back to contents](#contents)

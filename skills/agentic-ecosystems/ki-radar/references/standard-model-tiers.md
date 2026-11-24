@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:10:23Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -22,7 +22,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This standard holds the **dated model-tier evidence** for the portable model purposes: which Claude model, and which Codex model family, a provider positions for each purpose on a stated date, and what must happen before a KI default moves. It came here from the two tokenomics adapters, `ki-env-tokenomics-claude` and `ki-env-tokenomics-chatgpt`, under MODEL-TIERS a, which Kris took on 22 November 2026 at the Environment guild's sitting with the card "Move to ki-model-radar", because the radar already tracks the models; under RADAR-MERGE a, on 22 November 2026, the model tiers moved with that radar into `ki-radar`, refreshed monthly. The adapters and `ki-env-tokenomics` keep the four purposes and point here.
+This standard holds the **dated model-tier evidence** for the portable model purposes: which Claude model, and which Codex model family, a provider positions for each purpose on a stated date, and what must happen before a KI default moves. It came here from the two tokenomics adapters, `ki-env-tokenomics-claude` and `ki-env-tokenomics-chatgpt`, because the radar already tracks the models; on 22 November 2026 the model tiers moved with that radar into `ki-radar`, refreshed monthly. The adapters and `ki-env-tokenomics` keep the four purposes and point here.
 
 The evidence is advisory. It is not a portable policy, an observation of a session's effective model, or an agent default. The [model snapshot](model-radar.toml) holds the identity and lifecycle evidence the tables rest on, and [the sources file](sources.md) the refresh ledger.
 

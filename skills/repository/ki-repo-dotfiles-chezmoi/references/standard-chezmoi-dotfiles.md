@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T23:56:44Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -129,7 +129,7 @@ Generate a tracked CLI completion from that CLI's supported completion command, 
 
 ### 4.4 Script headers
 
-Every script in the source opens with a header comment that tells a reader what the script is for, why it matters, how it is called, what runs it and when it was made, so that anyone can learn all about it from the file alone. Kris agreed this shape on 30 October 2026 and asked that the descriptions be "non-technical, so they should explain why it's important as well and what the goal of it is ... it should also be in plain English"; on 7 November 2026 he asked for the standard to be adopted into this skill.
+Every script in the source opens with a header comment that tells a reader what the script is for, why it matters, how it is called, what runs it and when it was made, so that anyone can learn all about it from the file alone. The descriptions are non-technical and in plain English, and explain the script's goal and why it is important.
 
 The header sits directly after the shebang line, or at the top of a file with none, in the file's own comment syntax: `#` for shell and Python, `//` for JavaScript and TypeScript. It has five parts:
 
@@ -242,11 +242,11 @@ To review managed personal instructions section by section and verify affected s
 
 `ki-git` owns portable Git and commit policy, including safe lock recovery.
 
-Chezmoi's registration of backpack hooks in runtime settings belongs to `ki-env-binding-chezmoi`'s [hook registration standard](../../../environment/ki-env-binding-chezmoi/references/standard-chezmoi-hook-registration.md), under HOOK-HOME a; this standard does not define Git hygiene or remove locks.
+Chezmoi's registration of backpack hooks in runtime settings belongs to `ki-env-binding-chezmoi`'s [hook registration standard](../../../environment/ki-env-binding-chezmoi/references/standard-chezmoi-hook-registration.md); this standard does not define Git hygiene or remove locks.
 
 Its existing local physical-lock observation is scoped evidence for a chezmoi repository, not an independent portable Git policy.
 
-The chezmoi source declares no commit gate (`GIT-2`): it commits no `.githooks/` path and binds no `core.hooksPath`, so `ki-repo` `HOOK-1` to `HOOK-4` are not applicable to it. Kris Brown set this on 20 October 2026: the dotfiles repository should have no hook. Its gate is the manual one its `AGENTS.md` names, the source's tests and focused audit, which a session runs before it commits ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)).
+The chezmoi source declares no commit gate (`GIT-2`): it commits no `.githooks/` path and binds no `core.hooksPath`, so `ki-repo` `HOOK-1` to `HOOK-4` are not applicable to it. Its gate is the manual one its `AGENTS.md` names, the source's tests and focused audit, which a session runs before it commits ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)).
 
 [Back to contents](#contents)
 

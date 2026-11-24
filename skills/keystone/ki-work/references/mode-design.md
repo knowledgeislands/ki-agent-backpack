@@ -4,11 +4,11 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 # Design
 
-`ki-work design` is a subcommand of the Work guild's lead. It was the `ki-work-design` process skill until the guild folded it into `ki-work` (PROCESS-SUBCOMMANDS), and keeps that skill's procedure and boundaries.
+`ki-work design` is a subcommand of the Work guild's lead. It was the `ki-work-design` process skill until the guild folded it into `ki-work`, and keeps that skill's procedure and boundaries.
 
 Runs one design from an owner's proposal to approved decisions and a rollout of ordinary work records.
 
-Read [the design-loop standard](standard-work-design.md) before acting. Start each artefact from its template: [brief](../assets/design/brief.md), [review](../assets/design/review.md), [merged report](../assets/design/report.md) and [decisions](../assets/design/decisions.md). [Source notes](sources.md) record the worked exemplar.
+Read [the design-loop standard](standard-work-design.md) before acting. Start each artefact from its template: [brief](../assets/design/brief.md), [review](../assets/design/review.md) and [merged report](../assets/design/report.md); the owner's answers are applied to the design's change document, which has no template here. [Source notes](sources.md) record the worked exemplar.
 
 ## When to use it
 
@@ -33,7 +33,7 @@ The loop writes no work record, grants itself no authority and never chooses for
 - `ki-delegation`, when selected, supplies the packet for any high-risk reviewer or rollout handoff.
 - The [Project registry standard](standard-project-registry.md) owns the flat Project or theme note, which never points into a package and links any resulting Decision Record.
 - `ki-work-package` owns the package, its closed list, its tidy rules and its `_index.md`; `ki-coordination` says when the package is tidied and whether an outcome is homed.
-- `ki-design` shapes a technical or visual design of any kind. The two overlap at the brief and the review, and stay apart (DESIGN-LOOP): this loop decides what to do and rolls it out as work records; `ki-design` shapes the design itself, its options, review and kind's levels. When the loop's subject is a technical or visual design, `ki-design` shapes it and the loop keeps the decisions and rollout; once the change agrees a design, its design document under `docs/design/` is `ki-design`'s from then on. A design with no Project or rollout to decide goes straight to `ki-design`.
+- `ki-design` shapes a technical or visual design of any kind. The two overlap at the brief and the review, and stay apart: this loop decides what to do and rolls it out as work records; `ki-design` shapes the design itself, its options, review and kind's levels. When the loop's subject is a technical or visual design, `ki-design` shapes it and the loop keeps the decisions and rollout; once the change agrees a design, its design document under `docs/design/` is `ki-design`'s from then on. A design with no Project or rollout to decide goes straight to `ki-design`.
 
 ## Invocation
 

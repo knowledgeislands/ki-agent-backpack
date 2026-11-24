@@ -19,14 +19,14 @@ links:
 
 # KI Tool Family
 
-The Knowledge Islands tools share one naming theme: **KI** followed by a short word or a letter or two, written in capitals as a name and in lower case as a command. Kris wants to build on this theme, so new tools and formats are named to follow it.
+The Knowledge Islands tools share one naming theme: **KI** followed by a short word or a letter or two, written in capitals as a name and in lower case as a command. The theme is to be built on, so new tools and formats are named to follow it.
 
 ## Members
 
 - [KIRI][kiri] is the engine library underneath the others, which interprets cards into the [Knowledge Graph][graph].
 - KIG is the command line over KIRI.
 - [KIV][kiv] is the viewer, a working name for the local viewer prototype.
-- **KITE** is a name Kris would like to use, perhaps for a Knowledge Islands Telemetry Explorer. What it would be is open, and no tool carries it yet.
+- **KITE** is a name wanted for later use, perhaps for a Knowledge Islands Telemetry Explorer. What it would be is open, and no tool carries it yet.
 
 [Semantic Markdown][semantic-markdown], the card format, is a candidate member: it wants a short name in the family, such as KISM or KIMD, not yet chosen.
 

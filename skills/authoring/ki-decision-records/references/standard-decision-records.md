@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T20:59:09Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -264,7 +264,7 @@ The rule is unconditional: an established collection whose first record does not
 
 ### 4.9 Index
 
-The index file — `Decisions.md` in a KB, `_index.md` in a code repo, the folder's page with no `README.md` beside it, under `ki-authoring`'s docs-folder rule (DOCS-LANDING-GITHUB); an earlier `README.md` alone is still read, with a warning, until renamed — must carry an **ordered list**, one item per DR, each item linking the record by its ID. A list, not a table: a table earns its overhead only for tabular data or comparison across columns, and an index is neither — it is a single ordered sequence, so a list carries it with less markup. Order the items by **reveal order** — a curated **build narrative**: the records read as if written from scratch, before anything was created, each building on the ones before it, so a concept is introduced at its record and later records may name it explicitly. Weave the sub-scopes into this one sequence where they belong rather than grouping them apart. The order is authorial — a record's dependence on earlier ones is often stated in prose, not only in the `decision_depends_on` field, so the sequence is not mechanically derived. Two constraints hold: roots precede dependents across the whole set (judgment — INDEX-6), and **within any one prefix the serials ascend in reveal order** — a `PREFIX-NNN` never appears before a lower-numbered `PREFIX-MMM`. If the build narrative wants a record earlier than its serial allows, that is a drafting issue fixed by renumbering the affected records and sweeping their citations, not by placing it out of sequence (mechanical — INDEX-8):
+The index file — `Decisions.md` in a KB, `_index.md` in a code repo, the folder's page with no `README.md` beside it, under `ki-authoring`'s docs-folder rule; an earlier `README.md` alone is still read, with a warning, until renamed — must carry an **ordered list**, one item per DR, each item linking the record by its ID. A list, not a table: a table earns its overhead only for tabular data or comparison across columns, and an index is neither — it is a single ordered sequence, so a list carries it with less markup. Order the items by **reveal order** — a curated **build narrative**: the records read as if written from scratch, before anything was created, each building on the ones before it, so a concept is introduced at its record and later records may name it explicitly. Weave the sub-scopes into this one sequence where they belong rather than grouping them apart. The order is authorial — a record's dependence on earlier ones is often stated in prose, not only in the `decision_depends_on` field, so the sequence is not mechanically derived. Two constraints hold: roots precede dependents across the whole set (judgment — INDEX-6), and **within any one prefix the serials ascend in reveal order** — a `PREFIX-NNN` never appears before a lower-numbered `PREFIX-MMM`. If the build narrative wants a record earlier than its serial allows, that is a drafting issue fixed by renumbering the affected records and sweeping their citations, not by placing it out of sequence (mechanical — INDEX-8):
 
 ```markdown
 1. [GDR-KI-PRINCIPAL-001](GDR-KI-PRINCIPAL-001-adopting-decision-records.md) — adopting Decision Records (the format these records follow).

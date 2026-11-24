@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-14T03:01:05Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -20,7 +20,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-A retrospective is the type of meeting that looks back at a meeting or a run of work for what to keep and what to change. It runs by [the meeting standard](standard-meeting.md); this standard adds only what a retrospective produces and how it gets there. No retrospective has been held under it yet; the first trial's lessons, which went into the change that set the meeting standard, are the model. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+A retrospective is the type of meeting that looks back at a meeting or a run of work for what to keep and what to change. It runs by [the meeting standard](standard-meeting.md); this standard adds only what a retrospective produces and how it gets there. No retrospective has been held under it yet; the first trial's lessons, which went into the change that set the meeting standard, are the model. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

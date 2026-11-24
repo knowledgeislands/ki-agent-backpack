@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-21T09:59:39Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -23,7 +23,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-How a note in a base relates to a file in its source store: the mirror and source-provenance relationships, the authored mirror contract, the derived search labels, and the per-base enrichment work. The decisions behind these rules are in [the sources file](sources.md).
+How a note in a base relates to a file in its source store: the mirror and source-provenance relationships, the authored mirror contract, the derived search labels, and the per-base enrichment work. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

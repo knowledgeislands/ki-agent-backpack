@@ -5,7 +5,7 @@ type: term
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, CARD-CLIENT a) (12 November 2026)
+origin: Cairn summit change 22 (12 November 2026)
 links:
   industry.agent-host:
     predicate: skos:related

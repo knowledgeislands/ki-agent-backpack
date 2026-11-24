@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:34:23Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -28,7 +28,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-The on-demand procedure for `ki-work recap`: a recap of a live session, run inside it. The kind, scope, and leg summary live in [the mode](mode-recap.md) and are already loaded; this file is the full procedure. The decisions behind it, and the runtime sources it relies on, are in the [sources file](sources.md).
+The on-demand procedure for `ki-work recap`: a recap of a live session, run inside it. The kind, scope, and leg summary live in [the mode](mode-recap.md) and are already loaded; this file is the full procedure. The runtime sources it relies on are in the [sources file](sources.md).
 
 [Back to contents](#contents)
 

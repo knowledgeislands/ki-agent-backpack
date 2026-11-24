@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T01:50:03Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -19,7 +19,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-REVIEW and EXTRACT are judgment-led discovery modes. Their result is a compact proposal set for a user to assess, not permission to change a skill, a roadmap, or a plan. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+REVIEW and EXTRACT are judgment-led discovery modes. Their result is a compact proposal set for a user to assess, not permission to change a skill, a roadmap, or a plan. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

@@ -16,7 +16,7 @@ _Gate: if the destination is a canonical zone (`Admin`, `Pillars`, `Resources`) 
 
 ## An Activity note
 
-When the note records a behaviour the base has adopted, read [the Activity standard](standard-activities.md) first. The Activity NEW mode folded into SAVE under KB-FOLD b.
+When the note records a behaviour the base has adopted, read [the Activity standard](standard-activities.md) first. The Activity NEW mode folded into SAVE.
 
 1. Prompt for **Name** (the filename and the `# Heading`) and **realization type** from the known list (`slash-command`, `scheduled-task`, `conversational`, `manual`, `workflow`), accepting free text for a new type.
 2. Prompt for the realization's fields: `skill` for `slash-command`; `schedule_name` and `schedule_env` for `scheduled-task`. Default the status to `active`.
@@ -24,7 +24,7 @@ When the note records a behaviour the base has adopted, read [the Activity stand
 
 ## A Live Artifact source
 
-When the note is a dashboard, queue, tracker or status board updated in place, read [the Live Artifact standard](standard-live-artifacts.md) first. The Live Artifact NEW mode folded into SAVE under KB-FOLD b.
+When the note is a dashboard, queue, tracker or status board updated in place, read [the Live Artifact standard](standard-live-artifacts.md) first. The Live Artifact NEW mode folded into SAVE.
 
 1. Prompt for **Name** (the file stem and the `# Heading`) and a one-line **description** for the index. Default the status to `active`.
 2. Write `<artifacts_dir>/<Name>.md` (default `Admin/Operations/Live Artifacts/`) with `status`, `renders: html` and `author` frontmatter and a stub body.

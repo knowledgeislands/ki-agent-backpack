@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T19:59:53Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -25,7 +25,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-How knowledge is brought in from outside, whatever its source: what a capture holds, how it is preserved and verified, how a port stages it, and how its receiver triages it. Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour), under CURATION-HOME. Provider skills add each source's own completeness and capability rules. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+How knowledge is brought in from outside, whatever its source: what a capture holds, how it is preserved and verified, how a port stages it, and how its receiver triages it. Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour). Provider skills add each source's own completeness and capability rules. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -51,7 +51,7 @@ The source-independent contract for capture.
 - A Knowledge Base's packet intake handling: `ki-repo-kb`.
 - Local paths, publication authority and environment steps: the receiving repository's guides.
 - The durable lifecycle and its rationale: Knowledge Islands' Acquisition Process, named in the sources file.
-- Curating captures into cards, its pace, and dispatch: Harbour (cairn.harbour), under CURATION-HOME, 19 November 2026.
+- Curating captures into cards, its pace, and dispatch: Harbour (cairn.harbour).
 
 [Back to contents](#contents)
 
@@ -64,7 +64,7 @@ The source-independent contract for capture.
 | **Port** | A capture point, which may also be a knowledge-capture staging area. **Standard:** this one, [4.6](#46-staging-and-curation) |
 | **Staging area** | A port's area where captured meaning is curated into knowledge cards before it is reconciled into the owning repositories' canonical graphs. **Standard:** this one, [4.6](#46-staging-and-curation) |
 | **Holding area** | A port declared to keep what it stages for now, dispatching nothing while the declaration stands. **Standard:** this one, [4.6](#46-staging-and-curation) |
-| **Dispatch** | Moving a package from the capture area into the receiving island's `+/_ACQUIRED/`; delivery is acceptance. **Owner:** Harbour (cairn.harbour), under CURATION-HOME |
+| **Dispatch** | Moving a package from the capture area into the receiving island's `+/_ACQUIRED/`; delivery is acceptance. **Owner:** Harbour (cairn.harbour) |
 | **Disposition** | The receiver's evidenced verdict on a received session: harvested, retained as source evidence, routed onward, or no residual knowledge. **Standard:** this one, [4.8](#48-receiver-local-triage) |
 
 [Back to contents](#contents)
@@ -99,7 +99,7 @@ Route from owner and source evidence and the relevant territory context. An unkn
 
 ### 4.4 Preservation and originals
 
-Preserve the material the source route promises, with provenance and explicit omissions, keeping source statements, digest and interpretation distinguishable. Keep a capture lean: a short note goes in the capture's README rather than a separate verbatim text file, such as Acquire's `original.txt`, where the README note will do, as Kris decided in Acquire on 31 October 2026 (CAPTURE-LEAN). Preserve required originals as exact bytes under their original filename. Where the capture is committed to Git, Git's object hashes are the checksum and no separate checksum file is kept; Acquire's CAPTURE.md says: "There is no `original.txt` and no `SHA256SUMS`, because Git fingerprints every committed file." An original held outside Git keeps a recorded locator and hash. A preview, resized rendition or offered download does not establish receipt of an original. Optional originals awaiting consent may follow later; essential originals remain an explicit incomplete obligation.
+Preserve the material the source route promises, with provenance and explicit omissions, keeping source statements, digest and interpretation distinguishable. Keep a capture lean: a short note goes in the capture's README rather than a separate verbatim text file, such as Acquire's `original.txt`, where the README note will do. Preserve required originals as exact bytes under their original filename. Where the capture is committed to Git, Git's object hashes are the checksum and no separate checksum file is kept; Acquire's CAPTURE.md says: "There is no `original.txt` and no `SHA256SUMS`, because Git fingerprints every committed file." An original held outside Git keeps a recorded locator and hash. A preview, resized rendition or offered download does not establish receipt of an original. Optional originals awaiting consent may follow later; essential originals remain an explicit incomplete obligation.
 
 [Back to contents](#contents)
 
@@ -111,21 +111,21 @@ Read the destination back and compare the preserved text or byte hashes. Disting
 
 ### 4.6 Staging and curation
 
-A port is a capture point and may also be a knowledge-capture staging area, where captured meaning is curated into knowledge cards before it is reconciled into the canonical knowledge graphs of the repositories that own it. The staging area is neither a canonical graph nor the Knowledge Islands inbound and outbound staging mechanism. Cards define each concept once within a territory and link to related cards rather than repeat definitions; the same card may also sit in another territory where it applies (CROSS-TERRITORY-COPIES, 31 October 2026). Acquire is such a port and, for now, a holding area, as Kris decided in Acquire on 31 October 2026 (ACQ020-MODEL, ACQ020-KNOWLEDGE, GOAL-HOLDING-AREA).
+A port is a capture point and may also be a knowledge-capture staging area, where captured meaning is curated into knowledge cards before it is reconciled into the canonical knowledge graphs of the repositories that own it. The staging area is neither a canonical graph nor the Knowledge Islands inbound and outbound staging mechanism. Cards define each concept once within a territory and link to related cards rather than repeat definitions; the same card may also sit in another territory where it applies. Acquire is such a port and, for now, a holding area.
 
-Acquire has four top-level folders: `captured/` holds faithful captures, `context/` is the routing graph that capturing and curating both start from, `curated/` is the staging area, and `actions/` holds what needs to happen; a fifth, `_held/`, holds material awaiting incorporation. `context/<territory>/` is a small graph of Semantic Markdown cards for each territory, joined by typed links such as `ki:routes-to`, `ki:stages-in` and `ki:signposts`; context cards may link into `captured/` and `curated/`, but nothing under `captured/` links into `context/`, a one-way rule Acquire's own check enforces (ACQUIRE-STRUCTURE-ALIGN, 1 November 2026).
+Acquire has four top-level folders: `captured/` holds faithful captures, `context/` is the routing graph that capturing and curating both start from, `curated/` is the staging area, and `actions/` holds what needs to happen; a fifth, `_held/`, holds material awaiting incorporation. `context/<territory>/` is a small graph of Semantic Markdown cards for each territory, joined by typed links such as `ki:routes-to`, `ki:stages-in` and `ki:signposts`; context cards may link into `captured/` and `curated/`, but nothing under `captured/` links into `context/`, a one-way rule Acquire's own check enforces.
 
-Acquire's staging area is `curated/<territory>/<island>/`, one island being one repository. Under each island the layout follows that island's own shape: for a principal, its own zone and folder names, such as `Pillars/`, `Resources/`, `Streams/` and `Calendar/`, so a staged file's path says where it would land. Every territory principal has a scaffolded skeleton of its zones, each with a README saying what lands there, and other islands get folders only when needed (RESTRUCTURE, ISLAND-SHAPE-AND-MEETINGS, SCAFFOLD, 1 November 2026). Its cards form a maturing knowledge graph, the realisation of semantic Markdown, much like Zettelkasten index cards. Cards are tended and matured there with no rush to move them. They migrate into the islands later, once they conform to the standards being built, or earlier when a card is plainly an addition to existing knowledge and its home is decided. The backlog is played in reverse date order, which shows where one card supersedes another (HOLDING-SCOPE-CARDS, 1 November 2026). The port's own entry points must still work without its staged content, and no curated file ever stands in for an uncurated capture.
+Acquire's staging area is `curated/<territory>/<island>/`, one island being one repository. Under each island the layout follows that island's own shape: for a principal, its own zone and folder names, such as `Pillars/`, `Resources/`, `Streams/` and `Calendar/`, so a staged file's path says where it would land. Every territory principal has a scaffolded skeleton of its zones, each with a README saying what lands there, and other islands get folders only when needed. Its cards form a maturing knowledge graph, the realisation of semantic Markdown, much like Zettelkasten index cards. Cards are tended and matured there with no rush to move them. They migrate into the islands later, once they conform to the standards being built, or earlier when a card is plainly an addition to existing knowledge and its home is decided. The backlog is played in reverse date order, which shows where one card supersedes another. The port's own entry points must still work without its staged content, and no curated file ever stands in for an uncurated capture.
 
-Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour), under CURATION-HOME, 19 November 2026.
+Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour).
 
-A port may hold material awaiting incorporation, worked back one day at a time, newest first, without bulk moves to classify it. Acquire holds captures whose territory is not yet settled, and for now every capture older than 31 October 2026, in the top-level `_held/`, and works them back that way, with dispatch on hold (ACQ020-HISTORY); Harbour's store, `sources-personal/ki-cairn-harbour/`, mirrors it. Acquire renamed the folder from `_review` on 1 November 2026, because holding means material awaiting incorporation while review now means comments, findings and proposed changes, and on 2 November moved it out of `captured/` to the top level (ACQUIRE-HELD-RENAME).
+A port may hold material awaiting incorporation, worked back one day at a time, newest first, without bulk moves to classify it. Acquire holds captures whose territory is not yet settled, and for now every capture older than 31 October 2026, in the top-level `_held/`, and works them back that way, with dispatch on hold; Harbour's store, `sources-personal/ki-cairn-harbour/`, mirrors it. Acquire renamed the folder from `_review` on 1 November 2026, because holding means material awaiting incorporation while review now means comments, findings and proposed changes, and on 2 November moved it out of `captured/` to the top level.
 
 [Back to contents](#contents)
 
 ### 4.7 Authority
 
-Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour), under CURATION-HOME, 19 November 2026.
+Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour).
 
 Capture authority does not grant provider mutation, receiver reconciliation, source deletion or history compaction; each needs its own grant. Do not reset or rewrite history to hide a verification failure.
 

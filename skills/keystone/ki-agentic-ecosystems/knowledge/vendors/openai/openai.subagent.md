@@ -6,7 +6,7 @@ status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
 vendor: OpenAI
-origin: Cairn summit change 22, CARD-SUBAGENT, and change 06, KG-SUBGRAPHS (12 November 2026)
+origin: Cairn summit change 22 and change 06 (12 November 2026)
 links:
   industry.subagent:
     predicate: skos:exactMatch

@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:39:49Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -99,15 +99,15 @@ Each kind of design knowledge has one home, so a reader knows where to look and 
 
 The rule for every home is the same: state a thing once, in its home, and elsewhere name it. A guide names a token rather than repeating its value; a Decision Record states a decision rather than restating the guide's procedure; a check enforces a rule rather than redefining it.
 
-**Files first** (FILES-FIRST). Every home above is a file. Files are the source of truth for a design system and for every artifact worth keeping, such as its boards, a canvas or a deck: in a Git repository, or, for material unsuitable for Git, in the [sources store](../../../keystone/ki-repo/references/standard-repository.md#421-kind-and-stores) the repository declares. A cloud artifact, a canvas or a design-system artifact is never a home: it is a view of the files, as [Projections](#411-projections) sets.
+**Files first**. Every home above is a file. Files are the source of truth for a design system and for every artifact worth keeping, such as its boards, a canvas or a deck: in a Git repository, or, for material unsuitable for Git, in the [sources store](../../../keystone/ki-repo/references/standard-repository.md#421-kind-and-stores) the repository declares. A cloud artifact, a canvas or a design-system artifact is never a home: it is a view of the files, as [Projections](#411-projections) sets.
 
 [Back to contents](#contents)
 
 #### 4.1.1 The design system folder
 
-Each app or package repository holds one design system, in one folder, `docs/design/design-system/`, laid out the same way in every territory (DESIGN-HOME, DESIGN-FOLDER). A principal or knowledge-base repository is not its home: a design system belongs to the site, app or package it serves. A design system shared by several of one territory's surfaces, as Tessera is for Knowledge Islands, lives in its own package repository and is vendored.
+Each app or package repository holds one design system, in one folder, `docs/design/design-system/`, laid out the same way in every territory. A principal or knowledge-base repository is not its home: a design system belongs to the site, app or package it serves. A design system shared by several of one territory's surfaces, as Tessera is for Knowledge Islands, lives in its own package repository and is vendored.
 
-**The repository comes first** (NO-SITE-YET a). An app's or website's repository is created before any work on its design system begins, even when the design system is its first content, so design work never waits in a holding place: not a principal repository, a sources folder, a roster folder or a meeting room. The design system is one of a new app's first iterations, starting from what the app is and its goals.
+**The repository comes first**. An app's or website's repository is created before any work on its design system begins, even when the design system is its first content, so design work never waits in a holding place: not a principal repository, a sources folder, a roster folder or a meeting room. The design system is one of a new app's first iterations, starting from what the app is and its goals.
 
 ```text
 <site repository>/
@@ -122,7 +122,7 @@ Each app or package repository holds one design system, in one folder, `docs/des
       index.json                        url, type, account, source revision, when and by whom
 ```
 
-- **What the folder holds** (DESIGN-SYSTEM-HOMES): the tokens' source, or their export; [the components document](#44-the-component-library); [the design book](standard-design-levels.md#45-the-design-book), its design document and final boards together; and each view's copy under `projections/<name>/`, as [Projections](#411-projections) sets. Names inside the folder other than `projections/` are the repository's to choose.
+- **What the folder holds**: the tokens' source, or their export; [the components document](#44-the-component-library); [the design book](standard-design-levels.md#45-the-design-book), its design document and final boards together; and each view's copy under `projections/<name>/`, as [Projections](#411-projections) sets. Names inside the folder other than `projections/` are the repository's to choose.
 - **The runtime token file** stays where the code reads it, declared as `tokens`. Where the tokens are generated, as Tessera's `tokens.json` writes CSS, their source sits in the folder and the runtime file is its build. Where the runtime CSS is itself the source, the folder holds its export, refreshed from it and never edited, so each value is stated once.
 - **The other homes stay where their own skills expect them:** the design guide under `docs/guides/<audience>/`, Design Specifications under `docs/specs/` and Design Decision Records under `docs/decisions/`. The guide and the folder name each other; the others name the folder rather than repeating it.
 - **No key declares the folder.** The audit finds it by its path, as [Configuration](#412-configuration) sets.
@@ -137,7 +137,7 @@ The token source is the canonical home of every design value: colour, type, spac
 - A colour that carries meaning, such as a status or a category, belongs to a meaning palette that does not change with the reader's chosen theme.
 - A categorical palette, one colour per category, assigns numbered slots. The category's registry names its slot and a short text code, and the code appears wherever the colour does.
 - A repository with several token files declares each one. A generated token file is acceptable when its generator is the declared source.
-- The token source is CSS custom properties. The W3C Design Tokens Community Group format (DTCG) is an allowed upstream form where a generator writes the CSS from it, as Tessera's `tokens.json` does; it is not required, and no repository moves to it until a tool needs it (TOKEN-SOURCE).
+- The token source is CSS custom properties. The W3C Design Tokens Community Group format (DTCG) is an allowed upstream form where a generator writes the CSS from it, as Tessera's `tokens.json` does; it is not required, and no repository moves to it until a tool needs it.
 
 [Back to contents](#contents)
 
@@ -179,7 +179,7 @@ Every component library sorts its parts by atomic design into six levels, each w
 | Templates | The frame a page sits in: its regions, with no content | It lays out regions without filling them |
 | Pages | A template filled with real content | It is one screen a reader visits |
 
-Kris, 14 November 2026: "that should be in the skill, and we should make use of this everywhere".
+These levels are used everywhere a component library is described or built.
 
 Each library keeps one **components document**, with a table for each level and one row for each component: its **signature**, what it **owns**, what it **does not own**, and its **hand-offs**, the parts it gives work to or takes work from. A signature is the contract later work builds to: names may be added, but not change meaning. The Wayfinder's [component library](https://github.com/knowledgeislands/apps-cairn.local/blob/main/docs/design/design-system/wayfinder-components.design.md) is the model. The document lives in [the design system folder](#411-the-design-system-folder), and the design guide's Components section names it.
 
@@ -189,7 +189,7 @@ The names in the components document are the code's names, and every design boar
 
 ### 4.5 Shells and their state
 
-An interface is designed from its shells inwards, like an onion, and each shell is designed in its own right. Kris, 13 November 2026: "it should be like an onion, so shells in. So each level could be a different thing, the tab's got its own design." For an application window with tabs, such as the Wayfinder, the shells are:
+An interface is designed from its shells inwards, like an onion, and each shell is designed in its own right. For an application window with tabs, such as the Wayfinder, the shells are:
 
 1. the window;
 2. what belongs to the whole window, such as a top bar and a tab strip;
@@ -226,7 +226,7 @@ A design decision gets a Decision Record when a future maintainer could reasonab
 
 ### 4.8 Design work, from brief to rule
 
-A design question that changes what readers see is shaped as every design is, by `ki-design`'s [loop](../../../keystone/ki-design/references/standard-design.md#42-how-a-design-is-shaped): the brief, the options and the review, which that standard sets and this one does not repeat (DESIGN-SETTLED). This section keeps only the steps a visual design takes through this skill's own files: the board it starts from, the levels its options are drawn at, and the homes it ends in.
+A design question that changes what readers see is shaped as every design is, by `ki-design`'s [loop](../../../keystone/ki-design/references/standard-design.md#42-how-a-design-is-shaped): the brief, the options and the review, which that standard sets and this one does not repeat. This section keeps only the steps a visual design takes through this skill's own files: the board it starts from, the levels its options are drawn at, and the homes it ends in.
 
 0. **Review.** Before the brief, the owner reviews the interface on its [annotated board](standard-annotated-board.md), a projection refreshed from the running interface, and quotes its labelled regions. The findings become the brief.
 1. **Options at three levels.** The options are drawn at [three levels](standard-design-levels.md), information architecture, wireframe and mock-up, each agreed before the next, on the real tokens and the real data, and placed on the board beside the screenshot they answer. `ki-design-inspiration` may supply references. The owner's choice and its reasons are recorded in the work record's Discussion.
@@ -234,7 +234,7 @@ A design question that changes what readers see is shaped as every design is, by
 3. **Consolidate.** The outcome moves to its homes: new values to the token source, new rules to the design guide, new stable behaviour to a Specification, a new or changed decision to a Decision Record, and every new checkable rule to a check.
 4. **Retire.** The brief, option boards, rounds, canvases and screenshots are working material. Once consolidated, they are not kept as documents: the work record that summarised them is pruned with the rest of the roadmap, and Git history keeps what was considered. The final boards of the chosen design are not working material: they move, renamed by level, into [its design book](standard-design-levels.md#45-the-design-book), beside its design document. The annotated board itself stays, because it is a projection rather than working material; its next refresh shows the built design, and the mock-ups leave it.
 
-**Agreed decisions are drawn against the build** (DRAW-BUILD, Kris, 14 November 2026). Once a decision is agreed, its drawing follows the build rather than leading it: the agreed design is built, and any drawing of it after that is drawn against the build and checked with it. Drawings ahead of the build are for open choices only, drawn side by side for the owner. It holds for design work in a meeting or out of one; in the first design meeting, drawings ahead of an agreed build held the build up.
+**Agreed decisions are drawn against the build**. Once a decision is agreed, its drawing follows the build rather than leading it: the agreed design is built, and any drawing of it after that is drawn against the build and checked with it. Drawings ahead of the build are for open choices only, drawn side by side for the owner. It holds for design work in a meeting or out of one; in the first design meeting, drawings ahead of an agreed build held the build up.
 
 A design question about the shape of a Project or a model that several repositories share follows `ki-work design` instead. A small change that needs no options, such as applying an existing component, goes straight to build and consolidate.
 
@@ -268,7 +268,7 @@ Met in practice on the Cairn Wayfinder and its marks: a mark's second tone meets
 
 ### 4.11 Projections
 
-Every view published outside the repository is a projection (VIEWS-ONLY): a cloud artifact, a canvas or a design-system artifact is only a published view of the files that [4.1](#41-where-design-knowledge-lives) makes the source of truth, refreshed from them and never edited as the source. It holds for every artifact and canvas, not only the design system. There are three kinds:
+Every view published outside the repository is a projection: a cloud artifact, a canvas or a design-system artifact is only a published view of the files that [4.1](#41-where-design-knowledge-lives) makes the source of truth, refreshed from them and never edited as the source. It holds for every artifact and canvas, not only the design system. There are three kinds:
 
 - **Projections of the system** - a design-system artifact, a Figma library or a design canvas of components is refreshed from the token source and the guide.
 - **Projections of other artifacts** - a canvas of boards, a page or a deck published from files kept in the repository it serves is refreshed from those files.
@@ -276,9 +276,9 @@ Every view published outside the repository is a projection (VIEWS-ONLY): a clou
 
 The guide names each projection of the design system. Every view records its url, type, publishing account and the source revision it was last refreshed from, so the guide holds no state that dates: a view of the design system in its copy's index, as below, and a view of another artifact in the same record beside that artifact's files. A projection that disagrees with its source, the token source, the artifact's files or what the interface draws, is stale, whatever its date.
 
-**Each view's copy** (DESIGN-FOLDER, VIEW-ACCOUNT). A projection of the system published outside the repository, such as a design-system artifact or a canvas, keeps its copy in the [design system folder](#411-the-design-system-folder) under `projections/<name>/`, as last published or exported, with an `index.json` recording its url, type, publishing account, source revision, and when and by whom it was last published. Where the view came from a design tool's export, the index extends that export's own record, such as the canvas, export time, author and each board's SHA-256.
+**Each view's copy**. A projection of the system published outside the repository, such as a design-system artifact or a canvas, keeps its copy in the [design system folder](#411-the-design-system-folder) under `projections/<name>/`, as last published or exported, with an `index.json` recording its url, type, publishing account, source revision, and when and by whom it was last published. Where the view came from a design tool's export, the index extends that export's own record, such as the canvas, export time, author and each board's SHA-256.
 
-**Who republishes a view** (SEAT-ACCESS, VIEW-ACCOUNT):
+**Who republishes a view**:
 
 - Every seat, in any agent host and any account, works from the design system's files, never from an artifact in another account.
 - A view is republished only by a seat in the account its index names. Every other seat changes the files and asks that seat to republish.
@@ -286,7 +286,7 @@ The guide names each projection of the design system. Every view records its url
 - An edit made in a view, such as on a canvas, is brought back into the files before any republish, so no edit or comment lives only in the view.
 - How each kind of seat reaches the files is being trialled from every agent host and is not yet set here.
 
-**The way out of an account** (DISK-EXIT). An artifact's files leave the cloud account that holds them only by being written to disk, into the repository or its sources store, by one of two routes:
+**The way out of an account**. An artifact's files leave the cloud account that holds them only by being written to disk, into the repository or its sources store, by one of two routes:
 
 - a session in that account writes the files straight to local disk, through a desktop bridge to the machine's files;
 - a session signed in to that account reads its own artifact back as files and saves them locally.
@@ -312,7 +312,7 @@ checks = ["apps/site/scripts/check-contrast.ts", "apps/site/tests/calendars.test
 | `guide`  | path             | The design guide, a Markdown file below `docs/guides/<audience>/`       |
 | `checks` | list of paths    | Files that hold design checks; at least one                             |
 
-All three keys are required, and no other key is recognised. [The design system folder](#411-the-design-system-folder) takes no key: the audit finds it by its path, `docs/design/design-system/` (DESIGN-FOLDER).
+All three keys are required, and no other key is recognised. [The design system folder](#411-the-design-system-folder) takes no key: the audit finds it by its path, `docs/design/design-system/`.
 
 [Back to contents](#contents)
 

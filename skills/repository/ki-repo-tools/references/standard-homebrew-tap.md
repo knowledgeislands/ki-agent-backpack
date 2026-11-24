@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T21:58:53Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -27,7 +27,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-`ki-repo-tools`' distribution standard for the Homebrew tap that carries its tools' formulae, behind the `TAP` family of [the rubric](rubric.md). It was the `ki-repo-homebrew-tap` skill's standard until REPO-OTHERS a folded that skill into `ki-repo-tools` on 22 November 2026 (Kris, card: "Take the top homes"). This skill **wraps Homebrew's external standard** — the [Formula Cookbook][cookbook], `brew audit`, and `brew style` — rather than inventing a house one. What this document adds on top of Homebrew is only the **tap-shape** conventions: the layout every Knowledge Islands tap shares and the sourcing rule. Where a rule is Homebrew's own, it is labelled _(spec)_; where it is a KI tap-shape convention, _(shape)_. The tracked upstream sources are in [sources.md](sources.md).
+`ki-repo-tools`' distribution standard for the Homebrew tap that carries its tools' formulae, behind the `TAP` family of [the rubric](rubric.md). It was the `ki-repo-homebrew-tap` skill's standard until that skill was folded into `ki-repo-tools` on 22 November 2026. This skill **wraps Homebrew's external standard** — the [Formula Cookbook][cookbook], `brew audit`, and `brew style` — rather than inventing a house one. What this document adds on top of Homebrew is only the **tap-shape** conventions: the layout every Knowledge Islands tap shares and the sourcing rule. Where a rule is Homebrew's own, it is labelled _(spec)_; where it is a KI tap-shape convention, _(shape)_. The tracked upstream sources are in [sources.md](sources.md).
 
 [Back to contents](#contents)
 
@@ -149,7 +149,7 @@ A tap MAY carry a `.github/workflows/` job running [`brew test-bot`][testbot] �
 
 ### 4.8 Commit gate
 
-`ki-repo` owns whether a committed hook exists and compares it byte for byte with the canonical text ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)). A tap's canonical hooks, with and without a `package.json`, are published under [`assets/githooks/ki-repo-homebrew-tap/`](../assets/githooks/ki-repo-homebrew-tap/); copy them exactly _(shape)_. `TAP-HOOK`, the tap skill's `GATE-1` until the fold, checks what the committed `pre-commit` runs: `ruby -wc` over the staged Ruby files, which checks syntax with warnings and never rewrites, and otherwise only check-only staged lints, never `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`; the tap audit runs in CI, as Kris chose COMMIT-VS-CI a) on 26 October 2026. It is not applicable without a committed hook. `brew style`, `brew audit` and `brew test-bot` stay out of the hook, which stays fast and offline.
+`ki-repo` owns whether a committed hook exists and compares it byte for byte with the canonical text ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)). A tap's canonical hooks, with and without a `package.json`, are published under [`assets/githooks/ki-repo-homebrew-tap/`](../assets/githooks/ki-repo-homebrew-tap/); copy them exactly _(shape)_. `TAP-HOOK`, the tap skill's `GATE-1` until the fold, checks what the committed `pre-commit` runs: `ruby -wc` over the staged Ruby files, which checks syntax with warnings and never rewrites, and otherwise only check-only staged lints, never `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write`; the tap audit runs in CI. It is not applicable without a committed hook. `brew style`, `brew audit` and `brew test-bot` stay out of the hook, which stays fast and offline.
 
 [Back to contents](#contents)
 

@@ -18,7 +18,7 @@ argument-hint: 'audit <target> | conform <target> | help | educate <target> | re
 
 You are governing **one render path**: how the canonical MCP single source becomes the file-editable surfaces that run the servers, through chezmoi. This governance skill's own part is the render contract — the `mcp-servers-json` template, its source-data wiring, and the `chezmoi apply` that generates the surfaces `ki-env-binding` audits — which belongs to neither sibling it composes, as [Composition](#composition) sets out. The full model is in [the standard](references/standard-chezmoi-mcp-rendering.md); the checkable criteria are in [the generated rubric](references/rubric.md); provenance is in [the sources list](references/sources.md).
 
-It is also the one owner of **hook registration** (HOOK-HOME a): how chezmoi registers a selected backpack hook payload in Claude Code's and Codex's settings, through the `.chezmoitemplates/*-hook-registrations-json` partials, from the `ki`-installed path. The backpack keeps the payloads, under `ki-repo-backpack`'s three-part hook model. The rules are in [the hook registration standard](references/standard-chezmoi-hook-registration.md); the rubric does not yet check them, so AUDIT reads them by hand.
+It is also the one owner of **hook registration**: how chezmoi registers a selected backpack hook payload in Claude Code's and Codex's settings, through the `.chezmoitemplates/*-hook-registrations-json` partials, from the `ki`-installed path. The backpack keeps the payloads, under `ki-repo-backpack`'s three-part hook model. The rules are in [the hook registration standard](references/standard-chezmoi-hook-registration.md); the rubric does not yet check them, so AUDIT reads them by hand.
 
 ## Operating modes
 

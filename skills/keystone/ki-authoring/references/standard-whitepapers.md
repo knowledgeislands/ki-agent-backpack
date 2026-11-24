@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-09T22:15:00Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -20,7 +20,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-Use this standard when authoring or reviewing an industry white paper. It supplies judgment about argument and evidence for an outside reader; ordinary README and knowledge-note tasks do not acquire this workflow. Markdown syntax, formatting and link mechanics remain with the existing authoring toolchain. The decisions behind these rules are in [the sources file](sources.md).
+Use this standard when authoring or reviewing an industry white paper. It supplies judgment about argument and evidence for an outside reader; ordinary README and knowledge-note tasks do not acquire this workflow. Markdown syntax, formatting and link mechanics remain with the existing authoring toolchain. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

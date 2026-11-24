@@ -5,7 +5,7 @@ type: term
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, CARD-AGENT-HOST a) (12 November 2026), revised by ki.summit change 21, EXEC-ENV a) (21 November 2026)
+origin: Cairn summit change 22 (12 November 2026), revised by ki.summit change 21 (21 November 2026)
 links:
   industry.agent-harness:
     predicate: ki:runs
@@ -21,7 +21,7 @@ links:
 
 An agent host lets [sessions][industry.session] outlive, and be shared across, the windows used to see them.
 
-An agent host is the application or process, running on a [machine][industry.machine], that runs [agent harnesses][industry.agent-harness] and owns their sessions, independently of the clients that display them. It may provide its sessions' [execution environment][industry.environment], but it is not one. The definition is the [Agent Host Protocol's agent host][spec.ahp.agent-host] (AGENT-HOST-CITE): AHP calls it "a portable, standalone sessions server" ([what is AHP][M8]), and the harness is what "the host wraps" ([MCP servers][AHP8]).
+An agent host is the application or process, running on a [machine][industry.machine], that runs [agent harnesses][industry.agent-harness] and owns their sessions, independently of the clients that display them. It may provide its sessions' [execution environment][industry.environment], but it is not one. The definition is the [Agent Host Protocol's agent host][spec.ahp.agent-host]: AHP calls it "a portable, standalone sessions server" ([what is AHP][M8]), and the harness is what "the host wraps" ([MCP servers][AHP8]).
 
 Examples: Orca, Claude Desktop, the ChatGPT desktop app, the Antigravity app and VS Code's Agent Host ([M12]). A harness run by itself, such as Claude Code or Codex in a terminal, is its own agent host and client in one process.
 
@@ -31,7 +31,7 @@ The leaders have no formal word: Anthropic's "surface" covers agent host and cli
 
 On terra, Orca's runtime lives inside the Orca app; `orca serve` runs the same runtime headless, as on sol.
 
-Knowledge Islands names an agent host by one of six values: `orca`; `claude-desktop`; `chatgpt-desktop`; `chatgpt-voice`, the ChatGPT app in voice mode; `terminal`, a harness run by itself; and `ide`, an editor extension. The Cairn store's roster records each agent [actor][system.actor]'s agent host as `ki-host`, beside its agent harness as `ki-harness` (PRESENCE-FIELDS a), so the two are never folded into one: Claude Code inside Orca is `orca` with `claude-code`, and Claude Code alone in a terminal is `terminal` with `claude-code`.
+Knowledge Islands names an agent host by one of six values: `orca`; `claude-desktop`; `chatgpt-desktop`; `chatgpt-voice`, the ChatGPT app in voice mode; `terminal`, a harness run by itself; and `ide`, an editor extension. The Cairn store's roster records each agent [actor][system.actor]'s agent host as `ki-host`, beside its agent harness as `ki-harness`, so the two are never folded into one: Claude Code inside Orca is `orca` with `claude-code`, and Claude Code alone in a terminal is `terminal` with `claude-code`.
 
 ## Next
 

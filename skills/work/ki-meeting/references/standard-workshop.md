@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-14T19:15:06Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -21,7 +21,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-A workshop is the type of meeting that makes something together, such as designs. It runs by [the meeting standard](standard-meeting.md); this standard adds only what a workshop produces and how it gets there. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+A workshop is the type of meeting that makes something together, such as designs. It runs by [the meeting standard](standard-meeting.md); this standard adds only what a workshop produces and how it gets there. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -64,7 +64,7 @@ The rules, part by part.
 1. **The thing made,** by its makers, in the meeting's output folder, named for the work, such as `designs/`.
 2. **Each part ends final,** or with the choices it leaves to the owner listed, each with its recommendation.
 3. **No decision.** A workshop produces options and finished parts; the owner's decisions on them go to the change document, as for every meeting.
-4. **Agreed design is drawn against the build** (DRAW-BUILD, Kris, 14 November 2026). In a design workshop, once a decision is agreed its drawing follows the build rather than leading it, and drawings ahead of the build are for open choices only, as `ki-design-system` sets in its design work.
+4. **Agreed design is drawn against the build.** In a design workshop, once a decision is agreed its drawing follows the build rather than leading it, and drawings ahead of the build are for open choices only, as `ki-design-system` sets in its design work.
 
 [Back to contents](#contents)
 

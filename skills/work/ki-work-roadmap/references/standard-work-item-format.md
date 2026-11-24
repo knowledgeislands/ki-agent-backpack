@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T22:58:47Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -37,7 +37,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-The shape of one repository work item: where it sits, its front matter fields and their values, its timestamps, its body sections and the detail each stage adds. [The repository-roadmap standard](standard-repository-roadmaps.md) owns the roadmap's shape and lifecycle. The decisions behind these rules are in the [sources file](sources.md).
+The shape of one repository work item: where it sits, its front matter fields and their values, its timestamps, its body sections and the detail each stage adds. [The repository-roadmap standard](standard-repository-roadmaps.md) owns the roadmap's shape and lifecycle. The sources behind these rules are in the [sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -151,7 +151,7 @@ updated_at: 2026-08-12T09:30:00Z
 
 `horizon` is one of `now`, `next`, `soon`, `future`, or `hold`, constrained by status as the [status and horizon table](standard-repository-roadmaps.md#43-status-and-horizon) states. Triage, done, and cancelled records omit it.
 
-`blocks` and `blocked_by` are arrays of item identifiers and use `[]` when empty. They name records in this repository only. Describe work another repository must deliver in `## Dependencies / blocks`: name that repository, state the need in plain terms and link only durable documentation, never its roadmap record or identifier, because records are pruned and such links break. Hand that need over along the tree under `ki-coordination`'s [Work between packages](../../ki-coordination/references/standard-messages.md#messages-between-work), the message queue having retired (MSG-RETIRE), never as a record written into the receiver's roadmap or triage, as Kris set under HANDOFF-AS-MESSAGE on 2026-10-20: "Handoffs are not roadmap items ... we push the need to roll things out into other projects triage folders, and that's not what this is for." The receiver captures a record only for work genuinely deferred that it owns, under the `ki-work next` [capture rule](../../../keystone/ki-work/references/standard-next-work.md#432-capture-substantive-prospective-work).
+`blocks` and `blocked_by` are arrays of item identifiers and use `[]` when empty. They name records in this repository only. Describe work another repository must deliver in `## Dependencies / blocks`: name that repository, state the need in plain terms and link only durable documentation, never its roadmap record or identifier, because records are pruned and such links break. Hand that need over along the tree under `ki-coordination`'s [Work between packages](../../ki-coordination/references/standard-messages.md#messages-between-work), never as a record written into the receiver's roadmap or triage: a handoff is not a roadmap item. The receiver captures a record only for work genuinely deferred that it owns, under the `ki-work next` [capture rule](../../../keystone/ki-work/references/standard-next-work.md#432-capture-substantive-prospective-work).
 
 `blocked_by` states **build order**: this item cannot be executed because something it must build on does not exist yet. It is discharged when that thing exists, not when the record that produced it reaches a particular lifecycle state. An item is therefore not blocked merely because a related record is unreviewed, unaccepted, or unpruned; a blocker whose work has landed is cleared even while its own record is still open. Recording a lifecycle wait as `blocked_by` stalls executable work behind an approval queue and misreports the reason. Where the real constraint is sequencing preference rather than build order, say so in `## Dependencies / blocks` and leave the field empty.
 
@@ -182,9 +182,9 @@ It is written at capture, and an absent `priority` reads as `medium`, so its abs
 - `l` - several chained runs or repositories, with Delegation;
 - `xl` - not one record: split it before it is adopted.
 
-Reports and messages display a size as a T-shirt label, 👕 and the letter in capitals: `👕 S`, `👕 M`, `👕 L` or `👕 XL`. The field value stays the lower-case `s`, `m`, `l` or `xl`, and there is no XS. Kris asked for it on 24 October 2026, "I wonder if there's a way of showing T-shirt S, M, etc. next to it. And probably put it in a capital letter, almost like it's a label on a t-shirt", and adopted it under SIZE-LABEL on 25 October.
+Reports and messages display a size as a T-shirt label, 👕 and the letter in capitals: `👕 S`, `👕 M`, `👕 L` or `👕 XL`. The field value stays the lower-case `s`, `m`, `l` or `xl`, and there is no XS.
 
-A size set at capture is provisional, set by judgement, and is revisited at adoption and again before the record becomes Ready; a record whose size is uncertain warrants investigation rather than an invented estimate. XL work is split before adoption, as Kris took GATES-SIZE-XL a on 2026-11-21 ("Yes, split before adoption"), since the roadmap holds only upcoming work that can become Ready; a short investigation to find the split counts as a known next step. A `ready` record with `size: xl` fails, and an adopted `draft` one warns until it is split. During the [migration window](standard-repository-roadmaps.md#47-migration-tolerance) the checker warns on an open record without `size`; once the window closes it fails. A closed record, done or cancelled, never needs a retrospective `size` or `kind`. A value outside either vocabulary fails at once.
+A size set at capture is provisional, set by judgement, and is revisited at adoption and again before the record becomes Ready; a record whose size is uncertain warrants investigation rather than an invented estimate. XL work is split before adoption, since the roadmap holds only upcoming work that can become Ready; a short investigation to find the split counts as a known next step. A `ready` record with `size: xl` fails, and an adopted `draft` one warns until it is split. During the [migration window](standard-repository-roadmaps.md#47-migration-tolerance) the checker warns on an open record without `size`; once the window closes it fails. A closed record, done or cancelled, never needs a retrospective `size` or `kind`. A value outside either vocabulary fails at once.
 
 Selection orders work in one sequence, which [`ki-work next`](../../../keystone/ki-work/references/standard-next-work.md#44-select-candidates) applies: adoption, holds and dependencies first, then horizon, then priority, then the nearer target date within that horizon and priority, then size, smallest first. An absent target has no date urgency. Priority never crosses horizons: a `high` record at a later horizon does not overtake a `medium` one at an earlier horizon, but prompts a proposal to move its horizon.
 
@@ -200,9 +200,9 @@ Selection orders work in one sequence, which [`ki-work next`](../../../keystone/
 - `person/<handle>` - a named person;
 - `repo/<name>` - a repository, for work its own sessions pick up.
 
-Every open record carries one from capture, whatever its status or horizon; a closed record, done or cancelled, never needs a retrospective one. Kris asked for it on 5 November 2026 under ROADMAP-ASSIGNEE: "good to give it an assignee. We can always change the assignee if we run out of work, but it's good that someone has it." A value outside the vocabulary fails at once; during the [assignee window](standard-repository-roadmaps.md#47-migration-tolerance) an open record without one warns.
+Every open record carries one from capture, whatever its status or horizon, so that someone always holds it; a closed record, done or cancelled, never needs a retrospective one. A value outside the vocabulary fails at once; during the [assignee window](standard-repository-roadmaps.md#47-migration-tolerance) an open record without one warns.
 
-Until work starts the assignee changes freely: whoever runs out of work may take a record, and a handover is an assignee change, with no other ceremony. Once a record is `in-progress`, which `ki-work implement` sets together with `baseline_ref`, its assignee is fixed: marking work in progress is what locks who holds it, as Kris set under ASSIGNEE-LOCK the same morning. The lock takes the assignee named in the earliest committed version of the record's current in-progress run, so a record that started with none may have one filled in once. The audit reads the record's Git history and fails an in-progress record whose assignee differs from that; where the history is unavailable it cannot check, and says nothing. The assignee grants no authority: delivery still follows the record's lifecycle and the repository's gates.
+Until work starts the assignee changes freely: whoever runs out of work may take a record, and a handover is an assignee change, with no other ceremony. Once a record is `in-progress`, which `ki-work implement` sets together with `baseline_ref`, its assignee is fixed: marking work in progress is what locks who holds it. The lock takes the assignee named in the earliest committed version of the record's current in-progress run, so a record that started with none may have one filled in once. The audit reads the record's Git history and fails an in-progress record whose assignee differs from that; where the history is unavailable it cannot check, and says nothing. The assignee grants no authority: delivery still follows the record's lifecycle and the repository's gates.
 
 [Back to contents](#contents)
 
@@ -237,7 +237,7 @@ Classification fields say what sort of work a record is and what it serves. Each
 
 `component` names the part of the repository the record touches, from the repository's declared vocabulary.
 
-A resolved Project's record is worked by the Project's package in the Cairn store, which names it in its [`ki-records`](../../ki-work-package/references/standard-work-package.md#44-the-entry-file); the `project` tag is the link, never a transfer of authority or records. Selection into `now` neither opens work nor grants execution. A record without `project` goes to the package that owns its repository, and up to the territory's leader only if ownership is unresolved, under `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down). Reclassification first reconciles runs in flight and their reporting package.
+A resolved Project's record is worked by the Project's package in the Cairn store, which names it in its [`ki-records`](../../ki-work-package/references/standard-work-package.md#44-the-entry-file); the `project` tag is the link, never a transfer of authority or records. Selection into `now` neither opens work nor grants execution. A record without `project` goes to the package that owns its repository, and up to the territory's leader only if ownership is unresolved, under `ki-work-package`'s rule that [work cascades down](../../ki-work-package/references/standard-work-package.md#cascade-down). Reclassification first reconciles runs in flight and their reporting package.
 
 [Back to contents](#contents)
 
@@ -283,11 +283,11 @@ A held record keeps its status, `baseline_ref`, completed Steps, and review evid
 - `duplicate` - another record already owns the same work;
 - `merged` - the work was folded into another record;
 - `superseded` - a later record replaces it;
-- `returned` - the work went back to ideas, which is not the same as being declined: `## Cancelled` names where its idea now waits, as Kris took ROADMAP-EXIT-STATE a on 2026-11-22 ("Yes, add returned"). A `soon` or `future` record, or a held draft, that leaves the roadmap under [Upcoming only](standard-repository-roadmaps.md#43-status-and-horizon) takes it.
+- `returned` - the work went back to ideas, which is not the same as being declined: `## Cancelled` names where its idea now waits. A `soon` or `future` record, or a held draft, that leaves the roadmap under [Upcoming only](standard-repository-roadmaps.md#43-status-and-horizon) takes it.
 
 `resolution_target` names the replacing record for `duplicate`, `merged`, and `superseded` when it lives in the same repository, and is forbidden otherwise. It is a canonical work-item identifier of this repository, different from the record, and should resolve in the roadmap; a target with another repository's code fails, because records are pruned and cross-repository identifiers and links break. Where the replacing work lives in another repository, the record keeps its resolution with no `resolution_target`, and `## Cancelled` names that repository and describes the work in plain words, with no identifier or link. Only the owning repository closes its own record: closing a duplicate here never closes or edits the target.
 
-When a merged record's detail is folded into its target, rewrite any section on how it relates to the target from the target's side: copied as it stands, it describes the surviving record as another one (Tower step 46, 22 November 2026).
+When a merged record's detail is folded into its target, rewrite any section on how it relates to the target from the target's side: copied as it stands, it describes the surviving record as another one.
 
 `resolution` and `resolution_target` are forbidden on every other status.
 

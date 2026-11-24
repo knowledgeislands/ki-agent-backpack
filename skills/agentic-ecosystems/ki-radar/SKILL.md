@@ -16,12 +16,12 @@ argument-hint: "audit | conform | educate | help | refresh"
 
 # Knowledge Islands radar
 
-This governance skill maintains one portable, reviewable radar of two subject kinds without turning observation into adoption. Kris merged the agentic and model radars into it on 22 November 2026 (RADAR-MERGE a).
+This governance skill maintains one portable, reviewable radar of two subject kinds without turning observation into adoption. The agentic and model radars were merged into it on 22 November 2026.
 
 Read [the radar standard](references/standard-radar.md) first: it holds what both kinds share, the evidence core, the monthly cadence, the one REFRESH and the adoption boundary. Each kind keeps its own standard and snapshot:
 
 - **Agentic subjects:** [the agentic-radar standard](references/standard-agentic-radar.md) and [the agentic snapshot](references/agentic-radar.toml), for protocols, interface formats, organisations, architectures, research claims and vendor terms.
-- **Model subjects:** [the model-radar standard](references/standard-model-radar.md) and [the model snapshot](references/model-radar.toml), for models, executable routes and benchmarks, with [the model-tier standard](references/standard-model-tiers.md) holding the dated Claude and Codex candidates for each portable purpose, the Codex role resolver and the rule for moving a tier default (MODEL-TIERS a).
+- **Model subjects:** [the model-radar standard](references/standard-model-radar.md) and [the model snapshot](references/model-radar.toml), for models, executable routes and benchmarks, with [the model-tier standard](references/standard-model-tiers.md) holding the dated Claude and Codex candidates for each portable purpose, the Codex role resolver and the rule for moving a tier default.
 
 [The generated rubric](references/rubric.md) publishes one set of criteria for both, and [the tracked sources](references/sources.md) govern refresh inputs.
 

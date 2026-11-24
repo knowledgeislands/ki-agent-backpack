@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T22:58:47Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -71,7 +71,7 @@ The collection, frontmatter, home, realization, recurring-work profile and judgm
 
 The default collection is `Admin/Operations/Activities/`. One note named `<Activity Name>.md` describes one behaviour, and `Activities.md` indexes the collection.
 
-A base may declare a different relative collection path with `activities_dir` under `[skills.ki-repo-kb]`. The path must remain beneath the base and must not traverse a symbolic link. The optional `backpack` key names a backpack root, absolute or relative to the base, used only to resolve declared skill names at `skills/<name>/SKILL.md`. `harness` is its old name: AUDIT still reads it when `backpack` is absent and warns that it should be renamed (ACTIVITIES-HARNESS-KEY). The `[skills.ki-repo-kb]` table's other keys belong to the [knowledge-base standard](standard-knowledge-base.md#47-zone-aliases-and-the-skillski-repo-kb-config-table), which warns on any key it does not know. A `[skills.ki-repo-kb-activities]` table is retired: `ki-repo`'s STRUCT-2 warns on it until it is removed (KB-FOLD b, 22 November 2026).
+A base may declare a different relative collection path with `activities_dir` under `[skills.ki-repo-kb]`. The path must remain beneath the base and must not traverse a symbolic link. The optional `backpack` key names a backpack root, absolute or relative to the base, used only to resolve declared skill names at `skills/<name>/SKILL.md`. `harness` is its old name: AUDIT still reads it when `backpack` is absent and warns that it should be renamed. The `[skills.ki-repo-kb]` table's other keys belong to the [knowledge-base standard](standard-knowledge-base.md#47-zone-aliases-and-the-skillski-repo-kb-config-table), which warns on any key it does not know. A `[skills.ki-repo-kb-activities]` table is retired: `ki-repo`'s STRUCT-2 warns on it until it is removed.
 
 When activity notes exist, `Activities.md` lists every note. A repository-standard Obsidian wikilink, with or without an alias, or a Markdown link satisfies index coverage; link-shaped text inside a fenced code block does not. CONFORM may safely create a missing index or append missing entries to a regular index file. It must not create the collection directory, replace a non-regular index entry, follow a symbolic link, or write directly; it prepares one proposal for the host.
 
@@ -95,7 +95,7 @@ An active Activity may also name a `theme` and, for a Project's own recurring ch
 
 Under the [Work Process](https://github.com/knowledgeislands/ki-principal/blob/main/Pillars/Philosophy/Model/Processes/Work%20Process/Work%20Process.md), an Activity's home is its territory's regular work, `<territory>.regular`: the territory's recurring work, defined here in the Activity notes. An Activity needs no key to say so. A Project's own recurring check, needed only while the Project runs, stays with that Project instead and names it in a top-level `project` key, a slug in the territory's [Project registry](../../../keystone/ki-work/references/standard-project-registry.md).
 
-An Activity may carry an optional top-level `theme`, a territory theme slug. A theme is a label, not a home: it holds no work. An Activity with a housekeeping profile may name the theme in the profile instead, which its runs inherit; when both are present they agree. The former `initiative`, at either place, is the thread-model name for `theme`: AUDIT warns on it until 7 November 2026 and fails it from that day, or earlier once a scan finds no residue, under Kris's THEME-CLOSE decision of 25 October 2026. Two themes that disagree still warn. Paused and retired Activities are not checked.
+An Activity may carry an optional top-level `theme`, a territory theme slug. A theme is a label, not a home: it holds no work. An Activity with a housekeeping profile may name the theme in the profile instead, which its runs inherit; when both are present they agree. The former `initiative`, at either place, is the thread-model name for `theme`: AUDIT warns on it until 7 November 2026 and fails it from that day, or earlier once a scan finds no residue. Two themes that disagree still warn. Paused and retired Activities are not checked.
 
 Regular work is self-coordinating. An occurrence starts by its schedule or by whoever needs it, with no coordinating session; the territory's summit may discuss regular work but does not necessarily dispatch it. The link points upwards only: neither a theme page nor a Project note lists its Activities.
 

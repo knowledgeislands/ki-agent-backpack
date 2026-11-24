@@ -6,7 +6,7 @@ status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
 vendor: Anthropic
-origin: Cairn summit change 22, CARD-SKILL, and change 06, KG-SUBGRAPHS (12 November 2026)
+origin: Cairn summit change 22 and change 06 (12 November 2026)
 links:
   industry.skill:
     predicate: skos:exactMatch

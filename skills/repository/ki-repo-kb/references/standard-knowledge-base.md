@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T22:58:47Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -30,7 +30,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This normative standard defines the structure, linking, configuration, routing, and digest contract applied by the [Knowledge Islands KB](../SKILL.md) skill. The decisions behind these rules are in [the sources file](sources.md).
+This normative standard defines the structure, linking, configuration, routing, and digest contract applied by the [Knowledge Islands KB](../SKILL.md) skill. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -173,7 +173,7 @@ Destination `-/_DIGESTS/<UTC timestamp> <Short Topic>.md` (timestamp `YYYY-MM-DD
 
 ### 4.9 Commit gate
 
-A Knowledge Base has no package toolchain, so its committed hooks are the `ki-repo` canonical pair for the `ki-repo-kb` shape, published as this skill's worked example under [`assets/githooks/`](../assets/githooks/): `pre-commit` checks the staged Markdown with rumdl under `ki-authoring` `MD-hook` and nothing else, and `commit-msg` runs `ki git check-message "$1"`. The gate is check-only and never calls `ki`: a line that runs `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write` fails `GATE-1`, because a commit gate reports and never rewrites, and the `ki-repo-kb` audit runs in CI with its whole-tree verdict, as Kris chose COMMIT-VS-CI a) on 26 October 2026. Without a committed hook `GATE-1` is not applicable; `ki-repo` owns whether the hook exists (`HOOK-1`), is bound (`HOOK-2`) and matches its canonical text (`HOOK-4`) ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)).
+A Knowledge Base has no package toolchain, so its committed hooks are the `ki-repo` canonical pair for the `ki-repo-kb` shape, published as this skill's worked example under [`assets/githooks/`](../assets/githooks/): `pre-commit` checks the staged Markdown with rumdl under `ki-authoring` `MD-hook` and nothing else, and `commit-msg` runs `ki git check-message "$1"`. The gate is check-only and never calls `ki`: a line that runs `ki repo audit`, `ki repo conform`, `ki repo repair`, `--fix` or `--write` fails `GATE-1`, because a commit gate reports and never rewrites, and the `ki-repo-kb` audit runs in CI with its whole-tree verdict. Without a committed hook `GATE-1` is not applicable; `ki-repo` owns whether the hook exists (`HOOK-1`), is bound (`HOOK-2`) and matches its canonical text (`HOOK-4`) ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)).
 
 [Back to contents](#contents)
 
@@ -204,7 +204,7 @@ The skill ships zone-scoped starter templates under `assets/templates/<zone>/`: 
 
 ### 4.13 The standards behind the router
 
-Kris folded three satellite skills into this one and split a fourth on 22 November 2026 (KB-FOLD b). Each now stands as a focused standard of this skill, checked by its own rubric families within `ki repo audit --skill ki-repo-kb`:
+Three satellite skills were folded into this one and a fourth was split on 22 November 2026. Each now stands as a focused standard of this skill, checked by its own rubric families within `ki repo audit --skill ki-repo-kb`:
 
 | Standard | Governs | Families | Keys under `[skills.ki-repo-kb]` |
 | --- | --- | --- | --- |

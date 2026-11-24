@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T19:59:53Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -26,9 +26,9 @@ ki-status: in force
 
 ## 1. Introduction
 
-A knowledge graph is cards about things, joined by typed links, kept in a repository. It serves any use: a skill's body of knowledge, an island's settled knowledge, or material being curated from captures. Curation is one use, and the relationships geared to it are some of the graph's, not its limit (KG-GENERAL, Kris, 12 November 2026). This standard sets what every graph shares: its root definition, its cards and links, its subgraphs and how graphs layer; it then sets how a graph built from captures is staged, and how every graph is tended. Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour), under CURATION-HOME, 19 November 2026.
+A knowledge graph is cards about things, joined by typed links, kept in a repository. It serves any use: a skill's body of knowledge, an island's settled knowledge, or material being curated from captures. Curation is one use, and the relationships geared to it are some of the graph's, not its limit. This standard sets what every graph shares: its root definition, its cards and links, its subgraphs and how graphs layer; it then sets how a graph built from captures is staged, and how every graph is tended. Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour).
 
-The standard holds the method, and a graph keeps the things that are, under SKILLS-OVER-GRAPH (Kris, 7 November 2026). The concepts the standard relies on, such as Semantic Markdown, layered graphs and progressive disclosure, are cards in the skill's own graph, which [its root definition](../knowledge/_graph.md) opens; the standard follows those cards rather than restating them (KG-SELF). The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+The standard holds the method, and a graph keeps the things that are. The concepts the standard relies on, such as Semantic Markdown, layered graphs and progressive disclosure, are cards in the skill's own graph, which [its root definition](../knowledge/_graph.md) opens; the standard follows those cards rather than restating them. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -48,7 +48,7 @@ What every knowledge graph shares, and the staging and tending of graphs.
 ### 2.2 Out of scope
 
 - Sorting before Deposit, and the Deposit routes: the `ki-dodecakrisis` skill.
-- Curating captures into cards, its pace, and dispatch: Harbour (cairn.harbour), under CURATION-HOME, 19 November 2026.
+- Curating captures into cards, its pace, and dispatch: Harbour (cairn.harbour).
 - Faithful capture, coverage, originals, provider rules and the capture package: the `ki-acquire` skill and its provider skills.
 - Folders, zones and zone aliases of any knowledge base, the staging base's included: the `ki-repo-kb` skill.
 - How a skill holds a graph, and the knowledge kind of skill: the `ki-skills` skill.
@@ -71,9 +71,9 @@ What every knowledge graph shares, and the staging and tending of graphs.
 | **Subgraph** | A part of a graph with its own subject, declared in the root definition, whose cards' ids carry its prefix. **Standard:** this one, [4.5](#45-subgraphs) |
 | **Attachment point** | A card a graph declares fully confident will not move, which other graphs may pin to. **Standard:** this one, [4.6](#46-layered-graphs-and-shadow-nodes) |
 | **Shadow node** | A read-only pointer in a lower graph to an attachment point above, recording the card it shadows, where that card lives and when it was last checked. **Standard:** this one, [4.6](#46-layered-graphs-and-shadow-nodes) |
-| **Curation** | The use of a graph that turns deposited and captured material into cards, from Deposit to dispatch. **Owner:** Harbour (cairn.harbour), under CURATION-HOME; what a curated card keeps is this standard's, [4.7](#47-staging-and-tending) |
+| **Curation** | The use of a graph that turns deposited and captured material into cards, from Deposit to dispatch. **Owner:** Harbour (cairn.harbour); what a curated card keeps is this standard's, [4.7](#47-staging-and-tending) |
 | **Staging graph** | The graph where curated knowledge is staged before it is settled, mirroring each receiving island. **Standard:** this one, [4.7.1](#471-the-staging-graph) |
-| **Dispatch** | A Git move of a package of settled cards from the staging graph into the receiving island's `+/_ACQUIRED/`. **Owner:** Harbour (cairn.harbour), under CURATION-HOME |
+| **Dispatch** | A Git move of a package of settled cards from the staging graph into the receiving island's `+/_ACQUIRED/`. **Owner:** Harbour (cairn.harbour) |
 
 [Back to contents](#contents)
 
@@ -83,26 +83,26 @@ The rules, part by part.
 
 ### 4.1 The graph
 
-Each knowledge graph sits in one root folder, which holds its root definition and its cards. A skill that holds a graph keeps it in `knowledge/` at the skill's top level, outside `references/`, and that folder is the graph's root (KNOWLEDGE-FOLDER).
+Each knowledge graph sits in one root folder, which holds its root definition and its cards. A skill that holds a graph keeps it in `knowledge/` at the skill's top level, outside `references/`, and that folder is the graph's root.
 
-- **Flat by default.** A graph needs no folders: its cards may sit as one flat list in the root folder, like rows in a table. Folders are an option for a large graph, never a requirement, and how a graph is seen is the visualisation's job, not its folders' (KG-FLAT).
-- **Folders follow subgraphs.** A graph with folders has one for each subgraph its root definition declares, and the root definition names it. Folders for related subgraphs may sit together under one, as a skill's vendor subgraphs do under `knowledge/vendors/`, and a large subgraph may hold a folder for each part, as `knowledge/specs/mcp/` does; a card keeps its id as its file name wherever it sits, as `knowledge/industry/industry.session.md` (GRAPH-FOLDERS).
+- **Flat by default.** A graph needs no folders: its cards may sit as one flat list in the root folder, like rows in a table. Folders are an option for a large graph, never a requirement, and how a graph is seen is the visualisation's job, not its folders'.
+- **Folders follow subgraphs.** A graph with folders has one for each subgraph its root definition declares, and the root definition names it. Folders for related subgraphs may sit together under one, as a skill's vendor subgraphs do under `knowledge/vendors/`, and a large subgraph may hold a folder for each part, as `knowledge/specs/mcp/` does; a card keeps its id as its file name wherever it sits, as `knowledge/industry/industry.session.md`.
 - **Identity by id.** A card's identity is its id, never its folder, so moving a graph, or a card between folders, breaks no link by id: front-matter links, keyed by id, never change, and only the relative paths of Markdown links are rewritten. An id is short and readable: lowercase letters, digits and hyphens, never a UUID. Within a graph, every id is unique.
-- **A card's file is its id.** The file is `<id>.md`, so file, link and id are one name; the card type stays in the front matter, not in the name (FILE-NAME). Where a graph has subgraphs, the id carries the subgraph before a dot, as `industry.session`, `anthropic.session` and `spec.mcp`.
-- **Other files.** A skill's `knowledge/` holds only its graph's root definition and cards; the skill's standards, sources, rubric, proposals and any other file that is not a card stay in `references/` (KNOWLEDGE-FOLDER). Another root folder, such as an island's, may also hold files that are not cards. A file is a card only when its front matter carries an `id` equal to its file name; the root definition says what else sits beside the cards.
+- **A card's file is its id.** The file is `<id>.md`, so file, link and id are one name; the card type stays in the front matter, not in the name. Where a graph has subgraphs, the id carries the subgraph before a dot, as `industry.session`, `anthropic.session` and `spec.mcp`.
+- **Other files.** A skill's `knowledge/` holds only its graph's root definition and cards; the skill's standards, sources, rubric, proposals and any other file that is not a card stay in `references/`. Another root folder, such as an island's, may also hold files that are not cards. A file is a card only when its front matter carries an `id` equal to its file name; the root definition says what else sits beside the cards.
 
 [Back to contents](#contents)
 
 ### 4.2 The root definition
 
-A graph defines itself at its root (KG-ROOT). The root definition is the card `_graph.md` in the root folder, of card type `graph` (ROOT-FORM). It is the one card whose file is not named from its id: its file is always `_graph.md`, and its `id` names the graph.
+A graph defines itself at its root. The root definition is the card `_graph.md` in the root folder, of card type `graph`. It is the one card whose file is not named from its id: its file is always `_graph.md`, and its `id` names the graph.
 
 Its front matter carries `id`, `title`, `type: graph` and `status`, with any further properties the graph itself declares for every card. Its body opens with what the graph is for, then has these sections, in this order:
 
 | Section | What it declares |
 | --- | --- |
 | **Card types** | Every card type the graph supports, what a card of that type is about, and the properties it requires beyond the shared ones. A type not declared here is not used. |
-| **Link vocabulary** | The vocabularies its link predicates are drawn from, each prefix with its namespace, and the predicates in use. SKOS, the W3C standard for vocabularies, is the default; another established vocabulary, such as Dublin Core terms, may be declared where SKOS has no term; the `ki:` prefix is only for what no declared vocabulary has (LINK-VOCAB). It may also carry a table headed `Predicate` and `Meaning`, giving a predicate in use its meaning in one line, which readers such as the Wayfinder show. |
+| **Link vocabulary** | The vocabularies its link predicates are drawn from, each prefix with its namespace, and the predicates in use. SKOS, the W3C standard for vocabularies, is the default; another established vocabulary, such as Dublin Core terms, may be declared where SKOS has no term; the `ki:` prefix is only for what no declared vocabulary has. It may also carry a table headed `Predicate` and `Meaning`, giving a predicate in use its meaning in one line, which readers such as the Wayfinder show. |
 | **Properties** | Every front-matter property cards carry, what it means, its values and which card types require it. |
 | **Constraints** | The rules a card must meet beyond this standard, such as an order of reading or a word kept off every card. |
 | **Subgraphs** | Each subgraph, its id prefix and its subject, and its folder where the graph has folders; a graph with no subgraphs says so. |
@@ -134,14 +134,14 @@ A card is one Semantic Markdown file: one coherent, addressable knowledge resour
 - **Typed links.** A front-matter `links` map pairs a reference label with a predicate where an explicit semantic assertion is meant. Each predicate is drawn from a vocabulary the root definition declares: SKOS by default, as `skos:related`, `skos:broader`, `skos:exactMatch` or `skos:closeMatch`, and `ki:` only for a relationship no declared vocabulary has.
 - **Navigational links.** A link without an entry stays navigational and is never given an invented predicate.
 - **Definitions at the bottom.** Link definitions sit at the bottom of the card and hold only destinations; the descriptive link text stays in the prose. Within a graph, a link's destination is the target card's file, `<id>.md`, and its label is best the target's id.
-- **No links into part of a card.** A link that would need part of a card, such as an anchor to one of its sections, shows the card should be split, so each part that is linked to is a card of its own. Links into parts of cards are brittle and are not made (KG-GRAIN).
+- **No links into part of a card.** A link that would need part of a card, such as an anchor to one of its sections, shows the card should be split, so each part that is linked to is a card of its own. Links into parts of cards are brittle and are not made.
 - **Relationships are knowledge.** A relationship's type, direction and provenance stay accessible wherever it is written.
 
 [Back to contents](#contents)
 
 ### 4.5 Subgraphs
 
-A subgraph is a part of a graph with its own subject, declared in the root definition, and its cards' ids carry its prefix (KG-SUBGRAPHS).
+A subgraph is a part of a graph with its own subject, declared in the root definition, and its cards' ids carry its prefix.
 
 - **Usage beside the standard term.** Where outside parties use their own words for something a graph defines, the graph's own terms form one subgraph and each party has a subgraph of its own. In a vocabulary of agentic terms, the industry's terms are one subgraph and each vendor, such as Anthropic or OpenAI, another; OpenAI's thread and Anthropic's session are cards in their vendors' subgraphs, each pointing to the industry's session.
 - **Synonyms and senses are links.** A party's word that means the same as a term links to it, as with `skos:exactMatch` or `skos:closeMatch`; a word that is narrower than the term says so with `skos:broadMatch`, one that is broader with `skos:narrowMatch`, and one only related with `skos:relatedMatch`, each predicate reading from the card that holds it to its target; a name used in more than one sense links once for each sense. Synonyms and senses are not lists in a card's prose.
@@ -170,7 +170,7 @@ Shadow nodes have a life cycle:
 
 ### 4.7 Staging and tending
 
-A graph built from captures is staged before it settles, and every graph is tended. Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour), under CURATION-HOME, 19 November 2026.
+A graph built from captures is staged before it settles, and every graph is tended. Curating captures into cards, and dispatch, belong to Harbour (cairn.harbour).
 
 What a card curated from a capture keeps is durable: the positions, proposals and commitments, and which organisation holds each, rather than who attended, for how long, people's titles or the tactics of the moment, which stay in the capture. Responsibilities are recorded against organisations, not people.
 

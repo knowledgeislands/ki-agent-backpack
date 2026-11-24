@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T20:59:09Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -21,7 +21,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-The procedure `ki-work plan` follows to shape a selected Now or Next record and make it Ready. The kind and boundaries live in [the mode](mode-plan.md). The decisions behind these rules are in the [sources file](sources.md#3-decisions).
+The procedure `ki-work plan` follows to shape a selected Now or Next record and make it Ready. The kind and boundaries live in [the mode](mode-plan.md). The sources behind these rules are in the [sources file](sources.md).
 
 [Back to contents](#contents)
 

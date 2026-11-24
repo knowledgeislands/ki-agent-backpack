@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T22:58:47Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -76,7 +76,7 @@ The roadmap record carries the shared `draft` → `ready` → `in-progress` → 
 
 Substantive changes to `Admin/`, `Pillars/`, or `Resources/` require explicitly approved forward work. Time-bound `Calendar/` entries, inbound `+/` triage and trivial typo or formatting fixes are exempt; when in doubt, prefer a lightweight record. `ki-work` owns the lifecycle that approves and delivers the work: capture through `ki-work next`, shaping through `ki-work plan`, delivery through `ki-work implement`, and review and closure through `ki-work accept`.
 
-This is the one Enactment gate in a Knowledge Base (KB-FOLD b, 22 November 2026). The base's always-loaded root `AGENTS.md` or `CLAUDE.md` anchors it, naming the base's Enactment Process note or `Streams/Roadmap/`, and routes a change to the appropriate adapter without creating a parallel generic Streams record. ENACT-1 checks the anchor once the base holds roadmap records; ENACT-2 reviews whether canonical changes follow it.
+This is the one Enactment gate in a Knowledge Base. The base's always-loaded root `AGENTS.md` or `CLAUDE.md` anchors it, naming the base's Enactment Process note or `Streams/Roadmap/`, and routes a change to the appropriate adapter without creating a parallel generic Streams record. ENACT-1 checks the anchor once the base holds roadmap records; ENACT-2 reviews whether canonical changes follow it.
 
 A base whose Enactment Process note sits elsewhere than `Admin/Operations/Processes/Enactment Process.md` declares it as `process_note` under `[skills.ki-repo-kb]`; CONFIG-6 checks that the binding stays inside the base.
 

@@ -117,7 +117,7 @@ The `ki-repo-kb` skill writes Obsidian wikilinks inside the base while keeping i
 
 ## The folded standards
 
-Shapes for the Activity, Live Artifact and Streams standards, which came from their own skills under KB-FOLD b.
+Shapes for the Activity, Live Artifact and Streams standards, which came from their own skills.
 
 ### Activities
 

@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T22:58:47Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -65,7 +65,7 @@ Placement, frontmatter, the index, render freshness and the checker's repairs.
 
 ### 4.1 Placement and pairing
 
-Live Artifacts are intentionally mutable operational documents held below `Admin/Operations/Live Artifacts/` in a Knowledge Islands base. A base may declare a different relative folder with `artifacts_dir` under `[skills.ki-repo-kb]`; the retired `[skills.ki-repo-kb-live-artifacts]` table is no longer read (KB-FOLD b, 22 November 2026).
+Live Artifacts are intentionally mutable operational documents held below `Admin/Operations/Live Artifacts/` in a Knowledge Islands base. A base may declare a different relative folder with `artifacts_dir` under `[skills.ki-repo-kb]`; the retired `[skills.ki-repo-kb-live-artifacts]` table is no longer read.
 
 Each artifact has a Markdown source and a co-located HTML render with the same stem.
 

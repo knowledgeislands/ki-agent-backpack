@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T00:28:37Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -22,7 +22,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-What a standard is: a document holding rules themselves, in a skill's `references/`, which changes land into. It follows the [format format](standard-formats-format.md), and this standard follows itself. The decisions behind these rules are in [the sources file](sources.md).
+What a standard is: a document holding rules themselves, in a skill's `references/`, which changes land into. It follows the [format format](standard-formats-format.md), and this standard follows itself. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -78,7 +78,7 @@ ki-status: <draft or in force>
 ### 4.2 Shape
 
 1. **Sections:** 1 Introduction, 2 Scope (2.1 In scope, 2.2 Out of scope), 3 Terms and definitions, 4 Rules.
-2. **The Introduction** says what the standard governs and links to its skill's sources file, where the decisions behind its rules are kept.
+2. **The Introduction** says what the standard governs and links to its skill's sources file, which records what its rules rest on.
 3. **Terms and definitions** is a two-column table of concepts, each definition ending with a **Standard:** line naming the standard that defines it.
 4. **Rules** holds the rules, in subsections by topic.
 5. **No change parts:** no Steps, Changes, Open or Deltas call-outs; those belong to the change that alters the standard.
@@ -93,7 +93,7 @@ A standard uses the prefix pattern, `standard-<name>.md`.
 
 ### 4.4 How a change lands
 
-When a change lands, its Introduction, Scope, Terms and Outline carry into the standard's Introduction, Scope, Terms and Rules. The standard's `ki-revised` moves up, and the change's decisions are recorded in the skill's sources file. Nothing from the change's Open section is written into the standard, which stands complete within its scope.
+When a change lands, its Introduction, Scope, Terms and Outline carry into the standard's Introduction, Scope, Terms and Rules. The standard's `ki-revised` moves up, and the change document is deleted once its work has landed; the standard carries the result, and Git history is the only trace of the decisions behind it. Nothing from the change's Open section is written into the standard, which stands complete within its scope.
 
 [Back to contents](#contents)
 

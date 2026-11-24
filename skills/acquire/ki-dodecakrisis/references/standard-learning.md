@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T00:54:54Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -21,9 +21,9 @@ ki-status: in force
 
 ## 1. Introduction
 
-How D12's rules improve: corrections noticed from Kris's moves, rules he states, and drafts that go live only on his answer. It applies the [D12 standard](standard-dodecakrisis.md), whose rule 7, Determine teaches, it carries out. Kris set it on 6 November 2026 (D12-LEARNS): D12 "learns from how I reorder things, or I can tell you expressly how certain things need to move, so you can put better rules in place."
+How D12's rules improve: corrections noticed from Kris's moves, rules he states, and drafts that go live only on his answer. It applies the [D12 standard](standard-dodecakrisis.md), whose rule 7, Determine teaches, it carries out.
 
-The sources and decisions behind these rules are in [the sources file](sources.md).
+The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -101,7 +101,7 @@ The corrections log is a JSON Lines file in the declaring repository, at the con
 ### 4.3 Drafting rules
 
 - **Three agreeing corrections draft a change.** When three corrections agree on a sender domain or subject pattern, the learning run drafts a new rule, an exception to an existing one, or a move from automatic to suggest.
-- **A draft goes to Kris as a query** with its dry-run count and confidence, through the coordinating work's queries, and goes into the rules file with `origin = "learnt"` only on his answer, which its `approval` cites (GD12-LEARN a).
+- **A draft goes to Kris as a query** with its dry-run count and confidence, through the coordinating work's queries, and goes into the rules file with `origin = "learnt"` only on his answer, which its `approval` cites.
 - **A rule whose corrections pass 5% of what it placed drops back to suggest** on its own, since that only makes it more careful; the run reports the change.
 - **Determine shrinking week on week** is the measure that the rules are learning, and each learning run reports it.
 

@@ -4,7 +4,7 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 # Bootstrap
 
-`ki-keystone bootstrap` explains first-time Knowledge Islands activation through the `ki` CLI: user bootstrap, verified backpack selection, skills, and repository governance. It was the `ki-bootstrap` skill until Keystone folded it into its lead (BOOTSTRAP-FOLD). It changes no user or repository state.
+`ki-keystone bootstrap` explains first-time Knowledge Islands activation through the `ki` CLI: user bootstrap, verified backpack selection, skills, and repository governance. It was the `ki-bootstrap` skill until Keystone folded it into its lead. It changes no user or repository state.
 
 The `ki` CLI owns installation, activation, and repository operations. `ki-keystone bootstrap` explains that command surface; it has no executable catalogue, checker, or alternative executor.
 
@@ -40,7 +40,7 @@ Missing, incompatible, undeclared, or ambiguous skills fail before an audit or c
 
 ## Machine readiness for coordinating work
 
-A coordinating session needs more than the skills `ki bootstrap` activates: the user environment must bind the coordinator hook and the coordinator output style, `output-styles/ki-coordinator.md` in the backpack, the Capital must declare its governance skills, and the session must open in the Capital under the work's name. The [machine-readiness checklist](standard-bootstrap.md#47-machine-readiness-for-coordinating-work) is the one path from a fresh machine to a working coordinator. It ends in a **Ready to coordinate** result, given only when every check passes, with observable checks that the hook and the output style actually work; a failing check names the owner that repairs it, never a copy or edit across managed surfaces. `ki-coordination`'s Bootstrap begins at the opener and cites the checklist as its "Before the opener" step. Kris homed the checklist here under BOOT-HOME on 26 October 2026; a `ki doctor` readiness check in `tools-ki` may back it later, and readiness never depends on it before it exists.
+A coordinating session needs more than the skills `ki bootstrap` activates: the user environment must bind the coordinator hook and the coordinator output style, `output-styles/ki-coordinator.md` in the backpack, the Capital must declare its governance skills, and the session must open in the Capital under the work's name. The [machine-readiness checklist](standard-bootstrap.md#47-machine-readiness-for-coordinating-work) is the one path from a fresh machine to a working coordinator. It ends in a **Ready to coordinate** result, given only when every check passes, with observable checks that the hook and the output style actually work; a failing check names the owner that repairs it, never a copy or edit across managed surfaces. `ki-coordination`'s Bootstrap begins at the opener and cites the checklist as its "Before the opener" step. The checklist's home is here; a `ki doctor` readiness check in `tools-ki` may back it later, and readiness never depends on it before it exists.
 
 ## Development boundary
 
@@ -48,9 +48,9 @@ An installed verified payload is the authoritative source of capabilities. Local
 
 ## Released-backpack mode
 
-Which source an installed backpack resolves from is its verified backpack selection, made per backpack for the whole machine: **released**, the verified release archive and the default, or **development**, the recorded checkout's working tree. A repository's skill outside both is a vendored copy, under `ki-repo`. The released-backpack mode sits between a repository's ordinary current declaration and a vendored copy: its skills stay fixed until the next verified release is installed, with nothing committed into the repository. It is part of this selection, not a third `.ki.toml` mode (RELEASED-MODE a), so it cannot be chosen for one repository alone.
+Which source an installed backpack resolves from is its verified backpack selection, made per backpack for the whole machine: **released**, the verified release archive and the default, or **development**, the recorded checkout's working tree. A repository's skill outside both is a vendored copy, under `ki-repo`. The released-backpack mode sits between a repository's ordinary current declaration and a vendored copy: its skills stay fixed until the next verified release is installed, with nothing committed into the repository. It is part of this selection, not a third `.ki.toml` mode, so it cannot be chosen for one repository alone.
 
-Return to it with `ki dev local off [backpack-id]`, and read the selection in `ki diag --full`, where each recorded checkout reports `mode: on` or `mode: off`. Use it wherever a result must be reproducible. The canonical backpack's release is the one pinned by the installed `ki`, which has its own formula and release cycle in the shared Homebrew tap (TOOL-RELEASES a); upgrade `ki`, then `ki backpack reinstall knowledgeislands/ki-agent-backpack` with development off. The [bootstrap standard](standard-bootstrap.md#49-verified-backpack-selection) has the rule.
+Return to it with `ki dev local off [backpack-id]`, and read the selection in `ki diag --full`, where each recorded checkout reports `mode: on` or `mode: off`. Use it wherever a result must be reproducible. The canonical backpack's release is the one pinned by the installed `ki`, which has its own formula and release cycle in the shared Homebrew tap; upgrade `ki`, then `ki backpack reinstall knowledgeislands/ki-agent-backpack` with development off. The [bootstrap standard](standard-bootstrap.md#49-verified-backpack-selection) has the rule.
 
 For command grammar, run `ki --help`. For repository coverage, use `ki-repo`.
 

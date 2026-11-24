@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T22:58:47Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -35,7 +35,7 @@ This standard defines the portable shape of a territory's Project and theme regi
 
 "Project" here names a registry entry. The repository shape declared by `repo_type = "project"` is a "project repository"; the two never share a namespace.
 
-The decisions behind these rules are in the [sources file](sources.md#3-decisions).
+The sources behind these rules are in the [sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -130,13 +130,13 @@ The note tracks state with `lifecycle` alone. It carries no dated `## Update`, h
 
 ### 4.3 Idea-stage Project
 
-An idea-stage Project holds ideas, philosophies and approaches that are worth keeping before anyone is ready to commit to delivering them. It is an ordinary Project at its earliest stage, not a separate kind, so it takes no type field: Kris set on 2026-10-14, "No new kind of Project: inception is the idea-stage pattern". Kris set its shape on 2026-10-15: "Adopt it: an evaluation area is a planned Project whose Outcome is a decision, ideas in Notes, no records or thread, at most one per Initiative and three across the territory; Ways of working holds the rule." The same day Kris confirmed that this answer settles the stage and its cap: "an idea-stage Project is a planned Project whose Outcome is a decision, ideas in Notes, no records and no thread, at most one per Initiative and three across the territory." Under the work model the Initiative is a theme and the thread is Project work.
+An idea-stage Project holds ideas, philosophies and approaches that are worth keeping before anyone is ready to commit to delivering them. It is an ordinary Project at its earliest stage, not a separate kind, so it takes no type field: inception is the idea-stage pattern, never a new kind of Project. It is a planned Project whose Outcome is a decision, with its ideas in Notes, no records and no Project work, at most one per theme and three across the territory.
 
 - `lifecycle` is `planned`.
 - `outcome` is a decision its lead takes. It opens with the lead's name, or their first name, followed by "decides", as in "Kris decides whether Delta earns a bounded trial ...", and its test is that the decision is taken and routed to its durable owner. This form is what marks the stage: a `planned` Project with a delivery outcome is delivery not yet started.
 - `## Notes` holds the ideas. Captures that name the Project fold back into its Notes.
 - No work record names it, and no Project work runs for it.
-- A territory holds at most one idea-stage Project per theme and three in all. Kris set on 2026-10-15: "At most one idea-stage Project per Initiative and three across the territory, reviewed at each state-of-play mark." A further one waits until another graduates or folds, or its lead lifts the cap.
+- A territory holds at most one idea-stage Project per theme and three in all, and the territory work reviews them at each mark. A further one waits until another graduates or folds, or its lead lifts the cap.
 
 It leaves the stage in one of two ways. It **graduates** when its lead takes the decision and delivery follows: `lifecycle` becomes `active`, `outcome` is rewritten as a finite delivery outcome, and records may then name it. It **folds** when no delivery follows: it gets its [close-out assessment](#45-close-out-assessment), saying where the decision and any surviving ideas now live, and its lead cancels or completes it. A settled slice may leave before the whole does, by the [quotation rule](../../../work/ki-work-roadmap/references/standard-repository-roadmaps.md#46-ideas-and-graduation).
 
@@ -144,7 +144,7 @@ It leaves the stage in one of two ways. It **graduates** when its lead takes the
 
 ### 4.4 Paused Project
 
-A `paused` Project says why it waits and until when. Its `## Notes` opens with one line giving its release condition and a review date; the territory work under [`ki-coordination`](../../../work/ki-coordination/SKILL.md) reviews it at its first mark after that date. The line is prose, and the note gains no frontmatter. Kris set on 2026-10-15: "A paused Project's ## Notes opens with one line giving its release condition and review date, reviewed by state-of-play after that date; no new front matter".
+A `paused` Project says why it waits and until when. Its `## Notes` opens with one line giving its release condition and a review date; the territory work under [`ki-coordination`](../../../work/ki-coordination/SKILL.md) reviews it at its first mark after that date. The line is prose, and the note gains no frontmatter.
 
 [Back to contents](#contents)
 
@@ -201,16 +201,16 @@ Each level carries the attributes it needs and no more. The comparable attribute
 | Size | None | None | `size`, the relative end-to-end effort, guiding a split | None |
 | Owner and parent | No holder; a label | `lead`; an optional `theme` | Its owning repository; one `project`, which gives its theme, or for projectless work an optional `theme` | Its owning base; regular work or a Project, with an optional `theme` |
 
-Projects and themes take no type field, and `kind` and `purpose` are record classification only. Only a work record carries `priority` and `size`, under the [work-item format](../../../work/ki-work-roadmap/references/standard-work-item-format.md#43-priority-and-size); the order of Projects is a judgement the territory work makes, never a stored value. Kris reversed the 15 October answer that "horizon stays the only priority signal" on 2026-10-19: "horizon is about when, and then priority is about how important". The [work-item format](../../../work/ki-work-roadmap/references/standard-work-item-format.md) owns the record fields and `ki-repo-kb`'s [Activity standard](../../../repository/ki-repo-kb/references/standard-activities.md) the Activity fields.
+Projects and themes take no type field, and `kind` and `purpose` are record classification only. Only a work record carries `priority` and `size`, under the [work-item format](../../../work/ki-work-roadmap/references/standard-work-item-format.md#43-priority-and-size); the order of Projects is a judgement the territory work makes, never a stored value. A record's `horizon` says when, and its `priority` says how important. The [work-item format](../../../work/ki-work-roadmap/references/standard-work-item-format.md) owns the record fields and `ki-repo-kb`'s [Activity standard](../../../repository/ki-repo-kb/references/standard-activities.md) the Activity fields.
 
 [Back to contents](#contents)
 
 ### 4.8 Rooting
 
-Rooting decides where a new idea, philosophy or piece of work lives: first its territory, then its Project or theme, then whether it is a concept or work. Kris asked on 2026-10-14 "how these things get rooted ... down into the territories and then from the territories down into the initiatives, the projects, and the roadmaps, but also where do we put things which are kind of like ideas, philosophies, things that we're discussing, our approaches before we've really got to the point that we need to fully commit to them".
+Rooting decides where a new idea, philosophy or piece of work lives: first its territory, then its Project or theme, then whether it is a concept or work. It covers ideas, philosophies and approaches still under discussion as well as committed work.
 
 - **The rooting step.** At the mark of the work where the idea arose, the owner confirms the owning territory, the nearest Project or theme, and the split between concept and work, on that work's proposal.
-- **The owning territory** is the one whose Capital must accept it. Kris adopted the rule on 2026-10-15: "I confirm the owning territory at the mark, on the proposal of the thread where the idea arose, using "whose Capital must accept it". The model and method root in Knowledge Islands, and my own life and machine bindings root in Personal. Another territory gets one handoff when it must act and otherwise only a one-line link."
+- **The owning territory** is the one whose Capital must accept it. The model and method root in Knowledge Islands, and the owner's own life and machine bindings root in Personal.
 - **Concepts and work are held apart.** A concept, a philosophy or approach not yet committed to, is held as an Emerging Concepts note in the owning Capital's knowledge base, which [`ki-repo-kb`](../../../repository/ki-repo-kb/SKILL.md) places. Work is held as an `Idea:` bullet in the `## Notes` of the nearest Project note or theme page, or in an [idea-stage Project](#43-idea-stage-project) when a decision must come first.
 - **One home, never a mirror.** Another territory that must act gets one handoff, a message along the work tree under `ki-coordination`; otherwise it gets at most a one-line link to the owning home.
 - **Graduation is slice by slice.** What settles leaves its idea home by the [quotation rule](../../../work/ki-work-roadmap/references/standard-repository-roadmaps.md#46-ideas-and-graduation), so the ideation behind it can carry on.
@@ -262,7 +262,7 @@ The thread-model registry stays readable, with a warning on each shape, until a 
 - a Project note's `initiative:`, read as its `theme:`;
 - a record's `initiative`, read as its `theme`.
 
-The `Streams/Initiatives/` and `initiative:` warnings become failures on 7 November 2026, or earlier once a scan finds no residue, under Kris's THEME-CLOSE decision of 25 October 2026. The Project-folder tolerance is unchanged.
+The `Streams/Initiatives/` and `initiative:` warnings become failures on 7 November 2026, or earlier once a scan finds no residue. The Project-folder tolerance is unchanged.
 
 A `design/` folder under `Streams/` is not tolerated: `ki-repo-kb`'s Streams checks fail it, and its papers move into a change document in the work's package.
 
@@ -270,7 +270,7 @@ A `design/` folder under `Streams/` is not tolerated: `ki-repo-kb`'s Streams che
 
 ### 4.14 Validation
 
-The roadmap checker resolves `project` slugs against `Streams/Projects/` and `theme` slugs against `Streams/Themes/` of the referenced territory when it can find the registry, reading the [tolerated](#413-tolerance-window) thread-model shapes with a warning. An unknown slug, or an unavailable registry, is a warning and never a failure or a silent ungrouping. A record naming both a `project` and a `theme` fails only when the registry gives that Project a different theme, including the same slug in a different territory. On the Capital, this skill's PROJ family checks the registry, as `ki-repo-kb-streams` did until KB-FOLD b. PROJ-1 counts each Project's open records, those not `done` or `cancelled`, across the Capital and every checkout in the local ki registry: a bare `project` slug counts from the Capital's members, and a `<territory>/<slug>` value counts from anywhere, whether it names the Capital's territory prefix or its registry key. It warns on an `active` or `paused` Project with no open record and no [close-out assessment](#45-close-out-assessment), and on a `completed` or `cancelled` Project with none; an assessed Project with no open record is reported as awaiting its lead's close decision. Without a readable registry, records outside the Capital are invisible, so a Project with no open record is reported only for information, and a `planned` Project is not assessed. PROJ-2 recognises an [idea-stage Project](#43-idea-stage-project) as a `planned` Project whose `outcome` opens with its lead's name, or their first name, followed by "decides", and warns when an open record names one, when a theme has more than one, or when the territory has more than three. A base that is not a Capital has neither check. A legacy `Streams/Projects/Initiatives.md` index stays readable with a warning during the [migration tolerance window](../../../work/ki-work-roadmap/references/standard-repository-roadmaps.md#47-migration-tolerance).
+The roadmap checker resolves `project` slugs against `Streams/Projects/` and `theme` slugs against `Streams/Themes/` of the referenced territory when it can find the registry, reading the [tolerated](#413-tolerance-window) thread-model shapes with a warning. An unknown slug, or an unavailable registry, is a warning and never a failure or a silent ungrouping. A record naming both a `project` and a `theme` fails only when the registry gives that Project a different theme, including the same slug in a different territory. On the Capital, this skill's PROJ family checks the registry, as `ki-repo-kb-streams` did until it was folded in. PROJ-1 counts each Project's open records, those not `done` or `cancelled`, across the Capital and every checkout in the local ki registry: a bare `project` slug counts from the Capital's members, and a `<territory>/<slug>` value counts from anywhere, whether it names the Capital's territory prefix or its registry key. It warns on an `active` or `paused` Project with no open record and no [close-out assessment](#45-close-out-assessment), and on a `completed` or `cancelled` Project with none; an assessed Project with no open record is reported as awaiting its lead's close decision. Without a readable registry, records outside the Capital are invisible, so a Project with no open record is reported only for information, and a `planned` Project is not assessed. PROJ-2 recognises an [idea-stage Project](#43-idea-stage-project) as a `planned` Project whose `outcome` opens with its lead's name, or their first name, followed by "decides", and warns when an open record names one, when a theme has more than one, or when the territory has more than three. A base that is not a Capital has neither check. A legacy `Streams/Projects/Initiatives.md` index stays readable with a warning during the [migration tolerance window](../../../work/ki-work-roadmap/references/standard-repository-roadmaps.md#47-migration-tolerance).
 
 Views group by Project and theme without copying record lists into a second status source. Status lives in the records and each Project note's `lifecycle`; the state of each piece of work lives in its work file, which `ki-work-package` owns.
 

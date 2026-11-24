@@ -38,7 +38,7 @@ Read the standard for the concern in hand before acting. All of them are checked
 | Paired sources stores | [Source mirror standard](references/standard-source-mirrors.md) | ZONE |
 | Optional bounded retrieval for QUERY | [Derived search contract](references/standard-search.md) | none |
 
-The principal standard applies whenever the base is its territory's Capital, which the audit works out from `[skills.ki-repo].capital` naming the base itself; a base that is not its Capital skips it. These standards came from four skills folded or split here under KB-FOLD b; the roadmap records inside `Streams/Roadmap/` belong to `ki-work-roadmap`, and the Project registry's close-out checks to `ki-work`. Decision Records stay with `ki-decision-records`, and an Activity's recurring-work profile with `ki-work-recurring`.
+The principal standard applies whenever the base is its territory's Capital, which the audit works out from `[skills.ki-repo].capital` naming the base itself; a base that is not its Capital skips it. These standards came from four skills folded or split here; the roadmap records inside `Streams/Roadmap/` belong to `ki-work-roadmap`, and the Project registry's close-out checks to `ki-work`. Decision Records stay with `ki-decision-records`, and an Activity's recurring-work profile with `ki-work-recurring`.
 
 ## The Knowledge Islands structure
 

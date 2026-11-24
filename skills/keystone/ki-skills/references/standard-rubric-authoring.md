@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T16:15:00Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -39,7 +39,7 @@ This is the target model for turning a governance standard into an executable ru
 
 `ki-skills` proves the model as the self-governing root of the governance-skill system; later skills adopt it one at a time rather than inventing their own checker architecture, so they are focused on the what, how and why, not the how-to-build.
 
-Use this guide when creating or refactoring a governance skill's rubric implementation. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+Use this guide when creating or refactoring a governance skill's rubric implementation. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

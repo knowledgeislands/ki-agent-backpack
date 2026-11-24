@@ -39,7 +39,7 @@ The three conceptual layers are acquisition (incoming material in any form), sem
 
 ## Data, information and presentation
 
-Kris framed the same separation on 2 November 2026 as data, information and presentation: capture the data in one place, then decide separately what to show and how the data becomes information. Data is the canonical files, information is what the graph and its [maps of content][moc] make of them, and presentation is a view such as a viewer page. The proposed change-log graph is a first application of this framing.
+The same separation is framed as data, information and presentation: capture the data in one place, then decide separately what to show and how the data becomes information. Data is the canonical files, information is what the graph and its [maps of content][moc] make of them, and presentation is a view such as a viewer page. The proposed change-log graph is a first application of this framing.
 
 ## Context and composition
 

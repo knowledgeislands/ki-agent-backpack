@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T02:23:23Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -24,9 +24,9 @@ ki-status: in force
 
 ## 1. Introduction
 
-How anything already made is reviewed in Knowledge Islands: records, change documents, designs, standards and skills alike. Every review has one shape, so that a finding reads the same whatever it is about, and every review ends in one of the same two outcomes, so that everything awaiting its owner can be listed in one place and acted on in the same way. Each kind's own skill cites this standard and adds only its own anchors and what it is reviewed against. The decisions behind these rules are in [the sources file](sources.md).
+How anything already made is reviewed in Knowledge Islands: records, change documents, designs, standards and skills alike. Every review has one shape, so that a finding reads the same whatever it is about, and every review ends in one of the same two outcomes, so that everything awaiting its owner can be listed in one place and acted on in the same way. Each kind's own skill cites this standard and adds only its own anchors and what it is reviewed against. The sources behind these rules are in [the sources file](sources.md).
 
-The rules were set in the Cairn summit's [change 16, the Design guild](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#46-one-design-review), REVIEW-SHAPE and REVIEW-HOME.
+The rules were set in the Cairn summit's [change 16, the Design guild](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#46-one-design-review).
 
 [Back to contents](#contents)
 
@@ -102,7 +102,7 @@ The rules, part by part.
 - **A line or range** in a file, as `path:line` at the fixed commit.
 - **A front matter field,** by its name, such as `ki-status`.
 - **A rubric item,** by its code, such as DESIGN-4.
-- **An id:** a requirement's, a decision's or a resource's, such as `design:wayfinder` or REVIEW-SHAPE.
+- **An id:** a requirement's, a decision's or a resource's, such as `design:wayfinder` or ADR-KI-HARNESS-SKILLS-017.
 - **The whole thing,** by its id or path, for a finding that is about no one part of it.
 
 A finding about several places is several findings, unless it is about the whole. Each kind's skill adds the anchors its kind needs, as [4.7](#47-what-each-kind-adds) sets out.
@@ -138,11 +138,11 @@ A review gives its findings in the order of their anchors, then its line of what
 
 ### 4.5 The outcome
 
-1. **Two outcomes, both the owner's.** **Approve:** accepted as it stands. **Accept with changes:** accepted, with the open findings turned into new work in a change document, or wherever the kind's skill routes its work, and the thing approved at once rather than rewritten, as the record format's ACCEPT-WITH-CHANGES sets for a record. There is no third outcome: a thing whose blocking findings are open stays awaiting review.
+1. **Two outcomes, both the owner's.** **Approve:** accepted as it stands. **Accept with changes:** accepted, with the open findings turned into new work in a change document, or wherever the kind's skill routes its work, and the thing approved at once rather than rewritten, as the record format sets for a record. There is no third outcome: a thing whose blocking findings are open stays awaiting review.
 2. **Recorded where the thing changes,** in the field its format already gives it: a record's `ki-review`; a change document's `ki-status`, from `review` to `agreed`; and a design or standard through the change document that moves it. No review field is added to a document that has none.
 3. **Findings go to the change document.** Where a change document moves the thing, its review is that change's review: blocking findings become its questions, the other issues and suggestions its gaps or notes, and notes and praise need nothing.
 4. **Setting a thing aside is not a review outcome.** Shelving, replacing or withdrawing goes through the thing's own life cycle, by a change document.
-5. **An approval covers the version the owner saw.** A change of substance to an approved thing sets it back to awaiting review, and the owner reviews what changed since the version approved, as the record format sets for a record, whose living record changes as its theme's work lands (RECORDS-THEMES); a design or standard changes only through a change document, which takes its own review.
+5. **An approval covers the version the owner saw.** A change of substance to an approved thing sets it back to awaiting review, and the owner reviews what changed since the version approved, as the record format sets for a record, whose living record changes as its theme's work lands; a design or standard changes only through a change document, which takes its own review.
 
 [Back to contents](#contents)
 

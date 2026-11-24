@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-24T03:22:50Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -26,7 +26,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This file holds how queries reach the owner: the interactive and goal-setting passes, blind query review, the defaults query and acceptance bundles. It extends [the core](standard-coordination.md). The decisions behind its rules are in [the sources file](sources.md).
+This file holds how queries reach the owner: the interactive and goal-setting passes, blind query review, the defaults query and acceptance bundles. It extends [the core](standard-coordination.md). The sources behind its rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -75,13 +75,11 @@ Queries reach the owner in the Summary by default, except that a Summary whose s
 
 **Choosing the recommended option.** Do not recommend the cautious option only because it is cautious when its downside can be undone; recommend what the evidence favours. Protections go only where the owner has drawn a line: a new one, such as a further check, a hold or a gate, goes to the owner as a question first and is not added on the agent's own judgement.
 
-Sources: PROTECT-ONLY-ASKED in [the decision register](sources.md#3-decisions).
-
 [Back to contents](#contents)
 
 ### 4.2 Query cap
 
-A reply puts at most three queries to the owner, so each reply stays short enough to deal with, as Kris set under QUERY-CAP-3 on 19 November 2026: "You give me a big long list of them again. So that's really difficult for me to deal with … up to two or three". It narrows the ten QUERY-CAP set on 18 November 2026.
+A reply puts at most three queries to the owner, so each reply stays short enough to deal with.
 
 - **Which three:** the most critical first: a query whose due date is close, or that blocks other work or another territory. Within the same criticality, the highest confidence first.
 - **The rest:** where more are open, one line after the last query says how many more there are and where they are held, as in `A further 7 are held in the package's change documents.`
@@ -89,22 +87,18 @@ A reply puts at most three queries to the owner, so each reply stays short enoug
 - **Where it applies:** to what one reply shows, in `## Queries` and the reply block: the Summary, the Status, the Bootstrap, a run report and every other form that carries queries in full. A Summary or Bootstrap that restates the open queries shows the top three in full and the further-queries line; a Summary under **Summary first** in [The Summary](standard-report-forms.md#417-the-summary) shows only their count until the owner has taken stock.
 - **Where it does not:** the queries file and the change documents keep every open query in their Open sections.
 
-Sources: QUERY-CAP, QUERY-CAP-3 and SUMMARY-FIRST in [the decision register](sources.md#3-decisions).
-
 [Back to contents](#contents)
 
 #### 4.2.1 Query re-check
 
-While more than ten queries are open with the owner, a run re-checks every one against where things stand before any is put to the owner, so no query asks about something that has since moved on, as Kris set under QUERY-RECHECK on 19 November 2026: "at the point where there is a significant number of queries, perhaps over 10, then the queries need to be reviewed, especially before we start interacting to make sure that they're still valid, because we don't want to start asking queries … which may contradict things which have significantly moved on since the point at which the query was initially captured."
+While more than ten queries are open with the owner, a run re-checks every one against where things stand before any is put to the owner, so no query asks about something, or contradicts something, that has moved on since the query was captured.
 
 - **When:** before a reply, a Summary, a Bootstrap or an [interactive pass](#43-interactive-pass) puts any query to the owner, while more than ten are open across the package's change documents.
 - **Who:** a background run under `ki-delegation`, since the coordinator does no substantive work itself, reading the change documents, the record and the repositories as they now stand.
 - **What it does:** it drops each query that is settled, done or not the owner's, the last sent to its holder; merges queries that overlap into one; re-rates each remaining query's confidence; and ranks the rest by the [query cap](#42-query-cap)'s order. It writes the result into the change documents' Open sections, and only then does the cap choose which three a reply shows.
-- **Just before each card, whatever the count:** each question is checked against the current facts, the latest decisions included, just before it is carded or asked, and its context states the check time, as `Checked 17:40 GMT`. A question overtaken first is not asked: it is struck through in its change document as withdrawn, with its reason and date, under the change format's [landing rules](../../../keystone/ki-authoring/references/standard-formats-change.md#45-landing), and the pass's total drops by one (WAYS-APPLY, WITHDRAWN-QUESTION).
-- **Renames:** a rename is carried through every open card, its title, options and descriptions, and the question's record, the day it lands, so no card names a thing by a name it no longer has (WAYS-APPLY).
+- **Just before each card, whatever the count:** each question is checked against the current facts, the latest decisions included, just before it is carded or asked, and its context states the check time, as `Checked 17:40 GMT`. A question overtaken first is not asked: it is struck through in its change document as withdrawn, with its reason and date, under the change format's [landing rules](../../../keystone/ki-authoring/references/standard-formats-change.md#45-landing), and the pass's total drops by one.
+- **Renames:** a rename is carried through every open card, its title, options and descriptions, and the question's record, the day it lands, so no card names a thing by a name it no longer has.
 - **Beside the cap and the review:** the cap sets how many one reply shows and the re-check which are still worth asking. A query the re-check rates medium or low, or high with a destructive recommended course, still goes to its [query review](#45-query-review) before it reaches the owner.
-
-Sources: QUERY-RECHECK, WAYS-APPLY and WITHDRAWN-QUESTION in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -131,17 +125,17 @@ After a Summary that lists open queries, or on the owner's request, the coordina
 2. **Second reply.** Woken by the timer, the reply holds only the card, through the runtime's question tool, such as `AskUserQuestion`:
    - **Title:** one line, the counter and the plain question, as in `Query 2 of 5: Release the held work now?`.
    - **Options:** each a short label, the real choices first with the recommended one leading, its label carrying `(recommended, <confidence> confidence)`, then the two [discussion options](#the-discussion-options). A card holds at most four options, so it carries at most two real choices; a query with more is asked in the plain fallback's chat form, or split into separately tagged parts.
-   - **Descriptions:** one or two sentences for each real option: what it changes, then `Why:` and its justification, why someone would choose it, so every option carries its own case and not only the recommended one, whose label also carries its confidence (OPTION-WHY).
+   - **Descriptions:** one or two sentences for each real option: what it changes, then `Why:` and its justification, why someone would choose it, so every option carries its own case and not only the recommended one, whose label also carries its confidence.
    - **Own words:** the card's free-text box takes the owner's own words, so no option offers them.
    - **Pairs:** two related questions may share one card, each with a short header and its own two discussion options; otherwise one question per card.
 3. **After the answer.** Apply a real choice to the change document it belongs to, under [Applying decisions](standard-decisions.md#411-applying-decisions), then go back to step 1, whose read-back, saying what was chosen and what it changes, opens the next query's first reply. A discussion option changes nothing; [the discussion options](#the-discussion-options) say what follows.
 4. **Why.** Orca folds everything in a reply under "Worked for" except its last text, and does not show text written after a card's answer in the same reply. So the context is the first reply's last text, the card stands alone in its own reply, and the read-back, plain chat after the answer, breaks the run of tool calls so the next context renders on its own instead of folding away with them. Orca's card also drops line breaks in its title, as reported to Orca, while chat text renders in full above the card.
 5. **At the end of the set.** Take again the queries deferred to the end, in the order they were deferred, each opening with a short discussion in plain chat before its first reply; each may then be left open for another day, as [the discussion options](#the-discussion-options) say. When the last query is answered and applied, the next reply reads it back, with what it changes, takes a mark and gives the Summary, for a clean baseline and a fresh view.
 
-<a id="where-things-stand"></a>**Where things stand** is a few short bullets, enough to decide without scrolling back, each opening with a short bold lead-in naming its part, as Kris praised under QUERY-LEAD-INS on 19 November 2026: "The way that you broke down the queries … as in where things stand, why this comes to you, what the review found, a second review tonight, what it unblocks, those kinds of things, are really good. The options are really good as well."
+<a id="where-things-stand"></a>**Where things stand** is a few short bullets, enough to decide without scrolling back, each opening with a short bold lead-in naming its part, such as where things stand, why this comes to you, what the review found and what it unblocks.
 
 - **The parts:** typically why it comes to the owner, where it stands, what was found, what a review found and what an answer unblocks. Only the parts that apply are used, each named in the owner's terms, such as **A second review tonight**, and none is padded out to fill a slot.
-- **The options:** numbered, each with a bold name, what it changes and a one-line _Why:_ giving its justification, the recommended one first and also carrying its confidence, as the [plain fallback](#plain-fallback) sets (OPTION-WHY).
+- **The options:** numbered, each with a bold name, what it changes and a one-line _Why:_ giving its justification, the recommended one first and also carrying its confidence, as the [plain fallback](#plain-fallback) sets.
 - **In the written report:** a query's **Context** paragraph in [the owner report](standard-reporting.md#42-owner-report) may take the same lead-ins, as short bold-led sentences or bullets, where the matter has several parts.
 
 For example, trimmed:
@@ -163,14 +157,14 @@ Query 4 of 10 · SPEC-AGREE: agree the specification cards
 3. **Leave them as they are.** _Why:_ nothing changes until you have read the cards yourself.
 ```
 
-<a id="the-real-example"></a>**The real example.** A query about a field or a format shows the real thing in its context, from the store or the repository it concerns: the actual current value, quoted from its file and named by its path, and what it would become under the recommended choice, and under another where they differ, so the owner decides on the thing itself rather than a description of it, as Kris took CONTEXT-EXAMPLE a on 16 November 2026: "that level of detail… is exactly what is useful to me".
+<a id="the-real-example"></a>**The real example.** A query about a field or a format shows the real thing in its context, from the store or the repository it concerns: the actual current value, quoted from its file and named by its path, and what it would become under the recommended choice, and under another where they differ, so the owner decides on the thing itself rather than a description of it.
 
 <a id="the-read-back"></a>**The read-back** is a short line or two in plain chat: what the owner chose, then what it changes, naming what gets recorded, what gets built and what is left alone. It reads the same in card mode and in the plain fallback. For a discussion option it says which was chosen and that nothing is recorded yet.
 
 <a id="the-discussion-options"></a>**The discussion options** close every query's options, on a card and in the plain fallback alike, after the real choices, so the owner can say "not yet, let's talk" without typing into the free-text box:
 
 - **Talk it through now:** the pass pauses on this query, a short discussion of it follows in plain chat, then the query is asked again, its options revised where the talk changed them, and the pass carries on.
-- **Come back at the end:** the query moves to the end of this set and is taken again there, before the closing mark and Summary; it is not parked beyond the set. Taken again at the end, it adds no new card button: its options offer one plain choice beside the real ones, to leave the question open for another day, kept in its change document, and that choice changes nothing (LATER-BUTTON).
+- **Come back at the end:** the query moves to the end of this set and is taken again there, before the closing mark and Summary; it is not parked beyond the set. Taken again at the end, it adds no new card button: its options offer one plain choice beside the real ones, to leave the question open for another day, kept in its change document, and that choice changes nothing.
 
 A quick first run through the set thus decides what it can. While a query is talked through or waits for the end, work on queries already decided may launch in the background, each decision applied to its change document first, as [the decisions practice](standard-coordination.md#44-coordinating-practices) allows, so the decided work starts while the rest are discussed.
 
@@ -180,15 +174,11 @@ A quick first run through the set thus decides what it can. While a query is tal
 - The total is the number of open queries when the pass starts. When an answer raises a new query, add it to the total and say so. A query deferred to the end keeps its number when it is taken again.
 - Nothing is shortened because it is asked interactively, and each query keeps its [tag](standard-reporting.md#needs-tags).
 
-Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET-MARK, CARD-LOOP, CARD-PATTERN, CARD-READBACK, CARD-DISCUSS, CONTEXT-EXAMPLE, QUERY-LEAD-INS, SUMMARY-FIRST, LATER-BUTTON and OPTION-WHY in [the decision register](sources.md#3-decisions).
-
 [Back to contents](#contents)
 
 ### 4.4 Goal-setting pass
 
 The owner asks for a goal-setting pass with "goals" or `/ki-coordination goals`. The coordinator walks the Goals section of `_index.md` in order, one goal at a time, in the [interactive pass](#43-interactive-pass)'s two-reply shape: it reads back the goal and its place in the order, and asks the owner to confirm, reword, reorder, add or retire it. At the end it writes the Goals section of the steward's own `_index.md` in one commit, applying the goals the owner agreed, and closes with a Status. It strikes no mark and launches nothing.
-
-Sources: GOAL-SETTING and FOCUS-ROWS in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -209,8 +199,6 @@ Before a query reaches the owner, it goes to one blind review run if it is mediu
 - **Challenge:** where the review questions an earlier decision the query rests on, whether or not it agrees with the recommended course, **Context** ends, after any disagreement, with the challenge in one sentence, naming the decision by what it decided and its date and giving the reviewer's reason. The **Options** gain one to revisit that decision. A challenge is shown even when the confidence is unchanged, and nothing acts on it until the owner answers.
 - **Run reports:** the coordinator reviews the queries a run report raises when it receives the report, before they reach the owner. The background agent that raised them does not launch the review itself.
 - **Split rule:** a query still below `high` after review is split into separately tagged parts, each one decision the owner can answer with one instruction and each with its own confidence. Packed queries are unpacked before an [unattended window](standard-unattended.md#42-unattended-windows) starts, so nothing waiting on the owner bundles decisions while they are away.
-
-Sources: QUERY-REVIEW, QUERY-REVIEW-STANDARD, BLIND-REVIEW, REVIEW-INDEPENDENCE, REVIEW-CHALLENGE, ACCEPT-BY-CRITERIA, REVIEW-LIFT and QUERY-RULES in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -244,7 +232,5 @@ Records awaiting acceptance reach the owner as one bundle per work, and the Stat
 - **Shape:** one `ACCEPT` query per work, tagged with the work's name, listing each record oldest first, linked under [Linking records](standard-reporting.md#44-linking-records), with its outcome and any concern in one line. The owner answers `ACCEPT`, or `ACCEPT` with the exceptions named.
 - **Grant:** the coordinator records the answer in the change document it belongs to by its scope, its date and where it was given, such as the reply id or message, with no quoted words, and lists the exact records it covers. That is the standing human grant the `ki-work accept` [closure authority](../../../keystone/ki-work/references/standard-acceptance.md#42-obtain-closure-authority) recognises. A named exception stays `awaiting-review` and keeps its own query.
 - **Closure:** one `ki-work accept` run per repository closes the accepted records against that recorded scope and prunes them in the next prune-only commit. The coordinator never accepts a record in its own turn.
-
-Sources: ACCEPT-BUNDLE in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)

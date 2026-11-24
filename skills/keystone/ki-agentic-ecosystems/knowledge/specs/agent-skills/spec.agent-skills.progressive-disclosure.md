@@ -5,7 +5,7 @@ type: specification
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, CARD-SKILL a), and change 06, KG-GRAIN (12 November 2026)
+origin: Cairn summit change 22 and change 06 (12 November 2026)
 links:
   spec.agent-skills:
     predicate: dcterms:isPartOf

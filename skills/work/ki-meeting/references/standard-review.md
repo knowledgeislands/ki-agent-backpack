@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T03:40:00Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -20,7 +20,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-A review is the type of meeting that assesses something already made and gives a verdict on each part. It runs by [the meeting standard](standard-meeting.md), and its findings and outcome by `ki-authoring`'s [review standard](../../../keystone/ki-authoring/references/standard-review.md), which every review shares; this standard adds only what a review held as a meeting produces and how it gets there. No review has been held under it yet, so it is kept to what the type needs. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+A review is the type of meeting that assesses something already made and gives a verdict on each part. It runs by [the meeting standard](standard-meeting.md), and its findings and outcome by `ki-authoring`'s [review standard](../../../keystone/ki-authoring/references/standard-review.md), which every review shares; this standard adds only what a review held as a meeting produces and how it gets there. No review has been held under it yet, so it is kept to what the type needs. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -77,7 +77,7 @@ Beyond what every brief holds, a review's says:
 ### 4.3 Holding a review
 
 1. **Reviewers read independently and do not change** the thing under review, as the [review standard](../../../keystone/ki-authoring/references/standard-review.md#41-who-reviews) sets for every review.
-2. **Where verdicts differ,** the minutes give both, and the difference goes to the owner as a choice, with its options and a recommendation ([4.14](standard-meeting.md#414-minutes)), rather than to a third reviewing pass (REVIEW-DISAGREE, Kris, 17 November 2026).
+2. **Where verdicts differ,** the minutes give both, and the difference goes to the owner as a choice, with its options and a recommendation ([4.14](standard-meeting.md#414-minutes)), rather than to a third reviewing pass.
 3. **A review closes** when every part has its verdicts, and the caller's closing message names them and the change document they go to.
 
 [Back to contents](#contents)

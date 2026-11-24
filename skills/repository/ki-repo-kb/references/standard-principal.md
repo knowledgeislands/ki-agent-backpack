@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T22:58:47Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -22,7 +22,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This overlay provides a visible governance system for a Knowledge Base that is its territory's principal island, holding the Capital role. It applies whenever the base is its territory's Capital, which `ki-repo-kb` works out from `.ki.toml` when `[skills.ki-repo].capital` names the repository itself; no declaration selects it, and a base that is not its Capital skips it (KB-FOLD b, 22 November 2026). It composes the normal Knowledge Islands zone model and Decision Records, and reviews the territorial declaration. Adoption of the overlay or a passing audit does not appoint a principal or grant jurisdiction.
+This overlay provides a visible governance system for a Knowledge Base that is its territory's principal island, holding the Capital role. It applies whenever the base is its territory's Capital, which `ki-repo-kb` works out from `.ki.toml` when `[skills.ki-repo].capital` names the repository itself; no declaration selects it, and a base that is not its Capital skips it. It composes the normal Knowledge Islands zone model and Decision Records, and reviews the territorial declaration. Adoption of the overlay or a passing audit does not appoint a principal or grant jurisdiction.
 
 The sources behind it, and the acquired-scaffold rollout evidence, are in [the sources file](sources.md).
 
@@ -84,7 +84,7 @@ AUDIT fails when the README is missing, differs from the template, or has an uns
 
 Acquire alone delivers packets: each delivery is a folder holding one whole capture package or a roll-up of whole packages, preserving original names and bytes without a manifest, dispatch ID or ledger. Delivery is acceptance. The receiver triages their local packets under `ki-repo-kb`; the scaffold does not authorise canonical adoption or change selection. There is no return route or return marker, and the receiver writes nothing into the port.
 
-Publishing this overlay does not conform its receivers. The [rollout evidence](sources.md#4-last-review) distinguishes accepted reusable delivery from receiver-owned applications; audit each Capital under its own authority before claiming it conformed. The scaffold is not a dispatch precondition.
+Publishing this overlay does not conform its receivers. The [rollout evidence](sources.md#3-last-review) distinguishes accepted reusable delivery from receiver-owned applications; audit each Capital under its own authority before claiming it conformed. The scaffold is not a dispatch precondition.
 
 [Back to contents](#contents)
 

@@ -1,6 +1,6 @@
 # Design decisions: allotment tool shed
 
-The worked example for the exchange dynamics skill. The exchange is invented, as Kris asked on 4 November 2026: "call them random names". Nothing in it is drawn from a real conversation.
+The worked example for the exchange dynamics skill. The exchange is invented, with random names. Nothing in it is drawn from a real conversation.
 
 ## Analysis
 

@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-24T03:22:50Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -24,7 +24,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-This file holds States of play, Project work under them, assigned packages, the owner queue and the worktree sweep. It extends [the core](standard-coordination.md). The decisions behind its rules are in [the sources file](sources.md).
+This file holds States of play, Project work under them, assigned packages, the owner queue and the worktree sweep. It extends [the core](standard-coordination.md). The sources behind its rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -83,7 +83,7 @@ Project work coordinates exactly one Project for the owner. It always delegates:
 
 #### 4.1.1 Territory work
 
-Since WP-STORE (Kris, 9 November 2026), work packages live in the Cairn store, territory work in its `work/<territory>/`, so a Capital need not hold its territory work (ROAD-7 a, Kris, 14 November 2026), and no rubric item checks where territory work sits since COORD-RETIRE (Kris, 16 November 2026). Where a Capital still holds territory work, the rules below apply to it.
+Work packages live in the Cairn store, territory work in its `work/<territory>/`, so a Capital need not hold its territory work, and no rubric item checks where territory work sits. Where a Capital still holds territory work, the rules below apply to it.
 
 Each territory has one main State of play, its summit, `<territory>.summit`, at `work/<territory>/<territory>.summit/_index.md` in the Cairn store: the coordination of the territory's coordinations. The summit replaced `<territory>.sop.main` under the `ki-work-package` [location and identity](../../ki-work-package/references/standard-work-package.md#42-location-and-identity) rule. Nodes may sit beneath it, [secondary States of play](#413-secondary-states-of-play), each taking a named part of the territory's work under the summit's rules.
 
@@ -98,7 +98,7 @@ Its duties:
 - **Views:** it rolls up the five views the Work Process note sets, with you, stuck, blocked, moving and on hold, across the territory through `ki work status`. Work awaiting review stays out of the five views and shows as a count.
 - **Regular work:** it may discuss regular work and send it steer without opening coordination on that package; dispatch follows its explicit assignment and the owner-approved scope.
 - **Acting for idle work:** where a package in its territory has no active session, `ki-listening_status` not `on`, the State of play takes what is sent to it; otherwise nothing would until the package is next opened.
-  - Where the package has no one seated at all, no seat under its `ki-workers`, there is no one to cascade to: under [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down) the node above owns the work and does it itself, as its own work within its own remit, rather than leaving it in the empty package to wait for a seat. What follows is for a seated package whose session is idle.
+  - Where the package has no one seated at all, no seat under its `ki-workers`, there is no one to cascade to: under [the cascade rule](../../ki-work-package/references/standard-work-package.md#cascade-down) the node above owns the work and does it itself, as its own work within its own remit, rather than leaving it in the empty package to wait for a seat. What follows is for a seated package whose session is idle.
   - It takes what reaches the package along the tree under [Work between packages](standard-messages.md#messages-between-work), one package per turn.
   - It routes a part belonging to other work as steer to that work, under **Dispatch** below; answers what the territory's coordination can answer as feedback to the sender's node; and puts what needs the package's own judgement or the owner into the package's `_index.md` Now or Held or the Open section of the change document it belongs to.
   - It commits that in a commit naming the package, `docs(work): <id> taken by <State of play id>`.
@@ -106,14 +106,14 @@ Its duties:
   - Acting for is not stewardship and transfers nothing under [Coordinating assigned packages](#412-coordinating-assigned-packages). A package whose home is absent, stale or ambiguous is surfaced, not acted for.
   - A node acts for the packages beneath it, the summit for the rest.
   - When the package's own session opens, it finds the dispositions in its files and Git, and the State of play stops acting for it.
-- **Cap:** as a trial, at most three packages of any size are active in a territory at once, Project or regular, plus the summit, however many sessions act on them, as Kris took WIP-TERRITORY a on 21 November 2026: "Cap each territory at three active packages of any size, counting work waiting on you, as a trial? → Yes, three".
+- **Cap:** as a trial, at most three packages of any size are active in a territory at once, Project or regular, plus the summit, however many sessions act on them, counting work waiting on the owner.
   - A package waiting on the owner counts as active; On hold and Finished do not count. A secondary State of play and ad hoc work count too, each named in the count.
   - Nothing is closed or held automatically to meet the cap. Where a territory is over it, the owner chooses which package to drain or hold, one at a time.
   - Exceeding the cap needs the owner's explicit agreement beforehand; the coordinator cannot raise it alone. Until then, queue the next piece.
-  - Keep the ordered queue in the summit's change documents, each piece with its title and opener, and show in the summit's `_index.md` what is active, in Now, and what waits, in Held, as Kris set under OLD-SHAPE-HOMES a on 14 November 2026: "The queue is similar, so basically now it all orientates around the change .md files." Open the next queued piece when an active one goes on hold or finishes.
+  - Keep the ordered queue in the summit's change documents, each piece with its title and opener, and show in the summit's `_index.md` what is active, in Now, and what waits, in Held. Open the next queued piece when an active one goes on hold or finishes.
   - Within one package, one unit is in flight at a time, plus at most its independent review, under [Coordinator responsiveness](standard-coordination.md#43-coordinator-responsiveness).
 - **Acceptance first:** at bootstrap and resume, its first call on the owner, before any other query, is the territory's records awaiting acceptance, as one bundle per work under [Acceptance bundles](standard-queries.md#48-acceptance-bundles).
-- **Seeding:** before Project work opens, the State of play creates or reconciles its package and gives the owner its [opener](standard-opening.md#43-opening-work), so the session opens with one message. A new package is seeded by its parent node's keyholder, usually the guardian, or by any session the owner points at it on the owner's word, under the `ki-work-package` [writers](../../ki-work-package/references/standard-work-package.md#49-writers): `_index.md` on hold, the first step as the top line of its Now, and a first change document only if there is a change to carry. Others ask the keyholder in a meeting or a conversation. A dormant, registered Project's package is seeded with `hold.reason: paused` and `hold.release: when Kris opens this Project work`; seeding neither opens nor releases the work, as Kris set under FIRST-STEP-HOME a on 15 November 2026.
+- **Seeding:** before Project work opens, the State of play creates or reconciles its package and gives the owner its [opener](standard-opening.md#43-opening-work), so the session opens with one message. A new package is seeded by its parent node's keyholder, usually the guardian, or by any session the owner points at it on the owner's word, under the `ki-work-package` [writers](../../ki-work-package/references/standard-work-package.md#49-writers): `_index.md` on hold, the first step as the top line of its Now, and a first change document only if there is a change to carry. Others ask the keyholder in a meeting or a conversation. A dormant, registered Project's package is seeded with `hold.reason: paused` and `hold.release: when Kris opens this Project work`; seeding neither opens nor releases the work.
 - **Flags:** at its own mark, it names as steer recorded in each owning work's package every package the `ki-work-package` rubric's [FOLDER](../../ki-work-package/references/rubric.md) items flag, under [Pruning the package](standard-mark.md#43-pruning-the-package).
   - It never names a finished work's package so: it closes that package itself under the `ki-work-package` [close-out](../../ki-work-package/references/standard-work-package.md#410-the-tidy), putting the query in the Open section of its own change document for that close-out if a check fails.
   - It never prunes another package otherwise.
@@ -124,7 +124,7 @@ Its duties:
 
 - **Matching:** match the unit against the register, the `_index.md` front matter `ki work status` derives from the packages, reading a `_index.md` body only where two descriptions match. Keep no copy of the register.
 - **Routing:** send the unit to the chosen work as steer, in the owner's words with links, recorded in its package where its priority warrants, under [Work between packages](standard-messages.md#messages-between-work). Where nothing matches, propose to the owner a new piece of work, within the cap, or a record captured through `ki-work next`.
-- **Returns:** a part comes back only as an escalation, a decision beyond the receiver's remit, never for want of a response or because it is hard, under [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down). A returned part is routed once more at most. If it cannot be placed, or would come back again, it goes to the owner as a query, so nothing bounces.
+- **Returns:** a part comes back only as an escalation, a decision beyond the receiver's remit, never for want of a response or because it is hard, under [the cascade rule](../../ki-work-package/references/standard-work-package.md#cascade-down). A returned part is routed once more at most. If it cannot be placed, or would come back again, it goes to the owner as a query, so nothing bounces.
 - **Work not yet taken:** show in the register the count and age of steer nobody has taken up. Work routed to work On hold, paused, waits without waking it. For work Snoozing whose session is closed or not waking, identify the work by its thread line, and ask the owner to lift a hold where the work is urgent.
 
 **Stewardship of continual improvement.** Every work tries to improve continually, and the State of play coordinates it.
@@ -134,11 +134,9 @@ Its duties:
 - When Ways of working finishes, the State of play's `_index.md` description gains method stewardship and its Scope says where method changes go. It keeps a method backlog, dispatches each accepted small improvement as small regular work or into the Project it most affects, with a design review for a change of shape. A significant change revives Ways of working, or a more targeted Project under the Model theme.
 - Lasting method authority stays in the skills and Decision Records, and the State of play still executes nothing.
 
-Sources: CASCADE-DOWN, SOP-ACTS-FOR-IDLE, WORK-ROUTING, STEWARD-HOME, FIRST-STEP-HOME, SECONDARY-SOP and WIP-TERRITORY in [the decision register](sources.md#3-decisions).
-
 #### 4.1.2 Coordinating assigned packages
 
-The cascade here is `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down): a package passed down to a steward stays with it, and the steward sends up only an escalation, a decision beyond its remit, never the package's work for want of a response or because it is hard; a request left with the owner for more than 24 hours is flagged up the tree towards the guardian under [Long-standing requests](#43-long-standing-requests), the work staying with the steward.
+The cascade here is `ki-work-package`'s [cascade rule](../../ki-work-package/references/standard-work-package.md#cascade-down): a package passed down to a steward stays with it, and the steward sends up only an escalation, a decision beyond its remit, never the package's work for want of a response or because it is hard; a request left with the owner for more than 24 hours is flagged up the tree towards the guardian under [Long-standing requests](#43-long-standing-requests), the work staying with the steward.
 
 **Tending.** The acknowledged steward tends a package's disposition, queues and tidy independently of any active coordinator. The parent State of play reconciles assigned regular umbrellas, children and declared member homes through `ki-parent`, the tree beneath it being its register, and the home reference at opening, bootstrap, approved moves and ordinary tending.
 
@@ -146,7 +144,7 @@ The cascade here is `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/ref
 - The Capital's prose home reference is discovery, never a second package, state or inbox.
 - Reader compatibility is a prerequisite to automated member-home discovery; the local advisory hook neither scans the estate nor guarantees runtime injection.
 
-**Stewardship.** A package's steward is its keyholder, the actor seated at it as its `ki-workers` name it, under the `ki-work-package` [writers rule](../../ki-work-package/references/standard-work-package.md#49-writers). A package with no seat is held by its parent node's keyholder under CASCADE-DOWN, who writes in it as its keyholder until a seat is taken.
+**Stewardship.** A package's steward is its keyholder, the actor seated at it as its `ki-workers` name it, under the `ki-work-package` [writers rule](../../ki-work-package/references/standard-work-package.md#49-writers). A package with no seat is held by its parent node's keyholder under the cascade rule, who writes in it as its keyholder until a seat is taken.
 
 - A seat changes hands only by acknowledged handover: the old seat stops launches and reconciles runs in flight, queued launches and pending writes, and commits the change to `ki-workers` in one write; the new seat acknowledges and takes their supervision before acting.
 - No absent session, missing binding, quiet session or timeout transfers a seat. A handover never changes the holder, which `ki-worker` names, or releases On hold work.
@@ -159,9 +157,9 @@ The cascade here is `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/ref
 - Each package keeps its own state, `ki-since`, mark and beat. A territory mark never moves Project marks, and an acknowledgement moves only the work it clearly names.
 - Keep a decision spanning Projects once, at the territory home, and link it, rather than copying it as several grants.
 
-**Roll call.** When the owner asks for a roll call, the coordinator asks every actor beneath it what it is working on now and what waits on whom, each by the nearest route that reaches it (ROLL-CALL-SCOPE). A session in Orca is asked by Orca mail in its own thread, which wakes it if its tab has gone idle, under [Waking an idle Orca tab](standard-messages.md#45-waking-an-idle-orca-tab) (ORCA-WAKE, ORCA-FIRST). An actor outside Orca, such as a desktop or voice companion, is called through a meeting room it sits in, under `ki-meeting`'s [routes](../../ki-meeting/references/standard-meeting.md#46-routes). One that neither reaches is reported absent, not waited for.
+**Roll call.** When the owner asks for a roll call, the coordinator asks every actor beneath it what it is working on now and what waits on whom, each by the nearest route that reaches it. A session in Orca is asked by Orca mail in its own thread, which wakes it if its tab has gone idle, under [Waking an idle Orca tab](standard-messages.md#45-waking-an-idle-orca-tab). An actor outside Orca, such as a desktop or voice companion, is called through a meeting room it sits in, under `ki-meeting`'s [routes](../../ki-meeting/references/standard-meeting.md#46-routes). One that neither reaches is reported absent, not waited for.
 
-**Records.** A resolved Project's record is worked by the Project's package in the Cairn store, which names it in its [`ki-records`](../../ki-work-package/references/standard-work-package.md#44-the-entry-file); the `project` tag is the link and grants no authority. Selection into `now` neither opens Project work nor grants execution, and records keep the owning repository's holds, readiness and acceptance. A record without `project` goes to the package that owns its repository, and up to the territory's leader only if ownership is unresolved, under `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down), as `ki-work-roadmap`'s classification routes it (CLASSIFY-ROUTE a, KI-HARNESS-GOV-237). Reclassification reconciles running work and report destinations first.
+**Records.** A resolved Project's record is worked by the Project's package in the Cairn store, which names it in its [`ki-records`](../../ki-work-package/references/standard-work-package.md#44-the-entry-file); the `project` tag is the link and grants no authority. Selection into `now` neither opens Project work nor grants execution, and records keep the owning repository's holds, readiness and acceptance. A record without `project` goes to the package that owns its repository, and up to the territory's leader only if ownership is unresolved, under `ki-work-package`'s [cascade rule](../../ki-work-package/references/standard-work-package.md#cascade-down), as `ki-work-roadmap`'s classification routes it (KI-HARNESS-GOV-237). Reclassification reconciles running work and report destinations first.
 
 **Runs and hosts.**
 
@@ -173,18 +171,16 @@ The cascade here is `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/ref
 
 #### 4.1.3 Secondary States of play
 
-A secondary State of play is a node beneath its territory's summit that splits off part of the summit's authority, as Kris set under SECONDARY-SOP a on 15 November 2026, under the `ki-work-package` [location and identity](../../ki-work-package/references/standard-work-package.md#42-location-and-identity) rule: its id is `<territory>.<slug>` and its level `regular`, as Kris took NODE-ID a on 16 November 2026 under [Work naming](standard-opening.md#42-work-naming), its package is `work/<territory>/<territory>.<slug>/` in the Cairn store, its `ki-parent` the summit, and it works under the summit's rules now. A territory with no node beneath its summit needs no change.
+A secondary State of play is a node beneath its territory's summit that splits off part of the summit's authority, under the `ki-work-package` [location and identity](../../ki-work-package/references/standard-work-package.md#42-location-and-identity) rule: its id is `<territory>.<slug>` and its level `regular`, under [Work naming](standard-opening.md#42-work-naming), its package is `work/<territory>/<territory>.<slug>/` in the Cairn store, its `ki-parent` the summit, and it works under the summit's rules now. A territory with no node beneath its summit needs no change.
 
 - **Creating:** the owner decides each node at the summit, which applies the decision to the change document it belongs to and seeds the package On hold, under [Seeding](#411-territory-work), until the owner opens it. A node folds back into the summit when it is no longer needed.
 - **Front door:** the summit stays the owner's only front door and the single dispatch coordinator. Owner dumps, units with no clear owner, method improvements and anything touching more than one node, or a node and other work, come to the summit.
 - **The summit owns** what the main State of play owned: the registry, membership and Known Lands; releases and priorities across the territory; the territory-wide [ceiling on active Project work](#411-territory-work), which counts the work beneath every node and gives no node a share of its own; method stewardship; the worktree sweep; and every decision touching more than one node.
 - **A node** does project management for the work beneath it, within the authority the summit splits off to it, and rolls up the five views across that work; the summit rolls up all.
 - **Acceptance:** the summit brings the territory's records awaiting acceptance first, the work beneath its nodes included, under **Acceptance first** in [Territory work](#411-territory-work).
-- **Routing:** a unit goes between the summit, a node and the work beneath it, down as work and up only as an escalation, under [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down), through a meeting under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md) or a change document; the `ROUTE` line and `messages.md` have retired (MSG-RETIRE). A part a node cannot place goes back to the summit once; the summit places it or asks the owner.
-- **Register:** the tree beneath a node, read from `ki-parent`, is its register: the summit's is all the territory's work, the work beneath its nodes included, and a node's the work beneath it. Work with no package yet belongs on the roadmap, as Kris set under COVERS-REGISTER a on 16 November 2026.
+- **Routing:** a unit goes between the summit, a node and the work beneath it, down as work and up only as an escalation, under [the cascade rule](../../ki-work-package/references/standard-work-package.md#cascade-down), through a meeting under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md) or a change document; the `ROUTE` line and `messages.md` have retired. A part a node cannot place goes back to the summit once; the summit places it or asks the owner.
+- **Register:** the tree beneath a node, read from `ki-parent`, is its register: the summit's is all the territory's work, the work beneath its nodes included, and a node's the work beneath it. Work with no package yet belongs on the roadmap.
 - **Opening:** the owner opens a node with the [secondary opener](standard-opening.md#43-opening-work), and takes every opener for the territory from [Opening work](standard-opening.md#43-opening-work).
-
-Sources: CASCADE-DOWN, SECONDARY-SOP, OLD-SHAPE-HOMES, COVERS-REGISTER, NODE-ID, STALE-AGE, ROLL-CALL-SCOPE, ORCA-WAKE and ORCA-FIRST in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -194,24 +190,20 @@ Each piece of Project work is capped at eight records awaiting acceptance and at
 
 - Over either cap, launch no new build or planning run until the owner catches up; acceptance fixes and work that clears the backlog stay allowed.
 - Bring acceptance as one bundle per work under [Acceptance bundles](standard-queries.md#48-acceptance-bundles); the banner's counts line shows the records waiting, under [Banner](standard-coordination.md#46-banner).
-- No rubric item warns over either cap since COORD-REPOINT (Kris, 16 November 2026); the coordinator keeps both by judgement, under [Pruning the package](standard-mark.md#43-pruning-the-package), until the check returns in `ki-work-package` as a warning.
-
-Sources: OWNER-QUEUE in [the decision register](sources.md#3-decisions).
+- No rubric item warns over either cap; the coordinator keeps both by judgement, under [Pruning the package](standard-mark.md#43-pruning-the-package), until the check returns in `ki-work-package` as a warning.
 
 [Back to contents](#contents)
 
 ### 4.3 Long-standing requests
 
-A request or query a package's keyholder has left with the owner for more than 24 hours, unanswered, is long-standing, and the keyholder flags it up the tree towards the guardian, the keyholder of the root, `cairn.summit`, as Kris set under STALE-AGE on 18 November 2026: "if there's things that are outstanding for more than let's call it 24 hours, then we need to flag it up somehow". It completes ESCALATE-STALE, set the same night: "If they have long-standing requests which are unanswered … we need to let them bubble them up to you, but not so much the requests directly, but in order to sort of push me down towards dealing with some of those. I don't want everything to come up from underneath … Unless you think it's critical for me to deal with it."
+A request or query a package's keyholder has left with the owner for more than 24 hours, unanswered, is long-standing, and the keyholder flags it up the tree towards the guardian, the keyholder of the root, `cairn.summit`, so the guardian can steer the owner towards dealing with it.
 
 - **The clock:** runs from when the request reached the owner. A period the owner has set in that package, such as telling it to sleep or snooze for a while, stops the clock without resetting it: the time asleep does not count, and when the period ends the 24 hours carries on from where it stopped.
-- **The path up:** the flag follows CASCADE-DOWN's one path, a level at a time: a node flags its stale request to the node above it, which carries it up in turn, so a territory's leader flags it to the guardian.
+- **The path up:** the flag follows the cascade rule's one path, a level at a time: a node flags its stale request to the node above it, which carries it up in turn, so a territory's leader flags it to the guardian.
 - **What goes up:** the flag only, naming the request, its package and how long it has waited, never the request itself to be answered from above. The keyholder does not pass every request up, only the long-standing ones.
 - **What the guardian does:** it uses the flags to steer the owner towards dealing with them, in its Summary, rather than passing each one on, and brings one straight to the owner only when it judges it critical.
-- **The work stays down:** the request and the work it holds up stay with the keyholder, which keeps the query open in its change document and carries on with what it can. A flag escalates a stale request, not the work, so it is no hand-back under `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/references/standard-work-package.md#cascade-down): delegate down, own it where there is no one beneath, escalate up.
+- **The work stays down:** the request and the work it holds up stay with the keyholder, which keeps the query open in its change document and carries on with what it can. A flag escalates a stale request, not the work, so it is no hand-back under `ki-work-package`'s [cascade rule](../../ki-work-package/references/standard-work-package.md#cascade-down): delegate down, own it where there is no one beneath, escalate up.
 - **The guardian's own:** a request the guardian itself has left with the owner needs no flag; its Summary already puts it to the owner.
-
-Sources: STALE-AGE and CASCADE-DOWN in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)
 
@@ -222,7 +214,5 @@ At each mark the State of play sweeps its territory's repositories for work left
 - **Reads:** each repository's linked worktrees, branches not merged into `main`, stashes, and mains ahead of their upstream, through read-only Git.
 - **Shows:** each finding in its banner as `- 🧹 stranded <worktree or branch> · <owning work>`, `🧹 branch` or `🧹 stash`, whatever its age, its glyph from the [table of glyphs](standard-coordination.md#46-banner). A clean sweep adds nothing, and routine push state is omitted.
 - **Removes nothing:** integrating goes to the owning work; a stash drop, branch deletion or worktree removal goes to the owner by name under the `ki-git` [clean-down](../../../repository/ki-git/references/standard-git.md#46-clean-down-state) rule. The sweep reports Git state, not age.
-
-Sources: STALE-SWEEP and WORKTREE-START in [the decision register](sources.md#3-decisions).
 
 [Back to contents](#contents)

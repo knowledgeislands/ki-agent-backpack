@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T00:54:54Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -23,9 +23,9 @@ ki-status: in force
 
 ## 1. Introduction
 
-How an exchange, a conversation, thread, meeting or negotiation between people, agents or both, becomes one structured, evidence-linked analysis of its chronology, its dynamics, its phases and its participants. The governing principle is Kris's, from his note of 4 November 2026: **analyse once, render many ways**. Interpretation, evidence and presentation stay distinct: this standard holds the method and the analysis contract, [the rendering standard](standard-exchange-dynamics-rendering.md) holds how an analysis is presented, and every rendering reads the analysis and nothing else. The method is independent of the model that runs it and the tool that draws it.
+How an exchange, a conversation, thread, meeting or negotiation between people, agents or both, becomes one structured, evidence-linked analysis of its chronology, its dynamics, its phases and its participants. The governing principle is **analyse once, render many ways**. Interpretation, evidence and presentation stay distinct: this standard holds the method and the analysis contract, [the rendering standard](standard-exchange-dynamics-rendering.md) holds how an analysis is presented, and every rendering reads the analysis and nothing else. The method is independent of the model that runs it and the tool that draws it.
 
-The sources and decisions behind these rules are in [the sources file](sources.md).
+The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -99,7 +99,7 @@ Every event, participant reading and conclusion keeps four layers apart:
 
 ### 4.3 Safeguards
 
-Kris's ten mandatory principles hold for every analysis:
+Ten mandatory principles hold for every analysis:
 
 1. Preserve direct quotations verbatim.
 2. Do not attribute unverified motives as facts.

@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T19:59:53Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -21,7 +21,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-What the Keystone guild holds and how its lead, `ki-keystone`, keeps the guild tree of a skill collection: who joins Keystone, how each guild is led, the guild map, and where a session starts. What a guild and a lead are, and how membership is declared, is `ki-skills`' [guilds standard](../../ki-skills/references/standard-guilds.md). The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+What the Keystone guild holds and how its lead, `ki-keystone`, keeps the guild tree of a skill collection: who joins Keystone, how each guild is led, the guild map, and where a session starts. What a guild and a lead are, and how membership is declared, is `ki-skills`' [guilds standard](../../ki-skills/references/standard-guilds.md). The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -63,13 +63,13 @@ The rules, part by part.
 
 ### 4.1 The joining rule
 
-A skill joins Keystone only when it leads a guild, or when every guild rests on it, as `ki-skills` and `ki-knowledge-graph` do (KEYSTONE-MIN). A skill that serves one guild joins that guild, however widely it is used, and Keystone never becomes a dumping ground. `ki-keystone` leads Keystone and is its one exception at the top; there is no deeper hierarchy (KEYSTONE-HUB). Rubric **KEYSTONE-4** reviews it.
+A skill joins Keystone only when it leads a guild, or when every guild rests on it, as `ki-skills` and `ki-knowledge-graph` do. A skill that serves one guild joins that guild, however widely it is used, and Keystone never becomes a dumping ground. `ki-keystone` leads Keystone and is its one exception at the top; there is no deeper hierarchy. Rubric **KEYSTONE-4** reviews it.
 
 [Back to contents](#contents)
 
 ### 4.2 One lead for each guild
 
-Once any skill in a repository's `skills/` collection declares a guild, every skill there declares one (GUILD-PLACE). Every guild a skill declares or leads has exactly one lead, and every lead is a member of Keystone, so Keystone lists the leads and each guild opens from its lead (GUILD-LEAD, KEYSTONE-HUB). Rubric **KEYSTONE-1** and **KEYSTONE-2** check it, and the backpack's capability publication checks the same of the collection it publishes.
+Once any skill in a repository's `skills/` collection declares a guild, every skill there declares one. Every guild a skill declares or leads has exactly one lead, and every lead is a member of Keystone, so Keystone lists the leads and each guild opens from its lead. Rubric **KEYSTONE-1** and **KEYSTONE-2** check it, and the backpack's capability publication checks the same of the collection it publishes.
 
 A lead discloses its guild as the guilds standard sets out: a line of purpose, and each member once with when to use it. Rubric **KEYSTONE-5** reviews it.
 
@@ -77,7 +77,7 @@ A lead discloses its guild as the guilds standard sets out: a line of purpose, a
 
 ### 4.3 The guild map
 
-`ki-keystone` holds the guild map in its SKILL.md, between the `ki-keystone:guild-map` markers: each guild, Keystone first and the rest by name, with its lead and its members, rendered from every skill's `ki-guild` and `ki-leads` and never written by hand (KEYSTONE-SKILL). `ki dev skill generate ki-keystone` renders it, and rubric **KEYSTONE-3** checks the committed map against the frontmatter. Each guild's purpose, in a line, is written beside the map in the same SKILL.md, because frontmatter carries no purpose.
+`ki-keystone` holds the guild map in its SKILL.md, between the `ki-keystone:guild-map` markers: each guild, Keystone first and the rest by name, with its lead and its members, rendered from every skill's `ki-guild` and `ki-leads` and never written by hand. `ki dev skill generate ki-keystone` renders it, and rubric **KEYSTONE-3** checks the committed map against the frontmatter. Each guild's purpose, in a line, is written beside the map in the same SKILL.md, because frontmatter carries no purpose.
 
 The backpack's published catalogue, in its `skills/README.md`, stays with `ki-repo-backpack` and groups every skill by the same declared guild; the guild map is the short form a session reads first.
 
@@ -85,6 +85,6 @@ The backpack's published catalogue, in its `skills/README.md`, stays with `ki-re
 
 ### 4.4 Where a session starts
 
-A session starts from the work it is given: `ki-coordination` when it is opened on a piece of work, its opener picking the work package up and its reply forms setting how every session replies; and `ki-work` to choose, plan, deliver, accept or recap work, `next` when nothing is chosen yet (KEYSTONE-FIXES, refining KEYSTONE-SKILL). `ki-keystone` names both, and from there a session finds the guild and lead for its work in the guild map: `ki-repo` for the repository and the skills it declares, `ki-authoring` for anything written down, and `ki-agentic-ecosystems` for the words.
+A session starts from the work it is given: `ki-coordination` when it is opened on a piece of work, its opener picking the work package up and its reply forms setting how every session replies; and `ki-work` to choose, plan, deliver, accept or recap work, `next` when nothing is chosen yet. `ki-keystone` names both, and from there a session finds the guild and lead for its work in the guild map: `ki-repo` for the repository and the skills it declares, `ki-authoring` for anything written down, and `ki-agentic-ecosystems` for the words.
 
 [Back to contents](#contents)

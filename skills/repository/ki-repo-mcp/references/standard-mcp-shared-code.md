@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-19T07:00:00Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -19,7 +19,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-The contract for the optional managed shared-code profiles a server may declare, and the order they are piloted and migrated in. The inventory of shared utility code it rests on, a dated finding, is the [24 September 2026 inventory report](report-20260924-mcp-shared-code-inventory.md). The sources and decisions behind it are in [the sources file](sources.md).
+The contract for the optional managed shared-code profiles a server may declare, and the order they are piloted and migrated in. The inventory of shared utility code it rests on, a dated finding, is the [24 September 2026 inventory report](report-20260924-mcp-shared-code-inventory.md). The sources behind it are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

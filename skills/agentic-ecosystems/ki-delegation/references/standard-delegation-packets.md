@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T04:32:50Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -108,7 +108,7 @@ Each worker subsection contains these non-empty fields:
 - **Return:** the concise result and evidence format;
 - **Checkpoint:** the condition at which the worker stops and returns control.
 
-A worker handed to a new agent session of its own, rather than run as a background agent, also carries a **Session:** field: the thread line the session takes and the instruction to rename itself to it as its first act, under the background-run standard's [Prompt shape](standard-background-runs.md#45-prompt-shape) (OPENER-NAME), and the instruction to delegate its work to its agent host's own subagents, stay responsive while they run and check what they return before posting it (OPENER-DELEGATE).
+A worker handed to a new agent session of its own, rather than run as a background agent, also carries a **Session:** field: the thread line the session takes and the instruction to rename itself to it as its first act, under the background-run standard's [Prompt shape](standard-background-runs.md#45-prompt-shape), and the instruction to delegate its work to its agent host's own subagents, stay responsive while they run and check what they return before posting it.
 
 [Back to contents](#contents)
 

@@ -5,7 +5,7 @@ type: system-term
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 23 (now 12), NAMES (13 November 2026), and change 20, NODE-ID, SUMMIT-SUB-PACKAGES and SEAT-AT (16 November 2026)
+origin: Cairn summit change 23, now 12 (13 November 2026), and change 20 (16 November 2026)
 links:
   system.actor:
     predicate: skos:related
@@ -19,9 +19,9 @@ A work package is the folder for one piece of work above a work item, holding it
 
 ## Our conventions
 
-- **A node's id** is `<territory>.<slug>`, with a further dot segment for a node beneath a node, as `ki.cairn` or `personal.rig.sol`; each territory's top is `<territory>.summit`, beneath the one root (NODE-ID).
-- **A sub-package** is a strand of a package that its own [actor][system.actor] works, `<parent id>+<slug>`, as `hnr.summit+website`, in the folder `work/hnr/hnr.summit/website/`; a strand that needs an actor of its own is a node beneath instead (SUMMIT-SUB-PACKAGES).
-- **An actor's place in a package** is written `<package>@<role>`, as `ki.cairn@warden` or `hnr.summit+website@information-architect`: `.` builds a package's name, `+` adds a strand and `@` names the place (SEAT-AT).
+- **A node's id** is `<territory>.<slug>`, with a further dot segment for a node beneath a node, as `ki.cairn` or `personal.rig.sol`; each territory's top is `<territory>.summit`, beneath the one root.
+- **A sub-package** is a strand of a package that its own [actor][system.actor] works, `<parent id>+<slug>`, as `hnr.summit+website`, in the folder `work/hnr/hnr.summit/website/`; a strand that needs an actor of its own is a node beneath instead.
+- **An actor's place in a package** is written `<package>@<role>`, as `ki.cairn@warden` or `hnr.summit+website@information-architect`: `.` builds a package's name, `+` adds a strand and `@` names the place.
 - **Its shape:** the `ki-work-package` skill sets the entry file, `_index.md`, and what a package holds; the change documents follow `ki-authoring`'s change format.
 
 [system.actor]: ./system.actor.md

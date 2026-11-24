@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T20:59:09Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -38,7 +38,7 @@ ki-status: in force
 
 The normative reference behind `ki-skills`: what a _good_ Agent Skill looks like, and why. The [Audit Rubric](rubric.md) is the line-by-line checklist derived from this — each rubric criterion (`NAME-1`, `DESC-2`, …) verifies a convention stated here. Read the standard to understand or quote a convention; run `ki repo audit --skill ki-skills` to check a repository's skills against it.
 
-A skill is a directory with a `SKILL.md` (YAML frontmatter + markdown body) per the [Agent Skills open standard](https://agentskills.io/), optionally with `references/`, `scripts/`, `assets/`. Source abbreviations resolve in [the source list](sources.md). The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+A skill is a directory with a `SKILL.md` (YAML frontmatter + markdown body) per the [Agent Skills open standard](https://agentskills.io/), optionally with `references/`, `scripts/`, `assets/`. Source abbreviations resolve in [the source list](sources.md). The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -106,7 +106,7 @@ The rubric tags each criterion `[M]`, `[J]`, or `[M + J]` accordingly. If part o
 
 #### 4.3.1 Layout
 
-`SKILL.md` is the required entrypoint and lives at the skill root — a directory named after the skill, not a bare `.md`. Optional subdirectories use the conventional names `references/` (docs), `scripts/` (executables), `assets/` (templates/data); the specification allows any other files and directories, but these names are the convention, and a Knowledge Islands skill adds only `.ki-meta/` and, for a knowledge graph, `knowledge/` ([4.2](standard-knowledge-islands.md#42-skill-shape)). File references use forward slashes (`scripts/helper.ts`), never backslashes, which break on Unix. Supporting files sit **one level deep** from `SKILL.md` — every file links directly from it, with no nested chains (`SKILL → a → b → c`) that cause partial reads to miss content — and are named by content (`form-validation-rules.md`, not `doc2.md`). (SPEC, CC, BP, KNOWLEDGE-FOLDER)
+`SKILL.md` is the required entrypoint and lives at the skill root — a directory named after the skill, not a bare `.md`. Optional subdirectories use the conventional names `references/` (docs), `scripts/` (executables), `assets/` (templates/data); the specification allows any other files and directories, but these names are the convention, and a Knowledge Islands skill adds only `.ki-meta/` and, for a knowledge graph, `knowledge/` ([4.2](standard-knowledge-islands.md#42-skill-shape)). File references use forward slashes (`scripts/helper.ts`), never backslashes, which break on Unix. Supporting files sit **one level deep** from `SKILL.md` — every file links directly from it, with no nested chains (`SKILL → a → b → c`) that cause partial reads to miss content — and are named by content (`form-validation-rules.md`, not `doc2.md`). (SPEC, CC, BP)
 
 [Back to contents](#contents)
 

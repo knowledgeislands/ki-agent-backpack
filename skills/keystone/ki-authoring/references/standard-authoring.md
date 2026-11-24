@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-17T03:40:00Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -23,7 +23,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-The cross-format mechanical contract for Knowledge Islands authoring. It is separate from the Markdown and TOML standards because it governs the formatter/linter boundary, wholly owned repository configuration, and safe hosted execution rather than human choices inside either document format. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+The cross-format mechanical contract for Knowledge Islands authoring. It is separate from the Markdown and TOML standards because it governs the formatter/linter boundary, wholly owned repository configuration, and safe hosted execution rather than human choices inside either document format. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -108,7 +108,7 @@ The [Markdown authoring standard](standard-markdown.md) defines the judgment cho
 
 ### 4.4 Commit gate
 
-A repository's committed `pre-commit` checks the Markdown it stages, check-only, so a commit never carries Markdown the audit would reject ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)). Where a package exists, lint-staged runs `rumdl check` over the staged Markdown under `ki-engineering` `PKG-6`, check-only: a commit never rewrites, as Kris chose COMMIT-VS-CI a) on 26 October 2026, and `--fix` stays with CONFORM. Where none does, the hook lists the staged Markdown and checks it where it stands; its exact line is in the canonical hook that [`ki-repo`'s commit gate](../../ki-repo/references/standard-repository.md#45-commit-gate) composes and each shape skill publishes, since `ki-repo` owns the hook's existence, frame and canonical text.
+A repository's committed `pre-commit` checks the Markdown it stages, check-only, so a commit never carries Markdown the audit would reject ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)). Where a package exists, lint-staged runs `rumdl check` over the staged Markdown under `ki-engineering` `PKG-6`, check-only: a commit never rewrites, and `--fix` stays with CONFORM. Where none does, the hook lists the staged Markdown and checks it where it stands; its exact line is in the canonical hook that [`ki-repo`'s commit gate](../../ki-repo/references/standard-repository.md#45-commit-gate) composes and each shape skill publishes, since `ki-repo` owns the hook's existence, frame and canonical text.
 
 `MD-hook` requires a non-comment line that pipes `git diff --cached` to `rumdl check` without `--fix`, and is not applicable without a committed hook or where a `package.json` exists. rumdl applies the `.rumdl.toml` exclusions to the files it is named, so a staged generated or vendored file is skipped as the full gate skips it.
 

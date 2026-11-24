@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T21:58:53Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -186,7 +186,7 @@ There is deliberately **no `ki-shell` skill**: shell is the reference language, 
 
 #### 4.10.1 Commit gate
 
-A tool repository's committed hooks are the `ki-repo` canonical pair for the `ki-repo-tools` shape, published as this skill's worked example under [`assets/githooks/`](../assets/githooks/), one pair with a `package.json` and one without ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)). Without a package, `pre-commit` checks the staged Markdown under `ki-authoring` `MD-hook`, then the shell block: `shellcheck` and `bash -n` over each staged shell file, found by a `.sh` or `.bash` name or a `sh` or `bash` shebang, and `mandoc -T lint` over each staged `man/*.[1-9]` page, all check-only (`SHELL-HOOK`). With a package, the `ki-engineering` content takes the place of the Markdown lines, followed by the same shell block; `SHELL-HOOK` applies in both variants. Neither calls `ki`: the `ki-repo-tools` audit runs in CI, as Kris chose COMMIT-VS-CI a) on 26 October 2026. `commit-msg` runs `ki git check-message "$1"` without a package and Commitlint with one. The `bats` suite, like any test suite, and any `ki repo audit`, conform, repair, `--fix` or `--write` belong to the manual gate and CI, never the commit gate, so `SHELL-HOOK` fails a hook that runs one. `ki-repo` owns whether the hook exists, is bound and matches its canonical text (`HOOK-1`, `HOOK-2`, `HOOK-4`).
+A tool repository's committed hooks are the `ki-repo` canonical pair for the `ki-repo-tools` shape, published as this skill's worked example under [`assets/githooks/`](../assets/githooks/), one pair with a `package.json` and one without ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)). Without a package, `pre-commit` checks the staged Markdown under `ki-authoring` `MD-hook`, then the shell block: `shellcheck` and `bash -n` over each staged shell file, found by a `.sh` or `.bash` name or a `sh` or `bash` shebang, and `mandoc -T lint` over each staged `man/*.[1-9]` page, all check-only (`SHELL-HOOK`). With a package, the `ki-engineering` content takes the place of the Markdown lines, followed by the same shell block; `SHELL-HOOK` applies in both variants. Neither calls `ki`: the `ki-repo-tools` audit runs in CI. `commit-msg` runs `ki git check-message "$1"` without a package and Commitlint with one. The `bats` suite, like any test suite, and any `ki repo audit`, conform, repair, `--fix` or `--write` belong to the manual gate and CI, never the commit gate, so `SHELL-HOOK` fails a hook that runs one. `ki-repo` owns whether the hook exists, is bound and matches its canonical text (`HOOK-1`, `HOOK-2`, `HOOK-4`).
 
 A repository-specific check that is fast and check-only joins the gate as a line of this shape's block in the `ki-repo` composer rather than a local edit to a hook, so the canonical text stays exact; anything slower belongs to CI. A tool that commits an artefact assembled from its sources declares it in its marker table, and `ASSEMBLE-1` runs the repository's own check from the repository root, without a shell, in the focused audit:
 
@@ -290,7 +290,7 @@ A language conditional is declared as its **own** table, not a key here: a TS/Bu
 ### 4.14 What other skills own
 
 - **`ki-repo`** — the local standard files (README, LICENSE, `.gitignore`, `.editorconfig`), GitHub settings (merge policy, branch protection, topics, visibility), and the `.ki.toml` contract itself. `ki-repo`'s coverage cascade detects an undeclared tool (a `bin/<exe>` + `install.sh` with no qualified `ki-repo-tools` declaration) and WARNs, enforcing the one-structure-skill-per-repo invariant.
-- **The [Homebrew tap standard](standard-homebrew-tap.md)**, this skill's own since REPO-OTHERS a — the tap repo, the `Formula/*.rb` shape, and the tap's own test-bot/CI.
+- **The [Homebrew tap standard](standard-homebrew-tap.md)**, this skill's own since the tap skill was folded in — the tap repo, the `Formula/*.rb` shape, and the tap's own test-bot/CI.
 - **`ki-engineering`** — the TS/Bun build/lint/test toolchain, only if the tool grows a `package.json`.
 
 [Back to contents](#contents)

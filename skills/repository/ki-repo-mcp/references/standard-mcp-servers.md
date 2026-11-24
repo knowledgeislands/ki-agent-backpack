@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T21:58:53Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -32,13 +32,13 @@ ki-status: in force
 
 ## 1. Introduction
 
-The canonical shape shared by every stdio MCP server in the `knowledgeislands/` workspace: `mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-housekeeping-chatgpt`, `mcp-acquire-whatsapp`, `mcp-cairn`. This is the reference the `ki-repo-mcp` skill codifies and audits against. Where repos disagree, the majority shape is the standard; documented per-repo exceptions are noted inline. The sources and decisions behind it are in [the sources file](sources.md).
+The canonical shape shared by every stdio MCP server in the `knowledgeislands/` workspace: `mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-housekeeping-chatgpt`, `mcp-acquire-whatsapp`, `mcp-cairn`. This is the reference the `ki-repo-mcp` skill codifies and audits against. Where repos disagree, the majority shape is the standard; documented per-repo exceptions are noted inline. The sources behind it are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
 ## 2. Scope
 
-The standard applies only when a repository declares `[skills.ki-repo-mcp]` in `.ki.toml`. The optional `profile` key selects a supported whole-file projection from the [MCP shared-code standard](standard-mcp-shared-code.md); an absent key leaves existing utilities repository-owned. The optional `tool-name-exceptions` key lists tool names a repository keeps outside [the naming form](#43-tool-naming), with a comment above it giving the reason (TOOL-EXCEPTION). Detected MCP-shaped source remains coverage evidence for `ki-repo`, not selection authority for this skill.
+The standard applies only when a repository declares `[skills.ki-repo-mcp]` in `.ki.toml`. The optional `profile` key selects a supported whole-file projection from the [MCP shared-code standard](standard-mcp-shared-code.md); an absent key leaves existing utilities repository-owned. The optional `tool-name-exceptions` key lists tool names a repository keeps outside [the naming form](#43-tool-naming), with a comment above it giving the reason. Detected MCP-shaped source remains coverage evidence for `ki-repo`, not selection authority for this skill.
 
 ### 2.1 In scope
 
@@ -53,7 +53,7 @@ The standard applies only when a repository declares `[skills.ki-repo-mcp]` in `
 - Repository settings and the presence of the universal root documents: `ki-repo`.
 - Optional vendored utility profiles: the [MCP shared-code standard](standard-mcp-shared-code.md).
 - Versioned source-release evidence and the installer hand-off: the [MCP source-distribution standard](standard-mcp-distribution.md).
-- Enabling servers across client surfaces, including claude.ai connectors: the Environment guild's `ki-env-binding` and `ki-env-binding-claude` (MCP-SURFACES).
+- Enabling servers across client surfaces, including claude.ai connectors: the Environment guild's `ki-env-binding` and `ki-env-binding-claude`.
 
 [Back to contents](#contents)
 
@@ -129,13 +129,13 @@ Top-level `src/` folders are identical across all seven repos: `config`, `main`,
 | mcp-housekeeping-claude  | `claude_code`, `claude_desktop`, `vscode`                            |
 | mcp-housekeeping-chatgpt | `chatgpt`, `codex`                                                   |
 | mcp-acquire-whatsapp     | `whatsapp`                                                           |
-| mcp-cairn                | none: `who`, `since` and `presence` keep bare names (TOOL-EXCEPTION) |
+| mcp-cairn                | none: `who`, `since` and `presence` keep bare names |
 
 - **Plural** resource for collection ops (`git_repos_scan`, `gsuite_email_messages_search`, `claude_code_sessions_list`).
 - **Singular** for single-item ops (`claude_code_session_read`, `git_repo_commit`, `gsuite_email_message_get`).
 - Metadata/lifecycle tools may drop the resource segment (`m365_about`, `gsuite_auth_start`).
-- **Exception (KB-NAMES):** `mcp-ki-kb-fs`'s tools act on one implied resource, the Knowledge Base entry, so they drop the middle segment and take `<app>_<action>` (`kb_read`, `kb_list`, `kb_write`, `kb_search`), naming a resource only where another is meant (`kb_folder_create`). Accepted, because renaming them would break every client for no gain — do not flag.
-- **Declared exceptions (TOOL-EXCEPTION):** a repository that keeps other names records them in `[skills.ki-repo-mcp]` as `tool-name-exceptions = [...]`, with a comment above the key giving the reason and an entry under Exceptions in its `AGENTS.md`; the audit then reports them as declared rather than as a finding, and flags a listed name no tool registers. `mcp-cairn` keeps `who`, `since` and `presence` this way, since renaming them would break every client (MCP-TRIM).
+- **Exception:** `mcp-ki-kb-fs`'s tools act on one implied resource, the Knowledge Base entry, so they drop the middle segment and take `<app>_<action>` (`kb_read`, `kb_list`, `kb_write`, `kb_search`), naming a resource only where another is meant (`kb_folder_create`). Accepted, because renaming them would break every client for no gain — do not flag.
+- **Declared exceptions:** a repository that keeps other names records them in `[skills.ki-repo-mcp]` as `tool-name-exceptions = [...]`, with a comment above the key giving the reason and an entry under Exceptions in its `AGENTS.md`; the audit then reports them as declared rather than as a finding, and flags a listed name no tool registers. `mcp-cairn` keeps `who`, `since` and `presence` this way, since renaming them would break every client.
 - The CLI verb surface mirrors the tool names.
 
 The house scheme is a deliberate **subset** of what the spec permits: per [TOOLS](sources.md), names SHOULD be 1–128 chars from `[A-Za-z0-9_.-]`. Snake_case `<app>_<resource>_<action>` stays well inside that, so a conformant house name is always a conformant spec name — the constraint to enforce is the house scheme, not the looser spec one.
@@ -155,7 +155,7 @@ These four hints (`readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorl
 
 Levels nest `read ⊂ write ⊂ destructive`; env `MCP_<APP>_ACCESS_LEVEL` (default `read`). Every tool sets `annotations` to a preset from `utils/annotations.ts`: `READ_ONLY`, `WRITE`, `WRITE_IDEMPOTENT`, `WRITE_IDEMPOTENT_REMOTE`, `DESTRUCTIVE`, `DESTRUCTIVE_REMOTE`, `DESTRUCTIVE_ONESHOT`, plus `_REMOTE`/read variants per repo. `DESTRUCTIVE_ONESHOT` = effect depends on current FS/index state. Never bypass the register proxy; never derive the level from the tool name.
 
-**Divergence (WA-DEFAULTS):** default access level is `read` everywhere except `mcp-acquire-whatsapp`, which defaults to `destructive`, and its audit log defaults to `off` rather than `writes`. A `read` default would unregister its six spool-writing acquisition tools, and a log on by default would keep a record of who the operator talks to. Its ADR-KI-MCP-WA-005 records both choices; the gate and the log are otherwise implemented as this standard sets — accepted, do not flag.
+**Divergence:** default access level is `read` everywhere except `mcp-acquire-whatsapp`, which defaults to `destructive`, and its audit log defaults to `off` rather than `writes`. A `read` default would unregister its six spool-writing acquisition tools, and a log on by default would keep a record of who the operator talks to. Its ADR-KI-MCP-WA-005 records both choices; the gate and the log are otherwise implemented as this standard sets — accepted, do not flag.
 
 [Back to contents](#contents)
 

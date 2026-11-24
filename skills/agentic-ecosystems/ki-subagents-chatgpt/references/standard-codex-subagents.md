@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:25:51Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -77,6 +77,6 @@ The supported custom-agent projection keys are `name`, `description`, `developer
 
 ### 4.4 Host boundary
 
-Candidate source conformance does not establish discovery, publication, installation, activation, effective model/profile/MCP configuration, permissions, or execution. The current `ki` host publishes Codex skills only and has neither a Codex subagent capability/path nor a generic publisher. Route activation evidence to a future authorised host/runtime owner. No such capability is to be added: a Codex projection, once authored, is placed by the install run under `ki-subagents`' [register and install](../../ki-subagents/references/standard-portable-subagents.md#45-register-and-install) rule (SUBAGENT-PUBLISHER a).
+Candidate source conformance does not establish discovery, publication, installation, activation, effective model/profile/MCP configuration, permissions, or execution. The current `ki` host publishes Codex skills only and has neither a Codex subagent capability/path nor a generic publisher. Route activation evidence to a future authorised host/runtime owner. No such capability is to be added: a Codex projection, once authored, is placed by the install run under `ki-subagents`' [register and install](../../ki-subagents/references/standard-portable-subagents.md#45-register-and-install) rule.
 
 [Back to contents](#contents)

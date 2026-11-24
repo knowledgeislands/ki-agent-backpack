@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T21:58:53Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -152,7 +152,7 @@ The package repository's `AGENTS.md` publishes one paragraph for each vendored p
 
 ### 4.8 Consumers
 
-The package repository keeps no list of its consumers. Kris set this on 1 November 2026: "There should be no reference out of Knowledge Islands to other territories", and where the package needs to know its consumers, "it can look for patterns that it knows about that would identify that it's been used. It shouldn't have a finite list of them". A consumer is any repository on a Rig host's local estate that holds the package's lock file; the lock gives its release and any deferral.
+The package repository keeps no list of its consumers and makes no reference out of Knowledge Islands to other territories. Where the package needs to know its consumers, it looks for patterns it knows that identify its use, never a finite list. A consumer is any repository on a Rig host's local estate that holds the package's lock file; the lock gives its release and any deferral.
 
 [Back to contents](#contents)
 

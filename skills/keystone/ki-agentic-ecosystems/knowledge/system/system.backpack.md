@@ -5,7 +5,7 @@ type: system-term
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 23 (now 12), NAMES, HARNESS-NAME and BACKPACK-PATTERN (13 November 2026) and BACKPACK-DEPTH (14 November 2026)
+origin: Cairn summit change 23, now 12 (13 and 14 November 2026)
 links:
   industry.plugin:
     predicate: skos:closeMatch
@@ -23,7 +23,7 @@ A backpack is a territory's installable bundle of [skills][industry.skill], suba
 
 ## Our conventions
 
-Each territory's backpack is a repository named `<territory>-agent-backpack`, as `ki-agent-backpack`, and its skills are grouped in [guilds][system.guild]. A backpack is not an [agent harness][industry.agent-harness]: it runs no loop and calls no model, so agent harness keeps the industry's sense (HARNESS-NAME, BACKPACK-DEPTH).
+Each territory's backpack is a repository named `<territory>-agent-backpack`, as `ki-agent-backpack`, and its skills are grouped in [guilds][system.guild]. A backpack is not an [agent harness][industry.agent-harness]: it runs no loop and calls no model, so agent harness keeps the industry's sense.
 
 [industry.skill]: ../industry/industry.skill.md
 [industry.plugin]: ../industry/industry.plugin.md

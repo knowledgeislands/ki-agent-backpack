@@ -1,6 +1,6 @@
 # MCP shared-code inventory, 24 September 2026
 
-A dated finding, not a rule: the read-only inventory of shared utility code across the MCP servers that the [MCP shared-code standard](standard-mcp-shared-code.md) rests on, with what it concluded and its repository matrix, as they stood on 24 September 2026. It is not kept current; a later inventory replaces it, and it names repositories as they were then, the Notion mirror among them, deleted on 26 October 2026. It moved out of the standard on 19 November 2026 under MCP-INVENTORY.
+A dated finding, not a rule: the read-only inventory of shared utility code across the MCP servers that the [MCP shared-code standard](standard-mcp-shared-code.md) rests on, with what it concluded and its repository matrix, as they stood on 24 September 2026. It is not kept current; a later inventory replaces it, and it names repositories as they were then, the Notion mirror among them, deleted on 26 October 2026. It moved out of the standard on 19 November 2026.
 
 ## 1. Inventory scope
 

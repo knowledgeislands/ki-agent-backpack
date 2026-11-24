@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-14T05:40:00Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -19,7 +19,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-The **judgment-layer** presentation rules for the TOML written in Knowledge Islands repositories. TOML is a distinct standard because it has no mechanical house formatter and governs configuration readability rather than Markdown documents. Nothing in the house toolchain formats TOML (Biome owns TS/JSON, rumdl owns Markdown), so unlike Markdown there is no mechanical pass to fall back on: these conventions are applied by a person or model, and `ki-repo` checks the mechanical part of the `.ki.toml` layout. The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+The **judgment-layer** presentation rules for the TOML written in Knowledge Islands repositories. TOML is a distinct standard because it has no mechanical house formatter and governs configuration readability rather than Markdown documents. Nothing in the house toolchain formats TOML (Biome owns TS/JSON, rumdl owns Markdown), so unlike Markdown there is no mechanical pass to fall back on: these conventions are applied by a person or model, and `ki-repo` checks the mechanical part of the `.ki.toml` layout. The sources behind these rules are in [the sources file](sources.md).
 
 This file owns only **presentation** (how existing values and comments read). The identity and topology of `.ki.toml` — including keys, tables, the compliance marker, the one-table-per-skill model, validation, declared divergences, and scaffolding — are semantic contract questions owned by `ki-repo`.
 

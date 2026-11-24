@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T00:58:41Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -20,7 +20,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-How a Knowledge Base receives a packet the acquire port delivers into a territory principal's `+/_ACQUIRED/`: what the delivery holds, how the receiver handles it, and what the receiver may and may not do with it. The decisions behind these rules are in [the sources file](sources.md).
+How a Knowledge Base receives a packet the acquire port delivers into a territory principal's `+/_ACQUIRED/`: what the delivery holds, how the receiver handles it, and what the receiver may and may not do with it. The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 

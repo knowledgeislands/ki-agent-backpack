@@ -5,7 +5,7 @@ type: term
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 22, ENVIRONMENT a) and HOST-SENSES (12 November 2026), revised by ki.summit change 21, EXEC-ENV a) (21 November 2026)
+origin: Cairn summit change 22 (12 November 2026), revised by ki.summit change 21 (21 November 2026)
 links:
   industry.environment:
     predicate: dcterms:hasPart
@@ -15,7 +15,7 @@ links:
 
 A machine is the computer, physical or virtual, that [execution environments][industry.environment] run on.
 
-Networking calls a machine a host, and OpenAI and Google write "host" or "host machine" for one; here it is always machine, so host never stands alone (HOST-SENSES). A virtual machine is a machine; a container or sandbox inside one is an execution environment, not a machine.
+Networking calls a machine a host, and OpenAI and Google write "host" or "host machine" for one; here it is always machine, so host never stands alone. A virtual machine is a machine; a container or sandbox inside one is an execution environment, not a machine.
 
 ## Our conventions
 

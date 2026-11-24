@@ -5,7 +5,7 @@ type: system-term
 status: agreed
 territory: knowledge-islands
 island: ki-agent-backpack
-origin: Cairn summit change 23 (now 12), NAMES and HOST-SENSES (13 November 2026), and change 12, TERMS-SOURCE (16 November 2026)
+origin: Cairn summit change 23, now 12 (13 November 2026), and change 12 (16 November 2026)
 links:
   industry.machine:
     predicate: skos:exactMatch
@@ -15,7 +15,7 @@ links:
 
 A rig lets Knowledge Islands set up a machine, and put it right, the same way every time, so a session knows what it will find there.
 
-A rig is a [machine][industry.machine] Knowledge Islands manages through Rig, its workstation tool, with a Rig profile and a declared setup, such as sol or terra. It is the same idea as a machine, not a narrower one: rig is Knowledge Islands' word where the industry says machine, `skos:exactMatch`. An agent host runs on a rig, so a rig is never called a host (HOST-SENSES).
+A rig is a [machine][industry.machine] Knowledge Islands manages through Rig, its workstation tool, with a Rig profile and a declared setup, such as sol or terra. It is the same idea as a machine, not a narrower one: rig is Knowledge Islands' word where the industry says machine, `skos:exactMatch`. An agent host runs on a rig, so a rig is never called a host.
 
 ## Our conventions
 

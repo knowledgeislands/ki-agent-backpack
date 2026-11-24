@@ -4,13 +4,13 @@ ki-document-type: mode@2026-11-17T00:55:00Z
 
 # Next
 
-`ki-work next` is a subcommand of the Work guild's lead. It was the `ki-next` process skill until the guild folded it into `ki-work` (PROCESS-SUBCOMMANDS), and keeps that skill's procedure and boundaries.
+`ki-work next` is a subcommand of the Work guild's lead. It was the `ki-next` process skill until the guild folded it into `ki-work`, and keeps that skill's procedure and boundaries.
 
 Selects and prepares forward work through the configured local adapter's canonical record. Linear remains configuration and safety guidance only, so this process stops without writes when it is selected.
 
 The full procedure is in [the next-work standard](standard-next-work.md).
 
-Capture is gated by the burn-down focus and CAPTURE-GATE: a background run never creates a record, and only a blocker, a defect seen failing or an owner-requested item is captured, by the owning coordinator in coordinating work. A handoff or rollout to another repository goes along the tree under `ki-coordination`'s [Work between packages](../../../work/ki-coordination/references/standard-messages.md#messages-between-work), never as a record there, under HANDOFF-AS-MESSAGE and MSG-RETIRE; only deferred work the receiver owns may become the receiver's record. Within that gate, substantive prospective work is captured without further approval only after deduplication, only when it passes the graduation test, and only as `status: triage` with no horizon; an idea that does not yet graduate waits in its Project note's Notes section or goes to the Inbox; roadmaps no longer keep `_IDEAS.md`. Adoption to `draft` with a horizon and `kind` requires explicit human approval. Cancelling intake requires exact human approval and routes to `ki-work accept`; capture never grants delivery authority.
+Capture is gated by the burn-down focus: a background run never creates a record, and only a blocker, a defect seen failing or an owner-requested item is captured, by the owning coordinator in coordinating work. A handoff or rollout to another repository goes along the tree under `ki-coordination`'s [Work between packages](../../../work/ki-coordination/references/standard-messages.md#messages-between-work), never as a record there; only deferred work the receiver owns may become the receiver's record. Within that gate, substantive prospective work is captured without further approval only after deduplication, only when it passes the graduation test, and only as `status: triage` with no horizon; an idea that does not yet graduate waits in its Project note's Notes section or goes to the Inbox; roadmaps no longer keep `_IDEAS.md`. Adoption to `draft` with a horizon and `kind` requires explicit human approval. Cancelling intake requires exact human approval and routes to `ki-work accept`; capture never grants delivery authority.
 
 ## What this subcommand does
 

@@ -19,7 +19,7 @@ links:
 
 A map of content, or MOC, is a note whose job is to be an entry point: it gathers links to the cards on one theme or span and says briefly how they fit together, without holding their knowledge itself. MOCs are common in [Zettelkasten][zettelkasten]-style graphs, where densely linked atomic notes otherwise have no obvious place to start reading.
 
-Kris noted on 2 November 2026 that MOCs are what the Knowledge Islands graphs are missing, and that they are needed generally, not only for one feature. Where a folder today has a structural `README.md`, a MOC could take its place as the reading entry point.
+MOCs are what the Knowledge Islands graphs are missing, and they are needed generally, not only for one feature. Where a folder today has a structural `README.md`, a MOC could take its place as the reading entry point.
 
 ## Several maps over the same leaves
 

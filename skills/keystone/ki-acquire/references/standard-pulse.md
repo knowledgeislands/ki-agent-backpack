@@ -1,6 +1,6 @@
 ---
-ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:10:23Z
+ki-document-type: standard@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-status: in force
 ---
 
@@ -22,7 +22,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-What one bounded, on-demand pulse keeps and decides: its brief, the record of each signal, the evidence it needs and the one disposition it gets, and who owns where it goes. Load this standard for any Capture, Scan, or Triage operation of [the pulse mode](mode-pulse.md). The decisions behind these rules are in [the sources file](sources.md#3-decisions).
+What one bounded, on-demand pulse keeps and decides: its brief, the record of each signal, the evidence it needs and the one disposition it gets, and who owns where it goes. Load this standard for any Capture, Scan, or Triage operation of [the pulse mode](mode-pulse.md). The sources behind these rules are in [the sources file](sources.md).
 
 [Back to contents](#contents)
 
@@ -117,9 +117,9 @@ Do not combine dispositions. When a signal appears to need both learning and act
 
 A disposition does not grant Pulse ownership of its destination:
 
-- Route **Read / learn** to Harbour's capture (cairn.harbour), which preserves the reading candidate and later curates it under CURATION-HOME. It does not go to `ki-repo-kb` SAVE or through `ki-trades` (PULSE-BOUNDARY, 22 November 2026).
+- Route **Read / learn** to Harbour's capture (cairn.harbour), which preserves the reading candidate and later curates it. It does not go to `ki-repo-kb` SAVE or through `ki-trades`.
 - Add **Watch** only to an existing owning record with a named monitoring trigger. If no such record exists, keep it transient; do not create a Pulse log or subscription.
-- Route **Act** on an agentic or model signal by firing `ki-radar`'s REFRESH return trigger, under [the radar standard's REFRESH](../../../agentic-ecosystems/ki-radar/references/standard-radar.md#45-refresh): PULSE discovers and the radar assesses, so Pulse never edits a radar snapshot itself (PULSE-BOUNDARY). Route **Act** from any other changed normative source to the owning governance skill's REFRESH mode. Present other finite work to `ki-work next` in the owning repository, which applies its graduation test and keeps the work as an idea or captures a `status: triage` record; Pulse neither creates nor selects that work itself.
+- Route **Act** on an agentic or model signal by firing `ki-radar`'s REFRESH return trigger, under [the radar standard's REFRESH](../../../agentic-ecosystems/ki-radar/references/standard-radar.md#45-refresh): PULSE discovers and the radar assesses, so Pulse never edits a radar snapshot itself. Route **Act** from any other changed normative source to the owning governance skill's REFRESH mode. Present other finite work to `ki-work next` in the owning repository, which applies its graduation test and keeps the work as an idea or captures a `status: triage` record; Pulse neither creates nor selects that work itself.
 - **Discard** writes nothing.
 
 Durable read, watch, and act hand-offs require explicit user authority and the destination owner's normal gates. If the owner is absent, unresolved, remote-only, or refuses the hand-off, report `none / unavailable` and create no artifact. Never write directly into another repository or destination as a shortcut.
