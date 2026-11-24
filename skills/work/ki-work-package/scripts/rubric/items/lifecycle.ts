@@ -30,12 +30,17 @@ const LIFECYCLE_2: RubricItem<LifecycleContext> = {
   code: 'LIFECYCLE-2',
   title: 'package content is current and durable facts are promoted',
   description:
-    "The entry file's definition is stable, its description routing clearly against its neighbours, and its state is current and agrees with the work's last move, with no moves list. Decisions are applied to their change document's outline or Steps, never logged, and the results of landed changes, accepted work state and reusable knowledge already live with their canonical owners; removal follows the closing mark or explicit direction and does not manufacture completion.",
-  sources: [`${SOURCE}#44-the-entry-file`, `${SOURCE}#46-change-documents`, `${SOURCE}#415-removal-lifecycle`],
+    "The entry file's definition is stable, its description routing clearly against its neighbours, and its state is current and agrees with the work's last move, with no moves list. Decisions are applied to their change document's outline or Steps, never logged, and the results of landed changes, accepted work state and reusable knowledge already live with their canonical owners; a parked package holds nothing live, its remaining work and open questions back on their repositories' roadmaps as high-level items; removal follows the closing mark or explicit direction and does not manufacture completion.",
+  sources: [
+    `${SOURCE}#44-the-entry-file`,
+    `${SOURCE}#46-change-documents`,
+    `${SOURCE}#parking`,
+    `${SOURCE}#415-removal-lifecycle`
+  ],
   judgment: {
     scope: 'Every package, its change documents, its named durable owners, and removal authority.',
     prompt:
-      'Is each package current and concise, its description routing clearly and its state agreeing with its last move, with the results of landed changes carried by their canonical owners and any removal grounded in the closing mark or explicit user direction rather than inferred completion?',
+      'Is each package current and concise, its description routing clearly and its state agreeing with its last move, with the results of landed changes carried by their canonical owners, a parked package holding nothing live, its remaining work and open questions on roadmap records, and any removal grounded in the closing mark or explicit user direction rather than inferred completion?',
     outcomes: ['conforming', 'explicit update required', 'promote durable fact'],
     guidance:
       'Promote facts through their owning lifecycle and update or remove a package only with explicit authority.'

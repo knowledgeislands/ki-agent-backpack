@@ -327,7 +327,7 @@ Left over: <another session's uncommitted file, or Nothing>
 
 ⏸️ drained · 🅿️ <n> queries parked
 
-- 🅿️ <n> queries in the change documents
+- 🅿️ <n> queries on their records
 - ⏸️ <release>, or `resume`
 
 <thread line>
@@ -618,7 +618,7 @@ On hold, closing a Stop:
 
 ⏸️ drained · 🅿️ 9 queries parked
 
-- 🅿️ 9 queries in the change documents
+- 🅿️ 9 queries on their records
 - ⏸️ after the backpack migration lands, or `resume`
 
 ⚒️ 🔑 ki.ways-of-working

@@ -75,6 +75,8 @@ The rules, part by part.
 
 Queries reach the owner in the Summary by default, except that a Summary whose summary runs long gives only their count until the owner has taken stock, under **Summary first** in [The Summary](standard-report-forms.md#417-the-summary). After a Summary that lists open queries, or on the owner's request, use the [interactive pass](#43-interactive-pass), or its [quick round](#431-quick-round): one decision per turn, its context in chat Markdown, then a short question card, or plain chat Markdown alone where the runtime has no card, or, in a quick round, several answers at once, acted on together.
 
+**Where a question lives.** Every question for the owner lives in the Open section of the change document it belongs to, and the owner's answer is applied there. An Orca item, or any host's equivalent, is only a pointer: a doorbell that links to one question or step in a change document, holds no question, answer or work of its own, and closes once answered, under `ki-work-package`'s [three places](../../ki-work-package/references/standard-work-package.md#three-places). A question card asks a question; it never holds one.
+
 **Choosing the recommended option.** Do not recommend the cautious option only because it is cautious when its downside can be undone; recommend what the evidence favours. Protections go only where the owner has drawn a line: a new one, such as a further check, a hold or a gate, goes to the owner as a question first and is not added on the agent's own judgement.
 
 [Back to contents](#contents)
