@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T11:30:42Z
 ki-status: in force
 ---
 
@@ -82,7 +82,7 @@ The authoritative definition of frontmatter fields for all notes in a Knowledge 
 | `created` | Optional | Timestamp set once on creation; never changed |
 | `status` | Note-type-specific | Set by the note's `note_type` where it has a lifecycle/state, not universal‡ |
 | `tags` | Optional | Topical / temporal / source labels (`topic/*`, `date/*`, `source/*`) — retained, but never the **kind** classifier |
-| `author` | Recommended | `AI-assisted` / `Manual` / `Mixed` |
+| `author` | Recommended | On an ordinary note, how it was written: `AI-assisted` / `Manual` / `Mixed`. On an [Activity](standard-activities.md#42-frontmatter) or a [Live Artifact](standard-live-artifacts.md#42-frontmatter), the person who authored, adopted or owns it, as their standards set |
 
 † NOTE-1c delegates metadata classification for `Streams/Roadmap/**`, old `+/_CHECKPOINTS/<thread>.md` checkpoints, canonical acquisition records under `+/_ACQUIRE/<adapter>/*.md`, and peer-qualified `TRD-*.md` protocol records under either working area to their owning skills. These records still undergo YAML, key-shape, and declared required-field checks. Nested checkpoint or acquisition paths, including `_RETIRED`, are not delegated. Local session digests under `-/_DIGESTS/` remain governed here. A work package lives in the Cairn store, so a package file left directly under `+/_WORK/<id>/`, such as its `_index.md`, `state.md`, `queries.md`, `messages.md` or `decisions.md`, is no longer delegated: NOTE-1c fails it as an earlier copy, out of place, naming the store's `work/<territory>/<id>/`.
 
