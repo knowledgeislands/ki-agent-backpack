@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-24T04:52:17Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T16:25:30Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -84,11 +84,10 @@ Non-normative.
 
 ## 3. Last review
 
-The latest review, on 23 November 2026, read all seventeen outside sources and the five in-house tool repositories, and no rule changed. ShellCheck 0.11.0, bats-core 1.14.0, Keep a Changelog 1.1.0, Semantic Versioning 2.0.0, XDG 0.8, the POSIX utility conventions and `find`, clig.dev and `NO_COLOR` still say what the standards follow; GNU-CLI and BASH-EXIT were read from source mirrors, unchanged, because gnu.org refused automated requests. Homebrew is at 7.0.15: the Cookbook keeps the same required parts, the `desc` cop still allows 80 characters with no leading article, and `brew audit --new` implies `--strict` and `--online`.
+The latest review, on 23 November 2026, read all seventeen outside sources and the five in-house tool repositories, and no rule changed. ShellCheck 0.11.0, bats-core 1.14.0, Keep a Changelog 1.1.0, Semantic Versioning 2.0.0, XDG 0.8, the POSIX utility conventions and `find`, clig.dev and `NO_COLOR` still say what the standards follow; GNU-CLI and BASH-EXIT were read from source mirrors, unchanged, because gnu.org refused automated requests. Homebrew is at 7.0.15: the Cookbook keeps the same required parts, the `desc` cop still allows 80 characters with no leading article, and `brew audit --new` implies `--strict` and `--online`. On 24 November 2026 the standard came to allow CI and release on manual dispatch only, which settles the watch on the five tool repositories' manual-dispatch CI, so that item is closed.
 
 **Watching:**
 
-- **CI on manual dispatch.** The standard's "on every push" against the five tool repositories, which run CI and release only on manual dispatch.
 - **Tap trust.** Since Homebrew 6.0.0 third-party taps are untrusted by default; the tap README rule's wording may need to say so.
 - **gnu.org refuses automated fetches.** GNU-CLI and BASH-EXIT are reviewed through source mirrors (gnulib, the Bash mirror); re-read the published pages once they can be reached.
 - **`tools-mgit`'s `Unreleased` section** and **`tools-rig`'s bats 1.11.1 pin**, both findings for those repositories rather than standard changes.
