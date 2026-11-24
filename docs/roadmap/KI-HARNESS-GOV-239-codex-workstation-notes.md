@@ -5,13 +5,13 @@ title: Codex's workstation notes
 component: environment
 priority: low
 size: s
-assignee: work/ki.summit
+assignee: work/ki.guilds
 status: triage
 blocks: []
 blocked_by: []
 baseline_ref: null
 created_at: 2026-11-19T07:01:00Z
-updated_at: 2026-11-19T07:01:00Z
+updated_at: 2026-11-24T10:01:46Z
 ---
 
 # Codex's workstation notes

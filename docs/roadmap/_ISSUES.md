@@ -1,6 +1,6 @@
 ---
 areas: { FND: 28, GOV: 242, OPS: 11, REV: 12, RTP: 19 }
-work: ki.reg.guilds
+work: ki.guilds
 ---
 
 # Roadmap issue ledger

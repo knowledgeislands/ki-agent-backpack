@@ -2,16 +2,18 @@
 id: KI-HARNESS-GOV-238
 area: GOV
 title: Vendored copies tracked
+kind: deliver
 component: repository
 priority: low
 size: s
-assignee: work/ki.summit
-status: triage
+assignee: work/ki.guilds
+horizon: next
+status: draft
 blocks: []
 blocked_by: []
 baseline_ref: null
 created_at: 2026-11-19T07:01:00Z
-updated_at: 2026-11-19T07:01:00Z
+updated_at: 2026-11-24T10:01:46Z
 ---
 
 # Vendored copies tracked
@@ -33,6 +35,50 @@ The change closed on 19 November 2026 with this carried here; its text at its la
 ## Boundary
 
 `ki-repo`'s repository and configuration standards, the `RUNTIMES-6` rubric item and the managed `.gitignore` block, with `tools-ki`'s matching code where the Repository guild decides it is needed. It does not change what a vendored copy is, the moved-on note, which `tools-ki` builds for ki.tools, or which repositories vendor which skills.
+
+## Current state
+
+Not started, and the option is not yet chosen. Of COPY-DETAILS's three parts, the first two are in `ki-repo`'s vendored skills rule; this record carries the third. Each vendoring repository still writes its own `!.agents/skills/<name>/` re-include lines, `RUNTIMES-6` checks a copy's shape and its `mode` and `commit` keys but not whether Git tracks it, and the drift check hashes the files by its own reading.
+
+## Steps
+
+- [ ] Choose between options a) and b) below in the Repository guild's next review, held by ki.guilds.
+- [ ] `RUNTIMES-6` fails a vendored copy Git does not track, under either option.
+- [ ] Under option a) only: the managed `.gitignore` block re-includes each skill declared `mode = "vendored"`, and the drift check takes its hashes from `git ls-tree` on both sides.
+- [ ] Bring `tools-ki`'s matching code into line where the guild decides it is needed, through that repository's owner.
+
+## Files touched
+
+- `skills/keystone/ki-repo/references/standard-repository.md`
+- `skills/keystone/ki-repo/references/standard-configuration.md`
+- `ki-repo`'s rubric source and its generated `skills/keystone/ki-repo/references/rubric.md`
+- `tools-ki`'s matching audit code, in that repository, if the guild decides it is needed
+
+## Verify
+
+`ki repo audit --repo . --skill ki-repo` passes, and a repository whose vendored copy Git ignores fails `RUNTIMES-6`.
+
+## Dependencies / blocks
+
+The Repository guild's choice between the options. Any `tools-ki` change lands in that repository under its own owner.
+
+## Documentation impact
+
+### Decision Records
+
+None: the option the guild takes is recorded in `ki-repo`'s sources.
+
+### Specifications
+
+`ki-repo`'s repository and configuration standards change as the Steps say.
+
+### Guides
+
+None expected: the change is to the standards and the audit, and any guide found naming hand-written re-include lines is brought into line in the same pass.
+
+### Roadmap
+
+This record only.
 
 ## Discussion
 

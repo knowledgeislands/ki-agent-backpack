@@ -2,16 +2,18 @@
 id: KI-HARNESS-GOV-240
 area: GOV
 title: AGENTS.md stays small
+kind: deliver
 component: repository
 priority: low
 size: s
-assignee: work/ki.summit
-status: triage
+assignee: work/ki.guilds
+horizon: next
+status: draft
 blocks: []
 blocked_by: []
 baseline_ref: null
 created_at: 2026-11-19T07:01:00Z
-updated_at: 2026-11-19T07:01:00Z
+updated_at: 2026-11-24T10:01:46Z
 ---
 
 # AGENTS.md stays small
@@ -29,6 +31,47 @@ The change closed on 19 November 2026 with this carried here; its text at its la
 ## Boundary
 
 One `ki-repo` rubric item, judged or partly mechanical, and the review checklist line that names it. It does not rewrite any repository's `AGENTS.md`, nor change the placement ladder.
+
+## Current state
+
+Not started, and the option is not yet chosen. AGENTS-FOLD a folded the core repositories' `AGENTS.md` down to what is their own; `ki-repo`'s rubric has no item that checks it stays so.
+
+## Steps
+
+- [ ] Choose between options a) and b) below in the Repository guild's next review, held by ki.guilds.
+- [ ] Add the chosen `ki-repo` rubric item and the review checklist line that names it.
+- [ ] Run audit and conform on the core repositories with the new item, once the tools are back on.
+
+## Files touched
+
+- `ki-repo`'s rubric source and its generated `skills/keystone/ki-repo/references/rubric.md`
+- `skills/keystone/ki-repo/references/mode-review.md`, for the checklist line
+
+## Verify
+
+`ki repo audit --repo . --skill ki-repo` passes, and the new item reports on a core repository's `AGENTS.md`.
+
+## Dependencies / blocks
+
+The Repository guild's choice between the options; the run on the core repositories waits until the tools are back on.
+
+## Documentation impact
+
+### Decision Records
+
+None: the option the guild takes is recorded in `ki-repo`'s sources.
+
+### Specifications
+
+`ki-repo`'s rubric gains one item.
+
+### Guides
+
+None: the placement ladder in `ki-authoring` already says what belongs at each layer, and is not changed.
+
+### Roadmap
+
+This record only.
 
 ## Discussion
 
