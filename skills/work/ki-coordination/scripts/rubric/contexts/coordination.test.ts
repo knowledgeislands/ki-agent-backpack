@@ -31,11 +31,15 @@ describe('coordinator binding', () => {
     writeFileSync(join(root, '.claude', file), content)
   }
   const hooked = (command: string) => ({ hooks: [{ type: 'command', command }] })
-  const userSettings = (events: readonly string[]): string =>
+  const footerHook = '$HOME/ki/hooks/coordinator-footer/coordinator-footer.sh'
+  const userSettings = (events: readonly string[], footerEvent: string | null = 'Stop'): string =>
     JSON.stringify({
-      hooks: Object.fromEntries(
-        events.map((event) => [event, [hooked('$HOME/ki/hooks/coordinator-reminder/coordinator-reminder.sh')]])
-      )
+      hooks: {
+        ...Object.fromEntries(
+          events.map((event) => [event, [hooked('$HOME/ki/hooks/coordinator-reminder/coordinator-reminder.sh')]])
+        ),
+        ...(footerEvent ? { [footerEvent]: [hooked(footerHook)] } : {})
+      }
     })
 
   test('a repository that does not select the output style is a violation', () => {
@@ -70,13 +74,26 @@ describe('coordinator binding', () => {
     expect(outcomes[1]?.message).not.toContain('`UserPromptSubmit`')
   })
 
+  test('a footer hook that is missing, or registered at another event, is a violation', () => {
+    const root = fixture()
+    claude(root, 'settings.json', JSON.stringify({ outputStyle: 'ki-coordinator' }))
+    const home = fixture()
+    claude(home, join('output-styles', 'ki-coordinator.md'), '---\nname: ki-coordinator\n---\n')
+    for (const footerEvent of [null, 'SubagentStop']) {
+      claude(home, 'settings.json', userSettings(['UserPromptSubmit', 'SessionStart'], footerEvent))
+      const outcomes = bindingOutcomes(root, home)
+      expect(statuses(outcomes)).toEqual(['PASS', 'VIOLATION'])
+      expect(outcomes[1]?.message).toContain('`hooks/coordinator-footer/coordinator-footer.sh` at `Stop`')
+    }
+  })
+
   test('unreadable user settings are a violation, never printed', () => {
     const root = fixture()
     const home = fixture()
     claude(home, 'settings.json', '{ not json')
     claude(home, join('output-styles', 'ki-coordinator.md'), '')
     const outcomes = bindingOutcomes(root, home)
-    expect(statuses(outcomes)).toEqual(['VIOLATION', 'VIOLATION'])
+    expect(statuses(outcomes)).toEqual(['VIOLATION', 'VIOLATION', 'VIOLATION'])
     expect(outcomes.map((outcome) => outcome.message).join(' ')).not.toContain('not json')
   })
 })

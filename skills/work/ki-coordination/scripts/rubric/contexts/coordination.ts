@@ -3,7 +3,7 @@
  *
  * Boundary: runs only where a repository declares `[skills.ki-coordination]` in its `.ki.toml`, the section this skill
  * contributes, and reads the repository's and the user's Claude Code settings, of which it reads only the output style
- * and the hook commands, and the deployed output style. Reports are no longer read, their checks retired; where
+ * and the hook commands (the reminder hook and the footer hook), and the deployed output style. Reports are no longer read, their checks retired; where
  * territory work sits and the level a work file declares are no longer checked; and the Project registry, theme and
  * active-work cap checks, which read `+/_WORK/`, are retired for now, to return in `ki-work-package`'s check as
  * warnings once a project-level package lands in the Cairn store. It never writes, and it
@@ -21,6 +21,8 @@ import type {
 const OUTPUT_STYLE = 'ki-coordinator'
 const COORDINATOR_HOOK = 'coordinator-reminder.sh'
 const HOOK_EVENTS = ['UserPromptSubmit', 'SessionStart'] as const
+const FOOTER_HOOK = 'coordinator-footer.sh'
+const FOOTER_EVENT = 'Stop'
 export type OutcomeContext = { readonly outcomes: readonly AuditOutcome[] }
 
 export type CoordinationRubricContext = {
@@ -41,8 +43,12 @@ const settings = (path: string): Readonly<Record<string, unknown>> | null | unde
   }
 }
 
-/** Whether a Claude Code settings `hooks` table runs the coordinator hook at an event. */
-const runsHook = (hooks: Readonly<Record<string, unknown>> | null, event: string): boolean => {
+/** Whether a Claude Code settings `hooks` table runs a hook script at an event. */
+const runsHook = (
+  hooks: Readonly<Record<string, unknown>> | null,
+  event: string,
+  script = COORDINATOR_HOOK
+): boolean => {
   const groups = hooks?.[event]
   if (!Array.isArray(groups)) return false
   return groups.some((group) => {
@@ -51,7 +57,7 @@ const runsHook = (hooks: Readonly<Record<string, unknown>> | null, event: string
       Array.isArray(handlers) &&
       handlers.some((handler) => {
         const command = table(handler)?.command
-        return typeof command === 'string' && command.includes(COORDINATOR_HOOK)
+        return typeof command === 'string' && command.includes(script)
       })
     )
   })
@@ -59,7 +65,8 @@ const runsHook = (hooks: Readonly<Record<string, unknown>> | null, event: string
 
 /**
  * The coordinator binding where `ki-coordination` is declared: the repository's tracked settings select the output style, and
- * the user's Claude Code settings register the hook with the style deployed beside them. The user half is reported as
+ * the user's Claude Code settings register the reminder hook and the `Stop` footer hook, with the style deployed beside
+ * them. The user half is reported as
  * not checked when the user settings are absent, as on a machine with no Claude Code.
  */
 export const bindingOutcomes = (root: string, userHome: string): AuditOutcome[] => {
@@ -90,6 +97,13 @@ export const bindingOutcomes = (root: string, userHome: string): AuditOutcome[] 
       message: `the user's Claude Code settings run \`hooks/coordinator-reminder/${COORDINATOR_HOOK}\` at ${missing.map((event) => `\`${event}\``).join(' and ')}; the user-environment manager binds it`,
       subject: join('~', '.claude', 'settings.json')
     })
+  const footer = runsHook(table(user?.hooks), FOOTER_EVENT, FOOTER_HOOK)
+  if (!footer)
+    outcomes.push({
+      status: 'VIOLATION',
+      message: `the user's Claude Code settings run \`hooks/coordinator-footer/${FOOTER_HOOK}\` at \`${FOOTER_EVENT}\`; the user-environment manager binds it`,
+      subject: join('~', '.claude', 'settings.json')
+    })
   const deployed = join('.claude', 'output-styles', `${OUTPUT_STYLE}.md`)
   if (!existsSync(join(userHome, deployed)))
     outcomes.push({
@@ -97,10 +111,10 @@ export const bindingOutcomes = (root: string, userHome: string): AuditOutcome[] 
       message: `the \`${OUTPUT_STYLE}\` output style is deployed for the user; the user-environment manager binds it`,
       subject: join('~', deployed)
     })
-  if (missing.length === 0 && existsSync(join(userHome, deployed)))
+  if (missing.length === 0 && footer && existsSync(join(userHome, deployed)))
     outcomes.push({
       status: 'PASS',
-      message: 'The user binds the coordinator hook and deploys the output style.'
+      message: 'The user binds the coordinator and footer hooks and deploys the output style.'
     })
   return outcomes
 }

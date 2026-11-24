@@ -9,16 +9,16 @@ const TERRITORY = 'standard-territory.md'
 
 const COORD_8: RubricItem<CoordinationRubricContext> = {
   code: 'COORD-8',
-  title: 'the coordinator hook and output style are bound where ki-coordination is declared',
+  title: 'the coordinator hooks and output style are bound where ki-coordination is declared',
   description:
-    'In the runtime-specific Claude Code binding, a repository that declares `[skills.ki-coordination]` selects `"outputStyle": "ki-coordinator"` in its tracked `.claude/settings.json`, and, where the user\'s Claude Code settings are present, they run the harness `hooks/coordinator-reminder/coordinator-reminder.sh` at `UserPromptSubmit` and `SessionStart` and the style is deployed as `~/.claude/output-styles/ki-coordinator.md`. The user-environment manager, chezmoi, stays the binder; the rubric only checks that the binding is present.',
+    'In the runtime-specific Claude Code binding, a repository that declares `[skills.ki-coordination]` selects `"outputStyle": "ki-coordinator"` in its tracked `.claude/settings.json`, and, where the user\'s Claude Code settings are present, they run the harness `hooks/coordinator-reminder/coordinator-reminder.sh` at `UserPromptSubmit` and `SessionStart` and `hooks/coordinator-footer/coordinator-footer.sh` at `Stop`, and the style is deployed as `~/.claude/output-styles/ki-coordinator.md`. The user-environment manager, chezmoi, stays the binder; the rubric only checks that the binding is present.',
   sources: [`${SOURCE}#coordinator-responsiveness`],
   mechanical: {
     level: 'WARN',
     remediation: {
       class: 'diagnostic',
       guidance:
-        "Select the output style in the repository's tracked `.claude/settings.json`; bind the hook and deploy the style through the user-environment manager, such as `chezmoi apply` after reviewing `chezmoi diff`, rather than by editing user settings by hand."
+        "Select the output style in the repository's tracked `.claude/settings.json`; bind both hooks and deploy the style through the user-environment manager, such as `chezmoi apply` after reviewing `chezmoi diff`, rather than by editing user settings by hand."
     },
     audit: { phase: 'INSPECT', run: ({ binding }) => binding.outcomes }
   }
