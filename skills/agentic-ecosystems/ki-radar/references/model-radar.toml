@@ -192,6 +192,15 @@ independence = "provider"
 reviewed_on = "2026-11-22"
 notes = "Confirms the gpt-6-astra snapshot remains available on Chat Completions, Responses, and Batch, and on Amazon Bedrock, with no deprecation notice or named successor on 2026-11-22, although the model catalogue and GPT-6 guide now present GPT-6.2 Astra. It gives no release date."
 
+[evidence.openai-astra-release]
+id = "openai-astra-release"
+title = "OpenAI GPT-6 Astra launch"
+url = "https://openai.com/index/gpt-6-astra/"
+unit = "provider-endpoint"
+independence = "provider"
+reviewed_on = "2026-11-24"
+notes = "Backs only where Astra is offered: names gpt-6-astra in the OpenAI API and its availability through Microsoft Azure and Amazon Bedrock. It states no release date, saying only that Astra is rolling out, with its earliest dated update on 2026-09-22, so the release date stays unsourced."
+
 [evidence.openai-gpt-6-1-sol]
 id = "openai-gpt-6-1-sol"
 title = "OpenAI GPT-6.1 Sol model page"
@@ -508,7 +517,7 @@ openness = "proprietary"
 license = "No public model-weights licence identified"
 retirement = "active"
 reviewed_on = "2026-11-22"
-evidence = ["openai-gpt-6-astra"]
+evidence = ["openai-gpt-6-astra", "openai-astra-release"]
 counter_evidence = ["openai-models", "openai-gpt-6-guide"]
 
 [models.gpt-6-sol]

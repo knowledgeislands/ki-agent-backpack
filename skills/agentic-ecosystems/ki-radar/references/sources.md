@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-24T04:52:17Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T11:24:46Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -140,6 +140,7 @@ Provider evidence may establish identity, access, licence, pricing and lifecycle
 | [GPT-5.6 Sol model page][openai-sol] | Previous-family Sol identity, alias, and access | 2026-11-23 |
 | [GPT-5.6 Terra model page][openai-terra] | Previous-family Terra identity and access | 2026-11-23 |
 | [GPT-6 Astra model page][openai-gpt-6-astra] | Astra identity and access | 2026-11-23 |
+| [GPT-6 Astra launch post][openai-astra] | Where Astra is offered, Azure and Amazon Bedrock, not its release date | 2026-11-24 |
 | [GPT-6.1 Sol model page][openai-gpt-6-1-sol] | Default-route Sol identity and access | 2026-11-23 |
 | [GPT-6 Sol model page][openai-gpt-6-sol] | Earlier Sol identity and access | 2026-11-23 |
 | [Codex models][codex-models] | Models selectable in Codex | 2026-11-23 |
@@ -224,7 +225,6 @@ The latest review, on 23 November 2026, rechecked every tracked source, includin
 - watch for a formal Claude Haiku 4.5 deprecation notice. On 2026-11-23 it is still active on the deprecations page with no notice, its not-sooner-than date of 2026-10-15 has passed, and the models overview lists it among older models; Anthropic gives at least 60 days' notice before retiring a publicly released model, so it cannot retire before mid-January 2027. It has no route today.
 - GPT-6.1 Sol, a default route's model, and GPT-6 Astra have left OpenAI's catalogue and GPT-6 guide in favour of GPT-6.2 Sol and Astra, with no deprecation notice; watch for one, and for Codex dropping either model. On 2026-11-23 both model pages show no notice and Codex still lists both.
 - recheck the GPT-5.6 Sol route after its promotional pricing ends on 2026-11-30: on 2026-11-22 Codex's models page no longer mentions it, and its own model page shows it available.
-- the [GPT-6 Astra launch post][openai-astra], retired as a source on 2026-10-18, was fetchable again on 2026-11-23 and supports the Azure and Amazon Bedrock access claims, but not the 2026-09-03 release date; whether to re-add it, with its evidence in `model-radar.toml`, is open.
 - decide whether Kimi K3.1 Pro, an open-weight successor to Kimi K3 released on 2026-10-23 with weights from early November, joins the radar; its own repository and licence need fetching first, and Kimi K3 has no successor recorded.
 - BenchLM's record still reads method v5.8 and data of 2026-11-13, the Arena record data of 2026-11-12 and Terminal-Bench data of 2026-11-14; on 2026-11-23 they read BenchAlign v6.0 with data of 2026-11-21, 2026-11-20 and 2026-11-18, held as proposals.
 
