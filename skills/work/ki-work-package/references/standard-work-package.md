@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T05:07:52Z
+ki-revised: 2026-11-24T10:10:24Z
 ki-status: in force
 ---
 
@@ -131,18 +131,20 @@ An old package's open work comes into the store's owning package, the territory'
 
 ### 4.3 The shape
 
-A package is its entry file and its change documents. Where it holds more than one strand of work, each strand is a sub-package with the same shape; where it holds one, the change documents sit at the top.
+A package is its entry file and its change documents, each with at most one draft file beside it. Where it holds more than one strand of work, each strand is a sub-package with the same shape; where it holds one, the change documents sit at the top.
 
 ```text
 <package>/
   _index.md              entry: purpose, repositories, state for recovery, links to its changes and sub-packages
   NN-<slug>.change.md    the work: its agreed outline and Steps, open points in its Open section
+  NN-<slug>.<word>.md    optional: the draft of that change's result, deleted with it
   <sub-package>/         a strand of work, the same shape again
     _index.md
     NN-<slug>.change.md
 ```
 
 - **The package's `_index.md` is enough to recover.** It holds the state, what is in hand, what waits and who is working, and links to every change and sub-package, so an agent pointed at it knows where things stand.
+- **A change document may have one draft file beside it,** holding only the draft of its result, under [4.6](#draft-file).
 - **There are no other package files:** no `state.md`, `decisions.md`, `discussions.md` or `messages.md`, and no focus folders, run reports, briefs, findings or feedback files. The words focus and theme are not used for sub-packages: theme belongs to roadmaps, and focus suggests what is looked at first.
 - **No empty folders.**
 - **Temporary output** belongs in the run's temporary directory, `$TMPDIR/ki-agents/<run>/<name>/`, outside every repository, under the `ki-delegation` [run packet](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#44-run-packet); scripts, screenshots, `scratch/` folders and the output of tools never enter a package.
@@ -302,6 +304,7 @@ Standing an actor down and bringing it back are `ki-coordination`'s [holds](../.
 - **They are named by name, not number.** The number is only a change document's priority; its name is the slug after the number, in sentence case. Wherever one is mentioned, in a file or a reply, it is called by that name, with its number in brackets after it if at all, as "Case website (70)", never "change 70" or "70" alone, and a link to it takes the same text, as `[Case website (70)](70-case-website.change.md)`. Replies follow `ki-coordination`'s [Links and wording](../../ki-coordination/references/standard-reporting.md#43-links-and-wording).
 - **Decisions are applied to the change document they belong to.** When the owner decides, the decision is applied to the change document's outline or Steps and its question removed from the Open section, and then the work acts on it. The output, a skill, `AGENTS.md`, a note or the site, carries the result, and the change document is deleted once its work has landed. No change document or `_index.md` keeps a decision log, a `Decided` section or the owner's words; Git history is the only trace. Review and graduation are `ki-work design`'s.
 - **A change document that runs past about 1,500 words or holds a `Decided` section is due a tidy,** which applies its decided points to the outline or Steps, removes them, and deletes the document once its work has landed.
+- <a id="draft-file"></a>**A change document may have one draft file beside it,** `NN-<slug>.<word>.md`: its number and slug are the change document's own, and its word is one lower-case word other than `change` naming what it drafts, as `20-site-layout.layout.md` beside `20-site-layout.change.md`. It holds only the draft of the change's result, the text that will land in the output's own home, and nothing the change document carries: no outline, Steps, open points or decisions. It is not a change document, so the length and `Decided` check does not read it and the Changes section need not link it. It is deleted with its change document, and a draft with no change document beside it, or a second draft of one change document, falls outside the closed list.
 - **Open points live in a change document's Open section,** in full, and nothing already answered stays there. An answered question leaves Open in the same turn its answer is applied to the outline or Steps; an `_Answered <letter>_` marker left on it meanwhile is temporary and goes at the next tidy, and Questions read None by `agreed`. A question overtaken before it is answered is struck through as withdrawn, under `ki-authoring`'s [change format](../../../keystone/ki-authoring/references/standard-formats-change.md).
 
 [Back to contents](#contents)
@@ -336,8 +339,8 @@ Every writer is named, and every other party only reads. This standing contract 
 
 | Writer | Writes | Never |
 | --- | --- | --- |
-| The package's keyholder† | `_index.md`, its change documents and sub-packages, and tidy deletions | Another package |
-| A background run, design runs and `ki-work design` included | A change document in the package its brief names | Any other kind, its report included |
+| The package's keyholder† | `_index.md`, its change documents with their draft files, and sub-packages, and tidy deletions | Another package |
+| A background run, design runs and `ki-work design` included | A change document in the package its brief names, and that change document's draft file | Any other kind, its report included |
 
 † The keyholder is the actor seated at the package, as its `ki-workers` name it. A package with no seat, or only a vacant one, is held by its parent node's keyholder, a summit's by the guardian since it has no parent, under the rule that [work cascades down](#cascade-down), who writes in it as its keyholder until a seat is taken. Every other party writes nothing in a package: it asks the keyholder in a meeting or a conversation.
 
@@ -371,10 +374,11 @@ The pass each package receives to reach the shape, and to keep it:
 Each tidy ends with a check against the work-package rubric and a short report: what changed, what was deleted and why, and what needs the owner.
 
 - **When:** `ki-coordination` says when a coordinator tidies; regular and ad hoc work tidies at its own next update.
+- **A draft file goes with its change document,** in the same commit, and a draft left without one is deleted at the tidy.
 - **How:** in one commit by explicit path, `git rm` of each file named and nothing else, never a folder-wide delete, so that Git history holds every deleted file. The deletion is operational work and opens no record. A change whose outcome has no durable home yet is kept, not homed in haste. The rubric lists candidates; a listing is never permission to delete.
 - **Who:** each piece of work tidies only its own package. Territory work never tidies another package; it names each package the rubric flags in a message to that work, and the owning work tidies at its next send. The one exception is a finished work's package, which no coordinator reads once the work is Finished: territory work closes it itself under Close-out.
 - **Before a hold:** work going On hold, for either reason and whoever sets it, first tidies its package, so that it holds nothing already dealt with: each change document goes once it has landed. A hold expecting more is no exception: it still carries nothing already dealt with.
-- **Close-out:** finished work's package is deleted at the mark that closes it, in one commit, once its decisions' results have landed and its change documents are resolved, under [4.15](#415-removal-lifecycle). Where the package outlives the finishing thread, territory work closes it at an owner-authorised mark of its own whose report names the package, so that the package is deleted rather than flagged. This is administrative close-out only: it reopens nothing, accepts nothing and settles nothing on the owner's behalf. It first checks that the state is `finished`, every decision's result has landed and other durable information has reached its owners, no change document is left open, and no run of the work is running or queued. If all hold, it deletes the package in one commit by explicit path, `docs(work): <id> close-out`. If any check fails, it deletes nothing and puts one open point to the owner in a change document of its own.
+- **Close-out:** finished work's package is deleted at the mark that closes it, in one commit, once its decisions' results have landed and its change documents are resolved, their draft files with them, under [4.15](#415-removal-lifecycle). Where the package outlives the finishing thread, territory work closes it at an owner-authorised mark of its own whose report names the package, so that the package is deleted rather than flagged. This is administrative close-out only: it reopens nothing, accepts nothing and settles nothing on the owner's behalf. It first checks that the state is `finished`, every decision's result has landed and other durable information has reached its owners, no change document is left open, and no run of the work is running or queued. If all hold, it deletes the package in one commit by explicit path, `docs(work): <id> close-out`. If any check fails, it deletes nothing and puts one open point to the owner in a change document of its own.
 
 [Back to contents](#contents)
 

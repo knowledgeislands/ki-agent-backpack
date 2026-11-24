@@ -9,8 +9,8 @@ const FOLDER_1: RubricItem<FolderOutcomes> = {
   code: 'FOLDER-1',
   title: 'every package holds only its closed list',
   description:
-    'A package holds only its `_index.md`, its change documents `NN-<slug>.change.md`, and sub-packages of the same shape, each a folder named by a lower-case kebab slug holding its own `_index.md` and one or more change documents. Any other file or folder fails: `state.md`, `decisions.md`, `discussions.md`, `messages.md`, focus folders, run reports, briefs, findings, feedback, scripts, screenshots, scratch folders and tool output.',
-  sources: [`${SOURCE}#43-the-shape`, `${SOURCE}#47-sub-packages`],
+    "A package holds only its `_index.md`, its change documents `NN-<slug>.change.md`, at most one draft file `NN-<slug>.<word>.md` beside each change document, its number and slug that document's and its word one lower-case word, and sub-packages of the same shape, each a folder named by a lower-case kebab slug holding its own `_index.md` and one or more change documents. Any other file or folder fails: a draft file with no change document beside it, a second draft of one change document, `state.md`, `decisions.md`, `discussions.md`, `messages.md`, focus folders, run reports, briefs, findings, feedback, scripts, screenshots, scratch folders and tool output.",
+  sources: [`${SOURCE}#43-the-shape`, `${SOURCE}#46-change-documents`, `${SOURCE}#47-sub-packages`],
   mechanical: {
     level: 'FAIL',
     remediation: {
@@ -59,7 +59,7 @@ const FOLDER_8: RubricItem<FolderOutcomes> = {
 const FOLDER_9: RubricItem<FolderOutcomes> = {
   code: 'FOLDER-9',
   title: 'change documents are kept short and hold no Decided section',
-  description: `A change document carries the agreed change and its open points, not settled matter: it is flagged for a tidy when its prose runs past about ${CHANGE_WORD_LIMIT.toLocaleString('en-GB')} words, its front matter, fenced code blocks, HTML comments and link targets not counted, or when it holds a Decided section, a heading at any level that is or begins with Decided once any section number is set aside. Both are warned, never failed.`,
+  description: `A change document carries the agreed change and its open points, not settled matter: it is flagged for a tidy when its prose runs past about ${CHANGE_WORD_LIMIT.toLocaleString('en-GB')} words, its front matter, fenced code blocks, HTML comments and link targets not counted, or when it holds a Decided section, a heading at any level that is or begins with Decided once any section number is set aside. Both are warned, never failed. A change document's draft file is not a change document, and is not read.`,
   sources: [`${SOURCE}#46-change-documents`, TIDY],
   mechanical: {
     level: 'WARN',

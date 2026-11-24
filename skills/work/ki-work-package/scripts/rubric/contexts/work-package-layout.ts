@@ -1,7 +1,8 @@
 /**
  * Where work packages live and what each holds, read for the `ki-work-package` STRUCTURE and FOLDER families: the
  * packages under `work/<territory>/<work id>/`, each with its sub-packages; each package against its closed list,
- * `_index.md`, `NN-<slug>.change.md` change documents and sub-packages of the same shape; whether its Changes section
+ * `_index.md`, `NN-<slug>.change.md` change documents, each one's draft file `NN-<slug>.<word>.md` at most, and
+ * sub-packages of the same shape; whether its Changes section
  * links every change document and sub-package; change documents due a tidy, by length or a Decided section; finished
  * work still standing; and the earlier copies of packages left in the retired working areas. The listings name
  * candidates; they are never permission to delete.
@@ -17,6 +18,11 @@ export const ENTRY_FILE = '_index.md'
 const KEBAB = '[a-z0-9]+(?:-[a-z0-9]+)*'
 /** A change document, `NN-<slug>.change.md`, numbered in tens by group. */
 export const CHANGE_DOCUMENT = new RegExp(`^\\d{2}-${KEBAB}\\.change\\.md$`)
+/**
+ * A change document's draft file, `NN-<slug>.<word>.md`, its number and slug the change document's and its word one
+ * lower-case word other than `change`; the first group is the `NN-<slug>` stem it shares with its change document.
+ */
+export const DRAFT_FILE = new RegExp(`^(\\d{2}-${KEBAB})\\.(?!change\\.md$)[a-z]+\\.md$`)
 /** A territory folder's name, and a sub-package folder's slug. */
 export const SLUG = new RegExp(`^${KEBAB}$`)
 /** The retired working areas, in each of which a package left behind is an earlier copy, listed under the tidy. */
@@ -156,15 +162,36 @@ export const workLayout = (root: string): Layout | undefined => {
 }
 
 /**
- * Entries of a package folder outside its closed list: anything but `_index.md`, change documents and sub-packages,
- * each named relative to the package.
+ * The draft files a package folder admits: each `NN-<slug>.<word>.md` that sits beside its change document
+ * `NN-<slug>.change.md` and is that change document's only draft. A draft with no change document, and every draft of
+ * a change document that has more than one, is left out.
  */
-export const packageStray = (folder: string): readonly string[] =>
-  entries(folder).flatMap((entry) => {
+const admittedDrafts = (listed: readonly Dirent[]): ReadonlySet<string> => {
+  const changes = new Set(
+    listed.filter((entry) => plainFile(entry) && CHANGE_DOCUMENT.test(entry.name)).map((e) => e.name)
+  )
+  const drafts = new Map<string, string[]>()
+  for (const entry of listed) {
+    const stem = plainFile(entry) ? DRAFT_FILE.exec(entry.name)?.[1] : undefined
+    if (stem && changes.has(`${stem}.change.md`)) drafts.set(stem, [...(drafts.get(stem) ?? []), entry.name])
+  }
+  return new Set([...drafts.values()].flatMap((names) => (names.length === 1 ? names : [])))
+}
+
+/**
+ * Entries of a package folder outside its closed list: anything but `_index.md`, change documents, each change
+ * document's one draft file beside it, and sub-packages, each named relative to the package.
+ */
+export const packageStray = (folder: string): readonly string[] => {
+  const listed = entries(folder)
+  const drafts = admittedDrafts(listed)
+  return listed.flatMap((entry) => {
     if (plainFile(entry) && (entry.name === ENTRY_FILE || CHANGE_DOCUMENT.test(entry.name))) return []
+    if (drafts.has(entry.name)) return []
     if (isSubPackage(folder, entry)) return []
     return [entry.isDirectory() && !entry.isSymbolicLink() ? `${entry.name}/` : entry.name]
   })
+}
 
 /** The change documents directly in a package folder. */
 export const changeDocuments = (folder: string): readonly string[] =>
@@ -355,7 +382,7 @@ export const folderOutcomes = (root: string, layout = workLayout(root)): FolderO
     if (stray.length > 0)
       closed.push({
         status: 'VIOLATION',
-        message: `a package holds only \`${ENTRY_FILE}\`, its change documents \`NN-<slug>.change.md\` and sub-packages of the same shape; outside the closed list: ${stray.join(', ')}`,
+        message: `a package holds only \`${ENTRY_FILE}\`, its change documents \`NN-<slug>.change.md\`, at most one draft file \`NN-<slug>.<word>.md\` beside each, and sub-packages of the same shape; outside the closed list: ${stray.join(', ')}`,
         subject: folder.subject
       })
     if (folder.parent && changeDocuments(folder.path).length === 0)

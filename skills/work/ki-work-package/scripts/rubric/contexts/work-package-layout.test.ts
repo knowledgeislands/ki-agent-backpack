@@ -104,6 +104,46 @@ describe('FOLDER-1 closed list', () => {
     expect(statuses(folderOutcomes(root).closed)).toEqual(['VIOLATION'])
   })
 
+  test('one draft file beside its change document passes, in a sub-package too', () => {
+    const root = fixture()
+    const folder = pkg(root, ['10-pilot.change.md', 'viewer/'])
+    write(root, join(PACKAGE, '10-pilot.draft.md'), '# Pilot draft\n')
+    write(root, join(PACKAGE, 'viewer', '_index.md'), '# ki.pilot+viewer\n\n## Changes\n\n- [x](20-view.change.md)\n')
+    write(root, join(PACKAGE, 'viewer', '20-view.change.md'), '# View\n')
+    write(root, join(PACKAGE, 'viewer', '20-view.layout.md'), '# View layout\n')
+    expect(packageStray(folder)).toEqual([])
+    expect(packageStray(join(folder, 'viewer'))).toEqual([])
+    expect(statuses(folderOutcomes(root).closed)).toEqual(['PASS'])
+  })
+
+  test('a draft file without its change document fails', () => {
+    const root = fixture()
+    const folder = pkg(root)
+    for (const name of ['20-other.draft.md', '10-pilots.draft.md', '11-pilot.draft.md'])
+      write(root, join(PACKAGE, name), '# x\n')
+    expect(packageStray(folder)).toEqual(['10-pilots.draft.md', '11-pilot.draft.md', '20-other.draft.md'])
+    const outcomes = folderOutcomes(root).closed
+    expect(statuses(outcomes)).toEqual(['VIOLATION'])
+    expect(outcomes[0]?.message).toContain('at most one draft file `NN-<slug>.<word>.md` beside each')
+  })
+
+  test('a second draft file beside one change document fails, and both are named', () => {
+    const root = fixture()
+    const folder = pkg(root)
+    write(root, join(PACKAGE, '10-pilot.draft.md'), '# x\n')
+    write(root, join(PACKAGE, '10-pilot.layout.md'), '# x\n')
+    expect(packageStray(folder)).toEqual(['10-pilot.draft.md', '10-pilot.layout.md'])
+    expect(statuses(folderOutcomes(root).closed)).toEqual(['VIOLATION'])
+  })
+
+  test('a draft name other than one lower-case word fails', () => {
+    const root = fixture()
+    const folder = pkg(root)
+    const names = ['10-pilot.Draft.md', '10-pilot.draft.v2.md', '10-pilot.draft1.md', '10-pilot.site-draft.md']
+    for (const name of names) write(root, join(PACKAGE, name), '# x\n')
+    expect([...packageStray(folder)].sort()).toEqual(names.sort())
+  })
+
   test('a sub-package without a change document fails', () => {
     const root = fixture()
     pkg(root, ['10-pilot.change.md', 'viewer/'])
@@ -188,6 +228,13 @@ describe('FOLDER-9 change documents due a tidy', () => {
     expect(outcomes[0]?.message).toContain('runs to 1,501 words, past about 1,500')
     expect(outcomes[0]?.message).toContain('apply each decided point to the outline or Steps and remove it')
     expect(outcomes[0]?.message).toContain('delete the document once its work has landed')
+  })
+
+  test('a draft file past the limit is not warned', () => {
+    const root = fixture()
+    pkg(root)
+    write(root, join(PACKAGE, '10-pilot.draft.md'), `# Pilot draft\n\n${words(CHANGE_WORD_LIMIT * 2)}\n\n## Decided\n`)
+    expect(statuses(folderOutcomes(root).tidy)).toEqual(['PASS'])
   })
 
   test('front matter, fenced code, comments, link targets and table rules are not counted', () => {
