@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T05:49:04Z
+ki-revised: 2026-11-24T03:06:00Z
 ki-status: in force
 ---
 
@@ -123,7 +123,7 @@ A headless pass is one bounded coordinator turn without a live session: a machin
   - read the package, its `_index.md`, the change documents in hand, every change document's Open section and every open finding;
   - take what has reached the work along the tree under [Work between packages](standard-messages.md#messages-between-work);
   - receive each finished run, copying its queries into the Open section of the change document each belongs to, recording its disposition and tidying under [Pruning the package](standard-mark.md#43-pruning-the-package);
-  - start, on its agent host's own subagents, only the units the plan in the change document's Steps and the logged decisions already authorise;
+  - start, on its agent host's own subagents, only the units the plan in the change document's Steps and the applied decisions already authorise;
   - record each move in the change document it acts under and in `_index.md`'s state, commit the package by explicit path and sync under [Committing the package](standard-coordination.md#481-committing-the-package).
 
   It asks no question and waits on no answer: whatever needs the owner becomes a query in the Open section of the change document it belongs to, and nothing is done on it in either direction. It never opens, releases or finishes work, accepts or prunes, adopts or promotes, answers its own queries, widens a grant, launches a unit the plan does not name, edits another package, or runs a command that may wait on a permission prompt.

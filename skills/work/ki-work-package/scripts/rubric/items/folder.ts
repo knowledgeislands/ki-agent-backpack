@@ -16,7 +16,7 @@ const FOLDER_1: RubricItem<FolderOutcomes> = {
     remediation: {
       class: 'diagnostic',
       guidance:
-        "Under the tidy, fold the state into `_index.md`, move live decisions and open points into the change document they belong to, and delete what has a durable home or is temporary output, which belongs in the run's temporary directory. Fix only your own work's package; tell other work by a message."
+        "Under the tidy, fold the state into `_index.md`, apply live decisions to the change document they belong to and move open points into its Open section, and delete what has a durable home or is temporary output, which belongs in the run's temporary directory. Fix only your own work's package; tell other work by a message."
     },
     audit: { phase: 'INSPECT', run: ({ closed }) => closed }
   }

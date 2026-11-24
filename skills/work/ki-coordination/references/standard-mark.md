@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:10:23Z
+ki-revised: 2026-11-24T03:06:00Z
 ki-status: in force
 ---
 
@@ -103,7 +103,7 @@ Sources: HELD-VS-RECORD and OLD-SHAPE-HOMES in [the decision register](sources.m
 At every send and every mark, prune your own package, so `work/<territory>/<id>/` shows only what is still open and Git holds the rest. The `ki-work-package` [tidy](../../ki-work-package/references/standard-work-package.md#410-the-tidy) rules, over its [closed list](../../ki-work-package/references/standard-work-package.md#43-the-shape), set what goes, what stays, how and who; `_index.md`, the live change documents and the sub-packages always stay. This standard sets the timing and the judgement.
 
 - **Judgement:** whether a report's outcome, or every point of a feedback package, has a durable home in a record, a change document or a commit. A report and its brief live in the run's packet, `$TMPDIR/ki-agents/<run>/`, never in the package, under the `ki-delegation` [run packet](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#44-run-packet). A packet is eligible for removal once its report's outcome is homed and every query has been copied in full into the change documents' Open sections; the queries need not be answered yet. Keep a packet whose outcome has no durable home, without homing it in haste. A later [Summary](standard-report-forms.md#417-the-summary) reads a removed report's outcome where it was homed.
-- **Change documents:** at each mark, review the change documents in the package and its sub-packages, a `.design.md` design note among them. Delete each one that has graduated under the `ki-work design` [artefact home](../../../keystone/ki-work/references/standard-work-design.md#41-artefact-home), or that the package records as superseded; keep drafts, documents under review and any in doubt. The mark prompts a review, never an automatic deletion. Beyond graduation, a change document goes only when every outcome it carried is homed, the owner's words and any grant included, and every link into it has been rewritten first. Before it graduates or goes, search for links into it across the store's other documents and the other repositories, and in the Wayfinder's view data as well as its guides, since a view can hold a path no guide shows (WAYS-APPLY). A diagram's source and its renders go together.
+- **Change documents:** at each mark, review the change documents in the package and its sub-packages, a `.design.md` design note among them. Delete each one that has graduated under the `ki-work design` [artefact home](../../../keystone/ki-work/references/standard-work-design.md#41-artefact-home), or that the package records as superseded; keep drafts, documents under review and any in doubt. The mark prompts a review, never an automatic deletion. Beyond graduation, a change document goes once its work has landed and its outputs carry every result it held, any standing grant moved to the work it governs, and every link into it has been rewritten first. Before it graduates or goes, search for links into it across the store's other documents and the other repositories, and in the Wayfinder's view data as well as its guides, since a view can hold a path no guide shows (WAYS-APPLY). A diagram's source and its renders go together.
 - **Temporary output:** remove, by literal path, each of your own run packets, `$TMPDIR/ki-agents/<run>/`, once its outcomes are homed or its output is superfluous.
 - **Record threshold:** deletion is operational work under the [record threshold](standard-decisions.md#412-decision-classes) and opens no record.
 - **Flagging:** the `ki-work-package` rubric's [FOLDER](../../ki-work-package/references/rubric.md) items fail a package holding a file outside the closed list. They fail a package holding a report, a brief or any other file outside the closed list, and name every finished work's package as due for close-out.
@@ -140,8 +140,8 @@ Sources: ORCA-WORKER-CLEANUP, ORCA-CLOSE-OUT, ACCEPT-BY-CRITERIA, WORKER-LEFTOVE
 
 Project work moves to Finished once only, on the owner's `finish`, after the close-out:
 
-1. every logged decision is homed under the [decisions life cycle](standard-decisions.md#413-decisions-life-cycle), none left homeless or held;
-2. its change documents, in the package and its sub-packages, are resolved: every one graduated and deleted;
+1. every decision's result has landed under the [decisions life cycle](standard-decisions.md#413-decisions-life-cycle), none left homeless or held;
+2. its change documents, in the package and its sub-packages, are resolved: every one landed and deleted;
 3. `_index.md`'s state is set to `ki-state: finished`, its durable information routed, and the commit `docs(work): <id> finish` made;
 4. the package is deleted at the mark that closes it, under the `ki-work-package` [close-out](../../ki-work-package/references/standard-work-package.md#410-the-tidy), Git keeping it. Where the package outlives the finishing session, the State of play closes it at an owner-authorised mark of its own whose report names the package, rather than by steer into the finished work's packaged`, which no coordinator reads.
 

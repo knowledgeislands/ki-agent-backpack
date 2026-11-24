@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T17:59:30Z
+ki-revised: 2026-11-24T03:06:00Z
 ki-status: in force
 ---
 
@@ -658,7 +658,7 @@ Finished, closing the Stop at [Finishing Project work](standard-mark.md#45-finis
 ```markdown
 ### 🏁 Finished · Ways of working closed at 18:00 BST
 
-- 🏁 14 work items accepted, decisions homed, package pruned
+- 🏁 14 work items accepted, decisions landed, package pruned
 
 ⚒️ 🔑 ki.ways-of-working
 ```

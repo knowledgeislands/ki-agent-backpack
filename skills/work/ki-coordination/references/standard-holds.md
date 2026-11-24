@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-21T23:03:04Z
+ki-revised: 2026-11-24T03:06:00Z
 ki-status: in force
 ---
 
@@ -83,7 +83,7 @@ On hold is the Work Process note's state, with its two reasons: paused, and more
 - **Committing:** in every repository the coordinator or its agents touched, commit your own work by explicit path under the repository's gate and `ki-git`. Pull fast-forward only into a clean checkout, under [Committing the package](standard-coordination.md#481-committing-the-package), and push under [Pushing beneath other sessions](standard-sync.md#42-pushing-beneath-other-sessions): stacked commits go with your own and stay out of the report. Never use `--no-verify` or force-push. Name another session's uncommitted file in `## Left over` and leave it alone.
 - **Tidy first:** before any hold, paused, Snoozing or idle, the package keeps nothing already dealt with, under the `ki-work-package` [tidy before a hold](../../ki-work-package/references/standard-work-package.md#410-the-tidy). The rubric fails a held package that still does.
 - **Parking:**
-  - strike the mark under [The mark](standard-mark.md#41-the-mark), check the change documents' decisions under the [decisions life cycle](standard-decisions.md#413-decisions-life-cycle) and prune the package;
+  - strike the mark under [The mark](standard-mark.md#41-the-mark), delete each change document whose work has landed under the [decisions life cycle](standard-decisions.md#413-decisions-life-cycle) and prune the package;
   - park every open query where it stands in its change document's Open section, marking it parked, with its tag, one line of context and its recommended option;
   - carry every held item, parked item and waiting-on item into its home in the package, with its release condition where it has one, so nothing outstanding is left only in the session;
   - write `_index.md`'s Now and Held for when the work is back in use;

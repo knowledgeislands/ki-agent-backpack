@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:10:23Z
+ki-revised: 2026-11-24T03:06:00Z
 ki-status: in force
 ---
 
@@ -117,7 +117,7 @@ The message queue has retired (MSG-HOME, MSG-RETIRE): no package keeps a `messag
 - **A proposed transfer** of work goes at the bottom of the Summary's Queries, naming the receiving package and asking permission before sending, unless the owner has already authorised that transfer.
 - **Method changes** reach work at its next bootstrap, re-anchoring or update of its state, under [Refreshing this guidance](standard-coordination.md#482-refreshing-this-guidance): it compares `ki-method_read` with the backpack's latest revision and rereads what changed. No line is sent.
 - **Release notices:** after an authorised release, the releasing coordinator sends each affected package a notice along the tree, naming the released version, the relevant change, compatibility, adoption steps and any reply needed. The receiver owns adoption and any genuinely deferred record. The notice is an obligation only: it grants no release authority, consumer selection, rollout execution or foreign-record creation.
-- **Owner feedback on a document** reaches the work that produced it along the tree: its holder records each point in the change document the point reaches, quoting the owner word for word and naming the owner as speaker, under the `ki-work-package` [Messages](../../ki-work-package/references/standard-work-package.md#48-messages); a package holds no feedback files.
+- **Owner feedback on a document** reaches the work that produced it along the tree: its holder records each point in the change document the point reaches, as what is to change rather than the owner's words, under the `ki-work-package` [Messages](../../ki-work-package/references/standard-work-package.md#48-messages); a package holds no feedback files.
 - **Urgent work:** a unit is urgent only when it carries a stated deadline or rolls out a process change other work must follow; not everything is an escalation. Urgent work never waits in a package:
   1. The sender tells the owner at once, and reaches the owning work's holder by Orca mail, or, where it is outside Orca, through its agent host's messaging or a meeting they both sit in.
   2. Only where no one is live, nor reachable by Orca mail, which wakes an idle session in Orca, and the unit lies within the sender's own authority, the sender does it through a detached run and tells the owner, naming the run and its commits. Outside the sender's authority it goes to the owner as a blocking query.

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:10:23Z
+ki-revised: 2026-11-24T03:06:00Z
 ki-status: in force
 ---
 
@@ -106,8 +106,8 @@ A coordinator may hold two capabilities. Each is switched on only by the owner's
 
 - keep `_index.md`'s state fields, Now and Held true;
 - home received reports' outcomes and remove their run packets, and tidy the package under the `ki-work-package` [tidy rules](../../ki-work-package/references/standard-work-package.md#410-the-tidy);
-- strike a decision, or cut it to a one-line pointer, once a durable home carries it, under the [decisions life cycle](standard-decisions.md#413-decisions-life-cycle);
-- clear answered questions from the change documents' Open sections, once each answer is recorded where it belongs;
+- delete a change document once its work has landed and its outputs carry every result, under the [decisions life cycle](standard-decisions.md#413-decisions-life-cycle);
+- clear answered questions from the change documents' Open sections, once each answer is applied to the outline or Steps;
 - raise what it cannot settle as a query.
 
 It mentions a tidy only when something needs the owner. It never edits another package; a problem there goes up the tree as feedback.

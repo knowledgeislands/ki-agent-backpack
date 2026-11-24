@@ -652,6 +652,8 @@
     "# [<actual work label>](<actual local work page>)",
     "# [<actual work label>](<actual local work page>) › <run name>",
     "› State of play (<name>)",
-    "🏠 🔑 personal.reg.rig-sol"
+    "🏠 🔑 personal.reg.rig-sol",
+    "cat",
+    "grep"
   ]
 }

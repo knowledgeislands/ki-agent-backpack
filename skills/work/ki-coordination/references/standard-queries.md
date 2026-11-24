@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T00:54:54Z
+ki-revised: 2026-11-24T03:06:00Z
 ki-status: in force
 ---
 
@@ -134,9 +134,9 @@ After a Summary that lists open queries, or on the owner's request, the coordina
    - **Descriptions:** one or two sentences for each real option: what it changes, then `Why:` and its justification, why someone would choose it, so every option carries its own case and not only the recommended one, whose label also carries its confidence (OPTION-WHY).
    - **Own words:** the card's free-text box takes the owner's own words, so no option offers them.
    - **Pairs:** two related questions may share one card, each with a short header and its own two discussion options; otherwise one question per card.
-3. **After the answer.** Log a real choice in the change document it belongs to, then go back to step 1, whose read-back, saying what was chosen and what it changes, opens the next query's first reply. A discussion option logs nothing; [the discussion options](#the-discussion-options) say what follows.
+3. **After the answer.** Apply a real choice to the change document it belongs to, under [Applying decisions](standard-decisions.md#411-applying-decisions), then go back to step 1, whose read-back, saying what was chosen and what it changes, opens the next query's first reply. A discussion option changes nothing; [the discussion options](#the-discussion-options) say what follows.
 4. **Why.** Orca folds everything in a reply under "Worked for" except its last text, and does not show text written after a card's answer in the same reply. So the context is the first reply's last text, the card stands alone in its own reply, and the read-back, plain chat after the answer, breaks the run of tool calls so the next context renders on its own instead of folding away with them. Orca's card also drops line breaks in its title, as reported to Orca, while chat text renders in full above the card.
-5. **At the end of the set.** Take again the queries deferred to the end, in the order they were deferred, each opening with a short discussion in plain chat before its first reply; each may then be left open for another day, as [the discussion options](#the-discussion-options) say. When the last query is answered and logged, the next reply reads it back, with what it changes, takes a mark and gives the Summary, for a clean baseline and a fresh view.
+5. **At the end of the set.** Take again the queries deferred to the end, in the order they were deferred, each opening with a short discussion in plain chat before its first reply; each may then be left open for another day, as [the discussion options](#the-discussion-options) say. When the last query is answered and applied, the next reply reads it back, with what it changes, takes a mark and gives the Summary, for a clean baseline and a fresh view.
 
 <a id="where-things-stand"></a>**Where things stand** is a few short bullets, enough to decide without scrolling back, each opening with a short bold lead-in naming its part, as Kris praised under QUERY-LEAD-INS on 19 November 2026: "The way that you broke down the queries … as in where things stand, why this comes to you, what the review found, a second review tonight, what it unblocks, those kinds of things, are really good. The options are really good as well."
 
@@ -170,9 +170,9 @@ Query 4 of 10 · SPEC-AGREE: agree the specification cards
 <a id="the-discussion-options"></a>**The discussion options** close every query's options, on a card and in the plain fallback alike, after the real choices, so the owner can say "not yet, let's talk" without typing into the free-text box:
 
 - **Talk it through now:** the pass pauses on this query, a short discussion of it follows in plain chat, then the query is asked again, its options revised where the talk changed them, and the pass carries on.
-- **Come back at the end:** the query moves to the end of this set and is taken again there, before the closing mark and Summary; it is not parked beyond the set. Taken again at the end, it adds no new card button: its options offer one plain choice beside the real ones, to leave the question open for another day, kept in its change document, and that choice logs nothing (LATER-BUTTON).
+- **Come back at the end:** the query moves to the end of this set and is taken again there, before the closing mark and Summary; it is not parked beyond the set. Taken again at the end, it adds no new card button: its options offer one plain choice beside the real ones, to leave the question open for another day, kept in its change document, and that choice changes nothing (LATER-BUTTON).
 
-A quick first run through the set thus decides what it can. While a query is talked through or waits for the end, work on queries already decided may launch in the background, each decision logged in its change document first, as [the decisions practice](standard-coordination.md#44-coordinating-practices) allows, so the decided work starts while the rest are discussed.
+A quick first run through the set thus decides what it can. While a query is talked through or waits for the end, work on queries already decided may launch in the background, each decision applied to its change document first, as [the decisions practice](standard-coordination.md#44-coordinating-practices) allows, so the decided work starts while the rest are discussed.
 
 <a id="plain-fallback"></a>**Plain fallback.** Where the runtime has no question card, or no way for a timer to wake the coordinator, ask in plain chat Markdown alone: one reply with the read-back of the previous answer and what it changes, the context and **The options**, numbered, each with a bold name, what it changes and a one-line _Why:_ giving its justification, the recommended one first and also carrying _(recommended, <confidence> confidence)_, then the two discussion options, closing with "Reply with a number, or your own words.". Then stop and wait. An unattended window asks in plain text, never through a card, because a card blocks the session.
 

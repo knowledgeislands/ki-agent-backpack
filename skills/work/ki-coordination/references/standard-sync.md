@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-18T05:49:04Z
+ki-revised: 2026-11-24T03:06:00Z
 ki-status: in force
 ---
 
@@ -69,7 +69,7 @@ Work starts from change documents the owner and the session work through togethe
 - **Change documents first:** all work, attended or unattended, is covered by a change document the owner and the session have worked through together, deciding each point there; the owner then gives a remit to act on what it settles. Small, obvious work that needs no change of its own, such as levelling a checkout or fixing a broken link, is just got on with and reported in the next record.
 - **Land:** within that remit, work that is high-confidence, or reversible through more work, lands on `main` without waiting for the owner, committed by explicit path and pushed under [Pushing beneath other sessions](#42-pushing-beneath-other-sessions). It is not held back as a query; the owner reviews it afterwards.
 - **Pull requests:** only when something major is at stake, such as an experiment or a risky change. That work goes on a branch with a pull request, within the session's authority, and waits for the owner. Routine work opens none.
-- **Destructive work:** anything more work cannot undo needs real care and the owner's word first, logged in the change document it belongs to. Force-pushing and rewriting history stay banned.
+- **Destructive work:** anything more work cannot undo needs real care and the owner's word first, applied to the change document it belongs to. Force-pushing and rewriting history stay banned.
 - **Record:** the session that did the work writes its record as it lands, one for each unattended run or batch that lands real work and none for a session spent deciding, in the Cairn store's `record/`. Its shape is `ki-authoring`'s [record format](../../../keystone/ki-authoring/references/standard-formats-record.md), which this standard does not restate. A record holds nothing for the owner to do, and its links go only to what has landed. For a background run, the `ki-delegation` [landing rule](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#462-landing-then-review) says who writes it.
 - **Review:** the owner reviews a whole record in the Wayfinder, which is the review, with no walk through the records at the start of a session, marking its `review:` field `approved` or naming what to undo, which is then done as more work. An approved record stays a week, then the Cairn summit's guardian removes it at the next review; any other removal is the owner's choice.
 

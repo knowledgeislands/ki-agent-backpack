@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T20:59:09Z
+ki-revised: 2026-11-24T03:06:00Z
 ki-status: in force
 ---
 
@@ -136,7 +136,7 @@ A package is its entry file and its change documents. Where it holds more than o
 ```text
 <package>/
   _index.md              entry: purpose, repositories, state for recovery, links to its changes and sub-packages
-  NN-<slug>.change.md    the work: decisions taken inside it, discussion in its Open section
+  NN-<slug>.change.md    the work: its agreed outline and Steps, open points in its Open section
   <sub-package>/         a strand of work, the same shape again
     _index.md
     NN-<slug>.change.md
@@ -239,7 +239,7 @@ The defaults follow [CASCADE-DOWN](#cascade-down): a matter goes up the path the
 
 - **Wider reach goes up, never sideways.** A matter that reaches beyond the node and the nodes beneath it, such as a skill, a standard, the work model or anything crossing packages, goes to the parent's keyholder, as feedback by Orca mail between sessions in Orca, otherwise through the agent host's messaging or a meeting, under `ki-coordination`'s [Steer and feedback](../../ki-coordination/references/standard-reporting.md#416-steer-and-feedback). Where the parent has no one seated, its keyholder is the one above it, under [Writers](#49-writers). Each node settles what reaches only its own subtree and passes the rest up, node by node; a summit, which has no parent, sends it to the guardian by name, the keyholder of `cairn.summit`, which stands apart from the trees (ROOT-APART). A skill, a standard and the work model reach every territory, so they reach the guardian. A node never takes such a matter straight to a guild, its lead skill or another leader, even one that is running.
 - **The guardian sends it back down.** It delegates the matter down the tree to the node that owns it: for a skill or a standard, the guild that `ki-keystone`'s [guild map](../../../keystone/ki-keystone/SKILL.md#the-guild-map) names, through that guild's package; otherwise the leader whose Scope covers it. Where that node has no one seated, the nearest seated node above it owns the work.
-- **The owner's word given at a node.** When the owner gives a leader a decision directly that changes a standard, a skill or the work model, the leader records it in the owner's words in a change document of its own package and sends it up, as above, to land. It does not change the skill or the standard itself.
+- **The owner's word given at a node.** When the owner gives a leader a decision directly that changes a standard, a skill or the work model, the leader applies it to a change document of its own package and sends it up, as above, to land. It does not change the skill or the standard itself.
 - **A long-standing request** left with the owner is flagged up a level at a time, under `ki-coordination`'s [Long-standing requests](../../ki-coordination/references/standard-territory.md#43-long-standing-requests).
 - **The work stays down.** Only the matter goes up. The node keeps doing what its remit covers, and a signpost grants no authority to the node it points at.
 
@@ -300,8 +300,8 @@ Standing an actor down and bringing it back are `ki-coordination`'s [holds](../.
 - **Change documents carry the work.** Each is `NN-<slug>.change.md`, under `ki-authoring`'s [change format](../../../keystone/ki-authoring/references/standard-formats-change.md), its slug lower-case kebab case.
 - **They are numbered** in tens by group, in the order they are taken, with gaps for new ones.
 - **They are named by name, not number.** The number is only a change document's priority; its name is the slug after the number, in sentence case. Wherever one is mentioned, in a file or a reply, it is called by that name, with its number in brackets after it if at all, as "Case website (70)", never "change 70" or "70" alone, and a link to it takes the same text, as `[Case website (70)](70-case-website.change.md)`. Replies follow `ki-coordination`'s [Links and wording](../../ki-coordination/references/standard-reporting.md#43-links-and-wording).
-- **Decisions live in the change document they belong to.** When the change closes, each goes to its durable home, a standard, `AGENTS.md` or a record, and the change is deleted. Review and graduation are `ki-work design`'s.
-- **Open points live in a change document's Open section,** in full, and nothing already answered stays there. An answered question leaves Open in the same turn its answer is logged; an `_Answered <letter>_` marker left on it meanwhile is temporary and goes at the next tidy, and Questions read None by `agreed` (ANSWERED-MARKER a, Kris, 22 November 2026: "Leaves Open now"). A question overtaken before it is answered is struck through as withdrawn, under `ki-authoring`'s [change format](../../../keystone/ki-authoring/references/standard-formats-change.md).
+- **Decisions are applied to the change document they belong to** (Kris, 24 November 2026, fam.summit change 95). When the owner decides, the decision is applied to the change document's outline or Steps and its question removed from the Open section, and then the work acts on it. The output, a skill, `AGENTS.md`, a note or the site, carries the result, and the change document is deleted once its work has landed. No change document or `_index.md` keeps a decision log, a `Decided` section or the owner's words; Git history is the only trace. Review and graduation are `ki-work design`'s.
+- **Open points live in a change document's Open section,** in full, and nothing already answered stays there. An answered question leaves Open in the same turn its answer is applied to the outline or Steps; an `_Answered <letter>_` marker left on it meanwhile is temporary and goes at the next tidy, and Questions read None by `agreed` (ANSWERED-MARKER a, Kris, 22 November 2026: "Leaves Open now"). A question overtaken before it is answered is struck through as withdrawn, under `ki-authoring`'s [change format](../../../keystone/ki-authoring/references/standard-formats-change.md).
 
 [Back to contents](#contents)
 
@@ -320,7 +320,7 @@ A sub-package is one strand of a package's work: a package in miniature, with it
 
 The message queue has retired (MSG-RETIRE): a package keeps no queue of its own and the Cairn store keeps no `messages/`. Work for another package goes along the tree as steer or feedback, and the receiving package's holder, or the root's guardian while none holds it, records it in its change documents, Now or Held, under `ki-coordination`'s [Work between packages](../../ki-coordination/references/standard-messages.md#messages-between-work). Sessions talk by Orca mail, under `ki-coordination`'s [messages standard](../../ki-coordination/references/standard-messages.md#42-orca-mail-and-the-cairn-beacon), in a meeting, under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md), or, for a session outside Orca, through its agent host's own messaging (WORK-FIXES); that conversation carries no authority, and nothing in it binds a package until its holder records it.
 
-Owner feedback on a document the work produced reaches the package the same way, as Kris set under FEEDBACK-AS-MESSAGE on 31 October 2026: "we can probably drop the feedback idea. We just send a message with it instead". A point carrying the owner's words quotes them word for word, naming the owner as speaker, in the change document the point reaches.
+Owner feedback on a document the work produced reaches the package the same way, as Kris set under FEEDBACK-AS-MESSAGE on 31 October 2026: "we can probably drop the feedback idea. We just send a message with it instead". Each point is recorded in the change document it reaches as what is to change, not in the owner's words.
 
 [Back to contents](#contents)
 
@@ -356,7 +356,7 @@ A run brief names its reporting package separately from the product repository; 
 
 The pass each package receives to reach the shape, and to keep it:
 
-1. **The shape.** The entry file is `_index.md`; the state folds into it, and live decisions and open points move into the change document they belong to.
+1. **The shape.** The entry file is `_index.md`; the state folds into it, live decisions are applied to the change document they belong to, and open points move into its Open section.
 2. **Consolidate.** Keep only what is current. Delete anything whose outcome has a lasting home: a commit, a record, a standard or `AGENTS.md`. Git keeps the history.
 3. **Sub-packages.** Each strand of work becomes a sub-package with its own `_index.md` and change documents, or its changes come up to the top where the package has one strand. Retire one that has ended; merge ones that overlap.
 4. **No empty folders.**
@@ -373,7 +373,7 @@ Each tidy ends with a check against the work-package rubric and a short report: 
 - **How:** in one commit by explicit path, `git rm` of each file named and nothing else, never a folder-wide delete, so that Git history holds every deleted file. The deletion is operational work and opens no record. A change whose outcome has no durable home yet is kept, not homed in haste. The rubric lists candidates; a listing is never permission to delete.
 - **Who:** each piece of work tidies only its own package. Territory work never tidies another package; it names each package the rubric flags in a message to that work, and the owning work tidies at its next send. The one exception is a finished work's package, which no coordinator reads once the work is Finished: territory work closes it itself under Close-out.
 - **Before a hold:** work going On hold, for either reason and whoever sets it, first tidies its package, so that it holds nothing already dealt with: each change document goes once it has landed. Kris set it under HOLD-TIDY at about 18:10 GMT on 4 November 2026: "you can't tell me that you're on hold expecting more, yet then have additional things in there that have been dealt with."
-- **Close-out:** finished work's package is deleted at the mark that closes it, in one commit, once its decisions are homed and its change documents resolved, under [4.15](#415-removal-lifecycle). Where the package outlives the finishing thread, territory work closes it at an owner-authorised mark of its own whose report names the package, so that the package is deleted rather than flagged, as Kris asked under FINISHED-TIDY-KICK on 30 October 2026, "Sort out the method so that the kick actually gets the folder deleted", and adopted on 1 November 2026. This is administrative close-out only: it reopens nothing, accepts nothing and settles nothing on the owner's behalf. It first checks that the state is `finished`, every decision is homed and other durable information has reached its owners, no change document is left open, and no run of the work is running or queued. If all hold, it deletes the package in one commit by explicit path, `docs(work): <id> close-out`. If any check fails, it deletes nothing and puts one open point to the owner in a change document of its own.
+- **Close-out:** finished work's package is deleted at the mark that closes it, in one commit, once its decisions' results have landed and its change documents are resolved, under [4.15](#415-removal-lifecycle). Where the package outlives the finishing thread, territory work closes it at an owner-authorised mark of its own whose report names the package, so that the package is deleted rather than flagged, as Kris asked under FINISHED-TIDY-KICK on 30 October 2026, "Sort out the method so that the kick actually gets the folder deleted", and adopted on 1 November 2026. This is administrative close-out only: it reopens nothing, accepts nothing and settles nothing on the owner's behalf. It first checks that the state is `finished`, every decision's result has landed and other durable information has reached its owners, no change document is left open, and no run of the work is running or queued. If all hold, it deletes the package in one commit by explicit path, `docs(work): <id> close-out`. If any check fails, it deletes nothing and puts one open point to the owner in a change document of its own.
 
 [Back to contents](#contents)
 

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-21T19:23:40Z
+ki-revised: 2026-11-24T03:06:00Z
 ki-status: in force
 ---
 
@@ -203,7 +203,7 @@ Bootstrap as <id> regular work under ki-coordination.
 Session: <thread line>. Your first act is to rename this session to it with your agent host's rename, such as /rename <thread line>.
 Role: coordinator only, explicitly selected for this package. Delegate substantive units to detached background agents; stay responsive; owner messages steer and never pre-empt work in flight.
 Label: <actual work label> (<id>). Work package: work/<territory>/<id>/ in the Cairn store.
-Authority: <owner opening instruction or logged decision>. Scope: <approved episode>; end condition: <bounded end condition, or explicitly approved continuity>.
+Authority: <owner opening instruction or applied decision>. Scope: <approved episode>; end condition: <bounded end condition, or explicitly approved continuity>.
 Background agents: run substantive work on your agent host's own subagents, never another session; stay responsive to messages and to me while they run; let them do most of the work, and check what each returns before you post it.
 Next step: follow Bootstrap in ki-coordination, checking capability or the specific owner-approved exception, then give the full re-bootstrap report.
 ```

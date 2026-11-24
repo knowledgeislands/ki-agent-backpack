@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T20:17:12Z
+ki-revised: 2026-11-24T03:06:00Z
 ki-status: in force
 ---
 
@@ -74,7 +74,7 @@ The rules, part by part.
 Project work coordinates exactly one Project for the owner. It always delegates: it runs its work as background agents on its agent host's own subagents under the `ki-delegation` [background-run standard](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md), and keeps its own turns short under [Coordinator responsiveness](standard-coordination.md#43-coordinator-responsiveness).
 
 - **Package:** the coordinator picks the work up from `work/<territory>/<territory>.<project>/` in the Cairn store, whose `_index.md` defines the work and holds its current state only, and keeps it current under the work-package standard. `_index.md` names its Project in front matter; the Project note does not link down.
-- **Decisions:** log each owner approval in the change document it belongs to before launching the work it authorises.
+- **Decisions:** apply each owner approval to the change document it belongs to before launching the work it authorises.
 - **State of play:** the [State of play](#411-territory-work) owns cross-Project priorities, releases and decisions touching more than one Project, and Project work raises those there. Releases follow the `ki-repo-tools` release-on-demand policy: a delivery run never releases by default, and a release run carries the `release` footer for the named release only.
 - **Naming:** where the runtime can name a session, it takes its seat's thread line, such as `⚒️ 🔑 ki.ways-of-working`, or `<Name> (⚒️ 🔑 <work-id>)` where the seat's actor is named, under [Work naming](standard-opening.md#42-work-naming).
 - **Opening:** open Project work only where there is active work to drive, within the State of play's [cap](#411-territory-work). A dormant, registered Project may have an On hold package seeded with its first step, under [Seeding](#411-territory-work).
@@ -175,7 +175,7 @@ The cascade here is `ki-work-package`'s [CASCADE-DOWN](../../ki-work-package/ref
 
 A secondary State of play is a node beneath its territory's summit that splits off part of the summit's authority, as Kris set under SECONDARY-SOP a on 15 November 2026, under the `ki-work-package` [location and identity](../../ki-work-package/references/standard-work-package.md#42-location-and-identity) rule: its id is `<territory>.<slug>` and its level `regular`, as Kris took NODE-ID a on 16 November 2026 under [Work naming](standard-opening.md#42-work-naming), its package is `work/<territory>/<territory>.<slug>/` in the Cairn store, its `ki-parent` the summit, and it works under the summit's rules now. A territory with no node beneath its summit needs no change.
 
-- **Creating:** the owner decides each node at the summit, which records the decision in the change document it belongs to and seeds the package On hold, under [Seeding](#411-territory-work), until the owner opens it. A node folds back into the summit when it is no longer needed.
+- **Creating:** the owner decides each node at the summit, which applies the decision to the change document it belongs to and seeds the package On hold, under [Seeding](#411-territory-work), until the owner opens it. A node folds back into the summit when it is no longer needed.
 - **Front door:** the summit stays the owner's only front door and the single dispatch coordinator. Owner dumps, units with no clear owner, method improvements and anything touching more than one node, or a node and other work, come to the summit.
 - **The summit owns** what the main State of play owned: the registry, membership and Known Lands; releases and priorities across the territory; the territory-wide [ceiling on active Project work](#411-territory-work), which counts the work beneath every node and gives no node a share of its own; method stewardship; the worktree sweep; and every decision touching more than one node.
 - **A node** does project management for the work beneath it, within the authority the summit splits off to it, and rolls up the five views across that work; the summit rolls up all.
