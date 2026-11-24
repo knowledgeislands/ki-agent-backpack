@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:52:17Z
 ki-status: in force
 ---
 
@@ -250,7 +250,7 @@ A repository-footprint replacement prefers the correct clean end state over tran
 
 #### 4.5.5 Connection-critical rollouts
 
-Git history recovers a repository, not a connection: a Headroom proxy rollout that removed the proxy's launchd service once cost every session its connection for forty minutes. A connection-critical change is any change to a firewall or to the configuration of a service the working connection depends on: the Headroom proxy, SSH, Tailscale, the network or authentication. Its rollout plan, in the work record or the task brief, carries a restore path that reconnects first and only then evaluates why the change failed. "Tested" means the restore path has been run once, before the change, on the same machine, so that it is known to reconnect rather than assumed to. A clean-end-state cutover of such a service keeps the restore path until the new state has carried a session. `ki-delegation` carries the same rule for background agents, so a task without a tested restore path stops before it changes anything.
+Git history recovers a repository, not a connection: a Headroom proxy rollout that removed the proxy's launchd service once cost every session its connection for forty minutes. A connection-critical change is any change to a firewall or to the configuration of a service the working connection depends on: the Headroom proxy, SSH, Tailscale, the network or authentication. Its rollout plan, in the work record or the task brief, carries a tested restore path that reconnects first and only then evaluates why the change failed. "Tested" means the restore path has been run once, before the change, on the same machine, so that it is known to reconnect rather than assumed to. A clean-end-state cutover of such a service keeps the restore path until the new state has carried a session. `ki-delegation` carries the same rule for background agents, so a task without a tested restore path stops before it changes anything.
 
 [Back to contents](#contents)
 

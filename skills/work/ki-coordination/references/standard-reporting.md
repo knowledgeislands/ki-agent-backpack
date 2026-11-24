@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:52:17Z
 ki-status: in force
 ---
 
@@ -334,7 +334,7 @@ Which links to give for each kind of thing:
 - **On the phone,** only `https://` links open, so the GitHub links stay.
 - **Gaps:** an unknown route opens the nearest page, with a notice. A bot's Orca item and a meeting's deeply nested files have no route yet, so they are linked as before.
 - **Checked is not walked:** a `/open/<route>` link that answers 200 shows only that the Beacon accepts the route, not that the page says what the text claims; a link checked that way but not opened and read is labelled as such (store `d0056861`).
-- **System routes:** the Beacon's `/open` refuses `/system/...` routes by design (SYSTEM-MODE), so a reply sends the owner there by hand, through System › Admin, never by a link.
+- **System routes:** the Beacon's `/open` refuses `/system/...` routes by design, so a reply sends the owner there by hand, through System › Admin, never by a link.
 
 **More than one link.** Where a thing has more than one sensible view, such as the Wayfinder to look around, the file to edit and GitHub from elsewhere, give them on one line: the thing's name links to the main view and short links follow it, compact words or icons, each of which opens where the owner reads. For a change document read on sol:
 

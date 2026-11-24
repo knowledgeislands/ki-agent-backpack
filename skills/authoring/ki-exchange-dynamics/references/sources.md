@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-document-type: sources@2026-11-24T04:52:17Z
+ki-revised: 2026-11-24T04:52:17Z
 ki-refresh: canonical · on-change
 ---
 
@@ -54,5 +54,6 @@ The latest review, on 23 November 2026, found the method note unchanged since th
 - The installed `archify`, v3.2.0, is behind upstream v3.3.0 of 22 November 2026; a rendering records which it used in its `design-decisions.md`.
 - The first rendering of the invented example through `archify`, as the migration overlay records.
 - The migration overlay's line keeping the skill in the `acquire` group while the group's name was undecided is overtaken by the guild map and awaits deletion.
+- Whether the skill keeps "legal" as a trigger for its stronger tier is still open in ki.summit's change 23 (EXCHANGE-LEGAL).
 
 [Back to contents](#contents)

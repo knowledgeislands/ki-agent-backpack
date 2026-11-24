@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:52:17Z
 ki-status: draft
 ---
 
@@ -97,7 +97,7 @@ In this order:
 5. **`## State of play`:** a list of dated items, newest first, each `- **YYYY-MM-DD:** <what happened>` with its sources. An item is added, never rewritten; one that stops being true is answered by a newer item.
 6. **`## Sources`:** a table of the card's sources, `| Id | Source | Read |`, each id a reference link, `[S1]`, to the source's URL, the source named by its publisher and title, and the date it was read. The URLs are the card's link reference definitions, `[S1]: https://…`, after the table. A source with no URL, such as a command's help read on a rig, says so in its Source cell and has no link.
 
-A product card's sources sit on the card, not in [the sources](sources.md), so nothing is kept twice; the sources file records the decisions and each review.
+A product card's sources sit on the card, not in [the sources](sources.md), so nothing is kept twice; the sources file records the standards' sources and the latest review.
 
 [Back to contents](#contents)
 

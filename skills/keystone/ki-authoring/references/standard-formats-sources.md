@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:52:17Z
 ki-status: in force
 ---
 
@@ -80,7 +80,7 @@ ki-refresh: <kind> · <cadence>
 4. **Tags:** a short tag that the standards or the rubric cite opens the Source cell, as `| SPEC — [Agent Skills specification][spec] | … |`. There is no Tag column.
 5. **Sub-groups:** either class may divide its sources into sub-groups, each a numbered subsection, as `2.1.1`, with its own table of the same columns. The class then holds only a short lead-in before them, as the [format format](standard-formats-format.md#44-shape) asks of any section with subsections. Sources kept in-house, such as the house's own tool repositories, are a sub-group of the class they serve, as `2.2.1 In-house tool repositories`, never a class of their own.
 6. **Last review** says what the latest review confirmed, and lists what it is watching under **Watching**. Watch items have no other place in the file.
-7. **No decisions:** a sources file records what the skill was built from, never the decisions taken on it: no decisions table, no owner's words and no superseded entries. A decision is applied to the standard it changes, and Git history is its only trace, under the `ki-coordination` [applying decisions](../../../work/ki-coordination/references/standard-decisions.md#411-applying-decisions) rule. A Decision Record the standards rest on is an in-house authoritative source like any other.
+7. **No decision log:** a sources file records what the skill was built from, never a log of the decisions taken on it: no decisions table, no decision tags and no quoting of the owner's words, and no superseded entries. A decision is applied to the standard it changes, and Git history is its only trace, under the `ki-coordination` [applying decisions](../../../work/ki-coordination/references/standard-decisions.md#411-applying-decisions) rule. A document the owner wrote and a Decision Record the standards rest on may each be a source, listed like any other.
 8. **Older shapes:** a sources file written before this format comes into it with its guild's review, or sooner when it is next changed; audit reports it until then. Files are not converted in bulk.
 
 [Back to contents](#contents)
@@ -97,7 +97,6 @@ Beyond the format format's checks, a validator checks:
 
 1. **Front matter:** `ki-refresh` is present.
 2. **Sections:** the three sections are present, in order.
-3. **No decisions:** the file has no decisions section or table, and quotes no owner's words.
-4. **Outside sources:** each table has the three columns and no Tag column, or the section says None.
+3. **Outside sources:** each table has the three columns and no Tag column, or the section says None.
 
 [Back to contents](#contents)

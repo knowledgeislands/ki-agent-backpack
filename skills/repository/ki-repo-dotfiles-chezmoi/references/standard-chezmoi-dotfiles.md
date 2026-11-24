@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:52:17Z
 ki-status: in force
 ---
 
@@ -246,7 +246,7 @@ Chezmoi's registration of backpack hooks in runtime settings belongs to `ki-env-
 
 Its existing local physical-lock observation is scoped evidence for a chezmoi repository, not an independent portable Git policy.
 
-The chezmoi source declares no commit gate (`GIT-2`): it commits no `.githooks/` path and binds no `core.hooksPath`, so `ki-repo` `HOOK-1` to `HOOK-4` are not applicable to it. Its gate is the manual one its `AGENTS.md` names, the source's tests and focused audit, which a session runs before it commits ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)).
+The chezmoi source declares no commit gate (`GIT-2`): it commits no `.githooks/` path and binds no `core.hooksPath`, so `ki-repo` `HOOK-1` to `HOOK-4` are not applicable to it. The dotfiles repository must have no hook. Its gate is the manual one its `AGENTS.md` names, the source's tests and focused audit, which a session runs before it commits ([ADR-KI-HARNESS-SKILLS-017](../../../../docs/decisions/ADR-KI-HARNESS-SKILLS-017-commit-gate-existence-and-content-are-owned-separately.md)).
 
 [Back to contents](#contents)
 

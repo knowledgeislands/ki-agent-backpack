@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-23T02:10:23Z
+ki-revised: 2026-11-24T04:52:17Z
 ki-status: in force
 ---
 
@@ -167,6 +167,8 @@ One system may contain several structures. Classification names the aspect being
 ### 4.6 Dates and refresh
 
 The snapshot and every record carry a review date. Freshness and cadence follow [the radar standard](standard-radar.md#44-dates-and-cadence): reviews older than 35 days warn, a month and four days of grace, without invalidating historical evidence, and the one REFRESH runs monthly or when a recorded return trigger fires, including a new specification version, governance transfer, independent implementation, conformance result, interoperability demonstration, material operational adoption, deprecation, or locally relevant use case.
+
+A protocol subject's return triggers are a new protocol release, governance transfer, independent implementation, published conformance result, cross-implementation demonstration, deprecation, or a Knowledge Islands use case that needs reassessment.
 
 REFRESH is bounded to current subjects and explicit return triggers. It creates no standing inbox and routes material consequences through the owning process.
 

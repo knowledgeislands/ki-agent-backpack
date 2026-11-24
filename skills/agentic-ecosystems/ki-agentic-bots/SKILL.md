@@ -22,7 +22,7 @@ A bot is an actor that its agent host keeps and wakes, with its own memory and p
 
 It is a practice for any agent host that keeps bots. Each store that runs bots keeps its own instance, a tracked bootstrap file that names its paths, its packages and its host's mechanics; this skill is the general practice that file follows, and [Orca](references/standard-bots.md#411-on-orca) is named only where the content is Orca's own.
 
-Read [the bot practice standard](references/standard-bots.md) before setting up, running or reviewing a bot. Read [the sources](references/sources.md) only to trace a rule to its decision.
+Read [the bot practice standard](references/standard-bots.md) before setting up, running or reviewing a bot. Read [the sources](references/sources.md) only to trace a rule to its sources.
 
 ## Procedure
 

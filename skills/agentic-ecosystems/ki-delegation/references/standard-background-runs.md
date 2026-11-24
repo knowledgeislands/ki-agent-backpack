@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:52:17Z
 ki-status: in force
 ---
 
@@ -447,7 +447,7 @@ Each outstanding query carries a stable mnemonic Needs tag, never a number, defi
 
 A session delegates to its own agent host's subagents: Claude Code's and Claude Desktop's agents, Orca workers under Orca's own `orchestration` skill when Kris asks for them, and ChatGPT Desktop's agents. Each agent host keeps its own runtime mechanics, and neither this skill nor personal setup restates them. The `ki agent` launcher in `tools-ki`, earlier the reference launcher with its state folder, run queue, dispatcher and run inbox, was removed in v0.15.0.
 
-**Where Orca runs.** Orca starts runs only on attended Macs, and only for work packages that opt in by an applied owner decision. An always-on Orca server that launches or hosts background runs comes only through Knowledge Islands Principal's Enactment Process, not by a run or a grant. A reach-only server, which gives remote reach into attended sessions and launches no runs, sits outside that Enactment Process, as Rig's `service:orca-serve` does on sol's studio profile.
+**Where Orca runs.** Orca starts runs only on attended Macs, and only for work packages that opt in by an applied owner decision. An always-on Orca server that launches or hosts background runs comes only through Knowledge Islands Principal's Enactment Process, not by a run or a grant. A reach-only server, which gives remote reach into attended sessions and launches no runs, sits outside that Enactment Process on the owner's direction, as Rig's `service:orca-serve` does on sol's studio profile.
 
 [Back to contents](#contents)
 

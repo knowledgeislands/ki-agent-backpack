@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-document-type: sources@2026-11-24T04:52:17Z
+ki-revised: 2026-11-24T04:52:17Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -49,6 +49,7 @@ The latest review, on 23 November 2026, re-read Orca 1.4.269 on sol, its bot rul
 
 - Orca's bots are in beta and changed in four releases over two days; [4.11](standard-bots.md#411-on-orca) is re-read against each release the bots run on. Sol runs 1.4.269; 1.4.271 is out.
 - What 1.4.269 added that [4.11](standard-bots.md#411-on-orca) does not yet say: `orca bot new-chat`, run only when the owner asks to start fresh, which reads `SOUL.md` and `MEMORY.md` again; automations that start on Slack, GitHub or Linear events, with `--runs-in` and `--results-to`; and @mention hand-offs in group rooms.
+- A proposal to bring [4.11](standard-bots.md#411-on-orca) up to 1.4.269 is open.
 - Orca 1.4.271's memory journal of closed items, and its note that work state lives in Items and the journal, beside [4.6](standard-bots.md#46-memory-a-working-aid) and [4.7](standard-bots.md#47-the-work-package-counts-as-outstanding), which keep the package as the record.
 - What `BOTS.md` still lists as not known: how long Orca keeps mail between bots, whether automations survive a restart, runs missed while the Mac sleeps, and how a Codex bot reads its files; and how group rooms' @mention hand-offs develop, with no convention adopted.
 

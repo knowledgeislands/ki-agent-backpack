@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:52:17Z
 ki-status: in force
 ---
 
@@ -21,7 +21,7 @@ ki-status: in force
 
 ## 1. Introduction
 
-The contract of the `linear` adapter: how a repository selects Linear for its forward work, what its Issues carry, and where the adapter stops, its remote execution failing closed. The decisions and outside sources behind it are in the [sources file](sources.md).
+The contract of the `linear` adapter: how a repository selects Linear for its forward work, what its Issues carry, and where the adapter stops, its remote execution failing closed. The outside sources behind it are in the [sources file](sources.md).
 
 [Back to contents](#contents)
 

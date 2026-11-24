@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:52:17Z
 ki-status: in force
 ---
 
@@ -101,7 +101,7 @@ Every top-level Markdown file in a Knowledge Islands skill's `references/` direc
 - `mode-<verb>.md` holds exactly one independently invoked procedure, in the [mode format](standard-formats-mode.md); combined names such as `mode-audit-conform.md` are split, and each procedure states its own preconditions.
 - `migration-<topic>.md` holds a migration overlay: the transition a standard leaves out, so that the standard describes only the final state. It follows no format of its own beyond that rule: it says which standard it adjusts, the standard wins wherever the two differ, and it is deleted line by line as each condition is met and whole once empty.
 - `report-<YYYYMMDD>-<topic>.md` holds a dated finding a standard rests on, such as an inventory of the estate, named by the day it was made. It sets no rule and is not kept current: a standard points at it rather than holding it, and a later report replaces it.
-- `<topic>-proposal.md` holds a proposal awaiting a decision, such as a naming proposal; it settles nothing, and goes once its decisions are recorded.
+- `<topic>-proposal.md` holds a proposal awaiting a decision, such as a naming proposal; it settles nothing, and goes once its decisions are applied.
 
 A skill that holds a knowledge graph keeps it in `knowledge/` at the skill's top level, its own area outside `references/`: the graph's root definition, `knowledge/_graph.md`, and its cards, each named `<id>.md` with its front-matter `id` equal to that name, as the `ki-knowledge-graph` standard sets. The root definition opens the graph, and a file is one of its cards only when its id matches its name. Only the graph sits in `knowledge/`; the skill's standards, sources, rubric, proposals and everything else stay in `references/` under the vocabulary above. Inside `knowledge/` there is a folder for each subgraph the root definition declares, as `knowledge/industry/industry.session.md`, and a graph without subgraphs sits flat; ids and front-matter links never change with a card's folder, and only relative Markdown links follow it. A knowledge skill always holds such a graph; any other skill may hold one, as `ki-knowledge-graph` holds the concepts its own standard relies on.
 

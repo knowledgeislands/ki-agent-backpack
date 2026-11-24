@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-document-type: sources@2026-11-24T04:52:17Z
+ki-revised: 2026-11-24T04:52:17Z
 ki-refresh: canonical · quarterly
 ---
 
@@ -58,6 +58,7 @@ The latest review, on 23 November 2026, checked every listed source. The in-hous
 **Watching:**
 
 - The provisional glyphs and bracketed state words used in reports since the last refresh, still to be listed and put to the owner at the next full refresh.
+- Top-aligned table cells in Orca's chat: an HTML table with `valign="top"` rendered broken there, and padding the shorter cell with blank lines was tried and dropped, since it counts lines as written rather than as wrapped; Orca's chat view is asked for them.
 - The Agent Host Protocol's experimental windowed subscriptions, and whether any agent host in `ki-radar` ships support that could replace the Cairn Beacon's polling.
 - Host moves, which stay open and grant no implementation authority until they are settled with the owner:
   - how queued runs move to the new host: whether the work package carries the briefs themselves or only links to tracked brief files, and how a re-queue avoids a duplicate run if the old queue was not cleared;

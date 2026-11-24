@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:52:17Z
 ki-status: in force
 ---
 
@@ -123,7 +123,7 @@ Its duties:
 **Dispatch.** The State of play is the single dispatch coordinator. Every new unit with no clear owner, an owner dump, a handoff with no owning work, a cross-work item whose owner is unclear, and every method improvement, comes to it, pasted by the owner or as feedback from below. A work's own follow-ups and an item in a record already naming its work go direct.
 
 - **Matching:** match the unit against the register, the `_index.md` front matter `ki work status` derives from the packages, reading a `_index.md` body only where two descriptions match. Keep no copy of the register.
-- **Routing:** send the unit to the chosen work as steer, in the owner's words with links, recorded in its package where its priority warrants, under [Work between packages](standard-messages.md#messages-between-work). Where nothing matches, propose to the owner a new piece of work, within the cap, or a record captured through `ki-work next`.
+- **Routing:** send the unit to the chosen work as steer, carrying what is to change with links rather than the owner's words, recorded in its package where its priority warrants, under [Work between packages](standard-messages.md#messages-between-work). Where nothing matches, propose to the owner a new piece of work, within the cap, or a record captured through `ki-work next`.
 - **Returns:** a part comes back only as an escalation, a decision beyond the receiver's remit, never for want of a response or because it is hard, under [the cascade rule](../../ki-work-package/references/standard-work-package.md#cascade-down). A returned part is routed once more at most. If it cannot be placed, or would come back again, it goes to the owner as a query, so nothing bounces.
 - **Work not yet taken:** show in the register the count and age of steer nobody has taken up. Work routed to work On hold, paused, waits without waking it. For work Snoozing whose session is closed or not waking, identify the work by its thread line, and ask the owner to lift a hold where the work is urgent.
 
