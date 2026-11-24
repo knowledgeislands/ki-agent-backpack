@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-24T03:06:00Z
+ki-revised: 2026-11-24T03:22:50Z
 ki-status: in force
 ---
 
@@ -91,7 +91,7 @@ The Work Process note's Words table owns the model's words: work, work item, the
 | **time** | The owner's local time, as a friendly time naming the day where it is not today, or an ISO 8601 timestamp with its offset where a friendly time does not fit. **Standard:** this one |
 | **thread line** | The closing line of every banner and the session's name, `<role glyph> 🔑 <work-id>`, `<role glyph> <package>@<role>` for a seat without the package's keys, or `🧵 <work-id>` for a session with no role yet, under [Banner](#46-banner); its grammar and the role glyphs are the [role standard](../../ki-work-package/references/standard-roles.md#46-thread-line)'s. **Standard:** `ki-work-package` |
 | **query, tag** | An open decision and its stable mnemonic. **Standard:** this one |
-| **decision** | One entry in a change document: agreed or decided, or an open point in its Open section. **Standard:** this one |
+| **decision** | An owner answer applied to the work, carried by its change document's outline or Steps and then by its output; a point not yet decided waits in the Open section. **Standard:** this one |
 | **record** | A roadmap work record. **Standard:** `ki-work-roadmap` |
 | **sync** | Fetch, fast-forward pull into a clean checkout, then push fast-forward only. **Standard:** `ki-git` |
 | **opener** | The steering brief that opens a coordinator. **Standard:** this one |
@@ -107,7 +107,7 @@ The rules, part by part.
 
 Coordinating work is how a session, as the owner's worker, holds a package of Knowledge Islands work that has runs of its own: a territory's summit, which is its State of play, or a node or Project beneath it in the work tree. The coordinator dispatches, decides with the owner and reports. This standard owns how a session behaves while coordinating, how it reports and how it keeps itself current.
 
-- **With `ki-delegation`:** this is the coordinator half of the practice whose run half the `ki-delegation` [background-run standard](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md) governs: detachment, the run packet, prompt shape, authority tiers, the run side of logging decisions, coordination, concurrency and monitoring. This standard owns the [owner report](standard-reporting.md#42-owner-report) with its [tags](standard-reporting.md#needs-tags), which every report a background agent or a coordinator gives takes, and the [generated surfaces](#47-generated-surfaces) that carry it.
+- **With `ki-delegation`:** this is the coordinator half of the practice whose run half the `ki-delegation` [background-run standard](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md) governs: detachment, the run packet, prompt shape, authority tiers, the run side of applying decisions, coordination, concurrency and monitoring. This standard owns the [owner report](standard-reporting.md#42-owner-report) with its [tags](standard-reporting.md#needs-tags), which every report a background agent or a coordinator gives takes, and the [generated surfaces](#47-generated-surfaces) that carry it.
 - **With `ki-work-package`:** the work is its package, `work/<territory>/<id>/` in the Cairn store: `_index.md` holds its definition and state, and the change documents beside it carry its decisions and open points. The packages form one tree rooted at `cairn.summit`, and work from other packages reaches this one along it, under [Work between packages](standard-messages.md#messages-between-work). The package's shape, its closed list and tidy rules, and the tree itself are the `ki-work-package` [work-package standard](../../ki-work-package/references/standard-work-package.md)'s. This standard says when the package is tidied, whether an outcome has a durable home, and how a decision is applied and what becomes of it. A batch that lands real work leaves its record in the store's `record/`, under [Landing, then review](standard-sync.md#41-landing-then-review).
 - **With `ki-meeting`:** sessions talk to each other in a meeting held at a node of the tree, under the `ki-meeting` [meeting standard](../../ki-meeting/references/standard-meeting.md). A meeting's message is a signal and grants no authority, and what a meeting decides goes to a change document.
 
@@ -196,7 +196,7 @@ The coordinator stays responsive, so the owner never has to remind it to delegat
   - The shapes that trip a runtime-specific check, Claude Code's built-in `rm` safety check under bypass mode, with no Codex counterpart observed yet: an `rm` with a glob, a shell-variable or `$(...)` target, or a target under a workspace directory, alone or inside a compound command or `sh -c`; `git worktree remove`; and a foreground `sleep` of 60 seconds or more.
   - A coordinator removes through a bounded run; a run uses literal absolute paths or leaves removal to the tool that made the thing, under the `ki-delegation` [permission prompts](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#483-permission-prompts) rule.
   - The interactive cause is probable, not proven, until the owner reports a prompt's wording. This grants no bypass of a permission gate.
-- **Owner messages:** a new owner message steers; it is not a stop and moves nothing. Fold it into running and queued work, redirecting, re-queuing or logging a decision as needed, and keep going. Stop or abort a background agent or piece of work only when the owner expressly says so, naming the work. Never mid-way through long work, the coordinator answers promptly.
+- **Owner messages:** a new owner message steers; it is not a stop and moves nothing. Fold it into running and queued work, redirecting, re-queuing or applying a decision as needed, and keep going. Stop or abort a background agent or piece of work only when the owner expressly says so, naming the work. Never mid-way through long work, the coordinator answers promptly.
 - **Feedback order:** class each piece of owner feedback as it lands as a fix, a feature or a cosmetic change, and work fixes first, then features, then cosmetics, unless the owner says otherwise; cosmetics wait for one sweep. Kris set FEEDBACK-PRIORITY on 22 November 2026: "a prioritization that needs to be had ... cosmetic refinements as opposed to new features or functionality". Feedback folds into the build already running, with one install per batch, under the `ki-delegation` [check tiers](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#45-prompt-shape).
 - **Cadence:** while work lies with a worker:
   - give timed updates of one or two lines when launching work and when an agent finishes, and none while waiting, each timestamped from the clock in that turn, never from recalled labels;

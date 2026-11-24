@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:25:51Z
+ki-revised: 2026-11-24T03:22:50Z
 ki-status: in force
 ---
 
@@ -32,7 +32,7 @@ ki-status: in force
     - [4.6.8 External systems](#468-external-systems)
     - [4.6.9 Questions in a window](#469-questions-in-a-window)
     - [4.6.10 Dotfiles and software](#4610-dotfiles-and-software)
-  - [4.7 Decisions log](#47-decisions-log)
+  - [4.7 Applying decisions](#47-applying-decisions)
   - [4.8 Coordination](#48-coordination)
     - [4.8.1 Coordination rules](#481-coordination-rules)
     - [4.8.2 Conflict runs](#482-conflict-runs)
@@ -61,13 +61,13 @@ Every background run of Knowledge Islands work, under every agent host.
 
 - Background runs and when to use one, detachment, the run packet and working-area marks.
 - The prompt shape, the authority tiers, footers and grants, and the unattended limits.
-- The run side of the decisions log, coordination, concurrency, monitoring, reporting and agent hosts.
+- The run side of applying decisions, coordination, concurrency, monitoring, reporting and agent hosts.
 
 [Back to contents](#contents)
 
 ### 2.2 Out of scope
 
-- Coordinating work itself, its reports' shape and its decisions log: `ki-coordination`.
+- Coordinating work itself, its reports' shape and how it applies decisions: `ki-coordination`.
 - The durable packet for an approved high-risk handoff: [the delegation-packet standard](standard-delegation-packets.md).
 - Each agent host's runtime mechanics, Orca workers' in Orca's own `orchestration` skill, and subagent role definitions, in `ki-subagents`.
 
@@ -84,7 +84,7 @@ Every background run of Knowledge Islands work, under every agent host.
 | **Run packet** | The run's temporary directory, `$TMPDIR/ki-agents/<run>/`, outside every repository. **Standard:** this one, [4.4](#44-run-packet) |
 | **Authority footer** | The one footer from this skill's `assets/` that ends each prompt and sets its tier. **Standard:** this one, [4.6](#46-authority-tiers) |
 | **Grant** | A section appended after the tier footer that lifts exactly one of its bans. **Standard:** this one, [4.6.3](#463-grants) |
-| **Decisions log** | The run side of the work's change documents, where each owner decision is logged. **Standard:** this one, [4.7](#47-decisions-log); the entry's form is `ki-coordination`'s |
+| **Applying decisions** | The run side of the work's change documents: a run applies the owner's decisions it is given and keeps no log entries. **Standard:** this one, [4.7](#47-applying-decisions); how a decision is applied is `ki-coordination`'s |
 | **Agent host** | The app a session runs in, whose own subagents carry its runs. **Standard:** this one, [4.12](#412-agent-hosts) |
 
 [Back to contents](#contents)
@@ -119,7 +119,7 @@ An in-session subagent runs under the turn that started it and dies when that tu
 
 Coordinating work - territory work or Project work, the two coordinating forms of the work model that the [Work Process](https://github.com/knowledgeislands/ki-principal/blob/main/Pillars/Philosophy/Model/Processes/Work%20Process/Work%20Process.md) note describes and `ki-coordination` governs - launches and steers background runs under this contract and is itself governed by [the coordinating-work standard](../../../work/ki-coordination/references/standard-coordination.md) that `ki-coordination` owns: the responsive-coordinator principle in Kris's words, the counted turn budget and self-check, the levels and forms, the states and moves, the Summary, recap and full summary, the glyph banner, re-anchoring after compaction, the openers and bootstrap, messages between work, the decision classes and their life cycle, Finishing Project work, the recap since the mark, parking tangents, linking records, committing and pruning the package, keeping primary checkouts current and refreshing that guidance. A repository that coordinates work declares `ki-coordination` beside this skill; the `coordinator-reminder` hook and the `ki-coordinator` output style belong to it.
 
-What stays here is the run side of that relationship. Coordinating work records each owner decision in the change document it belongs to, its [decisions log](#47-decisions-log), before starting the work it authorises, waits only on its agent host's notice that an agent has finished, under [Concurrency](#49-concurrency) and [Monitoring](#410-monitoring), and reports in the `ki-coordination` [owner report](../../../work/ki-coordination/references/standard-reporting.md#42-owner-report) form, which every agent report, Summary, recap and full summary takes unchanged.
+What stays here is the run side of that relationship. Coordinating work applies each owner decision to the outline or Steps of the change document it belongs to, under [Applying decisions](#47-applying-decisions), before starting the work it authorises, waits only on its agent host's notice that an agent has finished, under [Concurrency](#49-concurrency) and [Monitoring](#410-monitoring), and reports in the `ki-coordination` [owner report](../../../work/ki-coordination/references/standard-reporting.md#42-owner-report) form, which every agent report, Summary, recap and full summary takes unchanged.
 
 At restart, each piece of coordinating work acts on its first step, the top line of its package's `_index.md` Now, before launching any run, under `ki-coordination`'s [Picking work up](../../../work/ki-coordination/references/standard-bootstrap.md#44-picking-work-up), as Kris set under FIRST-STEP-HOME a on 15 November 2026; the first step was once a `FIRST-STEP` line in the package's `messages.md`. Under the work model the package's front matter carries the level, worker and supervisor that the old checkpoint's `role` carried.
 
@@ -165,7 +165,7 @@ A Markdown file carries the mark in its front matter. A folder of non-Markdown o
 
 A run prompt is cold-agent ready. It contains, in order:
 
-1. the task, quoting the owner decision that authorises it, in the owner's words and dated;
+1. the task, citing the owner decision that authorises it as applied in its change document, by what it decided and its date;
 2. numbered steps;
 3. a verification step, sized to the change under **Check tiers** below;
 4. a landing step: how the work lands under its footer, and who writes the batch's record, under [Landing, then review](#462-landing-then-review);
@@ -231,7 +231,7 @@ A site, repository or note marked confidential is never made public without Kris
 
 Nothing is posted in Kris's name outside his own repositories and services without his express permission for that specific post: no issue, comment, reaction, pull request, discussion, review or message on another owner's repository or service, such as an upstream issue tracker. This holds attended or in a window, at every tier and under every grant: no footer, grant, task, standing rule or broader permission lifts it, and Kris's answer naming the exact post is the only permission. A run that judges a post worth making stops short of it and reports a query carrying the exact text it proposes, under the `ki-coordination` [posting rule](../../../work/ki-coordination/references/standard-reporting.md#42-owner-report). Every authority footer carries the rule in one line. Kris set it at about 19:40 GMT on 5 November 2026, after a run had posted to Orca issue 33114: "Any posting to external repositories in my name, such as the one that's done to Orca issue 33114, is not allowed without my express permission."
 
-A brief cannot grant an external post. Its only permission is Kris's answer to a query showing the exact text, recorded in the change document it belongs to, the work's [decisions log](#47-decisions-log), before the run launches; the task then cites that entry and carries the approved text word for word, and that one post, made exactly as approved, is the only remote call the footer's posting line allows beyond the tier. A brief that asks for a post without citing such an entry, or for any post other than the one approved, grants nothing, and the run stops short of posting and reports a query carrying the text. The Orca comment came from a brief whose body told the run to "add one comment ... otherwise open one issue" while its footer banned every other remote call, and the body prevailed unnoticed, as `personal.reg.household-sol` traced on 5 November 2026.
+A brief cannot grant an external post. Its only permission is Kris's answer to a query showing the exact text, applied to the change document it belongs to, under [Applying decisions](#47-applying-decisions), before the run launches; the task then cites that change document and carries the approved text word for word, and that one post, made exactly as approved, is the only remote call the footer's posting line allows beyond the tier. A brief that asks for a post without citing such a decision, or for any post other than the one approved, grants nothing, and the run stops short of posting and reports a query carrying the text. The Orca comment came from a brief whose body told the run to "add one comment ... otherwise open one issue" while its footer banned every other remote call, and the body prevailed unnoticed, as `personal.reg.household-sol` traced on 5 November 2026.
 
 Where a brief's body and its authority footer conflict, the footer wins. The task supplies specifics within the footer's tier and grants, never authority beyond them, with no exception. Every authority footer carries both rules in its posting line.
 
@@ -350,11 +350,11 @@ The [machine grant](../assets/grant-machine.md) carries both rules, and RUN-1 ch
 
 [Back to contents](#contents)
 
-### 4.7 Decisions log
+### 4.7 Applying decisions
 
-Each owner decision about the work is one timestamped entry in the change document it belongs to, in the package in the Cairn store, and each open point goes into that change document's Open section, as Kris set under OLD-SHAPE-HOMES a on 14 November 2026; the work's change documents are its decisions log. How an entry is written, logged in the turn it arrives and quoted only from the transcript file, and what becomes of it at each mark are `ki-coordination`'s [decisions log](../../../work/ki-coordination/references/standard-decisions.md#411-decisions-log) and [decisions life cycle](../../../work/ki-coordination/references/standard-decisions.md#413-decisions-life-cycle). A prompt, brief or report describes the decision it acts under in the owner's words and with its date, never by a number.
+<a id="47-decisions-log"></a>Each owner decision about the work is applied to the outline or Steps of the change document it belongs to, in the package in the Cairn store, and each open point goes into that change document's Open section (OLD-SHAPE-HOMES a). No change document keeps log entries or the owner's words. How a decision is applied, in the turn it arrives, and what becomes of its change document at each mark are `ki-coordination`'s [applying decisions](../../../work/ki-coordination/references/standard-decisions.md#411-applying-decisions) and [decisions life cycle](../../../work/ki-coordination/references/standard-decisions.md#413-decisions-life-cycle). A prompt, brief or report describes the decision it acts under by what it decided and its date, never by a number.
 
-The run side is this standard's. The session that starts the runs logs the owner's decisions; a background agent never does. Whatever the agent host keeps of a run is runtime, is not backed up or synced, and is never a Decision Record. Nothing durable may exist only in runtime: the test Kris set on 2026-10-13 is that "if the state folder is lost, you shouldn't lose any knowledge".
+The run side is this standard's. The session that starts the runs applies the owner's decisions to the change documents; a run applies the decisions it is given to its work and keeps no log entries. Whatever the agent host keeps of a run is runtime, is not backed up or synced, and is never a Decision Record. Nothing durable may exist only in runtime: the test Kris set on 2026-10-13 is that "if the state folder is lost, you shouldn't lose any knowledge".
 
 A background agent never deletes a report, a brief or its run packet; the session that started it removes the packet once the outcomes are homed, and the package is tidied by its coordinator under the `ki-work-package` [tidy](../../../work/ki-work-package/references/standard-work-package.md#410-the-tidy) rules, which also delete the package of finished work at the mark that closes it. A run started as an Orca supervised worker is also closed out, reused, retained or released, under the `ki-coordination` [Closing out Orca workers](../../../work/ki-coordination/references/standard-mark.md#44-closing-out-orca-workers) rule, and close-out never deletes its conversation history.
 
@@ -451,7 +451,7 @@ Each outstanding query carries a stable mnemonic Needs tag, never a number, defi
 
 A session delegates to its own agent host's subagents: Claude Code's and Claude Desktop's agents, Orca workers under Orca's own `orchestration` skill when Kris asks for them (ORCA-WORKERS b), and ChatGPT Desktop's agents. Each agent host keeps its own runtime mechanics, and neither this skill nor personal setup restates them. The `ki agent` launcher in `tools-ki`, earlier the reference launcher with its state folder, run queue, dispatcher and run inbox, was removed in v0.15.0.
 
-**Where Orca runs.** Orca starts runs only on attended Macs, and only for work packages that opt in by a logged owner decision. An always-on Orca server that launches or hosts background runs comes only through Knowledge Islands Principal's Enactment Process, not by a run or a grant. A reach-only server, which gives remote reach into attended sessions and launches no runs, rests instead on Kris's BASELINE-ORCA direction, relayed by `personal.reg.rig-sol` on 8 November 2026, as Rig's `service:orca-serve` does on sol's studio profile. Kris took ORCA-REACH a) on 30 October 2026, "as recommended but with a follow up in a weeks time", and AGENT-HOME a) the same day, "as recommended but with a follow up in a few days".
+**Where Orca runs.** Orca starts runs only on attended Macs, and only for work packages that opt in by an applied owner decision. An always-on Orca server that launches or hosts background runs comes only through Knowledge Islands Principal's Enactment Process, not by a run or a grant. A reach-only server, which gives remote reach into attended sessions and launches no runs, rests instead on Kris's BASELINE-ORCA direction, relayed by `personal.reg.rig-sol` on 8 November 2026, as Rig's `service:orca-serve` does on sol's studio profile. Kris took ORCA-REACH a) on 30 October 2026, "as recommended but with a follow up in a weeks time", and AGENT-HOME a) the same day, "as recommended but with a follow up in a few days".
 
 Sources: BASELINE-ORCA in [the source register](sources.md).
 

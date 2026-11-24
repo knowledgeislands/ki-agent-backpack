@@ -549,7 +549,7 @@ test('the meeting line names the meetings the session is in and who it works wit
 })
 
 // Kris, 31 October 2026, under LISTEN-OPT-IN: "any of the coordination [threads] can be set up in this mode, but we've
-// got to expressly ask them to be". Listening is opt-in, recorded in the decisions log; the Rig host sync threads listen
+// got to expressly ask them to be". Listening is opt-in, recorded in its change document's Steps; the Rig host sync threads listen
 // by their role; "stop listening" ends it; the heartbeat while runs go is separate.
 test('a thread listens only when the owner asks it to, and a Rig host sync thread by its role', () => {
   expect(standard).toContain('LISTEN-OPT-IN')

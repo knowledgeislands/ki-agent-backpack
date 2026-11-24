@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-24T03:06:00Z
+ki-revised: 2026-11-24T03:22:50Z
 ki-status: in force
 ---
 
@@ -50,7 +50,7 @@ Work that goes on without the owner: away grants, scheduled wakes, unattended wi
 
 | Term | Definition |
 | --- | --- |
-| **Away grant** | An explicitly granted unattended window, logged in the change document it works from with its end, work, permitted actions, exclusions, wake and stop words and any deny-list item it lifts. **Standard:** this one, [4.1](#41-away-grants-and-scheduled-wakes) |
+| **Away grant** | An explicitly granted unattended window, recorded in the Steps of the change document it works from as what is in force, with its end, work, permitted actions, exclusions, wake and stop words and any deny-list item it lifts. **Standard:** this one, [4.1](#41-away-grants-and-scheduled-wakes) |
 | **Scheduled wake** | A separately requested schedule that wakes the work, shown as a `⏰` banner item; it is a banner item, not a work state. **Standard:** this one, [4.1](#41-away-grants-and-scheduled-wakes) |
 | **Unattended window** | An episode in With worker, not a state: a period the owner grants for work to go on without them, a mode on top of normal coordination. **Standard:** this one, [4.2](#42-unattended-windows) |
 | **Wave** | One repository's set of records, frozen before delivery starts, that a window delivers in order; nothing joins or leaves it while it runs. **Standard:** this one, [4.2](#42-unattended-windows) |
@@ -64,7 +64,7 @@ The rules, part by part.
 
 ### 4.1 Away grants and scheduled wakes
 
-- **Away grants:** log an explicitly granted unattended window in the change document the window works from, beside its other decisions, with:
+- **Away grants:** record an explicitly granted unattended window in the Steps of the change document the window works from, as what is in force, with:
   - its end time or return condition, as local time with its zone and as UTC;
   - the work, permitted actions, exclusions, and wake and stop words;
   - any item of the `ki-delegation` [default deny list](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#466-unattended-deny-list) the grant lifts, within its [authority limits](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#46-authority-tiers).
@@ -79,7 +79,7 @@ The rules, part by part.
 A window is an episode in With worker, not a state: a period the owner grants for work to go on without them. It is a mode on top of normal coordination: the watcher, reports and every other rule carry on through it.
 
 - **Clock:** every window end is recorded as local time with its zone and as UTC. Where the owner's words are ambiguous, such as a clock time spoken across a clock change, take the earlier instant and say so in the read-back.
-- **Grant:** logged under **Away grants**, naming any deny-list item it lifts. Force-push and `--no-verify` are never lifted.
+- **Grant:** recorded in the Steps under **Away grants**, naming any deny-list item it lifts. Force-push and `--no-verify` are never lifted.
 - **Entry:** before the owner leaves:
   - unpack packed queries under the [split rule](standard-queries.md#45-query-review) and strike the mark;
   - write the plan into that change document's Steps: the units in order, each with its repository, authority, tier, what it waits on and its size, then the excluded units with their reasons; park, rather than plan, a unit whose authority still needs a decision;
@@ -142,7 +142,7 @@ A headless pass is one bounded coordinator turn without a live session: a machin
   - Its record is the change document whose grant or decision names the passes: one dated entry per pass that moved anything, naming the lines acted on, runs received and units launched, in the commit that carries them. A pass that found nothing writes nothing.
   - The next attended Summary or return report carries what passes did since the mark under [the Summary](standard-report-forms.md#417-the-summary), with each miss beside its unit: usage-limit stops, skipped firings, passes that found a live session and failed runs.
   - While the job watches a work, the banner carries it as a `⏰` scheduled item under **Scheduled wakes**, naming the launchd job, its observed next firing, its durable lifetime, its expiry and "stop the wake".
-- **Stopping:** "stop the wake" stops the job starting passes for that work, logged in the change document that named the passes and dropped from the banner. A hold drains it under [Putting work on hold](standard-holds.md#41-putting-work-on-hold), and Finished removes it. A pass stops a run only when the owner has named it and said stop.
+- **Stopping:** "stop the wake" stops the job starting passes for that work, recorded in the Steps of the change document that named the passes and dropped from the banner. A hold drains it under [Putting work on hold](standard-holds.md#41-putting-work-on-hold), and Finished removes it. A pass stops a run only when the owner has named it and said stop.
 
 Sources: WAKE-SUBSTRATE and OOS-WAKE in [the decision register](sources.md#3-decisions).
 

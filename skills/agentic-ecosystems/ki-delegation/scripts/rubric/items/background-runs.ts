@@ -28,12 +28,12 @@ export const RUN: RubricFamily<DelegationRubricContext, DelegationRubricContext[
       code: 'RUN-2',
       title: 'run prompts are cold-agent ready and authority-bounded',
       description:
-        "A background-run prompt cites the owner decision that authorises it in the owner's words and date, has numbered steps, a verification step, a landing step and a report path, forbids background subagents and ending while waiting, and ends with the lowest sufficient authority footer.",
+        'A background-run prompt cites the owner decision that authorises it by what it decided and its date, has numbered steps, a verification step, a landing step and a report path, forbids background subagents and ending while waiting, and ends with the lowest sufficient authority footer.',
       sources: ['standard-background-runs.md'],
       judgment: {
-        scope: 'Background-run prompts, decisions logs and run reports the delegating owner selects for review.',
+        scope: 'Background-run prompts, change documents and run reports the delegating owner selects for review.',
         prompt:
-          'Does each prompt cite a real owner decision by its words and date, name every remote call it relies on, use the lowest sufficient authority tier, and give a detached agent with no hidden context enough to finish, verify and report? Was the complete current concrete brief written and checked for unresolved templates before the agent started?',
+          'Does each prompt cite a real owner decision by what it decided and its date, name every remote call it relies on, use the lowest sufficient authority tier, and give a detached agent with no hidden context enough to finish, verify and report? Was the complete current concrete brief written and checked for unresolved templates before the agent started?',
         outcomes: ['conforming', 'revise prompt', 'escalate to owner'],
         guidance:
           'Revise a prompt only within the authority its cited decision grants, the push tier resting on the remit Kris gave on the change documents the task cites, for high-confidence or reversible work (WORK-MODES); escalate to the owner when the work needs the prune or release tier, cannot be undone by more work, or needs a decision that does not exist yet.'
@@ -43,21 +43,21 @@ export const RUN: RubricFamily<DelegationRubricContext, DelegationRubricContext[
       code: 'RUN-3',
       title: 'run records are tracked and consolidated',
       description:
-        "A run's brief and agent reports live in its run packet, `$TMPDIR/ki-agents/<run>/`, outside every repository, the brief until its report is received; each owner decision is logged in the change document it belongs to, in the package of the work that launched the run, before the work it authorises launches, and the package is committed at each send; in-force decisions are consolidated into a Decision Record, skill or the package rather than living only in the agent host's runtime or a run packet; the session homes each report's outcomes in the change documents they reach or in a record, and its queries in their change documents' Open sections, before removing the packet by literal path, while Git history holds the rest; and a prompt or record describes a decision by the owner's words and date, never by its number.",
+        "A run's brief and agent reports live in its run packet, `$TMPDIR/ki-agents/<run>/`, outside every repository, the brief until its report is received; each owner decision is applied to the outline or Steps of the change document it belongs to, in the package of the work that launched the run, before the work it authorises launches, with no log entries kept, and the package is committed at each send; in-force decisions are consolidated into a Decision Record, skill or the package rather than living only in the agent host's runtime or a run packet; the session homes each report's outcomes in the change documents they reach or in a record, and its queries in their change documents' Open sections, before removing the packet by literal path, while Git history holds the rest; and a prompt or record describes a decision by what it decided and its date, never by its number.",
       sources: ['standard-background-runs.md'],
       judgment: {
-        scope: 'Packages, decisions logs and run prompts the owner selects for review.',
+        scope: 'Packages, change documents and run prompts the owner selects for review.',
         prompt:
-          'Is every decision logged in its change document before its work launched, does anything durable exist only in the agent host runtime or a run packet, does the package hold only its closed list after each mark, with the outcomes and queries of each removed packet homed first, and does any prompt or record cite a decision by number alone?',
+          'Is every decision applied to its change document before its work launched, does anything durable exist only in the agent host runtime or a run packet, does the package hold only its closed list after each mark, with the outcomes and queries of each removed packet homed first, and does any prompt or record cite a decision by number alone?',
         outcomes: [
           'conforming',
           'consolidate decisions',
-          'log decisions',
+          'apply decisions',
           'home outcomes and tidy the package',
           'escalate to owner'
         ],
         guidance:
-          "Consolidate in-force decisions into their durable owner, record missing decisions before further launches, and replace a bare decision number with the owner's words and the date, and home each report's outcomes and queries before removing its run packet by literal path, keeping a packet whose outcome has no clear home; escalate when the durable owner is unclear."
+          "Consolidate in-force decisions into their durable owner, apply missing decisions to their change documents before further launches, and replace a bare decision number with what it decided and the date, and home each report's outcomes and queries before removing its run packet by literal path, keeping a packet whose outcome has no clear home; escalate when the durable owner is unclear."
       }
     },
     {

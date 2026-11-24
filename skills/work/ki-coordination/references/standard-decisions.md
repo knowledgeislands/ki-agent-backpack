@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-24T03:06:00Z
+ki-revised: 2026-11-24T03:22:50Z
 ki-status: in force
 ---
 
@@ -68,7 +68,7 @@ The rules, part by part.
 
 An applied, unrevoked owner decision authorises its stated scope across sessions. Ask again only for a new decision, an explicit later gate or a changed boundary. A relay is not approval, and narrower repository gates still apply.
 
-A grant is not such a decision. A grant the owner gives within a session, such as "you can accept anything with a high confidence", covers only that session's work within its remit and lapses with the session, unless the owner says it stands; and each push that publishes needs the owner's word each time, whatever grant is in force, as the standing rules for Stoa and the live sites already require. Kris set this under ACCEPT-REACH on 19 November 2026: "Sometimes I might say that within a given session of working, it's not a standing statement, I believe. So it should always be caveated within a certain remit." A decision on a stated scope, applied and unrevoked, still stands across sessions; a blanket grant does not.
+A grant is not such a decision. A grant the owner gives within a session, such as "you can accept anything with a high confidence", covers only that session's work within its remit and lapses with the session, unless the owner says it stands; and each push that publishes needs the owner's word each time, whatever grant is in force, as the standing rules for Stoa and the live sites already require. A grant given within a session is always read within that session's remit (ACCEPT-REACH). A decision on a stated scope, applied and unrevoked, still stands across sessions; a blanket grant does not.
 
 The coordinator applies each owner decision that meets the threshold below to the change document it belongs to in the turn it arrives, under the [rules below](#411-applying-decisions). A record, report or banner describes a decision by what it decided and its date, never by a number.
 
@@ -76,7 +76,7 @@ Sources: DECISION-NO-NUMBER and ACCEPT-REACH in [the decision register](sources.
 
 #### 4.1.1 Applying decisions
 
-<a id="411-decisions-log"></a>Record the result, not the discussion (Kris, 24 November 2026, fam.summit change 95). When the owner decides, the coordinator applies the decision to the change document it belongs to: it changes the document's outline or Steps to carry the result, removes the question from its Open section, and then acts. The output the work produces, a skill, `AGENTS.md`, a note or the site, carries the result, and the change document is deleted once its work has landed. Git history is the only trace of the discussion: no change document, `_index.md` or skill keeps a decision log, a `Decided` section or the owner's words. A point still open, a question, gap or consequence, goes into that change document's Open section, under the `ki-work-package` [change documents](../../ki-work-package/references/standard-work-package.md#46-change-documents) rule. A decision whose area has no change document yet opens one. Decisions carry no numbers, and a prompt, brief, record, report, package file or banner describes the decision it acts under by what it decided and its date.
+<a id="411-decisions-log"></a>Record the result, not the discussion. When the owner decides, the coordinator applies the decision to the change document it belongs to: it changes the document's outline or Steps to carry the result, removes the question from its Open section, and then acts. The output the work produces, a skill, `AGENTS.md`, a note or the site, carries the result, and the change document is deleted once its work has landed. Git history is the only trace of the discussion: no change document, `_index.md` or skill keeps a decision log, a `Decided` section or the owner's words. A point still open, a question, gap or consequence, goes into that change document's Open section, under the `ki-work-package` [change documents](../../ki-work-package/references/standard-work-package.md#46-change-documents) rule. A decision whose area has no change document yet opens one. Decisions carry no numbers, and a prompt, brief, record, report, package file or banner describes the decision it acts under by what it decided and its date.
 
 **The threshold** (MSG-SIMPLIFY a, 20 November 2026): apply the significant decisions and outcomes, those needed to pick up the work, not every minor decision or discussion point.
 
@@ -85,7 +85,7 @@ Sources: DECISION-NO-NUMBER and ACCEPT-REACH in [the decision register](sources.
 Edit each change document by hand, and commit and push it under [Committing the package](standard-coordination.md#481-committing-the-package).
 
 - A change document carries the work's agreed shape until its work lands; it is not a Decision Record. Each decision is classed under [decision classes](#412-decision-classes), whose class names the output that carries its result under the [life cycle](#413-decisions-life-cycle), so nothing durable lives only in the package.
-- The run side, that the session applies the owner's decisions and no background agent does, is the `ki-delegation` [decisions log](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#47-decisions-log)'s.
+- The run side, that a run applies the owner's decisions it is given and keeps no log entries, is the `ki-delegation` [applying decisions](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#47-applying-decisions) rule's.
 
 Sources: DECISION-NO-NUMBER, LOG-NO-LOSS, OLD-SHAPE-HOMES, FOCUS-ROWS and MSG-SIMPLIFY in [the decision register](sources.md#3-decisions).
 

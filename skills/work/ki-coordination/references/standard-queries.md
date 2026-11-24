@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-24T03:06:00Z
+ki-revised: 2026-11-24T03:22:50Z
 ki-status: in force
 ---
 
@@ -186,7 +186,7 @@ Sources: SUMMARY-MODEL, QUERY-RULES, INTERACTIVE-QUERIES, QUERY-TURNS, QUERY-SET
 
 ### 4.4 Goal-setting pass
 
-The owner asks for a goal-setting pass with "goals" or `/ki-coordination goals`. The coordinator walks the Goals section of `_index.md` in order, one goal at a time, in the [interactive pass](#43-interactive-pass)'s two-reply shape: it reads back the goal and its place in the order, and asks the owner to confirm, reword, reorder, add or retire it. At the end it writes the Goals section of the steward's own `_index.md` in one commit, logs the owner's words in the change document they belong to and closes with a Status. It strikes no mark and launches nothing.
+The owner asks for a goal-setting pass with "goals" or `/ki-coordination goals`. The coordinator walks the Goals section of `_index.md` in order, one goal at a time, in the [interactive pass](#43-interactive-pass)'s two-reply shape: it reads back the goal and its place in the order, and asks the owner to confirm, reword, reorder, add or retire it. At the end it writes the Goals section of the steward's own `_index.md` in one commit, applying the goals the owner agreed, and closes with a Status. It strikes no mark and launches nothing.
 
 Sources: GOAL-SETTING and FOCUS-ROWS in [the decision register](sources.md#3-decisions).
 
@@ -206,7 +206,7 @@ Before a query reaches the owner, it goes to one blind review run if it is mediu
   - The lift never takes to `high` a destructive course resting on claims not verified directly.
   - Precedent alone earns no lift: agreement resting only on an earlier decision, or only on the coordinator's framing, leaves the confidence where it was, its reason beginning `reviewed, precedent only`.
 - **Disagreement:** the confidence stays, its reason begins `review disagrees`, and the query shows both views: **Context** ends with the reviewer's view and reason in one sentence, and the reviewer's course joins the **Options** where it is not already one.
-- **Challenge:** where the review questions an earlier decision the query rests on, whether or not it agrees with the recommended course, **Context** ends, after any disagreement, with the challenge in one sentence, naming the decision by its words and date and giving the reviewer's reason. The **Options** gain one to revisit that decision. A challenge is shown even when the confidence is unchanged, and nothing acts on it until the owner answers.
+- **Challenge:** where the review questions an earlier decision the query rests on, whether or not it agrees with the recommended course, **Context** ends, after any disagreement, with the challenge in one sentence, naming the decision by what it decided and its date and giving the reviewer's reason. The **Options** gain one to revisit that decision. A challenge is shown even when the confidence is unchanged, and nothing acts on it until the owner answers.
 - **Run reports:** the coordinator reviews the queries a run report raises when it receives the report, before they reach the owner. The background agent that raised them does not launch the review itself.
 - **Split rule:** a query still below `high` after review is split into separately tagged parts, each one decision the owner can answer with one instruction and each with its own confidence. Packed queries are unpacked before an [unattended window](standard-unattended.md#42-unattended-windows) starts, so nothing waiting on the owner bundles decisions while they are away.
 
@@ -219,7 +219,7 @@ Sources: QUERY-REVIEW, QUERY-REVIEW-STANDARD, BLIND-REVIEW, REVIEW-INDEPENDENCE,
 <!-- ki-coordination:source review-independence -->
 
 ```markdown
-**Independence**, in a review run: form your own view from the evidence before you weigh anything the brief says was decided. Earlier decisions are dated facts, not premises, and you may challenge any of them: where the evidence suggests one was wrong, name it by its words and date and give your reason, as well as answering what was asked. A challenge goes to the owner and is never acted on without them.
+**Independence**, in a review run: form your own view from the evidence before you weigh anything the brief says was decided. Earlier decisions are dated facts, not premises, and you may challenge any of them: where the evidence suggests one was wrong, name it by what it decided and its date and give your reason, as well as answering what was asked. A challenge goes to the owner and is never acted on without them.
 ```
 
 [Back to contents](#contents)
@@ -242,8 +242,8 @@ Records awaiting acceptance reach the owner as one bundle per work, and the Stat
 
 - **When:** at bootstrap and resume, the State of play's first call on the owner, before any other query, is the territory's `awaiting-review` records. Project work brings its own at each handoff to the owner.
 - **Shape:** one `ACCEPT` query per work, tagged with the work's name, listing each record oldest first, linked under [Linking records](standard-reporting.md#44-linking-records), with its outcome and any concern in one line. The owner answers `ACCEPT`, or `ACCEPT` with the exceptions named.
-- **Grant:** the coordinator quotes the answer in the change document it belongs to with its source and lists the exact records it covers. That is the standing human grant the `ki-work accept` [closure authority](../../../keystone/ki-work/references/standard-acceptance.md#42-obtain-closure-authority) recognises. A named exception stays `awaiting-review` and keeps its own query.
-- **Closure:** one `ki-work accept` run per repository closes the accepted records from that quotation and prunes them in the next prune-only commit. The coordinator never accepts a record in its own turn.
+- **Grant:** the coordinator records the answer in the change document it belongs to by its scope, its date and where it was given, such as the reply id or message, with no quoted words, and lists the exact records it covers. That is the standing human grant the `ki-work accept` [closure authority](../../../keystone/ki-work/references/standard-acceptance.md#42-obtain-closure-authority) recognises. A named exception stays `awaiting-review` and keeps its own query.
+- **Closure:** one `ki-work accept` run per repository closes the accepted records against that recorded scope and prunes them in the next prune-only commit. The coordinator never accepts a record in its own turn.
 
 Sources: ACCEPT-BUNDLE in [the decision register](sources.md#3-decisions).
 

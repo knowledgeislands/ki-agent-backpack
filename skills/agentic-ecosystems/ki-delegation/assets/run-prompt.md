@@ -1,6 +1,6 @@
 # Task: <one-line outcome>
 
-<Owner> approved this on <date>, in these words: "<the owner's words>". The entry is in `work/<territory>/<id>/<NN-slug>.change.md` in the Cairn store.
+<Owner> decided this on <date>: <the decision, as applied in the change document>. It is applied in `work/<territory>/<id>/<NN-slug>.change.md` in the Cairn store.
 
 <Context the agent needs that it cannot discover: paths, records by full identifier, prior reports.>
 
@@ -15,4 +15,4 @@ Temporary output goes in <temporary>/, outside every repository; never remove it
 
 Do not use background subagents. Never end your session while waiting.
 
-**Independence**, in a review run: form your own view from the evidence before you weigh anything the brief says was decided. Earlier decisions are dated facts, not premises, and you may challenge any of them: where the evidence suggests one was wrong, name it by its words and date and give your reason, as well as answering what was asked. A challenge goes to the owner and is never acted on without them.
+**Independence**, in a review run: form your own view from the evidence before you weigh anything the brief says was decided. Earlier decisions are dated facts, not premises, and you may challenge any of them: where the evidence suggests one was wrong, name it by what it decided and its date and give your reason, as well as answering what was asked. A challenge goes to the owner and is never acted on without them.

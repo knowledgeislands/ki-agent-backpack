@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-17T00:28:37Z
-ki-revised: 2026-11-24T03:06:00Z
+ki-revised: 2026-11-24T03:22:50Z
 ki-status: in force
 ---
 
@@ -300,8 +300,8 @@ Standing an actor down and bringing it back are `ki-coordination`'s [holds](../.
 - **Change documents carry the work.** Each is `NN-<slug>.change.md`, under `ki-authoring`'s [change format](../../../keystone/ki-authoring/references/standard-formats-change.md), its slug lower-case kebab case.
 - **They are numbered** in tens by group, in the order they are taken, with gaps for new ones.
 - **They are named by name, not number.** The number is only a change document's priority; its name is the slug after the number, in sentence case. Wherever one is mentioned, in a file or a reply, it is called by that name, with its number in brackets after it if at all, as "Case website (70)", never "change 70" or "70" alone, and a link to it takes the same text, as `[Case website (70)](70-case-website.change.md)`. Replies follow `ki-coordination`'s [Links and wording](../../ki-coordination/references/standard-reporting.md#43-links-and-wording).
-- **Decisions are applied to the change document they belong to** (Kris, 24 November 2026, fam.summit change 95). When the owner decides, the decision is applied to the change document's outline or Steps and its question removed from the Open section, and then the work acts on it. The output, a skill, `AGENTS.md`, a note or the site, carries the result, and the change document is deleted once its work has landed. No change document or `_index.md` keeps a decision log, a `Decided` section or the owner's words; Git history is the only trace. Review and graduation are `ki-work design`'s.
-- **Open points live in a change document's Open section,** in full, and nothing already answered stays there. An answered question leaves Open in the same turn its answer is applied to the outline or Steps; an `_Answered <letter>_` marker left on it meanwhile is temporary and goes at the next tidy, and Questions read None by `agreed` (ANSWERED-MARKER a, Kris, 22 November 2026: "Leaves Open now"). A question overtaken before it is answered is struck through as withdrawn, under `ki-authoring`'s [change format](../../../keystone/ki-authoring/references/standard-formats-change.md).
+- **Decisions are applied to the change document they belong to.** When the owner decides, the decision is applied to the change document's outline or Steps and its question removed from the Open section, and then the work acts on it. The output, a skill, `AGENTS.md`, a note or the site, carries the result, and the change document is deleted once its work has landed. No change document or `_index.md` keeps a decision log, a `Decided` section or the owner's words; Git history is the only trace. Review and graduation are `ki-work design`'s.
+- **Open points live in a change document's Open section,** in full, and nothing already answered stays there. An answered question leaves Open in the same turn its answer is applied to the outline or Steps; an `_Answered <letter>_` marker left on it meanwhile is temporary and goes at the next tidy, and Questions read None by `agreed` (ANSWERED-MARKER a). A question overtaken before it is answered is struck through as withdrawn, under `ki-authoring`'s [change format](../../../keystone/ki-authoring/references/standard-formats-change.md).
 
 [Back to contents](#contents)
 
@@ -320,7 +320,7 @@ A sub-package is one strand of a package's work: a package in miniature, with it
 
 The message queue has retired (MSG-RETIRE): a package keeps no queue of its own and the Cairn store keeps no `messages/`. Work for another package goes along the tree as steer or feedback, and the receiving package's holder, or the root's guardian while none holds it, records it in its change documents, Now or Held, under `ki-coordination`'s [Work between packages](../../ki-coordination/references/standard-messages.md#messages-between-work). Sessions talk by Orca mail, under `ki-coordination`'s [messages standard](../../ki-coordination/references/standard-messages.md#42-orca-mail-and-the-cairn-beacon), in a meeting, under `ki-meeting`'s [meeting standard](../../ki-meeting/references/standard-meeting.md), or, for a session outside Orca, through its agent host's own messaging (WORK-FIXES); that conversation carries no authority, and nothing in it binds a package until its holder records it.
 
-Owner feedback on a document the work produced reaches the package the same way, as Kris set under FEEDBACK-AS-MESSAGE on 31 October 2026: "we can probably drop the feedback idea. We just send a message with it instead". Each point is recorded in the change document it reaches as what is to change, not in the owner's words.
+Owner feedback on a document the work produced reaches the package the same way, as a message rather than a feedback file (FEEDBACK-AS-MESSAGE). Each point is recorded in the change document it reaches as what is to change, not in the owner's words.
 
 [Back to contents](#contents)
 
