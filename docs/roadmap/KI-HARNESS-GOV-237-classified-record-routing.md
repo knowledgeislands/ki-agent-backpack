@@ -8,13 +8,12 @@ component: work
 priority: medium
 size: s
 assignee: work/ki.summit
-horizon: now
-status: awaiting-review
+status: done
 blocks: []
 blocked_by: []
 baseline_ref: 89a6b7c85d218822002a5f97a867c41edf890dc4
 created_at: 2026-11-19T06:25:00Z
-updated_at: 2026-11-22T20:16:00Z
+updated_at: 2026-11-24T11:40:00Z
 ---
 
 # Classified record routing
@@ -100,6 +99,10 @@ The goal is met for 4.6: a record now reaches the package that works it under th
 ### Mini recap
 
 4.6's routing paragraph is rewritten in the store's words at `a38439f2c`; the roadmap audit passes; one concern, the same old words in `ki-coordination`'s territory standard, waits for its own record. Learning route proposed: when a model's words change, search every skill's standards for them, not only the one the record names.
+
+## Done
+
+Accepted 24 November 2026 by Kris, 11:20 GMT, on Orca item 262 (RECORDS-ACCEPT, "Yes, all four"), on the review packet above. The outstanding concern is met: `ki-coordination`'s territory standard no longer carries the old routing words.
 
 ## Discussion
 
