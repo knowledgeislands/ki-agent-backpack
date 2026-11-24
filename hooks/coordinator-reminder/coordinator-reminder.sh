@@ -4,7 +4,7 @@
 # Full rules, re-anchoring and the coordinator method self-check live in the
 # authoritative standard/output style. Full session-sensitive detection is deferred,
 # but a session whose opener's Session: line or earlier reply names its seat, and whose
-# actor the Cairn store names, is told its named thread line (NAME-FIRST).
+# actor the Cairn store names, is told its named thread line.
 # Fail open silently on unusable input.
 set -u
 
@@ -45,7 +45,7 @@ fi
 
 # >>> seat-name: the same in both coordinator hooks, which coordinator-reminder.test.ts holds alike.
 # A thread line's named form, <Name> (<seat form>), from the ki-name of the actor its seat's ki-workers
-# entry points at (NAME-FIRST): the entry holding the package's ki-role for the keyholder, its role for
+# entry points at: the entry holding the package's ki-role for the keyholder, its role for
 # a keyless seat. Reads only the Cairn store that Cairn's config.toml names; prints nothing where the
 # seat is unnamed, ambiguous or anything is unresolved.
 seat_named() {
@@ -98,7 +98,7 @@ seat_named() {
 # The thread line the session's own last reply closed with, from Claude Code transcript lines on
 # standard input: the last line of the last text of the session's own assistant messages that ends
 # with one, alone or after the state in a one-line footer, <glyph state> · <thread line>, which gives
-# the thread line after its last ` · ` (MINIMAL-FOOTER), a last line NO_REPLY set aside (NOTICE-DIGEST).
+# the thread line after its last ` · `, a last line NO_REPLY set aside.
 # Tool calls such as a SendMessage to a peer,
 # a peer's message, tool results, notifications and a subagent's replies never count, so another
 # seat's line is never read as the session's own.

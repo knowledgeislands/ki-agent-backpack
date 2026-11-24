@@ -3,7 +3,7 @@ import { dirname, isAbsolute, join, relative, resolve } from 'node:path'
 import type { RubricContextOptions, RubricPublicationContext, RubricSession } from '../../shared/rubric.ts'
 
 const GUIDES_DIRECTORY = 'docs/guides'
-/** The collection's page, `_index.md` alone (DOCS-LANDING-GITHUB), and the earlier name read until renamed. */
+/** The collection's page, `_index.md` alone, and the earlier name read until renamed. */
 const INDEX_FILE = '_index.md'
 const LEGACY_INDEX = 'README.md'
 const RETIRED_ROOTS = ['docs/spec', 'docs/developer'] as const

@@ -6,7 +6,7 @@ import { inspectKbRoadmap, RECORD_FIELDS } from './kb-roadmap.ts'
 import { createRoadmapSession } from './roadmap.ts'
 import { inspectRoadmap } from './roadmap-evidence.ts'
 
-// The KB record checks came from ki-repo-kb-streams under KB-FOLD b (22 November 2026), with these tests.
+// The KB record checks came from ki-repo-kb-streams on 22 November 2026, with these tests.
 const STANDARD = 'references/standard-repository-roadmaps.md'
 const FORMAT = 'references/standard-work-item-format.md'
 const roots: string[] = []
@@ -179,7 +179,7 @@ describe('KB roadmap records', () => {
     )
   })
 
-  test('warns on an adopted draft of size xl, which is split before adoption (GATES-SIZE-XL a)', () => {
+  test('warns on an adopted draft of size xl, which is split before adoption', () => {
     const root = kbFixture()
     writeFileSync(
       join(root, 'Streams', 'Roadmap', 'KB-OPS-001-known.md'),

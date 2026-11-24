@@ -29,7 +29,7 @@ mkdirSync(join(undeclared, '+', '_CHECKPOINTS'), { recursive: true })
 writeFileSync(join(undeclared, '.ki.toml'), '[skills.ki-repo]\nrepository = "undeclared"\n\n[skills.ki-work-package]\n')
 spawnSync('git', ['init', '--quiet'], { cwd: undeclared })
 mkdirSync(ordinary, { recursive: true })
-// A Cairn store under the home, and Cairn's config.toml naming it as `~/store` (NAME-FIRST).
+// A Cairn store under the home, and Cairn's config.toml naming it as `~/store`.
 const unconfigured = join(root, 'unconfigured')
 const configured = join(root, 'config')
 const store = join(root, 'store')
@@ -183,7 +183,7 @@ test.each(['null', '[]', '42', '"text"', '{"hook_event_name":{}}', '{"hook_event
   expect(run(input)).toEqual({ status: 0, stdout: '' })
 })
 
-// Kris, 19 November 2026: a seat should close with its named thread line the first time, before the Stop hook holds a
+// A seat should close with its named thread line the first time, before the Stop hook holds a
 // bare one back. Once the session's seat is known, from its opener's Session: line or an earlier reply's thread line,
 // the reminder names the line where the Cairn store names the seat's actor, and otherwise says nothing more.
 const told = `${line} Close every banner or one-line footer with your seat's named thread line: Kitteth (🪨 🔑 cairn.summit).`
@@ -201,7 +201,7 @@ test("a known seat whose actor the store names is told its named thread line", (
   expect(run(session('Kitteth (🪨 🔑 cairn.summit)'), named).context).toBe(told)
   expect(run(replied('🪨 🔑 cairn.summit'), named).context).toBe(told)
   expect(run(replied('Kitteth (🪨 🔑 cairn.summit)'), named).context).toBe(told)
-  // A reply closing with the one-line footer gives its seat from the thread line after the state (MINIMAL-FOOTER).
+  // A reply closing with the one-line footer gives its seat from the thread line after the state.
   const path = join(root, 'replied-one-line.jsonl')
   const reply = { type: 'assistant', message: { role: 'assistant', content: [{ type: 'text', text: 'Still going.\n\n🤖 With worker · 🪨 🔑 cairn.summit' }] } }
   writeFileSync(path, `${JSON.stringify(reply)}\n`)
@@ -216,8 +216,8 @@ test('an unnamed, unknown or unresolvable seat gets the line alone', () => {
   expect(run(session('🪨 🔑 cairn.summit')).context).toBe(line)
 })
 
-// Kris, 19 November 2026: Wayland's session was told to close with Kitteth's line, read from the SendMessage it had
-// addressed to Kitteth and the message Kitteth sent back. Only the session's own replies name its seat.
+// Wayland's session must not be told to close with Kitteth's line, read from the SendMessage it had addressed to
+// Kitteth and the message Kitteth sent back. Only the session's own replies name its seat.
 seat('ki.cairn', 'steward', 'actor:wayland')
 mkdirSync(join(store, 'roster', 'actors', 'wayland'), { recursive: true })
 writeFileSync(join(store, 'roster', 'actors', 'wayland', '_index.md'), '---\nki-id: actor:wayland\nki-name: Wayland\n---\n')

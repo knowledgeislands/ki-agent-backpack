@@ -3,11 +3,10 @@
  *
  * Boundary: runs only where a repository declares `[skills.ki-coordination]` in its `.ki.toml`, the section this skill
  * contributes, and reads the repository's and the user's Claude Code settings, of which it reads only the output style
- * and the hook commands, and the deployed output style. Reports are no longer read, their checks retired under
- * COORD-REPORT-CHECKS (Kris, 15 November 2026); where territory work sits and the level a work file declares are no
- * longer checked, retired under COORD-RETIRE (Kris, 16 November 2026); and the Project registry, theme and active-work
- * cap checks, which read `+/_WORK/`, are retired for now under COORD-REPOINT (Kris, 16 November 2026), to return in
- * `ki-work-package`'s check as warnings once a project-level package lands in the Cairn store. It never writes, and it
+ * and the hook commands, and the deployed output style. Reports are no longer read, their checks retired; where
+ * territory work sits and the level a work file declares are no longer checked; and the Project registry, theme and
+ * active-work cap checks, which read `+/_WORK/`, are retired for now, to return in `ki-work-package`'s check as
+ * warnings once a project-level package lands in the Cairn store. It never writes, and it
  * never judges a transcript: coordinator behaviour is reviewed by the judgment items from evidence the owner selects.
  */
 import { existsSync, readFileSync } from 'node:fs'

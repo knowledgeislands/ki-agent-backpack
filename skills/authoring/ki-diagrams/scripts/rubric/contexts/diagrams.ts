@@ -18,7 +18,7 @@ const TOML = (globalThis as unknown as { Bun: { TOML: { parse(text: string): unk
 
 const DIAGRAMS_DIRECTORY = 'docs/diagrams'
 const MANIFEST_FILE = 'diagrams.toml'
-/** The folder's page, `_index.md` alone (DOCS-LANDING-GITHUB), and the earlier name read until renamed. */
+/** The folder's page, `_index.md` alone, and the earlier name read until renamed. */
 const INDEX_FILE = '_index.md'
 const LEGACY_INDEX = 'README.md'
 /** The subdirectory of docs/diagrams holding each diagram's optional dark variant, `dark/<slug>.svg`. */

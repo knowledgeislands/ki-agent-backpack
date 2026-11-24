@@ -10,7 +10,7 @@ const record = (overrides: Partial<StandingPruneInput> = {}): StandingPruneInput
   ...overrides
 })
 
-describe('the standing prune (PRUNE-RECORDS)', () => {
+describe('the standing prune', () => {
   test('a done or cancelled record landed seven days ago is due without asking', () => {
     expect(evaluateStandingPrune(record())).toEqual({ due: true })
     expect(evaluateStandingPrune(record({ status: 'cancelled' }))).toEqual({ due: true })

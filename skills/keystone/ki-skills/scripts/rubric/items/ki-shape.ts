@@ -65,7 +65,7 @@ const KI_SHAPE_3: RubricItem<KiShapeRubricContext> = {
   code: 'KI-SHAPE-3',
   title: 'the skill declares its kind',
   description:
-    'Every KI skill declares its **kind** in exact frontmatter as `ki-kind: governance`, `ki-kind: process` or `ki-kind: knowledge`; a directory and prose never establish kind (ADR-KI-HARNESS-SKILLS-006). A **governance skill** holds a house standard and exposes the four universal acting modes plus the required HELP entry point (KI-SHAPE-5, KI-SHAPE-11). A **process skill** drives an action or lifecycle rather than holding a standard: it is lightweight, may bundle a helper `scripts/` and a `references/` procedure, and is exempt from universal governance modes — its mode count follows its own lifecycle and it exposes HELP only optionally. A **knowledge skill** only equips a session with a body of knowledge, held as a knowledge graph in its `knowledge/`: it audits and conforms nothing, publishes no rubric, and its modes are EDUCATE and REFRESH with HELP (KNOWLEDGE-KIND). Every kind uses the closed Knowledge Islands reference vocabulary (KI-SHAPE-6) and is dual-invocable (`/<name>` and model-triggered).',
+    'Every KI skill declares its **kind** in exact frontmatter as `ki-kind: governance`, `ki-kind: process` or `ki-kind: knowledge`; a directory and prose never establish kind (ADR-KI-HARNESS-SKILLS-006). A **governance skill** holds a house standard and exposes the four universal acting modes plus the required HELP entry point (KI-SHAPE-5, KI-SHAPE-11). A **process skill** drives an action or lifecycle rather than holding a standard: it is lightweight, may bundle a helper `scripts/` and a `references/` procedure, and is exempt from universal governance modes — its mode count follows its own lifecycle and it exposes HELP only optionally. A **knowledge skill** only equips a session with a body of knowledge, held as a knowledge graph in its `knowledge/`: it audits and conforms nothing, publishes no rubric, and its modes are EDUCATE and REFRESH with HELP. Every kind uses the closed Knowledge Islands reference vocabulary (KI-SHAPE-6) and is dual-invocable (`/<name>` and model-triggered).',
   sources: ['ki-agent-backpack README', 'ADR-KI-HARNESS-SKILLS-006'],
   mechanical: {
     level: 'FAIL',
@@ -118,7 +118,7 @@ const KI_SHAPE_6: RubricItem<KiShapeRubricContext> = {
   title: 'Knowledge Islands skills use the closed reference vocabulary',
   description:
     "_Closed reference vocabulary — Knowledge Islands skills only._ Every top-level Markdown reference is `standard-<topic>.md`, generated `rubric.md`, `sources.md`, optional `exemplars.md`, one-mode-only `mode-<verb>.md`, a `migration-<topic>.md` overlay holding the transition a standard leaves out, a `report-<YYYYMMDD>-<topic>.md` dated finding a standard rests on, or a `<topic>-proposal.md` awaiting decision; a skill includes only the classes it needs. Normative formats, process doctrine, and shared mode contracts are standards, following the `ki-authoring` standard format; `sources.md` follows its sources format. A skill that holds a knowledge graph keeps it in `knowledge/` at the skill's top level, never in `references/`: the graph's root definition `knowledge/_graph.md` and its cards, each named `<id>.md` with its front-matter `id` equal to that name, in a folder for each subgraph or flat where the graph has none, under the `ki-knowledge-graph` standard; `knowledge/` holds nothing else, and a knowledge skill always holds a graph. Combined mode names, the plural `standards-<topic>.md`, bare `standards.md`, `<topic>-standards.md`, nested references, and ad hoc guide, format, or contract filenames are retired. Templates and reusable output material live in `assets/`. A skill tracking a moving external spec keeps a current-state `## Last review` block in `sources.md`. Skills outside the Knowledge Islands set are exempt.",
-  sources: ['ki-agent-backpack README', 'KNOWLEDGE-KIND', 'KNOWLEDGE-FOLDER', 'GRAPH-FOLDERS'],
+  sources: ['ki-agent-backpack README'],
   mechanical: {
     level: 'FAIL',
     remediation: {
@@ -629,7 +629,7 @@ const KI_SHAPE_19: RubricItem<KiShapeRubricContext> = {
   title: 'repository applicability is explicit',
   description:
     'Every canonical Knowledge Islands skill declares one orthogonal `ki-applicability: baseline | detected | declaration-only | invocation-only`. Only `ki-repo`, `ki-authoring` and `ki-keystone` are baseline; every process and knowledge skill is invocation-only; governance skills are detected or declaration-only. `ki-repo` alone declares a non-empty, duplicate-free `ki-detects:` flow list.',
-  sources: ['ADR-KI-HARNESS-SKILLS-014', 'KEYSTONE-BASELINE', 'standard-knowledge-islands.md §4.2'],
+  sources: ['ADR-KI-HARNESS-SKILLS-014', 'standard-knowledge-islands.md §4.2'],
   mechanical: {
     level: 'FAIL',
     remediation: {
@@ -842,7 +842,7 @@ const KI_SHAPE_22: RubricItem<KiShapeRubricContext> = {
   title: 'guild membership is declared',
   description:
     'Every canonical Knowledge Islands skill declares the guild it belongs to, `ki-guild: <guild>`, a kebab-case guild name; the folder it sits in is storage and never declares membership. A lead skill also declares the guild it leads, `ki-leads: <guild>`, and is itself a member of Keystone, `ki-guild: keystone`; only `ki-keystone` leads Keystone. A repository-local `ki-self` is outside every guild.',
-  sources: ['GUILD-PLACE', 'KI-KEYS', 'standard-knowledge-islands.md §4.2', 'standard-guilds.md §4.4'],
+  sources: ['standard-knowledge-islands.md §4.2', 'standard-guilds.md §4.4'],
   mechanical: {
     level: 'FAIL',
     remediation: {
@@ -886,7 +886,7 @@ const KI_SHAPE_23: RubricItem<KiShapeRubricContext> = {
   title: 'a knowledge graph’s cards are well formed',
   description:
     'In a skill that holds a knowledge graph, the root definition `knowledge/_graph.md` is a card of type `graph` that declares its card types; every other card has a front-matter `id` equal to its file name, a `type` its root definition declares and a `status` of `proposal`, `future-concept` or `agreed`; and every relative link in the graph, outside code, resolves to a file, under the `ki-knowledge-graph` standard.',
-  sources: ['RUBRIC-KNOWLEDGE', 'KNOWLEDGE-KIND', 'KNOWLEDGE-FOLDER', 'standard-knowledge-islands.md §4.2'],
+  sources: ['standard-knowledge-islands.md §4.2'],
   mechanical: {
     level: 'FAIL',
     remediation: {
@@ -958,8 +958,8 @@ const KI_SHAPE_24: RubricItem<KiShapeRubricContext> = {
   code: 'KI-SHAPE-24',
   title: 'a card read in order links the next',
   description:
-    'A card with a `## Next` section is read in order, and that section links the next card of its graph; the last card of a chain, which another card’s Next section reaches, may end it without a link. The check only warns, since the order is the graph’s to settle (CARD-ORDER).',
-  sources: ['RUBRIC-KNOWLEDGE', 'standard-knowledge-islands.md §4.2'],
+    'A card with a `## Next` section is read in order, and that section links the next card of its graph; the last card of a chain, which another card’s Next section reaches, may end it without a link. The check only warns, since the order is the graph’s to settle.',
+  sources: ['standard-knowledge-islands.md §4.2'],
   mechanical: {
     level: 'WARN',
     remediation: {

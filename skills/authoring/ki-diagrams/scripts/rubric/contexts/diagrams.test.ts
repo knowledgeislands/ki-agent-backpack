@@ -85,7 +85,7 @@ test('a conforming diagram set passes DIAG-1 to DIAG-4', () => {
   for (const code of ['DIAG-1', 'DIAG-2', 'DIAG-3', 'DIAG-4']) expect(statuses(code, root)).toEqual(['PASS'])
 })
 
-// Kris, 22 November 2026, 19:57 GMT, under DOCS-LANDING-GITHUB b: "_index.md only". The folder's page is `_index.md`;
+// The folder's page is `_index.md`;
 // an earlier README.md alone is still read for embeds and warns until renamed, and one beside `_index.md` warns.
 test('DIAG-1 reads the page from _index.md, warning on an earlier README.md alone or beside it', () => {
   // ki takes a WARN outcome only from an item that declares it (`overrideLevels`).

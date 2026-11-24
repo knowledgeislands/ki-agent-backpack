@@ -144,7 +144,7 @@ test('a guide opening shorter than 120 characters of prose is reported; the root
   ])
 })
 
-// Kris, 22 November 2026, 19:57 GMT, under DOCS-LANDING-GITHUB b: "_index.md only". The collection's page is
+// The collection's page is
 // `_index.md`; an earlier README.md alone warns until renamed, one beside `_index.md` warns, and neither is a guide.
 test('GUIDE-2 takes _index.md as the entry point, warning on an earlier README.md alone or beside it', () => {
   const guide2 = (pages: readonly string[]) => {

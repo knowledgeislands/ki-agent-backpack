@@ -11,7 +11,7 @@ import type {
 const INDEX_NOTE = 'Live Artifacts.md'
 const DEFAULT_ARTIFACTS_DIRECTORY = 'Admin/Operations/Live Artifacts'
 const DEFAULT_THRESHOLD_HOURS = 24
-// The bindings sit in ki-repo-kb's own table since ki-repo-kb-live-artifacts folded in (KB-FOLD b).
+// The bindings sit in ki-repo-kb's own table since ki-repo-kb-live-artifacts folded in.
 const CONFIG_TABLE = 'ki-repo-kb'
 
 type ArtifactSource = {

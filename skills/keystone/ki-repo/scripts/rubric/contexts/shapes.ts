@@ -11,7 +11,7 @@ export const PROJECT_SHAPES = [
 
 /**
  * The skill each shape needs declared: its own table, except where the shape's skill was folded into
- * another on 22 November 2026 (REPO-CORE a, REPO-OTHERS a). The shape names themselves stay.
+ * another on 22 November 2026. The shape names themselves stay.
  */
 export const SHAPE_OWNERS: Readonly<Partial<Record<ProjectShape, string>>> = {
   'ki-repo-project': 'ki-repo',

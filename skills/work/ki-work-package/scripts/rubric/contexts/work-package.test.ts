@@ -35,7 +35,7 @@ type Entry = {
   readonly drop?: readonly string[]
   readonly body?: string
   readonly changes?: readonly string[]
-  /** Write the fields without the `ki-` prefix, as packages written before KI-PREFIX do. */
+  /** Write the fields without the `ki-` prefix, as packages written before the prefix do. */
   readonly bare?: boolean
 }
 
@@ -53,7 +53,7 @@ const BASE_FIELDS = (id: string): Record<string, string> => ({
   since: 'since: 2026-11-09T10:00:00Z'
 })
 
-/** A field line with its top-level key given the `ki-` prefix, as every entry file field takes (KI-PREFIX a). */
+/** A field line with its top-level key given the `ki-` prefix, as every entry file field takes. */
 const prefixed = (line: string): string => line.replace(/^(?!ki-)([a-z_]+):/, 'ki-$1:')
 
 /**
@@ -316,7 +316,7 @@ describe('RECORD-1 identity', () => {
     expect(statuses(run(RECORD, 'RECORD-2', context(root)))).toEqual(['PASS'])
   })
 
-  test('an id still naming its kind, sop, prj or reg, warns under the role migration file (NODE-ID)', () => {
+  test('an id still naming its kind, sop, prj or reg, warns under the role migration file', () => {
     for (const id of ['ki.sop.tools', 'ki.prj.observatory', 'ki.reg.guilds']) {
       const root = fixture()
       write(root, 'work/ki/ki.summit/_index.md', MAIN)
@@ -428,12 +428,12 @@ describe('RECORD-2 schema', () => {
       expect(messages(outcomes)).toContain(expected)
     })
 
-  test('a list of full record ids passes (RECORD-LINKS)', () => {
+  test('a list of full record ids passes', () => {
     const outcomes = run(RECORD, 'RECORD-2', context(store({ fields: ['records:\n  - KI-HARNESS-GOV-152'] })))
     expect(statuses(outcomes)).toEqual(['PASS'])
   })
 
-  test("a guardian's raised list of tags and times passes (RAISED-FORM)", () => {
+  test("a guardian's raised list of tags and times passes", () => {
     const fields = [
       'role: guardian',
       'raised:\n  - tag: QUIET-INTERRUPT\n    since: 2026-11-21T17:00:00Z\n  - tag: RAISED-FORM\n    since: 2026-11-21T17:05:00Z'
@@ -643,7 +643,7 @@ describe('RECORD-2 schema', () => {
     }
   })
 
-  test('a vacant seat with its role and tier passes (SEATS-VACANT a)', () => {
+  test('a vacant seat with its role and tier passes', () => {
     const binding = 'workers:\n  - role: guildmaster\n    tier: managers\n    status: vacant'
     expect(statuses(run(RECORD, 'RECORD-2', context(store({ fields: [binding] }))))).toEqual(['PASS'])
   })
@@ -657,7 +657,7 @@ describe('RECORD-2 schema', () => {
     }
   })
 
-  test('an actor named in more than one seat across the store warns (ONE-TITLE)', () => {
+  test('an actor named in more than one seat across the store warns', () => {
     const binding = 'workers:\n  - id: actor:lupin\n    role: warden\n    tier: managers'
     const root = store({ fields: [binding] })
     write(
@@ -670,7 +670,7 @@ describe('RECORD-2 schema', () => {
     expect(messages(outcomes)).toContain('actor:lupin holds 2 seats, at ki.pilot, ki.summit')
   })
 
-  test('an acting place, a vacant seat under the carrying node, passes (ONE-TITLE)', () => {
+  test('an acting place, a vacant seat under the carrying node, passes', () => {
     const vacant = 'workers:\n  - role: warden\n    tier: managers\n    status: vacant'
     const root = store({ fields: [vacant] })
     write(
@@ -744,7 +744,7 @@ describe('BOUNDARY', () => {
 
 test('the role catalogue is read from the role standard', () => {
   const catalogue = roleCatalogue()
-  // ROLE-RANK, Kris, 17 November 2026: tiers in order, roles by rank within each, the default lowest.
+  // Tiers in order, roles by rank within each, the default lowest.
   expect([...catalogue.keys()]).toEqual([
     'guardian',
     'governor',

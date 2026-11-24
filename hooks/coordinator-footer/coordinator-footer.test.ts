@@ -16,7 +16,7 @@ for (const checkout of [coordinating, roadless]) {
   spawnSync('git', ['init', '--quiet'], { cwd: checkout })
 }
 mkdirSync(join(coordinating, 'docs', 'roadmap'), { recursive: true })
-// A Cairn store and Cairn's config.toml naming it, from which the hook reads a seat's actor (NAME-FIRST).
+// A Cairn store and Cairn's config.toml naming it, from which the hook reads a seat's actor.
 const unconfigured = join(root, 'unconfigured')
 const configured = join(root, 'config')
 const store = join(root, 'store')
@@ -169,8 +169,8 @@ test('a Status takes the long footer, as a Summary does', () => {
   )
 })
 
-// Kris, relayed on 7 November 2026, asked that the hook "allow it but warn against it and feedback on it to make sure
-// it's intentional": only a lost banner or thread line holds a reply back.
+// Anything unusual passes with a warning, so the session can make sure it was intended: only a lost banner or thread
+// line holds a reply back.
 test('a Summary without the art passes with a warning naming it', () => {
   const outcome = run(stop(summary(heading, counts, roadmap, pkg, items, listening, thread), plain))
   expect(outcome.status).toBe(0)
@@ -265,7 +265,7 @@ test('a Stop and a Finished banner pass in their own shapes', () => {
   // A Finished banner carries no counts line.
   expect(run(stop(['### 🏁 Finished · Demo closed at 18:00 GMT', '- 🏁 3 work items accepted', thread].join('\n\n'), plain))).toEqual(silent)
   expect(run(stop(hold.replace('⏸️ drained · 🅿️ 2 queries parked\n\n', ''), plain)).warning).toContain('no counts line')
-  // Snoozing, under SNOOZE, keeps its watcher armed, so its counts line waits for a message rather than saying drained.
+  // Snoozing keeps its watcher armed, so its counts line waits for a message rather than saying drained.
   const snoozing = [
     '**Stop at 21:10 GMT · mark 21:10 GMT**',
     '## Done',
@@ -292,12 +292,12 @@ test('a Stop and a Finished banner pass in their own shapes', () => {
   ].join('\n\n')
   expect(run(stop(snoozingStatus, coordinated('mark, status only')))).toEqual(silent)
   expect(run(stop(snoozingStatus, coordinated('status')))).toEqual(silent)
-  // A heading written before SNOOZE-HEADING, with `since`, passes too, and so does an earlier form line with its state.
+  // A heading in the earlier form, with `since`, passes too, and so does an earlier form line with its state.
   expect(run(stop(snoozing.replace('· at 21:10 GMT', '· since 21:10 GMT'), plain))).toEqual(silent)
   expect(run(stop(hold.replace('**Stop at', '**⏸️ On hold · Hold report at'), plain))).toEqual(silent)
 })
 
-// LISTEN-LINE, Kris, 16 November 2026, and FOOTER-DELEGATES, 19 November 2026: the meeting line names the meetings the
+// The meeting line names the meetings the
 // session is in and who it works with there, and is left off in none, so a banner without it passes quietly, and an
 // earlier listening line warns.
 test('the meeting line is optional, and an earlier listening form warns', () => {
@@ -307,7 +307,7 @@ test('the meeting line is optional, and an earlier listening form warns', () => 
   ).toEqual(silent)
   for (const old of ['👂 listening', '🔇 not listening', '👂 in cairn.wayfinder.designs'])
     expect(run(stop(rebootstrap(heading, counts, items, old, thread), plain)).warning).toStartWith(
-      "Footer check: this reply's banner has a meeting line in an earlier form, 👂 listening, 🔇 not listening or 👂 in <meeting>, which FOOTER-DELEGATES replaces with 🤝 in <meeting> · with <names>, or no line in no meeting. "
+      "Footer check: this reply's banner has a meeting line in an earlier form, 👂 listening, 🔇 not listening or 👂 in <meeting>, which the current form replaces with 🤝 in <meeting> · with <names>, or no line in no meeting. "
     )
 })
 
@@ -316,8 +316,7 @@ test('a reply that opens a banner but leaves it unfinished is held back', () => 
   expect(run(stop(`Launched the run.\n\n${thread}`, plain)).reason).toContain("the banner's ### state heading")
 })
 
-// Kris, about 01:15 GMT on 18 November 2026, under HOOK-ENFORCE a: "Yeah, we need the hook enforcing". Every reply in a
-// coordinating session closes with the banner and its thread line, not only the reply to an owner's mark or state word.
+// The hook enforces the banner: every reply in a coordinating session closes with the banner and its thread line, not only the reply to an owner's mark or state word.
 test("an owner's mark or state word in a coordinating session needs the banner", () => {
   for (const word of ['mark', 'Mark.', 'mark only', 'mark, status only', 'pause', 'done for now', 'snooze', 'with me', 'status', 'summary since 14:00', 'where are we', "what's the state"]) {
     const outcome = run(stop('Mark struck at 21:10.', coordinated(word)))
@@ -348,10 +347,9 @@ test('every reply in a coordinating session needs the banner, a plain answer, a 
   expect(run(stop(`${shortBanner}\n\nAnything else?`, coordinated('how is the run doing?'))).reason).toContain('the thread line as the very last line')
 })
 
-// Kris, about 03:29 GMT on 19 November 2026, under MINIMAL-FOOTER a: "I thought we had a minimal reply where you could
-// effectively just say what the reply time was and then maybe a one or two liner. So you don't need to … repeat a lot of
-// the footer-based information every time". An Update or Answer may close with one line, its state then its thread
-// line, refining HOOK-ENFORCE: the thread line inside it is held to the same checks, and a reply with none is held back.
+// An Update or Answer need not repeat the footer's information every time: it may close with one line, its state then
+// its thread line, in place of the banner. The thread line inside it is held to the same checks, and a reply with none
+// is held back.
 test('an Update or Answer closing with the one-line footer passes, its thread line checked as a banner\'s', () => {
   const asked = coordinated('how is the run doing?')
   for (const footer of [
@@ -388,7 +386,7 @@ test('a named seat closing a one-line footer with its bare thread line is still 
   const env = { XDG_CONFIG_HOME: configured }
   const asked = coordinated('how is the run doing?')
   expect(run(stop('Still going.\n\n🤖 With worker · 🪨 🔑 cairn.summit', asked), env).reason).toStartWith(
-    "This reply's banner lacks the thread line in its named form, Kitteth (🪨 🔑 cairn.summit), since the seat's actor is named (NAME-FIRST), under ki-coordination's Banner section. Give the reply again in full with it, "
+    "This reply's banner lacks the thread line in its named form, Kitteth (🪨 🔑 cairn.summit), since the seat's actor is named, under ki-coordination's Banner section. Give the reply again in full with it, "
   )
   expect(run(stop('Still going.\n\n👤 With supervisor · 📐 ki.cairn@information-architect', asked), env).reason).toContain('Quire (📐 ki.cairn@information-architect)')
   expect(run(stop('Still going.\n\n🤖 With worker · Kitteth (🪨 🔑 cairn.summit)', asked), env)).toEqual(silent)
@@ -404,7 +402,7 @@ test('a session that has closed no reply with a thread line stays conversational
   expect(run(stop('That too.', chat, roadless))).toEqual(silent)
 })
 
-// Kris, 19 November 2026: a peer's thread line, in a SendMessage to it or the message it sent back, is not the
+// A peer's thread line, in a SendMessage to it or the message it sent back, is not the
 // session's own; only a reply of the session's own closing with a thread line makes it a coordinating one.
 test("a peer's thread line in a message to or from it never makes the session a coordinating one", () => {
   const kitteth = 'Kitteth (🪨 🔑 cairn.summit)'
@@ -475,8 +473,7 @@ test('the system Bash runs the same checks', () => {
   expect(run(stop(summary(heading, counts, roadmap, pkg, items, listening, thread), plain), {}, '/bin/bash').warning).toContain('no Knowledge Islands art')
 })
 
-// Kris, 7 November 2026, under STAGE-C-ROLES: the hook "accepts both forms, blocks only a missing banner heading or
-// thread line, warns on the unusual". A seat with a role closes `<role glyph> 🔑 <work-id>`; ⭐, 🔧 and 🧵 in the role
+// The hook accepts both forms, blocks only a missing banner heading or thread line, and warns on the unusual. A seat with a role closes `<role glyph> 🔑 <work-id>`; ⭐, 🔧 and 🧵 in the role
 // glyph's place pass with a warning under the role migration file.
 const keyThread = '⚒️ 🔑 ki.prj.demo'
 const keySummary = summary(art, heading, counts, roadmap, pkg, items, listening, keyThread)
@@ -487,8 +484,7 @@ test('a key-form Summary and banner pass, in the session name form of the role s
   expect(run(stop(rebootstrap(heading, counts, items, listening, '🏛️ 🔑 ki.sop.main'), plain))).toEqual(silent)
 })
 
-// Kris, 14 November 2026, under SEAT-LINE a, and 16 November 2026, under SEAT-AT a: a seat working in a package
-// without its keys closes `<role glyph> <package>@<role>`, its catalogue glyph, no key and its seat's id, with
+// A seat working in a package without its keys closes `<role glyph> <package>@<role>`, its catalogue glyph, no key and its seat's id, with
 // `+<slug>` for a sub-package; the earlier `<work-id>+<role>` passes with a warning.
 test('a keyless seat thread line passes as the thread line', () => {
   expect(run(stop(rebootstrap(heading, counts, items, listening, '📐 ki.cairn@information-architect'), plain))).toEqual(silent)
@@ -507,8 +503,7 @@ test('a keyless seat thread line passes as the thread line', () => {
   expect(run(stop('Mark struck.', seated)).reason).toContain('the thread line, <role glyph> 🔑 <work-id> or 🧵 <work-id>')
 })
 
-// Kris, about 23:15 GMT on 17 November 2026, under NAME-FIRST a: "where we have a named actor that the name should be
-// first and then in brackets it should be effectively what we're currently putting out". A named seat closes
+// Where a seat's actor is named, the name comes first and the bare seat form follows in brackets: a named seat closes
 // `<Name> (<seat form>)`, the name as its roster's `ki-name` writes it; an unnamed seat keeps the bare form.
 test('a named seat thread line passes, keyholder or keyless, and is read as the bare form inside its brackets', () => {
   for (const line of [
@@ -539,14 +534,13 @@ test('a named seat thread line passes, keyholder or keyless, and is read as the 
   expect(run(stop('Mark struck.', named)).reason).toContain('the thread line, <role glyph> 🔑 <work-id>')
 })
 
-// Kris, 19 November 2026, asking why `🪨 🔑 cairn.summit` passed where Kitteth holds the seat: the hook reads the
-// seat's actor from the Cairn store that Cairn's config.toml names, and holds back a bare line it can name. An unnamed
+// A bare `🪨 🔑 cairn.summit` must not pass where Kitteth holds the seat: the hook reads the seat's actor from the Cairn store that Cairn's config.toml names, and holds back a bare line it can name. An unnamed
 // seat, a package or store it cannot find, and a named line pass, so a lookup never blocks.
 test('a bare seat line whose actor the store names is held back with the named line', () => {
   const env = { XDG_CONFIG_HOME: configured }
   const bare = run(stop(rebootstrap(heading, counts, items, listening, '🪨 🔑 cairn.summit'), plain), env)
   expect(bare.reason).toStartWith(
-    "This reply's banner lacks the thread line in its named form, Kitteth (🪨 🔑 cairn.summit), since the seat's actor is named (NAME-FIRST), under ki-coordination's Banner section. Give the reply again in full with it, "
+    "This reply's banner lacks the thread line in its named form, Kitteth (🪨 🔑 cairn.summit), since the seat's actor is named, under ki-coordination's Banner section. Give the reply again in full with it, "
   )
   expect(run(stop(summary(art, heading, counts, roadmap, pkg, items, listening, '📐 ki.cairn@information-architect'), plain), env).reason).toContain(
     'Quire (📐 ki.cairn@information-architect)'
@@ -569,9 +563,8 @@ test('an unnamed seat, an unresolvable seat and an unconfigured store pass a bar
   expect(run(stop(rebootstrap(heading, counts, items, listening, '🪨 🔑 cairn.summit'), plain), { XDG_CONFIG_HOME: 'relative', HOME: unconfigured })).toEqual(silent)
 })
 
-// Kris, about 23:15 GMT on 17 November 2026, under HEADING-FIX a: the report heading links only its package's
-// `_index.md` in the Cairn store, by absolute path, never a repository, README or theme note; and about 03:25 GMT on
-// 19 November 2026, under HEADING-PACKAGE: the whole heading is that one link, the package's name, as
+// The report heading links only its package's `_index.md` in the Cairn store, by absolute path, never a repository,
+// README or theme note, and the whole heading is that one link, the package's name, as
 // `Cairn › summit`, so `State of play`, a theme or a title outside the link drifts. The hook warns, never blocks.
 test('a report heading that is not one link to its package entry file passes with a warning', () => {
   const headed = (h1: string): string => rebootstrap(heading, counts, items, listening, keyThread).replace(/^# .*$/m, h1)
@@ -630,11 +623,11 @@ test("an owner's mark word engages after an earlier key-form reply, and a conver
   expect(run(stop('Marked.', conversational))).toEqual(silent)
 })
 
-// Kris, 14 November 2026, under REPLY-CHECK: in every session, coordinating or not, a reply asking the owner to decide,
+// In every session, coordinating or not, a reply asking the owner to decide,
 // a fenced `text` block holding `<TAG> <letter>` lines, needs the block to open with a `1 · ` group heading and every
-// such line to carry `(high)`, `(medium)` or `(low)` after the letter. Under HOOK-ENFORCE a, 18 November 2026, each
+// such line to carry `(high)`, `(medium)` or `(low)` after the letter. Each
 // line needs its `: <gloss>` too, and each tag takes one line only, the recommended option's, never alternatives.
-// The clock's own time, so the reply id check stays quiet (REPLY-ID-CLOCK).
+// The clock's own time, so the reply id check stays quiet.
 const replyId = `**Reply ${new Date().toISOString().slice(11, 16)}**`
 const decision = (...block: string[]): string =>
   [replyId, 'Two things need your word: whether to push now, and whether to keep the old hook.', ['```text', ...block, '```'].join('\n')].join('\n\n')
@@ -703,7 +696,7 @@ test('every fault in a reply block is named together', () => {
   )
 })
 
-// Kris, 19:55 GMT on 22 November 2026, under WORD-ONLY-QUERY a: "Allow it". A line may read `<TAG> ? (your call): <gloss>`
+// A line may read `<TAG> ? (your call): <gloss>`
 // for a question with no honest recommendation; it still needs its gloss, and its tag still stands on one line only.
 test('a your-call line for a question with no honest recommendation passes', () => {
   expect(run(stop(decision('1 · Now', 'PUSH a (high): push now', 'NAME ? (your call): pick the name'), conversation, ordinary))).toEqual(silent)
@@ -777,8 +770,7 @@ test("a coordinating reply's reply block and footer are checked together", () =>
   )
 })
 
-// Kris, about 09:55 GMT on 17 November 2026, under GLYPH-TABLE and GLYPH-FALLBACK: one table holds every glyph, and a banner
-// item takes an agreed glyph alone, a provisional glyph with its word in brackets, or the bracketed word alone. The hook
+// One table holds every glyph, and a banner item takes an agreed glyph alone, a provisional glyph with its word in brackets, or the bracketed word alone. The hook
 // warns on an agreed glyph with brackets, from its own copy of the table, which this test holds to the standard.
 test("the hook's agreed glyphs are the standard's one table of glyphs", () => {
   const bare = (glyph: string): string => glyph.replace(/\uFE0F/gu, '')
@@ -817,8 +809,7 @@ test('a banner item with an agreed glyph and brackets warns; a provisional glyph
   )
 })
 
-// Kris, 22 November 2026, about 17:26 GMT, under NOTICE-DIGEST a: "the coordinator footer hook lets a bot end a
-// status-only turn silently". Orca suppresses a reply whose last line is NO_REPLY.
+// The hook lets a bot end a status-only turn silently. Orca suppresses a reply whose last line is NO_REPLY.
 const orcaMail = (kind: string): string =>
   [
     `──── From: ORCA_SESSION_ID:ABC (orca_session_id:abc) (${kind}) ────`,
@@ -861,8 +852,7 @@ test('a reply closing its footer before NO_REPLY still makes the session a coord
   expect(run(stop('Still going.', quietly)).reason).toContain('the thread line')
 })
 
-// Kris, 22 November 2026, about 17:35 GMT, under REPLY-ID-CLOCK a, choosing "Warn past 5 minutes": the hook warns,
-// never holds back, when a reply's id is more than about 5 minutes from the clock's UTC time.
+// The hook warns, never holds back, when a reply's id is more than about 5 minutes from the clock's UTC time.
 const clockBin = join(root, 'clock')
 mkdirSync(clockBin, { recursive: true })
 writeFileSync(join(clockBin, 'date'), '#!/bin/sh\nprintf "%s\\n" "$KI_TEST_UTC"\n', { mode: 0o755 })
@@ -883,7 +873,7 @@ test('a reply id within about 5 minutes of the clock passes, across midnight too
 
 test('a reply id more than 5 minutes from the clock warns and is let through', () => {
   expect(run(stop('**Reply 13:27**\n\nDone.', plain), at('13:33')).warning).toBe(
-    "Reply id check: this reply's id, Reply 13:27, is 6 minutes from the clock's 13:33 UTC. Read it with date -u +%H:%M as the reply is written, under ki-coordination's reply id rule (REPLY-ID-CLOCK); it was let through."
+    "Reply id check: this reply's id, Reply 13:27, is 6 minutes from the clock's 13:33 UTC. Read it with date -u +%H:%M as the reply is written, under ki-coordination's reply id rule; it was let through."
   )
   expect(run(stop('**Reply 23:50**\n\nDone.', plain), at('00:02')).warning).toContain('is 12 minutes from')
   expect(run(stop('**Reply 00:10**\n\nDone.', plain), at('23:55')).warning).toContain('is 15 minutes from')

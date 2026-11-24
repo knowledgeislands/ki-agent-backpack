@@ -5,7 +5,7 @@ import { join } from 'node:path'
 import { PRINCIPAL } from '../items/principal.ts'
 import { createPrincipalSession } from './principal.ts'
 
-// These tests came from ki-repo-kb-principal under KB-FOLD b (22 November 2026), when the principal standard came to
+// These tests came from ki-repo-kb-principal, when the principal standard came to
 // apply whenever the base is its territory's Capital.
 const REPOSITORY = 'https://github.com/example/capital'
 const capital = (prefix: string, self = true): string => {

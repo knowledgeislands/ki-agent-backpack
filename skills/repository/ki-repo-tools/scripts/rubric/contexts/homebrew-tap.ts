@@ -2,7 +2,7 @@ import { existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import type { AuditOutcome } from '../../shared/rubric.ts'
 
-/** The tap's primary shape, owned by `ki-repo-tools` since REPO-OTHERS a folded the tap skill in. */
+/** The tap's primary shape, owned by `ki-repo-tools` since the tap skill was folded in. */
 export const TAP_SHAPE = 'ki-repo-homebrew-tap'
 const FORMULA_DIRECTORY = 'Formula'
 const HOOK = '.githooks/pre-commit'

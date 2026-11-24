@@ -21,10 +21,10 @@ export type Decision = {
   reason: string
 }
 
-/** Types that stay open until a message whose `ki-answers` names them (MSG-FORM). */
+/** Types that stay open until a message whose `ki-answers` names them. */
 const ASKING_TYPES = new Set(['question', 'handoff', 'escalation', 'decision_gate'])
 
-/** A message more than 24 hours old that has been answered goes from a sitting that runs on (ROOM-PRUNE). */
+/** A message more than 24 hours old that has been answered goes from a sitting that runs on. */
 export const RUNNING_AGE_HOURS = 24
 
 const NAME_TIME = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})Z-/

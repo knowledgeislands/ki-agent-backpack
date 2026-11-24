@@ -4,7 +4,7 @@ import { auditEvidence, type StreamRubricContext } from '../contexts/streams.ts'
 
 const SOURCE = 'standard-streams-structure.md'
 
-// The Streams layout checks came from ki-repo-kb-streams under KB-FOLD b (22 November 2026), keeping their codes.
+// The Streams layout checks came from ki-repo-kb-streams, keeping their codes.
 const STREAM_1: RubricItem<StreamRubricContext> = {
   code: 'STREAM-1',
   title: 'operational areas',

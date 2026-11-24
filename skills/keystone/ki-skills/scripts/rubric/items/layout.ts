@@ -63,7 +63,7 @@ const LAY_3: RubricItem<LayoutRubricContext> = {
   title: 'optional directories use standard names',
   description:
     'Optional subdirs use the standard names `references/`, `scripts/`, `assets/`; KI-governed skills may additionally use `.ki-meta/` for their local generated state, and a skill that holds a knowledge graph keeps it in `knowledge/`, opened by `knowledge/_graph.md`.',
-  sources: ['SPEC', 'KI', 'KNOWLEDGE-FOLDER'],
+  sources: ['SPEC', 'KI'],
   mechanical: {
     level: 'FAIL',
     remediation: {

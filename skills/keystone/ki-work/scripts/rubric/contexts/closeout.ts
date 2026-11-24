@@ -2,8 +2,8 @@
  * Close-out and idea-stage evidence for the Capital's Project registry: a Project whose records have all finished is
  * due for a close-out assessment before its lead may close it, and an idea-stage Project holds no records and stays
  * within its caps. Open records are counted read-only across every locally registered checkout, so a Project served
- * from another repository is not mistaken for a finished one. Moved here from `ki-repo-kb-streams` under KB-FOLD b
- * (22 November 2026), which gave a Project's close-out to `ki-work`.
+ * from another repository is not mistaken for a finished one. Moved here from `ki-repo-kb-streams` on
+ * 22 November 2026, when a Project's close-out passed to `ki-work`.
  */
 import { existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs'
 import { homedir } from 'node:os'

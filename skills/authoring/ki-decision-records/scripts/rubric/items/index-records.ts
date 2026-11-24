@@ -22,7 +22,7 @@ const INDEX_1: RubricItem<IndexRubricContext> = {
     audit: {
       phase: 'PREPARE',
       run: (context: IndexRubricContext) => {
-        // A docs folder's page is `_index.md` alone, Kris chose on 22 November 2026: "_index.md only" (DOCS-LANDING-GITHUB).
+        // A docs folder's page is `_index.md` alone.
         if (context.legacyIndex)
           return [
             {

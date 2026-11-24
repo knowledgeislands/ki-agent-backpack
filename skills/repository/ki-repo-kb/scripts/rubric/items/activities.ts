@@ -3,7 +3,7 @@ import { type ActivitiesContext, type ActivityNote, indexLinkTargets } from '../
 import type { KbRubricContext } from '../contexts/kb.ts'
 
 const SOURCE = 'standard-activities.md'
-/** THEME-CLOSE: the first UTC day on which legacy initiative fields fail. */
+/** The theme cutover: the first UTC day on which legacy initiative fields fail. */
 const legacyInitiativeOutcome = (
   initiative: string,
   subject: string,
@@ -163,7 +163,7 @@ const ACT_S_3: RubricItem<ActivitiesContext> = {
   code: 'ACT-S-3',
   title: 'current Activity configuration',
   description:
-    "activities_dir and backpack sit in [skills.ki-repo-kb]; harness is read as backpack's old name and warned. CONFIG-1 owns the table's other keys (KB-FOLD b).",
+    "activities_dir and backpack sit in [skills.ki-repo-kb]; harness is read as backpack's old name and warned. CONFIG-1 owns the table's other keys.",
   sources: [SOURCE],
   mechanical: {
     level: 'WARN',
@@ -675,7 +675,7 @@ const ACT_J_5: RubricItem<ActivitiesContext> = {
   }
 }
 
-// The Activity checks came from ki-repo-kb-activities under KB-FOLD b (22 November 2026), keeping their codes.
+// The Activity checks came from ki-repo-kb-activities, keeping their codes.
 export const ACT: RubricFamily<KbRubricContext, ActivitiesContext> = {
   code: 'ACT',
   title: 'knowledge-base activities',

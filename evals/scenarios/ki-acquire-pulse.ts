@@ -28,7 +28,7 @@ export const scenarios: Scenario[] = [
       { name: 'routes reading through Harbour capture', re: /Harbour/i }
     ],
     rubric:
-      'House contract: Scan requires an invocation-scoped interest/query brief, persists no weekly interest or source configuration, inspects at most ten leads, and returns at most five cited observations. Read / learn outcomes go to Harbour's capture, not `ki-repo-kb` SAVE or `ki-trades`, under its normal authority boundary (PULSE-BOUNDARY).'
+      'House contract: Scan requires an invocation-scoped interest/query brief, persists no weekly interest or source configuration, inspects at most ten leads, and returns at most five cited observations. Read / learn outcomes go to Harbour's capture, not `ki-repo-kb` SAVE or `ki-trades`, under its normal authority boundary.'
   },
   {
     skill: 'ki-acquire',
@@ -42,7 +42,7 @@ export const scenarios: Scenario[] = [
       { name: 'does not implement recommendation', re: /not|cannot|won.t|does not.*(patch|implement|change)/i }
     ],
     rubric:
-      "House contract: a secondary community post is discovery evidence only. Pulse verifies an actionable technical or governance claim against a primary source where one exists, assigns exactly one `Act` disposition, and routes a normative-source change to the owning governance skill's REFRESH mode without patching it itself; an act on an agentic or model signal fires `ki-radar`'s REFRESH return trigger instead (PULSE-BOUNDARY)."
+      "House contract: a secondary community post is discovery evidence only. Pulse verifies an actionable technical or governance claim against a primary source where one exists, assigns exactly one `Act` disposition, and routes a normative-source change to the owning governance skill's REFRESH mode without patching it itself; an act on an agentic or model signal fires `ki-radar`'s REFRESH return trigger instead."
   },
   {
     skill: 'ki-acquire',

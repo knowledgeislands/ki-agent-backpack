@@ -592,7 +592,7 @@ supported_runtimes = ["claude-code", "claude-desktop", "chatgpt-codex"]
     ).toEqual([])
   })
 
-  test('warns on a narrower runtime list unless it is a declared exception (RUNTIMES-ALL)', async () => {
+  test('warns on a narrower runtime list unless it is a declared exception', async () => {
     const runtimesSeven = async (configuration: string) => {
       const root = repository()
       writeFileSync(join(root, '.ki.toml'), configuration)
@@ -1008,7 +1008,7 @@ describe('repository kind and Knowledge Base stores', () => {
       expect(findings.filter((finding) => finding.code === 'KIND-2')).toEqual([])
       expect(findings.filter((finding) => finding.code === 'STRUCT-2')).toEqual(
         fixture.retired
-          ? [expect.objectContaining({ level: 'WARN', message: expect.stringContaining('KB-FOLD b') })]
+          ? [expect.objectContaining({ level: 'WARN', message: expect.stringContaining('folded into ki-repo-kb') })]
           : []
       )
     }

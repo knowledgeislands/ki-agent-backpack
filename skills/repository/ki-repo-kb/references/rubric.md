@@ -224,7 +224,7 @@ Activity note structure, frontmatter, realization-specific declarations, and saf
   - _Conforming guidance:_ Revise the index ordering or descriptions so a reader can understand and navigate the active activity set; record a structure decision for a material reorganisation.
 - **ACT-S-2 [M] — activity collection location** — The configured activity collection resolves safely beneath an existing base. (standard-activities.md)
   - _Remediation:_ diagnostic — Correct activities_dir so it resolves safely beneath the selected base, or repair the unsafe collection entry without following links.
-- **ACT-S-3 [M] — current Activity configuration** — activities_dir and backpack sit in [skills.ki-repo-kb]; harness is read as backpack's old name and warned. CONFIG-1 owns the table's other keys (KB-FOLD b). (standard-activities.md)
+- **ACT-S-3 [M] — current Activity configuration** — activities_dir and backpack sit in [skills.ki-repo-kb]; harness is read as backpack's old name and warned. CONFIG-1 owns the table's other keys. (standard-activities.md)
   - _Remediation:_ diagnostic — Rename harness to backpack, or remove harness where backpack is already declared.
 - **ACT-F-1 [M] — activity status** — Frontmatter-bearing activity notes declare `status` as `active`, `paused`, or `retired`. (standard-activities.md)
   - _Remediation:_ diagnostic — Add a valid activity status that reflects the activity’s actual lifecycle state.

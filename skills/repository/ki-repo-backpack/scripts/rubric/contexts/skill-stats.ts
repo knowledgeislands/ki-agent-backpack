@@ -41,7 +41,7 @@ export const readSkillStats = (
     sources.map((source) => {
       const root = join(repository, dirname(source.path))
       const references = files(join(root, 'references'))
-      // A skill's knowledge graph sits in `knowledge/` (KNOWLEDGE-FOLDER); its cards count as supporting files.
+      // A skill's knowledge graph sits in `knowledge/`; its cards count as supporting files.
       const knowledge = files(join(root, 'knowledge'))
       const rubric = join(root, 'references/rubric.md')
       return [

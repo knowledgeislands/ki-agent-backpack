@@ -159,7 +159,7 @@ const repositoryLayout = (root: string): { kb: boolean; templateRoot: string; er
     const skills = record(parsed.skills) ? parsed.skills : {}
     const kb = record(skills['ki-repo']) && skills['ki-repo'].repo_type === 'kb'
     if (!kb) return project
-    // Consume the Activity location binding under [skills.ki-repo-kb] (KB-FOLD b); its owner validates the table.
+    // Consume the Activity location binding under [skills.ki-repo-kb]; its owner validates the table.
     const activities = record(skills['ki-repo-kb']) ? skills['ki-repo-kb'] : {}
     const location = activities.activities_dir ?? 'Admin/Operations/Activities'
     if (typeof location !== 'string' || !location.trim() || isAbsolute(location))

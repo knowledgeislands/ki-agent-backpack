@@ -333,8 +333,8 @@ const FRONTMATTER = /^---\n([\s\S]*?)\n---(?:\n|$)/
 const frontmatterField = (frontmatter: string, field: string): string | undefined =>
   new RegExp(`^${field}:[ \\t]*(.*?)[ \\t]*$`, 'm').exec(frontmatter)?.[1]
 /**
- * A field KI defines, read under its `ki-` name, or, while files are swept, under its older bare name (KI-PREFIX a,
- * Kris, 17 November 2026); the document's kind, `ki-document-type`, was `type` (DOC-TYPE-KEY a).
+ * A field KI defines, read under its `ki-` name, or, while files are swept, under its older bare name; the
+ * document's kind, `ki-document-type`, was `type`.
  */
 const kiField = (frontmatter: string, name: string, older: string = name): string | undefined =>
   frontmatterField(frontmatter, `ki-${name}`) ?? frontmatterField(frontmatter, older)
@@ -350,7 +350,7 @@ const unprefixedFields = (frontmatter: string): readonly string[] =>
 const TYPED = /^([a-z][a-z0-9-]*)@(\S+)$/
 /**
  * The formats of a skill's own files, whose standards `ki-skills` owns and whose checks are its rubric's SKILL-FMT
- * items (SKILL-FORMAT a, Kris, 17 November 2026); FMT passes over them.
+ * items; FMT passes over them.
  */
 export const SKILL_FILE_FORMATS: ReadonlySet<string> = new Set(['skill', 'mode', 'exemplars', 'rubric'])
 

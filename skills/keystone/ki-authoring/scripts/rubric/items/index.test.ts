@@ -761,7 +761,7 @@ test('FMT-record fails a record that breaks the record format, lets ki-revised f
     '20261116T2315Z-no-theme': `${front('20261116T2315Z-no-theme').replace('ki-theme: store\n', '')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
     '20261116T2315Z-written-later': `${front('20261116T2315Z-written-later').replace('ki-revised: 2026-11-16T23:15:00Z', 'ki-revised: 2026-11-17T03:00:00Z')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
     '20261116T2315Z-earlier-revised': `${front('20261116T2315Z-earlier-revised').replace('ki-revised: 2026-11-16T23:15:00Z', 'ki-revised: 2026-11-16T23:00:00Z')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n`,
-    // From the version that added Lessons (LESSONS-LINE), a batch record needs it; an earlier one may carry it.
+    // From the version that added Lessons, a batch record needs it; an earlier one may carry it.
     '20261122T1740Z-with-lessons': `${lessons('20261122T1740Z-with-lessons')}## Purpose\n\n## Goals\n\n## What changed\n\n## Lessons\n`,
     '20261122T1740Z-no-lessons': `${lessons('20261122T1740Z-no-lessons')}## Purpose\n\n## Goals\n\n## What changed\n`,
     '20261116T2315Z-early-lessons': `${front('20261116T2315Z-early-lessons')}Lead.\n\n## Purpose\n\n## Goals\n\n## What changed\n\n## Lessons\n`,

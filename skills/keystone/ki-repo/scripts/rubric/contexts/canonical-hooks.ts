@@ -6,7 +6,7 @@
  *
  * Content is fast check-only lint, format and message checks over what is staged, quiet on success and offline: no
  * `ki repo audit`, conform, repair or fix, no `--fix` or `--write`, no test suite, whole-project type check, build or
- * network fetch. The full `ki repo audit` runs in CI, as Kris chose COMMIT-VS-CI a) on 26 October 2026. There is no
+ * network fetch. The full `ki repo audit` runs in CI. There is no
  * extension point; a repository-specific check that is fast and check-only becomes a line of its shape's block here.
  */
 import type { RepositoryShape } from './shapes.ts'

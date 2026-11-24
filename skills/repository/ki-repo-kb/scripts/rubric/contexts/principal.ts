@@ -39,7 +39,7 @@ const REQUIRED = [
 
 export type PrincipalContext = {
   readonly rubric: RubricPublicationContext
-  /** The base is its territory's Capital: `[skills.ki-repo]` names itself as `capital` (KB-FOLD b). */
+  /** The base is its territory's Capital: `[skills.ki-repo]` names itself as `capital`. */
   readonly capital: boolean
   readonly missing: readonly string[]
   readonly empty: readonly string[]

@@ -21,7 +21,7 @@ export default {
   name: 'ki-repo-kb',
   concern: 'Knowledge Islands knowledge bases',
   createSession: createKbSession,
-  // STREAM, ENACT, ACT, LA, LA-F and PRINCIPAL are the folded standards' families (KB-FOLD b, 22 November 2026).
+  // STREAM, ENACT, ACT, LA, LA-F and PRINCIPAL are the folded standards' families.
   families: [
     RUBRIC,
     ZONE,

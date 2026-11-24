@@ -40,7 +40,7 @@ const DIAG_1: RubricItem<DiagramsRubricContext> = {
           ...layout.missing.map((path) => `missing: ${path}`),
           ...layout.unlisted.map((path) => `not in the manifest: ${path}`)
         ]
-        // A docs folder's page is `_index.md` alone, Kris chose on 22 November 2026: "_index.md only" (DOCS-LANDING-GITHUB).
+        // A docs folder's page is `_index.md` alone.
         const landing = [
           ...(layout.legacyIndex
             ? [

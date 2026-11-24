@@ -4,7 +4,7 @@ import type { RubricContextOptions, RubricPublicationContext, RubricSession } fr
 
 const KEYS = ['tokens', 'guide', 'checks'] as const
 const GUIDES_DIRECTORY = 'docs/guides'
-/** The design system folder, found by its path: no `.ki.toml` key declares it (DESIGN-FOLDER). */
+/** The design system folder, found by its path: no `.ki.toml` key declares it. */
 export const DESIGN_SYSTEM_DIRECTORY = 'docs/design/design-system'
 
 /**

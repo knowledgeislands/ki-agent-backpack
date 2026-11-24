@@ -6,7 +6,7 @@ export const CURATE = {
   title: 'What curated cards keep',
   standard: 'standard-knowledge-graph.md',
   description:
-    'What a card curated from a capture keeps is judged on the cards and the captures they came from; curating itself is Harbour’s, under CURATION-HOME.',
+    'What a card curated from a capture keeps is judged on the cards and the captures they came from; curating itself is Harbour’s.',
   selectContext: (context) => context,
   items: [
     {

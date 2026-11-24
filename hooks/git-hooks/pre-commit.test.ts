@@ -25,7 +25,7 @@ const executable = (repository: string, path: string, body: string): void => {
 
 // The hook refuses unless its package tools sit in node_modules/.bin, so each fixture installs
 // stand-ins that record their arguments. Nothing else is needed: the gate is check-only and
-// never calls `ki`, as Kris chose COMMIT-VS-CI a) on 26 October 2026.
+// never calls `ki`; the full audit runs in CI.
 const fixture = (lintExit = 0) => {
   const repository = mkdtempSync(join(tmpdir(), 'ki-pre-commit-'))
   temporaryDirectories.push(repository)

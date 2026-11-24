@@ -1,6 +1,6 @@
 /**
- * The Streams folder layout of a Knowledge Base and its one Enactment gate. They came from `ki-repo-kb-streams` when Kris
- * split it on 22 November 2026 (KB-FOLD b): its record checks went to `ki-work-roadmap`, its Project close-out to
+ * The Streams folder layout of a Knowledge Base and its one Enactment gate. They came from `ki-repo-kb-streams` when it was
+ * split on 22 November 2026: its record checks went to `ki-work-roadmap`, its Project close-out to
  * `ki-work`, and the layout and the gate came here, the gate's family renamed ENACT from GATE.
  */
 import { existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs'

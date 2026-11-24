@@ -217,7 +217,7 @@ export const createActivitiesSession = ({
           }
         })
     : []
-  // `harness` is the key's old name (ACTIVITIES-HARNESS-KEY): read when `backpack` is absent, warned by ACT-S-3.
+  // `harness` is the key's old name: read when `backpack` is absent, warned by ACT-S-3.
   const backpackPath = configuredString(configuration, 'backpack') ?? configuredString(configuration, 'harness')
   const backpack = backpackPath ? resolve(root, backpackPath) : undefined
   const original = indexExists ? indexContent : undefined

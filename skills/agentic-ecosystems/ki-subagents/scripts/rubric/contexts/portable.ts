@@ -2,7 +2,7 @@ import { existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs'
 import { join, posix } from 'node:path'
 import type { RubricContextOptions, RubricPublicationContext, RubricSession } from '../../shared/rubric.ts'
 
-/** The register of a backpack's roles: `subagents/README.md`, linking each role source (SUBAGENT-PUBLISHER a). */
+/** The register of a backpack's roles: `subagents/README.md`, linking each role source. */
 export const REGISTER_PATH = 'subagents/README.md'
 
 /** One role source under `subagents/`, with the `name` its frontmatter declares. */

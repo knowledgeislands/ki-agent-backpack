@@ -3,7 +3,7 @@ import { judgment } from '../../shared/rubric.ts'
 import { type KiSkillsRubricContext, type LongevityRubricContext, selectKiSkillsContext } from '../contexts/contexts.ts'
 
 const REFRESH_GRACE_DAYS = 14
-/** LONG-3 warns for the first two months a source list is overdue and fails after (LONG3-LEVEL). */
+/** LONG-3 warns for the first two months a source list is overdue and fails after. */
 const OVERDUE_WARN_DAYS = 60
 
 const LONG_1: RubricItem<unknown> = {

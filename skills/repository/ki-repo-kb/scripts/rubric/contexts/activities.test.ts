@@ -241,7 +241,7 @@ test('encoded spaces cover the Activity index without decoding reserved escapes 
   )
 })
 
-test('legacy initiative fields warn before THEME-CLOSE and fail on the cutover day', () => {
+test('legacy initiative fields warn before the cutover day and fail from it', () => {
   const repository = activityBase()
   const path = join(repository, 'Admin', 'Operations', 'Activities', 'Morning Briefing.md')
   const original = readFileSync(path, 'utf8')

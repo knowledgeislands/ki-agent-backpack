@@ -3,7 +3,7 @@ import type { ChangeManagementRubricContext } from '../types.ts'
 
 const SOURCE = 'standard-project-registry.md'
 
-// PROJ-1 and PROJ-2 were ki-repo-kb-streams' STREAM-10 and STREAM-11 until KB-FOLD b (22 November 2026).
+// PROJ-1 and PROJ-2 were ki-repo-kb-streams' STREAM-10 and STREAM-11 until 22 November 2026.
 export const PROJ: RubricFamily<ChangeManagementRubricContext, ChangeManagementRubricContext['projects']> = {
   code: 'PROJ',
   title: 'Project registry',

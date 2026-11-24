@@ -367,7 +367,7 @@ test('result-envelope evidence ignores helper and main modules', () => {
   )
 })
 
-test('declared tool-name exceptions keep bare names out of the naming finding (TOOL-EXCEPTION)', () => {
+test('declared tool-name exceptions keep bare names out of the naming finding', () => {
   const { repository, config } = fixture()
   writeFileSync(
     join(repository, 'src', 'tools', 'example', 'index.ts'),

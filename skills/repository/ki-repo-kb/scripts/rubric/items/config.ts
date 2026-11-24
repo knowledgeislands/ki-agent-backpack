@@ -67,7 +67,7 @@ const CONFIG_5 = mechanical(
   (context) => context.preflightPaths
 )
 
-// Was ki-repo-kb-streams' CONFIG-2 before KB-FOLD b (22 November 2026); its table's other checks are CONFIG-0 and -1.
+// Was ki-repo-kb-streams' CONFIG-2 before the fold of 22 November 2026; its table's other checks are CONFIG-0 and -1.
 const CONFIG_6 = mechanical(
   'CONFIG-6',
   'contained process note binding',

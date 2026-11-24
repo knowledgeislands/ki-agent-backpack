@@ -34,22 +34,22 @@ const WORK_STATES: readonly unknown[] = [
   'finished'
 ]
 const HOLD_REASONS: readonly unknown[] = ['paused', 'more-expected']
-/** Who set a hold, under HOLD-SELF (Kris, 7 November 2026): the owner, or the worker itself for the idle hold. */
+/** Who set a hold: the owner, or the worker itself for the idle hold. */
 const HOLD_SETTERS: readonly unknown[] = ['owner', 'worker']
 const KEBAB = '[a-z0-9]+(?:-[a-z0-9]+)*'
-/** The reserved second id segment of a territory's top, its summit, `<territory>.summit` (KIND-DROP, MASSIF). */
+/** The reserved second id segment of a territory's top, its summit, `<territory>.summit`. */
 const SUMMIT_SEGMENT = 'summit'
-/** The root of the one work tree, the only package with no parent (AGORA-ABOVE, ROOT-LEVEL). */
+/** The root of the one work tree, the only package with no parent. */
 const ROOT_ID = 'cairn.summit'
 /**
- * The kind words an id's second segment carried before ids dropped their kind (KIND-DROP), read under the role
- * migration file and warned on: a node is `<territory>.<slug>`, its kind its `level` (NODE-ID a, 16 November 2026).
+ * The kind words an id's second segment carried before ids dropped their kind, read under the role migration file and
+ * warned on: a node is `<territory>.<slug>`, its kind its `level`.
  */
 const KIND_SEGMENTS: ReadonlySet<string> = new Set(['sop', 'prj', 'reg', 'regular'])
 const WORK_ID = new RegExp(`^${KEBAB}(?:\\.${KEBAB})*$`)
-/** A package's id: a dotted work id, and `+<slug>` for each strand a sub-package adds (SUMMIT-SUB-PACKAGES b). */
+/** A package's id: a dotted work id, and `+<slug>` for each strand a sub-package adds. */
 const PACKAGE_ID = new RegExp(`^${KEBAB}(?:\\.${KEBAB})*(?:\\+${KEBAB})*$`)
-/** The levels whose sub-packages take `level: regular`, the one exception to a parent's level (SUMMIT-SUB-PACKAGES b). */
+/** The levels whose sub-packages take `level: regular`, the one exception to a parent's level. */
 const SUMMIT_LEVELS: readonly unknown[] = ['root', 'territory']
 const SLUG = new RegExp(`^${KEBAB}$`)
 const HOLDER = new RegExp(
@@ -66,11 +66,11 @@ const DEFINITION_FIELDS: readonly string[] = [
   'created_at',
   'records'
 ]
-/** The thread capability fields Kris set under FOOTER-CAPABILITY-STATUS-2 on 1 November 2026. */
+/** The thread capability fields. */
 const CAPABILITIES = ['listening', 'syncing'] as const
 const CAPABILITY_FIELDS = CAPABILITIES.flatMap((capability) => [`${capability}_enabled`, `${capability}_status`])
 const CAPABILITY_STATUSES: readonly unknown[] = ['on', 'off']
-/** The state fields that stand beside the definition in `_index.md`, under PACKAGE-STATE (9 November 2026). */
+/** The state fields that stand beside the definition in `_index.md`. */
 const STATE_REQUIRED = ['state', 'since'] as const
 const STATE_FIELDS: readonly string[] = [
   ...STATE_REQUIRED,
@@ -88,16 +88,15 @@ const STATE_FIELDS: readonly string[] = [
 const ENTRY_FIELDS: ReadonlySet<string> = new Set([...DEFINITION_FIELDS, ...STATE_FIELDS])
 /**
  * The raised-interrupt field, `raised`: a list of entries, each only a query's tag and the UTC time it was raised, carried
- * by a guardian's package alone for now and absent when nothing is raised (RAISED-FORM a, Kris, 21 November 2026).
+ * by a guardian's package alone for now and absent when nothing is raised.
  */
 const RAISED_KEYS: readonly string[] = ['tag', 'since']
 const RAISED_ROLE = 'guardian'
 const QUERY_TAG = /^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*$/
 /**
  * Entry fields the work package standard has dropped, tolerated and warned on under the role migration file: `covers`,
- * whose register is now the tree beneath each node, read from `parent` (COVERS-REGISTER, Kris, 16 November 2026), and
- * `theme`, which stays on records while a Project's theme comes from its Project note (THEME-DROP, Kris, 19 November
- * 2026).
+ * whose register is now the tree beneath each node, read from `parent`, and `theme`, which stays on records while a
+ * Project's theme comes from its Project note.
  */
 const ENTRY_RETIRED_FIELDS: ReadonlySet<string> = new Set(['covers', 'theme'])
 const ENTRY_REQUIRED: readonly string[] = [...DEFINITION_REQUIRED, ...STATE_REQUIRED]
@@ -105,20 +104,19 @@ const ENTRY_REQUIRED: readonly string[] = [...DEFINITION_REQUIRED, ...STATE_REQU
 const BODY_BEFORE_VALUES = ['Goals', 'Scope'] as const
 const VALUES_HEADING = 'Values'
 const BODY_AFTER_VALUES = ['Now', 'Held', 'Changes'] as const
-/** Scope's Signposts line (SIGNPOSTS, Kris, 19 November 2026), plain or bold; its absence warns. */
+/** Scope's Signposts line, plain or bold; its absence warns. */
 const SIGNPOSTS_LINE = /^\s*(?:\*\*)?Signposts:?(?:\*\*)?:?\s/m
 /**
- * The role standard, whose Role catalogue table is the one home of each role's tier and glyph (STAGE-C-ROLES, Kris, 7
- * November 2026). The checker reads it at audit time and holds no copy.
+ * The role standard, whose Role catalogue table is the one home of each role's tier and glyph. The checker reads it at
+ * audit time and holds no copy.
  */
 const ROLE_STANDARD = fileURLToPath(new URL('../../../references/standard-roles.md', import.meta.url))
 const ROLE_MIGRATION = 'migration-roles.md'
 const TIERS: readonly string[] = ['leaders', 'managers', 'makers']
 /**
- * The closed keys of a `workers` entry, its binding under the role standard (ROSTER-SPLIT a, 14 November 2026), and
- * the keys the role migration file tolerates; presence, host, rig and last seen, is the roster's, and listening is read
- * from meetings alone (LISTEN-HOME a, 16 November 2026). The entry points at its actor by typed id, never a copy of its
- * name (ACTOR-KEY a, 16 November 2026), so a leftover `name` or `actor` warns.
+ * The closed keys of a `workers` entry, its binding under the role standard, and the keys the role migration file
+ * tolerates; presence, host, rig and last seen, is the roster's, and listening is read from meetings alone. The entry
+ * points at its actor by typed id, never a copy of its name, so a leftover `name` or `actor` warns.
  */
 const WORKER_FIELDS: ReadonlySet<string> = new Set(['id', 'role', 'tier', 'since', 'status'])
 const WORKER_RETIRED_FIELDS: ReadonlySet<string> = new Set([
@@ -131,19 +129,17 @@ const WORKER_RETIRED_FIELDS: ReadonlySet<string> = new Set([
 ])
 /**
  * An actor's typed id, `actor:<id>`: a name such as `wayland`, or for an actor with no name its seat's id,
- * `<package>@<role>` or `<package>+<slug>@<role>` in a sub-package, such as `ki.cairn@information-architect` (SEAT-AT a, 16
- * November 2026).
+ * `<package>@<role>` or `<package>+<slug>@<role>` in a sub-package, such as `ki.cairn@information-architect`.
  */
 const ACTOR_ID = new RegExp(`^actor:(?:${KEBAB}(?:\\.${KEBAB})*(?:\\+${KEBAB})*@${KEBAB}|[a-z0-9][a-z0-9.-]*)$`)
-/** A seat's id in the form SEAT-AT replaces, `<work id>+<role>`, read as `<work id>@<role>` and warned on. */
+/** A seat's id in its earlier form, `<work id>+<role>`, read as `<work id>@<role>` and warned on. */
 const LEGACY_SEAT_ID = new RegExp(`^actor:${KEBAB}(?:\\.${KEBAB})*\\+${KEBAB}$`)
-/** A seat's status; a vacant seat is set up but not yet allocated (SEATS-VACANT a, Kris, 20 November 2026). */
+/** A seat's status; a vacant seat is set up but not yet allocated. */
 const WORKER_STATUSES: readonly unknown[] = ['active', 'idle', 'vacant']
 /**
- * Old role and tier words read under the role migration file, each warned on; `architect`, split into two makers under
- * ARCHITECT-SPLIT a (16 November 2026), is read as the information architect it was defined as, and `illustrator`,
- * renamed under ILLUSTRATOR-RENAME (21 November 2026), as the graphic designer; `gatekeeper`, renamed under
- * GATEKEEPER-RENAME (21 November 2026), is read as the harbourmaster.
+ * Old role and tier words read under the role migration file, each warned on; `architect`, split into two makers, is
+ * read as the information architect it was defined as, and `illustrator`, renamed, as the graphic designer;
+ * `gatekeeper`, renamed, is read as the harbourmaster.
  */
 const ROLE_ALIASES: Readonly<Record<string, string>> = {
   assistant: 'harbourmaster',
@@ -174,7 +170,7 @@ type ParsedRecord = {
   readonly path: string
   /** The front matter, each `ki-` field under its name without the prefix, so the checks below read one name. */
   readonly fields: Readonly<Record<string, unknown>> | null
-  /** The fields written without the `ki-` prefix, read as their `ki-` names and warned on (KI-PREFIX a). */
+  /** The fields written without the `ki-` prefix, read as their `ki-` names and warned on. */
   readonly unprefixed: readonly string[]
   readonly body: string
 }
@@ -213,7 +209,7 @@ const one = (outcomes: readonly AuditOutcome[], pass: string, absent?: string): 
   return outcomes.length > 0 ? outcomes : [{ status: 'PASS', message: pass }]
 }
 
-/** The prefix every field of the entry file takes, as KI defines them all (KI-PREFIX a, Kris, 17 November 2026). */
+/** The prefix every field of the entry file takes, as KI defines them all. */
 const KI_PREFIX = 'ki-'
 
 /**
@@ -320,9 +316,8 @@ const boundaryOutcomes = (record: ParsedRecord, fields: Readonly<Record<string, 
 
 /**
  * A top-level package's place in the tree: the root, the estate package, carries no parent and stands apart from the
- * tree rather than over it, so each territory's summit carries none either (ROOT-APART, 22 November 2026); other work
- * names a node of its own territory, a `cairn.*` node the root among them; the tree beneath a node is its register
- * (COVERS-REGISTER).
+ * tree rather than over it, so each territory's summit carries none either; other work names a node of its own
+ * territory, a `cairn.*` node the root among them; the tree beneath a node is its register.
  */
 const placementFailures = (id: string, fields: Readonly<Record<string, unknown>>): readonly string[] => {
   const segments = id.split('.')
@@ -348,7 +343,7 @@ const placementFailures = (id: string, fields: Readonly<Record<string, unknown>>
 }
 
 /**
- * The id a sub-package carried before SUMMIT-SUB-PACKAGES b, `<parent id>.<slug>`, read as `<parent id>+<slug>` and
+ * The id a sub-package once carried, `<parent id>.<slug>`, read as `<parent id>+<slug>` and
  * warned on under the role migration file; undefined at the top.
  */
 const legacySubPackageId = (folder: PackageFolder): string | undefined =>
@@ -356,7 +351,7 @@ const legacySubPackageId = (folder: PackageFolder): string | undefined =>
 
 /**
  * A sub-package's placement: its parent package named as `parent`, and its parent's level, except under the root or a
- * summit, where a sub-package takes `level: regular` (SUMMIT-SUB-PACKAGES b, 16 November 2026).
+ * summit, where a sub-package takes `level: regular`.
  */
 const subPackageFailures = (
   folder: PackageFolder,
@@ -375,7 +370,7 @@ const subPackageFailures = (
   return failures
 }
 
-/** A full record id, as `KI-HARNESS-GOV-152`, found by its prefix through the ki registry (RECORD-LINKS a). */
+/** A full record id, as `KI-HARNESS-GOV-152`, found by its prefix through the ki registry. */
 const RECORD_ID = workIdentifier()
 
 /** The definition fields: level, label, project, placement, holders, created_at, repositories and records. */
@@ -536,8 +531,8 @@ export type CatalogueRole = { readonly tier: string; readonly rank: number; read
 
 /**
  * The Role catalogue table of the role standard: each role's tier, rank and glyph, by role name, in the table's order,
- * tier by tier and by rank within each tier, highest first, the tier's default role lowest (ROLE-RANK, Kris, 17
- * November 2026). Columns are found by their header, so the table may gain columns without moving these.
+ * tier by tier and by rank within each tier, highest first, the tier's default role lowest. Columns are found by their
+ * header, so the table may gain columns without moving these.
  */
 export const roleCatalogue = (standard = readFileSync(ROLE_STANDARD, 'utf8')): ReadonlyMap<string, CatalogueRole> => {
   const section = standard.split(/^#{2,3} (?:[\d.]+ )?Role catalogue$/m)[1]?.split(/^#{2,3} /m)[0] ?? ''
@@ -636,7 +631,7 @@ const workersChecks = (
     if ('status' in entry && !WORKER_STATUSES.includes(entry.status))
       fail(`${at} status must be active, idle or vacant`)
     if (entry.status === 'vacant' && ('id' in entry || 'since' in entry))
-      fail(`${at} is a vacant seat and carries no id or since (SEATS-VACANT a)`)
+      fail(`${at} is a vacant seat and carries no id or since`)
     if ('id' in entry && typeof entry.id === 'string' && LEGACY_SEAT_ID.test(entry.id))
       warn(`${at} id ${entry.id} is a seat's id in the earlier <work id>+<role> form, read as <package>@<role>`)
     else if ('id' in entry && (typeof entry.id !== 'string' || !ACTOR_ID.test(entry.id)))
@@ -792,7 +787,7 @@ const relationshipEvidence = (packages: readonly Package[], evidence: Evidence):
 }
 
 /**
- * An actor holds exactly one seat, and so one title, across the store's packages (ONE-TITLE, Kris, 21 November 2026):
+ * An actor holds exactly one seat, and so one title, across the store's packages:
  * a package a node carries is an acting place, written as a vacant seat under its `ki-parent`, never a second seat.
  * Warned on under the role migration file while live packages are brought into line.
  */
@@ -814,7 +809,7 @@ const oneSeatEvidence = (packages: readonly Package[], evidence: Evidence): void
       evidence.schema.push(
         warning(
           item.entry,
-          `${actor} holds ${held.length} seats, at ${where}; an actor holds one seat (ONE-TITLE), and a package another node carries keeps its seat vacant, its ki-parent naming the carrier`
+          `${actor} holds ${held.length} seats, at ${where}; an actor holds one seat, and a package another node carries keeps its seat vacant, its ki-parent naming the carrier`
         )
       )
   }

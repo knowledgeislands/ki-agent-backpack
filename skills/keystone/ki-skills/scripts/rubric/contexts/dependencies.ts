@@ -51,7 +51,7 @@ const RELIANCE_RE = new RegExp(
 /**
  * KI front-matter field names, such as `ki-parent` or `ki-role`. A body that names a field in
  * backticks is describing a record's shape, not referring to a skill, so these tokens are not
- * skill mentions (KI-SHAPE-21-FIELDS, from the Cairn summit's change 10, step 4.1).
+ * skill mentions (from the Cairn summit's change 10, step 4.1).
  */
 export const KI_FRONT_MATTER_FIELDS: ReadonlySet<string> = new Set([
   'ki-answers',

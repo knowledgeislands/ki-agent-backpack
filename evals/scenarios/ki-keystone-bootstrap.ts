@@ -74,6 +74,6 @@ export const scenarios: Scenario[] = [
       { name: 'vendored alternative', re: /vendor/i }
     ],
     rubric:
-      "House contract (RELEASED-MODE a): the released-backpack mode is part of verified backpack selection, made per backpack for the whole machine, not a third `.ki.toml` `mode`; `.ki.toml` keeps `current` and `vendored`. `ki dev local off` returns the backpack to its verified release archive, the default, which every linked skill on the machine then follows, and `ki diag --full` shows `mode: off`. While the machine stays in development, a repository that must keep a skill fixed vendors it under `ki-repo`. The canonical backpack's release moves only with a `ki` release, then `ki backpack reinstall` with development off."
+      "House contract: the released-backpack mode is part of verified backpack selection, made per backpack for the whole machine, not a third `.ki.toml` `mode`; `.ki.toml` keeps `current` and `vendored`. `ki dev local off` returns the backpack to its verified release archive, the default, which every linked skill on the machine then follows, and `ki diag --full` shows `mode: off`. While the machine stays in development, a repository that must keep a skill fixed vendors it under `ki-repo`. The canonical backpack's release moves only with a `ki` release, then `ki backpack reinstall` with development off."
   }
 ]

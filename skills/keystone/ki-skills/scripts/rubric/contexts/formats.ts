@@ -49,8 +49,8 @@ export const inspectSkillFormatStandards = (
 }
 
 /**
- * The fields the Agent Skills specification defines, and those a runtime adds, which keep their own names (KI-PREFIX a,
- * Kris, 17 November 2026); the list follows the Agent Skills standard's 4.3.5.
+ * The fields the Agent Skills specification defines, and those a runtime adds, which keep their own names; the
+ * list follows the Agent Skills standard's 4.3.5.
  */
 export const SPECIFICATION_FIELDS: ReadonlySet<string> = new Set([
   'name',

@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { projectGate } from './hooks.ts'
 
-// HOOK-6, taken in from ki-repo-project GATE-1 under REPO-CORE a.
+// HOOK-6, taken in from ki-repo-project GATE-1.
 const roots: string[] = []
 afterEach(() => {
   for (const root of roots.splice(0)) rmSync(root, { recursive: true, force: true })

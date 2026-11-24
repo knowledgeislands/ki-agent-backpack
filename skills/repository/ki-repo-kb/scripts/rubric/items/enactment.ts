@@ -33,7 +33,7 @@ const ENACT_2: RubricItem<EnactmentRubricContext> = {
   }
 }
 
-// The one Enactment gate (KB-FOLD b): ki-repo-kb-streams' GATE family, renamed so it does not clash with the commit
+// The one Enactment gate: ki-repo-kb-streams' GATE family, renamed so it does not clash with the commit
 // gate, and ki-repo-kb-principal's duplicate anchor check retired. ki-work owns the lifecycle it routes changes into.
 export const ENACT: RubricFamily<KbRubricContext, EnactmentRubricContext> = {
   code: 'ENACT',

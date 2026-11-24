@@ -45,7 +45,7 @@ test('the structured catalogue preserves every KB criterion', () => {
   expect(catalogue.contract).toBe(1)
   expect(catalogue.name).toBe('ki-repo-kb')
   expect(catalogue.createSession).toBeFunction()
-  // STREAM to PRINCIPAL are the folded standards' families (KB-FOLD b, 22 November 2026).
+  // STREAM to PRINCIPAL are the folded standards' families.
   expect(catalogue.families.map((family) => family.code)).toEqual([
     'RUBRIC',
     'ZONE',

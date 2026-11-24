@@ -2,8 +2,7 @@ import { expect, test } from 'bun:test'
 import { readdirSync, readFileSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
 
-// The standard is one core and purpose files under the staged split Kris authorised with STAGING a) on 7 November
-// 2026. These tests keep the set navigable and prove the move lost no hard token of the single-file standard.
+// The standard is one core and purpose files under a staged split. These tests keep the set navigable and prove the move lost no hard token of the single-file standard.
 
 const skillRoot = resolve(import.meta.dir, '..')
 const backpackRoot = resolve(skillRoot, '..', '..', '..')

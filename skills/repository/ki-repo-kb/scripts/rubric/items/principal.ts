@@ -3,7 +3,7 @@ import type { KbRubricContext } from '../contexts/kb.ts'
 import type { PrincipalContext } from '../contexts/principal.ts'
 
 const SOURCE = 'standard-principal.md'
-// The principal standard applies when the base is its territory's Capital (KB-FOLD b, 22 November 2026).
+// The principal standard applies when the base is its territory's Capital.
 const NOT_CAPITAL = "The base is not its territory's Capital; the principal standard does not apply."
 
 const PRINCIPAL_1: RubricItem<PrincipalContext> = {
@@ -104,7 +104,7 @@ const PRINCIPAL_5: RubricItem<PrincipalContext> = {
     }
   }
 }
-// PRINCIPAL-2, the duplicate Enactment anchor, retired for ENACT-1 under KB-FOLD b.
+// PRINCIPAL-2, the duplicate Enactment anchor, retired for ENACT-1.
 export const PRINCIPAL: RubricFamily<KbRubricContext, PrincipalContext> = {
   code: 'PRINCIPAL',
   title: 'principal governance',

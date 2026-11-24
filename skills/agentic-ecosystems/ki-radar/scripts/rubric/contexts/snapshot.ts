@@ -1,8 +1,8 @@
 import type { AuditOutcome, RubricPublicationContext } from '../../shared/rubric.ts'
 
 /**
- * Reviews older than this warn: the monthly cadence of RADAR-MERGE a (Kris, 22 November 2026, "One ki-radar,
- * monthly"), a month of 31 days plus four days of operational grace, without invalidating historical evidence.
+ * Reviews older than this warn: the radar's monthly cadence, a month of 31 days plus four days of
+ * operational grace, without invalidating historical evidence.
  */
 export const FRESHNESS_DAYS = 35
 

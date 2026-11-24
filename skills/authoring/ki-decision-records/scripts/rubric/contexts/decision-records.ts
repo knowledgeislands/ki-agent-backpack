@@ -125,9 +125,9 @@ export type RootRubricContext = {
 export type IndexRubricContext = {
   indexFile: string
   indexExists: boolean
-  /** A code repository's index still at the earlier `README.md`, with no `_index.md` (DOCS-LANDING-GITHUB). */
+  /** A code repository's index still at the earlier `README.md`, with no `_index.md`. */
   legacyIndex?: boolean
-  /** A `README.md` beside a code repository's `_index.md`, which DOCS-LANDING-GITHUB leaves out. */
+  /** A `README.md` beside a code repository's `_index.md`, which the docs-folder rule leaves out. */
   readmeBeside?: boolean
   indexIds: readonly string[]
   indexCounts: ReadonlyMap<string, number>
@@ -254,7 +254,7 @@ const bodyLinks = (body: string): string[] => {
 const bodyHeadings = (body: string): string[] =>
   [...stripCode(body).matchAll(/^#{2,6}\s+(.+?)\s*#*\s*$/gm)].map((match) => match[1] as string)
 
-/** A code repository's decision index, the folder's page (DOCS-LANDING-GITHUB), and the earlier name it replaces. */
+/** A code repository's decision index, the folder's page, and the earlier name it replaces. */
 const CODE_INDEX = '_index.md'
 const LEGACY_INDEX = 'README.md'
 
@@ -543,7 +543,7 @@ export const createDecisionRecordsSession = ({
   const directory = resolveDirectory(repository, kbMode)
   const exists = isDirectory(directory)
   const entries = exists ? readdirSync(directory).sort() : []
-  // A code repository's folder page is `_index.md` alone; an earlier `README.md` is read until renamed (DOCS-LANDING-GITHUB).
+  // A code repository's folder page is `_index.md` alone; an earlier `README.md` is read until renamed.
   const legacyIndex = !kbMode && !entries.includes(CODE_INDEX) && entries.includes(LEGACY_INDEX)
   const readmeBeside = !kbMode && entries.includes(CODE_INDEX) && entries.includes(LEGACY_INDEX)
   const indexFile = kbMode ? 'Decisions.md' : legacyIndex ? LEGACY_INDEX : CODE_INDEX

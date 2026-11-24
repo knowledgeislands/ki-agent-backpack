@@ -1,5 +1,5 @@
 /**
- * Outcome scenarios for the `ki-radar` governance contract, one radar of two subject kinds (RADAR-MERGE a).
+ * Outcome scenarios for the `ki-radar` governance contract, one radar of two subject kinds.
  *
  * The agentic scenarios test the house-specific distinction between specification maturity, implementation
  * evidence, interoperability evidence, and structural patterns. The model scenarios test the separation of

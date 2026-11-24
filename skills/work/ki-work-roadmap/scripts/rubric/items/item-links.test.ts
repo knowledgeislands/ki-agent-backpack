@@ -48,7 +48,7 @@ const fixture = (...records: [string, string][]): string => {
 
 const item7 = (repository: string) => inspectRoadmap(repository).filter((finding) => finding.area === 'ITEM-7')
 
-describe('ITEM-7 warns on links to pruned records (PRUNE-LINK-CHECK)', () => {
+describe('ITEM-7 warns on links to pruned records', () => {
   test('is a WARN item in the catalogue', () => {
     const items: readonly { code: string; mechanical?: { level?: string } }[] = catalogue.families.flatMap(
       (family): readonly { code: string; mechanical?: { level?: string } }[] => family.items

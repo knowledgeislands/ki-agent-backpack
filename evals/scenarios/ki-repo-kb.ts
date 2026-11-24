@@ -51,7 +51,7 @@ export const scenarios: Scenario[] = [
     rubric:
       'House convention: a session digest is written to `-/_DIGESTS/<UTC timestamp> <Short Topic>.md` (timestamp YYYY-MM-DDTHHMMSSZ), with frontmatter `type: session-digest` and `retain_until: YYYY-MM-DD` (default ~30 days out). A correct answer gives the `-/_DIGESTS/` outbound location and both frontmatter keys.'
   },
-  // Activities, Live Artifacts and the Enactment gate came from their own skills under KB-FOLD b.
+  // Activities, Live Artifacts and the Enactment gate came from their own skills.
   {
     skill: 'ki-repo-kb',
     id: 'act-slash-skill',
@@ -148,6 +148,6 @@ export const scenarios: Scenario[] = [
       }
     ],
     rubric:
-      'House process (the one Enactment gate, KB-FOLD b): substantive changes to `Admin`, `Pillars` or `Resources` need explicitly approved forward work, captured and delivered through `ki-work`, so a substantive `Pillars/` change is not edited directly. Trivial fixes, `Calendar/` entries and `+/` triage are exempt. A correct answer gates the Pillars edit behind approved forward work, names the three canonical zones, and lets the Calendar typo be a direct edit.'
+      'House process (the one Enactment gate): substantive changes to `Admin`, `Pillars` or `Resources` need explicitly approved forward work, captured and delivered through `ki-work`, so a substantive `Pillars/` change is not edited directly. Trivial fixes, `Calendar/` entries and `+/` triage are exempt. A correct answer gates the Pillars edit behind approved forward work, names the three canonical zones, and lets the Calendar typo be a direct edit.'
   }
 ]

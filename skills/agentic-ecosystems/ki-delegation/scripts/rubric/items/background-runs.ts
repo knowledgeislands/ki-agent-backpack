@@ -36,7 +36,7 @@ export const RUN: RubricFamily<DelegationRubricContext, DelegationRubricContext[
           'Does each prompt cite a real owner decision by what it decided and its date, name every remote call it relies on, use the lowest sufficient authority tier, and give a detached agent with no hidden context enough to finish, verify and report? Was the complete current concrete brief written and checked for unresolved templates before the agent started?',
         outcomes: ['conforming', 'revise prompt', 'escalate to owner'],
         guidance:
-          'Revise a prompt only within the authority its cited decision grants, the push tier resting on the remit Kris gave on the change documents the task cites, for high-confidence or reversible work (WORK-MODES); escalate to the owner when the work needs the prune or release tier, cannot be undone by more work, or needs a decision that does not exist yet.'
+          'Revise a prompt only within the authority its cited decision grants, the push tier resting on the remit Kris gave on the change documents the task cites, for high-confidence or reversible work; escalate to the owner when the work needs the prune or release tier, cannot be undone by more work, or needs a decision that does not exist yet.'
       }
     },
     {

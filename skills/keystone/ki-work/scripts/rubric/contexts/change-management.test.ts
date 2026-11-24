@@ -71,7 +71,7 @@ test('does not resolve adapters against an unsupported explicit repository kind'
       )
 })
 
-test("reports a Capital's Project registry close-out under PROJ (KB-FOLD b)", () => {
+test("reports a Capital's Project registry close-out under PROJ", () => {
   const repository = mkdtempSync(join(tmpdir(), 'ki-work-'))
   temporaryDirectories.push(repository)
   const capital = 'https://github.com/example/capital'

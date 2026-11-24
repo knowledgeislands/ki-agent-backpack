@@ -3,36 +3,35 @@
 # and warn on anything else unusual. A Summary or a Status, a Bootstrap or a Stop,
 # a reply that already opens a banner, and every other reply in a coordinating session,
 # one in a checkout declaring [skills.ki-coordination] that has already closed a reply
-# with its thread line, must close with a banner (HOOK-ENFORCE): a ### state heading and the thread
+# with its thread line, must close with a banner: a ### state heading and the thread
 # line, last: <role glyph> 🔑 <work-id>, <role glyph> <package>@<role> for a seat
-# without the package's keys (SEAT-LINE, SEAT-AT), or 🧵 <work-id> for a session with
-# no role yet, either seat form written <Name> (<form>) where the seat's actor is named
-# (NAME-FIRST): a bare seat line whose actor the Cairn store names is held back with the
+# without the package's keys, or 🧵 <work-id> for a session with
+# no role yet, either seat form written <Name> (<form>) where the seat's actor is named:
+# a bare seat line whose actor the Cairn store names is held back with the
 # named line, and an unnamed or unresolved seat passes. A seat line in the earlier
 # <work-id>+<role> form, an unrecognised state heading, a missing or odd counts line, a meeting line in an earlier
-# form, 👂 listening, 🔇 not listening or 👂 in <meeting>, which FOOTER-DELEGATES replaces with 🤝 in
+# form, 👂 listening, 🔇 not listening or 👂 in <meeting>, which the standard replaces with 🤝 in
 # <meeting> · with <names> or no line at all, ⭐, 🔧 or 🧵 in the role glyph's place, and in a
 # Summary or Status missing art, roadmap or package line pass with a warning, so the owner can confirm the form was intended. The
 # hook holds no copy of the role catalogue, which ki-work-package owns.
 # A report heading that is not one link covering its whole text, the package's name as
-# <Territory> › <rest of the id> (HEADING-PACKAGE), a run report's › <run name> aside, or
-# whose link is not a package's _index.md in the Cairn store (HEADING-FIX), warns too.
+# <Territory> › <rest of the id>, a run report's › <run name> aside, or
+# whose link is not a package's _index.md in the Cairn store, warns too.
 # A banner item pairing an agreed glyph with a bracketed state word warns too: an item
 # takes an agreed glyph alone, a provisional glyph with its word in brackets, or the
-# bracketed word alone (GLYPH-FALLBACK).
+# bracketed word alone.
 # A reply with no heading block and no form line, an Update or an Answer, may close instead with
 # the one-line footer, <glyph state> · <thread line>, as 🤖 With worker · 🧵 <work-id>, its thread
-# line read as the banner's (MINIMAL-FOOTER); whether the short banner was due is not checked.
+# line read as the banner's; whether the short banner was due is not checked.
 # In every session, coordinating or not, a reply that asks the owner to decide, a
 # fenced text block holding <TAG> <letter> lines, is held back unless the block opens
 # with a `1 · ` group heading and every such line reads <TAG> <letter> (high|medium|low)
-# (REPLY-CHECK) followed by `: <gloss>`, each tag on one line only, the recommended
-# option's (HOOK-ENFORCE), or, for a question with no honest recommendation,
-# <TAG> ? (your call): <gloss> (WORD-ONLY-QUERY). In every session too, a first line **Reply HH:MM** more than
-# about 5 minutes from the clock's UTC time warns (REPLY-ID-CLOCK). A last line NO_REPLY,
+# followed by `: <gloss>`, each tag on one line only, the recommended option's, or, for a
+# question with no honest recommendation, <TAG> ? (your call): <gloss>. In every session too, a first line **Reply HH:MM** more than
+# about 5 minutes from the clock's UTC time warns. A last line NO_REPLY,
 # which Orca takes as a reply to suppress, is set aside and the rest checked as usual, and
 # a reply of NO_REPLY alone passes on a turn that only takes note of a status, an Orca
-# status message or a task notification (NOTICE-DIGEST). Otherwise quiet for
+# status message or a task notification. Otherwise quiet for
 # conversational replies; never blocks twice in a row, only warning then; fails open on
 # unusable input.
 set -u
@@ -71,7 +70,7 @@ fi
 
 # Whether the turn only takes note of a status: its last prompt, tool results and meta lines set
 # aside, is an Orca message of the status kind, whose header line reads ──── From: <sender> (status)
-# ────, or a task notification (NOTICE-DIGEST).
+# ────, or a task notification.
 status_turn() {
   [ -n "$transcript" ] || return 1
   recent | LC_ALL=C grep -F '"type":"user"' | LC_ALL=C grep -vF '"tool_result"' | tail -n 20 |
@@ -82,7 +81,7 @@ status_turn() {
       | "status"' 2>/dev/null | grep -qx status
 }
 
-# Orca suppresses a reply whose last line is NO_REPLY, so a turn may end quietly (NOTICE-DIGEST): the
+# Orca suppresses a reply whose last line is NO_REPLY, so a turn may end quietly: the
 # line is set aside and the rest of the reply checked as usual, so it may follow a well-formed footer.
 # A reply of NO_REPLY alone passes where the turn only takes note of a status; otherwise it is read
 # as the reply, and a coordinating session still asks for its banner.
@@ -102,7 +101,7 @@ case $trail in
 esac
 
 # The reply id, in every session: a first line **Reply HH:MM** more than about 5 minutes from the
-# clock's UTC time warns and never holds the reply back (REPLY-ID-CLOCK). The gap is taken round the
+# clock's UTC time warns and never holds the reply back. The gap is taken round the
 # clock face, so an id at 23:58 read at 00:01 is 3 minutes out, and the leeway covers a reply that
 # was slow to write.
 idwarn=
@@ -117,7 +116,7 @@ if [[ $idline =~ $id_re ]]; then
     gap=$(((10#${BASH_REMATCH[1]} * 60 + 10#${BASH_REMATCH[2]} - at + 1440) % 1440))
     [ "$gap" -le 720 ] || gap=$((1440 - gap))
     [ "$gap" -le 5 ] ||
-      idwarn="Reply id check: this reply's id, Reply $id, is $gap minutes from the clock's $now UTC. Read it with date -u +%H:%M as the reply is written, under ki-coordination's reply id rule (REPLY-ID-CLOCK); it was let through."
+      idwarn="Reply id check: this reply's id, Reply $id, is $gap minutes from the clock's $now UTC. Read it with date -u +%H:%M as the reply is written, under ki-coordination's reply id rule; it was let through."
   fi
 fi
 
@@ -126,7 +125,7 @@ fi
 # capitals, digits and hyphens, the letter, or a ? for a question with no honest
 # recommendation, followed by the line's end, a space or a colon, is a decision request;
 # anything else in a fence is passed over. Each line needs its confidence, or (your call)
-# after a ? (WORD-ONLY-QUERY), and its gloss, and a tag given twice in one block offers
+# after a ?, and its gloss, and a tag given twice in one block offers
 # alternatives.
 blockfix=
 case $reply in
@@ -168,10 +167,10 @@ case $reply in
         if (!tagline(s)) next
         tags = 1
         tag = substr(s, 1, index(s, " ") - 1)
-        # One line per tag: a second line for the same tag offers an alternative (HOOK-ENFORCE).
+        # One line per tag: a second line for the same tag offers an alternative.
         if (tag in seen) { if (!(tag in twice) && dup < 5) { twice[tag] = 1; dups[++dup] = tag } }
         else seen[tag] = 1
-        # A question with no honest recommendation reads <TAG> ? (your call): <gloss> (WORD-ONLY-QUERY).
+        # A question with no honest recommendation reads <TAG> ? (your call): <gloss>.
         if (s ~ /^[^ ]+ [?]/) {
           if (s !~ /^[^ ]+ [?] \(your call\)/) { if (open_q < 5) unasked[++open_q] = substr(s, 1, index(s, " ") + 1) }
           else if (s !~ /^[^ ]+ [?] \(your call\): [^ ]/ && bare < 5) glossless[++bare] = substr(s, 1, index(s, " ") + 1)
@@ -208,7 +207,7 @@ owner_prompt() {
 
 # >>> seat-name: the same in both coordinator hooks, which coordinator-reminder.test.ts holds alike.
 # A thread line's named form, <Name> (<seat form>), from the ki-name of the actor its seat's ki-workers
-# entry points at (NAME-FIRST): the entry holding the package's ki-role for the keyholder, its role for
+# entry points at: the entry holding the package's ki-role for the keyholder, its role for
 # a keyless seat. Reads only the Cairn store that Cairn's config.toml names; prints nothing where the
 # seat is unnamed, ambiguous or anything is unresolved.
 seat_named() {
@@ -261,7 +260,7 @@ seat_named() {
 # The thread line the session's own last reply closed with, from Claude Code transcript lines on
 # standard input: the last line of the last text of the session's own assistant messages that ends
 # with one, alone or after the state in a one-line footer, <glyph state> · <thread line>, which gives
-# the thread line after its last ` · ` (MINIMAL-FOOTER), a last line NO_REPLY set aside (NOTICE-DIGEST).
+# the thread line after its last ` · `, a last line NO_REPLY set aside.
 # Tool calls such as a SendMessage to a peer,
 # a peer's message, tool results, notifications and a subagent's replies never count, so another
 # seat's line is never read as the session's own.
@@ -287,7 +286,7 @@ missing=
 unusual=
 closing=
 minimal=
-# Every glyph of ki-coordination's one table of glyphs (GLYPH-TABLE), retired ones included;
+# Every glyph of ki-coordination's one table of glyphs, retired ones included;
 # coordinator-footer.test.ts holds this copy to the table.
 agreed='🤖 👤 🎯 ⏸️ 💤 🏁 → ↪️ ⏳ ⛔ 🅿️ 📥 🪟 ⏰ 🧹 🗺️ 📦 🤝 🧵 🔑 🌐 👂 🔇 🔄 🧑 ⭐ 🔧'
 footer() {
@@ -301,7 +300,7 @@ footer() {
   if [ -z "$form" ]; then
     # No footer form of its own: every reply in a coordinating session, a checkout declaring
     # [skills.ki-coordination] whose session has already closed a reply with a thread line in
-    # either form, asks for the banner, whatever the owner's last prompt (HOOK-ENFORCE).
+    # either form, asks for the banner, whatever the owner's last prompt.
     [ -n "$transcript" ] && [ -d "$cwd" ] || return 0
     capable() { [ -f "$1/.ki.toml" ] && grep -Eq '^\[skills\.ki-coordination\]' "$1/.ki.toml" 2>/dev/null; }
     if ! capable "$cwd"; then
@@ -344,15 +343,15 @@ footer() {
     fence { last = NR; next }
     {
       last = NR
-      # The report heading: the first # line, read for its links (HEADING-FIX).
+      # The report heading: the first # line, read for its links.
       if (!h1 && $0 ~ /^# /) h1 = $0
       if ($0 ~ /^\*\*(.* · )?(Summary|Status|Bootstrap|Stop|Re-bootstrap|Hold report|Finish report|Run report) at /) formline = 1
       # An Update or Answer may close with the one-line footer, <glyph state> · <thread line>, read for the
-      # thread line after its last ` · ` (MINIMAL-FOOTER).
+      # thread line after its last ` · `.
       line = $0
       one = line ~ /^[^ -~].*(With worker|Handoff to|With supervisor|On hold|Snoozing|Finished).* · ./
       if (one) while ((p = index(line, sep)) > 0) line = substr(line, p + length(sep))
-      # A named seat writes <Name> (<seat form>); the form inside the brackets is read as the bare line (NAME-FIRST).
+      # A named seat writes <Name> (<seat form>); the form inside the brackets is read as the bare line.
       inner = line
       named = line ~ /^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \(.*\) *$/
       if (named) { sub(/^[A-Za-z][A-Za-z0-9.-]*( [A-Za-z][A-Za-z0-9.-]*)* \(/, "", inner); sub(/\) *$/, "", inner) }
@@ -371,9 +370,9 @@ footer() {
       if (heading && $0 ~ /^🗺/ && index($0, "roadmap")) road = 1
       if (heading && $0 ~ /^📦/ && index($0, "package")) pack = 1
       # The meeting line names the meetings the session is in and who it works with there, and is left off in
-      # none (LISTEN-LINE, FOOTER-DELEGATES); an earlier listening line warns.
+      # none; an earlier listening line warns.
       if (heading && $0 ~ /^(👂 listening|🔇 not listening|👂 in )/) oldlisten = 1
-      # An agreed glyph stands alone; only a provisional glyph carries its word in brackets (GLYPH-FALLBACK).
+      # An agreed glyph stands alone; only a provisional glyph carries its word in brackets.
       if (heading && $0 ~ /^- [^ -~]+ \[/) {
         g = substr($0, 3)
         g = substr(g, 1, index(g, " ") - 1)
@@ -397,23 +396,23 @@ footer() {
       if (!thread) block[++b] = "the thread line, <role glyph> 🔑 <work-id> or 🧵 <work-id>, last"
       else if (thread != last) block[++b] = "the thread line as the very last line"
       if (thread && marks) warn[++w] = "⭐ or 🔧 beside the role glyph, which the role standard retires"
-      if (thread && oldseat) warn[++w] = "a seat line in the earlier <work-id>+<role> form, which SEAT-AT replaces with <package>@<role>"
+      if (thread && oldseat) warn[++w] = "a seat line in the earlier <work-id>+<role> form, which the current form replaces with <package>@<role>"
       if (thread && spun) warn[++w] = "🧵 in the role glyph\047s place; a seat with a role closes <role glyph> 🔑 <work-id>"
       if (heading && !known) warn[++w] = "a state heading the table of states does not name"
       if (heading && !finished && !counts) warn[++w] = "no counts line beneath the state heading"
       if (heading && counts && odd) warn[++w] = "a counts line opening with none of the counts glyphs"
-      if (heading && oldlisten) warn[++w] = "a meeting line in an earlier form, 👂 listening, 🔇 not listening or 👂 in <meeting>, which FOOTER-DELEGATES replaces with 🤝 in <meeting> · with <names>, or no line in no meeting"
-      # The whole heading is one link, the package name, to its _index.md in the Cairn store
-      # (HEADING-PACKAGE, HEADING-FIX); a run report adds › <run name> after it.
+      if (heading && oldlisten) warn[++w] = "a meeting line in an earlier form, 👂 listening, 🔇 not listening or 👂 in <meeting>, which the current form replaces with 🤝 in <meeting> · with <names>, or no line in no meeting"
+      # The whole heading is one link, the package name, to its _index.md in the Cairn store;
+      # a run report adds › <run name> after it.
       if (h1) {
         target = match(h1, /\]\([^)]*\)/) ? substr(h1, RSTART + 2, RLENGTH - 3) : ""
-        if (target == "") warn[++w] = "a report heading that links no package, where HEADING-PACKAGE links the whole heading to its package\047s _index.md in the Cairn store"
+        if (target == "") warn[++w] = "a report heading that links no package, where the whole heading links to its package\047s _index.md in the Cairn store"
         else {
-          if (h1 !~ /^# \[[^\]]* › [^\]]*\]\([^)]+\)( › [a-z0-9-]+)?[ \t]*$/) warn[++w] = "a report heading that is not one link covering its whole text, where HEADING-PACKAGE writes # [<Territory> › <rest of the id>](<package _index.md>)"
-          if (target !~ /^\/.*\/work\/[a-z0-9-]+\/[^\/]+\/_index[.]md$/) warn[++w] = "a report heading whose link is not its package\047s _index.md in the Cairn store, which HEADING-FIX sets, never a repository, README or theme page"
+          if (h1 !~ /^# \[[^\]]* › [^\]]*\]\([^)]+\)( › [a-z0-9-]+)?[ \t]*$/) warn[++w] = "a report heading that is not one link covering its whole text, written # [<Territory> › <rest of the id>](<package _index.md>)"
+          if (target !~ /^\/.*\/work\/[a-z0-9-]+\/[^\/]+\/_index[.]md$/) warn[++w] = "a report heading whose link is not its package\047s _index.md in the Cairn store, never a repository, README or theme page"
         }
       }
-      if (paired) warn[++w] = "a banner item pairing an agreed glyph with a bracketed state word, where GLYPH-FALLBACK sets the agreed glyph alone, keeping brackets for a provisional glyph or a word alone"
+      if (paired) warn[++w] = "a banner item pairing an agreed glyph with a bracketed state word, where the agreed glyph stands alone, keeping brackets for a provisional glyph or a word alone"
       if (long && art && (!art_at || (heading && art_at > heading))) warn[++w] = "no Knowledge Islands art above the banner"
       if (long && roadmap && !road) warn[++w] = "no 🗺️ roadmap line"
       if (long && !pack) warn[++w] = "no 📦 package line"
@@ -423,12 +422,12 @@ footer() {
 }
 footer
 
-# A bare seat line, last, whose actor is named is held back with the named line (NAME-FIRST).
+# A bare seat line, last, whose actor is named is held back with the named line.
 # The thread line is read alone, from a banner's last line or after a one-line footer's state.
 if [ -n "$form" ] && [ -z "$missing" ] && [ -n "$closing" ]; then
   named=$(seat_named "$closing")
   case $named in
-    *" ($closing)") missing="the thread line in its named form, $named, since the seat's actor is named (NAME-FIRST)" ;;
+    *" ($closing)") missing="the thread line in its named form, $named, since the seat's actor is named" ;;
   esac
 fi
 
@@ -454,11 +453,11 @@ if [ -n "$missing$blockfix" ]; then
     fix='with them'
     case $missing in
       'the thread line in its named form'*) fix='with it' ;;
-      # An Update or Answer may close with the one-line footer instead (MINIMAL-FOOTER).
-      *) [ -z "$minimal" ] || reason="$reason An Update or Answer may close instead with the one-line footer, <glyph state> · <thread line>, as 🤖 With worker · 🧵 <work-id>, giving the short banner where its state, counts or items have changed (MINIMAL-FOOTER)." ;;
+      # An Update or Answer may close with the one-line footer instead.
+      *) [ -z "$minimal" ] || reason="$reason An Update or Answer may close instead with the one-line footer, <glyph state> · <thread line>, as 🤖 With worker · 🧵 <work-id>, giving the short banner where its state, counts or items have changed." ;;
     esac
-    # A reply of NO_REPLY alone ends quietly only on a status turn (NOTICE-DIGEST).
-    [ -z "$bare" ] || reason="$reason A reply of NO_REPLY alone ends a turn quietly only where the turn takes note of an Orca status message or a task notification; otherwise it may follow the footer as its last line (NOTICE-DIGEST)."
+    # A reply of NO_REPLY alone ends quietly only on a status turn.
+    [ -z "$bare" ] || reason="$reason A reply of NO_REPLY alone ends a turn quietly only where the turn takes note of an Orca status message or a task notification; otherwise it may follow the footer as its last line."
   fi
   [ -z "$blockfix" ] || reason="${reason:+$reason }This reply's reply block $blockfix; $shape."
   note=

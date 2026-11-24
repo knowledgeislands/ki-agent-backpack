@@ -5,15 +5,11 @@ import { generate } from './generate/index.ts'
 
 // The report heading and the glyph banner are normative text: every
 // coordinator renders both the same way, so the standard and the output style
-// must agree. The report heading is the rich-text heading Kris asked for on
-// 2026-10-14, "a better heading that is the actual just normal text, so it can
-// be rich text rather than fixed width text", with its single rule since
-// 2026-10-17, "we can just go single horizontal rule", so no saved report opens
-// with `---`. Under REPLY-FORMAT, agreed on 7 November 2026, its form line names
-// the reply structure, the time and the last mark, with no state, and the banner
-// heading alone shows the state. The banner is the Work Process note's, set with
-// BANNER-GLYPH on 18 October and TARGET-GLYPH the same day: the glyphs come first
-// and the last glyph is whose move it is, a settled state shows its holder's glyph
+// must agree. The report heading is rich text rather than fixed-width text,
+// with a single horizontal rule, so no saved report opens with `---`. Its form
+// line names the reply structure, the time and the last mark, with no state, and
+// the banner heading alone shows the state. The banner is the Work Process
+// note's: the glyphs come first and the last glyph is whose move it is, a settled state shows its holder's glyph
 // alone and an arrow appears only in a handoff state. The block-letter frames
 // retired with the work model. This test is the mechanical check the COORD rubric
 // cannot run against a repository, because the transcripts the banners appear in
@@ -37,9 +33,8 @@ const outputStyle = readFileSync(resolve(backpackRoot, 'output-styles', 'ki-coor
 const hook = readFileSync(resolve(backpackRoot, 'hooks', 'coordinator-reminder', 'coordinator-reminder.sh'), 'utf8')
 
 /**
- * The package's entry file in the Cairn store, the one link a report heading carries under HEADING-FIX (Kris, 17
- * November 2026): never a repository, README or theme page. HEADING-PACKAGE (Kris, 19 November 2026) links the whole
- * heading, the package's name, to it.
+ * The package's entry file in the Cairn store, the one link a report heading carries: never a repository, README or
+ * theme page. The whole heading, the package's name, links to it.
  */
 const PACKAGE_INDEX = '/Users/krisbrown/kis/cairn/ki-cairn-store/work/ki/ki.ways-of-working/_index.md'
 /** The report heading opening a Summary, as the standard and the output style draw it. */
@@ -53,7 +48,7 @@ const HEADING_EXAMPLE = [
   '## Summary'
 ].join('\n')
 /**
- * The `#` heading under HEADING-PACKAGE: the package's name, its territory then the rest of its id joined by ` › `,
+ * The `#` heading: the package's name, its territory then the rest of its id joined by ` › `,
  * linked whole to its `_index.md` by absolute path or `<store>`, and for a run report ` › <run name>` after the link.
  */
 const HEADING_LINE = /^# \[[^\]›]+(?: › [^\]›]+)+\]\((?:\/|<store>\/)[^)]+\/_index\.md\)( › [a-z0-9-]+)?$/
@@ -62,14 +57,14 @@ const GLYPH_STATE = `(?:🤖 With worker|👤 With supervisor|🤖 → 👤 Hand
 /** A friendly time: the local time and zone, naming the day where it is not today. */
 const FRIENDLY_TIME = String.raw`(?:yesterday |[A-Z][a-z]{2} \d{1,2} [A-Z][a-z]{2} )?\d{2}:\d{2} [A-Z]{3,4}`
 /**
- * The form line under REPLY-FORMAT: the reply structure, the local time and the last mark, bold, in friendly times and
+ * The form line: the reply structure, the local time and the last mark, bold, in friendly times and
  * with no state; a hold's Stop names the hold's own mark.
  */
 const FORM_LINE = new RegExp(
   String.raw`^\*\*(?:(?:Summary|Status|Bootstrap|Run report|Stop) at ${FRIENDLY_TIME} · last mark|Stop at ${FRIENDLY_TIME} · mark) ${FRIENDLY_TIME}\*\*$`,
   'u'
 )
-/** The banner heading: `### <glyph state> · at <time>` under SNOOZE-HEADING, or Finished's close line. */
+/** The banner heading: `### <glyph state> · at <time>`, or Finished's close line. */
 const BANNER_HEADING = new RegExp(
   String.raw`^### (?:${GLYPH_STATE} · at \d{2}:\d{2} [A-Z]{3,4}|🏁 Finished · .+ closed at \d{2}:\d{2} [A-Z]{3,4})$`,
   'u'
@@ -91,8 +86,7 @@ const tableAfter = (text: string, marker: string): string[][] => {
   )
 }
 /**
- * The one table of glyphs under GLYPH-TABLE (Kris, 17 November 2026): "the key thing is to create a single table with all
- * the glyphs that are used." Read from the core, so the test holds no copy of it.
+ * The one table of glyphs, holding every glyph used. Read from the core, so the test holds no copy of it.
  */
 const GLYPH_ROWS = tableAfter(core, '**One table of glyphs.**')
 /** Every agreed glyph, retired ones included: a provisional glyph clashes with none of them. */
@@ -103,7 +97,7 @@ const ITEM_GLYPHS = new Set(
 )
 /**
  * The role glyphs, which the table links to `ki-work-package`'s role catalogue rather than copying, read from its Glyph
- * column by the header, since the catalogue gained a Rank column under ROLE-RANK (Kris, 17 November 2026).
+ * column by the header, since the catalogue has a Rank column.
  */
 const ROLE_GLYPHS = ((): Set<string> => {
   const roles = readFileSync(resolve(skillRoot, '..', 'ki-work-package', 'references', 'standard-roles.md'), 'utf8')
@@ -116,15 +110,14 @@ const ROLE_GLYPHS = ((): Set<string> => {
     .indexOf('Glyph')
   return new Set(tableAfter(roles, '### 4.3 Role catalogue').map((row) => bare(row[column] ?? '')))
 })()
-/** The bracketed state words ITEM-GLYPHS retired, each now an agreed glyph's, so never written in brackets. */
+/** The bracketed state words agreed glyphs replaced, so never written in brackets. */
 const RETIRED_WORDS = new Set(
   'running queued with-you stuck blocked parked release finished window scheduled stranded branch stash'
     .split(' ')
     .map((word) => word.replace('-', ' '))
 )
 /**
- * The form of a banner item, `- <glyph> <what>`, under ITEM-GLYPHS and GLYPH-FALLBACK (Kris, 17 November 2026): an agreed
- * item glyph alone; a provisional glyph, clashing with no agreed or role glyph, followed by its bracketed state word; or the
+ * The form of a banner item, `- <glyph> <what>`: an agreed item glyph alone; a provisional glyph, clashing with no agreed or role glyph, followed by its bracketed state word; or the
  * bracketed state word alone, never one an agreed glyph already names. An agreed glyph with brackets has no form. The live
  * items name a holder and end `· at <time>`; housekeeping lives in the report body.
  */
@@ -137,21 +130,20 @@ const itemForm = (line: string): 'agreed' | 'provisional' | 'bracketed' | undefi
   if (word === undefined) return ITEM_GLYPHS.has(bare(glyph)) ? 'agreed' : undefined
   return known ? undefined : 'provisional'
 }
-/** The items BANNER-TRIM moved out of the banner and into the report body. */
+/** The items moved out of the banner and into the report body. */
 const BODY_ITEM = /^- \[(handoff|committed|uncommitted|recovered|unlogged|behind)\]/
 const HOLDER_ITEM =
   /^- (?:🤖|⏳|👤|⛔) [^·]+ · (owner|agent|run\/[\w-]+|work\/[\w.-]+|person\/[\w-]+|repo\/[\w-]+) · at \d{2}:\d{2}$/u
 const PROJECT_THREAD_LINE = '⚒️ 🔑 ki.ways-of-working'
 const TERRITORY_THREAD_LINE = '🧵 ki.sop.main'
 /**
- * The thread line under STAGE-C-ROLES (Kris, 7 November 2026): `<role glyph> 🔑 <work-id>`, or `🧵 <work-id>` for a
- * session with no role yet and for every run report; and under SEAT-LINE a (Kris, 14 November 2026) and SEAT-AT a
- * (Kris, 16 November 2026), `<role glyph> <package>@<role>` for a seat working in a package without its keys, the
- * package a sub-package's `<parent id>+<slug>` where the seat works one.
+ * The thread line: `<role glyph> 🔑 <work-id>`, or `🧵 <work-id>` for a session with no role yet and for every run
+ * report; and `<role glyph> <package>@<role>` for a seat working in a package without its keys, the package a
+ * sub-package's `<parent id>+<slug>` where the seat works one.
  */
 const SEAT_FORM = String.raw`[^\s!-~]+ 🔑 [a-z0-9-]+(?:\.[a-z0-9-]+){0,2}|[^\s!-~]+ [a-z0-9-]+(?:\.[a-z0-9-]+){1,3}(?:\+[a-z0-9-]+)?@[a-z]+(?:-[a-z]+)*`
 /**
- * Under NAME-FIRST (Kris, 17 November 2026) a seat whose actor is named puts the actor's roster `ki-name` first and the
+ * A seat whose actor is named puts the actor's roster `ki-name` first and the
  * seat's form in brackets, as `Kitteth (🪨 🔑 cairn.summit)`; `🧵 <work-id>` never takes a name.
  */
 const THREAD_LINE = new RegExp(
@@ -170,22 +162,22 @@ const MEETING_ID = '[a-z0-9-]+(?:\\.[a-z0-9-]+)*'
 const PARTICIPANT = '(?:\\p{Lu}[\\p{L}-]*(?: \\p{Lu}[\\p{L}-]*)*|[a-z0-9-]+(?:\\.[a-z0-9-]+)*@[a-z-]+)'
 /** One meeting in the meeting line, with who the session works with there where it has company. */
 const ONE_MEETING = `${MEETING_ID}(?: · with ${PARTICIPANT}(?:, ${PARTICIPANT})*)?`
-/** The meeting line under FOOTER-DELEGATES: each meeting the session is in, with its own list, joined by `, `. */
+/** The meeting line: each meeting the session is in, with its own list, joined by `, `. */
 const MEETING_LINE = new RegExp(`^🤝 in ${ONE_MEETING}(?:, ${ONE_MEETING})*$`, 'u')
-/** The listening line under LISTEN-LINE, before FOOTER-DELEGATES, read only in past reports. */
+/** The listening line naming meetings, before the meeting line replaced it, read only in past reports. */
 const LISTEN_MEETING_LINE = /^👂 in [a-z0-9-]+(?:\.[a-z0-9-]+)*(?:, [a-z0-9-]+(?:\.[a-z0-9-]+)*)*$/u
-/** The listening line while the inbox watcher was armed, before LISTEN-LINE, read only in past reports. */
+/** The listening line while the inbox watcher was armed, before the listening line named meetings, read only in past reports. */
 const LISTEN_LINE = /^👂 listening$/u
-/** The listening line REPORT-FORMS-TIDY gave a hold waiting for a message, which SNOOZE replaced with plain listening. */
+/** The listening line an earlier report form gave a hold waiting for a message, later replaced with plain listening. */
 const LISTEN_HOLD_LINE = '👂 listening · a message releases the hold'
-/** The listening line otherwise, its default before LISTEN-LINE, read only in past reports. */
+/** The listening line otherwise, its earlier default, read only in past reports. */
 const LISTEN_OFF_LINE = /^🔇 not listening$/u
-/** The roadmap line under FOOTER-COUNTS, in a Full reply's footer, reading none where the repository has no roadmap. */
+/** The roadmap line, in a Full reply's footer, reading none where the repository has no roadmap. */
 const ROADMAP_LINE =
   /^🗺️ roadmap · (?:none|(?:1 record|(?!1 )\d+ records) · \d+ open · \d+ done awaiting prune · (?:1 idea|(?!1 )\d+ ideas))$/u
-/** The package line under FOOTER-COUNTS, beside the roadmap line in a Full reply's footer. */
+/** The package line, beside the roadmap line in a Full reply's footer. */
 const PACKAGE_LINE = /^📦 package · changes \d+ · open \d+ · held \d+ · meetings \d+$/u
-/** The sync line SYNC-LINE-OFF removed from every banner, read only in past reports. */
+/** The sync line, removed from every banner, read only in past reports. */
 const SYNC_LINE = /^🔄 (?:not )?syncing for [a-z0-9<>-]+$/u
 /** The standard less its Generated surfaces sources, whose text is checked through what they render. */
 const withoutSources = (text: string): string =>
@@ -223,10 +215,10 @@ const expectReportHeading = (lines: string[] | undefined): void => {
 }
 
 /**
- * A banner, top to bottom under FOOTER-LAYOUT and REPLY-FORMAT: the heading, a blank line, a counts line where live, a
- * blank line, then in a Full reply's footer under FOOTER-COUNTS the roadmap line and the package line, each followed by a
- * blank line, the items, then each closing line after a blank line: the heading-for line where one stands, the meeting
- * line while the session is in a meeting and never at Finished (LISTEN-LINE, FOOTER-DELEGATES), and the thread line last.
+ * A banner, top to bottom: the heading, a blank line, a counts line where live, a blank line, then in a Full reply's
+ * footer the roadmap line and the package line, each followed by a blank line, the items, then each closing line after a
+ * blank line: the heading-for line where one stands, the meeting line while the session is in a meeting and never at
+ * Finished, and the thread line last.
  */
 const expectBanner = (lines: string[]): void => {
   expect(lines[0]).toMatch(BANNER_HEADING)
@@ -270,9 +262,7 @@ const expectBanner = (lines: string[]): void => {
   for (const item of items) expect(item).not.toMatch(/decision \d|#\d/)
 }
 
-// Kris, 09:26 GMT on 17 November 2026, relayed by ki.cairn's warden, under ITEM-GLYPHS: "I'm happy to use the glyphs
-// rather than the square brackets, but don't use the glyph and the square brackets." Each holder line opens with its
-// state's glyph alone.
+// Glyphs rather than square brackets, never both: each holder line opens with its state's glyph alone.
 test('each holder line opens with its state glyph alone, never a bracketed state word', () => {
   for (const line of [
     '- 👤 Ten decisions from the window · owner · at 07:47',
@@ -300,11 +290,9 @@ test('each holder line opens with its state glyph alone, never a bracketed state
     for (const lines of banners(text)) expect(lines.some((line) => line.startsWith('- ['))).toBe(false)
   }
   expect(standard).toContain('`- <glyph> <what> · <holder> · at <time>`')
-  expect(standard).toContain('ITEM-GLYPHS')
 })
 
-// Kris, about 09:55 GMT on 17 November 2026, relayed by the Cairn summit's guardian, under GLYPH-TABLE: "the key thing is
-// to create a single table with all the glyphs that are used." Every glyph the standard and the output style write is in
+// One table holds every glyph used: every glyph the standard and the output style write is in
 // the core's one table, or is a role glyph the table links to the role catalogue.
 test('one table holds every glyph the coordination surfaces use', () => {
   expect(GLYPH_ROWS.length).toBeGreaterThan(20)
@@ -327,12 +315,11 @@ test('one table holds every glyph the coordination surfaces use', () => {
   for (const glyph of used) expect([glyph, AGREED.has(glyph) || ROLE_GLYPHS.has(glyph)]).toEqual([glyph, true])
   for (const name of ['standard-unattended.md', 'standard-territory.md', 'standard-report-forms.md'])
     expect(readReference(name)).toContain('[table of glyphs](standard-coordination.md#46-banner)')
-  expect(core).toContain('GLYPH-TABLE')
+  expect(core).toContain('so it is the one place to look')
 })
 
-// Kris, about 09:55 GMT on 17 November 2026, under GLYPH-FALLBACK: "if you've got a glyph that you can use instead of the
-// square brackets in the name, you should do. Otherwise you can use the square brackets", and "if you do make a choice like
-// that, you must show the glyph and then the value in the brackets, because it's not a glyph that's recognized."
+// A glyph wherever one serves, otherwise square brackets; a glyph the session chooses that is not yet recognised shows
+// with its value in brackets.
 test('an item takes an agreed glyph alone, a provisional glyph with its word in brackets, or the bracketed word alone', () => {
   expect(itemForm('- 🤖 work-model · run/work-model · at 23:20')).toBe('agreed')
   expect(itemForm('- 🌀 [rebasing] ki-agent-backpack · run/rebase · at 09:58')).toBe('provisional')
@@ -352,10 +339,9 @@ test('an item takes an agreed glyph alone, a provisional glyph with its word in 
   for (const text of [core, outputStyle]) {
     expect(text).toContain('`- 🌀 [rebasing] <what> · <holder> · at <time>`')
     expect(text).toContain('`- [rebasing] <what> · <holder> · at <time>`')
-    expect(text).toContain('GLYPH-FALLBACK')
   }
   expect(core).toContain('An agreed glyph is never paired with brackets.')
-  expect(core).toContain('GLYPH-REVIEW')
+  expect(core).toContain('until the owner agrees it into the table')
   expect(readFileSync(resolve(skillRoot, 'SKILL.md'), 'utf8')).toContain(
     'List the provisional glyphs and bracketed state words seen in reports since the last refresh'
   )
@@ -409,10 +395,8 @@ test('the glyph banner shows a settled holder alone and an arrow only in a hando
   expect('### 🏁 Finished · Ways of working closed at 18:00 BST').toMatch(BANNER_HEADING)
 })
 
-// Kris, 31 October 2026, under DRAIN-TARGET: while work is With worker but deliberately moving towards a hold or a
-// handoff, the banner says so. Under FOOTER-LAYOUT the same afternoon the target left the heading for a line of its own
-// below the list: "the point at the top in the header is who it's with, from a state perspective". The line is not a
-// state or a move, so the counts and items keep their shape and the target is never a count or an item.
+// While work is With worker but deliberately moving towards a hold or a handoff, the banner says so, in a line of its
+// own below the list, since the heading says who holds the work. The line is not a state or a move, so the counts and items keep their shape and the target is never a count or an item.
 test('With worker names the hold or handoff it is heading for in its own line below the list, never in brackets', () => {
   const targets = [
     'draining → ⏸️ On hold',
@@ -438,20 +422,15 @@ test('With worker names the hold or handoff it is heading for in its own line be
     PROJECT_THREAD_LINE
   ])
   expect(standard).toContain('**Heading for a hold or a handoff.**')
-  for (const name of ['DRAIN-TARGET', 'FOOTER-LAYOUT']) expect(standard).toContain(name)
   for (const text of [standard, outputStyle]) {
     expect(text).toContain('the target is never a count or an item')
     expect(text).toMatch(/runs still finishing count and list as `🤖` running/u)
   }
 })
 
-// Kris, 16 November 2026, under LISTEN-LINE: "it should indicate meetings it's in or not. Otherwise should be left off".
-// Kris, 19 November 2026, under FOOTER-DELEGATES: "whether or not we change the listening glyph now to something of our
-// meeting in some way or other … And the idea that then something shows that it's not listening doesn't really make any
-// sense either". So the meeting line names each meeting the session is in, with who it works with there, under a
-// meeting glyph, and is left off in none; the inbox watcher keeps its status fields and has no line. Kris removed the
-// sync line under SYNC-LINE-OFF, about 18:00 GMT on 4 November 2026: "remove the sync mode line from the banner
-// entirely", as Cairn keeps machines in sync.
+// The meeting line names each meeting the session is in, with who it works with there, under a meeting glyph, and is
+// left off in none; nothing says a session is not listening, and the inbox watcher keeps its status fields and has no
+// line. The sync line is gone from the banner entirely, as Cairn keeps machines in sync.
 test('the meeting line names the meetings the session is in and who it works with there, is left off in none, and there is no sync line', () => {
   expect('🤝 in cairn.wayfinder.designs · with Quire, Limner').toMatch(MEETING_LINE)
   expect('🤝 in cairn.summit.voice · with Kitteth, cairn.wayfinder.designs · with Quire, Limner').toMatch(MEETING_LINE)
@@ -518,14 +497,6 @@ test('the meeting line names the meetings the session is in and who it works wit
   for (const lines of [withWorker, draining, hold, snoozing])
     expect(lines?.some((line) => line.startsWith('🤝') || line.startsWith('👂'))).toBe(false)
   expect(standard).toContain('**Mode lines.**')
-  for (const name of [
-    'LISTEN-LINE',
-    'FOOTER-DELEGATES',
-    'LISTEN-STATUS',
-    'FOOTER-CAPABILITY-STATUS-2',
-    'SYNC-LINE-OFF'
-  ])
-    expect(standard).toContain(name)
   expect(standard).toContain('- **Inbox watch:**')
   for (const text of [standard, outputStyle]) {
     expect(text).toContain('`🤝 in <meeting> · with <names>`')
@@ -548,11 +519,9 @@ test('the meeting line names the meetings the session is in and who it works wit
     )
 })
 
-// Kris, 31 October 2026, under LISTEN-OPT-IN: "any of the coordination [threads] can be set up in this mode, but we've
-// got to expressly ask them to be". Listening is opt-in, recorded in its change document's Steps; the Rig host sync threads listen
+// Any coordinating thread may listen, but only when expressly asked. Listening is opt-in, recorded in its change document's Steps; the Rig host sync threads listen
 // by their role; "stop listening" ends it; the heartbeat while runs go is separate.
 test('a thread listens only when the owner asks it to, and a Rig host sync thread by its role', () => {
-  expect(standard).toContain('LISTEN-OPT-IN')
   expect(standard).toContain('heartbeat while runs go is separate and stays, listening or not')
   for (const text of [standard, outputStyle]) {
     expect(text).toContain('"listen for messages" or "keep listening"')
@@ -563,25 +532,21 @@ test('a thread listens only when the owner asks it to, and a Rig host sync threa
   expect(standard).not.toContain('keep one inbox watcher armed whenever')
 })
 
-// Kris, 31 October 2026, under THREAD-CAPABILITIES and SYNC-UNTIL-CLEAN: "a resync doesn't finish until it's got to a
-// point of being clean". A thread may hold listening and host sync, each switched on only by express word or an agreed
+// A resync does not finish until it is clean. A thread may hold listening and host sync, each switched on only by express word or an agreed
 // role; host sync repeats each pass until clean and level, stays quiet on quiet passes and implies listening.
 test('a session may hold listening and host sync, and the banner shows only the meeting line', () => {
   expect(standard).toContain('### 4.2 Session capabilities')
   expect(standard).toContain('[Session capabilities](standard-listening.md#42-session-capabilities)')
-  for (const name of ['THREAD-CAPABILITIES', 'SYNC-UNTIL-CLEAN', 'SYNC-QUIET', 'Host sync implies listening.'])
-    expect(standard).toContain(name)
+  expect(standard).toContain('Host sync implies listening.')
   for (const text of [standard, outputStyle]) {
     expect(text).toContain('until the Mac and GitHub are clean and level')
     expect(text).not.toContain('`🔄 syncing for sol`')
   }
 })
 
-// Kris, 31 October 2026, under UNATTENDED-AWAKE: "a key part of unattended mode is that you do keep the chat session
-// alive ... and therefore you try to keep the machine awake that is then leading that chat session".
+// Unattended mode keeps the chat session alive, and so keeps awake the machine leading that chat session.
 test('an unattended window keeps its session and machine awake and says so at entry, on top of normal coordination', () => {
   expect(standard).toContain('- **Awake:**')
-  expect(standard).toContain('UNATTENDED-AWAKE')
   expect(standard).toContain('says how the session and its machine are kept awake')
   for (const text of [standard, outputStyle]) {
     expect(text).toContain('`caffeinate -dims -w <session pid>`')
@@ -628,8 +593,6 @@ test('reports omit routine push state, and an On hold banner lists nothing waiti
   }
   expect(standard).toContain('**Push state stays out of reports.**')
   expect(standard).toContain('**A hold lists nothing waiting.**')
-  expect(standard).toContain('PUSH-NOT-WITH-YOU')
-  expect(standard).toContain('HOLD-CLEAN')
   expect(standard).toContain('A Stop keeps nothing about pushes beyond a failure.')
   for (const text of [standard, outputStyle]) {
     expect(text).toContain('own unit could not be published because its push failed')
@@ -645,8 +608,7 @@ test('the output style carries the report heading and the live banners byte-iden
   expect(styled).toEqual(banners(standard).slice(0, 5))
 })
 
-// Kris, 29 October 2026: "There becomes a point when the agents should suggest that this thread would be better off
-// being restarted. ... but only when it's necessary." The restart suggestion is the second named exception to the
+// The agents suggest that a thread would be better restarted, but only when it is necessary. The restart suggestion is the second named exception to the
 // no-paste rule, beside the bootstrap rename line, and both the standard and the output style carry its triggers.
 test('the restart suggestion is a named exception with narrow triggers, placed before the banner', () => {
   expect(standard).toContain('**Restart suggestion.**')
@@ -696,12 +658,10 @@ test('every banner closes with its work identity and never emits a send or resum
   expect(standard).toContain('### 4.2 Pushing beneath other sessions')
 })
 
-// Under REPLY-FORMAT, agreed on 7 November 2026, the reply block returns whenever a reply carries a query: one fenced
-// `text` block, replacing REPLY-BLOCK of 18 October. Under REPLY-GROUPS, of 12 November 2026, its queries are grouped
-// by priority under numbered headings and each line carries the recommended option's confidence in brackets.
+// The reply block returns whenever a reply carries a query: one fenced `text` block, its queries grouped by priority
+// under numbered headings and each line carrying the recommended option's confidence in brackets.
 test('the standard and the output style carry the reply block and retire the block-letter frames', () => {
   for (const text of [standard, outputStyle]) {
-    expect(text).toContain('replacing REPLY-BLOCK of 18 October')
     expect(text).toContain('one fenced `text` block')
     expect(text).toContain('`<n> · <what the group is>`')
     expect(text).toContain("`, can run while you're away`")
@@ -762,7 +722,7 @@ test('the reply block groups its queries by priority under numbered headings, ea
     'Window design',
     'Outside Cairn'
   ])
-  // Under HOOK-ENFORCE each line carries its gloss, and each tag stands once, its recommended option only.
+  // Each line carries its gloss, and each tag stands once, its recommended option only.
   const lines = groups.flatMap(({ lines }) => lines)
   for (const line of lines) expect(line).toMatch(/^\S+ a \((?:high|medium|low)\): \S/)
   expect(new Set(lines.map((line) => line.split(' ')[0])).size).toBe(lines.length)
@@ -803,7 +763,7 @@ test('a reply block sent back as it stands, or changed, still answers every quer
   expect('2 Window design').not.toMatch(REPLY_GROUP)
 })
 
-// Kris, 14 November 2026, under REPLY-BLOCK a and REPLY-ID a: every reply to the owner, in every form, opens with its
+// Every reply to the owner, in every form, opens with its
 // reply id, `**Reply HH:MM**` in UTC from the clock, and every reply asking the owner to decide anything ends with the
 // reply block, a conversational reply included.
 test('every reply opens with its reply id, and every reply asking a decision ends with the reply block', () => {
@@ -819,8 +779,8 @@ test('every reply opens with its reply id, and every reply asking a decision end
   expect(reporting).not.toContain('A question for the owner is one line')
   expect(readReference('standard-report-forms.md')).toContain('**Reply id.** Every reply to the owner, in every layout')
   for (const text of [core, outputStyle]) {
-    expect(text).toContain('opens with its reply id, as Kris set under REPLY-ID on 14 November 2026')
-    expect(text).toContain('under REPLY-BLOCK of 14 November 2026 every reply that asks Kris to decide anything')
+    expect(text).toContain('opens with its reply id: one bold line, `**Reply HH:MM**`')
+    expect(text).toContain('every reply that asks Kris to decide anything, whatever its form, closes its body with one')
   }
   for (const source of [/^line='(.*)'$/m, /^pointer='(.*)'$/m])
     expect(source.exec(hook)?.[1]).toEndWith(
@@ -828,9 +788,8 @@ test('every reply opens with its reply id, and every reply asking a decision end
     )
 })
 
-// Kris, about 01:15 GMT on 18 November 2026, under HOOK-ENFORCE a: "Yeah, we need the hook enforcing". Every
-// coordinating reply closes with its thread line; the trigger sets only the footer's depth. Under MINIMAL-FOOTER, about
-// 03:29 GMT on 19 November 2026, an Update or Answer closes with the one-line footer, the short banner only on change.
+// Every coordinating reply closes with its thread line, which the footer hook enforces; the trigger sets only the
+// footer's depth. An Update or Answer closes with the one-line footer, the short banner only on change.
 test("every coordinating reply ends with its thread line, its structure, which its trigger chooses, setting the footer's depth", () => {
   expect(standard).toContain('**When it appears.**')
   expect(standard).toContain('every Summary, Status, Bootstrap, run report, Stop and Position closes with it')
@@ -845,7 +804,7 @@ test("every coordinating reply ends with its thread line, its structure, which i
   expect(standard).not.toContain('an Update or Answer, the Minimal layout, has none')
   expect(standard).not.toContain('Minimal has no footer')
   expect(outputStyle).toContain(
-    "Every reply closes with its thread line, as Kris set under HOOK-ENFORCE on 18 November 2026, and the trigger, not judgement, sets the footer's depth"
+    "Every reply closes with its thread line, and the trigger, not judgement, sets the footer's depth"
   )
   expect(outputStyle).toContain('an Update or Answer with the one-line footer, `<glyph state> · <thread line>`')
   expect(outputStyle).not.toContain('an Update or Answer has none')
@@ -855,12 +814,10 @@ test("every coordinating reply ends with its thread line, its structure, which i
     )
 })
 
-// SUMMARY-MODEL, approved by Kris with immediate effect on 4 November 2026 and
-// relayed as SUMMARY-NOW: the mark is only a timestamp, and one Summary form
-// replaces the Summary, recap and full summary, superseding MARK-STATUS's
-// table after the queries. Its footer's art and lines are Cairn's (FOOTER-AGORA).
-// Under REPLY-FORMAT its section is `## Summary`, with no time. Under FOCUS-ROWS
-// (15 November 2026) its status table has a row per live change and one catch-all.
+// The mark is only a timestamp, and one Summary form replaces the Summary,
+// recap and full summary, with no table after the queries. Its footer's art and
+// lines are Cairn's. Its section is `## Summary`, with no time, and its status
+// table has a row per live change and one catch-all.
 test('the Summary runs its summary, the two-column status table, the queries in full, then the footer', () => {
   const summaryAt = standard.indexOf('#### 4.1.7 The Summary')
   const summary = standard.slice(summaryAt, standard.indexOf('### 4.1 Coordinating work', summaryAt))
@@ -882,7 +839,7 @@ test('the Summary runs its summary, the two-column status table, the queries in 
   expect(summary).toContain('⏳ means queued only')
   expect(summary).not.toContain('⏳ the outside world')
   expect(outputStyle).toContain('🌐 the outside world')
-  // OTHER-LIVE-WORK (22 November 2026) renames the catch-all row and glosses it like every other row.
+  // The catch-all row is Other live work, glossed like every other row.
   expect(summary).toContain('**Other live work**')
   expect(summary).toContain("Live items no change document holds: other bots' work, runs, and your own tasks")
   expect(summary).not.toContain('Not in a change yet')
@@ -890,8 +847,6 @@ test('the Summary runs its summary, the two-column status table, the queries in 
   expect(outputStyle).not.toContain('Not in a change yet')
   expect(summary).not.toContain('**\\_emerging**')
   expect(outputStyle).toContain("in the order `_index.md`'s Changes lists them")
-  expect(summary).toContain('FOOTER-AGORA')
-  expect(summary).toContain('TABLE-ALIGN')
   for (const verb of ['mark', 'mark only', 'summary', 'summary since 14:00']) {
     expect(standard).toContain(`/ki-coordination ${verb} `)
   }
@@ -904,8 +859,7 @@ test('the Summary runs its summary, the two-column status table, the queries in 
   expect(outputStyle).not.toContain('What I heard')
 })
 
-// SUMMARY-FIRST, taken by Kris on 19 November 2026 at about 06:33 GMT: a long
-// summary is read and discussed before its queries, which it only counts.
+// A long summary is read and discussed before its queries, which it only counts.
 test('a Summary whose summary runs long gives only the count of its queries, then offers the pass', () => {
   const summaryAt = standard.indexOf('#### 4.1.7 The Summary')
   const summary = standard.slice(summaryAt, standard.indexOf('### 4.2 Banner detail', summaryAt))
@@ -914,10 +868,8 @@ test('a Summary whose summary runs long gives only the count of its queries, the
   expect(summary).toContain('only the count of open queries and where they are held')
   expect(summary).toContain('no query in full and no reply block')
   expect(summary).toContain('inline one by one or the [interactive pass]')
-  expect(summary).toContain('SUMMARY-FIRST')
-  expect(outputStyle).toContain('under SUMMARY-FIRST on 19 November 2026')
+  expect(outputStyle).toContain('then a long summary is read and discussed first')
   expect(outputStyle).toContain('only their count and where they are held, with no reply block')
-  expect(readReference('sources.md')).toContain('| SUMMARY-FIRST |')
 })
 
 test('the core retains all five hard rules and lists every purpose file', () => {
@@ -1016,7 +968,6 @@ test('housekeeping and behind findings go in the report body, with all level-che
   const orderedBanner = standard.split('**Glyph banner.**')[1]?.split('\n')[0] ?? ''
   for (const item of ['[handoff]', '[committed]', '[uncommitted]', '[recovered]', '[unlogged]', '[behind]'])
     expect(orderedBanner).not.toContain(item)
-  expect(standard).toContain('under BANNER-TRIM')
   expect(standard).toContain('`<repository>: <count> commits behind`')
   expect(outputStyle).toContain('The banner carries no `[handoff]` or housekeeping item')
   expect(outputStyle).toContain('carry each unresolved behind finding in the status table or In Progress')
@@ -1075,10 +1026,8 @@ test('regular coordination is explicit, capability-checked and uses its real wor
   }
 })
 
-// Kris, relayed by the Cairn summit's guardian on 17 November 2026 under NAME-FIRST a: "where we have a named actor
-// that the name should be first and then in brackets it should be effectively what we're currently putting out", and
-// under HEADING-FIX a: a report heading links its package's `_index.md` in the Cairn store and nothing else, which
-// HEADING-PACKAGE (19 November 2026) makes the whole heading, the package's name.
+// A named actor's name comes first, then the seat's form in brackets; a report heading links its package's
+// `_index.md` in the Cairn store and nothing else, the whole heading being the package's name.
 test('a named seat puts its name first and its form in brackets, an unnamed seat keeps the bare form', () => {
   for (const named of [
     'Kitteth (🪨 🔑 cairn.summit)',
@@ -1100,9 +1049,6 @@ test('a named seat puts its name first and its form in brackets, an unnamed seat
     expect(invalid).not.toMatch(THREAD_LINE)
   for (const text of [standard, outputStyle]) {
     expect(text).toContain('Kitteth (🪨 🔑 cairn.summit)')
-    expect(text).toContain('NAME-FIRST')
-    expect(text).toContain('HEADING-FIX')
-    expect(text).toContain('HEADING-PACKAGE')
   }
 })
 
@@ -1121,11 +1067,11 @@ test('an interactive pass ends a timed first reply with the read-back and contex
     expect(text).toContain('Reply with a number, or your own words.')
     expect(text).not.toContain('Reply with 1, 2 or 3')
     expect(text).not.toContain('Never ask through a question tool')
-    // Kris, 15 November 2026, under CARD-READBACK a: the read-back says what the answer changes, in card and chat mode.
+    // The read-back says what the answer changes, in card and chat mode.
     expect(text).toContain('what gets recorded, what gets built and what is left alone')
     expect(text).toContain('the read-back of the previous answer and what it changes')
     expect(text).not.toContain('one-line read-back')
-    // Kris, 15 November 2026, under CARD-DISCUSS a: every query offers talk now or come back at the end, in card and chat mode.
+    // Every query offers talk now or come back at the end, in card and chat mode.
     expect(text).toContain('Talk it through now')
     expect(text).toContain('Come back at the end')
     expect(text).toContain('at most two real choices')
@@ -1141,11 +1087,9 @@ test('an interactive pass ends a timed first reply with the read-back and contex
   expect(standard).toContain('**Pairs:** two related questions may share one card, each with a short header')
 })
 
-// Kris, 31 October 2026, under LISTEN-TENDS-PACKAGE: "if a thread is listening, it's important that it is also helping
-// to manage and refine the work packages and make sure they're in good state". A listening thread makes at most one
+// A listening thread also helps manage and refine the work packages and keep them in good state: it makes at most one
 // small, silent tidy of its own package at a wake and only points out problems in another's.
 test('a listening thread tends its own work package at its wakes', () => {
-  expect(standard).toContain('LISTEN-TENDS-PACKAGE')
   expect(standard).toContain('#410-the-tidy')
   for (const text of [standard, outputStyle]) {
     expect(text).toContain('at most one small tidy')
@@ -1153,11 +1097,9 @@ test('a listening thread tends its own work package at its wakes', () => {
   }
 })
 
-// Kris, 31 October 2026, under QUIET-LISTEN: "for a thread which is listening ... we don't need it to give an update
-// unless it actually gets new information that's landed". The watcher is one long-running loop that fetches and
+// A listening thread gives no update unless new information has landed. The watcher is one long-running loop that fetches and
 // fast-forwards silently and exits only on news; a run finishing is itself the wake, and nothing is timed while idle.
 test('the inbox watcher wakes only on news, with no timed bound or timed heartbeat', () => {
-  expect(standard).toContain('QUIET-LISTEN')
   for (const text of [standard, outputStyle]) {
     expect(text).toContain('fetches and fast-forwards')
     expect(text).toContain("a run in this session's group finishing")
@@ -1176,28 +1118,24 @@ test('the inbox watcher wakes only on news, with no timed bound or timed heartbe
   expect(standard).toContain('a run finishing is itself the wake')
 })
 
-// Kris, 31 October 2026, under RENAME-THREAD-FORM: "we name them like: `🧵 personal.reg.rig-terra`". The bootstrap and
+// Threads are named by their thread line, as `🧵 personal.reg.rig-terra`. The bootstrap and
 // re-bootstrap Done line renames the thread to its thread line.
 test('the bootstrap rename line names the thread by its thread line', () => {
-  expect(standard).toContain('RENAME-THREAD-FORM')
   for (const text of [standard, outputStyle]) {
     expect(text).toContain('`Rename thread: /rename <thread line>`')
     expect(text).not.toContain('/rename <label> (<id>)')
   }
 })
 
-// Kris, 1 November 2026, under RENAME-NAME a): a session opened from its opener starts with the thread name
+// A session opened from its opener starts with the thread name
 // `🧵 <work-id>`, the same as the rename line and every report's thread line.
 test('the opener launches the session under its thread line', () => {
-  expect(standard).toContain('RENAME-NAME')
   expect(standard).toContain('`claude --name "<thread line>"`')
-  expect(standard).toContain('STAGE-C-ROLES')
   expect(standard).not.toContain('claude --name "<label> (<id>)"')
 })
 
-// Under REPLY-FORMAT, agreed on 7 November 2026, a sent line awaiting its ACK is no longer listed as the
-// `[awaiting ACK]` item NO-LINK-MARK set on 4 November; since OLD-SHAPE-HOMES a the package line no longer counts it,
-// and since MSG-RETIRE, on 17 November, there is no queue and no ACK at all.
+// A sent line awaiting its ACK is no longer listed as an `[awaiting ACK]` item, the package line no longer counts it,
+// and since the message queue retired there is no ACK at all.
 test('the banner lists no `[awaiting ACK]` item', () => {
   const banner = [
     '### 👤 With supervisor · at 23:52 GMT',
@@ -1219,15 +1157,11 @@ test('the banner lists no `[awaiting ACK]` item', () => {
   listed.splice(9, 0, '- [awaiting ACK] MSG-8029f0fa · to personal.reg.assistant-sol · at 22:27')
   expect(() => expectBanner(listed)).toThrow()
   for (const lines of banners(standard)) expect(lines.some((line) => line.startsWith('- [awaiting ACK]'))).toBe(false)
-  expect(standard).toContain('MSG-RETIRE')
   for (const text of [standard, outputStyle]) expect(text).not.toContain('`- [awaiting ACK] <id>')
-  expect(standard).toContain('NO-LINK-MARK')
 })
 
-// Kris, about 20:40 GMT on 6 November 2026, of the footer personal.reg.household-terra trialled, under FOOTER-COUNTS:
-// "I absolutely love that footer. Can you make that the case, please, and get that to be rolled out?" Beneath the
-// counts line, the hold line on hold, a Full reply's footer carries one roadmap line and one package line, the roadmap
-// line reading none where there is no roadmap under REPLY-FORMAT; the Medium and Short layouts carry neither, and the
+// Beneath the counts line, the hold line on hold, a Full reply's footer carries one roadmap line and one package line,
+// the roadmap line reading none where there is no roadmap; the Medium and Short layouts carry neither, and the
 // thread line stays last.
 test("a Full reply's footer carries the roadmap and package lines beneath its counts line, and the other layouts neither", () => {
   expect('🗺️ roadmap · 1 record · 0 open · 1 done awaiting prune · 0 ideas').toMatch(ROADMAP_LINE)
@@ -1272,7 +1206,6 @@ test("a Full reply's footer carries the roadmap and package lines beneath its co
     expect(text).toContain('`🗺️ roadmap · none`')
     expect(text).toContain('`📦 package · changes <n> · open <n> · held <n> · meetings <n>`')
     expect(text).toContain('`ki repo roadmap summary`')
-    expect(text).toContain('FOOTER-COUNTS')
   }
   expect(outputStyle).toContain('the Medium and Short layouts carrying neither')
   expect(standard).toContain('**Roadmap and package lines.**')
@@ -1280,9 +1213,8 @@ test("a Full reply's footer carries the roadmap and package lines beneath its co
   expect(standard).toContain('In a Full reply on work On hold the counts line is the hold line')
 })
 
-// Kris, relayed by household-terra on 6 November 2026 under REPORT-FORMS-TIDY, asked for one complete template per form
-// and the status table without the history part; under REPLY-FORMAT, agreed on 7 November 2026, each reply structure
-// has its template, and a Stop folds the hold and finish reports.
+// One complete template per form, and the status table without the history part: each reply structure has its
+// template, and a Stop folds the hold and finish reports.
 test('each reply structure has one template, and the form line carries no state', () => {
   const templates = standard.split('#### 4.1.5 Templates\n')[1]?.split('\n#### 4.1.6 Verbs\n')[0] ?? ''
   for (const structure of [
@@ -1321,10 +1253,8 @@ test('each reply structure has one template, and the form line carries no state'
   }
 })
 
-// Kris, relayed by household-terra on 6 November 2026 under SNOOZE, SNOOZE-STATE and SNOOZE-HEADING: "I think that's
-// snoozing now. That's a better term than more expected"; it gets the z's, keeps listening and so is not drained; one
-// table of states renders every state the same way; and the banner heading says "at", because "The word since isn't
-// useful".
+// Snoozing is the better term for a hold that expects more: it gets the z's, keeps listening and so is not drained;
+// one table of states renders every state the same way; and the banner heading says "at", since "since" adds nothing.
 test('Snoozing has its own glyph, keeps its watcher, is never drained, and one table renders every state', () => {
   const snoozing = banners(standard).find((lines) => lines[0]?.startsWith('### 💤'))
   expect(snoozing?.[0]).toBe('### 💤 Snoozing (on hold) · at 23:58 GMT')

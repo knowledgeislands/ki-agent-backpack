@@ -232,7 +232,7 @@ test('a closed record needs no size and a ready record must not be xl', () => {
   )
 })
 
-test('an adopted draft record must not be xl and warns until it is split (GATES-SIZE-XL a)', () => {
+test('an adopted draft record must not be xl and warns until it is split', () => {
   const draft = createRepository('kind: deliver\nsize: xl\nhorizon: future\nstatus: draft\nbaseline_ref: null', '')
   expect(warnings(draft)).toContain('an adopted record must not be size xl; split it before adoption')
   expect(failures(draft)).toEqual([])

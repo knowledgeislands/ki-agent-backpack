@@ -807,7 +807,7 @@ const parseItem = (repository: string, name: string, configuration?: RoadmapConf
     add('FAIL', 'ITEM-2', 'size must be s, m, l or xl', FORMAT, display)
   else if (size === 'xl' && status === 'ready')
     add('FAIL', 'ITEM-2', 'a ready record must not be size xl; split it before Ready', FORMAT, display)
-  // XL work is split before adoption (GATES-SIZE-XL a, 2026-11-21); an adopted draft warns until it is split.
+  // XL work is split before adoption; an adopted draft warns until it is split.
   else if (size === 'xl' && status === 'draft')
     add('WARN', 'ITEM-2', 'an adopted record must not be size xl; split it before adoption', FORMAT, display)
   if (!('assignee' in parsed.values) || parsed.values.assignee === null) {
@@ -979,7 +979,7 @@ const validateDependencies = (items: readonly WorkItem[], configuration?: Roadma
 const MARKDOWN_LINK = /\[([^\]\n]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g
 
 /**
- * ITEM-7 (PRUNE-LINK-CHECK): a relative Markdown link in a record whose target is a work record no longer on disc
+ * ITEM-7: a relative Markdown link in a record whose target is a work record no longer on disc
  * points at a pruned record, which opens nowhere. URLs, commit-pinned ones included, are skipped; the fix is the
  * pinned `[<ID> (pruned)](…/blob/<last revision>/…)` form that `ki link <ID>` prints.
  */
@@ -1077,9 +1077,8 @@ type LedgerBody = (allocation: LedgerAllocation, work?: string) => string
 
 const LEDGER_KEBAB = '[a-z0-9]+(?:-[a-z0-9]+)*'
 /**
- * The work package that does the roadmap's work, `work: <package id>`, under WP-STORE (Kris, 9 November 2026):
- * packages live in the Cairn store, and the ledger names its package beside the allocation (ROAD-7 a, Kris,
- * 14 November 2026). Optional; a ledger without it is still canonical.
+ * The work package that does the roadmap's work, `work: <package id>`, checked under ROAD-7:
+ * packages live in the Cairn store, and the ledger names its package beside the allocation. Optional; a ledger without it is still canonical.
  */
 const LEDGER_WORK_ID = new RegExp(`^${LEDGER_KEBAB}(?:\\.${LEDGER_KEBAB})*$`)
 
@@ -1167,7 +1166,7 @@ export const inspectRoadmap = (repository: string): readonly Finding[] => {
   const roadmap = join(root, 'docs', 'roadmap')
   const rootIndexPath = join(root, 'ROADMAP.md')
   if (isKb(root)) {
-    // A Knowledge Base keeps its records flat in Streams/Roadmap/ (KB-FOLD b, 22 November 2026).
+    // A Knowledge Base keeps its records flat in Streams/Roadmap/.
     if (existsSync(roadmap) || existsSync(rootIndexPath))
       add(
         'FAIL',

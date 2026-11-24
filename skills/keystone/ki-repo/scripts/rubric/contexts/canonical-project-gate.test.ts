@@ -10,8 +10,7 @@ afterEach(() => {
   for (const root of roots.splice(0)) rmSync(root, { recursive: true, force: true })
 })
 
-// A Project gate is check-only and offline: staged lints only, no `ki` at all, as Kris chose
-// COMMIT-VS-CI a) on 26 October 2026. The fixture puts `ki` and every provider command on PATH as
+// A Project gate is check-only and offline: staged lints only, no `ki` at all. The fixture puts `ki` and every provider command on PATH as
 // recorders that fail loudly, so any call shows up.
 const fixture = (stage: boolean, variant: HookVariant = 'no-package', lintExit = 0) => {
   const root = mkdtempSync(join(tmpdir(), 'ki-canonical-project-'))

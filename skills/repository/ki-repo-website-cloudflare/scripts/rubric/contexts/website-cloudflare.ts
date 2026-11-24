@@ -37,7 +37,7 @@ export type WranglerConfigEvidence = {
   readonly observabilityEnabled: boolean
   readonly hasCustomDomain: boolean
   readonly previewUrls: boolean | null
-  /** Custom-domain route patterns on a `www.` host, which WWW-301 forbids. */
+  /** Custom-domain route patterns on a `www.` host, which the www-redirect rule forbids. */
   readonly wwwCustomDomains: readonly string[]
 }
 

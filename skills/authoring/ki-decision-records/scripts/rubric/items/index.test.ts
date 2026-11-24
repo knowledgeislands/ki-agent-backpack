@@ -337,7 +337,7 @@ The decision remains readable.
   ])
 })
 
-// Kris, 22 November 2026, 19:57 GMT, under DOCS-LANDING-GITHUB b: "_index.md only". A code repository's decision
+// A code repository's decision
 // index is the folder's `_index.md`; an earlier README.md alone warns until renamed, and one beside `_index.md` warns.
 test('the decision index is _index.md, an earlier README.md warning until renamed', () => {
   const index1 = (pages: readonly string[]) => {

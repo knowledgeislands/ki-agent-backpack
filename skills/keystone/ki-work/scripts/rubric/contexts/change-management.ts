@@ -9,7 +9,7 @@ type AdapterDefinition = { readonly skill: string; readonly repositoryKind?: 'pr
 type Adapter = 'roadmap' | 'kb-streams' | 'linear'
 const ADAPTERS: Readonly<Record<Adapter, AdapterDefinition>> = {
   roadmap: { skill: 'ki-work-roadmap', repositoryKind: 'project' },
-  // KB-FOLD b, 22 November 2026: a Knowledge Base's records are checked by ki-work-roadmap.
+  // A Knowledge Base's records are checked by ki-work-roadmap.
   'kb-streams': { skill: 'ki-work-roadmap', repositoryKind: 'kb' },
   linear: { skill: 'ki-work-linear' }
 }
@@ -119,7 +119,7 @@ export const createChangeManagementSession = ({
     }
   }
 
-  // A Capital's Project registry, in its Streams, gets its close-out and idea-stage checks here (KB-FOLD b).
+  // A Capital's Project registry, in its Streams, gets its close-out and idea-stage checks here.
   const streams = join(root, 'Streams')
   const context: ChangeManagementRubricContext = {
     selection: { outcomes },

@@ -316,7 +316,7 @@ const heavy = (line: string): boolean =>
   /\bki repo (?:audit|conform|repair)\b|(?:^|\s)--(?:fix|write)(?=\s|$)|\bquiet_audit\b/.test(line)
 
 /**
- * What the general Project's gate runs (HOOK-6), taken in from `ki-repo-project` GATE-1 under REPO-CORE a:
+ * What the general Project's gate runs (HOOK-6), taken in from `ki-repo-project` GATE-1:
  * only check-only staged lints. HOOK-1 owns existence and HOOK-4 the canonical text.
  */
 export const projectGate = (target: string, shape: RepositoryShape | undefined): readonly AuditOutcome[] => {

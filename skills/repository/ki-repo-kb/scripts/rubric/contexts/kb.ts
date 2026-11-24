@@ -20,7 +20,7 @@ export const ZONES = ['Calendar', 'Pillars', 'Resources', 'Streams', 'Admin'] as
 export const WORKING_AREAS = ['+', '-'] as const
 const CONFIG = '.ki.toml'
 const CONFIG_TABLE = 'ki-repo-kb'
-// The bindings of the folded satellites (KB-FOLD b, 22 November 2026): the Activity collection and its backpack,
+// The bindings of the folded satellites: the Activity collection and its backpack,
 // harness being backpack's old name that ACT-S-3 warns on, the Live Artifacts collection, and the process note.
 const FOLDED_KEYS = ['activities_dir', 'backpack', 'harness', 'artifacts_dir', 'sync_threshold_hours', 'process_note']
 const SNAKE_CASE = /^[a-z][a-z0-9_]*$/
@@ -83,7 +83,7 @@ const delegatedNoteTypeRecord = (
 }
 
 // A package file under `+/_WORK/<id>/` is an earlier copy, out of place: a work package lives
-// in the Cairn store (COVERAGE-SIGNAL a).
+// in the Cairn store.
 const earlierPackageFile = (relativePath: string, inbound: string): boolean => {
   const segments = relativePath.split('/')
   return (
@@ -734,7 +734,7 @@ const createKbDraft = (repository: string): KbDraft | undefined => {
   }
 }
 
-// The folded standards' families (KB-FOLD b): each keeps its own session, whose repository subject this one nests.
+// The folded standards' families: each keeps its own session, whose repository subject this one nests.
 const FOLDED_FAMILIES = ['STREAM', 'ENACT', 'ACT', 'LA', 'LA-F', 'PRINCIPAL'] as const
 
 const repositorySubject = <Context>(session: RubricSession<Context>): Context => {

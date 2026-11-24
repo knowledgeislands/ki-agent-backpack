@@ -114,7 +114,7 @@ const CHECK_DEFAULTS: Record<string, boolean> = {
   'secret-scanning': true, //   (public) secret scanning on
   'push-protection': true, //   (public) secret-scanning push protection on
   structure: true, //           carries no retired shape-skill table
-  'all-runtimes': true //       declares every recognised runtime (RUNTIMES-ALL)
+  'all-runtimes': true //       declares every recognised runtime
 }
 const KI_CONFIG = '.ki.toml'
 export const KI_CONFIGURATION_HEADER = `# Knowledge Islands repository configuration.
@@ -690,7 +690,7 @@ const COVERAGE: { skill: string; table: string; artifact: string; detect: (s: Si
     skill: 'tools',
     table: skillTable('ki-repo-tools'),
     artifact: 'install.sh + bin/<exe>, or a tap Formula/*.rb',
-    // ki-repo-tools took in the Homebrew tap as its distribution standard (REPO-OTHERS a).
+    // ki-repo-tools took in the Homebrew tap as its distribution standard.
     detect: (s) =>
       (s.root.has('install.sh') && [...s.tree].some((p) => /^bin\/[^/]+$/.test(p))) ||
       [...s.tree].some((p) => /^Formula\/[^/]+\.rb$/.test(p))
@@ -744,18 +744,18 @@ const requiredByDeclared = (kiText: string, table: string): boolean =>
   (COVERAGE_REQUIRED_BY[table] ?? []).some((dependent) => declaresTable(kiText, dependent))
 // Thread-model working areas read for the work model's tolerance window, each warned with its new home.
 const LEGACY_WORKING_AREAS = ['+/_CHECKPOINTS/', '+/_THREADS/'] as const
-// A work package lives in the Cairn store; a `+/_WORK/` copy is out of place (COVERAGE-SIGNAL a).
+// A work package lives in the Cairn store; a `+/_WORK/` copy is out of place.
 const EARLIER_PACKAGE_AREA = '+/_WORK/'
 const COVERAGE_SKILLS = new Set(COVERAGE.map((c) => c.skill))
 export const detectedCoverageSkills = (): readonly string[] => COVERAGE.map((entry) => entry.table).sort()
 // Shape skills retired on 22 November 2026: ki-repo took in ki-repo-project and ki-repo-specifications,
-// and ki-repo-tools took in ki-repo-homebrew-tap (REPO-CORE a, REPO-OTHERS a). A leftover table is stale.
+// and ki-repo-tools took in ki-repo-homebrew-tap. A leftover table is stale.
 const RETIRED_SHAPE_TABLES = [
   skillTable('ki-repo-project'),
   skillTable('ki-repo-homebrew-tap'),
   skillTable('ki-repo-specifications')
 ]
-// Knowledge Base satellites folded into ki-repo-kb, or split from it, on 22 November 2026 (KB-FOLD b).
+// Knowledge Base satellites folded into ki-repo-kb, or split from it, on 22 November 2026.
 // Their keys now sit under [skills.ki-repo-kb]; a leftover table is stale.
 const RETIRED_KB_TABLES = [
   skillTable('ki-repo-kb-activities'),
@@ -1196,7 +1196,7 @@ async function auditRepo(
     if (retiredKb.length > 0 && enforced('structure'))
       warn(
         'STRUCT-2',
-        `declares the retired ${retiredKb.map((t) => `[skills.${t}]`).join(', ')}, folded into ki-repo-kb (KB-FOLD b) — remove it, moving any process_note, activities_dir, backpack, artifacts_dir or sync_threshold_hours under [skills.ki-repo-kb]`
+        `declares the retired ${retiredKb.map((t) => `[skills.${t}]`).join(', ')}, folded into ki-repo-kb — remove it, moving any process_note, activities_dir, backpack, artifacts_dir or sync_threshold_hours under [skills.ki-repo-kb]`
       )
 
     // ── website implementation cardinality ── STRUCT-3/4
@@ -1661,7 +1661,7 @@ function localConfigFindings(dir: string): Finding[] {
     )
   if (unknown.length) return f
 
-  // RUNTIMES-7: every repository declares every runtime (RUNTIMES-ALL); a narrower list is an
+  // RUNTIMES-7: every repository declares every runtime; a narrower list is an
   // evidenced exception, the declared divergence `all-runtimes = false`, which the override
   // notes report, so only an undeclared narrower list warns.
   const missingRuntimes = KNOWN_RUNTIMES.filter((rt) => !parsed.runtimes.includes(rt))

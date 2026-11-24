@@ -9,12 +9,12 @@ import { type Dirent, existsSync, lstatSync, readdirSync, readFileSync } from 'n
 import { join, relative } from 'node:path'
 import type { AuditOutcome } from '../../shared/rubric.ts'
 
-/** The store's folder of packages, `work/<territory>/<work id>/`, under PACKAGE-STORE (9 November 2026). */
+/** The store's folder of packages, `work/<territory>/<work id>/`. */
 export const WORK_DIRECTORY = 'work'
-/** The package's entry file under INDEX-ENTRY (Kris, 8 November 2026), its leading underscore sorting it first. */
+/** The package's entry file, its leading underscore sorting it first. */
 export const ENTRY_FILE = '_index.md'
 const KEBAB = '[a-z0-9]+(?:-[a-z0-9]+)*'
-/** A change document, `NN-<slug>.change.md`, numbered in tens by group under PACKAGE-SHAPE. */
+/** A change document, `NN-<slug>.change.md`, numbered in tens by group. */
 export const CHANGE_DOCUMENT = new RegExp(`^\\d{2}-${KEBAB}\\.change\\.md$`)
 /** A territory folder's name, and a sub-package folder's slug. */
 export const SLUG = new RegExp(`^${KEBAB}$`)
@@ -195,7 +195,7 @@ export const unlinkedChanges = (folder: string): readonly string[] => {
   ]
 }
 
-// A field of the entry file, read under its `ki-` name or, until packages are swept, its older bare name (KI-PREFIX a).
+// A field of the entry file, read under its `ki-` name or, until packages are swept, its older bare name.
 const frontField = (path: string, field: string): string | undefined => {
   if (!existsSync(path)) return undefined
   const head = /^---\r?\n([\s\S]*?)\r?\n---/.exec(readFileSync(path, 'utf8'))?.[1] ?? ''

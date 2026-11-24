@@ -52,7 +52,7 @@ const GUIDE_2: RubricItem<GuidesLayoutContext> = {
               message: 'The collection entry point cannot exist until docs/guides exists.',
               subject: 'docs/guides/_index.md'
             }
-          : // A docs folder's page is `_index.md` alone, Kris chose on 22 November 2026: "_index.md only" (DOCS-LANDING-GITHUB).
+          : // A docs folder's page is `_index.md` alone.
             context.legacyIndex
             ? {
                 status: 'VIOLATION',

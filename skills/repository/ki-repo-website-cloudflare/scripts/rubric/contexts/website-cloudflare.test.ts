@@ -227,7 +227,7 @@ describe('ki-repo-website-cloudflare session', () => {
     ])
   })
 
-  test('flags a www custom domain, because www redirects to the apex (WWW-301)', () => {
+  test('flags a www custom domain, because www redirects to the apex', () => {
     const item = WCF.items.find((candidate) => candidate.code === 'WCF-28')
     const apexOnly = makeRoot()
     writeCanonicalRepository(apexOnly)

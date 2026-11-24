@@ -77,7 +77,7 @@ export const evaluatePruneSelection = ({
   }
 }
 
-/** A terminal record is due for the standing prune this many days after its terminal state landed (PRUNE-RECORDS). */
+/** A terminal record is due for the standing prune this many days after its terminal state landed. */
 export const STANDING_PRUNE_DAYS = 7
 
 export type StandingPruneInput = {

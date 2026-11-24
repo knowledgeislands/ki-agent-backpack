@@ -1,6 +1,6 @@
 /**
  * The roadmap record checks for a Knowledge Base, whose records live flat in `Streams/Roadmap/`. They came from
- * `ki-repo-kb-streams` when Kris split it on 22 November 2026 (KB-FOLD b): record identity and frontmatter report
+ * `ki-repo-kb-streams` when it was split on 22 November 2026: record identity and frontmatter report
  * under ITEM-1 and ITEM-2, the issue ledger under ROAD-7, and issuing areas under ROAD-6, as they do for a Project.
  */
 import { existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs'
@@ -106,7 +106,7 @@ const roadmapRecord = (root: string, path: string, name: string): RoadmapRecord 
       ? {}
       : { unassigned: true }),
     ...(fields.size === 'xl' && fields.status === 'ready' ? { oversized: true } : {}),
-    // XL work is split before adoption (GATES-SIZE-XL a, 2026-11-21): an adopted draft warns until it is split.
+    // XL work is split before adoption: an adopted draft warns until it is split.
     ...(fields.size === 'xl' && fields.status === 'draft' ? { adoptedOversized: true } : {})
   }
   const id = typeof raw === 'string' ? raw.trim() : ''
