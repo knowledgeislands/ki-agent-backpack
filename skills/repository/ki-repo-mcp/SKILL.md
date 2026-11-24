@@ -65,6 +65,8 @@ Decide _where code lives_ by who needs to call it, not by what it does:
 
 Every tool MUST set `annotations` to a preset from `utils/annotations.ts` (`READ_ONLY`, `WRITE`, `WRITE_IDEMPOTENT`, `DESTRUCTIVE`, `DESTRUCTIVE_ONESHOT`, and the `_REMOTE` variants). `DESTRUCTIVE_ONESHOT` is for tools whose end state depends on current FS/index state (running twice ≠ same result). Never bypass the register proxy. The default `read` gate hides every mutation until the operator opts in.
 
+The preset follows the tool's class, the same on every server: **Read** only looks; **Write** is anything that can be undone, such as drafting, deleting a draft or moving mail to Deleted Items; **Destructive** is anything that cannot, such as emptying Deleted Items or Junk, permanent deletion, and sending anything in the operator's name. Annotations are hints a client may ignore, so the access level and the sign-in's scopes are the real guard. The standard's [tool classes](references/standard-mcp-servers.md#441-tool-classes) give the full list and its limits.
+
 ## Operating modes
 
 Every governance skill carries the universal four **AUDIT · CONFORM · EDUCATE · REFRESH**; EDUCATE here scaffolds a new server. Invoked as `help` / `-h` / `?`, it explains itself and stops — the generated HELP block (name, purpose, invocation, modes, off-ramps), taking no action. With no mode it does the same, then, in an interactive session only, offers the mode choice via `AskUserQuestion`, prompting for any `argument-hint` target the chosen mode shows.

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T05:56:55Z
 ki-status: in force
 ---
 
@@ -19,6 +19,7 @@ ki-status: in force
   - [4.2 Config injection](#42-config-injection)
   - [4.3 Tool naming](#43-tool-naming)
   - [4.4 Access-level gate (annotation-driven)](#44-access-level-gate-annotation-driven)
+    - [4.4.1 Tool classes](#441-tool-classes)
   - [4.5 Audit logging](#45-audit-logging)
   - [4.6 Security invariants](#46-security-invariants)
   - [4.7 Bun vs Node](#47-bun-vs-node)
@@ -63,6 +64,7 @@ The standard applies only when a repository declares `[skills.ki-repo-mcp]` in `
 | --- | --- |
 | **Workspace convention** | The in-house majority shape the sibling servers share on top of the MCP specification. **Standard:** this one, [4](#4-rules) |
 | **Access level** | One of `read`, `write` and `destructive`, nesting in that order, derived from a tool's annotations and gated by `MCP_<APP>_ACCESS_LEVEL`. **Standard:** this one, [4.4](#44-access-level-gate-annotation-driven) |
+| **Tool class** | Read, Write or Destructive: what a tool does judged by whether it can be undone, which sets its annotation preset. **Standard:** this one, [4.4.1](#441-tool-classes) |
 | **MCP delta** | What an MCP repository adds on top of the common engineering standard. **Standard:** this one, [4.8](#48-packagejson) |
 | **Protocol profile** | The dated MCP revision a server's package family selects: legacy 2025-11-25 or modern 2026-07-28. **Standard:** this one, [4.12](#412-protocol-profiles) |
 
@@ -156,6 +158,25 @@ These four hints (`readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorl
 Levels nest `read ⊂ write ⊂ destructive`; env `MCP_<APP>_ACCESS_LEVEL` (default `read`). Every tool sets `annotations` to a preset from `utils/annotations.ts`: `READ_ONLY`, `WRITE`, `WRITE_IDEMPOTENT`, `WRITE_IDEMPOTENT_REMOTE`, `DESTRUCTIVE`, `DESTRUCTIVE_REMOTE`, `DESTRUCTIVE_ONESHOT`, plus `_REMOTE`/read variants per repo. `DESTRUCTIVE_ONESHOT` = effect depends on current FS/index state. Never bypass the register proxy; never derive the level from the tool name.
 
 **Divergence:** default access level is `read` everywhere except `mcp-acquire-whatsapp`, which defaults to `destructive`, and its audit log defaults to `off` rather than `writes`. A `read` default would unregister its six spool-writing acquisition tools, and a log on by default would keep a record of who the operator talks to. Its ADR-KI-MCP-WA-005 records both choices; the gate and the log are otherwise implemented as this standard sets — accepted, do not flag.
+
+[Back to contents](#contents)
+
+#### 4.4.1 Tool classes
+
+Every KI MCP server classes its tools the same way, and a tool's annotation preset follows its class:
+
+- **Read** (`READ_ONLY` presets): the tool only looks.
+- **Write** (`WRITE` presets): anything that can be undone. This covers creating, editing and deleting drafts; moving mail to Deleted Items, Junk or a bin; labels, filing and rules; uploads; and handling calendar invitation and response emails, which only signal.
+- **Destructive** (`DESTRUCTIVE` presets): anything that cannot be undone. This covers emptying Deleted Items, Junk or a bin; permanent deletion; and sending anything in the operator's name: send, reply, reply-all and forward.
+
+The danger the classes guard against is what cannot be taken back, above all what reaches other people in the operator's name, not the operator's own data moving somewhere it can be recovered from. Which classes a client sees is the operator's choice of the server's access level where the server is registered in MCPorter. Marking a tool destructive keeps an agent from running it without the operator's express consent, whether or not the client can see it.
+
+Two limits keep this honest:
+
+- **Annotations are hints, not a guard.** The specification ([TOOLS](sources.md)) tells clients to treat a server's annotations as untrusted, a client may ignore them, and an agent running in a bypass permission mode is never asked. What holds is the access level, which stops a tool being registered at all, and the sign-in's scopes: a sign-in an agent uses carries no scope that permits sending, such as Microsoft Graph's `Mail.Send` or a Gmail scope that allows sending ([§4.14](#414-oauth-security-auth-server-repos) item 4).
+- **Classing sending as destructive is a deliberate KI widening.** The specification's `destructiveHint` marks a tool whose updates may not be additive, and a sent message adds rather than changes data. KI classes it destructive all the same, because once it reaches someone else it cannot be undone.
+
+Whether accepting, declining or cancelling a calendar event, which tells its other attendees, counts as sending is not yet settled. Until it is, an audit reports how such a tool is classed as a point for judgment, not as a finding.
 
 [Back to contents](#contents)
 

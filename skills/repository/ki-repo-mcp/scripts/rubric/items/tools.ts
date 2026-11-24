@@ -5,6 +5,7 @@ const STANDARD = 'standard-mcp-servers.md#43-tool-naming'
 const RESULT_STANDARD = 'standard-mcp-servers.md#413-spec-conformance-tool-results-errors--metadata'
 const SECURITY_STANDARD = 'standard-mcp-servers.md#46-security-invariants'
 const OAUTH_STANDARD = 'standard-mcp-servers.md#414-oauth-security-auth-server-repos'
+const CLASS_STANDARD = 'standard-mcp-servers.md#441-tool-classes'
 
 const registrations = (source: string): string[] => {
   const callers = new Set(['registerTool'])
@@ -19,7 +20,7 @@ const TOOL_1: RubricItem<McpToolsContext> = {
   title: 'MCP tool surface',
   description:
     'Registered tool names use snake-case app/resource/action forms, except those `[skills.ki-repo-mcp]` declares in tool-name-exceptions; source-local structured output declarations are paired with outputSchema; and group registration order is stable. This is not runtime registration, security, or response evidence.',
-  sources: [STANDARD, SECURITY_STANDARD, RESULT_STANDARD, OAUTH_STANDARD],
+  sources: [STANDARD, SECURITY_STANDARD, RESULT_STANDARD, OAUTH_STANDARD, CLASS_STANDARD],
   mechanical: {
     level: 'WARN',
     remediation: {
@@ -100,7 +101,7 @@ const TOOL_1: RubricItem<McpToolsContext> = {
     scope:
       'The full public MCP tool surface, result envelopes, annotations, documentation, and applicable OAuth requirements.',
     prompt:
-      'Review plural/singular resource choices, CLI mirroring and README catalogues; confirm the annotation-driven access gate, annotation presets, dry-run defaults and that dry runs are side-effect-free across the complete operation, read default, audit/error envelopes, path and subprocess hardening, bounded schemas, error aggregation, output sanitisation, and the applicable OAuth security requirements, including 401 recovery hints that name a path reachable at the configured access tier. Optional metadata remains opt-in.',
+      'Review plural/singular resource choices, CLI mirroring and README catalogues; confirm the annotation-driven access gate, annotation presets that follow the tool classes (anything that cannot be undone, sending in the name of the operator included, is destructive), dry-run defaults and that dry runs are side-effect-free across the complete operation, read default, audit/error envelopes, path and subprocess hardening, bounded schemas, error aggregation, output sanitisation, and the applicable OAuth security requirements, including 401 recovery hints that name a path reachable at the configured access tier. Optional metadata remains opt-in.',
     outcomes: ['conforming', 'gap', 'exclusion'],
     guidance:
       'Make API or security changes only with the owning authority; otherwise record a named gap or explicit justified exclusion.'
