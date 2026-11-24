@@ -898,6 +898,30 @@ test('a status turn is one whose every prompt, the opening one and any delivered
     'A reply of NO_REPLY alone'
   )
   expect(run(stop('NO_REPLY', opened(orcaMail('status'), [orcaMail('status')])), {}, '/bin/bash')).toEqual(silent)
+  // A prompt with no text, such as an image alone, still opens a turn of its own.
+  const image = [{ type: 'image', source: { type: 'base64', media_type: 'image/png', data: 'AA==' } }]
+  expect(quiet(transcript([{ owner: 'Open ki.prj.demo', reply: rebootstrap(shortBanner) }, { owner: orcaMail('status') }, { owner: image }])).reason).toContain(
+    'A reply of NO_REPLY alone'
+  )
+  // A reply id before the marker makes it no bare NO_REPLY.
+  expect(run(stop('**Reply 10:51**\n\nNO_REPLY', opened(orcaMail('status')))).reason).toContain("the banner's ### state heading")
+})
+
+test('a queued prompt recorded as plain text counts, and a turn whose opening prompt lies outside the window read is no status turn', () => {
+  const raw = (...entries: unknown[]): string => {
+    const path = join(root, `t-${++transcripts}.jsonl`)
+    writeFileSync(path, `${entries.map((entry) => JSON.stringify(entry)).join('\n')}\n`)
+    return path
+  }
+  const opening = { type: 'user', message: { role: 'user', content: 'Open ki.prj.demo' } }
+  const closing = { type: 'assistant', message: { role: 'assistant', content: [{ type: 'text', text: rebootstrap(shortBanner) }] } }
+  const queued = (prompt: unknown) => ({ type: 'attachment', attachment: { type: 'queued_command', prompt, commandMode: 'prompt' } })
+  const toolResult = { type: 'user', message: { role: 'user', content: [{ type: 'tool_result', content: 'ok' }] } }
+  const status = { type: 'user', message: { role: 'user', content: orcaMail('status') } }
+  expect(run(stop('NO_REPLY', raw(opening, closing, status, toolResult, queued('<task-notification>\n</task-notification>'))))).toEqual(silent)
+  expect(run(stop('NO_REPLY', raw(opening, closing, status, queued('and the rest?')))).reason).toContain('A reply of NO_REPLY alone')
+  // The window opens mid-turn: a reply closing with its thread line, then only tool results and queued status mail.
+  expect(run(stop('NO_REPLY', raw(closing, toolResult, queued(orcaMail('status'))))).reason).toContain('A reply of NO_REPLY alone')
 })
 
 test('a reply closing its footer before NO_REPLY still makes the session a coordinating one', () => {

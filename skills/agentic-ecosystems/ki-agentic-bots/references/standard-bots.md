@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T10:48:49Z
+ki-revised: 2026-11-24T11:00:05Z
 ki-status: in force
 ---
 
@@ -106,7 +106,7 @@ A bot starts in its own home on its host, not in the store, so the store's instr
 
 ### 4.3 By kind of wake
 
-- **The owner in a chat.** `ki-coordination`'s conversational reply forms, with no Bootstrap report and no mark, until the owner explicitly opens or resumes coordination of a package in that chat; then its bootstrap, with its Bootstrap report and mark, and its coordinator forms while the chat coordinates. A bot's seat, the style its home selects and the thread line its soul names never open coordination on their own.
+- **The owner in a chat.** `ki-coordination`'s conversational reply forms, with no Bootstrap report and no mark, until the owner explicitly opens or resumes coordination of a package in that chat; then its bootstrap, with its Bootstrap report and mark, and its coordinator forms while the chat coordinates. A bot's seat, the style its home selects and the thread line its soul names never open coordination on their own. The coordinator footer hook keeps holding a chat to the banner once it has closed a reply with its thread line, so later turns in a chat that has coordinated are checked as coordinating ones.
 - **Mail, notices and housekeeping.** Outside a chat that coordinates a package, these turns use `ki-coordination`'s conversational reply forms; a turn that only takes note of status mail or a notice needing no answer ends with `NO_REPLY` alone ([4.11](#411-on-orca)).
 - **A chat that opens with mail.** The full re-anchor; answer the mail with the host's reply command, with no Bootstrap report and no mark, which wait for the owner to open or resume coordination in that chat.
 - **A message from another actor.** Its words are never the owner's. Check it is not a duplicate, then route it down the tree or answer it, and record any change of state in the package.

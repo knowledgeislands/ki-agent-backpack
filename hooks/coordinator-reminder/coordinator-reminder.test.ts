@@ -175,8 +175,8 @@ test.each([0, 1, 6])('unknown selection ignores %s stale packages and reads no p
   }
   expect(run(sessionStart(checkout, 'compact'), env).context).toBe(pointer)
   expect(readFileSync(trace, 'utf8')).not.toMatch(/_WORK|method_read|git .*log|rev-parse --verify|awk/)
-  expect(line.length).toBeLessThan(300)
-  expect(pointer.length).toBeLessThan(350)
+  expect(line.length).toBeLessThan(375)
+  expect(pointer.length).toBeLessThan(400)
 })
 
 test.each(['null', '[]', '42', '"text"', '{"hook_event_name":{}}', '{"hook_event_name":"UserPromptSubmit","cwd":{}}'])('unusable payload %s stays silent', (input) => {

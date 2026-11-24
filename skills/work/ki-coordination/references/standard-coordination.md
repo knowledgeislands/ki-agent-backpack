@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T10:48:49Z
+ki-revised: 2026-11-24T11:00:05Z
 ki-status: in force
 ---
 
@@ -422,13 +422,13 @@ Edit the text here, never in a rendered file. A hook source holds no single quot
 <!-- ki-coordination:source hook-line -->
 
 ```text
-Only if the owner explicitly opened or resumed coordination, follow ki-coordination (skills/work/ki-coordination/references/standard-coordination.md). Otherwise use its conversational Reply forms. Every reply opens with **Reply HH:MM** (date -u); one asking a decision ends with the reply block.
+Only if the owner explicitly opened or resumed coordination, follow ki-coordination (skills/work/ki-coordination/references/standard-coordination.md). Otherwise use its conversational Reply forms. Every reply opens with **Reply HH:MM** (date -u); one asking a decision ends with the reply block. A turn only noting status mail gives NO_REPLY alone, without an id.
 ```
 
 <!-- ki-coordination:source hook-pointer -->
 
 ```text
-Context was compacted. Only if explicitly coordinating, follow Re-anchoring after compaction in ki-coordination (skills/work/ki-coordination/references/standard-bootstrap.md). Otherwise use its conversational Reply forms. Every reply opens with **Reply HH:MM** (date -u); one asking a decision ends with the reply block.
+Context was compacted. Only if explicitly coordinating, follow Re-anchoring after compaction in ki-coordination (skills/work/ki-coordination/references/standard-bootstrap.md). Otherwise use its conversational Reply forms. Every reply opens with **Reply HH:MM** (date -u); one asking a decision ends with the reply block. A turn only noting status mail gives NO_REPLY alone, without an id.
 ```
 
 The `run-report` and `footer-report` sources are in [Reporting](standard-reporting.md#45-report-rule-sources), and the `review-independence` source is in [Queries](standard-queries.md#46-review-independence-source).
@@ -449,7 +449,7 @@ Record an explicitly granted unattended window in the change document the window
 
 A sender never creates a package: a new package is seeded by its parent node's keyholder, usually the guardian, or by any session Kris points at it on his word, `_index.md` on hold with the first step as the top line of its Now and a first change document only if there is a change to carry; others ask the keyholder in a meeting or a conversation. Seeding does not open or release the work; all other writes follow `ki-work-package` entry points. Put a proposed work transfer at the bottom of the Summary's Queries, naming its receiving package and asking permission unless Kris already authorised the transfer; existing authorised routes, replies and refreshes need no repeated permission. The named disposition/removal commit is the receipt, not necessarily completion; a retained message can point to its open query.
 
-This style applies only while the owner explicitly opens or resumes coordination under `ki-coordination` on a valid work package, whether `territory`, `project` or `regular`. Package type, id, home, binding and repository capability do not select the role, and nor does a bot's seat: a bot's home selecting this style, or its soul naming its thread line, makes no chat a coordinating one, so a bot coordinates only in a chat where Kris has opened or resumed coordination of a package. In a conversational session, including regular or ad hoc work without a coordinating opener and a bot's turns outside such a chat that handle mail, notices or housekeeping, set it aside and use the `ki-coordination` reply forms: plain conversational reply by default, and the owner report without heading or banner when a unit ends, each opening with its reply id and, where it asks Kris to decide anything, ending with the reply block. A turn that only takes note of status mail or a notice needing no answer, in any session, gives no reply: its whole last message is `NO_REPLY`, with no reply id, footer or other text, since Orca's chat still shows any text written before the marker. A background agent follows its brief's report rule.
+This style applies only while the owner explicitly opens or resumes coordination under `ki-coordination` on a valid work package, whether `territory`, `project` or `regular`. Package type, id, home, binding and repository capability do not select the role, and nor does a bot's seat: a bot's home selecting this style, or its soul naming its thread line, makes no chat a coordinating one, so a bot coordinates only in a chat where Kris has opened or resumed coordination of a package. In a conversational session, including regular or ad hoc work without a coordinating opener and a bot's turns outside such a chat that handle mail, notices or housekeeping, set it aside and use the `ki-coordination` reply forms: plain conversational reply by default, and the owner report without heading or banner when a unit ends, each opening with its reply id and, where it asks Kris to decide anything, ending with the reply block. A turn that only takes note of status mail or a notice needing no answer, in any session, gives no reply: its whole last message is `NO_REPLY`, with no reply id, footer or other text, and it writes no other text in the turn, since Orca's chat still shows any text written before the marker. Status mail carrying an answer or something to act on is no such notice, and nor is a run finishing in a chat that coordinates, which is a wake answered with its Update. A background agent follows its brief's report rule.
 
 The model of work is the Work Process note in Knowledge Islands Principal, `Pillars/Philosophy/Model/Processes/Work Process/Work Process.md`: the unit is work; you are the worker to Kris, the supervisor, and the supervisor of your runs; the work lies in one of seven states; the two moves are send and receive; and the work lives in its work package, `work/<territory>/<id>/` in the Cairn store: `_index.md` defines it and holds its state, and its change documents carry its decisions and its open and parked queries, with Git as its logbook. Read the note at bootstrap.
 

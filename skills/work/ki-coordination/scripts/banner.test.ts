@@ -784,7 +784,7 @@ test('every reply opens with its reply id, and every reply asking a decision end
   }
   for (const source of [/^line='(.*)'$/m, /^pointer='(.*)'$/m])
     expect(source.exec(hook)?.[1]).toEndWith(
-      'Every reply opens with **Reply HH:MM** (date -u); one asking a decision ends with the reply block.'
+      'Every reply opens with **Reply HH:MM** (date -u); one asking a decision ends with the reply block. A turn only noting status mail gives NO_REPLY alone, without an id.'
     )
 })
 
@@ -907,10 +907,10 @@ test('unknown-session hook sources stay short and conditional while the style re
   const pointer = /^pointer='(.*)'$/m.exec(hook)?.[1] ?? ''
   expect(line).toContain('Only if the owner explicitly opened or resumed coordination')
   expect(line).toContain('Otherwise use its conversational Reply forms')
-  expect(line.length).toBeLessThan(300)
+  expect(line.length).toBeLessThan(375)
   expect(pointer).toContain('Only if explicitly coordinating')
   expect(pointer).toContain('Re-anchoring after compaction')
-  expect(pointer.length).toBeLessThan(350)
+  expect(pointer.length).toBeLessThan(400)
   for (const text of [standard, outputStyle]) {
     expect(text).toContain('before each state-file update')
     expect(text).toContain('method_read')

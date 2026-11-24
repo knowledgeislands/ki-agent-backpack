@@ -29,7 +29,7 @@
 # followed by `: <gloss>`, each tag on one line only, the recommended option's; a line giving
 # ? in place of the letter carries no recommendation and is held back. In every session too, a first line **Reply HH:MM** more than
 # about 5 minutes from the clock's UTC time warns. A last line NO_REPLY,
-# which Orca takes as a reply to suppress, is set aside and the rest checked as usual, and
+# which Orca takes as nothing to report, is set aside and the rest checked as usual, and
 # a reply that is NO_REPLY alone, whitespace aside, passes on a turn whose every prompt, the
 # one that opened it and any delivered while it ran, is Orca status mail or a task
 # notification. Otherwise quiet for
@@ -71,9 +71,11 @@ fi
 
 # Whether the turn only takes note of status: every prompt of the turn, the one that opened it and
 # any Claude Code delivered while it ran as a queued command, is Orca status mail or a task
-# notification. Tool results, meta lines and a compaction's summary are no prompts. Status mail
-# holds one or more Orca header lines, ──── From: <sender> (status) ────, and none of any other
-# kind, so a status message carrying a question or a handoff beside it is no status turn.
+# notification. Tool results, meta lines and a compaction's summary are no prompts; a prompt with no
+# text, such as an image alone, still opens a turn, and a turn whose opening prompt lies before the
+# window read is no status turn. Status mail holds one or more Orca header lines, ──── From:
+# <sender> (status) ────, and none of any other kind, so a status message carrying a question or a
+# handoff beside it is no status turn.
 status_turn() {
   [ -n "$transcript" ] || return 1
   recent | LC_ALL=C grep -E '"type":"(user|queued_command)"' | LC_ALL=C grep -vF '"type":"tool_result"' |
@@ -81,13 +83,13 @@ status_turn() {
       def text: if type == "string" then . elif type == "array" then (map(select(type == "object" and .type == "text") | .text | strings) | join("\n")) else "" end;
       def kinds: [scan("(?:^|\n)─+ From: [^\n]* \\(([a-z_-]+)\\) ─+[ \t]*(?=\n|$)") | .[0]];
       def quiet: test("^\\s*<task-notification>") or (kinds | length > 0 and all(. == "status"));
-      reduce (inputs | fromjson? | select(type == "object")) as $e ([];
+      reduce (inputs | fromjson? | select(type == "object")) as $e (null;
         if $e.type == "user" and $e.isMeta != true and $e.isCompactSummary != true then
-          ($e.message.content | text) as $t | if ($t | test("\\S")) then [$t] else . end
-        elif $e.type == "attachment" and ($e.attachment | type) == "object" and $e.attachment.type == "queued_command" then
+          [$e.message.content | text]
+        elif . != null and $e.type == "attachment" and ($e.attachment | type) == "object" and $e.attachment.type == "queued_command" then
           . + [$e.attachment.prompt | text]
         else . end)
-      | select(length > 0 and all(quiet)) | "status"' 2>/dev/null | grep -qx status
+      | select(. != null and all(quiet)) | "status"' 2>/dev/null | grep -qx status
 }
 
 # Orca tells nobody of a reply whose last line is NO_REPLY, though its chat still shows any text
