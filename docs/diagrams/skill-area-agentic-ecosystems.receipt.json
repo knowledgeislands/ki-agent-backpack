@@ -4,12 +4,12 @@
   "type": "architecture",
   "source": {
     "file": "skill-area-agentic-ecosystems.architecture.json",
-    "sha256": "7f7ae2f692f3685176be9a73905f187eb292fd236dd77872aab7a6b8c30a6647",
+    "sha256": "67f35306ca1276e27ed91c9a9f937cf0553c0172e3c61d66458a16199a1c9b20",
     "bytes": 6847
   },
   "html": {
     "file": "skill-area-agentic-ecosystems.html",
-    "sha256": "09cf67dd40974f609020aa0c723c70bdfd7a598aa0d3486be22b903091bfe1d5",
+    "sha256": "68c5fffd2677314db43e69bab4dc50b14d35772bf7da85478e0627488d72a11f",
     "bytes": 845132
   },
   "renderer": {

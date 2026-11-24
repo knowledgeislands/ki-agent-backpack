@@ -100,7 +100,7 @@ Update, resume, and removal preserve one package per piece of work without inven
 
 → [standard](standard-work-package.md)
 
-Each package holds only its closed list and links all of its work, and what is due for close-out is listed, so packages stay pruned without relying on memory.
+Each package holds only its closed list and links all of its work, and what is due for close-out or a tidy is listed, so packages stay pruned without relying on memory.
 
 - **FOLDER-1 [M] — every package holds only its closed list** — A package holds only its `_index.md`, its change documents `NN-<slug>.change.md`, and sub-packages of the same shape, each a folder named by a lower-case kebab slug holding its own `_index.md` and one or more change documents. Any other file or folder fails: `state.md`, `decisions.md`, `discussions.md`, `messages.md`, focus folders, run reports, briefs, findings, feedback, scripts, screenshots, scratch folders and tool output. (standard-work-package.md#43-the-shape, standard-work-package.md#47-sub-packages)
   - _Remediation:_ diagnostic — Under the tidy, fold the state into `_index.md`, apply live decisions to the change document they belong to and move open points into its Open section, and delete what has a durable home or is temporary output, which belongs in the run's temporary directory. Fix only your own work's package; tell other work by a message.
@@ -108,6 +108,8 @@ Each package holds only its closed list and links all of its work, and what is d
   - _Remediation:_ diagnostic — The finishing coordinator deletes the package at the mark that closes it; where the package outlives the finishing thread, territory work closes it at an owner-authorised mark whose report names it: once every close-out check holds, it deletes the package in one commit, Git keeping it, and otherwise deletes nothing and puts one open point to the owner in a change document of its own.
 - **FOLDER-8 [M] — every change document and sub-package is linked from Changes** — A package's `_index.md` Changes section links every change document and every sub-package the package holds, so that an agent pointed at the entry file reaches all of its work. (standard-work-package.md#44-the-entry-file, standard-work-package.md#47-sub-packages)
   - _Remediation:_ diagnostic — Add one list item under `## Changes` for each unlinked change document or sub-package, saying in a line what it is and where it stands. Fix only your own work's package; tell other work by a message.
+- **FOLDER-9 [M-heuristic] — change documents are kept short and hold no Decided section** — A change document carries the agreed change and its open points, not settled matter: it is flagged for a tidy when its prose runs past about 1,500 words, its front matter, code blocks and link targets not counted, or when it holds a Decided section, a heading at any level that is or begins with Decided once any section number is set aside. Both are warned, never failed. (standard-work-package.md#46-change-documents, standard-work-package.md#410-the-tidy)
+  - _Remediation:_ diagnostic — At the package's next tidy, apply each decided point to the outline or Steps and remove it from the document, and delete the document once its work has landed. Fix only your own work's package; tell other work by a message.
 
 ## BOUNDARY — Runtime-neutral reconstruction
 

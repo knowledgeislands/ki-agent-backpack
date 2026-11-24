@@ -24,7 +24,7 @@ describe('FOLDER family levels', () => {
     const root = mkdtempSync(join(tmpdir(), 'ki-folder-levels-'))
     roots.push(root)
     write(root, join(PACKAGE, '_index.md'), '---\nid: ki.reg.held\nstate: finished\n---\n# ki.reg.held\n')
-    write(root, join(PACKAGE, '10-held.change.md'), '# Held\n')
+    write(root, join(PACKAGE, '10-held.change.md'), '# Held\n\n## Decided\n')
     write(root, join(PACKAGE, 'state.md'), '# state\n')
     const outcomes = folderOutcomes(root)
     const found = FOLDER.items.flatMap(({ code, mechanical }) => {
@@ -38,7 +38,7 @@ describe('FOLDER family levels', () => {
             : []
         )
     })
-    expect(found.map(({ code }) => code)).toEqual(['FOLDER-1', 'FOLDER-4', 'FOLDER-8'])
+    expect(found.map(({ code }) => code)).toEqual(['FOLDER-1', 'FOLDER-4', 'FOLDER-8', 'FOLDER-9'])
     expect(found.filter(({ declared }) => !declared)).toEqual([])
   })
 })

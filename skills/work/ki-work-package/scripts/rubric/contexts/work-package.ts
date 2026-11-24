@@ -887,7 +887,9 @@ export const createWorkPackageSession = ({
       mechanical: one(evidence.lifecycle, 'Every package keeps its timestamps in order.', absent),
       size: one(evidence.size, 'Every package keeps within its limits and carries no history.', absent)
     },
-    folder: notRead ? { closed: [notRead], finished: [notRead], changes: [notRead] } : folderOutcomes(root, layout),
+    folder: notRead
+      ? { closed: [notRead], finished: [notRead], changes: [notRead], tidy: [notRead] }
+      : folderOutcomes(root, layout),
     boundary: {
       outcomes: one(
         evidence.boundary,

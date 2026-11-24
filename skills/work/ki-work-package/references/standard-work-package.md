@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:53:35Z
 ki-status: in force
 ---
 
@@ -301,6 +301,7 @@ Standing an actor down and bringing it back are `ki-coordination`'s [holds](../.
 - **They are numbered** in tens by group, in the order they are taken, with gaps for new ones.
 - **They are named by name, not number.** The number is only a change document's priority; its name is the slug after the number, in sentence case. Wherever one is mentioned, in a file or a reply, it is called by that name, with its number in brackets after it if at all, as "Case website (70)", never "change 70" or "70" alone, and a link to it takes the same text, as `[Case website (70)](70-case-website.change.md)`. Replies follow `ki-coordination`'s [Links and wording](../../ki-coordination/references/standard-reporting.md#43-links-and-wording).
 - **Decisions are applied to the change document they belong to.** When the owner decides, the decision is applied to the change document's outline or Steps and its question removed from the Open section, and then the work acts on it. The output, a skill, `AGENTS.md`, a note or the site, carries the result, and the change document is deleted once its work has landed. No change document or `_index.md` keeps a decision log, a `Decided` section or the owner's words; Git history is the only trace. Review and graduation are `ki-work design`'s.
+- **A change document that runs past about 1,500 words or holds a `Decided` section is due a tidy,** which applies its decided points to the outline or Steps, removes them, and deletes the document once its work has landed.
 - **Open points live in a change document's Open section,** in full, and nothing already answered stays there. An answered question leaves Open in the same turn its answer is applied to the outline or Steps; an `_Answered <letter>_` marker left on it meanwhile is temporary and goes at the next tidy, and Questions read None by `agreed`. A question overtaken before it is answered is struck through as withdrawn, under `ki-authoring`'s [change format](../../../keystone/ki-authoring/references/standard-formats-change.md).
 
 [Back to contents](#contents)

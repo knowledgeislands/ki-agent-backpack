@@ -3,7 +3,15 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import type { AuditOutcome } from '../../shared/rubric.ts'
-import { folderOutcomes, packageStray, sectionText, unlinkedChanges, workLayout } from './work-package-layout.ts'
+import {
+  CHANGE_WORD_LIMIT,
+  changeTidy,
+  folderOutcomes,
+  packageStray,
+  sectionText,
+  unlinkedChanges,
+  workLayout
+} from './work-package-layout.ts'
 
 const roots: string[] = []
 
@@ -155,5 +163,75 @@ describe('FOLDER-4 finished packages', () => {
     const root = fixture()
     pkg(root)
     expect(statuses(folderOutcomes(root).finished)).toEqual(['PASS'])
+  })
+})
+
+describe('FOLDER-9 change documents due a tidy', () => {
+  const words = (count: number): string => Array.from({ length: count }, (_, index) => `word${index}`).join(' ')
+  const change = (root: string, text: string): string => write(root, join(PACKAGE, '10-pilot.change.md'), text)
+
+  test('a change document at the limit passes', () => {
+    const root = fixture()
+    pkg(root)
+    const file = change(root, `# Pilot\n\n${words(CHANGE_WORD_LIMIT - 1)}\n`)
+    expect(changeTidy(file).words).toBe(CHANGE_WORD_LIMIT)
+    expect(statuses(folderOutcomes(root).tidy)).toEqual(['PASS'])
+  })
+
+  test('a change document over the limit is warned for a tidy', () => {
+    const root = fixture()
+    pkg(root)
+    change(root, `# Pilot\n\n${words(CHANGE_WORD_LIMIT)}\n`)
+    const outcomes = folderOutcomes(root).tidy
+    expect(statuses(outcomes)).toEqual(['VIOLATION'])
+    expect(outcomes[0]?.subject).toBe('work/ki/ki.pilot/10-pilot.change.md')
+    expect(outcomes[0]?.message).toContain('runs to 1,501 words, past about 1,500')
+    expect(outcomes[0]?.message).toContain('apply each decided point to the outline or Steps and remove it')
+    expect(outcomes[0]?.message).toContain('delete the document once its work has landed')
+  })
+
+  test('front matter, fenced code, comments, link targets and table rules are not counted', () => {
+    const root = fixture()
+    pkg(root)
+    const file = change(
+      root,
+      `---\nki-title: ${words(2000)}\n---\n# Pilot\n\n\`\`\`text\n${words(2000)}\n\`\`\`\n\n<!-- ${words(2000)} -->\n\n| A | B |\n| --- | --- |\n| one | [two](https://example.com/a/b) |\n`
+    )
+    expect(changeTidy(file).words).toBe(5)
+    expect(statuses(folderOutcomes(root).tidy)).toEqual(['PASS'])
+  })
+
+  test('a Decided heading at level 2 or 3 is warned, whatever its number or what follows it', () => {
+    const root = fixture()
+    pkg(root)
+    const file = change(
+      root,
+      '# Pilot\n\n## Decided\n\nx\n\n## 7. Open\n\n### 7.4 Decided on 24 November\n\ny\n\n### **Decided** points\n'
+    )
+    expect(changeTidy(file).decided).toEqual(['Decided', '7.4 Decided on 24 November', '**Decided** points'])
+    const outcomes = folderOutcomes(root).tidy
+    expect(statuses(outcomes)).toEqual(['VIOLATION'])
+    expect(outcomes[0]?.message).toContain('holds a Decided section ("Decided", ')
+  })
+
+  test('a Decisions heading, Decided in running text or a heading in a code block is not warned', () => {
+    const root = fixture()
+    pkg(root)
+    const file = change(
+      root,
+      '# Pilot\n\n## Decisions\n\nDecided points go to Steps.\n\n### Decidedly open\n\n```md\n## Decided\n```\n'
+    )
+    expect(changeTidy(file).decided).toEqual([])
+    expect(statuses(folderOutcomes(root).tidy)).toEqual(['PASS'])
+  })
+
+  test("a sub-package's change documents are read too", () => {
+    const root = fixture()
+    pkg(root, ['10-pilot.change.md', 'viewer/'])
+    write(root, join(PACKAGE, 'viewer', '_index.md'), '# v\n\n## Changes\n\n- [10](10-viewer.change.md)\n')
+    write(root, join(PACKAGE, 'viewer', '10-viewer.change.md'), '# Viewer\n\n## Decided\n')
+    expect(folderOutcomes(root).tidy.map((outcome) => outcome.subject)).toEqual([
+      'work/ki/ki.pilot/viewer/10-viewer.change.md'
+    ])
   })
 })

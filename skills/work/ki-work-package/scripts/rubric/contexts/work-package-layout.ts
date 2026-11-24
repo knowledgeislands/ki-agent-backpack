@@ -2,8 +2,9 @@
  * Where work packages live and what each holds, read for the `ki-work-package` STRUCTURE and FOLDER families: the
  * packages under `work/<territory>/<work id>/`, each with its sub-packages; each package against its closed list,
  * `_index.md`, `NN-<slug>.change.md` change documents and sub-packages of the same shape; whether its Changes section
- * links every change document and sub-package; finished work still standing; and the earlier copies of packages left in
- * the retired working areas. The listings name candidates; they are never permission to delete.
+ * links every change document and sub-package; change documents due a tidy, by length or a Decided section; finished
+ * work still standing; and the earlier copies of packages left in the retired working areas. The listings name
+ * candidates; they are never permission to delete.
  */
 import { type Dirent, existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs'
 import { join, relative } from 'node:path'
@@ -34,10 +35,18 @@ export type PackageFolder = {
 
 export type Layout = { readonly packages: readonly PackageFolder[]; readonly violations: readonly AuditOutcome[] }
 
+/**
+ * The prose words past which a change document is flagged for a tidy. A change document carries agreed change and its
+ * open points, so one this long most likely still holds settled matter that belongs in its outline, its Steps or its
+ * output; the figure is a prompt to tidy, not a hard limit.
+ */
+export const CHANGE_WORD_LIMIT = 1500
+
 export type FolderOutcomes = {
   readonly closed: readonly AuditOutcome[]
   readonly finished: readonly AuditOutcome[]
   readonly changes: readonly AuditOutcome[]
+  readonly tidy: readonly AuditOutcome[]
 }
 
 const physicalDirectory = (path: string): boolean =>
@@ -210,12 +219,91 @@ const frontField = (path: string, field: string): string | undefined => {
  */
 export const awaitsCloseOut = (folder: string): boolean => frontField(join(folder, ENTRY_FILE), 'state') === 'finished'
 
+const FRONT_MATTER = /^---\r?\n[\s\S]*?\r?\n---[ \t]*(?:\r?\n|$)/
+const FENCE = /^ {0,3}(`{3,}|~{3,})/
+const ATX_HEADING = /^ {0,3}#{1,6}[ \t]+(.*?)(?:[ \t]+#+)?[ \t]*$/
+/** A heading that is or begins with Decided, after any section number and emphasis. */
+const DECIDED = /^decided\b/i
+
+/** A change document's body lines outside front matter, fenced code and HTML comments. */
+const proseLines = (text: string): string[] => {
+  const lines: string[] = []
+  let fence: string | undefined
+  for (const line of text
+    .replace(FRONT_MATTER, '')
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .split(/\r?\n/)) {
+    const marker = FENCE.exec(line)?.[1]
+    if (fence) {
+      if (marker && marker[0] === fence[0] && marker.length >= fence.length) fence = undefined
+      continue
+    }
+    if (marker) {
+      fence = marker
+      continue
+    }
+    lines.push(line)
+  }
+  return lines
+}
+
+/** The prose words in lines: link text counts, link targets and bare punctuation such as table rules do not. */
+const proseWords = (lines: readonly string[]): number =>
+  lines
+    .join('\n')
+    .replace(/\]\([^)]*\)/g, ']')
+    .replace(/<https?:[^>\s]*>/g, '')
+    .split(/\s+/)
+    .filter((token) => /[\p{L}\p{N}]/u.test(token)).length
+
+/** The text of each heading that is or begins with Decided, at any level, its section number and emphasis aside. */
+const decidedHeadings = (lines: readonly string[]): string[] =>
+  lines.flatMap((line) => {
+    const text = ATX_HEADING.exec(line)?.[1]
+    if (text === undefined) return []
+    const bare = text.replace(/^\d+(?:\.\d+)*\.?[ \t]+/, '').replace(/^[*_`]+/, '')
+    return DECIDED.test(bare) ? [text] : []
+  })
+
+/**
+ * What marks a change document for a tidy: over {@link CHANGE_WORD_LIMIT} prose words, or a Decided section. Both mean
+ * settled matter still stands in it that belongs in its outline or Steps, or that has landed and can go.
+ */
+export const changeTidy = (file: string): { readonly words: number; readonly decided: readonly string[] } => {
+  const lines = proseLines(readFileSync(file, 'utf8'))
+  return { words: proseWords(lines), decided: decidedHeadings(lines) }
+}
+
+const TIDY_GUIDANCE =
+  'tidy it: apply each decided point to the outline or Steps and remove it, and delete the document once its work has landed'
+
+const changeTidyOutcomes = (folder: PackageFolder): AuditOutcome[] =>
+  changeDocuments(folder.path).flatMap((name) => {
+    const { words, decided } = changeTidy(join(folder.path, name))
+    const found = [
+      ...(words > CHANGE_WORD_LIMIT
+        ? [`runs to ${words.toLocaleString('en-GB')} words, past about ${CHANGE_WORD_LIMIT.toLocaleString('en-GB')}`]
+        : []),
+      ...(decided.length > 0 ? [`holds a Decided section (${decided.map((text) => `"${text}"`).join(', ')})`] : [])
+    ]
+    if (found.length === 0) return []
+    return [
+      {
+        status: 'VIOLATION' as const,
+        message: `this change document ${found.join(' and ')}; ${TIDY_GUIDANCE}`,
+        subject: join(folder.subject, name)
+      }
+    ]
+  })
+
 export const folderOutcomes = (root: string, layout = workLayout(root)): FolderOutcomes => {
   const absent = layout ? undefined : 'No `work/` folder is present.'
   const closed: AuditOutcome[] = []
   const finished: AuditOutcome[] = []
   const changes: AuditOutcome[] = []
+  const tidy: AuditOutcome[] = []
   for (const folder of layout?.packages ?? []) {
+    tidy.push(...changeTidyOutcomes(folder))
     const stray = packageStray(folder.path)
     if (stray.length > 0)
       closed.push({
@@ -248,6 +336,11 @@ export const folderOutcomes = (root: string, layout = workLayout(root)): FolderO
   return {
     closed: one(closed, `The ${count} package(s) hold only their closed list.`, absent),
     finished: one(finished, "No finished work's package is left standing.", absent),
-    changes: one(changes, 'Every package links each of its change documents and sub-packages.', absent)
+    changes: one(changes, 'Every package links each of its change documents and sub-packages.', absent),
+    tidy: one(
+      tidy,
+      `Every change document keeps within about ${CHANGE_WORD_LIMIT.toLocaleString('en-GB')} words and holds no Decided section.`,
+      absent
+    )
   }
 }

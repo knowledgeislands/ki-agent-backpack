@@ -1,6 +1,6 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { WorkPackageRubricContext } from '../contexts/work-package.ts'
-import type { FolderOutcomes } from '../contexts/work-package-layout.ts'
+import { CHANGE_WORD_LIMIT, type FolderOutcomes } from '../contexts/work-package-layout.ts'
 
 const SOURCE = 'standard-work-package.md'
 const TIDY = `${SOURCE}#410-the-tidy`
@@ -56,12 +56,29 @@ const FOLDER_8: RubricItem<FolderOutcomes> = {
   }
 }
 
+const FOLDER_9: RubricItem<FolderOutcomes> = {
+  code: 'FOLDER-9',
+  title: 'change documents are kept short and hold no Decided section',
+  description: `A change document carries the agreed change and its open points, not settled matter: it is flagged for a tidy when its prose runs past about ${CHANGE_WORD_LIMIT.toLocaleString('en-GB')} words, its front matter, code blocks and link targets not counted, or when it holds a Decided section, a heading at any level that is or begins with Decided once any section number is set aside. Both are warned, never failed.`,
+  sources: [`${SOURCE}#46-change-documents`, TIDY],
+  mechanical: {
+    level: 'WARN',
+    heuristic: true,
+    remediation: {
+      class: 'diagnostic',
+      guidance:
+        "At the package's next tidy, apply each decided point to the outline or Steps and remove it from the document, and delete the document once its work has landed. Fix only your own work's package; tell other work by a message."
+    },
+    audit: { phase: 'INSPECT', run: ({ tidy }) => tidy }
+  }
+}
+
 export const FOLDER: RubricFamily<WorkPackageRubricContext, FolderOutcomes> = {
   code: 'FOLDER',
   title: 'Work-package closed list and tidy',
   description:
-    'Each package holds only its closed list and links all of its work, and what is due for close-out is listed, so packages stay pruned without relying on memory.',
+    'Each package holds only its closed list and links all of its work, and what is due for close-out or a tidy is listed, so packages stay pruned without relying on memory.',
   standard: SOURCE,
   selectContext: (context) => context.folder,
-  items: [FOLDER_1, FOLDER_4, FOLDER_8]
+  items: [FOLDER_1, FOLDER_4, FOLDER_8, FOLDER_9]
 }
