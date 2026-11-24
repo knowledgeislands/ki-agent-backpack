@@ -356,7 +356,33 @@ type KiConfig = {
   /** The declared maturity as written, kept raw so a non-string value can be reported. */
   maturity?: unknown
   checks: Record<string, boolean>
+  /** Keys in the table that are not documented `[skills.ki-repo]` keys, in written order. */
+  unknownKeys: string[]
 }
+/**
+ * The documented keys of `[skills.ki-repo]`: identity, maturity, shape, `repo_code` (set by ki-work-roadmap's
+ * standard), territory and the `checks` sub-table. The retired `territory` sub-table is left to TERR-1, which names
+ * its move.
+ */
+export const KI_REPO_KEYS: readonly string[] = [
+  'repository',
+  'title',
+  'capital',
+  'description',
+  'visibility',
+  'license',
+  'maturity',
+  'repo_type',
+  'primary_shape',
+  'store_roles',
+  'repo_code',
+  'supported_runtimes',
+  'territory_name',
+  'territory_members',
+  'territory_prefix',
+  'checks'
+]
+const RETIRED_KI_REPO_KEYS = new Set(['territory'])
 /** The island maturity scale, lowest first; declared, ordinal and subjective by design. */
 export const MATURITY_LEVELS = ['founding', 'growing', 'settled', 'thriving'] as const
 export type RepositoryType = 'project' | 'kb'
@@ -382,7 +408,10 @@ function parseKiConfig(text: string): KiConfig | null {
   const value = declaredSkills(document)[KI_SECTION]
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null
   const table = value as Record<string, unknown>
-  const out: KiConfig = { checks: {} }
+  const out: KiConfig = {
+    checks: {},
+    unknownKeys: Object.keys(table).filter((key) => !KI_REPO_KEYS.includes(key) && !RETIRED_KI_REPO_KEYS.has(key))
+  }
   if (typeof table.repository === 'string') out.repository = table.repository
   if (typeof table.title === 'string') out.title = table.title
   if (typeof table.description === 'string') out.description = table.description
@@ -1142,6 +1171,14 @@ async function auditRepo(
       )
   }
 
+  // CHECKS-2: validate down — every key in the owned table is a documented one, so a typo or stale option surfaces.
+  for (const key of ki?.unknownKeys ?? [])
+    warn(
+      'CHECKS-2',
+      `"${key}" is not a documented [skills.${KI_SECTION}] key (documented: ${KI_REPO_KEYS.join(', ')}) — correct or remove it`,
+      KI_CONFIG
+    )
+
   // ── coverage cascade (gated on the ki-repo marker) ──
   // Only a confirmed ki-repo (.ki.toml present) is checked for declaring the
   // other governance skills that apply to it. A repo without the marker already
@@ -1774,6 +1811,7 @@ const CONTENT_AREAS = new Set([
   'PKG-1',
   'RUNTIMES-5',
   'CHECKS-1',
+  'CHECKS-2',
   'COV-1',
   'STRUCT-1',
   'STRUCT-2',

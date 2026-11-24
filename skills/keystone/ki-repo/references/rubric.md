@@ -24,7 +24,7 @@ Line-by-line criteria for auditing ki-repo. Classifications are derived from ite
 - [DEP — Dependency security](#dep--dependency-security)
 - [SEC — Secret protection](#sec--secret-protection)
 - [ACT — Actions policy](#act--actions-policy)
-- [CHECKS — Check overrides](#checks--check-overrides)
+- [CHECKS — Check overrides and own table keys](#checks--check-overrides-and-own-table-keys)
 - [COV — Governance coverage](#cov--governance-coverage)
 - [TERR — Territory](#terr--territory)
 - [STRUCT — Repository structure](#struct--repository-structure)
@@ -179,14 +179,16 @@ GitHub Actions permissions.
 - **ACT-1 [M] — Actions policy** — GitHub Actions allowed_actions is all; tighter deliberate policies are reported as warnings. (standard-repository.md)
   - _Remediation:_ diagnostic — Set the intended GitHub Actions policy or record an explicit override, then rerun the audit.
 
-## CHECKS — Check overrides
+## CHECKS — Check overrides and own table keys
 
 → [standard](standard-configuration.md)
 
-Per-repository override schema.
+Per-repository override schema and the closed key set of the owned table.
 
 - **CHECKS-1 [M] — Override keys** — Every ki-repo checks override names a supported overridable concern. (standard-configuration.md)
   - _Remediation:_ diagnostic — Remove the unsupported override or select a supported concern, then rerun the audit.
+- **CHECKS-2 [M] — Own table keys** — Every key in the `[skills.ki-repo]` table is one the configuration standard documents; an unknown key, a typo or a stale option, warns rather than reading as absent or being ignored. (standard-configuration.md#45-validate-your-own-table, standard-configuration.md#47-overridable-vs-fixed)
+  - _Remediation:_ diagnostic — Correct the misspelt key or remove the undocumented one; a need no documented key meets goes to the standard as a REFRESH candidate. Then rerun the audit.
 
 ## COV — Governance coverage
 

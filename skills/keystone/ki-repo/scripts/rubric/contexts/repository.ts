@@ -103,6 +103,11 @@ export type EvidenceRubricContext = {
   evidence: readonly RepoEvidenceFinding[]
 }
 
+export type ChecksRubricContext = EvidenceRubricContext & {
+  /** CHECKS-2: unknown keys in the owned `[skills.ki-repo]` table. */
+  keys: readonly RepoEvidenceFinding[]
+}
+
 export type FilesRubricContext = {
   files1: readonly RepoEvidenceFinding[]
   files2: readonly RepoEvidenceFinding[]
@@ -231,7 +236,7 @@ export type RepoRubricContext = {
   dependencies: EvidenceRubricContext
   secrets: EvidenceRubricContext
   actions: EvidenceRubricContext
-  checks: EvidenceRubricContext
+  checks: ChecksRubricContext
   coverage: EvidenceRubricContext
   territory: TerritoryRubricContext
   structure: StructureRubricContext
@@ -579,7 +584,7 @@ export const createRepoSession = async (
     dependencies: { evidence: evidence('DEP-1') },
     secrets: { evidence: evidence('SEC-1') },
     actions: { evidence: evidence('ACT-1') },
-    checks: { evidence: evidence('CHECKS-1') },
+    checks: { evidence: evidence('CHECKS-1'), keys: evidence('CHECKS-2') },
     coverage: {
       evidence:
         territory.coverage.length > 0

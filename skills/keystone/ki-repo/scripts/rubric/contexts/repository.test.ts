@@ -1080,6 +1080,24 @@ describe('repository kind and Knowledge Base stores', () => {
       )
     }
   }, 10_000)
+
+  test('warns on each undocumented key in its own table, leaving the retired territory table to TERR-1', async () => {
+    const root = repository()
+    writeFileSync(
+      join(root, '.ki.toml'),
+      project.replace(
+        '[skills.ki-repo]\n',
+        '[skills.ki-repo]\nvisiblity = "private"\nhomepage = "https://example.test"\nmaturity = "settled"\n'
+      ) + '\n[skills.ki-repo.territory]\nname = "Old"\n\n[skills.ki-repo.checks]\nwiki = false\n'
+    )
+    const findings = (await collectAuditFindings([root])).findings.filter((finding) => finding.code === 'CHECKS-2')
+    expect(findings).toEqual([
+      expect.objectContaining({ level: 'WARN', message: expect.stringContaining('"visiblity" is not a documented') }),
+      expect.objectContaining({ level: 'WARN', message: expect.stringContaining('"homepage" is not a documented') })
+    ])
+    writeFileSync(join(root, '.ki.toml'), project)
+    expect((await collectAuditFindings([root])).findings.filter((finding) => finding.code === 'CHECKS-2')).toEqual([])
+  }, 10_000)
 })
 
 describe('local repository evidence', () => {
