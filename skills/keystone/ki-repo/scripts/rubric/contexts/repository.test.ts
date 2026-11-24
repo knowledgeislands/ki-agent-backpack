@@ -1413,4 +1413,14 @@ describe('docs/ folder page', () => {
     expect(docsPageOutcomes(docsRoot(['docs/_index.md', 'docs/README.md']))[0]?.message).toContain('beside')
     expect(docsPageOutcomes(docsRoot(['README.md'])).map((outcome) => outcome.status)).toEqual(['NOT_APPLICABLE'])
   })
+
+  test('warns when docs/ has neither _index.md nor README.md', () => {
+    expect(docsPageOutcomes(docsRoot(['docs/docs.md']))).toEqual([
+      {
+        status: 'VIOLATION',
+        message: 'docs/ has no folder page; add docs/_index.md, the folder page.',
+        subject: 'docs/_index.md'
+      }
+    ])
+  })
 })

@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T16:10:44Z
+ki-revised: 2026-11-24T16:25:30Z
 ki-status: in force
 ---
 
@@ -107,7 +107,7 @@ Every repo carries these at the root. A local audit reads the selected checkout'
 
 † The values it carries: mandatory `title`, `description`, and `capital` (the territory Capital, a canonical HTTPS GitHub URL), `visibility`, the declared `license` (SPDX id, default MIT), and any per-repo check overrides. A repository that declares `ki-work-roadmap` also carries its stable `repo_code` here.
 
-‡ The root `README.md` is not a docs folder's page: `docs/` and every folder below it open on `_index.md` alone, with no `README.md` pointer beside it, and DOC-2 warns while `docs/` still opens on a `README.md`, until its keeper next works there and renames it, under `ki-authoring`'s [docs folder pages](../../ki-authoring/references/standard-readme.md#46-docs-folder-pages).
+‡ The root `README.md` is not a docs folder's page: `docs/` and every folder below it open on `_index.md` alone, with no `README.md` pointer beside it, and DOC-2 warns while `docs/` still opens on a `README.md` or has no page at all, until its keeper next works there and renames or adds it, under `ki-authoring`'s [docs folder pages](../../ki-authoring/references/standard-readme.md#46-docs-folder-pages).
 
 **Baseline governance is declared, not assumed.** Every Knowledge Islands repo is governed by `ki-repo` **and** `ki-authoring`; both are required declarations — a `.ki.toml` missing `[skills.ki-authoring]` is a FAIL (`authoring-baseline`). Authoring is no longer an implicit universal hidden in the tooling ([ADR-KI-HARNESS-005](../../../../docs/decisions/ADR-KI-HARNESS-005-validate-down-ki-toml-contract.md)); the config shows the full governance set. Portable tokenomics and the real environment capabilities mapped from `[skills.ki-repo].supported_runtimes` are likewise explicit required capabilities. `ki-repo` derives the exact names and checks their declarations without reading sibling-owned contents; verified source resolution and managed runtime projections remain host evidence.
 

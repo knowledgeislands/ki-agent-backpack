@@ -289,7 +289,7 @@ const pathState = (path: string): ReturnType<typeof lstatSync> | undefined => {
   }
 }
 
-/** `docs/` itself opens on `_index.md` like every folder below it; a `README.md` page warns until its keeper renames it. */
+/** `docs/` itself opens on `_index.md` like every folder below it; a `README.md` page, or no page at all, warns until its keeper fixes it. */
 export const docsPageOutcomes = (target: string): readonly AuditOutcome[] => {
   const docs = join(target, 'docs')
   if (!isSafeDirectory(docs))
@@ -309,7 +309,11 @@ export const docsPageOutcomes = (target: string): readonly AuditOutcome[] => {
   return [
     page
       ? { status: 'PASS', message: 'docs/ opens on _index.md.', subject: 'docs/_index.md' }
-      : { status: 'NOT_APPLICABLE', message: 'docs/ has no folder page.', subject: 'docs' }
+      : {
+          status: 'VIOLATION',
+          message: 'docs/ has no folder page; add docs/_index.md, the folder page.',
+          subject: 'docs/_index.md'
+        }
   ]
 }
 
