@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T22:09:23Z
+ki-revised: 2026-11-24T22:17:13Z
 ki-status: in force
 ---
 
@@ -143,7 +143,7 @@ A meeting runs by this standard and by its type's.
 
 ### 4.4 Where a meeting is kept
 
-1. **A folder per meeting** at `meetings/<node id>/<date>-<slug>/`, with no territory folder, in the store the work tree lives in; today that is the Cairn store, whose contract says who keeps its `meetings/`. `<node id>` is the node's work id and `<date>` the day the meeting is called. This is the current depth. The first trial's folder, `meetings/cairn.wayfinder.designs/`, predates it and keeps its place until it closes; a reader takes both.
+1. **A folder per meeting** at `meetings/<node id>/<date>-<slug>/`, with no territory folder, in the store the work tree lives in; today that is the Cairn store, whose contract says who keeps its `meetings/`. `<node id>` is the node's work id and `<date>` the day the meeting is called. This is the current depth. The first trial's room, `meetings/cairn.wayfinder.designs/`, predated it and closed on 24 November 2026, mapped in ki.cairn's [change 53](https://github.com/krisb/ki-cairn-store/blob/7bb481551ab4f222a929e62bfdcf989398f45493/work/ki/ki.cairn/53-designs-room.change.md); only its `designs/` folder remains, because the Wayfinder's Art gallery still reads it.
 2. **The folder holds:**
    - `_index.md`, the entry file, never `README.md`;
    - `messages/`, one file per message;
