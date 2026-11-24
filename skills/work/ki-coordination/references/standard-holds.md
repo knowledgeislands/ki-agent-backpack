@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T11:26:59Z
 ki-status: in force
 ---
 
@@ -129,6 +129,6 @@ A hold rests a package; a stand-down rests the actor seated at it. The two are i
 - **The roster mark** is `ki-presence: stood-down`, with `ki-presence_until` and `ki-presence_said` for a timed return, as the Cairn store's roster holds under STANDDOWN-FIELD a. An indefinite stand-down means no fixed return; it says nothing about how much the work matters.
 - **The guardian is never stood down:** the root's coordinator stays the owner's main conduit. When a stood-down seat's package has a deadline coming up, the guardian tells the owner, who decides whether the seat comes back.
 - **Focus mode:** a pilot group keeps working, today Cairn, Personal and Knowledge Islands, and changes are tried there before they spread; every other seat takes a break. The group is not fixed.
-- **Background only:** the quiet form short of a stand-down. The seat does its agreed work first, then any high-confidence, low-hanging fruit, and the owner does not hear from it for a while; its news reaches the owner only as **Quiet news** in [Work between packages](standard-messages.md#43-work-between-packages) sets. Whether it is working or waiting shows as before, and the background-only instruction shows beside that in a field of its own, `ki-attention: background-only`, since `ki-presence` stays for stood-down alone. A timed instruction adds `ki-attention_until`, an ISO instant with its zone, and `ki-attention_said`, the owner's own words. The field is left out when it is not set and never holds a `normal` value; its lasting home is the Cairn store's roster.
+- **Background only:** the quiet form short of a stand-down. The seat does its agreed work first, then any high-confidence, low-hanging fruit, and the owner does not hear from it for a while; its news reaches the owner only as **Quiet news** in [Work between packages](standard-messages.md#43-work-between-packages) sets. Whether it is working or waiting shows as before, and the background-only instruction shows beside that in a field of its own, `ki-attention: background-only`, since `ki-presence` stays for stood-down alone. A timed instruction adds `ki-attention_until`, an ISO instant with its zone, and `ki-attention_said`, what the owner asked for in plain words, not the owner's own words. The field is left out when it is not set and never holds a `normal` value; its lasting home is the Cairn store's roster.
 
 [Back to contents](#contents)
