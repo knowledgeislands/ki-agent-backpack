@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T10:18:15Z
 ki-status: in force
 ---
 
@@ -122,7 +122,7 @@ The work's change documents carry its agreed shape for as long as each is open: 
 <a id="design-notes"></a>A design is written as a change document, under the `ki-authoring` [change format](../../../keystone/ki-authoring/references/standard-formats-change.md), and what the change agrees stands in a design document under the [design format](../../../keystone/ki-authoring/references/standard-formats-design.md), which only later change documents change. Change documents and the working material beside them, options papers, mocks, loop reports and their stage decisions, go to the package of the work whose concern they design: change documents at its top, or in the sub-package of the strand they serve, and the working material in the run packet until a change document carries what it settles, under the `ki-work design` standard and the `ki-work-package` [closed list](../../ki-work-package/references/standard-work-package.md#43-the-shape). No `design/` folder sits under `Streams/`, which holds only definitions and records. Design work with no coordinating work of its own takes an ad hoc package.
 
 - The `ki-work design` [artefact home](../../../keystone/ki-work/references/standard-work-design.md#41-artefact-home) owns a change document's life cycle, draft, under review, graduated or deleted, its graduation, and the rule that nothing cites a deleted document.
-- The `ki-work-package` [closed list](../../ki-work-package/references/standard-work-package.md#43-the-shape) sets what a package and its sub-packages may hold: `_index.md`, change documents and sub-packages.
+- The `ki-work-package` [closed list](../../ki-work-package/references/standard-work-package.md#43-the-shape) sets what a package and its sub-packages may hold: `_index.md`, change documents with at most one draft file each, and sub-packages.
 - This standard reviews the change documents at each mark, under [Pruning the package](standard-mark.md#43-pruning-the-package), and resolves them before Project work finishes.
 
 [Back to contents](#contents)

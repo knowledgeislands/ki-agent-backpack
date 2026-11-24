@@ -2,7 +2,7 @@ import { afterEach, describe, expect, test } from 'bun:test'
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { folderOutcomes } from '../contexts/work-package-layout.ts'
+import { BARRED_DRAFT_WORDS, folderOutcomes } from '../contexts/work-package-layout.ts'
 import { FOLDER } from './folder.ts'
 
 const roots: string[] = []
@@ -40,5 +40,12 @@ describe('FOLDER family levels', () => {
     })
     expect(found.map(({ code }) => code)).toEqual(['FOLDER-1', 'FOLDER-4', 'FOLDER-8', 'FOLDER-9'])
     expect(found.filter(({ declared }) => !declared)).toEqual([])
+  })
+})
+
+describe('FOLDER-1 text', () => {
+  test('names every word a draft file never takes', () => {
+    const description = FOLDER.items.find(({ code }) => code === 'FOLDER-1')?.description ?? ''
+    for (const word of BARRED_DRAFT_WORDS) expect(description).toContain(`\`${word}\``)
   })
 })

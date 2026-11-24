@@ -18,11 +18,24 @@ export const ENTRY_FILE = '_index.md'
 const KEBAB = '[a-z0-9]+(?:-[a-z0-9]+)*'
 /** A change document, `NN-<slug>.change.md`, numbered in tens by group. */
 export const CHANGE_DOCUMENT = new RegExp(`^\\d{2}-${KEBAB}\\.change\\.md$`)
+/** The words a draft file never takes: `change`, and the file kinds the closed list bars. */
+export const BARRED_DRAFT_WORDS = [
+  'change',
+  'state',
+  'decisions',
+  'discussions',
+  'messages',
+  'brief',
+  'report',
+  'findings',
+  'feedback'
+] as const
 /**
  * A change document's draft file, `NN-<slug>.<word>.md`, its number and slug the change document's and its word one
- * lower-case word other than `change`; the first group is the `NN-<slug>` stem it shares with its change document.
+ * lower-case word outside {@link BARRED_DRAFT_WORDS}; the first group is the `NN-<slug>` stem it shares with its change
+ * document.
  */
-export const DRAFT_FILE = new RegExp(`^(\\d{2}-${KEBAB})\\.(?!change\\.md$)[a-z]+\\.md$`)
+export const DRAFT_FILE = new RegExp(`^(\\d{2}-${KEBAB})\\.(?!(?:${BARRED_DRAFT_WORDS.join('|')})\\.md$)[a-z]+\\.md$`)
 /** A territory folder's name, and a sub-package folder's slug. */
 export const SLUG = new RegExp(`^${KEBAB}$`)
 /** The retired working areas, in each of which a package left behind is an earlier copy, listed under the tidy. */

@@ -9,7 +9,7 @@ const FOLDER_1: RubricItem<FolderOutcomes> = {
   code: 'FOLDER-1',
   title: 'every package holds only its closed list',
   description:
-    "A package holds only its `_index.md`, its change documents `NN-<slug>.change.md`, at most one draft file `NN-<slug>.<word>.md` beside each change document, its number and slug that document's and its word one lower-case word, and sub-packages of the same shape, each a folder named by a lower-case kebab slug holding its own `_index.md` and one or more change documents. Any other file or folder fails: a draft file with no change document beside it, a second draft of one change document, `state.md`, `decisions.md`, `discussions.md`, `messages.md`, focus folders, run reports, briefs, findings, feedback, scripts, screenshots, scratch folders and tool output.",
+    "A package holds only its `_index.md`, its change documents `NN-<slug>.change.md`, at most one draft file `NN-<slug>.<word>.md` beside each change document, its number and slug that document's and its word one lower-case word other than `change`, `state`, `decisions`, `discussions`, `messages`, `brief`, `report`, `findings` or `feedback`, and sub-packages of the same shape, each a folder named by a lower-case kebab slug holding its own `_index.md` and one or more change documents. Any other file or folder fails: a draft file with no change document beside it, a second draft of one change document, a draft whose word is barred, `state.md`, `decisions.md`, `discussions.md`, `messages.md`, focus folders, run reports, briefs, findings, feedback, scripts, screenshots, scratch folders and tool output.",
   sources: [`${SOURCE}#43-the-shape`, `${SOURCE}#46-change-documents`, `${SOURCE}#47-sub-packages`],
   mechanical: {
     level: 'FAIL',

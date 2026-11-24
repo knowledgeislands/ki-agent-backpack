@@ -1,9 +1,10 @@
 import { afterEach, describe, expect, test } from 'bun:test'
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import type { AuditOutcome } from '../../shared/rubric.ts'
 import {
+  BARRED_DRAFT_WORDS,
   CHANGE_WORD_LIMIT,
   changeTidy,
   folderOutcomes,
@@ -134,6 +135,28 @@ describe('FOLDER-1 closed list', () => {
     write(root, join(PACKAGE, '10-pilot.layout.md'), '# x\n')
     expect(packageStray(folder)).toEqual(['10-pilot.draft.md', '10-pilot.layout.md'])
     expect(statuses(folderOutcomes(root).closed)).toEqual(['VIOLATION'])
+  })
+
+  test('a draft whose word names a barred file kind fails', () => {
+    const root = fixture()
+    const folder = pkg(root)
+    const names = BARRED_DRAFT_WORDS.filter((word) => word !== 'change').map((word) => `10-pilot.${word}.md`)
+    for (const name of names) write(root, join(PACKAGE, name), '# x\n')
+    expect([...packageStray(folder)].sort()).toEqual(names.sort())
+  })
+
+  test('a symlinked or folder draft, or a draft beside a symlinked change document, fails', () => {
+    const root = fixture()
+    const folder = pkg(root)
+    write(root, join(PACKAGE, 'source.txt'), 'x\n')
+    symlinkSync(join(root, PACKAGE, 'source.txt'), join(root, PACKAGE, '10-pilot.draft.md'))
+    write(root, join(PACKAGE, '10-pilot.layout.md', 'inner.md'), '# x\n')
+    write(root, join('outside', '20-linked.change.md'), '# Linked\n')
+    symlinkSync(join(root, 'outside', '20-linked.change.md'), join(root, PACKAGE, '20-linked.change.md'))
+    write(root, join(PACKAGE, '20-linked.draft.md'), '# x\n')
+    expect([...packageStray(folder)].sort()).toEqual(
+      ['10-pilot.draft.md', '10-pilot.layout.md/', '20-linked.change.md', '20-linked.draft.md', 'source.txt'].sort()
+    )
   })
 
   test('a draft name other than one lower-case word fails', () => {
