@@ -632,7 +632,7 @@ const replyId = `**Reply ${new Date().toISOString().slice(11, 16)}**`
 const decision = (...block: string[]): string =>
   [replyId, 'Two things need your word: whether to push now, and whether to keep the old hook.', ['```text', ...block, '```'].join('\n')].join('\n\n')
 const shape =
-  "under ki-coordination's owner report, a reply block opens with a 1 · <what the group is> heading and gives each tag one line, its recommended option only, reading <TAG> <letter> (high), (medium) or (low): <gloss>, or <TAG> ? (your call): <gloss> for a question with no honest recommendation"
+  "under ki-coordination's owner report, a reply block opens with a 1 · <what the group is> heading and gives each tag one line, its recommended option only, reading <TAG> <letter> (high), (medium) or (low): <gloss>, every query carrying one recommended option"
 const conversation = transcript([{ owner: 'Should we push?' }])
 
 test('a conversational reply with a well-formed reply block passes, glosses and all', () => {
@@ -696,36 +696,32 @@ test('every fault in a reply block is named together', () => {
   )
 })
 
-// A line may read `<TAG> ? (your call): <gloss>`
-// for a question with no honest recommendation; it still needs its gloss, and its tag still stands on one line only.
-test('a your-call line for a question with no honest recommendation passes', () => {
-  expect(run(stop(decision('1 · Now', 'PUSH a (high): push now', 'NAME ? (your call): pick the name'), conversation, ordinary))).toEqual(silent)
-  expect(run(stop(decision('1 · Open', 'NAME ? (your call): pick the name'), conversation, ordinary))).toEqual(silent)
-})
-
-test('a your-call line without its gloss is held back, naming the line', () => {
-  expect(run(stop(decision('1 · Now', 'NAME ? (your call)'), conversation, ordinary)).reason).toBe(
-    `This reply's reply block has a line without : <gloss> after the confidence: NAME ?; ${shape}. Give the reply again in full with the reply block put right, since the last text is what the owner reads.`
-  )
-  for (const line of ['NAME ? (your call):', 'NAME ? (your call) pick the name'])
-    expect(run(stop(decision('1 · Now', line), conversation, ordinary)).reason).toContain('without : <gloss> after the confidence: NAME ?')
-})
-
-test('a ? line without (your call) is held back, naming the line', () => {
-  for (const line of ['NAME ?', 'NAME ?: pick the name', 'NAME ? (high): pick the name'])
+// Every option set gives one recommendation, so a line giving ? in place of the recommended option's letter is held
+// back, whatever follows it, and the retired `(your call)` form with it.
+test('a ? line in place of a recommendation is held back, naming the line', () => {
+  for (const line of [
+    'NAME ? (your call): pick the name',
+    'NAME ? (your call)',
+    'NAME ?',
+    'NAME ?: pick the name',
+    'NAME ? (high): pick the name'
+  ])
     expect(run(stop(decision('1 · Now', line), conversation, ordinary)).reason).toBe(
-      `This reply's reply block has a line without (your call) after the ?: NAME ?; ${shape}. Give the reply again in full with the reply block put right, since the last text is what the owner reads.`
+      `This reply's reply block has a line with ? in place of the recommended letter: NAME ?; ${shape}. Give the reply again in full with the reply block put right, since the last text is what the owner reads.`
     )
+  expect(
+    run(stop(decision('1 · Now', 'PUSH a (high): push now', 'NAME ? (your call): pick the name'), conversation, ordinary)).reason
+  ).toContain("with ? in place of the recommended letter: NAME ?")
   expect(run(stop(decision('NAME ? (your call): pick the name'), conversation, ordinary)).reason).toContain('does not open with its first group heading')
 })
 
-test('a tag given twice is held back when one of its lines is a your-call line', () => {
+test('a tag given twice is held back when one of its lines is a ? line', () => {
   for (const block of [
     ['1 · Now', 'NAME a (high): call it Cairn', 'NAME ? (your call): pick the name'],
     ['1 · Now', 'NAME ? (your call): pick the name', '', '2 · Later', 'NAME ? (your call): pick it again']
   ])
-    expect(run(stop(decision(...block), conversation, ordinary)).reason).toStartWith(
-      "This reply's reply block gives a tag more than once, offering alternatives: NAME; "
+    expect(run(stop(decision(...block), conversation, ordinary)).reason).toContain(
+      'gives a tag more than once, offering alternatives: NAME; '
     )
 })
 

@@ -26,8 +26,8 @@
 # In every session, coordinating or not, a reply that asks the owner to decide, a
 # fenced text block holding <TAG> <letter> lines, is held back unless the block opens
 # with a `1 · ` group heading and every such line reads <TAG> <letter> (high|medium|low)
-# followed by `: <gloss>`, each tag on one line only, the recommended option's, or, for a
-# question with no honest recommendation, <TAG> ? (your call): <gloss>. In every session too, a first line **Reply HH:MM** more than
+# followed by `: <gloss>`, each tag on one line only, the recommended option's; a line giving
+# ? in place of the letter carries no recommendation and is held back. In every session too, a first line **Reply HH:MM** more than
 # about 5 minutes from the clock's UTC time warns. A last line NO_REPLY,
 # which Orca takes as a reply to suppress, is set aside and the rest checked as usual, and
 # a reply of NO_REPLY alone passes on a turn that only takes note of a status, an Orca
@@ -122,11 +122,10 @@ fi
 
 # The reply block, in every session: read only where the reply has a fenced text block.
 # A top-level ```text or ~~~text block holding a <TAG> <letter> line, the tag two or more
-# capitals, digits and hyphens, the letter, or a ? for a question with no honest
-# recommendation, followed by the line's end, a space or a colon, is a decision request;
-# anything else in a fence is passed over. Each line needs its confidence, or (your call)
-# after a ?, and its gloss, and a tag given twice in one block offers
-# alternatives.
+# capitals, digits and hyphens, the letter, or a ? in its place, followed by the line's
+# end, a space or a colon, is a decision request; anything else in a fence is passed over.
+# Each line needs its recommended option's letter, never a ?, its confidence and its gloss,
+# and a tag given twice in one block offers alternatives.
 blockfix=
 case $reply in
   *'```text'* | *'~~~text'*)
@@ -170,11 +169,8 @@ case $reply in
         # One line per tag: a second line for the same tag offers an alternative.
         if (tag in seen) { if (!(tag in twice) && dup < 5) { twice[tag] = 1; dups[++dup] = tag } }
         else seen[tag] = 1
-        # A question with no honest recommendation reads <TAG> ? (your call): <gloss>.
-        if (s ~ /^[^ ]+ [?]/) {
-          if (s !~ /^[^ ]+ [?] \(your call\)/) { if (open_q < 5) unasked[++open_q] = substr(s, 1, index(s, " ") + 1) }
-          else if (s !~ /^[^ ]+ [?] \(your call\): [^ ]/ && bare < 5) glossless[++bare] = substr(s, 1, index(s, " ") + 1)
-        }
+        # Every query carries one recommendation: a ? in place of the letter gives none.
+        if (s ~ /^[^ ]+ [?]/) { if (open_q < 5) unasked[++open_q] = substr(s, 1, index(s, " ") + 1) }
         else if (s !~ /^[^ ]+ [a-z] \((high|medium|low)\)/) { if (bad < 5) list[++bad] = substr(s, 1, index(s, " ") + 1) }
         else if (s !~ /^[^ ]+ [a-z] \((high|medium|low)\): [^ ]/ && bare < 5) glossless[++bare] = substr(s, 1, index(s, " ") + 1)
       }
@@ -183,7 +179,7 @@ case $reply in
         n = 0
         if (unheaded) part[++n] = "does not open with its first group heading, 1 · <what the group is>"
         if (bad) part[++n] = "has " (bad > 1 ? "lines" : "a line") " without (high), (medium) or (low) after the letter: " listed(list, bad)
-        if (open_q) part[++n] = "has " (open_q > 1 ? "lines" : "a line") " without (your call) after the ?: " listed(unasked, open_q)
+        if (open_q) part[++n] = "has " (open_q > 1 ? "lines" : "a line") " with ? in place of the recommended letter: " listed(unasked, open_q)
         if (bare) part[++n] = "has " (bare > 1 ? "lines" : "a line") " without : <gloss> after the confidence: " listed(glossless, bare)
         if (dup) part[++n] = "gives " (dup > 1 ? "tags" : "a tag") " more than once, offering alternatives: " listed(dups, dup)
         out = ""
@@ -431,7 +427,7 @@ if [ -n "$form" ] && [ -z "$missing" ] && [ -n "$closing" ]; then
   esac
 fi
 
-shape="under ki-coordination's owner report, a reply block opens with a 1 · <what the group is> heading and gives each tag one line, its recommended option only, reading <TAG> <letter> (high), (medium) or (low): <gloss>, or <TAG> ? (your call): <gloss> for a question with no honest recommendation"
+shape="under ki-coordination's owner report, a reply block opens with a 1 · <what the group is> heading and gives each tag one line, its recommended option only, reading <TAG> <letter> (high), (medium) or (low): <gloss>, every query carrying one recommended option"
 blockwarn=
 # Already continuing because of a Stop hook: warn, never block again.
 if [ "$active" = true ]; then
