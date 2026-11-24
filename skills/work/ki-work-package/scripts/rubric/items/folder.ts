@@ -59,7 +59,7 @@ const FOLDER_8: RubricItem<FolderOutcomes> = {
 const FOLDER_9: RubricItem<FolderOutcomes> = {
   code: 'FOLDER-9',
   title: 'change documents are kept short and hold no Decided section',
-  description: `A change document carries the agreed change and its open points, not settled matter: it is flagged for a tidy when its prose runs past about ${CHANGE_WORD_LIMIT.toLocaleString('en-GB')} words, its front matter, code blocks and link targets not counted, or when it holds a Decided section, a heading at any level that is or begins with Decided once any section number is set aside. Both are warned, never failed.`,
+  description: `A change document carries the agreed change and its open points, not settled matter: it is flagged for a tidy when its prose runs past about ${CHANGE_WORD_LIMIT.toLocaleString('en-GB')} words, its front matter, fenced code blocks, HTML comments and link targets not counted, or when it holds a Decided section, a heading at any level that is or begins with Decided once any section number is set aside. Both are warned, never failed.`,
   sources: [`${SOURCE}#46-change-documents`, TIDY],
   mechanical: {
     level: 'WARN',

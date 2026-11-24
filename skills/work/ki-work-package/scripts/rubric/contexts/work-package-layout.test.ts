@@ -225,6 +225,59 @@ describe('FOLDER-9 change documents due a tidy', () => {
     expect(statuses(folderOutcomes(root).tidy)).toEqual(['PASS'])
   })
 
+  test('an emphasised Decided heading is warned', () => {
+    const root = fixture()
+    pkg(root)
+    const file = change(root, '# Pilot\n\n## _Decided_\n\n### *Decided:* the rest\n')
+    expect(changeTidy(file).decided).toEqual(['_Decided_', '*Decided:* the rest'])
+  })
+
+  test('a fence line with a language tag opens a fence and never closes one', () => {
+    const root = fixture()
+    pkg(root)
+    const file = change(root, '# Pilot\n\n```md\n## Decided\n```js\n## Decided\n```\n\nafter the fence\n')
+    expect(changeTidy(file)).toEqual({ words: 4, decided: [] })
+  })
+
+  test('a leading block is front matter only when it opens the file, closes and is a YAML mapping', () => {
+    const root = fixture()
+    pkg(root)
+    const file = change(root, '---\nki-status: draft\n---\n# Pilot\n')
+    expect(changeTidy(file).words).toBe(1)
+    change(root, '\n---\nki-status: draft\n---\n# Pilot\n')
+    expect(changeTidy(file).words).toBe(3)
+    change(root, '---\nSome words here.\n---\n# Pilot\n')
+    expect(changeTidy(file).words).toBe(4)
+    change(root, '---\nki-status: [draft\n---\n# Pilot\n')
+    expect(changeTidy(file).words).toBe(3)
+  })
+
+  test('unterminated front matter is read as body', () => {
+    const root = fixture()
+    pkg(root)
+    const file = change(root, '---\nki-status: draft\n# Pilot\n\n## Decided\n')
+    expect(changeTidy(file)).toEqual({ words: 4, decided: ['Decided'] })
+  })
+
+  test('an HTML comment opener inside inline code swallows no text', () => {
+    const root = fixture()
+    pkg(root)
+    const file = change(root, '# Pilot\n\nWrite `<!--` to open one; these words count.\n\n## Decided\n')
+    expect(changeTidy(file)).toEqual({ words: 9, decided: ['Decided'] })
+    change(root, '# Pilot\n\nkept <!-- gone\nstill gone --> kept\n')
+    expect(changeTidy(file).words).toBe(3)
+  })
+
+  test('CRLF line endings read the same', () => {
+    const root = fixture()
+    pkg(root)
+    const file = change(
+      root,
+      '---\r\nki-status: draft\r\n---\r\n# Pilot\r\n\r\n```js\r\ncode words\r\n```\r\n\r\n## Decided\r\n'
+    )
+    expect(changeTidy(file)).toEqual({ words: 2, decided: ['Decided'] })
+  })
+
   test("a sub-package's change documents are read too", () => {
     const root = fixture()
     pkg(root, ['10-pilot.change.md', 'viewer/'])

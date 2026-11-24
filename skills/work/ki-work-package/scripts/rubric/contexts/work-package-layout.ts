@@ -219,30 +219,77 @@ const frontField = (path: string, field: string): string | undefined => {
  */
 export const awaitsCloseOut = (folder: string): boolean => frontField(join(folder, ENTRY_FILE), 'state') === 'finished'
 
-const FRONT_MATTER = /^---\r?\n[\s\S]*?\r?\n---[ \t]*(?:\r?\n|$)/
-const FENCE = /^ {0,3}(`{3,}|~{3,})/
+/** A fence's opening line: three or more backticks or tildes, then any info string such as a language tag. */
+const FENCE_OPEN = /^ {0,3}(`{3,}|~{3,})(.*)$/
+/** A fence's closing line: its marker alone, with no info string. */
+const FENCE_CLOSE = /^ {0,3}(`{3,}|~{3,})[ \t]*$/
 const ATX_HEADING = /^ {0,3}#{1,6}[ \t]+(.*?)(?:[ \t]+#+)?[ \t]*$/
-/** A heading that is or begins with Decided, after any section number and emphasis. */
-const DECIDED = /^decided\b/i
+/** A heading that is or begins with Decided, after any section number and emphasis, followed by no word character. */
+const DECIDED = /^decided(?![\p{L}\p{N}_])/iu
+
+/**
+ * A document's body lines: front matter is set aside only when the document opens with a `---` line, a later `---` line
+ * closes it, and what lies between is a YAML mapping; otherwise every line is body.
+ */
+const bodyLines = (text: string): string[] => {
+  const lines = text.split(/\r?\n/)
+  if (lines[0]?.trimEnd() !== '---') return lines
+  const closing = lines.findIndex((line, index) => index > 0 && line.trimEnd() === '---')
+  if (closing < 0) return lines
+  try {
+    const parsed: unknown = Bun.YAML.parse(lines.slice(1, closing).join('\n'))
+    if (parsed !== null && (typeof parsed !== 'object' || Array.isArray(parsed))) return lines
+  } catch {
+    return lines
+  }
+  return lines.slice(closing + 1)
+}
+
+/** A line's text outside HTML comments, a `<!--` inside an inline code span opening none. */
+const outsideComments = (line: string, state: { comment: boolean }): string => {
+  let kept = ''
+  let rest = line
+  while (rest.length > 0) {
+    if (state.comment) {
+      const close = rest.indexOf('-->')
+      if (close < 0) return kept
+      rest = rest.slice(close + 3)
+      state.comment = false
+      continue
+    }
+    const span = /(`+)[\s\S]*?\1|<!--/.exec(rest)
+    if (!span) return kept + rest
+    if (span[0] !== '<!--') {
+      kept += rest.slice(0, span.index + span[0].length)
+      rest = rest.slice(span.index + span[0].length)
+      continue
+    }
+    kept += rest.slice(0, span.index)
+    rest = rest.slice(span.index + 4)
+    state.comment = true
+  }
+  return kept
+}
 
 /** A change document's body lines outside front matter, fenced code and HTML comments. */
 const proseLines = (text: string): string[] => {
   const lines: string[] = []
+  const state = { comment: false }
   let fence: string | undefined
-  for (const line of text
-    .replace(FRONT_MATTER, '')
-    .replace(/<!--[\s\S]*?-->/g, '')
-    .split(/\r?\n/)) {
-    const marker = FENCE.exec(line)?.[1]
+  for (const line of bodyLines(text)) {
     if (fence) {
-      if (marker && marker[0] === fence[0] && marker.length >= fence.length) fence = undefined
+      const close = FENCE_CLOSE.exec(line)?.[1]
+      if (close && close[0] === fence[0] && close.length >= fence.length) fence = undefined
       continue
     }
-    if (marker) {
-      fence = marker
-      continue
+    if (!state.comment) {
+      const open = FENCE_OPEN.exec(line)
+      if (open?.[1] && !(open[1][0] === '`' && open[2]?.includes('`'))) {
+        fence = open[1]
+        continue
+      }
     }
-    lines.push(line)
+    lines.push(outsideComments(line, state))
   }
   return lines
 }
@@ -261,7 +308,7 @@ const decidedHeadings = (lines: readonly string[]): string[] =>
   lines.flatMap((line) => {
     const text = ATX_HEADING.exec(line)?.[1]
     if (text === undefined) return []
-    const bare = text.replace(/^\d+(?:\.\d+)*\.?[ \t]+/, '').replace(/^[*_`]+/, '')
+    const bare = text.replace(/^\d+(?:\.\d+)*\.?[ \t]+/, '').replace(/[*_`]/g, '')
     return DECIDED.test(bare) ? [text] : []
   })
 
