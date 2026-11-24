@@ -101,7 +101,7 @@ const TOOL_1: RubricItem<McpToolsContext> = {
     scope:
       'The full public MCP tool surface, result envelopes, annotations, documentation, and applicable OAuth requirements.',
     prompt:
-      'Review plural/singular resource choices, CLI mirroring and README catalogues; confirm the annotation-driven access gate, annotation presets that follow the tool classes (anything that cannot be undone, sending in the name of the operator included, is destructive), dry-run defaults and that dry runs are side-effect-free across the complete operation, read default, audit/error envelopes, path and subprocess hardening, bounded schemas, error aggregation, output sanitisation, and the applicable OAuth security requirements, including 401 recovery hints that name a path reachable at the configured access tier. Optional metadata remains opt-in.',
+      "Review plural/singular resource choices, CLI mirroring and README catalogues; confirm the annotation-driven access gate, annotation presets that follow the tool classes (anything that cannot be undone, sending in the operator's name included, is destructive), dry-run defaults and that dry runs are side-effect-free across the complete operation, read default, audit/error envelopes, path and subprocess hardening, bounded schemas, error aggregation, output sanitisation, and the applicable OAuth security requirements, including 401 recovery hints that name a path reachable at the configured access tier. Optional metadata remains opt-in.",
     outcomes: ['conforming', 'gap', 'exclusion'],
     guidance:
       'Make API or security changes only with the owning authority; otherwise record a named gap or explicit justified exclusion.'

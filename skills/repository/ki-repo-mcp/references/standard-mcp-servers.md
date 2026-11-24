@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T05:56:55Z
+ki-revised: 2026-11-24T06:03:12Z
 ki-status: in force
 ---
 
@@ -166,17 +166,19 @@ Levels nest `read ⊂ write ⊂ destructive`; env `MCP_<APP>_ACCESS_LEVEL` (defa
 Every KI MCP server classes its tools the same way, and a tool's annotation preset follows its class:
 
 - **Read** (`READ_ONLY` presets): the tool only looks.
-- **Write** (`WRITE` presets): anything that can be undone. This covers creating, editing and deleting drafts; moving mail to Deleted Items, Junk or a bin; labels, filing and rules; uploads; and handling calendar invitation and response emails, which only signal.
-- **Destructive** (`DESTRUCTIVE` presets): anything that cannot be undone. This covers emptying Deleted Items, Junk or a bin; permanent deletion; and sending anything in the operator's name: send, reply, reply-all and forward.
+- **Write** (`WRITE` presets): anything that can be undone. This covers creating, editing and deleting drafts; moving mail to Deleted Items, Junk or a bin; labels, filing and rules; uploads; and filing or deleting calendar invitation and response emails.
+- **Destructive** (`DESTRUCTIVE` presets): anything that cannot be undone. This covers emptying Deleted Items, Junk or a bin; permanent deletion; and sending anything in the operator's name, such as send, reply, reply-all and forward.
 
-The danger the classes guard against is what cannot be taken back, above all what reaches other people in the operator's name, not the operator's own data moving somewhere it can be recovered from. Which classes a client sees is the operator's choice of the server's access level where the server is registered in MCPorter. Marking a tool destructive keeps an agent from running it without the operator's express consent, whether or not the client can see it.
+A tool whose arguments span two classes, such as a delete whose flag makes it permanent, takes the higher class or is split into two tools.
+
+The danger the classes guard against is what cannot be taken back, above all what reaches other people in the operator's name, not the operator's own data moving somewhere it can be recovered from. Which classes a client sees is the operator's choice of the server's access level where the server is registered in MCPorter. A destructive tool is registered only when the operator has chosen the destructive level, so no agent reaches it without that express consent.
 
 Two limits keep this honest:
 
-- **Annotations are hints, not a guard.** The specification ([TOOLS](sources.md)) tells clients to treat a server's annotations as untrusted, a client may ignore them, and an agent running in a bypass permission mode is never asked. What holds is the access level, which stops a tool being registered at all, and the sign-in's scopes: a sign-in an agent uses carries no scope that permits sending, such as Microsoft Graph's `Mail.Send` or a Gmail scope that allows sending ([§4.14](#414-oauth-security-auth-server-repos) item 4).
+- **Annotations are hints, not a guard.** The specification ([TOOLS](sources.md)) tells clients to treat a server's annotations as untrusted, a client may ignore them, and an agent running in a bypass permission mode is never asked. What holds is the access level, which stops a tool being registered at all, and the sign-in's scopes: a sign-in without a sending scope, such as Graph's `Mail.Send` or Gmail's `gmail.send`, cannot send, whatever a client does ([§4.14](#414-oauth-security-auth-server-repos) item 4).
 - **Classing sending as destructive is a deliberate KI widening.** The specification's `destructiveHint` marks a tool whose updates may not be additive, and a sent message adds rather than changes data. KI classes it destructive all the same, because once it reaches someone else it cannot be undone.
 
-Whether accepting, declining or cancelling a calendar event, which tells its other attendees, counts as sending is not yet settled. Until it is, an audit reports how such a tool is classed as a point for judgment, not as a finding.
+Whether a calendar action that tells other attendees, such as accepting, declining or cancelling an event, or creating or changing an event that sends invitations, counts as sending is not yet settled. Until it is, an audit reports how such a tool is classed as a point for judgment, not as a finding.
 
 [Back to contents](#contents)
 
