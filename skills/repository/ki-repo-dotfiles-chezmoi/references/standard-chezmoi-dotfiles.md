@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:52:17Z
+ki-revised: 2026-11-24T11:25:33Z
 ki-status: in force
 ---
 
@@ -154,7 +154,7 @@ The header sits directly after the shebang line, or at the top of a file with no
 
 A good existing explanation is kept, never shortened: where it opens technically, the plain-English first line and description go first and the existing explanation follows as notes. In a `.tmpl` source the header must survive rendering, so it sits after the shebang and outside every template directive.
 
-The rule covers every file chezmoi installs as executable (an `executable_` source name, `.tmpl` sources included), every `run_` script, and every other script file (`.sh`, `.zsh`, `.bash`, `.mjs`, `.js`, `.ts`, `.py`). It excludes tests and shell start-up fragments sourced by a loader (under `.zprofile.d/` and `.zsh/`), which the loader's own comments describe. The repository's always-loaded guidance states the rule, and its own script audit checks it.
+The rule covers every file chezmoi installs as executable (an `executable_` source name, `.tmpl` sources included), every `run_` script, every `modify_` script, which chezmoi runs on each apply to change an existing target and whose `Runs:` line says so, and every other script file (`.sh`, `.zsh`, `.bash`, `.mjs`, `.js`, `.ts`, `.py`). It excludes tests and shell start-up fragments sourced by a loader (under `.zprofile.d/` and `.zsh/`), which the loader's own comments describe. The repository's always-loaded guidance states the rule, and its own script audit checks it.
 
 [Back to contents](#contents)
 
