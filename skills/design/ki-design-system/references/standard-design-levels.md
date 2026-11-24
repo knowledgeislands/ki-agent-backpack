@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T22:10:58Z
 ki-status: in force
 ---
 
@@ -110,6 +110,8 @@ Whoever draws may be able to check only the markup, not the picture: an agent th
 ### 4.5 The design book
 
 A visual design's document and its final boards together make its **design book**. The document is a design document in `ki-authoring`'s [design format](../../../keystone/ki-authoring/references/standard-formats-design.md), kept in the repository's [design system folder](standard-design-system.md#411-the-design-system-folder), `docs/design/design-system/`; its final boards are the chosen option at each level, kept beside it once the design is agreed, so the design can be walked and reviewed board by board.
+
+The book keeps the current design and also any proposed or shelved designs, each clearly marked with its state, and an option not chosen but still promising goes into it as proposed rather than being retired with the working material. Only a change document makes a proposed design current, or drops it to Git history, and Git still keeps every version, as `ki-design`'s [life cycle](../../../keystone/ki-design/references/standard-design.md#44-where-a-design-is-written-down) sets.
 
 ```text
 docs/design/design-system/

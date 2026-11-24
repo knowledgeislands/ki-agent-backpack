@@ -218,16 +218,16 @@ const DSYS_8: RubricItem<DesignRubricContext> = {
   code: 'DSYS-8',
   title: 'working material is retired and projections follow the source',
   description:
-    'Briefs, option boards, rounds, canvases and screenshots from finished design work are consolidated and not kept as durable documents, while the final boards of the chosen design move into its design book; every design tool outside the repository is refreshed from the token source and the guide, and the annotated board from the running interface.',
+    'Briefs, option boards, rounds, canvases and screenshots from finished design work are consolidated and not kept as durable documents, while the final boards of the chosen design move into its design book, and any option not chosen but still promising goes into it as proposed; every design tool outside the repository is refreshed from the token source and the guide, and the annotated board from the running interface.',
   sources: [WORK, PROJECTIONS],
   judgment: {
     scope:
       'Documentation folders and assets that hold design working material, closed design work records, the projections the guide lists, and the annotated board with its refresh stamp.',
     prompt:
-      'Is any brief, option board or canvas kept as a document after its outcome reached the guide, a Specification or a Decision Record? Did the final boards of each agreed design move into its design book, named by level? Does any projection, such as a design-system artifact or a design library, disagree with the token source? Was the annotated board refreshed from the current interface, and are the mock-ups of built designs gone from it?',
+      'Is any brief, option board or canvas kept as a document after its outcome reached the guide, a Specification or a Decision Record? Did the final boards of each agreed design move into its design book, named by level, and each promising unchosen option go into it marked proposed? Does any projection, such as a design-system artifact or a design library, disagree with the token source? Was the annotated board refreshed from the current interface, and are the mock-ups of built designs gone from it?',
     outcomes: ['conforming', 'retire', 'refresh'],
     guidance:
-      'Confirm the outcome is consolidated, then remove the working material; Git history keeps it. Refresh a stale projection from its source and record the date and revision on it; the annotated board stays as a projection rather than being retired.'
+      'Confirm the outcome is consolidated and any promising unchosen option is in the design book as proposed, then remove the rest of the working material; Git history keeps it. Refresh a stale projection from its source and record the date and revision on it; the annotated board stays as a projection rather than being retired.'
   }
 }
 

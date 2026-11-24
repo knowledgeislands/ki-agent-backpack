@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T22:10:58Z
 ki-status: in force
 ---
 
@@ -232,7 +232,7 @@ A design question that changes what readers see is shaped as every design is, by
 1. **Options at three levels.** The options are drawn at [three levels](standard-design-levels.md), information architecture, wireframe and mock-up, each agreed before the next, on the real tokens and the real data, and placed on the board beside the screenshot they answer. `ki-design-inspiration` may supply references. The owner's choice and its reasons are recorded in the work record's Discussion.
 2. **Build.** The chosen design is built in the repository against the guide and checks.
 3. **Consolidate.** The outcome moves to its homes: new values to the token source, new rules to the design guide, new stable behaviour to a Specification, a new or changed decision to a Decision Record, and every new checkable rule to a check.
-4. **Retire.** The brief, option boards, rounds, canvases and screenshots are working material. Once consolidated, they are not kept as documents: the work record that summarised them is pruned with the rest of the roadmap, and Git history keeps what was considered. The final boards of the chosen design are not working material: they move, renamed by level, into [its design book](standard-design-levels.md#45-the-design-book), beside its design document. The annotated board itself stays, because it is a projection rather than working material; its next refresh shows the built design, and the mock-ups leave it.
+4. **Retire.** The brief, option boards, rounds, canvases and screenshots are working material. An option not chosen but still promising is not: it goes into [the design book](standard-design-levels.md#45-the-design-book) as proposed, marked with its state, until a change document makes it current or drops it to Git history. Once consolidated, the rest is not kept as documents: the work record that summarised them is pruned with the rest of the roadmap, and Git history keeps what was considered. The final boards of the chosen design are not working material: they move, renamed by level, into [its design book](standard-design-levels.md#45-the-design-book), beside its design document. The annotated board itself stays, because it is a projection rather than working material; its next refresh shows the built design, and the mock-ups leave it.
 
 **Agreed decisions are drawn against the build**. Once a decision is agreed, its drawing follows the build rather than leading it: the agreed design is built, and any drawing of it after that is drawn against the build and checked with it. Drawings ahead of the build are for open choices only, drawn side by side for the owner. It holds for design work in a meeting or out of one; in the first design meeting, drawings ahead of an agreed build held the build up.
 
