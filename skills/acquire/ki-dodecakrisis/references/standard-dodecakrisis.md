@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T05:31:51Z
+ki-revised: 2026-11-24T16:02:03Z
 ki-status: in force
 ---
 
@@ -129,7 +129,7 @@ An empty table declares the skill with no mailbox, and then nothing else is requ
 
 The rules file is TOML in the declaring repository, holding three arrays of tables: guards, Deposit routes and rules. Every identifier is unique within its array.
 
-**Guards.** A guard is a query fragment that a rule's query excludes. Each declared mailbox has exactly one evidential guard, `evidential = true`: the senders, threads and subjects that may be evidence, so no Delete or Digest rule can ever match them.
+**Guards.** A guard is a query fragment that a rule's query excludes. Each declared mailbox has exactly one evidential guard, `evidential = true`: the senders, threads and subjects that may be evidence, so no Delete or Digest rule, and no rule that sets age, can ever match them.
 
 | Field | Required | Meaning |
 | --- | --- | --- |
@@ -161,7 +161,7 @@ The rules file is TOML in the declaring repository, holding three arrays of tabl
 | `confidence` | yes | `high`, `medium` or `low` |
 | `origin` | yes | `stated` (Kris said it), `learnt` (drafted from corrections) or `decision` (from a decision in a work package) |
 | `approval` | yes | The decision or answer that put it live, such as a `D12-RULE` line or a query tag |
-| `guards` | for Delete and Digest | The guard ids the query excludes; must include the mailbox's evidential guard |
+| `guards` | for Delete, Digest and any rule that sets `age` | The guard ids the query excludes; must include the mailbox's evidential guard |
 | `route` | for Deposit | A declared Deposit route |
 | `filter` | no | The name of the platform filter or rule that helps it, which begins with `D12` |
 | `age` | for a short-lived rule | Whole days after which the Short-lived sweep places what the rule matched in Delete, such as `7` for sign-in codes or `3` for parcel tracking; a rule without it is not short-lived |
@@ -198,7 +198,7 @@ Rules:
 
 - **Only rules send items out.** Deposit and Delete come only from a rule in this file or a sweep the [mailbox standard](standard-mailbox.md#43-sweeps) sets; a person working a queue concludes the item and it goes back through the rules.
 - **Delete only labels.** A Delete rule adds the Delete outcome; the Delete sweep moves it to Trash after its grace period. No rule trashes at once.
-- **Every Delete or Digest rule carries the evidential guard.** Gmail runs every matching filter and Outlook stops at the first, so order never protects anything; the guard does.
+- **Every Delete or Digest rule, and every rule that sets age, carries the evidential guard.** Gmail runs every matching filter and Outlook stops at the first, so order never protects anything; the guard does. Age leads straight to deletion through the Short-lived sweep, so a rule that sets it is guarded as a Delete rule is.
 - **A stated rule outranks a learnt one.** Where two rules match, `stated` wins over `learnt`, and both are reported.
 - **Every rule is dry-run with a count before it goes live.** The count is shown with the approval, and the rule goes in once it matches what was expected.
 

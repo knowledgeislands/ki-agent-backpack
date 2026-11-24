@@ -77,11 +77,16 @@ const guardIssues = ({ guards, rules }: RulesFile, mailboxes: ReadonlySet<string
   rules.forEach((rule, index) => {
     const outcome = text(rule, 'outcome')
     const mailbox = text(rule, 'mailbox')
-    if (!outcome || !GUARDED_OUTCOMES.has(outcome) || !mailbox) return
+    const ages = rule.age !== undefined
+    if (!mailbox || !((outcome && GUARDED_OUTCOMES.has(outcome)) || ages)) return
     const listed = Array.isArray(rule.guards) ? rule.guards : []
     const required = evidential.get(mailbox)?.[0]
     if (!required || !listed.includes(required))
-      issues.push(`${label('rule', rule, index)} sends to ${outcome} without the evidential guard`)
+      issues.push(
+        outcome && GUARDED_OUTCOMES.has(outcome)
+          ? `${label('rule', rule, index)} sends to ${outcome} without the evidential guard`
+          : `${label('rule', rule, index)} sets age without the evidential guard`
+      )
   })
   return issues
 }
@@ -140,9 +145,9 @@ export const RULES = {
     },
     {
       code: 'RULES-2',
-      title: 'Delete and Digest rules carry the evidential guard',
+      title: 'Delete, Digest and age rules carry the evidential guard',
       description:
-        'Each declared mailbox has exactly one evidential guard, and every rule whose outcome is Delete or Digest lists it, because platform filter order never protects evidential mail.',
+        'Each declared mailbox has exactly one evidential guard, and every rule whose outcome is Delete or Digest, or that sets age, lists it, because platform filter order never protects evidential mail and age leads straight to deletion.',
       sources: ['standard-dodecakrisis.md#43-the-rules-file'],
       mechanical: {
         level: 'FAIL',

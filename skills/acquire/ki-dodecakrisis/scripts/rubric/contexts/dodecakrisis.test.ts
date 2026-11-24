@@ -165,6 +165,7 @@ mode = "suggest"
 confidence = "low"
 origin = "decision"
 approval = "Y"
+age = 7
 `
   const context = contextOf(repository({ 'd12/rules.toml': rules, 'd12/corrections.jsonl': '' }), configuration)
   const [complete, guarded, routed, prefixed] = RULES.items.map((item) => messages(run([item], context)))
@@ -177,7 +178,8 @@ approval = "Y"
   ])
   expect(guarded).toEqual([
     'mailbox gmail has 0 evidential guards; it needs exactly one',
-    'rule R01 sends to Delete without the evidential guard'
+    'rule R01 sends to Delete without the evidential guard',
+    'rule R02 sets age without the evidential guard'
   ])
   expect(routed).toEqual(['rule R02 sends to Deposit without a declared route'])
   expect(prefixed).toEqual(['rule R01 names a filter that does not begin with D12'])
