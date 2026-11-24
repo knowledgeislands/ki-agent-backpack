@@ -69,7 +69,7 @@ export const ENVIRONMENT: RubricFamily<EngineeringRubricContext, EnvironmentRubr
       code: 'ENV-5',
       title: 'Real environment files are never tracked',
       description:
-        'Git tracks no real `.env` or `.env.<name>` file at any depth, examples and samples excepted, whatever the capability; where the repository reads environment config, a repository `.gitignore` covers `.env` and `.env.local`, warning when none does.',
+        'Git tracks no real `.env` or `.env.<name>` file at any depth, examples and samples excepted, whatever the capability; where the repository reads environment config, by a tracked `.env*.example` at any depth or `process.loadEnvFile`, the root `.gitignore` covers `.env` and `.env.local`, warning when it does not.',
       sources: ['standard-engineering.md'],
       mechanical: {
         level: 'FAIL',

@@ -20,10 +20,11 @@ const CHECKS_2: RubricItem<ChecksRubricContext> = {
   code: 'CHECKS-2',
   title: 'Own table keys',
   description:
-    'Every key in the `[skills.ki-repo]` table is one the configuration standard documents; an unknown key, a typo or a stale option, warns rather than reading as absent or being ignored.',
+    'Every key in the `[skills.ki-repo]` table is one a standard documents for that table, ki-repo’s own or ki-work-roadmap’s for `repo_code`; an unknown key, a typo or a stale option, warns rather than reading as absent or being ignored.',
   sources: [
     'standard-configuration.md#45-validate-your-own-table',
-    'standard-configuration.md#47-overridable-vs-fixed'
+    'standard-configuration.md#47-overridable-vs-fixed',
+    'standard-repository.md'
   ],
   mechanical: {
     level: 'WARN',

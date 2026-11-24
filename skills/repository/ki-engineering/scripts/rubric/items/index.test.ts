@@ -8,6 +8,7 @@ import {
   BUN_RUNTIME,
   classifyBunRuntime,
   collectPackageScriptSources,
+  collectTrackedEnvironment,
   collectTrackedEnvironmentFiles,
   collectTrackedMjs,
   dependencyFreshnessFindings,
@@ -23,6 +24,7 @@ import {
   inspectManagedSurfaceExclusions,
   inspectToolchainActivation,
   inspectTurborepo,
+  isEnvironmentExample,
   isRealEnvironmentFile,
   MINIMUM_RELEASE_AGE_SECONDS,
   newestReleasePastWindow,
@@ -150,6 +152,9 @@ test('ENV-5 names real environment files, examples and samples excepted', () => 
     '.environment'
   ])
     expect(isRealEnvironmentFile(path)).toBe(false)
+  for (const path of ['.env.example', 'apps/x/.env.local.example']) expect(isEnvironmentExample(path)).toBe(true)
+  for (const path of ['.env', '.env.sample', 'env.example', '.env.example.bak'])
+    expect(isEnvironmentExample(path)).toBe(false)
 })
 
 test('ENV-5 finds tracked real environment files at any depth without reporting untracked ones', async () => {
@@ -164,6 +169,10 @@ test('ENV-5 finds tracked real environment files at any depth without reporting 
   execFileSync('git', ['-C', repository, 'add', '--', '.env.example', 'apps/site/.env.production', '.env', '.envrc'])
 
   expect(await collectTrackedEnvironmentFiles(repository)).toEqual(['.env', 'apps/site/.env.production'])
+  expect(await collectTrackedEnvironment(repository)).toEqual({
+    real: ['.env', 'apps/site/.env.production'],
+    examples: ['.env.example']
+  })
   expect(await collectTrackedEnvironmentFiles(join(repository, 'missing'))).toBeUndefined()
 })
 

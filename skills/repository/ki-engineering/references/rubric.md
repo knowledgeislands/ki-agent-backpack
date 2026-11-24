@@ -330,7 +330,7 @@ Environment templates, development-mode confinement, and portable paths.
   - _Review prompt:_ Do config, data, cache, and state paths honour the appropriate XDG environment variable?
   - _Outcomes:_ conforming; gap; exclusion
   - _Conforming guidance:_ Use the matching XDG variable before its specification default, record a named Gap, or record an explicit exclusion.
-- **ENV-5 [M] — Real environment files are never tracked** — Git tracks no real `.env` or `.env.<name>` file at any depth, examples and samples excepted, whatever the capability; where the repository reads environment config, a repository `.gitignore` covers `.env` and `.env.local`, warning when none does. (standard-engineering.md)
+- **ENV-5 [M] — Real environment files are never tracked** — Git tracks no real `.env` or `.env.<name>` file at any depth, examples and samples excepted, whatever the capability; where the repository reads environment config, by a tracked `.env*.example` at any depth or `process.loadEnvFile`, the root `.gitignore` covers `.env` and `.env.local`, warning when it does not. (standard-engineering.md)
   - _Remediation:_ diagnostic — Untrack each real environment file with `git rm --cached`, rotating any secret it held, keep a redacted `.env*.example` template in its place, and cover real files in the root `.gitignore`; then rerun the audit.
 
 ## TOML — Engineering configuration

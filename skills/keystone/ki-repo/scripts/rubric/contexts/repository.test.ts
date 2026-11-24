@@ -1087,13 +1087,13 @@ describe('repository kind and Knowledge Base stores', () => {
       join(root, '.ki.toml'),
       project.replace(
         '[skills.ki-repo]\n',
-        '[skills.ki-repo]\nvisiblity = "private"\nhomepage = "https://example.test"\nmaturity = "settled"\n'
+        '[skills.ki-repo]\nvisiblity = "private"\nhomepage = "https://example.test"\nkeywords = ["x"]\nmaturity = "settled"\n'
       ) + '\n[skills.ki-repo.territory]\nname = "Old"\n\n[skills.ki-repo.checks]\nwiki = false\n'
     )
     const findings = (await collectAuditFindings([root])).findings.filter((finding) => finding.code === 'CHECKS-2')
     expect(findings).toEqual([
       expect.objectContaining({ level: 'WARN', message: expect.stringContaining('"visiblity" is not a documented') }),
-      expect.objectContaining({ level: 'WARN', message: expect.stringContaining('"homepage" is not a documented') })
+      expect.objectContaining({ level: 'WARN', message: expect.stringContaining('"keywords" is not a documented') })
     ])
     writeFileSync(join(root, '.ki.toml'), project)
     expect((await collectAuditFindings([root])).findings.filter((finding) => finding.code === 'CHECKS-2')).toEqual([])

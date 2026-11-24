@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T22:41:06Z
+ki-revised: 2026-11-24T23:30:16Z
 ki-status: in force
 ---
 
@@ -256,7 +256,7 @@ Every declared governance root also commits the repository to a complete **resol
 
 ### 4.5 Validate your own table
 
-A skill **validates its own table and only its own**: it warns on a key (or sub-table entry) under its table that it doesn't recognise — a typo or a stale option should surface, not silently do nothing — and advises dropping one that merely restates a default. It leaves every other skill's table untouched, even keys it can't interpret. **Validate down, ignore across.** (`ki-repo` is the reference: it warns on a key in `[skills.ki-repo]` that this standard does not document and on an unknown `[…checks]` entry, notes a redundant one, and never inspects another skill's table.) The same boundary governs conformers: a skill may change its own table, never another's.
+A skill **validates its own table and only its own**: it warns on a key (or sub-table entry) under its table that it doesn't recognise — a typo or a stale option should surface, not silently do nothing — and advises dropping one that merely restates a default. It leaves every other skill's table untouched, even keys it can't interpret. **Validate down, ignore across.** (`ki-repo` is the reference: it warns on a key in `[skills.ki-repo]` that no standard documents for that table, its own or `ki-work-roadmap`'s for `repo_code`, and on an unknown `[…checks]` entry, notes a redundant one, and never inspects another skill's table.) The same boundary governs conformers: a skill may change its own table, never another's.
 
 [Back to contents](#contents)
 

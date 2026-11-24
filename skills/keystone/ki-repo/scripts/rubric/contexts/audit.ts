@@ -360,8 +360,8 @@ type KiConfig = {
   unknownKeys: string[]
 }
 /**
- * The documented keys of `[skills.ki-repo]`: identity, maturity, shape, `repo_code` (set by ki-work-roadmap's
- * standard), territory and the `checks` sub-table. The retired `territory` sub-table is left to TERR-1, which names
+ * The documented keys of `[skills.ki-repo]`: identity, `homepage` (set by the repository standard), maturity, shape,
+ * `repo_code` (set by ki-work-roadmap's standard), territory and the `checks` sub-table. The retired `territory` sub-table is left to TERR-1, which names
  * its move.
  */
 export const KI_REPO_KEYS: readonly string[] = [
@@ -371,6 +371,7 @@ export const KI_REPO_KEYS: readonly string[] = [
   'description',
   'visibility',
   'license',
+  'homepage',
   'maturity',
   'repo_type',
   'primary_shape',

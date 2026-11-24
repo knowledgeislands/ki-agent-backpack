@@ -1088,15 +1088,26 @@ export const isRealEnvironmentFile = (path: string): boolean => {
   return /^\.env(?:\..+)?$/.test(name) && !/\.(?:example|sample)$/i.test(name)
 }
 
-/** The real environment files Git tracks, or undefined where Git cannot list them. */
-export const collectTrackedEnvironmentFiles = async (repository: string): Promise<readonly string[] | undefined> => {
+/** A committed environment template, `.env.example` or `.env.<name>.example` at any depth. */
+export const isEnvironmentExample = (path: string): boolean =>
+  /^\.env(?:\..+)?\.example$/i.test(path.split('/').pop() ?? '')
+
+/** The real environment files and the `.env*.example` templates Git tracks, or undefined where Git cannot list them. */
+export const collectTrackedEnvironment = async (
+  repository: string
+): Promise<{ real: readonly string[]; examples: readonly string[] } | undefined> => {
   try {
     const result = await run('git', ['-C', repository, 'ls-files', '-z'], { encoding: 'utf8', maxBuffer: 64 << 20 })
-    return result.stdout.split('\0').filter(Boolean).filter(isRealEnvironmentFile).sort()
+    const files = result.stdout.split('\0').filter(Boolean)
+    return { real: files.filter(isRealEnvironmentFile).sort(), examples: files.filter(isEnvironmentExample).sort() }
   } catch {
     return undefined
   }
 }
+
+/** The real environment files Git tracks, or undefined where Git cannot list them. */
+export const collectTrackedEnvironmentFiles = async (repository: string): Promise<readonly string[] | undefined> =>
+  (await collectTrackedEnvironment(repository))?.real
 
 /** The probe paths a root `.gitignore` must cover: the bare file and the local override. */
 export const ENVIRONMENT_IGNORE_PROBES = ['.env', '.env.local'] as const
@@ -2523,18 +2534,25 @@ export const collectAuditEvidence = async (
   } else {
     add('NOT_APPLICABLE', 'ENV-1', 'no env capability — not applicable', STD)
   }
-  // Real environment files are never tracked, whatever the capability; an env-capable repo's root `.gitignore`
-  // covers them.
-  const trackedEnvironment = await collectTrackedEnvironmentFiles(repo)
+  // Real environment files are never tracked, whatever the capability; the root `.gitignore` of a repo that reads
+  // env config, by a tracked `.env*.example` at any depth or `process.loadEnvFile`, covers them.
+  const trackedEnvironment = await collectTrackedEnvironment(repo)
   if (trackedEnvironment === undefined)
     add('INFO', 'ENV-5', 'Git could not list tracked files — tracked environment files not checked', STD)
-  else if (trackedEnvironment.length)
-    for (const file of trackedEnvironment)
+  else if (trackedEnvironment.real.length)
+    for (const file of trackedEnvironment.real)
       add('FAIL', 'ENV-5', `real environment file ${file} is tracked — untrack it and keep only a template`, STD, file)
   else add('PASS', 'ENV-5', 'no real environment file is tracked', STD)
-  if (hasEnv) {
+  if (hasEnv || trackedEnvironment?.examples.length) {
     const uncovered = await uncoveredEnvironmentProbes(repo)
-    if (uncovered?.length)
+    if (uncovered === undefined)
+      add(
+        'INFO',
+        'ENV-5',
+        'Git could not decide the root .gitignore patterns — environment file coverage not checked',
+        STD
+      )
+    else if (uncovered.length)
       add(
         'WARN',
         'ENV-5',
