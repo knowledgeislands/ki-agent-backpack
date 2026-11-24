@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T11:28:25Z
 ki-status: in force
 ---
 
@@ -91,7 +91,7 @@ tools-<name>/
 ├── bin/<name>              # THE executable — required, chmod +x.
 ├── install.sh              # curl installer (the `curl | bash` contract). Expected.
 ├── tests/ or src/tests/    # executable test suite (a *.bats suite under tests/ for a shell tool). Expected.
-├── .github/workflows/*.yml # CI: lint + test on every push. Expected.
+├── .github/workflows/*.yml # CI: lint + test, on push or on manual dispatch only. Expected.
 ├── man/<name>.1            # Optional manual source; when present, mandoc runs in CI.
 ├── CHANGELOG.md            # Pre-1.0 baseline or dated 1.0+ release history. Expected.
 ├── docs/guides/developer/
@@ -102,6 +102,7 @@ tools-<name>/
 ```
 
 - **`bin/` with ≥1 executable file and both developer delivery guides are hard requirements** — their absence is a FAIL. Everything else is expected-but-optional (WARN when absent): a repo can be mid-scaffold.
+- **CI may run on manual dispatch only.** A tool repository may trigger its CI and release workflows by `workflow_dispatch` alone, with no push trigger, because its local commit gate is the per-change check.
 - The **primary** bin file is the one whose name matches the repo's `<name>` (a `tools-mgit` repo → `bin/mgit`); the capability checks read its shebang.
 
 [Back to contents](#contents)
