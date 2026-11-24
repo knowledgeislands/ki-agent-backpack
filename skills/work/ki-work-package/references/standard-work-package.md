@@ -24,6 +24,7 @@ ki-status: in force
   - [4.8 Messages](#48-messages)
   - [4.9 Writers](#49-writers)
   - [4.10 The tidy](#410-the-tidy)
+    - [4.10.1 WIP reset](#4101-wip-reset)
   - [4.11 Work identity and native sessions](#411-work-identity-and-native-sessions)
   - [4.12 Optional runtime reminder consumers](#412-optional-runtime-reminder-consumers)
   - [4.13 Update lifecycle](#413-update-lifecycle)
@@ -380,6 +381,19 @@ Each tidy ends with a check against the work-package rubric and a short report: 
 - **Before a hold:** work going On hold, for either reason and whoever sets it, first tidies its package, so that it holds nothing already dealt with: each change document goes once it has landed. A hold expecting more is no exception: it still carries nothing already dealt with.
 - <a id="parking"></a>**Parking:** when the owner parks part of the work tree, one package or a branch of packages, with a paused hold, its remaining work goes back onto the roadmaps of the repositories it belongs to, as high-level items under `ki-work next`'s [capture](../../../keystone/ki-work/references/standard-next-work.md#432-capture-substantive-prospective-work), never as detailed steps, Git keeping the detail, and each parked open question becomes an open question on its record. The package then closes under Close-out, or is pruned to a pointer: its `_index.md` alone, `on-hold`, naming those records in `ki-records`, with nothing live in Now or Held. A parked package holds nothing live. A Snoozing or idle hold parks nothing, since its work is still in hand.
 - **Close-out:** finished work's package is deleted at the mark that closes it, in one commit, once its decisions' results have landed and its change documents are resolved, their draft files with them, under [4.15](#415-removal-lifecycle). Where the package outlives the finishing thread, territory work closes it at an owner-authorised mark of its own whose report names the package, so that the package is deleted rather than flagged. This is administrative close-out only: it reopens nothing, accepts nothing and settles nothing on the owner's behalf. It first checks that the state is `finished`, every decision's result has landed and other durable information has reached its owners, no change document is left open, and no run of the work is running or queued. If all hold, it deletes the package in one commit by explicit path, `docs(work): <id> close-out`. If any check fails, it deletes nothing and puts one open point to the owner in a change document of its own. A parked package closes by the same checks, save that its state is `on-hold` and its remaining work and open questions are on their records under [parking](#parking).
+
+[Back to contents](#contents)
+
+#### 4.10.1 WIP reset
+
+The WIP reset, set by the owner on 24 November 2026, is the repeatable procedure that brings an over-full package back to the work in hand, under the [three places](#three-places). The package's owner runs it, in this order:
+
+1. **Gather.** Take everything in the package, steps and open questions alike, and read it beside the roadmap records of the repositories the package names.
+2. **Map first.** Before anything leaves the package, commit a map in it, as a change document of its own: one line per step and question, giving the record it went to, or "dropped". Git keeps the detail.
+3. **Merge and write back.** Merge the two and write the result back onto the roadmaps as high-level records, each at its right horizon, `now`, `next` or `triage`, through `ki-work next`'s [capture](../../../keystone/ki-work/references/standard-next-work.md#432-capture-substantive-prospective-work), with each open question carried on the record it belongs to.
+4. **Keep only the work in hand.** The package keeps only the work actually in hand, as minimal change documents; the map is deleted at the next tidy once every record it names stands. From then on, work is only ever pulled forward from a roadmap into the package.
+
+**Trigger:** the package's owner, or the weekly work-tree check, runs the reset on a package once its in-hand load passes a limit, the numbers being set by WIP-LIMIT.
 
 [Back to contents](#contents)
 
