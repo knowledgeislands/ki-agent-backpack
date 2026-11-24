@@ -1,6 +1,6 @@
 ---
 ki-document-type: sources@2026-11-24T04:52:17Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T11:34:09Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -43,9 +43,12 @@ The spec is versioned by date. Track the **latest released** version and note th
 | SPEC — [MCP spec — versioning / latest][spec] | Which dated revision is current and whether a released SDK supports it | 2026-11-23 |
 | CHANGELOG — [2026-07-28 changelog][changelog] | What changed since 2025-11-25 (stateless core, `server/discover`, required `resultType`, Multi Round-Trip Requests, tasks moved to an extension, transport-session and SSE-resumability removals) | 2026-11-23 |
 | SDK — [TypeScript SDK releases][sdk] | Which dated revision is current and whether a released SDK supports it | 2026-11-23 |
-| TOOLS — [Server → Tools][tools] | Tool shape, `inputSchema`/`outputSchema`, `structuredContent`, annotations, `isError` vs protocol errors, tool-name charset/length, `icons`, `execution.taskSupport` | 2026-11-23 |
-| SEC — [Security Best Practices][sec] | Confused deputy, token passthrough, SSRF, session hijacking, scope minimization, local-server compromise | 2026-11-23 |
-| AUTH — [Authorization][auth] | OAuth 2.1 framework, token audience, PKCE, dynamic client registration — relevant to the gmail / m365 auth-servers | 2026-11-23 |
+| TOOLS — [Server → Tools, 2025-11-25][tools] | Legacy profile: tool shape, `inputSchema`/`outputSchema`, `structuredContent`, annotations, `isError` vs protocol errors, tool-name charset/length, `icons`, `execution.taskSupport` | 2026-11-23 |
+| TOOLS — [Server → Tools, 2026-07-28][tools-2026] | Modern profile: the same, with `structuredContent` any JSON value conforming to `outputSchema`, deterministic `tools/list` ordering, and `resultType` on every result | 2026-11-24 |
+| SEC — [Security Best Practices, 2025-11-25][sec] | Confused deputy, token passthrough, SSRF, session hijacking, scope minimization, local-server compromise | 2026-11-23 |
+| SEC — [Security Best Practices, 2026-07-28][sec-2026] | The same, with state-handle hijacking in place of session hijacking, and mix-up and localhost-redirect attacks | 2026-11-24 |
+| AUTH — [Authorization, 2025-11-25][auth] | OAuth 2.1 framework, token audience, PKCE, dynamic client registration — relevant to the gmail / m365 auth-servers | 2026-11-23 |
+| AUTH — [Authorization, 2026-07-28][auth-2026] | The same, with Client ID Metadata Documents asked of authorization servers and clients, Dynamic Client Registration deprecated, and issuer validation of authorization responses | 2026-11-24 |
 
 All six original sibling repositories now declare the v2 server package (2.4.0) and so select the 2026-07-28 profile; two newer repositories (`mcp-acquire-whatsapp`, `mcp-housekeeping-chatgpt`) declare the v1 SDK (`^1.32.2`) and the 2025-11-25 profile.
 
@@ -94,11 +97,11 @@ The community sources.
 
 ## 3. Last review
 
-The latest review, on 23 November 2026, re-fetched or re-read every listed source and found the standards, rubric and item modules still follow them. 2026-07-28 is still the latest released MCP revision, the TypeScript SDK is at 2.4.0 and the v1 SDK at 1.32.2, the 2025-11-25 TOOLS, SEC and AUTH pages and the source-distribution references are unchanged in substance, and LOCAL-SEC joined the advisory sources. The six v2 sibling repositories declare the current SDK and the 2026-07-28 profile; `mcp-acquire-whatsapp` and `mcp-housekeeping-chatgpt` stay on the v1 SDK.
+The latest review, on 23 November 2026, re-fetched or re-read every listed source and found the standards, rubric and item modules still follow them. 2026-07-28 is still the latest released MCP revision, the TypeScript SDK is at 2.4.0 and the v1 SDK at 1.32.2, the 2025-11-25 TOOLS, SEC and AUTH pages and the source-distribution references are unchanged in substance, and LOCAL-SEC joined the advisory sources. On 24 November 2026 the 2026-07-28 TOOLS, SEC and AUTH pages were read and cited beside 2025-11-25's, and the structured-output rule now follows the server's protocol profile. The six v2 sibling repositories declare the current SDK and the 2026-07-28 profile; `mcp-acquire-whatsapp` and `mcp-housekeeping-chatgpt` stay on the v1 SDK.
 
 **Watching:**
 
-- Add 2026-07-28 TOOLS, SEC and AUTH rows beside the 2025-11-25 ones and make the structured-output rule profile-dependent: every v2 server now declares 2026-07-28, so the 2025-11-25 pages no longer describe most of the fleet. Assess the error-code range and cacheable-result fields for that profile; deterministic ordering is already codified.
+- Assess the 2026-07-28 error-code range and cacheable-result fields for the modern profile; deterministic ordering is already codified.
 - Migration of the two v1 repositories, and `mcp-cairn`'s SDK pin and profile when a checkout is available.
 - The majority basis counts seven declaring servers and has not been recounted since `mcp-cairn` joined the server lists.
 - Skills over MCP (SEP-2640): an extension the SDK now ships; watch whether it touches server shape.
@@ -112,6 +115,9 @@ The latest review, on 23 November 2026, re-fetched or re-read every listed sourc
 [tools]: https://modelcontextprotocol.io/specification/2025-11-25/server/tools
 [sec]: https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices
 [auth]: https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization
+[tools-2026]: https://modelcontextprotocol.io/specification/2026-07-28/server/tools
+[sec-2026]: https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices
+[auth-2026]: https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization
 [annotations]: https://blog.modelcontextprotocol.io/posts/2026-03-16-tool-annotations/
 [github-mcp]: https://github.com/mcp
 [local-sec]: https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/local-server-security
