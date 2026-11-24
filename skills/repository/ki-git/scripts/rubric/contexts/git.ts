@@ -46,7 +46,11 @@ export type GitRubricContext = {
 }
 
 /** Host options, with the optional estate overview the `ki` host may compose from `mgit overview --json`. */
-export type GitSessionOptions = RubricContextOptions & { gitOverview?: unknown }
+export type GitSessionOptions = RubricContextOptions & {
+  gitOverview?: unknown
+  /** The environment the Git configuration locations follow; the host's own when absent. */
+  environment?: Readonly<Record<string, string | undefined>>
+}
 
 type Json = Record<string, unknown>
 
@@ -146,7 +150,8 @@ export const createGitSession = ({
   repository,
   userHome,
   publication,
-  gitOverview
+  gitOverview,
+  environment
 }: GitSessionOptions): RubricSession<GitRubricContext> => {
   const root = resolve(repository)
   const context: GitRubricContext = {
@@ -154,7 +159,7 @@ export const createGitSession = ({
     repository: root,
     mode,
     clean: cleanEvidence(gitOverview, root),
-    autostash: autostashEvidence(root, userHome)
+    autostash: autostashEvidence(root, userHome, environment)
   }
   return {
     subjects: [

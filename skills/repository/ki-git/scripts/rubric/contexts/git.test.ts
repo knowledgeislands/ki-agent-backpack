@@ -34,6 +34,7 @@ test('the Git session exposes a dedicated publication subject and immutable revi
     mode: 'audit',
     repository: '.',
     userHome: '/unused',
+    environment: {},
     configuration: {}
   })
 
@@ -56,6 +57,7 @@ test('the session selects this repository from a host-supplied mgit overview', (
     mode: 'audit',
     repository: '.',
     userHome: '/unused',
+    environment: {},
     configuration: {},
     gitOverview: overview(record('/elsewhere'), record(resolve('.'), { stashes: 2 }))
   })

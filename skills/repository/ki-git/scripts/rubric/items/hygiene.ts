@@ -48,7 +48,7 @@ const HYGIENE_3: RubricItem<GitRubricContext> = {
   code: 'HYGIENE-3',
   title: 'no autostash setting stashes a shared tree',
   description:
-    'No `pull.autostash` or `rebase.autoStash` setting of `true` lets a pull or rebase stash another actor’s uncommitted work, which the never-stash rule forbids. The audit reads the repository’s, the user’s global and the XDG Git configuration files, following their includes, and fails on either setting set to true in any of them; whether each pull overrides it stays a review question.',
+    'No `pull.autostash` or `rebase.autoStash` setting of `true` lets a pull or rebase stash another actor’s uncommitted work, which the never-stash rule forbids. The audit reads the repository’s, the user’s global and the XDG Git configuration files, or `GIT_CONFIG_GLOBAL` in place of the user files, following their includes where the condition can be decided, and fails on either setting set to true in any of them; whether each pull overrides it stays a review question.',
   sources: ['standard-git.md#45-safe-git-hygiene'],
   mechanical: {
     level: 'FAIL',

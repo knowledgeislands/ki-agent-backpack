@@ -1,5 +1,5 @@
 import { afterEach, expect, test } from 'bun:test'
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { type AutostashEvidence, autostashEvidence, autostashOutcomes, gitTrue, parseGitConfig } from './git-config.ts'
@@ -35,8 +35,15 @@ test('Git configuration parses sections, subsections, bare keys and quoted value
 })
 
 test('Git booleans follow Git: a bare key and yes, on, true or a non-zero integer are true', () => {
-  for (const value of [null, 'true', 'Yes', 'on', '1', '-2']) expect(gitTrue(value)).toBe(true)
-  for (const value of ['false', 'no', 'off', '0', '']) expect(gitTrue(value)).toBe(false)
+  for (const value of [null, 'true', 'Yes', 'on', '1', '-2', '+1', '1k']) expect(gitTrue(value)).toBe(true)
+  for (const value of ['false', 'no', 'off', '0', '', '0m']) expect(gitTrue(value)).toBe(false)
+})
+
+test('a backslash continues a value onto the next line, but never a comment line', () => {
+  expect(parseGitConfig('[pull]\n# a comment \\\n\tautostash = true\n[core]\n\teditor = vi \\\n  -n\n')).toEqual([
+    { section: 'pull', subsection: null, key: 'autostash', value: 'true' },
+    { section: 'core', subsection: null, key: 'editor', value: 'vi   -n' }
+  ])
 })
 
 test('a repository and user free of autostash pass', () => {
@@ -60,17 +67,54 @@ test('a true setting at any level is reported with its origin, even when a later
   ])
 })
 
-test('the XDG and global locations follow XDG_CONFIG_HOME and GIT_CONFIG_GLOBAL', () => {
+test('the XDG location follows XDG_CONFIG_HOME, and GIT_CONFIG_GLOBAL replaces both user files as in Git', () => {
   const { root, home, repository } = fixture()
   mkdirSync(join(root, 'xdg', 'git'), { recursive: true })
   writeFileSync(join(root, 'xdg', 'git', 'config'), '[pull]\n\tautostash = true\n')
   writeFileSync(join(root, 'global'), '[rebase]\n\tautostash = on\n')
   writeFileSync(join(home, '.gitconfig'), '[pull]\n\tautostash = true\n')
-  const settings = autostashEvidence(repository, home, {
-    XDG_CONFIG_HOME: join(root, 'xdg'),
-    GIT_CONFIG_GLOBAL: join(root, 'global')
-  }).settings
-  expect(settings.map((setting) => setting.origin)).toEqual([join(root, 'xdg', 'git', 'config'), join(root, 'global')])
+  const origins = (environment: Record<string, string>) =>
+    autostashEvidence(repository, home, environment).settings.map((setting) => setting.origin)
+  expect(origins({ XDG_CONFIG_HOME: join(root, 'xdg') })).toEqual([join(root, 'xdg', 'git', 'config'), '~/.gitconfig'])
+  expect(origins({ XDG_CONFIG_HOME: join(root, 'xdg'), GIT_CONFIG_GLOBAL: join(root, 'global') })).toEqual([
+    join(root, 'global')
+  ])
+})
+
+test('a relative gitdir pattern matches whole path components only', () => {
+  const { root, home } = fixture()
+  const repository = join(root, 'homework', 'repo')
+  mkdirSync(join(repository, '.git'), { recursive: true })
+  writeFileSync(join(repository, '.git', 'HEAD'), 'ref: refs/heads/main\n')
+  writeFileSync(join(home, 'work.inc'), '[pull]\n\tautostash = true\n')
+  writeFileSync(join(home, '.gitconfig'), '[includeIf "gitdir:work/"]\n\tpath = ~/work.inc\n')
+  expect(autostashEvidence(repository, home, none).settings).toEqual([])
+  writeFileSync(join(home, '.gitconfig'), '[includeIf "gitdir:homework/"]\n\tpath = ~/work.inc\n')
+  expect(autostashEvidence(repository, home, none).settings).toEqual([{ key: 'pull.autostash', origin: '~/work.inc' }])
+})
+
+test('an include cycle and a file included as well as read directly each report a setting once', () => {
+  const { home, repository } = fixture()
+  mkdirSync(join(home, '.config', 'git'), { recursive: true })
+  writeFileSync(join(home, '.config', 'git', 'config'), '[rebase]\n\tautostash = true\n')
+  writeFileSync(
+    join(home, '.gitconfig'),
+    '[pull]\n\tautostash = true\n[include]\n\tpath = ~/.gitconfig\n\tpath = .config/git/config\n'
+  )
+  expect(autostashEvidence(repository, home, none).settings).toEqual([
+    { key: 'rebase.autoStash', origin: '~/.config/git/config' },
+    { key: 'pull.autostash', origin: '~/.gitconfig' }
+  ])
+})
+
+test('config.worktree is read only where extensions.worktreeConfig is on', () => {
+  const { home, repository } = fixture()
+  writeFileSync(join(repository, '.git', 'config.worktree'), '[pull]\n\tautostash = true\n')
+  expect(autostashEvidence(repository, home, none).settings).toEqual([])
+  writeFileSync(join(repository, '.git', 'config'), '[extensions]\n\tworktreeConfig = true\n')
+  expect(autostashEvidence(repository, home, none).settings).toEqual([
+    { key: 'pull.autostash', origin: '.git/config.worktree' }
+  ])
 })
 
 test('includes are followed, and conditional ones only where their gitdir or branch matches', () => {
@@ -114,6 +158,13 @@ test('a linked worktree reads its common directory configuration', () => {
   const linked = join(root, 'linked')
   mkdirSync(linked)
   writeFileSync(join(linked, '.git'), `gitdir: ${gitDir}\n`)
+  expect(autostashEvidence(linked, home, none).settings).toEqual([{ key: 'pull.autostash', origin: '.git/config' }])
+  // A gitdir pattern is tested against the worktree's own Git directory, not the common directory.
+  writeFileSync(join(home, 'exact.inc'), '[rebase]\n\tautostash = true\n')
+  writeFileSync(
+    join(home, '.gitconfig'),
+    `[includeIf "gitdir:${realpathSync(join(repository, '.git'))}"]\n\tpath = ~/exact.inc\n`
+  )
   expect(autostashEvidence(linked, home, none).settings).toEqual([{ key: 'pull.autostash', origin: '.git/config' }])
 })
 
