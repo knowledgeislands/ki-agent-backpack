@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T11:22:52Z
 ki-status: in force
 ---
 
@@ -144,7 +144,7 @@ Whenever a bot says what is outstanding, gives a summary or a status, or closes 
 
 ### 4.8 Questions carded when due
 
-A card is for a question that is due soon, blocks work, or comes up in the change document the owner is taking now. Every other open question stays in its change document, and the owner works through them change by change; a package's questions are never moved onto cards in bulk. A question that is carded keeps the reply block's form: its context, the query and its options, the recommended one first with its confidence, so it can be answered from the card alone; an answer in either place counts once. Check the question's facts again just before carding it, since a question can lapse within minutes.
+A card is for a question that is due soon, blocks work, or comes up in the change document the owner is taking now. Every other open question stays in its change document, and the owner works through them change by change; a package's questions are never moved onto cards in bulk. A question that is carded keeps the reply block's form: its context, the query and its options, the recommended one first with its confidence, so it can be answered from the card alone. The owner's answer counts once wherever it is given, on the card, in a reply block or in plain chat to any bot: the bot that hears it records it and relays it to the bot that owns the card, which records it in the change document and closes or updates the card in the same turn, so the owner is never asked again on the card. Check the question's facts again just before carding it, since a question can lapse within minutes.
 
 [Back to contents](#contents)
 
@@ -172,6 +172,6 @@ What the rules mean on Orca, read from Orca 1.4.267 on 21 November 2026; Orca's 
 - **Mail.** Send with `orca orchestration send --to bot:<name>` and a type of handoff, question or status; answer with `orca orchestration reply`.
 - **Automations.** Listening and nudges are `orca automations`, with a precheck that wakes the bot only on news, and a timed nudge a one-off, made with `--once --by <ISO time>`, since `--once` with a cron schedule fails; Orca's rules agree that a bot never keeps a scheduler of its own.
 - **Ending quietly.** A run with nothing to report ends with `NO_REPLY`: on its own line after a well-formed footer, or alone on a turn that only takes in a status notice or a task notification. The backpack's coordinator footer hook lets both through, so a bot can end a status-only turn silently. Rule notices that need no action reach a bot as one digest when a batch of the owner's decisions closes, never one message per rule; a rule a bot must act on at once still goes at once.
-- **Cards.** A question for the owner is an Orca item with buttons, so it reaches the owner's Needs you list, beside the reply block.
+- **Cards.** A question for the owner is an Orca item with buttons, so it reaches the owner's Needs you list, beside the reply block; the owning bot comments the answer on the item and closes it, wherever the answer came from.
 
 [Back to contents](#contents)
