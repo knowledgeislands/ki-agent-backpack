@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T11:28:58Z
 ki-status: in force
 ---
 
@@ -73,7 +73,7 @@ The rules, part by part.
 
 ### 4.1 Coordinator reply format
 
-The **coordinator reply format** governs every reply in a coordinator session: reports, ordinary answers, timed one-line updates and wake lines. It also governs a **run report**, the final report a run the coordinator launched writes into the work package; the run writes it itself, in the Medium layout, and no trigger chooses it.
+The **coordinator reply format** governs every reply in a coordinator session: reports, ordinary answers, timed one-line updates and wake lines. It also governs a **run report**, the final report a run the coordinator launched writes into its [run packet](../../../agentic-ecosystems/ki-delegation/references/standard-background-runs.md#44-run-packet), `$TMPDIR/ki-agents/<run>/`, never into the work package; the run writes it itself, in the Medium layout, and no trigger chooses it.
 
 It does not govern:
 
