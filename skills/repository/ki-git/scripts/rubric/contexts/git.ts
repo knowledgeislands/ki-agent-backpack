@@ -1,6 +1,7 @@
 import { realpathSync } from 'node:fs'
 import { resolve } from 'node:path'
 import type { RubricContextOptions, RubricMode, RubricPublicationContext, RubricSession } from '../../shared/rubric.ts'
+import { type AutostashEvidence, autostashEvidence } from './git-config.ts'
 
 /** The clean-down stale threshold the standard fixes, in days. */
 export const STALE_DAYS = 30
@@ -40,6 +41,8 @@ export type GitRubricContext = {
   repository: string
   mode: RubricMode
   clean: GitCleanEvidence
+  /** Every autostash setting of true in the repository's, global and XDG Git configuration. */
+  autostash: AutostashEvidence
 }
 
 /** Host options, with the optional estate overview the `ki` host may compose from `mgit overview --json`. */
@@ -141,6 +144,7 @@ export const cleanEvidence = (overview: unknown, repository: string): GitCleanEv
 export const createGitSession = ({
   mode,
   repository,
+  userHome,
   publication,
   gitOverview
 }: GitSessionOptions): RubricSession<GitRubricContext> => {
@@ -149,7 +153,8 @@ export const createGitSession = ({
     rubric: { publication },
     repository: root,
     mode,
-    clean: cleanEvidence(gitOverview, root)
+    clean: cleanEvidence(gitOverview, root),
+    autostash: autostashEvidence(root, userHome)
   }
   return {
     subjects: [

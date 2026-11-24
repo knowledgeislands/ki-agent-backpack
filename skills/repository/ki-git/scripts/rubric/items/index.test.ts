@@ -42,6 +42,7 @@ test('the Git catalogue exposes the complete session contract', () => {
     }[]
   ).flatMap((family) => family.items)
   expect(semanticItems.filter((item) => item.mechanical !== undefined).map((item) => item.code)).toEqual([
+    'HYGIENE-3',
     'CLEAN-2',
     'CLEAN-3',
     'CLEAN-4',

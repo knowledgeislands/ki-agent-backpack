@@ -45,7 +45,8 @@ test('the Git session exposes a dedicated publication subject and immutable revi
     rubric: { publication: undefined },
     repository: resolve('.'),
     mode: 'audit',
-    clean: { state: 'unavailable', reason: 'the host supplied no `mgit overview` facts' }
+    clean: { state: 'unavailable', reason: 'the host supplied no `mgit overview` facts' },
+    autostash: expect.objectContaining({ settings: expect.any(Array), read: expect.any(Array) })
   })
   expect(session.proposal()).toEqual({ writes: [] })
 })

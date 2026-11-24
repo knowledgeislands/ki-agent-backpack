@@ -1,5 +1,9 @@
 import type { RubricFamily, RubricItem } from '../../shared/rubric.ts'
 import type { GitRubricContext } from '../contexts/git.ts'
+import { autostashOutcomes } from '../contexts/git-config.ts'
+
+const AUTOSTASH_GUIDANCE =
+  'Have the owner of each configuration file set the key to `false` or remove it, through the user-environment manager for a user file, and sync with `git fetch`, then `git merge --ff-only @{u}`, never `git pull`.'
 
 const HYGIENE_1: RubricItem<GitRubricContext> = {
   code: 'HYGIENE-1',
@@ -44,8 +48,13 @@ const HYGIENE_3: RubricItem<GitRubricContext> = {
   code: 'HYGIENE-3',
   title: 'no autostash setting stashes a shared tree',
   description:
-    'No `pull.autostash` or `rebase.autoStash` setting of `true` lets a pull or rebase stash another actor’s uncommitted work, which the never-stash rule forbids.',
+    'No `pull.autostash` or `rebase.autoStash` setting of `true` lets a pull or rebase stash another actor’s uncommitted work, which the never-stash rule forbids. The audit reads the repository’s, the user’s global and the XDG Git configuration files, following their includes, and fails on either setting set to true in any of them; whether each pull overrides it stays a review question.',
   sources: ['standard-git.md#45-safe-git-hygiene'],
+  mechanical: {
+    level: 'FAIL',
+    remediation: { class: 'diagnostic', guidance: AUTOSTASH_GUIDANCE },
+    audit: { phase: 'INSPECT', run: autostashOutcomes }
+  },
   judgment: {
     scope:
       'The effective `git config --show-origin --get-all pull.autostash` and `git config --show-origin --get-all rebase.autoStash` values at every configuration level, and the pull commands the workflow uses.',
