@@ -58,7 +58,7 @@ Scope: <full review or named checklist sections>
 Out of scope: <explicit exclusions>
 Readers: <intended audience>
 Time horizon: <current state, release, or longer-term direction>
-Depth and budget: <broad scan, standard review, or deep assessment; any practical limit>
+Depth and budget: <round, broad scan, standard review, or deep assessment; any practical limit>
 Comparison baseline: <declared stable state, previous assessment, release, or none>
 Focus questions: <repository-specific tensions or uncertainties the review must investigate>
 Required conclusions: <decisions or suitability judgements the assessment must reach>
@@ -70,6 +70,20 @@ Verification and measurements: <exact commands or permission to discover them>
 Assessment destination: <conversation or durable path>
 Retain review evidence: <yes or no>
 ```
+
+### The round
+
+A round is the named depth for an overnight pass over a repository. It answers the items a round must answer and no others:
+
+- governance, the Repository governance items on declared skills and configuration;
+- the roadmap, the items on its adapter, its clear-down, its diagnostics and its held records;
+- the working area, the items on the `+/` inbox and any leftover `+/_WORK/`;
+- pull requests, the items reconciling each open pull request and stating whether live coverage was checked;
+- orientation, the items on root `AGENTS.md`, `CLAUDE.md` and the README;
+- documentation, the Documentation and knowledge lens;
+- the build and check gate, the Automated verification lens.
+
+Its invocation records `round` as its depth and names every other lens as out of scope. The full review stays on demand: a round never stands in for one, and a question that needs another lens goes to the owner as a full review to commission.
 
 ## Reusable assessment prompt
 
