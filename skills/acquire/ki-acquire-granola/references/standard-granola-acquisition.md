@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T11:29:51Z
 ki-status: in force
 ---
 
@@ -101,7 +101,7 @@ A receiver's importer settings declare `folder_ids` and its `unfoldered` and `re
 
 ### 4.4 Capture packages
 
-With `capture_root` and `folder_territories`, each meeting has one package at `<capture_root>/<territory>/granola/<date>--<title>--<uuid>/meeting.md`, with screenshots and their checksum manifest beside it. A meeting whose folders map to several territories, or to an unmapped folder, goes under the repository's top-level `_held/granola/`, or `_held/<territory>/granola/`, beside `<capture_root>`, for owner routing. Without `capture_root`, documents land beneath `+/_ACQUIRE/granola/`. Front matter carries identity, provenance, every folder membership, territory routes, hashes and omissions; the body has the title, attendees, normalised notes and a readable transcript, and stays lint-clean.
+With `capture_root` and `folder_territories`, each meeting has one package at `<capture_root>/<territory>/granola/<date>--<title>--<uuid>/meeting.md`, with screenshots and their checksum manifest beside it. A meeting whose folders map to several territories, or to an unmapped folder, goes under the repository's top-level `_held/granola/`, or `_held/<territory>/granola/`, beside `<capture_root>`, for owner routing. Without `capture_root`, documents land beneath `+/_ACQUIRE/granola/`. Front matter carries identity, provenance, every folder membership, territory routes, hashes and omissions; the body has the title, attendees, normalised notes and a readable transcript, kept as captured: the capture root is excluded from the Markdown linter, as `ki-acquire`'s [capture package](../../../keystone/ki-acquire/references/standard-acquisition.md#41-the-capture-package) sets for captured packages, so the body is not held to lint.
 
 [Back to contents](#contents)
 
