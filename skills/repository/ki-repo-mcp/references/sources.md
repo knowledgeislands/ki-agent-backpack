@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:45:51Z
+ki-document-type: sources@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -16,12 +16,11 @@ ki-refresh: external-spec · monthly
     - [2.1.3 In-house (the workspace convention)](#213-in-house-the-workspace-convention)
   - [2.2 Advisory](#22-advisory)
     - [2.2.1 Community](#221-community)
-- [3. Decisions](#3-decisions)
-- [4. Last review](#4-last-review)
+- [3. Last review](#3-last-review)
 
 ## 1. Introduction
 
-The authoritative and community sources behind the [Workspace MCP Standard](standard-mcp-servers.md), the [MCP shared-code standard](standard-mcp-shared-code.md), the [MCP source-distribution standard](standard-mcp-distribution.md) and the [Audit Rubric](rubric.md). Mode REFRESH reads this file, re-fetches each source, diffs it against the standards, rubric, and [`scripts/rubric/items/index.ts`](../scripts/rubric/items/index.ts), then **bumps the `last reviewed` dates** and refreshes the [Last review](#4-last-review) block below (what changed is recorded in the commit, not a changelog). This is the skill's memory of where the standard comes from—keep it current.
+The authoritative and community sources behind the [Workspace MCP Standard](standard-mcp-servers.md), the [MCP shared-code standard](standard-mcp-shared-code.md), the [MCP source-distribution standard](standard-mcp-distribution.md) and the [Audit Rubric](rubric.md). Mode REFRESH reads this file, re-fetches each source, diffs it against the standards, rubric, and [`scripts/rubric/items/index.ts`](../scripts/rubric/items/index.ts), then **bumps the `last reviewed` dates** and refreshes the [Last review](#3-last-review) block below (what changed is recorded in the commit, not a changelog). This is the skill's memory of where the standard comes from—keep it current.
 
 Two layers feed the standard: the **official MCP specification** (what every conformant server must do) and the **in-house workspace convention** (the opinionated shape the seven sibling repos share on top of the spec). A finding is only "spec-driven" if it traces to the Authoritative table; everything else is house style and should be labelled as such so it is not mistaken for a protocol requirement.
 
@@ -75,7 +74,7 @@ The standard is defined as the **majority shape** across the seven sibling repos
 | REPOS — The seven sibling repos † | Layout, config injection, tool naming, the shared `utils/` helpers, the package/tsconfig/vitest/biome toolchain | 2026-11-23 |
 | CLAUDE — Each repo's own `AGENTS.md` | Per-repo invariants: the per-repo statement of its own invariants — the standard tracks these and flags drift | 2026-11-23 |
 
-† Every server that declares `[skills.ki-repo-mcp]`, under MCP-BASIS: `mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-housekeeping-chatgpt` and `mcp-acquire-whatsapp`. The sixth original, `mcp-ki-kb-notion-mirror`, was deleted on 26 October 2026.
+† Every server that declares `[skills.ki-repo-mcp]`: `mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude`, `mcp-housekeeping-chatgpt` and `mcp-acquire-whatsapp`. The sixth original, `mcp-ki-kb-notion-mirror`, was deleted on 26 October 2026.
 
 [Back to contents](#contents)
 
@@ -93,110 +92,19 @@ The community sources.
 
 [Back to contents](#contents)
 
-## 3. Decisions
+## 3. Last review
 
-The decisions the standard cites by id, oldest first; the standard keeps citing its id where the rule stands.
-
-| Id | Decision | Date | Backs | Status |
-| --- | --- | --- | --- | --- |
-| KB-NAMES | `mcp-ki-kb-fs`'s short tool names are an accepted exception to `<app>_<resource>_<action>`: its tools act on one implied resource, the Knowledge Base entry, so they drop the middle segment (`kb_read`, `kb_list`, `kb_write`, `kb_rename`, `kb_delete`, `kb_search`, `kb_config`), and renaming eight tools would break every client for no gain. Taken at high confidence by the Cairn summit's guardian on Kris's word to take high-confidence calls. | 2026-11-17 | [Tool naming](standard-mcp-servers.md#43-tool-naming) | In force |
-| WA-DEFAULTS | `mcp-acquire-whatsapp`'s `destructive` access-level default and `off` audit-log default are an accepted exception under its ADR-KI-MCP-WA-005: a `read` default would unregister its six spool tools, and a log on by default would keep a record of who Kris talks to. Taken at high confidence on the evidence, on the same basis. | 2026-11-17 | [Access-level gate](standard-mcp-servers.md#44-access-level-gate-annotation-driven) | In force |
-| MCP-BASIS | Every server that declares `[skills.ki-repo-mcp]` counts towards the majority basis: all seven, including `mcp-housekeeping-chatgpt` and `mcp-acquire-whatsapp`. Taken at high confidence on the evidence, on the same basis. | 2026-11-17 | [In-house evidence](#213-in-house-the-workspace-convention) | In force |
-| TOOL-EXCEPTION | A repository may keep tool names outside `<app>_<resource>_<action>` by declaring them in `[skills.ki-repo-mcp]` as `tool-name-exceptions`, the reason in a comment above the key, as `ki-repo` takes a declared narrower runtime list (`all-runtimes = false`, RUNTIMES-7); `TOOL-1` reports them as declared and flags a listed name no tool registers. Taken at high confidence by the Cairn summit's guardian on Kris's word to take high-confidence calls, once `mcp-cairn`'s warden kept its bare names `who`, `since` and `presence` through the messaging retirement (`8fa0ce5`). | 2026-11-17 | [Scope](standard-mcp-servers.md#2-scope), [Tool naming](standard-mcp-servers.md#43-tool-naming) | In force |
-| MCP-SURFACES | Where a server is turned on belongs to the Environment guild's binding skills: the cross-surface enablement standard's rules not already in `ki-env-binding` or `ki-env-binding-claude` moved there after a line-by-line check, and the claude.ai connector control standard moved whole into `ki-env-binding-claude` with its four sources; this skill keeps only what an MCP repository ships, with a pointer. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a, from the summit's change 10. Reversible; Kris can overturn it. | 2026-11-19 | [Scope](standard-mcp-servers.md#2-scope) | In force |
-| MCP-INVENTORY | The 24 September 2026 inventory of shared utility code, its conclusions, exact-copy clusters and repository matrix, a dated finding, moved out of the shared-code standard into the [inventory report](report-20260924-mcp-shared-code-inventory.md) beside it; the standard keeps the managed profile contract and migration sequence, which read whole without the matrix, and points at the report. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a, from the summit's change 10. Reversible; Kris can overturn it. | 2026-11-19 | [MCP shared-code standard](standard-mcp-shared-code.md) | In force |
-| REPO-OTHERS | Option a: `ki-repo-mcp` stays, and `mcp-cairn` joins its server lists and the tool-prefix table, its bare `who`, `since` and `presence` declared under TOOL-EXCEPTION. Kris, 22 November 2026, about 21:13 GMT, the Repository guild's sitting, card: "Take the top homes"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [4.3](standard-mcp-servers.md#43-tool-naming) | In force |
-
-[Back to contents](#contents)
-
-## 4. Last review
-
-REFRESH ran **2026-11-23** for Gilder's overnight sources sweep. Every listed source was re-fetched or re-read; no standard, rubric or item module was changed.
-
-- **SPEC / CHANGELOG:** 2026-07-28 is still the latest released revision; the docs index carries a `draft` revision but no newer dated one. The changelog also records `subscriptions/listen` replacing the HTTP GET stream and `resources/subscribe`, removal of `notifications/elicitation/complete`, issuer-bound client credentials (SEP-2352), and the deprecation of HTTP+SSE, the `includeContext` values and dynamic client registration. The spec index now names Tasks, Skills over MCP and MCP Apps as extensions.
-- **SDK:** `@modelcontextprotocol/server`, `client` and `core` are at **2.4.0** (2026-10-23) and the v1 SDK at **1.32.2**. 2.4.0 adds Skills over MCP (SEP-2640, experimental `attach`), rejects `x-mcp-header` on `number` parameters with `-32020`, stops wrapping `.meta({ id })` output schemas in `{ result }` on 2025-11-25 connections, and adds opt-in `scope` on token refresh for Entra ID (`AADSTS90009`), relevant to `mcp-m365`.
-- **TOOLS / SEC / AUTH:** the 2025-11-25 pages are unchanged in substance.
-- **LOCAL-SEC:** added. The 2026-07-28 docs publish a Local Server Security guide; it is operator guidance for the house's own stdio servers, advisory only.
-- **COMMUNITY / REGISTRY:** the annotations post is unchanged, same five SEPs. The GitHub registry now lists 896 servers, still with no curation or protocol requirement.
-- **Source distribution:** SemVer 2.0.0 current; `git tag` still last updated in 2.55.0; GitHub immutable releases unchanged, now advising a draft first so every asset is attached before lock; Bun unchanged, `bun ci` as the frozen-lockfile shorthand.
-- **REPOS / CLAUDE:** the six v2 siblings declare `@modelcontextprotocol/server` and `client` **2.4.0**, current; `mcp-acquire-whatsapp` and `mcp-housekeeping-chatgpt` declare the v1 SDK `^1.32.2`. `mcp-git-audit` and `mcp-m365` AGENTS.md now declare 2026-07-28, so the profile-declaration drift of 2026-10-18 is resolved (`mcp-ki-kb-notion-mirror` is deleted). `mcp-cairn` has no local checkout here and was not scanned.
+The latest review, on 23 November 2026, re-fetched or re-read every listed source and found the standards, rubric and item modules still follow them. 2026-07-28 is still the latest released MCP revision, the TypeScript SDK is at 2.4.0 and the v1 SDK at 1.32.2, the 2025-11-25 TOOLS, SEC and AUTH pages and the source-distribution references are unchanged in substance, and LOCAL-SEC joined the advisory sources. The six v2 sibling repositories declare the current SDK and the 2026-07-28 profile; `mcp-acquire-whatsapp` and `mcp-housekeeping-chatgpt` stay on the v1 SDK.
 
 **Watching:**
 
 - Add 2026-07-28 TOOLS, SEC and AUTH rows beside the 2025-11-25 ones and make the structured-output rule profile-dependent: every v2 server now declares 2026-07-28, so the 2025-11-25 pages no longer describe most of the fleet. Assess the error-code range and cacheable-result fields for that profile; deterministic ordering is already codified.
 - Migration of the two v1 repositories, and `mcp-cairn`'s SDK pin and profile when a checkout is available.
+- The majority basis counts seven declaring servers and has not been recounted since `mcp-cairn` joined the server lists.
 - Skills over MCP (SEP-2640): an extension the SDK now ships; watch whether it touches server shape.
-- Unchanged: rate limiting for any future remote server, and the open annotation vocabulary proposals.
+- Rate limiting for any future remote server, and the open annotation vocabulary proposals.
 
-On 22 November 2026 REPO-OTHERS a, recorded under [Decisions](#3-decisions), added `mcp-cairn` to the server lists in `SKILL.md` and [the server standard](standard-mcp-servers.md), and to [the tool-prefix table](standard-mcp-servers.md#43-tool-naming) with its declared exceptions. The majority basis under MCP-BASIS was not recounted. No rule changed and no outside source was refreshed.
-
-On 19 November 2026 MCP-INVENTORY, recorded under [Decisions](#3-decisions), moved the shared-code standard's 24 September inventory, sections 4.1 to 4.4, into a [dated report](report-20260924-mcp-shared-code-inventory.md); the managed profile contract and migration sequence are now 4.1 and 4.2, the rubric's link following. No criterion changed and no outside source refreshed.
-
-On 19 November 2026 MCP-SURFACES, recorded under [Decisions](#3-decisions), moved the two surface standards to the Environment guild: `standard-cross-surface-enablement.md` is gone, what it held beyond `ki-env-binding` and `ki-env-binding-claude` now in them, and `standard-claude-ai-connectors.md` is `ki-env-binding-claude`'s, its four sources with it, so this file no longer lists them. `SKILL.md` and the server standard point there. No criterion changed and no outside source refreshed.
-
-On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
-
-On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: `standards-mcp-servers.md`, `standards-mcp-shared-code.md`, `standards-mcp-distribution.md`, `standards-cross-surface-enablement.md` and `standards-claude-ai-connectors.md` were renamed [`standard-mcp-servers.md`](standard-mcp-servers.md), [`standard-mcp-shared-code.md`](standard-mcp-shared-code.md), [`standard-mcp-distribution.md`](standard-mcp-distribution.md), `standard-cross-surface-enablement.md` and `standard-claude-ai-connectors.md` and reshaped to the standard format with their rules unchanged, and this file to the sources format. The server standard's Applicability now opens its Scope and its sections 1 to 14 are Rules 4.1 to 4.14, its cross-references following; the connector standard's own Sources list moved here as advisory sources. The rubric's source names, SKILL.md and the mode files follow. No rule changed and no outside source was refreshed.
-
-On 17 November 2026 an in-house review applied TOOL-EXCEPTION, recorded under [Decisions](#3-decisions) and carried from the Cairn summit's change 15: `[skills.ki-repo-mcp]` accepts `tool-name-exceptions`, `KI-CONFIG` validates it, and `TOOL-1` no longer warns for a declared name. `mcp-cairn`, which has declared `[skills.ki-repo-mcp]` since MCP-TRIM, declares its three bare names. No outside source refreshed.
-
-On 17 November 2026 an in-house review corrected the server names, resolving the name half of the 2026-10-18 watch-item. The standard, `SKILL.md` and the tool-prefix table had carried names mangled by an old search-and-replace (`mcp-ki-repo-kb-fs` for `mcp-ki-kb-fs`) and the Notion mirror, which Kris deleted on 26 October 2026. They now list the seven servers that declare `[skills.ki-repo-mcp]`, adding `mcp-housekeeping-chatgpt` (`chatgpt`, `codex`) and `mcp-acquire-whatsapp` (`whatsapp`); `mcp-cairn` declares no `.ki.toml` and keeps literal tool names, so it is not listed. The naming examples now use real tools, §3 says how `mcp-ki-kb-fs`'s `kb_<action>` tools fit, and §4's access-level divergence names `mcp-acquire-whatsapp`'s `destructive` default in place of the mirror's. Later that day KB-NAMES, WA-DEFAULTS and MCP-BASIS, recorded under [Decisions](#3-decisions), settled the rest: §3 states the `kb` naming exception, §4's divergence line accepts the WhatsApp defaults, and all seven declaring servers form the majority basis, which resolves the 2026-10-18 watch-item. No outside source refreshed.
-
-On 17 November 2026 an in-house review applied MCP-TRIM a, which Kris took that day, relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/658d48f/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions): [§1's `mcp-server/` line](standard-mcp-servers.md#41-project-layout) said to connect a `StdioServerTransport`, while §12's modern profile, which six of the seven local servers use (`mcp-git-audit`, `mcp-ki-kb-fs`, `mcp-gsuite`, `mcp-m365`, `mcp-housekeeping-claude` and `mcp-cairn`), passes a per-connection server factory to `serveStdio`. §1 now says so, keeping `StdioServerTransport` for a server still on the legacy profile, as `mcp-acquire-whatsapp` is. No outside source refreshed.
-
-On 16 November 2026 an in-house review applied MCP-AGENTS a, which Kris took that day at about 16:22 GMT, relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/658d48f/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions): the standard's [§11](standard-mcp-servers.md#411-docs) names root `AGENTS.md` as the home of a server's architecture invariants and security requirements, imported by a `CLAUDE.md` that keeps only what is Claude's own, and the audit procedure, the docs judgement item and the CLAUDE row follow. The MCP repositories' own invariant sections are not trimmed here. The file keeps its older shape until its guild's review.
-
-REFRESH last ran **2026-10-18** under KI-HARNESS-GOV-194. Every row was re-fetched, and the sibling repositories were re-scanned locally.
-
-- **SPEC / CHANGELOG:** 2026-07-28 is still the latest released revision, with no newer revision or release candidate listed. Its changelog now also records an error-code allocation policy (`-32000` to `-32019` implementation-defined, `-32020` to `-32099` reserved, with three renumbered codes), deterministic `tools/list` ordering (SHOULD), required `ttlMs` and `cacheScope` on cacheable results, and the deprecation of Roots, Sampling and Logging under a twelve-month feature lifecycle. These sharpen the 2026-07-28 profile watch-item; none touches the 2025-11-25 profile.
-- **SDK:** `@modelcontextprotocol/server`, `client` and `core` remain at **2.3.1** (2026-10-05) and the v1 SDK at **1.32.1**, with no newer release. 2.3.0 enforces one server per connection, which the per-connection `serveStdio` factory already satisfies.
-- **TOOLS / SEC / AUTH:** the 2025-11-25 pages are unchanged since 2026-10-06.
-- **COMMUNITY / REGISTRY:** the annotations post is unchanged and still lists SEP-1913, 1984, 1561, 1560 and 1487. The GitHub registry lists 490 servers and states no curation or protocol requirement, so it stays discovery evidence only.
-- **Source distribution:** SemVer 2.0.0 is current; the `git tag` manual is unchanged since Git 2.55.0; GitHub release guidance adds immutable releases, which lock assets and the tag but leave the latest-release flag editable; Bun still requires a committed text `bun.lock` and does not freeze the lockfile in CI unless asked, with `bun ci` as the shorthand.
-- **REPOS / CLAUDE:** all six original siblings still declare `@modelcontextprotocol/server` 2.3.0, one patch behind; `mcp-acquire-whatsapp` and `mcp-housekeeping-chatgpt` still declare the v1 SDK `^1.32.0`. `mcp-git-audit` (AGENTS.md line 31), `mcp-ki-kb-notion-mirror` (line 21) and `mcp-m365` (now line 109) still declare the 2025-11-25 profile while running the v2 package.
-- **Retired:** the [NSA/CISA MCP security CSI][csi] returned HTTP 403 again, as on 2026-10-06, and the CISA resources listing offered no alternative host. It was an external restatement of server hardening that no standard or rubric clause cites, so its row is retired rather than left to keep the skill permanently overdue. Re-add it if a reachable host is found. The owner kept it retired on 2026-10-18 (CSI-HOST).
-
-**Watching:**
-
-- Add 2026-07-28 TOOLS, SEC and AUTH rows beside the 2025-11-25 ones, make the structured-output rule profile-dependent, and assess the new error-code range, deterministic tool ordering and cacheable-result fields for the 2026-07-28 profile.
-- Track the three AGENTS.md profile declarations above, sibling pins against SDK 2.3.1, and migration of the two v1 repositories.
-- Unchanged: rate limiting for any future remote server, and the open annotation vocabulary proposals.
-
-REFRESH ran **2026-10-06**. Every row was re-fetched except the NSA/CISA CSI, which returned HTTP 403 and kept its 2026-06-21 date.
-
-- **SPEC / CHANGELOG:** 2026-07-28 is still the latest released revision, with no newer revision or release candidate; its changelog is unchanged.
-- **SDK:** `@modelcontextprotocol/server`, `client` and `core` are at **2.3.1** (2026-10-05), with new `server-legacy`, `codemod` and `node` packages; the v1 `@modelcontextprotocol/sdk` is at **1.32.1**.
-- **TOOLS:** the 2025-11-25 tool shape is unchanged apart from a note that `structuredContent` is unrelated to LLM structured outputs. The 2026-07-28 page adds `resultType`, input-required tool results, `x-mcp-header` and stateful tools, and allows `structuredContent` to be any JSON value rather than an object.
-- **SEC:** content verified at its new `/docs/2025-11-25/tutorials/security/` URL. Its OAuth authorization-URL validation and stdio-proxy sections (February 2026) are client and proxy obligations. The 2026-07-28 version adds SSRF against authorization servers, mix-up attacks, localhost redirect impersonation and CIMD trust policies, and renames session hijacking.
-- **AUTH:** 2025-11-25 prefers Client ID Metadata Documents and keeps dynamic client registration for backwards compatibility. RFC 9207 `iss` validation and `application_type` appear only in 2026-07-28, which also deprecates dynamic client registration.
-- **COMMUNITY:** the annotations post (2026-03-16) still treats annotations as untrusted hints and lists open proposals SEP-1913, 1984, 1561, 1560 and 1487.
-- **REPOS:** all six original siblings declare `@modelcontextprotocol/server` 2.3.0, one patch behind; the `mcp-ki-kb-fs` structured-output gap is resolved, and `mcp-m365` declares `outputSchema` only on tools that emit `structuredContent`, by design. The fleet now also includes three v1 repositories.
-- **CLAUDE:** `mcp-git-audit` (AGENTS.md line 31), `mcp-ki-kb-notion-mirror` (line 21) and `mcp-m365` (line 106) still declare the 2025-11-25 profile while running the v2 server package, contradicting the package-derived profile rule.
-
-REFRESH last ran **2026-09-02** for the profile reanchor. The official specification index still resolves to **2026-07-28**, its changelog still requires `server/discover` and result discriminators, and the TypeScript SDK release surface still publishes the v1 SDK alongside the v2 server and client package families.
-
-The accepted `mcp-git-audit` pilot proves the modern package boundary: `@modelcontextprotocol/server` 2.0.0, a per-connection `serveStdio` factory, SDK-owned discovery, and `resultType: "complete"` helpers. The five inspected legacy siblings still declare `@modelcontextprotocol/sdk` 1.30.x. The standard therefore selects a package-derived profile instead of making modern-only requirements universal or adding a claimable configuration switch.
-
-The former reanchor watch-item is resolved. Remaining watch-items are rate limiting for any future remote server, uneven structured-output adoption, and proposed annotation vocabulary changes.
-
-REFRESH last ran **2026-07-29**. SDK availability was rechecked on **2026-07-30**. Latest released spec revision: **2026-07-28** (published 2026-07-28, confirmed live). The TypeScript SDK's released v2 package family supports that revision; the six sibling repositories remain on the 1.x package and therefore still deliver 2025-11-25 pending a governed migration decision.
-
-**The staged re-anchor fired.** The live spec index (SPEC) now names **2026-07-28** as `(latest)`, so the watch-item carried since 2026-07-04 is resolved and retired. The RC shipped on its target date.
-
-**Confirmed changed** — the 2026-07-28 changelog (CHANGELOG) lands the staged set and more: MCP becomes stateless (the `initialize` / `notifications/initialized` handshake removed, SEP-2575); protocol sessions and `Mcp-Session-Id` removed from Streamable HTTP (SEP-2567); a new `server/discover` RPC that servers **MUST** implement to advertise protocol versions, capabilities, and identity; **every result now carries a required `resultType`** (`"complete"`, or `"input_required"` for Multi Round-Trip interim results, SEP-2322), which replaces server-initiated `roots/list` / `sampling/createMessage` / `elicitation/create`; `ping`, `logging/setLevel`, and `notifications/roots/list_changed` removed; Tasks moved out of core into an official extension (SEP-2663); SSE resumability and message redelivery removed; an `extensions` field on client and server capabilities; and cacheable list/read results.
-
-**Why the standard does not re-anchor §12–13 to it yet** — the TypeScript SDK now ships v2 packages with 2026-07-28 support, including explicit migration guidance from `@modelcontextprotocol/sdk` v1.x. The six sibling repositories still declare `@modelcontextprotocol/sdk` 1.x and serve stdio through the legacy entry point. The new standard is therefore available but not yet selected: re-anchoring before a pilot proves the v2 migration would make the existing fleet fail without a delivery path. The active GOV-006 item owns that rollout decision; the source list records the evidence, not a false upstream block.
-
-TOOLS/SEC/AUTH and the Community/In-house rows were not re-fetched this pass (fixed dated artifacts, verbatim-confirmed 2026-06-21); their `last reviewed` cells are unchanged. SPEC and CHANGELOG remain current from 2026-07-29; the SDK release surface was verified on 2026-07-30.
-
-**Watch-items open then:**
-
-- **Re-anchor §12–13 + §4 to 2026-07-28 through a v2 migration pilot.** SDK support is available; select the rollout profile before making the new protocol requirements universal. The required `resultType` touches each repo's shared `jsonResult` / `errorResult` envelope helpers, and `server/discover` changes the stdio entry point. For the auth repos, assess RFC 9207 `iss` + DCR `application_type` under the selected profile.
-- Rate-limiting is a spec MUST kept lower-priority for local stdio servers (revisit if one goes remote).
-- **Structured output is now partly adopted, unevenly.** `mcp-git-audit`, `mcp-gsuite`, `mcp-m365`, `mcp-ki-kb-notion-mirror`, and `mcp-housekeeping-claude` declare `outputSchema`; **`mcp-ki-kb-fs` declares none while its shared `jsonResult` emits `structuredContent` for every tool**, which is the WARN condition in §12. (Supersedes the retired "no repo yet declares `outputSchema`" item.)
-- Five proposed annotation SEPs (`unsafeOutputHint`, `secretHint`, `trustedHint`, trust/sensitivity, governance/UX) still Draft — gate's four-hint vocabulary stable, no action; watch for any landing in a released spec.
-
-(What past reviews changed in the standard / checklist / native rubric — structured output, the OAuth security invariants, tool-name charset bounds, output sanitization, the relaxed tool-name regex — is in git.)
+[Back to contents](#contents)
 
 [spec]: https://modelcontextprotocol.io/specification
 [changelog]: https://modelcontextprotocol.io/specification/2026-07-28/changelog
@@ -205,7 +113,6 @@ TOOLS/SEC/AUTH and the Community/In-house rows were not re-fetched this pass (fi
 [sec]: https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices
 [auth]: https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization
 [annotations]: https://blog.modelcontextprotocol.io/posts/2026-03-16-tool-annotations/
-[csi]: https://www.nsa.gov/Portals/75/documents/Cybersecurity/CSI_MCP_SECURITY.pdf
 [github-mcp]: https://github.com/mcp
 [local-sec]: https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/local-server-security
 [semver]: https://semver.org/

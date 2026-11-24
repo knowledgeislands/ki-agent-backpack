@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:45:51Z
+ki-document-type: sources@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -15,8 +15,7 @@ ki-refresh: external-spec · quarterly
     - [2.1.2 Format tooling](#212-format-tooling)
     - [2.1.3 House convention](#213-house-convention)
     - [2.1.4 Direct observation](#214-direct-observation)
-- [3. Decisions](#3-decisions)
-- [4. Last review](#4-last-review)
+- [3. Last review](#3-last-review)
 
 ## 1. Introduction
 
@@ -92,7 +91,7 @@ The n=1 case study, not chezmoi.io-sourced.
 
 ‡ Editor selection, missing-key handling, preservation fixtures, and idempotence.
 
-‖ The five-part header Kris agreed on 30 October 2026 and asked on 7 November 2026 to adopt into this skill; HEADER-1 found every one of the source's 44 scripts in scope carrying it on 7 November 2026.
+‖ The house's five-part script header; HEADER-1 found every one of the source's 44 scripts in scope carrying it on 7 November 2026.
 
 [Back to contents](#contents)
 
@@ -111,45 +110,10 @@ Measured, not documented.
 
 [Back to contents](#contents)
 
-## 3. Decisions
+## 3. Last review
 
-One decision is recorded by id below. Kris's two earlier decisions behind the rules are quoted in the standard beside the rules they set: the five-part [script header](standard-chezmoi-dotfiles.md#44-script-headers) he agreed on 30 October 2026 and asked on 7 November 2026 to adopt into this skill, and the source's having no commit gate, set on 20 October 2026, under the [Git boundary](standard-chezmoi-dotfiles.md#410-git-boundary) and ADR-KI-HARNESS-SKILLS-017.
+The latest review, on 23 November 2026, re-read every documentation source and the case-study repository; the measured claims were not re-measured, since the installed chezmoi is still v2.74.1, the version they were measured on. The chezmoi.io pages read as the standard says, and chezmoi's releases up to v2.74.2 change no rule here; the format-tooling sources and the house convention's loader, `bin/`, templating and layering patterns stand. All 46 scripts HEADER-1 covers carry the five-part header.
 
-| Id | Decision | Date | Backs | Status |
-| --- | --- | --- | --- | --- |
-| HOOK-HOME a | Chezmoi's hook-registration rule lives in `ki-env-binding-chezmoi`, whose scope widens to KI bindings, MCP servers and hooks; `ki-repo-backpack` keeps the payloads, and `ki-repo-dotfiles-chezmoi` 4.10 and `ki-git`'s five mentions point there. Kris, 22 November 2026, about 21:18 GMT, the Environment guild's sitting, card: "ki-env-binding-chezmoi"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [Git boundary, 4.10](standard-chezmoi-dotfiles.md#410-git-boundary) | In force |
-
-[Back to contents](#contents)
-
-## 4. Last review
-
-Scheduled REFRESH, **2026-11-23**, from the overnight sources refresh — every documentation source re-read and the case-study repo re-read; the measured claims were not re-measured, since the installed chezmoi is still v2.74.1, the version they were measured on.
-
-- **chezmoi.io sources**: confirmed. The prefix order for each kind of entry, `private_` and no `executable_` on a directory read as the standard now says; `.chezmoiignore` still says every exclude beats every include and still does not document negation through an ignored parent; `run_onchange_` still hashes the rendered content; `status` still recurses by default; `doctor` and `source-path` are unchanged. chezmoi has reached v2.74.2: 2.74.0 removed the deprecated `remove` command, which the standard does not use, and added a skip-conflicts choice to `apply`; 2.73.2 stopped reading `.chezmoidata` inside `external_` directories. None changes a rule here.
-- **Format-tooling sources**: confirmed. TOMLKit 0.15.2 keeps its one ordering limitation, `jsonc-parser`'s `modify` is unchanged with 3.3.1 still the latest release, the ruamel.yaml anchors resolve and the round-trip and indentation limits read as before, and `uv run --with` and `--no-project` are unchanged.
-- **House-convention source**: the loader, `bin/`, templating and layering patterns stand, and its TOML binding is still a `modify_` binding using tomlkit through `uv`. All 46 scripts HEADER-1 covers carry the five-part header. The five `modify_` fragment bindings, bash scripts that chezmoi runs, fall outside HEADER-1's scope and carry no Created line; a proposal asks whether the rule should cover them.
-
-On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied HOOK-HOME a, recorded under [Decisions](#3-decisions): [the Git boundary, 4.10](standard-chezmoi-dotfiles.md#410-git-boundary) now points to `ki-env-binding-chezmoi` for chezmoi's hook registration. No criterion changed and no outside source refreshed.
-
-On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
-
-On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the chezmoi dotfiles standard](standard-chezmoi-dotfiles.md), formerly `standards-chezmoi-dotfiles.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format, its four source groups now sub-groups of Authoritative. SKILL.md, the rubric items and the rubric follow the new name and anchors. No rule changed and no outside source was refreshed.
-
-Focused review, **2026-11-17**: the source state attributes page re-read, and the two points the 15 November refresh raised were measured on chezmoi v2.74.1 in a scratch source and destination. The page sets a fixed prefix order for each kind of entry and allows no `executable_` on a directory; `executable_dot_bad/` applied as a literal directory named `executable_dot_bad`, so the standard's old example did not do what it said. `private_` removes group and world permissions, and `dot_bash/private_executable_secrets.tmpl` applied as `~/.bash/secrets` at mode `0700`, not `0600`. The standard's prefix table and example now follow the page, and those two watch points are closed.
-
-Scheduled REFRESH, **2026-11-15** — every outside source re-read, the measured claims re-measured on chezmoi v2.74.1, and the case-study repo re-read.
-
-- **chezmoi.io sources**: confirmed. Two pages had moved: `.chezmoiignore` now sits under `special-files/`, and the scripts reference has become the user guide page "Use scripts to perform actions". The attributes link pointed at the target-types page, so it now points at the source state attributes page its row names. The prefixes, `run_onchange_` re-running on changed rendered content, `.chezmoidata` and `.chezmoitemplates`, `doctor`, `status` recursing by default, and `source-path`/`target-path` all read as the standard says. `.chezmoiignore` still does not document negation through an ignored parent, but its rule that every exclude beats every include agrees, and a sandbox test confirmed it.
-- **Format-tooling sources**: confirmed. The ruamel.yaml section anchors are now case-sensitive and were corrected. TOMLKit keeps its one ordering limitation, `jsonc-parser`'s `modify` still creates missing properties, and `uv run --with` and `--no-project` are unchanged.
-- **House-convention and observed sources**: the case-study repo still shows the loader, `bin/`, templating and layering patterns, and its TOML binding still uses tomlkit through `uv`. It is now a `modify_` binding, the standard's Pattern C, rather than a post-apply patch. `chezmoi apply` still replaced the target's inode, and `chezmoi diff <dir>` still printed nothing without `-r`. The standard now records v2.74.1 beside its earlier versions. `rg -a` still recovered setting names from the same application's binary, though `nm -a` yielded little. The script-header row was not re-checked and keeps 7 November.
-- **Watching**: the source state attributes page says prefixes must come in a fixed order for each kind of entry, and allows no `executable_` on a directory. The standard's prefix example, `executable_dot_bash/private_secrets.tmpl`, and its "mode `0600`" for `private_` (the page says it removes group and world permissions) were raised with the owner rather than changed, and fixed on 2026-11-17 (above).
-
-Focused format-editor promotion, **2026-07-16** — the surgical config-editing heuristic proven in the case-study repo was generalized into the standard and bounded by the selected editors' primary documentation.
-
-- **chezmoi.io sources**: not re-fetched in this focused review; their last-reviewed dates remain 2026-07-12.
-- **Format-tooling sources**: TOMLKit, ruamel.yaml, Microsoft `jsonc-parser`, and uv documentation fetched and reviewed 2026-07-16. The standard records documented preservation behavior and explicit limits rather than promising universal byte identity.
-- **House-convention source**: the same single case study, explicitly not treated as a corpus. Its TOML fixture demonstrated a byte-stable no-op round trip and missing-key creation for that file and tool version; those observations became verification requirements, not universal tool guarantees. A version-specific `dasel` limitation and the time-sensitive claim that JSON5 lacks mature tooling were deliberately not promoted. Re-confirm every `[J]` criterion once a second and third chezmoi repo have been audited against this skill; narrow or retire anything that proves case-specific.
-
-**Watching:** whether the script-header rule should cover `modify_` scripts, as proposed on 2026-11-23; a second and third chezmoi repository audited against this skill, to confirm or narrow every `[J]` criterion, and the measured claims on another platform or a materially newer chezmoi.
+**Watching:** whether the script-header rule should cover the five `modify_` fragment bindings, bash scripts chezmoi runs that carry no Created line; a second and third chezmoi repository audited against the skill, to confirm or narrow every `[J]` criterion; and the measured claims on another platform or a materially newer chezmoi.
 
 [Back to contents](#contents)

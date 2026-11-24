@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:45:51Z
+ki-document-type: sources@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-refresh: canonical · quarterly
 ---
 
@@ -12,8 +12,7 @@ ki-refresh: canonical · quarterly
 - [2. Outside sources](#2-outside-sources)
   - [2.1 Authoritative](#21-authoritative)
   - [2.2 Advisory](#22-advisory)
-- [3. Decisions](#3-decisions)
-- [4. Last review](#4-last-review)
+- [3. Last review](#3-last-review)
 
 ## 1. Introduction
 
@@ -81,31 +80,13 @@ None.
 
 [Back to contents](#contents)
 
-## 3. Decisions
+## 3. Last review
 
-| Id | Decision | Date | Backs | Status |
-| --- | --- | --- | --- | --- |
-| DESIGN-SETTLED | “`ki-design-inspiration` stays its own process skill, its description widened from websites to app and component work” (settled by Kitteth within remit under CONFIDENCE-FIRST, 23 November, about 00:45 GMT, the Design guild's sitting, from its brief, which put no question to Kris). Recorded in the Cairn summit's [change 10, 4.3](https://github.com/krisb/ki-cairn-store/blob/42f99d6f7b9aedbc96610af382d6985b6cb6e993/work/cairn/cairn.summit/10-skills-review.change.md#43-decided). | 2026-11-23 | [the skill's description](../SKILL.md) | In force |
-
-[Back to contents](#contents)
-
-## 4. Last review
-
-On 23 November 2026 the overnight sources refresh re-checked all nineteen sources: each landing page answered and still serves the subject its routing note gives. 404s now redirects from `www.404s.design` to `404s.design`, so the link follows it; 60fps describes itself as iOS app interactions, and MotionSites shows a paid tier, so both routing notes say so. Dribbble's tag page refused the direct fetch with a bot check; its indexed listing confirmed the tag still gathers website shots.
+The latest review, on 23 November 2026, re-checked all nineteen sources: each landing page answered and still serves the subject its routing note gives. 404s now redirects from `www.404s.design` to `404s.design`, so its link follows; 60fps describes itself as iOS app interactions and MotionSites shows a paid tier, and both routing notes say so. Dribbble's tag page refused a direct fetch with a bot check, and its indexed listing confirmed the tag still gathers website shots. Individual designs, videos, responsive states and member-only content are not evaluated in a source-list review; assess them when selecting examples for a concrete brief.
 
 **Watching:**
 
-- Dribbble blocks direct fetches; a future review may again rely on indexed content.
-
-On 18 November 2026 the Design guild's review, from the Cairn summit's change 10, brought this file into the sources format: its source map became the Advisory sources with every URL and review date kept, followed by its routing notes, and its review notes run newest first. No source was re-examined.
-
-On 2026-09-25, Realtime Colors, Utopia, WebAIM Contrast Checker, and Happy Hues were checked for live interface preview, fluid type and spacing, WCAG contrast, and contextual palette exploration respectively.
-
-On 2026-09-24, the OKLCH landing page was checked for its picker, converter, palette, gamut, fallback, and three-dimensional visualisation surfaces.
-
-On 2026-09-24, the Prefetch and Coolors landing-page descriptions were checked for their brand-data and palette-generation purposes.
-
-The review checked public landing-page text and source metadata for subject and routing, including Awwwards, Recent's dedicated Websites gallery, the selected Dribbble tag, and CSS Design Awards. Bento Grids returned no readable text in the direct fetch; indexed content from the same domain supplied the collection description. Individual designs, videos, responsive states, and member-only content were not visually evaluated as part of this source-list review. Assess them when selecting examples for a concrete brief.
+- Dribbble blocks direct fetches, so a future review may again rely on indexed content.
 
 [Back to contents](#contents)
 

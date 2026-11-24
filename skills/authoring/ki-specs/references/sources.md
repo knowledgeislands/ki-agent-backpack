@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T20:59:09Z
+ki-document-type: sources@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-refresh: canonical · on-change
 ---
 
@@ -12,8 +12,7 @@ ki-refresh: canonical · on-change
 - [2. Outside sources](#2-outside-sources)
   - [2.1 Authoritative](#21-authoritative)
   - [2.2 Advisory](#22-advisory)
-- [3. Decisions](#3-decisions)
-- [4. Last review](#4-last-review)
+- [3. Last review](#3-last-review)
 
 ## 1. Introduction
 
@@ -46,26 +45,8 @@ The initial `vallearmonia-website/docs/specs/` sample has no reproducible immuta
 
 [Back to contents](#contents)
 
-## 3. Decisions
+## 3. Last review
 
-The standard rests on the BCP 14 pair and the house conventions it states, and on one owner decision recorded by id below. Serial scope and applicability remain owner-gated policy questions.
-
-| Id | Decision | Date | Backs | Status |
-| --- | --- | --- | --- | --- |
-| AUTHORING-FIXES | Option a, item 3: the bare-invocation mode choice is offered through the host's question tool, so the skill names no tool only one host has. Kris, 22 November 2026, about 20:14 GMT, the Authoring guild's sitting in Kitteth's Home Chat, card: "Keep all, fix", recorded in the Cairn summit's change 10, 4.3. | 2026-11-22 | `SKILL.md`, Operating modes | In force |
-
-[Back to contents](#contents)
-
-## 4. Last review
-
-On 22 November 2026 AUTHORING-FIXES a, item 3, was applied by Loreward: the skill's words name the host's question tool where they named Claude's `AskUserQuestion`. No criterion changed and no outside source was refreshed.
-
-On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Authoring guild: REFRESH names the backpack as where to run it. No criterion changed and no outside source refreshed.
-
-On 18 November 2026 the Authoring guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Specifications standard](standard-specs.md), formerly `standard-specs.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format. The rubric's source names follow. No rule changed and no outside source was refreshed.
-
-- 2026-08-12 — Refreshed the BCP 14 authority pair. RFC 8174 confirms uppercase-only interpretation and `NOT RECOMMENDED`; the local standard and checker now name the pair. Demoted the unpinned reference corpus to supporting discovery. Serial scope and applicability remain owner-gated policy questions, not source-derived mechanics.
-
-**Watching:** none.
+The latest review, on 22 November 2026, confirmed that the standard still follows the BCP 14 pair, with no criterion changed. The outside sources were last refreshed on 12 August 2026, when RFC 8174 was confirmed to give the uppercase-only reading and `NOT RECOMMENDED`, and the unpinned sample corpus was kept to supporting discovery only.
 
 [Back to contents](#contents)

@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T03:13:09Z
+ki-document-type: sources@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -12,12 +12,11 @@ ki-refresh: external-spec · monthly
 - [2. Outside sources](#2-outside-sources)
   - [2.1 Authoritative](#21-authoritative)
   - [2.2 Advisory](#22-advisory)
-- [3. Decisions](#3-decisions)
-- [4. Last review](#4-last-review)
+- [3. Last review](#3-last-review)
 
 ## 1. Introduction
 
-The sources behind [the bot practice standard](standard-bots.md). Its rules are the owner's decisions of 21 and 22 November 2026, recorded in the Cairn summit's [change 70][c70], and the practice the first store's bootstrap file for its bots put in use from that day; Orca's own documentation and command help govern only [4.11](standard-bots.md#411-on-orca).
+The sources behind [the bot practice standard](standard-bots.md). Its rules come from the Cairn summit's [change 70][c70] and the practice the first store's bootstrap file for its bots put in use from 22 November 2026; Orca's own documentation and command help govern only [4.11](standard-bots.md#411-on-orca).
 
 [Back to contents](#contents)
 
@@ -42,52 +41,19 @@ Orca's own references govern what the standard says about Orca; the first store'
 
 [Back to contents](#contents)
 
-## 3. Decisions
+## 3. Last review
 
-The owner's decisions behind the standard, each recorded in the Cairn summit's [change 70][c70], 4.6, at its commit `50e99f45`, and MEMORY-FEED b at [`16fdb159`][c70-16fdb159].
-
-| Id | Decision | Date | Backs | Status |
-| --- | --- | --- | --- | --- |
-| BOTS-STANDARDS | A bot follows the house standards; the work package, its change documents and the store stay the record, and the bot's own task list and memory are not. | 2026-11-21 | [4.1](standard-bots.md#41-the-hosts-grain), [4.6](standard-bots.md#46-memory-a-working-aid) | In force |
-| BOT-CONSTRAINTS a | The lighter set, about 15:07 GMT: the same rules, access and remit as a session, a peer's message never the owner's approval; routine wakes switched on freely, a new kind of automation mentioned to the owner first; no fallback session; the package the record and memory a working aid; no Family or legal bots until the trial goes well. | 2026-11-21 | [4.3](standard-bots.md#43-by-kind-of-wake), [4.5](standard-bots.md#45-mail-between-bots), [4.6](standard-bots.md#46-memory-a-working-aid), [4.9](standard-bots.md#49-wakes-and-automations) | In force |
-| BOT-BOOT a | About 16:18 GMT: the bootstrap every bot shares lives in a tracked file at the store's root, read and followed on every wake; each bot's own soul holds its purpose, the pointer, the worker line, its opener and thread line. | 2026-11-21 | [4.2](standard-bots.md#42-the-bootstrap-on-every-wake), [4.10](standard-bots.md#410-a-stores-own-instance) | In force |
-| BOT-WORK a | About 16:18 GMT, after a blind review that agreed: a bot does its own work; its background work goes to its own subagents under `ki-delegation`, and to the host's workers only when the owner asks; the host's default is overridden in the bot's own soul file. | 2026-11-21 | [4.4](standard-bots.md#44-background-work), [4.11](standard-bots.md#411-on-orca) | In force |
-| BOTS-GRAIN | A steer, about 16:18 GMT: go with the way the host's bots work wherever it does not conflict with the house standards; overriding the host is the exception, named each time. | 2026-11-21 | [4.1](standard-bots.md#41-the-hosts-grain), [4.9](standard-bots.md#49-wakes-and-automations) | In force |
-| BOTS-TALK | A steer, about 16:18 GMT: bots talk to each other by the host's mail, by name, the same way the actors did as sessions, with no notion of a session break. | 2026-11-21 | [4.2](standard-bots.md#42-the-bootstrap-on-every-wake), [4.5](standard-bots.md#45-mail-between-bots) | In force |
-| BOT-RECORD, ROSTER-SOUL, SOUL-ALL | About 10:28 and 16:27 to 16:29 GMT: each actor's roster folder holds its own `SOUL.md`, who and what it is and how it works; a bot's own files on its host only point there; everything common to bots is in the store-root bootstrap file and nowhere else. | 2026-11-21 | [4.2](standard-bots.md#42-the-bootstrap-on-every-wake), [4.10](standard-bots.md#410-a-stores-own-instance) | In force; BOT-RECORD revised by MEMORY-FEED b, with no roster `MEMORY.md` |
-| BOTS-WATCH | A steer, about 16:39 GMT: watch how bots actually work and keep the understanding current from it; go with bots' grain without getting tied to any one ecosystem. | 2026-11-21 | [4.1](standard-bots.md#41-the-hosts-grain) | In force |
-| PACKAGE-OUTSTANDING | A standing rule, about 23:55 GMT: every bot counts its work package as outstanding work, its open change documents' unticked steps and open questions, its Now and Held, alongside its host's items, whenever it reports what is outstanding, summarises or closes a turn. | 2026-11-21 | [4.7](standard-bots.md#47-the-work-package-counts-as-outstanding) | In force |
-| CARDS-PACED | A steer, 22 November 2026, about 00:32 GMT: "Not all of the questions need to go straight onto cards ... We need to go through them bit by bit with the change records." A card is for a question due soon, blocking work, or in the change being taken now. | 2026-11-22 | [4.8](standard-bots.md#48-questions-carded-when-due) | In force |
-| MEMORY-FEED b | Kris, about 16:02 GMT, on the question card in his home chat with the summit's lead, choosing "No roster file": no actor keeps a roster `MEMORY.md`; every lasting lesson goes to its owner, a skill, a standard, a package or the actor's own roster `SOUL.md`; a bot's host memory stays a per-host working aid, never copied into the store. It settles change 70's gap 8 and revises BOT-RECORD to drop the file. | 2026-11-22 | [4.6](standard-bots.md#46-memory-a-working-aid) | In force |
-| BOTS-GUILD | About 09:40 GMT on 21 November: "we need to put bots as a concept into our agentic systems one"; its scope set by the Cairn summit's guardian on 22 November 2026, about 00:25 GMT, in change 70's step 2, with host practice in `ki-delegation-orca` or a new member skill. A new member skill was chosen, since the practice holds on any host and is not delegation to Orca's workers, which BOT-WORK a sets aside. | 2026-11-22 | [the standard](standard-bots.md) | In force; landed for the owner's review |
-| NOTICE-DIGEST a | Kris, 22 November 2026, in the WAYS-APPLY reply block in Kitteth's Home Chat, reviewed blind at high: "no-action rule notices go to the bots as one digest when a batch of Kris's decisions closes, never one message per rule; rules bots must act on at once still go at once; the coordinator footer hook lets a bot end a status-only turn silently", recorded in the Cairn summit's [Bots (70), 4.6](https://github.com/krisb/ki-cairn-store/blob/48d8299393f28fa81e4ee6c7608de84e43230ca8/work/cairn/cairn.summit/70-bots.change.md#46-decided). It settles NO-REPLY-FOOTER. | 2026-11-22 | [On Orca](standard-bots.md#411-on-orca) | In force |
-| ORCA-WORKERS b | “b: `ki-delegation-orca` is retired; background work goes to each host's own subagents under `ki-delegation`, and if Kris later asks for Orca workers, Orca's own `orchestration` skill covers the commands; the skill folder goes, its mentions in `ki-delegation`, `ki-agentic-bots`, `ki-coordination`, the guild map and the catalogue are removed or repointed, any declaration is dropped, and `tools-ki`'s retired-name tolerance covers it; the bots' own use of Orca in `ki-agentic-bots` is unchanged (Kris, 22 November, about 22:45 GMT, the Agentic ecosystems guild's sitting, card: "Retire it")”, Cairn summit's change 10, 4.3, landed under step 6.3. Applied here: Orca workers a bot's owner asks for go to Orca's own `orchestration` skill; a bot's own use of Orca is unchanged. | 2026-11-22 | [SKILL.md](../SKILL.md), [Bots](standard-bots.md) | In force |
-
-[Back to contents](#contents)
-
-## 4. Last review
-
-On 23 November 2026, for Gilder's overnight sources sweep, Orca 1.4.269 on sol was re-read: its bot rules as written into each bot's files, and `orca bot`, `orca orchestration send` and `orca automations create` help. Every fact in [4.11](standard-bots.md#411-on-orca) still holds: Orca owns `AGENTS.md`, `CLAUDE.md` and `bot.json`; a memory line is removed only with `orca bot memory forget`; the hand-code-to-a-worker default yields to `SOUL.md`; `--chat new` starts a new chat; an automation runs in a new conversation by default; `--once --by` with no event is a one-time reminder; and a final message whose last word is `NO_REPLY` tells nobody. Orca has added `orca bot new-chat`, run only when the owner asks to start fresh, which reads `SOUL.md` and `MEMORY.md` again; automations that start on Slack, GitHub or Linear events, with `--runs-in` and `--results-to`; and @mention hand-offs in group rooms. Release 1.4.271, not yet on sol, journals closed items in a bot's memory and resumes open requests after a restart. A proposal to bring 4.11 up to 1.4.269 is with Gilder. The Cairn store's `BOTS.md` has moved on since `50e99f45`, adding worktree, paced-check, drafts-only and card-answering rules and noting what is not yet known; change 70 graduated with 4.2 unchanged.
-
-On 22 November 2026 NOTICE-DIGEST a, recorded under Decisions, was applied to Ending quietly: where `NO_REPLY` may stand, that the backpack's footer hook lets it through, and that no-action rule notices come as one digest. No criterion changed and no external source refreshed.
-
-On 22 November 2026 the second SKILLS-LEARNING batch, Kris's steer of that morning to bake the night's lessons into the skills, added one pitfall to [Questions carded when due](standard-bots.md#48-questions-carded-when-due): check a question's facts again just before carding it. No rule changed and no outside source was refreshed.
-
-On 22 November 2026 MEMORY-FEED b settled the one point [4.6](standard-bots.md#46-memory-a-working-aid) had left open: there is no roster `MEMORY.md`, a lasting lesson goes to its owner, and the host's memory is never copied into the store. The open point was removed from 4.6 and from Watching. No outside source was refreshed.
-
-On 22 November 2026 SKILLS-LEARNING, Kris's steer of that morning to bake the night's lessons into the skills, added one Orca recipe that the Cairn information architect found overnight to [On Orca](standard-bots.md#411-on-orca): a timed one-off automation takes `--once --by <ISO time>`, since `--once` with a cron fails. No rule changed and no outside source was refreshed.
-
-On 22 November 2026 the standard was first written under BOTS-GUILD, generalising the Cairn store's `BOTS.md` at `50e99f45` and the decisions above: the store's paths, packages and setup files were left to that store's instance, and Orca's mechanics kept to [4.11](standard-bots.md#411-on-orca), read from change 70's findings against Orca 1.4.267 on 21 November 2026. Orca's command help was not re-read for this draft.
+The latest review, on 23 November 2026, re-read Orca 1.4.269 on sol, its bot rules and its `orca bot`, `orca orchestration send` and `orca automations create` help, and found every fact in [4.11](standard-bots.md#411-on-orca) still holding. It also found that the Cairn store's `BOTS.md` has moved on since the version the standard generalised, adding worktree, paced-check, drafts-only and card-answering rules.
 
 **Watching:**
 
 - Orca's bots are in beta and changed in four releases over two days; [4.11](standard-bots.md#411-on-orca) is re-read against each release the bots run on. Sol runs 1.4.269; 1.4.271 is out.
+- What 1.4.269 added that [4.11](standard-bots.md#411-on-orca) does not yet say: `orca bot new-chat`, run only when the owner asks to start fresh, which reads `SOUL.md` and `MEMORY.md` again; automations that start on Slack, GitHub or Linear events, with `--runs-in` and `--results-to`; and @mention hand-offs in group rooms.
 - Orca 1.4.271's memory journal of closed items, and its note that work state lives in Items and the journal, beside [4.6](standard-bots.md#46-memory-a-working-aid) and [4.7](standard-bots.md#47-the-work-package-counts-as-outstanding), which keep the package as the record.
 - What `BOTS.md` still lists as not known: how long Orca keeps mail between bots, whether automations survive a restart, runs missed while the Mac sleeps, and how a Codex bot reads its files; and how group rooms' @mention hand-offs develop, with no convention adopted.
 
 [Back to contents](#contents)
 
 [c70]: https://github.com/krisb/ki-cairn-store/blob/50e99f45/work/cairn/cairn.summit/70-bots.change.md
-[c70-16fdb159]: https://github.com/krisb/ki-cairn-store/blob/16fdb159/work/cairn/cairn.summit/70-bots.change.md#46-decided
 [bots]: https://github.com/krisb/ki-cairn-store/blob/705a92dc/BOTS.md
 [orca]: https://github.com/stablyai/orca

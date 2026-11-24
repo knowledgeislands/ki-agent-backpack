@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T21:58:53Z
+ki-document-type: sources@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-refresh: canonical · on-change
 ---
 
@@ -12,8 +12,7 @@ ki-refresh: canonical · on-change
 - [2. Outside sources](#2-outside-sources)
   - [2.1 Authoritative](#21-authoritative)
     - [2.1.1 In-house repositories and reports](#211-in-house-repositories-and-reports)
-- [3. Decisions](#3-decisions)
-- [4. Last review](#4-last-review)
+- [3. Last review](#3-last-review)
 
 ## 1. Introduction
 
@@ -43,41 +42,10 @@ The reference repositories and the reports drawn from them.
 
 [Back to contents](#contents)
 
-## 3. Decisions
+## 3. Last review
 
-Kris's decisions behind the rules, each with where it was taken or recorded.
+The latest review, on 22 November 2026, confirmed that `packages-stoa` no longer keeps `consumers.json5` and that its workbench has moved to `apps/storybook/` with a `custom-elements.json`, as the standard asks. The in-house sources were last read on 17 November 2026, when `packages-stoa`'s decision record on its consuming sites and `packages-tessera`'s `AGENTS.md` both confirmed that a release sends no notice. No outside specification governs the standard.
 
-| Id | Decision | Date | Backs | Status |
-| --- | --- | --- | --- | --- |
-| REPO-SHAPE-PACKAGES | Kris's words of 7 November 2026 in ki.sop.main, routed to the harness work package `ki.reg.guilds`: "I think they're probably pretty similar to tools. It probably does mean that we should have a skill for whatever structure this thing might have. It seems like it's a new repo shape really, doesn't it?" They asked for this skill. | 2026-11-07 | [the standard](standard-package-repositories.md) | taken |
-| MIGRATION-OVERLAY | Held by the harness work package `ki.reg.guilds`, with the away-window grant under which this skill was written; it shapes [the migration overlay](migration-package-repositories.md) | 2026-11-07 | [the migration overlay](migration-package-repositories.md) | taken |
-| STOA-NO-CONSUMERS | Kris's words of 1 November 2026, sent to the Stoa work by HNR's sites State of play with its addendum: "There should be no reference out of Knowledge Islands to other territories", and consumers are found by "patterns that it knows about that would identify that it's been used" | 2026-11-01 | [4.8](standard-package-repositories.md#48-consumers) | taken |
-| STORYBOOK-APP | Recorded in the Cairn summit's change 14, the guilds change, in Kris's Cairn store: every package repository has `apps/storybook/`, built to static files, in place of `apps/workbench/`, chosen over Ladle, Histoire, React Cosmos and Pattern Lab, with Fluent UI's `apps/public-docsite-v9` as the model | 2026-11-14 | [4.4](standard-package-repositories.md#44-the-storybook) | taken |
-| ELEMENTS-MANIFEST | Recorded in the Cairn summit's change 14: each web component package publishes `custom-elements.json` from the Custom Elements Manifest analyser, as Spectrum Web Components and Shoelace do | 2026-11-14 | [4.5](standard-package-repositories.md#45-the-custom-elements-manifest) | taken |
-| ELEMENTS-MULTI | Recorded in the Cairn summit's change 14: a package repository may hold one package per layer, each copied and locked on its own | 2026-11-14 | [4.3](standard-package-repositories.md#43-several-packages) | taken |
-| COMPONENT-LIBRARY | Recorded in the Cairn summit's change 14: the words component library and web component library | 2026-11-14 | [1](standard-package-repositories.md#1-introduction) | taken |
-| PACKAGES-NOTICE a | Kris's decision relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/658d48f/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions): a release sends no notice, and each consumer finds a release with its own `drift` | 2026-11-17 | [4.9](standard-package-repositories.md#49-versions-and-releases) | taken |
-| ELEMENTS-NAME | Kris's words of 22 November 2026, relayed by Bastion via Kitteth. At about 07:45 GMT: "I think we should follow that as a convention ... It could also just be elements ... It would only need a prefix if we choose to split the elements up into subsets." Superseded at about 07:47 GMT: "perhaps having a prefix always would be good. So if it's called the same thing as the thing, for example, tower-elements or stoa-elements, then we know it replies to everything. Or it could be tower-something-elements if it's for a particular subset of the atomic design components." A web component package is named `<name>-elements`, or `<name>-<subset>-elements` for a subset, never plain `elements` | 2026-11-22 | [4.5](standard-package-repositories.md#45-the-custom-elements-manifest) | taken |
-| REPO-OTHERS | Option a: `ki-repo-packages` stays; its small fixes drop the two met lines of [the migration overlay](migration-package-repositories.md) and the "only package repository" line in `SKILL.md`, now that `packages-tessera` is a second. Kris, 22 November 2026, about 21:13 GMT, the Repository guild's sitting, card: "Take the top homes"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [the migration overlay](migration-package-repositories.md) | taken |
-
-[Back to contents](#contents)
-
-## 4. Last review
-
-On 22 November 2026 REPO-OTHERS a, recorded under [Decisions](#3-decisions), removed two met lines from [the migration overlay](migration-package-repositories.md): `packages-stoa` no longer keeps `consumers.json5`, and its workbench has moved to `apps/storybook/` with a `custom-elements.json`. `SKILL.md` no longer calls `packages-stoa` the only package repository. Stoa's own `[skills.ki-repo-packages]` declaration is still to come, and its line stays. No rule changed and no outside source was refreshed.
-
-On 22 November 2026, under ELEMENTS-NAME, which Kris took that day, relayed by Bastion via Kitteth, [The custom elements manifest](standard-package-repositories.md#45-the-custom-elements-manifest) names a web component package `<name>-elements`, or `<name>-<subset>-elements` for a subset of the atomic design levels; plain `elements`, which Kris first proposed, gave way to an always-present prefix two minutes later. The new `PKG-7` warns when a vendored package that ships `custom-elements.json` is not so named. `packages-stoa`'s `packages/stoa/` and `tooling/elements/`, and the FHM sites' `packages/elements/`, predate the rule and were not renamed. No outside source was fetched.
-
-On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
-
-On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: `standards-package-repositories.md` was renamed [`standard-package-repositories.md`](standard-package-repositories.md) and reshaped to the standard format with its rules unchanged, its sections becoming Rules 4.1 to 4.13, and this file to the sources format, its sources in the Outside sources table and Kris's decisions in the Decisions table. The migration overlay keeps its plural name, its link following the standard. SKILL.md, the rubric items and the generated rubric follow. No rule changed and no outside source was refreshed.
-
-On 17 November 2026, under PACKAGES-NOTICE a, which Kris took that day, relayed by the Cairn summit's guardian from the summit's [change 15](https://github.com/krisb/ki-cairn-store/blob/658d48f/work/cairn/cairn.summit/15-where-guidance-lives.change.md#71-questions), a release sends no notice: [Versions and releases](standard-package-repositories.md#49-versions-and-releases) loses its fourth step, the table's Release row and PKG's release item follow, and each consumer finds a release with its own `drift`. The skill now follows its two repositories: `packages-stoa`'s [ADR-STOA-057](https://github.com/knowledgeislands/packages-stoa/blob/main/docs/decisions/ADR-STOA-057-stoa-keeps-no-register-of-its-consuming-sites.md) of 10 November 2026, which removed the notice because the register fell behind the sites' lock files and the notices needed a messaging route outside the repository, and `packages-tessera`'s `AGENTS.md`, which says the same; both were read on 17 November. No outside source was fetched.
-
-On 14 November 2026, under GUILDS-REMIT in the Cairn summit's change 25 (now 14), STORYBOOK-APP, ELEMENTS-MANIFEST and ELEMENTS-MULTI were written into the standard and rubric: `PKG-3` now looks for `apps/storybook/` with a `build` and reports a remaining workbench, `PKG-J5` asks for the manifest, and the declaration takes `packages` for several. Several packages release together at one version, a reading of ELEMENTS-MULTI kept until a second layered repository tests it. No external source was fetched.
-
-Written on 7 November 2026 from the sources above. No external source was fetched; no second package repository exists to test the rules against.
-
-**Watching:** a second package repository, which would test rules drawn from one case, and a second layered repository, which would test whether several packages release together.
+**Watching:** a second package repository, which would test rules drawn from one case; a second layered repository, which would test whether several packages release together; and `packages-stoa`'s own `[skills.ki-repo-packages]` declaration, still to come.
 
 [Back to contents](#contents)

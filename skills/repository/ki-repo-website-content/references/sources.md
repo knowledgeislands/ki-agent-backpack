@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T00:08:58Z
+ki-document-type: sources@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -13,8 +13,7 @@ ki-refresh: external-spec · monthly
   - [2.1 Authoritative](#21-authoritative)
     - [2.1.1 Upstream tools](#211-upstream-tools)
     - [2.1.2 In-house](#212-in-house)
-- [3. Decisions](#3-decisions)
-- [4. Last review](#4-last-review)
+- [3. Last review](#3-last-review)
 
 ## 1. Introduction
 
@@ -50,29 +49,9 @@ The standard is self-contained; it is the source of truth for house style. Any c
 
 [Back to contents](#contents)
 
-## 3. Decisions
+## 3. Last review
 
-| Id | Decision | Date | Backs | Status |
-| --- | --- | --- | --- | --- |
-| WEBSITE-APP-NAME a | `ki-repo-website-app` is renamed `ki-repo-website-interactive`, a name that says the kind of site without naming a framework. Kris, 22 November 2026, about 22:16 GMT, in chat: "WEBSITE-APP-NAME a"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | The sibling named in the [Eleventy site standard](standard-eleventy-site.md) | In force |
-| SITE-ROADMAP | A content site is not required to carry `ROADMAP.md`: WEB-7 and the skill's `ki-requires: [ROADMAP.md]` are dropped, its number not reused, and the forward-work tracker is left to `ki-work`'s choice, since no rule in the standard backed the check. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a, from the summit's change 10. Reversible; Kris can overturn it. | 2026-11-19 | [Eleventy site standard](standard-eleventy-site.md) | In force |
-
-[Back to contents](#contents)
-
-## 4. Last review
-
-On 22 November 2026 WEBSITE-APP-NAME a, from the Cairn summit's change 10, step 6.3, renamed `ki-repo-website-app` to `ki-repo-website-interactive`, and this skill's references follow; no rule or criterion changed.
-
-On 19 November 2026 SITE-ROADMAP dropped WEB-7, the check that a content site carries `ROADMAP.md`, and the skill's `ki-requires` of it; the rubric was regenerated. No outside source was refreshed.
-
-On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
-
-On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Eleventy site standard](standard-eleventy-site.md), formerly `standards-eleventy-site.md`, was renamed and reshaped to the standard format with its rules unchanged, the overlay's selection paragraphs becoming its first rules section, and this file to the sources format, with the open watch items under Watching. The rubric's source names follow. No rule changed and no outside source was refreshed.
-
-REFRESH last run **2026-11-22**, prompted by LONG-3's overdue warning. Re-fetched all three upstream sources and their current package metadata, and re-checked that `ki-engineering` still owns the referenced toolchain layer. The standard remains current: no source change affects its Eleventy 3, config-less Tailwind 4, or vanilla Lucide delivery contract, and its `^3.x` Eleventy pin is not stale. Previously run 2026-10-06.
-
-- **Current packages:** Eleventy remains stable at **3.1.8** (2026-11-03) and `4.0.0-alpha.12` remains pre-release. `@tailwindcss/cli` and `tailwindcss` are **4.3.5** (2026-11-06). Vanilla `lucide` is **1.77.0** (2026-11-20), up from 1.52.0.
-- **Confirmed conformant upstream:** Eleventy documents `addTransform`, `addDataExtension` (with `read: false` and `parser`), and `eleventy.before` with `runMode`; returning `dir` from the config function still works but is marked not preferred for order-of-operations reasons in favour of a named `export const config`, and the event `dir` argument is deprecated in favour of `directories`. Tailwind still documents `@import "tailwindcss"`, `@theme inline` and the `@tailwindcss/cli` build. Lucide 1.77.0 still ships `dist/umd/lucide.min.js` exporting `createIcons()`, and its guide still shows the UMD script with `lucide.createIcons()`. No source removed the standard's required surface.
+The latest review, on 22 November 2026, re-fetched all three upstream sources and their package metadata, and re-checked that `ki-engineering` still owns the referenced toolchain layer. No source change affects the standard's Eleventy 3, config-less Tailwind 4 or vanilla Lucide delivery contract: Eleventy is stable at 3.1.8 with 4.0 still pre-release, Tailwind is at 4.3.5, and vanilla `lucide` 1.77.0 still ships its UMD build with `createIcons()`.
 
 **Watching:**
 

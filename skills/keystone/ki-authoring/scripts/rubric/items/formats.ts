@@ -170,7 +170,7 @@ const FMT_SHAPE: RubricItem<FormatsRubricContext> = {
     'standard-formats-format.md#47-validation',
     'standard-formats-standard.md#45-validation',
     'standard-formats-change.md#46-validation',
-    'standard-formats-sources.md#45-validation',
+    'standard-formats-sources.md#44-validation',
     'standard-formats-record.md#48-validation',
     'standard-formats-design.md#47-validation',
     'standard-formats-presentation.md#48-validation'
@@ -188,7 +188,7 @@ const REVIEW_VALUES = new Set(['awaiting', 'approved'])
 const RECORD_NAME = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})Z-([a-z0-9]+(?:-[a-z0-9]+)*)$/
 const THEME = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/
 const BATCH_SECTIONS = ['Purpose', 'Goals', 'What changed', 'Lessons']
-// The record format's version that added Lessons (LESSONS-LINE): a batch record following an earlier one passes
+// The record format's version that added Lessons: a batch record following an earlier one passes
 // without it, and one following this version or a later one needs it.
 const LESSONS_FROM = '2026-11-22T17:40:00Z'
 const EARLIER_BATCH_SECTIONS = ['Purpose', 'Goals', 'What changed']
@@ -225,7 +225,7 @@ const datedProblems = (record: RecordEvidence, slug: string): readonly string[] 
 }
 
 // Whether a dated record's `ki-revised`, when it was last written, is earlier than its `ki-at`, when its batch landed;
-// `ki-revised` means the same on every document and is at or after `ki-at`, never taken to equal it (REVISED-MEANS).
+// `ki-revised` means the same on every document and is at or after `ki-at`, never taken to equal it.
 // A date with no time is read as the end of that day, and a value that is not a time is not compared.
 const revisedBeforeAt = (record: RecordEvidence): boolean => {
   if (!record.revisedAt || !record.at) return false

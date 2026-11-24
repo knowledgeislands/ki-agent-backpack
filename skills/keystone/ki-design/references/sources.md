@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T19:59:53Z
+ki-document-type: sources@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-refresh: canonical · on-change
 ---
 
@@ -12,12 +12,11 @@ ki-refresh: canonical · on-change
 - [2. Outside sources](#2-outside-sources)
   - [2.1 Authoritative](#21-authoritative)
   - [2.2 Advisory](#22-advisory)
-- [3. Decisions](#3-decisions)
-- [4. Last review](#4-last-review)
+- [3. Last review](#3-last-review)
 
 ## 1. Introduction
 
-The decisions behind [the design standard](standard-design.md) and its [rubric](rubric.md). Mode REFRESH reads this file, compares the standard with the decisions below, and records what it checked in the [Last review](#4-last-review) block.
+The sources behind [the design standard](standard-design.md) and its [rubric](rubric.md). Mode REFRESH reads this file, checks the standard against the skills it governs, and records what it checked in the [Last review](#3-last-review) block.
 
 [Back to contents](#contents)
 
@@ -46,34 +45,8 @@ The technical levels in [4.3](standard-design.md#43-each-kinds-levels) follow tw
 
 [Back to contents](#contents)
 
-## 3. Decisions
+## 3. Last review
 
-| Id | Decision | Date | Backs | Status |
-| --- | --- | --- | --- | --- |
-| DESIGN-LEAD | The owner's decision, in the Cairn summit's change 14, option a: a new `ki-design` leads the Design guild and covers all design, technical as well as visual; an information architect is one kind of architect, and a technical architect sits beside them. | 2026-11-13 | [4.1](standard-design.md#41-what-design-covers) | In force |
-| DESIGN-AUTHORING | The owner's decision, in change 14, option a: `ki-design` holds how a design of any kind is shaped, the brief, options, review and each kind's levels, and points to `ki-design-system` for visual design, Authoring's skills for writing it down and `ki-work-design` for shaping a Project; technical design stays in the lead until it needs a member. | 2026-11-14 | [4.1](standard-design.md#41-what-design-covers) to [4.4](standard-design.md#44-where-a-design-is-written-down) | In force; 4.4 reworded on 17 November 2026 by DESIGN-FRONT, in `ki-authoring`'s sources, a design now written down as a design document |
-| DESIGN-LEVELS | The owner's decision, in the Cairn summit's change 10, option a: the three levels of visual design, information architecture, wireframes and mock-ups, go into `ki-design-system`, its visual member, not the lead. | 2026-11-13 | [4.3](standard-design.md#43-each-kinds-levels) | In force |
-| ARCHITECT-SPLIT | The owner's decision, in the Cairn summit's [change 12](https://github.com/krisb/ki-cairn-store/blob/cd63bca/work/cairn/cairn.summit/12-names.change.md#46-names-and-roles-of-sessions), option a: the role catalogue's one maker `architect` becomes two, `information-architect` 📐 for the structure, naming, navigation and models of a handed-off piece and `technical-architect` 🏗️ for its components, data, interfaces and technology choices, as this standard drew them beside each other. | 2026-11-16 | [4.1](standard-design.md#41-what-design-covers) | In force |
-| TECH-LEVELS | Technical design's levels: architecture by C4, system context, containers and components; a component by arc42's black box, white box and runtime; an API as resources, then operations, then its contract. Each finest level is written down as a specification, diagram or decision record and linked from the design. Kris's word, 17 November, about 00:56 GMT, taking the high-confidence points: "you've got high confidence in some of these, so I think you need to take them and get on with it", relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [4.3](standard-design.md#43-each-kinds-levels) | In force |
-| REVIEW-SHAPE | One review for every kind of design: by a reviewer who did not draw it, against the brief, the governing standards and earlier decisions; each finding anchored to an exact place, with its kind, whether it blocks and its confidence; the outcome through the change document that moves the design, with Approve or Accept with changes as records have. Kris's word, 17 November, about 00:56 GMT, taking the high-confidence points: "you've got high confidence in some of these, so I think you need to take them and get on with it", relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [4.2](standard-design.md#42-how-a-design-is-shaped) | In force; its general shape moved to `ki-authoring`'s review standard by REVIEW-HOME |
-| REVIEW-HOME | One general review standard in `ki-authoring`, which every reviewable document cites; this skill adds only the design anchors. Option b, Kris's word, 17 November, about 01:37 GMT, raised to high by his word that consistency is vital, relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [4.2](standard-design.md#42-how-a-design-is-shaped) | In force |
-| DESIGN-PLACE | Designs live in `docs/design/`, owned by this skill among `ki-repo`'s documentation roots. Kris's word, 17 November, about 00:56 GMT, taking the high-confidence points: "you've got high confidence in some of these, so I think you need to take them and get on with it", relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [4.4](standard-design.md#44-where-a-design-is-written-down) | In force |
-| DESIGN-LIFE | A design's statuses are `draft`, `agreed`, `current`, `shelved` and `replaced`, each step through a change document; `ki-authoring`'s design format sets them, and this skill owns the life cycle. Kris's word, 17 November, taken in the summit's change 11 and carried into [change 16](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided), relayed by the Cairn summit's guardian. | 2026-11-17 | [4.4](standard-design.md#44-where-a-design-is-written-down) | In force |
-| DESIGN-LIVING | A build adds only to a design's Built section; anything else changes through a change document. Kris's word, 17 November, about 00:56 GMT, taking the high-confidence points: "you've got high confidence in some of these, so I think you need to take them and get on with it", relayed by the Cairn summit's guardian from the summit's [change 16](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md#42-decided). | 2026-11-17 | [4.4](standard-design.md#44-where-a-design-is-written-down) | In force |
-| DESIGN-LOOP | Option b: `ki-work design` stays in `ki-work`, and `ki-design` keeps technical and visual design; the overlap between the two loops is written down in both skills rather than merged. The loop decides what to do and rolls it out as work records; `ki-design` shapes the design itself, takes a loop's technical or visual subject, and owns the design document once the loop's change agrees it. Kris, 22 November 2026, about 19:40 GMT, at the Keystone guild's sitting, card, in his words: "I'm not very sure about this. My gut feeling is to keep the KI work, but I take the points you've raised." | 2026-11-22 | [SKILL.md](../SKILL.md), [2.2](standard-design.md#22-out-of-scope) | In force |
-
-[Back to contents](#contents)
-
-## 4. Last review
-
-On 22 November 2026 DESIGN-LOOP b, recorded under [Decisions](#3-decisions), was applied in the Cairn summit's change 10, step 6.3: `SKILL.md`'s neighbours and [the standard's 2.2](standard-design.md#22-out-of-scope) now say where `ki-work design` and `ki-design` overlap and where each takes over. No rule changed and no outside source was refreshed.
-
-Later on 17 November 2026 an in-house review applied REVIEW-HOME b, which Kris took that day at about 01:37 GMT: the review's general shape is written once in `ki-authoring`'s [review standard](../../ki-authoring/references/standard-review.md), and [4.2](standard-design.md#42-how-a-design-is-shaped)'s review step now points at it, keeping only what a design adds: what it is reviewed against, the design anchors, and its outcome through the change document that moves it. The pending pointer is gone, and the terms Finding and Anchor cite the review standard. The rubric's DESIGN-3 is unchanged in substance. No outside source refreshed.
-
-On 17 November 2026 an in-house review built the Cairn summit's [change 16, the Design guild](https://github.com/krisb/ki-cairn-store/blob/9a7354a/work/cairn/cairn.summit/16-design-guild.change.md), under TECH-LEVELS a, REVIEW-SHAPE a, DESIGN-PLACE a and DESIGN-LIVING a, which Kris took that day at about 00:56 GMT, and DESIGN-LIFE a, taken in change 11. [4.3](standard-design.md#43-each-kinds-levels) gives technical design its three kinds and their levels, after C4, arc42 and resource-oriented API design. [4.4](standard-design.md#44-where-a-design-is-written-down) writes a design down as a design document in `ki-authoring`'s new design format, under `docs/design/`, its choices, contracts and architecture still going to decision records, specifications and diagrams, and this skill owning its life cycle. [4.2](standard-design.md#42-how-a-design-is-shaped)'s review step holds the review's shape as a short rule, with a pending pointer: where its full standard is written, REVIEW-HOME, is still open in change 16, so no review standard is written yet. The rubric's DESIGN-3 to DESIGN-5 follow. The outside sources are those change 16 read on 17 November; none was fetched again.
-
-On 16 November 2026 an in-house review applied ARCHITECT-SPLIT a, which Kris took that day at about 15:52 GMT, relayed by the Cairn summit's guardian from the summit's [change 12](https://github.com/krisb/ki-cairn-store/blob/cd63bca/work/cairn/cairn.summit/12-names.change.md#46-names-and-roles-of-sessions): [4.1](standard-design.md#41-what-design-covers) and the skill's opening name the two architects as the makers they now are in `ki-work-package`'s role catalogue, `information-architect` and `technical-architect`, each with what it shapes, in place of saying one sits beside the other. The rubric is regenerated. No outside source refreshed.
-
-On 14 November 2026 the skill was written from the Cairn summit's change 25 (now 14), guilds, under GUILDS-REMIT. The review step's second reader follows the cairn.wayfinder.designs meeting's practice of a reviewer checking each board against its brief before a round is called final.
+The latest review, on 22 November 2026, confirmed that the standard's technical levels still follow C4 and arc42 and that its API contracts are still written in OpenAPI and AsyncAPI, with no rule changed. The outside sources were last read on 17 November 2026, when the technical levels were built after C4, arc42 and resource-oriented API design.
 
 [Back to contents](#contents)

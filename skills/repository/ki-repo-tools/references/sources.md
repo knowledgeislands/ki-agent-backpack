@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:45:51Z
+ki-document-type: sources@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -14,8 +14,7 @@ ki-refresh: external-spec · quarterly
   - [2.2 Advisory](#22-advisory)
     - [2.2.1 In-house tool repositories](#221-in-house-tool-repositories)
     - [2.2.2 Tap README](#222-tap-readme)
-- [3. Decisions](#3-decisions)
-- [4. Last review](#4-last-review)
+- [3. Last review](#3-last-review)
 
 ## 1. Introduction
 
@@ -83,53 +82,21 @@ Non-normative.
 
 [Back to contents](#contents)
 
-## 3. Decisions
+## 3. Last review
 
-Decisions behind the rules that carry an id. Others, such as Kris's word after RIG-REL-PATCH that follow-up releases stop and ask first, are quoted in the standards beside the rules they set.
-
-| Id | Decision | Date | Backs | Status |
-| --- | --- | --- | --- | --- |
-| CLI-CONVENTIONS | Write the command-line conventions from the POSIX, GNU, Bash, clig.dev, `NO_COLOR` and XDG sources and the symbolic-link survey of the `mgit-learn` run | 2026-10-18 | [command-line conventions](standard-cli-conventions.md) | taken |
-| RELEASE-NOTICE | After an authorised release, the releasing territory owner or coordinator informs affected owning work, with version, change, compatibility, adoption and reply needs; a notice obligation, not release authority | 2026-10-29 | [4.2](standard-release-readiness.md#42-release-notice) | taken |
-| RELEASE-ACCEPTED | Option a): before a tag, list the roadmap records the release range ships; any not yet accepted is either accepted first or named in the release notice as shipping under review, and acceptance and release stay independent otherwise. Kris, by voice through Natter, 22 November 2026, about 18:36 GMT: "Yeah. Makes sense." (store `meetings/cairn.summit/20261114-voice/messages/20261122T1836Z-voice-release-accepted-answer.md`), from ki.summit's change 23. | 2026-11-22 | [Release readiness](standard-release-readiness.md#43-establish-the-candidate) | In force |
-| COMMIT-VS-CI a) | The tap's committed `pre-commit` runs only check-only staged lints, `ruby -wc` among them, and the tap audit runs in CI. Carried from `ki-repo-homebrew-tap` when it folded in. | 2026-10-26 | [Homebrew tap 4.8](standard-homebrew-tap.md#48-commit-gate) | taken |
-| REPO-OTHERS | Option a: `ki-repo-backpack`, `ki-repo-mcp`, `ki-repo-packages`, `ki-repo-tools` and `ki-repo-dotfiles-chezmoi` stay; `ki-repo-homebrew-tap` folds into `ki-repo-tools` as its distribution standard, the [Homebrew tap standard](standard-homebrew-tap.md), with the `TAP` family, its `GATE-1` becoming `TAP-HOOK`, and the tap keeping `primary_shape = "ki-repo-homebrew-tap"` beside a `[skills.ki-repo-tools]` table; `ki-repo-specifications` retires; release-on-demand stays in this skill. Kris, 22 November 2026, about 21:13 GMT, the Repository guild's sitting, card: "Take the top homes"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [Homebrew tap](standard-homebrew-tap.md), [release readiness](standard-release-readiness.md#41-release-on-demand) | In force |
-
-[Back to contents](#contents)
-
-## 4. Last review
-
-The quarterly REFRESH of **23 November 2026** reviewed all seventeen outside sources and the five in-house tool repositories; no rule was changed here, and three proposals went to Gilder. ShellCheck is still 0.11.0. bats-core is still 1.14.0 and its gotchas still ask for `|| false` after `[[ ]]` under Bash 3.2; its unreleased changes add `--` and `$BATS_ALLOW_EMPTY_SUITE`. Keep a Changelog 1.1.0, Semantic Versioning 2.0.0, XDG 0.8, the POSIX.1-2024 utility conventions, `find` with only `-H` and `-L` (`cp` and `chown` add `-P`), clig.dev and `NO_COLOR` read as before. gnu.org refused automated requests again, so the GNU Coding Standards' command-line section was read from its source in the gnulib mirror (last updated 4 November 2026, that section unchanged) and the Bash Exit Status text from a Bash source mirror (2 for usage, 126, 127, 128 + n, unchanged). Homebrew 7.0.15 is current. The Cookbook keeps the same required parts, adds `post_install_steps` in place of a deprecated `post_install`, `compatibility_version` and a `browsed:` homepage date, none of which a KI formula uses yet. The `desc` cop still allows 80 characters and forbids a leading article. `brew audit --new` implies `--strict` and `--online`. Since Homebrew 6.0.0 third-party taps are untrusted by default: a fully qualified install trusts only that formula, which the house tap README already uses. In-house: all five tool repositories still run CI and release only on manual dispatch, which the standard's "on every push" does not allow for; `tools-mgit`'s changelog keeps an `Unreleased` section above its Pre-1.0 baseline, which the standard's 4.5 rules out; and `tools-rig`'s CI pins bats 1.11.1.
-
-On 22 November 2026 REPO-OTHERS a folded the `ki-repo-homebrew-tap` skill in, recorded under [Decisions](#3-decisions): its standard became the [Homebrew tap standard](standard-homebrew-tap.md) here with its rules unchanged, its seven Homebrew sources joined the tables above with their review dates, its watch-items joined Watching below, and its rubric became the `TAP` family, `GATE-1` renamed `TAP-HOOK` and its keyless-marker `CONFIG-1` replaced by this skill's own. The tap skill's last REFRESH ran on 15 November 2026, with a focused Cookbook re-read on 17 November. No outside source was refreshed in the fold.
-
-On 22 November 2026 an in-house review applied RELEASE-ACCEPTED a, recorded under [Decisions](#3-decisions): [Establish the candidate](standard-release-readiness.md#43-establish-the-candidate) gains the pre-tag check of the records a release ships, the release notice names any shipping under review, and [Release on demand](standard-release-readiness.md#41-release-on-demand) points at it as the one place acceptance meets release. No rubric check was added, since the check runs at release time rather than on the repository's files. No outside source was refreshed.
-
-On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Repository guild: REFRESH points at the backpack from an installed copy. No criterion changed and no outside source refreshed.
-
-On 18 November 2026 the Repository guild's review, from the Cairn summit's change 10, brought the files into the formats: the five standards, formerly `standards-tool-repositories.md`, `standards-cli-conventions.md`, `standards-change-readiness.md`, `standards-release-readiness.md` and `standards-tool-shared-code.md`, were renamed `standard-<topic>.md` and reshaped to the standard format with their rules unchanged, and this file to the sources format, with the in-house tool repositories as advisory and the open watch items under Watching. The links between the standards, and SKILL.md's, the modes' and the rubric's, follow the new names and anchors. No rule changed and no outside source was refreshed.
-
-The external-spec REFRESH of **15 November 2026** re-read nine of the eleven external sources and confirmed them. ShellCheck is unchanged. bats-core 1.14.0, released in July, still supports Bash 3.2, and its gotchas page still says a failing `[[ ]]` mid-test passes on Bash before 4.1 and that `|| false` fixes both that and `!`, which is what SHELL-FATAL asks for. Keep a Changelog is still 1.1.0, and Semantic Versioning still 2.0.0, which still treats a `v` prefix as a tag convention rather than part of the version. The XDG specification is still version 0.8 with the same defaults and the same rule for relative paths, but it has moved to a new address, which is now linked. The POSIX.1-2024 utility guidelines and the `find`, `cp`, `chown` and `cd` pages, clig.dev and `NO_COLOR` read as the command-line conventions say. The two GNU sources, the Coding Standards' command-line page and the Bash manual's Exit Status page, refused every request this run, so they keep 18 October. Being watched: bats-core 1.14.0 now applies `set -e` inside `run` and fails a suite that finds no tests; POSIX `find` has only `-H` and `-L`, with `-P` coming from `cp`, `chown` and the GNU and BSD `find`; clig.dev would let `-v` mean version, where the house rule keeps it for verbose; and all five tool repositories have changed a great deal since the 4 October in-house review, including CI and release workflows that now run only on manual dispatch. The in-house rows were not re-reviewed and keep their dates.
-
-The bounded in-house review of 29 October 2026 records RELEASE-NOTICE: after an authorised release, the releasing territory owner or coordinator informs affected owning work through its messages queue, falling back to receiving State of play when ownership is unclear, with version, change, compatibility, adoption and reply needs. Existing release approval, receiver ownership and routing boundaries remain; no release, consumer selection engine or rollout is performed. External sources were not re-fetched.
-
-The CLI-CONVENTIONS addition on **2026-10-18** wrote the [command-line conventions](standard-cli-conventions.md) from the POSIX, GNU, Bash, clig.dev, `NO_COLOR` and XDG sources above and from the symbolic-link survey of the `mgit-learn` run, comparing `tools-ki`, `tools-mgit` and `tools-rig` against it. The sources were cited from their published text without being re-fetched in that run; the next external-spec REFRESH re-reads them.
-
-The owner-approved diagnostic review on **2026-10-05** compared all five tools' `diag` and `doctor` implementations and Rig's table renderer. It established common execution-context facts, evidence-backed local/release/unknown installation provenance, scoped health verdicts and counts, share-safe default diagnostics, and width-aware tables with lossless identifiers and deterministic redirected output. These are house conventions rather than new external requirements. Isolated repository-native fixtures own runtime proof; the hosted audit continues to report the semantic review as judgment work without launching target executables.
-
-The external-spec REFRESH last ran **2026-07-30**. The targeted in-house review on **2026-10-04** compared all five tools' standing instructions and delivery/release guides, clarified shared policy versus executable local procedures, and consolidated repeated guidance. Installer verification examples now require explicit disposable executable/manual destinations, unavailable checks remain visible, and post-hook committed-path inspection belongs to `ki-git`. Repeatable CLI parity remains a native-test responsibility; static hosted audit does not execute tools or claim semantic conformance. External specifications were not re-fetched in this review.
+The latest review, on 23 November 2026, read all seventeen outside sources and the five in-house tool repositories, and no rule changed. ShellCheck 0.11.0, bats-core 1.14.0, Keep a Changelog 1.1.0, Semantic Versioning 2.0.0, XDG 0.8, the POSIX utility conventions and `find`, clig.dev and `NO_COLOR` still say what the standards follow; GNU-CLI and BASH-EXIT were read from source mirrors, unchanged, because gnu.org refused automated requests. Homebrew is at 7.0.15: the Cookbook keeps the same required parts, the `desc` cop still allows 80 characters with no leading article, and `brew audit --new` implies `--strict` and `--online`.
 
 **Watching:**
 
-- **CI on manual dispatch.** The standard's "on every push" against five dispatch-only tool repositories; proposed to Gilder.
-- **Tap trust.** Homebrew 6.0.0's default tap trust; the tap README rule's wording is proposed to Gilder.
-- **gnu.org refuses automated fetches.** The GNU-CLI and BASH-EXIT rows were reviewed from source mirrors (gnulib, a Bash mirror); re-read the published pages when they can be reached.
-- **`tools-mgit`'s `Unreleased` section** and **`tools-rig`'s bats 1.11.1 pin**, both repository findings for their owners rather than standard changes.
-- **Homebrew is a live target.** The Cookbook and the `brew audit` and `brew style` cops change without a versioned spec release. Re-diff the required-fields list and the `desc` cops each cycle.
-- **`TAP-4` is a mirror.** The 80-character and no-leading-article rule is copied from `brew style` so the check runs without `brew`; if that cop changes upstream, update `scripts/rubric/items/tap.ts`.
+- **CI on manual dispatch.** The standard's "on every push" against the five tool repositories, which run CI and release only on manual dispatch.
+- **Tap trust.** Since Homebrew 6.0.0 third-party taps are untrusted by default; the tap README rule's wording may need to say so.
+- **gnu.org refuses automated fetches.** GNU-CLI and BASH-EXIT are reviewed through source mirrors (gnulib, the Bash mirror); re-read the published pages once they can be reached.
+- **`tools-mgit`'s `Unreleased` section** and **`tools-rig`'s bats 1.11.1 pin**, both findings for those repositories rather than standard changes.
+- **Homebrew is a live target.** The Cookbook and the `brew audit` and `brew style` cops change without a versioned specification release; re-diff the required-fields list and the `desc` cops each cycle.
+- **The `desc` mirror.** The tap rubric copies the 80-character and no-leading-article rule from `brew style` so the check runs without `brew`; if the cop changes upstream, update `scripts/rubric/items/tap.ts`.
 - **No `head` or `bottle` guidance yet.** The tap standard covers stable versioned-tarball formulae only; extend it if a KI tool ever ships bottles or a `head` spec.
-- **Standard Readme is advisory.** If `ki-authoring` gains its own README convention set (KI-HARNESS-GOV-048), reconcile the tap README entry with it.
-- If a second shell-specific concern emerges beyond shellcheck + bats, reconsider a dedicated `ki-shell` skill (deliberately not created at n=1).
+- **Standard Readme advisory.** If `ki-authoring` gains its own README convention set, reconcile the tap README entry with it.
+- If a second shell-specific concern emerges beyond ShellCheck and bats, reconsider a dedicated `ki-shell` skill.
 
 [Back to contents](#contents)
 

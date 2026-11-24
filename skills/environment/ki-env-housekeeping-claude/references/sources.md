@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T02:45:51Z
+ki-document-type: sources@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-refresh: external-spec · 180d
 ---
 
@@ -14,8 +14,7 @@ ki-refresh: external-spec · 180d
   - [2.2 Advisory](#22-advisory)
     - [2.2.1 Headroom](#221-headroom)
     - [2.2.2 In-house tool repositories](#222-in-house-tool-repositories)
-- [3. Decisions](#3-decisions)
-- [4. Last review](#4-last-review)
+- [3. Last review](#3-last-review)
 
 ## 1. Introduction
 
@@ -58,36 +57,16 @@ Headroom publishes no versioned schema for its rendered output, and the paired s
 
 [Back to contents](#contents)
 
-## 3. Decisions
+## 3. Last review
 
-The rules follow the outside sources above and the shared rules of `ki-env-housekeeping`; one decision is recorded by id below.
-
-| Id | Decision | Date | Backs | Status |
-| --- | --- | --- | --- | --- |
-| ENV-FIXES a | All ten Environment skills are kept, with the fixes: `ki-env-housekeeping-chatgpt` repointed from the old Inbox (`krisb/inbox`) to Harbour (`krisb/ki-cairn-harbour`); `ki-env-housekeeping-claude`'s memory text trimmed to the disabled case; `ki-env-binding-chatgpt` refreshed, due since 12 November; `ki-env-binding-chezmoi`'s SKILL.md, which stated its composition three times, trimmed to once; the two tokenomics adapters' sources refreshed with the MODEL-TIERS move; no regrouping by host. Kris, 22 November 2026, about 21:45 GMT, the Environment guild's sitting, card: "Keep all ten, with fixes"; the Cairn summit's change 10, step 6.3. | 2026-11-22 | [SKILL.md](../SKILL.md) | In force |
-
-[Back to contents](#contents)
-
-## 4. Last review
-
-On 23 November 2026 REFRESH re-fetched the three Claude Code pages, re-read Headroom and the paired server's README and tool surface. Claude Code still enables auto-memory by default, with `autoMemoryEnabled`, the absolute-or-`~/` `autoMemoryDirectory` and `CLAUDE_CODE_DISABLE_AUTO_MEMORY` (`1` off, `0` forced on) as recorded, and settings precedence unchanged; `MEMORY.md` now loads up to its first 200 lines or 25KB. The Headroom page on extraheadroom.com no longer covers `headroom learn`, so its row is repointed to Headroom's own failure-learning page. Installed Headroom 0.45.0 still writes the recorded markers, heading and dated line into `MEMORY.md` (`CLAUDE.local.md` is now its default CLAUDE file), and its `memory list/show/delete` and `learn` help match [the auto-memory standard](standard-auto-memory.md#44-repairing-a-regenerated-cross-repo-learned-pattern). Two changes are proposed, not made: memory is now kept per Git repository, shared by its worktrees, where the checker derives the directory from the path it is given; and the page names the memory kind a `type` field, where the checker requires `metadata.type`.
-
-On 22 November 2026 the Environment guild's landing, from the Cairn summit's change 10, step 6.3, applied ENV-FIXES a, recorded under [Decisions](#3-decisions): SKILL.md's native-memory text now states the disabled case, KI's default, and leaves the transition and enabled cases to [the auto-memory standard](standard-auto-memory.md). No criterion changed and no outside source refreshed.
-
-On 19 November 2026 MEMORY-ONCE, taken in `ki-env-housekeeping`, cut [the auto-memory standard](standard-auto-memory.md#42-repair-boundary)'s restatement of the native-memory policy to this host's delta, pointing at the lead's 4.1; nothing host-specific was lost. No criterion changed and no outside source refreshed.
-
-On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Environment guild: REFRESH names the backpack as where to run it. No criterion changed and no outside source refreshed.
-
-On 18 November 2026 the Environment guild's review, from the Cairn summit's change 10, brought the standards and this file into `ki-authoring`'s formats: `standards-auto-memory.md` and `standards-claude-state.md` were renamed `standard-auto-memory.md` and `standard-claude-state.md` and their rules placed, unchanged, under numbered sections, and this file took the sources format, its notes becoming this review and its watch list. The rubric's source names follow. No rule changed and no outside source was refreshed.
-
-At the earlier reviews, dated in the tables above: Claude Code enables auto-memory by default. `autoMemoryEnabled: false` disables it; project and project-local settings can override user settings. `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1` disables it, while `=0` forces it on. Managed settings and session overrides require separate runtime evidence. Headroom rendered output and native Claude memory are distinct.
+The latest review, on 23 November 2026, re-fetched the three Claude Code pages and re-read Headroom and the paired server's README and tool surface. Claude Code still enables auto-memory by default, with `autoMemoryEnabled`, the absolute-or-`~/` `autoMemoryDirectory`, `CLAUDE_CODE_DISABLE_AUTO_MEMORY` and settings precedence as recorded, and `MEMORY.md` now loads up to its first 200 lines or 25KB. Installed Headroom 0.45.0 still writes the recorded markers, heading and dated line into `MEMORY.md`, and its `memory` and `learn` help match [the auto-memory standard](standard-auto-memory.md#44-repairing-a-regenerated-cross-repo-learned-pattern).
 
 **Watching:**
 
 - The recorded Headroom version drift (tracked 0.31.0 versus installed 0.45.0) means the local format and database-operation wording are not a claim about the installed runtime. REFRESH rechecks the exact version and documented command behavior before changing those claims.
 - Headroom's failure-learning page shows the learned-patterns block without the dated line that 0.45.0 still writes; the standard follows the installed writer until the two agree.
-- The memory directory for a linked worktree, and `CLAUDE_CODE_PROJECT_DIR_NAME`, which can name it outright; proposed for the checker, not yet changed.
-- Whether the frontmatter kind is `type` or `metadata.type`; proposed for checking against a file Claude Code writes now.
+- The memory directory for a linked worktree: memory is now kept per Git repository and shared by its worktrees, while the checker derives the directory from the path it is given, and `CLAUDE_CODE_PROJECT_DIR_NAME` can name it outright.
+- Whether the frontmatter kind is `type`, as the memory page names it, or `metadata.type`, as the checker requires; to check against a file Claude Code writes now.
 - The server README and tool surface establish a source payload only. REFRESH must record registration, access exposure, and executed-audit evidence independently if a runtime claim is needed.
 - If Headroom ships a documented, versioned schema for `MEMORY.md` / frontmatter, replace its row with that URL and re-derive [the auto-memory standard](standard-auto-memory.md) and the checker from it directly.
 

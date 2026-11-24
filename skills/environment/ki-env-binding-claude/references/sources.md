@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-22T18:33:06Z
+ki-document-type: sources@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-refresh: external-spec · quarterly
 ---
 
@@ -12,8 +12,7 @@ ki-refresh: external-spec · quarterly
 - [2. Outside sources](#2-outside-sources)
   - [2.1 Authoritative](#21-authoritative)
   - [2.2 Advisory](#22-advisory)
-- [3. Decisions](#3-decisions)
-- [4. Last review](#4-last-review)
+- [3. Last review](#3-last-review)
 
 ## 1. Introduction
 
@@ -30,12 +29,13 @@ The binding standard follows Claude Code's MCP configuration documentation; the 
 | Source | Governs | Last reviewed |
 | --- | --- | --- |
 | CC — [Claude Code MCP configuration](https://code.claude.com/docs/en/mcp) | Native JSON definitions and explicit HTTP/SSE types | 2026-11-22 |
+| [ADR-KI-HARNESS-015](../../../../docs/decisions/ADR-KI-HARNESS-015-retire-the-claude-plugin-projection.md) | No Claude Cowork plugin projection, behind the [Claude binding standard](standard-claude-binding.md#44-claude-cowork) | 2026-11-24 |
 
 [Back to contents](#contents)
 
 ### 2.2 Advisory
 
-The claude.ai connector documentation behind the [claude.ai connector control standard](standard-claude-ai-connectors.md), moved here with it from `ki-repo-mcp` on 19 November 2026 under MCP-SURFACES; each date is the source's last REFRESH.
+The claude.ai connector documentation behind the [claude.ai connector control standard](standard-claude-ai-connectors.md), moved here with it from `ki-repo-mcp` on 19 November 2026; each date is the source's last REFRESH.
 
 | Source | Informs | Last reviewed |
 | --- | --- | --- |
@@ -47,32 +47,9 @@ The claude.ai connector documentation behind the [claude.ai connector control st
 
 [Back to contents](#contents)
 
-## 3. Decisions
+## 3. Last review
 
-| Id | Decision | Date | Backs | Status |
-| --- | --- | --- | --- | --- |
-| ADR-KI-HARNESS-015 | Retire the Claude plugin projection: Knowledge Islands maintains no Claude Cowork plugin projection | 2026-10-05 | [Claude binding standard](standard-claude-binding.md#44-claude-cowork) | Current |
-| MCP-SURFACES | Where a KI MCP server is turned on belongs to the Environment guild's binding skills, not `ki-repo-mcp`: what `ki-repo-mcp`'s cross-surface enablement standard held beyond `ki-env-binding` and `ki-env-binding-claude` moved into them after a line-by-line check, its claude.ai connector control standard moved whole into `ki-env-binding-claude` with its sources, and `ki-repo-mcp` keeps only what an MCP repository ships, with a pointer. Taken by the Cairn summit's guardian, 19 November 2026, under GUARDIAN-LANDS a, from the summit's change 10. Reversible; Kris can overturn it. | 2026-11-19 | [Claude binding standard](standard-claude-binding.md#45-order-of-enablement), [claude.ai connector control standard](standard-claude-ai-connectors.md) | In force |
-| PER-TOOL-LAYER | The per-tool permission mode is an organisation lever: Owners set Always allow, Needs approval or Blocked per tool under Organization settings → Connectors → Tools, members cannot override it, no default is documented, individuals have the Allow always prompt and the Search and tools menu, and Claude Code enforces Blocked. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Per-tool permission mode](standard-claude-ai-connectors.md#44-per-tool-permission-mode--the-fatigue-vs-safety-dial) | In force |
-| MANAGED-MCP-THREE | Claude Code's managed MCP has three mechanisms: `managed-mcp.json` provides servers in place of users' own, `managedMcpServers` (v2.1.259+) provides remote servers alongside them, and the allow and deny lists filter; an empty `managed-mcp.json` map does not disable MCP entirely. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Three mechanisms](standard-claude-ai-connectors.md#471-three-mechanisms--provide-vs-filter) | In force |
-| CONNECTOR-SESSIONS | Claude Code's connector controls hold in full only in terminal, IDE and SDK sessions; cloud sessions and the desktop app's local and SSH sessions differ, as a 4.7.4 table sets out, and `disableClaudeAiConnectors` in a checked-in project setting opts a repository out. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Which sessions these reach](standard-claude-ai-connectors.md#474-which-sessions-these-reach), [Picking a lever](standard-claude-ai-connectors.md#48-picking-a-lever) | In force |
-| SERVER-MANAGED-SOURCE | Claude Code's server-managed settings page is an advisory source for the connector standard's server-managed settings claims, which the next REFRESH checks against it. Loreward, within remit, 22 November 2026, from the 4.1 refresh. Reversible; Kris can overturn it. | 2026-11-22 | [Organization / admin](standard-claude-ai-connectors.md#46-organization--admin--governance-for-team--enterprise), [The claude.ai-specific interaction](standard-claude-ai-connectors.md#473-the-claudeai-specific-interaction) | In force |
-
-[Back to contents](#contents)
-
-## 4. Last review
-
-On 22 November 2026 Loreward, within remit, landed the 4.1 refresh's queries against [the claude.ai connector control standard](standard-claude-ai-connectors.md), each recorded under [Decisions](#3-decisions): PER-TOOL-LAYER restates the per-tool permission mode as an organisation lever; MANAGED-MCP-THREE rewrites 4.7.1 as three mechanisms and corrects the empty-map wording; CONNECTOR-SESSIONS adds 4.7.4 on which sessions the Claude Code controls reach, narrows 4.7 and 4.7.3, and adds the project opt-out to 4.8; SERVER-MANAGED-SOURCE adds Claude Code's server-managed settings page under [Advisory](#22-advisory), not yet reviewed. No outside source was refreshed.
-
-On 22 November 2026 a REFRESH re-read all five outside sources, for the Cairn summit's change 10, step 4.1. Claude Code's MCP configuration still matches [the Claude binding standard](standard-claude-binding.md#42-claude-code-and-claude-desktop): a stdio entry may omit `type`, a URL entry without `type` is an error, and the project `.mcp.json` and the scopes stand. It now also documents a `ws` transport, `streamable-http` as an alias of `http` and SSE as deprecated, none of which changes a rule. The three claude.ai articles and the managed-MCP page have moved on from [the claude.ai connector control standard](standard-claude-ai-connectors.md): connectors are managed at Customize, Connectors; a custom connector takes authentication, OAuth client and request-header choices and must be reachable from Anthropic's cloud on port 443; Enterprise-managed auth has an IdP-managed source, generally available with Okta only, and a Claude-issued source in beta; Always allow, Needs approval and Blocked are set per tool by the organisation's owners, with no documented default; and Claude Code adds `managedMcpServers`, still loads some servers under an empty `managed-mcp.json`, and governs claude.ai connectors differently in terminal, cloud and desktop-app sessions. The connector control standard took the wording that changes no rule: the Customize, Connectors path, a custom connector's choices, On demand tool access, the organisation's connector roles and shared credentials, Enterprise-managed auth's two sources, and a fourth sharp edge in 4.7.2 on ports and name fallbacks. Four points that would change a rule or a protection are held for the owner as queries: the per-tool layer as an organisation lever (PER-TOOL-LAYER), `managedMcpServers` as a third mechanism (MANAGED-MCP-THREE), which sessions the Claude Code controls reach (CONNECTOR-SESSIONS), and a source for the server-managed settings claims (SERVER-MANAGED-SOURCE). The standard's server-managed settings claims, the direct `api.anthropic.com` connection, the gateway bypass and `forceRemoteSettingsRefresh`, appear in none of the five sources and were not checked.
-
-On 19 November 2026 MCP-SURFACES, recorded under [Decisions](#3-decisions), moved `ki-repo-mcp`'s claude.ai connector control standard here whole, with its four sources under Advisory, and brought into the binding standard what `ki-repo-mcp`'s cross-surface enablement standard held beyond it: Claude Code's per-project `.mcp.json`, connector policy kept manual, Cowork's sandbox reason and the order of enablement, 4.5. No rule changed in substance and no outside source refreshed; the connector sources, last reviewed on 3 July 2026, are due a REFRESH.
-
-On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Environment guild: REFRESH redirects to the backpack from an installed copy. No criterion changed and no outside source refreshed.
-
-On 18 November 2026 the Environment guild's review, from the Cairn summit's change 10, brought the files into the formats: [the Claude binding standard](standard-claude-binding.md), formerly `standards-claude-binding.md`, was renamed and reshaped to the standard format with its rules unchanged, and this file to the sources format. The rubric's source names follow. No rule changed and no outside source was refreshed.
-
-- 2026-08-12 — Claude Code MCP configuration reviewed.
+The latest review, on 22 November 2026, re-read the outside sources. Claude Code's MCP configuration still matches [the Claude binding standard](standard-claude-binding.md#42-claude-code-and-claude-desktop): a stdio entry may omit `type`, a URL entry without `type` is an error, and the project `.mcp.json` and the scopes stand, while its new `ws` transport, `streamable-http` alias and deprecated SSE change no rule. The connector articles and the managed-MCP page had moved on, and [the claude.ai connector control standard](standard-claude-ai-connectors.md) now follows them.
 
 **Watching:**
 

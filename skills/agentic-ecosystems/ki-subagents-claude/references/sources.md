@@ -1,6 +1,6 @@
 ---
-ki-document-type: sources@2026-11-17T00:28:37Z
-ki-revised: 2026-11-23T03:00:09Z
+ki-document-type: sources@2026-11-24T04:26:02Z
+ki-revised: 2026-11-24T04:26:02Z
 ki-refresh: external-spec · monthly
 ---
 
@@ -14,8 +14,7 @@ ki-refresh: external-spec · monthly
     - [2.1.1 Claude Code documentation](#211-claude-code-documentation)
     - [2.1.2 Local boundary](#212-local-boundary)
   - [2.2 Advisory](#22-advisory)
-- [3. Decisions](#3-decisions)
-- [4. Last review](#4-last-review)
+- [3. Last review](#3-last-review)
 
 ## 1. Introduction
 
@@ -53,29 +52,13 @@ None.
 
 [Back to contents](#contents)
 
-## 3. Decisions
+## 3. Last review
 
-| Id | Decision | Date | Backs | Status |
-| --- | --- | --- | --- | --- |
-| SUBAGENT-PUBLISHER a | “a, refined: no `ki` tool surface for subagent roles; roles are installed into each host by an agent run, not by a publisher command, and every role is registered (declared where its territory's install reads it) so the install picks every one up (Kris, 23 November, about 00:15 GMT, in chat: "Yeah, just install them by hand, but automated for you. There's no need to add a tool surface for it, right? And yeah, they should be registered as well, actually. So it's important that it picks those up.")”, Cairn summit's change 10, 4.3, landed under step 6.3. Applied here: Claude Code roles are placed by `ki-subagents`' install run, which links each registered role into the host's agents folder, not by a `ki` publisher. | 2026-11-23 | [SKILL.md](../SKILL.md), [Definitions](standard-subagent-definitions.md) | In force |
-
-[Back to contents](#contents)
-
-## 4. Last review
-
-On 2026-11-23 the Claude Code subagents page was re-read. It still documents Markdown files with YAML frontmatter, still requires only `name` and `description`, still makes `name` the identity (the filename need not match, except for plugin-scoped ids), and still silently ignores unrecognised fields, now traceable through `claude --debug`. The two watched differences still hold and are now filed as proposals for the owner. The host check also holds: `tools-ki` acquires the `subagents/` payload but nothing publishes it to `.claude/agents`, so placement stays with the install run (SUBAGENT-PUBLISHER a).
-
-On 18 November 2026 the skill's words were brought to HARNESS-NAME, from the Cairn summit's change 12, step 1, for the Agentic systems guild: the backpack preserves the candidate source files, REFRESH names the backpack, and what the standard called the Harness host is the `ki` host. No criterion changed and no outside source refreshed.
-
-On 18 November 2026 the Agentic systems guild's review, from the Cairn summit's change 10, brought the files into the formats: `standards-subagent-definitions.md` was renamed `standard-subagent-definitions.md` and reshaped, its rules unchanged under numbered sections, and this file took the sources format, its Normative and Local boundary tables as authoritative sub-groups. The rubric's discovery item now cites the section's full anchor. No rule changed and no outside source was refreshed.
-
-On 2026-11-15, the Claude Code subagents page was re-read. It still documents subagents as Markdown files with YAML frontmatter, still requires only `name` and `description`, still makes `name` the identity rather than the filename, and still separates the source definition from what happens at run time. The host inspection also still holds: the KI host advertises a Claude subagent path, but nothing consumes it. Two changes touch the standard and are held for its owner rather than changed here; the page also says Claude Code silently ignores fields it does not recognise.
-
-On 2026-09-26, Claude Code still documented Markdown/YAML source definitions with the field set listed in the standard and distinguished source configuration from effective runtime behaviour. The current KI host has descriptor metadata but no generic implementation consuming a subagent path; this adapter therefore continues to report source conformance only and routes publication or activation to future host integration.
+The latest review, on 23 November 2026, re-read the Claude Code subagents page: it still documents Markdown files with YAML frontmatter, still requires only `name` and `description`, still makes `name` the identity, the filename need not match except for plugin-scoped ids, and still silently ignores unrecognised fields, now traceable through `claude --debug`. The host check also holds: `tools-ki` acquires the `subagents/` payload but nothing publishes it to `.claude/agents`, so placement stays with the install run.
 
 **Watching:**
 
-- The page lists three fields the standard's supported set lacks, `autoCompactWindow`, `omitClaudeMd` and `experimental`, so the adapter would flag them although Claude Code accepts them. Proposed on 2026-11-23.
-- The page allows a name of up to 256 characters that contains no colon and does not start with a hyphen, giving `reviewer-v2` as an example, so the standard's rule that digits are invalid is stricter than Claude Code. Proposed on 2026-11-23.
+- The page lists three fields the standard's supported set lacks, `autoCompactWindow`, `omitClaudeMd` and `experimental`, so the adapter would flag them although Claude Code accepts them.
+- The page allows a name of up to 256 characters that contains no colon and does not start with a hyphen, giving `reviewer-v2` as an example, so the standard's rule that digits are invalid is stricter than Claude Code.
 
 [Back to contents](#contents)
