@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T04:52:17Z
+ki-revised: 2026-11-24T11:36:16Z
 ki-status: in force
 ---
 
@@ -257,6 +257,8 @@ Git history recovers a repository, not a connection: a Headroom proxy rollout th
 #### 4.5.6 Dependency freshness — leading edge (core)
 
 KI repositories run at the leading edge: when a dependency publishes a newer release, the default is to adopt it, not to defer. A newer release opens a **14-day adoption window**, and the clock is set by the **next version after the one installed** — the first release the repository has not adopted — never by the latest, so a fast-shipping upstream cannot reset it by publishing again. Within the window an available update is informational; beyond it the repository is behind the standard and the audit fails. Updates are applied deliberately — reviewed through `ki repo conform`, or `ki:deps:update` for the blanket `bun update --latest` — and proven by the usual gates rather than assumed safe.
+
+Bun waits 14 days before taking a new release: each repository's `bunfig.toml` sets `minimumReleaseAge = 1209600` (14 days, in seconds) under `[install]`, so a fresh install or update takes the newest release at least 14 days old that the range allows, never one published since.
 
 The Bun runtime is a dependency too. The exact release `packageManager` pins is dated against the registry's `bun` package, the same source as every other release date, and graded under the same window and clock, so a repository whose runtime lags is behind the standard in exactly the way a lagging package is. Adopting it means moving `packageManager` and the `mise.toml` `bun` pin together, which `MISE-2` already holds equal. Prerelease canary builds never open the window. The runtime is graded even when `bun outdated` cannot run, and its full release history is fetched only when the registry's `latest` tag is newer than the pin.
 
