@@ -16,7 +16,7 @@ export const DEPENDENCIES: RubricFamily<EngineeringRubricContext, DependenciesRu
       code: 'DEPS-1',
       title: 'Dependencies are current',
       description:
-        '`bun outdated` reports no available updates and the `packageManager` Bun runtime is the latest release; a newer release opens a 14-day adoption window — informational while open, failing once the next unadopted release is two weeks old — with deliberate holds recorded as `dependency_holds` in `.ki.toml` (the runtime as `bun`).',
+        '`bun outdated` reports no available updates and the `packageManager` Bun runtime is the latest release; a newer release opens a 14-day adoption window, the same 14 days `bunfig.toml` sets as `install.minimumReleaseAge` — informational while open, failing once the next unadopted release is two weeks old and naming the newest release past the window as the target — with deliberate holds recorded as `dependency_holds` in `.ki.toml` (the runtime as `bun`).',
       sources: ['standard-engineering.md'],
       mechanical: {
         level: 'WARN',

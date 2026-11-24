@@ -725,8 +725,14 @@ export const inspectScriptExclusions = (
 // ── DEPS-1: leading-edge dependency freshness ─────────────────────────────────
 // The adoption clock is set by the NEXT version after the installed one — the
 // first release the repo has not adopted — so a fast-shipping upstream cannot
-// reset it by publishing again.
+// reset it by publishing again. The window is Bun's own release age: `bunfig.toml`
+// sets `install.minimumReleaseAge` to the same 14 days, so a release becomes
+// installable exactly when DEPS-1 starts to expect it, and DEPS-1 names as the
+// target the newest release past the window, the one a plain update then takes.
 export const DEPENDENCY_ADOPTION_WINDOW_DAYS = 14
+
+/** `install.minimumReleaseAge` in `bunfig.toml`: the adoption window in seconds. */
+export const MINIMUM_RELEASE_AGE_SECONDS = DEPENDENCY_ADOPTION_WINDOW_DAYS * 86_400
 
 export type OutdatedPackage = { name: string; current: string }
 
@@ -793,8 +799,29 @@ export const nextVersionAfter = (current: string, versions: readonly string[]): 
   return next?.raw
 }
 
+/** The newest release after `current` published at least `days` before `now`: what a plain update takes under the release age. */
+export const newestReleasePastWindow = (
+  current: string,
+  times: ReadonlyMap<string, string>,
+  now: Date,
+  days = DEPENDENCY_ADOPTION_WINDOW_DAYS
+): string | undefined => {
+  const installed = parseRelease(current)
+  if (!installed) return undefined
+  const cutoff = now.getTime() - days * 86_400_000
+  let newest: { raw: string; release: readonly [number, number, number] } | undefined
+  for (const [raw, published] of times) {
+    const release = parseRelease(raw)
+    const at = Date.parse(published)
+    if (!release || Number.isNaN(at) || at > cutoff || compareRelease(release, installed) <= 0) continue
+    if (!newest || compareRelease(release, newest.release) > 0) newest = { raw, release }
+  }
+  return newest?.raw
+}
+
 export type DependencyFreshness =
-  | { state: 'stale' | 'fresh'; name: string; current: string; next: string; ageDays: number }
+  | { state: 'stale'; name: string; current: string; next: string; ageDays: number; target: string }
+  | { state: 'fresh'; name: string; current: string; next: string; ageDays: number }
   | { state: 'held'; name: string; current: string; reason: string }
   | { state: 'unknown'; name: string; current: string }
 
@@ -812,8 +839,10 @@ export const gradeDependencyFreshness = (
     const published = next && times ? Date.parse(times.get(next) ?? '') : Number.NaN
     if (!next || Number.isNaN(published)) return { state: 'unknown', name, current }
     const ageDays = Math.floor((now.getTime() - published) / 86_400_000)
-    const state = ageDays >= DEPENDENCY_ADOPTION_WINDOW_DAYS ? 'stale' : 'fresh'
-    return { state, name, current, next, ageDays }
+    const target = times ? newestReleasePastWindow(current, times, now) : undefined
+    if (ageDays >= DEPENDENCY_ADOPTION_WINDOW_DAYS && target)
+      return { state: 'stale', name, current, next, ageDays, target }
+    return { state: 'fresh', name, current, next, ageDays }
   })
 
 // The Bun runtime is graded as one more dependency under this name, so it shares the
@@ -897,17 +926,18 @@ export const dependencyFreshnessFindings = ({
     )
   } else if (candidates.length > 0) {
     const graded = gradeDependencyFreshness(candidates, publishTimes, holds, now)
-    const dated = (state: 'stale' | 'fresh') =>
-      graded.filter((g): g is Extract<DependencyFreshness, { state: 'stale' | 'fresh' }> => g.state === state)
-    const stale = dated('stale')
-    const fresh = dated('fresh')
+    const stale = graded.filter((g): g is Extract<DependencyFreshness, { state: 'stale' }> => g.state === 'stale')
+    const fresh = graded.filter((g): g is Extract<DependencyFreshness, { state: 'fresh' }> => g.state === 'fresh')
     const held = graded.filter((g): g is Extract<DependencyFreshness, { state: 'held' }> => g.state === 'held')
     const unknown = graded.filter((g) => g.state === 'unknown')
     if (stale.length)
       add(
         'FAIL',
         `beyond the ${DEPENDENCY_ADOPTION_WINDOW_DAYS}-day adoption window: ${stale
-          .map((g) => `${label(g.name)} ${g.current} → ${g.next} (available ${g.ageDays} days)`)
+          .map(
+            (g) =>
+              `${label(g.name)} ${g.current} → ${g.target} (${g.target === g.next ? '' : `newest past the window; next ${g.next} `}available ${g.ageDays} days)`
+          )
           .join(', ')} — adopt the update or record a dependency hold`
       )
     if (fresh.length)

@@ -22,6 +22,8 @@ import {
   inspectManagedSurfaceExclusions,
   inspectToolchainActivation,
   inspectTurborepo,
+  MINIMUM_RELEASE_AGE_SECONDS,
+  newestReleasePastWindow,
   nextVersionAfter,
   pinnedBunRuntime
 } from '../contexts/audit-evidence.ts'
@@ -1164,6 +1166,31 @@ test('the adoption clock is set by the next unadopted release, never the latest'
   expect(nextVersionAfter('not-a-version', ['1.0.0'])).toBeUndefined()
 })
 
+test("the adoption window is Bun's release age, and DEPS-1 names the newest release past it", () => {
+  expect(MINIMUM_RELEASE_AGE_SECONDS).toBe(1_209_600)
+  const times = new Map([
+    ['1.1.0', '2026-08-01T00:00:00Z'],
+    ['1.2.0', '2026-08-10T00:00:00Z'],
+    ['1.3.0', '2026-08-30T00:00:00Z'],
+    ['2.0.0-beta.1', '2026-08-05T00:00:00Z']
+  ])
+  const now = new Date('2026-09-03T00:00:00Z')
+  expect(newestReleasePastWindow('1.0.0', times, now)).toBe('1.2.0')
+  expect(newestReleasePastWindow('1.2.0', times, now)).toBeUndefined()
+  expect(
+    dependencyFreshnessFindings({
+      outdated: [{ name: 'lib', current: '1.0.0' }],
+      packageManager: undefined,
+      runtimeState: undefined,
+      publishTimes: new Map([['lib', times]]),
+      kiConfiguration: '',
+      now
+    })[0]?.msg
+  ).toBe(
+    'beyond the 14-day adoption window: lib 1.0.0 → 1.2.0 (newest past the window; next 1.1.0 available 33 days) — adopt the update or record a dependency hold'
+  )
+})
+
 test('the pinned Bun runtime is read from an exact packageManager release only', () => {
   expect(pinnedBunRuntime('bun@1.4.1')).toBe('1.4.1')
   expect(pinnedBunRuntime('bun@1.4.2+sha512.abc123')).toBe('1.4.2')
@@ -1192,7 +1219,7 @@ test('a behind Bun runtime shares the adoption window and the dependency hold ro
   const runtime = [{ name: BUN_RUNTIME, current: '1.4.1' }]
   const publishTimes = new Map([[BUN_RUNTIME, times]])
   expect(gradeDependencyFreshness(runtime, publishTimes, new Map(), new Date('2026-10-06T00:00:00Z'))).toEqual([
-    { state: 'stale', name: 'bun', current: '1.4.1', next: '1.4.2', ageDays: 30 }
+    { state: 'stale', name: 'bun', current: '1.4.1', next: '1.4.2', ageDays: 30, target: '1.4.2' }
   ])
   expect(gradeDependencyFreshness(runtime, publishTimes, new Map(), new Date('2026-09-10T00:00:00Z'))).toEqual([
     { state: 'fresh', name: 'bun', current: '1.4.1', next: '1.4.2', ageDays: 4 }
@@ -1295,7 +1322,7 @@ test('freshness grades FAIL beyond the 14-day window, INFO within it, held and u
     now
   )
   expect(graded).toEqual([
-    { state: 'stale', name: 'stale-lib', current: '1.0.0', next: '1.1.0', ageDays: 33 },
+    { state: 'stale', name: 'stale-lib', current: '1.0.0', next: '1.1.0', ageDays: 33, target: '1.1.0' },
     { state: 'fresh', name: 'fresh-lib', current: '1.0.0', next: '1.1.0', ageDays: 9 },
     { state: 'held', name: 'typescript', current: '5.9.3', reason: 'vendored packages still target TS 5' },
     { state: 'unknown', name: 'unknown-lib', current: '1.0.0' }

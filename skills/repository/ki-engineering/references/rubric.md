@@ -203,7 +203,7 @@ Declared dependency ranges are canonically ordered and aligned.
 
 Available dependency updates are surfaced and deliberately applied.
 
-- **DEPS-1 [M + J] — Dependencies are current** — `bun outdated` reports no available updates and the `packageManager` Bun runtime is the latest release; a newer release opens a 14-day adoption window — informational while open, failing once the next unadopted release is two weeks old — with deliberate holds recorded as `dependency_holds` in `.ki.toml` (the runtime as `bun`). (standard-engineering.md)
+- **DEPS-1 [M + J] — Dependencies are current** — `bun outdated` reports no available updates and the `packageManager` Bun runtime is the latest release; a newer release opens a 14-day adoption window, the same 14 days `bunfig.toml` sets as `install.minimumReleaseAge` — informational while open, failing once the next unadopted release is two weeks old and naming the newest release past the window as the target — with deliberate holds recorded as `dependency_holds` in `.ki.toml` (the runtime as `bun`). (standard-engineering.md)
   - _Remediation:_ guarded — Review each available dependency or Bun runtime update and apply the selected versions deliberately, then rerun the audit.
   - _Evidence scope:_ Every available dependency or Bun runtime update and its release notes, compatibility impact, and lockfile change.
   - _Review prompt:_ Should each available update be adopted now without violating repository compatibility or release commitments?

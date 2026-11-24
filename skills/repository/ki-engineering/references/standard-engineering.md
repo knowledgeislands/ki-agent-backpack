@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T11:36:16Z
+ki-revised: 2026-11-24T16:07:59Z
 ki-status: in force
 ---
 
@@ -81,7 +81,7 @@ The common engineering layer of every Knowledge Islands TypeScript/Bun repositor
 | **Flat shape** | A repository with no `workspaces` key in its `package.json`: one package rooted at the repository. **Standard:** this one, [4.4](#44-repo-shapes--flat-vs-monorepo-core) |
 | **Monorepo shape** | A repository whose `package.json` carries a `workspaces` array, its workspaces grouped by ownership. **Standard:** this one, [4.4](#44-repo-shapes--flat-vs-monorepo-core) |
 | **Boundary checker** | The dependency-cruiser ruleset and cruise that reject an import crossing a stated dependency direction. **Standard:** this one, [4.4](#44-repo-shapes--flat-vs-monorepo-core) |
-| **Adoption window** | The 14 days a newer dependency release opens, counted from the next version after the one installed. **Standard:** this one, [4.5.6](#456-dependency-freshness--leading-edge-core) |
+| **Adoption window** | The 14 days a newer dependency release opens, counted from the next version after the one installed, and the release age `bunfig.toml` sets for Bun. **Standard:** this one, [4.5.6](#456-dependency-freshness--leading-edge-core) |
 | **Governed script surface** | The root `package.json` scripts, each a bare lifecycle idiom, a capability-owned `ki:` name or a repository-owned `self:` name. **Standard:** this one, [4.6](#46-the-governed-script-surface-core) |
 
 [Back to contents](#contents)
@@ -256,9 +256,9 @@ Git history recovers a repository, not a connection: a Headroom proxy rollout th
 
 #### 4.5.6 Dependency freshness — leading edge (core)
 
-KI repositories run at the leading edge: when a dependency publishes a newer release, the default is to adopt it, not to defer. A newer release opens a **14-day adoption window**, and the clock is set by the **next version after the one installed** — the first release the repository has not adopted — never by the latest, so a fast-shipping upstream cannot reset it by publishing again. Within the window an available update is informational; beyond it the repository is behind the standard and the audit fails. Updates are applied deliberately — reviewed through `ki repo conform`, or `ki:deps:update` for the blanket `bun update --latest` — and proven by the usual gates rather than assumed safe.
+KI repositories run at the leading edge: when a dependency publishes a newer release, the default is to adopt it, not to defer. A newer release opens a **14-day adoption window**, and the clock is set by the **next version after the one installed** — the first release the repository has not adopted — never by the latest, so a fast-shipping upstream cannot reset it by publishing again. Within the window an available update is informational; beyond it the repository is behind the standard and the audit fails, naming as the target the newest release older than the window. Updates are applied deliberately — reviewed through `ki repo conform`, or `ki:deps:update` for the blanket `bun update --latest` — and proven by the usual gates rather than assumed safe.
 
-Bun waits 14 days before taking a new release: each repository's `bunfig.toml` sets `minimumReleaseAge = 1209600` (14 days, in seconds) under `[install]`, so a fresh install or update takes the newest release at least 14 days old that the range allows, never one published since.
+The window is also Bun's release age, so one 14-day clock governs both what may be installed and what must be adopted. Each repository's `bunfig.toml` sets `minimumReleaseAge = 1209600` (14 days, in seconds) under `[install]`: Bun waits 14 days before taking a new release, so a plain install or update takes the newest release at least 14 days old that the range allows, never one published since. A release therefore becomes installable on the day DEPS-1 starts to expect it, and the target DEPS-1 names is the release a plain update then takes.
 
 The Bun runtime is a dependency too. The exact release `packageManager` pins is dated against the registry's `bun` package, the same source as every other release date, and graded under the same window and clock, so a repository whose runtime lags is behind the standard in exactly the way a lagging package is. Adopting it means moving `packageManager` and the `mise.toml` `bun` pin together, which `MISE-2` already holds equal. Prerelease canary builds never open the window. The runtime is graded even when `bun outdated` cannot run, and its full release history is fetched only when the registry's `latest` tag is newer than the pin.
 
