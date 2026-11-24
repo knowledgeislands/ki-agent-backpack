@@ -80,7 +80,7 @@ ki-id: presentation:<slug>
 ki-document-type: presentation@<version ref of standard-formats-presentation.md>
 title: <its name, the H1 and the title slide>
 ki-status: <draft, ready or retired>
-ki-revised: 2026-11-22T01:09:07Z
+ki-revised: <UTC, to the second>
 ki-owner: actor:<id>
 ki-inputs:
   - <organisation>/<repository>:<path>@<version ref>

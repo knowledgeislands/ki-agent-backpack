@@ -79,7 +79,7 @@ ki-id: design:<slug>
 ki-document-type: design@<version ref of standard-formats-design.md>
 title: <its name, the H1>
 ki-status: <draft, agreed, current, shelved or replaced>
-ki-revised: 2026-11-18T03:32:23Z
+ki-revised: <UTC, to the second>
 ki-owner: actor:<id>
 ---
 ```

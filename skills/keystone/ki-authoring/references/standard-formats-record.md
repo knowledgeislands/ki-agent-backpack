@@ -77,7 +77,7 @@ The rules, part by part.
 ---
 ki-id: record:<the file name, without .md>
 ki-document-type: record@<version ref of standard-formats-record.md>
-ki-revised: 2026-11-22T17:59:30Z
+ki-revised: 2026-11-17T02:23:23Z
 ki-at: 2026-11-16T15:53:00Z
 title: <what the batch was for, in a few words>
 ki-theme: <theme>

@@ -72,7 +72,7 @@ The rules, part by part.
 ```yaml
 ---
 ki-document-type: change@<version ref of standard-formats-change.md>
-ki-revised: 2026-11-24T03:22:50Z
+ki-revised: 2026-11-09T21:36:32Z
 ki-status: <one of the values below>
 ki-inputs:
   - <organisation>/<repository>@<version ref>
