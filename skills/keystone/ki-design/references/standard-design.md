@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T22:10:58Z
+ki-revised: 2026-11-24T22:24:41Z
 ki-status: in force
 ---
 
@@ -110,7 +110,7 @@ Rubric **DESIGN-4** reviews it.
 
 Design shapes; Authoring writes down. A design is written down as a design document, in `ki-authoring`'s [design format](../../ki-authoring/references/standard-formats-design.md): the design as it stands first, its brief in its Introduction, under `docs/design/`. Its choices, contracts and architecture still go where the repository keeps them, each linked from the design rather than restated in it: a choice that needs its reason kept becomes a decision record under `ki-decision-records`, a contract others build to a specification under `ki-specs`, and an architecture is drawn under `ki-diagrams`. `ki-design-system` already keeps its design specifications and decision records in Authoring's forms.
 
-This skill owns a design's life cycle: it moves from `draft` to `agreed`, `current`, `shelved` or `replaced` only through a change document, whose review is the design's review, as [4.2](#42-how-a-design-is-shaped) sets out. A living design, which every build adds to, takes a build's additions only in its Built section; anything else changes through a change document.
+This skill owns a design's life cycle: it moves from `draft` to `proposed`, `agreed`, `current`, `shelved` or `replaced` only through a change document, whose review is the design's review, as [4.2](#42-how-a-design-is-shaped) sets out. A living design, which every build adds to, takes a build's additions only in its Built section; anything else changes through a change document.
 
 **Proposed and shelved designs are kept.** A project's design book, its design documents under `docs/design/` with their boards, keeps its current design and also any proposed or shelved designs, each clearly marked with its state. Only a change document makes a proposed design current, or drops it to Git history, and Git still keeps every version. An option not chosen but still promising is not retired with the working material: it goes into the design book as proposed.
 

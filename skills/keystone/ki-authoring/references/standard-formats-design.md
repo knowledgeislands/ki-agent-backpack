@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-18T03:32:23Z
+ki-revised: 2026-11-24T22:24:41Z
 ki-status: in force
 ---
 
@@ -36,7 +36,7 @@ The format of a design document, from its front matter to its last section, with
 
 ### 2.1 In scope
 
-- A design's front matter and its five statuses.
+- A design's front matter and its six statuses.
 - Its six sections, the Introduction holding the brief, and what it leaves out.
 - A living design's Built section.
 - How its images, boards and diagrams are kept and shown, its design book among them.
@@ -78,7 +78,7 @@ The rules, part by part.
 ki-id: design:<slug>
 ki-document-type: design@<version ref of standard-formats-design.md>
 title: <its name, the H1>
-ki-status: <draft, agreed, current, shelved or replaced>
+ki-status: <draft, proposed, agreed, current, shelved or replaced>
 ki-revised: <UTC, to the second>
 ki-owner: actor:<id>
 ---
@@ -87,7 +87,7 @@ ki-owner: actor:<id>
 - **`ki-id` opens and `ki-document-type` follows,** as every resource opens with its typed id: `design:` and the file's slug, the name without `.design.md`. A reference to a design uses this id.
 - **`ki-document-type`** names the kind, `design`, and the version of this format the design follows.
 - **`title`** is the design's name and its H1; it is meant for other tools, so it keeps its name.
-- **`ki-status`** takes one of the five values in [4.2](#42-statuses).
+- **`ki-status`** takes one of the six values in [4.2](#42-statuses).
 - **`ki-revised`** is the time of the design's last change of substance, as the format format sets; a build's addition to Built is one.
 - **`ki-owner`** is the actor who owns the design and decides on it, as a typed id, such as `actor:ki.cairn`.
 - **No other field.** A design carries no date of its own beyond `ki-revised`, and no inputs, outputs or history: its change documents carry those, and Git keeps the rest.
@@ -99,6 +99,7 @@ ki-owner: actor:<id>
 | Status | Meaning |
 | --- | --- |
 | `draft` | Being written; not yet agreed. |
+| `proposed` | Kept in the design book beside the current design and not chosen; only a change document makes it current or drops it to Git history. |
 | `agreed` | Agreed by its owner and not yet wholly built; its Built section says what differs. |
 | `current` | Agreed and built: it describes what stands. |
 | `shelved` | Set aside; its Introduction says why, in a line. |
@@ -114,7 +115,7 @@ ki-owner: actor:<id>
 2. **Introduction** holds the brief, in `ki-design`'s words: what the design is for, what it must satisfy and what it leaves out, so that a review can be made against it. A brief written before the design becomes its Introduction when the design is written. A shelved or replaced design opens it with its status line.
 3. **Design** comes first and says the design as it stands now, in the present tense. It runs by its kind's levels, from the coarsest to the finest, as `ki-design` sets them: a visual design's book reads 2.1 Information architecture, 2.2 Wireframes and 2.3 Mock-ups, as [4.5](#45-images-boards-and-diagrams) sets out; a technical design reads by its kind's three levels.
 4. **Built** says what of the design is built and where, and, for an agreed design, what differs from it.
-5. **Options set aside** are short: each option the design did not take, with why, in a line or two. No option is argued again here.
+5. **Options set aside** are short: each option the design did not take, with why, in a line or two. No option is argued again here; one not chosen but still promising is kept as a proposed design of its own and linked from here.
 6. **Decisions** lists the choices the design settles, each linking its decision record where the repository keeps them, never restating its reasons.
 7. **Terms and definitions** is a two-column table of the design's own words, each definition ending with a **Standard:** line, as in a standard.
 8. **What a design leaves out:** no history or changelog, which Git and the change documents keep; no slice plan, which belongs to a change document or the roadmap; no risks or open questions, which belong to the change that is moving it; and no guide, such as start-up steps, which belongs under `ki-guides`. A design links its contract's specification, its architecture's diagrams and its decision records rather than restating them.
@@ -154,7 +155,7 @@ Every picture a design shows renders in any Markdown view and in the Wayfinder.
 
 Beyond the format format's checks, a validator checks:
 
-1. **Front matter:** `ki-id` is `design:` and the file's slug; `title` is present and is the H1; `ki-status` is one of the five; `ki-owner` is an `actor:` id; and no field but those in [4.1](#41-front-matter) is present.
+1. **Front matter:** `ki-id` is `design:` and the file's slug; `title` is present and is the H1; `ki-status` is one of the six; `ki-owner` is an `actor:` id; and no field but those in [4.1](#41-front-matter) is present.
 2. **Sections:** the six sections are present, numbered and in order, and no other top-level section; a design that shows boards has 2.1 to 2.3.
 3. **Status lines:** a shelved design's Introduction says why in its first line, a replaced design's first line links its successor, and an agreed design's Built says what differs.
 4. **Pictures:** each image the design shows exists in its folder; each board in a book is named `ia-`, `wire-` or `mock-` with its PNG beside it; no HTML page is embedded; and no drawing is made in text characters.
