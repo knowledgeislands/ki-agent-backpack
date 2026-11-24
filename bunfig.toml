@@ -1,0 +1,4 @@
+# Bun configuration for this repo. The release age is the ki-engineering
+# adoption window: Bun takes no release younger than 14 days.
+[install]
+minimumReleaseAge = 1209600 # 14 days, in seconds
