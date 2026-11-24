@@ -1,6 +1,6 @@
 ---
 ki-document-type: standard@2026-11-24T04:26:02Z
-ki-revised: 2026-11-24T11:28:58Z
+ki-revised: 2026-11-24T16:25:30Z
 ki-status: in force
 ---
 
@@ -59,7 +59,7 @@ The coordinator reply format: how every reply in a coordinator session, and a ru
 
 | Term | Definition |
 | --- | --- |
-| **Coordinator reply format** | The format of every reply in a coordinator session, and of a run report a run the coordinator launched writes into the package. **Standard:** this one, [4.1](#41-coordinator-reply-format) |
+| **Coordinator reply format** | The format of every reply in a coordinator session, and of a run report a run the coordinator launched writes into its run packet, `$TMPDIR/ki-agents/<run>/`, never into the package. **Standard:** this one, [4.1](#41-coordinator-reply-format) |
 | **Reply structure** | What a reply is, such as Summary, Status, Bootstrap, run report, Stop, Position, Update or Answer, each with one layout. **Standard:** this one, [4.1.1](#411-blocks-parts-and-layouts) |
 | **Trigger** | What a reply meets that sets its one reply structure, tried from T1 down, the first met winning; each is matched on a signal, a phrase, the state, the time or a move. **Standard:** this one, [4.1.2](#412-triggers) |
 | **Status table** | The Summary's and Status's full board of live items: one row per change document or sub-package holding one, then a catch-all row, Other live work. **Standard:** this one, [4.1.7](#417-the-summary) |
